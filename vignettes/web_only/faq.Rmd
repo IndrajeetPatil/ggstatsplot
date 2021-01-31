@@ -124,7 +124,7 @@ dataframe in what you want to do, I will recommend you to have a look at
 set.seed(123)
 library(ggstatsplot)
 
-combine_plots2(
+combine_plots(
   list(
   # with unequal Y-axes ranges
   grouped_ggscatterstats(
@@ -133,7 +133,7 @@ combine_plots2(
     hp,
     grouping.var = am,
     results.subtitle = FALSE,
-    title.text = "before"
+    annotation.args = list(title = "before")
   ),
   # with equal Y-axes ranges
   grouped_ggscatterstats(
@@ -144,7 +144,7 @@ combine_plots2(
     results.subtitle = FALSE,
     ggplot.component =
       list(ggplot2::scale_y_continuous(breaks = seq(50, 350, 50), limits = (c(50, 350)))),
-    title.text = "after"
+    annotation.args = list(title = "after")
   )),
   plotgrid.args = list(nrow = 2)
 )
@@ -216,8 +216,8 @@ plot_list <-
 # arragen the list in a single plot
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  nrow = 2,
-  labels = c("(i)", "(ii)", "(iii)", "(iv)")
+  plotgrid.args = list(nrow = 2),
+  annotation.args = list(tag_levels = 'i')
 )
 ```
 
@@ -350,18 +350,18 @@ library(ggplot2)
 
 # basic plot without mean tagging
 p <-
-  ggwithinstats(
-    data = bugs_long,
-    x = condition,
-    y = desire,
-    mean.plotting = FALSE
+  ggbetweenstats(
+    data = mtcars,
+    x = am,
+    y = wt,
+    centrality.plotting = FALSE
   )
 
 # delete the geom_point layer
 p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
 
 # add a new layers for points with a different shape
-p + geom_point(shape = 23, aes(color = condition))
+p + geom_point(shape = 23, aes(color = am))
 ```
 
 # How can I modify the fill colors with custom values?
@@ -461,7 +461,8 @@ expr_results <-
     statistic.text = quote(italic("T")),
     effsize.text = quote(widehat(italic(tau))["Kendall"]),
     stats.df = results,
-    n = results$n.obs[[1]]
+    n = results$n.obs[[1]],
+    conf.level = 0.95
   )
 
 # plot (overriding defaults and using custom expression)

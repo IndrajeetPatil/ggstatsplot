@@ -91,7 +91,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -216,13 +216,8 @@ grouping variable.</p>
   title.prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>,
-  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  title.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  title.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>16</span>, fontface <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
-  caption.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  caption.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
-  sub.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sub.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>guides <span class='op'>=</span> <span class='st'>"collect"</span><span class='op'>)</span>,
+  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -333,7 +328,7 @@ should be displayed for each level of the grouping variable <code>x</code> (Defa
 <code>TRUE</code>).</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></dd>
-    <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
+    <dt><code>conf.level</code></dt><dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults return
 <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
     <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
 for the effect size (Default: <code>100</code>).</p></dd>
@@ -396,37 +391,12 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
     </tr>
     <tr>
       <th>plotgrid.args</th>
-      <td><p>A list of additional arguments to <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>cowplot::plot_grid</a></code>.</p></td>
+      <td><p>Additional arguments passed to <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>.</p></td>
     </tr>
     <tr>
-      <th>title.text</th>
-      <td><p>String or plotmath expression to be drawn as title for the
-<em>combined plot</em>.</p></td>
-    </tr>
-    <tr>
-      <th>title.args</th>
-      <td><p>A list of additional arguments
-provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
-    </tr>
-    <tr>
-      <th>caption.text</th>
-      <td><p>String or plotmath expression to be drawn as the caption
-for the <em>combined plot</em>.</p></td>
-    </tr>
-    <tr>
-      <th>caption.args</th>
-      <td><p>A list of additional arguments
-provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
-    </tr>
-    <tr>
-      <th>sub.text</th>
-      <td><p>The label with which the <em>combined plot</em> should be annotated.
-Can be a plotmath expression.</p></td>
-    </tr>
-    <tr>
-      <th>sub.args</th>
-      <td><p>A list of additional arguments
-provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
+      <th>annotation.args</th>
+      <td><p>Additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
     </tr>
     </table>
 

@@ -150,7 +150,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2021-01-17}
+\date{2021-01-28}
 
 \begin{document}
 \maketitle
@@ -217,18 +217,18 @@ It produces a limited kinds of ready-made plots for the supported analyses:
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.29}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.50}}@{}}
 \toprule
-Function & Plot & Description \\ \addlinespace
+Function & Plot & Description \\
 \midrule
 \endhead
-\texttt{ggbetweenstats} & \textbf{violin plots} & for comparisons \emph{between} groups/conditions \\ \addlinespace
-\texttt{ggwithinstats} & \textbf{violin plots} & for comparisons \emph{within} groups/conditions \\ \addlinespace
-\texttt{gghistostats} & \textbf{histograms} & for distribution about numeric variable \\ \addlinespace
-\texttt{ggdotplotstats} & \textbf{dot plots/charts} & for distribution about labeled numeric variable \\ \addlinespace
-\texttt{ggscatterstats} & \textbf{scatterplots} & for correlation between two variables \\ \addlinespace
-\texttt{ggcorrmat} & \textbf{correlation matrices} & for correlations between multiple variables \\ \addlinespace
-\texttt{ggpiestats} & \textbf{pie charts} & for categorical data \\ \addlinespace
-\texttt{ggbarstats} & \textbf{bar charts} & for categorical data \\ \addlinespace
-\texttt{ggcoefstats} & \textbf{dot-and-whisker plots} & for regression models and meta-analysis \\ \addlinespace
+\texttt{ggbetweenstats} & \textbf{violin plots} & for comparisons \emph{between} groups/conditions \\
+\texttt{ggwithinstats} & \textbf{violin plots} & for comparisons \emph{within} groups/conditions \\
+\texttt{gghistostats} & \textbf{histograms} & for distribution about numeric variable \\
+\texttt{ggdotplotstats} & \textbf{dot plots/charts} & for distribution about labeled numeric variable \\
+\texttt{ggscatterstats} & \textbf{scatterplots} & for correlation between two variables \\
+\texttt{ggcorrmat} & \textbf{correlation matrices} & for correlations between multiple variables \\
+\texttt{ggpiestats} & \textbf{pie charts} & for categorical data \\
+\texttt{ggbarstats} & \textbf{bar charts} & for categorical data \\
+\texttt{ggcoefstats} & \textbf{dot-and-whisker plots} & for regression models and meta-analysis \\
 \bottomrule
 \end{longtable}
 
@@ -265,18 +265,18 @@ currently supported in this package-
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.09}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.12}}@{}}
 \toprule
-Functions & Description & Parametric & Non-parametric & Robust & Bayesian \\ \addlinespace
+Functions & Description & Parametric & Non-parametric & Robust & Bayesian \\
 \midrule
 \endhead
-\texttt{ggbetweenstats} & Between group/condition comparisons & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggwithinstats} & Within group/condition comparisons & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{gghistostats}, \texttt{ggdotplotstats} & Distribution of a numeric variable & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggcorrmat} & Correlation matrix & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggscatterstats} & Correlation between two variables & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggpiestats}, \texttt{ggbarstats} & Association between categorical variables & \textcolor{ForestGreen}{Yes} & \texttt{NA} & \texttt{NA} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggpiestats}, \texttt{ggbarstats} & Equal proportions for categorical variable levels & \textcolor{ForestGreen}{Yes} & \texttt{NA} & \texttt{NA} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggcoefstats} & Regression model coefficients & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
-\texttt{ggcoefstats} & Random-effects meta-analysis & \textcolor{ForestGreen}{Yes} & \texttt{NA} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\ \addlinespace
+\texttt{ggbetweenstats} & Between group/condition comparisons & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggwithinstats} & Within group/condition comparisons & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
+\texttt{gghistostats}, \texttt{ggdotplotstats} & Distribution of a numeric variable & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggcorrmat} & Correlation matrix & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggscatterstats} & Correlation between two variables & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggpiestats}, \texttt{ggbarstats} & Association between categorical variables & \textcolor{ForestGreen}{Yes} & \texttt{NA} & \texttt{NA} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggpiestats}, \texttt{ggbarstats} & Equal proportions for categorical variable levels & \textcolor{ForestGreen}{Yes} & \texttt{NA} & \texttt{NA} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggcoefstats} & Regression model coefficients & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
+\texttt{ggcoefstats} & Random-effects meta-analysis & \textcolor{ForestGreen}{Yes} & \texttt{NA} & \textcolor{ForestGreen}{Yes} & \textcolor{ForestGreen}{Yes} \\
 \bottomrule
 \end{longtable}
 

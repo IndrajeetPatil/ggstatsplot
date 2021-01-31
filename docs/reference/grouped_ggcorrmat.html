@@ -60,7 +60,7 @@ levels of a grouping variable — grouped_ggcorrmat" />
 <meta property="og:description" content="
 Helper function for ggstatsplot::ggcorrmat to apply this function across
 multiple levels of a given factor and combining the resulting plots using
-ggstatsplot::combine_plots2." />
+ggstatsplot::combine_plots." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -93,7 +93,7 @@ ggstatsplot::combine_plots2." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -208,7 +208,7 @@ levels of a grouping variable</h1>
     <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
 <p>Helper function for <code><a href='ggcorrmat.html'>ggstatsplot::ggcorrmat</a></code> to apply this function across
 multiple levels of a given factor and combining the resulting plots using
-<code><a href='combine_plots2.html'>ggstatsplot::combine_plots2</a></code>.</p>
+<code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>grouped_ggcorrmat</span><span class='op'>(</span>
@@ -218,13 +218,8 @@ multiple levels of a given factor and combining the resulting plots using
   title.prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>,
-  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  title.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  title.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>16</span>, fontface <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
-  caption.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  caption.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
-  sub.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sub.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
+  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>guides <span class='op'>=</span> <span class='st'>"collect"</span><span class='op'>)</span>,
+  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -294,7 +289,7 @@ parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code
     <dt><code>beta</code></dt><dd><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>WRS2::pbcor()</a></code>.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></dd>
-    <dt><code>conf.level</code></dt><dd><p>Scalar between 0 and 1. If unspecified, the defaults return
+    <dt><code>conf.level</code></dt><dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults return
 <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors.</p></dd>
@@ -327,37 +322,12 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
     </tr>
     <tr>
       <th>plotgrid.args</th>
-      <td><p>A list of additional arguments to <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>cowplot::plot_grid</a></code>.</p></td>
+      <td><p>Additional arguments passed to <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>.</p></td>
     </tr>
     <tr>
-      <th>title.text</th>
-      <td><p>String or plotmath expression to be drawn as title for the
-<em>combined plot</em>.</p></td>
-    </tr>
-    <tr>
-      <th>title.args</th>
-      <td><p>A list of additional arguments
-provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
-    </tr>
-    <tr>
-      <th>caption.text</th>
-      <td><p>String or plotmath expression to be drawn as the caption
-for the <em>combined plot</em>.</p></td>
-    </tr>
-    <tr>
-      <th>caption.args</th>
-      <td><p>A list of additional arguments
-provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
-    </tr>
-    <tr>
-      <th>sub.text</th>
-      <td><p>The label with which the <em>combined plot</em> should be annotated.
-Can be a plotmath expression.</p></td>
-    </tr>
-    <tr>
-      <th>sub.args</th>
-      <td><p>A list of additional arguments
-provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.</p></td>
+      <th>annotation.args</th>
+      <td><p>Additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
     </tr>
     </table>
 
@@ -390,43 +360,21 @@ provided to <code>title</code>, <code>caption</code> and <code>sub</code>, resp.
   output <span class='op'>=</span> <span class='st'>"dataframe"</span>
 <span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 60 x 15</span><span>
-#&gt;    </span><span style='font-weight: bold;'>vore</span><span>  </span><span style='font-weight: bold;'>parameter1</span><span>  </span><span style='font-weight: bold;'>parameter2</span><span>  </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span> </span><span style='font-weight: bold;'>ci.width</span><span>    </span><span style='font-weight: bold;'>pd</span><span>
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> carni sleep_total sleep_rem     </span><span style='color: #555555;'>0.</span><span>845     </span><span style='color: #555555;'>0.</span><span>641    </span><span style='color: #555555;'>0.</span><span>961        89 1    
-#&gt; </span><span style='color: #555555;'> 2</span><span> carni sleep_total sleep_cycle   </span><span style='color: #555555;'>0.</span><span>204    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>351</span><span>    </span><span style='color: #555555;'>0.</span><span>764        89 </span><span style='color: #555555;'>0.</span><span>698
-#&gt; </span><span style='color: #555555;'> 3</span><span> carni sleep_total awake        -</span><span style='color: #BB0000;'>1.00</span><span>     -</span><span style='color: #BB0000;'>1.00</span><span>    -</span><span style='color: #BB0000;'>1.00</span><span>         89 1    
-#&gt; </span><span style='color: #555555;'> 4</span><span> carni sleep_total brainwt      -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>382</span><span>    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>759</span><span>    </span><span style='color: #555555;'>0.0</span><span>54</span><span style='text-decoration: underline;'>9</span><span>       89 </span><span style='color: #555555;'>0.</span><span>895
-#&gt; </span><span style='color: #555555;'> 5</span><span> carni sleep_total bodywt       -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>379</span><span>    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>662</span><span>   -</span><span style='color: #555555;'>0.0</span><span style='color: #BB0000;'>65</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>       89 </span><span style='color: #555555;'>0.</span><span>960
-#&gt; </span><span style='color: #555555;'> 6</span><span> carni sleep_rem   sleep_cycle   </span><span style='color: #555555;'>0.0</span><span>54</span><span style='text-decoration: underline;'>8</span><span>   -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>534</span><span>    </span><span style='color: #555555;'>0.</span><span>587        89 </span><span style='color: #555555;'>0.</span><span>562
-#&gt; </span><span style='color: #555555;'> 7</span><span> carni sleep_rem   awake        -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>848</span><span>    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>962</span><span>   -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>678</span><span>        89 1    
-#&gt; </span><span style='color: #555555;'> 8</span><span> carni sleep_rem   brainwt      -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>308</span><span>    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>760</span><span>    </span><span style='color: #555555;'>0.</span><span>252        89 </span><span style='color: #555555;'>0.</span><span>804
-#&gt; </span><span style='color: #555555;'> 9</span><span> carni sleep_rem   bodywt       -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>371</span><span>    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>716</span><span>    </span><span style='color: #555555;'>0.0</span><span>69</span><span style='text-decoration: underline;'>4</span><span>       89 </span><span style='color: #555555;'>0.</span><span>899
-#&gt; </span><span style='color: #555555;'>10</span><span> carni sleep_cycle awake        -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>205</span><span>    -</span><span style='color: #555555;'>0.</span><span style='color: #BB0000;'>754</span><span>    </span><span style='color: #555555;'>0.</span><span>373        89 </span><span style='color: #555555;'>0.</span><span>690
-#&gt;    </span><span style='font-weight: bold;'>rope.percentage</span><span> </span><span style='font-weight: bold;'>prior.distribution</span><span> </span><span style='font-weight: bold;'>prior.location</span><span> </span><span style='font-weight: bold;'>prior.scale</span><span> </span><span style='font-weight: bold;'>bayes.factor</span><span>
-#&gt;              </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span>          </span><span style='color: #555555;'>0</span><span>      cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707      112.   
-#&gt; </span><span style='color: #555555;'> 2</span><span>          </span><span style='color: #555555;'>0.</span><span>168  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        </span><span style='color: #555555;'>0.</span><span>714
-#&gt; </span><span style='color: #555555;'> 3</span><span>          </span><span style='color: #555555;'>0</span><span>      cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707       </span><span style='color: #BB0000;'>NA</span><span>    
-#&gt; </span><span style='color: #555555;'> 4</span><span>          </span><span style='color: #555555;'>0.</span><span>116  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        1.13 
-#&gt; </span><span style='color: #555555;'> 5</span><span>          </span><span style='color: #555555;'>0.0</span><span>78  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        1.72 
-#&gt; </span><span style='color: #555555;'> 6</span><span>          </span><span style='color: #555555;'>0.</span><span>206  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        </span><span style='color: #555555;'>0.</span><span>621
-#&gt; </span><span style='color: #555555;'> 7</span><span>          </span><span style='color: #555555;'>0.0</span><span>11</span><span style='text-decoration: underline;'>8</span><span> cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707      112.   
-#&gt; </span><span style='color: #555555;'> 8</span><span>          </span><span style='color: #555555;'>0.</span><span>136  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        </span><span style='color: #555555;'>0.</span><span>848
-#&gt; </span><span style='color: #555555;'> 9</span><span>          </span><span style='color: #555555;'>0.</span><span>124  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        1.03 
-#&gt; </span><span style='color: #555555;'>10</span><span>          </span><span style='color: #555555;'>0.</span><span>165  cauchy                          </span><span style='color: #555555;'>0</span><span>       </span><span style='color: #555555;'>0.</span><span>707        </span><span style='color: #555555;'>0.</span><span>714
-#&gt;    </span><span style='font-weight: bold;'>method</span><span>           </span><span style='font-weight: bold;'>n.obs</span><span>
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Bayesian Pearson    10
-#&gt; </span><span style='color: #555555;'> 2</span><span> Bayesian Pearson     5
-#&gt; </span><span style='color: #555555;'> 3</span><span> Bayesian Pearson    19
-#&gt; </span><span style='color: #555555;'> 4</span><span> Bayesian Pearson     9
-#&gt; </span><span style='color: #555555;'> 5</span><span> Bayesian Pearson    19
-#&gt; </span><span style='color: #555555;'> 6</span><span> Bayesian Pearson     5
-#&gt; </span><span style='color: #555555;'> 7</span><span> Bayesian Pearson    10
-#&gt; </span><span style='color: #555555;'> 8</span><span> Bayesian Pearson     6
-#&gt; </span><span style='color: #555555;'> 9</span><span> Bayesian Pearson    10
-#&gt; </span><span style='color: #555555;'>10</span><span> Bayesian Pearson     5
-#&gt; </span><span style='color: #555555;'># ... with 50 more rows</span><span></div><div class='input'><span class='co'># }</span>
+#&gt;    vore  parameter1 parameter2 estimate conf.low conf.high ci.width    pd
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> carni sleep_tot~ sleep_rem    0.845     0.641    0.961      0.89 1    
+#&gt; </span><span style='color: #555555;'> 2</span><span> carni sleep_tot~ sleep_cyc~   0.204    -</span><span style='color: #BB0000;'>0.351</span><span>    0.764      0.89 0.698
+#&gt; </span><span style='color: #555555;'> 3</span><span> carni sleep_tot~ awake       -</span><span style='color: #BB0000;'>1.00</span><span>     -</span><span style='color: #BB0000;'>1.00</span><span>    -</span><span style='color: #BB0000;'>1.00</span><span>       0.89 1    
+#&gt; </span><span style='color: #555555;'> 4</span><span> carni sleep_tot~ brainwt     -</span><span style='color: #BB0000;'>0.382</span><span>    -</span><span style='color: #BB0000;'>0.759</span><span>    0.054</span><span style='text-decoration: underline;'>9</span><span>     0.89 0.895
+#&gt; </span><span style='color: #555555;'> 5</span><span> carni sleep_tot~ bodywt      -</span><span style='color: #BB0000;'>0.379</span><span>    -</span><span style='color: #BB0000;'>0.662</span><span>   -</span><span style='color: #BB0000;'>0.065</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>     0.89 0.960
+#&gt; </span><span style='color: #555555;'> 6</span><span> carni sleep_rem  sleep_cyc~   0.054</span><span style='text-decoration: underline;'>8</span><span>   -</span><span style='color: #BB0000;'>0.534</span><span>    0.587      0.89 0.562
+#&gt; </span><span style='color: #555555;'> 7</span><span> carni sleep_rem  awake       -</span><span style='color: #BB0000;'>0.848</span><span>    -</span><span style='color: #BB0000;'>0.962</span><span>   -</span><span style='color: #BB0000;'>0.678</span><span>      0.89 1    
+#&gt; </span><span style='color: #555555;'> 8</span><span> carni sleep_rem  brainwt     -</span><span style='color: #BB0000;'>0.308</span><span>    -</span><span style='color: #BB0000;'>0.760</span><span>    0.252      0.89 0.804
+#&gt; </span><span style='color: #555555;'> 9</span><span> carni sleep_rem  bodywt      -</span><span style='color: #BB0000;'>0.371</span><span>    -</span><span style='color: #BB0000;'>0.716</span><span>    0.069</span><span style='text-decoration: underline;'>4</span><span>     0.89 0.899
+#&gt; </span><span style='color: #555555;'>10</span><span> carni sleep_cyc~ awake       -</span><span style='color: #BB0000;'>0.205</span><span>    -</span><span style='color: #BB0000;'>0.754</span><span>    0.373      0.89 0.690
+#&gt; </span><span style='color: #555555;'># ... with 50 more rows, and 7 more variables: rope.percentage </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   prior.distribution </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, prior.location </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, prior.scale </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   bayes.factor </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, n.obs </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'><span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

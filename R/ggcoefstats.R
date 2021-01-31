@@ -81,6 +81,9 @@
 #' @inheritParams statsExpressions::expr_meta_random
 #' @inheritParams ggbetweenstats
 #'
+#' @note **Important**: The function assumes that you have already downloaded
+#'   the needed package (`metafor`, `metaplus`, or `metaBMA`) for meta-analysis.
+#'
 #' @import ggplot2
 #' @importFrom rlang exec !!! !!
 #' @importFrom dplyr select mutate matches across row_number last group_by ungroup

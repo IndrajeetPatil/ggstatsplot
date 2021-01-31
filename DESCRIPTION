@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.6.8.9000
+Version: 0.7.0
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -25,30 +25,31 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
-    bayestestR (>= 0.8.1),
-    cowplot,
     dplyr,
     ggcorrplot,
     ggExtra,
     ggplot2,
-    ggrepel (>= 0.9.0),
+    ggrepel (>= 0.9.1),
     ggsignif,
     insight (>= 0.12.0.1),
-    ipmisc (>= 5.0.2),
+    ipmisc,
     pairwiseComparisons (>= 3.1.2),
     paletteer,
     parameters (>= 0.11.0.1),
+    patchwork,
     performance,
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.7.0.9000),
+    statsExpressions (>= 0.7.1),
     tidyr,
     utils
 Suggests:
     forcats,
     knitr,
     MASS,
+    metaBMA,
+    metafor,
     rmarkdown,
     spelling,
     testthat,
@@ -56,7 +57,6 @@ Suggests:
     WRS2
 Remotes:
     easystats/insight,
-    easystats/bayestestR,
     easystats/parameters,
     IndrajeetPatil/statsExpressions
 VignetteBuilder: 

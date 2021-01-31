@@ -3,14 +3,14 @@
 
 # `ggstatsplot`: `ggplot2` Based Plots with Statistical Details
 
-| Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | References                                                                                                                                                      |
+| Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | Miscellaneous                                                                                                                                                   |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.5.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
-| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-129-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![Features](https://img.shields.io/badge/features-ggstatsplot-orange.svg?colorB=2196F3)](https://indrajeetpatil.github.io/ggstatsplot/reference/index.html)    |
-| [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                                               | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-10-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://CRAN.R-project.org/package=ggstatsplot/vignettes/)                |
+| [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.8.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
+| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-130-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                  | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-11-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--01--19-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
-| [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--01--28-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -820,58 +820,58 @@ ggcorrmat(
   type = "bayes",
   output = "dataframe"
 )
-#> # A tibble: 15 x 13
-#>    parameter1  parameter2  estimate conf.low conf.high    pd rope.percentage
-#>    <chr>       <chr>          <dbl>    <dbl>     <dbl> <dbl>           <dbl>
-#>  1 sleep_total sleep_rem      0.731    0.617    0.810  1              0     
-#>  2 sleep_total sleep_cycle   -0.432   -0.678   -0.223  0.995          0.0173
-#>  3 sleep_total awake         -1.00    -1.00    -1.00   1              0     
-#>  4 sleep_total brainwt       -0.339   -0.523   -0.156  0.996          0.028 
-#>  5 sleep_total bodywt        -0.300   -0.458   -0.142  0.997          0.0292
-#>  6 sleep_rem   sleep_cycle   -0.306   -0.535   -0.0555 0.965          0.091 
-#>  7 sleep_rem   awake         -0.734   -0.824   -0.638  1              0     
-#>  8 sleep_rem   brainwt       -0.202   -0.410    0.0130 0.927          0.212 
-#>  9 sleep_rem   bodywt        -0.315   -0.481   -0.120  0.994          0.0362
-#> 10 sleep_cycle awake          0.441    0.226    0.662  0.995          0.0158
-#> 11 sleep_cycle brainwt        0.823    0.720    0.911  1              0     
-#> 12 sleep_cycle bodywt         0.386    0.145    0.610  0.992          0.0392
-#> 13 awake       brainwt        0.341    0.154    0.524  0.992          0.0253
-#> 14 awake       bodywt         0.299    0.139    0.454  0.998          0.0265
-#> 15 brainwt     bodywt         0.926    0.896    0.957  1              0     
-#>    prior.distribution prior.location prior.scale bayes.factor method          
-#>    <chr>                       <dbl>       <dbl>        <dbl> <chr>           
-#>  1 cauchy                          0       0.707     3.00e+ 9 Bayesian Pearson
-#>  2 cauchy                          0       0.707     8.85e+ 0 Bayesian Pearson
-#>  3 cauchy                          0       0.707    NA        Bayesian Pearson
-#>  4 cauchy                          0       0.707     7.29e+ 0 Bayesian Pearson
-#>  5 cauchy                          0       0.707     9.28e+ 0 Bayesian Pearson
-#>  6 cauchy                          0       0.707     1.42e+ 0 Bayesian Pearson
-#>  7 cauchy                          0       0.707     3.01e+ 9 Bayesian Pearson
-#>  8 cauchy                          0       0.707     6.54e- 1 Bayesian Pearson
-#>  9 cauchy                          0       0.707     4.80e+ 0 Bayesian Pearson
-#> 10 cauchy                          0       0.707     8.85e+ 0 Bayesian Pearson
-#> 11 cauchy                          0       0.707     3.80e+ 6 Bayesian Pearson
-#> 12 cauchy                          0       0.707     3.76e+ 0 Bayesian Pearson
-#> 13 cauchy                          0       0.707     7.29e+ 0 Bayesian Pearson
-#> 14 cauchy                          0       0.707     9.27e+ 0 Bayesian Pearson
-#> 15 cauchy                          0       0.707     1.58e+22 Bayesian Pearson
-#>    n.obs
-#>    <int>
-#>  1    61
-#>  2    32
-#>  3    83
-#>  4    56
-#>  5    83
-#>  6    32
-#>  7    61
-#>  8    48
-#>  9    61
-#> 10    32
-#> 11    30
-#> 12    32
-#> 13    56
-#> 14    83
-#> 15    56
+#> # A tibble: 15 x 14
+#>    parameter1  parameter2  estimate conf.low conf.high ci.width    pd
+#>    <chr>       <chr>          <dbl>    <dbl>     <dbl>    <dbl> <dbl>
+#>  1 sleep_total sleep_rem      0.731    0.617    0.810      0.89 1    
+#>  2 sleep_total sleep_cycle   -0.432   -0.678   -0.223      0.89 0.995
+#>  3 sleep_total awake         -1.00    -1.00    -1.00       0.89 1    
+#>  4 sleep_total brainwt       -0.339   -0.523   -0.156      0.89 0.996
+#>  5 sleep_total bodywt        -0.300   -0.458   -0.142      0.89 0.997
+#>  6 sleep_rem   sleep_cycle   -0.306   -0.535   -0.0555     0.89 0.965
+#>  7 sleep_rem   awake         -0.734   -0.824   -0.638      0.89 1    
+#>  8 sleep_rem   brainwt       -0.202   -0.410    0.0130     0.89 0.927
+#>  9 sleep_rem   bodywt        -0.315   -0.481   -0.120      0.89 0.994
+#> 10 sleep_cycle awake          0.441    0.226    0.662      0.89 0.995
+#> 11 sleep_cycle brainwt        0.823    0.720    0.911      0.89 1    
+#> 12 sleep_cycle bodywt         0.386    0.145    0.610      0.89 0.992
+#> 13 awake       brainwt        0.341    0.154    0.524      0.89 0.992
+#> 14 awake       bodywt         0.299    0.139    0.454      0.89 0.998
+#> 15 brainwt     bodywt         0.926    0.896    0.957      0.89 1    
+#>    rope.percentage prior.distribution prior.location prior.scale bayes.factor
+#>              <dbl> <chr>                       <dbl>       <dbl>        <dbl>
+#>  1          0      cauchy                          0       0.707     3.00e+ 9
+#>  2          0.0173 cauchy                          0       0.707     8.85e+ 0
+#>  3          0      cauchy                          0       0.707    NA       
+#>  4          0.028  cauchy                          0       0.707     7.29e+ 0
+#>  5          0.0292 cauchy                          0       0.707     9.28e+ 0
+#>  6          0.091  cauchy                          0       0.707     1.42e+ 0
+#>  7          0      cauchy                          0       0.707     3.01e+ 9
+#>  8          0.212  cauchy                          0       0.707     6.54e- 1
+#>  9          0.0362 cauchy                          0       0.707     4.80e+ 0
+#> 10          0.0158 cauchy                          0       0.707     8.85e+ 0
+#> 11          0      cauchy                          0       0.707     3.80e+ 6
+#> 12          0.0392 cauchy                          0       0.707     3.76e+ 0
+#> 13          0.0253 cauchy                          0       0.707     7.29e+ 0
+#> 14          0.0265 cauchy                          0       0.707     9.27e+ 0
+#> 15          0      cauchy                          0       0.707     1.58e+22
+#>    method           n.obs
+#>    <chr>            <int>
+#>  1 Bayesian Pearson    61
+#>  2 Bayesian Pearson    32
+#>  3 Bayesian Pearson    83
+#>  4 Bayesian Pearson    56
+#>  5 Bayesian Pearson    83
+#>  6 Bayesian Pearson    32
+#>  7 Bayesian Pearson    61
+#>  8 Bayesian Pearson    48
+#>  9 Bayesian Pearson    61
+#> 10 Bayesian Pearson    32
+#> 11 Bayesian Pearson    30
+#> 12 Bayesian Pearson    32
+#> 13 Bayesian Pearson    56
+#> 14 Bayesian Pearson    83
+#> 15 Bayesian Pearson    56
 ```
 
 Additionally, **partial** correlation are also supported:
@@ -887,58 +887,58 @@ ggcorrmat(
   partial = TRUE,
   output = "dataframe"
 )
-#> # A tibble: 15 x 13
-#>    parameter1  parameter2  estimate conf.low conf.high    pd rope.percentage
-#>    <chr>       <chr>          <dbl>    <dbl>     <dbl> <dbl>           <dbl>
-#>  1 sleep_total sleep_rem    0.279     0.0202     0.550 0.940           0.133
-#>  2 sleep_total sleep_cycle -0.0181   -0.306      0.254 0.543           0.418
-#>  3 sleep_total awake       -1        -1         -1     1               0    
-#>  4 sleep_total brainwt     -0.0818   -0.352      0.192 0.678           0.390
-#>  5 sleep_total bodywt      -0.163    -0.425      0.121 0.818           0.294
-#>  6 sleep_rem   sleep_cycle -0.0666   -0.335      0.222 0.643           0.404
-#>  7 sleep_rem   awake        0.0505   -0.212      0.328 0.611           0.411
-#>  8 sleep_rem   brainwt      0.0811   -0.235      0.326 0.668           0.380
-#>  9 sleep_rem   bodywt      -0.0190   -0.296      0.265 0.544           0.424
-#> 10 sleep_cycle awake       -0.00603  -0.278      0.279 0.516           0.422
-#> 11 sleep_cycle brainwt      0.764     0.637      0.871 1               0    
-#> 12 sleep_cycle bodywt      -0.0865   -0.351      0.187 0.691           0.393
-#> 13 awake       brainwt     -0.0854   -0.349      0.205 0.690           0.390
-#> 14 awake       bodywt      -0.407    -0.630     -0.146 0.991           0.033
-#> 15 brainwt     bodywt       0.229    -0.0341     0.484 0.904           0.206
-#>    prior.distribution prior.location prior.scale bayes.factor method          
-#>    <chr>                       <dbl>       <dbl>        <dbl> <chr>           
-#>  1 cauchy                          0       0.707        1.04  Bayesian Pearson
-#>  2 cauchy                          0       0.707        0.277 Bayesian Pearson
-#>  3 cauchy                          0       0.707       NA     Bayesian Pearson
-#>  4 cauchy                          0       0.707        0.311 Bayesian Pearson
-#>  5 cauchy                          0       0.707        0.417 Bayesian Pearson
-#>  6 cauchy                          0       0.707        0.297 Bayesian Pearson
-#>  7 cauchy                          0       0.707        0.287 Bayesian Pearson
-#>  8 cauchy                          0       0.707        0.303 Bayesian Pearson
-#>  9 cauchy                          0       0.707        0.280 Bayesian Pearson
-#> 10 cauchy                          0       0.707        0.276 Bayesian Pearson
-#> 11 cauchy                          0       0.707   131029.    Bayesian Pearson
-#> 12 cauchy                          0       0.707        0.309 Bayesian Pearson
-#> 13 cauchy                          0       0.707        0.310 Bayesian Pearson
-#> 14 cauchy                          0       0.707        4.82  Bayesian Pearson
-#> 15 cauchy                          0       0.707        0.637 Bayesian Pearson
-#>    n.obs
-#>    <int>
-#>  1    30
-#>  2    30
-#>  3    30
-#>  4    30
-#>  5    30
-#>  6    30
-#>  7    30
-#>  8    30
-#>  9    30
-#> 10    30
-#> 11    30
-#> 12    30
-#> 13    30
-#> 14    30
-#> 15    30
+#> # A tibble: 15 x 14
+#>    parameter1  parameter2  estimate conf.low conf.high ci.width    pd
+#>    <chr>       <chr>          <dbl>    <dbl>     <dbl>    <dbl> <dbl>
+#>  1 sleep_total sleep_rem    0.279     0.0202     0.550     0.89 0.940
+#>  2 sleep_total sleep_cycle -0.0181   -0.306      0.254     0.89 0.543
+#>  3 sleep_total awake       -1        -1         -1         0.89 1    
+#>  4 sleep_total brainwt     -0.0818   -0.352      0.192     0.89 0.678
+#>  5 sleep_total bodywt      -0.163    -0.425      0.121     0.89 0.818
+#>  6 sleep_rem   sleep_cycle -0.0666   -0.335      0.222     0.89 0.643
+#>  7 sleep_rem   awake        0.0505   -0.212      0.328     0.89 0.611
+#>  8 sleep_rem   brainwt      0.0811   -0.235      0.326     0.89 0.668
+#>  9 sleep_rem   bodywt      -0.0190   -0.296      0.265     0.89 0.544
+#> 10 sleep_cycle awake       -0.00603  -0.278      0.279     0.89 0.516
+#> 11 sleep_cycle brainwt      0.764     0.637      0.871     0.89 1    
+#> 12 sleep_cycle bodywt      -0.0865   -0.351      0.187     0.89 0.691
+#> 13 awake       brainwt     -0.0854   -0.349      0.205     0.89 0.690
+#> 14 awake       bodywt      -0.407    -0.630     -0.146     0.89 0.991
+#> 15 brainwt     bodywt       0.229    -0.0341     0.484     0.89 0.904
+#>    rope.percentage prior.distribution prior.location prior.scale bayes.factor
+#>              <dbl> <chr>                       <dbl>       <dbl>        <dbl>
+#>  1           0.133 cauchy                          0       0.707        1.04 
+#>  2           0.418 cauchy                          0       0.707        0.277
+#>  3           0     cauchy                          0       0.707       NA    
+#>  4           0.390 cauchy                          0       0.707        0.311
+#>  5           0.294 cauchy                          0       0.707        0.417
+#>  6           0.404 cauchy                          0       0.707        0.297
+#>  7           0.411 cauchy                          0       0.707        0.287
+#>  8           0.380 cauchy                          0       0.707        0.303
+#>  9           0.424 cauchy                          0       0.707        0.280
+#> 10           0.422 cauchy                          0       0.707        0.276
+#> 11           0     cauchy                          0       0.707   131029.   
+#> 12           0.393 cauchy                          0       0.707        0.309
+#> 13           0.390 cauchy                          0       0.707        0.310
+#> 14           0.033 cauchy                          0       0.707        4.82 
+#> 15           0.206 cauchy                          0       0.707        0.637
+#>    method           n.obs
+#>    <chr>            <int>
+#>  1 Bayesian Pearson    30
+#>  2 Bayesian Pearson    30
+#>  3 Bayesian Pearson    30
+#>  4 Bayesian Pearson    30
+#>  5 Bayesian Pearson    30
+#>  6 Bayesian Pearson    30
+#>  7 Bayesian Pearson    30
+#>  8 Bayesian Pearson    30
+#>  9 Bayesian Pearson    30
+#> 10 Bayesian Pearson    30
+#> 11 Bayesian Pearson    30
+#> 12 Bayesian Pearson    30
+#> 13 Bayesian Pearson    30
+#> 14 Bayesian Pearson    30
+#> 15 Bayesian Pearson    30
 ```
 
 ### Summary of tests
@@ -1272,7 +1272,7 @@ option to do this effectively is using the `plyr` package.)
 In such cases, `ggstatsplot` contains a helper function `combine_plots`
 to combine multiple plots, which can be useful for combining a list of
 plots produced with `purrr`. This is a wrapper around
-`cowplot::plot_grid` and lets you combine multiple plots and add a
+`patchwork::wrap_plots` and lets you combine multiple plots and add a
 combination of title, caption, and annotation texts with suitable
 defaults.
 

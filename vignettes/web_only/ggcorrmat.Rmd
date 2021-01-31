@@ -263,7 +263,7 @@ ggstatsplot::grouped_ggcorrmat(
   type = "bf", # Bayesian test
   grouping.var = cut,
   title.prefix = "Quality of cut",
-  # arguments relevant for `ggstatsplot::combine_plots2`
+  # arguments relevant for `ggstatsplot::combine_plots`
   title.text = "Relationship between diamond attributes and price across cut",
   title.args = list(size = 16, color = "red"),
   caption.text = "Dataset: Diamonds from ggplot2 package",

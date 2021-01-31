@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-17</h4>
+            <h4 class="date">2021-01-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -162,7 +162,7 @@
 <h1 class="hasAnchor">
 <a href="#combining-plots-with-combine_plots" class="anchor"></a>Combining plots with <code>combine_plots</code>
 </h1>
-<p><code>ggstatsplot</code> contains a “helper” function named <code>combine_plots</code> to help you combine several plots into one plot or add a combination of title, caption, and annotation texts with suitable default parameters. It is a wrapper around <code><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">cowplot::plot_grid()</a></code>. Some examples below.</p>
+<p><code>ggstatsplot</code> contains a “helper” function named <code>combine_plots</code> to help you combine several plots into one plot or add a combination of title, caption, and annotation texts with suitable default parameters. It is a wrapper around <code><a href="https://wilkelab.org/patchwork/reference/plot_grid.html">patchwork::wrap_plots()</a></code>. Some examples below.</p>
 <p><strong>Note Before</strong>: If you have just one grouping variable and you’d like a plot for each <code>factor</code> of this variable the <code>grouped_</code> variants (<a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/index.html</a>) of all <code>ggstatsplot</code> functions will allow you do to this. They specifically use the <code>combine_plots</code> function under the covers.</p>
 <div id="combining-multiple-plots-example-1-using-dplyrgroup_map" class="section level2">
 <h2 class="hasAnchor">
@@ -175,21 +175,16 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="co"># creating a list of plots</span>
-<span class="va">p_list</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">%&gt;%</span>
+<span class="va">p_list</span> <span class="op">&lt;-</span>
+  <span class="va">mtcars</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, <span class="va">cyl</span> <span class="op">!=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, <span class="va">cyl</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span><span class="op">(</span>
-    .f <span class="op">=</span> <span class="op">~</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">.</span>,
-    x <span class="op">=</span> <span class="va">am</span>,
-    y <span class="op">=</span> <span class="va">wt</span>,
-    messages <span class="op">=</span> <span class="cn">FALSE</span>
-  <span class="op">)</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_map.html">group_map</a></span><span class="op">(</span>.f <span class="op">=</span> <span class="op">~</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">.</span>, x <span class="op">=</span> <span class="va">am</span>, y <span class="op">=</span> <span class="va">wt</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># combining plots</span>
-<span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span>
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="va">p_list</span>,
-  labels <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>tag_levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_groupmap-1.png" width="960"></p>
 </div>
@@ -198,7 +193,7 @@
 <a href="#combining-multiple-plots-example-2-using-purrr" class="anchor"></a>Combining multiple plots: Example-2 using <code>purrr</code>
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/"><code>purrr</code></a> which can replace many <code>for</code> loops, is more succinct, and easier to read. Consider <code>purrr</code> as your first choice for combining multiple plots.</p>
-<p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>cowplot</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
+<p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>patchwork</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -206,10 +201,12 @@
 
 <span class="co"># creating a list column with `ggstatsplot` plots</span>
 <span class="va">plots</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, Species2 <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># just creates a copy of this variable</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, Species2 <span class="op">=</span> <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># just creates a copy of this variable</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, <span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># a nested dataframe with list column called `data`</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> 
+  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># a nested dataframe with list column called `data`</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
     .data <span class="op">=</span> <span class="va">.</span>,
     plot <span class="op">=</span> <span class="va">data</span> <span class="op">%&gt;%</span>
       <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span>
@@ -241,20 +238,19 @@
 <span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span>
 <span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span>
 
-<span class="co"># creating a grid with cowplot</span>
+<span class="co"># creating a grid with patchwork</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  plotlist <span class="op">=</span> <span class="va">plots</span><span class="op">$</span><span class="va">plot</span>, 
-  nrow <span class="op">=</span> <span class="fl">3</span>,
-  ncol <span class="op">=</span> <span class="fl">1</span>,
-  title.text <span class="op">=</span> <span class="st">"Relationship between sepal length and width for each Iris species"</span>,
-  title.size <span class="op">=</span> <span class="fl">14</span>,
-  caption.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Note"</span><span class="op">)</span>,
-      <span class="st">": Iris flower dataset was collected by Edgar Anderson."</span>,
-      sep <span class="op">=</span> <span class="st">""</span>
-    <span class="op">)</span>,
-    caption.size <span class="op">=</span> <span class="fl">12</span>
+  plotlist <span class="op">=</span> <span class="va">plots</span><span class="op">$</span><span class="va">plot</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"Relationship between sepal length and width for each Iris species"</span>,
+    caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>
+        <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"Note"</span><span class="op">)</span>,
+        <span class="st">": Iris flower dataset was collected by Edgar Anderson."</span>,
+        sep <span class="op">=</span> <span class="st">""</span>
+      <span class="op">)</span>
+    <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_purrr-1.png" width="768"></p>
@@ -309,8 +305,8 @@
 <span class="co"># combining individual plots</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="va">plots</span>,
-  title.text <span class="op">=</span> <span class="st">"Relationship between GDP (per capita) and life expectancy"</span>,
-  nrow <span class="op">=</span> <span class="fl">2</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between GDP (per capita) and life expectancy"</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_plyr-1.png" width="1152"></p>
 </div>
@@ -324,9 +320,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  <span class="co"># preparing the plot with ggstatsplot function</span>
-  <span class="co"># let's use only 20% of data to speed up the process</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
+  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>
       formula <span class="op">=</span> <span class="va">rating</span> <span class="op">~</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">budget</span>, degree <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
       data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/movies_long.html">movies_long</a></span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>,
@@ -347,18 +341,19 @@
         <span class="st">"3rd degree (b3)"</span>
       <span class="op">)</span>
     <span class="op">)</span> <span class="op">+</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"term (polynomial regression)"</span><span class="op">)</span>,
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="st">"term (polynomial regression)"</span><span class="op">)</span><span class="op">)</span>,
   <span class="co"># adding additional text element to the plot since title, subtitle, caption are all already occupied</span>
-  sub.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>
-      <span class="st">"linear model: "</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,
-      <span class="st">" ~ "</span>,
-      <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">^</span>
-        <span class="fl">2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span>,
-      sep <span class="op">=</span> <span class="st">""</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>
+        <span class="st">"linear model: "</span>, <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,
+        <span class="st">" ~ "</span>,
+        <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">^</span>
+          <span class="fl">2</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">bolditalic</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">^</span><span class="fl">3</span>,
+        sep <span class="op">=</span> <span class="st">""</span>
+      <span class="op">)</span>
     <span class="op">)</span>
-  <span class="op">)</span>,
-  sub.size <span class="op">=</span> <span class="fl">12</span>
+  <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggbetweenstats_subtext-1.png" width="768"></p>
 </div>

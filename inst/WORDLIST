@@ -89,7 +89,6 @@ anevaluator
 anova
 anovas
 anthropods
-ascender
 au
 bayes
 bayesian
@@ -144,7 +143,6 @@ hl
 hotfix
 http
 https
-hv
 ibecav
 imdb
 img
@@ -173,8 +171,6 @@ paulvanderlaken
 pearson
 pearson's
 piechart
-plotgrid
-plotmath
 posteriori
 pre
 preferrred
@@ -183,7 +179,6 @@ purrr
 readme
 reproducibility
 ridgeplot
-rlbt
 rpubs
 scisbd
 sdt
@@ -191,7 +186,6 @@ setosa
 spearman
 statsExpressions
 svg
-tblr
 tibble
 tibbles
 tidiers
@@ -204,7 +198,6 @@ uber
 unjittered
 versicolor
 virginica
-vjust
 www
 yellowgreen
 youtu

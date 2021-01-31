@@ -1,4 +1,11 @@
-# ggstatsplot 0.6.8.9000
+# ggstatsplot 0.7.0
+
+BREAKING CHANGES
+
+  - `combine_plots` has been completely revised to rely not on `patchwork`, but on
+    `patchwork`, to combine a list of `ggplot` together. This was done to have a
+    leaner syntax. With this revision, its vestigial twin `combine_plots` is no
+    longer needed and has been removed.
 
 # ggstatsplot 0.6.8
 
@@ -334,7 +341,7 @@ list of arguments `list(size = 5, color = "darkgreen", alpha = 0.8)` can be
 supplied).
 
   - All `grouped_` functions have been refactored to reduce the number of
-    arguments. These functions now internally use the new `combine_plots2`
+    arguments. These functions now internally use the new `combine_plots`
     instead of `combine_plots`. The additional arguments to primary functions
     can be provided through `...`. These changes will not necessarily break the
     existing code but will lead to some minor graphical changes (e.g., if you
