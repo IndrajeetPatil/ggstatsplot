@@ -187,9 +187,8 @@ the merged plots and specify the layout in rows and columns.
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Changes in life expectancy across continents (1967-2007)",
-  title.color = "red",
-  ncol = 1
+   annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
+  plotgrid.args = list( ncol = 1)
 )
 ```
 
@@ -262,9 +261,8 @@ plot_list <-
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Response times across flank conditions for each type of cue",
-  title.color = "blue",
-  ncol = 1
+   annotation.args = list(title = "Response times across flank conditions for each type of cue"),
+  plotgrid.args =  list(ncol = 1)
 )
 ```
 
@@ -327,11 +325,9 @@ plot_list <-
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Relationship between movie budget and IMDB rating",
-  caption.text = "Source: www.imdb.com",
-  title.color = "red",
-  caption.color = "blue",
-  ncol = 1
+   annotation.args = list(title = "Relationship between movie budget and IMDB rating",
+  caption = "Source: www.imdb.com"),
+  plotgrid.args  = list(ncol = 1)
 )
 ```
 
@@ -391,13 +387,11 @@ plot_list <-
 # `combine_plots` function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Relationship between diamond attributes and price across cut",
-  title.size = 14,
-  title.color = "red",
-  caption.text = "Dataset: Diamonds from ggplot2 package",
-  caption.size = 12,
-  caption.color = "blue",
-  nrow = 2
+   annotation.args = list(
+     title = 
+ "Relationship between diamond attributes and price across cut",
+  caption = "Dataset: Diamonds from ggplot2 package"),
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -453,9 +447,9 @@ plot_list <-
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Improvement in life expectancy worldwide since 1950",
-  caption.text = "Note: black line - 1950; blue line - 2007",
-  nrow = 4
+   annotation.args = list(title = "Improvement in life expectancy worldwide since 1950",
+  caption = "Note: black line - 1950; blue line - 2007"),
+  plotgrid.args = list( nrow = 4)
 )
 ```  
 
@@ -516,8 +510,8 @@ plot_list <-
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Improvement in GDP per capita from 1952-2007",
-  nrow = 4
+   annotation.args = list(title = "Improvement in GDP per capita from 1952-2007"),
+   plotgrid.args = list(nrow = 4)
 )
 ```  
 
@@ -573,8 +567,8 @@ plot_list <-
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Survival in Titanic disaster by gender for all passenger classes",
-  ncol = 1
+   annotation.args = list(title = "Survival in Titanic disaster by gender for all passenger classes"),
+  plotgrid.args =  list(ncol = 1)
 )
 ``` 
 
@@ -630,9 +624,10 @@ plot_list <-
 # combining all individual plots from the list into a single plot using combine_plots function
 ggstatsplot::combine_plots(
   plotlist = plot_list,
-  title.text = "Survival in Titanic disaster by gender for all passenger classes",
-  caption.text = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant",
-  ncol = 1
+   annotation.args = list(
+     title =  "Survival in Titanic disaster by gender for all passenger classes",
+  caption = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant"),
+ plotgrid.args =   list(ncol = 1)
 )
 ``` 
 
@@ -655,8 +650,7 @@ plotlist <-
       data = list(mtcars, iris, ToothGrowth),
       x = alist(wt, Sepal.Length, len),
       results.subtitle = list(FALSE),
-      grouping.var = alist(am, Species, supp),
-      title.text = list("Dataset: mtcars", "Dataset: iris", "Dataset: ToothGrowth")
+      grouping.var = alist(am, Species, supp)
     ),
     .f = ggstatsplot::grouped_gghistostats
   )

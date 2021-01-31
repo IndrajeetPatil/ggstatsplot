@@ -58,12 +58,13 @@
 
 # function body
 combine_plots <- function(plotlist,
-                          plotgrid.args = list(guides = "collect"),
+                          plotgrid.args = list(),
                           annotation.args = list(),
                           ...) {
   rlang::exec(
     .fn = patchwork::wrap_plots,
     !!!plotlist,
+    guides = "collect",
     !!!plotgrid.args
   ) +
     rlang::exec(.fn = patchwork::plot_annotation, !!!annotation.args)

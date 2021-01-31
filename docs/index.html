@@ -49,7 +49,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -191,7 +191,7 @@
 <td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-11-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-13-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/"><img src="https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722" alt="vignettes"></a></td>
 </tr>
 <tr class="even">
@@ -205,7 +205,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2021--01--28-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2021--01--31-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -581,7 +581,7 @@
   palette <span class="op">=</span> <span class="st">"default_jama"</span>,
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  title.text <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
 <p>Note here that the function can be used to tag outliers!</p>
@@ -1154,7 +1154,7 @@
     limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  title.text <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span>
+   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
 <div id="summary-of-tests-2" class="section level3">
@@ -1316,7 +1316,7 @@
   test.value <span class="op">=</span> <span class="fl">15.5</span>,
   title.prefix <span class="op">=</span> <span class="st">"cylinder count"</span>,
   point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">5</span>, shape <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,
-  title.text <span class="op">=</span> <span class="st">"Fuel economy data"</span>
+   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span>  <span class="st">"Fuel economy data"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-3" class="section level3">
@@ -1397,7 +1397,7 @@
     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span>, limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  title.text <span class="op">=</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span>
+   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span>  <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
 <div id="summary-of-tests-4" class="section level3">
@@ -1516,21 +1516,21 @@
 <span class="co">#&gt; 15 brainwt     bodywt         0.926    0.896    0.957      0.89 1    </span>
 <span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
 <span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">#&gt;  1          0      cauchy                          0       0.707     3.00e+ 9</span>
-<span class="co">#&gt;  2          0.0173 cauchy                          0       0.707     8.85e+ 0</span>
-<span class="co">#&gt;  3          0      cauchy                          0       0.707    NA       </span>
-<span class="co">#&gt;  4          0.028  cauchy                          0       0.707     7.29e+ 0</span>
-<span class="co">#&gt;  5          0.0292 cauchy                          0       0.707     9.28e+ 0</span>
-<span class="co">#&gt;  6          0.091  cauchy                          0       0.707     1.42e+ 0</span>
-<span class="co">#&gt;  7          0      cauchy                          0       0.707     3.01e+ 9</span>
-<span class="co">#&gt;  8          0.212  cauchy                          0       0.707     6.54e- 1</span>
-<span class="co">#&gt;  9          0.0362 cauchy                          0       0.707     4.80e+ 0</span>
-<span class="co">#&gt; 10          0.0158 cauchy                          0       0.707     8.85e+ 0</span>
-<span class="co">#&gt; 11          0      cauchy                          0       0.707     3.80e+ 6</span>
-<span class="co">#&gt; 12          0.0392 cauchy                          0       0.707     3.76e+ 0</span>
-<span class="co">#&gt; 13          0.0253 cauchy                          0       0.707     7.29e+ 0</span>
-<span class="co">#&gt; 14          0.0265 cauchy                          0       0.707     9.27e+ 0</span>
-<span class="co">#&gt; 15          0      cauchy                          0       0.707     1.58e+22</span>
+<span class="co">#&gt;  1          0      beta                         1.41        1.41     3.00e+ 9</span>
+<span class="co">#&gt;  2          0.0173 beta                         1.41        1.41     8.85e+ 0</span>
+<span class="co">#&gt;  3          0      beta                         1.41        1.41    NA       </span>
+<span class="co">#&gt;  4          0.028  beta                         1.41        1.41     7.29e+ 0</span>
+<span class="co">#&gt;  5          0.0292 beta                         1.41        1.41     9.28e+ 0</span>
+<span class="co">#&gt;  6          0.091  beta                         1.41        1.41     1.42e+ 0</span>
+<span class="co">#&gt;  7          0      beta                         1.41        1.41     3.01e+ 9</span>
+<span class="co">#&gt;  8          0.212  beta                         1.41        1.41     6.54e- 1</span>
+<span class="co">#&gt;  9          0.0362 beta                         1.41        1.41     4.80e+ 0</span>
+<span class="co">#&gt; 10          0.0158 beta                         1.41        1.41     8.85e+ 0</span>
+<span class="co">#&gt; 11          0      beta                         1.41        1.41     3.80e+ 6</span>
+<span class="co">#&gt; 12          0.0392 beta                         1.41        1.41     3.76e+ 0</span>
+<span class="co">#&gt; 13          0.0253 beta                         1.41        1.41     7.29e+ 0</span>
+<span class="co">#&gt; 14          0.0265 beta                         1.41        1.41     9.27e+ 0</span>
+<span class="co">#&gt; 15          0      beta                         1.41        1.41     1.58e+22</span>
 <span class="co">#&gt;    method           n.obs</span>
 <span class="co">#&gt;    &lt;chr&gt;            &lt;int&gt;</span>
 <span class="co">#&gt;  1 Bayesian Pearson    61</span>
@@ -1580,21 +1580,21 @@
 <span class="co">#&gt; 15 brainwt     bodywt       0.229    -0.0341     0.484     0.89 0.904</span>
 <span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
 <span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">#&gt;  1           0.133 cauchy                          0       0.707        1.04 </span>
-<span class="co">#&gt;  2           0.418 cauchy                          0       0.707        0.277</span>
-<span class="co">#&gt;  3           0     cauchy                          0       0.707       NA    </span>
-<span class="co">#&gt;  4           0.390 cauchy                          0       0.707        0.311</span>
-<span class="co">#&gt;  5           0.294 cauchy                          0       0.707        0.417</span>
-<span class="co">#&gt;  6           0.404 cauchy                          0       0.707        0.297</span>
-<span class="co">#&gt;  7           0.411 cauchy                          0       0.707        0.287</span>
-<span class="co">#&gt;  8           0.380 cauchy                          0       0.707        0.303</span>
-<span class="co">#&gt;  9           0.424 cauchy                          0       0.707        0.280</span>
-<span class="co">#&gt; 10           0.422 cauchy                          0       0.707        0.276</span>
-<span class="co">#&gt; 11           0     cauchy                          0       0.707   131029.   </span>
-<span class="co">#&gt; 12           0.393 cauchy                          0       0.707        0.309</span>
-<span class="co">#&gt; 13           0.390 cauchy                          0       0.707        0.310</span>
-<span class="co">#&gt; 14           0.033 cauchy                          0       0.707        4.82 </span>
-<span class="co">#&gt; 15           0.206 cauchy                          0       0.707        0.637</span>
+<span class="co">#&gt;  1           0.133 beta                         1.41        1.41        1.04 </span>
+<span class="co">#&gt;  2           0.418 beta                         1.41        1.41        0.277</span>
+<span class="co">#&gt;  3           0     beta                         1.41        1.41       NA    </span>
+<span class="co">#&gt;  4           0.390 beta                         1.41        1.41        0.311</span>
+<span class="co">#&gt;  5           0.294 beta                         1.41        1.41        0.417</span>
+<span class="co">#&gt;  6           0.404 beta                         1.41        1.41        0.297</span>
+<span class="co">#&gt;  7           0.411 beta                         1.41        1.41        0.287</span>
+<span class="co">#&gt;  8           0.380 beta                         1.41        1.41        0.303</span>
+<span class="co">#&gt;  9           0.424 beta                         1.41        1.41        0.280</span>
+<span class="co">#&gt; 10           0.422 beta                         1.41        1.41        0.276</span>
+<span class="co">#&gt; 11           0     beta                         1.41        1.41   131029.   </span>
+<span class="co">#&gt; 12           0.393 beta                         1.41        1.41        0.309</span>
+<span class="co">#&gt; 13           0.390 beta                         1.41        1.41        0.310</span>
+<span class="co">#&gt; 14           0.033 beta                         1.41        1.41        4.82 </span>
+<span class="co">#&gt; 15           0.206 beta                         1.41        1.41        0.637</span>
 <span class="co">#&gt;    method           n.obs</span>
 <span class="co">#&gt;    &lt;chr&gt;            &lt;int&gt;</span>
 <span class="co">#&gt;  1 Bayesian Pearson    30</span>
@@ -1727,7 +1727,8 @@
   label.repel <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># repel labels (helpful for overlapping labels)</span>
   package <span class="op">=</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span>
   palette <span class="op">=</span> <span class="st">"default_ucscgb"</span>, <span class="co"># choosing a different color palette</span>
-  title.text <span class="op">=</span> <span class="st">"Composition of MPAA ratings for different genres"</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span>  <span class="st">"Composition of MPAA ratings for different genres"</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
 <div id="summary-of-tests-6" class="section level3">
@@ -1859,7 +1860,7 @@
   palette <span class="op">=</span> <span class="st">"Darjeeling2"</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
-  title.text <span class="op">=</span> <span class="st">"Race, religion, and political affiliation"</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Race, religion, and political affiliation"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
@@ -1974,7 +1975,7 @@
 <a href="#combine_plots" class="anchor"></a><code>combine_plots</code>
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="https://purrr.tidyverse.org/"><code>purrr</code></a> that replaces <code>for</code> loops with code that is both more succinct and easier to read and, therefore, <code>purrr</code> should be preferrred 😻. (Another old school option to do this effectively is using the <code>plyr</code> package.)</p>
-<p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://wilkelab.org/patchwork/reference/plot_grid.html">patchwork::wrap_plots</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
+<p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html">patchwork::wrap_plots</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
 <p>For examples (both with <code>plyr</code> and <code>purrr</code>), see the associated vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html</a></p>
 </div>
 <div id="using-ggstatsplot-statistical-details-with-custom-plots" class="section level2">

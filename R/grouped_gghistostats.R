@@ -40,7 +40,8 @@
 #'     ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
 #'     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
 #'   ),
-#'   plotgrid.args = list(nrow = 1, labels = c("(i)", "(ii)", "(iii)")),
+#'   plotgrid.args = list(nrow = 1),
+#'   annotation.args = list(tag_levels = "i"),
 #' )
 #' }
 #' @export
@@ -54,7 +55,7 @@ grouped_gghistostats <- function(data,
                                  title.prefix = NULL,
                                  output = "plot",
                                  ...,
-                                 plotgrid.args = list(guides = "collect"),
+                                 plotgrid.args = list(),
                                  annotation.args = list()) {
 
   # ======================== computing binwidth ============================

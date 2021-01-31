@@ -264,13 +264,11 @@ ggstatsplot::grouped_ggcorrmat(
   grouping.var = cut,
   title.prefix = "Quality of cut",
   # arguments relevant for `ggstatsplot::combine_plots`
-  title.text = "Relationship between diamond attributes and price across cut",
-  title.args = list(size = 16, color = "red"),
-  caption.text = "Dataset: Diamonds from ggplot2 package",
-  caption.args = list(size = 14, color = "blue"),
-  plotgrid.args = list(
-    labels = c("(a)", "(b)", "(c)", "(d)", "(e)"),
-    nrow = 3
+  plotgrid.args = list(nrow = 3),
+  annotation.args = list(
+    labels = "a",
+    title.text = "Relationship between diamond attributes and price across cut",
+    caption = "Dataset: Diamonds from ggplot2 package"
   )
 )
 ```

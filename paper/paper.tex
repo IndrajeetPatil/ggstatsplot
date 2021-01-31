@@ -150,7 +150,7 @@
 
 \title{ggstatsplot: ggplot2 Based Plots with Statistical Details}
 \author{Indrajeet Patil\footnote{Max Planck Institute for Human Development, \href{mailto:patilindrajeet.science@gmail.com}{\nolinkurl{patilindrajeet.science@gmail.com}}}}
-\date{2021-01-28}
+\date{2021-01-31}
 
 \begin{document}
 \maketitle
@@ -426,27 +426,28 @@ in Cleveland's paradigm:
 
 \CommentTok{\# plot}
 \NormalTok{ggstatsplot}\SpecialCharTok{::}\FunctionTok{combine\_plots}\NormalTok{(}
-  \CommentTok{\# plot 1: superposition}
-  \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ length, }\AttributeTok{y =}\NormalTok{ rating, }\AttributeTok{color =}\NormalTok{ genre)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"superposition (recommended in Cleveland\textquotesingle{}s paradigm)"}\NormalTok{) }\SpecialCharTok{+}
-\NormalTok{    ggstatsplot}\SpecialCharTok{::}\FunctionTok{theme\_ggstatsplot}\NormalTok{(),}
-  \CommentTok{\# plot 2: juxtaposition}
-\NormalTok{  ggstatsplot}\SpecialCharTok{::}\FunctionTok{grouped\_ggscatterstats}\NormalTok{(}
-    \AttributeTok{data =}\NormalTok{ df,}
-    \AttributeTok{x =}\NormalTok{ length,}
-    \AttributeTok{y =}\NormalTok{ rating,}
-    \AttributeTok{grouping.var =}\NormalTok{ genre,}
-    \AttributeTok{marginal =} \ConstantTok{FALSE}\NormalTok{,}
-    \AttributeTok{title.prefix =} \StringTok{"Genre"}\NormalTok{,}
-    \AttributeTok{title.text =} \StringTok{"juxtaposition (\textasciigrave{}ggstatsplot\textasciigrave{} implementation in \textasciigrave{}grouped\_\textasciigrave{} functions)"}\NormalTok{,}
-    \AttributeTok{title.size =} \DecValTok{12}
+  \FunctionTok{list}\NormalTok{(}
+    \CommentTok{\# plot 1: superposition}
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ df, }\AttributeTok{mapping =}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ length, }\AttributeTok{y =}\NormalTok{ rating, }\AttributeTok{color =}\NormalTok{ genre)) }\SpecialCharTok{+}
+      \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{) }\SpecialCharTok{+}
+      \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"superposition (recommended in Cleveland\textquotesingle{}s paradigm)"}\NormalTok{) }\SpecialCharTok{+}
+\NormalTok{      ggstatsplot}\SpecialCharTok{::}\FunctionTok{theme\_ggstatsplot}\NormalTok{(),}
+    \CommentTok{\# plot 2: juxtaposition}
+\NormalTok{    ggstatsplot}\SpecialCharTok{::}\FunctionTok{grouped\_ggscatterstats}\NormalTok{(}
+      \AttributeTok{data =}\NormalTok{ df,}
+      \AttributeTok{x =}\NormalTok{ length,}
+      \AttributeTok{y =}\NormalTok{ rating,}
+      \AttributeTok{grouping.var =}\NormalTok{ genre,}
+      \AttributeTok{marginal =} \ConstantTok{FALSE}\NormalTok{,}
+      \AttributeTok{title.prefix =} \StringTok{"Genre"}\NormalTok{,}
+      \AttributeTok{title.text =} \StringTok{"juxtaposition (\textasciigrave{}ggstatsplot\textasciigrave{} implementation in \textasciigrave{}grouped\_\textasciigrave{} functions)"}\NormalTok{,}
+      \AttributeTok{title.size =} \DecValTok{12}
+\NormalTok{    )}
 \NormalTok{  ),}
   \CommentTok{\# combine for comparison}
-  \AttributeTok{title.text =} \StringTok{"Two ways to compare different aspects of data"}\NormalTok{,}
-  \AttributeTok{nrow =} \DecValTok{2}\NormalTok{,}
-  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{)}
+  \AttributeTok{annotation.args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Two ways to compare different aspects of data"}\NormalTok{),}
+  \AttributeTok{plotgrid.args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{nrow =} \DecValTok{2}\NormalTok{)}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -659,8 +660,7 @@ structure of the data. More specifically,
     \AttributeTok{title =} \StringTok{"Correlalogram for mammals sleep dataset"}\NormalTok{,}
     \AttributeTok{subtitle =} \StringTok{"sleep units: hours; weight units: kilograms"}
 \NormalTok{  ),}
-  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"(a)"}\NormalTok{, }\StringTok{"(b)"}\NormalTok{),}
-  \AttributeTok{nrow =} \DecValTok{1}
+  \AttributeTok{plotgrid.args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{nrow =} \DecValTok{1}\NormalTok{)}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}

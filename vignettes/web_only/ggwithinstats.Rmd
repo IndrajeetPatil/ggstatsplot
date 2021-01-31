@@ -234,12 +234,12 @@ p4 <-
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
-  p1, p2, p3, p4,
-  nrow = 2,
-  title.text = "Effect of disgust on desire to kill bugs ",
-  caption.text = "Source: Bugs dataset from `jmv` R package",
-  title.size = 14,
-  caption.size = 12
+  list(p1, p2, p3, p4),
+  plotgrid.args = list(nrow = 2),
+  annotation.args = list(
+    title = "Effect of disgust on desire to kill bugs ",
+    caption = "Source: Bugs dataset from `jmv` R package"
+  )
 )
 ```
 
@@ -283,7 +283,7 @@ ggstatsplot::grouped_ggwithinstats(
   k = 3,
   title.prefix = "Year",
   # arguments relevant for ggstatsplot::combine_plots
-  title.text = "Desire to kill bugs across genders",
+  annotation.args = list(title = "Desire to kill bugs across genders"),
   plotgrid.args = list(ncol = 1)
 )
 ```

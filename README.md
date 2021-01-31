@@ -7,9 +7,9 @@
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.8.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-130-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                  | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-11-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                  | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-13-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--01--28-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--01--31-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -285,7 +285,7 @@ ggstatsplot::grouped_ggbetweenstats(
   palette = "default_jama",
   package = "ggsci",
   plotgrid.args = list(nrow = 2),
-  title.text = "Differences in movie length by mpaa ratings for different genres"
+  annotation.args = list(title = "Differences in movie length by mpaa ratings for different genres")
 )
 ```
 
@@ -534,7 +534,7 @@ ggstatsplot::grouped_gghistostats(
     limits = (c(0, 200))
   ),
   plotgrid.args = list(nrow = 2),
-  title.text = "Movies budgets for different genres"
+   annotation.args = list(title = "Movies budgets for different genres")
 )
 ```
 
@@ -630,7 +630,7 @@ ggstatsplot::grouped_ggdotplotstats(
   test.value = 15.5,
   title.prefix = "cylinder count",
   point.args = list(color = "red", size = 5, shape = 13),
-  title.text = "Fuel economy data"
+   annotation.args = list(title =  "Fuel economy data")
 )
 ```
 
@@ -730,7 +730,7 @@ ggstatsplot::grouped_ggscatterstats(
     ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
   ),
   plotgrid.args = list(nrow = 2),
-  title.text = "Relationship between movie length by IMDB ratings for different genres"
+   annotation.args = list(title =  "Relationship between movie length by IMDB ratings for different genres")
 )
 ```
 
@@ -840,21 +840,21 @@ ggcorrmat(
 #> 15 brainwt     bodywt         0.926    0.896    0.957      0.89 1    
 #>    rope.percentage prior.distribution prior.location prior.scale bayes.factor
 #>              <dbl> <chr>                       <dbl>       <dbl>        <dbl>
-#>  1          0      cauchy                          0       0.707     3.00e+ 9
-#>  2          0.0173 cauchy                          0       0.707     8.85e+ 0
-#>  3          0      cauchy                          0       0.707    NA       
-#>  4          0.028  cauchy                          0       0.707     7.29e+ 0
-#>  5          0.0292 cauchy                          0       0.707     9.28e+ 0
-#>  6          0.091  cauchy                          0       0.707     1.42e+ 0
-#>  7          0      cauchy                          0       0.707     3.01e+ 9
-#>  8          0.212  cauchy                          0       0.707     6.54e- 1
-#>  9          0.0362 cauchy                          0       0.707     4.80e+ 0
-#> 10          0.0158 cauchy                          0       0.707     8.85e+ 0
-#> 11          0      cauchy                          0       0.707     3.80e+ 6
-#> 12          0.0392 cauchy                          0       0.707     3.76e+ 0
-#> 13          0.0253 cauchy                          0       0.707     7.29e+ 0
-#> 14          0.0265 cauchy                          0       0.707     9.27e+ 0
-#> 15          0      cauchy                          0       0.707     1.58e+22
+#>  1          0      beta                         1.41        1.41     3.00e+ 9
+#>  2          0.0173 beta                         1.41        1.41     8.85e+ 0
+#>  3          0      beta                         1.41        1.41    NA       
+#>  4          0.028  beta                         1.41        1.41     7.29e+ 0
+#>  5          0.0292 beta                         1.41        1.41     9.28e+ 0
+#>  6          0.091  beta                         1.41        1.41     1.42e+ 0
+#>  7          0      beta                         1.41        1.41     3.01e+ 9
+#>  8          0.212  beta                         1.41        1.41     6.54e- 1
+#>  9          0.0362 beta                         1.41        1.41     4.80e+ 0
+#> 10          0.0158 beta                         1.41        1.41     8.85e+ 0
+#> 11          0      beta                         1.41        1.41     3.80e+ 6
+#> 12          0.0392 beta                         1.41        1.41     3.76e+ 0
+#> 13          0.0253 beta                         1.41        1.41     7.29e+ 0
+#> 14          0.0265 beta                         1.41        1.41     9.27e+ 0
+#> 15          0      beta                         1.41        1.41     1.58e+22
 #>    method           n.obs
 #>    <chr>            <int>
 #>  1 Bayesian Pearson    61
@@ -907,21 +907,21 @@ ggcorrmat(
 #> 15 brainwt     bodywt       0.229    -0.0341     0.484     0.89 0.904
 #>    rope.percentage prior.distribution prior.location prior.scale bayes.factor
 #>              <dbl> <chr>                       <dbl>       <dbl>        <dbl>
-#>  1           0.133 cauchy                          0       0.707        1.04 
-#>  2           0.418 cauchy                          0       0.707        0.277
-#>  3           0     cauchy                          0       0.707       NA    
-#>  4           0.390 cauchy                          0       0.707        0.311
-#>  5           0.294 cauchy                          0       0.707        0.417
-#>  6           0.404 cauchy                          0       0.707        0.297
-#>  7           0.411 cauchy                          0       0.707        0.287
-#>  8           0.380 cauchy                          0       0.707        0.303
-#>  9           0.424 cauchy                          0       0.707        0.280
-#> 10           0.422 cauchy                          0       0.707        0.276
-#> 11           0     cauchy                          0       0.707   131029.   
-#> 12           0.393 cauchy                          0       0.707        0.309
-#> 13           0.390 cauchy                          0       0.707        0.310
-#> 14           0.033 cauchy                          0       0.707        4.82 
-#> 15           0.206 cauchy                          0       0.707        0.637
+#>  1           0.133 beta                         1.41        1.41        1.04 
+#>  2           0.418 beta                         1.41        1.41        0.277
+#>  3           0     beta                         1.41        1.41       NA    
+#>  4           0.390 beta                         1.41        1.41        0.311
+#>  5           0.294 beta                         1.41        1.41        0.417
+#>  6           0.404 beta                         1.41        1.41        0.297
+#>  7           0.411 beta                         1.41        1.41        0.287
+#>  8           0.380 beta                         1.41        1.41        0.303
+#>  9           0.424 beta                         1.41        1.41        0.280
+#> 10           0.422 beta                         1.41        1.41        0.276
+#> 11           0     beta                         1.41        1.41   131029.   
+#> 12           0.393 beta                         1.41        1.41        0.309
+#> 13           0.390 beta                         1.41        1.41        0.310
+#> 14           0.033 beta                         1.41        1.41        4.82 
+#> 15           0.206 beta                         1.41        1.41        0.637
 #>    method           n.obs
 #>    <chr>            <int>
 #>  1 Bayesian Pearson    30
@@ -1038,7 +1038,8 @@ ggstatsplot::grouped_ggpiestats(
   label.repel = TRUE, # repel labels (helpful for overlapping labels)
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_ucscgb", # choosing a different color palette
-  title.text = "Composition of MPAA ratings for different genres"
+  annotation.args = list(title =  "Composition of MPAA ratings for different genres"),
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -1130,7 +1131,7 @@ ggstatsplot::grouped_ggbarstats(
   palette = "Darjeeling2",
   ggtheme = ggthemes::theme_tufte(base_size = 12),
   ggstatsplot.layer = FALSE,
-  title.text = "Race, religion, and political affiliation",
+  annotation.args = list(title = "Race, religion, and political affiliation"),
   plotgrid.args = list(nrow = 2)
 )
 ```

@@ -4,12 +4,7 @@
 \alias{combine_plots}
 \title{Combining and arranging multiple plots in a grid}
 \usage{
-combine_plots(
-  plotlist,
-  plotgrid.args = list(guides = "collect"),
-  annotation.args = list(),
-  ...
-)
+combine_plots(plotlist, plotgrid.args = list(), annotation.args = list(), ...)
 }
 \arguments{
 \item{plotlist}{A list containing \code{ggplot} objects.}

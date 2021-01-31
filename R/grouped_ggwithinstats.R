@@ -48,7 +48,7 @@ grouped_ggwithinstats <- function(data,
                                   title.prefix = NULL,
                                   output = "plot",
                                   ...,
-                                  plotgrid.args = list(guides = "collect"),
+                                  plotgrid.args = list(),
                                   annotation.args = list()) {
 
   # ======================== preparing dataframe =============================
