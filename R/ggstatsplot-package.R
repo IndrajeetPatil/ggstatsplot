@@ -38,8 +38,8 @@
 #'   correlation matrix.
 #'   \item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize
 #'   results from regression analyses.
-#'   \item \code{\link[ggstatsplot]{combine_plots2}} helper function to combine
-#'   multiple `ggstatsplot` plots using `cowplot::plot_grid()` with a
+#'   \item \code{\link[ggstatsplot]{combine_plots}} helper function to combine
+#'   multiple `ggstatsplot` plots using `patchwork::wrap_plots()` with a
 #'   combination of title, caption, and annotation label.
 #'  }
 #'

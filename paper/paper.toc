@@ -11,11 +11,11 @@
 \contentsline {section}{\numberline {4}Statistical analysis}{12}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Data requirements}{12}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Statistical reporting}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Dealing with \textbf {null results}:}{15}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Avoiding the \textbf {``p-value error''}:}{15}{subsection.4.4}%
-\contentsline {section}{\numberline {5}Acknowledgments}{16}{section.5}%
-\contentsline {section}{\numberline {6}Appendix}{17}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{17}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{17}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Appendix C: Session information}{17}{subsection.6.3}%
-\contentsline {section}{References}{18}{section*.2}%
+\contentsline {subsection}{\numberline {4.3}Dealing with \textbf {null results}:}{14}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Avoiding the \textbf {``p-value error''}:}{14}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Acknowledgments}{15}{section.5}%
+\contentsline {section}{\numberline {6}Appendix}{16}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Appendix A: Documentation}{16}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Appendix B: Suggestions}{16}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Appendix C: Session information}{16}{subsection.6.3}%
+\contentsline {section}{References}{17}{section*.2}%

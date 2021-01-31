@@ -56,8 +56,8 @@
 
 <meta property="og:title" content="Combining and arranging multiple plots in a grid — combine_plots" />
 <meta property="og:description" content="
-Wrapper around plot_grid that will return a plotgrid
-along with a combination of title, caption, and annotation label" />
+Wrapper around patchwork::wrap_plots that will return a combined grid of
+plots with annotations." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -90,7 +90,7 @@ along with a combination of title, caption, and annotation label" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -201,215 +201,38 @@ along with a combination of title, caption, and annotation label" />
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#stable'><img src='figures/lifecycle-stable.svg' alt='Stable lifecycle'></a></p>
-<p>Wrapper around <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>plot_grid</a></code> that will return a plotgrid
-along with a combination of title, caption, and annotation label</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p>Wrapper around <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code> that will return a combined grid of
+plots with annotations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>combine_plots</span><span class='op'>(</span>
-  <span class='va'>...</span>,
-  title.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  title.color <span class='op'>=</span> <span class='st'>"black"</span>,
-  title.size <span class='op'>=</span> <span class='fl'>16</span>,
-  title.vjust <span class='op'>=</span> <span class='fl'>0.5</span>,
-  title.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
-  title.fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
-  caption.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  caption.color <span class='op'>=</span> <span class='st'>"black"</span>,
-  caption.size <span class='op'>=</span> <span class='fl'>10</span>,
-  caption.vjust <span class='op'>=</span> <span class='fl'>0.5</span>,
-  caption.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
-  caption.fontface <span class='op'>=</span> <span class='st'>"plain"</span>,
-  sub.text <span class='op'>=</span> <span class='cn'>NULL</span>,
-  sub.color <span class='op'>=</span> <span class='st'>"black"</span>,
-  sub.size <span class='op'>=</span> <span class='fl'>12</span>,
-  sub.vjust <span class='op'>=</span> <span class='fl'>0.5</span>,
-  sub.hjust <span class='op'>=</span> <span class='fl'>0.5</span>,
-  sub.fontface <span class='op'>=</span> <span class='st'>"plain"</span>,
-  sub.x <span class='op'>=</span> <span class='fl'>0.5</span>,
-  sub.y <span class='op'>=</span> <span class='fl'>0.5</span>,
-  sub.vpadding <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/grid/unit.html'>unit</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='st'>"lines"</span><span class='op'>)</span>,
-  sub.angle <span class='op'>=</span> <span class='fl'>0</span>,
-  sub.lineheight <span class='op'>=</span> <span class='fl'>0.9</span>,
-  title.rel.heights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>1.2</span><span class='op'>)</span>,
-  caption.rel.heights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.2</span>, <span class='fl'>0.1</span><span class='op'>)</span>,
-  title.caption.rel.heights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>, <span class='fl'>1.2</span>, <span class='fl'>0.1</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>combine_plots</span><span class='op'>(</span><span class='va'>plotlist</span>, plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>plotlist</th>
+      <td><p>A list containing <code>ggplot</code> objects.</p></td>
+    </tr>
+    <tr>
+      <th>plotgrid.args</th>
+      <td><p>Additional arguments passed to <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>annotation.args</th>
+      <td><p>Additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>Arguments passed on to <code><a href='https://wilkelab.org/cowplot/reference/plot_grid.html'>cowplot::plot_grid</a></code></p><dl>
-    <dt><code>plotlist</code></dt><dd><p>(optional) List of plots to display. Alternatively, the plots can be provided
-individually as the first n arguments of the function plot_grid (see examples).</p></dd>
-    <dt><code>align</code></dt><dd><p>(optional) Specifies whether graphs in the grid should be horizontally ("h") or
-vertically ("v") aligned. Options are "none" (default), "hv" (align in both directions), "h", and "v".</p></dd>
-    <dt><code>axis</code></dt><dd><p>(optional) Specifies whether graphs should be aligned by the left ("l"), right ("r"), top ("t"), or bottom ("b")
-margins. Options are "none" (default), or a string of any combination of l, r, t, and b in any order (e.g. "tblr" or "rlbt" for aligning all margins).
-Must be specified if any of the graphs are complex (e.g. faceted) and alignment is specified and desired. See <code><a href='https://wilkelab.org/cowplot/reference/align_plots.html'>align_plots()</a></code> for details.</p></dd>
-    <dt><code>nrow</code></dt><dd><p>(optional) Number of rows in the plot grid.</p></dd>
-    <dt><code>ncol</code></dt><dd><p>(optional) Number of columns in the plot grid.</p></dd>
-    <dt><code>rel_widths</code></dt><dd><p>(optional) Numerical vector of relative columns widths. For example, in a two-column
-grid, <code>rel_widths = c(2, 1)</code> would make the first column twice as wide as the
-second column.</p></dd>
-    <dt><code>rel_heights</code></dt><dd><p>(optional) Numerical vector of relative rows heights. Works just as
-<code>rel_widths</code> does, but for rows rather than columns.</p></dd>
-    <dt><code>labels</code></dt><dd><p>(optional) List of labels to be added to the plots. You can also set <code>labels="AUTO"</code> to
-auto-generate upper-case labels or <code>labels="auto"</code> to auto-generate lower-case labels.</p></dd>
-    <dt><code>label_size</code></dt><dd><p>(optional) Numerical value indicating the label size. Default is 14.</p></dd>
-    <dt><code>label_fontfamily</code></dt><dd><p>(optional) Font family of the plot labels. If not provided, is taken from the current theme.</p></dd>
-    <dt><code>label_fontface</code></dt><dd><p>(optional) Font face of the plot labels. Default is "bold".</p></dd>
-    <dt><code>label_colour</code></dt><dd><p>(optional) Color of the plot labels. If not provided, is taken from the current theme.</p></dd>
-    <dt><code>label_x</code></dt><dd><p>(optional) Single value or vector of x positions for plot labels, relative to each subplot.
-Defaults to 0 for all labels. (Each label is placed all the way to the left of each plot.)</p></dd>
-    <dt><code>label_y</code></dt><dd><p>(optional) Single value or vector of y positions for plot labels, relative to each subplot.
-Defaults to 1 for all labels. (Each label is placed all the way to the top of each plot.)</p></dd>
-    <dt><code>hjust</code></dt><dd><p>Adjusts the horizontal position of each label. More negative values move the label further
-to the right on the plot canvas. Can be a single value (applied to all labels) or a vector of values
-(one for each label). Default is -0.5.</p></dd>
-    <dt><code>vjust</code></dt><dd><p>Adjusts the vertical position of each label. More positive values move the label further
-down on the plot canvas. Can be a single value (applied to all labels) or a vector of values
-(one for each label). Default is 1.5.</p></dd>
-    <dt><code>scale</code></dt><dd><p>Individual number or vector of numbers greater than 0. Enables you to scale the size of all or
-select plots. Usually it's preferable to set margins instead of using <code>scale</code>, but <code>scale</code> can
-sometimes be more powerful.</p></dd>
-    <dt><code>greedy</code></dt><dd><p>(optional) How should margins be adjusted during alignment. See <code><a href='https://wilkelab.org/cowplot/reference/align_plots.html'>align_plots()</a></code> for details.</p></dd>
-    <dt><code>byrow</code></dt><dd><p>Logical value indicating if the plots should be arrange by row (default) or by column.</p></dd>
-    <dt><code>cols</code></dt><dd><p>Deprecated. Use <code>ncol</code>.</p></dd>
-    <dt><code>rows</code></dt><dd><p>Deprecated. Use <code>nrow</code>.</p></dd>
-  
-</dl></td>
-    </tr>
-    <tr>
-      <th>title.text</th>
-      <td><p>String or plotmath expression to be drawn as title for the
-<em>combined plot</em>.</p></td>
-    </tr>
-    <tr>
-      <th>title.color</th>
-      <td><p>Text color for title.</p></td>
-    </tr>
-    <tr>
-      <th>title.size</th>
-      <td><p>Point size of title text.</p></td>
-    </tr>
-    <tr>
-      <th>title.vjust</th>
-      <td><p>Vertical justification for title. Default = <code>0.5</code>
-(centered on <code>y</code>). <code>0</code> = baseline at <code>y</code>, <code>1</code> = ascender at <code>y</code>.</p></td>
-    </tr>
-    <tr>
-      <th>title.hjust</th>
-      <td><p>Horizontal justification for title. Default = <code>0.5</code>
-(centered on <code>x</code>). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></td>
-    </tr>
-    <tr>
-      <th>title.fontface</th>
-      <td><p>The font face (<code>"plain"</code>, <code>"bold"</code> (default),
-<code>"italic"</code>, <code>"bold.italic"</code>) for title.</p></td>
-    </tr>
-    <tr>
-      <th>caption.text</th>
-      <td><p>String or plotmath expression to be drawn as the caption
-for the <em>combined plot</em>.</p></td>
-    </tr>
-    <tr>
-      <th>caption.color</th>
-      <td><p>Text color for caption.</p></td>
-    </tr>
-    <tr>
-      <th>caption.size</th>
-      <td><p>Point size of title text.</p></td>
-    </tr>
-    <tr>
-      <th>caption.vjust</th>
-      <td><p>Vertical justification for caption. Default = <code>0.5</code>
-(centered on y). <code>0</code> = baseline at y, <code>1</code> = ascender at y.</p></td>
-    </tr>
-    <tr>
-      <th>caption.hjust</th>
-      <td><p>Horizontal justification for caption. Default = <code>0.5</code>
-(centered on x). <code>0</code> = flush-left at x, <code>1</code> = flush-right.</p></td>
-    </tr>
-    <tr>
-      <th>caption.fontface</th>
-      <td><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>,
-<code>"italic"</code>, <code>"bold.italic"</code>) for caption.</p></td>
-    </tr>
-    <tr>
-      <th>sub.text</th>
-      <td><p>The label with which the <em>combined plot</em> should be annotated.
-Can be a plotmath expression.</p></td>
-    </tr>
-    <tr>
-      <th>sub.color</th>
-      <td><p>Text color for annotation label (Default: <code>"black"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.size</th>
-      <td><p>Point size of annotation text (Default: <code>12</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.vjust</th>
-      <td><p>Vertical justification for annotation label (Default:
-<code>0.5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.hjust</th>
-      <td><p>Horizontal justification for annotation label (Default:
-<code>0.5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.fontface</th>
-      <td><p>The font face (<code>"plain"</code> (default), <code>"bold"</code>, <code>"italic"</code>,
-<code>"bold.italic"</code>) for the annotation label.</p></td>
-    </tr>
-    <tr>
-      <th>sub.x</th>
-      <td><p>The <code>x</code> position of annotation label (Default: <code>0.5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.y</th>
-      <td><p>The <code>y</code> position of annotation label (Default: <code>0.5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.vpadding</th>
-      <td><p>Vertical padding. The total vertical space added to the
-label, given in grid units. By default, this is added equally above and
-below the label. However, by changing the y and vjust parameters, this can
-be changed (Default: <code><a href='https://rdrr.io/r/grid/unit.html'>ggplot2::unit(1, "lines")</a></code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.angle</th>
-      <td><p>Angle at which annotation label is to be drawn (Default:
-<code>0</code>).</p></td>
-    </tr>
-    <tr>
-      <th>sub.lineheight</th>
-      <td><p>Line height of annotation label.</p></td>
-    </tr>
-    <tr>
-      <th>title.rel.heights</th>
-      <td><p>Numerical vector of relative columns heights while
-combining (title, plot).</p></td>
-    </tr>
-    <tr>
-      <th>caption.rel.heights</th>
-      <td><p>Numerical vector of relative columns heights while
-combining (plot, caption).</p></td>
-    </tr>
-    <tr>
-      <th>title.caption.rel.heights</th>
-      <td><p>Numerical vector of relative columns heights
-while combining (title, plot, caption).</p></td>
+      <td><p>Currently ignored.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Combined plot with title and/or caption and/or annotation label</p>
+    <p>Combined plot with annotation labels</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html</a></p>
@@ -438,12 +261,13 @@ while combining (title, plot, caption).</p></td>
 
 <span class='co'># combining the plot with a title and a caption</span>
 <span class='fu'>combine_plots</span><span class='op'>(</span>
-  <span class='va'>p1</span>, <span class='va'>p2</span>,
-  labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"(a)"</span>, <span class='st'>"(b)"</span><span class='op'>)</span>,
-  title.text <span class='op'>=</span> <span class='st'>"Dataset: Iris Flower dataset"</span>,
-  caption.text <span class='op'>=</span> <span class='st'>"Note: Only two species of flower are displayed"</span>,
-  title.color <span class='op'>=</span> <span class='st'>"red"</span>,
-  caption.color <span class='op'>=</span> <span class='st'>"blue"</span>
+  plotlist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span>,
+  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+    tag_levels <span class='op'>=</span> <span class='st'>"a"</span>,
+    title <span class='op'>=</span> <span class='st'>"Dataset: Iris Flower dataset"</span>,
+    subtitle <span class='op'>=</span> <span class='st'>"Edgar Anderson collected this data"</span>,
+    caption <span class='op'>=</span> <span class='st'>"Note: Only two species of flower are displayed"</span>
+  <span class='op'>)</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='combine_plots-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

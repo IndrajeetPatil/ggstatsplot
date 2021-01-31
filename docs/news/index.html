@@ -87,7 +87,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -196,9 +196,19 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ggstatsplot-070" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.0">
+<a href="#ggstatsplot-070" class="anchor"></a>ggstatsplot 0.7.0<small> Unreleased </small>
+</h1>
+<p>BREAKING CHANGES</p>
+<ul>
+<li>
+<code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed.</li>
+</ul>
+</div>
     <div id="ggstatsplot-068" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.8">
-<a href="#ggstatsplot-068" class="anchor"></a>ggstatsplot 0.6.8<small> Unreleased </small>
+<a href="#ggstatsplot-068" class="anchor"></a>ggstatsplot 0.6.8<small> 2021-01-19 </small>
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -333,7 +343,7 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
+<li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://rdrr.io/pkg/broomExtra/man/tidy_parameters.html">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
 <li><p>Reverts aligning title and subtitle with the plot and not the axes, since it looked pretty ugly (esp., <code>ggcoefstats</code>) and was causing problems for labels.</p></li>
 <li><p><code>factor.levels</code> (for <code>ggpiestats</code>) and <code>labels.legend</code> (for <code>ggbarstats</code>) are deprecated. If users would like to changes the names for factor levels, this should be done outside of <code>ggstatsplot</code>.</p></li>
 <li><p>The non-parametric post hoc test for between-subjects design has been changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.</p></li>
@@ -363,7 +373,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
-<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
+<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://rdrr.io/pkg/ggplot2/man/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://rdrr.io/pkg/pairwiseComparisons/man/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
 <li><p>Due to changes in one of the downstream dependencies, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
@@ -400,7 +410,7 @@
 <p>BREAKING CHANGES</p>
 <p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get arguments like <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code><a href="https://rdrr.io/r/base/list.html">list(size = 5, color = "darkgreen", alpha = 0.8)</a></code> can be supplied).</p>
 <ul>
-<li><p>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots2</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</p></li>
+<li><p>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</p></li>
 <li><p>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</p></li>
 <li><p><code>ggcorrmat</code> no longer has <code>corr.method</code> argument. To be consistent with rest of the functions in this package, the type of statistics should be specified using <code>type</code> argument. Additional, it gains a new argument <code>ggcorrplot.args</code>, which can be used to pass additional arguments to the underlying plotting function (<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code>).</p></li>
 <li><p>Both <code>gghistostats</code> and <code>ggdotplotstats</code> now use the following arguments to modify <code>geom</code>s corresponding to the lines and labels: <code>test.value.line.args</code>, <code>test.value.label.args</code>, <code>centrality.line.args</code>, <code>centrality.label.args</code>. This helps avoid specifying millions of arguments.</p></li>
@@ -479,7 +489,7 @@
 </ul>
 <p>MINOR</p>
 <ul>
-<li><p><code>ggcoefstats</code> now uses <code><a href="https://easystats.github.io/parameters/reference/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
+<li><p><code>ggcoefstats</code> now uses <code><a href="https://rdrr.io/pkg/parameters/man/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://rdrr.io/pkg/sjstats/man/r2.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>blavaan</code>, <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>lavaan</code>, <code>nlreg</code>, <code>slm</code>, <code>wbgee</code>.</p></li>
 <li><p><code>ggcoefstats</code> gains <code>only.significant</code> argument to only display display stats labels for significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot.</p></li>
 </ul>
@@ -527,7 +537,7 @@
 <li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
 <li><p><code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> supports following objects: <code>bglmerMod</code>, <code>blmerMod</code>, <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>tobit</code>, <code>wblm</code>.</p></li>
-<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://generics.r-lib.org/reference/tidy.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
+<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://rdrr.io/pkg/generics/man/tidy.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
 <li><p>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</p></li>
 <li><p>Removed <code>conf.method</code> and <code>conf.type</code> arguments for <code>ggcoefstats</code>. Also, <code>p.kr</code> argument removed because <code>ggcoefstats</code> will begin to rely on <code>parameters</code> instead of <code>sjstats</code> package to compute <em>p</em>-values for some regression models.</p></li>
 </ul>
@@ -553,7 +563,7 @@
 </ul>
 <p>BREAKING CHANGES</p>
 <ul>
-<li><p>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://ggplot2.tidyverse.org/reference/element.html">ggplot2::margin()</a></code>.</p></li>
+<li><p>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://rdrr.io/pkg/ggplot2/man/element.html">ggplot2::margin()</a></code>.</p></li>
 <li><p><code>gghistostats</code> no longer allows <code>data</code> argument to be <code>NULL</code>. This is to make this function’s syntax consistent with rest of the functions in this package (none of which allow <code>data</code> to be <code>NULL</code>). This also removes confusion that arose for some users when <code>data</code> couldn’t be <code>NULL</code> for its <code>grouped_</code> cousin (<code>grouped_gghistostats</code>).</p></li>
 <li><p><code>outlier_df</code> function is no longer exported since it was always meant to be an internal function and was accidently exported during initial release and was retained for a while for backward compatibility.</p></li>
 </ul>
@@ -699,10 +709,10 @@
 <li><p>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>, and <code>set_cwd</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</p></li>
 <li><p><code>gghistostats</code> can now show both counts and proportions information on the same plot when <code>bar.measure</code> argument is set to <code>"mix"</code>.</p></li>
 <li><p><code>ggcoefstats</code> works with tidy dataframes.</p></li>
-<li><p>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</p></li>
+<li><p>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://rdrr.io/pkg/tidyr/man/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</p></li>
 <li><p>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</p></li>
 <li><p><code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</p></li>
-<li><p>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>, <code><a href="https://magrittr.tidyverse.org/reference/compound.html">%&lt;&gt;%</a></code>, <code><a href="https://magrittr.tidyverse.org/reference/exposition.html">%$%</a></code>.</p></li>
+<li><p>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>, <code><a href="https://rdrr.io/pkg/magrittr/man/compound.html">%&lt;&gt;%</a></code>, <code><a href="https://rdrr.io/pkg/magrittr/man/exposition.html">%$%</a></code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -777,7 +787,7 @@
 <li><p>Removed the trailing comma from the robust correlation analyses.</p></li>
 <li><p><code>gghistostats</code> has a new argument to remove color fill gradient.</p></li>
 <li><p><code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</p></li>
-<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
+<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code><a href="https://rdrr.io/pkg/sjstats/man/r2.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
 <li><p><code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</p></li>
 <li><p><code>ggscatterstats</code> supports <code>densigram</code> with the development version of <code>ggExtra</code>. It additionally gains few extra arguments to change aesthetics of marginals (alpha, size, etc.).</p></li>
 </ul>
@@ -789,7 +799,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>

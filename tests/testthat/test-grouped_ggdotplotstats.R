@@ -29,8 +29,7 @@ test_that(
       results.subtitle = FALSE,
       point.shape = 13,
       test.value.line = TRUE,
-      ggtheme = ggplot2::theme_classic(),
-      title.text = "Fuel economy data"
+      ggtheme = ggplot2::theme_classic()
     )
 
     # when arguments are entered as characters

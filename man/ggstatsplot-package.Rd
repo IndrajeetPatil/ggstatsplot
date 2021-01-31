@@ -46,8 +46,8 @@ results from one sample test displayed in the subtitle.
 correlation matrix.
 \item \code{\link[ggstatsplot]{ggcoefstats}} function to visualize
 results from regression analyses.
-\item \code{\link[ggstatsplot]{combine_plots2}} helper function to combine
-multiple \code{ggstatsplot} plots using \code{cowplot::plot_grid()} with a
+\item \code{\link[ggstatsplot]{combine_plots}} helper function to combine
+multiple \code{ggstatsplot} plots using \code{patchwork::wrap_plots()} with a
 combination of title, caption, and annotation label.
 }
 

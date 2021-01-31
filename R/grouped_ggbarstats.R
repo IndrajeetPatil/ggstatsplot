@@ -7,7 +7,7 @@
 #'
 #' Helper function for `ggstatsplot::ggbarstats` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
-#' `ggstatsplot::combine_plots2`.
+#' `ggstatsplot::combine_plots`.
 #'
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats
@@ -60,12 +60,7 @@ grouped_ggbarstats <- function(data,
                                output = "plot",
                                ...,
                                plotgrid.args = list(),
-                               title.text = NULL,
-                               title.args = list(size = 16, fontface = "bold"),
-                               caption.text = NULL,
-                               caption.args = list(size = 10),
-                               sub.text = NULL,
-                               sub.args = list(size = 12)) {
+                               annotation.args = list()) {
 
   # ======================== preparing dataframe =============================
 
@@ -94,15 +89,10 @@ grouped_ggbarstats <- function(data,
 
   # combining the list of plots into a single plot
   if (output == "plot") {
-    return(ggstatsplot::combine_plots2(
+    return(combine_plots(
       plotlist = plotlist_purrr,
       plotgrid.args = plotgrid.args,
-      title.text = title.text,
-      title.args = title.args,
-      caption.text = caption.text,
-      caption.args = caption.args,
-      sub.text = sub.text,
-      sub.args = sub.args
+      annotation.args = annotation.args
     ))
   } else {
     return(plotlist_purrr) # subtitle list

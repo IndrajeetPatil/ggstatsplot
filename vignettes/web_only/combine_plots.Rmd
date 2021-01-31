@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 `ggstatsplot` contains a "helper" function named `combine_plots` to help you
 combine several plots into one plot or add a combination of title, caption, and
 annotation texts with suitable default parameters. It is a wrapper around
-`cowplot::plot_grid()`. Some examples below.
+`patchwork::wrap_plots()`. Some examples below.
 
 **Note Before**: If you have just one grouping variable and you'd like a plot
 for each `factor` of this variable the `grouped_` variants
@@ -51,21 +51,16 @@ set.seed(123)
 library(tidyverse)
 
 # creating a list of plots
-p_list <- mtcars %>%
+p_list <-
+  mtcars %>%
   dplyr::filter(.data = ., cyl != 4) %>%
   dplyr::group_by(.data = ., cyl) %>%
-  dplyr::group_map(
-    .f = ~ ggstatsplot::ggbetweenstats(
-    data = .,
-    x = am,
-    y = wt,
-    messages = FALSE
-  ))
+  dplyr::group_map(.f = ~ ggstatsplot::ggbetweenstats(data = ., x = am, y = wt))
 
 # combining plots
-cowplot::plot_grid(
+ggstatsplot::combine_plots(
   plotlist = p_list,
-  labels = rlang::set_names(levels(as.factor(mtcars$cyl)))
+  annotation.args = list(tag_levels = list(as.vector(rlang::set_names(levels(as.factor(mtcars$cyl))))))
 )
 ```
 
@@ -81,7 +76,7 @@ An example using the `iris` dataset is provided below.  Imagine that we want to
 separately plot the linear relationship between sepal length and sepal width for
 each of the three species but combine them into one consistent plot with common
 labeling and as one plot.  Rather than call `ggscatterstats` three times and
-gluing the results or using `cowplot` directly, we'll create a `tibble` called
+gluing the results or using `patchwork` directly, we'll create a `tibble` called
 `plots` using `purrr::map` then feed that to `combine_plots` to get our combined
 plot.
 
@@ -92,10 +87,12 @@ library(ggstatsplot)
 
 # creating a list column with `ggstatsplot` plots
 plots <- iris %>%
-  dplyr::mutate(.data = ., Species2 = Species) %>% # just creates a copy of this variable
+  dplyr::mutate(.data = ., Species2 = Species) %>%
+  # just creates a copy of this variable
   dplyr::group_by(.data = ., Species) %>%
-  tidyr::nest(.) %>% # a nested dataframe with list column called `data`
-  dplyr::mutate( 
+  tidyr::nest(.) %>%
+  # a nested dataframe with list column called `data`
+  dplyr::mutate(
     .data = .,
     plot = data %>%
       purrr::map(
@@ -120,20 +117,19 @@ plots <- iris %>%
 # S3: ggExtraPlot)
 plots
 
-# creating a grid with cowplot
+# creating a grid with patchwork
 ggstatsplot::combine_plots(
-  plotlist = plots$plot, 
-  nrow = 3,
-  ncol = 1,
-  title.text = "Relationship between sepal length and width for each Iris species",
-  title.size = 14,
-  caption.text = expression(
-    paste(
-      italic("Note"),
-      ": Iris flower dataset was collected by Edgar Anderson.",
-      sep = ""
-    ),
-    caption.size = 12
+  plotlist = plots$plot,
+  plotgrid.args = list(nrow = 3, ncol = 1),
+  annotation.args = list(
+    title = "Relationship between sepal length and width for each Iris species",
+    caption = expression(
+      paste(
+        italic("Note"),
+        ": Iris flower dataset was collected by Edgar Anderson.",
+        sep = ""
+      )
+    )
   )
 )
 ```
@@ -190,8 +186,8 @@ plots <- plyr::dlply(
 # combining individual plots
 ggstatsplot::combine_plots(
   plotlist = plots,
-  title.text = "Relationship between GDP (per capita) and life expectancy",
-  nrow = 2
+  annotation.args = list(title = "Relationship between GDP (per capita) and life expectancy"),
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -212,9 +208,7 @@ accomplish that task as shown in the resulting plot.
 library(ggstatsplot)
 
 ggstatsplot::combine_plots(
-  # preparing the plot with ggstatsplot function
-  # let's use only 20% of data to speed up the process
-  ggstatsplot::ggcoefstats(
+  plotlist = list(ggstatsplot::ggcoefstats(
     x = stats::lm(
       formula = rating ~ stats::poly(budget, degree = 3),
       data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.2),
@@ -235,18 +229,19 @@ ggstatsplot::combine_plots(
         "3rd degree (b3)"
       )
     ) +
-    ggplot2::labs(y = "term (polynomial regression)"),
+    ggplot2::labs(y = "term (polynomial regression)")),
   # adding additional text element to the plot since title, subtitle, caption are all already occupied
-  sub.text = expression(
-    paste(
-      "linear model: ", bolditalic(y),
-      " ~ ",
-      italic(c) + italic(b)[1] * bolditalic(x) + italic(b)[2] * bolditalic(x)^
-        2 + italic(b)[3] * bolditalic(x)^3,
-      sep = ""
+  annotation.args = list(
+    caption = expression(
+      paste(
+        "linear model: ", bolditalic(y),
+        " ~ ",
+        italic(c) + italic(b)[1] * bolditalic(x) + italic(b)[2] * bolditalic(x)^
+          2 + italic(b)[3] * bolditalic(x)^3,
+        sep = ""
+      )
     )
-  ),
-  sub.size = 12
+  )
 )
 ```
 

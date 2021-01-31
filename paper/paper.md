@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2021-01-17"
+date: "2021-01-31"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -231,27 +231,28 @@ df <- dplyr::filter(ggstatsplot::movies_long, genre %in% c("Comedy", "Drama"))
 
 # plot
 ggstatsplot::combine_plots(
-  # plot 1: superposition
-  ggplot(data = df, mapping = ggplot2::aes(x = length, y = rating, color = genre)) +
-    geom_jitter(size = 3, alpha = 0.5) +
-    geom_smooth(method = "lm") +
-    labs(title = "superposition (recommended in Cleveland's paradigm)") +
-    ggstatsplot::theme_ggstatsplot(),
-  # plot 2: juxtaposition
-  ggstatsplot::grouped_ggscatterstats(
-    data = df,
-    x = length,
-    y = rating,
-    grouping.var = genre,
-    marginal = FALSE,
-    title.prefix = "Genre",
-    title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
-    title.size = 12
+  list(
+    # plot 1: superposition
+    ggplot(data = df, mapping = ggplot2::aes(x = length, y = rating, color = genre)) +
+      geom_jitter(size = 3, alpha = 0.5) +
+      geom_smooth(method = "lm") +
+      labs(title = "superposition (recommended in Cleveland's paradigm)") +
+      ggstatsplot::theme_ggstatsplot(),
+    # plot 2: juxtaposition
+    ggstatsplot::grouped_ggscatterstats(
+      data = df,
+      x = length,
+      y = rating,
+      grouping.var = genre,
+      marginal = FALSE,
+      title.prefix = "Genre",
+      title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
+      title.size = 12
+    )
   ),
   # combine for comparison
-  title.text = "Two ways to compare different aspects of data",
-  nrow = 2,
-  labels = c("(a)", "(b)")
+  annotation.args = list(title = "Two ways to compare different aspects of data"),
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -435,8 +436,7 @@ ggstatsplot::combine_plots(
     title = "Correlalogram for mammals sleep dataset",
     subtitle = "sleep units: hours; weight units: kilograms"
   ),
-  labels = c("(a)", "(b)"),
-  nrow = 1
+  plotgrid.args = list(nrow = 1)
 )
 ```
 

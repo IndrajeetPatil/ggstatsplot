@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.6.8.9000",
+  "version": "0.7.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -82,6 +82,30 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=MASS"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "metaBMA",
+      "name": "metaBMA",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=metaBMA"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "metafor",
+      "name": "metafor",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=metafor"
     },
     {
       "@type": "SoftwareApplication",
@@ -153,31 +177,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "bayestestR",
-      "name": "bayestestR",
-      "version": ">= 0.8.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://github.com/easystats/bayestestR"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "cowplot",
-      "name": "cowplot",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=cowplot"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -228,7 +227,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggrepel",
       "name": "ggrepel",
-      "version": ">= 0.9.0",
+      "version": ">= 0.9.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -266,7 +265,6 @@
       "@type": "SoftwareApplication",
       "identifier": "ipmisc",
       "name": "ipmisc",
-      "version": ">= 5.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -315,6 +313,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "patchwork",
+      "name": "patchwork",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=patchwork"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
       "provider": {
@@ -358,7 +368,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 0.7.0.9000",
+      "version": ">= 0.7.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -449,6 +459,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "93490.364KB",
+  "fileSize": "93398.296KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

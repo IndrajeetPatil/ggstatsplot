@@ -8,7 +8,7 @@
 #'
 #' Helper function for `ggstatsplot::gghistostats` to apply this function
 #' across multiple levels of a given factor and combining the resulting plots
-#' using `ggstatsplot::combine_plots2`.
+#' using `ggstatsplot::combine_plots`.
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats
@@ -40,7 +40,8 @@
 #'     ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
 #'     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
 #'   ),
-#'   plotgrid.args = list(nrow = 1, labels = c("(i)", "(ii)", "(iii)")),
+#'   plotgrid.args = list(nrow = 1),
+#'   annotation.args = list(tag_levels = "i"),
 #' )
 #' }
 #' @export
@@ -55,12 +56,7 @@ grouped_gghistostats <- function(data,
                                  output = "plot",
                                  ...,
                                  plotgrid.args = list(),
-                                 title.text = NULL,
-                                 title.args = list(size = 16, fontface = "bold"),
-                                 caption.text = NULL,
-                                 caption.args = list(size = 10),
-                                 sub.text = NULL,
-                                 sub.args = list(size = 12)) {
+                                 annotation.args = list()) {
 
   # ======================== computing binwidth ============================
 
@@ -100,15 +96,10 @@ grouped_gghistostats <- function(data,
 
   # combining the list of plots into a single plot
   if (output == "plot") {
-    return(ggstatsplot::combine_plots2(
+    return(combine_plots(
       plotlist = plotlist_purrr,
       plotgrid.args = plotgrid.args,
-      title.text = title.text,
-      title.args = title.args,
-      caption.text = caption.text,
-      caption.args = caption.args,
-      sub.text = sub.text,
-      sub.args = sub.args
+      annotation.args = annotation.args
     ))
   } else {
     return(plotlist_purrr) # subtitle list

@@ -13,12 +13,7 @@ grouped_gghistostats(
   output = "plot",
   ...,
   plotgrid.args = list(),
-  title.text = NULL,
-  title.args = list(size = 16, fontface = "bold"),
-  caption.text = NULL,
-  caption.args = list(size = 10),
-  sub.text = NULL,
-  sub.args = list(size = 12)
+  annotation.args = list()
 )
 }
 \arguments{
@@ -63,7 +58,7 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 width to use in calculating Bayes factors.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
-    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults return
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
@@ -112,32 +107,17 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
   }}
 
-\item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}
+\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
 
-\item{title.text}{String or plotmath expression to be drawn as title for the
-\emph{combined plot}.}
-
-\item{title.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
-
-\item{caption.text}{String or plotmath expression to be drawn as the caption
-for the \emph{combined plot}.}
-
-\item{caption.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
-
-\item{sub.text}{The label with which the \emph{combined plot} should be annotated.
-Can be a plotmath expression.}
-
-\item{sub.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
+\item{annotation.args}{Additional arguments passed to
+\code{patchwork::plot_annotation}.}
 }
 \description{
 \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
 
 Helper function for \code{ggstatsplot::gghistostats} to apply this function
 across multiple levels of a given factor and combining the resulting plots
-using \code{ggstatsplot::combine_plots2}.
+using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 \donttest{
@@ -155,7 +135,8 @@ ggstatsplot::grouped_gghistostats(
     ggplot2::scale_x_continuous(breaks = seq(3, 9, 1), limits = (c(3, 9))),
     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
   ),
-  plotgrid.args = list(nrow = 1, labels = c("(i)", "(ii)", "(iii)")),
+  plotgrid.args = list(nrow = 1),
+  annotation.args = list(tag_levels = 'i'),
 )
 }
 }

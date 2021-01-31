@@ -8,7 +8,7 @@
 #'
 #' Helper function for `ggstatsplot::ggcorrmat` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
-#' `ggstatsplot::combine_plots2`.
+#' `ggstatsplot::combine_plots`.
 #'
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats
@@ -55,12 +55,7 @@ grouped_ggcorrmat <- function(data,
                               output = "plot",
                               ...,
                               plotgrid.args = list(),
-                              title.text = NULL,
-                              title.args = list(size = 16, fontface = "bold"),
-                              caption.text = NULL,
-                              caption.args = list(size = 10),
-                              sub.text = NULL,
-                              sub.args = list(size = 12)) {
+                              annotation.args = list()) {
 
   # ========================= preparing dataframe =============================
 
@@ -96,15 +91,10 @@ grouped_ggcorrmat <- function(data,
   # combining the list of plots into a single plot
   # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
-    return(ggstatsplot::combine_plots2(
+    return(combine_plots(
       plotlist = plotlist_purrr,
       plotgrid.args = plotgrid.args,
-      title.text = title.text,
-      title.args = title.args,
-      caption.text = caption.text,
-      caption.args = caption.args,
-      sub.text = sub.text,
-      sub.args = sub.args
+      annotation.args = annotation.args
     ))
   } else {
     return(dplyr::bind_rows(plotlist_purrr, .id = title.prefix))

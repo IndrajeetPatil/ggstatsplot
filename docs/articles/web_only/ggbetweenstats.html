@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-17</h4>
+            <h4 class="date">2021-01-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -321,12 +321,12 @@
 
 <span class="co"># combining the individual plots into a single plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  <span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span>,
-  nrow <span class="op">=</span> <span class="fl">2</span>,
-  title.text <span class="op">=</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,
-  caption.text <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span>,
-  title.size <span class="op">=</span> <span class="fl">14</span>,
-  caption.size <span class="op">=</span> <span class="fl">12</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,
+    caption <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span>
+  <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="100%"></p>
 </div>
@@ -362,7 +362,7 @@
     outlier.label <span class="op">=</span> <span class="va">country</span>,
     title.prefix <span class="op">=</span> <span class="st">"Year"</span>,
     <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-    title.text <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span>,
+    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,
     plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="100%"></p>

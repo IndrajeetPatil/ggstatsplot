@@ -160,6 +160,9 @@ confidence interval whiskers and other statistical details included as
 labels.
 }
 \note{
+\strong{Important}: The function assumes that you have already downloaded
+the needed package (\code{metafor}, \code{metaplus}, or \code{metaBMA}) for meta-analysis.
+
 \enumerate{
 \item All rows of regression estimates where either of the following
 quantities is \code{NA} will be removed if labels are requested: \code{estimate},

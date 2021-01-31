@@ -27,8 +27,3 @@ ipmisc::enframe
 #' @export
 #' @importFrom ipmisc as_tibble
 ipmisc::as_tibble
-
-
-#' @export
-#' @importFrom bayestestR bayesfactor
-bayestestR::bayesfactor

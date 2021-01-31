@@ -13,12 +13,7 @@ grouped_ggdotplotstats(
   output = "plot",
   ...,
   plotgrid.args = list(),
-  title.text = NULL,
-  title.args = list(size = 16, fontface = "bold"),
-  caption.text = NULL,
-  caption.args = list(size = 10),
-  sub.text = NULL,
-  sub.args = list(size = 12)
+  annotation.args = list()
 )
 }
 \arguments{
@@ -76,7 +71,7 @@ favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
-    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults return
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
@@ -106,32 +101,17 @@ override some aspects of the selected \code{ggtheme}.}
 (Defaults: \code{"regression coefficient"} and \code{"term"}).}
   }}
 
-\item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}
+\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
 
-\item{title.text}{String or plotmath expression to be drawn as title for the
-\emph{combined plot}.}
-
-\item{title.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
-
-\item{caption.text}{String or plotmath expression to be drawn as the caption
-for the \emph{combined plot}.}
-
-\item{caption.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
-
-\item{sub.text}{The label with which the \emph{combined plot} should be annotated.
-Can be a plotmath expression.}
-
-\item{sub.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
+\item{annotation.args}{Additional arguments passed to
+\code{patchwork::plot_annotation}.}
 }
 \description{
 \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
 
 Helper function for \code{ggstatsplot::ggdotplotstats} to apply this function
 across multiple levels of a given factor and combining the resulting plots
-using \code{ggstatsplot::combine_plots2}.
+using \code{ggstatsplot::combine_plots}.
 }
 \examples{
 \donttest{

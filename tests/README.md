@@ -17,7 +17,7 @@ Coverage summary is created using the
 | :------------------------------------------------------------------------------ | :----------: |
 | ggstatsplot                                                                     |    11.07     |
 | [R/combine\_plots.R](../R/combine_plots.R)                                      |     0.00     |
-| [R/combine\_plots2.R](../R/combine_plots2.R)                                    |     0.00     |
+| [R/combine\_plots2.R](../R/combine_plots.R)                                    |     0.00     |
 | [R/ggbarstats.R](../R/ggbarstats.R)                                             |     0.00     |
 | [R/ggbetweenstats.R](../R/ggbetweenstats.R)                                     |     0.00     |
 | [R/ggcorrmat.R](../R/ggcorrmat.R)                                               |     0.00     |
@@ -54,7 +54,7 @@ Unit Test summary is created using the
 | file                                                                     |  n | time | error | failed | skipped | warning | icon |
 | :----------------------------------------------------------------------- | -: | ---: | ----: | -----: | ------: | ------: | :--- |
 | [test-combine\_plots.R](testthat/test-combine_plots.R)                   |  1 | 0.00 |     0 |      0 |       1 |       0 | \+   |
-| [test-combine\_plots2.R](testthat/test-combine_plots2.R)                 |  1 | 0.00 |     0 |      0 |       1 |       0 | \+   |
+| [test-combine\_plots2.R](testthat/test-combine_plots.R)                 |  1 | 0.00 |     0 |      0 |       1 |       0 | \+   |
 | [test-ggbarstats.R](testthat/test-ggbarstats.R)                          |  4 | 0.01 |     0 |      0 |       4 |       0 | \+   |
 | [test-ggbetweenstats.R](testthat/test-ggbetweenstats.R)                  |  7 | 0.00 |     0 |      0 |       7 |       0 | \+   |
 | [test-ggcoefstats.R](testthat/test-ggcoefstats.R)                        | 23 | 0.44 |     0 |      0 |      19 |       0 | \+   |
@@ -85,7 +85,7 @@ Unit Test summary is created using the
 | file                                                                          | context                            |                                 test                                 | status  | n | time | icon |
 | :---------------------------------------------------------------------------- | :--------------------------------- | :------------------------------------------------------------------: | :------ | -: | ---: | :--- |
 | [test-combine\_plots.R](testthat/test-combine_plots.R#L6)                     | combine\_plots                     |                  checking if combining plots works                   | SKIPPED | 1 | 0.00 | \+   |
-| [test-combine\_plots2.R](testthat/test-combine_plots2.R#L6)                   | combine\_plots2                    |                  checking if combining plots works                   | SKIPPED | 1 | 0.00 | \+   |
+| [test-combine\_plots2.R](testthat/test-combine_plots.R#L6)                   | combine\_plots2                    |                  checking if combining plots works                   | SKIPPED | 1 | 0.00 | \+   |
 | [test-ggbarstats.R](testthat/test-ggbarstats.R#L6)                            | ggbarstats                         |                     checking labels with counts                      | SKIPPED | 1 | 0.00 | \+   |
 | [test-ggbarstats.R](testthat/test-ggbarstats.R#L189)                          | ggbarstats                         |                       aesthetic modifications                        | SKIPPED | 1 | 0.00 | \+   |
 | [test-ggbarstats.R](testthat/test-ggbarstats.R#L271)                          | ggbarstats                         |                           subtitle output                            | SKIPPED | 1 | 0.00 | \+   |

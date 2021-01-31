@@ -244,12 +244,12 @@ p4 <-
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
-  p1, p2, p3, p4,
-  nrow = 2,
-  title.text = "Comparison of life expectancy between 1957 and 2007",
-  caption.text = "Source: Gapminder Foundation",
-  title.size = 14,
-  caption.size = 12
+  list(p1, p2, p3, p4),
+  plotgrid.args = list(nrow = 2),
+  annotation.args = list(
+    title = "Comparison of life expectancy between 1957 and 2007",
+    caption = "Source: Gapminder Foundation"
+  )
 )
 ```
 
@@ -294,7 +294,7 @@ gapminder::gapminder %>%
     outlier.label = country,
     title.prefix = "Year",
     # arguments relevant for ggstatsplot::combine_plots
-    title.text = "Changes in life expectancy across continents (1967-2007)",
+    annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
     plotgrid.args = list(nrow = 3)
   )
 ```

@@ -15,12 +15,7 @@ grouped_ggwithinstats(
   output = "plot",
   ...,
   plotgrid.args = list(),
-  title.text = NULL,
-  title.args = list(size = 16, fontface = "bold"),
-  caption.text = NULL,
-  caption.args = list(size = 10),
-  sub.text = NULL,
-  sub.args = list(size = 12)
+  annotation.args = list()
 )
 }
 \arguments{
@@ -115,7 +110,7 @@ should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{conf.level}}{Scalar between 0 and 1. If unspecified, the defaults return
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults return
 \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
@@ -175,25 +170,10 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
   }}
 
-\item{plotgrid.args}{A list of additional arguments to \code{cowplot::plot_grid}.}
+\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
 
-\item{title.text}{String or plotmath expression to be drawn as title for the
-\emph{combined plot}.}
-
-\item{title.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
-
-\item{caption.text}{String or plotmath expression to be drawn as the caption
-for the \emph{combined plot}.}
-
-\item{caption.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
-
-\item{sub.text}{The label with which the \emph{combined plot} should be annotated.
-Can be a plotmath expression.}
-
-\item{sub.args}{A list of additional arguments
-provided to \code{title}, \code{caption} and \code{sub}, resp.}
+\item{annotation.args}{Additional arguments passed to
+\code{patchwork::plot_annotation}.}
 }
 \description{
 A combined plot of comparison plot created for levels of a
