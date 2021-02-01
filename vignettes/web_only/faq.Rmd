@@ -217,7 +217,7 @@ plot_list <-
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   plotgrid.args = list(nrow = 2),
-  annotation.args = list(tag_levels = 'i')
+  annotation.args = list(tag_levels = "i")
 )
 ```
 

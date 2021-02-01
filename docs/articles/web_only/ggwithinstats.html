@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-17</h4>
+            <h4 class="date">2021-02-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -306,12 +306,12 @@
 
 <span class="co"># combining the individual plots into a single plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  <span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span>,
-  nrow <span class="op">=</span> <span class="fl">2</span>,
-  title.text <span class="op">=</span> <span class="st">"Effect of disgust on desire to kill bugs "</span>,
-  caption.text <span class="op">=</span> <span class="st">"Source: Bugs dataset from `jmv` R package"</span>,
-  title.size <span class="op">=</span> <span class="fl">14</span>,
-  caption.size <span class="op">=</span> <span class="fl">12</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"Effect of disgust on desire to kill bugs "</span>,
+    caption <span class="op">=</span> <span class="st">"Source: Bugs dataset from `jmv` R package"</span>
+  <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats3-1.png" width="100%"></p>
 </div>
@@ -347,7 +347,7 @@
   k <span class="op">=</span> <span class="fl">3</span>,
   title.prefix <span class="op">=</span> <span class="st">"Year"</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  title.text <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/grouped1-1.png" width="100%"></p>

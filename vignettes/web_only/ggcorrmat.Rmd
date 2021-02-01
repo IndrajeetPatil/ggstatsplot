@@ -256,18 +256,18 @@ in a given study, groups in a study sample, different studies, etc.
 # for reproducibility
 set.seed(123)
 
-# let's use just 10% of the data to speed it up
+# plot
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for `ggstatsplot::ggcorrmat`
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.1),
+  data = ggplot2::diamonds,
   type = "bf", # Bayesian test
   grouping.var = cut,
   title.prefix = "Quality of cut",
   # arguments relevant for `ggstatsplot::combine_plots`
   plotgrid.args = list(nrow = 3),
   annotation.args = list(
-    labels = "a",
-    title.text = "Relationship between diamond attributes and price across cut",
+    tag_levels = "a",
+    title = "Relationship between diamond attributes and price across cut",
     caption = "Dataset: Diamonds from ggplot2 package"
   )
 )

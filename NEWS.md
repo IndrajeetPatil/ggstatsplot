@@ -2,10 +2,18 @@
 
 BREAKING CHANGES
 
-  - `combine_plots` has been completely revised to rely not on `patchwork`, but on
-    `patchwork`, to combine a list of `ggplot` together. This was done to have a
-    leaner syntax. With this revision, its vestigial twin `combine_plots` is no
-    longer needed and has been removed.
+  - `combine_plots` has been completely revised to rely not on `patchwork`, but
+    on `patchwork`, to combine a list of `ggplot` together. This was done to
+    have a leaner syntax. With this revision, its vestigial twin `combine_plots`
+    is no longer needed and has been removed. This should not break any of the
+    existing instances of `grouped_` functions, although it will lead to changed
+    graphical layouts. The only instance in which this change will lead to a
+    breakage is if you had used `combine_plots` function and provided individual
+    plots to `...` instead as a `list`.
+
+NEW FEATURES
+
+  - More models supported in `ggcoefstats`: `crr`, `varest`.
 
 # ggstatsplot 0.6.8
 

@@ -331,7 +331,7 @@ ggcoefstats <- function(x,
       tidyr::unite(
         data = .,
         col = "term",
-        dplyr::matches("term|variable|parameter|method|curve|response|component|contrast"),
+        dplyr::matches("term|variable|parameter|method|curve|response|component|contrast|group"),
         remove = TRUE,
         sep = "_"
       )
@@ -432,8 +432,7 @@ ggcoefstats <- function(x,
 
   # sorting factor levels
   new_order <-
-    switch(
-      sort,
+    switch(sort,
       "none" = order(tidy_df$.rowid, decreasing = FALSE),
       "ascending" = order(tidy_df$estimate, decreasing = FALSE),
       "descending" = order(tidy_df$estimate, decreasing = TRUE),

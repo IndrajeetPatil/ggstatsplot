@@ -1092,10 +1092,10 @@ also supported by `ggcoefstats`. For example-
 `blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
 `cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
 `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`,
-`cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`,
-`ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`,
-`gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`,
-`glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`, `emmGrid`,
+`epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`,
+`Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
 `HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
 `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`,
 `lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`,
@@ -1106,8 +1106,8 @@ also supported by `ggcoefstats`. For example-
 `poissonirr`, `polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`,
 `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`,
 `speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`,
-`zeroinfl`, etc.
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`,
+`wblm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both
 frequentist, robust, and Bayesian random-effects meta-analysis.
@@ -1244,19 +1244,10 @@ the following packages that manage different aspects of statistical analyses:
 
 The `statsExpressions` package forms the statistical backend that processes data
 and creates expressions containing results from statistical tests and are by
-default displayed in as plot **subtitle**.
+default displayed in as plot **subtitle** and **caption**.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/statsExpressions/>
-
-## `tidyBF`
-
-The `tidyBF` package forms the backend that processes data and creates
-expressions containing results from Bayes Factor tests and are by default
-displayed in as plot **caption**.
-
-For more exhaustive documentation for this package, see:
-<https://indrajeetpatil.github.io/tidyBF/>
 
 ## `pairwiseComparisons`
 

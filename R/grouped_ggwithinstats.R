@@ -83,11 +83,7 @@ grouped_ggwithinstats <- function(data,
 
   # combining the list of plots into a single plot
   if (output == "plot") {
-    return(combine_plots(
-      plotlist = plotlist_purrr,
-      plotgrid.args = plotgrid.args,
-      annotation.args = annotation.args
-    ))
+    return(combine_plots(plotlist_purrr, plotgrid.args = plotgrid.args, annotation.args = annotation.args))
   } else {
     # subtitle list
     return(plotlist_purrr)
