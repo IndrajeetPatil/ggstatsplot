@@ -93,6 +93,7 @@ grouped_ggcorrmat <- function(data,
   if (output == "plot") {
     return(combine_plots(
       plotlist = plotlist_purrr,
+      guides = "keep", # each legend is going to be different
       plotgrid.args = plotgrid.args,
       annotation.args = annotation.args
     ))

@@ -88,10 +88,10 @@ also supported by `ggcoefstats`. For example-
 `blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
 `cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
 `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`,
-`cpglm`, `cpglmm`, `crch`, `crq`, `DirichReg`, `drc`, `emmGrid`, `epi.2by2`,
-`ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`,
-`gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`,
-`glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
+`cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`, `emmGrid`,
+`epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`,
+`Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
+`glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
 `HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
 `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`,
 `lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`,
@@ -102,8 +102,8 @@ also supported by `ggcoefstats`. For example-
 `poissonirr`, `polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`,
 `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`,
 `speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `vgam`, `vglm`, `wbgee`, `wblm`,
-`zeroinfl`, etc.
+`svyolr`, `svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`,
+`wblm`, `zeroinfl`, etc.
 
 # Summary of meta-analyis tests
 
@@ -1500,6 +1500,24 @@ rrnb2 <-
 ggstatsplot::ggcoefstats(
   x = rrnb2,
   title = "Reduced-Rank Vector Generalized Linear Models"
+)
+```
+
+## Vector autoregression models (`varest`)
+
+```{r varest, fig.height = 12, fig.width = 7}
+# setup
+set.seed(123)
+library(vars)
+data(Canada)
+
+# model
+mod_varest <- vars::VAR(Canada, p = 2, type = "none")
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_varest,
+  title = "Vector autoregression models"
 )
 ```
 
@@ -3085,6 +3103,29 @@ ggstatsplot::ggcoefstats(
 )
 ```
 
+## Competing Risks Regression (`crr`)
+
+```{r crr, fig.height = 6, fig.width = 6}
+# setup
+set.seed(10)
+library(cmprsk)
+
+# simulated data to test
+ftime <- rexp(200)
+fstatus <- sample(0:2, 200, replace = TRUE)
+cov <- matrix(runif(600), nrow = 200)
+dimnames(cov)[[2]] <- c("x1", "x2", "x3")
+
+# model
+mod_crr <- cmprsk::crr(ftime, fstatus, cov)
+
+# plot
+ggcoefstats(
+  x = mod_crr,
+  title = "Competing Risks Regression"
+)
+```
+
 ## tobit regression (`tobit`)
 
 ```{r tobit, fig.height = 5, fig.width = 5}
@@ -3109,7 +3150,7 @@ ggstatsplot::ggcoefstats(
 
 ## censored regression (tobit) regression (`censReg`)
 
-```{r censReg, fig.height = 5, fig.width = 5, eval=FALSE}
+```{r censReg, fig.height = 5, fig.width = 5}
 # setup
 set.seed(123)
 library(censReg)

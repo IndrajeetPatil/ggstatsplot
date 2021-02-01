@@ -15,6 +15,7 @@
 #' @param annotation.args Additional arguments passed to
 #'   `patchwork::plot_annotation`.
 #' @param ... Currently ignored.
+#' @inheritParams patchwork::wrap_plots
 #'
 #' @importFrom patchwork wrap_plots plot_annotation
 #' @importFrom rlang exec !!!
@@ -58,13 +59,14 @@
 
 # function body
 combine_plots <- function(plotlist,
+                          guides = "collect",
                           plotgrid.args = list(),
                           annotation.args = list(),
                           ...) {
   rlang::exec(
     .fn = patchwork::wrap_plots,
     !!!plotlist,
-    guides = "collect",
+    guides = guides,
     !!!plotgrid.args
   ) +
     rlang::exec(.fn = patchwork::plot_annotation, !!!annotation.args)

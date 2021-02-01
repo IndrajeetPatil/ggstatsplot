@@ -206,7 +206,13 @@ plots with annotations." />
 plots with annotations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>combine_plots</span><span class='op'>(</span><span class='va'>plotlist</span>, plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>combine_plots</span><span class='op'>(</span>
+  <span class='va'>plotlist</span>,
+  guides <span class='op'>=</span> <span class='st'>"collect"</span>,
+  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -214,6 +220,17 @@ plots with annotations.</p>
     <tr>
       <th>plotlist</th>
       <td><p>A list containing <code>ggplot</code> objects.</p></td>
+    </tr>
+    <tr>
+      <th>guides</th>
+      <td><p>A string specifying how guides should be treated in the layout.
+<code>'collect'</code> will collect guides below to the given nesting level, removing
+duplicates. <code>'keep'</code> will stop collection at this level and let guides be
+placed alongside their plot. <code>auto</code> will allow guides to be collected if a
+upper level tries, but place them alongside the plot if not.  If you modify
+default guide "position" with <a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme(legend.position=...)</a>
+while also collecting guides you must apply that change to the overall
+patchwork (see example).</p></td>
     </tr>
     <tr>
       <th>plotgrid.args</th>

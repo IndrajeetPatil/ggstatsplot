@@ -4,10 +4,25 @@
 \alias{combine_plots}
 \title{Combining and arranging multiple plots in a grid}
 \usage{
-combine_plots(plotlist, plotgrid.args = list(), annotation.args = list(), ...)
+combine_plots(
+  plotlist,
+  guides = "collect",
+  plotgrid.args = list(),
+  annotation.args = list(),
+  ...
+)
 }
 \arguments{
 \item{plotlist}{A list containing \code{ggplot} objects.}
+
+\item{guides}{A string specifying how guides should be treated in the layout.
+\code{'collect'} will collect guides below to the given nesting level, removing
+duplicates. \code{'keep'} will stop collection at this level and let guides be
+placed alongside their plot. \code{auto} will allow guides to be collected if a
+upper level tries, but place them alongside the plot if not.  If you modify
+default guide "position" with \link[ggplot2:theme]{theme(legend.position=...)}
+while also collecting guides you must apply that change to the overall
+patchwork (see example).}
 
 \item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
 

@@ -136,7 +136,7 @@ ggstatsplot::grouped_gghistostats(
     ggplot2::scale_y_continuous(breaks = seq(0, 25, 5), limits = (c(0, 25)))
   ),
   plotgrid.args = list(nrow = 1),
-  annotation.args = list(tag_levels = 'i'),
+  annotation.args = list(tag_levels = "i"),
 )
 }
 }

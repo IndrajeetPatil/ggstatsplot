@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-17</h4>
+            <h4 class="date">2021-02-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -253,8 +253,10 @@
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  title.text <span class="op">=</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,
-  caption.text <span class="op">=</span> <span class="st">"Source: www.imdb.com"</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,
+    caption <span class="op">=</span> <span class="st">"Source: www.imdb.com"</span>
+  <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="100%"></p>

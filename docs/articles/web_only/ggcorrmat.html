@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-17</h4>
+            <h4 class="date">2021-02-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -386,21 +386,19 @@
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># let's use just 10% of the data to speed it up</span>
+<span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for `ggstatsplot::ggcorrmat`</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>,
   type <span class="op">=</span> <span class="st">"bf"</span>, <span class="co"># Bayesian test</span>
   grouping.var <span class="op">=</span> <span class="va">cut</span>,
   title.prefix <span class="op">=</span> <span class="st">"Quality of cut"</span>,
   <span class="co"># arguments relevant for `ggstatsplot::combine_plots`</span>
-  title.text <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
-  title.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
-  caption.text <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
-  caption.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(a)"</span>, <span class="st">"(b)"</span>, <span class="st">"(c)"</span>, <span class="st">"(d)"</span>, <span class="st">"(e)"</span><span class="op">)</span>,
-    nrow <span class="op">=</span> <span class="fl">3</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    tag_levels <span class="op">=</span> <span class="st">"a"</span>,
+    title <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
+    caption <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="100%"></p>
