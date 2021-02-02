@@ -11,8 +11,10 @@
 #' @return Combined plot with annotation labels
 #'
 #' @param plotlist A list containing `ggplot` objects.
-#' @param plotgrid.args Additional arguments passed to `patchwork::wrap_plots`.
-#' @param annotation.args Additional arguments passed to
+#' @param plotgrid.args A `list` of additional arguments passed to
+#'   `patchwork::wrap_plots`, except for `guides` argument which is already
+#'   separately specified here.
+#' @param annotation.args A `list` of additional arguments passed to
 #'   `patchwork::plot_annotation`.
 #' @param ... Currently ignored.
 #' @inheritParams patchwork::wrap_plots

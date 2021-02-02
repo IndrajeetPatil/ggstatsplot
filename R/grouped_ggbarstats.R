@@ -58,9 +58,9 @@ grouped_ggbarstats <- function(data,
                                grouping.var,
                                title.prefix = NULL,
                                output = "plot",
-                               ...,
                                plotgrid.args = list(),
-                               annotation.args = list()) {
+                               annotation.args = list(),
+                               ...) {
 
   # ======================== preparing dataframe =============================
 

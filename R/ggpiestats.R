@@ -182,7 +182,10 @@ ggpiestats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output, "caption" = caption, subtitle))
+    return(switch(EXPR = output,
+      "caption" = caption,
+      subtitle
+    ))
   }
 
   # =================================== plot =================================
@@ -232,7 +235,7 @@ ggpiestats <- function(data,
     ggplot2::coord_polar(theta = "y") +
     ggplot2::scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(palette = paste0(package, "::", palette), name = "") +
-    theme_pie(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    theme_pie(ggtheme, ggstatsplot.layer) +
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
   # ================ sample size + proportion test labels =================

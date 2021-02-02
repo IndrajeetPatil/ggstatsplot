@@ -11,9 +11,9 @@ grouped_ggdotplotstats(
   grouping.var,
   title.prefix = NULL,
   output = "plot",
-  ...,
   plotgrid.args = list(),
-  annotation.args = list()
+  annotation.args = list(),
+  ...
 )
 }
 \arguments{
@@ -34,6 +34,13 @@ variable name entered for \code{grouping.var} will be used.}
 \item{output}{If \code{"expression"}, will return expression with statistical
 details, while \code{"dataframe"} will return a dataframe containing the
 results.}
+
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
+
+\item{annotation.args}{A \code{list} of additional arguments passed to
+\code{patchwork::plot_annotation}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggdotplotstats]{ggdotplotstats}}
@@ -100,11 +107,6 @@ override some aspects of the selected \code{ggtheme}.}
     \item{\code{ylab}}{Labels for \code{x}- and \code{y}- axis variables, respectively
 (Defaults: \code{"regression coefficient"} and \code{"term"}).}
   }}
-
-\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
-
-\item{annotation.args}{Additional arguments passed to
-\code{patchwork::plot_annotation}.}
 }
 \description{
 \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}

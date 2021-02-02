@@ -24,9 +24,11 @@ default guide "position" with \link[ggplot2:theme]{theme(legend.position=...)}
 while also collecting guides you must apply that change to the overall
 patchwork (see example).}
 
-\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
 
-\item{annotation.args}{Additional arguments passed to
+\item{annotation.args}{A \code{list} of additional arguments passed to
 \code{patchwork::plot_annotation}.}
 
 \item{...}{Currently ignored.}

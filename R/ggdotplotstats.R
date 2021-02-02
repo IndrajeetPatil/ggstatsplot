@@ -145,7 +145,10 @@ ggdotplotstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(output, "caption" = caption, subtitle))
+    return(switch(output,
+      "caption" = caption,
+      subtitle
+    ))
   }
 
   # ------------------------------ basic plot ----------------------------
@@ -200,7 +203,7 @@ ggdotplotstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::theme(
       legend.position = "none",
       panel.grid.major.y = ggplot2::element_line(

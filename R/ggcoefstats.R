@@ -89,9 +89,9 @@
 #' @importFrom dplyr select mutate matches across row_number last group_by ungroup
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
-#' @importFrom insight is_model find_statistic standardize_names
+#' @importFrom insight is_model find_statistic
 #' @importFrom statsExpressions expr_meta_random
-#' @importFrom parameters model_parameters
+#' @importFrom parameters model_parameters standardize_names
 #' @importFrom performance model_performance
 #'
 #' @references
@@ -273,8 +273,8 @@ ggcoefstats <- function(x,
         verbose = FALSE,
         ...
       ) %>%
-      insight::standardize_names(data = ., style = "broom") %>%
-      dplyr::rename_all(., ~ gsub("omega2.|eta2.", "", .x))
+      parameters::standardize_names(style = "broom") %>%
+      dplyr::rename_all(~ gsub("omega2.|eta2.", "", .x))
 
     # anova objects need further cleaning
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
@@ -384,7 +384,7 @@ ggcoefstats <- function(x,
     # creating glance dataframe
     suppressWarnings(glance_df <-
       performance::model_performance(x, verbose = FALSE) %>%
-      parameters::standardize_names(data = ., style = "broom"))
+      parameters::standardize_names(style = "broom"))
 
     # no meta-analysis in this context
     meta.analytic.effect <- FALSE
@@ -546,20 +546,19 @@ ggcoefstats <- function(x,
         subtitle = subtitle,
         title = title
       ) +
-      theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+      theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
       ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
   }
 
   # =========================== output =====================================
 
   # what needs to be returned?
-  return(switch(
-    EXPR = output,
+  switch(output,
     "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,
     "tidy" = as_tibble(tidy_df),
     "glance" = as_tibble(glance_df),
     "plot"
-  ))
+  )
 }

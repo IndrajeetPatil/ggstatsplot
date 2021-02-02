@@ -54,9 +54,9 @@ grouped_gghistostats <- function(data,
                                  binwidth = NULL,
                                  title.prefix = NULL,
                                  output = "plot",
-                                 ...,
                                  plotgrid.args = list(),
-                                 annotation.args = list()) {
+                                 annotation.args = list(),
+                                 ...) {
 
   # ======================== computing binwidth ============================
 

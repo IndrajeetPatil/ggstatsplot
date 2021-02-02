@@ -11,9 +11,9 @@ grouped_ggcorrmat(
   grouping.var,
   title.prefix = NULL,
   output = "plot",
-  ...,
   plotgrid.args = list(),
-  annotation.args = list()
+  annotation.args = list(),
+  ...
 )
 }
 \arguments{
@@ -36,6 +36,13 @@ variable name entered for \code{grouping.var} will be used.}
 literally anything other than \code{"plot"}), a dataframe containing all details
 from statistical analyses (e.g., correlation coefficients, statistic
 values, \emph{p}-values, no. of observations, etc.) will be returned.}
+
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
+
+\item{annotation.args}{A \code{list} of additional arguments passed to
+\code{patchwork::plot_annotation}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
@@ -100,11 +107,6 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
   }}
-
-\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
-
-\item{annotation.args}{Additional arguments passed to
-\code{patchwork::plot_annotation}.}
 }
 \description{
 \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}

@@ -187,7 +187,10 @@ ggscatterstats <- function(data,
 
   # quit early if only subtitle is needed
   if (output %in% c("subtitle", "caption")) {
-    return(switch(output, "subtitle" = subtitle, "caption" = caption))
+    return(switch(output,
+      "subtitle" = subtitle,
+      "caption" = caption
+    ))
   }
 
   #---------------------------- user expression -------------------------
@@ -272,7 +275,7 @@ ggscatterstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot.component
 
   #------------------------- ggMarginal  ---------------------------------

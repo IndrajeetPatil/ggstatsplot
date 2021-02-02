@@ -13,9 +13,9 @@ grouped_ggwithinstats(
   outlier.label = NULL,
   title.prefix = NULL,
   output = "plot",
-  ...,
   plotgrid.args = list(),
-  annotation.args = list()
+  annotation.args = list(),
+  ...
 )
 }
 \arguments{
@@ -44,6 +44,13 @@ you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL
 Setting this to \code{"caption"} will return the expression containing details
 about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
+
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
+
+\item{annotation.args}{A \code{list} of additional arguments passed to
+\code{patchwork::plot_annotation}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggwithinstats]{ggwithinstats}}
@@ -169,11 +176,6 @@ by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
   }}
-
-\item{plotgrid.args}{Additional arguments passed to \code{patchwork::wrap_plots}.}
-
-\item{annotation.args}{Additional arguments passed to
-\code{patchwork::plot_annotation}.}
 }
 \description{
 A combined plot of comparison plot created for levels of a

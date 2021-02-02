@@ -152,7 +152,10 @@ gghistostats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(output, "caption" = caption, subtitle))
+    return(switch(output,
+      "caption" = caption,
+      subtitle
+    ))
   }
 
   # ============================= plot ====================================
@@ -191,7 +194,7 @@ gghistostats <- function(data,
 
   # adding the theme and labels
   plot <- plot +
-    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::labs(
       x = xlab,
       y = "count",

@@ -29,6 +29,23 @@ repos:
   ropensci: http://packages.ropensci.org
 
 r_packages:
+  # - Rcpp
+  # - RcppEigen
+  # - mvtnorm
+  # - rstan
+  # - StanHeaders
+  # - LaplacesDemon
+  # - logspline
+  - remotes
+  - knitr
+  - rmarkdown
+  # - coda
+  # - rstantools
+  # - bridgesampling
+  # - BH
+  # - metaBMA
+
+r_binary_packages:
   - Rcpp
   - RcppEigen
   - mvtnorm
@@ -36,10 +53,6 @@ r_packages:
   - StanHeaders
   - LaplacesDemon
   - logspline
-  - testthat
-  - remotes
-  - knitr
-  - rmarkdown
   - coda
   - rstantools
   - bridgesampling

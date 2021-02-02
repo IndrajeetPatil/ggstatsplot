@@ -78,9 +78,9 @@ grouped_ggscatterstats <- function(data,
                                    label.expression = NULL,
                                    title.prefix = NULL,
                                    output = "plot",
-                                   ...,
                                    plotgrid.args = list(),
-                                   annotation.args = list()) {
+                                   annotation.args = list(),
+                                   ...) {
 
   # ======================== preparing dataframe =============================
 

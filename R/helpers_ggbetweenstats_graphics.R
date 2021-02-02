@@ -294,7 +294,7 @@ aesthetic_addon <- function(plot,
       caption = caption,
       color = xlab
     ) +
-    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette))

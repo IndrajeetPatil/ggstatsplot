@@ -149,7 +149,10 @@ ggbarstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output, "caption" = caption, subtitle))
+    return(switch(EXPR = output,
+      "caption" = caption,
+      subtitle
+    ))
   }
 
   # =================================== plot =================================
@@ -188,7 +191,7 @@ ggbarstats <- function(data,
       na.rm = TRUE,
       !!!label.args
     ) +
-    theme_ggstatsplot(ggtheme = ggtheme, ggstatsplot.layer = ggstatsplot.layer) +
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::theme(panel.grid.major.x = ggplot2::element_blank()) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
     paletteer::scale_fill_paletteer_d(palette = paste0(package, "::", palette), name = "")
