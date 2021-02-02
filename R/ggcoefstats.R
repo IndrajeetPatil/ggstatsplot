@@ -554,11 +554,10 @@ ggcoefstats <- function(x,
 
   # what needs to be returned?
   switch(output,
-    "plot" = plot,
     "subtitle" = subtitle,
     "caption" = caption,
     "tidy" = as_tibble(tidy_df),
     "glance" = as_tibble(glance_df),
-    "plot"
+    plot
   )
 }

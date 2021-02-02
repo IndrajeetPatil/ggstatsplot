@@ -1,6 +1,6 @@
 language: r
 r:
-  - release
+  #- release
   #- devel
   - oldrel
 latex: true
