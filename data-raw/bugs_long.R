@@ -9,7 +9,7 @@ data("bugs", package = "jmv")
 # converting to long format
 bugs_long <- bugs %>%
   tibble::as_tibble(.) %>%
-  tidyr::gather(data = ., key = "condition", value = "desire", LDLF:HDHF)
+  tidyr::gather(key = "condition", value = "desire", LDLF:HDHF)
 
 # all column names in lower case
 names(bugs_long) <- tolower(names(bugs_long))

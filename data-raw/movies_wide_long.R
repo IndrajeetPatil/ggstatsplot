@@ -8,18 +8,18 @@ dplyr::glimpse(x = ggplot2movies::movies)
 # clean data leave it in wide format
 movies_wide <-
   ggplot2movies::movies %>%
-  dplyr::select(.data = ., c(title:votes, mpaa:Short)) %>%
-  dplyr::filter(.data = ., mpaa != "", mpaa != "NC-17") %>%
-  dplyr::filter(.data = ., Short != 1, Documentary != 1) %>%
-  dplyr::select(.data = ., -c(Short, Documentary)) %>%
+  dplyr::select(c(title:votes, mpaa:Short)) %>%
+  dplyr::filter(mpaa != "", mpaa != "NC-17") %>%
+  dplyr::filter(Short != 1, Documentary != 1) %>%
+  dplyr::select(-c(Short, Documentary)) %>%
   stats::na.omit(.) %>%
-  dplyr::mutate(.data = ., budget = budget / 1000000) %>%
-  dplyr::mutate(.data = ., mpaa = factor(mpaa)) %>%
-  dplyr::mutate(.data = ., NumGenre = as.integer(rowSums(select(., Action:Romance)))) %>%
-  dplyr::filter(.data = ., NumGenre > 0)
+  dplyr::mutate(budget = budget / 1000000) %>%
+  dplyr::mutate(mpaa = factor(mpaa)) %>%
+  dplyr::mutate(NumGenre = as.integer(rowSums(select(., Action:Romance)))) %>%
+  dplyr::filter(NumGenre > 0)
 
 # see the selected data (we have data from 1,579 movies)
-dplyr::glimpse(x = movies_wide)
+dplyr::glimpse(movies_wide)
 
 # converting to long format
 
@@ -42,11 +42,11 @@ movies_long <-
   stats::na.omit(.) %>%
   # removing NAs
   dplyr::mutate(genre = factor(genre)) %>%
-  dplyr::select(.data = ., -c(Action:NumGenre)) %>%
-  dplyr::arrange(.data = ., desc(rating), title, year)
+  dplyr::select(-c(Action:NumGenre)) %>%
+  dplyr::arrange(desc(rating), title, year)
 
 # see the selected data (we have data from the exact same 1,579 movies)
-dplyr::glimpse(x = movies_long)
+dplyr::glimpse(movies_long)
 
 # saving the files
 readr::write_csv(x = movies_wide, path = "data-raw/movies_wide.csv")

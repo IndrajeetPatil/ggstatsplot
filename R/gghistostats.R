@@ -106,9 +106,7 @@ gghistostats <- function(data,
   if (is.null(xlab)) xlab <- rlang::as_name(x)
 
   # if dataframe is provided
-  df <-
-    dplyr::select(.data = data, {{ x }}) %>%
-    tidyr::drop_na(.)
+  df <- tidyr::drop_na(dplyr::select(data, {{ x }}))
 
   # column as a vector
   x_vec <- df %>% dplyr::pull({{ x }})

@@ -85,8 +85,7 @@ ggdotplotstats <- function(data,
   # ------------------------------ variable names ----------------------------
 
   # ensure the variables work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
+  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
   # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
   if (is.null(xlab)) xlab <- rlang::as_name(x)

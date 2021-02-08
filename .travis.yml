@@ -1,7 +1,7 @@
 language: r
 r:
-  #- release
-  #- devel
+  - release
+  - devel
   - oldrel
 latex: true
 warnings_are_errors: TRUE
@@ -64,7 +64,7 @@ notifications:
   on_failure: change
 
 after_success:
-  #- Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::codecov()'
   - Rscript -e 'covr::coveralls()'
   - R CMD INSTALL $PKG_TARBALL
   - Rscript -e 'lintr::lint_package()'

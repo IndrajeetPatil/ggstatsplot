@@ -135,9 +135,7 @@ centrality_data <- function(data, x, y, type = "parametric", tr = 0.1, k = 2L, .
     ) %>%
     dplyr::ungroup() %>%
     dplyr::rowwise() %>%
-    dplyr::mutate(
-      label = paste0("list(~widehat(mu)[", centrality, "]=='", format_num(estimate, k), "')")
-    ) %>%
+    dplyr::mutate(label = paste0("list(~widehat(mu)[", centrality, "]=='", format_num(estimate, k), "')")) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", n, ")")) %>%
     dplyr::arrange({{ x }}) %>%

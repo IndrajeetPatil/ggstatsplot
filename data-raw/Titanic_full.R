@@ -21,31 +21,26 @@ Titanic_full <-
   tibble::as_tibble(x = datasets::Titanic) %>%
   tibble::rowid_to_column(., var = "id") %>%
   dplyr::mutate_at(
-    .tbl = .,
     .vars = dplyr::vars("id"),
     .funs = ~ as.factor(.)
   ) %>%
   split(x = ., f = .$id) %>%
   purrr::map_dfr(.x = ., .f = ~ rep_df(df = ., rep = .$n)) %>%
   dplyr::mutate_at(
-    .tbl = .,
     .vars = dplyr::vars("id"),
     .funs = ~ as.numeric(as.character(.))
   ) %>%
   dplyr::mutate_if(
-    .tbl = .,
     .predicate = is.character,
     .funs = ~ as.factor(.)
   ) %>%
   dplyr::mutate_if(
-    .tbl = .,
     .predicate = is.factor,
     .funs = ~ droplevels(.)
   ) %>%
-  dplyr::select(.data = ., -n, -id) %>%
-  tibble::rownames_to_column(.data = ., var = "id") %>%
+  dplyr::select(-n, -id) %>%
+  tibble::rownames_to_column(var = "id") %>%
   dplyr::mutate_at(
-    .tbl = .,
     .vars = "id",
     .funs = ~ as.numeric(as.character(.))
   )

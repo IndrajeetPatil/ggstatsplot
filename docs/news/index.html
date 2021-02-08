@@ -209,7 +209,8 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li>All robust tests in this package were based on trimmed means, except for correlation test. This has been changed: the robust correlation measure is now Winsorized correlation, which is based on trimming. Therefore, the <code>beta</code> argument has been replaced by <code>tr</code> argument. This should result only in minor changes in correlation coefficient estimates.</li>
+<li><p>All robust tests in this package were based on trimmed means, except for correlation test. This has been changed: the robust correlation measure is now Winsorized correlation, which is based on trimming. Therefore, the <code>beta</code> argument has been replaced by <code>tr</code> argument. This should result only in minor changes in correlation coefficient estimates.</p></li>
+<li><p>Using <code>annotate</code> instead of <code>geom_label</code> had significantly slowed down <code>gghistostats</code> and <code>ggdotplotstats</code> functions. This has been fixed.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
