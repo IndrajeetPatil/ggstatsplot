@@ -129,8 +129,7 @@ test_that(
         centrality.parameter = "mean",
         conf.level = 0.90,
         point.args = list(color = "red", size = 5),
-        marginal = FALSE,
-        messages = FALSE
+        marginal = FALSE
       )
 
     # subtitle
@@ -173,8 +172,7 @@ test_that(
         title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
         type = "bf",
-        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 6000, 1000)),
-        messages = FALSE
+        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 6000, 1000))
       )
 
     # subtitle

@@ -238,8 +238,7 @@ test_that(
         caption = NULL,
         fill = "count",
         weight = "weight",
-        xintercept = "xintercept",
-        label = "centrality_df$label[[1]]"
+        xintercept = "xintercept"
       )
     )
   }

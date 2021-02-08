@@ -24,7 +24,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[6]])
 
     # checking caption
     expect_identical(
@@ -70,7 +70,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[6]])
 
     # checking caption
     expect_identical(
@@ -119,7 +119,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[6]])
 
     # data used for pairwise comparisons
     dat <- pb$plot$plot_env$df_pairwise
@@ -191,7 +191,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[6]])
 
     # data used for pairwise comparisons
     dat <- pb$plot$plot_env$df_pairwise
@@ -264,7 +264,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[6]])
 
     # data used for pairwise comparisons
     dat <- pb$plot$plot_env$df_pairwise

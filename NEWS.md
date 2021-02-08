@@ -19,6 +19,9 @@ MAJOR CHANGES
     `beta` argument has been replaced by `tr` argument. This should result only
     in minor changes in correlation coefficient estimates.
 
+  - Using `annotate` instead of `geom_label` had significantly slowed down
+    `gghistostats` and `ggdotplotstats` functions. This has been fixed.
+
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `crr`, `varest`.

@@ -68,6 +68,6 @@ Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace",
     "collate", "pkgapi::api_roclet"))
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true

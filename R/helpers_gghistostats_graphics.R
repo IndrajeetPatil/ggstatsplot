@@ -36,8 +36,7 @@
 #' ggstatsplot:::histo_labeller(
 #'   plot = p,
 #'   x = mtcars$wt,
-#'   y.label.position = y_label_pos,
-#'   test.value.line = TRUE
+#'   y.label.position = y_label_pos
 #' )
 #' }
 #' @keywords internal
@@ -75,16 +74,13 @@ histo_labeller <- function(plot,
   # adding a text label with mean value
   plot +
     rlang::exec(
-      .f = ggplot2::geom_label,
-      mapping = ggplot2::aes(
-        label = centrality_df$label[[1]],
-        x = centrality_df$var[[1]],
-        y = y.label.position * 1.25
-      ),
-      show.legend = FALSE,
+      .f = ggplot2::annotate,
+      geom = "label",
+      x = centrality_df$var[[1]],
+      y = y.label.position * 1.25,
+      label = centrality_df$label[[1]],
       parse = TRUE,
       na.rm = TRUE,
-      alpha = 0.5,
       !!!centrality.label.args
     )
 }
