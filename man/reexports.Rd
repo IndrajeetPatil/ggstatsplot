@@ -10,6 +10,7 @@
 \alias{tibble}
 \alias{enframe}
 \alias{as_tibble}
+\alias{correlation}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -17,6 +18,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{correlation}{\code{\link[correlation]{correlation}}}
+
   \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc:reexports]{tibble}}}
 }}
 

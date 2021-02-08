@@ -11,6 +11,14 @@ BREAKING CHANGES
     breakage is if you had used `combine_plots` function and provided individual
     plots to `...` instead as a `list`.
 
+MAJOR CHANGES
+
+  - All robust tests in this package were based on trimmed means, except for
+    correlation test. This has been changed: the robust correlation measure is
+    now Winsorized correlation, which is based on trimming. Therefore, the
+    `beta` argument has been replaced by `tr` argument. This should result only
+    in minor changes in correlation coefficient estimates.
+
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `crr`, `varest`.

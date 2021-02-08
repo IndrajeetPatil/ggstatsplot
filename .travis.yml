@@ -29,21 +29,9 @@ repos:
   ropensci: http://packages.ropensci.org
 
 r_packages:
-  # - Rcpp
-  # - RcppEigen
-  # - mvtnorm
-  # - rstan
-  # - StanHeaders
-  # - LaplacesDemon
-  # - logspline
   - remotes
   - knitr
   - rmarkdown
-  # - coda
-  # - rstantools
-  # - bridgesampling
-  # - BH
-  # - metaBMA
 
 r_binary_packages:
   - Rcpp
@@ -58,6 +46,8 @@ r_binary_packages:
   - bridgesampling
   - BH
   - metaBMA
+  - nloptr
+  - BayesFactor
 
 r_github_packages:
   - jimhester/lintr
@@ -74,7 +64,7 @@ notifications:
   on_failure: change
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  #- Rscript -e 'covr::codecov()'
   - Rscript -e 'covr::coveralls()'
   - R CMD INSTALL $PKG_TARBALL
   - Rscript -e 'lintr::lint_package()'

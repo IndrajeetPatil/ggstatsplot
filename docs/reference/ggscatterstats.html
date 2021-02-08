@@ -64,6 +64,8 @@ subtitle." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -216,7 +218,7 @@ subtitle.</p>
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   bf.prior <span class='op'>=</span> <span class='fl'>0.707</span>,
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  beta <span class='op'>=</span> <span class='fl'>0.1</span>,
+  tr <span class='op'>=</span> <span class='fl'>0.1</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   label.var <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -271,12 +273,12 @@ be plotted on the <code>y</code>-axis. Can be entered either as a character stri
 correlation coefficient" or "<code>"bayes"</code>: Bayes Factor for Pearson's <em>r</em>").
 Corresponding abbreviations are also accepted: <code>"p"</code> (for
 parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
-<code>"bf"</code> (for bayes factor), resp.</p></td>
+<code>"bf"</code> (for Bayes Factor/Bayesian Pearson), resp.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
-      <td><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults return
-<code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></td>
+      <td><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
+return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></td>
     </tr>
     <tr>
       <th>bf.prior</th>
@@ -290,8 +292,12 @@ favor of the <em>null</em> hypothesis. This argument is relevant only <strong>fo
 parametric test</strong> (Default: <code>TRUE</code>).</p></td>
     </tr>
     <tr>
-      <th>beta</th>
-      <td><p>bending constant (Default: <code>0.1</code>). For more, see <code><a href='https://rdrr.io/pkg/WRS2/man/pbcor.html'>WRS2::pbcor()</a></code>.</p></td>
+      <th>tr</th>
+      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of <code>tr</code>, which is by default set to
+<code>0.1</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
       <th>k</th>

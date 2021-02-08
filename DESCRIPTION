@@ -25,6 +25,7 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
+    correlation (>= 0.5.1),
     dplyr,
     ggcorrplot,
     ggExtra,
@@ -58,6 +59,7 @@ Suggests:
 Remotes:
     easystats/insight,
     easystats/parameters,
+    easystats/correlation,
     IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr

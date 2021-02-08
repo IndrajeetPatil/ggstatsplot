@@ -342,7 +342,7 @@ methodology as the earlier examples.
 # for reproducibility
 set.seed(123)
 
-# splitting the dataframe by cut and creting a list
+# splitting the dataframe by cut and creating a list
 # let's leave out "fair" cut
 # also, to make this fast, let's only use 5% of the sample
 cut_list <-

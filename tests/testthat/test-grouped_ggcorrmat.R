@@ -89,6 +89,6 @@ test_that(
       )
 
     # testing dataframe
-    expect_equal(dim(df1), c(60L, 11L))
+    expect_equal(dim(df1), c(60L, 12L))
   }
 )

@@ -100,7 +100,7 @@ ggcorrmat <- function(data,
                       output = "plot",
                       matrix.type = "upper",
                       type = "parametric",
-                      beta = 0.1,
+                      tr = 0.1,
                       partial = FALSE,
                       k = 2L,
                       sig.level = 0.05,
@@ -146,13 +146,13 @@ ggcorrmat <- function(data,
 
   # see which method was used to specify type of correlation
   # create unique name for each method
-  c(r.method, r.method.text) %<-%
+  r.method.text <-
     switch(
       EXPR = type,
-      "parametric" = c("pearson", "Pearson"),
-      "nonparametric" = c("spearman", "Spearman"),
-      "robust" = c("percentage", "robust (% bend)"),
-      "bayes" = c("pearson", "Pearson (Bayesian)")
+      "parametric" = "Pearson",
+      "nonparametric" = "Spearman",
+      "robust" = "Pearson (Winsorized)",
+      "bayes" = "Pearson (Bayesian)"
     )
 
   # is it a partial correlation?
@@ -164,15 +164,16 @@ ggcorrmat <- function(data,
   stats_df <-
     statsExpressions::correlation(
       data = df,
-      method = r.method,
+      method = ifelse(type == "nonparametric", "spearman", "pearson"),
       p_adjust = p.adjust.method,
       ci = conf.level,
       bayesian = ifelse(type == "bayes", TRUE, FALSE),
       bayesian_prior = bf.prior,
       bayesian_test = c("pd", "rope", "bf"),
-      beta = beta,
+      tr = tr,
       partial = partial,
-      partial_bayesian = ifelse(type == "bayes" && isTRUE(partial), TRUE, FALSE)
+      partial_bayesian = ifelse(type == "bayes" && isTRUE(partial), TRUE, FALSE),
+      winsorize = ifelse(type == "robust", tr, FALSE)
     )
 
   # early stats return
@@ -195,31 +196,23 @@ ggcorrmat <- function(data,
 
   # legend title with information about correlation type and sample
   if (isFALSE(any(is.na(df))) || isTRUE(partial)) {
-    legend.title.text <-
+    legend.title <-
       bquote(atop(
-        atop(
-          scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))
-        ),
-        atop(
-          scriptstyle(bold(.(corr.nature))), .(r.method.text)
-        )
+        atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))),
+        atop(scriptstyle(bold(.(corr.nature))), .(r.method.text))
       ))
   } else {
     # creating legend with sample size info
-    legend.title.text <-
+    legend.title <-
       bquote(atop(
         atop(
-          atop(
-            scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(stats_df$n_Obs)))
-          ),
+          atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(stats_df$n_Obs)))),
           atop(
             italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(stats_df$n_Obs))),
             italic(n)[max] ~ "=" ~ .(.prettyNum(max(stats_df$n_Obs)))
           )
         ),
-        atop(
-          scriptstyle(bold(.(corr.nature))), .(r.method.text)
-        )
+        atop(scriptstyle(bold(.(corr.nature))), .(r.method.text))
       ))
   }
 
@@ -235,7 +228,7 @@ ggcorrmat <- function(data,
       type = matrix.type,
       lab = TRUE,
       pch = pch,
-      legend.title = legend.title.text,
+      legend.title = legend.title,
       digits = k,
       !!!ggcorrplot.args
     )
