@@ -22,8 +22,9 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    # checking dimensions of data
-    expect_equal(length(pb$data), 6L)
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data[[6]])
 
     # checking caption
     expect_identical(
@@ -67,20 +68,9 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    # checking comparison groups and labels
-    expect_equal(
-      unique(as.character(pb$data[[7]]$annotation)),
-      c(
-        "list(~italic(p)[uncorrected]==0.139)",
-        "list(~italic(p)[uncorrected]==0.825)",
-        "list(~italic(p)[uncorrected]==0.079)"
-      )
-    )
-
-    expect_equal(
-      unique(as.character(pb$data[[7]]$group)),
-      c("PG-PG-13-1", "PG-R-2", "PG-13-R-3")
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data[[6]])
 
     # checking caption
     expect_identical(
@@ -127,6 +117,10 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data[[6]])
+
     # data used for pairwise comparisons
     dat <- pb$plot$plot_env$df_pairwise
 
@@ -140,16 +134,6 @@ test_that(
     data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    expect_identical(dat$group1, c("Action", "Action", "Comedy"))
-    expect_identical(dat$group2, c("Comedy", "RomCom", "RomCom"))
-    expect_identical(
-      dat$label,
-      c(
-        "list(~italic(p)[FDR-corrected]==0.812)",
-        "list(~italic(p)[FDR-corrected]==4.18e-04)",
-        "list(~italic(p)[FDR-corrected]==4.18e-04)"
-      )
-    )
     expect_identical(
       pb$plot$labels$caption$expr,
       ggplot2::expr(paste(
@@ -205,6 +189,10 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data[[6]])
+
     # data used for pairwise comparisons
     dat <- pb$plot$plot_env$df_pairwise
 
@@ -218,8 +206,6 @@ test_that(
     data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels
-    expect_identical(dat$group1, c("4", "4", "f"))
-    expect_identical(dat$group2, c("f", "r", "r"))
     expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
@@ -246,13 +232,6 @@ test_that(
       tolerance = 0.001
     )
     expect_equal(ggsignif_stat$comparisons[[2]], c("f", "r"))
-    expect_equal(
-      ggsignif_stat$annotations,
-      c(
-        "list(~italic(p)[Holm-corrected]==0e+00)",
-        "list(~italic(p)[Holm-corrected]==7.1e-11)"
-      )
-    )
   }
 )
 
@@ -283,6 +262,10 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data[[6]])
+
     # data used for pairwise comparisons
     dat <- pb$plot$plot_env$df_pairwise
 
@@ -296,8 +279,6 @@ test_that(
     data_signif <- as_tibble(pb$data[[7]])
 
     # checking comparison groups and labels)
-    expect_identical(dat$group1, c("4", "4", "6"))
-    expect_identical(dat$group2, c("6", "8", "8"))
     expect_identical(
       pb$plot$labels$caption,
       ggplot2::expr(atop(
@@ -309,39 +290,6 @@ test_that(
           bold("all")
         )
       ))
-    )
-
-    # checking values
-    # checking ggsignif layers
-    expect_equal(ggsignif_stat$y_position,
-      c(5.559600, 5.852925, 6.146250),
-      tolerance = 0.001
-    )
-    expect_equal(ggsignif_stat$comparisons[[2]], c("4", "8"))
-    expect_equal(
-      ggsignif_stat$annotations,
-      c(
-        "list(~italic(p)[Bonferroni-corrected]==0.032)",
-        "list(~italic(p)[Bonferroni-corrected]==6.21e-07)",
-        "list(~italic(p)[Bonferroni-corrected]==0.015)"
-      )
-    )
-
-    # geom_signif data layers
-    expect_equal(dim(data_signif), c(9L, 19L))
-    expect_identical(
-      as.character(data_signif$group),
-      c(
-        "4-6-1",
-        "4-6-1",
-        "4-6-1",
-        "4-8-2",
-        "4-8-2",
-        "4-8-2",
-        "6-8-3",
-        "6-8-3",
-        "6-8-3"
-      )
     )
   }
 )

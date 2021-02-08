@@ -23,172 +23,10 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    # checking geom data
-    expect_equal(
-      pb$data[[1]],
-      structure(
-        list(
-          fill = c(
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange",
-            "orange"
-          ),
-          y = c(1, 2, 4, 2, 3, 15, 32, 15, 5, 1, 1),
-          count = c(
-            1, 2,
-            4, 2, 3, 15, 32, 15, 5, 1, 1
-          ),
-          x = c(
-            60, 80, 100, 120, 140, 160,
-            180, 200, 220, 240, 260
-          ),
-          xmin = c(
-            50, 70, 90, 110, 130, 150,
-            170, 190, 210, 230, 250
-          ),
-          xmax = c(
-            70, 90, 110, 130, 150, 170,
-            190, 210, 230, 250, 270
-          ),
-          density = c(
-            0.000617283950617284,
-            0.00123456790123457,
-            0.00246913580246914,
-            0.00123456790123457,
-            0.00185185185185185,
-            0.00925925925925926,
-            0.0197530864197531,
-            0.00925925925925926,
-            0.00308641975308642,
-            0.000617283950617284,
-            0.000617283950617284
-          ),
-          ncount = c(
-            0.03125,
-            0.0625,
-            0.125,
-            0.0625,
-            0.09375,
-            0.46875,
-            1,
-            0.46875,
-            0.15625,
-            0.03125,
-            0.03125
-          ),
-          ndensity = c(
-            0.03125,
-            0.0625,
-            0.125,
-            0.0625,
-            0.09375,
-            0.46875,
-            1,
-            0.46875,
-            0.15625,
-            0.03125,
-            0.03125
-          ),
-          flipped_aes = c(
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE,
-            FALSE
-          ),
-          PANEL = structure(
-            c(
-              1L,
-              1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L
-            ),
-            .Label = "1",
-            class = "factor"
-          ),
-          group = c(
-            -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L,
-            -1L
-          ),
-          ymin = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-          ymax = c(
-            1,
-            2, 4, 2, 3, 15, 32, 15, 5, 1, 1
-          ),
-          colour = c(
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black",
-            "black"
-          ),
-          size = c(
-            0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-            0.5, 0.5, 0.5, 0.5, 0.5
-          ),
-          linetype = c(
-            1, 1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1
-          ),
-          alpha = c(
-            0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,
-            0.7, 0.7, 0.7, 0.7
-          )
-        ),
-        row.names = c(NA, -11L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
 
-    expect_equal(
-      pb$data[[2]],
-      structure(
-        list(
-          xintercept = 174.358024691358,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(-1L, n = 1L),
-          colour = "blue",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      )
-    )
-
-    # checking different data layers
-    expect_equal(length(pb$data), 3L)
-    expect_equal(dim(pb$data[[1]]), c(11L, 18L))
-    expect_equal(dim(pb$data[[2]]), c(1L, 7L))
-    expect_equal(dim(pb$data[[3]]), c(81L, 15L))
-
-    expect_equal(
-      class(pb$data[[3]]$label[[1]]),
-      "character"
-    )
-    expect_identical(
-      pb$data[[3]]$label[[1]],
-      "list(~widehat(mu)[mean]=='174')"
-    )
     expect_null(pb$layout$panel_params[[1]]$y.sec.labels, NULL)
 
     # checking subtitle
@@ -248,30 +86,9 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    # checking different data layers
-    expect_equal(length(pb$data), 3L)
-    expect_equal(nrow(pb$data[[1]]), 6L)
-    expect_equal(
-      pb$data[[2]]$xintercept,
-      median(ggplot2::mpg$cty, na.rm = TRUE),
-      tolerance = 0.001
-    )
-    expect_equal(pb$data[[2]]$xintercept,
-      17.000,
-      tolerance = 0.001
-    )
-    expect_identical(
-      pb$data[[3]]$label[[1]],
-      "list(~widehat(mu)[median]=='17.00')"
-    )
-    expect_equal(pb$data[[1]]$y[1], 33L)
-    expect_equal(pb$data[[1]]$y[6], 2L)
-    expect_equal(pb$data[[1]]$x[1], 10L)
-    expect_equal(pb$data[[1]]$x[6], 35L)
-    expect_equal(pb$data[[1]]$xmin[1], 7.5, tolerance = 0.001)
-    expect_equal(pb$data[[1]]$xmax[1], 12.5, tolerance = 0.001)
-    expect_equal(pb$data[[1]]$xmin[6], 32.5, tolerance = 0.001)
-    expect_equal(pb$data[[1]]$xmax[6], 37.5, tolerance = 0.001)
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
 
     # checking panel parameters
     expect_equal(pb$layout$panel_params[[1]]$x$limits, c(7.5, 37.5))
@@ -374,24 +191,9 @@ test_that(
     expect_null(pb$plot$labels$caption, NULL)
     expect_identical(pb$plot$labels$y, "count")
 
-    expect_identical(
-      pb$data[[3]]$label[[1]],
-      "list(~widehat(mu)[trimmed]=='3.15')"
-    )
-
-    # checking different data layers
-    expect_equal(length(pb$data), 3L)
-    expect_equal(nrow(pb$data[[1]]), 11L)
-    expect_equal(
-      pb$data[[1]]$y,
-      c(0, 2, 4, 3, 7, 9, 4, 0, 1, 2, 0),
-      tolerance = 0.001
-    )
-    expect_equal(
-      pb$data[[1]]$x,
-      c(1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0),
-      tolerance = 0.01
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
 
@@ -421,110 +223,9 @@ test_that(
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
 
-    # check data layers
-    expect_equal(length(pb1$data), 4L)
-
-    # check individual layers
-    expect_equal(
-      pb1$data[[1]],
-      structure(list(fill = c(
-        "grey50", "grey50", "grey50", "grey50",
-        "grey50", "grey50", "grey50", "grey50", "grey50", "grey50", "grey50",
-        "grey50", "grey50", "grey50", "grey50", "grey50", "grey50", "grey50",
-        "grey50"
-      ), y = c(
-        2, 1, 2, 3, 4, 4, 7, 7, 2, 6, 12, 8, 5, 1, 4,
-        4, 5, 5, 1
-      ), count = c(
-        2, 1, 2, 3, 4, 4, 7, 7, 2, 6, 12, 8, 5,
-        1, 4, 4, 5, 5, 1
-      ), x = c(
-        4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-        15, 16, 17, 18, 19, 20, 21, 22
-      ), xmin = c(
-        3.5, 4.5, 5.5, 6.5,
-        7.5, 8.5, 9.5, 10.5, 11.5, 12.5, 13.5, 14.5, 15.5, 16.5, 17.5,
-        18.5, 19.5, 20.5, 21.5
-      ), xmax = c(
-        4.5, 5.5, 6.5, 7.5, 8.5, 9.5,
-        10.5, 11.5, 12.5, 13.5, 14.5, 15.5, 16.5, 17.5, 18.5, 19.5, 20.5,
-        21.5, 22.5
-      ), density = c(
-        0.0240963855421687, 0.0120481927710843,
-        0.0240963855421687, 0.036144578313253, 0.0481927710843374, 0.0481927710843374,
-        0.0843373493975904, 0.0843373493975904, 0.0240963855421687, 0.072289156626506,
-        0.144578313253012, 0.0963855421686747, 0.0602409638554217, 0.0120481927710843,
-        0.0481927710843374, 0.0481927710843374, 0.0602409638554217, 0.0602409638554217,
-        0.0120481927710843
-      ), ncount = c(
-        0.166666666666667, 0.0833333333333333,
-        0.166666666666667, 0.25, 0.333333333333333, 0.333333333333333,
-        0.583333333333333, 0.583333333333333, 0.166666666666667, 0.5,
-        1, 0.666666666666667, 0.416666666666667, 0.0833333333333333,
-        0.333333333333333, 0.333333333333333, 0.416666666666667, 0.416666666666667,
-        0.0833333333333333
-      ), ndensity = c(
-        0.166666666666667, 0.0833333333333333,
-        0.166666666666667, 0.25, 0.333333333333333, 0.333333333333333,
-        0.583333333333333, 0.583333333333333, 0.166666666666667, 0.5,
-        1, 0.666666666666667, 0.416666666666667, 0.0833333333333333,
-        0.333333333333333, 0.333333333333333, 0.416666666666667, 0.416666666666667,
-        0.0833333333333333
-      ), flipped_aes = c(
-        FALSE, FALSE, FALSE, FALSE,
-        FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-        FALSE, FALSE, FALSE, FALSE, FALSE, FALSE
-      ), PANEL = structure(c(
-        1L,
-        1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L,
-        1L, 1L
-      ), .Label = "1", class = "factor"), group = c(
-        -1L, -1L,
-        -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L, -1L,
-        -1L, -1L, -1L, -1L
-      ), ymin = c(
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0
-      ), ymax = c(
-        2, 1, 2, 3, 4, 4, 7, 7, 2,
-        6, 12, 8, 5, 1, 4, 4, 5, 5, 1
-      ), colour = c(
-        "black", "black",
-        "black", "black", "black", "black", "black", "black", "black",
-        "black", "black", "black", "black", "black", "black", "black",
-        "black", "black", "black"
-      ), size = c(
-        0.5, 0.5, 0.5, 0.5, 0.5,
-        0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-        0.5
-      ), linetype = c(
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1
-      ), alpha = c(
-        0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7,
-        0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7
-      )), row.names = c(
-        NA,
-        -19L
-      ), class = "data.frame")
-    )
-
-    expect_equal(
-      pb1$data[[3]],
-      structure(
-        list(
-          xintercept = 13.5674698795181,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(-1L, n = 1L),
-          colour = "blue",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb1$data)
 
     # annotation
     expect_equal(
@@ -537,8 +238,7 @@ test_that(
         caption = NULL,
         fill = "count",
         weight = "weight",
-        xintercept = "xintercept",
-        label = "centrality_df$label[[1]]"
+        xintercept = "xintercept"
       )
     )
   }

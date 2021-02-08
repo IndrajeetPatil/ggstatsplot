@@ -20,7 +20,6 @@ test_that(
         xfill = "red",
         yfill = "orange",
         marginal = FALSE,
-        bf.message = TRUE,
         caption = "ggplot2 dataset",
         title = "Mammalian sleep"
       )
@@ -28,74 +27,9 @@ test_that(
     # plot build
     pb <- ggplot2::ggplot_build(p)
 
-    # checking layer data
-    expect_equal(length(pb$data), 3L)
-    expect_equal(dim(pb$data[[1]]), c(83L, 10L))
-    expect_equal(dim(pb$data[[2]]), c(80L, 14L))
-
-    # checking outliers
-    expect_equal(
-      pb$data[[3]],
-      structure(
-        list(
-          x = c(3.9, 3.3),
-          y = c(2547, 6654),
-          label = c(
-            "Asian elephant",
-            "African elephant"
-          ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          group = structure(c(-1L, -1L), n = 1L),
-          colour = c(
-            "black",
-            "black"
-          ),
-          fill = c("white", "white"),
-          size = c(3, 3),
-          angle = c(
-            0,
-            0
-          ),
-          alpha = c(NA, NA),
-          family = c("", ""),
-          fontface = c(
-            1,
-            1
-          ),
-          lineheight = c(1.2, 1.2),
-          hjust = c(0.5, 0.5),
-          vjust = c(
-            0.5,
-            0.5
-          ),
-          point.size = c(1, 1),
-          segment.linetype = c(1, 1),
-          segment.size = c(
-            0.5,
-            0.5
-          ),
-          segment.curvature = c(0, 0),
-          segment.angle = c(
-            90,
-            90
-          ),
-          segment.ncp = c(1, 1),
-          segment.shape = c(0.5, 0.5),
-          segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
-          segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE
-          )
-        ),
-        row.names = c(NA, -2L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
 
     # subtitle
     set.seed(123)
@@ -155,6 +89,10 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
+
     # subtitle
     set.seed(123)
     p_subtitle <-
@@ -163,12 +101,10 @@ test_that(
         x = sleep_total,
         y = bodywt,
         type = "np",
-        conf.level = 0.99,
-        messages = FALSE
+        conf.level = 0.99
       )
 
     # testing data and annotations
-    expect_equal(length(pb$data), 2L)
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
     expect_null(pb$plot$labels$caption, NULL)
   }
@@ -193,8 +129,7 @@ test_that(
         centrality.parameter = "mean",
         conf.level = 0.90,
         point.args = list(color = "red", size = 5),
-        marginal = FALSE,
-        messages = FALSE
+        marginal = FALSE
       )
 
     # subtitle
@@ -205,19 +140,16 @@ test_that(
         x = sleep_total,
         y = bodywt,
         type = "r",
-        conf.level = 0.90,
-        messages = FALSE
+        conf.level = 0.90
       )
 
-    # built plot
     pb <- ggplot2::ggplot_build(p)
 
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
 
-    # checking layered data
-    expect_equal(unique(pb$data[[1]]$size), 5L)
-    expect_equal(unique(pb$data[[1]]$shape), 19L)
-    expect_identical(unique(pb$data[[1]]$colour), "red")
+    expect_identical(pb$plot$labels$subtitle, p_subtitle)
   }
 )
 
@@ -240,8 +172,7 @@ test_that(
         title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
         type = "bf",
-        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 6000, 1000)),
-        messages = FALSE
+        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 6000, 1000))
       )
 
     # subtitle
@@ -304,77 +235,9 @@ test_that(
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
-    expect_equal(
-      pb$data[[3]],
-      structure(
-        list(
-          y = c(0.383333333, 0.333333333, 0.116666667, 0.2),
-          x = c(17.4, 18, 19.7, 19.9),
-          label = c(
-            "Cingulata", "Didelphimorphia",
-            "Chiroptera", "Chiroptera"
-          ),
-          PANEL = structure(c(
-            1L, 1L, 1L,
-            1L
-          ), .Label = "1", class = "factor"),
-          group = structure(c(
-            -1L,
-            -1L, -1L, -1L
-          ), n = 1L),
-          colour = c("blue", "blue", "blue", "blue"),
-          fill = c("white", "white", "white", "white"),
-          size = c(
-            4,
-            4, 4, 4
-          ),
-          angle = c(0, 0, 0, 0),
-          alpha = c(0.5, 0.5, 0.5, 0.5),
-          family = c("", "", "", ""),
-          fontface = c(1, 1, 1, 1),
-          lineheight = c(
-            1.2,
-            1.2, 1.2, 1.2
-          ),
-          hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(
-            0.5,
-            0.5, 0.5, 0.5
-          ),
-          point.size = c(1, 1, 1, 1),
-          segment.linetype = c(
-            1,
-            1, 1, 1
-          ),
-          segment.size = c(0.5, 0.5, 0.5, 0.5),
-          segment.curvature = c(
-            0,
-            0, 0, 0
-          ),
-          segment.angle = c(90, 90, 90, 90),
-          segment.ncp = c(
-            1,
-            1, 1, 1
-          ),
-          segment.shape = c(0.5, 0.5, 0.5, 0.5),
-          segment.square = c(
-            TRUE,
-            TRUE, TRUE, TRUE
-          ),
-          segment.squareShape = c(1, 1, 1, 1),
-          segment.inflect = c(
-            FALSE,
-            FALSE, FALSE, FALSE
-          ),
-          segment.debug = c(
-            FALSE, FALSE, FALSE,
-            FALSE
-          )
-        ),
-        row.names = c(NA, -4L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
 
     # both quoted
     expect_s3_class(p, "gg")

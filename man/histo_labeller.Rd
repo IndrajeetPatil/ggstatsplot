@@ -66,8 +66,7 @@ y_label_pos <- median(
 ggstatsplot:::histo_labeller(
   plot = p,
   x = mtcars$wt,
-  y.label.position = y_label_pos,
-  test.value.line = TRUE
+  y.label.position = y_label_pos
 )
 }
 }

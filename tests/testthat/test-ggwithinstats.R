@@ -48,204 +48,12 @@ test_that(
         conf.level = 0.99
       )
 
-    # dataframe used for visualization
-    expect_equal(length(pb1$data), 8L)
-    expect_equal(dim(p1$data), c(180L, 6L))
-    expect_equal(dim(pb1$data[[1]]), c(180L, 10L))
-    expect_equal(dim(pb1$data[[2]]), c(2L, 26L))
-    expect_equal(dim(pb1$data[[3]]), c(1024L, 21L))
-    expect_equal(dim(pb1$data[[4]]), c(180L, 8L))
-    expect_equal(dim(pb1$data[[5]]), c(0L, 0L))
-    expect_equal(dim(pb1$data[[6]]), c(2L, 8L))
-    expect_equal(dim(pb1$data[[7]]), c(2L, 10L))
-
-    # checking geom data
-    expect_identical(pb1$data[[4]]$colour[[1]], "red")
-    expect_equal(pb1$data[[4]]$linetype[[1]], 1)
-    expect_equal(pb1$data[[4]]$size[[1]], 0.5)
-    expect_equal(
-      pb1$data[[2]],
-      structure(
-        list(
-          ymin = c(0, 0),
-          lower = c(6, 4.5),
-          middle = c(
-            8.75,
-            8
-          ),
-          upper = c(10, 9.5),
-          ymax = c(10, 10),
-          outliers = list(
-            numeric(0),
-            numeric(0)
-          ),
-          notchupper = c(9.41618649374214, 8.83273311717767),
-          notchlower = c(8.08381350625786, 7.16726688282233),
-          x = structure(c(
-            1,
-            2
-          ), class = c("mapped_discrete", "numeric")),
-          flipped_aes = c(FALSE, FALSE),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          group = 1:2,
-          ymin_final = c(
-            0,
-            0
-          ),
-          ymax_final = c(10, 10),
-          xmin = structure(c(0.9, 1.9), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          xmax = structure(c(1.1, 2.1), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          xid = c(1, 2),
-          newx = structure(c(1, 2), .Dim = 2L),
-          new_width = c(0.2, 0.2),
-          weight = c(1, 1),
-          colour = c("grey20", "grey20"),
-          fill = c(
-            "white",
-            "white"
-          ),
-          size = c(0.5, 0.5),
-          alpha = c(0.5, 0.5),
-          shape = c(
-            19,
-            19
-          ),
-          linetype = c("solid", "solid")
-        ),
-        row.names = c(NA, -2L),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb1$data[[7]],
-      structure(
-        list(
-          x = structure(1:2, class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          y = c(7.86666666666667, 6.73888888888889),
-          PANEL = structure(c(
-            1L,
-            1L
-          ), .Label = "1", class = "factor"),
-          group = structure(1:2, n = 2L),
-          shape = c(19, 19),
-          colour = c("darkgreen", "darkgreen"),
-          size = c(3, 3),
-          fill = c(NA, NA),
-          alpha = c(0.5, 0.5),
-          stroke = c(
-            0.5,
-            0.5
-          )
-        ),
-        row.names = c(NA, -2L),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb1$data[[8]],
-      structure(
-        list(
-          x = structure(1:2, class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          y = c(7.86666666666667, 6.73888888888889),
-          label = c(
-            "list(~widehat(mu)[mean]=='7.8667')",
-            "list(~widehat(mu)[mean]=='6.7389')"
-          ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          group = structure(1:2, n = 2L),
-          nudge_x = structure(c(1.4, 2.4), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          nudge_y = c(7.86666666666667, 6.73888888888889),
-          colour = c("black", "black"),
-          fill = c("white", "white"),
-          size = c(3, 3),
-          angle = c(0, 0),
-          alpha = c(NA, NA),
-          family = c(
-            "",
-            ""
-          ),
-          fontface = c(1, 1),
-          lineheight = c(1.2, 1.2),
-          hjust = c(
-            0.5,
-            0.5
-          ),
-          vjust = c(0.5, 0.5),
-          point.size = c(1, 1),
-          segment.linetype = c(4, 4),
-          segment.size = c(0.5, 0.5),
-          segment.curvature = c(
-            0,
-            0
-          ),
-          segment.angle = c(90, 90),
-          segment.ncp = c(1, 1),
-          segment.shape = c(
-            0.5,
-            0.5
-          ),
-          segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
-          segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE
-          )
-        ),
-        row.names = c(NA, -2L),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb1$data[[6]],
-      structure(
-        list(
-          x = structure(1:2, class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          y = c(7.86666666666667, 6.73888888888889),
-          group = structure(c(1L, 1L), n = 1L),
-          PANEL = structure(c(
-            1L,
-            1L
-          ), class = "factor", .Label = "1"),
-          colour = c("blue", "blue"),
-          size = c(2, 2),
-          linetype = c(1, 1),
-          alpha = c(0.8, 0.8)
-        ),
-        row.names = c(
-          NA,
-          -2L
-        ),
-        class = "data.frame"
-      )
-    )
-
-    # data from difference layers
-    expect_equal(max(pb1$data[[4]]$group), 90L)
+    # check data
+    set.seed(123)
+    expect_snapshot(list(
+      pb1$data[[1]], pb1$data[[2]], pb1$data[[4]],
+      pb1$data[[5]], pb1$data[[6]], pb1$data[[7]]
+    ))
 
     # range of y variable
     expect_equal(ggplot2::layer_scales(p1)$y$range$range, c(0L, 10L))
@@ -310,29 +118,12 @@ test_that(
           conf.level = 0.99
         )
 
-      # dataframe used for visualization
-      expect_equal(length(pb1$data), 8L)
-      expect_equal(dim(pb1$data[[1]]), c(66L, 10L))
-      expect_equal(dim(pb1$data[[2]]), c(3L, 26L))
-      expect_equal(dim(pb1$data[[3]]), c(1536L, 21L))
-      expect_equal(dim(pb1$data[[4]]), c(4L, 26L))
-      expect_equal(dim(pb1$data[[5]]), c(3L, 8L))
-      expect_equal(dim(pb1$data[[6]]), c(3L, 10L))
-      expect_equal(dim(pb1$data[[8]]), c(6L, 19L))
-
-      # data from difference layers
-      expect_equal(
-        pb1$data[[5]]$x,
-        structure(c(1L, 2L, 3L), class = c(
-          "mapped_discrete",
-          "numeric"
-        ))
-      )
-      expect_equal(
-        pb1$data[[5]]$y,
-        c(5.54318181818182, 5.53409090909091, 5.45909090909091),
-        tolerance = 0.001
-      )
+      # check data
+      set.seed(123)
+      expect_snapshot(list(
+        pb1$data[[1]], pb1$data[[2]], pb1$data[[4]],
+        pb1$data[[5]], pb1$data[[6]], pb1$data[[7]]
+      ))
 
       # checking displayed outlier labels
       expect_equal(

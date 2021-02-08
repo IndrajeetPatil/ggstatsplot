@@ -42,117 +42,9 @@ test_that(
         output = "caption"
       )
 
-    # checking geom data
-    expect_equal(
-      pb$data[[1]],
-      structure(
-        list(
-          fill = c(
-            "#1B9E77FF", "#D95F02FF", "#7570B3FF",
-            "#E7298AFF"
-          ),
-          y = c(
-            1, 0.736842105263158, 0.671052631578947,
-            0.25
-          ),
-          x = structure(c(1L, 1L, 1L, 1L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          PANEL = structure(c(
-            1L, 1L, 1L,
-            1L
-          ), .Label = "1", class = "factor"),
-          group = 1:4,
-          flipped_aes = c(
-            FALSE,
-            FALSE, FALSE, FALSE
-          ),
-          ymin = c(
-            0.736842105263158, 0.671052631578947,
-            0.25, 0
-          ),
-          ymax = c(1, 0.736842105263158, 0.671052631578947, 0.25),
-          xmin = structure(c(0.5, 0.5, 0.5, 0.5), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          xmax = structure(c(1.5, 1.5, 1.5, 1.5), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          colour = c("black", "black", "black", "black"),
-          size = c(
-            0.5,
-            0.5, 0.5, 0.5
-          ),
-          linetype = c(1, 1, 1, 1),
-          alpha = c(
-            NA, NA,
-            NA, NA
-          )
-        ),
-        row.names = c(NA, -4L),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb$data[[2]],
-      structure(
-        list(
-          y = c(
-            0.868421052631579,
-            0.703947368421053,
-            0.460526315789474,
-            0.125
-          ),
-          x = structure(c(1L, 1L, 1L, 1L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          label = c(
-            "20\n(26.32%)",
-            "5\n(6.58%)",
-            "32\n(42.11%)",
-            "19\n(25%)"
-          ),
-          group = 1:4,
-          PANEL = structure(c(1L, 1L, 1L, 1L), .Label = "1", class = "factor"),
-          ymax = c(1, 0.736842105263158, 0.671052631578947, 0.25),
-          xmin = structure(c(1L, 1L, 1L, 1L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          xmax = structure(c(1L, 1L, 1L, 1L), class = c(
-            "mapped_discrete",
-            "numeric"
-          )),
-          ymin = c(
-            0.736842105263158,
-            0.671052631578947, 0.25, 0
-          ),
-          colour = c(
-            "black", "black",
-            "black", "black"
-          ),
-          fill = c("white", "white", "white", "white"),
-          size = c(3.88, 3.88, 3.88, 3.88),
-          angle = c(0, 0, 0, 0),
-          hjust = c(0.5, 0.5, 0.5, 0.5),
-          vjust = c(
-            0.5, 0.5, 0.5,
-            0.5
-          ),
-          alpha = c(1, 1, 1, 1),
-          family = c("", "", "", ""),
-          fontface = c(1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2)
-        ),
-        row.names = c(NA, -4L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
 
     # checking plot labels
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -232,36 +124,9 @@ test_that(
         output = "caption"
       ))
 
-
-    # with facets
-    expect_equal(length(pb$data), 3L)
-    expect_equal(dim(pb$data[[1]]), c(6L, 14L))
-    expect_equal(dim(pb$data[[2]]), c(6L, 19L))
-    expect_equal(dim(pb$data[[3]]), c(3L, 18L))
-
-    # without facets
-    expect_equal(length(pb1$data), 2L)
-    expect_equal(dim(pb1$data[[1]]), c(3L, 14L))
-    expect_equal(dim(pb1$data[[2]]), c(3L, 19L))
-
-    # check geoms
-    expect_equal(
-      pb$data[[2]]$y,
-      c(
-        0.636363636363636,
-        0.136363636363636,
-        0.785714285714286,
-        0.285714285714286,
-        0.928571428571429,
-        0.428571428571429
-      ),
-      tolerance = 0.001
-    )
-    expect_equal(
-      pb1$data[[2]]$y,
-      c(0.684210526315789, 0.263157894736842, 0.0789473684210526),
-      tolerance = 0.001
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(list(pb$data, pb1$data))
 
     # checking plot labels
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -270,37 +135,6 @@ test_that(
     expect_null(pb$plot$labels$y, NULL)
     expect_identical(pb$plot$guides$fill$title[1], "transmission")
     expect_type(pb1$plot$labels$subtitle, "language")
-
-    # checking labels
-    expect_identical(
-      pb$data[[2]]$label,
-      c("8", "3", "3", "4", "2", "12")
-    )
-    expect_identical(
-      pb$data[[3]]$label,
-      c(
-        "list(~chi['gof']^2~(1)==2.27, ~italic(p)=='0.132', ~italic(n)==11)",
-        "list(~chi['gof']^2~(1)==0.14, ~italic(p)=='0.705', ~italic(n)==7)",
-        "list(~chi['gof']^2~(1)==7.14, ~italic(p)=='0.008', ~italic(n)==14)"
-      )
-    )
-
-    # check if palette changed
-    expect_identical(
-      pb$data[[1]]$fill,
-      c(
-        "#9A8822FF",
-        "#F5CDB4FF",
-        "#9A8822FF",
-        "#F5CDB4FF",
-        "#9A8822FF",
-        "#F5CDB4FF"
-      )
-    )
-    expect_identical(
-      pb1$data[[1]]$fill,
-      c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
-    )
   }
 )
 
@@ -491,48 +325,9 @@ test_that(
     # build plot
     pb <- ggplot2::ggplot_build(p)
 
-    # tests
-    expect_equal(
-      pb$data[[2]]$y,
-      c(
-        0.923951048951049,
-        0.830387985508467,
-        0.73203302721375,
-        0.325596090656332,
-        0.995850535007161,
-        0.981969837391524,
-        0.930912461032943,
-        0.44479315864858
-      )
-    )
-
-    expect_equal(
-      pb$data[[2]]$ymin,
-      c(
-        0.847902097902098,
-        0.812873873114837,
-        0.651192181312663,
-        0,
-        0.991701070014323,
-        0.972238604768725,
-        0.889586317297161,
-        0
-      )
-    )
-
-    expect_equal(
-      pb$data[[2]]$ymax,
-      c(
-        1,
-        0.847902097902098,
-        0.812873873114837,
-        0.651192181312663,
-        1,
-        0.991701070014323,
-        0.972238604768725,
-        0.889586317297161
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
 

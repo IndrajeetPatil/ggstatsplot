@@ -30,154 +30,9 @@ test_that(
     # plot build
     pb <- ggplot2::ggplot_build(p)
 
-    # tidy dataframe from the function
-    expect_equal(
-      pb$data[[1]],
-      structure(
-        list(
-          xintercept = 0,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(-1L, n = 1L),
-          colour = "black",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb$data[[2]],
-      structure(
-        list(
-          x = c(-0.780044678205957, 2.29400668890043, -0.556439259603544),
-          xmin = c(-1.15213248524039, 2.09855242875921, -0.929998880210387),
-          xmax = c(-0.412406648700957, 2.49329224456418, -0.180433778592503),
-          y = structure(1:3, class = c("mapped_discrete", "numeric")),
-          PANEL = structure(c(1L, 1L, 1L), .Label = "1", class = "factor"),
-          group = structure(1:3, n = 3L),
-          ymin = structure(c(
-            1, 2,
-            3
-          ), class = c("mapped_discrete", "numeric")),
-          ymax = structure(c(
-            1,
-            2, 3
-          ), class = c("mapped_discrete", "numeric")),
-          colour = c(
-            "black",
-            "black", "black"
-          ),
-          size = c(0.5, 0.5, 0.5),
-          linetype = c(
-            1,
-            1, 1
-          ),
-          height = c(0, 0, 0),
-          alpha = c(NA, NA, NA)
-        ),
-        row.names = c(
-          NA,
-          -3L
-        ),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb$data[[3]],
-      structure(
-        list(
-          x = c(-0.780044678205957, 2.29400668890043, -0.556439259603544),
-          y = structure(1:3, class = c("mapped_discrete", "numeric")),
-          PANEL = structure(c(1L, 1L, 1L), .Label = "1", class = "factor"),
-          group = structure(1:3, n = 3L),
-          shape = c(19, 19, 19),
-          colour = c(
-            "blue",
-            "blue", "blue"
-          ),
-          size = c(3, 3, 3),
-          fill = c(NA, NA, NA),
-          alpha = c(NA, NA, NA),
-          stroke = c(0.5, 0.5, 0.5)
-        ),
-        row.names = c(
-          NA,
-          -3L
-        ),
-        class = "data.frame"
-      )
-    )
-
-    expect_equal(
-      pb$data[[4]],
-      structure(
-        list(
-          x = c(-0.780044678205957, 2.29400668890043, -0.556439259603544),
-          y = structure(1:3, class = c("mapped_discrete", "numeric")),
-          label = c(
-            "list(~widehat(italic(beta))==-0.78, ~italic(z)==-3.47, ~italic(p)=='0.001')",
-            "list(~widehat(italic(beta))==2.29, ~italic(z)==19.13, ~italic(p)=='1.54e-81')",
-            "list(~widehat(italic(beta))==-0.56, ~italic(z)==-2.44, ~italic(p)=='0.014')"
-          ),
-          PANEL = structure(c(1L, 1L, 1L), .Label = "1", class = "factor"),
-          group = structure(1:3, n = 3L),
-          colour = structure(c(
-            "#1B9E77FF",
-            "#D95F02FF", "#7570B3FF"
-          ), class = "colors"),
-          fill = c(
-            "white",
-            "white", "white"
-          ),
-          size = c(3, 3, 3),
-          angle = c(0, 0, 0),
-          alpha = c(NA, NA, NA),
-          family = c("", "", ""),
-          fontface = c(
-            1,
-            1, 1
-          ),
-          lineheight = c(1.2, 1.2, 1.2),
-          hjust = c(
-            0.5, 0.5,
-            0.5
-          ),
-          vjust = c(0.5, 0.5, 0.5),
-          point.size = c(1, 1, 1),
-          segment.linetype = c(1, 1, 1),
-          segment.size = c(
-            0.5, 0.5,
-            0.5
-          ),
-          segment.curvature = c(0, 0, 0),
-          segment.angle = c(
-            90,
-            90, 90
-          ),
-          segment.ncp = c(1, 1, 1),
-          segment.shape = c(
-            0.5,
-            0.5, 0.5
-          ),
-          segment.square = c(TRUE, TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1, 1
-          ),
-          segment.inflect = c(FALSE, FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE, FALSE
-          )
-        ),
-        row.names = c(NA, -3L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
 
@@ -239,69 +94,9 @@ test_that(
     # plot build
     pb <- ggplot2::ggplot_build(p)
 
-    # tidy dataframe from the function
-    expect_equal(
-      pb$data[[4]],
-      structure(
-        list(
-          x = c(0.0170335066199796, -0.511668342705175),
-          y = structure(1:2, class = c("mapped_discrete", "numeric")),
-          label = c(
-            "list(~widehat(italic(beta))==0.02, ~italic(chi)^2~(225)==3.40, ~italic(p)=='0.065')",
-            "list(~widehat(italic(beta))==-0.51, ~italic(chi)^2~(225)==9.31, ~italic(p)=='0.002')"
-          ),
-          PANEL = structure(c(1L, 1L), .Label = "1", class = "factor"),
-          group = structure(1:2, n = 2L),
-          colour = structure(c(
-            "#1B9E77FF",
-            "#D95F02FF"
-          ), class = "colors"),
-          fill = c("white", "white"),
-          size = c(3, 3),
-          angle = c(0, 0),
-          alpha = c(NA, NA),
-          family = c(
-            "",
-            ""
-          ),
-          fontface = c(1, 1),
-          lineheight = c(1.2, 1.2),
-          hjust = c(
-            0.5,
-            0.5
-          ),
-          vjust = c(0.5, 0.5),
-          point.size = c(1, 1),
-          segment.linetype = c(
-            1,
-            1
-          ),
-          segment.size = c(0.5, 0.5),
-          segment.curvature = c(
-            0,
-            0
-          ),
-          segment.angle = c(90, 90),
-          segment.ncp = c(1, 1),
-          segment.shape = c(
-            0.5,
-            0.5
-          ),
-          segment.square = c(TRUE, TRUE),
-          segment.squareShape = c(
-            1,
-            1
-          ),
-          segment.inflect = c(FALSE, FALSE),
-          segment.debug = c(
-            FALSE,
-            FALSE
-          )
-        ),
-        row.names = c(NA, -2L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
 
@@ -335,42 +130,9 @@ test_that(
       structure(c("mpg", "am", "mpg:am"), pos = 1:3)
     )
 
-    # checking layered data
-    expect_equal(dim(pb$data[[1]]), c(1L, 7L))
-    expect_equal(dim(pb$data[[2]]), c(3L, 13L))
-    expect_equal(dim(pb$data[[3]]), c(3L, 10L))
-
-    # checking ggrepel label layer
-    expect_identical(
-      pb$data[[4]]$label,
-      c(
-        "list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)=='2.81e-06')",
-        "list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)=='0.014')",
-        NA_character_
-      )
-    )
-    expect_identical(
-      unclass(pb$data[[4]]$colour),
-      c("#1B9E77FF", "#D95F02FF", "#7570B3FF")
-    )
-
-    # testing specific geoms
-    expect_equal(
-      pb$data[[1]],
-      structure(
-        list(
-          xintercept = 0,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(-1L, n = 1L),
-          colour = "black",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
 
@@ -809,18 +571,8 @@ test_that(
 
     pb <- ggplot2::ggplot_build(p)
 
-    expect_equal(length(pb$data), 4L)
-
-    expect_identical(
-      pb$data[[4]]$label,
-      c(
-        "list(~widehat(italic(beta))==29.32, ~italic(t)(Inf)==249.58, ~italic(p)=='9.84e-78')",
-        "list(~widehat(italic(beta))==1.12, ~italic(t)(Inf)==4.40, ~italic(p)=='5.77e-05')",
-        "list(~widehat(italic(beta))==29.95, ~italic(t)(Inf)==264.18, ~italic(p)=='6.08e-79')",
-        "list(~widehat(italic(beta))==1.18, ~italic(t)(Inf)==7.30, ~italic(p)=='2.27e-09')",
-        "list(~widehat(italic(beta))==30.63, ~italic(t)(Inf)==307.16, ~italic(p)=='3.78e-82')",
-        "list(~widehat(italic(beta))==1.25, ~italic(t)(Inf)==6.77, ~italic(p)=='1.5e-08')"
-      )
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
