@@ -134,96 +134,9 @@ test_that(
       tolerance = 0.01
     )
 
-    # geom data
-    expect_equal(
-      pb$data[[1]],
-      structure(
-        list(
-          y = c(1, 2, 3, 4, 5),
-          x = c(820.5, 831.5, 845, 856, 909),
-          PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
-          shape = c(16, 16, 16, 16, 16),
-          colour = c("black", "black", "black", "black", "black"),
-          size = c(3, 3, 3, 3, 3),
-          fill = c(NA, NA, NA, NA, NA),
-          alpha = c(NA, NA, NA, NA, NA),
-          stroke = c(0.5, 0.5, 0.5, 0.5, 0.5)
-        ),
-        row.names = c(NA, -5L),
-        class = "data.frame"
-      ),
-      tolerance = 0.001
-    )
-
-    expect_equal(
-      pb$data[[2]],
-      structure(
-        list(
-          xintercept = 852,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(c(-1L), n = 1L),
-          colour = "blue",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      ),
-      tolerance = 0.001
-    )
-
-
-    expect_equal(
-      pb$data[[2]],
-      structure(
-        list(
-          xintercept = 852.4,
-          PANEL = structure(1L, .Label = "1", class = "factor"),
-          group = structure(c(-1L), n = 1L),
-          colour = "blue",
-          size = 1,
-          linetype = "dashed",
-          alpha = NA
-        ),
-        row.names = c(NA, -1L),
-        class = "data.frame"
-      ),
-      tolerance = 0.001
-    )
-
-    expect_equal(
-      pb$data[[3]],
-      structure(
-        list(
-          y = c(3.75, 3.75, 3.75, 3.75, 3.75),
-          x = c(852.4, 852.4, 852.4, 852.4, 852.4),
-          label = c(
-            "list(~widehat(mu)[mean]=='852.40')",
-            "list(~widehat(mu)[mean]=='852.40')",
-            "list(~widehat(mu)[mean]=='852.40')",
-            "list(~widehat(mu)[mean]=='852.40')",
-            "list(~widehat(mu)[mean]=='852.40')"
-          ),
-          PANEL = structure(c(1L, 1L, 1L, 1L, 1L), class = "factor", .Label = "1"),
-          group = structure(c(-1L, -1L, -1L, -1L, -1L), n = 1L),
-          colour = c("blue", "blue", "blue", "blue", "blue"),
-          fill = c("white", "white", "white", "white", "white"),
-          size = c(3, 3, 3, 3, 3),
-          angle = c(0, 0, 0, 0, 0),
-          hjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
-          vjust = c(0.5, 0.5, 0.5, 0.5, 0.5),
-          alpha = c(0.5, 0.5, 0.5, 0.5, 0.5),
-          family = c("", "", "", "", ""),
-          fontface = c(1, 1, 1, 1, 1),
-          lineheight = c(1.2, 1.2, 1.2, 1.2, 1.2)
-        ),
-        row.names = c(NA, -5L),
-        class = "data.frame"
-      ),
-      tolerance = 0.001
-    )
+    # check data
+    set.seed(123)
+    expect_snapshot(pb$data)
   }
 )
 

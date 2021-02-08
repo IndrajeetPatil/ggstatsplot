@@ -293,7 +293,10 @@ ggbetweenstats <- function(data,
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(output, "caption" = caption, subtitle))
+    return(switch(output,
+      "caption" = caption,
+      subtitle
+    ))
   }
 
   # -------------------------- basic plot -----------------------------------
