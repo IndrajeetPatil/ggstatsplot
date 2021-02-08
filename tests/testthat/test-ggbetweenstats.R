@@ -41,7 +41,8 @@ test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # check data
-    expect_snapshot(pb$data, cran = FALSE)
+    set.seed(123)
+    expect_snapshot(list(pb$data[[1]], pb$data[[2]], pb$data[[4]], pb$data[[5]]))
 
     # checking x-axis sample size labels
     expect_identical(
@@ -127,7 +128,8 @@ test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # check data
-    expect_snapshot(pb$data, cran = FALSE)
+    set.seed(123)
+    expect_snapshot(list(pb$data[[1]], pb$data[[2]], pb$data[[4]], pb$data[[5]]))
 
     # check if the y-axis labels have changed
     expect_identical(
@@ -220,7 +222,10 @@ test_that(
     pb2 <- ggplot2::ggplot_build(p2)
 
     # check data
-    expect_snapshot(list(pb1$data, pb2$data), cran = FALSE)
+    expect_snapshot(list(
+      pb1$data,
+      list(pb2$data[[1]], pb2$data[[2]], pb2$data[[4]], pb2$data[[5]])
+    ))
   }
 )
 
