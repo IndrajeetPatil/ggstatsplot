@@ -149,7 +149,7 @@
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-02-01</h4>
+            <h4 class="date">2021-02-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -226,8 +226,7 @@
 </h2>
 <p>What if we want to do the same analysis do the same analysis for movies with different MPAA (Motion Picture Association of America) film ratings (NC-17, PG, PG-13, R)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggstatsplot</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggstatsplot</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. We will be running parametric tests (Pearson’s <em>r</em>, i.e.).<br>
-(If you set <code>type = "np"</code> or <code>type = "r"</code>, results from non-parametric or robust test will be displayed.)</p>
+<p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a robust test this time.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -246,6 +245,7 @@
   title.prefix <span class="op">=</span> <span class="st">"MPAA Rating"</span>,
   x <span class="op">=</span> <span class="va">budget</span>,
   y <span class="op">=</span> <span class="va">rating</span>,
+  type <span class="op">=</span> <span class="st">"r"</span>,
   grouping.var <span class="op">=</span> <span class="va">mpaa</span>,
   label.var <span class="op">=</span> <span class="va">title</span>,
   label.expression <span class="op">=</span> <span class="va">rating</span> <span class="op">&lt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">budget</span> <span class="op">&lt;</span> <span class="fl">20</span>,
@@ -301,7 +301,7 @@
 </tr>
 <tr class="odd">
 <td>Robust</td>
-<td>Percentage bend correlation coefficient</td>
+<td>Winsorized Pearson correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>

@@ -6,10 +6,10 @@
 | Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | Miscellaneous                                                                                                                                                   |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![GitHub version](https://img.shields.io/badge/GitHub-0.6.8.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                          |
-| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-130-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/)                                                  | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-11-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
+| [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-131-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                      | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-11-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--01-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--08-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -742,12 +742,12 @@ Following tests are carried out for each type of analyses. Additionally,
 the correlation coefficients (and their confidence intervals) are used
 as effect sizes-
 
-| Type           | Test                                    | CI?                            | Function used              |
-|----------------|-----------------------------------------|--------------------------------|----------------------------|
-| Parametric     | Pearson’s correlation coefficient       | <font color="green">Yes<font>  | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient | <font color="green">Yes<font>  | `correlation::correlation` |
-| Robust         | Percentage bend correlation coefficient | <font color="green">Yes<font>  | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient       | <font color="green">Yes</font> | `correlation::correlation` |
+| Type           | Test                                       | CI?                            | Function used              |
+|----------------|--------------------------------------------|--------------------------------|----------------------------|
+| Parametric     | Pearson’s correlation coefficient          | <font color="green">Yes<font>  | `correlation::correlation` |
+| Non-parametric | Spearman’s rank correlation coefficient    | <font color="green">Yes<font>  | `correlation::correlation` |
+| Robust         | Winsorized Pearson correlation coefficient | <font color="green">Yes<font>  | `correlation::correlation` |
+| Bayesian       | Pearson’s correlation coefficient          | <font color="green">Yes</font> | `correlation::correlation` |
 
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
@@ -821,23 +821,23 @@ ggcorrmat(
   output = "dataframe"
 )
 #> # A tibble: 15 x 14
-#>    parameter1  parameter2  estimate conf.low conf.high ci.width    pd
-#>    <chr>       <chr>          <dbl>    <dbl>     <dbl>    <dbl> <dbl>
-#>  1 sleep_total sleep_rem      0.731    0.617    0.810      0.89 1    
-#>  2 sleep_total sleep_cycle   -0.432   -0.678   -0.223      0.89 0.995
-#>  3 sleep_total awake         -1.00    -1.00    -1.00       0.89 1    
-#>  4 sleep_total brainwt       -0.339   -0.523   -0.156      0.89 0.996
-#>  5 sleep_total bodywt        -0.300   -0.458   -0.142      0.89 0.997
-#>  6 sleep_rem   sleep_cycle   -0.306   -0.535   -0.0555     0.89 0.965
-#>  7 sleep_rem   awake         -0.734   -0.824   -0.638      0.89 1    
-#>  8 sleep_rem   brainwt       -0.202   -0.410    0.0130     0.89 0.927
-#>  9 sleep_rem   bodywt        -0.315   -0.481   -0.120      0.89 0.994
-#> 10 sleep_cycle awake          0.441    0.226    0.662      0.89 0.995
-#> 11 sleep_cycle brainwt        0.823    0.720    0.911      0.89 1    
-#> 12 sleep_cycle bodywt         0.386    0.145    0.610      0.89 0.992
-#> 13 awake       brainwt        0.341    0.154    0.524      0.89 0.992
-#> 14 awake       bodywt         0.299    0.139    0.454      0.89 0.998
-#> 15 brainwt     bodywt         0.926    0.896    0.957      0.89 1    
+#>    parameter1  parameter2  estimate conf.level conf.low conf.high    pd
+#>    <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
+#>  1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    
+#>  2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.995
+#>  3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    
+#>  4 sleep_total brainwt       -0.339       0.95   -0.523   -0.156  0.996
+#>  5 sleep_total bodywt        -0.300       0.95   -0.458   -0.142  0.997
+#>  6 sleep_rem   sleep_cycle   -0.306       0.95   -0.535   -0.0555 0.965
+#>  7 sleep_rem   awake         -0.734       0.95   -0.824   -0.638  1    
+#>  8 sleep_rem   brainwt       -0.202       0.95   -0.410    0.0130 0.927
+#>  9 sleep_rem   bodywt        -0.315       0.95   -0.481   -0.120  0.994
+#> 10 sleep_cycle awake          0.441       0.95    0.226    0.662  0.995
+#> 11 sleep_cycle brainwt        0.823       0.95    0.720    0.911  1    
+#> 12 sleep_cycle bodywt         0.386       0.95    0.145    0.610  0.992
+#> 13 awake       brainwt        0.341       0.95    0.154    0.524  0.992
+#> 14 awake       bodywt         0.299       0.95    0.139    0.454  0.998
+#> 15 brainwt     bodywt         0.926       0.95    0.896    0.957  1    
 #>    rope.percentage prior.distribution prior.location prior.scale bayes.factor
 #>              <dbl> <chr>                       <dbl>       <dbl>        <dbl>
 #>  1          0      beta                         1.41        1.41     3.00e+ 9
@@ -855,23 +855,23 @@ ggcorrmat(
 #> 13          0.0253 beta                         1.41        1.41     7.29e+ 0
 #> 14          0.0265 beta                         1.41        1.41     9.27e+ 0
 #> 15          0      beta                         1.41        1.41     1.58e+22
-#>    method           n.obs
-#>    <chr>            <int>
-#>  1 Bayesian Pearson    61
-#>  2 Bayesian Pearson    32
-#>  3 Bayesian Pearson    83
-#>  4 Bayesian Pearson    56
-#>  5 Bayesian Pearson    83
-#>  6 Bayesian Pearson    32
-#>  7 Bayesian Pearson    61
-#>  8 Bayesian Pearson    48
-#>  9 Bayesian Pearson    61
-#> 10 Bayesian Pearson    32
-#> 11 Bayesian Pearson    30
-#> 12 Bayesian Pearson    32
-#> 13 Bayesian Pearson    56
-#> 14 Bayesian Pearson    83
-#> 15 Bayesian Pearson    56
+#>    method                       n.obs
+#>    <chr>                        <int>
+#>  1 Bayesian Pearson correlation    61
+#>  2 Bayesian Pearson correlation    32
+#>  3 Bayesian Pearson correlation    83
+#>  4 Bayesian Pearson correlation    56
+#>  5 Bayesian Pearson correlation    83
+#>  6 Bayesian Pearson correlation    32
+#>  7 Bayesian Pearson correlation    61
+#>  8 Bayesian Pearson correlation    48
+#>  9 Bayesian Pearson correlation    61
+#> 10 Bayesian Pearson correlation    32
+#> 11 Bayesian Pearson correlation    30
+#> 12 Bayesian Pearson correlation    32
+#> 13 Bayesian Pearson correlation    56
+#> 14 Bayesian Pearson correlation    83
+#> 15 Bayesian Pearson correlation    56
 ```
 
 Additionally, **partial** correlation are also supported:
@@ -888,23 +888,23 @@ ggcorrmat(
   output = "dataframe"
 )
 #> # A tibble: 15 x 14
-#>    parameter1  parameter2  estimate conf.low conf.high ci.width    pd
-#>    <chr>       <chr>          <dbl>    <dbl>     <dbl>    <dbl> <dbl>
-#>  1 sleep_total sleep_rem    0.279     0.0202     0.550     0.89 0.940
-#>  2 sleep_total sleep_cycle -0.0181   -0.306      0.254     0.89 0.543
-#>  3 sleep_total awake       -1        -1         -1         0.89 1    
-#>  4 sleep_total brainwt     -0.0818   -0.352      0.192     0.89 0.678
-#>  5 sleep_total bodywt      -0.163    -0.425      0.121     0.89 0.818
-#>  6 sleep_rem   sleep_cycle -0.0666   -0.335      0.222     0.89 0.643
-#>  7 sleep_rem   awake        0.0505   -0.212      0.328     0.89 0.611
-#>  8 sleep_rem   brainwt      0.0811   -0.235      0.326     0.89 0.668
-#>  9 sleep_rem   bodywt      -0.0190   -0.296      0.265     0.89 0.544
-#> 10 sleep_cycle awake       -0.00603  -0.278      0.279     0.89 0.516
-#> 11 sleep_cycle brainwt      0.764     0.637      0.871     0.89 1    
-#> 12 sleep_cycle bodywt      -0.0865   -0.351      0.187     0.89 0.691
-#> 13 awake       brainwt     -0.0854   -0.349      0.205     0.89 0.690
-#> 14 awake       bodywt      -0.407    -0.630     -0.146     0.89 0.991
-#> 15 brainwt     bodywt       0.229    -0.0341     0.484     0.89 0.904
+#>    parameter1  parameter2  estimate conf.level conf.low conf.high    pd
+#>    <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
+#>  1 sleep_total sleep_rem    0.279         0.95   0.0202     0.550 0.940
+#>  2 sleep_total sleep_cycle -0.0181        0.95  -0.306      0.254 0.543
+#>  3 sleep_total awake       -1             0.95  -1         -1     1    
+#>  4 sleep_total brainwt     -0.0818        0.95  -0.352      0.192 0.678
+#>  5 sleep_total bodywt      -0.163         0.95  -0.425      0.121 0.818
+#>  6 sleep_rem   sleep_cycle -0.0666        0.95  -0.335      0.222 0.643
+#>  7 sleep_rem   awake        0.0505        0.95  -0.212      0.328 0.611
+#>  8 sleep_rem   brainwt      0.0811        0.95  -0.235      0.326 0.668
+#>  9 sleep_rem   bodywt      -0.0190        0.95  -0.296      0.265 0.544
+#> 10 sleep_cycle awake       -0.00603       0.95  -0.278      0.279 0.516
+#> 11 sleep_cycle brainwt      0.764         0.95   0.637      0.871 1    
+#> 12 sleep_cycle bodywt      -0.0865        0.95  -0.351      0.187 0.691
+#> 13 awake       brainwt     -0.0854        0.95  -0.349      0.205 0.690
+#> 14 awake       bodywt      -0.407         0.95  -0.630     -0.146 0.991
+#> 15 brainwt     bodywt       0.229         0.95  -0.0341     0.484 0.904
 #>    rope.percentage prior.distribution prior.location prior.scale bayes.factor
 #>              <dbl> <chr>                       <dbl>       <dbl>        <dbl>
 #>  1           0.133 beta                         1.41        1.41        1.04 
@@ -922,33 +922,33 @@ ggcorrmat(
 #> 13           0.390 beta                         1.41        1.41        0.310
 #> 14           0.033 beta                         1.41        1.41        4.82 
 #> 15           0.206 beta                         1.41        1.41        0.637
-#>    method           n.obs
-#>    <chr>            <int>
-#>  1 Bayesian Pearson    30
-#>  2 Bayesian Pearson    30
-#>  3 Bayesian Pearson    30
-#>  4 Bayesian Pearson    30
-#>  5 Bayesian Pearson    30
-#>  6 Bayesian Pearson    30
-#>  7 Bayesian Pearson    30
-#>  8 Bayesian Pearson    30
-#>  9 Bayesian Pearson    30
-#> 10 Bayesian Pearson    30
-#> 11 Bayesian Pearson    30
-#> 12 Bayesian Pearson    30
-#> 13 Bayesian Pearson    30
-#> 14 Bayesian Pearson    30
-#> 15 Bayesian Pearson    30
+#>    method                       n.obs
+#>    <chr>                        <int>
+#>  1 Bayesian Pearson correlation    30
+#>  2 Bayesian Pearson correlation    30
+#>  3 Bayesian Pearson correlation    30
+#>  4 Bayesian Pearson correlation    30
+#>  5 Bayesian Pearson correlation    30
+#>  6 Bayesian Pearson correlation    30
+#>  7 Bayesian Pearson correlation    30
+#>  8 Bayesian Pearson correlation    30
+#>  9 Bayesian Pearson correlation    30
+#> 10 Bayesian Pearson correlation    30
+#> 11 Bayesian Pearson correlation    30
+#> 12 Bayesian Pearson correlation    30
+#> 13 Bayesian Pearson correlation    30
+#> 14 Bayesian Pearson correlation    30
+#> 15 Bayesian Pearson correlation    30
 ```
 
 ### Summary of tests
 
-| Type           | Test                                    | CI?                            | partial?                      | Function used              |
-|----------------|-----------------------------------------|--------------------------------|-------------------------------|----------------------------|
-| Parametric     | Pearson’s correlation coefficient       | <font color="green">Yes<font>  | <font color="green">Yes<font> | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient | <font color="green">Yes<font>  | <font color="green">Yes<font> | `correlation::correlation` |
-| Robust         | Percentage bend correlation coefficient | <font color="green">Yes<font>  | <font color="green">Yes<font> | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient       | <font color="green">Yes</font> | <font color="green">Yes<font> | `correlation::correlation` |
+| Type           | Test                                       | CI?                            | partial?                      | Function used              |
+|----------------|--------------------------------------------|--------------------------------|-------------------------------|----------------------------|
+| Parametric     | Pearson’s correlation coefficfient         | <font color="green">Yes<font>  | <font color="green">Yes<font> | `correlation::correlation` |
+| Non-parametric | Spearman’s rank correlation coefficient    | <font color="green">Yes<font>  | <font color="green">Yes<font> | `correlation::correlation` |
+| Robust         | Winsorized Pearson correlation coefficient | <font color="green">Yes<font>  | <font color="green">Yes<font> | `correlation::correlation` |
+| Bayesian       | Pearson’s correlation coefficient          | <font color="green">Yes</font> | <font color="green">Yes<font> | `correlation::correlation` |
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>

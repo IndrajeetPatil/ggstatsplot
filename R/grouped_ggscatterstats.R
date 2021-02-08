@@ -31,8 +31,7 @@
 #'   data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x = length,
 #'   y = rating,
-#'   method = "lm",
-#'   formula = y ~ x + I(x^3),
+#'   type = "robust",
 #'   grouping.var = genre
 #' )
 #'

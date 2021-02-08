@@ -60,6 +60,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -205,6 +207,10 @@
 <li>
 <code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</li>
 </ul>
+<p>MAJOR CHANGES</p>
+<ul>
+<li>All robust tests in this package were based on trimmed means, except for correlation test. This has been changed: the robust correlation measure is now Winsorized correlation, which is based on trimming. Therefore, the <code>beta</code> argument has been replaced by <code>tr</code> argument. This should result only in minor changes in correlation coefficient estimates.</li>
+</ul>
 <p>NEW FEATURES</p>
 <ul>
 <li>More models supported in <code>ggcoefstats</code>: <code>crr</code>, <code>varest</code>.</li>
@@ -246,7 +252,7 @@
 <li><p><code>ggcoefstats</code> no longer supports <code>exponentiate</code> argument. If it is specified, the user will have to themselves adjust the scales appropriately.</p></li>
 <li>
 <p><code>ggcorrmat</code> defaults have changed significantly:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li><p>As a matter of good practice, the <em>p</em>-values are adjusted by default for multiple comparisons.</p></li>
 <li><p>The default matrix is upper type, and not the full matrix, which features many redundant comparisons and self-correlations diagonally.</p></li>
 <li><p>Default text size for legend has been increased to 15 and background grid has been removed.</p></li>
@@ -338,7 +344,7 @@
 <ul>
 <li>
 <p>The <code>pairwise.annotation</code> argument for <code>ggbetweenstats</code> and <code>ggwithinstats</code> is deprecated. This was done because-</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li><p>Different fields have different schema for what significance levels asterisks represent.</p></li>
 <li><p>The <em>p</em>-value labels also contain information about whether they are adjusted for multiple comparisons.</p></li>
 </ol>

@@ -308,7 +308,7 @@ Type | Test | CI? | partial? | Function used
 ----------- | ------------------------- | --- | --- | -----
 Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
 Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
-Robust | Percentage bend correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
+Robust | Winsorized Pearson correlation coefficient | <font color="green">Yes<font> | <font color="green">Yes<font> | `correlation::correlation`
 Bayesian | Pearson's correlation coefficient | <font color="green">Yes</font> | <font color="green">Yes<font> | `correlation::correlation`
 
 # Suggestions

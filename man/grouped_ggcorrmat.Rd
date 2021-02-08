@@ -74,12 +74,16 @@ used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}
 correlation coefficient" or "\code{"bayes"}: Bayes Factor for Pearson's \emph{r}").
 Corresponding abbreviations are also accepted: \code{"p"} (for
 parametric/pearson), \code{"np"} (nonparametric/spearman), \code{"r"} (robust),
-\code{"bf"} (for bayes factor), resp.}
-    \item{\code{beta}}{bending constant (Default: \code{0.1}). For more, see \code{\link[WRS2:pbcor]{WRS2::pbcor()}}.}
+\code{"bf"} (for Bayes Factor/Bayesian Pearson), resp.}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. If you
+get error stating "Standard error cannot be computed because of Winsorized
+variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
+try to play around with the value of \code{tr}, which is by default set to
+\code{0.1}. Lowering the value might help.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults return
-\verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
+return \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple

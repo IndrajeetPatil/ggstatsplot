@@ -121,9 +121,7 @@ into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
 Let's see how we can use this function to apply `ggscatterstats` for all MPAA
-ratings. We will be running parametric tests (Pearson's *r*, i.e.).   
-(If you set `type = "np"` or `type = "r"`, results from non-parametric or robust
-test will be displayed.)
+ratings. Also, let's run a robust test this time.
 
 ```{r grouped1, fig.height = 12, fig.width = 7}
 # for reproducibility
@@ -143,6 +141,7 @@ ggstatsplot::grouped_ggscatterstats(
   title.prefix = "MPAA Rating",
   x = budget,
   y = rating,
+  type = "r",
   grouping.var = mpaa,
   label.var = title,
   label.expression = rating < 5 & budget < 20,
@@ -185,7 +184,7 @@ Type | Test | CI? | Function
 ----------- | ------------------------- | --- | -----
 Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
 Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
-Robust | Percentage bend correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
+Robust | Winsorized Pearson correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
 Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font> | `correlation::correlation`
 
 ## Effect size interpretation

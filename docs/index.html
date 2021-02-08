@@ -184,11 +184,11 @@
 <td><a href="https://cran.r-project.org/web/checks/check_results_ggstatsplot.html"><img src="https://cranchecks.info/badges/summary/ggstatsplot" alt="CRAN Checks"></a></td>
 <td><a href="https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot"><img src="https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue" alt="Weekly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-130-blue.svg" alt="Forks"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/"><img src="https://img.shields.io/badge/forks-131-blue.svg" alt="Forks"></a></td>
 <td><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg" alt="minimal R version"></a></td>
 </tr>
 <tr class="odd">
-<td><a href="https://www.tidyverse.org/lifecycle/"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td><a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues"><img src="https://img.shields.io/badge/issues-11-red.svg" alt="Github Issues"></a></td>
@@ -205,7 +205,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2021--02--01-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2021--02--08-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -223,10 +223,8 @@
 <a href="#raison-d%C3%AAtre-" class="anchor"></a>Raison d’être <img src="reference/figures/logo.png" align="right" width="360">
 </h1>
 <blockquote>
-<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.”</p>
-<ul>
-<li>Edward R. Tufte</li>
-</ul>
+<p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.”<br>
+- Edward R. Tufte</p>
 </blockquote>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>ggstatsplot</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package for creating graphics with details from statistical tests included in the information-rich plots themselves. In a typical exploratory data analysis workflow, data visualization and statistical modeling are two different phases: visualization informs modeling, and modeling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <code>ggstatsplot</code> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
 </div>
@@ -1407,8 +1405,8 @@
 <table class="table">
 <colgroup>
 <col width="13%">
-<col width="35%">
-<col width="27%">
+<col width="36%">
+<col width="26%">
 <col width="23%">
 </colgroup>
 <thead><tr class="header">
@@ -1432,7 +1430,7 @@
 </tr>
 <tr class="odd">
 <td>Robust</td>
-<td>Percentage bend correlation coefficient</td>
+<td>Winsorized Pearson correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
@@ -1497,23 +1495,23 @@
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 15 x 14</span>
-<span class="co">#&gt;    parameter1  parameter2  estimate conf.low conf.high ci.width    pd</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem      0.731    0.617    0.810      0.89 1    </span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle   -0.432   -0.678   -0.223      0.89 0.995</span>
-<span class="co">#&gt;  3 sleep_total awake         -1.00    -1.00    -1.00       0.89 1    </span>
-<span class="co">#&gt;  4 sleep_total brainwt       -0.339   -0.523   -0.156      0.89 0.996</span>
-<span class="co">#&gt;  5 sleep_total bodywt        -0.300   -0.458   -0.142      0.89 0.997</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle   -0.306   -0.535   -0.0555     0.89 0.965</span>
-<span class="co">#&gt;  7 sleep_rem   awake         -0.734   -0.824   -0.638      0.89 1    </span>
-<span class="co">#&gt;  8 sleep_rem   brainwt       -0.202   -0.410    0.0130     0.89 0.927</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt        -0.315   -0.481   -0.120      0.89 0.994</span>
-<span class="co">#&gt; 10 sleep_cycle awake          0.441    0.226    0.662      0.89 0.995</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt        0.823    0.720    0.911      0.89 1    </span>
-<span class="co">#&gt; 12 sleep_cycle bodywt         0.386    0.145    0.610      0.89 0.992</span>
-<span class="co">#&gt; 13 awake       brainwt        0.341    0.154    0.524      0.89 0.992</span>
-<span class="co">#&gt; 14 awake       bodywt         0.299    0.139    0.454      0.89 0.998</span>
-<span class="co">#&gt; 15 brainwt     bodywt         0.926    0.896    0.957      0.89 1    </span>
+<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    </span>
+<span class="co">#&gt;  2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.995</span>
+<span class="co">#&gt;  3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
+<span class="co">#&gt;  4 sleep_total brainwt       -0.339       0.95   -0.523   -0.156  0.996</span>
+<span class="co">#&gt;  5 sleep_total bodywt        -0.300       0.95   -0.458   -0.142  0.997</span>
+<span class="co">#&gt;  6 sleep_rem   sleep_cycle   -0.306       0.95   -0.535   -0.0555 0.965</span>
+<span class="co">#&gt;  7 sleep_rem   awake         -0.734       0.95   -0.824   -0.638  1    </span>
+<span class="co">#&gt;  8 sleep_rem   brainwt       -0.202       0.95   -0.410    0.0130 0.927</span>
+<span class="co">#&gt;  9 sleep_rem   bodywt        -0.315       0.95   -0.481   -0.120  0.994</span>
+<span class="co">#&gt; 10 sleep_cycle awake          0.441       0.95    0.226    0.662  0.995</span>
+<span class="co">#&gt; 11 sleep_cycle brainwt        0.823       0.95    0.720    0.911  1    </span>
+<span class="co">#&gt; 12 sleep_cycle bodywt         0.386       0.95    0.145    0.610  0.992</span>
+<span class="co">#&gt; 13 awake       brainwt        0.341       0.95    0.154    0.524  0.992</span>
+<span class="co">#&gt; 14 awake       bodywt         0.299       0.95    0.139    0.454  0.998</span>
+<span class="co">#&gt; 15 brainwt     bodywt         0.926       0.95    0.896    0.957  1    </span>
 <span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
 <span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
 <span class="co">#&gt;  1          0      beta                         1.41        1.41     3.00e+ 9</span>
@@ -1531,23 +1529,23 @@
 <span class="co">#&gt; 13          0.0253 beta                         1.41        1.41     7.29e+ 0</span>
 <span class="co">#&gt; 14          0.0265 beta                         1.41        1.41     9.27e+ 0</span>
 <span class="co">#&gt; 15          0      beta                         1.41        1.41     1.58e+22</span>
-<span class="co">#&gt;    method           n.obs</span>
-<span class="co">#&gt;    &lt;chr&gt;            &lt;int&gt;</span>
-<span class="co">#&gt;  1 Bayesian Pearson    61</span>
-<span class="co">#&gt;  2 Bayesian Pearson    32</span>
-<span class="co">#&gt;  3 Bayesian Pearson    83</span>
-<span class="co">#&gt;  4 Bayesian Pearson    56</span>
-<span class="co">#&gt;  5 Bayesian Pearson    83</span>
-<span class="co">#&gt;  6 Bayesian Pearson    32</span>
-<span class="co">#&gt;  7 Bayesian Pearson    61</span>
-<span class="co">#&gt;  8 Bayesian Pearson    48</span>
-<span class="co">#&gt;  9 Bayesian Pearson    61</span>
-<span class="co">#&gt; 10 Bayesian Pearson    32</span>
-<span class="co">#&gt; 11 Bayesian Pearson    30</span>
-<span class="co">#&gt; 12 Bayesian Pearson    32</span>
-<span class="co">#&gt; 13 Bayesian Pearson    56</span>
-<span class="co">#&gt; 14 Bayesian Pearson    83</span>
-<span class="co">#&gt; 15 Bayesian Pearson    56</span></code></pre></div>
+<span class="co">#&gt;    method                       n.obs</span>
+<span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt;  1 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt;  2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt;  3 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt;  4 Bayesian Pearson correlation    56</span>
+<span class="co">#&gt;  5 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt;  6 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt;  7 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt;  8 Bayesian Pearson correlation    48</span>
+<span class="co">#&gt;  9 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 10 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 11 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 12 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 13 Bayesian Pearson correlation    56</span>
+<span class="co">#&gt; 14 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt; 15 Bayesian Pearson correlation    56</span></code></pre></div>
 <p>Additionally, <strong>partial</strong> correlation are also supported:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
@@ -1561,23 +1559,23 @@
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 15 x 14</span>
-<span class="co">#&gt;    parameter1  parameter2  estimate conf.low conf.high ci.width    pd</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem    0.279     0.0202     0.550     0.89 0.940</span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle -0.0181   -0.306      0.254     0.89 0.543</span>
-<span class="co">#&gt;  3 sleep_total awake       -1        -1         -1         0.89 1    </span>
-<span class="co">#&gt;  4 sleep_total brainwt     -0.0818   -0.352      0.192     0.89 0.678</span>
-<span class="co">#&gt;  5 sleep_total bodywt      -0.163    -0.425      0.121     0.89 0.818</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.0666   -0.335      0.222     0.89 0.643</span>
-<span class="co">#&gt;  7 sleep_rem   awake        0.0505   -0.212      0.328     0.89 0.611</span>
-<span class="co">#&gt;  8 sleep_rem   brainwt      0.0811   -0.235      0.326     0.89 0.668</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt      -0.0190   -0.296      0.265     0.89 0.544</span>
-<span class="co">#&gt; 10 sleep_cycle awake       -0.00603  -0.278      0.279     0.89 0.516</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt      0.764     0.637      0.871     0.89 1    </span>
-<span class="co">#&gt; 12 sleep_cycle bodywt      -0.0865   -0.351      0.187     0.89 0.691</span>
-<span class="co">#&gt; 13 awake       brainwt     -0.0854   -0.349      0.205     0.89 0.690</span>
-<span class="co">#&gt; 14 awake       bodywt      -0.407    -0.630     -0.146     0.89 0.991</span>
-<span class="co">#&gt; 15 brainwt     bodywt       0.229    -0.0341     0.484     0.89 0.904</span>
+<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 sleep_total sleep_rem    0.279         0.95   0.0202     0.550 0.940</span>
+<span class="co">#&gt;  2 sleep_total sleep_cycle -0.0181        0.95  -0.306      0.254 0.543</span>
+<span class="co">#&gt;  3 sleep_total awake       -1             0.95  -1         -1     1    </span>
+<span class="co">#&gt;  4 sleep_total brainwt     -0.0818        0.95  -0.352      0.192 0.678</span>
+<span class="co">#&gt;  5 sleep_total bodywt      -0.163         0.95  -0.425      0.121 0.818</span>
+<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.0666        0.95  -0.335      0.222 0.643</span>
+<span class="co">#&gt;  7 sleep_rem   awake        0.0505        0.95  -0.212      0.328 0.611</span>
+<span class="co">#&gt;  8 sleep_rem   brainwt      0.0811        0.95  -0.235      0.326 0.668</span>
+<span class="co">#&gt;  9 sleep_rem   bodywt      -0.0190        0.95  -0.296      0.265 0.544</span>
+<span class="co">#&gt; 10 sleep_cycle awake       -0.00603       0.95  -0.278      0.279 0.516</span>
+<span class="co">#&gt; 11 sleep_cycle brainwt      0.764         0.95   0.637      0.871 1    </span>
+<span class="co">#&gt; 12 sleep_cycle bodywt      -0.0865        0.95  -0.351      0.187 0.691</span>
+<span class="co">#&gt; 13 awake       brainwt     -0.0854        0.95  -0.349      0.205 0.690</span>
+<span class="co">#&gt; 14 awake       bodywt      -0.407         0.95  -0.630     -0.146 0.991</span>
+<span class="co">#&gt; 15 brainwt     bodywt       0.229         0.95  -0.0341     0.484 0.904</span>
 <span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
 <span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
 <span class="co">#&gt;  1           0.133 beta                         1.41        1.41        1.04 </span>
@@ -1595,30 +1593,30 @@
 <span class="co">#&gt; 13           0.390 beta                         1.41        1.41        0.310</span>
 <span class="co">#&gt; 14           0.033 beta                         1.41        1.41        4.82 </span>
 <span class="co">#&gt; 15           0.206 beta                         1.41        1.41        0.637</span>
-<span class="co">#&gt;    method           n.obs</span>
-<span class="co">#&gt;    &lt;chr&gt;            &lt;int&gt;</span>
-<span class="co">#&gt;  1 Bayesian Pearson    30</span>
-<span class="co">#&gt;  2 Bayesian Pearson    30</span>
-<span class="co">#&gt;  3 Bayesian Pearson    30</span>
-<span class="co">#&gt;  4 Bayesian Pearson    30</span>
-<span class="co">#&gt;  5 Bayesian Pearson    30</span>
-<span class="co">#&gt;  6 Bayesian Pearson    30</span>
-<span class="co">#&gt;  7 Bayesian Pearson    30</span>
-<span class="co">#&gt;  8 Bayesian Pearson    30</span>
-<span class="co">#&gt;  9 Bayesian Pearson    30</span>
-<span class="co">#&gt; 10 Bayesian Pearson    30</span>
-<span class="co">#&gt; 11 Bayesian Pearson    30</span>
-<span class="co">#&gt; 12 Bayesian Pearson    30</span>
-<span class="co">#&gt; 13 Bayesian Pearson    30</span>
-<span class="co">#&gt; 14 Bayesian Pearson    30</span>
-<span class="co">#&gt; 15 Bayesian Pearson    30</span></code></pre></div>
+<span class="co">#&gt;    method                       n.obs</span>
+<span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt;  1 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  2 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  3 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  4 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  5 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  6 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  7 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  8 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt;  9 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 10 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 11 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 12 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 13 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 14 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 15 Bayesian Pearson correlation    30</span></code></pre></div>
 <div id="summary-of-tests-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-5" class="anchor"></a>Summary of tests</h3>
 <table class="table">
 <colgroup>
 <col width="10%">
-<col width="27%">
+<col width="29%">
 <col width="21%">
 <col width="20%">
 <col width="18%">
@@ -1633,7 +1631,7 @@
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
-<td>Pearson’s correlation coefficient</td>
+<td>Pearson’s correlation coefficfient</td>
 <td><font color="green">Yes<font></font></font></td>
 <td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
@@ -1647,7 +1645,7 @@
 </tr>
 <tr class="odd">
 <td>Robust</td>
-<td>Percentage bend correlation coefficient</td>
+<td>Winsorized Pearson correlation coefficient</td>
 <td><font color="green">Yes<font></font></font></td>
 <td><font color="green">Yes<font></font></font></td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
@@ -1892,11 +1890,7 @@
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ estimate + CIs <br> ✅ statistic + <em>p</em>-value <br> ✅ model summary (AIC</p>
-<ul>
-<li>BIC) <br>
-</li>
-</ul>
+<p>✅ estimate + CIs <br> ✅ statistic + <em>p</em>-value <br> ✅ model summary (AIC + BIC) <br></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
