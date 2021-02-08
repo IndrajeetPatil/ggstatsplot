@@ -46,7 +46,3 @@ jobs:
       - name: Test coverage
         run: covr::codecov()
         shell: Rscript {0}
-
-      - name: Test coverage - coveralls
-        run: covr::coveralls()
-        shell: Rscript {0}
