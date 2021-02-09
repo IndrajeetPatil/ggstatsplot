@@ -144,10 +144,6 @@ ggscatterstats <- function(data,
     point.labelling <- FALSE
   }
 
-  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(x)
-  if (is.null(ylab)) ylab <- rlang::as_name(y)
-
   #----------------------- dataframe ---------------------------------------
 
   # preparing the dataframe
@@ -269,8 +265,8 @@ ggscatterstats <- function(data,
   # annotations
   plot <- plot +
     ggplot2::labs(
-      x = xlab,
-      y = ylab,
+      x = xlab %||% rlang::as_name(x),
+      y = ylab %||% rlang::as_name(y),
       title = title,
       subtitle = subtitle,
       caption = caption

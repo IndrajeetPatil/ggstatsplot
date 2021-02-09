@@ -31,7 +31,7 @@
 #'
 #' @importFrom dplyr select summarize mutate
 #' @importFrom dplyr group_by n arrange
-#' @importFrom rlang enquo as_name !!
+#' @importFrom rlang enquo as_name !! %||%
 #' @importFrom stats dnorm
 #' @importFrom statsExpressions expr_t_onesample
 #'
@@ -101,9 +101,6 @@ gghistostats <- function(data,
 
   # to ensure that x will be read irrespective of whether it is quoted or unquoted
   x <- rlang::ensym(x)
-
-  # if `xlab` is not provided, use the `x` name
-  if (is.null(xlab)) xlab <- rlang::as_name(x)
 
   # if dataframe is provided
   df <- tidyr::drop_na(dplyr::select(data, {{ x }}))
@@ -194,7 +191,7 @@ gghistostats <- function(data,
   plot <- plot +
     theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::labs(
-      x = xlab,
+      x = xlab %||% rlang::as_name(x),
       y = "count",
       title = title,
       subtitle = subtitle,

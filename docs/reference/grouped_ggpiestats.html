@@ -165,6 +165,11 @@ resulting plots using ggstatsplot::combine_plots." />
     <li>
       <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Development-focused</li>
+    <li>
+      <a href="../articles/web_only/benchmarking.html">Benchmarking</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -371,10 +376,9 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggpiestats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>mtcars</span>,
   grouping.var <span class='op'>=</span> <span class='va'>am</span>,
-  x <span class='op'>=</span> <span class='va'>cyl</span>,
-  results.subtitle <span class='op'>=</span> <span class='cn'>FALSE</span>
+  x <span class='op'>=</span> <span class='va'>cyl</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

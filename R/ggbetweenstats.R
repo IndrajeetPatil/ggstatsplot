@@ -209,32 +209,22 @@ ggbetweenstats <- function(data,
   # convert entered stats type to a standard notation
   type <- ipmisc::stats_type_switch(type)
 
-  # ------------------------------ variable names ----------------------------
-
-  # ensure the variables work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
+  # make sure both quoted and unquoted arguments are allowed
+  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
   outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
     rlang::ensym(outlier.label)
   }
-
-  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(x)
-  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   # --------------------------------- data -----------------------------------
 
   # creating a dataframe
   data %<>%
     dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
-    tidyr::drop_na(data = .) %>%
-    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    as_tibble(x = .)
+    tidyr::drop_na(.) %>%
+    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   # if outlier.label column is not present, just use the values from `y` column
-  if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    data %<>% dplyr::mutate(outlier.label = {{ y }})
-  }
+  if (rlang::quo_is_null(rlang::enquo(outlier.label))) data %<>% dplyr::mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
@@ -470,8 +460,8 @@ ggbetweenstats <- function(data,
   aesthetic_addon(
     plot = plot,
     x = data %>% dplyr::pull({{ x }}),
-    xlab = xlab,
-    ylab = ylab,
+    xlab = xlab %||% rlang::as_name(x),
+    ylab = ylab %||% rlang::as_name(y),
     title = title,
     subtitle = subtitle,
     caption = caption,

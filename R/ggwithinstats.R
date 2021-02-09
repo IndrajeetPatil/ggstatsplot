@@ -119,18 +119,11 @@ ggwithinstats <- function(data,
   # convert entered stats type to a standard notation
   type <- ipmisc::stats_type_switch(type)
 
-  # ------------------------------ variable names ----------------------------
-
   # ensure the variables work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- rlang::ensym(y)
+  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
   outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
     rlang::ensym(outlier.label)
   }
-
-  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(x)
-  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   # --------------------------------- data -----------------------------------
 
@@ -138,16 +131,13 @@ ggwithinstats <- function(data,
   data %<>%
     dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    as_tibble(.) %>%
     dplyr::group_by({{ x }}) %>%
     dplyr::mutate(rowid = dplyr::row_number()) %>%
     dplyr::ungroup(.) %>%
     dplyr::anti_join(x = ., y = dplyr::filter(., is.na({{ y }})), by = "rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column
-  if (rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    data %<>% dplyr::mutate(outlier.label = {{ y }})
-  }
+  if (rlang::quo_is_null(rlang::enquo(outlier.label))) data %<>% dplyr::mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
@@ -163,9 +153,11 @@ ggwithinstats <- function(data,
   # independent variables
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
-  if (type == "parametric" && test == "anova" &&
-    utils::packageVersion("BayesFactor") < package_version("0.9.12-4.3")) {
-    message('To get Bayes Factor, install GitHub version of `BayesFactor`:\n remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")')
+  if (type == "parametric" && test == "anova" && packageVersion("BayesFactor") < "0.9.12-4.3") {
+    message(cat(
+      "Needs GitHub version of `BayesFactor`:\n",
+      "remotes::install_github('richarddmorey/BayesFactor/pkg/BayesFactor')"
+    ))
     bf.message <- FALSE
   }
 
@@ -347,8 +339,8 @@ ggwithinstats <- function(data,
   aesthetic_addon(
     plot = plot,
     x = data %>% dplyr::pull({{ x }}),
-    xlab = xlab,
-    ylab = ylab,
+    xlab = xlab %||% rlang::as_name(x),
+    ylab = ylab %||% rlang::as_name(y),
     title = title,
     subtitle = subtitle,
     caption = caption,

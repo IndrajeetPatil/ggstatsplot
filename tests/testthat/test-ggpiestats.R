@@ -192,7 +192,6 @@ test_that(
     # checking plot labels
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
     expect_null(pb$plot$labels$caption, NULL)
-    expect_identical(pb$plot$plot_env$legend.title, "Sex")
   }
 )
 
@@ -328,6 +327,20 @@ test_that(
     # check data
     set.seed(123)
     expect_snapshot(pb$data)
+
+    expect_equal(
+      pb$plot$labels,
+      list(
+        x = NULL,
+        y = NULL,
+        title = NULL,
+        subtitle = NULL,
+        caption = NULL,
+        fill = "mode",
+        label = ".label",
+        group = "mode"
+      )
+    )
   }
 )
 

@@ -178,11 +178,11 @@ bench::mark(ggpiestats(mtcars, cyl, grouping.var = am)) %>%
 library(ggstatsplot)
 
 set.seed(123)
-bench::mark(ggbarstats(ggplot2::mpg, fl, model)) %>%
+bench::mark(ggbarstats(ggplot2::mpg, fl, class)) %>%
   dplyr::select(-expression)
 
 set.seed(123)
-bench::mark(ggbarstats(ggplot2::mpg, fl, model, grouping.var = cyl)) %>%
+bench::mark(ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %>%
   dplyr::select(-expression)
 ```
 

@@ -263,11 +263,11 @@ ggcorrmat <- function(data,
   # adding text details to the plot
   plot <- plot +
     ggplot2::labs(
+      xlab = NULL,
+      ylab = NULL,
       title = title,
       subtitle = subtitle,
-      caption = caption,
-      xlab = NULL,
-      ylab = NULL
+      caption = caption
     )
 
   # adding `ggstatsplot` theme for correlation matrix

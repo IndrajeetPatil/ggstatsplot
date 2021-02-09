@@ -108,9 +108,6 @@ ggpiestats <- function(data,
   # one-way or two-way table?
   test <- ifelse(!rlang::quo_is_null(rlang::enquo(y)), "two.way", "one.way")
 
-  # saving the column label for the 'x' variables
-  if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(x)
-
   # =============================== dataframe ================================
 
   # creating a dataframe
@@ -119,7 +116,7 @@ ggpiestats <- function(data,
     tidyr::drop_na(.)
 
   # untable the dataframe based on the count for each observation
-  if (".counts" %in% names(data)) data %<>% tidyr::uncount(data = ., weights = .counts)
+  if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
   data %<>% dplyr::mutate(dplyr::across(dplyr::everything(), ~ droplevels(as.factor(.x))))
@@ -265,6 +262,6 @@ ggpiestats <- function(data,
       title = title,
       caption = caption
     ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
+    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
     ggplot.component
 }

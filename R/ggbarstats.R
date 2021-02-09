@@ -82,14 +82,6 @@ ggbarstats <- function(data,
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # ================= extracting column names as labels  =====================
-
-  # if legend title is not provided, use the 'x' variable name
-  if (rlang::is_null(legend.title)) legend.title <- rlang::as_name(x)
-
-  # if x-axis label is not specified, use the 'y' variable
-  if (is.null(xlab)) xlab <- rlang::as_name(y)
-
   # =============================== dataframe ================================
 
   # creating a dataframe
@@ -98,15 +90,13 @@ ggbarstats <- function(data,
     tidyr::drop_na(.)
 
   # untable the dataframe based on the count for each observation
-  if (".counts" %in% names(data)) data %<>% tidyr::uncount(data = ., weights = .counts)
+  if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
   data %<>% dplyr::mutate(dplyr::across(dplyr::everything(), ~ droplevels(as.factor(.x))))
 
   # TO DO: until one-way table is supported by `BayesFactor`
-  if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) {
-    c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
-  }
+  if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
 
   # -------------------------- statistical analysis --------------------------
 
@@ -193,7 +183,7 @@ ggbarstats <- function(data,
     ) +
     theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::theme(panel.grid.major.x = ggplot2::element_blank()) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title)) +
+    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
     paletteer::scale_fill_paletteer_d(palette = paste0(package, "::", palette), name = "")
 
   # ================ sample size and proportion test labels ===================
@@ -227,7 +217,7 @@ ggbarstats <- function(data,
   # preparing the plot
   p +
     ggplot2::labs(
-      x = xlab,
+      x = xlab %||% rlang::as_name(y),
       y = ylab,
       subtitle = subtitle,
       title = title,

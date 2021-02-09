@@ -77,14 +77,8 @@ ggdotplotstats <- function(data,
   # convert entered stats type to a standard notation
   type <- ipmisc::stats_type_switch(type)
 
-  # ------------------------------ variable names ----------------------------
-
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-
-  # if `xlab` and `ylab` is not provided, use the variable `x` and `y` name
-  if (is.null(xlab)) xlab <- rlang::as_name(x)
-  if (is.null(ylab)) ylab <- rlang::as_name(y)
 
   # --------------------------- data preparation ----------------------------
 
@@ -191,8 +185,8 @@ ggdotplotstats <- function(data,
   # specifying theme and labels for the final plot
   plot +
     ggplot2::labs(
-      x = xlab,
-      y = ylab,
+      x = xlab %||% rlang::as_name(x),
+      y = ylab %||% rlang::as_name(y),
       title = title,
       subtitle = subtitle,
       caption = caption
