@@ -150,11 +150,6 @@ ggdotplotstats(
   data = ggplot2::mpg,
   x = cty,
   y = manufacturer,
-  test.value = 15,
-  test.value.line = TRUE,
-  test.line.labeller = TRUE,
-  centrality.parameter = "median",
-  centrality.k = 0,
   title = "Fuel economy data",
   xlab = "city miles per gallon",
   caption = substitute(

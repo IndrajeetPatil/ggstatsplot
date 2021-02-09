@@ -35,11 +35,6 @@
 #'   data = ggplot2::mpg,
 #'   x = cty,
 #'   y = manufacturer,
-#'   test.value = 15,
-#'   test.value.line = TRUE,
-#'   test.line.labeller = TRUE,
-#'   centrality.parameter = "median",
-#'   centrality.k = 0,
 #'   title = "Fuel economy data",
 #'   xlab = "city miles per gallon",
 #'   caption = substitute(
@@ -194,7 +189,7 @@ ggdotplotstats <- function(data,
   # ------------------------ annotations and themes -------------------------
 
   # specifying theme and labels for the final plot
-  plot <- plot +
+  plot +
     ggplot2::labs(
       x = xlab,
       y = ylab,
@@ -202,16 +197,6 @@ ggdotplotstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
-    ggplot2::theme(
-      legend.position = "none",
-      panel.grid.major.y = ggplot2::element_line(
-        color = "black",
-        size = 0.1,
-        linetype = "dashed"
-      )
-    )
-
-  # adding ggplot component
-  plot + ggplot.component
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) + # adding ggplot component
+    ggplot.component
 }
