@@ -141,8 +141,7 @@ resulting plots using \code{ggstatsplot::combine_plots}.
 ggstatsplot::grouped_ggpiestats(
   data = mtcars,
   grouping.var = am,
-  x = cyl,
-  results.subtitle = FALSE
+  x = cyl
 )
 }
 }
