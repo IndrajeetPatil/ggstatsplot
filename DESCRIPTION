@@ -55,6 +55,7 @@ Suggests:
     spelling,
     testthat,
     tibble,
+    vdiffr,
     WRS2
 Remotes:
     easystats/insight,
