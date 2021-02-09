@@ -22,7 +22,7 @@ reference:
       - starts_with("gg")
 
   - title: Grouped variants of primary functions
-    desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable.
+    desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable
     contents:
       - starts_with("grouped_")
 
@@ -32,7 +32,7 @@ reference:
       - tibble
 
   - title: Graphics helper functions
-    desc: The `ggplot2` themes and other graphics-related helpers in `ggstatsplot`.
+    desc: The `ggplot2` themes and other graphics-related helpers in `ggstatsplot`
     contents:
       - starts_with("theme_")
       - starts_with("combine")
@@ -71,7 +71,7 @@ articles:
 
   - title: Miscellaneous
     navbar: Miscellaneous
-    #desc:
+    desc: Salad of various things
     contents:
     - additional
     - web_only/session_info
@@ -80,3 +80,9 @@ articles:
     - web_only/faq
     - web_only/purrr_examples
     - web_only/other_resources
+
+  - title: Development-focused
+    navbar: Development-focused
+    desc: Documents useful mostly from development perspective
+    contents:
+    - web_only/benchmarking
