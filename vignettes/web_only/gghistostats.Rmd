@@ -134,7 +134,7 @@ task.
 ```{r grouped1, fig.height = 10, fig.width = 7}
 ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::gghistostats
-  data = psych::sat.act, # same dataset
+  data = psych::sat.act,
   x = ACT, # same outcome variable
   xlab = "ACT Score",
   grouping.var = gender, # grouping variable males = 1, females = 2

@@ -234,7 +234,7 @@ p4 <-
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
-  list(p1, p2, p3, p4),
+  plotlist = list(p1, p2, p3, p4),
   plotgrid.args = list(nrow = 2),
   annotation.args = list(
     title = "Effect of disgust on desire to kill bugs ",

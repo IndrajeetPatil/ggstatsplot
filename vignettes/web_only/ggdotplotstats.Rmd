@@ -126,7 +126,7 @@ ggstatsplot::grouped_ggdotplotstats(
   ),
   ggtheme = ggthemes::theme_fivethirtyeight(),
   # arguments relevant for ggstatsplot::combine_plots
-  title.text = "Fuel economy data",
+  annotation.args = list(title = "Fuel economy data"),
   plotgrid.args = list(nrow = 2)
 )
 ```

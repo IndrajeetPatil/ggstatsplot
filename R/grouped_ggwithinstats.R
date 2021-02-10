@@ -65,7 +65,7 @@ grouped_ggwithinstats <- function(data,
       {{ y }},
       {{ outlier.label }}
     ) %>%
-    grouped_list(data = ., grouping.var = {{ grouping.var }})
+    grouped_list(grouping.var = {{ grouping.var }})
 
   # ============== creating a list of plots using `pmap`======================
 

@@ -80,7 +80,7 @@ grouped_gghistostats <- function(data,
   # getting the dataframe ready
   df <-
     dplyr::select(.data = data, {{ grouping.var }}, {{ x }}) %>%
-    grouped_list(data = ., grouping.var = {{ grouping.var }})
+    grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of plots
   plotlist_purrr <-

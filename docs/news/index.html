@@ -209,8 +209,8 @@
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
-<li>
-<code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</li>
+<li><p><code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</p></li>
+<li><p>To avoid confusion among users, the default trimming level for all functions is now changed from <code>tr = 0.1</code> to <code>tr = 0.2</code> (which is what <code>WRS2</code> defaults to).</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>

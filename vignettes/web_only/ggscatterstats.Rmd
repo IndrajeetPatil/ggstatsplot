@@ -97,11 +97,8 @@ There is indeed a small, but significant, positive correlation between the
 amount of money studio invests in a movie and the ratings given by the
 audiences.
 
-The `type` (of test) argument also accepts the following abbreviations: `"p"`
-(for *parametric*/pearson's), `"np"` (for *nonparametric*/spearman), `"r"` (for
-*robust*).
-
 **Important**: 
+
 In contrast to all other functions in this package, the `ggscatterstats`
 function returns object that is **not** further modifiable with `ggplot2`. This
 can be avoided by not plotting the marginal distributions (`marginal = FALSE`).

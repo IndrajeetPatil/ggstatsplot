@@ -328,28 +328,28 @@
 <span class="co">#&gt; # A tibble: 10 x 11</span>
 <span class="co">#&gt;    parameter1 parameter2 estimate conf.level conf.low conf.high statistic</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sales      volume        0.979       0.95    0.976     0.981    157.  </span>
-<span class="co">#&gt;  2 sales      median        0.467       0.95    0.419     0.513     17.4 </span>
-<span class="co">#&gt;  3 sales      listings      0.921       0.95    0.912     0.930     77.9 </span>
-<span class="co">#&gt;  4 sales      inventory    -0.407       0.95   -0.456    -0.356    -14.6 </span>
-<span class="co">#&gt;  5 volume     median        0.548       0.95    0.504     0.588     21.5 </span>
-<span class="co">#&gt;  6 volume     listings      0.891       0.95    0.878     0.903     64.5 </span>
-<span class="co">#&gt;  7 volume     inventory    -0.386       0.95   -0.435    -0.334    -13.7 </span>
-<span class="co">#&gt;  8 median     listings      0.413       0.95    0.362     0.461     14.9 </span>
-<span class="co">#&gt;  9 median     inventory    -0.192       0.95   -0.249    -0.134     -6.43</span>
-<span class="co">#&gt; 10 listings   inventory    -0.182       0.95   -0.239    -0.123     -6.07</span>
+<span class="co">#&gt;  1 sales      volume        0.981       0.95    0.979     0.983    167.  </span>
+<span class="co">#&gt;  2 sales      median        0.474       0.95    0.426     0.519     17.7 </span>
+<span class="co">#&gt;  3 sales      listings      0.885       0.95    0.872     0.898     62.6 </span>
+<span class="co">#&gt;  4 sales      inventory    -0.457       0.95   -0.503    -0.409    -16.9 </span>
+<span class="co">#&gt;  5 volume     median        0.569       0.95    0.527     0.608     22.7 </span>
+<span class="co">#&gt;  6 volume     listings      0.876       0.95    0.861     0.889     59.6 </span>
+<span class="co">#&gt;  7 volume     inventory    -0.437       0.95   -0.484    -0.388    -16.0 </span>
+<span class="co">#&gt;  8 median     listings      0.430       0.95    0.380     0.477     15.7 </span>
+<span class="co">#&gt;  9 median     inventory    -0.193       0.95   -0.250    -0.135     -6.47</span>
+<span class="co">#&gt; 10 listings   inventory    -0.170       0.95   -0.228    -0.112     -5.69</span>
 <span class="co">#&gt;    df.error  p.value method                         n.obs</span>
 <span class="co">#&gt;       &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt;                          &lt;int&gt;</span>
 <span class="co">#&gt;  1     1080 0.       Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt;  2     1080 5.50e-59 Winsorized Pearson correlation  1082</span>
+<span class="co">#&gt;  2     1080 6.58e-61 Winsorized Pearson correlation  1082</span>
 <span class="co">#&gt;  3     1080 0.       Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt;  4     1080 7.52e-44 Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt;  5     1080 7.56e-85 Winsorized Pearson correlation  1082</span>
+<span class="co">#&gt;  4     1080 2.55e-56 Winsorized Pearson correlation  1082</span>
+<span class="co">#&gt;  5     1080 5.79e-93 Winsorized Pearson correlation  1082</span>
 <span class="co">#&gt;  6     1080 0.       Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt;  7     1080 3.02e-39 Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt;  8     1080 5.02e-45 Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt;  9     1080 3.93e-10 Winsorized Pearson correlation  1082</span>
-<span class="co">#&gt; 10     1080 1.73e- 9 Winsorized Pearson correlation  1082</span></code></pre></div>
+<span class="co">#&gt;  7     1080 3.39e-51 Winsorized Pearson correlation  1082</span>
+<span class="co">#&gt;  8     1080 1.88e-49 Winsorized Pearson correlation  1082</span>
+<span class="co">#&gt;  9     1080 2.94e-10 Winsorized Pearson correlation  1082</span>
+<span class="co">#&gt; 10     1080 1.68e- 8 Winsorized Pearson correlation  1082</span></code></pre></div>
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return. Additionally, one can also carry out <strong>partial</strong> correlation analysis:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
