@@ -12,7 +12,7 @@ ggscatterstats(
   conf.level = 0.95,
   bf.prior = 0.707,
   bf.message = TRUE,
-  tr = 0.1,
+  tr = 0.2,
   k = 2L,
   results.subtitle = TRUE,
   label.var = NULL,
@@ -73,7 +73,7 @@ parametric test} (Default: \code{TRUE}).}
 get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
-\code{0.1}. Lowering the value might help.}
+\code{0.2}. Lowering the value might help.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}

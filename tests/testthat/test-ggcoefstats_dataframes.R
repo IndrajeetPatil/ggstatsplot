@@ -128,23 +128,33 @@ if (all(unlist(lapply(
       expect_message(ggcoefstats(x = df7))
 
       # plotting the dataframe
+      set.seed(123)
       p1 <-
         ggcoefstats(
           x = df1,
           statistic = "t",
           sort = "none"
         )
+
+      set.seed(123)
       p2 <-
         ggcoefstats(
           x = df1,
           statistic = "z",
           sort = "descending"
         )
+
+      set.seed(123)
       p3 <- ggcoefstats(x = df2, statistic = "t")
+
+      set.seed(123)
       p4 <- ggcoefstats(x = df3, statistic = "T") +
         ggplot2::scale_y_discrete(labels = c("x1", "x2", "x3")) +
         ggplot2::labs(x = "location", y = NULL)
+
+      set.seed(123)
       p5 <- ggcoefstats(x = df4, statistic = "T-value")
+
       set.seed(123)
       p6 <-
         suppressWarnings(
@@ -156,6 +166,8 @@ if (all(unlist(lapply(
             bf.message = TRUE
           )
         )
+
+      set.seed(123)
       p7 <-
         suppressWarnings(
           ggcoefstats(
@@ -178,48 +190,12 @@ if (all(unlist(lapply(
       pb6 <- ggplot2::ggplot_build(p6)
       pb7 <- ggplot2::ggplot_build(p7)
 
-      # stats labels
-      expect_identical(
-        pb1$data[[4]]$label,
-        c(
-          "list(~widehat(italic(beta))==0.07, ~italic(t)(5)==0.16, ~italic(p)=='0.875')",
-          "list(~widehat(italic(beta))==0.54, ~italic(t)(10)==1.33, ~italic(p)=='0.191')",
-          "list(~widehat(italic(beta))==0.04, ~italic(t)(12)==1.24, ~italic(p)=='0.001')"
-        )
-      )
-      expect_identical(
-        pb5$data[[4]]$label,
-        c(
-          "list(~widehat(italic(beta))==0.07, ~italic(t)(Inf)==0.16, ~italic(p)=='0.875')",
-          "list(~widehat(italic(beta))==0.54, ~italic(t)(Inf)==1.33, ~italic(p)=='0.191')",
-          "list(~widehat(italic(beta))==0.04, ~italic(t)(Inf)==1.24, ~italic(p)=='0.001')"
-        )
-      )
-
-      expect_equal(
-        pb2$data[[3]]$y,
-        structure(c(2L, 1L, 3L), class = c("mapped_discrete", "numeric"))
-      )
-      expect_identical(
-        pb2$data[[4]]$label,
-        c(
-          "list(~widehat(italic(beta))==0.07, ~italic(z)==0.16, ~italic(p)=='0.875')",
-          "list(~widehat(italic(beta))==0.54, ~italic(z)==1.33, ~italic(p)=='0.191')",
-          "list(~widehat(italic(beta))==0.04, ~italic(z)==1.24, ~italic(p)=='0.001')"
-        )
-      )
-
-      # checking number of data layers
-      expect_equal(length(pb1$data), 4L)
-      expect_equal(length(pb2$data), 4L)
-      expect_equal(length(pb3$data), 3L)
-      expect_equal(length(pb4$data), 3L)
-
-      # confidence intervals used for each layer should be the same as df
-      expect_equal(pb3$data[[2]]$xmin, df1$conf.low)
-      expect_equal(pb3$data[[2]]$xmax, df2$conf.high)
-      expect_equal(pb2$data[[2]]$xmin, df3$conf.low)
-      expect_equal(pb2$data[[2]]$xmax, df3$conf.high)
+      # checking data
+      set.seed(123)
+      expect_snapshot(list(
+        pb1$data, pb2$data, pb3$data, pb4$data,
+        pb5$data, pb6$data, pb7$data
+      ))
 
       # annotations
       expect_identical(p4$labels$x, "location")

@@ -219,12 +219,6 @@ test_that(
       ))
     )
 
-    # checking values
-    expect_equal(dat$estimate,
-      c(-5.3769964, 0.1927711, 5.5697674),
-      tolerance = 0.001
-    )
-
     # checking ggsignif layers
     expect_equal(
       ggsignif_stat$y_position,

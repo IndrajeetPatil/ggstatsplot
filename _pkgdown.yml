@@ -16,10 +16,31 @@ authors:
     href: https://sites.google.com/site/indrajeetspatilmorality/
 
 reference:
-  - title: Primary functions
-    desc:  Main functions to use from `ggstatsplot`.
+
+  - title: Hypothesis about group differences
+    #desc:  Main functions to use from `ggstatsplot`.
     contents:
-      - starts_with("gg")
+      - ggbetweenstats
+      - ggwithinstats
+      - gghistostats
+      - ggdotplotstats
+
+  - title: Hypothesis about correlation
+    #desc:  Main functions to use from `ggstatsplot`.
+    contents:
+      - ggscatterstats
+      - ggcorrmat
+
+  - title: Hypothesis about composition of categorical variables
+    #desc:  Main functions to use from `ggstatsplot`.
+    contents:
+      - ggpiestats
+      - ggbarstats
+
+  - title: Hypothesis about regression coefficients
+    #desc:  Main functions to use from `ggstatsplot`.
+    contents:
+      - ggcoefstats
 
   - title: Grouped variants of primary functions
     desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable
@@ -49,6 +70,7 @@ reference:
       - bugs_long
 
 articles:
+
   - title: Primary functions
     navbar: Primary functions
     desc: Details about primary functions and their `grouped_` variants

@@ -11,6 +11,10 @@ BREAKING CHANGES
     breakage is if you had used `combine_plots` function and provided individual
     plots to `...` instead as a `list`.
 
+  - To avoid confusion among users, the default trimming level for all functions
+    is now changed from `tr = 0.1` to `tr = 0.2` (which is what `WRS2` defaults
+    to).
+
 MAJOR CHANGES
 
   - All robust tests in this package were based on trimmed means, except for

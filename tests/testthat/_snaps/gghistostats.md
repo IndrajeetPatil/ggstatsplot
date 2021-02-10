@@ -105,13 +105,13 @@
       
       [[2]]
         xintercept PANEL group colour size linetype alpha
-      1   3.152692     1    -1   blue    1   dashed    NA
+      1      3.197     1    -1   blue    1   dashed    NA
       
       [[3]]
-            y        x PANEL group colour  fill size angle hjust vjust alpha family
-      1 5.625 3.152692     1    -1   blue white    3     0   0.5   0.5    NA       
+            y     x PANEL group colour  fill size angle hjust vjust alpha family
+      1 5.625 3.197     1    -1   blue white    3     0   0.5   0.5    NA       
         fontface lineheight                               label
-      1        1        1.2 list(~widehat(mu)[trimmed]=='3.15')
+      1        1        1.2 list(~widehat(mu)[trimmed]=='3.20')
       
 
 # checking if normal curve work

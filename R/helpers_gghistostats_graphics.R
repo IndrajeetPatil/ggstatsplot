@@ -45,7 +45,7 @@
 histo_labeller <- function(plot,
                            x,
                            type = "parametric",
-                           tr = 0.1,
+                           tr = 0.2,
                            centrality.k = 2L,
                            centrality.line.args = list(color = "blue", size = 1),
                            centrality.label.args = list(color = "blue"),

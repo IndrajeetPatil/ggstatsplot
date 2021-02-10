@@ -92,7 +92,7 @@ ggwithinstats <- function(data,
                           k = 2L,
                           conf.level = 0.95,
                           nboot = 100L,
-                          tr = 0.1,
+                          tr = 0.2,
                           centrality.plotting = TRUE,
                           centrality.point.args = list(size = 5, color = "darkred"),
                           centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
@@ -153,7 +153,7 @@ ggwithinstats <- function(data,
   # independent variables
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
-  if (type == "parametric" && test == "anova" && packageVersion("BayesFactor") < "0.9.12-4.3") {
+  if (type == "parametric" && test == "anova" && utils::packageVersion("BayesFactor") < "0.9.12-4.3") {
     message(cat(
       "Needs GitHub version of `BayesFactor`:\n",
       "remotes::install_github('richarddmorey/BayesFactor/pkg/BayesFactor')"

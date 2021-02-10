@@ -114,6 +114,11 @@
     <li>
       <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
+    <li class="divider">
+    <li class="dropdown-header">Development-focused</li>
+    <li>
+      <a href="../../articles/web_only/benchmarking.html">Benchmarking</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -149,7 +154,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-02-08</h4>
+            <h4 class="date">2021-02-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -3825,14 +3830,20 @@
 
 <span class="co">#  data</span>
 <span class="va">pib</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">0.4</span>, <span class="fl">0.7</span>, <span class="fl">5</span>, <span class="fl">0.7</span>, <span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">89</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">45</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">0.5</span>, <span class="fl">5</span><span class="op">)</span>,
-  nrows <span class="op">=</span> <span class="fl">18</span>, ncols <span class="op">=</span> <span class="fl">1</span>
+  nrows <span class="op">=</span> <span class="fl">18</span>,
+  ncols <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span>
 <span class="va">tir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">0.3</span>, <span class="fl">4</span>, <span class="fl">0.4</span>, <span class="fl">7</span>, <span class="fl">12</span>, <span class="fl">3.0</span>, <span class="fl">6.0</span>, <span class="fl">45</span>, <span class="fl">7.0</span>, <span class="fl">0.8</span>, <span class="fl">44</span>, <span class="fl">65</span>, <span class="fl">23</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">76</span>, <span class="fl">9</span><span class="op">)</span>,
-  nrows <span class="op">=</span> <span class="fl">18</span>, ncols <span class="op">=</span> <span class="fl">1</span>
+  nrows <span class="op">=</span> <span class="fl">18</span>,
+  ncols <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span>
-<span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">3.6</span>, <span class="fl">44</span>, <span class="fl">1.4</span>, <span class="fl">0.78</span>, <span class="fl">54</span>, <span class="fl">0.34</span>, <span class="fl">0.66</span>, <span class="fl">12</span>, <span class="fl">0.7</span>, <span class="fl">8.0</span>, <span class="fl">12</span>, <span class="fl">65</span>, <span class="fl">43</span>, <span class="fl">5</span>, <span class="fl">76</span>, <span class="fl">65</span>, <span class="fl">8</span><span class="op">)</span>, nrows <span class="op">=</span> <span class="fl">18</span>, ncols <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">3.6</span>, <span class="fl">44</span>, <span class="fl">1.4</span>, <span class="fl">0.78</span>, <span class="fl">54</span>, <span class="fl">0.34</span>, <span class="fl">0.66</span>, <span class="fl">12</span>, <span class="fl">0.7</span>, <span class="fl">8.0</span>, <span class="fl">12</span>, <span class="fl">65</span>, <span class="fl">43</span>, <span class="fl">5</span>, <span class="fl">76</span>, <span class="fl">65</span>, <span class="fl">8</span><span class="op">)</span>,
+  nrows <span class="op">=</span> <span class="fl">18</span>,
+  ncols <span class="op">=</span> <span class="fl">1</span>
+<span class="op">)</span>
 <span class="va">npl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">3.8</span>, <span class="fl">14</span>, <span class="fl">2.4</span>, <span class="fl">1.7</span>, <span class="fl">43</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">23</span>, <span class="fl">7.8</span>, <span class="fl">88</span>, <span class="fl">36</span>, <span class="fl">65</span>, <span class="fl">3</span>, <span class="fl">44</span>, <span class="fl">65</span>, <span class="fl">7</span>, <span class="fl">34</span><span class="op">)</span>,
-  nrows <span class="op">=</span> <span class="fl">18</span>, ncols <span class="op">=</span> <span class="fl">1</span>
+  nrows <span class="op">=</span> <span class="fl">18</span>,
+  ncols <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span>
 <span class="va">mdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>p <span class="op">=</span> <span class="va">pib</span>, t <span class="op">=</span> <span class="va">tir</span>, int <span class="op">=</span> <span class="va">inf</span>, np <span class="op">=</span> <span class="va">npl</span><span class="op">)</span>
 

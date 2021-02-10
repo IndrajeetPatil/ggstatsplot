@@ -576,8 +576,8 @@
       
       [[2]][[4]]
                y x PANEL group shape  colour size fill alpha stroke
-      1 21.04167 1     1     1    19 darkred    5   NA    NA    0.5
-      2 16.57500 2     1     2    19 darkred    5   NA    NA    0.5
+      1 21.70556 1     1     1    19 darkred    5   NA    NA    0.5
+      2 16.58333 2     1     2    19 darkred    5   NA    NA    0.5
       
       
 

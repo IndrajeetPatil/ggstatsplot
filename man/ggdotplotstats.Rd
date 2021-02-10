@@ -20,7 +20,7 @@ ggdotplotstats(
   effsize.type = "g",
   conf.level = 0.95,
   nboot = 100,
-  tr = 0.1,
+  tr = 0.2,
   k = 2,
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
@@ -84,7 +84,7 @@ for the effect size (Default: \code{100}).}
 get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
-\code{0.1}. Lowering the value might help.}
+\code{0.2}. Lowering the value might help.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}

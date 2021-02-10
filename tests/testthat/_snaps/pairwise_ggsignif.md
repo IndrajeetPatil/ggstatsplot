@@ -87,9 +87,9 @@
       pb$data[[6]]
     Output
         x        y                                 label PANEL group nudge_x  nudge_y
-      1 1 14.19277 list(~widehat(mu)[trimmed]=='14.193')     1     1     1.4 14.19277
-      2 2 19.56977 list(~widehat(mu)[trimmed]=='19.570')     1     2     2.4 19.56977
-      3 3 14.00000 list(~widehat(mu)[trimmed]=='14.000')     1     3     3.4 14.00000
+      1 1 14.07937 list(~widehat(mu)[trimmed]=='14.079')     1     1     1.4 14.07937
+      2 2 19.43750 list(~widehat(mu)[trimmed]=='19.438')     1     2     2.4 19.43750
+      3 3 14.13333 list(~widehat(mu)[trimmed]=='14.133')     1     3     3.4 14.13333
         colour  fill size angle alpha family fontface lineheight hjust vjust
       1  black white    3     0    NA               1        1.2   0.5   0.5
       2  black white    3     0    NA               1        1.2   0.5   0.5

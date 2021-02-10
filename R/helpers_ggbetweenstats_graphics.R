@@ -40,7 +40,7 @@ centrality_ggrepel <- function(plot,
                                x,
                                y,
                                type = "parametric",
-                               tr = 0.1,
+                               tr = 0.2,
                                k = 2L,
                                sample.size.label = TRUE,
                                centrality.path = FALSE,
@@ -102,7 +102,7 @@ centrality_ggrepel <- function(plot,
 
 #' @noRd
 
-centrality_data <- function(data, x, y, type = "parametric", tr = 0.1, k = 2L, ...) {
+centrality_data <- function(data, x, y, type = "parametric", tr = 0.2, k = 2L, ...) {
 
   # ------------------------ measure -------------------------------------
 

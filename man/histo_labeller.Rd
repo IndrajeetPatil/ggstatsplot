@@ -8,7 +8,7 @@ histo_labeller(
   plot,
   x,
   type = "parametric",
-  tr = 0.1,
+  tr = 0.2,
   centrality.k = 2L,
   centrality.line.args = list(color = "blue", size = 1),
   centrality.label.args = list(color = "blue"),
@@ -30,7 +30,7 @@ or \code{"robust"} or \code{"bayes"}).Corresponding abbreviations are also accep
 get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
-\code{0.1}. Lowering the value might help.}
+\code{0.2}. Lowering the value might help.}
 
 \item{centrality.k}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2L}).}
