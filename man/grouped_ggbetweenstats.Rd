@@ -56,7 +56,7 @@ separately specified here.}
   Arguments passed on to \code{\link[=ggbetweenstats]{ggbetweenstats}}
   \describe{
     \item{\code{plot.type}}{Character describing the \emph{type} of plot. Currently supported
-plots are \code{"box"} (for pure boxplots), \code{"violin"} (for pure violin plots),
+plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
 and \code{"boxviolin"} (for a combination of box and violin plots; default).}
     \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
@@ -72,13 +72,18 @@ about pairwise comparisons, see the documentation for that function.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-    \item{\code{pairwise.display}}{Decides which pairwise comparisons to display.
-Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or
-\code{"non-significant"} (abbreviation accepted: \code{"ns"}) or
-\code{"everything"}/\code{"all"}. The default is \code{"significant"}. You can use this
-argument to make sure that your plot is not uber-cluttered when you have
-multiple groups being compared and scores of pairwise comparisons being
-displayed.}
+    \item{\code{pairwise.display}}{Decides \emph{which} pairwise comparisons to display.
+Available options are:
+
+\itemize{
+\item \code{"significant"} (abbreviation accepted: \code{"s"})
+\item \code{"non-significant"} (abbreviation accepted: \code{"ns"})
+\item \code{"all"}
+}
+
+You can use this argument to make sure that your plot is not uber-cluttered
+when you have multiple groups being compared and scores of pairwise
+comparisons being displayed.}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
@@ -114,11 +119,32 @@ passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 \code{1.5}).}
-    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: \code{TRUE}). Function
-decides which central tendency measure to show depending on the \code{type}
-argument (\strong{mean} for parametric, \strong{median} for non-parametric,
-\strong{trimmed mean} for robust, and \strong{MAP estimator} for Bayes).}
+    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
+measure is to be displayed as a point with a label (Default: \code{TRUE}).
+Function decides which central tendency measure to show depending on the
+\code{type} argument.
+
+\itemize{
+\item \strong{mean} for parametric statistics
+\item \strong{median} for non-parametric statistics
+\item \strong{trimmed mean} for robust statistics
+\item \strong{MAP estimator} for Bayesian statistics
+}
+
+If you want default centrality parameter, you can specify this using
+\code{centrality.type} argument.}
+    \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
+The default is to choose the same as \code{type} argument. You can specify this
+to be:
+
+\itemize{
+\item \code{"parameteric"} (for \strong{mean})
+\item \code{"nonparametric"} (for \strong{median})
+\item \code{robust} (for \strong{trimmed mean})
+\item \code{bayes} (for \strong{MAP estimator})
+}
+
+Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to

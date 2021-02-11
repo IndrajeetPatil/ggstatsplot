@@ -29,13 +29,18 @@ be taken. A matrix or tables will \strong{not} be accepted.}
 \item{y}{The response (a.k.a. outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{pairwise.display}{Decides which pairwise comparisons to display.
-Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or
-\code{"non-significant"} (abbreviation accepted: \code{"ns"}) or
-\code{"everything"}/\code{"all"}. The default is \code{"significant"}. You can use this
-argument to make sure that your plot is not uber-cluttered when you have
-multiple groups being compared and scores of pairwise comparisons being
-displayed.}
+\item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
+Available options are:
+
+\itemize{
+\item \code{"significant"} (abbreviation accepted: \code{"s"})
+\item \code{"non-significant"} (abbreviation accepted: \code{"ns"})
+\item \code{"all"}
+}
+
+You can use this argument to make sure that your plot is not uber-cluttered
+when you have multiple groups being compared and scores of pairwise
+comparisons being displayed.}
 
 \item{ggsignif.args}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}

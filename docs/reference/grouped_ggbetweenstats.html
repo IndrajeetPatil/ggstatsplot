@@ -289,7 +289,7 @@ separately specified here.</p></td>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code></p><dl>
     <dt><code>plot.type</code></dt><dd><p>Character describing the <em>type</em> of plot. Currently supported
-plots are <code>"box"</code> (for pure boxplots), <code>"violin"</code> (for pure violin plots),
+plots are <code>"box"</code> (for only boxplots), <code>"violin"</code> (for only violin plots),
 and <code>"boxviolin"</code> (for a combination of box and violin plots; default).</p></dd>
     <dt><code>xlab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
 variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
@@ -305,13 +305,14 @@ about pairwise comparisons, see the documentation for that function.</p></dd>
     <dt><code>p.adjust.method</code></dt><dd><p>Adjustment method for <em>p</em>-values for multiple
 comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
-    <dt><code>pairwise.display</code></dt><dd><p>Decides which pairwise comparisons to display.
-Available options are <code>"significant"</code> (abbreviation accepted: <code>"s"</code>) or
-<code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>) or
-<code>"everything"</code>/<code>"all"</code>. The default is <code>"significant"</code>. You can use this
-argument to make sure that your plot is not uber-cluttered when you have
-multiple groups being compared and scores of pairwise comparisons being
-displayed.</p></dd>
+    <dt><code>pairwise.display</code></dt><dd><p>Decides <em>which</em> pairwise comparisons to display.
+Available options are:<ul>
+<li><p><code>"significant"</code> (abbreviation accepted: <code>"s"</code>)</p></li>
+<li><p><code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>)</p></li>
+<li><p><code>"all"</code></p></li>
+</ul>You can use this argument to make sure that your plot is not uber-cluttered
+when you have multiple groups being compared and scores of pairwise
+comparisons being displayed.</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors.</p></dd>
     <dt><code>bf.message</code></dt><dd><p>Logical that decides whether to display Bayes Factor in
@@ -347,11 +348,24 @@ passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>g
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
 <code>1.5</code>).</p></dd>
-    <dt><code>centrality.plotting</code></dt><dd><p>Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
-decides which central tendency measure to show depending on the <code>type</code>
-argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
-<strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></dd>
+    <dt><code>centrality.plotting</code></dt><dd><p>Logical that decides whether centrality tendency
+measure is to be displayed as a point with a label (Default: <code>TRUE</code>).
+Function decides which central tendency measure to show depending on the
+<code>type</code> argument.<ul>
+<li><p><strong>mean</strong> for parametric statistics</p></li>
+<li><p><strong>median</strong> for non-parametric statistics</p></li>
+<li><p><strong>trimmed mean</strong> for robust statistics</p></li>
+<li><p><strong>MAP estimator</strong> for Bayesian statistics</p></li>
+</ul>If you want default centrality parameter, you can specify this using
+<code>centrality.type</code> argument.</p></dd>
+    <dt><code>centrality.type</code></dt><dd><p>Decides which centrality parameter is to be displayed.
+The default is to choose the same as <code>type</code> argument. You can specify this
+to be:<ul>
+<li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p></li>
+<li><p><code>"nonparametric"</code> (for <strong>median</strong>)</p></li>
+<li><p><code>robust</code> (for <strong>trimmed mean</strong>)</p></li>
+<li><p><code>bayes</code> (for <strong>MAP estimator</strong>)</p></li>
+</ul>Just as <code>type</code> argument, abbreviations are also accepted.</p></dd>
     <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_point</code> displaying the raw data.</p></dd>
     <dt><code>violin.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to

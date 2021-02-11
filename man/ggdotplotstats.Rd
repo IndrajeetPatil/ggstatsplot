@@ -25,6 +25,7 @@ ggdotplotstats(
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
   centrality.plotting = TRUE,
+  centrality.type = type,
   centrality.k = 2,
   centrality.line.args = list(color = "blue", size = 1),
   centrality.label.args = list(color = "blue", size = 3),
@@ -96,11 +97,33 @@ the plot will be returned.}
 \item{point.args}{A list of additional aesthetic arguments passed to
 \code{geom_point}.}
 
-\item{centrality.plotting}{Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: \code{TRUE}). Function
-decides which central tendency measure to show depending on the \code{type}
-argument (\strong{mean} for parametric, \strong{median} for non-parametric,
-\strong{trimmed mean} for robust, and \strong{MAP estimator} for Bayes).}
+\item{centrality.plotting}{Logical that decides whether centrality tendency
+measure is to be displayed as a point with a label (Default: \code{TRUE}).
+Function decides which central tendency measure to show depending on the
+\code{type} argument.
+
+\itemize{
+\item \strong{mean} for parametric statistics
+\item \strong{median} for non-parametric statistics
+\item \strong{trimmed mean} for robust statistics
+\item \strong{MAP estimator} for Bayesian statistics
+}
+
+If you want default centrality parameter, you can specify this using
+\code{centrality.type} argument.}
+
+\item{centrality.type}{Decides which centrality parameter is to be displayed.
+The default is to choose the same as \code{type} argument. You can specify this
+to be:
+
+\itemize{
+\item \code{"parameteric"} (for \strong{mean})
+\item \code{"nonparametric"} (for \strong{median})
+\item \code{robust} (for \strong{trimmed mean})
+\item \code{bayes} (for \strong{MAP estimator})
+}
+
+Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.k}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2L}).}

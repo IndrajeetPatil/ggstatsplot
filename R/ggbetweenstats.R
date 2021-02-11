@@ -11,7 +11,7 @@
 #' subtitle.
 #'
 #' @param plot.type Character describing the *type* of plot. Currently supported
-#'   plots are `"box"` (for pure boxplots), `"violin"` (for pure violin plots),
+#'   plots are `"box"` (for only boxplots), `"violin"` (for only violin plots),
 #'   and `"boxviolin"` (for a combination of box and violin plots; default).
 #' @param xlab,ylab Labels for `x` and `y` axis variables. If `NULL` (default),
 #'   variable names for `x` and `y` will be used.
@@ -25,13 +25,18 @@
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
 #'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
-#' @param pairwise.display Decides which pairwise comparisons to display.
-#'   Available options are `"significant"` (abbreviation accepted: `"s"`) or
-#'   `"non-significant"` (abbreviation accepted: `"ns"`) or
-#'   `"everything"`/`"all"`. The default is `"significant"`. You can use this
-#'   argument to make sure that your plot is not uber-cluttered when you have
-#'   multiple groups being compared and scores of pairwise comparisons being
-#'   displayed.
+#' @param pairwise.display Decides *which* pairwise comparisons to display.
+#'   Available options are:
+#'
+#'   \itemize{
+#'     \item `"significant"` (abbreviation accepted: `"s"`)
+#'     \item `"non-significant"` (abbreviation accepted: `"ns"`)
+#'     \item `"all"`
+#'   }
+#'
+#'   You can use this argument to make sure that your plot is not uber-cluttered
+#'   when you have multiple groups being compared and scores of pairwise
+#'   comparisons being displayed.
 #' @param bf.prior A number between `0.5` and `2` (default `0.707`), the prior
 #'   width to use in calculating Bayes factors.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
@@ -70,11 +75,32 @@
 #'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
 #'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
 #'   `1.5`).
-#' @param centrality.plotting Logical that decides whether centrality tendency measure
-#'   is to be displayed as a point with a label (Default: `TRUE`). Function
-#'   decides which central tendency measure to show depending on the `type`
-#'   argument (**mean** for parametric, **median** for non-parametric,
-#'   **trimmed mean** for robust, and **MAP estimator** for Bayes).
+#' @param centrality.plotting Logical that decides whether centrality tendency
+#'   measure is to be displayed as a point with a label (Default: `TRUE`).
+#'   Function decides which central tendency measure to show depending on the
+#'   `type` argument.
+#'
+#'   \itemize{
+#'     \item **mean** for parametric statistics
+#'     \item **median** for non-parametric statistics
+#'     \item **trimmed mean** for robust statistics
+#'     \item **MAP estimator** for Bayesian statistics
+#'   }
+#'
+#'   If you want default centrality parameter, you can specify this using
+#'   `centrality.type` argument.
+#' @param centrality.type Decides which centrality parameter is to be displayed.
+#'   The default is to choose the same as `type` argument. You can specify this
+#'   to be:
+#'
+#'   \itemize{
+#'     \item `"parameteric"` (for **mean**)
+#'     \item `"nonparametric"` (for **median**)
+#'     \item `robust` (for **trimmed mean**)
+#'     \item `bayes` (for **MAP estimator**)
+#'   }
+#'
+#'   Just as `type` argument, abbreviations are also accepted.
 #' @param point.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_point` displaying the raw data.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
@@ -180,6 +206,7 @@ ggbetweenstats <- function(data,
                            nboot = 100L,
                            tr = 0.2,
                            centrality.plotting = TRUE,
+                           centrality.type = type,
                            centrality.point.args = list(size = 5, color = "darkred"),
                            centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                            notch = FALSE,
@@ -406,7 +433,7 @@ ggbetweenstats <- function(data,
         x = {{ x }},
         y = {{ y }},
         k = k,
-        type = type,
+        type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
         sample.size.label = sample.size.label,
         centrality.point.args = centrality.point.args,

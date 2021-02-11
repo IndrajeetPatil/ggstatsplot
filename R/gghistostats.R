@@ -39,26 +39,15 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 #'
 #' @examples
+#' # for reproducibility
+#' set.seed(123)
 #' \donttest{
-#' # most basic function
-#' ggstatsplot::gghistostats(
+#' # using defaults, but modifying which centrality parameter is to be shown
+#' gghistostats(
 #'   data = ToothGrowth,
 #'   x = len,
 #'   xlab = "Tooth length",
-#'   centrality.parameter = "median"
-#' )
-#'
-#' # a detailed function call
-#' ggstatsplot::gghistostats(
-#'   data = iris,
-#'   x = Sepal.Length,
-#'   type = "p",
-#'   caption = substitute(paste(italic("Note"), ": Iris dataset by Anderson")),
-#'   bf.prior = 0.8,
-#'   test.value = 3,
-#'   test.value.line = TRUE,
-#'   binwidth = 0.10,
-#'   bar.fill = "grey50"
+#'   centrality.type = "np"
 #' )
 #' }
 #' @export
@@ -85,6 +74,7 @@ gghistostats <- function(data,
                          bar.fill = "grey50",
                          results.subtitle = TRUE,
                          centrality.plotting = TRUE,
+                         centrality.type = type,
                          centrality.k = 2,
                          centrality.line.args = list(size = 1, color = "blue"),
                          centrality.label.args = list(color = "blue", size = 3),
@@ -206,7 +196,7 @@ gghistostats <- function(data,
       histo_labeller(
         plot = plot,
         x = x_vec,
-        type = type,
+        type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
         centrality.k = centrality.k,
         centrality.line.args = centrality.line.args,

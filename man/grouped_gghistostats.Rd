@@ -103,11 +103,32 @@ override some aspects of the selected \code{ggtheme}.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: \code{TRUE}). Function
-decides which central tendency measure to show depending on the \code{type}
-argument (\strong{mean} for parametric, \strong{median} for non-parametric,
-\strong{trimmed mean} for robust, and \strong{MAP estimator} for Bayes).}
+    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
+measure is to be displayed as a point with a label (Default: \code{TRUE}).
+Function decides which central tendency measure to show depending on the
+\code{type} argument.
+
+\itemize{
+\item \strong{mean} for parametric statistics
+\item \strong{median} for non-parametric statistics
+\item \strong{trimmed mean} for robust statistics
+\item \strong{MAP estimator} for Bayesian statistics
+}
+
+If you want default centrality parameter, you can specify this using
+\code{centrality.type} argument.}
+    \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
+The default is to choose the same as \code{type} argument. You can specify this
+to be:
+
+\itemize{
+\item \code{"parameteric"} (for \strong{mean})
+\item \code{"nonparametric"} (for \strong{median})
+\item \code{robust} (for \strong{trimmed mean})
+\item \code{bayes} (for \strong{MAP estimator})
+}
+
+Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should

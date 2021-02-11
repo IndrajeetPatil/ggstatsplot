@@ -30,6 +30,12 @@ NEW FEATURES
 
   - More models supported in `ggcoefstats`: `crr`, `varest`.
 
+  - `ggbetweenstats`, `ggwithinstats`, `gghistostats`, `ggdotplotstats` gain
+    argument `centrality.type` that can be used to specify which centrality
+    parameter is to be displayed. So one can have `type = "robust"` and still
+    show median as centrality parameter by choosing `centrality.type =
+    "nonparametric"`.
+
 # ggstatsplot 0.6.8
 
 MAJOR CHANGES

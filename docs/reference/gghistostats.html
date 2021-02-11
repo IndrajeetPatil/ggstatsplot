@@ -235,6 +235,7 @@ as a subtitle.</p>
   bar.fill <span class='op'>=</span> <span class='st'>"grey50"</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   centrality.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  centrality.type <span class='op'>=</span> <span class='va'>type</span>,
   centrality.k <span class='op'>=</span> <span class='fl'>2</span>,
   centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
   centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
@@ -361,11 +362,33 @@ the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>centrality.plotting</th>
-      <td><p>Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: <code>TRUE</code>). Function
-decides which central tendency measure to show depending on the <code>type</code>
-argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric,
-<strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></td>
+      <td><p>Logical that decides whether centrality tendency
+measure is to be displayed as a point with a label (Default: <code>TRUE</code>).
+Function decides which central tendency measure to show depending on the
+<code>type</code> argument.</p>
+<ul>
+<li><p><strong>mean</strong> for parametric statistics</p></li>
+<li><p><strong>median</strong> for non-parametric statistics</p></li>
+<li><p><strong>trimmed mean</strong> for robust statistics</p></li>
+<li><p><strong>MAP estimator</strong> for Bayesian statistics</p></li>
+</ul>
+
+<p>If you want default centrality parameter, you can specify this using
+<code>centrality.type</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>centrality.type</th>
+      <td><p>Decides which centrality parameter is to be displayed.
+The default is to choose the same as <code>type</code> argument. You can specify this
+to be:</p>
+<ul>
+<li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p></li>
+<li><p><code>"nonparametric"</code> (for <strong>median</strong>)</p></li>
+<li><p><code>robust</code> (for <strong>trimmed mean</strong>)</p></li>
+<li><p><code>bayes</code> (for <strong>MAP estimator</strong>)</p></li>
+</ul>
+
+<p>Just as <code>type</code> argument, abbreviations are also accepted.</p></td>
     </tr>
     <tr>
       <th>centrality.k</th>
@@ -422,28 +445,17 @@ results.</p></td>
 <code><a href='grouped_ggdotplotstats.html'>grouped_ggdotplotstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># most basic function</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>gghistostats</span><span class='op'>(</span>
+    <pre class="examples"><div class='input'><span class='co'># for reproducibility</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='co'># \donttest{</span>
+<span class='co'># using defaults, but modifying which centrality parameter is to be shown</span>
+<span class='fu'>gghistostats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>ToothGrowth</span>,
   x <span class='op'>=</span> <span class='va'>len</span>,
   xlab <span class='op'>=</span> <span class='st'>"Tooth length"</span>,
-  centrality.parameter <span class='op'>=</span> <span class='st'>"median"</span>
+  centrality.type <span class='op'>=</span> <span class='st'>"np"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># a detailed function call</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>gghistostats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>iris</span>,
-  x <span class='op'>=</span> <span class='va'>Sepal.Length</span>,
-  type <span class='op'>=</span> <span class='st'>"p"</span>,
-  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Note"</span><span class='op'>)</span>, <span class='st'>": Iris dataset by Anderson"</span><span class='op'>)</span><span class='op'>)</span>,
-  bf.prior <span class='op'>=</span> <span class='fl'>0.8</span>,
-  test.value <span class='op'>=</span> <span class='fl'>3</span>,
-  test.value.line <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  binwidth <span class='op'>=</span> <span class='fl'>0.10</span>,
-  bar.fill <span class='op'>=</span> <span class='st'>"grey50"</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

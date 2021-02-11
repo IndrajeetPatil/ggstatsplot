@@ -84,13 +84,18 @@ behavior, select appropriate option with \code{pairwise.display} argument. The
 pairwise comparison dataframes are prepared using the
 \code{pairwiseComparisons::pairwise_comparisons} function. For more details
 about pairwise comparisons, see the documentation for that function.}
-    \item{\code{pairwise.display}}{Decides which pairwise comparisons to display.
-Available options are \code{"significant"} (abbreviation accepted: \code{"s"}) or
-\code{"non-significant"} (abbreviation accepted: \code{"ns"}) or
-\code{"everything"}/\code{"all"}. The default is \code{"significant"}. You can use this
-argument to make sure that your plot is not uber-cluttered when you have
-multiple groups being compared and scores of pairwise comparisons being
-displayed.}
+    \item{\code{pairwise.display}}{Decides \emph{which} pairwise comparisons to display.
+Available options are:
+
+\itemize{
+\item \code{"significant"} (abbreviation accepted: \code{"s"})
+\item \code{"non-significant"} (abbreviation accepted: \code{"ns"})
+\item \code{"all"}
+}
+
+You can use this argument to make sure that your plot is not uber-cluttered
+when you have multiple groups being compared and scores of pairwise
+comparisons being displayed.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
@@ -126,11 +131,32 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
-    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency measure
-is to be displayed as a point with a label (Default: \code{TRUE}). Function
-decides which central tendency measure to show depending on the \code{type}
-argument (\strong{mean} for parametric, \strong{median} for non-parametric,
-\strong{trimmed mean} for robust, and \strong{MAP estimator} for Bayes).}
+    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
+measure is to be displayed as a point with a label (Default: \code{TRUE}).
+Function decides which central tendency measure to show depending on the
+\code{type} argument.
+
+\itemize{
+\item \strong{mean} for parametric statistics
+\item \strong{median} for non-parametric statistics
+\item \strong{trimmed mean} for robust statistics
+\item \strong{MAP estimator} for Bayesian statistics
+}
+
+If you want default centrality parameter, you can specify this using
+\code{centrality.type} argument.}
+    \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
+The default is to choose the same as \code{type} argument. You can specify this
+to be:
+
+\itemize{
+\item \code{"parameteric"} (for \strong{mean})
+\item \code{"nonparametric"} (for \strong{median})
+\item \code{robust} (for \strong{trimmed mean})
+\item \code{bayes} (for \strong{MAP estimator})
+}
+
+Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{centrality.point.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
