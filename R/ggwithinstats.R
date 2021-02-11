@@ -14,9 +14,9 @@
 #' 1. Please note that the function expects that the data is
 #'   already sorted by subject/repeated measures ID.
 #'
-#' 2. To get the Bayes Factor message, you are going to need to install
-#'   the development version of `BayesFactor` (`0.9.12-4.3`).
-#'   You can download it by running:
+#' 2. To carry out Bayesian analysis for ANOVA designs, you will need to install
+#' the development version of `BayesFactor` (`0.9.12-4.3`). You can download it
+#' by running:
 #' `remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")`.
 #'
 #' @inheritParams ggbetweenstats
@@ -97,10 +97,10 @@ ggwithinstats <- function(data,
                           centrality.type = type,
                           centrality.point.args = list(size = 5, color = "darkred"),
                           centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
-                          point.path = TRUE,
-                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
                           centrality.path = TRUE,
                           centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
+                          point.path = TRUE,
+                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
                           outlier.tagging = FALSE,
                           outlier.label = NULL,
                           outlier.coef = 1.5,
@@ -131,36 +131,32 @@ ggwithinstats <- function(data,
     dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     dplyr::group_by({{ x }}) %>%
-    dplyr::mutate(rowid = dplyr::row_number()) %>%
+    dplyr::mutate(.rowid = dplyr::row_number()) %>%
     dplyr::ungroup(.) %>%
-    dplyr::anti_join(x = ., y = dplyr::filter(., is.na({{ y }})), by = "rowid")
+    dplyr::anti_join(x = ., y = dplyr::filter(., is.na({{ y }})), by = ".rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column
-  if (rlang::quo_is_null(rlang::enquo(outlier.label))) data %<>% dplyr::mutate(outlier.label = {{ y }})
+  if (!"outlier.label" %in% names(data)) data %<>% dplyr::mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
     outlier_df(
-      data = .,
       x = {{ x }},
       y = {{ y }},
       outlier.coef = outlier.coef,
       outlier.label = outlier.label
     )
 
-  # figure out which test to run based on the number of levels of the
-  # independent variables
+  # --------------------- subtitle/caption preparation ------------------------
+
+  # figure out which test to run based on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
-  if (type == "parametric" && test == "anova" && utils::packageVersion("BayesFactor") < "0.9.12-4.3") {
-    message(cat(
-      "Needs GitHub version of `BayesFactor`:\n",
-      "remotes::install_github('richarddmorey/BayesFactor/pkg/BayesFactor')"
-    ))
-    bf.message <- FALSE
+  # these analyses do require latest Github version of Bayes Factor
+  if (type %in% c("parametric", "bayes") && test == "anova" &&
+    utils::packageVersion("BayesFactor") < "0.9.12-4.3") {
+    if (type == "parametric") bf.message <- FALSE else results.subtitle <- FALSE
   }
-
-  # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
     # preparing the bayes factor message
@@ -215,7 +211,7 @@ ggwithinstats <- function(data,
   plot <-
     ggplot2::ggplot(
       data = data,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = rowid)
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)
     ) +
     ggplot2::geom_point(
       alpha = 0.5,

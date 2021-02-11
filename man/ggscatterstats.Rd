@@ -17,11 +17,11 @@ ggscatterstats(
   results.subtitle = TRUE,
   label.var = NULL,
   label.expression = NULL,
-  point.label.args = list(size = 3),
-  smooth.line.args = list(size = 1.5, color = "blue"),
   point.args = list(size = 3, alpha = 0.4),
   point.width.jitter = 0,
   point.height.jitter = 0,
+  point.label.args = list(size = 3),
+  smooth.line.args = list(size = 1.5, color = "blue"),
   marginal = TRUE,
   marginal.type = "densigram",
   marginal.size = 5,
@@ -90,12 +90,6 @@ determines the subset of data points to label. This argument can be entered
 either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
 \code{"y < 4 & z < 20"}).}
 
-\item{point.label.args}{A list of additional aesthetic arguments to be passed
-to \code{ggrepel::geom_label_repel} geom used to display the labels.}
-
-\item{smooth.line.args}{A list of additional aesthetic arguments to be passed
-to \code{ggplot2::geom_smooth} geom used to display the regression line.}
-
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}
 
@@ -105,6 +99,12 @@ data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the *\strong{labels} for
 these points.}
+
+\item{point.label.args}{A list of additional aesthetic arguments to be passed
+to \code{ggrepel::geom_label_repel} geom used to display the labels.}
+
+\item{smooth.line.args}{A list of additional aesthetic arguments to be passed
+to \code{ggplot2::geom_smooth} geom used to display the regression line.}
 
 \item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be
 displayed; the default is \code{TRUE}.}

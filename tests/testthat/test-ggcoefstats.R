@@ -469,6 +469,49 @@ test_that(
   }
 )
 
+# meta subtitle -------------------------------------
+
+test_that(
+  desc = "meta subtitle",
+  code = {
+    skip_on_cran()
+
+    # dataframe
+    df_eg <-
+      structure(
+        list(
+          estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
+          std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
+        ),
+        row.names = c(NA, -5L),
+        class = c("tbl_df", "tbl", "data.frame")
+      )
+
+    # subtitle output
+    set.seed(123)
+    using_function1 <-
+      statsExpressions::expr_meta_random(
+        data = df_eg,
+        k = 4,
+        output = "subtitle",
+        type = "p"
+      )
+
+    # ggstatsplot output
+    set.seed(123)
+    ggcoef_label <-
+      ggcoefstats(df_eg,
+        k = 4,
+        meta.analytic.effect = TRUE,
+        bf.message = FALSE,
+        output = "subtitle",
+        meta.type = "p"
+      )
+
+    expect_identical(using_function1, ggcoef_label)
+  }
+)
+
 # duplicated terms -------------------------------------
 
 test_that(

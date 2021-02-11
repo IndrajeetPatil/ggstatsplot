@@ -134,7 +134,7 @@ ggpiestats <- function(data,
     y_levels <- 0L
   }
 
-  # facting is happening only if both vars have more than one levels
+  # faceting is happening only if both vars have more than one levels
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
   if (x_levels == 1L && isTRUE(facet)) proportion.test <- FALSE
 

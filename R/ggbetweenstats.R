@@ -241,23 +241,21 @@ ggbetweenstats <- function(data,
     dplyr::mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   # if outlier.label column is not present, just use the values from `y` column
-  if (rlang::quo_is_null(rlang::enquo(outlier.label))) data %<>% dplyr::mutate(outlier.label = {{ y }})
+  if (!"outlier.label" %in% names(data)) data %<>% dplyr::mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
     outlier_df(
-      data = .,
       x = {{ x }},
       y = {{ y }},
       outlier.coef = outlier.coef,
       outlier.label = outlier.label
     )
 
-  # figure out which test to run based on the number of levels of the
-  # independent variables
-  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
-
   # --------------------- subtitle/caption preparation ------------------------
+
+  # figure out which test to run based on the no. of levels of the independent variable
+  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
   if (isTRUE(results.subtitle)) {
     # preparing the Bayes factor message

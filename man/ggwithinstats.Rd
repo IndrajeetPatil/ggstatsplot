@@ -31,10 +31,10 @@ ggwithinstats(
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
   centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
-  point.path = TRUE,
-  point.path.args = list(alpha = 0.5, linetype = "dashed"),
   centrality.path = TRUE,
   centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
+  point.path = TRUE,
+  point.path.args = list(alpha = 0.5, linetype = "dashed"),
   outlier.tagging = FALSE,
   outlier.label = NULL,
   outlier.coef = 1.5,
@@ -172,16 +172,16 @@ arguments to be passed to \code{ggplot2::geom_point} and
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
+\item{centrality.path.args, point.path.args}{A list of additional aesthetic
+arguments passed on to \code{geom_path} connecting raw data points and mean
+points.}
+
 \item{point.path, centrality.path}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
 default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
 of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
-
-\item{centrality.path.args, point.path.args}{A list of additional aesthetic
-arguments passed on to \code{geom_path} connecting raw data points and mean
-points.}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
@@ -247,9 +247,9 @@ a subtitle.
 \enumerate{
 \item Please note that the function expects that the data is
 already sorted by subject/repeated measures ID.
-\item To get the Bayes Factor message, you are going to need to install
-the development version of \code{BayesFactor} (\verb{0.9.12-4.3}).
-You can download it by running:
+\item To carry out Bayesian analysis for ANOVA designs, you will need to install
+the development version of \code{BayesFactor} (\verb{0.9.12-4.3}). You can download it
+by running:
 \code{remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")}.
 }
 }
