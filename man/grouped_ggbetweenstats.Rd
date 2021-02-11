@@ -98,14 +98,6 @@ the plot will be returned.}
     \item{\code{sample.size.label}}{Logical that decides whether sample size information
 should be displayed for each level of the grouping variable \code{x} (Default:
 \code{TRUE}).}
-    \item{\code{notch}}{A logical. If \code{FALSE} (default), a standard box plot will be
-displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
-compare groups; if the notches of two boxes do not overlap, this suggests
-that the medians are significantly different. In a notched box plot, the
-notches extend \code{1.58 * IQR / sqrt(n)}, where IQR: Inter-Quartile Range.
-This gives a roughly \verb{95\%} confidence interval for comparing medians.}
-    \item{\code{notchwidth}}{For a notched box plot, width of the notch relative to the
-body (default \code{0.5}).}
     \item{\code{outlier.color}}{Default aesthetics for outliers (Default: \code{"black"}).}
     \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}

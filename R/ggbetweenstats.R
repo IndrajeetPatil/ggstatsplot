@@ -52,14 +52,6 @@
 #' @param sample.size.label Logical that decides whether sample size information
 #'   should be displayed for each level of the grouping variable `x` (Default:
 #'   `TRUE`).
-#' @param notch A logical. If `FALSE` (default), a standard box plot will be
-#'   displayed. If `TRUE`, a notched box plot will be used. Notches are used to
-#'   compare groups; if the notches of two boxes do not overlap, this suggests
-#'   that the medians are significantly different. In a notched box plot, the
-#'   notches extend `1.58 * IQR / sqrt(n)`, where IQR: Inter-Quartile Range.
-#'   This gives a roughly `95%` confidence interval for comparing medians.
-#' @param notchwidth For a notched box plot, width of the notch relative to the
-#'   body (default `0.5`).
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -209,8 +201,6 @@ ggbetweenstats <- function(data,
                            centrality.type = type,
                            centrality.point.args = list(size = 5, color = "darkred"),
                            centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
-                           notch = FALSE,
-                           notchwidth = 0.5,
                            outlier.tagging = FALSE,
                            outlier.label = NULL,
                            outlier.coef = 1.5,
@@ -368,18 +358,13 @@ ggbetweenstats <- function(data,
       )
     } else {
       .f <- ggplot2::geom_boxplot
-      outlier_list <- list(
-        outlier.shape = NA,
-        position = ggplot2::position_dodge(width = NULL)
-      )
+      outlier_list <- list(outlier.shape = NA, position = ggplot2::position_dodge(width = NULL))
     }
 
     # add a boxplot
     suppressWarnings(plot <- plot +
       rlang::exec(
         .fn = .f,
-        notch = notch,
-        notchwidth = notchwidth,
         width = 0.3,
         alpha = 0.2,
         fill = "white",

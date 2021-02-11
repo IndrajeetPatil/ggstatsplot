@@ -83,12 +83,12 @@ to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, on
 the plot will be returned.}
 
 \item{label.var}{Variable to use for points labels. Can be entered either as
-a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
+a bare expression (e.g, \code{var1}) or as a string (e.g., \code{"var1"}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
 determines the subset of data points to label. This argument can be entered
-either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
-expression (e.g., \code{y < 4 & z < 20}).}
+either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
+\code{"y < 4 & z < 20"}).}
 
 \item{point.label.args}{A list of additional aesthetic arguments to be passed
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
@@ -103,7 +103,8 @@ to \code{ggplot2::geom_point} geom used to display the raw data points.}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
-displaying the points and the other displaying the labels for these points.}
+displaying the \strong{points} and the other displaying the *\strong{labels} for
+these points.}
 
 \item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be
 displayed; the default is \code{TRUE}.}
@@ -162,10 +163,11 @@ subtitle.
 }
 \note{
 \itemize{
-\item If you set \code{marginal = TRUE}, the resulting plot can't be further modified
-with \code{ggplot2} functions since it is no longer a \code{ggplot} object. In case you
-want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at the
-\code{ggplot.component} argument.
+\item If you set \code{marginal = TRUE}, the resulting plot can \strong{not} be further
+modified with \code{ggplot2} functions since it is no longer a \code{ggplot} object. In
+case you want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at
+the \code{ggplot.component} argument.
+
 \item The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you

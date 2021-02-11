@@ -380,14 +380,6 @@ arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference
     <dt><code>centrality.label.args</code></dt><dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
-    <dt><code>notch</code></dt><dd><p>A logical. If <code>FALSE</code> (default), a standard box plot will be
-displayed. If <code>TRUE</code>, a notched box plot will be used. Notches are used to
-compare groups; if the notches of two boxes do not overlap, this suggests
-that the medians are significantly different. In a notched box plot, the
-notches extend <code>1.58 * IQR / sqrt(n)</code>, where IQR: Inter-Quartile Range.
-This gives a roughly <code>95%</code> confidence interval for comparing medians.</p></dd>
-    <dt><code>notchwidth</code></dt><dd><p>For a notched box plot, width of the notch relative to the
-body (default <code>0.5</code>).</p></dd>
     <dt><code>outlier.tagging</code></dt><dd><p>Decides whether outliers should be tagged (Default:
 <code>FALSE</code>).</p></dd>
     <dt><code>outlier.coef</code></dt><dd><p>Coefficient for outlier detection using Tukey's method.

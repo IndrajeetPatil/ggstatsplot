@@ -318,14 +318,14 @@ the plot will be returned.</p></td>
     <tr>
       <th>label.var</th>
       <td><p>Variable to use for points labels. Can be entered either as
-a character string (e.g., <code>"var1"</code>) or as a bare expression (e.g, <code>var1</code>).</p></td>
+a bare expression (e.g, <code>var1</code>) or as a string (e.g., <code>"var1"</code>).</p></td>
     </tr>
     <tr>
       <th>label.expression</th>
       <td><p>An expression evaluating to a logical vector that
 determines the subset of data points to label. This argument can be entered
-either as a character string (e.g., <code>"y &lt; 4 &amp; z &lt; 20"</code>) or as a bare
-expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
+either as a bare expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>) or as a string (e.g.,
+<code>"y &lt; 4 &amp; z &lt; 20"</code>).</p></td>
     </tr>
     <tr>
       <th>point.label.args</th>
@@ -348,7 +348,8 @@ to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplo
 direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
 data. Note that the jitter should not be specified in the <code>point.args</code>
 because this information will be passed to two different <code>geom</code>s: one
-displaying the points and the other displaying the labels for these points.</p></td>
+displaying the <strong>points</strong> and the other displaying the *<strong>labels</strong> for
+these points.</p></td>
     </tr>
     <tr>
       <th>marginal</th>
@@ -432,10 +433,10 @@ results.</p></td>
 
     
 <ul>
-<li><p>If you set <code>marginal = TRUE</code>, the resulting plot can't be further modified
-with <code>ggplot2</code> functions since it is no longer a <code>ggplot</code> object. In case you
-want a <code>ggplot</code> object, set <code>marginal = FALSE</code>. Also have a look at the
-<code>ggplot.component</code> argument.</p></li>
+<li><p>If you set <code>marginal = TRUE</code>, the resulting plot can <strong>not</strong> be further
+modified with <code>ggplot2</code> functions since it is no longer a <code>ggplot</code> object. In
+case you want a <code>ggplot</code> object, set <code>marginal = FALSE</code>. Also have a look at
+the <code>ggplot.component</code> argument.</p></li>
 <li><p>The plot uses <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you

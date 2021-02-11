@@ -1,9 +1,13 @@
 #' @title Scatterplot with marginal distributions for all levels of a grouping
 #'   variable
 #' @name grouped_ggscatterstats
-#' @description Grouped scatterplots from `ggplot2` combined with marginal
-#'   histograms/boxplots/density plots with statistical details added as a
-#'   subtitle.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Grouped scatterplots from `ggplot2` combined with marginal distribution plots
+#' with statistical details added as a subtitle.
 #'
 #' @inheritParams ggscatterstats
 #' @inheritParams grouped_ggbetweenstats
@@ -27,7 +31,7 @@
 #' library(ggstatsplot)
 #'
 #' # basic function call
-#' ggstatsplot::grouped_ggscatterstats(
+#' grouped_ggscatterstats(
 #'   data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x = length,
 #'   y = rating,
@@ -51,7 +55,7 @@
 #'
 #' # labeling without expression
 #'
-#' ggstatsplot::grouped_ggscatterstats(
+#' grouped_ggscatterstats(
 #'   data = dplyr::filter(
 #'     .data = movies_long,
 #'     rating == 7,
@@ -64,7 +68,7 @@
 #'   label.var = "title",
 #'   marginal = FALSE,
 #'   title.prefix = "Genre",
-#'   caption.text = "All movies have IMDB rating equal to 7."
+#'   annotation.args = list(caption = "All movies have IMDB rating greater than 7")
 #' )
 #' @export
 

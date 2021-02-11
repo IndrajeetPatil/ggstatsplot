@@ -35,12 +35,12 @@ be plotted on the \code{y}-axis. Can be entered either as a character string
 bare name \code{x} or as a string \code{"x"}).}
 
 \item{label.var}{Variable to use for points labels. Can be entered either as
-a character string (e.g., \code{"var1"}) or as a bare expression (e.g, \code{var1}).}
+a bare expression (e.g, \code{var1}) or as a string (e.g., \code{"var1"}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
 determines the subset of data points to label. This argument can be entered
-either as a character string (e.g., \code{"y < 4 & z < 20"}) or as a bare
-expression (e.g., \code{y < 4 & z < 20}).}
+either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
+\code{"y < 4 & z < 20"}).}
 
 \item{title.prefix}{Character string specifying the prefix text for the fixed
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
@@ -72,12 +72,14 @@ displayed; the default is \code{TRUE}.}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
-displaying the points and the other displaying the labels for these points.}
+displaying the \strong{points} and the other displaying the *\strong{labels} for
+these points.}
     \item{\code{point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
-displaying the points and the other displaying the labels for these points.}
+displaying the \strong{points} and the other displaying the *\strong{labels} for
+these points.}
     \item{\code{marginal.type}}{Type of marginal distribution to be plotted on the axes
 (\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
     \item{\code{marginal.size}}{Integer describing the relative size of the marginal
@@ -135,9 +137,10 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
   }}
 }
 \description{
-Grouped scatterplots from \code{ggplot2} combined with marginal
-histograms/boxplots/density plots with statistical details added as a
-subtitle.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Grouped scatterplots from \code{ggplot2} combined with marginal distribution plots
+with statistical details added as a subtitle.
 }
 \examples{
 # to ensure reproducibility
@@ -145,7 +148,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # basic function call
-ggstatsplot::grouped_ggscatterstats(
+grouped_ggscatterstats(
   data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
   x = length,
   y = rating,
@@ -169,7 +172,7 @@ grouped_ggscatterstats(
 
 # labeling without expression
 
-ggstatsplot::grouped_ggscatterstats(
+grouped_ggscatterstats(
   data = dplyr::filter(
     .data = movies_long,
     rating == 7,
@@ -182,7 +185,7 @@ ggstatsplot::grouped_ggscatterstats(
   label.var = "title",
   marginal = FALSE,
   title.prefix = "Genre",
-  caption.text = "All movies have IMDB rating equal to 7."
+  annotation.args = list(caption = "All movies have IMDB rating greater than 7")
 )
 }
 \references{

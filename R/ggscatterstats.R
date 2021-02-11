@@ -11,11 +11,11 @@
 #'
 #' @param ... Currently ignored.
 #' @param label.var Variable to use for points labels. Can be entered either as
-#'   a character string (e.g., `"var1"`) or as a bare expression (e.g, `var1`).
+#'   a bare expression (e.g, `var1`) or as a string (e.g., `"var1"`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label. This argument can be entered
-#'   either as a character string (e.g., `"y < 4 & z < 20"`) or as a bare
-#'   expression (e.g., `y < 4 & z < 20`).
+#'   either as a bare expression (e.g., `y < 4 & z < 20`) or as a string (e.g.,
+#'   `"y < 4 & z < 20"`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed
@@ -28,7 +28,8 @@
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data. Note that the jitter should not be specified in the `point.args`
 #'   because this information will be passed to two different `geom`s: one
-#'   displaying the points and the other displaying the labels for these points.
+#'   displaying the **points** and the other displaying the ***labels** for
+#'   these points.
 #' @param marginal.type Type of marginal distribution to be plotted on the axes
 #'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`, `"densigram"`).
 #' @param marginal.size Integer describing the relative size of the marginal
@@ -59,15 +60,17 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 #'
 #' @note
-#' - If you set `marginal = TRUE`, the resulting plot can't be further modified
-#' with `ggplot2` functions since it is no longer a `ggplot` object. In case you
-#' want a `ggplot` object, set `marginal = FALSE`. Also have a look at the
-#' `ggplot.component` argument.
+#' \itemize{
+#' \item If you set `marginal = TRUE`, the resulting plot can **not** be further
+#' modified with `ggplot2` functions since it is no longer a `ggplot` object. In
+#' case you want a `ggplot` object, set `marginal = FALSE`. Also have a look at
+#' the `ggplot.component` argument.
 #'
-#' - The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#' \item The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
 #' from over-lapping to the largest degree possible.  As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
+#' }
 #'
 #' @examples
 #' \donttest{

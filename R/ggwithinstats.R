@@ -101,8 +101,6 @@ ggwithinstats <- function(data,
                           point.path.args = list(alpha = 0.5, linetype = "dashed"),
                           centrality.path = TRUE,
                           centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
-                          notch = FALSE,
-                          notchwidth = 0.5,
                           outlier.tagging = FALSE,
                           outlier.label = NULL,
                           outlier.coef = 1.5,
@@ -230,9 +228,7 @@ ggwithinstats <- function(data,
       inherit.aes = FALSE,
       fill = "white",
       width = 0.2,
-      alpha = 0.5,
-      notch = notch,
-      notchwidth = notchwidth
+      alpha = 0.5
     ) +
     rlang::exec(
       .fn = ggplot2::geom_violin,

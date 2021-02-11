@@ -26,6 +26,9 @@ MAJOR CHANGES
   - Using `annotate` instead of `geom_label` had significantly slowed down
     `gghistostats` and `ggdotplotstats` functions. This has been fixed.
 
+  - Removes the vestigial `notch` and `notchwidth` arguments for
+    `ggbetweenstats` and `ggwithinstats`.
+
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `crr`, `varest`.

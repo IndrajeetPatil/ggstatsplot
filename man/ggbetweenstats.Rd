@@ -33,8 +33,6 @@ ggbetweenstats(
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
   centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
-  notch = FALSE,
-  notchwidth = 0.5,
   outlier.tagging = FALSE,
   outlier.label = NULL,
   outlier.coef = 1.5,
@@ -177,16 +175,6 @@ Just as \code{type} argument, abbreviations are also accepted.}
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
-
-\item{notch}{A logical. If \code{FALSE} (default), a standard box plot will be
-displayed. If \code{TRUE}, a notched box plot will be used. Notches are used to
-compare groups; if the notches of two boxes do not overlap, this suggests
-that the medians are significantly different. In a notched box plot, the
-notches extend \code{1.58 * IQR / sqrt(n)}, where IQR: Inter-Quartile Range.
-This gives a roughly \verb{95\%} confidence interval for comparing medians.}
-
-\item{notchwidth}{For a notched box plot, width of the notch relative to the
-body (default \code{0.5}).}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}

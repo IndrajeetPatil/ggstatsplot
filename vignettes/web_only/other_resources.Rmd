@@ -49,6 +49,14 @@ functions included in `ggstatsplot`.
 
 # Videos
 
+## My own talks
+
+  - <https://www.youtube.com/watch?v=8Em1bCFBMWg&ab_channel=BusinessScience>
+
+## Other
+
+  - <https://www.youtube.com/watch?v=n-sXeshyVRI&t=297s&ab_channel=R-LadiesTunis>
+
   - <https://www.youtube.com/watch?v=cNJIMwtLWv0&feature=youtu.be&ab_channel=YuryZablotski>
 
   - <https://www.youtube.com/watch?v=aw6HDz9zA1Q>
