@@ -1,7 +1,7 @@
 ---
 title: "ggstatsplot: ggplot2 Based Plots with Statistical Details"
 author: Indrajeet Patil^[Max Planck Institute for Human Development, patilindrajeet.science@gmail.com]
-date: "2021-02-10"
+date: "2021-02-12"
 output: 
   bookdown::pdf_document2:
     fig_caption: true
@@ -25,6 +25,15 @@ link-citations: yes
 linkcolor: blue
 ---
 
+
+```
+## Registered S3 methods overwritten by 'lme4':
+##   method                          from
+##   cooks.distance.influence.merMod car 
+##   influence.merMod                car 
+##   dfbeta.influence.merMod         car 
+##   dfbetas.influence.merMod        car
+```
 
 ```
 ## In case you would like cite this package, cite it as:

@@ -29,6 +29,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -41,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.6.8</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
       </span>
     </div>
 
@@ -114,6 +116,11 @@
     <li>
       <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
+    <li class="divider">
+    <li class="dropdown-header">Development-focused</li>
+    <li>
+      <a href="../../articles/web_only/benchmarking.html">Benchmarking</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -149,7 +156,7 @@
       <h1 data-toc-skip>session information</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-01-17</h4>
+            <h4 class="date">2021-02-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/session_info.Rmd"><code>vignettes/web_only/session_info.Rmd</code></a></small>
       <div class="hidden name"><code>session_info.Rmd</code></div>
@@ -162,7 +169,7 @@
 <h1 class="hasAnchor">
 <a href="#session-information" class="anchor"></a>Session information</h1>
 <p>This vignette provides exhaustive details about the session (attached packages, their versions, date, source, etc.) in which the vignettes were rendered and the website was built. This is helpful information for reproducibility. If you see any divergences between function behavior as described on the website and what you see on your system, this information can come in handy for diagnosing the source of those divergences.</p>
-<p>This session information was generated on 2021-01-17:</p>
+<p>This session information was generated on 2021-02-12:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup for the session</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
@@ -174,7 +181,7 @@
 <span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span>include_base <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; - Session info ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
 <span class="co">#&gt;  setting  value                                             </span>
-<span class="co">#&gt;  version  R Under development (unstable) (2021-01-13 r79826)</span>
+<span class="co">#&gt;  version  R Under development (unstable) (2021-02-11 r79990)</span>
 <span class="co">#&gt;  os       Windows 10 x64                                    </span>
 <span class="co">#&gt;  system   x86_64, mingw32                                   </span>
 <span class="co">#&gt;  ui       RTerm                                             </span>
@@ -182,50 +189,43 @@
 <span class="co">#&gt;  collate  English_United States.1252                        </span>
 <span class="co">#&gt;  ctype    English_United States.1252                        </span>
 <span class="co">#&gt;  tz       Europe/Berlin                                     </span>
-<span class="co">#&gt;  date     2021-01-17                                        </span>
+<span class="co">#&gt;  date     2021-02-12                                        </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
 <span class="co">#&gt;  ! package             * version    date       lib source                                    </span>
 <span class="co">#&gt;    abind                 1.4-5      2016-07-21 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    afex                  0.28-1     2021-01-12 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    assertthat            0.2.1      2019-03-21 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    base                * 4.1.0      2021-01-14 [?] local                                     </span>
+<span class="co">#&gt;    base                * 4.1.0      2021-02-12 [?] local                                     </span>
 <span class="co">#&gt;    BayesFactor           0.9.12-4.3 2020-11-21 [1] Github (richarddmorey/BayesFactor@4526244)</span>
-<span class="co">#&gt;    bayestestR            0.8.1      2021-01-17 [1] Github (easystats/bayestestR@e715580)     </span>
-<span class="co">#&gt;    bbmle                 1.0.23.1   2020-02-03 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    bdsmatrix             1.3-4      2020-01-13 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    boot                  1.3-25     2020-04-26 [2] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    bridgesampling        1.0-0      2020-02-26 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    Brobdingnag           1.2-6      2018-08-13 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    bayestestR            0.8.2.1    2021-02-08 [1] Github (easystats/bayestestR@8680f3d)     </span>
+<span class="co">#&gt;    boot                  1.3-26     2021-01-25 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    BWStest               0.2.2      2018-10-18 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    callr                 3.5.1      2020-10-13 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    cachem                1.0.3      2021-02-04 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    car                   3.0-11     2020-10-25 [1] R-Forge (R 4.1.0)                         </span>
 <span class="co">#&gt;    carData               3.0-4      2020-05-22 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    cellranger            1.1.0      2016-07-27 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    cli                   2.2.0      2020-11-20 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    cli                   2.3.0      2021-01-31 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    coda                  0.19-4     2020-09-30 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    codetools             0.2-18     2020-11-04 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    colorspace            2.0-0      2020-11-11 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P compiler              4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;    correlation           0.5.0.1    2021-01-17 [1] Github (easystats/correlation@fa8e2db)    </span>
-<span class="co">#&gt;    patchwork               1.1.1      2020-12-30 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    crayon                1.3.4      2017-09-16 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;  P compiler              4.1.0      2021-02-12 [2] local                                     </span>
+<span class="co">#&gt;    correlation           0.6.0      2021-02-12 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    crayon                1.4.1      2021-02-08 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    curl                  4.3        2019-12-02 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    data.table            1.13.6     2020-12-30 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P datasets            * 4.1.0      2021-01-14 [2] local                                     </span>
+<span class="co">#&gt;  P datasets            * 4.1.0      2021-02-12 [2] local                                     </span>
 <span class="co">#&gt;    DBI                   1.1.1      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    desc                  1.2.0      2018-05-01 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    digest                0.6.27     2020-10-24 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    dplyr                 1.0.3      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    effectsize            0.4.3.1    2021-01-17 [1] Github (easystats/effectsize@238a042)     </span>
+<span class="co">#&gt;    dplyr                 1.0.4      2021-02-02 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    effectsize            0.4.3.2    2021-02-08 [1] Github (easystats/effectsize@b8ebd14)     </span>
 <span class="co">#&gt;    ellipsis              0.3.1      2020-05-15 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    emmeans               1.5.3      2020-12-09 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    emmeans               1.5.4      2021-02-03 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    estimability          1.3        2018-02-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    evaluate              0.14       2019-05-28 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    fansi                 0.4.1      2020-01-08 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    fastGHQuad            1.0        2018-09-30 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    fastmap               1.0.1      2019-10-08 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    forcats               0.5.0      2020-03-01 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    fastmap               1.1.0      2021-01-25 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    forcats               0.5.1      2021-01-27 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    foreign               0.8-81     2020-12-22 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    fs                    1.5.0      2020-07-31 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    generics              0.1.0      2020-10-31 [1] CRAN (R 4.1.0)                            </span>
@@ -234,76 +234,62 @@
 <span class="co">#&gt;    ggplot2               3.3.3      2020-12-30 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    ggrepel               0.9.1      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    ggsignif              0.6.0.9000 2021-01-13 [1] local                                     </span>
-<span class="co">#&gt;    ggstatsplot         * 0.6.8      2021-01-17 [1] local                                     </span>
+<span class="co">#&gt;    ggstatsplot         * 0.7.0      2021-02-12 [1] local                                     </span>
 <span class="co">#&gt;    glue                  1.4.2      2020-08-27 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    gmp                   0.6-2      2021-01-07 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P graphics            * 4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;  P grDevices           * 4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;  P grid                  4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;    gridExtra             2.3        2017-09-09 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;  P graphics            * 4.1.0      2021-02-12 [2] local                                     </span>
+<span class="co">#&gt;  P grDevices           * 4.1.0      2021-02-12 [2] local                                     </span>
+<span class="co">#&gt;  P grid                  4.1.0      2021-02-12 [2] local                                     </span>
 <span class="co">#&gt;    gtable                0.3.0      2019-03-25 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    gtools                3.8.2      2020-03-31 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    haven                 2.3.1      2020-06-01 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    hms                   1.0.0      2021-01-13 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    htmltools             0.5.1      2021-01-12 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    htmltools             0.5.1.1    2021-01-22 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    httpuv                1.5.5      2021-01-13 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    inline                0.3.17     2020-12-01 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    insight               0.12.0.1   2021-01-17 [1] Github (easystats/insight@ba4b1b3)        </span>
-<span class="co">#&gt;    ipmisc                5.0.2.9000 2021-01-11 [1] local                                     </span>
-<span class="co">#&gt;    jsonlite              1.7.2      2020-12-09 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    knitr                 1.30       2020-09-22 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    insight               0.12.0.1   2021-02-11 [1] local                                     </span>
+<span class="co">#&gt;    ipmisc                6.0.0.9000 2021-01-22 [1] local                                     </span>
+<span class="co">#&gt;    knitr                 1.31       2021-01-27 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    kSamples              1.2-9      2019-05-20 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    LaplacesDemon         16.1.4     2020-02-06 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    later                 1.1.0.1    2020-06-05 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    lattice               0.20-41    2020-04-02 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    lifecycle             0.2.0      2020-03-06 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    lme4                  1.1-26     2020-12-01 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    lmerTest              3.1-3      2020-10-23 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    logspline             2.1.16     2020-05-08 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    loo                   2.4.1      2020-12-09 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    magrittr              2.0.1      2020-11-17 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    MASS                  7.3-53     2020-09-09 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    Matrix                1.3-2      2021-01-06 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    MatrixModels          0.4-1      2015-08-22 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    matrixStats           0.57.0     2020-09-25 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    mc2d                  0.1-18     2017-03-06 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    memoise               1.1.0      2017-04-21 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    metaBMA               0.6.6      2021-01-08 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    metafor               2.4-0      2020-03-19 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    metaplus              0.7-11     2018-04-01 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P methods             * 4.1.0      2021-01-14 [2] local                                     </span>
+<span class="co">#&gt;    memoise               2.0.0      2021-01-26 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;  P methods             * 4.1.0      2021-02-12 [2] local                                     </span>
 <span class="co">#&gt;    mime                  0.9        2020-02-04 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    miniUI                0.1.1.1    2018-05-18 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    minqa                 1.2.4      2014-10-09 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    multcomp              1.4-15     2020-11-14 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    multcomp              1.4-16     2021-02-08 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    multcompView          0.1-8      2019-12-19 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    munsell               0.5.0      2018-06-12 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    mvtnorm               1.1-1      2020-06-09 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    nlme                  3.1-151    2020-12-10 [2] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    nlme                  3.1-152    2021-02-04 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    nloptr                1.2.2.2    2020-07-02 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    numDeriv              2016.8-1.1 2019-06-06 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    openxlsx              4.2.3      2020-10-27 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    pairwiseComparisons   3.1.2      2021-01-15 [1] local                                     </span>
+<span class="co">#&gt;    pairwiseComparisons   3.1.3.9000 2021-02-11 [1] local                                     </span>
 <span class="co">#&gt;    paletteer             1.3.0      2021-01-06 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P parallel              4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;    parameters            0.11.0     2021-01-17 [1] Github (easystats/parameters@0468fc6)     </span>
+<span class="co">#&gt;  P parallel              4.1.0      2021-02-12 [2] local                                     </span>
+<span class="co">#&gt;    parameters            0.11.0.1   2021-02-08 [1] Github (easystats/parameters@499b286)     </span>
+<span class="co">#&gt;    patchwork             1.1.1      2020-12-17 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    pbapply               1.4-3      2020-08-18 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    performance           0.6.1.1    2021-01-17 [1] Github (easystats/performance@42d9ccf)    </span>
+<span class="co">#&gt;    performance           0.7.0      2021-02-05 [1] Github (easystats/performance@016ba46)    </span>
 <span class="co">#&gt;    pillar                1.4.7      2020-11-20 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    pkgbuild              1.2.0      2020-12-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    pkgconfig             2.0.3      2019-09-22 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    pkgdown               1.6.1.9000 2020-11-04 [1] Github (r-lib/pkgdown@e584747)            </span>
+<span class="co">#&gt;    pkgdown               1.6.1.9000 2021-02-12 [1] Github (r-lib/pkgdown@a3116bd)            </span>
 <span class="co">#&gt;    plyr                  1.8.6      2020-03-03 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    PMCMRplus             1.9.0      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    prettyunits           1.1.1      2020-01-24 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    processx              3.4.5      2020-11-30 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    promises              1.1.1      2020-06-09 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    ps                    1.5.0      2020-12-05 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    promises              1.2.0.1    2021-02-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    purrr                 0.3.4      2020-04-17 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    R6                    2.5.0      2020-10-28 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    ragg                  1.0.0.9000 2020-11-25 [1] Github (r-lib/ragg@cd1a50f)               </span>
+<span class="co">#&gt;    ragg                  1.0.0.9000 2021-02-12 [1] Github (r-lib/ragg@bd6f9af)               </span>
 <span class="co">#&gt;    Rcpp                  1.0.6      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    RcppParallel          5.0.2      2020-06-24 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    readxl                1.3.1      2019-03-13 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    rematch2              2.1.2      2020-05-01 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    reshape               0.8.8      2018-10-23 [1] CRAN (R 4.1.0)                            </span>
@@ -313,37 +299,30 @@
 <span class="co">#&gt;    rmarkdown             2.6        2020-12-14 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    Rmpfr                 0.8-2      2020-11-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    rprojroot             2.0.2      2020-11-15 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    rstan                 2.21.2     2020-07-27 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    rstantools            2.1.1      2020-07-06 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    rstudioapi            0.13       2020-11-12 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    sandwich              3.0-0      2020-10-02 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    scales                1.1.1      2020-05-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    sessioninfo           1.1.1      2018-11-05 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    shiny                 1.5.0      2020-06-23 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P splines               4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;    StanHeaders           2.21.0-7   2020-12-17 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    shiny                 1.6.0      2021-01-25 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;  P splines               4.1.0      2021-02-12 [2] local                                     </span>
 <span class="co">#&gt;    statmod               1.4.35     2020-10-19 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P stats               * 4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;  P stats4                4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;    statsExpressions      0.7.0      2021-01-14 [1] local                                     </span>
+<span class="co">#&gt;  P stats               * 4.1.0      2021-02-12 [2] local                                     </span>
+<span class="co">#&gt;    statsExpressions      0.7.1      2021-02-12 [1] local                                     </span>
 <span class="co">#&gt;    stringi               1.5.3      2020-09-09 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    stringr               1.4.0      2019-02-10 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    SuppDists             1.1-9.5    2020-01-18 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    survival              3.2-7      2020-09-28 [2] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    systemfonts           0.3.2.9000 2020-11-25 [1] Github (r-lib/systemfonts@7df5e29)        </span>
-<span class="co">#&gt;    textshaping           0.2.1.9000 2020-11-25 [1] Github (r-lib/textshaping@e71ce33)        </span>
+<span class="co">#&gt;    systemfonts           1.0.1.9000 2021-02-12 [1] Github (r-lib/systemfonts@bc0b76a)        </span>
+<span class="co">#&gt;    textshaping           0.2.1.9000 2021-02-12 [1] Github (r-lib/textshaping@862fbf0)        </span>
 <span class="co">#&gt;    TH.data               1.0-10     2019-01-21 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    tibble                3.0.5      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    tidyBF                0.4.2.9000 2021-01-16 [1] local                                     </span>
+<span class="co">#&gt;    tibble                3.0.6      2021-01-29 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    tidyr                 1.1.2      2020-08-27 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    tidyselect            1.1.0      2020-05-11 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;  P tools                 4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;  P utils               * 4.1.0      2021-01-14 [2] local                                     </span>
-<span class="co">#&gt;    V8                    3.4.0      2020-11-04 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;  P tools                 4.1.0      2021-02-12 [2] local                                     </span>
+<span class="co">#&gt;  P utils               * 4.1.0      2021-02-12 [2] local                                     </span>
 <span class="co">#&gt;    vctrs                 0.3.6      2020-12-17 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    withr                 2.4.0      2021-01-16 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    WRS2                  1.1-0      2020-06-19 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    xfun                  0.20       2021-01-06 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    withr                 2.4.1      2021-01-26 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    WRS2                  1.1-1      2021-02-09 [1] R-Forge (R 4.1.0)                         </span>
+<span class="co">#&gt;    xfun                  0.21       2021-02-10 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    xtable                1.8-4      2019-04-21 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    yaml                  2.2.1      2020-02-01 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    zeallot               0.1.0      2018-01-28 [1] CRAN (R 4.1.0)                            </span>

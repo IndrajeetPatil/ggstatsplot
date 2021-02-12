@@ -33,12 +33,6 @@
         xintercept PANEL group colour size linetype alpha
       1    174.358     1    -1   blue    1   dashed    NA
       
-      [[3]]
-         y       x PANEL group colour  fill size angle hjust vjust alpha family
-      1 20 174.358     1    -1   blue white    3     0   0.5   0.5    NA       
-        fontface lineheight                           label
-      1        1        1.2 list(~widehat(mu)[mean]=='174')
-      
 
 # checking gghistostats and non-parametric stats - data without NAs
 
@@ -64,12 +58,6 @@
       [[2]]
         xintercept PANEL group colour size linetype alpha
       1         17     1    -1   blue    1   dashed    NA
-      
-      [[3]]
-             y  x PANEL group colour  fill size angle hjust vjust alpha family
-      1 61.875 17     1    -1   blue white    3     0   0.5   0.5    NA       
-        fontface lineheight                               label
-      1        1        1.2 list(~widehat(mu)[median]=='17.00')
       
 
 # checking robust stats and proportions
@@ -106,12 +94,6 @@
       [[2]]
         xintercept PANEL group colour size linetype alpha
       1      3.197     1    -1   blue    1   dashed    NA
-      
-      [[3]]
-            y     x PANEL group colour  fill size angle hjust vjust alpha family
-      1 5.625 3.197     1    -1   blue white    3     0   0.5   0.5    NA       
-        fontface lineheight                               label
-      1        1        1.2 list(~widehat(mu)[trimmed]=='3.20')
       
 
 # checking if normal curve work
@@ -268,11 +250,5 @@
       [[3]]
         xintercept PANEL group colour size linetype alpha
       1   13.56747     1    -1   blue    1   dashed    NA
-      
-      [[4]]
-          y        x PANEL group colour  fill size angle hjust vjust alpha family
-      1 7.5 13.56747     1    -1   blue white    3     0   0.5   0.5    NA       
-        fontface lineheight                             label
-      1        1        1.2 list(~widehat(mu)[mean]=='13.57')
       
 

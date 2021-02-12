@@ -241,7 +241,7 @@ df <- dplyr::filter(ggstatsplot::movies_long, genre %in% c("Comedy", "Drama"))
 
 # plot
 ggstatsplot::combine_plots(
-  list(
+  plotlist = list(
     # plot 1: superposition
     ggplot(data = df, mapping = ggplot2::aes(x = length, y = rating, color = genre)) +
       geom_jitter(size = 3, alpha = 0.5) +

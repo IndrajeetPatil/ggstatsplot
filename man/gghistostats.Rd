@@ -29,7 +29,6 @@ gghistostats(
   centrality.type = type,
   centrality.k = 2,
   centrality.line.args = list(size = 1, color = "blue"),
-  centrality.label.args = list(color = "blue", size = 3),
   normal.curve = FALSE,
   normal.curve.args = list(size = 2),
   ggplot.component = NULL,
@@ -140,13 +139,9 @@ Just as \code{type} argument, abbreviations are also accepted.}
 \item{centrality.k}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2L}).}
 
-\item{centrality.line.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_line} used to display the
-lines corresponding to the centrality parameter and test value.}
-
-\item{centrality.label.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
+\item{centrality.line.args}{A list of additional aesthetic arguments to be
+passed to the \code{geom_line} used to display the lines corresponding to the
+centrality parameter.}
 
 \item{normal.curve}{A logical value that decides whether to super-impose a
 normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}

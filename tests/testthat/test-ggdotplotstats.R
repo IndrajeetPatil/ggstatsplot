@@ -197,7 +197,6 @@ test_that(
     )
     expect_identical(pb1$data[[1]], pb2$data[[1]])
     expect_identical(pb1$data[[2]], pb2$data[[2]])
-    expect_identical(pb1$data[[3]], pb2$data[[3]])
   }
 )
 

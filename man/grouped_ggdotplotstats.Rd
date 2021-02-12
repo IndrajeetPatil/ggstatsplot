@@ -58,12 +58,9 @@ try to play around with the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
     \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2L}).}
-    \item{\code{centrality.line.args}}{A list of additional
-aesthetic arguments to be passed to the \code{geom_line} used to display the
-lines corresponding to the centrality parameter and test value.}
-    \item{\code{centrality.label.args}}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
+    \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
+passed to the \code{geom_line} used to display the lines corresponding to the
+centrality parameter.}
     \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if

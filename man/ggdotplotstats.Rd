@@ -28,7 +28,6 @@ ggdotplotstats(
   centrality.type = type,
   centrality.k = 2,
   centrality.line.args = list(color = "blue", size = 1),
-  centrality.label.args = list(color = "blue", size = 3),
   ggplot.component = NULL,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
@@ -128,13 +127,9 @@ Just as \code{type} argument, abbreviations are also accepted.}
 \item{centrality.k}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2L}).}
 
-\item{centrality.line.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_line} used to display the
-lines corresponding to the centrality parameter and test value.}
-
-\item{centrality.label.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
+\item{centrality.line.args}{A list of additional aesthetic arguments to be
+passed to the \code{geom_line} used to display the lines corresponding to the
+centrality parameter.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}

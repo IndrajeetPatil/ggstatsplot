@@ -27,9 +27,10 @@ override some aspects of the selected \code{ggtheme}.}
 A \code{ggplot2} object with the \code{theme_ggstatsplot} theme overlaid.
 }
 \description{
-Common theme used across all plots generated in \code{ggstatsplot}
-and \emph{assumed} by the author to be aesthetically pleasing to the
-user/reader.
+\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+
+Common theme used across all plots generated in \code{ggstatsplot} and \emph{assumed}
+by the author to be aesthetically pleasing to the user/reader.
 }
 \references{
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}

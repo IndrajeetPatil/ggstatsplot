@@ -11,7 +11,6 @@ histo_labeller(
   tr = 0.2,
   centrality.k = 2L,
   centrality.line.args = list(color = "blue", size = 1),
-  centrality.label.args = list(color = "blue"),
   ...
 )
 }
@@ -35,13 +34,9 @@ try to play around with the value of \code{tr}, which is by default set to
 \item{centrality.k}{Integer denoting the number of decimal places expected
 for centrality parameter label. (Default: \code{2L}).}
 
-\item{centrality.line.args, test.value.line.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_line} used to display the
-lines corresponding to the centrality parameter and test value.}
-
-\item{centrality.label.args, test.value.label.args}{A list of additional
-aesthetic arguments to be passed to the \code{geom_label} used to display the
-label corresponding to the centrality parameter and test value.}
+\item{centrality.line.args}{A list of additional aesthetic arguments to be
+passed to the \code{geom_line} used to display the lines corresponding to the
+centrality parameter.}
 
 \item{...}{Currently ignored.}
 }
@@ -57,16 +52,10 @@ library(ggplot2)
 p <- ggplot(mtcars, aes(wt, mpg)) +
   geom_point()
 
-# computing `y`-axis positions for line labels
-y_label_pos <- median(
-  x = ggplot2::layer_scales(p)$y$range$range,
-  na.rm = TRUE
-)
 # adding labels
 ggstatsplot:::histo_labeller(
   plot = p,
-  x = mtcars$wt,
-  y.label.position = y_label_pos
+  x = mtcars$wt
 )
 }
 }

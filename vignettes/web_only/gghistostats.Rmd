@@ -103,8 +103,6 @@ ggstatsplot::gghistostats(
   bf.message = TRUE, # display Bayes method results
   ggtheme = ggthemes::theme_tufte(), # changing default theme
   bar.fill = "#D55E00", # change fill color
-  normal.curve = TRUE, # disply a normal distribution curve
-  normal.curve.color = "black",
   test.value = 20, # test value
   caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
   centrality.k = 1 # show 1 decimal places for centrality label
@@ -141,7 +139,6 @@ ggstatsplot::grouped_gghistostats(
   type = "robust", # robust test: one-sample percentile bootstrap
   test.value = 20, # test value against which sample mean is to be compared
   centrality.line.args = list(color = "#D55E00"),
-  centrality.label.args = list(color = "#D55E00"),
   ggtheme = ggthemes::theme_stata(), # changing default theme
   ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots

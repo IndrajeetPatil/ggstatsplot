@@ -1,7 +1,11 @@
 #' @title Default theme used in all `ggstatsplot` package plots
-#' @description Common theme used across all plots generated in `ggstatsplot`
-#'   and *assumed* by the author to be aesthetically pleasing to the
-#'   user/reader.
+#'
+#' @description
+#'
+#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
+#' Common theme used across all plots generated in `ggstatsplot` and *assumed*
+#' by the author to be aesthetically pleasing to the user/reader.
 #'
 #' @param ggtheme A function, `ggplot2` theme name. Default value is
 #'   `ggplot2::theme_bw()`. Any of the `ggplot2` themes, or themes from

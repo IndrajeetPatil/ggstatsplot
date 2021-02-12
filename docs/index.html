@@ -37,6 +37,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -210,7 +212,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2021--02--10-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/badge/last%20change-2021--02--12-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -1152,10 +1154,7 @@
   title.prefix <span class="op">=</span> <span class="st">"Movie genre"</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># modify the defaults from `ggstatsplot` for each plot</span>
-  ggplot.component <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>
-    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span>, <span class="fl">50</span><span class="op">)</span>,
-    limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">)</span>,
+  ggplot.component <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Source: IMDB.com"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
@@ -2128,6 +2127,7 @@
 </li>
 </ul>
 </div>
+
 <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
@@ -2135,6 +2135,7 @@
 <li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> | file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
 <div class="community">
 <h2>Community</h2>
 <ul class="list-unstyled">
@@ -2142,12 +2143,14 @@
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
+
 <div class="citation">
 <h2>Citation</h2>
 <ul class="list-unstyled">
 <li><a href="authors.html">Citing ggstatsplot</a></li>
 </ul>
 </div>
+
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
@@ -2156,6 +2159,8 @@
 </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>

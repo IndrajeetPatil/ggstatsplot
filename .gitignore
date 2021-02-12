@@ -48,3 +48,5 @@ revdep/library
 revdep/checks.noindex
 revdep/library.noindex
 revdep/data.sqlite
+/doc/
+/Meta/

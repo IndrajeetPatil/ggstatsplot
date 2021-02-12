@@ -73,9 +73,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -217,6 +223,8 @@
 <li><p>All robust tests in this package were based on trimmed means, except for correlation test. This has been changed: the robust correlation measure is now Winsorized correlation, which is based on trimming. Therefore, the <code>beta</code> argument has been replaced by <code>tr</code> argument. This should result only in minor changes in correlation coefficient estimates.</p></li>
 <li><p>Using <code>annotate</code> instead of <code>geom_label</code> had significantly slowed down <code>gghistostats</code> and <code>ggdotplotstats</code> functions. This has been fixed.</p></li>
 <li><p>Removes the vestigial <code>notch</code> and <code>notchwidth</code> arguments for <code>ggbetweenstats</code> and <code>ggwithinstats</code>.</p></li>
+<li><p>All Bayesian expression templates are now explicit about the type of estimate being displayed.</p></li>
+<li><p>For <code>gghistostats</code> and <code>ggdotplotstats</code>, the centrality measure labels used to be attached to the vertical line, but this occluded the underlying data. Now this label is instead shown on the top <code>x</code>-axis. Note that this means that if you make any further changes to the resulting plot using the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">ggplot2::scale_x_continuous</a></code> function, this label will likely disappear.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
@@ -941,6 +949,8 @@
 </script>
 
 
+
+  
 
   </body>
 </html>

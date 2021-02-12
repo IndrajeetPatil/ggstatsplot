@@ -75,9 +75,15 @@ test value for the continuous, numeric x-axis variable." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -218,7 +224,6 @@ test value for the continuous, numeric <code>x</code>-axis variable.</p>
   tr <span class='op'>=</span> <span class='fl'>0.2</span>,
   centrality.k <span class='op'>=</span> <span class='fl'>2L</span>,
   centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
-  centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -255,16 +260,10 @@ try to play around with the value of <code>tr</code>, which is by default set to
 for centrality parameter label. (Default: <code>2L</code>).</p></td>
     </tr>
     <tr>
-      <th>centrality.line.args, test.value.line.args</th>
-      <td><p>A list of additional
-aesthetic arguments to be passed to the <code>geom_line</code> used to display the
-lines corresponding to the centrality parameter and test value.</p></td>
-    </tr>
-    <tr>
-      <th>centrality.label.args, test.value.label.args</th>
-      <td><p>A list of additional
-aesthetic arguments to be passed to the <code>geom_label</code> used to display the
-label corresponding to the centrality parameter and test value.</p></td>
+      <th>centrality.line.args</th>
+      <td><p>A list of additional aesthetic arguments to be
+passed to the <code>geom_line</code> used to display the lines corresponding to the
+centrality parameter.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -281,18 +280,12 @@ label corresponding to the centrality parameter and test value.</p></td>
 <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>wt</span>, <span class='va'>mpg</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='co'># computing `y`-axis positions for line labels</span>
-<span class='va'>y_label_pos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span>
-  x <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot_build.html'>layer_scales</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span><span class='op'>$</span><span class='va'>y</span><span class='op'>$</span><span class='va'>range</span><span class='op'>$</span><span class='va'>range</span>,
-  na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
 <span class='co'># adding labels</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>:::</span><span class='fu'>histo_labeller</span><span class='op'>(</span>
   plot <span class='op'>=</span> <span class='va'>p</span>,
-  x <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>$</span><span class='va'>wt</span>,
-  y.label.position <span class='op'>=</span> <span class='va'>y_label_pos</span>
+  x <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>$</span><span class='va'>wt</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='histo_labeller-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='img'><img src='histo_labeller-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -334,6 +327,8 @@ label corresponding to the centrality parameter and test value.</p></td>
 </script>
 
 
+
+  
 
   </body>
 </html>

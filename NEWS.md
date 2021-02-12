@@ -29,6 +29,15 @@ MAJOR CHANGES
   - Removes the vestigial `notch` and `notchwidth` arguments for
     `ggbetweenstats` and `ggwithinstats`.
 
+  - All Bayesian expression templates are now explicit about the type of
+    estimate being displayed.
+
+  - For `gghistostats` and `ggdotplotstats`, the centrality measure labels used
+    to be attached to the vertical line, but this occluded the underlying data.
+    Now this label is instead shown on the top `x`-axis. Note that this means
+    that if you make any further changes to the resulting plot using the
+    `ggplot2::scale_x_continuous` function, this label will likely disappear.
+
 NEW FEATURES
 
   - More models supported in `ggcoefstats`: `crr`, `varest`.

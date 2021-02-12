@@ -77,7 +77,6 @@ gghistostats <- function(data,
                          centrality.type = type,
                          centrality.k = 2,
                          centrality.line.args = list(size = 1, color = "blue"),
-                         centrality.label.args = list(color = "blue", size = 3),
                          normal.curve = FALSE,
                          normal.curve.args = list(size = 2),
                          ggplot.component = NULL,
@@ -98,7 +97,7 @@ gghistostats <- function(data,
   # column as a vector
   x_vec <- df %>% dplyr::pull({{ x }})
 
-  # adding some `binwidth` sanity checking
+  # if binwidth not specified
   if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
   # ================ stats labels ==========================================
@@ -177,17 +176,6 @@ gghistostats <- function(data,
       )
   }
 
-  # adding the theme and labels
-  plot <- plot +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
-    ggplot2::labs(
-      x = xlab %||% rlang::as_name(x),
-      y = "count",
-      title = title,
-      subtitle = subtitle,
-      caption = caption
-    )
-
   # ---------------- centrality tagging -------------------------------------
 
   # using custom function for adding labels
@@ -199,14 +187,19 @@ gghistostats <- function(data,
         type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
         centrality.k = centrality.k,
-        centrality.line.args = centrality.line.args,
-        centrality.label.args = centrality.label.args
+        centrality.line.args = centrality.line.args
       )
   }
 
-  # ---------------- adding ggplot component ---------------------------------
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  plot + ggplot.component
+  # adding the theme and labels
+  plot +
+    ggplot2::labs(
+      x = xlab %||% rlang::as_name(x),
+      y = "count",
+      title = title,
+      subtitle = subtitle,
+      caption = caption
+    ) +
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+    ggplot.component
 }

@@ -19,7 +19,13 @@ vignette: >
 
 ```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+options(
+  tibble.width = Inf,
+  pillar.bold = TRUE,
+  pillar.neg = TRUE,
+  pillar.subtle_num = TRUE,
+  pillar.min_chars = Inf
+)
 
 knitr::opts_chunk$set(
   dpi = 300,
@@ -40,18 +46,23 @@ used with any `ggplot2` object.
 Here is a simple example:
 
 ```{r theme_ggstatsplot, fig.height = 4, fig.width = 8}
+# for reproducibility
+set.seed(123)
 library(ggplot2)
+library(ggstatsplot)
 
-ggstatsplot::combine_plots(
+combine_plots(
   # basic scatter plot with `theme_ggstatsplot()` added
-  ggplot(mtcars, aes(x = wt, y = mpg)) +
-    geom_point() +
-    ggstatsplot::theme_ggstatsplot(),
-  # basic scatter plot without the default theme
-  ggplot(mtcars, aes(x = wt, y = mpg)) +
-    geom_point(),
+  plotlist = list(
+    ggplot(mtcars, aes(x = wt, y = mpg)) +
+      geom_point() +
+      ggstatsplot::theme_ggstatsplot(),
+    # basic scatter plot without the default theme
+    ggplot(mtcars, aes(x = wt, y = mpg)) +
+      geom_point()
+  ),
   nrow = 1,
-  title.text = "Plot with and without the default `theme_ggstatsplot` overlaid"
+  annotation.args = list(title = "Plot with and without the default `theme_ggstatsplot` overlaid")
 )
 ```
 
@@ -60,7 +71,7 @@ All plots in this package have `theme_bw()` by default as the base on which
 argument. Let's see an example with `ggcorrmat` function.
 
 ```{r theme1, fig.height = 6, fig.width = 6}
-ggstatsplot::ggcorrmat(
+ggcorrmat(
   data = iris,
   cor.vars = c(Sepal.Length:Petal.Width),
   ggtheme = ggthemes::theme_fivethirtyeight(), # selected ggplot2 theme

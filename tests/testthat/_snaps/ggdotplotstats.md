@@ -15,10 +15,4 @@
         xintercept PANEL group colour size linetype alpha
       1      852.4     1    -1   blue    1   dashed    NA
       
-      [[3]]
-           y     x PANEL group colour  fill size angle hjust vjust alpha family
-      1 3.75 852.4     1    -1   blue white    3     0   0.5   0.5    NA       
-        fontface lineheight                              label
-      1        1        1.2 list(~widehat(mu)[mean]=='852.40')
-      
 

@@ -68,7 +68,6 @@ ggdotplotstats <- function(data,
                            centrality.type = type,
                            centrality.k = 2,
                            centrality.line.args = list(color = "blue", size = 1),
-                           centrality.label.args = list(color = "blue", size = 3),
                            ggplot.component = NULL,
                            ggtheme = ggplot2::theme_bw(),
                            ggstatsplot.layer = TRUE,
@@ -159,12 +158,7 @@ ggdotplotstats <- function(data,
         breaks = seq(1, nrow(data), (nrow(data) - 1) / 4),
         labels = 25 * 0:4
       )
-    ) +
-    ggplot2::scale_x_continuous(
-      name = xlab,
-      sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
     )
-
   # ---------------- centrality tagging -------------------------------------
 
   # using custom function for adding labels
@@ -176,8 +170,7 @@ ggdotplotstats <- function(data,
         type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
         centrality.k = centrality.k,
-        centrality.line.args = centrality.line.args,
-        centrality.label.args = centrality.label.args
+        centrality.line.args = centrality.line.args
       )
   }
 
@@ -192,6 +185,6 @@ ggdotplotstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) + # adding ggplot component
+    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot.component
 }
