@@ -38,7 +38,7 @@ if (getRversion() < "4.1" && require("vdiffr")) {
     vdiffr::expect_doppelganger(
       title = "ggwithinstats works",
       fig = ggwithinstats(
-        data = bugs_long,
+        data = dplyr::filter(bugs_long, condition %in% c("HDHF", "LDLF")),
         x = condition,
         y = desire
       )
@@ -48,7 +48,7 @@ if (getRversion() < "4.1" && require("vdiffr")) {
     vdiffr::expect_doppelganger(
       title = "grouped_ggwithinstats works",
       fig = grouped_ggwithinstats(
-        data = bugs_long,
+        data = dplyr::filter(bugs_long, condition %in% c("HDHF", "LDLF")),
         x = condition,
         y = desire,
         grouping.var = gender
