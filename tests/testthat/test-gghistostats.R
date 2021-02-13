@@ -16,8 +16,7 @@ test_that(
         binwidth = 20,
         bar.fill = "orange",
         test.value = 150,
-        bf.prior = 0.9,
-        centrality.k = 0
+        bf.prior = 0.9
       )
 
     # build the plot
@@ -79,7 +78,6 @@ test_that(
         test.value = 20,
         k = 3,
         type = "np",
-        centrality.k = 2,
         results.subtitle = FALSE
       )
 

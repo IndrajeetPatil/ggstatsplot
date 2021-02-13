@@ -156,7 +156,7 @@
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-02-12</h4>
+            <h4 class="date">2021-02-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -171,9 +171,9 @@
 <li>to inspect distribution of a continuous variable</li>
 <li>to test if the mean of a sample variable is different from a specified value (population parameter)</li>
 </ul>
-<div id="distribution-of-a-sample-with-gghistostats" class="section level2">
+<div id="statistical-analysis-with-gghistostats" class="section level2">
 <h2 class="hasAnchor">
-<a href="#distribution-of-a-sample-with-gghistostats" class="anchor"></a>Distribution of a sample with <code>gghistostats</code>
+<a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
 </h2>
 <p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="https://rdrr.io/pkg/psych/man/sat.act.html">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -193,36 +193,13 @@
 <span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 71...</span>
 <span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 60...</span></code></pre></div>
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
+<p>Let’s display the national norms (labeled as “Test”) and test the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample <em>t</em>-test (<code>type = "p"</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
   x <span class="op">=</span> <span class="va">ACT</span>, <span class="co"># numeric variable</span>
-  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># don't run statistical tests</span>
-  xlab <span class="op">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
-  title <span class="op">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
-  subtitle <span class="op">=</span> <span class="st">"N = 700"</span>, <span class="co"># subtitle for the plot</span>
-  caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span>
-  centrality.k <span class="op">=</span> <span class="fl">1</span> <span class="co"># show 1 decimal places for centrality label</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="gghistostats_files/figure-html/psychact2-1.png" width="100%"></p>
-</div>
-<div id="statistical-analysis-with-gghistostats" class="section level2">
-<h2 class="hasAnchor">
-<a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
-</h2>
-<p>The authors note that “the score means are higher than national norms suggesting both self selection for people taking on line personality and ability tests and a self reporting bias in scores.” Let’s display the national norms (labeled as “Test”) and test (using <code>results.subtitle = TRUE</code>) the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample <em>t</em>-test (<code>type = "p"</code>). To demonstrate some of the options available we’ll also:</p>
-<ol style="list-style-type: decimal">
-<li>Change the overall theme with <code>ggtheme = ggthemes::theme_tufte()</code>
-</li>
-<li>Make the histogram bars a different color with <code>bar.fill = "#D55E00"</code>
-</li>
-<li>Compute information about the Bayes Factor (<code>bf.message = TRUE</code>, see below)</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
-  x <span class="op">=</span> <span class="va">ACT</span>, <span class="co"># numeric variable</span>
-  results.subtitle <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># run statistical tests</span>
   xlab <span class="op">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
   title <span class="op">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
   type <span class="op">=</span> <span class="st">"p"</span>, <span class="co"># one sample t-test</span>
@@ -230,8 +207,7 @@
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing default theme</span>
   bar.fill <span class="op">=</span> <span class="st">"#D55E00"</span>, <span class="co"># change fill color</span>
   test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co"># test value</span>
-  caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>, <span class="co"># caption for the plot</span>
-  centrality.k <span class="op">=</span> <span class="fl">1</span> <span class="co"># show 1 decimal places for centrality label</span>
+  caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" width="100%"></p>
 <p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
@@ -242,8 +218,10 @@
 </h2>
 <p>What if we want to do the same analysis separately for each gender? <code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for ggstatsplot::gghistostats</span>
   data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>,
   x <span class="op">=</span> <span class="va">ACT</span>, <span class="co"># same outcome variable</span>

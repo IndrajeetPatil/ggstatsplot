@@ -56,8 +56,8 @@ get error stating "Standard error cannot be computed because of Winsorized
 variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
 try to play around with the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
-    \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2L}).}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
     \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
 passed to the \code{geom_line} used to display the lines corresponding to the
 centrality parameter.}
@@ -79,8 +79,6 @@ argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \em
 (\verb{95\%}).}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100}).}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}

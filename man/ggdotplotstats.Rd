@@ -26,7 +26,6 @@ ggdotplotstats(
   point.args = list(color = "black", size = 3, shape = 16),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.k = 2,
   centrality.line.args = list(color = "blue", size = 1),
   ggplot.component = NULL,
   ggtheme = ggplot2::theme_bw(),
@@ -123,9 +122,6 @@ to be:
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
-
-\item{centrality.k}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2L}).}
 
 \item{centrality.line.args}{A list of additional aesthetic arguments to be
 passed to the \code{geom_line} used to display the lines corresponding to the

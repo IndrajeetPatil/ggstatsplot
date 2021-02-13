@@ -224,7 +224,7 @@
 <li><p>Using <code>annotate</code> instead of <code>geom_label</code> had significantly slowed down <code>gghistostats</code> and <code>ggdotplotstats</code> functions. This has been fixed.</p></li>
 <li><p>Removes the vestigial <code>notch</code> and <code>notchwidth</code> arguments for <code>ggbetweenstats</code> and <code>ggwithinstats</code>.</p></li>
 <li><p>All Bayesian expression templates are now explicit about the type of estimate being displayed.</p></li>
-<li><p>For <code>gghistostats</code> and <code>ggdotplotstats</code>, the centrality measure labels used to be attached to the vertical line, but this occluded the underlying data. Now this label is instead shown on the top <code>x</code>-axis. Note that this means that if you make any further changes to the resulting plot using the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">ggplot2::scale_x_continuous</a></code> function, this label will likely disappear.</p></li>
+<li><p>For <code>gghistostats</code> and <code>ggdotplotstats</code>, the centrality measure labels used to be attached to the vertical line, but this occluded the underlying data. Now this label is instead shown on the top <code>x</code>-axis. Note that this means that if you make any further changes to the resulting plot using the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">ggplot2::scale_x_continuous</a></code> function, this label will likely disappear. The <code>centrality.k</code> argument is retired in favor of <code>k</code>.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>

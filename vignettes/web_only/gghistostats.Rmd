@@ -42,7 +42,8 @@ Some instances where you would want to use `gghistostats`-
   - to test if the mean of a sample variable is different from a specified value
   (population parameter)
 
-## Distribution of a sample with `gghistostats`
+## Statistical analysis with `gghistostats`
+
 
 Let's begin with a very simple example from the `psych` package
 (`psych::sat.act`), a sample of 700 self-reported scores on the SAT Verbal, SAT
@@ -65,38 +66,16 @@ You should always check this value and explore multiple widths to find the best
 to illustrate the stories in your data since histograms are sensitive to
 binwidth.
 
-```{r psychact2, fig.height = 6, fig.width = 7}
-ggstatsplot::gghistostats(
-  data = psych::sat.act, # data from which variable is to be taken
-  x = ACT, # numeric variable
-  results.subtitle = FALSE, # don't run statistical tests
-  xlab = "ACT Score", # x-axis label
-  title = "Distribution of ACT Scores", # title for the plot
-  subtitle = "N = 700", # subtitle for the plot
-  caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
-  centrality.k = 1 # show 1 decimal places for centrality label
-)
-```
-
-## Statistical analysis with `gghistostats`
-
-The authors note that "the score means are higher than national norms suggesting
-both self selection for people taking on line personality and ability tests and
-a self reporting bias in scores."  Let's display the national norms (labeled as
-"Test") and test (using `results.subtitle = TRUE`) the hypothesis that our
-sample mean is the same as our national population mean of 20 using a parametric
-one sample *t*-test (`type = "p"`).  To demonstrate some of the options available
-we'll also:
-
-  1.  Change the overall theme with `ggtheme = ggthemes::theme_tufte()`
-  2.  Make the histogram bars a different color with `bar.fill = "#D55E00"`
-  3.  Compute information about the Bayes Factor (`bf.message = TRUE`, see below)
+Let's display the national norms (labeled as "Test") and test the hypothesis
+that our sample mean is the same as our national population mean of 20 using a
+parametric one sample *t*-test (`type = "p"`).
 
 ```{r psychact3, fig.height = 6, fig.width = 7}
+set.seed(123)
+
 ggstatsplot::gghistostats(
   data = psych::sat.act, # data from which variable is to be taken
   x = ACT, # numeric variable
-  results.subtitle = TRUE, # run statistical tests
   xlab = "ACT Score", # x-axis label
   title = "Distribution of ACT Scores", # title for the plot
   type = "p", # one sample t-test
@@ -104,8 +83,7 @@ ggstatsplot::gghistostats(
   ggtheme = ggthemes::theme_tufte(), # changing default theme
   bar.fill = "#D55E00", # change fill color
   test.value = 20, # test value
-  caption = "Data courtesy of: SAPA project (https://sapa-project.org)", # caption for the plot
-  centrality.k = 1 # show 1 decimal places for centrality label
+  caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
 ```
 
@@ -130,6 +108,8 @@ Let's see how we can use this function to apply `gghistostats` to accomplish our
 task. 
 
 ```{r grouped1, fig.height = 10, fig.width = 7}
+set.seed(123)
+
 ggstatsplot::grouped_gghistostats(
   # arguments relevant for ggstatsplot::gghistostats
   data = psych::sat.act,

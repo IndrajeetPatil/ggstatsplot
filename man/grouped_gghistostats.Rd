@@ -76,8 +76,6 @@ try to play around with the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{centrality.k}}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2L}).}
     \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
 passed to the \code{geom_line} used to display the lines corresponding to the
 centrality parameter.}

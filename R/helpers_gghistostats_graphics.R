@@ -12,8 +12,6 @@
 #' @param centrality.line.args A list of additional aesthetic arguments to be
 #'   passed to the `geom_line` used to display the lines corresponding to the
 #'   centrality parameter.
-#' @param centrality.k Integer denoting the number of decimal places expected
-#'   for centrality parameter label. (Default: `2L`).
 #'
 #' @examples
 #' \donttest{
@@ -36,7 +34,7 @@ histo_labeller <- function(plot,
                            x,
                            type = "parametric",
                            tr = 0.2,
-                           centrality.k = 2L,
+                           k = 2L,
                            centrality.line.args = list(color = "blue", size = 1),
                            ...) {
 
@@ -44,7 +42,7 @@ histo_labeller <- function(plot,
   dat_temp <- data.frame(.temp = ".temp", "var" = x)
 
   # compute centrality measure
-  centrality_df <- centrality_data(dat_temp, .temp, var, type = type, tr = tr, k = centrality.k)
+  centrality_df <- centrality_data(dat_temp, .temp, var, type = type, tr = tr, k = k)
 
   # adding a vertical line corresponding to centrality parameter
   plot +

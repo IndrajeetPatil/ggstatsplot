@@ -37,6 +37,7 @@ MAJOR CHANGES
     Now this label is instead shown on the top `x`-axis. Note that this means
     that if you make any further changes to the resulting plot using the
     `ggplot2::scale_x_continuous` function, this label will likely disappear.
+    The `centrality.k` argument is retired in favor of `k`.
 
 NEW FEATURES
 

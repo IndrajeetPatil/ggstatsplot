@@ -66,7 +66,6 @@ ggdotplotstats <- function(data,
                            point.args = list(color = "black", size = 3, shape = 16),
                            centrality.plotting = TRUE,
                            centrality.type = type,
-                           centrality.k = 2,
                            centrality.line.args = list(color = "blue", size = 1),
                            ggplot.component = NULL,
                            ggtheme = ggplot2::theme_bw(),
@@ -169,7 +168,7 @@ ggdotplotstats <- function(data,
         x = data %>% dplyr::pull({{ x }}),
         type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
-        centrality.k = centrality.k,
+        k = k,
         centrality.line.args = centrality.line.args
       )
   }

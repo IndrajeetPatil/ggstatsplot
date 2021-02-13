@@ -576,7 +576,6 @@ ggdotplotstats(
   x = lifeExp,
   test.value = 55,
   type = "robust",
-  centrality.k = 0,
   title = "Distribution of life expectancy in Asian continent",
   xlab = "Life expectancy",
   caption = substitute(

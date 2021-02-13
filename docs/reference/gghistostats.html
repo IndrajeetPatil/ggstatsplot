@@ -242,7 +242,6 @@ as a subtitle.</p>
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   centrality.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
   centrality.type <span class='op'>=</span> <span class='va'>type</span>,
-  centrality.k <span class='op'>=</span> <span class='fl'>2</span>,
   centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
   normal.curve <span class='op'>=</span> <span class='cn'>FALSE</span>,
   normal.curve.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
@@ -396,11 +395,6 @@ to be:</p>
 <p>Just as <code>type</code> argument, abbreviations are also accepted.</p></td>
     </tr>
     <tr>
-      <th>centrality.k</th>
-      <td><p>Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: <code>2L</code>).</p></td>
-    </tr>
-    <tr>
       <th>centrality.line.args</th>
       <td><p>A list of additional aesthetic arguments to be
 passed to the <code>geom_line</code> used to display the lines corresponding to the
@@ -454,8 +448,11 @@ results.</p></td>
   xlab <span class='op'>=</span> <span class='st'>"Tooth length"</span>,
   centrality.type <span class='op'>=</span> <span class='st'>"np"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='img'><img src='gghistostats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` input `label`.</span>
+#&gt; <span class='error'><span style='color: #BB0000;'>x</span><span> object 'centrality.k' not found</span>
+#&gt; <span class='error'></span><span style='color: #0000BB;'>i</span><span> Input `label` is `paste0(...)`.</span>
+#&gt; <span class='error'></span><span style='color: #0000BB;'>i</span><span> The error occurred in row 1.</span></div><div class='input'><span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

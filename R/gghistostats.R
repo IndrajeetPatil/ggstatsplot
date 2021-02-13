@@ -75,7 +75,6 @@ gghistostats <- function(data,
                          results.subtitle = TRUE,
                          centrality.plotting = TRUE,
                          centrality.type = type,
-                         centrality.k = 2,
                          centrality.line.args = list(size = 1, color = "blue"),
                          normal.curve = FALSE,
                          normal.curve.args = list(size = 2),
@@ -186,7 +185,7 @@ gghistostats <- function(data,
         x = x_vec,
         type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
-        centrality.k = centrality.k,
+        k = k,
         centrality.line.args = centrality.line.args
       )
   }

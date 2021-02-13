@@ -27,7 +27,6 @@ gghistostats(
   results.subtitle = TRUE,
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.k = 2,
   centrality.line.args = list(size = 1, color = "blue"),
   normal.curve = FALSE,
   normal.curve.args = list(size = 2),
@@ -135,9 +134,6 @@ to be:
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
-
-\item{centrality.k}{Integer denoting the number of decimal places expected
-for centrality parameter label. (Default: \code{2L}).}
 
 \item{centrality.line.args}{A list of additional aesthetic arguments to be
 passed to the \code{geom_line} used to display the lines corresponding to the
