@@ -41,7 +41,7 @@ MAJOR CHANGES
 
 NEW FEATURES
 
-  - More models supported in `ggcoefstats`: `crr`, `varest`.
+  - More models supported in `ggcoefstats`: `crr`, `eglm`, `elm`, `varest`.
 
   - `ggbetweenstats`, `ggwithinstats`, `gghistostats`, `ggdotplotstats` gain
     argument `centrality.type` that can be used to specify which centrality

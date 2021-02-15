@@ -36,7 +36,7 @@ knitr::opts_chunk$set(
 future::plan("multicore")
 ```
 
-The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker plots** for
+The function `ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
 using `parameters::model_parameters`. Additionally, if available, the model
 summary indices are also extracted from `performance::model_performance`.
@@ -88,22 +88,22 @@ also supported by `ggcoefstats`. For example-
 `blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
 `cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
 `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`,
-`cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`, `emmGrid`,
-`epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`,
-`Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`,
-`glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
-`HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`,
-`lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`,
-`lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`, `lqm`, `lqmm`, `lrm`,
-`manova`, `maov`, `margins`, `mcmc`, `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`,
-`mmclogit`, `mediate`, `metafor`, `merMod`, `merModList`, `metaplus`, `mixor`,
-`mjoint`, `mle2`, `mlm`, `multinom`, `negbin`, `negbinmfx`, `negbinirr`,
-`nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`,
-`poissonirr`, `polr`, `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`,
-`robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`,
-`speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`,
-`svyolr`, `svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`,
-`wblm`, `zeroinfl`, etc.
+`cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`, `eglm`, `elm`,
+`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `fixest`,
+`flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`,
+`glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`,
+`glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`,
+`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
+`lmRob`, `lmrob`, `lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`,
+`lqm`, `lqmm`, `lrm`, `manova`, `maov`, `margins`, `mcmc`, `mcmc.list`,
+`MCMCglmm`, `mclogit`, `mice`, `mmclogit`, `mediate`, `metafor`, `merMod`,
+`merModList`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
+`negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`,
+`orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
+`riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`,
+`rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
+`stanreg`, `summary.lm`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
+`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 # Summary of meta-analyis tests
 
@@ -114,6 +114,12 @@ Robust | Meta-analysis via robust random-effects models | $\beta$ | <font color=
 Bayes | Meta-analysis via robust random-effects models | $\beta$ | <font color="green">$\checkmark$</font> | `metaBMA::meta_random`
 
 # Examples of supported models
+
+First let's load the needed library.
+
+```{r log_ggstats}
+library(ggstatsplot)
+```
 
 The following demos are in **no particular order**.
 
@@ -136,7 +142,7 @@ oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
 marginal <- emmeans::emmeans(oranges_rg1, "day")
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = marginal,
   point.args = list(color = "darkgreen", shape = 9),
   title = "summary grid from `emmeans` package"
@@ -156,7 +162,7 @@ emm <- emmeans::emmeans(fiber.lm, "machine")
 es <- emmeans::eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = es,
   title = "summary grid with effect sizes\nfrom `emmeans` package"
 )
@@ -214,17 +220,19 @@ mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
 mod9 <- proportionBF(y = 15, N = 25, p = .5)
 
 # list of plots
-ggstatsplot::combine_plots(
-  ggcoefstats(mod1, title = "one sample t-test"),
-  ggcoefstats(mod2, title = "independent t-test"),
-  ggcoefstats(mod3, title = "paired t-test"),
-  ggcoefstats(mod4, title = "correlation"),
-  ggcoefstats(mod5, title = "contingency table"),
-  ggcoefstats(mod6, title = "anova"),
-  ggcoefstats(mod7, title = "regression-1"),
-  ggcoefstats(mod8, title = "meta-analysis"),
-  ggcoefstats(mod9, title = "proportion test"),
-  title.text = "Example from `BayesFactor` package"
+combine_plots(
+  plotlist = list(
+    ggcoefstats(mod1, title = "one sample t-test"),
+    ggcoefstats(mod2, title = "independent t-test"),
+    ggcoefstats(mod3, title = "paired t-test"),
+    ggcoefstats(mod4, title = "correlation"),
+    ggcoefstats(mod5, title = "contingency table"),
+    ggcoefstats(mod6, title = "anova"),
+    ggcoefstats(mod7, title = "regression-1"),
+    ggcoefstats(mod8, title = "meta-analysis"),
+    ggcoefstats(mod9, title = "proportion test")
+  ),
+  annotation.args = list(title = "Example from `BayesFactor` package")
 )
 ```
 
@@ -240,7 +248,7 @@ library(ggplot2)
 mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_aov,
   effsize = "omega", # changing the effect size estimate being displayed
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
@@ -263,28 +271,30 @@ set.seed(123)
 library(ggstatsplot)
 
 # plot
-ggstatsplot::combine_plots(
-  # model 1
-  ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ mpaa, data = movies_long),
-    title = "1. Only MPAA ratings"
+combine_plots(
+  plotlist = list(
+    # model 1
+    ggcoefstats(
+      x = stats::aov(formula = rating ~ mpaa, data = movies_long),
+      title = "1. Only MPAA ratings"
+    ),
+    # model 2
+    ggcoefstats(
+      x = stats::aov(formula = rating ~ genre, data = movies_long),
+      title = "2. Only genre"
+    ),
+    # model 3
+    ggcoefstats(
+      x = stats::aov(formula = rating ~ mpaa + genre, data = movies_long),
+      title = "3. Additive effect of MPAA and genre"
+    ),
+    # model 4
+    ggcoefstats(
+      x = stats::aov(formula = rating ~ mpaa * genre, data = movies_long),
+      title = "4. Multiplicative effect of MPAA and genre"
+    )
   ),
-  # model 2
-  ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ genre, data = movies_long),
-    title = "2. Only genre"
-  ),
-  # model 3
-  ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ mpaa + genre, data = movies_long),
-    title = "3. Additive effect of MPAA and genre"
-  ),
-  # model 4
-  ggstatsplot::ggcoefstats(
-    x = stats::aov(formula = rating ~ mpaa * genre, data = movies_long),
-    title = "4. Multiplicative effect of MPAA and genre"
-  ),
-  title.text = "Model selection using ggcoefstats"
+  annotation.args = list(title = "Model selection using ggcoefstats")
 )
 ```
 
@@ -305,7 +315,7 @@ mod_mclogit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_mclogit,
   title = "conditional logit models"
 )
@@ -329,7 +339,7 @@ mod_mclogit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_mclogit,
   title = "Mixed Conditional Logit Models"
 )
@@ -352,7 +362,7 @@ mod_Anova <-
   ))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_Anova,
   title = "Anova with `car`"
 )
@@ -396,7 +406,7 @@ mlm1.aov <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mlm1.aov,
   title = "ANOVA with `car` on multiple linear models"
 )
@@ -421,7 +431,7 @@ rt_anova <-
   ))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = rt_anova$aov,
   title = "Anova with `ez` package"
 )
@@ -435,7 +445,7 @@ set.seed(123)
 
 # data
 df <- dplyr::filter(
-  .data = ggstatsplot::movies_long,
+  .data = movies_long,
   genre %in% c(
     "Action",
     "Action Comedy",
@@ -447,7 +457,7 @@ df <- dplyr::filter(
 )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = stats::lm(formula = rating ~ genre, data = df),
   sort = "ascending", # sorting the terms of the model based on estimate values
   ggtheme = ggplot2::theme_gray(), # changing the default theme
@@ -474,10 +484,12 @@ mod.beta <- lm.beta::lm.beta(mod.lm)
 mod.robust.beta <- lm.beta::lm.beta(mod.robust)
 
 # plot
-ggstatsplot::combine_plots(
-  ggstatsplot::ggcoefstats(mod.beta),
-  ggstatsplot::ggcoefstats(mod.robust.beta, stats.labels = FALSE),
-  title.text = "standardized regression coefficients with `lm`"
+combine_plots(
+  plotlist = list(
+    ggcoefstats(mod.beta),
+    ggcoefstats(mod.robust.beta, stats.labels = FALSE)
+  ),
+  annotation.args = list(title = "standardized regression coefficients with `lm`")
 )
 ```
 
@@ -496,7 +508,7 @@ bfit1 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = bfit1,
   title = "bounded memory simple linear regression"
 )
@@ -519,7 +531,7 @@ mod_bigglm <-
     sandwich = TRUE
   )
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_bigglm,
   title = "bounded memory general linear regression"
 )
@@ -545,28 +557,30 @@ mod2 <-
   )
 
 # combining the two different plots
-ggstatsplot::combine_plots(
-  # model 1: simple linear model
-  ggstatsplot::ggcoefstats(
-    x = mod1,
-    title = "linear model",
-    stats.label.color = "black",
-    exclude.intercept = TRUE # hide the intercept
-  ) +
-    ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
-  # model 2: linear mixed-effects model
-  ggstatsplot::ggcoefstats(
-    x = mod2,
-    title = "linear mixed-effects model",
-    stats.label.color = "black",
-    exclude.intercept = TRUE # hide the intercept
-  ) +
-    ggplot2::labs(
-      x = parse(text = "'standardized regression coefficient' ~italic(beta)"),
-      y = "fixed effects"
-    ),
-  nrow = 2,
-  title.text = "Relationship between movie budget and its IMDB rating"
+combine_plots(
+  plotlist = list(
+    # model 1: simple linear model
+    ggcoefstats(
+      x = mod1,
+      title = "linear model",
+      stats.label.color = "black",
+      exclude.intercept = TRUE # hide the intercept
+    ) +
+      ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
+    # model 2: linear mixed-effects model
+    ggcoefstats(
+      x = mod2,
+      title = "linear mixed-effects model",
+      stats.label.color = "black",
+      exclude.intercept = TRUE # hide the intercept
+    ) +
+      ggplot2::labs(
+        x = parse(text = "'standardized regression coefficient' ~italic(beta)"),
+        y = "fixed effects"
+      )
+  ),
+  plotgrid.args = list(nrow = 2),
+  annotation.args = list(title = "Relationship between movie budget and its IMDB rating")
 )
 ```
 
@@ -614,10 +628,12 @@ m2_afex <- afex::mixed(
 )
 
 # plot
-ggstatsplot::combine_plots(
-  ggstatsplot::ggcoefstats(m1_afex, title = "example-1"),
-  ggstatsplot::ggcoefstats(m2_afex, title = "example-2"),
-  title.text = "analysis of factorial experiments (using `afex`)"
+combine_plots(
+  plotlist = list(
+    ggcoefstats(m1_afex, title = "example-1"),
+    ggcoefstats(m2_afex, title = "example-2")
+  ),
+  annotation.args = list(title = "analysis of factorial experiments (using `afex`)")
 )
 ```
 
@@ -667,7 +683,7 @@ multi.arr <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = multi.arr,
   title = "risk regression"
 )
@@ -689,7 +705,7 @@ afit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = afit,
   title = "Aalen's additive regression model",
   subtitle = "(for censored data)",
@@ -718,7 +734,7 @@ mm0 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mm0,
   title = "multivariate generalized linear mixed model",
   conf.method = "HPDinterval",
@@ -746,7 +762,7 @@ dat$y <- with(dat, 1.5 + sin(x) + rnorm(n, sd = 0.6))
 b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = b1,
   title = "STAR Models with BayesX"
 )
@@ -770,7 +786,7 @@ mod_HLfit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_HLfit,
   title = "Inference in spatial GLMMs"
 )
@@ -793,7 +809,7 @@ roblmm.mod <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = roblmm.mod,
   title = "robust estimation of linear mixed-effects model",
   conf.level = 0.90
@@ -816,7 +832,7 @@ fm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fm,
   title = "linear mixed-effects models with `lmerTest`"
 )
@@ -839,7 +855,7 @@ nm1 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = nm1,
   title = "non-linear mixed-effects model"
 )
@@ -861,7 +877,7 @@ mod_nls <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_nls,
   title = "non-linear least squares regression",
   subtitle = "Non-linear relationship between budget and rating"
@@ -887,7 +903,7 @@ fit.ide <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit.ide,
   title = "conditional generalized linear models for clustered data"
 )
@@ -924,7 +940,7 @@ fit_mjoint <-
   )
 
 # extract the survival fixed effects and plot them
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_mjoint,
   conf.level = 0.99,
   component = "longitudinal",
@@ -952,7 +968,7 @@ mod_slm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_slm,
   conf.level = 0.90,
   title = "stationary linear models",
@@ -981,7 +997,7 @@ mod_glm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_glm,
   ggtheme = ggthemes::theme_economist_white(),
   ggstatsplot.layer = FALSE,
@@ -1036,70 +1052,71 @@ df.4 <- data.frame(x = x2, y = y2) %>%
   tibble::as_tibble(.)
 
 # combining all plots in a single plot
-ggstatsplot::combine_plots(
-  # Family: Poisson
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = counts ~ outcome + treatment,
-      data = df.counts,
-      family = stats::poisson(link = "log")
+combine_plots(
+  plotlist = list(
+    # Family: Poisson
+    ggcoefstats(
+      x = stats::glm(
+        formula = counts ~ outcome + treatment,
+        data = df.counts,
+        family = stats::poisson(link = "log")
+      ),
+      title = "Family: Poisson",
+      stats.label.color = "black"
     ),
-    title = "Family: Poisson",
-    stats.label.color = "black"
-  ),
-  # Family: Gamma
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = lot1 ~ log(u),
-      data = df.clotting,
-      family = stats::Gamma(link = "inverse")
+    # Family: Gamma
+    ggcoefstats(
+      x = stats::glm(
+        formula = lot1 ~ log(u),
+        data = df.clotting,
+        family = stats::Gamma(link = "inverse")
+      ),
+      title = "Family: Gamma",
+      stats.label.color = "black"
     ),
-    title = "Family: Gamma",
-    stats.label.color = "black"
-  ),
-  # Family: Quasi
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = y ~ x,
-      family = quasi(variance = "mu", link = "log"),
-      data = df.3
+    # Family: Quasi
+    ggcoefstats(
+      x = stats::glm(
+        formula = y ~ x,
+        family = quasi(variance = "mu", link = "log"),
+        data = df.3
+      ),
+      title = "Family: Quasi",
+      stats.label.color = "black"
     ),
-    title = "Family: Quasi",
-    stats.label.color = "black"
-  ),
-  # Family: Quasibinomial
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = y ~ x,
-      family = stats::quasibinomial(link = "logit"),
-      data = df.4
+    # Family: Quasibinomial
+    ggcoefstats(
+      x = stats::glm(
+        formula = y ~ x,
+        family = stats::quasibinomial(link = "logit"),
+        data = df.4
+      ),
+      title = "Family: Quasibinomial",
+      stats.label.color = "black"
     ),
-    title = "Family: Quasibinomial",
-    stats.label.color = "black"
-  ),
-  # Family: Quasipoisson
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = y ~ x,
-      family = stats::quasipoisson(link = "log"),
-      data = df.4
+    # Family: Quasipoisson
+    ggcoefstats(
+      x = stats::glm(
+        formula = y ~ x,
+        family = stats::quasipoisson(link = "log"),
+        data = df.4
+      ),
+      title = "Family: Quasipoisson",
+      stats.label.color = "black"
     ),
-    title = "Family: Quasipoisson",
-    stats.label.color = "black"
+    # Family: Gaussian
+    ggcoefstats(
+      x = stats::glm(
+        formula = Sepal.Length ~ Species,
+        family = stats::gaussian(link = "identity"),
+        data = iris
+      ),
+      title = "Family: Gaussian",
+      stats.label.color = "black"
+    )
   ),
-  # Family: Gaussian
-  ggstatsplot::ggcoefstats(
-    x = stats::glm(
-      formula = Sepal.Length ~ Species,
-      family = stats::gaussian(link = "identity"),
-      data = iris
-    ),
-    title = "Family: Gaussian",
-    stats.label.color = "black"
-  ),
-  ncol = 2,
-  title.text = "Exploring models with different `glm` families",
-  title.color = "blue"
+  plotgrid.args = list(ncol = 2),
+  annotation.args = list(title = "Exploring models with different `glm` families")
 )
 ```
 
@@ -1118,7 +1135,7 @@ treatment <- gl(3, 3)
 f_Glm <- rms::Glm(counts ~ outcome + treatment, family = poisson())
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = f_Glm,
   title = "rms' implementation of glm"
 )
@@ -1141,7 +1158,7 @@ fit_glm2 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_glm2,
   title = "greater stability for fitting generalized linear models"
 )
@@ -1193,7 +1210,7 @@ x2 <- sample(c(-1, 0, 1), n, TRUE)
 g <- rms::orm(y ~ x1 + x2, eps = 1e-5)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = g,
   title = "Ordinal Regression Model"
 )
@@ -1220,7 +1237,7 @@ options(datadist = "dd")
 f_lrm <- rms::lrm(y ~ x1 + pol(x2, 2) + x3, eps = 1e-7) # eps to check against rstan
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = f_lrm,
   title = "Logistic Regression Model",
   package = "ggsci",
@@ -1251,7 +1268,7 @@ dat <-
 mod_ivrobust <- estimatr::iv_robust(formula = Y ~ D + X | Z + X, data = dat)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_ivrobust,
   title = "Two-Stage Least Squares Instrumental Variables Regression"
 )
@@ -1272,7 +1289,7 @@ mod_lmrobust <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_lmrobust,
   title = "ordinary least squares with robust standard errors"
 )
@@ -1304,7 +1321,7 @@ dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 m.glm <- MASS::glm.nb(formula = y ~ f1 * f2, data = dd)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m.glm,
   title = "generalized linear model (GLM) for the negative binomial family",
   only.significant = TRUE,
@@ -1324,7 +1341,7 @@ library(lme4)
 mod_glmer <-
   lme4::glmer(
     formula = Survived ~ Sex + Age + (Sex + Age | Class),
-    data = ggstatsplot::Titanic_full,
+    data = Titanic_full,
     family = stats::binomial(link = "logit"),
     control = lme4::glmerControl(
       optimizer = "Nelder_Mead",
@@ -1334,7 +1351,7 @@ mod_glmer <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_glmer,
   title = "generalized linear mixed-effects model"
 )
@@ -1361,7 +1378,7 @@ mod.mcml1 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod.mcml1,
   title = "Fitting Generalized Linear Mixed Models using MCML"
 )
@@ -1391,7 +1408,7 @@ dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 m.nb <- lme4::glmer.nb(formula = y ~ f1 * f2 + (1 | g), data = dd)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m.nb,
   title = "generalized linear mixed-effects model (GLMM) for the negative binomial family"
 )
@@ -1416,7 +1433,7 @@ mod_zeroinfl <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_zeroinfl,
   title = "Zero-Inflated Count Data Regression"
 )
@@ -1440,7 +1457,7 @@ mod_vgam <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_vgam,
   title = "Vector Generalized Additive Models"
 )
@@ -1463,7 +1480,7 @@ mod_vglm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_vglm,
   title = "Vector Generalized Linear Models"
 )
@@ -1497,7 +1514,7 @@ rrnb2 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = rrnb2,
   title = "Reduced-Rank Vector Generalized Linear Models"
 )
@@ -1515,7 +1532,7 @@ data(Canada)
 mod_varest <- vars::VAR(Canada, p = 2, type = "none")
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_varest,
   title = "Vector autoregression models"
 )
@@ -1533,7 +1550,7 @@ data(cubic)
 m_cgam <- cgam::cgam(formula = y ~ incr.conv(x), data = cubic)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_cgam,
   title = "Constrained Generalized Additive Model Fitting"
 )
@@ -1580,7 +1597,7 @@ for (i in 1:m) {
 ans <- cgam::cgamm(formula = y ~ s.incr(x) + (1 | group), reml = TRUE)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = ans,
   title = "Constrained Generalized Additive Mixed-Effects Model Fitting"
 )
@@ -1615,7 +1632,7 @@ b_scam <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = b_scam,
   title = "Shape constrained additive models"
 )
@@ -1638,7 +1655,7 @@ fm_hp2 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fm_hp2,
   only.significant = TRUE,
   conf.level = 0.99,
@@ -1690,7 +1707,7 @@ mod_BBmm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_BBmm,
   title = "beta-binomial mixed-effects model"
 )
@@ -1718,7 +1735,7 @@ y <- PROreg::rBB(k, m, p, phi)
 mod_BBreg <- PROreg::BBreg(y ~ x, m)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_BBreg,
   title = "beta-binomial logistic regression model"
 )
@@ -1739,7 +1756,7 @@ mod_bife <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_bife,
   title = "binary choice models with fixed effects"
 )
@@ -1760,7 +1777,7 @@ ALake$Y <- DR_data(ALake[, 1:3])
 mod_DirichReg <- DirichletReg::DirichReg(Y ~ depth + I(depth^2), ALake)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_DirichReg,
   title = "Dirichlet Regression"
 )
@@ -1779,7 +1796,7 @@ data(forbes)
 forbes.robustmix <- robmixglm(100 * log10(pres) ~ bp, data = forbes)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = forbes.robustmix,
   title = "robust generalized linear models"
 )
@@ -1805,7 +1822,7 @@ m_nb1 <-
     xstart = 0
   )
 
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_nb1,
   title = "Generalized Linear Models with Extra Parameters"
 )
@@ -1832,14 +1849,16 @@ gt <- glmertree::glmertree(
 )
 
 # plot
-ggstatsplot::combine_plots(
-  ggstatsplot::ggcoefstats(
-    x = lt$lmer,
-    title = "normal linear regression LMM tree for continuous outcome"
-  ),
-  ggstatsplot::ggcoefstats(
-    x = lt$lmer,
-    title = "logistic regression GLMM tree for binary outcome"
+combine_plots(
+  plotlist = list(
+    ggcoefstats(
+      x = lt$lmer,
+      title = "normal linear regression LMM tree for continuous outcome"
+    ),
+    ggcoefstats(
+      x = lt$lmer,
+      title = "logistic regression GLMM tree for binary outcome"
+    )
   )
 )
 ```
@@ -1863,7 +1882,7 @@ mod_glmmPQL <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_glmmPQL,
   title = "generalized linear mixed models \nusing Penalized Quasi-Likelihood"
 )
@@ -1889,7 +1908,7 @@ mod_glmmTMB <-
   )
 
 # plotting the model
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_glmmTMB,
   title = "generalized linear mixed models using Template Model Builder"
 )
@@ -1913,7 +1932,7 @@ zipm3 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = zipm3,
   package = "palettesForR",
   palette = "Inkscape",
@@ -1955,7 +1974,7 @@ zipmodel <-
   )
 
 # plotting the model
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = zipmodel,
   title = "generalized linear mixed models using AD Model Builder"
 )
@@ -1982,7 +2001,7 @@ fml <- "Reaction ~ Days + (Days | Subject)"
 mod_lmerModList <- lmerModList(fml, data = sim_list)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_lmerModList,
   title = "a multilevel model to a list of data frames"
 )
@@ -1999,7 +2018,7 @@ library(ordinal)
 mod_clm <- ordinal::clm(formula = rating ~ temp * contact, data = wine)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_clm,
   stats.label.color = "black",
   title = "cumulative link model (clm)",
@@ -2034,7 +2053,7 @@ mod_clm2 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_clm2,
   title = "older version of `clm`"
 )
@@ -2054,7 +2073,7 @@ mod_clmm <- ordinal::clmm(
 )
 
 # to speed up calculations, we will use just 10% of the dataset
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_clmm,
   title = "cumulative link mixed model (clmm)",
   subtitle = "(using `ordinal` package)"
@@ -2089,7 +2108,7 @@ mod_clmm2 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_clmm2,
   title = "older version of cumulative link mixed models"
 )
@@ -2113,7 +2132,7 @@ mod_log <- glm(
 marg_log <- margins(mod_log)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = marg_log,
   title = "marginal effects estimation"
 )
@@ -2140,7 +2159,7 @@ mod_semLm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_semLm,
   title = "Linear Regression with \nInterval-Censored Dependent Variable"
 )
@@ -2167,7 +2186,7 @@ model1 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = model1,
   title = "Linear Mixed Regression with \nInterval-Censored Dependent Variable"
 )
@@ -2194,7 +2213,7 @@ mod_mixor <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_mixor,
   title = "Mixed-Effects Ordinal Regression Analysis"
 )
@@ -2218,7 +2237,7 @@ lizards.brglm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = lizards.brglm,
   only.significant = TRUE,
   title = "bias reduction in Binomial-response GLMs"
@@ -2243,7 +2262,7 @@ lizardsBR_mean <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = lizardsBR_mean,
   only.significant = TRUE,
   title = "bias reduction in generalized linear models"
@@ -2270,7 +2289,7 @@ houseML1 <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = houseML1,
   title = "Bias Reduction For Multinomial Response Models Using The Poisson Trick"
 )
@@ -2295,7 +2314,7 @@ fit_bracl <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_bracl,
   title = "bias reduction for adjacent category logit models"
 )
@@ -2344,7 +2363,7 @@ gfit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = gfit,
   title = "generalized linear models subject to population constraints"
 )
@@ -2377,7 +2396,7 @@ mod_blmer <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_blmer,
   title = "Bayesian linear mixed-effects models"
 )
@@ -2400,7 +2419,7 @@ mod_bglmer <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_bglmer,
   title = "Bayesian generalized linear mixed-effects models"
 )
@@ -2420,7 +2439,7 @@ polr.mod <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = polr.mod,
   coefficient.type = "both",
   title = "ordered logistic or probit regression",
@@ -2443,7 +2462,7 @@ mod_mlm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_mlm,
   title = "multiple linear regression models"
 )
@@ -2460,7 +2479,7 @@ fit <- lm(cbind(mpg, disp, hp) ~ factor(cyl), data = mtcars)
 m_maov <- aov(fit)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_maov,
   title = "anova on multiple linear regression models",
   package = "ggsci",
@@ -2487,7 +2506,7 @@ bwt.mu <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = bwt.mu,
   title = "multinomial logistic regression models",
   package = "ggsci",
@@ -2518,7 +2537,7 @@ df_summary <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = df_summary,
   title = "Bayesian multilevel mediation models with Stan"
 )
@@ -2552,7 +2571,7 @@ m_svyolr <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_svyolr,
   title = "proportional odds and related models",
   coefficient.type = "both"
@@ -2584,7 +2603,7 @@ mod_svyglm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_svyglm,
   title = "survey-weighted generalized linear model"
 )
@@ -2607,7 +2626,7 @@ mod_aovlist <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_aovlist,
   effsize = "eta",
   ggtheme = ggthemes::theme_fivethirtyeight(),
@@ -2622,33 +2641,35 @@ ggstatsplot::ggcoefstats(
 ## robust regression with `robust` package (`lmRob`, `glmRob`)
 
 ```{r robust, fig.height = 10, fig.width = 6}
-ggstatsplot::combine_plots(
-  # plot 1: glmRob
-  ggstatsplot::ggcoefstats(
-    x = robust::glmRob(
-      formula = Survived ~ Sex,
-      data = ggstatsplot::Titanic_full,
-      family = stats::binomial(link = "logit")
+combine_plots(
+  plotlist = list(
+    # plot 1: glmRob
+    ggcoefstats(
+      x = robust::glmRob(
+        formula = Survived ~ Sex,
+        data = Titanic_full,
+        family = stats::binomial(link = "logit")
+      ),
+      title = "generalized robust linear model",
+      ggtheme = ggthemes::theme_fivethirtyeight(),
+      ggstatsplot.layer = FALSE
     ),
-    title = "generalized robust linear model",
-    ggtheme = ggthemes::theme_fivethirtyeight(),
-    ggstatsplot.layer = FALSE
-  ),
-  # plot 2: lmRob
-  ggstatsplot::ggcoefstats(
-    x = robust::lmRob(
-      formula = Sepal.Length ~ Sepal.Width * Species,
-      data = iris
-    ),
-    title = "robust linear model",
-    package = "awtools",
-    palette = "a_palette",
-    ggtheme = ggthemes::theme_tufte(),
-    ggstatsplot.layer = FALSE
+    # plot 2: lmRob
+    ggcoefstats(
+      x = robust::lmRob(
+        formula = Sepal.Length ~ Sepal.Width * Species,
+        data = iris
+      ),
+      title = "robust linear model",
+      package = "awtools",
+      palette = "a_palette",
+      ggtheme = ggthemes::theme_tufte(),
+      ggstatsplot.layer = FALSE
+    )
   ),
   # arguments relevant for `combine_plots` function
-  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robust` package)",
-  nrow = 2
+  annotation.args = list(title = "Robust variants of `lmRob` and `glmRob` \n(from`robust` package)"),
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -2672,24 +2693,26 @@ clotting <-
   )
 
 # combined plot for both generalized and simple robust models
-ggstatsplot::combine_plots(
-  # plot 1: glmrob
-  ggstatsplot::ggcoefstats(
-    x = glmrob(
-      formula = lot1 ~ log(u),
-      data = clotting,
-      family = Gamma
+combine_plots(
+  plotlist = list(
+    # plot 1: glmrob
+    ggcoefstats(
+      x = glmrob(
+        formula = lot1 ~ log(u),
+        data = clotting,
+        family = Gamma
+      ),
+      title = "generalized robust linear model"
     ),
-    title = "generalized robust linear model"
-  ),
-  # plot 2: lmrob
-  ggstatsplot::ggcoefstats(
-    x = lmrob(formula = Y ~ ., data = coleman),
-    title = "robust linear model"
+    # plot 2: lmrob
+    ggcoefstats(
+      x = lmrob(formula = Y ~ ., data = coleman),
+      title = "robust linear model"
+    )
   ),
   # arguments relevant for `combine_plots`
-  title.text = "Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)",
-  nrow = 2
+  annotation.args = list(title = "Robust variants of `lmRob` and `glmRob` \n(from`robustbase` package)"),
+  plotgrid.args = list(nrow = 2)
 )
 ```
 
@@ -2710,7 +2733,7 @@ crimes <- data.frame(
 mUSArr <- complmrob::complmrob(formula = lifeExp ~ ., data = crimes)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mUSArr,
   title = "MM-type estimators for linear regression on compositional data"
 )
@@ -2733,7 +2756,7 @@ calcium.nl <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = calcium.nl,
   conf.int = FALSE,
   title = "fit a nonlinear heteroscedastic model via maximum likelihood"
@@ -2767,7 +2790,7 @@ y <- x + 0.5 * x2 + id.eff[id] + firm.eff[firm] + u
 est <- lfe::felm(formula = y ~ x + x2 | id + firm)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = est,
   title = "linear model with multiple group fixed effects"
 )
@@ -2790,7 +2813,7 @@ plm.mod <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = plm.mod,
   title = "linear models for panel data"
 )
@@ -2816,7 +2839,7 @@ Fish <-
 m_mlogit <- mlogit::mlogit(mode ~ price + catch | income, data = Fish)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_mlogit,
   title = "multinomial logit model"
 )
@@ -2848,7 +2871,7 @@ mod_coxph <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_coxph,
   title = "Cox proportional hazards regression model"
 )
@@ -2868,7 +2891,7 @@ mod_coxph <- survival::coxph(
 )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_coxph,
   title = "Proportional Hazards Regression Model\nwith Frailty penalty function"
 )
@@ -2889,7 +2912,7 @@ fit <- coxme::coxme(
 )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit,
   title = "mixed effects Cox model"
 )
@@ -2915,7 +2938,7 @@ cragg_trunc <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = cragg_trunc,
   title = "Truncated Gaussian Regression Models"
 )
@@ -2945,7 +2968,7 @@ fit.lqm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit.lqm,
   title = "Fitting Linear Quantile Models"
 )
@@ -2977,7 +3000,7 @@ fit.lqmm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit.lqmm,
   title = "Fitting Linear Quantile Mixed Models"
 )
@@ -2993,7 +3016,7 @@ set.seed(123)
 fit <- stats::arima(x = lh, order = c(1, 0, 0))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit,
   title = "autoregressive integrated moving average"
 )
@@ -3017,7 +3040,7 @@ mod_speedlm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_speedlm,
   title = "high performance linear model"
 )
@@ -3048,7 +3071,7 @@ mod_speedglm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_speedglm,
   title = "high performance generalized linear model"
 )
@@ -3070,7 +3093,7 @@ mod_survreg <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_survreg,
   ggtheme = hrbrthemes::theme_ipsum_rc(),
   package = "ggsci",
@@ -3097,7 +3120,7 @@ feis.mod <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = feis.mod,
   title = "Fixed Effects Individual Slope Estimator"
 )
@@ -3142,7 +3165,7 @@ m_tobit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_tobit,
   title = "tobit regression"
 )
@@ -3164,7 +3187,7 @@ estResult <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = estResult,
   title = "censored regression (tobit) regression"
 )
@@ -3201,7 +3224,7 @@ fit.ccP <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit.ccP,
   title = "relative risk regression model",
   subtitle = "(for case-cohort studies)",
@@ -3224,7 +3247,7 @@ names(longley)[1] <- "y"
 mod_ridgelm <- MASS::lm.ridge(formula = y ~ ., data = longley)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_ridgelm,
   title = "ridge regression"
 )
@@ -3249,7 +3272,7 @@ g_gam <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = g_gam,
   title = "generalized additive models with \nintegrated smoothness estimation",
   subtitle = "using `mgcv` package"
@@ -3277,7 +3300,7 @@ b_bam <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = b_bam,
   title = "generalized additive models for \nvery large datasets"
 )
@@ -3297,7 +3320,7 @@ mod_gam <- gam::gam(
 )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_gam,
   title = "generalized additive model",
   subtite = "(using `gam` package)"
@@ -3322,7 +3345,7 @@ mod_lme <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_lme,
   title = "linear mixed-effects models (`lme`)"
 )
@@ -3348,7 +3371,7 @@ mod_gls <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_gls,
   stats.label.color = "black",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
@@ -3372,7 +3395,7 @@ fm <- stats::lm(formula = length ~ age, data = Mandible, subset = (age <= 28))
 ct <- lmtest::coeftest(fm)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = ct,
   plot = "inference for estimated coefficients",
   conf.level = 0.99
@@ -3389,7 +3412,7 @@ set.seed(123)
 mod_rlm <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_rlm,
   point.args = list(color = "red", shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
@@ -3418,7 +3441,7 @@ mod_rq <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_rq,
   se.type = "iid",
   title = "quantile regression"
@@ -3442,7 +3465,7 @@ fm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fm,
   title = "multiple response quantile regression (`rqs`)"
 )
@@ -3470,7 +3493,7 @@ Dat.nlrq <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = Dat.nlrq,
   title = "non-linear quantile regression",
   se.type = "nid"
@@ -3492,7 +3515,7 @@ fCO <- quantreg::rqss(
 )
 
 # model info
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fCO,
   title = "Additive Quantile Regression"
 )
@@ -3518,7 +3541,7 @@ f_crq <- quantreg::crq(survival::Surv(pmax(y, c), d, type = "left") ~ x,
 )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = f_crq,
   title = "censored quantile regression models"
 )
@@ -3541,7 +3564,7 @@ ivr <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = ivr,
   title = "instrumental-variable regression"
 )
@@ -3563,7 +3586,7 @@ pro <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = pro,
   title = "instrumental variables probit regression"
 )
@@ -3599,7 +3622,7 @@ mdata <- data.frame(p = pib, t = tir, int = inf, np = npl)
 ivf <- ivfixed::ivFixed(t ~ p + int | p + np, mdata, n = 6, t = 3)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = ivf,
   title = "instrumental fixed effect panel regression"
 )
@@ -3636,7 +3659,7 @@ mod_mediate <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_mediate,
   title = "causal mediation analysis"
 )
@@ -3661,7 +3684,7 @@ Ex2.res <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = Ex2.res,
   title = "Model II regression"
 )
@@ -3685,7 +3708,7 @@ g_gamlss <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = g_gamlss,
   title = "generalized additive models \nfor location scale and shape"
 )
@@ -3711,7 +3734,7 @@ b_bamlss <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = b_bamlss,
   title = "Bayesian additive models \nfor location scale and shape"
 )
@@ -3737,7 +3760,7 @@ h <- matrix(zm, t, 1)
 res_gmm <- gmm::gmm(z ~ zm, x = h)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = res_gmm,
   package = "palettetown",
   palette = "victreebel",
@@ -3763,7 +3786,7 @@ fit1 <- glmnet::glmnet(x, y)
 (df <- broom::tidy(fit1))
 
 # displaying only a certain step
-ggstatsplot::ggcoefstats(x = dplyr::filter(df, step == 4))
+ggcoefstats(x = dplyr::filter(df, step == 4))
 ```
 
 ## exponential-family random graph models (`ergm`)
@@ -3779,7 +3802,7 @@ data(florentine)
 gest <- ergm::ergm(flomarriage ~ edges + absdiff("wealth"))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = gest,
   conf.level = 0.99,
   title = "exponential-family random graph models"
@@ -3821,7 +3844,7 @@ fit_btergm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_btergm,
   title = "Terms used in Exponential Family Random Graph Models",
   subtitle = "by bootstrapped pseudolikelihood or MCMC MLE"
@@ -3841,7 +3864,7 @@ dax <- diff(log(EuStockMarkets))[, "DAX"]
 dax.garch <- tseries::garch(x = dax, trace = FALSE)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = dax.garch,
   title = "generalized autoregressive conditional heteroscedastic"
 )
@@ -3864,7 +3887,7 @@ mod_bayesGARCH <- bayesGARCH::bayesGARCH(y,
 )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_bayesGARCH,
   title = "Bayesian Estimation of the GARCH(1,1) Model \nwith Student-t Innovations"
 )
@@ -3882,7 +3905,7 @@ x <- rnorm(100, 5, 2)
 fit_fitdistr <- MASS::fitdistr(x, dnorm, list(mean = 3, sd = 1))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_fitdistr,
   title = "maximum-likelihood fitting of univariate distributions",
   ggtheme = ggthemes::theme_pander()
@@ -3910,7 +3933,7 @@ LL <- function(ymax = 15, xhalf = 6) {
 fit_mle2 <- bbmle::mle2(LL, fixed = list(xhalf = 6))
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_mle2,
   title = "maximum likelihood estimation",
   ggtheme = ggthemes::theme_excel_new()
@@ -3941,7 +3964,7 @@ mod_glht <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_glht,
   title = "General Linear Hypotheses (using `multcomp`)"
 )
@@ -3959,7 +3982,7 @@ reg <- stats::lm(formula = mpg ~ wt + qsec + disp, data = mtcars)
 co <- orcutt::cochrane.orcutt(reg)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = co,
   title = "Cochrane-Orcutt estimation"
 )
@@ -3979,7 +4002,7 @@ two_class_sample2 <- as.factor(sample(letters[1:2], 100, TRUE))
 two_class_cm <- caret::confusionMatrix(two_class_sample1, two_class_sample2)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = two_class_cm,
   by.class = TRUE,
   title = "confusion matrix"
@@ -4005,7 +4028,7 @@ mod_drc <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_drc,
   conf.level = 0.99,
   title = "Dose-Response Curves"
@@ -4026,7 +4049,7 @@ data <- data.frame(time = 1:12, event = c(0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1))
 mod_logistf <- logistf::logistf(event ~ time, data)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_logistf,
   title = "Firth's bias-reduced logistic regression"
 )
@@ -4048,7 +4071,7 @@ fitg <-
     dist = "gengamma"
   )
 
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fitg,
   title = "Flexible parametric regression for time-to-event data"
 )
@@ -4073,7 +4096,7 @@ mod_wblm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_wblm,
   title = "panel regression models fit via multilevel modeling"
 )
@@ -4098,7 +4121,7 @@ mod_wbgee <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_wbgee,
   conf.level = 0.99,
   title = "panel regression models fit via generalized estimating equations"
@@ -4126,7 +4149,7 @@ CRCH <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = CRCH,
   title = "Censored Regression with Conditional Heteroscedasticy"
 )
@@ -4152,7 +4175,7 @@ fit_LORgee <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_LORgee,
   title = "Marginal Models For Correlated Ordinal Multinomial Responses"
 )
@@ -4181,7 +4204,7 @@ fit_epiR <-
   )
 
 # tidy dataframe
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_epiR,
   title = "Summary measures for count data presented in a 2 by 2 table"
 )
@@ -4213,7 +4236,7 @@ d <- data.frame(y, x)
 mod_betamfx <- mfx::betamfx(y ~ x | x, data = d)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_betamfx,
   title = "marginal effects for a beta regression"
 )
@@ -4242,7 +4265,7 @@ data <- data.frame(y, x)
 mod_logitmfx <- logitmfx(formula = y ~ x, data = data)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_logitmfx,
   title = "marginal effects for a logit regression"
 )
@@ -4266,7 +4289,7 @@ data <- data.frame(y, x)
 mod_negbinmfx <- negbinmfx(formula = y ~ x, data = data)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_negbinmfx,
   title = "marginal effects for a negative binomial regression"
 )
@@ -4288,7 +4311,7 @@ data <- data.frame(y, x)
 mod_poissonmfx <- poissonmfx(formula = y ~ x, data = data)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_poissonmfx,
   title = "marginal effects for a Poisson regression"
 )
@@ -4316,7 +4339,7 @@ fit_brm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_brm,
   standardize = TRUE,
   title = "Bayesian generalized (non-)linear multivariate multilevel models",
@@ -4346,7 +4369,7 @@ fit_brm_m <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_brm_m,
   title = "Same `brms` model with multiple datasets",
   conf.level = 0.99
@@ -4375,7 +4398,7 @@ fit_nlstanreg <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_nlstanreg,
   title = "Bayesian nonlinear models via Stan"
 )
@@ -4393,7 +4416,7 @@ data(line)
 x1 <- line[[1]]
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = x1,
   title = "Markov Chain Monte Carlo objects",
   robust = TRUE,
@@ -4434,7 +4457,7 @@ jagsfit <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = jagsfit,
   title = "Markov Chain Monte Carlo with Just Another Gibbs Sampler (JAGS)"
 )
@@ -4463,7 +4486,7 @@ fit_lavaan <-
   )
 
 # tidy
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_lavaan,
   title = "latent variable model",
   conf.level = 0.99
@@ -4495,7 +4518,7 @@ fit_blavaan <-
   )
 
 # tidy
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_blavaan,
   title = "Bayesian latent variable model"
 )
@@ -4518,7 +4541,7 @@ fit_stanreg <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = fit_stanreg,
   title = "Bayesian generalized linear models via Stan"
 )
@@ -4547,7 +4570,7 @@ mod_stanmvreg <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_stanmvreg,
   title = "Bayesian multivariate generalized linear models \nvia Stan"
 )
@@ -4569,7 +4592,7 @@ mod_cpglm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_cpglm,
   title = "Compound Poisson Generalized Linear Models"
 )
@@ -4590,7 +4613,7 @@ mod_cpglmm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_cpglmm,
   title = "Compound Poisson Generalized Linear Mixed Models"
 )
@@ -4616,7 +4639,7 @@ mod_bcplm <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_bcplm,
   title = "Bayesian Compound Poisson Linear Models"
 )
@@ -4630,7 +4653,7 @@ data(nhanes2)
 imp <- mice(nhanes2)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = with(data = imp, exp = lm(bmi ~ age + hyp + chl)),
   title = "Multivariate Imputation by Chained Equations"
 )
@@ -4680,11 +4703,13 @@ mod_fx4 <-
   )
 
 # combining plots
-ggstatsplot::combine_plots(
-  ggstatsplot::ggcoefstats(mod_fx1),
-  ggstatsplot::ggcoefstats(mod_fx2),
-  ggstatsplot::ggcoefstats(mod_fx3),
-  ggstatsplot::ggcoefstats(mod_fx4),
+combine_plots(
+  plotlist = list(
+    ggcoefstats(mod_fx1),
+    ggcoefstats(mod_fx2),
+    ggcoefstats(mod_fx3),
+    ggcoefstats(mod_fx4)
+  ),
   labels = "auto",
   title.text = "fast and user-friendly fixed-effects estimations"
 )
@@ -4704,7 +4729,7 @@ npk2 <- within(npk, foo <- rnorm(24))
 m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = m_manova,
   title = "multivariate analysis of variance"
 )
@@ -4740,20 +4765,22 @@ br <-
 purrr::map(br, class)
 
 # plotting
-ggstatsplot::combine_plots(
-  # first object plot (only parametric terms are shown)
-  ggstatsplot::ggcoefstats(
-    x = br$gam,
-    title = "generalized additive model (parametric terms)",
-    k = 3
+combine_plots(
+  plotlist = list(
+    # first object plot (only parametric terms are shown)
+    ggcoefstats(
+      x = br$gam,
+      title = "generalized additive model (parametric terms)",
+      k = 3
+    ),
+    # second object plot
+    ggcoefstats(
+      x = br$mer,
+      title = "linear mixed-effects model",
+      k = 3
+    )
   ),
-  # second object plot
-  ggstatsplot::ggcoefstats(
-    x = br$mer,
-    title = "linear mixed-effects model",
-    k = 3
-  ),
-  nrow = 1
+  plotgrid.args = list(nrow = 1)
 )
 ```
 
@@ -4778,7 +4805,7 @@ library(metaplus)
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
   bf.message = TRUE,
@@ -4798,7 +4825,7 @@ library(metaplus)
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
   meta.type = "robust",
@@ -4817,7 +4844,7 @@ library(metaplus)
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
   meta.type = "bayes",
@@ -4842,7 +4869,7 @@ df_full <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = df_full,
   meta.analytic.effect = TRUE,
   statistic = "t",
@@ -4918,7 +4945,7 @@ df <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = df,
   statistic = "t",
   sort = "ascending",
