@@ -175,7 +175,7 @@ if (all(unlist(lapply(
             statistic = "T",
             k = 3,
             meta.analytic.effect = TRUE,
-            meta.type = "bf",
+            meta.type = "bayes",
             caption = "mnp",
             bf.message = TRUE
           )

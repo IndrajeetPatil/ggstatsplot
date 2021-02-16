@@ -185,7 +185,7 @@ test_that(
         data = ToothGrowth,
         x = supp,
         y = len,
-        type = "bf",
+        type = "bayes",
         plot.type = "box",
         results.subtitle = FALSE,
         outlier.tagging = TRUE,

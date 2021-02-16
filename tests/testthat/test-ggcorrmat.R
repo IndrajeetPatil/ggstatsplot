@@ -209,7 +209,7 @@ test_that(
     skip_on_cran()
 
     set.seed(123)
-    p <- suppressWarnings(ggcorrmat(ggplot2::msleep, type = "bf"))
+    p <- suppressWarnings(ggcorrmat(ggplot2::msleep, type = "bayes"))
     pb <- ggplot2::ggplot_build(p)
 
     # check legend

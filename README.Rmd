@@ -445,7 +445,7 @@ Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | <font color="green">Yes<font> | `effectsize::kendalls_w`
-Robust | > 2 | $\delta_{R-avg}^{AKP}$ <font color="green">Yes<font> | Algina-Keselman-Penfield robust standardized difference average | `wAKP.avg` (custom)
+Robust | > 2 | $\delta_{R-avg}^{AKP}$ <font color="green">Yes<font> | Algina-Keselman-Penfield robust standardized difference average | `WRS2::wmcpAKP`
 Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
@@ -1070,6 +1070,7 @@ ggstatsplot::ggcoefstats(
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
+  exclude.intercept = TRUE,
   ggtheme = hrbrthemes::theme_ipsum_ps(),
   ggstatsplot.layer = FALSE
 ) + # note the order in which the labels are entered

@@ -342,7 +342,7 @@ test_that(
           data = iris_long,
           x = condition,
           y = value,
-          type = "bf",
+          type = "bayes",
           pairwise.comparisons = TRUE
         )
 

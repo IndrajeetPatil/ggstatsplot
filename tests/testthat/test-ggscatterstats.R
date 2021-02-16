@@ -171,7 +171,7 @@ test_that(
         ylab = "body weight",
         title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
-        type = "bf",
+        type = "bayes",
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(0, 6000, 1000))
       )
 
@@ -182,7 +182,7 @@ test_that(
         data = ggplot2::msleep,
         x = sleep_total,
         y = bodywt,
-        type = "bf"
+        type = "bayes"
       )
 
     expect_identical(class(p)[[1]], "ggExtraPlot")

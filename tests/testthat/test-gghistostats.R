@@ -44,7 +44,7 @@ test_that(
       statsExpressions::expr_t_onesample(
         data = dplyr::starwars,
         x = height,
-        type = "bf",
+        type = "bayes",
         test.value = 150,
         bf.prior = 0.9,
         output = "caption"

@@ -234,7 +234,6 @@ ggscatterstats <- function(data,
       .fn = ggplot2::geom_point,
       stroke = 0,
       position = pos,
-      na.rm = TRUE,
       !!!point.args
     ) +
     rlang::exec(
@@ -242,7 +241,6 @@ ggscatterstats <- function(data,
       method = "lm",
       formula = y ~ x,
       level = conf.level,
-      na.rm = TRUE,
       !!!smooth.line.args
     )
 
@@ -257,7 +255,6 @@ ggscatterstats <- function(data,
         mapping = ggplot2::aes(label = {{ label.var }}),
         show.legend = FALSE,
         min.segment.length = 0,
-        na.rm = TRUE,
         position = pos,
         !!!point.label.args
       )

@@ -178,7 +178,6 @@ ggbarstats <- function(data,
       mapping = ggplot2::aes(label = .label, group = {{ x }}),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
-      na.rm = TRUE,
       !!!label.args
     ) +
     theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
@@ -196,7 +195,6 @@ ggbarstats <- function(data,
         data = df_proptest,
         mapping = ggplot2::aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
         size = 2.8,
-        na.rm = TRUE,
         parse = TRUE
       )
   }

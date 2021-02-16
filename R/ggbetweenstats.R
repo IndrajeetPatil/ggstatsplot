@@ -312,7 +312,6 @@ ggbetweenstats <- function(data,
     rlang::exec(
       .fn = ggplot2::geom_point,
       data = dplyr::filter(.data = data, !isanoutlier),
-      na.rm = TRUE,
       ggplot2::aes(color = {{ x }}),
       !!!point.args
     )
@@ -323,7 +322,6 @@ ggbetweenstats <- function(data,
       rlang::exec(
         .fn = ggplot2::geom_point,
         data = dplyr::filter(.data = data, isanoutlier),
-        na.rm = TRUE,
         ggplot2::aes(color = {{ x }}),
         !!!point.args
       )
@@ -338,7 +336,6 @@ ggbetweenstats <- function(data,
         size = 3,
         stroke = 0,
         alpha = 0.7,
-        na.rm = TRUE,
         color = outlier.color,
         shape = outlier.shape
       )
@@ -366,7 +363,6 @@ ggbetweenstats <- function(data,
         width = 0.3,
         alpha = 0.2,
         fill = "white",
-        na.rm = TRUE,
         geom = "boxplot",
         coef = outlier.coef,
         !!!outlier_list
@@ -379,7 +375,6 @@ ggbetweenstats <- function(data,
       rlang::exec(
         .fn = ggplot2::geom_violin,
         fill = "white",
-        na.rm = TRUE,
         !!!violin.args
       )
   }
@@ -400,7 +395,6 @@ ggbetweenstats <- function(data,
         show.legend = FALSE,
         min.segment.length = 0,
         inherit.aes = FALSE,
-        na.rm = TRUE,
         !!!outlier.label.args
       )
   }

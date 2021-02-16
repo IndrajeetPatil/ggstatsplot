@@ -220,7 +220,6 @@ ggpiestats <- function(data,
       min.segment.length = 0,
       fill = "white",
       alpha = 1,
-      na.rm = TRUE,
       !!!label.args
     )))
 
@@ -246,7 +245,6 @@ ggpiestats <- function(data,
         mapping = ggplot2::aes(label = .label, x = 1.65, y = 0.5),
         position = ggplot2::position_fill(vjust = 1),
         size = 2.8,
-        na.rm = TRUE,
         parse = TRUE
       )
   }

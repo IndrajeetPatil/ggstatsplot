@@ -44,7 +44,7 @@ test_that(
         label.expression = "length > 150",
         label.var = "title",
         grouping.var = mpaa,
-        type = "bf",
+        type = "bayes",
         results.subtitle = FALSE,
         marginal = FALSE
       ),
@@ -146,7 +146,7 @@ test_that(
         ylab = "body weight",
         title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
-        type = "bf",
+        type = "bayes",
         ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000)),
         marginal = FALSE
       ),

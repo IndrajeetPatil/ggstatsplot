@@ -235,7 +235,7 @@ p4 <-
     y = lifeExp,
     xlab = "Year",
     ylab = "Life expectancy",
-    type = "bf",
+    type = "bayes",
     plot.type = "box",
     title = "Bayesian Test (box plot)",
     package = "ggsci",

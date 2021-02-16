@@ -216,7 +216,6 @@ ggwithinstats <- function(data,
     ggplot2::geom_point(
       alpha = 0.5,
       size = 3,
-      na.rm = TRUE,
       ggplot2::aes(color = {{ x }})
     ) +
     ggplot2::geom_boxplot(
@@ -231,7 +230,6 @@ ggwithinstats <- function(data,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       inherit.aes = FALSE,
       fill = "white",
-      na.rm = TRUE,
       !!!violin.args
     )
 
@@ -240,7 +238,6 @@ ggwithinstats <- function(data,
     plot <- plot +
       rlang::exec(
         .fn = ggplot2::geom_path,
-        na.rm = TRUE,
         !!!point.path.args
       )
   }
@@ -261,7 +258,6 @@ ggwithinstats <- function(data,
         show.legend = FALSE,
         min.segment.length = 0,
         inherit.aes = FALSE,
-        na.rm = TRUE,
         !!!outlier.label.args
       )
   }

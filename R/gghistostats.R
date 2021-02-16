@@ -151,7 +151,6 @@ gghistostats <- function(data,
       fill = bar.fill,
       alpha = 0.7,
       binwidth = binwidth,
-      na.rm = TRUE,
       mapping = ggplot2::aes(y = ..count.., fill = ..count..)
     ) +
     ggplot2::scale_y_continuous(
@@ -169,7 +168,6 @@ gghistostats <- function(data,
       rlang::exec(
         .f = ggplot2::stat_function,
         fun = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
-        na.rm = TRUE,
         args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth),
         !!!normal.curve.args
       )

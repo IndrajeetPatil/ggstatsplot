@@ -73,7 +73,6 @@ centrality_ggrepel <- function(plot,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       data = centrality_df,
       inherit.aes = FALSE,
-      na.rm = TRUE,
       !!!centrality.point.args
     )
 
@@ -87,7 +86,6 @@ centrality_ggrepel <- function(plot,
       min.segment.length = 0,
       inherit.aes = FALSE,
       parse = TRUE,
-      na.rm = TRUE,
       !!!centrality.label.args
     )
 
@@ -223,7 +221,6 @@ ggsignif_adder <- function(plot,
       y_position = ggsignif_xy(data %>% dplyr::pull({{ x }}), data %>% dplyr::pull({{ y }})),
       annotations = df_pairwise$label,
       test = NULL,
-      na.rm = TRUE,
       parse = TRUE,
       vjust = 0,
       !!!ggsignif.args

@@ -260,7 +260,7 @@ set.seed(123)
 ggstatsplot::grouped_ggcorrmat(
   # arguments relevant for `ggstatsplot::ggcorrmat`
   data = ggplot2::diamonds,
-  type = "bf", # Bayesian test
+  type = "bayes", # Bayesian test
   grouping.var = cut,
   title.prefix = "Quality of cut",
   # arguments relevant for `ggstatsplot::combine_plots`

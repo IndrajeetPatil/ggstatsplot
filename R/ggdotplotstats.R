@@ -145,7 +145,6 @@ ggdotplotstats <- function(data,
     ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
     rlang::exec(
       .fn = ggplot2::geom_point,
-      na.rm = TRUE,
       !!!point.args
     ) +
     ggplot2::scale_y_continuous(
