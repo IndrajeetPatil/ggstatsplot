@@ -49,8 +49,7 @@ centrality_ggrepel <- function(plot,
                                centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                                ...) {
   # creating the dataframe
-  centrality_df <-
-    centrality_data(data, {{ x }}, {{ y }}, type = type, tr = tr, k = k)
+  centrality_df <- centrality_data(data, {{ x }}, {{ y }}, type = type, tr = tr, k = k)
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(centrality.path)) {

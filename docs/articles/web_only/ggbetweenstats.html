@@ -129,7 +129,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -154,11 +154,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggbetweenstats</h1>
-                        <h4 class="author">Indrajeet Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-02-12</h4>
+            <h4 data-toc-skip class="date">2021-02-17</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd" class="external-link"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
 
     </div>
@@ -171,16 +171,16 @@
 <li><p>to check if a continuous variable differs across multiple groups/conditions</p></li>
 <li><p>to compare distributions visually and check for outliers</p></li>
 </ul>
-<p><strong>Note</strong>: This vignette uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note</strong>: This vignette uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="comparisons-between-groups-with-ggbetweenstats" class="section level2">
 <h2 class="hasAnchor">
 <a href="#comparisons-between-groups-with-ggbetweenstats" class="anchor"></a>Comparisons between groups with <code>ggbetweenstats</code>
 </h2>
-<p>To illustrate how this function can be used, we will use the <code>gapminder</code> dataset throughout this vignette. This dataset provides values for life expectancy, GDP per capita, and population, at 5 year intervals, from 1952 to 2007, for each of 142 countries (courtesy <a href="https://www.gapminder.org/">Gapminder Foundation</a>). Let’s have a look at the data-</p>
+<p>To illustrate how this function can be used, we will use the <code>gapminder</code> dataset throughout this vignette. This dataset provides values for life expectancy, GDP per capita, and population, at 5 year intervals, from 1952 to 2007, for each of 142 countries (courtesy <a href="https://www.gapminder.org/" class="external-link">Gapminder Foundation</a>). Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
 
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
 <span class="co">#&gt; $ country   &lt;fct&gt; Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...</span>
@@ -195,11 +195,11 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># since the confidence intervals for the effect sizes are computed using</span>
 <span class="co"># bootstrapping, important to set a seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># function call</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">continent</span>,
   y <span class="op">=</span> <span class="va">lifeExp</span>
 <span class="op">)</span></code></pre></div>
@@ -214,13 +214,13 @@
 <p>We can make the output much more aesthetically pleasing as well as informative by making use of the many optional parameters in <code>ggbetweenstats</code>. We’ll add a title and caption, better <code>x</code> and <code>y</code> axis labels, and tag and label the outliers in the data. We can and will change the overall theme as well as the color palette in use.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">continent</span>, <span class="co"># grouping/independent variable</span>
   y <span class="op">=</span> <span class="va">lifeExp</span>, <span class="co"># dependent variables</span>
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># type of statistics</span>
@@ -230,17 +230,17 @@
   outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># whether outliers should be flagged</span>
   outlier.coef <span class="op">=</span> <span class="fl">1.5</span>, <span class="co"># coefficient for Tukey's rule</span>
   outlier.label <span class="op">=</span> <span class="va">country</span>, <span class="co"># label to attach to outlier values</span>
-  outlier.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>, <span class="co"># outlier point label color</span>
+  outlier.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>, <span class="co"># outlier point label color</span>
   <span class="co"># turn off messages</span>
-  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_gray</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># a different theme</span>
+  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># a different theme</span>
   package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co"># package from which color palette is to be taken</span>
   palette <span class="op">=</span> <span class="st">"info2"</span>, <span class="co"># choosing a different color palette</span>
   title <span class="op">=</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,
   caption <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span>
 <span class="op">)</span> <span class="op">+</span> <span class="co"># modifying the plot further</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>
-    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">85</span><span class="op">)</span>,
-    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">35</span>, to <span class="op">=</span> <span class="fl">85</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>
+    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">85</span><span class="op">)</span>,
+    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">35</span>, to <span class="op">=</span> <span class="fl">85</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" width="100%"></p>
 <p>As can be appreciated from the effect size (partial eta squared) of 0.635, there are large differences in the mean life expectancy across continents. Importantly, this plot also helps us appreciate the distributions within any given continent. For example, although Asian countries are doing much better than African countries, on average, Afghanistan has a particularly grim average for the Asian continent, possibly reflecting the war and the political turmoil.</p>
@@ -254,12 +254,12 @@
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
 
 <span class="co"># selecting subset of the data</span>
-<span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span>
+<span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span>
 
 <span class="co"># parametric t-test and box plot</span>
 <span class="va">p1</span> <span class="op">&lt;-</span>
@@ -319,7 +319,7 @@
     y <span class="op">=</span> <span class="va">lifeExp</span>,
     xlab <span class="op">=</span> <span class="st">"Year"</span>,
     ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
-    type <span class="op">=</span> <span class="st">"bf"</span>,
+    type <span class="op">=</span> <span class="st">"bayes"</span>,
     plot.type <span class="op">=</span> <span class="st">"box"</span>,
     title <span class="op">=</span> <span class="st">"Bayesian Test (box plot)"</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
@@ -328,9 +328,9 @@
 
 <span class="co"># combining the individual plots into a single plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Comparison of life expectancy between 1957 and 2007"</span>,
     caption <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span>
   <span class="op">)</span>
@@ -346,11 +346,11 @@
 <p>Let’s focus on the same 4 continents for the following years: 1967, 1987, 2007. Also, let’s carry out pairwise comparisons to see if there differences between every pair of continents.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># select part of the dataset and use it for plotting</span>
-<span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, <span class="va">year</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span><span class="op">)</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">.</span>, <span class="va">year</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span><span class="op">)</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span>
     <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span>
     data <span class="op">=</span> <span class="va">.</span>,
@@ -361,7 +361,7 @@
     ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
     pairwise.display <span class="op">=</span> <span class="st">"significant"</span>, <span class="co"># display only significant pairwise comparisons</span>
     p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>, <span class="co"># adjust p-values for multiple tests using this method</span>
-    ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
+    ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
     palette <span class="op">=</span> <span class="st">"default_jco"</span>,
     outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -369,8 +369,8 @@
     outlier.label <span class="op">=</span> <span class="va">country</span>,
     title.prefix <span class="op">=</span> <span class="st">"Year"</span>,
     <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,
-    plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,
+    plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="100%"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1967 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
@@ -401,22 +401,22 @@
 <tr class="odd">
 <td>Parametric</td>
 <td>mean</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>median</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>trimmed mean</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>MAP estimate</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -434,49 +434,49 @@
 <td>Parametric</td>
 <td>&gt; 2</td>
 <td>Fisher’s or Welch’s one-way ANOVA</td>
-<td><code><a href="https://rdrr.io/r/stats/oneway.test.html">stats::oneway.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/oneway.test.html" class="external-link">stats::oneway.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>&gt; 2</td>
 <td>Kruskal–Wallis one-way ANOVA</td>
-<td><code><a href="https://rdrr.io/r/stats/kruskal.test.html">stats::kruskal.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/kruskal.test.html" class="external-link">stats::kruskal.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>Heteroscedastic one-way ANOVA for trimmed means</td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::t1way</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td>Fisher’s ANOVA</td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html">BayesFactor::anovaBF</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html" class="external-link">BayesFactor::anovaBF</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric</td>
 <td>2</td>
 <td>Student’s or Welch’s <em>t</em>-test</td>
-<td><code><a href="https://rdrr.io/r/stats/t.test.html">stats::t.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>2</td>
 <td>Mann–Whitney <em>U</em> test</td>
-<td><code><a href="https://rdrr.io/r/stats/wilcox.test.html">stats::wilcox.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>2</td>
 <td>Yuen’s test for trimmed means</td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html">WRS2::yuen</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::yuen</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
 <td>Student’s <em>t</em>-test</td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -505,7 +505,7 @@
 </td>
 <td><font color="green">Yes<font></font></font></td>
 <td>
-<code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html">effectsize::omega_squared</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html">effectsize::eta_squared</a></code>
+<code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::omega_squared</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::eta_squared</a></code>
 </td>
 </tr>
 <tr class="even">
@@ -513,7 +513,7 @@
 <td>&gt; 2</td>
 <td><span class="math inline">\(\epsilon_{ordinal}^2\)</span></td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::rank_epsilon_squared</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_epsilon_squared</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -521,14 +521,14 @@
 <td>
 <span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::t1way</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td><span class="math inline">\(R_{posterior}^2\)</span></td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html">performance::r2_bayes</a></code></td>
+<td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric</td>
@@ -537,7 +537,7 @@
 </td>
 <td><font color="green">Yes<font></font></font></td>
 <td>
-<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::hedges_g</a></code>
+<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
 </td>
 </tr>
 <tr class="even">
@@ -546,7 +546,7 @@
 <td>
 <em>r</em> (rank-biserial correlation)</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::rank_biserial</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -554,14 +554,14 @@
 <td>
 <span class="math inline">\(\xi\)</span> (Explanatory measure of effect size)</td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html">WRS2::yuen.effect.ci</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::yuen.effect.ci</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
 <td><span class="math inline">\(\delta_{posterior}\)</span></td>
 <td><font color="green">Yes<font></font></font></td>
-<td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html">bayestestR::describe_posterior</a></code></td>
+<td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -581,35 +581,35 @@
 <td>No</td>
 <td>Games-Howell test</td>
 <td><font color="green">Yes</font></td>
-<td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html">stats::pairwise.t.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Parametric</td>
 <td>Yes</td>
 <td>Student’s <em>t</em>-test</td>
 <td><font color="green">Yes</font></td>
-<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/gamesHowellTest.html">PMCMRplus::gamesHowellTest</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/gamesHowellTest.html" class="external-link">PMCMRplus::gamesHowellTest</a></code></td>
 </tr>
 <tr class="odd">
 <td>Non-parametric</td>
 <td>No</td>
 <td>Dunn test</td>
 <td><font color="green">Yes</font></td>
-<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/kwAllPairsDunnTest.html">PMCMRplus::kwAllPairsDunnTest</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/kwAllPairsDunnTest.html" class="external-link">PMCMRplus::kwAllPairsDunnTest</a></code></td>
 </tr>
 <tr class="even">
 <td>Robust</td>
 <td>No</td>
 <td>Yuen’s trimmed means test</td>
 <td><font color="green">Yes</font></td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html">WRS2::lincon</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::lincon</a></code></td>
 </tr>
 <tr class="odd">
 <td>Bayes Factor</td>
 <td><code>NA</code></td>
 <td>Student’s <em>t</em>-test</td>
 <td><code>NA</code></td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -622,7 +622,7 @@
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
@@ -642,11 +642,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

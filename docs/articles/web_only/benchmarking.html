@@ -129,7 +129,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -154,11 +154,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Benchmarking</h1>
-                        <h4 class="author">Indrajeet Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-02-13</h4>
+            <h4 data-toc-skip class="date">2021-02-17</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/benchmarking.Rmd"><code>vignettes/web_only/benchmarking.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/benchmarking.Rmd" class="external-link"><code>vignettes/web_only/benchmarking.Rmd</code></a></small>
       <div class="hidden name"><code>benchmarking.Rmd</code></div>
 
     </div>
@@ -175,66 +175,66 @@
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h1>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
   <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
       .data <span class="op">=</span> <span class="va">movies_long</span>,
-      <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+      <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
     <span class="op">)</span>,
     x <span class="op">=</span> <span class="va">mpaa</span>,
     y <span class="op">=</span> <span class="va">length</span>
   <span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    1.24s    1.24s     0.804     232MB     5.63</span>
+<span class="co">#&gt; 1    1.17s    1.17s     0.858     232MB     6.01</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
   <span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+    data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
       .data <span class="op">=</span> <span class="va">movies_long</span>,
-      <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+      <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
     <span class="op">)</span>,
     x <span class="op">=</span> <span class="va">mpaa</span>,
     y <span class="op">=</span> <span class="va">length</span>,
     grouping.var <span class="op">=</span> <span class="va">genre</span>
   <span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    2.84s    2.84s     0.352     241MB     1.06</span></code></pre></div>
+<span class="co">#&gt; 1    2.99s    2.99s     0.335     241MB     2.34</span></code></pre></div>
 </div>
 <div id="ggwithinstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h1>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
   <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
     data <span class="op">=</span> <span class="va">bugs_long</span>,
     x <span class="op">=</span> <span class="va">condition</span>,
     y <span class="op">=</span> <span class="va">desire</span>
   <span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    12.3s    12.3s    0.0814     641MB    0.977</span>
+<span class="co">#&gt; 1    12.9s    12.9s    0.0778     640MB     1.01</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
   <span class="fu"><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span>
     data <span class="op">=</span> <span class="va">bugs_long</span>,
     x <span class="op">=</span> <span class="va">condition</span>,
@@ -242,169 +242,182 @@
     grouping.var <span class="op">=</span> <span class="va">gender</span>
   <span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    8.26s    8.26s     0.121     627MB    0.969</span></code></pre></div>
+<span class="co">#&gt; 1    8.68s    8.68s     0.115     627MB     1.04</span></code></pre></div>
 </div>
 <div id="gghistostats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h1>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, test.value <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, test.value <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    136ms    144ms      6.99    4.65MB        0</span>
+<span class="co">#&gt; 1    147ms    151ms      6.67    4.66MB     2.22</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, test.value <span class="op">=</span> <span class="fl">3</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, test.value <span class="op">=</span> <span class="fl">3</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    284ms    284ms      3.52    5.85MB     3.52</span></code></pre></div>
+<span class="co">#&gt; 1    308ms    315ms      3.17    5.86MB        0</span></code></pre></div>
 </div>
 <div id="ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h1>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>, <span class="va">cty</span>, <span class="va">manufacturer</span>, test.value <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>,
+  <span class="va">cty</span>,
+  <span class="va">manufacturer</span>,
+  test.value <span class="op">=</span> <span class="fl">15</span>
+<span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    142ms    153ms      6.69    3.12MB     2.23</span>
+<span class="co">#&gt; 1    161ms    163ms      6.10    3.12MB        0</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>, <span class="va">cty</span>, <span class="va">manufacturer</span>, test.value <span class="op">=</span> <span class="fl">15</span>, grouping.var <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
+  <span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="va">cty</span>,
+    <span class="va">manufacturer</span>,
+    test.value <span class="op">=</span> <span class="fl">15</span>,
+    grouping.var <span class="op">=</span> <span class="va">cyl</span>
+  <span class="op">)</span>
+<span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    326ms    326ms      3.07    5.74MB     3.07</span></code></pre></div>
+<span class="co">#&gt; 1    329ms    329ms      3.04    5.75MB     3.04</span></code></pre></div>
 </div>
 <div id="ggscatterstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h1>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    351ms    365ms      2.74    16.8MB     2.74</span>
+<span class="co">#&gt; 1    380ms    380ms      2.63    16.8MB     2.63</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    670ms    670ms      1.49    16.3MB     1.49</span></code></pre></div>
+<span class="co">#&gt; 1    795ms    795ms      1.26    16.3MB     1.26</span></code></pre></div>
 </div>
 <div id="ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h1>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1   23.2ms   26.1ms      38.0    1.11MB     2.11</span>
+<span class="co">#&gt; 1   24.3ms   26.3ms      37.8    1.11MB        0</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span><span class="va">iris</span>, grouping.var <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span><span class="va">iris</span>, grouping.var <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1   74.7ms   83.6ms      12.2     486KB     2.04</span></code></pre></div>
+<span class="co">#&gt; 1   84.4ms   89.1ms      11.4     486KB     2.27</span></code></pre></div>
 </div>
 <div id="ggpiestats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
 </h1>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    2.25s    2.25s     0.445      14MB     2.23</span>
+<span class="co">#&gt; 1    2.39s    2.39s     0.418      14MB     1.67</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    4.63s    4.63s     0.216    25.4MB     2.16</span></code></pre></div>
+<span class="co">#&gt; 1    4.81s    4.81s     0.208    25.4MB     1.87</span></code></pre></div>
 </div>
 <div id="ggbarstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggbarstats" class="anchor"></a><code>ggbarstats</code>
 </h1>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="va">fl</span>, <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">fl</span>, <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    4.66s    4.66s     0.215     286MB     2.79</span>
+<span class="co">#&gt; 1    5.66s    5.66s     0.177     286MB     1.59</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html">mpg</a></span>, <span class="va">fl</span>, <span class="va">class</span>, grouping.var <span class="op">=</span> <span class="va">drv</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">fl</span>, <span class="va">class</span>, grouping.var <span class="op">=</span> <span class="va">drv</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1      13s      13s    0.0770     537MB     1.15</span></code></pre></div>
+<span class="co">#&gt; 1    13.7s    13.7s    0.0732     537MB     1.32</span></code></pre></div>
 </div>
 <div id="ggcoefstats" class="section level1">
 <h1 class="hasAnchor">
 <a href="#ggcoefstats" class="anchor"></a><code>ggcoefstats</code>
 </h1>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">wt</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">wt</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">expression</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    190ms    194ms      5.13    4.34MB        0</span></code></pre></div>
+<span class="co">#&gt; 1    226ms    227ms      4.41     3.8MB     2.20</span></code></pre></div>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
@@ -424,11 +437,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

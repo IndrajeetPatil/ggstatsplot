@@ -122,11 +122,24 @@ bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am))
 library(ggstatsplot)
 
 set.seed(123)
-bench::mark(ggdotplotstats(dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")), cty, manufacturer, test.value = 15)) %>%
+bench::mark(ggdotplotstats(
+  dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+  cty,
+  manufacturer,
+  test.value = 15
+)) %>%
   dplyr::select(-expression)
 
 set.seed(123)
-bench::mark(grouped_ggdotplotstats(dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")), cty, manufacturer, test.value = 15, grouping.var = cyl)) %>%
+bench::mark(
+  grouped_ggdotplotstats(
+    dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+    cty,
+    manufacturer,
+    test.value = 15,
+    grouping.var = cyl
+  )
+) %>%
   dplyr::select(-expression)
 ```
 

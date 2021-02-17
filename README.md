@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-131-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                      | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-9-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                        | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--16-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--17-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -212,7 +212,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # plot
-ggstatsplot::ggbetweenstats(
+ggbetweenstats(
   data = iris,
   x = Species,
   y = Sepal.Length,
@@ -238,11 +238,11 @@ set.seed(123)
 library(ggplot2)
 
 # plot
-ggstatsplot::ggbetweenstats(
+ggbetweenstats(
   data = ToothGrowth,
   x = supp,
   y = len,
-  type = "r", # robust statistics 
+  type = "r", # robust statistics
   k = 3, # number of decimal places for statistical results
   xlab = "Supplement type", # label for the x-axis variable
   ylab = "Tooth length", # label for the y-axis variable
@@ -265,9 +265,9 @@ variable:
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_ggbetweenstats(
+grouped_ggbetweenstats(
   data = dplyr::filter(
-    .data = ggstatsplot::movies_long,
+    .data = movies_long,
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   x = mpaa,
@@ -363,7 +363,7 @@ set.seed(123)
 library(WRS2)
 
 # plot
-ggstatsplot::ggwithinstats(
+ggwithinstats(
   data = WineTasting,
   x = Wine,
   y = Taste,
@@ -402,15 +402,15 @@ measurements-
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_ggwithinstats(
+grouped_ggwithinstats(
   data = dplyr::filter(
-    .data = ggstatsplot::bugs_long,
+    .data = bugs_long,
     region %in% c("Europe", "North America"),
     condition %in% c("LDLF", "LDHF")
   ),
   x = condition,
   y = desire,
-  type = "np", #non-parametric statistics
+  type = "np", # non-parametric statistics
   xlab = "Condition",
   ylab = "Desire to kill an artrhopod",
   grouping.var = region,
@@ -437,16 +437,16 @@ MAP: maximum a posteriori probability
 Following (within-subjects) tests are carried out for each type of
 analyses-
 
-| Type           | No. of groups | Test                                                              |
-|----------------|---------------|-------------------------------------------------------------------|
-| Parametric     | &gt; 2        | One-way repeated measures ANOVA                                   |
-| Non-parametric | &gt; 2        | Friedman rank sum test                                            |
-| Robust         | &gt; 2        | Heteroscedastic one-way repeated measures ANOVA for trimmed means |
-| Bayes Factor   | &gt; 2        | One-way repeated measures ANOVA                                   |
-| Parametric     | 2             | Student’s *t*-test                                                |
-| Non-parametric | 2             | Wilcoxon signed-rank test                                         |
-| Robust         | 2             | Yuen’s test on trimmed means for dependent samples                |
-| Bayesian       | 2             | Student’s *t*-test                                                |
+| Type           | No. of groups | Test                                                              | Function used          |
+|----------------|---------------|-------------------------------------------------------------------|------------------------|
+| Parametric     | &gt; 2        | One-way repeated measures ANOVA                                   | `afex::aov_ez`         |
+| Non-parametric | &gt; 2        | Friedman rank sum test                                            | `stats::friedman.test` |
+| Robust         | &gt; 2        | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`        |
+| Bayes Factor   | &gt; 2        | One-way repeated measures ANOVA                                   | `BayesFactor::anovaBF` |
+| Parametric     | 2             | Student’s *t*-test                                                | `stats::t.test`        |
+| Non-parametric | 2             | Wilcoxon signed-rank test                                         | `stats::wilcox.test`   |
+| Robust         | 2             | Yuen’s test on trimmed means for dependent samples                | `WRS2::yuend`          |
+| Bayesian       | 2             | Student’s *t*-test                                                | `BayesFactor::ttestBF` |
 
 Following effect sizes (and confidence intervals/CI) are available for
 each type of test-
@@ -486,7 +486,7 @@ test, `gghistostats` can be used.
 set.seed(123)
 
 # plot
-ggstatsplot::gghistostats(
+gghistostats(
   data = ggplot2::msleep, # dataframe from which variable is to be taken
   x = awake, # numeric variable whose distribution is of interest
   title = "Amount of time spent awake", # title for the plot
@@ -514,9 +514,9 @@ to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_gghistostats(
+grouped_gghistostats(
   data = dplyr::filter(
-    .data = ggstatsplot::movies_long,
+    .data = movies_long,
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   x = budget,
@@ -531,7 +531,7 @@ ggstatsplot::grouped_gghistostats(
   # modify the defaults from `ggstatsplot` for each plot
   ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
   plotgrid.args = list(nrow = 2),
-   annotation.args = list(title = "Movies budgets for different genres")
+  annotation.args = list(title = "Movies budgets for different genres")
 )
 ```
 
@@ -615,7 +615,7 @@ operation for all levels of a single grouping variable.
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_ggdotplotstats(
+grouped_ggdotplotstats(
   data = dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
   x = cty,
   y = manufacturer,
@@ -626,7 +626,7 @@ ggstatsplot::grouped_ggdotplotstats(
   test.value = 15.5,
   title.prefix = "cylinder count",
   point.args = list(color = "red", size = 5, shape = 13),
-   annotation.args = list(title =  "Fuel economy data")
+  annotation.args = list(title = "Fuel economy data")
 )
 ```
 
@@ -643,7 +643,7 @@ on the axes (from `ggExtra::ggMarginal`) and results from statistical
 tests in the subtitle:
 
 ``` r
-ggstatsplot::ggscatterstats(
+ggscatterstats(
   data = ggplot2::msleep,
   x = sleep_rem,
   y = awake,
@@ -676,8 +676,8 @@ Number of other arguments can be specified to modify this basic plot-
 set.seed(123)
 
 # plot
-ggstatsplot::ggscatterstats(
-  data = dplyr::filter(.data = ggstatsplot::movies_long, genre == "Action"),
+ggscatterstats(
+  data = dplyr::filter(.data = movies_long, genre == "Action"),
   x = budget,
   y = rating,
   type = "robust", # type of test that needs to be run
@@ -709,9 +709,9 @@ to make can be made in advance using `ggplot.component` argument
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_ggscatterstats(
+grouped_ggscatterstats(
   data = dplyr::filter(
-    .data = ggstatsplot::movies_long,
+    .data = movies_long,
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   x = rating,
@@ -726,7 +726,7 @@ ggstatsplot::grouped_ggscatterstats(
     ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
   ),
   plotgrid.args = list(nrow = 2),
-   annotation.args = list(title =  "Relationship between movie length by IMDB ratings for different genres")
+  annotation.args = list(title = "Relationship between movie length by IMDB ratings for different genres")
 )
 ```
 
@@ -762,7 +762,7 @@ the appearance of the correlation matrix.
 set.seed(123)
 
 # as a default this function outputs a correlation matrix plot
-ggstatsplot::ggcorrmat(
+ggcorrmat(
   data = ggplot2::msleep,
   colors = c("#B2182B", "white", "#4D4D4D"),
   title = "Correlalogram for mammals sleep dataset",
@@ -788,9 +788,9 @@ to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_ggcorrmat(
+grouped_ggcorrmat(
   data = dplyr::filter(
-    .data = ggstatsplot::movies_long,
+    .data = movies_long,
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   type = "robust", # correlation method
@@ -966,7 +966,7 @@ To study an interaction between two categorical variables:
 set.seed(123)
 
 # plot
-ggstatsplot::ggpiestats(
+ggpiestats(
   data = mtcars,
   x = am,
   y = cyl,
@@ -1001,7 +1001,7 @@ df_paired <-
   )
 
 # plot
-ggstatsplot::ggpiestats(
+ggpiestats(
   data = df_paired,
   x = before,
   y = after,
@@ -1026,15 +1026,15 @@ about proportions for different levels of a single nominal variable:
 set.seed(123)
 
 # plot
-ggstatsplot::grouped_ggpiestats(
-  data = ggstatsplot::movies_long,
+grouped_ggpiestats(
+  data = movies_long,
   x = genre,
   grouping.var = mpaa, # grouping variable
   title.prefix = "Movie genre", # prefix for the faceted title
   label.repel = TRUE, # repel labels (helpful for overlapping labels)
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_ucscgb", # choosing a different color palette
-  annotation.args = list(title =  "Composition of MPAA ratings for different genres"),
+  annotation.args = list(title = "Composition of MPAA ratings for different genres"),
   plotgrid.args = list(nrow = 2)
 )
 ```
@@ -1077,8 +1077,8 @@ set.seed(123)
 library(ggplot2)
 
 # plot
-ggstatsplot::ggbarstats(
-  data = ggstatsplot::movies_long,
+ggbarstats(
+  data = movies_long,
   x = mpaa,
   y = genre,
   title = "MPAA Ratings by Genre",
@@ -1115,7 +1115,7 @@ df <-
   )
 
 # plot
-ggstatsplot::grouped_ggbarstats(
+grouped_ggbarstats(
   data = df,
   x = relig,
   y = partyid,
@@ -1140,11 +1140,11 @@ This is identical to the `ggpiestats` function summary of tests.
 
 ## `ggcoefstats`
 
-The function `ggstatsplot::ggcoefstats` generates **dot-and-whisker
-plots** for regression models saved in a tidy data frame. The tidy
-dataframes are prepared using `parameters::model_parameters`.
-Additionally, if available, the model summary indices are also extracted
-from `performance::model_performance`.
+The function `ggcoefstats` generates **dot-and-whisker plots** for
+regression models saved in a tidy data frame. The tidy dataframes are
+prepared using `parameters::model_parameters`. Additionally, if
+available, the model summary indices are also extracted from
+`performance::model_performance`.
 
 Although the statistical models displayed in the plot may differ based
 on the class of models being investigated, there are few aspects of the
@@ -1177,7 +1177,7 @@ set.seed(123)
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
-ggstatsplot::ggcoefstats(mod)
+ggcoefstats(mod)
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
@@ -1198,7 +1198,7 @@ set.seed(123)
 mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod,
   point.args = list(color = "red", size = 3, shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
@@ -1299,7 +1299,7 @@ library(ggstatsplot)
 
 # using `ggstatsplot` to get call with statistical results
 stats_results <-
-  ggstatsplot::ggbetweenstats(
+  ggbetweenstats(
     data = morley,
     x = Expt,
     y = Speed,

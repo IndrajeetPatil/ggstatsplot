@@ -530,10 +530,39 @@ mod_bigglm <-
     chunksize = 10,
     sandwich = TRUE
   )
+
 # plot
 ggcoefstats(
   x = mod_bigglm,
   title = "bounded memory general linear regression"
+)
+```
+
+## efficient (general) linear model (`elm`/`eglm`)
+
+```{r eflm, fig.height = 5, fig.width = 12}
+# setup
+set.seed(123)
+library(eflm)
+
+# models
+mod_elm <- eflm::elm(mpg ~ wt, data = mtcars)
+mod_eglm <- eflm::eglm(mpg ~ wt, family = gaussian(), data = mtcars)
+
+# plot
+combine_plots(
+  plotlist = list(
+    ggcoefstats(
+      x = mod_elm,
+      title = "efficient linear model"
+    ),
+    ggcoefstats(
+      x = mod_eglm,
+      title = "efficient general linear model"
+    )
+  ),
+  plotgrid.args = list(nrow = 1),
+  annotation.args = list(title = "efficient (general) linear model using `eflm`")
 )
 ```
 
