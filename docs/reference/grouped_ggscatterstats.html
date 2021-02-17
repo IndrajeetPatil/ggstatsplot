@@ -330,21 +330,19 @@ marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and
     <dt><code>yfill</code></dt><dd><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
 <code>y</code>)). Note that the defaults are colorblind-friendly.</p></dd>
-    <dt><code>type</code></dt><dd><p>Type of association between paired samples required
-("<code>"parametric"</code>: Pearson's product moment correlation coefficient" or
-"<code>"nonparametric"</code>: Spearman's rho" or "<code>"robust"</code>: percentage bend
-correlation coefficient" or "<code>"bayes"</code>: Bayes Factor for Pearson's <em>r</em>").
-Corresponding abbreviations are also accepted: <code>"p"</code> (for
-parametric/pearson), <code>"np"</code> (nonparametric/spearman), <code>"r"</code> (robust),
-<code>"bf"</code> (for Bayes Factor/Bayesian Pearson), resp.</p></dd>
+    <dt><code>type</code></dt><dd><p>Type of statistic expected. Four possible options:<ul>
+<li><p><code>"parametric"</code></p></li>
+<li><p><code>"nonparametric"</code></p></li>
+<li><p><code>"robust"</code></p></li>
+<li><p><code>"bayes"</code></p></li>
+</ul>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
+<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
 return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></dd>
-    <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
+width to use in calculating Bayes factors and posterior estimates.</p></dd>
+    <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
+of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></dd>

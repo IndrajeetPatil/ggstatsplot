@@ -303,10 +303,13 @@ will cause the <code>x</code> axis label to be the <code>x</code> variable).</p>
     <dt><code>sample.size.label</code></dt><dd><p>Logical that decides whether sample size information
 should be displayed for each level of the grouping variable <code>y</code>
 (Default: <code>TRUE</code>).</p></dd>
-    <dt><code>type</code></dt><dd><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
-<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
-<code>"bf"</code>resp.</p></dd>
+    <dt><code>type</code></dt><dd><p>Type of statistic expected. Four possible options:<ul>
+<li><p><code>"parametric"</code></p></li>
+<li><p><code>"nonparametric"</code></p></li>
+<li><p><code>"robust"</code></p></li>
+<li><p><code>"bayes"</code></p></li>
+</ul>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
+<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></dd>
     <dt><code>paired</code></dt><dd><p>Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
 test expression will be returned. If <code>FALSE</code>, Pearson's chi-square test will

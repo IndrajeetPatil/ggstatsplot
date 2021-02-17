@@ -241,17 +241,21 @@ for a test value and/or a centrality parameter (mean/median) value.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>Type of statistic expected (<code>"parametric"</code> or <code>"nonparametric"</code>
-or <code>"robust"</code> or <code>"bayes"</code>).Corresponding abbreviations are also accepted:
-<code>"p"</code> (for parametric), <code>"np"</code> (nonparametric), <code>"r"</code> (robust), or
-<code>"bf"</code>resp.</p></td>
+      <td><p>Type of statistic expected. Four possible options:</p>
+<ul>
+<li><p><code>"parametric"</code></p></li>
+<li><p><code>"nonparametric"</code></p></li>
+<li><p><code>"robust"</code></p></li>
+<li><p><code>"bayes"</code></p></li>
+</ul>
+
+<p>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
+<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></td>
     </tr>
     <tr>
       <th>tr</th>
-      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. If you
-get error stating "Standard error cannot be computed because of Winsorized
-variance of 0 (e.g., due to ties). Try to decrease the trimming level.",
-try to play around with the value of <code>tr</code>, which is by default set to
+      <td><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
+of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></td>
     </tr>
     <tr>
@@ -285,11 +289,8 @@ centrality parameter.</p></td>
   plot <span class='op'>=</span> <span class='va'>p</span>,
   x <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>$</span><span class='va'>wt</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: Problem with `mutate()` input `label`.</span>
-#&gt; <span class='error'><span style='color: #BB0000;'>x</span><span> object 'centrality.k' not found</span>
-#&gt; <span class='error'></span><span style='color: #0000BB;'>i</span><span> Input `label` is `paste0(...)`.</span>
-#&gt; <span class='error'></span><span style='color: #0000BB;'>i</span><span> The error occurred in row 1.</span></div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='img'><img src='histo_labeller-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
