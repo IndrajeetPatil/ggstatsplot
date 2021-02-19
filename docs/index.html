@@ -212,7 +212,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--02--18-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--02--19-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -537,7 +537,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -841,7 +841,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>The central tendency measure displayed will depend on the statistics:</p>
 <table class="table">
 <thead><tr class="header">
@@ -1141,7 +1141,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -1308,7 +1308,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptives (mean + sample size) <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -1351,7 +1351,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions <br> ✅ marginal distributions <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ raw data + distributions <br> ✅ marginal distributions <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>The available marginal distributions are-</p>
 <ul>
 <li>histograms</li>
@@ -1695,7 +1695,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptives (frequency + %s) <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s chi-squared test-</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -1842,7 +1842,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ descriptives (frequency + %s) <br> ✅ statistic + <em>p</em>-value <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
+<p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
@@ -1902,7 +1902,7 @@
 <span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
-<p>✅ estimate + CIs <br> ✅ statistic + <em>p</em>-value <br> ✅ model summary (AIC + BIC) <br></p>
+<p>✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC + BIC) <br></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>

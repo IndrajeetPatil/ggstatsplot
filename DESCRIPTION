@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.7.0
+Version: 0.7.0.9000
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -57,11 +57,10 @@ Suggests:
     tibble,
     vdiffr,
     WRS2
-Remotes:
-    easystats/parameters,
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
+Remotes:
+    easystats/parameters
 Encoding: UTF-8
 Language: en-US
 LazyData: true

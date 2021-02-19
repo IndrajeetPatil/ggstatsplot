@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![Forks](https://img.shields.io/badge/forks-131-blue.svg)](https://github.com/IndrajeetPatil/ggstatsplot/)                                                    | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                      |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                      | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Issues](https://img.shields.io/badge/issues-10-red.svg)](https://github.com/IndrajeetPatil/ggstatsplot/issues)                                       | [![vignettes](https://img.shields.io/badge/vignettes-0.6.5-orange.svg?colorB=FF5722)](https://indrajeetpatil.github.io/ggstatsplot/articles/)                   |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                       |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--18-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                             | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--02--19-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master) |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                           | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -225,7 +225,7 @@ ggbetweenstats(
 📝 **Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
-statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ pairwise
+inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
 comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
@@ -379,7 +379,7 @@ ggwithinstats(
 📝 **Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
-statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ pairwise
+inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
 comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
@@ -503,7 +503,7 @@ gghistostats(
 📝 **Defaults** return<br>
 
 ✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅
-statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ Bayesian
+inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it easy
@@ -602,7 +602,7 @@ ggdotplotstats(
 
 📝 **Defaults** return<br>
 
-✅ descriptives (mean + sample size) <br> ✅ statistic + *p*-value <br> ✅
+✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br> ✅
 effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
@@ -658,7 +658,7 @@ ggscatterstats(
 📝 **Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ marginal distributions <br> ✅
-statistic + *p*-value <br> ✅ effect size + CIs <br> ✅ Bayesian
+inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 The available marginal distributions are-
@@ -980,7 +980,7 @@ ggpiestats(
 
 📝 **Defaults** return<br>
 
-✅ descriptives (frequency + %s) <br> ✅ statistic + *p*-value <br> ✅
+✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅
 effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
@@ -1094,7 +1094,7 @@ ggbarstats(
 
 📝 **Defaults** return<br>
 
-✅ descriptives (frequency + %s) <br> ✅ statistic + *p*-value <br> ✅
+✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅
 effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
@@ -1184,7 +1184,7 @@ ggcoefstats(mod)
 
 📝 **Defaults** return<br>
 
-✅ estimate + CIs <br> ✅ statistic + *p*-value <br> ✅ model summary (AIC
+✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC
 + BIC) <br>
 
 This default plot can be further modified to one’s liking with
