@@ -49,9 +49,11 @@ functions included in `ggstatsplot`.
 
 # Videos
 
-## My own talks
+## My own talks at online meetings
 
   - <https://www.youtube.com/watch?v=8Em1bCFBMWg&ab_channel=BusinessScience>
+  
+  - <https://www.youtube.com/watch?v=_wCo7rnt6NA&ab_channel=UseROslo>
 
 ## Other
 

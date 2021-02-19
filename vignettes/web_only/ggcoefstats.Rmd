@@ -87,19 +87,19 @@ also supported by `ggcoefstats`. For example-
 `BFBayesFactor`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`,
 `blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
 `cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
-`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxph.penal`,
-`cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`, `eglm`, `elm`,
-`emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`, `fixest`,
-`flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`, `glmc`, `glmerMod`,
-`glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`, `glmRob`,
-`glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`,
-`iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
-`lmRob`, `lmrob`, `lm_robust`, `logitmfx`, `logitor`, `logitsf`, `LORgee`,
-`lqm`, `lqmm`, `lrm`, `manova`, `maov`, `margins`, `mcmc`, `mcmc.list`,
-`MCMCglmm`, `mclogit`, `mice`, `mmclogit`, `mediate`, `metafor`, `merMod`,
-`merModList`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`,
-`negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`,
-`orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
+`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxr`,
+`coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`,
+`eglm`, `elm`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
+`fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`, `glmc`,
+`glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`, `glmmadmb`, `glmmPQL`,
+`glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`, `ivFixed`, `ivprobit`,
+`ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`,
+`lmodel2`, `lmRob`, `lmrob`, `lm_robust`, `logitmfx`, `logitor`, `logitsf`,
+`LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`, `margins`, `mcmc`,
+`mcmc.list`, `MCMCglmm`, `mclogit`, `mice`, `mmclogit`, `mediate`, `metafor`,
+`merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`,
+`multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`,
+`nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
 `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`,
 `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
 `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
@@ -254,7 +254,8 @@ ggcoefstats(
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
   package = "dutchmasters", # package from which color palette is to be taken
   palette = "milkmaid", # color palette for labels
-  title = "omnibus ANOVA" # title for the plot
+  title = "omnibus ANOVA", # title for the plot
+  exclude.intercept = TRUE
 ) +
   # further modification with the ggplot2 commands
   # note the order in which the labels are entered
@@ -2876,9 +2877,6 @@ ggcoefstats(
 
 ## Cox proportional hazards regression model (`coxph`)
 
-Fitted proportional hazards regression model - as implemented in the `survival`
-package - can also be displayed in a dot-whisker plot.
-
 ```{r coxph, fig.height = 4, fig.width = 4}
 # for reproducibility
 set.seed(123)
@@ -2944,6 +2942,26 @@ fit <- coxme::coxme(
 ggcoefstats(
   x = fit,
   title = "mixed effects Cox model"
+)
+```
+
+## robust Cox proportional hazards regression model (`coxr`)
+
+```{r coxr, fig.height = 6, fig.width = 6}
+# setup
+set.seed(123)
+library(coxrobust)
+
+# create a simple test data set using the attached function `gen_data`
+a <- coxrobust::gen_data(200, c(1, 0.1, 2), cont = 0.05, p.censor = 0.30)
+
+# model
+mod_coxr <- coxrobust::coxr(Surv(time, status) ~ X1 + X2 + X3, data = a, trunc = 0.9)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_coxr,
+  title = "robust Cox proportional hazards regression model"
 )
 ```
 
@@ -4240,8 +4258,6 @@ ggcoefstats(
 ```
 
 ## marginal effects for a beta regression (`betamfx`)
-
-Same example can also be used for `betaor` object.
 
 ```{r betamfx, fig.height = 4, fig.width = 5}
 # setup

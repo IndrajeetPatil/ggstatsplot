@@ -75,6 +75,7 @@ Shachar
 StackOverflow
 TERGM
 Tufte
+UseROslo
 Welch
 Welch's
 Welch’s
@@ -170,7 +171,6 @@ nz
 pairwiseComparisons
 partialization
 paulvanderlaken
-pearson
 piechart
 posteriori
 pre
@@ -180,12 +180,12 @@ purrr
 readme
 reproducibility
 ridgeplot
+rnt
 rpubs
 sXeshyVRI
 scisbd
 sdt
 setosa
-spearman
 statsExpressions
 svg
 tibble
@@ -200,6 +200,7 @@ uber
 unjittered
 versicolor
 virginica
+wCo
 www
 yellowgreen
 youtu
