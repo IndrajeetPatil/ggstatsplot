@@ -55,7 +55,7 @@ test_that(
         type = "p",
         k = 4,
         effsize.type = "d"
-      )
+      )$expression[[1]]
 
     # testing labels
     expect_identical(
@@ -215,8 +215,8 @@ test_that(
         x = Speed,
         y = Expt,
         test.value = 800,
-        output = "subtitle",
-        type = "np"
+        type = "np",
+        output = "subtitle"
       ))
 
     # tests
@@ -228,8 +228,8 @@ test_that(
           dplyr::summarise(mean = mean(Speed)),
         x = mean,
         test.value = 800,
-        output = "subtitle",
-        type = "np"
+        type = "np",
+        output = "subtitle"
       ))
     )
   }

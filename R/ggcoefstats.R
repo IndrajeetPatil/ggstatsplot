@@ -410,18 +410,21 @@ ggcoefstats <- function(x,
     meta.type <- ipmisc::stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
-    subtitle <- statsExpressions::expr_meta_random(tidy_df, type = meta.type, k = k)
+    subtitle_df <- statsExpressions::expr_meta_random(tidy_df, type = meta.type, k = k)
+
+    subtitle <- subtitle_df$expression[[1]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && isTRUE(bf.message)) {
-      caption <-
+      caption_df <-
         statsExpressions::expr_meta_random(
           top.text = caption,
           type = "bayes",
-          output = "expression",
           data = tidy_df,
           k = k
         )
+
+      caption <- caption_df$expression[[1]]
     }
   }
 

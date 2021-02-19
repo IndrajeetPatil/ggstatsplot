@@ -73,7 +73,8 @@ on the label in each pie slice. Possible options are \code{"percentage"}
     \item{\code{label.repel}}{Whether labels should be repelled using \code{ggrepel} package.
 This can be helpful in case the labels are overlapping.}
     \item{\code{legend.title}}{Title text for the legend.}
-    \item{\code{type}}{Type of statistic expected. Four possible options:
+    \item{\code{type}}{A character specifying the type of statistical approach.
+Four possible options:
 
 \itemize{
 \item \code{"parametric"}

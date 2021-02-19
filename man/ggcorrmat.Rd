@@ -52,7 +52,8 @@ values, \emph{p}-values, no. of observations, etc.) will be returned.}
 \item{matrix.type}{Character, \code{"upper"} (default), \code{"lower"}, or \code{"full"},
 display full matrix, lower triangular or upper triangular matrix.}
 
-\item{type}{Type of statistic expected. Four possible options:
+\item{type}{A character specifying the type of statistical approach.
+Four possible options:
 
 \itemize{
 \item \code{"parametric"}

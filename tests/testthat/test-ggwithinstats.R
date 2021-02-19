@@ -46,7 +46,7 @@ test_that(
         k = 4,
         paired = TRUE,
         conf.level = 0.99
-      )
+      )$expression[[1]]
 
     # check data
     set.seed(123)
@@ -116,7 +116,7 @@ test_that(
           k = 4,
           paired = TRUE,
           conf.level = 0.99
-        )
+        )$expression[[1]]
 
       # check data
       set.seed(123)
@@ -214,7 +214,7 @@ test_that(
           type = "np",
           paired = TRUE,
           conf.level = 0.90
-        )
+        )$expression[[1]]
 
       set.seed(123)
       p2 <-
@@ -238,7 +238,7 @@ test_that(
           paired = TRUE,
           type = "r",
           conf.level = 0.90
-        )
+        )$expression[[1]]
 
       set.seed(123)
       p3 <-
@@ -265,7 +265,7 @@ test_that(
           type = "r",
           k = 3,
           nboot = 25
-        ))
+        )$expression[[1]])
 
       set.seed(123)
       p4 <-
@@ -294,7 +294,7 @@ test_that(
           paired = TRUE,
           k = 4,
           nboot = 15
-        ))
+        )$expression[[1]])
 
       # built plots
       pb1 <- ggplot2::ggplot_build(p1)

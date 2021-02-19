@@ -102,7 +102,7 @@ ggbarstats <- function(data,
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
-    subtitle <-
+    subtitle_df <-
       tryCatch(
         expr = statsExpressions::expr_contingency_tab(
           data = data,
@@ -117,9 +117,11 @@ ggbarstats <- function(data,
         error = function(e) NULL
       )
 
+    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
+
     # preparing Bayes Factor caption
     if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
-      caption <-
+      caption_df <-
         tryCatch(
           expr = statsExpressions::expr_contingency_tab(
             data = data,
@@ -134,12 +136,14 @@ ggbarstats <- function(data,
           ),
           error = function(e) NULL
         )
+
+      if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
   }
 
   # return early if anything other than plot
   if (output != "plot") {
-    return(switch(EXPR = output,
+    return(switch(output,
       "caption" = caption,
       subtitle
     ))

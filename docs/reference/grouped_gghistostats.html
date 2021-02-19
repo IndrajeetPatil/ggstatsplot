@@ -99,7 +99,7 @@ using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0.9000</span>
       </span>
     </div>
 
@@ -266,9 +266,13 @@ variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>output</th>
-      <td><p>If <code>"expression"</code>, will return expression with statistical
-details, while <code>"dataframe"</code> will return a dataframe containing the
-results.</p></td>
+      <td><p>Character that describes what is to be returned: can be
+<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
+<code>"subtitle"</code> will return the expression containing statistical results. If
+you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
+Setting this to <code>"caption"</code> will return the expression containing details
+about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
+<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>plotgrid.args</th>
@@ -290,7 +294,8 @@ normal curve using <code><a href='https://rdrr.io/r/stats/Normal.html'>stats::dn
 passed to the normal curve.</p></dd>
     <dt><code>bar.fill</code></dt><dd><p>Character input that decides which color will uniformly fill
 all the bars in the histogram (Default: <code>"grey50"</code>).</p></dd>
-    <dt><code>type</code></dt><dd><p>Type of statistic expected. Four possible options:<ul>
+    <dt><code>type</code></dt><dd><p>A character specifying the type of statistical approach.
+Four possible options:<ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>

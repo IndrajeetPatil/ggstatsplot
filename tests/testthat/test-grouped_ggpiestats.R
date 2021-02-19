@@ -107,7 +107,7 @@ test_that(
         x = relig,
         y = marital,
         output = "subtitle"
-      ))
+      )$expression[[1]])
 
     # checking subtitle
     expect_equal(ls_results$Other, sexpr_results)

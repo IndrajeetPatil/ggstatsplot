@@ -68,7 +68,8 @@ will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
 any of the following arguments since they are already internally being
 used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
 \code{pch}, \code{legend.title}, \code{digits}.}
-    \item{\code{type}}{Type of statistic expected. Four possible options:
+    \item{\code{type}}{A character specifying the type of statistical approach.
+Four possible options:
 
 \itemize{
 \item \code{"parametric"}

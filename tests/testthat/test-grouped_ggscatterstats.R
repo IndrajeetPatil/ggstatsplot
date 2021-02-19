@@ -184,9 +184,8 @@ test_that(
         x = "rating",
         y = length,
         k = 3,
-        conf.level = 0.99,
-        output = "subtitle"
-      )
+        conf.level = 0.99
+      )$expression[[1]]
 
     # tests
     expect_equal(length(ls_results), 1L)

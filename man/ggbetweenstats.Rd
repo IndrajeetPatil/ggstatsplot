@@ -65,7 +65,8 @@ dataframe \code{data}.}
 plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
 and \code{"boxviolin"} (for a combination of box and violin plots; default).}
 
-\item{type}{Type of statistic expected. Four possible options:
+\item{type}{A character specifying the type of statistical approach.
+Four possible options:
 
 \itemize{
 \item \code{"parametric"}

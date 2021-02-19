@@ -117,9 +117,8 @@ test_that(
         data = dplyr::filter(df, race == "Other") %>%
           dplyr::mutate_if(., is.factor, droplevels),
         x = relig,
-        y = marital,
-        output = "subtitle"
-      ))
+        y = marital
+      )$expression[[1]])
 
     # checking subtitle
     expect_equal(ls_results$Other, sexpr_results)

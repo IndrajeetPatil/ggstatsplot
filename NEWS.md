@@ -1,5 +1,9 @@
 # ggstatsplot 0.7.0.9000
 
+MINOR CHANGES
+
+  - Adapts to changes made in `statsExpressions`.
+
 # ggstatsplot 0.7.0
 
 BREAKING CHANGES

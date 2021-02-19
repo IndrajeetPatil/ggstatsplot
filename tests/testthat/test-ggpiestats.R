@@ -29,7 +29,7 @@ test_that(
       statsExpressions::expr_contingency_tab(
         data = ggplot2::msleep,
         x = "vore"
-      )
+      )$expression[[1]]
 
     # caption
     set.seed(123)
@@ -38,9 +38,8 @@ test_that(
         data = ggplot2::msleep,
         type = "bayes",
         x = "vore",
-        top.text = "From ggplot2 package",
-        output = "caption"
-      )
+        top.text = "From ggplot2 package"
+      )$expression[[1]]
 
     # check data
     set.seed(123)
@@ -111,7 +110,7 @@ test_that(
         data = mtcars,
         x = "am",
         y = "cyl"
-      ))
+      )$expression[[1]])
 
     # subtitle used
     set.seed(123)
@@ -120,9 +119,8 @@ test_that(
         data = mtcars,
         x = "am",
         y = "cyl",
-        type = "bayes",
-        output = "caption"
-      ))
+        type = "bayes"
+      )$expression[[1]])
 
     # check data
     set.seed(123)
@@ -167,7 +165,7 @@ test_that(
         x = Sex,
         y = Survived,
         counts = Freq
-      )
+      )$expression[[1]]
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -236,7 +234,7 @@ test_that(
         counts = Counts,
         paired = TRUE,
         conf.level = 0.90
-      )
+      )$expression[[1]]
 
     # checking plot labels
     expect_identical(
@@ -386,8 +384,8 @@ test_that(
         data = df,
         x = race,
         y = marital,
-        output = "subtitle",
-        k = 4
+        k = 4,
+        output = "subtitle"
       )
 
     set.seed(123)
@@ -397,7 +395,7 @@ test_that(
         x = race,
         y = marital,
         k = 4
-      )
+      )$expression[[1]]
 
     # caption output
     set.seed(123)
@@ -407,8 +405,8 @@ test_that(
         x = race,
         y = "marital",
         type = "bayes",
-        output = "subtitle",
-        k = 4
+        k = 4,
+        output = "subtitle"
       )
 
     # caption output
@@ -420,7 +418,7 @@ test_that(
         y = marital,
         type = "bayes",
         k = 4
-      )
+      )$expression[[1]]
 
     # tests
     expect_identical(p_sub, stats_output)

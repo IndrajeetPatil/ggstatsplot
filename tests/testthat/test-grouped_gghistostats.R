@@ -67,9 +67,8 @@ test_that(
       statsExpressions::expr_t_onesample(
         data = df,
         x = brainwt,
-        test.value = 0.25,
-        output = "subtitle"
-      )
+        test.value = 0.25
+      )$expression[[1]]
 
     # tests
     expect_equal(ls_results$`omni`, basic_results)

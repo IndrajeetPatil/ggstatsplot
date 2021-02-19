@@ -35,7 +35,7 @@ test_that(
         y = brainwt,
         k = 5,
         conf.level = 0.99
-      )
+      )$expression[[1]]
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
@@ -255,9 +255,8 @@ test_that(
       statsExpressions::expr_t_twosample(
         data = df,
         x = am,
-        y = wt,
-        output = "subtitle"
-      )
+        y = wt
+      )$expression[[1]]
 
     # test
     expect_identical(subtitle_exp, sub)

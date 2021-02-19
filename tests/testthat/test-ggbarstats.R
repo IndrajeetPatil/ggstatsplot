@@ -22,7 +22,6 @@ test_that(
         y = Survived,
         counts = "Freq",
         perc.k = 2,
-        conf.level = 0.95,
         xlab = "Passenger sex",
         ylab = "proportion",
         label.separator = "\n",
@@ -40,7 +39,7 @@ test_that(
         x = "Sex",
         y = "Survived",
         counts = Freq
-      )
+      )$expression[[1]]
 
     # check data
     set.seed(123)
@@ -194,7 +193,7 @@ test_that(
         x = race,
         y = marital,
         k = 4
-      )
+      )$expression[[1]]
 
     # caption output
     set.seed(123)
@@ -217,7 +216,7 @@ test_that(
         y = marital,
         type = "bayes",
         k = 4
-      )
+      )$expression[[1]]
 
     # tests
     expect_identical(p_sub, stats_output)

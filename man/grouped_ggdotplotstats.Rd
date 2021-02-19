@@ -31,9 +31,13 @@ bare name \code{x} or as a string \code{"x"}).}
 plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
 variable name entered for \code{grouping.var} will be used.}
 
-\item{output}{If \code{"expression"}, will return expression with statistical
-details, while \code{"dataframe"} will return a dataframe containing the
-results.}
+\item{output}{Character that describes what is to be returned: can be
+\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
+\code{"subtitle"} will return the expression containing statistical results. If
+you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
+Setting this to \code{"caption"} will return the expression containing details
+about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{patchwork::wrap_plots}, except for \code{guides} argument which is already
@@ -47,7 +51,8 @@ separately specified here.}
   \describe{
     \item{\code{point.args}}{A list of additional aesthetic arguments passed to
 \code{geom_point}.}
-    \item{\code{type}}{Type of statistic expected. Four possible options:
+    \item{\code{type}}{A character specifying the type of statistical approach.
+Four possible options:
 
 \itemize{
 \item \code{"parametric"}

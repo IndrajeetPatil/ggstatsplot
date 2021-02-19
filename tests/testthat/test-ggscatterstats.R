@@ -39,7 +39,7 @@ test_that(
         x = "sleep_total",
         y = bodywt,
         type = "p"
-      )
+      )$expression[[1]]
 
     # subtitle
     set.seed(123)
@@ -49,9 +49,8 @@ test_that(
         x = "sleep_total",
         y = bodywt,
         top.text = "ggplot2 dataset",
-        output = "expression",
         type = "bayes"
-      )
+      )$expression[[1]]
 
     # checking plot labels
     expect_identical(pb$plot$labels$caption, p_cap)
@@ -102,7 +101,7 @@ test_that(
         y = bodywt,
         type = "np",
         conf.level = 0.99
-      )
+      )$expression[[1]]
 
     # testing data and annotations
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -141,7 +140,7 @@ test_that(
         y = bodywt,
         type = "r",
         conf.level = 0.90
-      )
+      )$expression[[1]]
 
     pb <- ggplot2::ggplot_build(p)
 
@@ -183,7 +182,7 @@ test_that(
         x = sleep_total,
         y = bodywt,
         type = "bayes"
-      )
+      )$expression[[1]]
 
     expect_identical(class(p)[[1]], "ggExtraPlot")
     expect_identical(
@@ -347,7 +346,7 @@ test_that(
         conf.level = 0.90,
         type = "r",
         output = "subtitle"
-      )
+      )$expression[[1]]
 
     # checking captured messages
     expect_identical(p_sub, fun_sub)

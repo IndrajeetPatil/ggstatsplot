@@ -493,9 +493,8 @@ test_that(
       statsExpressions::expr_meta_random(
         data = df_eg,
         k = 4,
-        output = "subtitle",
         type = "p"
-      )
+      )$expression[[1]]
 
     # ggstatsplot output
     set.seed(123)
@@ -504,8 +503,8 @@ test_that(
         k = 4,
         meta.analytic.effect = TRUE,
         bf.message = FALSE,
-        output = "subtitle",
-        meta.type = "p"
+        meta.type = "p",
+        output = "subtitle"
       )
 
     expect_identical(using_function1, ggcoef_label)

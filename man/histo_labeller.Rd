@@ -20,7 +20,8 @@ for a test value and/or a centrality parameter (mean/median) value.}
 
 \item{x}{A numeric variable from the dataframe \code{data}.}
 
-\item{type}{Type of statistic expected. Four possible options:
+\item{type}{A character specifying the type of statistical approach.
+Four possible options:
 
 \itemize{
 \item \code{"parametric"}

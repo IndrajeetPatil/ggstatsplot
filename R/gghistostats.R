@@ -103,7 +103,7 @@ gghistostats <- function(data,
 
   if (isTRUE(results.subtitle)) {
     # preparing the subtitle with statistical results
-    subtitle <-
+    subtitle_df <-
       statsExpressions::expr_t_onesample(
         data = df,
         x = {{ x }},
@@ -117,9 +117,11 @@ gghistostats <- function(data,
         k = k
       )
 
+    subtitle <- subtitle_df$expression[[1]]
+
     # preparing the BF message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption <-
+      caption_df <-
         statsExpressions::expr_t_onesample(
           data = df,
           x = {{ x }},
@@ -127,9 +129,10 @@ gghistostats <- function(data,
           test.value = test.value,
           bf.prior = bf.prior,
           top.text = caption,
-          output = "expression",
           k = k
         )
+
+      caption <- caption_df$expression[[1]]
     }
   }
 

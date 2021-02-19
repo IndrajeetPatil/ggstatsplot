@@ -36,7 +36,7 @@ test_that(
         x = height,
         type = "p",
         test.value = 150
-      )
+      )$expression[[1]]
 
     # checking caption
     set.seed(123)
@@ -46,9 +46,8 @@ test_that(
         x = height,
         type = "bayes",
         test.value = 150,
-        bf.prior = 0.9,
-        output = "caption"
-      )
+        bf.prior = 0.9
+      )$expression[[1]]
 
     # testing overall call
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -182,7 +181,7 @@ test_that(
         x = wt,
         test.value = 2.5,
         type = "r"
-      )
+      )$expression[[1]]
 
     # testing labels
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -255,8 +254,8 @@ test_that(
       ggstatsplot::gghistostats(
         data = ggplot2::msleep,
         x = brainwt,
-        output = "subtitle",
         type = "np",
+        output = "subtitle",
         test.value = 0.25
       )
 
@@ -265,10 +264,9 @@ test_that(
       statsExpressions::expr_t_onesample(
         data = ggplot2::msleep,
         x = brainwt,
-        output = "subtitle",
         type = "np",
         test.value = 0.25
-      )
+      )$expression[[1]]
 
     # tests
     expect_identical(p_sub, sub)

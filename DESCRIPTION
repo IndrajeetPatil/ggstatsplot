@@ -42,7 +42,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.7.1),
+    statsExpressions (>= 0.7.1.9000),
     tidyr,
     utils
 Suggests:
@@ -60,7 +60,8 @@ Suggests:
 VignetteBuilder: 
     knitr
 Remotes:
-    easystats/parameters
+    easystats/parameters,
+    IndrajeetPatil/statsExpressions
 Encoding: UTF-8
 Language: en-US
 LazyData: true

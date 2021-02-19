@@ -158,7 +158,7 @@ ggscatterstats <- function(data,
   if (isTRUE(results.subtitle)) {
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption <-
+      caption_df <-
         statsExpressions::expr_corr_test(
           data = data,
           x = {{ x }},
@@ -166,13 +166,14 @@ ggscatterstats <- function(data,
           type = "bayes",
           bf.prior = bf.prior,
           top.text = caption,
-          output = "expression",
           k = k
         )
+
+      caption <- caption_df$expression[[1]]
     }
 
     # extracting the subtitle using the switch function
-    subtitle <-
+    subtitle_df <-
       statsExpressions::expr_corr_test(
         data = data,
         x = {{ x }},
@@ -182,6 +183,8 @@ ggscatterstats <- function(data,
         conf.level = conf.level,
         k = k
       )
+
+    subtitle <- subtitle_df$expression[[1]]
   }
 
   # quit early if only subtitle is needed
