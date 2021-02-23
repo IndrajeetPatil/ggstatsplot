@@ -105,6 +105,7 @@ articles:
 
   - title: Development-focused
     navbar: Development-focused
-    desc: Documents useful mostly from development perspective
+    desc: Documents useful mostly for development of the package
     contents:
     - web_only/benchmarking
+    - web_only/dependencies

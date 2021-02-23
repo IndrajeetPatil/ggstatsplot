@@ -27,7 +27,3 @@ ipmisc::enframe
 #' @export
 #' @importFrom ipmisc as_tibble
 ipmisc::as_tibble
-
-#' @export
-#' @importFrom correlation correlation
-correlation::correlation

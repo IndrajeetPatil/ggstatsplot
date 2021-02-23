@@ -66,6 +66,8 @@ functions included in `ggstatsplot`.
   - <https://www.youtube.com/watch?v=m3uInetiC8w>
   
   - <https://www.youtube.com/watch?v=-p6_K_l__N4>
+  
+  - <https://gorilla.sc/academy/#advancedpreprocessingandusingggstatsplotinrstudio>
 
 # RPubs posts
 

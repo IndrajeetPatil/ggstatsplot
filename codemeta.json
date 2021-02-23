@@ -189,19 +189,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "correlation",
-      "name": "correlation",
-      "version": ">= 0.6.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=correlation"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -327,7 +314,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.11.0.1",
+      "version": ">= 0.12.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -484,6 +471,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "96535.536KB",
+  "fileSize": "98834.424KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

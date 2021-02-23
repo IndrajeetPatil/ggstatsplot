@@ -99,11 +99,12 @@ also supported by `ggcoefstats`. For example-
 `mcmc.list`, `MCMCglmm`, `mclogit`, `mice`, `mmclogit`, `mediate`, `metafor`,
 `merMod`, `merModList`, `metaplus`, `mixor`, `mjoint`, `mle2`, `mlm`,
 `multinom`, `negbin`, `negbinmfx`, `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`,
-`nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `ridgelm`,
-`riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`,
-`rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `summary.lm`, `survreg`, `svyglm`, `svyolr`, `svyglm`, `tobit`,
-`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `probitmfx`,
+`ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
+`rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`,
+`speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svyolr`,
+`svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`,
+`zeroinfl`, etc.
 
 # Summary of meta-analyis tests
 
@@ -4254,6 +4255,32 @@ fit_epiR <-
 ggcoefstats(
   x = fit_epiR,
   title = "Summary measures for count data presented in a 2 by 2 table"
+)
+```
+
+## marginal effects for a probit regression (`probitmfx`)
+
+```{r probitmfx, fig.height = 4, fig.width = 5}
+# setup
+set.seed(123)
+library(mfx)
+
+# simulate some data
+set.seed(12345)
+n <- 1000
+x <- rnorm(n)
+
+# binary outcome
+y <- ifelse(pnorm(1 + 0.5 * x + rnorm(n)) > 0.5, 1, 0)
+data <- data.frame(y, x)
+
+# model
+mod_probitmfx <- mfx::probitmfx(formula = y ~ x, data = data)
+
+# plot
+ggcoefstats(
+    x = mod_probitmfx,
+  title = "marginal effects for a probit regression"
 )
 ```
 

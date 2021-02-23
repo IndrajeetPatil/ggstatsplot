@@ -2,7 +2,7 @@
 
 MINOR CHANGES
 
-  - Adapts to changes made in `statsExpressions`.
+  - Adapts to changes made in `statsExpressions 1.0.0`.
 
 # ggstatsplot 0.7.0
 
