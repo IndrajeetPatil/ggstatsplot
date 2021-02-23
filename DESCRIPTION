@@ -30,7 +30,7 @@ Imports:
     ggExtra,
     ggplot2,
     ggrepel,
-    ggsignif,
+    ggsignif (>= 0.6.1),
     insight (>= 0.13.0),
     ipmisc (>= 6.0.0),
     pairwiseComparisons (>= 3.1.3),

@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2021-02-11 r79990)",
+  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -251,6 +251,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggsignif",
       "name": "ggsignif",
+      "version": ">= 0.6.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -471,6 +472,5 @@
     }
   ],
   "funder": {},
-  "fileSize": "98834.424KB",
-  "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
+  "fileSize": "99333.496KB"
 }
