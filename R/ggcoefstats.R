@@ -382,9 +382,10 @@ ggcoefstats <- function(x,
   # for non-dataframe objects
   if (isTRUE(insight::is_model(x))) {
     # creating glance dataframe
-    suppressWarnings(glance_df <-
-      performance::model_performance(x, verbose = FALSE) %>%
-      parameters::standardize_names(style = "broom"))
+    glance_df <- performance::model_performance(x, verbose = FALSE)
+
+    # rename to `broom` convention
+    if (!is.null(glance_df)) glance_df %<>% parameters::standardize_names(style = "broom")
 
     # no meta-analysis in this context
     meta.analytic.effect <- FALSE

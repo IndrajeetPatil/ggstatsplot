@@ -83,11 +83,11 @@ Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. For example-
 
 `aareg`, `afex_aov`, `anova`, `anova.mlm`, `anova`, `aov`, `aovlist`, `Arima`,
-`bam`, `bayesx`, `bayesGARCH`, `BBmm`, `BBreg`, `bcplm`, `betamfx`, `betaor`,
-`BFBayesFactor`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`,
-`blmerMod`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`,
-`cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
-`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxr`,
+`bam`, `bayesx`, `bayesGARCH`, `bayesQR`, `BBmm`, `BBreg`, `bcplm`, `betamfx`,
+`betaor`, `BFBayesFactor`, `bglmerMod`, `bife`, `bigglm`, `biglm`, `blavaan`,
+`bmlm`, `blmerMod`, `blrm`, `bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`,
+`btergm`, `cch`, `censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`,
+`clmm2`, `coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxr`,
 `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`, `drc`,
 `eglm`, `elm`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`, `fitdistr`,
 `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`, `geeglm`, `glmc`,
@@ -4279,7 +4279,7 @@ mod_probitmfx <- mfx::probitmfx(formula = y ~ x, data = data)
 
 # plot
 ggcoefstats(
-    x = mod_probitmfx,
+  x = mod_probitmfx,
   title = "marginal effects for a probit regression"
 )
 ```
@@ -4648,6 +4648,55 @@ ggcoefstats(
 )
 ```
 
+## Bayesian quantile regression (`bayesQR`)
+
+```{r bayesQR, fig.height = 6, fig.width = 6}
+# needed library
+library(bayesQR)
+
+# Simulate data from heteroskedastic regression
+set.seed(66)
+n <- 200
+X <- runif(n = n, min = 0, max = 10)
+X <- X
+y <- 1 + 2 * X + rnorm(n = n, mean = 0, sd = .6 * X)
+
+# model
+mod_bayesqr <-
+  bayesQR(y ~ X,
+    quantile = c(.05, .25, .5, .75, .95),
+    alasso = TRUE,
+    ndraw = 500
+  )
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_bayesqr,
+  title = "Bayesian quantile regression"
+)
+```
+
+## Bayesian binary and ordinal logistic regression (`blrm`)
+
+```{r blrm, fig.height = 8, fig.width = 10}
+# setup
+set.seed(123)
+library(rmsb)
+library(rms)
+library(Hmisc)
+getHdata(titanic3)
+dd <- datadist(titanic3)
+options(datadist = "dd")
+
+# model
+mod_blrm <- rmsb::blrm(survived ~ (rcs(age, 5) + sex + pclass)^2, data = titanic3)
+
+# plot
+ggstatsplot::ggcoefstats(
+  x = mod_blrm,
+  title = "Bayesian binary and ordinal logistic regression"
+)
+```
 
 ## Compound Poisson Generalized Linear Models (`cpglm`)
 
