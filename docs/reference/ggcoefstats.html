@@ -99,7 +99,7 @@ labels." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0.9000</span>
       </span>
     </div>
 
@@ -176,6 +176,9 @@ labels." />
     <li class="dropdown-header">Development-focused</li>
     <li>
       <a href="../articles/web_only/benchmarking.html">Benchmarking</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/dependencies.html">Dependencies</a>
     </li>
   </ul>
 </li>
@@ -433,9 +436,9 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><strong>Important</strong>: The function assumes that you have already downloaded
-the needed package (<code>metafor</code>, <code>metaplus</code>, or <code>metaBMA</code>) for meta-analysis.</p>
-<ol>
+    <p><strong>Important</strong>: In case you want to carry out meta-analysis using this
+function, it assumes that you have already downloaded the needed package
+(<code>metafor</code>, <code>metaplus</code>, or <code>metaBMA</code>) for meta-analysis.</p><ol>
 <li><p>All rows of regression estimates where either of the following
 quantities is <code>NA</code> will be removed if labels are requested: <code>estimate</code>,
 <code>statistic</code>, <code>p.value</code>.</p></li>
@@ -453,117 +456,35 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 
-<span class='co'># -------------- with model object --------------------------------------</span>
-
 <span class='co'># model object</span>
-<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span> <span class='op'>*</span> <span class='va'>am</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
+<span class='va'>mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>cyl</span> <span class='op'>*</span> <span class='va'>am</span>, data <span class='op'>=</span> <span class='va'>mtcars</span><span class='op'>)</span>
 
 <span class='co'># to get a plot</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"plot"</span><span class='op'>)</span>
 </div><div class='img'><img src='ggcoefstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># to get a tidy dataframe</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"tidy"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 10</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 10</span><span>
 #&gt;   </span><span style='font-weight: bold;'>term</span><span>        </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>std.error</span><span> </span><span style='font-weight: bold;'>conf.level</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span> </span><span style='font-weight: bold;'>statistic</span><span>
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> (Intercept)    30.9      3.19        </span><span style='color: #555555;'>0.</span><span>95    24.3     37.4        9.68
-#&gt; </span><span style='color: #555555;'>2</span><span> cyl            -</span><span style='color: #BB0000;'>1.98</span><span>     </span><span style='color: #555555;'>0.</span><span>449       </span><span style='color: #555555;'>0.</span><span>95    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      -</span><span style='color: #BB0000;'>4.40</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span> am             10.2      4.30        </span><span style='color: #555555;'>0.</span><span>95     1.36    19.0        2.36
-#&gt; </span><span style='color: #555555;'>4</span><span> cyl:am         -</span><span style='color: #BB0000;'>1.31</span><span>     </span><span style='color: #555555;'>0.</span><span>707       </span><span style='color: #555555;'>0.</span><span>95    -</span><span style='color: #BB0000;'>2.75</span><span>     </span><span style='color: #555555;'>0.</span><span>143     -</span><span style='color: #BB0000;'>1.85</span><span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> (Intercept)    30.9      3.19        </span><span style='color: #949494;'>0.</span><span>95    24.3     37.4        9.68
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> cyl            -</span><span style='color: #BB0000;'>1.98</span><span>     </span><span style='color: #949494;'>0.</span><span>449       </span><span style='color: #949494;'>0.</span><span>95    -</span><span style='color: #BB0000;'>2.89</span><span>    -</span><span style='color: #BB0000;'>1.06</span><span>      -</span><span style='color: #BB0000;'>4.40</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> am             10.2      4.30        </span><span style='color: #949494;'>0.</span><span>95     1.36    19.0        2.36
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> cyl:am         -</span><span style='color: #BB0000;'>1.31</span><span>     </span><span style='color: #949494;'>0.</span><span>707       </span><span style='color: #949494;'>0.</span><span>95    -</span><span style='color: #BB0000;'>2.75</span><span>     </span><span style='color: #949494;'>0.</span><span>143     -</span><span style='color: #BB0000;'>1.85</span><span>
 #&gt;   </span><span style='font-weight: bold;'>df.error</span><span>  </span><span style='font-weight: bold;'>p.value</span><span>
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>       28 1.95</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span>       28 1.41</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>
-#&gt; </span><span style='color: #555555;'>3</span><span>       28 2.53</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
-#&gt; </span><span style='color: #555555;'>4</span><span>       28 7.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
-#&gt;   </span><span style='font-weight: bold;'>label</span><span>                                                                         
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                                                         
-#&gt; </span><span style='color: #555555;'>1</span><span> list(~widehat(italic(beta))==30.87, ~italic(t)(28)==9.68, ~italic(p)=='1.95e-~
-#&gt; </span><span style='color: #555555;'>2</span><span> list(~widehat(italic(beta))==-1.98, ~italic(t)(28)==-4.40, ~italic(p)=='1.41e~
-#&gt; </span><span style='color: #555555;'>3</span><span> list(~widehat(italic(beta))==10.18, ~italic(t)(28)==2.36, ~italic(p)=='0.025')
-#&gt; </span><span style='color: #555555;'>4</span><span> list(~widehat(italic(beta))==-1.31, ~italic(t)(28)==-1.85, ~italic(p)=='0.076~</div><div class='input'>
+#&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>       28 1.95</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-10</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>       28 1.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>       28 2.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>       28 7.55</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #949494;'># ... with 1 more variable: </span><span style='color: #949494;font-weight: bold;'>label</span><span style='color: #949494;'> &lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># to get a glance summary</span>
 <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"glance"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 1 x 6</span><span>
 #&gt;     </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span>    </span><span style='font-weight: bold;'>r2</span><span> </span><span style='font-weight: bold;'>r2.adjusted</span><span>  </span><span style='font-weight: bold;'>rmse</span><span> </span><span style='font-weight: bold;'>sigma</span><span>
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  166.  173. </span><span style='color: #555555;'>0.</span><span>785       </span><span style='color: #555555;'>0.</span><span>762  2.75  2.94</div><div class='input'>
-<span class='co'># -------------- with custom dataframe -----------------------------------</span>
-
-<span class='co'># creating a dataframe</span>
-<span class='va'>df</span> <span class='op'>&lt;-</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-      term <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span>
-        <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3L</span>, <span class='fl'>4L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>5L</span><span class='op'>)</span>,
-        .Label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-          <span class='st'>"Africa"</span>,
-          <span class='st'>"Americas"</span>, <span class='st'>"Asia"</span>, <span class='st'>"Europe"</span>, <span class='st'>"Oceania"</span>
-        <span class='op'>)</span>,
-        class <span class='op'>=</span> <span class='st'>"factor"</span>
-      <span class='op'>)</span>,
-      estimate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>0.382047603321706</span>,
-        <span class='fl'>0.780783111514665</span>,
-        <span class='fl'>0.425607573765058</span>,
-        <span class='fl'>0.558365541235078</span>,
-        <span class='fl'>0.956473848429961</span>
-      <span class='op'>)</span>,
-      std.error <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>0.0465576338644502</span>,
-        <span class='fl'>0.0330218199731529</span>,
-        <span class='fl'>0.0362834986178494</span>,
-        <span class='fl'>0.0480571500648261</span>,
-        <span class='fl'>0.062215818388157</span>
-      <span class='op'>)</span>,
-      statistic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>8.20590677855356</span>,
-        <span class='fl'>23.6444603038067</span>,
-        <span class='fl'>11.7300588415607</span>,
-        <span class='fl'>11.6187818146078</span>,
-        <span class='fl'>15.3734833553524</span>
-      <span class='op'>)</span>,
-      conf.low <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>0.290515146096969</span>,
-        <span class='fl'>0.715841986960399</span>,
-        <span class='fl'>0.354354575031406</span>,
-        <span class='fl'>0.46379116008131</span>,
-        <span class='fl'>0.827446138277154</span>
-      <span class='op'>)</span>,
-      conf.high <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>0.473580060546444</span>,
-        <span class='fl'>0.845724236068931</span>,
-        <span class='fl'>0.496860572498711</span>,
-        <span class='fl'>0.652939922388847</span>,
-        <span class='fl'>1.08550155858277</span>
-      <span class='op'>)</span>,
-      p.value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>3.28679518728519e-15</span>,
-        <span class='fl'>4.04778497135963e-75</span>,
-        <span class='fl'>7.59757330804449e-29</span>,
-        <span class='fl'>5.45155840151592e-26</span>,
-        <span class='fl'>2.99171217913312e-13</span>
-      <span class='op'>)</span>,
-      df.error <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-        <span class='fl'>394L</span>, <span class='fl'>358L</span>, <span class='fl'>622L</span>,
-        <span class='fl'>298L</span>, <span class='fl'>22L</span>
-      <span class='op'>)</span>
-    <span class='op'>)</span>,
-    row.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='op'>-</span><span class='fl'>5L</span><span class='op'>)</span>,
-    class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-      <span class='st'>"tbl_df"</span>,
-      <span class='st'>"tbl"</span>, <span class='st'>"data.frame"</span>
-    <span class='op'>)</span>
-  <span class='op'>)</span>
-
-<span class='co'># plotting the dataframe</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggcoefstats</span><span class='op'>(</span>
-  x <span class='op'>=</span> <span class='va'>df</span>,
-  statistic <span class='op'>=</span> <span class='st'>"t"</span>,
-  meta.analytic.effect <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  k <span class='op'>=</span> <span class='fl'>3</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='ggcoefstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>  166.  173. </span><span style='color: #949494;'>0.</span><span>785       </span><span style='color: #949494;'>0.</span><span>762  2.75  2.94</div><div class='input'>
+<span class='co'># }</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -576,11 +497,11 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
+  <p><p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>

@@ -71,8 +71,8 @@ Four possible options:
 
 Corresponding abbreviations are also accepted: \code{"p"} (for parametric),
 \code{"np"} (for nonparametric), \code{"r"} (for robust), or \code{"bf"} (for Bayesian).}
-    \item{\code{test.value}}{A number specifying the value of the null hypothesis
-(Default: \code{0}).}
+    \item{\code{test.value}}{A number indicating the true value of the mean (Default:
+\code{0}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The

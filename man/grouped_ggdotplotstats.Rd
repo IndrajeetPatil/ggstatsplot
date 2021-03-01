@@ -76,8 +76,8 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
-    \item{\code{test.value}}{A number specifying the value of the null hypothesis
-(Default: \code{0}).}
+    \item{\code{test.value}}{A number indicating the true value of the mean (Default:
+\code{0}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in

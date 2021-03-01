@@ -398,7 +398,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li><p><code>ggcorrmat</code> no longer returns matrices of correlation coefficients or other details. It now returns either a plot or a dataframe and this can dataframe can then be used to create matrices.</p></li>
-<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this: <a href="https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code" class="external-link">https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code</a></p></li>
+<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this: <a href="https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code" class="external-link uri">https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code</a></p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
@@ -410,7 +410,7 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="external-link">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
+<li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="external-link uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html" class="external-link">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html" class="external-link">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
 <li><p>Due to changes in one of the downstream dependencies, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
 </ul>
@@ -729,7 +729,7 @@
 </h1>
 <p>BUG FIXES</p>
 <ul>
-<li><p><code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="external-link">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</p></li>
+<li><p><code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="external-link uri">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</p></li>
 <li><p><code>specify_decimal_p</code> has been modified because it produced incorrect results when <code>k &lt; 3</code> and <code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</p></li>
 <li><p><code>ggpiestats</code> produced incorrect results if some levels of the factor had been filtered out prior to using this function. It now drops unused levels and produces correct results.</p></li>
 <li><p><code>gghistostats</code> wasn’t filtering out <code>NA</code>s properly. This has been fixed.</p></li>
@@ -837,7 +837,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html" class="external-link">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html" class="external-link">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>
