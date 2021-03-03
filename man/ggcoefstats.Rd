@@ -176,19 +176,19 @@ is recommended that you install the GitHub versions of \code{parameters} and
 \donttest{
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
 
 # to get a plot
-ggstatsplot::ggcoefstats(x = mod, output = "plot")
+ggcoefstats(x = mod, output = "plot")
 
 # to get a tidy dataframe
-ggstatsplot::ggcoefstats(x = mod, output = "tidy")
+ggcoefstats(x = mod, output = "tidy")
 
 # to get a glance summary
-ggstatsplot::ggcoefstats(x = mod, output = "glance")
-
+ggcoefstats(x = mod, output = "glance")
 }
 }
 \references{

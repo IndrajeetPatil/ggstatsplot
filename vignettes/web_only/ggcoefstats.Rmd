@@ -4826,13 +4826,13 @@ mod_fx4 <-
 # combining plots
 combine_plots(
   plotlist = list(
-    ggcoefstats(mod_fx1),
-    ggcoefstats(mod_fx2),
-    ggcoefstats(mod_fx3),
-    ggcoefstats(mod_fx4)
+    ggcoefstats(mod_fx1, title = "femlm"),
+    ggcoefstats(mod_fx2, title = "fepois"),
+    ggcoefstats(mod_fx3, title = "feols"),
+    ggcoefstats(mod_fx4, title = "feNmlm")
   ),
   labels = "auto",
-  title.text = "fast and user-friendly fixed-effects estimations"
+  annotation.args = list(title = "fast and user-friendly fixed-effects estimations")
 )
 ```
 
