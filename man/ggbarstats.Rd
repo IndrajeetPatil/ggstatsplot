@@ -12,7 +12,6 @@ ggbarstats(
   type = "parametric",
   paired = FALSE,
   results.subtitle = TRUE,
-  sample.size.label = TRUE,
   label = "percentage",
   label.args = list(alpha = 1, fill = "white"),
   k = 2L,
@@ -78,10 +77,6 @@ be returned.}
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-
-\item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{y}
-(Default: \code{TRUE}).}
 
 \item{label}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}

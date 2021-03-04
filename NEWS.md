@@ -4,6 +4,11 @@ MINOR CHANGES
 
   - Adapts to changes made in `statsExpressions 1.0.0`.
 
+  - `sample.size.label` argument is retired for `ggbetweenstats`,
+    `ggwithinstats`, and `ggbarstats`. I do not think it is ever a good idea to
+    not do this. If the users wish to not display sample sizes, they can easily
+    do this using `scale_*` functions from `ggplot2`.
+
 # ggstatsplot 0.7.0
 
 BREAKING CHANGES

@@ -211,7 +211,6 @@ test_that(
         outlier.coef = 0.75,
         outlier.color = "blue",
         bf.message = FALSE,
-        sample.size.label = FALSE,
         package = "wesanderson",
         palette = "Royal1"
       ) +

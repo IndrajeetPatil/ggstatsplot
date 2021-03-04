@@ -49,9 +49,6 @@
 #' @param subtitle The text for the plot subtitle. Will work only if
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption.
-#' @param sample.size.label Logical that decides whether sample size information
-#'   should be displayed for each level of the grouping variable `x` (Default:
-#'   `TRUE`).
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -191,7 +188,6 @@ ggbetweenstats <- function(data,
                            caption = NULL,
                            title = NULL,
                            subtitle = NULL,
-                           sample.size.label = TRUE,
                            k = 2L,
                            var.equal = FALSE,
                            conf.level = 0.95,
@@ -415,7 +411,6 @@ ggbetweenstats <- function(data,
         k = k,
         type = ipmisc::stats_type_switch(centrality.type),
         tr = tr,
-        sample.size.label = sample.size.label,
         centrality.point.args = centrality.point.args,
         centrality.label.args = centrality.label.args
       )

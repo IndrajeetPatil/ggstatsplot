@@ -12,7 +12,6 @@ centrality_ggrepel(
   type = "parametric",
   tr = 0.2,
   k = 2L,
-  sample.size.label = TRUE,
   centrality.path = FALSE,
   centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -50,10 +49,6 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-
-\item{sample.size.label}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{x} (Default:
-\code{TRUE}).}
 
 \item{centrality.path}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both

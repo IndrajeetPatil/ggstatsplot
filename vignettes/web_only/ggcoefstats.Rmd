@@ -106,7 +106,7 @@ also supported by `ggcoefstats`. For example-
 `svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`,
 `zeroinfl`, etc.
 
-# Summary of meta-analyis tests
+# Summary of meta-analysis tests
 
 Type | Test | Effect size | 95% CI available? | Function
 ----------- | -------------------- | -------- | ---  | -----

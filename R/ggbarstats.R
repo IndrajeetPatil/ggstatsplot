@@ -11,9 +11,6 @@
 #' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
 #'   will cause the `x` axis label to be the `x` variable).
 #' @param ylab Custom text for the `y` axis label (Default: `NULL`).
-#' @param sample.size.label Logical that decides whether sample size information
-#'   should be displayed for each level of the grouping variable `y`
-#'   (Default: `TRUE`).
 #' @inheritParams ggpiestats
 #'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
@@ -51,7 +48,6 @@ ggbarstats <- function(data,
                        type = "parametric",
                        paired = FALSE,
                        results.subtitle = TRUE,
-                       sample.size.label = TRUE,
                        label = "percentage",
                        label.args = list(alpha = 1, fill = "white"),
                        k = 2L,
@@ -204,15 +200,13 @@ ggbarstats <- function(data,
   }
 
   # adding sample size info
-  if (isTRUE(sample.size.label)) {
-    p <- p +
-      ggplot2::geom_text(
-        data = df_proptest,
-        mapping = ggplot2::aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-        size = 4,
-        na.rm = TRUE
-      )
-  }
+  p <- p +
+    ggplot2::geom_text(
+      data = df_proptest,
+      mapping = ggplot2::aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
+      size = 4,
+      na.rm = TRUE
+    )
 
   # =========================== putting all together ========================
 

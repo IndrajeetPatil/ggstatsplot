@@ -125,9 +125,6 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{caption}}{The text for the plot caption.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{sample.size.label}}{Logical that decides whether sample size information
-should be displayed for each level of the grouping variable \code{x} (Default:
-\code{TRUE}).}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
