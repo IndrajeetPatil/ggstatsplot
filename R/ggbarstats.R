@@ -183,7 +183,7 @@ ggbarstats <- function(data,
     theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::theme(panel.grid.major.x = ggplot2::element_blank()) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
-    paletteer::scale_fill_paletteer_d(palette = paste0(package, "::", palette), name = "")
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
 
   # ================ sample size and proportion test labels ===================
 

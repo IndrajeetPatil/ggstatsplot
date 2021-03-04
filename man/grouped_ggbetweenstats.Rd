@@ -74,7 +74,6 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
     \item{\code{pairwise.display}}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
-
 \itemize{
 \item \code{"significant"} (abbreviation accepted: \code{"s"})
 \item \code{"non-significant"} (abbreviation accepted: \code{"ns"})
@@ -112,7 +111,6 @@ Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.
-
 \itemize{
 \item \strong{mean} for parametric statistics
 \item \strong{median} for non-parametric statistics
@@ -125,7 +123,6 @@ If you want default centrality parameter, you can specify this using
     \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
 The default is to choose the same as \code{type} argument. You can specify this
 to be:
-
 \itemize{
 \item \code{"parameteric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})

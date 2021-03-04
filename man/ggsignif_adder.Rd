@@ -31,7 +31,6 @@ dataframe \code{data}.}
 
 \item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
-
 \itemize{
 \item \code{"significant"} (abbreviation accepted: \code{"s"})
 \item \code{"non-significant"} (abbreviation accepted: \code{"ns"})

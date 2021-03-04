@@ -60,17 +60,15 @@
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 #'
 #' @note
-#' \itemize{
-#' \item If you set `marginal = TRUE`, the resulting plot can **not** be further
+#' - If you set `marginal = TRUE`, the resulting plot can **not** be further
 #' modified with `ggplot2` functions since it is no longer a `ggplot` object. In
 #' case you want a `ggplot` object, set `marginal = FALSE`. Also have a look at
 #' the `ggplot.component` argument.
 #'
-#' \item The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#' - The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
 #' from over-lapping to the largest degree possible.  As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
-#' }
 #'
 #' @examples
 #' \donttest{
@@ -215,10 +213,10 @@ ggscatterstats <- function(data,
       # testing for whether we received bare or quoted
       if (typeof(label.expression) == "language") {
         # unquoted case
-        label_data <- dplyr::filter(.data = data, !!label.expression)
+        label_data <- dplyr::filter(data, !!label.expression)
       } else {
         # quoted case
-        label_data <- dplyr::filter(.data = data, !!rlang::parse_expr(label.expression))
+        label_data <- dplyr::filter(data, !!rlang::parse_expr(label.expression))
       }
     } else {
       label_data <- data

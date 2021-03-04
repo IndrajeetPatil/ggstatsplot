@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Movie information and user ratings from IMDB.com (long format). — movies_long • ggstatsplot</title>
+<title>ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package • ggstatsplot</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,8 +54,17 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Movie information and user ratings from IMDB.com (long format). — movies_long" />
-<meta property="og:description" content="Movie information and user ratings from IMDB.com (long format)." />
+<meta property="og:title" content="ggstatsplot: 'ggplot2' Based Plots with Statistical Details — ggstatsplot-package" />
+<meta property="og:description" content="
+ggstatsplot is an extension of ggplot2 package. It creates
+graphics with details from statistical tests included in the plots
+themselves. It provides an easier API to generate information-rich plots
+for statistical analysis of continuous (violin plots, scatterplots,
+histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar
+charts) data. Currently, it supports the most common types of statistical
+tests: parametric, nonparametric, robust, and Bayesian versions of
+t-test/ANOVA, correlation analyses, contingency table analysis,
+meta-analysis, and regression analyses." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -209,67 +218,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Movie information and user ratings from IMDB.com (long format).</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>movies_long.Rd</code></div>
+    <h1>ggstatsplot: 'ggplot2' Based Plots with Statistical Details</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggstatsplot-package.R'><code>R/ggstatsplot-package.R</code></a></small>
+    <div class="hidden name"><code>ggstatsplot-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Movie information and user ratings from IMDB.com (long format).</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>
+<p><code>ggstatsplot</code> is an extension of <code>ggplot2</code> package. It creates
+graphics with details from statistical tests included in the plots
+themselves. It provides an easier <code>API</code> to generate information-rich plots
+for statistical analysis of continuous (violin plots, scatterplots,
+histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar
+charts) data. Currently, it supports the most common types of statistical
+tests: parametric, nonparametric, robust, and Bayesian versions of
+<em>t</em>-test/ANOVA, correlation analyses, contingency table analysis,
+meta-analysis, and regression analyses.</p>
     </div>
 
-    <pre class="usage"><span class='va'>movies_long</span></pre>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data frame with 1,579 rows and 8 variables</p><ul>
-<li><p>title. Title of the movie.</p></li>
-<li><p>year. Year of release.</p></li>
-<li><p>budget. Total budget (if known) in US dollars</p></li>
-<li><p>length. Length in minutes.</p></li>
-<li><p>rating. Average IMDB user rating.</p></li>
-<li><p>votes. Number of IMDB users who rated this movie.</p></li>
-<li><p>mpaa. MPAA rating.</p></li>
-<li><p>genre. Different genres of movies (action, animation, comedy, drama,
-documentary, romance, short).</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://CRAN.R-project.org/package=ggplot2movies'>https://CRAN.R-project.org/package=ggplot2movies</a></p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Modified dataset from <code>ggplot2movies</code> package.</p>
-<p>The internet movie database, <a href='https://imdb.com/'>https://imdb.com/</a>, is a website devoted
-to collecting movie data supplied by studios and fans. It claims to be the
-biggest movie database on the web and is run by amazon.</p>
-<p>Movies were are identical to those selected for inclusion in movies_wide but this
-dataset has been constructed such that every movie appears in one and only one
-genre category.</p>
+    <p><code>ggstatsplot</code></p>
+<p>The main functions are-</p><ul>
+<li><ul>
+<li><p><code>ggbetweenstats</code> function to produce information-rich comparison plot
+<em>between</em> different groups or conditions with <code>ggplot2</code> and details from
+the statistical tests in the subtitle.</p></li>
+<li><p><code>ggwithinstats</code> function to produce information-rich comparison plot
+<em>within</em> different groups or conditions with <code>ggplot2</code> and details from the
+statistical tests in the subtitle.</p></li>
+<li><p><code>ggscatterstats</code> function to produce <code>ggplot2</code> scatterplots along with a
+marginal distribution plots from <code>ggExtra</code> and details from the statistical
+tests in the subtitle.</p></li>
+<li><p><code>ggpiestats</code> function to produce pie chart with details from the
+statistical tests in the subtitle.</p></li>
+<li><p><code>ggbarstats</code> function to produce stacked bar chart with details from the
+statistical tests in the subtitle.</p></li>
+<li><p><code>gghistostats</code> function to produce histogram for a single variable with
+results from one sample test displayed in the subtitle.</p></li>
+<li><p><code>ggdotplotstats</code> function to produce Cleveland-style dot plots/charts for
+a single variable with labels and results from one sample test displayed in
+the subtitle.</p></li>
+<li><p><code>ggcorrmat</code> function to visualize the correlation matrix.</p></li>
+<li><p><code>ggcoefstats</code> function to visualize results from regression analyses.</p></li>
+<li><p><code>combine_plots</code> helper function to combine multiple <code>ggstatsplot</code> plots
+using <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots()</a></code>.</p></li>
+</ul></li>
+</ul>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>movies_long</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1579    8</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>movies_long</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 8</span><span>
-#&gt;   title                             year length budget rating  votes mpaa  genre
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                            </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Shawshank Redemption, The         </span><span style='text-decoration: underline;'>1</span><span>994    142     25    9.1 </span><span style='text-decoration: underline;'>149</span><span>494 R     Drama
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Lord of the Rings: The Return o~  </span><span style='text-decoration: underline;'>2</span><span>003    251     94    9   </span><span style='text-decoration: underline;'>103</span><span>631 PG-13 Acti~
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Lord of the Rings: The Fellowsh~  </span><span style='text-decoration: underline;'>2</span><span>001    208     93    8.8 </span><span style='text-decoration: underline;'>157</span><span>608 PG-13 Acti~
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Lord of the Rings: The Two Towe~  </span><span style='text-decoration: underline;'>2</span><span>002    223     94    8.8 </span><span style='text-decoration: underline;'>114</span><span>797 PG-13 Acti~
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Pulp Fiction                      </span><span style='text-decoration: underline;'>1</span><span>994    168      8    8.8 </span><span style='text-decoration: underline;'>132</span><span>745 R     Drama
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Schindler's List                  </span><span style='text-decoration: underline;'>1</span><span>993    195     25    8.8  </span><span style='text-decoration: underline;'>97</span><span>667 R     Drama</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>movies_long</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Rows: 1,579
-#&gt; Columns: 8
-#&gt; $ title  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "Shawshank Redemption, The", "Lord of the Rings: The Return of ~
-#&gt; $ year   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1994, 2003, 2001, 2002, 1994, 1993, 1977, 1980, 1968, 2002, 196~
-#&gt; $ length </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 142, 251, 208, 223, 168, 195, 125, 129, 158, 135, 93, 113, 108,~
-#&gt; $ budget </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 25.0, 94.0, 93.0, 94.0, 8.0, 25.0, 11.0, 18.0, 5.0, 3.3, 1.8, 5~
-#&gt; $ rating </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 9.1, 9.0, 8.8, 8.8, 8.8, 8.8, 8.8, 8.8, 8.7, 8.7, 8.7, 8.7, 8.6~
-#&gt; $ votes  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 149494, 103631, 157608, 114797, 132745, 97667, 134640, 103706, ~
-#&gt; $ mpaa   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> R, PG-13, PG-13, PG-13, R, R, PG, PG, PG-13, R, PG, R, R, R, R,~
-#&gt; $ genre  </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Drama, Action, Action, Action, Drama, Drama, Action, Action, Dr~</div></span></pre>
+<p>For more documentation, see the dedicated
+<a href='https://indrajeetpatil.github.io/ggstatsplot/'>Website</a>.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://indrajeetpatil.github.io/ggstatsplot/'>https://indrajeetpatil.github.io/ggstatsplot/</a></p></li>
+<li><p><a href='https://github.com/IndrajeetPatil/ggstatsplot'>https://github.com/IndrajeetPatil/ggstatsplot</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues'>https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p></li>
+</ul>
+
+</div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><strong>Maintainer</strong>: Indrajeet Patil <a href='mailto:patilindrajeet.science@gmail.com'>patilindrajeet.science@gmail.com</a> (<a href='https://orcid.org/0000-0003-1995-6531'>ORCID</a>) (@patilindrajeets) [copyright holder]</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

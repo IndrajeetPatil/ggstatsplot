@@ -7,21 +7,21 @@
 #' biggest movie database on the web and is run by amazon.
 #'
 #' Movies were selected for inclusion if they had a known length and had been
-#' rated by at least one imdb user.  Small categories such as documentaries
+#' rated by at least one imdb user. Small categories such as documentaries
 #' and NC-17 movies were removed.
 #'
 #' @format A data frame with 1,579 rows and 13 variables
 #' \itemize{
-#'   \item title.  Title of the movie.
-#'   \item year.  Year of release.
-#'   \item budget.  Total budget in millions of US dollars
-#'   \item length.  Length in minutes.
-#'   \item rating.  Average IMDB user rating.
-#'   \item votes.  Number of IMDB users who rated this movie.
-#'   \item mpaa.  MPAA rating.
+#'   \item title. Title of the movie.
+#'   \item year. Year of release.
+#'   \item budget. Total budget in millions of US dollars
+#'   \item length. Length in minutes.
+#'   \item rating. Average IMDB user rating.
+#'   \item votes. Number of IMDB users who rated this movie.
+#'   \item mpaa. MPAA rating.
 #'   \item action, animation, comedy, drama, documentary, romance, short. Binary
 #'   variables representing if movie was classified as belonging to that genre.
-#'   \item NumGenre.  The number of different genres a film was classified in an
+#'   \item NumGenre. The number of different genres a film was classified in an
 #'   integer between one and four
 #' }
 #'
@@ -47,13 +47,13 @@
 #'
 #' @format A data frame with 1,579 rows and 8 variables
 #' \itemize{
-#'   \item title.  Title of the movie.
-#'   \item year.  Year of release.
-#'   \item budget.  Total budget (if known) in US dollars
-#'   \item length.  Length in minutes.
-#'   \item rating.  Average IMDB user rating.
-#'   \item votes.  Number of IMDB users who rated this movie.
-#'   \item mpaa.  MPAA rating.
+#'   \item title. Title of the movie.
+#'   \item year. Year of release.
+#'   \item budget. Total budget (if known) in US dollars
+#'   \item length. Length in minutes.
+#'   \item rating. Average IMDB user rating.
+#'   \item votes. Number of IMDB users who rated this movie.
+#'   \item mpaa. MPAA rating.
 #'   \item genre. Different genres of movies (action, animation, comedy, drama,
 #'   documentary, romance, short).
 #' }
@@ -77,10 +77,10 @@
 #' @format A data frame with 2201 rows and 5 variables
 #' \itemize{
 #'   \item id. Dummy identity number for each person.
-#'   \item Class.	1st, 2nd, 3rd, Crew.
-#'   \item Sex.	Male, Female.
-#'   \item Age.	Child, Adult.
-#'   \item Survived.	No, Yes.
+#'   \item Class. 1st, 2nd, 3rd, Crew.
+#'   \item Sex. Male, Female.
+#'   \item Age. Child, Adult.
+#'   \item Survived. No, Yes.
 #' }
 #'
 #' @examples
@@ -101,15 +101,15 @@
 #' @format A data frame with 600 rows and 5 variables
 #' \itemize{
 #'   \item id. Dummy identity number for each flower (150 flowers in total).
-#'   \item Species.	The species are *Iris setosa*, *versicolor*, and
+#'   \item Species. The species are *Iris setosa*, *versicolor*, and
 #'   *virginica*.
 #'   \item condition. Factor giving a detailed description of the attribute
 #'   (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`,
 #'   `"Sepal.Width"`).
-#'   \item attribute.	What attribute is being measured (`"Sepal"` or `"Pepal"`).
-#'   \item measure.	What aspect of the attribute is being measured (`"Length"`
+#'   \item attribute. What attribute is being measured (`"Sepal"` or `"Pepal"`).
+#'   \item measure. What aspect of the attribute is being measured (`"Length"`
 #'   or `"Width"`).
-#'   \item value.	Value of the measurement.
+#'   \item value. Value of the measurement.
 #' }
 #'
 #' @examples
@@ -132,12 +132,12 @@
 #' @format A data frame with 68 rows and 4 variables
 #' \itemize{
 #'   \item id. Dummy identity number for each participant.
-#'   \item order.	The order in which the participants completed the two
+#'   \item order. The order in which the participants completed the two
 #'   sessions: `"text_first"` (`0`) or `"text_second"` (`1`).
-#'   \item modality.	Describes how the moral dilemmas were presented to the
+#'   \item modality. Describes how the moral dilemmas were presented to the
 #'   participants: either in text format (`"text"`) or in Virtual Reality
 #'   (`"vr"`).
-#'   \item score.	Proportion of "utilitarian" decisions. In other words, of the
+#'   \item score. Proportion of "utilitarian" decisions. In other words, of the
 #'   4 decisions, how many affirmative were responses. Range: 0 (all
 #'   utilitarian) - 1 (none utilitarian).
 #' }

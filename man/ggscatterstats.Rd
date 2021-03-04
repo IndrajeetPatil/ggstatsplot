@@ -174,7 +174,6 @@ subtitle.
 modified with \code{ggplot2} functions since it is no longer a \code{ggplot} object. In
 case you want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at
 the \code{ggplot.component} argument.
-
 \item The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you

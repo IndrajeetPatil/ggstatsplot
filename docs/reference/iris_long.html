@@ -225,15 +225,15 @@
 
     <p>A data frame with 600 rows and 5 variables</p><ul>
 <li><p>id. Dummy identity number for each flower (150 flowers in total).</p></li>
-<li><p>Species.	The species are <em>Iris setosa</em>, <em>versicolor</em>, and
+<li><p>Species. The species are <em>Iris setosa</em>, <em>versicolor</em>, and
 <em>virginica</em>.</p></li>
 <li><p>condition. Factor giving a detailed description of the attribute
 (Four levels: <code>"Petal.Length"</code>, <code>"Petal.Width"</code>,  <code>"Sepal.Length"</code>,
 <code>"Sepal.Width"</code>).</p></li>
-<li><p>attribute.	What attribute is being measured (<code>"Sepal"</code> or <code>"Pepal"</code>).</p></li>
-<li><p>measure.	What aspect of the attribute is being measured (<code>"Length"</code>
+<li><p>attribute. What attribute is being measured (<code>"Sepal"</code> or <code>"Pepal"</code>).</p></li>
+<li><p>measure. What aspect of the attribute is being measured (<code>"Length"</code>
 or <code>"Width"</code>).</p></li>
-<li><p>value.	Value of the measurement.</p></li>
+<li><p>value. Value of the measurement.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -248,7 +248,7 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 600   6</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 6</span><span>
-#&gt;      </span><span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>Species</span><span> </span><span style='font-weight: bold;'>condition</span><span>    </span><span style='font-weight: bold;'>attribute</span><span> </span><span style='font-weight: bold;'>measure</span><span> </span><span style='font-weight: bold;'>value</span><span>
+#&gt;      id Species condition    attribute measure value
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 setosa  Sepal.Length Sepal     Length    5.1
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span>     2 setosa  Sepal.Length Sepal     Length    4.9
@@ -258,12 +258,12 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 #&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 setosa  Sepal.Length Sepal     Length    5.4</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Rows: 600
 #&gt; Columns: 6
-#&gt; $ </span><span style='font-weight: bold;'>id       </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
-#&gt; $ </span><span style='font-weight: bold;'>Species  </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, seto~
-#&gt; $ </span><span style='font-weight: bold;'>condition</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepa~
-#&gt; $ </span><span style='font-weight: bold;'>attribute</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepa~
-#&gt; $ </span><span style='font-weight: bold;'>measure  </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, Leng~
-#&gt; $ </span><span style='font-weight: bold;'>value    </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, ~</div></span></pre>
+#&gt; $ id        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+#&gt; $ Species   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, seto~
+#&gt; $ condition </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepa~
+#&gt; $ attribute </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepa~
+#&gt; $ measure   </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Length, Length, Length, Length, Length, Length, Length, Leng~
+#&gt; $ value     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, ~</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

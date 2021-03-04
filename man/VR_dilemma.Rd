@@ -8,12 +8,12 @@
 A data frame with 68 rows and 4 variables
 \itemize{
 \item id. Dummy identity number for each participant.
-\item order.	The order in which the participants completed the two
+\item order. The order in which the participants completed the two
 sessions: \code{"text_first"} (\code{0}) or \code{"text_second"} (\code{1}).
-\item modality.	Describes how the moral dilemmas were presented to the
+\item modality. Describes how the moral dilemmas were presented to the
 participants: either in text format (\code{"text"}) or in Virtual Reality
 (\code{"vr"}).
-\item score.	Proportion of "utilitarian" decisions. In other words, of the
+\item score. Proportion of "utilitarian" decisions. In other words, of the
 4 decisions, how many affirmative were responses. Range: 0 (all
 utilitarian) - 1 (none utilitarian).
 }

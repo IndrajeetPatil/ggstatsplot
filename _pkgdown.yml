@@ -59,7 +59,7 @@ reference:
       - starts_with("combine")
 
   - title: Data
-    desc:  Datasets included in the package.
+    desc: Datasets included in the package.
     contents:
       - movies_wide
       - movies_long
@@ -68,6 +68,10 @@ reference:
       - VR_dilemma
       - bugs_wide
       - bugs_long
+
+  - title: Package information
+    contents:
+      - ggstatsplot-package
 
 articles:
 
