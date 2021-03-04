@@ -22,7 +22,7 @@ ggsignif_adder(
 (produced by \code{pairwiseComparisons::pairwise_comparisons()} function).}
 
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+be taken. A matrix or a table will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 

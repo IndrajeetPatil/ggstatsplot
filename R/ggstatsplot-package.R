@@ -17,7 +17,6 @@
 #'   meta-analysis, and regression analyses.
 #'
 #' @details The main functions are-
-#' \itemize{
 #'   - `ggbetweenstats` function to produce information-rich comparison plot
 #'   *between* different groups or conditions with `ggplot2` and details from
 #'   the statistical tests in the subtitle.
@@ -49,7 +48,6 @@
 #'
 #'   - `combine_plots` helper function to combine multiple `ggstatsplot` plots
 #'   using `patchwork::wrap_plots()`.
-#'  }
 #'
 #' For more documentation, see the dedicated
 #' \href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.

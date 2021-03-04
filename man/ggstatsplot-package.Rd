@@ -24,7 +24,6 @@ meta-analysis, and regression analyses.
 
 The main functions are-
 \itemize{
-\itemize{
 \item \code{ggbetweenstats} function to produce information-rich comparison plot
 \emph{between} different groups or conditions with \code{ggplot2} and details from
 the statistical tests in the subtitle.
@@ -47,7 +46,6 @@ the subtitle.
 \item \code{ggcoefstats} function to visualize results from regression analyses.
 \item \code{combine_plots} helper function to combine multiple \code{ggstatsplot} plots
 using \code{patchwork::wrap_plots()}.
-}
 }
 
 For more documentation, see the dedicated

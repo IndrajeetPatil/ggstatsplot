@@ -23,7 +23,7 @@ centrality_ggrepel(
 \item{plot}{A \code{ggplot} object for which means are to be displayed.}
 
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+be taken. A matrix or a table will \strong{not} be accepted.}
 
 \item{x}{The grouping variable from the dataframe \code{data}.}
 

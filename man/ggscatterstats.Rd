@@ -41,7 +41,7 @@ ggscatterstats(
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+be taken. A matrix or a table will \strong{not} be accepted.}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
 plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,

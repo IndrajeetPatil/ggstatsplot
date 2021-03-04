@@ -8,7 +8,7 @@ grouped_list(data, grouping.var = NULL)
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+be taken. A matrix or a table will \strong{not} be accepted.}
 
 \item{grouping.var}{A single grouping variable (can be entered either as a
 bare name \code{x} or as a string \code{"x"}).}

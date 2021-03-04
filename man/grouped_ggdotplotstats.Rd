@@ -18,7 +18,7 @@ grouped_ggdotplotstats(
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will \strong{not} be accepted.}
+be taken. A matrix or a table will \strong{not} be accepted.}
 
 \item{x}{A numeric variable from the dataframe \code{data}.}
 
