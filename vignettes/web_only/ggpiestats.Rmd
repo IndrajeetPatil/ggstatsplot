@@ -195,7 +195,6 @@ ggstatsplot::grouped_ggpiestats(
   x = Survived,
   y = Sex,
   grouping.var = Age,
-  title.prefix = "Child or Adult?",
   perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",

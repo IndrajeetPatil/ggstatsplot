@@ -64,8 +64,6 @@ using ggstatsplot::combine_plots." />
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -77,15 +75,9 @@ using ggstatsplot::combine_plots." />
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -106,6 +98,12 @@ using ggstatsplot::combine_plots." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -229,7 +227,6 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
   <span class='va'>x</span>,
   <span class='va'>y</span>,
   <span class='va'>grouping.var</span>,
-  title.prefix <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -242,7 +239,7 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
     <tr>
       <th>data</th>
       <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
+be taken. A matrix or a table will <strong>not</strong> be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
@@ -256,12 +253,6 @@ be taken. A matrix or tables will <strong>not</strong> be accepted.</p></td>
       <th>grouping.var</th>
       <td><p>A single grouping variable (can be entered either as a
 bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
-    </tr>
-    <tr>
-      <th>title.prefix</th>
-      <td><p>Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: <code>NULL</code>). If <code>NULL</code>, the
-variable name entered for <code>grouping.var</code> will be used.</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -388,7 +379,6 @@ override some aspects of the selected <code>ggtheme</code>.</p></dd>
   y <span class='op'>=</span> <span class='va'>manufacturer</span>,
   grouping.var <span class='op'>=</span> <span class='va'>cyl</span>,
   test.value <span class='op'>=</span> <span class='fl'>15.5</span>,
-  title.prefix <span class='op'>=</span> <span class='st'>"cylinder count"</span>,
   ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>
     sec.axis <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span><span class='op'>(</span><span class='op'>)</span>,
     limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>24</span><span class='op'>)</span>,
@@ -411,11 +401,11 @@ override some aspects of the selected <code>ggtheme</code>.</p></dd>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p></p>
+  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -440,8 +430,6 @@ override some aspects of the selected <code>ggtheme</code>.</p></dd>
 </script>
 
 
-
-  
 
   </body>
 </html>

@@ -37,16 +37,12 @@ grouped_ggpiestats <- function(data,
                                y = NULL,
                                counts = NULL,
                                grouping.var,
-                               title.prefix = NULL,
                                output = "plot",
                                plotgrid.args = list(),
                                annotation.args = list(),
                                ...) {
 
   # ======================== preparing dataframe =============================
-
-  # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # creating a dataframe
   df <-
@@ -58,7 +54,7 @@ grouped_ggpiestats <- function(data,
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
+      .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggpiestats,
       # put common parameters here
       x = {{ x }},

@@ -9,7 +9,6 @@ grouped_ggdotplotstats(
   x,
   y,
   grouping.var,
-  title.prefix = NULL,
   output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
@@ -26,10 +25,6 @@ be taken. A matrix or a table will \strong{not} be accepted.}
 
 \item{grouping.var}{A single grouping variable (can be entered either as a
 bare name \code{x} or as a string \code{"x"}).}
-
-\item{title.prefix}{Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
-variable name entered for \code{grouping.var} will be used.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -154,7 +149,6 @@ ggstatsplot::grouped_ggdotplotstats(
   y = manufacturer,
   grouping.var = cyl,
   test.value = 15.5,
-  title.prefix = "cylinder count",
   ggplot.component = ggplot2::scale_x_continuous(
     sec.axis = ggplot2::dup_axis(),
     limits = c(12, 24),

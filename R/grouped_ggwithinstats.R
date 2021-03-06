@@ -45,16 +45,12 @@ grouped_ggwithinstats <- function(data,
                                   y,
                                   grouping.var,
                                   outlier.label = NULL,
-                                  title.prefix = NULL,
                                   output = "plot",
                                   plotgrid.args = list(),
                                   annotation.args = list(),
                                   ...) {
 
   # ======================== preparing dataframe =============================
-
-  # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # creating a dataframe
   df <-
@@ -71,7 +67,7 @@ grouped_ggwithinstats <- function(data,
 
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
+      .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggwithinstats,
       # put common parameters here
       x = {{ x }},

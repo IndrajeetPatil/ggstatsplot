@@ -281,7 +281,6 @@ ggstatsplot::grouped_ggwithinstats(
   ggstatsplot.layer = FALSE,
   outlier.label = education,
   k = 3,
-  title.prefix = "Year",
   # arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(title = "Desire to kill bugs across genders"),
   plotgrid.args = list(ncol = 1)
