@@ -61,6 +61,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -72,9 +74,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -95,12 +103,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -250,20 +252,20 @@ while reading them in text versus experiencing them in virtual reality.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>VR_dilemma</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 68  4</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>VR_dilemma</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 4</span><span>
-#&gt;      id order modality score
+#&gt;      </span><span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>order</span><span> </span><span style='font-weight: bold;'>modality</span><span> </span><span style='font-weight: bold;'>score</span><span>
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 0     text      0.25
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 0     text      </span><span style='color: #949494;'>0.</span><span>25
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span>     6 0     text      1   
 #&gt; </span><span style='color: #BCBCBC;'>3</span><span>     7 0     text      1   
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span>     8 0     text      1   
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     9 0     text      0.5 
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>    10 0     text      0.75</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>VR_dilemma</span><span class='op'>)</span>
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     9 0     text      </span><span style='color: #949494;'>0.</span><span>5 
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span>    10 0     text      </span><span style='color: #949494;'>0.</span><span>75</div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>VR_dilemma</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Rows: 68
 #&gt; Columns: 4
-#&gt; $ id       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 6, 7, 8, 9, 10, 12, 14, 15, 17, 20, 22, 28, 31, 34, 35, 36…
-#&gt; $ order    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "…
-#&gt; $ modality </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "text", "text", "text", "text", "text", "text", "text", "text…
-#&gt; $ score    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.25, 1.00, 1.00, 1.00, 0.50, 0.75, 1.00, 1.00, 0.75, 0.00, 0…</div></span></pre>
+#&gt; $ </span><span style='font-weight: bold;'>id      </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 6, 7, 8, 9, 10, 12, 14, 15, 17, 20, 22, 28, 31, 34, 35, 36~
+#&gt; $ </span><span style='font-weight: bold;'>order   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "~
+#&gt; $ </span><span style='font-weight: bold;'>modality</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> "text", "text", "text", "text", "text", "text", "text", "text~
+#&gt; $ </span><span style='font-weight: bold;'>score   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 0.25, 1.00, 1.00, 1.00, 0.50, 0.75, 1.00, 1.00, 0.75, 0.00, 0~</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -275,11 +277,11 @@ while reading them in text versus experiencing them in virtual reality.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
+  <p><p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -304,6 +306,8 @@ while reading them in text versus experiencing them in virtual reality.</p>
 </script>
 
 
+
+  
 
   </body>
 </html>

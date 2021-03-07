@@ -159,7 +159,7 @@
       <h1 data-toc-skip>Benchmarking</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-03-01</h4>
+            <h4 data-toc-skip class="date">2021-03-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/benchmarking.Rmd" class="external-link"><code>vignettes/web_only/benchmarking.Rmd</code></a></small>
       <div class="hidden name"><code>benchmarking.Rmd</code></div>
@@ -195,7 +195,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    1.18s    1.18s     0.848     231MB     3.39</span>
+<span class="co">#&gt; 1    1.47s    1.47s     0.680     233MB     3.40</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
@@ -213,7 +213,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    2.97s    2.97s     0.337     241MB     1.68</span></code></pre></div>
+<span class="co">#&gt; 1    3.29s    3.29s     0.303     243MB     1.82</span></code></pre></div>
 </div>
 <div id="ggwithinstats" class="section level1">
 <h1 class="hasAnchor">
@@ -234,7 +234,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    12.9s    12.9s    0.0775     640MB     1.01</span>
+<span class="co">#&gt; 1    13.8s    13.8s    0.0725     641MB    0.870</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
@@ -249,7 +249,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    8.57s    8.57s     0.117     627MB    0.817</span></code></pre></div>
+<span class="co">#&gt; 1    9.11s    9.11s     0.110     627MB    0.879</span></code></pre></div>
 </div>
 <div id="gghistostats" class="section level1">
 <h1 class="hasAnchor">
@@ -264,7 +264,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    159ms    184ms      5.66    4.66MB        0</span>
+<span class="co">#&gt; 1    168ms    174ms      5.73    4.62MB     2.87</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, test.value <span class="op">=</span> <span class="fl">3</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -272,7 +272,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    327ms    327ms      3.06    5.88MB     3.06</span></code></pre></div>
+<span class="co">#&gt; 1    330ms    343ms      2.92    5.88MB        0</span></code></pre></div>
 </div>
 <div id="ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
@@ -292,7 +292,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    167ms    167ms      5.92    3.13MB        0</span>
+<span class="co">#&gt; 1    184ms    192ms      5.07    3.13MB        0</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span>
@@ -308,7 +308,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    339ms    339ms      2.95    5.76MB     2.95</span></code></pre></div>
+<span class="co">#&gt; 1    424ms    424ms      2.36    5.75MB     2.36</span></code></pre></div>
 </div>
 <div id="ggscatterstats" class="section level1">
 <h1 class="hasAnchor">
@@ -323,7 +323,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    355ms    355ms      2.81    16.8MB     2.81</span>
+<span class="co">#&gt; 1    466ms    466ms      2.14    16.8MB     2.14</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -331,7 +331,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    781ms    781ms      1.28    16.3MB     2.56</span></code></pre></div>
+<span class="co">#&gt; 1    1.15s    1.15s     0.872    16.3MB     1.74</span></code></pre></div>
 </div>
 <div id="ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
@@ -346,7 +346,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1   24.7ms     26ms      38.1    1.11MB     2.12</span>
+<span class="co">#&gt; 1   25.6ms   27.5ms      35.0     1.1MB        0</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span><span class="va">iris</span>, grouping.var <span class="op">=</span> <span class="va">Species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -354,7 +354,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1   85.1ms     87ms      11.3     486KB     2.26</span></code></pre></div>
+<span class="co">#&gt; 1   89.6ms   95.4ms      10.5     482KB     2.09</span></code></pre></div>
 </div>
 <div id="ggpiestats" class="section level1">
 <h1 class="hasAnchor">
@@ -369,7 +369,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    2.31s    2.31s     0.433      14MB     2.16</span>
+<span class="co">#&gt; 1    2.42s    2.42s     0.413    13.9MB     1.65</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -377,7 +377,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    4.88s    4.88s     0.205    25.4MB     2.25</span></code></pre></div>
+<span class="co">#&gt; 1    5.05s    5.05s     0.198    25.4MB     1.59</span></code></pre></div>
 </div>
 <div id="ggbarstats" class="section level1">
 <h1 class="hasAnchor">
@@ -392,7 +392,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    5.16s    5.16s     0.194     286MB     2.90</span>
+<span class="co">#&gt; 1    5.42s    5.42s     0.184     286MB     1.84</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu">bench</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bench/man/mark.html" class="external-link">mark</a></span><span class="op">(</span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">fl</span>, <span class="va">class</span>, grouping.var <span class="op">=</span> <span class="va">drv</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -400,7 +400,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    13.7s    13.7s    0.0729     537MB     1.89</span></code></pre></div>
+<span class="co">#&gt; 1    14.6s    14.6s    0.0686     537MB     1.58</span></code></pre></div>
 </div>
 <div id="ggcoefstats" class="section level1">
 <h1 class="hasAnchor">
@@ -415,7 +415,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;        min   median `itr/sec` mem_alloc `gc/sec`</span>
 <span class="co">#&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1    224ms    227ms      4.40    3.82MB     2.20</span></code></pre></div>
+<span class="co">#&gt; 1    243ms    244ms      4.07    3.82MB        0</span></code></pre></div>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">

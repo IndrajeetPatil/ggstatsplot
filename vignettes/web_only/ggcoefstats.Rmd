@@ -102,8 +102,8 @@ also supported by `ggcoefstats`. For example-
 `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `probitmfx`,
 `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
 `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`,
-`speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svyolr`,
-`svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`,
+`speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`,
+`svyolr`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`,
 `zeroinfl`, etc.
 
 # Summary of meta-analysis tests
@@ -2640,6 +2640,33 @@ ggcoefstats(
 )
 ```
 
+## design-based inference for vector generalised linear models (`svy_vglm`)
+
+```{r , fig.height = 7, fig.width = 5}
+# setup
+set.seed(123)
+library(svyVGAM)
+data(api)
+
+# data
+dclus2 <- svydesign(
+  id = ~ dnum + snum,
+  fpc = ~ fpc1 + fpc2,
+  data = apiclus2
+)
+
+# model
+mod_svy_vglm <- svy_vglm(api00 ~ api99 + mobility + ell,
+  design = dclus2,
+  family = uninormal()
+)
+
+# plot
+ggcoefstats(
+  x = mod_svy_vglm,
+  title = "design-based inference for\nvector generalised linear models"
+)
+```
 ## repeated measures ANOVA (`aovlist`)
 
 Let's now consider an example of a repeated measures design.

@@ -1102,8 +1102,8 @@ also supported by `ggcoefstats`. For example-
 `nls`, `orcutt`, `orm`, `plm`, `poissonmfx`, `poissonirr`, `polr`, `probitmfx`,
 `ridgelm`, `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`,
 `rqs`, `rqss`, `rrvglm`, `scam`, `semLm`, `semLme`, `slm`, `speedglm`,
-`speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svyolr`,
-`svyglm`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`,
+`speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`,
+`svyolr`, `tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`,
 `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out both

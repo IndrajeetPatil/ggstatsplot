@@ -66,6 +66,8 @@ ggstatsplot::combine_plots." />
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -77,9 +79,15 @@ ggstatsplot::combine_plots." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -100,12 +108,6 @@ ggstatsplot::combine_plots." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -371,8 +373,45 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
   type <span class='op'>=</span> <span class='st'>"bayes"</span>,
   output <span class='op'>=</span> <span class='st'>"dataframe"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='error'>Error: `.id` must be a scalar string, not a character vector of length 4.</span></div><div class='input'><span class='co'># }</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Series not converged.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 60 x 15</span><span>
+#&gt;    </span><span style='font-weight: bold;'>vore</span><span>  </span><span style='font-weight: bold;'>parameter1</span><span>  </span><span style='font-weight: bold;'>parameter2</span><span>  </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>conf.level</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span>    </span><span style='font-weight: bold;'>pd</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> carni sleep_total sleep_rem     </span><span style='color: #949494;'>0.</span><span>845        </span><span style='color: #949494;'>0.</span><span>95    </span><span style='color: #949494;'>0.</span><span>641    </span><span style='color: #949494;'>0.</span><span>961  1    
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> carni sleep_total sleep_cycle   </span><span style='color: #949494;'>0.</span><span>204        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>351</span><span>    </span><span style='color: #949494;'>0.</span><span>764  </span><span style='color: #949494;'>0.</span><span>698
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> carni sleep_total awake        -</span><span style='color: #BB0000;'>1.00</span><span>         </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #BB0000;'>1.00</span><span>    -</span><span style='color: #BB0000;'>1.00</span><span>   1    
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> carni sleep_total brainwt      -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>382</span><span>        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>759</span><span>    </span><span style='color: #949494;'>0.0</span><span>54</span><span style='text-decoration: underline;'>9</span><span> </span><span style='color: #949494;'>0.</span><span>895
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> carni sleep_total bodywt       -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>379</span><span>        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>662</span><span>   -</span><span style='color: #949494;'>0.0</span><span style='color: #BB0000;'>65</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span> </span><span style='color: #949494;'>0.</span><span>960
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> carni sleep_rem   sleep_cycle   </span><span style='color: #949494;'>0.0</span><span>54</span><span style='text-decoration: underline;'>8</span><span>       </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>534</span><span>    </span><span style='color: #949494;'>0.</span><span>587  </span><span style='color: #949494;'>0.</span><span>562
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> carni sleep_rem   awake        -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>848</span><span>        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>962</span><span>   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>678</span><span>  1    
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> carni sleep_rem   brainwt      -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>308</span><span>        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>760</span><span>    </span><span style='color: #949494;'>0.</span><span>252  </span><span style='color: #949494;'>0.</span><span>804
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> carni sleep_rem   bodywt       -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>371</span><span>        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>716</span><span>    </span><span style='color: #949494;'>0.0</span><span>69</span><span style='text-decoration: underline;'>4</span><span> </span><span style='color: #949494;'>0.</span><span>899
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> carni sleep_cycle awake        -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>205</span><span>        </span><span style='color: #949494;'>0.</span><span>95   -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>754</span><span>    </span><span style='color: #949494;'>0.</span><span>373  </span><span style='color: #949494;'>0.</span><span>690
+#&gt;    </span><span style='font-weight: bold;'>rope.percentage</span><span> </span><span style='font-weight: bold;'>prior.distribution</span><span> </span><span style='font-weight: bold;'>prior.location</span><span> </span><span style='font-weight: bold;'>prior.scale</span><span> </span><span style='font-weight: bold;'>bayes.factor</span><span>
+#&gt;              </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>          </span><span style='color: #949494;'>0</span><span>      beta                         1.41        1.41      112.   
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>          </span><span style='color: #949494;'>0.</span><span>168  beta                         1.41        1.41        </span><span style='color: #949494;'>0.</span><span>714
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>          </span><span style='color: #949494;'>0</span><span>      beta                         1.41        1.41       </span><span style='color: #BB0000;'>NA</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>          </span><span style='color: #949494;'>0.</span><span>116  beta                         1.41        1.41        1.13 
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>          </span><span style='color: #949494;'>0.0</span><span>78  beta                         1.41        1.41        1.72 
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>          </span><span style='color: #949494;'>0.</span><span>206  beta                         1.41        1.41        </span><span style='color: #949494;'>0.</span><span>621
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>          </span><span style='color: #949494;'>0.0</span><span>11</span><span style='text-decoration: underline;'>8</span><span> beta                         1.41        1.41      112.   
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>          </span><span style='color: #949494;'>0.</span><span>136  beta                         1.41        1.41        </span><span style='color: #949494;'>0.</span><span>848
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>          </span><span style='color: #949494;'>0.</span><span>124  beta                         1.41        1.41        1.03 
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>          </span><span style='color: #949494;'>0.</span><span>165  beta                         1.41        1.41        </span><span style='color: #949494;'>0.</span><span>714
+#&gt;    </span><span style='font-weight: bold;'>method</span><span>                       </span><span style='font-weight: bold;'>n.obs</span><span>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                        </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Bayesian Pearson correlation    10
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Bayesian Pearson correlation     5
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Bayesian Pearson correlation    19
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Bayesian Pearson correlation     9
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Bayesian Pearson correlation    19
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Bayesian Pearson correlation     5
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Bayesian Pearson correlation    10
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Bayesian Pearson correlation     6
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Bayesian Pearson correlation    10
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Bayesian Pearson correlation     5
+#&gt; </span><span style='color: #949494;'># ... with 50 more rows</span><span></div><div class='input'><span class='co'># }</span>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -384,11 +423,11 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>.</p>
+  <p><p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9000.</p></p>
 </div>
 
       </footer>
@@ -413,6 +452,8 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 </script>
 
 
+
+  
 
   </body>
 </html>
