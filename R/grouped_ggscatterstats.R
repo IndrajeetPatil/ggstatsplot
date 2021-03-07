@@ -46,7 +46,6 @@
 #'   x = displ,
 #'   y = hwy,
 #'   grouping.var = cyl,
-#'   title.prefix = "Cylinder count",
 #'   type = "robust",
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
@@ -67,7 +66,6 @@
 #'   bf.message = FALSE,
 #'   label.var = "title",
 #'   marginal = FALSE,
-#'   title.prefix = "Genre",
 #'   annotation.args = list(caption = "All movies have IMDB rating greater than 7")
 #' )
 #' @export
@@ -79,7 +77,6 @@ grouped_ggscatterstats <- function(data,
                                    grouping.var,
                                    label.var = NULL,
                                    label.expression = NULL,
-                                   title.prefix = NULL,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list(),
@@ -90,9 +87,6 @@ grouped_ggscatterstats <- function(data,
   # ensure the grouping variable works quoted or unquoted
   label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
 
-  # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
-
   # getting the dataframe ready
   df <- grouped_list(data = data, grouping.var = {{ grouping.var }})
 
@@ -101,7 +95,7 @@ grouped_ggscatterstats <- function(data,
   # creating a list of plots using `pmap`
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
+      .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggscatterstats,
       # put common parameters here
       x = {{ x }},

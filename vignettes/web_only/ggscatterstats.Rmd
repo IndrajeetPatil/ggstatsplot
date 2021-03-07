@@ -135,7 +135,6 @@ movies_20 <-
 ggstatsplot::grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::ggscatterstats
   data = movies_10,
-  title.prefix = "MPAA Rating",
   x = budget,
   y = rating,
   type = "r",

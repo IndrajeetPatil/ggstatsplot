@@ -1,5 +1,12 @@
 # ggstatsplot 0.7.0.9000
 
+MAJOR CHANGES
+
+  - Based on feedback from the users, the argument `title.prefix` is now
+    removed. It led to redundant title prefixes across different facets of the
+    plot. Given that `grouped_` functions require users to set `grouping.var`,
+    it is fair to assume what variable the levels in the title correspond to.
+
 MINOR CHANGES
 
   - Adapts to changes made in `statsExpressions 1.0.0`.

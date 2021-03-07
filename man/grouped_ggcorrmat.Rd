@@ -9,7 +9,6 @@ grouped_ggcorrmat(
   data,
   cor.vars = NULL,
   grouping.var,
-  title.prefix = NULL,
   output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
@@ -26,10 +25,6 @@ computed and visualized. If \code{NULL} (default), all numeric variables from
 
 \item{grouping.var}{A single grouping variable (can be entered either as a
 bare name \code{x} or as a string \code{"x"}).}
-
-\item{title.prefix}{Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
-variable name entered for \code{grouping.var} will be used.}
 
 \item{output}{Character that decides expected output from this function. If
 \code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or

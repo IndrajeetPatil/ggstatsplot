@@ -12,7 +12,6 @@ grouped_ggscatterstats(
   grouping.var,
   label.var = NULL,
   label.expression = NULL,
-  title.prefix = NULL,
   output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
@@ -41,10 +40,6 @@ a bare expression (e.g, \code{var1}) or as a string (e.g., \code{"var1"}).}
 determines the subset of data points to label. This argument can be entered
 either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
 \code{"y < 4 & z < 20"}).}
-
-\item{title.prefix}{Character string specifying the prefix text for the fixed
-plot title (name of each factor level) (Default: \code{NULL}). If \code{NULL}, the
-variable name entered for \code{grouping.var} will be used.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -170,7 +165,6 @@ grouped_ggscatterstats(
   x = displ,
   y = hwy,
   grouping.var = cyl,
-  title.prefix = "Cylinder count",
   type = "robust",
   label.var = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
@@ -191,7 +185,6 @@ grouped_ggscatterstats(
   bf.message = FALSE,
   label.var = "title",
   marginal = FALSE,
-  title.prefix = "Genre",
   annotation.args = list(caption = "All movies have IMDB rating greater than 7")
 )
 }

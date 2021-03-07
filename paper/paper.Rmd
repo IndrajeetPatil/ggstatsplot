@@ -255,7 +255,6 @@ ggstatsplot::combine_plots(
       y = rating,
       grouping.var = genre,
       marginal = FALSE,
-      title.prefix = "Genre",
       title.text = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)",
       title.size = 12
     )

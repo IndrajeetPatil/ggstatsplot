@@ -144,7 +144,6 @@ test_that(
         grouping.var = "vore",
         xlab = "total sleep",
         ylab = "body weight",
-        title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
         type = "bayes",
         ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000)),

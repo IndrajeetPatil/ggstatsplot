@@ -10,9 +10,6 @@
 #' across multiple levels of a given factor and combining the resulting plots
 #' using `ggstatsplot::combine_plots`.
 #'
-#' @param title.prefix Character string specifying the prefix text for the fixed
-#'   plot title (name of each factor level) (Default: `NULL`). If `NULL`, the
-#'   variable name entered for `grouping.var` will be used.
 #' @inheritParams ggbetweenstats
 #' @inheritParams grouped_list
 #' @inheritParams combine_plots
@@ -68,16 +65,12 @@ grouped_ggbetweenstats <- function(data,
                                    y,
                                    grouping.var,
                                    outlier.label = NULL,
-                                   title.prefix = NULL,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list(),
                                    ...) {
 
   # ======================== preparing dataframe ==========================
-
-  # if `title.prefix` is not provided, use the variable `grouping.var` name
-  if (is.null(title.prefix)) title.prefix <- rlang::as_name(rlang::ensym(grouping.var))
 
   # creating a dataframe
   df <-
@@ -88,7 +81,7 @@ grouped_ggbetweenstats <- function(data,
 
   plotlist_purrr <-
     purrr::pmap(
-      .l = list(data = df, title = paste0(title.prefix, ": ", names(df))),
+      .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggbetweenstats,
       # put common parameters here
       x = {{ x }},

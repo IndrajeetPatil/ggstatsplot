@@ -282,7 +282,6 @@ grouped_ggbetweenstats(
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
   # adding new components to `ggstatsplot` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
-  title.prefix = "Movie genre",
   caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
   palette = "default_jama",
   package = "ggsci",
@@ -523,7 +522,6 @@ grouped_gghistostats(
   grouping.var = genre, # grouping variable
   normal.curve = TRUE, # superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
-  title.prefix = "Movie genre",
   ggtheme = ggthemes::theme_tufte(),
   # modify the defaults from `ggstatsplot` for each plot
   ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
@@ -619,7 +617,6 @@ grouped_ggdotplotstats(
   ylab = "car manufacturer",
   grouping.var = cyl, # grouping variable
   test.value = 15.5,
-  title.prefix = "cylinder count",
   point.args = list(color = "red", size = 5, shape = 13),
   annotation.args = list(title = "Fuel economy data")
 )
@@ -712,7 +709,6 @@ grouped_ggscatterstats(
   label.var = title,
   label.expression = length > 200,
   xlab = "IMDB rating",
-  title.prefix = "Movie genre",
   ggtheme = ggplot2::theme_grey(),
   ggplot.component = list(
     ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
@@ -784,8 +780,7 @@ grouped_ggcorrmat(
   type = "robust", # correlation method
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
-  matrix.type = "lower", # type of visualization matrix
-  title.prefix = "Movie genre"
+  matrix.type = "lower" # type of matrix
 )
 ```
 
@@ -910,7 +905,6 @@ grouped_ggpiestats(
   data = movies_long,
   x = genre,
   grouping.var = mpaa, # grouping variable
-  title.prefix = "Movie genre", # prefix for the faceted title
   label.repel = TRUE, # repel labels (helpful for overlapping labels)
   package = "ggsci", # package from which color palette is to be taken
   palette = "default_ucscgb", # choosing a different color palette
@@ -999,7 +993,6 @@ grouped_ggbarstats(
   x = relig,
   y = partyid,
   grouping.var = race,
-  title.prefix = "Race",
   label = "both",
   xlab = "Party affiliation",
   package = "wesanderson",

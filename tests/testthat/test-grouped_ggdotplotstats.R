@@ -22,8 +22,6 @@ test_that(
       ylab = "car manufacturer",
       grouping.var = cyl,
       test.value = 15.5,
-      effsize.noncentral = FALSE,
-      title.prefix = "cylinder count",
       point.color = "red",
       point.size = 5,
       results.subtitle = FALSE,

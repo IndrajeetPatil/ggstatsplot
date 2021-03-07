@@ -262,7 +262,6 @@ ggstatsplot::grouped_ggcorrmat(
   data = ggplot2::diamonds,
   type = "bayes", # Bayesian test
   grouping.var = cut,
-  title.prefix = "Quality of cut",
   # arguments relevant for `ggstatsplot::combine_plots`
   plotgrid.args = list(nrow = 3),
   annotation.args = list(
