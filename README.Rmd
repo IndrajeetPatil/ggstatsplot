@@ -358,7 +358,8 @@ data are paired with each other.
 ```{r ggwithinstats1, fig.width = 8, fig.height = 6}
 # for reproducibility and data
 set.seed(123)
-library(WRS2)
+library(WRS2) # for data
+library(afex) # to run anova
 
 # plot
 ggwithinstats(

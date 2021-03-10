@@ -26,11 +26,13 @@
 #' library(ggstatsplot)
 #'
 #' # the most basic function call
-#' ggstatsplot::grouped_ggwithinstats(
+#' grouped_ggwithinstats(
 #'   data = VR_dilemma,
 #'   x = modality,
 #'   y = score,
 #'   grouping.var = order,
+#'   type = "np", # non-parametric test
+#'   # additional modifications for **each** plot using `ggplot2` functions
 #'   ggplot.component = ggplot2::scale_y_continuous(
 #'     breaks = seq(0, 1, 0.1),
 #'     limits = c(0, 1)
@@ -54,13 +56,8 @@ grouped_ggwithinstats <- function(data,
 
   # creating a dataframe
   df <-
-    dplyr::select(
-      .data = data,
-      {{ grouping.var }},
-      {{ x }},
-      {{ y }},
-      {{ outlier.label }}
-    ) %>%
+    data %>%
+    dplyr::select({{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # ============== creating a list of plots using `pmap`======================

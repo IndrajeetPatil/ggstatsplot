@@ -51,11 +51,12 @@ ggwithinstats(
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or a table will \strong{not} be accepted.}
+be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
+be accepted.}
 
-\item{x}{The grouping variable from the dataframe \code{data}.}
+\item{x}{The grouping (or independent) variable from the dataframe \code{data}.}
 
-\item{y}{The response (a.k.a. outcome or dependent) variable from the
+\item{y}{The response (or outcome or dependent) variable from the
 dataframe \code{data}.}
 
 \item{type}{A character specifying the type of statistical approach.
@@ -258,7 +259,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # two groups (*t*-test)
-ggstatsplot::ggwithinstats(
+ggwithinstats(
   data = VR_dilemma,
   x = modality,
   y = score,
@@ -273,7 +274,7 @@ ggstatsplot::ggwithinstats(
   data = WineTasting,
   x = Wine,
   y = Taste,
-  type = "np",
+  type = "np", # non-parametric test
   pairwise.comparisons = TRUE,
   outlier.tagging = TRUE,
   outlier.label = Taster

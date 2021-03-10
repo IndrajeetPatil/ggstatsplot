@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.7.0.9000
+Version: 0.7.1
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -9,15 +9,15 @@ Authors@R:
            email = "patilindrajeet.science@gmail.com",
            comment = c(ORCID = "0000-0003-1995-6531", Twitter = "@patilindrajeets"))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
-Description: Extension of 'ggplot2', 'ggstatsplot' creates
-    graphics with details from statistical tests included in the plots
-    themselves. It provides an easier API to generate information-rich plots
-    for statistical analysis of continuous (violin plots, scatterplots,
+Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with
+    details from statistical tests included in the plots themselves. It
+    provides an easier API to generate information-rich plots for
+    statistical analysis of continuous (violin plots, scatterplots,
     histograms, dot plots, dot-and-whisker plots) or categorical (pie and
     bar charts) data. Currently, it supports the most common types of
-    statistical approaches and tests: parametric, nonparametric, robust, and Bayesian
-    versions of t-test/ANOVA, correlation analyses, contingency table
-    analysis, meta-analysis, and regression analyses.
+    statistical approaches and tests: parametric, nonparametric, robust,
+    and Bayesian versions of t-test/ANOVA, correlation analyses,
+    contingency table analysis, meta-analysis, and regression analyses.
 License: GPL-3 | file LICENSE
 URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
@@ -41,10 +41,11 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 0.7.1.9000),
+    statsExpressions (>= 1.0.0),
     tidyr,
     utils
 Suggests:
+    afex,
     forcats,
     knitr,
     MASS,
@@ -56,15 +57,15 @@ Suggests:
     tibble,
     vdiffr,
     WRS2
+Remotes:
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
-Remotes:
-    easystats/parameters,
-    IndrajeetPatil/statsExpressions
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate", "pkgapi::api_roclet"))
+Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate",
+    "pkgapi::api_roclet"))
 RoxygenNote: 7.1.1.9001
-Config/testthat/edition: 3
-Config/testthat/parallel: true

@@ -48,7 +48,7 @@
 #' library(ggstatsplot)
 #'
 #' # two groups (*t*-test)
-#' ggstatsplot::ggwithinstats(
+#' ggwithinstats(
 #'   data = VR_dilemma,
 #'   x = modality,
 #'   y = score,
@@ -63,7 +63,7 @@
 #'   data = WineTasting,
 #'   x = Wine,
 #'   y = Taste,
-#'   type = "np",
+#'   type = "np", # non-parametric test
 #'   pairwise.comparisons = TRUE,
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Taster

@@ -19,11 +19,12 @@ grouped_ggwithinstats(
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or a table will \strong{not} be accepted.}
+be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
+be accepted.}
 
-\item{x}{The grouping variable from the dataframe \code{data}.}
+\item{x}{The grouping (or independent) variable from the dataframe \code{data}.}
 
-\item{y}{The response (a.k.a. outcome or dependent) variable from the
+\item{y}{The response (or outcome or dependent) variable from the
 dataframe \code{data}.}
 
 \item{grouping.var}{A single grouping variable (can be entered either as a
@@ -201,11 +202,13 @@ set.seed(123)
 library(ggstatsplot)
 
 # the most basic function call
-ggstatsplot::grouped_ggwithinstats(
+grouped_ggwithinstats(
   data = VR_dilemma,
   x = modality,
   y = score,
   grouping.var = order,
+  type = "np", # non-parametric test
+  # additional modifications for **each** plot using `ggplot2` functions
   ggplot.component = ggplot2::scale_y_continuous(
     breaks = seq(0, 1, 0.1),
     limits = c(0, 1)

@@ -10,7 +10,7 @@
 
 0 errors | 0 warnings | 0 note
 
-  - Fixes failing tests due to updates to `insight` and `parameters` packages.
+  - Fixes failing tests due to updates to `statsExpressions` package.
 
 ## revdepcheck results
 

@@ -359,7 +359,8 @@ paths to highlight the fact that these data are paired with each other.
 ``` r
 # for reproducibility and data
 set.seed(123)
-library(WRS2)
+library(WRS2) # for data
+library(afex) # to run anova
 
 # plot
 ggwithinstats(

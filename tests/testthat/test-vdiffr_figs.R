@@ -34,26 +34,28 @@ if (getRversion() < "4.1" && require("vdiffr")) {
 
     ## ----ggwithinstats--------------------------------
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "ggwithinstats works",
-      fig = ggwithinstats(
-        data = dplyr::filter(bugs_long, condition %in% c("HDHF", "LDLF")),
-        x = condition,
-        y = desire
+    if (require("afex")) {
+      set.seed(123)
+      vdiffr::expect_doppelganger(
+        title = "ggwithinstats works",
+        fig = ggwithinstats(
+          data = dplyr::filter(bugs_long, condition %in% c("HDHF", "LDLF")),
+          x = condition,
+          y = desire
+        )
       )
-    )
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "grouped_ggwithinstats works",
-      fig = grouped_ggwithinstats(
-        data = dplyr::filter(bugs_long, condition %in% c("HDHF", "LDLF")),
-        x = condition,
-        y = desire,
-        grouping.var = gender
+      set.seed(123)
+      vdiffr::expect_doppelganger(
+        title = "grouped_ggwithinstats works",
+        fig = grouped_ggwithinstats(
+          data = dplyr::filter(bugs_long, condition %in% c("HDHF", "LDLF")),
+          x = condition,
+          y = desire,
+          grouping.var = gender
+        )
       )
-    )
+    }
 
     ## ----gghistostats---------------------------------
 
