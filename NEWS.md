@@ -16,6 +16,9 @@ MINOR CHANGES
     not do this. If the users wish to not display sample sizes, they can easily
     do this using `scale_*` functions from `ggplot2`.
 
+  - In `ggpiestats` and `ggbarstats`, parametric proportion tests are now turned
+    off when `type = "bayes"`.
+
 # ggstatsplot 0.7.0
 
 BREAKING CHANGES

@@ -93,6 +93,7 @@ ggbarstats <- function(data,
 
   # TO DO: until one-way table is supported by `BayesFactor`
   if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
+  if (type == "bayes") proportion.test <- FALSE
 
   # -------------------------- statistical analysis --------------------------
 

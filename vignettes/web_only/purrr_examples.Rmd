@@ -564,7 +564,8 @@ plot_list <-
         ggthemes::theme_economist()
       ),
       ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
-      proportion.test = list(TRUE, FALSE, TRUE, FALSE)
+      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
+      type = list("p", "p", "bf", "p")
     ),
     .f = ggstatsplot::ggpiestats
   )

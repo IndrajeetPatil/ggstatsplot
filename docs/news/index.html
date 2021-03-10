@@ -224,6 +224,7 @@
 <ul>
 <li><p>Adapts to changes made in <code>statsExpressions 1.0.0</code>.</p></li>
 <li><p><code>sample.size.label</code> argument is retired for <code>ggbetweenstats</code>, <code>ggwithinstats</code>, and <code>ggbarstats</code>. I do not think it is ever a good idea to not do this. If the users wish to not display sample sizes, they can easily do this using <code>scale_*</code> functions from <code>ggplot2</code>.</p></li>
+<li><p>In <code>ggpiestats</code> and <code>ggbarstats</code>, parametric proportion tests are now turned off when <code>type = "bayes"</code>.</p></li>
 </ul>
 </div>
     <div id="ggstatsplot-070" class="section level1">
