@@ -57,8 +57,6 @@ Suggests:
     tibble,
     vdiffr,
     WRS2
-Remotes:
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
