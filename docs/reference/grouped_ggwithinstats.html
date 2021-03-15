@@ -99,7 +99,7 @@ grouping variable." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
       </span>
     </div>
 
@@ -241,15 +241,16 @@ grouping variable.</p>
     <tr>
       <th>data</th>
       <td><p>A dataframe (or a tibble) from which variables specified are to
-be taken. A matrix or a table will <strong>not</strong> be accepted.</p></td>
+be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
+be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping variable from the dataframe <code>data</code>.</p></td>
+      <td><p>The grouping (or independent) variable from the dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>The response (a.k.a. outcome or dependent) variable from the
+      <td><p>The response (or outcome or dependent) variable from the
 dataframe <code>data</code>.</p></td>
     </tr>
     <tr>
@@ -434,11 +435,13 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
 <span class='co'># the most basic function call</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggwithinstats</span><span class='op'>(</span>
+<span class='fu'>grouped_ggwithinstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>VR_dilemma</span>,
   x <span class='op'>=</span> <span class='va'>modality</span>,
   y <span class='op'>=</span> <span class='va'>score</span>,
   grouping.var <span class='op'>=</span> <span class='va'>order</span>,
+  type <span class='op'>=</span> <span class='st'>"np"</span>, <span class='co'># non-parametric test</span>
+  <span class='co'># additional modifications for **each** plot using `ggplot2` functions</span>
   ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>
     breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0.1</span><span class='op'>)</span>,
     limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>
