@@ -428,6 +428,19 @@ you want to actually get back dataframe containing the results?
 This is possible via `statsExpressions`:
 <https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html>
 
+# How can I remove sample size labels for `ggbarstats`?
+
+```{r ggbar_samplesize}
+library(ggstatsplot)
+library(gginnards)
+
+# create a plot
+p <- ggbarstats(mtcars, am, cyl)
+
+# remove layer corresponding to sample size
+delete_layers(p, "GeomText")
+```
+
 # Test I need is not available. What can I do?
 
 By default, since `ggstatsplot` always allows just **one** type of test per

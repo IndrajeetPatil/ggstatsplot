@@ -214,7 +214,7 @@
 
     <div id="ggstatsplot-071" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.1">
-<a href="#ggstatsplot-071" class="anchor"></a>ggstatsplot 0.7.1<small> Unreleased </small>
+<a href="#ggstatsplot-071" class="anchor"></a>ggstatsplot 0.7.1<small> 2021-03-11 </small>
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -233,7 +233,7 @@
 </h1>
 <p>BREAKING CHANGES</p>
 <ul>
-<li><p><code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</p></li>
+<li><p><code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is when you specified <code>labels</code> argument. So, if you used <code>plotgrid.args = list(labels = "auto")</code>, you will now have to replace it with <code>plotgrid.args = list(tag_level = "keep")</code>. You can also use <code>annotation.args</code> (e.g., <code>annotation.args = list(tag_levels = "a")</code> to customize labels (this will create labels with pattern <code>a</code>, <code>b</code>, <code>c</code>, etc.). Another instance of breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</p></li>
 <li><p>To avoid confusion among users, the default trimming level for all functions is now changed from <code>tr = 0.1</code> to <code>tr = 0.2</code> (which is what <code>WRS2</code> defaults to).</p></li>
 </ul>
 <p>MAJOR CHANGES</p>

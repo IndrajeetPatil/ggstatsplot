@@ -29,8 +29,13 @@ BREAKING CHANGES
     is no longer needed and has been removed. This should not break any of the
     existing instances of `grouped_` functions, although it will lead to changed
     graphical layouts. The only instance in which this change will lead to a
-    breakage is if you had used `combine_plots` function and provided individual
-    plots to `...` instead as a `list`.
+    breakage is when you specified `labels` argument. So, if you used
+    `plotgrid.args = list(labels = "auto")`, you will now have to replace it
+    with `plotgrid.args = list(tag_level = "keep")`. You can also use
+    `annotation.args` (e.g., `annotation.args = list(tag_levels = "a")` to
+    customize labels (this will create labels with pattern `a`, `b`, `c`, etc.).
+    Another instance of breakage is if you had used `combine_plots` function and
+    provided individual plots to `...` instead as a `list`.
 
   - To avoid confusion among users, the default trimming level for all functions
     is now changed from `tr = 0.1` to `tr = 0.2` (which is what `WRS2` defaults

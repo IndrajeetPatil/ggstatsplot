@@ -17,7 +17,7 @@ df_descriptive <- function(data,
     dplyr::mutate(
       .label = dplyr::case_when(
         grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
-        grepl("count|n|N", label.content) ~ paste0(.prettyNum(counts)),
+        grepl("count|n|N", label.content) ~ .prettyNum(counts),
         TRUE ~ paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
       )
     ) %>%
@@ -74,7 +74,7 @@ df_proptest <- function(data, x, y, k = 2L, ...) {
         ", ~italic(p)=='",
         format_num(p.value, k, p.value = TRUE),
         "', ~italic(n)==",
-        counts,
+        .prettyNum(counts),
         ")"
       ),
       .p.label = paste0("list(~italic(p)=='", format_num(p.value, k, TRUE), "')")

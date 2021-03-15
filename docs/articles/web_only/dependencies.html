@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
       </span>
     </div>
 
@@ -159,7 +159,7 @@
       <h1 data-toc-skip>Dependencies</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-03-07</h4>
+            <h4 data-toc-skip class="date">2021-03-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/dependencies.Rmd" class="external-link"><code>vignettes/web_only/dependencies.Rmd</code></a></small>
       <div class="hidden name"><code>dependencies.Rmd</code></div>
@@ -173,60 +173,46 @@
 <a href="#recursive-dependencies" class="anchor"></a>Recursive dependencies</h1>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/package_dependencies.html" class="external-link">package_dependencies</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;   [1] "abind"               "afex"                "assertthat"         </span>
-<span class="co">#&gt;   [4] "backports"           "base64enc"           "BayesFactor"        </span>
-<span class="co">#&gt;   [7] "bayestestR"          "BH"                  "boot"               </span>
-<span class="co">#&gt;  [10] "broom"               "bslib"               "BWStest"            </span>
-<span class="co">#&gt;  [13] "cachem"              "car"                 "carData"            </span>
-<span class="co">#&gt;  [16] "cellranger"          "cli"                 "clipr"              </span>
-<span class="co">#&gt;  [19] "coda"                "colorspace"          "colourpicker"       </span>
-<span class="co">#&gt;  [22] "commonmark"          "conquer"             "contfrac"           </span>
-<span class="co">#&gt;  [25] "correlation"         "cpp11"               "crayon"             </span>
-<span class="co">#&gt;  [28] "curl"                "data.table"          "datasets"           </span>
-<span class="co">#&gt;  [31] "deSolve"             "digest"              "dplyr"              </span>
-<span class="co">#&gt;  [34] "effectsize"          "ellipsis"            "elliptic"           </span>
-<span class="co">#&gt;  [37] "evaluate"            "fansi"               "farver"             </span>
-<span class="co">#&gt;  [40] "fastmap"             "forcats"             "foreign"            </span>
-<span class="co">#&gt;  [43] "fs"                  "generics"            "ggcorrplot"         </span>
-<span class="co">#&gt;  [46] "ggExtra"             "ggplot2"             "ggrepel"            </span>
-<span class="co">#&gt;  [49] "ggsignif"            "glue"                "gmp"                </span>
-<span class="co">#&gt;  [52] "graphics"            "grDevices"           "grid"               </span>
-<span class="co">#&gt;  [55] "gtable"              "gtools"              "haven"              </span>
-<span class="co">#&gt;  [58] "highr"               "hms"                 "htmltools"          </span>
-<span class="co">#&gt;  [61] "htmlwidgets"         "httpuv"              "hypergeo"           </span>
-<span class="co">#&gt;  [64] "insight"             "ipmisc"              "isoband"            </span>
-<span class="co">#&gt;  [67] "jquerylib"           "jsonlite"            "knitr"              </span>
-<span class="co">#&gt;  [70] "kSamples"            "labeling"            "later"              </span>
-<span class="co">#&gt;  [73] "lattice"             "lifecycle"           "lme4"               </span>
-<span class="co">#&gt;  [76] "lmerTest"            "magrittr"            "maptools"           </span>
-<span class="co">#&gt;  [79] "markdown"            "MASS"                "Matrix"             </span>
-<span class="co">#&gt;  [82] "MatrixModels"        "matrixStats"         "mc2d"               </span>
-<span class="co">#&gt;  [85] "memoise"             "methods"             "mgcv"               </span>
-<span class="co">#&gt;  [88] "mime"                "miniUI"              "minqa"              </span>
-<span class="co">#&gt;  [91] "multcompView"        "munsell"             "mvtnorm"            </span>
-<span class="co">#&gt;  [94] "nlme"                "nloptr"              "nnet"               </span>
-<span class="co">#&gt;  [97] "numDeriv"            "openxlsx"            "pairwiseComparisons"</span>
-<span class="co">#&gt; [100] "paletteer"           "parallel"            "parameters"         </span>
-<span class="co">#&gt; [103] "patchwork"           "pbapply"             "pbkrtest"           </span>
-<span class="co">#&gt; [106] "performance"         "pillar"              "pkgconfig"          </span>
-<span class="co">#&gt; [109] "plyr"                "PMCMRplus"           "prettyunits"        </span>
-<span class="co">#&gt; [112] "prismatic"           "progress"            "promises"           </span>
-<span class="co">#&gt; [115] "purrr"               "quantreg"            "R6"                 </span>
-<span class="co">#&gt; [118] "rappdirs"            "RColorBrewer"        "Rcpp"               </span>
-<span class="co">#&gt; [121] "RcppArmadillo"       "RcppEigen"           "readr"              </span>
-<span class="co">#&gt; [124] "readxl"              "rematch"             "rematch2"           </span>
-<span class="co">#&gt; [127] "reshape"             "reshape2"            "rio"                </span>
-<span class="co">#&gt; [130] "rlang"               "Rmpfr"               "rstudioapi"         </span>
-<span class="co">#&gt; [133] "sass"                "scales"              "shiny"              </span>
-<span class="co">#&gt; [136] "shinyjs"             "sourcetools"         "sp"                 </span>
-<span class="co">#&gt; [139] "SparseM"             "splines"             "statmod"            </span>
-<span class="co">#&gt; [142] "stats"               "statsExpressions"    "stringi"            </span>
-<span class="co">#&gt; [145] "stringr"             "SuppDists"           "tibble"             </span>
-<span class="co">#&gt; [148] "tidyr"               "tidyselect"          "tools"              </span>
-<span class="co">#&gt; [151] "utf8"                "utils"               "vctrs"              </span>
-<span class="co">#&gt; [154] "viridisLite"         "withr"               "WRS2"               </span>
-<span class="co">#&gt; [157] "xfun"                "xtable"              "yaml"               </span>
-<span class="co">#&gt; [160] "zeallot"             "zip"</span></code></pre></div>
+<span class="co">#&gt;   [1] "assertthat"          "base64enc"           "BayesFactor"        </span>
+<span class="co">#&gt;   [4] "bayestestR"          "BH"                  "bslib"              </span>
+<span class="co">#&gt;   [7] "BWStest"             "cachem"              "cli"                </span>
+<span class="co">#&gt;  [10] "coda"                "colorspace"          "colourpicker"       </span>
+<span class="co">#&gt;  [13] "commonmark"          "contfrac"            "correlation"        </span>
+<span class="co">#&gt;  [16] "cpp11"               "crayon"              "datasets"           </span>
+<span class="co">#&gt;  [19] "deSolve"             "digest"              "dplyr"              </span>
+<span class="co">#&gt;  [22] "effectsize"          "ellipsis"            "elliptic"           </span>
+<span class="co">#&gt;  [25] "fansi"               "farver"              "fastmap"            </span>
+<span class="co">#&gt;  [28] "fs"                  "generics"            "ggcorrplot"         </span>
+<span class="co">#&gt;  [31] "ggExtra"             "ggplot2"             "ggrepel"            </span>
+<span class="co">#&gt;  [34] "ggsignif"            "glue"                "gmp"                </span>
+<span class="co">#&gt;  [37] "graphics"            "grDevices"           "grid"               </span>
+<span class="co">#&gt;  [40] "gtable"              "gtools"              "htmltools"          </span>
+<span class="co">#&gt;  [43] "htmlwidgets"         "httpuv"              "hypergeo"           </span>
+<span class="co">#&gt;  [46] "insight"             "ipmisc"              "isoband"            </span>
+<span class="co">#&gt;  [49] "jquerylib"           "jsonlite"            "kSamples"           </span>
+<span class="co">#&gt;  [52] "labeling"            "later"               "lattice"            </span>
+<span class="co">#&gt;  [55] "lifecycle"           "magrittr"            "MASS"               </span>
+<span class="co">#&gt;  [58] "Matrix"              "MatrixModels"        "mc2d"               </span>
+<span class="co">#&gt;  [61] "memoise"             "methods"             "mgcv"               </span>
+<span class="co">#&gt;  [64] "mime"                "miniUI"              "multcompView"       </span>
+<span class="co">#&gt;  [67] "munsell"             "mvtnorm"             "nlme"               </span>
+<span class="co">#&gt;  [70] "pairwiseComparisons" "paletteer"           "parallel"           </span>
+<span class="co">#&gt;  [73] "parameters"          "patchwork"           "pbapply"            </span>
+<span class="co">#&gt;  [76] "performance"         "pillar"              "pkgconfig"          </span>
+<span class="co">#&gt;  [79] "plyr"                "PMCMRplus"           "prismatic"          </span>
+<span class="co">#&gt;  [82] "promises"            "purrr"               "R6"                 </span>
+<span class="co">#&gt;  [85] "rappdirs"            "RColorBrewer"        "Rcpp"               </span>
+<span class="co">#&gt;  [88] "RcppEigen"           "rematch2"            "reshape"            </span>
+<span class="co">#&gt;  [91] "reshape2"            "rlang"               "Rmpfr"              </span>
+<span class="co">#&gt;  [94] "rstudioapi"          "sass"                "scales"             </span>
+<span class="co">#&gt;  [97] "shiny"               "shinyjs"             "sourcetools"        </span>
+<span class="co">#&gt; [100] "splines"             "stats"               "statsExpressions"   </span>
+<span class="co">#&gt; [103] "stringi"             "stringr"             "SuppDists"          </span>
+<span class="co">#&gt; [106] "tibble"              "tidyr"               "tidyselect"         </span>
+<span class="co">#&gt; [109] "tools"               "utf8"                "utils"              </span>
+<span class="co">#&gt; [112] "vctrs"               "viridisLite"         "withr"              </span>
+<span class="co">#&gt; [115] "WRS2"                "xtable"              "yaml"               </span>
+<span class="co">#&gt; [118] "zeallot"</span></code></pre></div>
 </div>
 <div id="dependency-graph" class="section level1">
 <h1 class="hasAnchor">
@@ -235,6 +221,14 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dominikrafacz.github.io/deepdep/" class="external-link">deepdep</a></span><span class="op">)</span>
 <span class="fu"><a href="https://dominikrafacz.github.io/deepdep/reference/plot_deepdep.html" class="external-link">plot_dependencies</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span>, depth <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p><img src="dependencies_files/figure-html/deepdep-1.png" width="100%"></p>
+</div>
+<div id="heaviness-of-package-dependencies" class="section level1">
+<h1 class="hasAnchor">
+<a href="#heaviness-of-package-dependencies" class="anchor"></a>Heaviness of package dependencies</h1>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jokergoo/pkgndep" class="external-link">pkgndep</a></span><span class="op">)</span>
+<span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/pkgndep/man/pkgndep.html" class="external-link">pkgndep</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 

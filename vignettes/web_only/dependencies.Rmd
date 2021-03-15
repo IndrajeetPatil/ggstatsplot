@@ -49,3 +49,11 @@ sort(tools::package_dependencies("ggstatsplot", recursive = TRUE)[[1]])
 library(deepdep)
 plot_dependencies("ggstatsplot", depth = 3)
 ```
+
+# Heaviness of package dependencies
+
+```{r pkgndep, fig.height=8, fig.width=12, eval=FALSE}
+library(pkgndep)
+x = pkgndep("ggstatsplot")
+plot(x)
+```
