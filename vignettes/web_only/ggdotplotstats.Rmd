@@ -31,6 +31,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
 The function `ggstatsplot::ggdotplotstats` can be used for **data exploration**
 and to provide an easy way to make **publication-ready dot plots/charts** with
 appropriate and selected statistical details embedded in the plot itself. In

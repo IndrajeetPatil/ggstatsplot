@@ -159,7 +159,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-03-15</h4>
+            <h4 data-toc-skip class="date">2021-03-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -168,6 +168,24 @@
 
     
     
+<hr>
+<p>You can cite this package/vignette as:</p>
+<pre><code>
+  Patil, I. (2018). ggstatsplot: 'ggplot2' Based Plots with Statistical
+  Details. CRAN. Retrieved from
+  https://cran.r-project.org/web/packages/ggstatsplot/index.html
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    title = {{ggstatsplot}: 'ggplot2' Based Plots with Statistical Details},
+    author = {Indrajeet Patil},
+    year = {2018},
+    journal = {CRAN},
+    url = {https://CRAN.R-project.org/package=ggstatsplot},
+    doi = {10.5281/zenodo.2074621},
+  }</code></pre>
+<hr>
 <div id="why-use-purrr" class="section level1">
 <h1 class="hasAnchor">
 <a href="#why-use-purrr" class="anchor"></a>Why use <code>purrr</code>?</h1>
@@ -201,7 +219,7 @@
 <a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
 </h1>
 <p>Let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item <code>list</code> called <code>year_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter</a></code> and <code>split</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -219,7 +237,7 @@
 <span class="co">#&gt; [1] "1967" "1987" "2007"</span></code></pre></div>
 <p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
 <p>So let’s keep building <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> &amp; <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>. Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -268,7 +286,7 @@
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
   <span class="op">)</span></code></pre></div>
 <p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># combining all individual plots from the list into a single plot using combine_plots function</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="va">plot_list</span>,
@@ -282,7 +300,7 @@
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h1>
 <p>We will be using simulated data from then Attention Network Test provided in ANT dataset in <code>ez</code> package.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -358,7 +376,7 @@
 </h1>
 <p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_wide</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -418,7 +436,7 @@
 <h1 class="hasAnchor">
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h1>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -484,7 +502,7 @@
 <h1 class="hasAnchor">
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h1>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -548,7 +566,7 @@
 <h1 class="hasAnchor">
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h1>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jrnold/ggthemes" class="external-link">ggthemes</a></span><span class="op">)</span>
@@ -614,7 +632,7 @@
 <h1 class="hasAnchor">
 <a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
 </h1>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -676,7 +694,7 @@
 <h1 class="hasAnchor">
 <a href="#ggbarstats" class="anchor"></a><code>ggbarstats</code>
 </h1>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -741,7 +759,7 @@
 <a href="#grouped_-variants" class="anchor"></a><code>grouped_</code> variants</h1>
 <p>Note that although all the above examples were written with the non-grouped variants of functions, the same rule holds true for the <code>grouped_</code> variants of all the above functions.</p>
 <p>For example, if we want to use the <code>grouped_gghistostats</code> across three different datasets, you can use <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code> function. For the sake of brevity, the plots are not displayed here, but you can run the following code and check the individual <code>grouped_</code> plots (e.g., <code>plotlist[[1]]</code>).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create a list of plots</span>
 <span class="va">plotlist</span> <span class="op">&lt;-</span>
   <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
@@ -762,7 +780,7 @@
 <div id="repeating-function-execution-across-multiple-columns-in-a-dataframe" class="section level1">
 <h1 class="hasAnchor">
 <a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe" class="anchor"></a>Repeating function execution across multiple columns in a dataframe</h1>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>

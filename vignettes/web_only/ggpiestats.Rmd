@@ -30,6 +30,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
 ## Introduction to `ggpiestats`
 
 The function `ggstatsplot::ggpiestats` can be used for quick **data

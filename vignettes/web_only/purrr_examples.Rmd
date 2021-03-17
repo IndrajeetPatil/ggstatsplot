@@ -34,6 +34,16 @@ knitr::opts_chunk$set(
 future::plan("multicore")
 ```
 
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
 # Why use `purrr`?
 
 Most of the `ggstatsplot` functions have `grouped_` variants, which are designed

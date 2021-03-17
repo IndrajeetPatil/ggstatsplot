@@ -168,7 +168,7 @@ last release on `CRAN`, you can check the detailed log of changes here:
 If you want to cite this package in a scientific journal or in any other
 context, run the following code in your `R` console:
 
-```{r citation}
+```{r citation, comment = ""}
 citation("ggstatsplot")
 ```
 

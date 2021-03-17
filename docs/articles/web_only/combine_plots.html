@@ -159,7 +159,7 @@
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-03-15</h4>
+            <h4 data-toc-skip class="date">2021-03-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -168,6 +168,24 @@
 
     
     
+<hr>
+<p>You can cite this package/vignette as:</p>
+<pre><code>
+  Patil, I. (2018). ggstatsplot: 'ggplot2' Based Plots with Statistical
+  Details. CRAN. Retrieved from
+  https://cran.r-project.org/web/packages/ggstatsplot/index.html
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    title = {{ggstatsplot}: 'ggplot2' Based Plots with Statistical Details},
+    author = {Indrajeet Patil},
+    year = {2018},
+    journal = {CRAN},
+    url = {https://CRAN.R-project.org/package=ggstatsplot},
+    doi = {10.5281/zenodo.2074621},
+  }</code></pre>
+<hr>
 <div id="combining-plots-with-combine_plots" class="section level1">
 <h1 class="hasAnchor">
 <a href="#combining-plots-with-combine_plots" class="anchor"></a>Combining plots with <code>combine_plots</code>
@@ -179,7 +197,7 @@
 <a href="#combining-multiple-plots-example-1-using-dplyrgroup_map" class="anchor"></a>Combining multiple plots: Example-1 using <code>dplyr::group_map</code>
 </h2>
 <p>The easiest way to run the same <code>ggstatsplot</code> operation across multiple grouping variables is by using <code><a href="https://dplyr.tidyverse.org/reference/group_map.html" class="external-link">dplyr::group_map</a></code> functions and then - of course - one would like to combine these plots in a single plot.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
@@ -204,7 +222,7 @@
 </h2>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/" class="external-link"><code>purrr</code></a> which can replace many <code>for</code> loops, is more succinct, and easier to read. Consider <code>purrr</code> as your first choice for combining multiple plots.</p>
 <p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>patchwork</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -271,7 +289,7 @@
 </h2>
 <p>Another popular package for handling big datasets is <code>plyr</code>, which allows us to repeatedly apply a common function on smaller pieces and then combine the results into a larger whole.</p>
 <p>In this example we’ll start with the <code>gapminder</code> dataset. We’re interested in the linear relationship between Gross Domestic Product (per capita) and life expectancy in the year 2007, for all the continents except Oceania. We’ll use <code>dplyr</code> to filter to the right rows then use <code>plyr</code> to repeat the <code>ggscatterstats</code> function across each of the 4 continents remaining. The result is of that is a list of plots called <code>plots</code>. We then feed <code>plots</code> to the <code>combine_plots</code> function to merge them into one plot. We will call attention to the countries which have very low life expectancy (&lt; 45 years) by labeling those countries when they occur.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://had.co.nz/plyr" class="external-link">plyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
 
@@ -326,7 +344,7 @@
 <a href="#adding-additional-details-to-plots" class="anchor"></a>Adding additional details to plots</h1>
 <p>The <code>combine_plots</code> function can also be useful for adding additional textual information that can not be added by making a single call to a <code>ggstatsplot</code> function via the title, subtitle, or caption options. For this example let’s assume we want to assess the relationship between a movie’s rating and its budget from the <strong>Internet Movie Database</strong> using polynomial regression.</p>
 <p><code>ggcoefstats</code> will do most of the work, including the title, subtitle, and caption. But we want to add at the bottom an annotation to show the formula we are using for our regression. <code>combine_plots</code> allows us to add <code>sub.text =</code> to accomplish that task as shown in the resulting plot.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>

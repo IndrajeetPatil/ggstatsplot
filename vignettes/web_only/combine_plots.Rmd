@@ -26,6 +26,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
 # Combining plots with `combine_plots`
 
 `ggstatsplot` contains a "helper" function named `combine_plots` to help you

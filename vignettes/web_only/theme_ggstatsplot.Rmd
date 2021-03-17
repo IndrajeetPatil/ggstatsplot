@@ -37,6 +37,16 @@ knitr::opts_chunk$set(
 )
 ```
 
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
 ## Default theme for the package: `theme_ggstatsplot`
 
 `ggstatsplot` uses a default theme `theme_ggstatsplot()`, which is a selected

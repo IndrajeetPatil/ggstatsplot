@@ -36,6 +36,16 @@ knitr::opts_chunk$set(
 future::plan("multicore")
 ```
 
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
 The function `ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
 using `parameters::model_parameters`. Additionally, if available, the model
