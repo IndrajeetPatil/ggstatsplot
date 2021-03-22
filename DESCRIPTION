@@ -11,7 +11,7 @@ Authors@R:
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with
     details from statistical tests included in the plots themselves. It
-    provides an easier API to generate information-rich plots for
+    provides an easier syntax to generate information-rich plots for
     statistical analysis of continuous (violin plots, scatterplots,
     histograms, dot plots, dot-and-whisker plots) or categorical (pie and
     bar charts) data. Currently, it supports the most common types of
@@ -31,11 +31,11 @@ Imports:
     ggplot2,
     ggrepel,
     ggsignif (>= 0.6.1),
-    insight (>= 0.13.0),
+    insight (>= 0.13.1.1),
     ipmisc (>= 6.0.0),
     pairwiseComparisons (>= 3.1.3),
     paletteer,
-    parameters (>= 0.12.0),
+    parameters (>= 0.12.0.1),
     patchwork,
     performance,
     purrr,
@@ -57,10 +57,12 @@ Suggests:
     tibble,
     vdiffr,
     WRS2
+Remotes:
+    easystats/insight,
+    easystats/parameters
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
-Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 LazyData: true

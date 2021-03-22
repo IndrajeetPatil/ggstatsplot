@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  22 MAR 2021 18:41
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  22 MAR 2021 21:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -958,43 +958,7 @@ File: microtype.cfg 2021/03/14 v2.8c microtype main configuration file (RS)
 ))
 Package hyperref Info: Option `unicode' set `true' on input line 151.
 Package hyperref Info: Option `breaklinks' set `true' on input line 151.
-(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
-\LTleft=\skip91
-\LTright=\skip92
-\LTpre=\skip93
-\LTpost=\skip94
-\LTchunksize=\count459
-\LTcapwidth=\dimen286
-\LT@head=\box71
-\LT@firsthead=\box72
-\LT@foot=\box73
-\LT@lastfoot=\box74
-\LT@cols=\count460
-\LT@rows=\count461
-\c@LT@tables=\count462
-\c@LT@chunks=\count463
-\LT@p@ftn=\toks42
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen287
-\lightrulewidth=\dimen288
-\cmidrulewidth=\dimen289
-\belowrulesep=\dimen290
-\belowbottomsep=\dimen291
-\aboverulesep=\dimen292
-\abovetopsep=\dimen293
-\cmidrulesep=\dimen294
-\cmidrulekern=\dimen295
-\defaultaddspace=\dimen296
-\@cmidla=\count464
-\@cmidlb=\count465
-\@aboverulesep=\dimen297
-\@belowrulesep=\dimen298
-\@thisruleclass=\count466
-\@lastruleclass=\count467
-\@thisrulewidth=\dimen299
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/grffile/grffile.sty
+(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/grffile/grffile.sty
 Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
 y)
 Package grffile Info: This package is an empty stub for compatibility on input 
@@ -1005,31 +969,50 @@ Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
-\col@sep=\dimen300
-\ar@mcellbox=\box75
-\extrarowheight=\dimen301
-\NC@list=\toks43
-\extratabsurround=\skip95
-\backup@length=\skip96
-\ar@cellbox=\box76
+\col@sep=\dimen286
+\ar@mcellbox=\box71
+\extrarowheight=\dimen287
+\NC@list=\toks42
+\extratabsurround=\skip91
+\backup@length=\skip92
+\ar@cellbox=\box72
 )
-\TX@col@width=\dimen302
-\TX@old@table=\dimen303
-\TX@old@col=\dimen304
-\TX@target=\dimen305
-\TX@delta=\dimen306
-\TX@cols=\count468
-\TX@ftn=\toks44
+\TX@col@width=\dimen288
+\TX@old@table=\dimen289
+\TX@old@col=\dimen290
+\TX@target=\dimen291
+\TX@delta=\dimen292
+\TX@cols=\count459
+\TX@ftn=\toks43
+) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen293
+\lightrulewidth=\dimen294
+\cmidrulewidth=\dimen295
+\belowrulesep=\dimen296
+\belowbottomsep=\dimen297
+\aboverulesep=\dimen298
+\abovetopsep=\dimen299
+\cmidrulesep=\dimen300
+\cmidrulekern=\dimen301
+\defaultaddspace=\dimen302
+\@cmidla=\count460
+\@cmidlb=\count461
+\@aboverulesep=\dimen303
+\@belowrulesep=\dimen304
+\@thisruleclass=\count462
+\@lastruleclass=\count463
+\@thisrulewidth=\dimen305
 ) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count469
-\float@exts=\toks45
-\float@box=\box77
-\@float@everytoks=\toks46
-\@floatcapt=\box78
+\c@float@type=\count464
+\float@exts=\toks44
+\float@box=\box73
+\@float@everytoks=\toks45
+\@floatcapt=\box74
 )
-\@quotelevel=\count470
-\@quotereset=\count471
+\@quotelevel=\count465
+\@quotereset=\count466
 (./paper.aux)
 \openout1 = `paper.aux'.
 
@@ -1068,7 +1051,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ing.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count472
+\c@section@level=\count467
 )
 LaTeX Info: Redefining \ref on input line 198.
 LaTeX Info: Redefining \pageref on input line 198.
@@ -1079,10 +1062,6 @@ LaTeX Info: Redefining \nameref on input line 198.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
-Package caption Info: longtable package is loaded.
-(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
-)
 Package caption Info: End \AtBeginDocument code.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -1203,7 +1182,7 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 304.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 290.
 [1
 
 ]
@@ -1219,33 +1198,20 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
-[2]
-File: /Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resou
-rces/JOSS-logo.png Graphic file (type bmp)
-</Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resources/
-JOSS-logo.png>
-
-Package fancyhdr Warning: \headheight is too small (62.59596pt): 
-(fancyhdr)                Make it at least 63.55022pt, for example:
-(fancyhdr)                \setlength{\headheight}{63.55022pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
-
-[3] (./paper.aux)
+[2] (./paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 8DA2308A1F5F15F351D7F814522652FF;1294.
+(rerunfilecheck)             Checksum: 819EEC2063AD712EF966A04CECE5A13B;864.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34732 strings out of 478922
- 699081 string characters out of 5866020
- 1505632 words of memory out of 5000000
- 54021 multiletter control sequences out of 15000+600000
+ 34601 strings out of 478922
+ 697135 string characters out of 5866020
+ 1498525 words of memory out of 5000000
+ 53896 multiletter control sequences out of 15000+600000
  408595 words of font info for 66 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  95i,12n,103p,1194b,806s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (3 pages).
+Output written on paper.pdf (2 pages).

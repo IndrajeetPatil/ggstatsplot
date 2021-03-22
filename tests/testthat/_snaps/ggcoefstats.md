@@ -123,10 +123,10 @@
       1 -0.15565484 1
       2 -1.80872181 2
       3  0.06471454 3
-                                                                                       label
-      1 list(~widehat(italic(beta))==-0.156, ~italic(t)(28)==-5.840, ~italic(p)=='2.81e-06')
-      2    list(~widehat(italic(beta))==-1.809, ~italic(t)(28)==-2.615, ~italic(p)=='0.014')
-      3                                                                                 <NA>
+                                                                                   label
+      1 list(~widehat(italic(beta))==-0.156, ~italic(t)==-5.840, ~italic(p)=='2.81e-06')
+      2    list(~widehat(italic(beta))==-1.809, ~italic(t)==-2.615, ~italic(p)=='0.014')
+      3                                                                             <NA>
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
       2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5
@@ -187,13 +187,13 @@
       4  1.182257 4
       5 30.628379 5
       6  1.251657 6
-                                                                                       label
-      1 list(~widehat(italic(beta))==29.32, ~italic(t)(Inf)==249.58, ~italic(p)=='9.84e-78')
-      2    list(~widehat(italic(beta))==1.12, ~italic(t)(Inf)==4.40, ~italic(p)=='5.77e-05')
-      3 list(~widehat(italic(beta))==29.95, ~italic(t)(Inf)==264.18, ~italic(p)=='6.08e-79')
-      4    list(~widehat(italic(beta))==1.18, ~italic(t)(Inf)==7.30, ~italic(p)=='2.27e-09')
-      5 list(~widehat(italic(beta))==30.63, ~italic(t)(Inf)==307.16, ~italic(p)=='3.78e-82')
-      6     list(~widehat(italic(beta))==1.25, ~italic(t)(Inf)==6.77, ~italic(p)=='1.5e-08')
+                                                                                  label
+      1 list(~widehat(italic(beta))==29.32, ~italic(t)==249.58, ~italic(p)=='9.84e-78')
+      2    list(~widehat(italic(beta))==1.12, ~italic(t)==4.40, ~italic(p)=='5.77e-05')
+      3 list(~widehat(italic(beta))==29.95, ~italic(t)==264.18, ~italic(p)=='6.08e-79')
+      4    list(~widehat(italic(beta))==1.18, ~italic(t)==7.30, ~italic(p)=='2.27e-09')
+      5 list(~widehat(italic(beta))==30.63, ~italic(t)==307.16, ~italic(p)=='3.78e-82')
+      6     list(~widehat(italic(beta))==1.25, ~italic(t)==6.77, ~italic(p)=='1.5e-08')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
       2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5

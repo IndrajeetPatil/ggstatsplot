@@ -136,26 +136,27 @@ library(ggstatsplot)
 
 combine_plots(
   list(
-  # with unequal Y-axes ranges
-  grouped_ggscatterstats(
-    mtcars,
-    disp,
-    hp,
-    grouping.var = am,
-    results.subtitle = FALSE,
-    annotation.args = list(title = "before")
+    # with unequal Y-axes ranges
+    grouped_ggscatterstats(
+      mtcars,
+      disp,
+      hp,
+      grouping.var = am,
+      results.subtitle = FALSE,
+      annotation.args = list(title = "before")
+    ),
+    # with equal Y-axes ranges
+    grouped_ggscatterstats(
+      mtcars,
+      disp,
+      hp,
+      grouping.var = am,
+      results.subtitle = FALSE,
+      ggplot.component =
+        list(ggplot2::scale_y_continuous(breaks = seq(50, 350, 50), limits = (c(50, 350)))),
+      annotation.args = list(title = "after")
+    )
   ),
-  # with equal Y-axes ranges
-  grouped_ggscatterstats(
-    mtcars,
-    disp,
-    hp,
-    grouping.var = am,
-    results.subtitle = FALSE,
-    ggplot.component =
-      list(ggplot2::scale_y_continuous(breaks = seq(50, 350, 50), limits = (c(50, 350)))),
-    annotation.args = list(title = "after")
-  )),
   plotgrid.args = list(nrow = 2)
 )
 ```
@@ -299,6 +300,48 @@ pb$plot$plot_env$df_pairwise
 library(pairwiseComparisons)
 
 pairwise_comparisons(mtcars, cyl, wt)
+```
+
+# How can I change annotation in pairwise comparisons?
+
+`ggstatsplot` defaults to displaying exact p-values or logged Bayes Factor
+values for pairwise comparisons. But what if you wish to adopt a different
+annotation labels?
+
+You will have to customize them using `pairwiseComparisons` and `ggsignif:`
+
+```{r comp_asterisks}
+# needed libraries
+set.seed(123)
+library(ggplot2)
+library(pairwiseComparisons)
+library(ggsignif)
+library(ggstatsplot)
+
+# converting to factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+# creating a basic plot
+p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE)
+
+# using `pairwiseComparisons` package to create a dataframe with results
+set.seed(123)
+(df <-
+  pairwise_comparisons(mtcars, cyl, wt) %>%
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
+  dplyr::arrange(group1) %>%
+  dplyr::mutate(asterisk_label = c("**", "***", "**")))
+
+# adding pairwise comparisons using `ggsignif`
+p +
+  ggsignif::geom_signif(
+    comparisons = df$groups,
+    map_signif_level = TRUE,
+    annotations = df$asterisk_label,
+    y_position = c(5.5, 5.75, 6.0),
+    test = NULL,
+    na.rm = TRUE
+  )
 ```
 
 # How to access dataframe with results from `ggpiestats` and `ggbarstats`?

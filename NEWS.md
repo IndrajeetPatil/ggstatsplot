@@ -1,5 +1,11 @@
 # ggstatsplot 0.7.1.9000
 
+MINOR CHANGES
+
+  - To reflect changes made in `parameters` package, `ggcoefstats` now shows
+    degrees of freedom for *t*-statistic in `ggcoefststs` only for intercept
+    term.
+
 # ggstatsplot 0.7.1
 
 MAJOR CHANGES

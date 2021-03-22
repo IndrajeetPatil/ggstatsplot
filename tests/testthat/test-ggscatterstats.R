@@ -79,7 +79,6 @@ test_that(
         data = ggplot2::msleep,
         x = "sleep_total",
         y = bodywt,
-        centrality.parameter = "none",
         type = "np",
         conf.level = 0.99,
         marginal = FALSE
@@ -125,7 +124,6 @@ test_that(
         x = sleep_total,
         y = bodywt,
         type = "r",
-        centrality.parameter = "mean",
         conf.level = 0.90,
         point.args = list(color = "red", size = 5),
         marginal = FALSE

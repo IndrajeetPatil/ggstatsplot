@@ -1,5 +1,5 @@
 ---
-title: "Enhancing 'ggplot2' : The 'ggstatsplot' approach"
+title: "Enhancing 'ggplot2' with statistical details: The 'ggstatsplot' approach"
 tags:
   - R
   - parametric statistics
@@ -50,56 +50,27 @@ library(ggstatsplot)
 
 # Summary
 
-[`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
-of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
-graphics with details from statistical tests included in the plots themselves
-and targeted primarily at behavioral sciences community to provide a one-line
-code to produce information-rich plots. In a typical exploratory data analysis
-workflow, data visualization and statistical modeling are two different phases:
-visualization informs modeling, and modeling in its turn can suggest a
-different visualization method, and so on and so forth. The central idea of
-`ggstatsplot` is simple: combine these two phases into one in the form of
-graphics with statistical details, which makes data exploration simpler and
-faster.
+In a typical exploratory data analysis workflow, data visualization and
+statistical modeling are two different phases: visualization informs modeling,
+and modeling in its turn can suggest a different visualization method, and so on
+and so forth. The central idea of `ggstatsplot` is simple: combine these two
+phases into one in the form of graphics with statistical details, which makes
+data exploration simpler and faster.
 
 # Statement of Need
 
 
-
 # `ggstatsplot` at a glance
 
-## Summary of types of plots included
+# Benefits
 
-It produces a limited kinds of ready-made plots for the supported analyses:
-
-Function | Plot | Description
-------- | ---------- | ----------------- 
-`ggbetweenstats`, `ggwithinstats` | **boxviolin plots** | for comparisons *between* and *within* groups/conditions
-`gghistostats` | **histograms** | for distribution of a numeric variable
-`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable
-`ggscatterstats` | **scatterplots** | for correlation between two variables
-`ggcorrmat` | **correlation matrices** | for correlations between multiple variables
-`ggpiestats` | **pie charts** | for categorical data 
-`ggbarstats` | **bar charts** | for categorical data 
-`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis
-
-In addition to these basic plots, `ggstatsplot` also provides `grouped_`
-versions (see below) that makes it easy to repeat the same analysis for
-any grouping variable.
-
-## Summary of types of statistical analyses
-
-Most functions provide a `type` (of test) argument that is helpful to specify the
-type of statistical approaches:
-
-  - `"parametric"` (for **parametric** statistics)
-  - `"nonparametric"` (for **non-parametric** statistics)
-  - `"robust"` (for **robust** statistics)
-  - `"bayes"` (for **Bayesian** statistics)
-
-In the following sections, we will discuss at depth justification for why the
-plots have been designed in certain ways and what principles were followed to
-report statistical details on the plots.
+This approach- (*a*) avoids errors in statistical reporting, (*b*) highlights
+the importance of the effect by providing effect size measures by default, (*c*)
+provides an easy way to evaluate *absence* of an effect using Bayesian
+framework, (*d*) forces to evaluate statistical assumptions behind chosen
+analysis in the context of the underlying data, and is (*e*) easy and (*f*)
+simple enough that somebody with little-to-no coding experience can use it
+without making an error.
 
 # Licensing and Availability
 
