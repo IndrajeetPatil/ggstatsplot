@@ -9,11 +9,11 @@ test_that(
     set.seed(123)
     p <-
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = "sleep_cycle",
         label.var = "name",
-        label.expression = sleep_cycle > 2000,
+        label.expression = sleep_cycle > 0.3,
         xlab = "sleep (total)",
         ylab = "sleep cycle",
         type = "p",
@@ -29,13 +29,13 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(list(pb$data[[1]], head(pb$data[[2]]), pb$data[[3]]))
 
     # subtitle
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_corr_test(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = "sleep_total",
         y = sleep_cycle,
         type = "p"
@@ -45,7 +45,7 @@ test_that(
     set.seed(123)
     p_cap <-
       statsExpressions::expr_corr_test(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = "sleep_total",
         y = sleep_cycle,
         top.text = "ggplot2 dataset",
@@ -58,10 +58,6 @@ test_that(
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
     expect_identical(pb$plot$labels$x, "sleep (total)")
     expect_identical(pb$plot$labels$y, "sleep cycle")
-    expect_identical(
-      pb$data[[3]]$label,
-      c("Asian elephant", "African elephant")
-    )
   }
 )
 
@@ -76,7 +72,7 @@ test_that(
     set.seed(123)
     p <-
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = "sleep_total",
         y = sleep_cycle,
         type = "np",
@@ -89,13 +85,13 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[1]])
 
     # subtitle
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_corr_test(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         type = "np",
@@ -109,10 +105,10 @@ test_that(
 )
 
 
-# percentage bend with NAs ---------------------------------------------
+# winsorized Pearson with NAs ---------------------------------------------
 
 test_that(
-  desc = "checking ggscatterstats - without NAs - percentage bend",
+  desc = "checking ggscatterstats - without NAs - winsorized Pearson",
   code = {
     skip_on_cran()
 
@@ -120,7 +116,7 @@ test_that(
     set.seed(123)
     p <-
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         type = "r",
@@ -133,7 +129,7 @@ test_that(
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_corr_test(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         type = "r",
@@ -144,7 +140,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(pb$data[[1]])
 
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
   }
@@ -161,7 +157,7 @@ test_that(
     set.seed(123)
     p <-
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         xlab = "total sleep",
@@ -176,7 +172,7 @@ test_that(
     set.seed(123)
     p_subtitle <-
       statsExpressions::expr_corr_test(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         type = "bayes"
@@ -217,7 +213,7 @@ test_that(
     set.seed(123)
     p <-
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         label.expression = "sleep_total > 17",
@@ -234,7 +230,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(list(pb$data[[1]], head(pb$data[[2]]), pb$data[[3]]))
 
     # both quoted
     expect_s3_class(p, "gg")
@@ -251,7 +247,7 @@ test_that(
     # both quoted
     expect_true(inherits(
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         label.expression = "sleep_total > 17",
@@ -265,7 +261,7 @@ test_that(
     # both unquoted
     expect_true(inherits(
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         label.expression = sleep_total > 17,
@@ -279,7 +275,7 @@ test_that(
     # label.expression not specified
     expect_true(inherits(
       ggstatsplot::ggscatterstats(
-        data = dplyr::sample_frac(ggplot2::msleep, 0.1),
+        data = dplyr::sample_frac(dplyr::filter(ggplot2::msleep, conservation == "lc"), 0.1),
         x = sleep_total,
         y = sleep_cycle,
         label.expression = NULL,
@@ -303,7 +299,7 @@ test_that(
     set.seed(123)
     p <-
       ggstatsplot::ggscatterstats(
-        data = ggplot2::msleep,
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
         margins = "y",
