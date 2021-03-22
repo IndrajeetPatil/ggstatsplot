@@ -100,12 +100,13 @@ articles:
     desc: Salad of various things
     contents:
     - additional
-    - web_only/session_info
-    - web_only/gallery
-    - web_only/effsize_interpretation
     - web_only/faq
     - web_only/purrr_examples
+    - web_only/principles
     - web_only/other_resources
+    - web_only/gallery
+    - web_only/effsize_interpretation
+    - web_only/session_info
 
   - title: Development-focused
     navbar: Development-focused

@@ -20,6 +20,8 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
   comment = "#>"
 )
 ```
@@ -79,6 +81,8 @@ only available on the website for this package: <br>
   - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
     modified using `ggplot2` functions):
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
+
+  - Graphic design and statistical reporting principles guiding `ggstatsplot` development: (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>)
 
   - Examples illustrating how to use functional programming package like `purrr`
     to extend `ggstatsplot` functionality-
