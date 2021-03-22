@@ -11,11 +11,11 @@ test_that(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = "bodywt",
+        y = "sleep_cycle",
         label.var = "name",
-        label.expression = bodywt > 2000,
+        label.expression = sleep_cycle > 2000,
         xlab = "sleep (total)",
-        ylab = "body weight",
+        ylab = "sleep cycle",
         type = "p",
         xfill = "red",
         yfill = "orange",
@@ -37,7 +37,7 @@ test_that(
       statsExpressions::expr_corr_test(
         data = ggplot2::msleep,
         x = "sleep_total",
-        y = bodywt,
+        y = sleep_cycle,
         type = "p"
       )$expression[[1]]
 
@@ -47,7 +47,7 @@ test_that(
       statsExpressions::expr_corr_test(
         data = ggplot2::msleep,
         x = "sleep_total",
-        y = bodywt,
+        y = sleep_cycle,
         top.text = "ggplot2 dataset",
         type = "bayes"
       )$expression[[1]]
@@ -57,7 +57,7 @@ test_that(
     expect_identical(pb$plot$labels$title, "Mammalian sleep")
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
     expect_identical(pb$plot$labels$x, "sleep (total)")
-    expect_identical(pb$plot$labels$y, "body weight")
+    expect_identical(pb$plot$labels$y, "sleep cycle")
     expect_identical(
       pb$data[[3]]$label,
       c("Asian elephant", "African elephant")
@@ -78,7 +78,7 @@ test_that(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = "sleep_total",
-        y = bodywt,
+        y = sleep_cycle,
         type = "np",
         conf.level = 0.99,
         marginal = FALSE
@@ -97,7 +97,7 @@ test_that(
       statsExpressions::expr_corr_test(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = bodywt,
+        y = sleep_cycle,
         type = "np",
         conf.level = 0.99
       )$expression[[1]]
@@ -122,7 +122,7 @@ test_that(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = bodywt,
+        y = sleep_cycle,
         type = "r",
         conf.level = 0.90,
         point.args = list(color = "red", size = 5),
@@ -135,7 +135,7 @@ test_that(
       statsExpressions::expr_corr_test(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = bodywt,
+        y = sleep_cycle,
         type = "r",
         conf.level = 0.90
       )$expression[[1]]
@@ -163,9 +163,9 @@ test_that(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = bodywt,
+        y = sleep_cycle,
         xlab = "total sleep",
-        ylab = "body weight",
+        ylab = "sleep cycle",
         title = "mammalian sleep dataset",
         caption = "source: ggplot2 package",
         type = "bayes",
@@ -178,7 +178,7 @@ test_that(
       statsExpressions::expr_corr_test(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = bodywt,
+        y = sleep_cycle,
         type = "bayes"
       )$expression[[1]]
 
@@ -197,7 +197,7 @@ test_that(
     )
     expect_identical(
       enframe(p$grobs[[13]]$children)$value[[1]][[1]],
-      "body weight"
+      "sleep cycle"
     )
     expect_identical(
       enframe(p$grobs[[22]]$children)$value[[1]][[1]],
@@ -305,7 +305,7 @@ test_that(
       ggstatsplot::ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
-        y = bodywt,
+        y = sleep_cycle,
         margins = "y",
         results.subtitle = FALSE
       )

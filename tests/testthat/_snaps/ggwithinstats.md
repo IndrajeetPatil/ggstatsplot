@@ -5,261 +5,161 @@
       pb1$data[[7]])
     Output
       [[1]]
-             colour x    y group PANEL shape size fill alpha stroke
-      1   #D95F02FF 2  9.0     1     1    19    3   NA   0.5    0.5
-      2   #D95F02FF 2 10.0     2     1    19    3   NA   0.5    0.5
-      3   #D95F02FF 2 10.0     3     1    19    3   NA   0.5    0.5
-      4   #D95F02FF 2  6.0     4     1    19    3   NA   0.5    0.5
-      5   #D95F02FF 2  5.5     5     1    19    3   NA   0.5    0.5
-      6   #D95F02FF 2  7.5     6     1    19    3   NA   0.5    0.5
-      7   #D95F02FF 2 10.0     7     1    19    3   NA   0.5    0.5
-      8   #D95F02FF 2  9.0     8     1    19    3   NA   0.5    0.5
-      9   #D95F02FF 2  6.0     9     1    19    3   NA   0.5    0.5
-      10  #D95F02FF 2  0.0    10     1    19    3   NA   0.5    0.5
-      11  #D95F02FF 2  8.5    11     1    19    3   NA   0.5    0.5
-      12  #D95F02FF 2  6.5    12     1    19    3   NA   0.5    0.5
-      13  #D95F02FF 2  4.0    13     1    19    3   NA   0.5    0.5
-      14  #D95F02FF 2  6.0    14     1    19    3   NA   0.5    0.5
-      15  #D95F02FF 2  8.5    15     1    19    3   NA   0.5    0.5
-      16  #D95F02FF 2 10.0    16     1    19    3   NA   0.5    0.5
-      17  #D95F02FF 2  7.5    17     1    19    3   NA   0.5    0.5
-      18  #D95F02FF 2 10.0    18     1    19    3   NA   0.5    0.5
-      19  #D95F02FF 2  8.5    19     1    19    3   NA   0.5    0.5
-      20  #D95F02FF 2  5.0    20     1    19    3   NA   0.5    0.5
-      21  #D95F02FF 2  4.5    21     1    19    3   NA   0.5    0.5
-      22  #D95F02FF 2  9.0    22     1    19    3   NA   0.5    0.5
-      23  #D95F02FF 2  4.0    23     1    19    3   NA   0.5    0.5
-      24  #D95F02FF 2  4.5    24     1    19    3   NA   0.5    0.5
-      25  #D95F02FF 2  3.5    25     1    19    3   NA   0.5    0.5
-      26  #D95F02FF 2 10.0    26     1    19    3   NA   0.5    0.5
-      27  #D95F02FF 2  8.0    27     1    19    3   NA   0.5    0.5
-      28  #D95F02FF 2  7.5    28     1    19    3   NA   0.5    0.5
-      29  #D95F02FF 2  6.5    29     1    19    3   NA   0.5    0.5
-      30  #D95F02FF 2 10.0    30     1    19    3   NA   0.5    0.5
-      31  #D95F02FF 2  8.5    31     1    19    3   NA   0.5    0.5
-      32  #D95F02FF 2  8.0    32     1    19    3   NA   0.5    0.5
-      33  #D95F02FF 2  2.0    33     1    19    3   NA   0.5    0.5
-      34  #D95F02FF 2  7.0    34     1    19    3   NA   0.5    0.5
-      35  #D95F02FF 2 10.0    35     1    19    3   NA   0.5    0.5
-      36  #D95F02FF 2 10.0    36     1    19    3   NA   0.5    0.5
-      37  #D95F02FF 2  8.0    37     1    19    3   NA   0.5    0.5
-      38  #D95F02FF 2  7.5    38     1    19    3   NA   0.5    0.5
-      39  #D95F02FF 2  0.0    39     1    19    3   NA   0.5    0.5
-      40  #D95F02FF 2  6.5    40     1    19    3   NA   0.5    0.5
-      41  #D95F02FF 2  1.0    41     1    19    3   NA   0.5    0.5
-      42  #D95F02FF 2  0.5    42     1    19    3   NA   0.5    0.5
-      43  #D95F02FF 2  9.5    43     1    19    3   NA   0.5    0.5
-      44  #D95F02FF 2  1.5    44     1    19    3   NA   0.5    0.5
-      45  #D95F02FF 2  4.5    45     1    19    3   NA   0.5    0.5
-      46  #D95F02FF 2  8.0    46     1    19    3   NA   0.5    0.5
-      47  #D95F02FF 2 10.0    47     1    19    3   NA   0.5    0.5
-      48  #D95F02FF 2  4.0    48     1    19    3   NA   0.5    0.5
-      49  #D95F02FF 2  6.0    49     1    19    3   NA   0.5    0.5
-      50  #D95F02FF 2 10.0    50     1    19    3   NA   0.5    0.5
-      51  #D95F02FF 2 10.0    51     1    19    3   NA   0.5    0.5
-      52  #D95F02FF 2  7.5    52     1    19    3   NA   0.5    0.5
-      53  #D95F02FF 2 10.0    53     1    19    3   NA   0.5    0.5
-      54  #D95F02FF 2  8.0    54     1    19    3   NA   0.5    0.5
-      55  #D95F02FF 2  5.0    55     1    19    3   NA   0.5    0.5
-      56  #D95F02FF 2  3.5    56     1    19    3   NA   0.5    0.5
-      57  #D95F02FF 2 10.0    57     1    19    3   NA   0.5    0.5
-      58  #D95F02FF 2  3.0    58     1    19    3   NA   0.5    0.5
-      59  #D95F02FF 2  4.5    59     1    19    3   NA   0.5    0.5
-      60  #D95F02FF 2 10.0    60     1    19    3   NA   0.5    0.5
-      61  #D95F02FF 2  4.0    61     1    19    3   NA   0.5    0.5
-      62  #D95F02FF 2  2.5    62     1    19    3   NA   0.5    0.5
-      63  #D95F02FF 2  8.5    63     1    19    3   NA   0.5    0.5
-      64  #D95F02FF 2 10.0    64     1    19    3   NA   0.5    0.5
-      65  #D95F02FF 2  1.0    65     1    19    3   NA   0.5    0.5
-      66  #D95F02FF 2  8.5    66     1    19    3   NA   0.5    0.5
-      67  #D95F02FF 2  9.0    67     1    19    3   NA   0.5    0.5
-      68  #D95F02FF 2  7.5    68     1    19    3   NA   0.5    0.5
-      69  #D95F02FF 2  0.5    69     1    19    3   NA   0.5    0.5
-      70  #D95F02FF 2  9.0    70     1    19    3   NA   0.5    0.5
-      71  #D95F02FF 2  9.0    71     1    19    3   NA   0.5    0.5
-      72  #D95F02FF 2 10.0    72     1    19    3   NA   0.5    0.5
-      73  #D95F02FF 2  9.5    73     1    19    3   NA   0.5    0.5
-      74  #D95F02FF 2  8.5    74     1    19    3   NA   0.5    0.5
-      75  #D95F02FF 2  0.0    75     1    19    3   NA   0.5    0.5
-      76  #D95F02FF 2  0.5    76     1    19    3   NA   0.5    0.5
-      77  #D95F02FF 2  8.5    77     1    19    3   NA   0.5    0.5
-      78  #D95F02FF 2  3.5    78     1    19    3   NA   0.5    0.5
-      79  #D95F02FF 2 10.0    79     1    19    3   NA   0.5    0.5
-      80  #D95F02FF 2  9.5    80     1    19    3   NA   0.5    0.5
-      81  #D95F02FF 2  4.5    81     1    19    3   NA   0.5    0.5
-      82  #D95F02FF 2  8.5    82     1    19    3   NA   0.5    0.5
-      83  #D95F02FF 2  4.0    83     1    19    3   NA   0.5    0.5
-      84  #D95F02FF 2 10.0    84     1    19    3   NA   0.5    0.5
-      85  #D95F02FF 2  2.0    85     1    19    3   NA   0.5    0.5
-      86  #D95F02FF 2 10.0    86     1    19    3   NA   0.5    0.5
-      87  #D95F02FF 2  8.5    87     1    19    3   NA   0.5    0.5
-      88  #D95F02FF 2  8.5    88     1    19    3   NA   0.5    0.5
-      89  #D95F02FF 2 10.0    89     1    19    3   NA   0.5    0.5
-      90  #D95F02FF 2  2.0    90     1    19    3   NA   0.5    0.5
-      91  #1B9E77FF 1 10.0     1     1    19    3   NA   0.5    0.5
-      92  #1B9E77FF 1 10.0     2     1    19    3   NA   0.5    0.5
-      93  #1B9E77FF 1 10.0     3     1    19    3   NA   0.5    0.5
-      94  #1B9E77FF 1  9.0     4     1    19    3   NA   0.5    0.5
-      95  #1B9E77FF 1  8.5     5     1    19    3   NA   0.5    0.5
-      96  #1B9E77FF 1  3.0     6     1    19    3   NA   0.5    0.5
-      97  #1B9E77FF 1 10.0     7     1    19    3   NA   0.5    0.5
-      98  #1B9E77FF 1 10.0     8     1    19    3   NA   0.5    0.5
-      99  #1B9E77FF 1 10.0     9     1    19    3   NA   0.5    0.5
-      100 #1B9E77FF 1  0.0    10     1    19    3   NA   0.5    0.5
-       [ reached 'max' / getOption("max.print") -- omitted 80 rows ]
+            colour x    y group PANEL shape size fill alpha stroke
+      1  #D95F02FF 2  9.0     1     1    19    3   NA   0.5    0.5
+      2  #D95F02FF 2 10.0     2     1    19    3   NA   0.5    0.5
+      3  #D95F02FF 2 10.0     3     1    19    3   NA   0.5    0.5
+      4  #D95F02FF 2  6.0     4     1    19    3   NA   0.5    0.5
+      5  #D95F02FF 2  5.5     5     1    19    3   NA   0.5    0.5
+      6  #D95F02FF 2  7.5     6     1    19    3   NA   0.5    0.5
+      7  #D95F02FF 2 10.0     7     1    19    3   NA   0.5    0.5
+      8  #D95F02FF 2  9.0     8     1    19    3   NA   0.5    0.5
+      9  #D95F02FF 2  6.0     9     1    19    3   NA   0.5    0.5
+      10 #D95F02FF 2  0.0    10     1    19    3   NA   0.5    0.5
+      11 #D95F02FF 2  8.5    11     1    19    3   NA   0.5    0.5
+      12 #D95F02FF 2  6.5    12     1    19    3   NA   0.5    0.5
+      13 #D95F02FF 2  4.0    13     1    19    3   NA   0.5    0.5
+      14 #D95F02FF 2  6.0    14     1    19    3   NA   0.5    0.5
+      15 #D95F02FF 2  8.5    15     1    19    3   NA   0.5    0.5
+      16 #D95F02FF 2 10.0    16     1    19    3   NA   0.5    0.5
+      17 #D95F02FF 2  7.5    17     1    19    3   NA   0.5    0.5
+      18 #D95F02FF 2 10.0    18     1    19    3   NA   0.5    0.5
+      19 #D95F02FF 2  8.5    19     1    19    3   NA   0.5    0.5
+      20 #D95F02FF 2  5.0    20     1    19    3   NA   0.5    0.5
+      21 #D95F02FF 2  4.5    21     1    19    3   NA   0.5    0.5
+      22 #D95F02FF 2  9.0    22     1    19    3   NA   0.5    0.5
+      23 #D95F02FF 2  4.0    23     1    19    3   NA   0.5    0.5
+      24 #D95F02FF 2  4.5    24     1    19    3   NA   0.5    0.5
+      25 #D95F02FF 2  3.5    25     1    19    3   NA   0.5    0.5
+      26 #D95F02FF 2 10.0    26     1    19    3   NA   0.5    0.5
+      27 #D95F02FF 2  8.0    27     1    19    3   NA   0.5    0.5
+      28 #1B9E77FF 1 10.0     1     1    19    3   NA   0.5    0.5
+      29 #1B9E77FF 1 10.0     2     1    19    3   NA   0.5    0.5
+      30 #1B9E77FF 1 10.0     3     1    19    3   NA   0.5    0.5
+      31 #1B9E77FF 1  9.0     4     1    19    3   NA   0.5    0.5
+      32 #1B9E77FF 1  8.5     5     1    19    3   NA   0.5    0.5
+      33 #1B9E77FF 1  3.0     6     1    19    3   NA   0.5    0.5
+      34 #1B9E77FF 1 10.0     7     1    19    3   NA   0.5    0.5
+      35 #1B9E77FF 1 10.0     8     1    19    3   NA   0.5    0.5
+      36 #1B9E77FF 1 10.0     9     1    19    3   NA   0.5    0.5
+      37 #1B9E77FF 1  0.0    10     1    19    3   NA   0.5    0.5
+      38 #1B9E77FF 1 10.0    11     1    19    3   NA   0.5    0.5
+      39 #1B9E77FF 1  8.5    12     1    19    3   NA   0.5    0.5
+      40 #1B9E77FF 1  8.5    13     1    19    3   NA   0.5    0.5
+      41 #1B9E77FF 1  7.0    14     1    19    3   NA   0.5    0.5
+      42 #1B9E77FF 1  9.0    15     1    19    3   NA   0.5    0.5
+      43 #1B9E77FF 1 10.0    16     1    19    3   NA   0.5    0.5
+      44 #1B9E77FF 1 10.0    17     1    19    3   NA   0.5    0.5
+      45 #1B9E77FF 1 10.0    18     1    19    3   NA   0.5    0.5
+      46 #1B9E77FF 1  9.5    19     1    19    3   NA   0.5    0.5
+      47 #1B9E77FF 1  9.5    20     1    19    3   NA   0.5    0.5
+      48 #1B9E77FF 1  7.5    21     1    19    3   NA   0.5    0.5
+      49 #1B9E77FF 1 10.0    22     1    19    3   NA   0.5    0.5
+      50 #1B9E77FF 1  1.5    23     1    19    3   NA   0.5    0.5
+      51 #1B9E77FF 1  5.5    24     1    19    3   NA   0.5    0.5
+      52 #1B9E77FF 1 10.0    25     1    19    3   NA   0.5    0.5
+      53 #1B9E77FF 1 10.0    26     1    19    3   NA   0.5    0.5
+      54 #1B9E77FF 1  8.0    27     1    19    3   NA   0.5    0.5
       
       [[2]]
-        ymin lower middle upper ymax outliers notchupper notchlower x flipped_aes
-      1    0   6.0   8.75  10.0   10            9.416186   8.083814 1       FALSE
-      2    0   4.5   8.00   9.5   10            8.832733   7.167267 2       FALSE
-        PANEL group ymin_final ymax_final xmin xmax xid newx new_width weight colour
-      1     1     1          0         10  0.9  1.1   1    1       0.2      1 grey20
-      2     1     2          0         10  1.9  2.1   2    2       0.2      1 grey20
-         fill size alpha shape linetype
-      1 white  0.5   0.5    19    solid
-      2 white  0.5   0.5    19    solid
+        ymin lower middle upper ymax           outliers notchupper notchlower x
+      1    7  8.25    9.5    10   10 3.0, 0.0, 1.5, 5.5  10.032124   8.967876 1
+      2    0  5.25    7.5     9   10                      8.640267   6.359733 2
+        flipped_aes PANEL group ymin_final ymax_final xmin xmax xid newx new_width
+      1       FALSE     1     1          0         10  0.9  1.1   1    1       0.2
+      2       FALSE     1     2          0         10  1.9  2.1   2    2       0.2
+        weight colour  fill size alpha shape linetype
+      1      1 grey20 white  0.5   0.5    19    solid
+      2      1 grey20 white  0.5   0.5    19    solid
       
       [[3]]
-          x    y group PANEL colour size linetype alpha
-      1   2  9.0     1     1    red  0.5        1    NA
-      2   2 10.0     2     1    red  0.5        1    NA
-      3   2 10.0     3     1    red  0.5        1    NA
-      4   2  6.0     4     1    red  0.5        1    NA
-      5   2  5.5     5     1    red  0.5        1    NA
-      6   2  7.5     6     1    red  0.5        1    NA
-      7   2 10.0     7     1    red  0.5        1    NA
-      8   2  9.0     8     1    red  0.5        1    NA
-      9   2  6.0     9     1    red  0.5        1    NA
-      10  2  0.0    10     1    red  0.5        1    NA
-      11  2  8.5    11     1    red  0.5        1    NA
-      12  2  6.5    12     1    red  0.5        1    NA
-      13  2  4.0    13     1    red  0.5        1    NA
-      14  2  6.0    14     1    red  0.5        1    NA
-      15  2  8.5    15     1    red  0.5        1    NA
-      16  2 10.0    16     1    red  0.5        1    NA
-      17  2  7.5    17     1    red  0.5        1    NA
-      18  2 10.0    18     1    red  0.5        1    NA
-      19  2  8.5    19     1    red  0.5        1    NA
-      20  2  5.0    20     1    red  0.5        1    NA
-      21  2  4.5    21     1    red  0.5        1    NA
-      22  2  9.0    22     1    red  0.5        1    NA
-      23  2  4.0    23     1    red  0.5        1    NA
-      24  2  4.5    24     1    red  0.5        1    NA
-      25  2  3.5    25     1    red  0.5        1    NA
-      26  2 10.0    26     1    red  0.5        1    NA
-      27  2  8.0    27     1    red  0.5        1    NA
-      28  2  7.5    28     1    red  0.5        1    NA
-      29  2  6.5    29     1    red  0.5        1    NA
-      30  2 10.0    30     1    red  0.5        1    NA
-      31  2  8.5    31     1    red  0.5        1    NA
-      32  2  8.0    32     1    red  0.5        1    NA
-      33  2  2.0    33     1    red  0.5        1    NA
-      34  2  7.0    34     1    red  0.5        1    NA
-      35  2 10.0    35     1    red  0.5        1    NA
-      36  2 10.0    36     1    red  0.5        1    NA
-      37  2  8.0    37     1    red  0.5        1    NA
-      38  2  7.5    38     1    red  0.5        1    NA
-      39  2  0.0    39     1    red  0.5        1    NA
-      40  2  6.5    40     1    red  0.5        1    NA
-      41  2  1.0    41     1    red  0.5        1    NA
-      42  2  0.5    42     1    red  0.5        1    NA
-      43  2  9.5    43     1    red  0.5        1    NA
-      44  2  1.5    44     1    red  0.5        1    NA
-      45  2  4.5    45     1    red  0.5        1    NA
-      46  2  8.0    46     1    red  0.5        1    NA
-      47  2 10.0    47     1    red  0.5        1    NA
-      48  2  4.0    48     1    red  0.5        1    NA
-      49  2  6.0    49     1    red  0.5        1    NA
-      50  2 10.0    50     1    red  0.5        1    NA
-      51  2 10.0    51     1    red  0.5        1    NA
-      52  2  7.5    52     1    red  0.5        1    NA
-      53  2 10.0    53     1    red  0.5        1    NA
-      54  2  8.0    54     1    red  0.5        1    NA
-      55  2  5.0    55     1    red  0.5        1    NA
-      56  2  3.5    56     1    red  0.5        1    NA
-      57  2 10.0    57     1    red  0.5        1    NA
-      58  2  3.0    58     1    red  0.5        1    NA
-      59  2  4.5    59     1    red  0.5        1    NA
-      60  2 10.0    60     1    red  0.5        1    NA
-      61  2  4.0    61     1    red  0.5        1    NA
-      62  2  2.5    62     1    red  0.5        1    NA
-      63  2  8.5    63     1    red  0.5        1    NA
-      64  2 10.0    64     1    red  0.5        1    NA
-      65  2  1.0    65     1    red  0.5        1    NA
-      66  2  8.5    66     1    red  0.5        1    NA
-      67  2  9.0    67     1    red  0.5        1    NA
-      68  2  7.5    68     1    red  0.5        1    NA
-      69  2  0.5    69     1    red  0.5        1    NA
-      70  2  9.0    70     1    red  0.5        1    NA
-      71  2  9.0    71     1    red  0.5        1    NA
-      72  2 10.0    72     1    red  0.5        1    NA
-      73  2  9.5    73     1    red  0.5        1    NA
-      74  2  8.5    74     1    red  0.5        1    NA
-      75  2  0.0    75     1    red  0.5        1    NA
-      76  2  0.5    76     1    red  0.5        1    NA
-      77  2  8.5    77     1    red  0.5        1    NA
-      78  2  3.5    78     1    red  0.5        1    NA
-      79  2 10.0    79     1    red  0.5        1    NA
-      80  2  9.5    80     1    red  0.5        1    NA
-      81  2  4.5    81     1    red  0.5        1    NA
-      82  2  8.5    82     1    red  0.5        1    NA
-      83  2  4.0    83     1    red  0.5        1    NA
-      84  2 10.0    84     1    red  0.5        1    NA
-      85  2  2.0    85     1    red  0.5        1    NA
-      86  2 10.0    86     1    red  0.5        1    NA
-      87  2  8.5    87     1    red  0.5        1    NA
-      88  2  8.5    88     1    red  0.5        1    NA
-      89  2 10.0    89     1    red  0.5        1    NA
-      90  2  2.0    90     1    red  0.5        1    NA
-      91  1 10.0     1     1    red  0.5        1    NA
-      92  1 10.0     2     1    red  0.5        1    NA
-      93  1 10.0     3     1    red  0.5        1    NA
-      94  1  9.0     4     1    red  0.5        1    NA
-      95  1  8.5     5     1    red  0.5        1    NA
-      96  1  3.0     6     1    red  0.5        1    NA
-      97  1 10.0     7     1    red  0.5        1    NA
-      98  1 10.0     8     1    red  0.5        1    NA
-      99  1 10.0     9     1    red  0.5        1    NA
-      100 1  0.0    10     1    red  0.5        1    NA
-      101 1 10.0    11     1    red  0.5        1    NA
-      102 1  8.5    12     1    red  0.5        1    NA
-      103 1  8.5    13     1    red  0.5        1    NA
-      104 1  7.0    14     1    red  0.5        1    NA
-      105 1  9.0    15     1    red  0.5        1    NA
-      106 1 10.0    16     1    red  0.5        1    NA
-      107 1 10.0    17     1    red  0.5        1    NA
-      108 1 10.0    18     1    red  0.5        1    NA
-      109 1  9.5    19     1    red  0.5        1    NA
-      110 1  9.5    20     1    red  0.5        1    NA
-      111 1  7.5    21     1    red  0.5        1    NA
-      112 1 10.0    22     1    red  0.5        1    NA
-      113 1  1.5    23     1    red  0.5        1    NA
-      114 1  5.5    24     1    red  0.5        1    NA
-      115 1 10.0    25     1    red  0.5        1    NA
-      116 1 10.0    26     1    red  0.5        1    NA
-      117 1  8.0    27     1    red  0.5        1    NA
-      118 1  6.0    28     1    red  0.5        1    NA
-      119 1 10.0    29     1    red  0.5        1    NA
-      120 1  4.0    30     1    red  0.5        1    NA
-      121 1  6.0    31     1    red  0.5        1    NA
-      122 1  4.0    32     1    red  0.5        1    NA
-      123 1  4.5    33     1    red  0.5        1    NA
-      124 1 10.0    34     1    red  0.5        1    NA
-      125 1 10.0    35     1    red  0.5        1    NA
-       [ reached 'max' / getOption("max.print") -- omitted 55 rows ]
+         x    y group PANEL colour size linetype alpha
+      1  2  9.0     1     1    red  0.5        1    NA
+      2  2 10.0     2     1    red  0.5        1    NA
+      3  2 10.0     3     1    red  0.5        1    NA
+      4  2  6.0     4     1    red  0.5        1    NA
+      5  2  5.5     5     1    red  0.5        1    NA
+      6  2  7.5     6     1    red  0.5        1    NA
+      7  2 10.0     7     1    red  0.5        1    NA
+      8  2  9.0     8     1    red  0.5        1    NA
+      9  2  6.0     9     1    red  0.5        1    NA
+      10 2  0.0    10     1    red  0.5        1    NA
+      11 2  8.5    11     1    red  0.5        1    NA
+      12 2  6.5    12     1    red  0.5        1    NA
+      13 2  4.0    13     1    red  0.5        1    NA
+      14 2  6.0    14     1    red  0.5        1    NA
+      15 2  8.5    15     1    red  0.5        1    NA
+      16 2 10.0    16     1    red  0.5        1    NA
+      17 2  7.5    17     1    red  0.5        1    NA
+      18 2 10.0    18     1    red  0.5        1    NA
+      19 2  8.5    19     1    red  0.5        1    NA
+      20 2  5.0    20     1    red  0.5        1    NA
+      21 2  4.5    21     1    red  0.5        1    NA
+      22 2  9.0    22     1    red  0.5        1    NA
+      23 2  4.0    23     1    red  0.5        1    NA
+      24 2  4.5    24     1    red  0.5        1    NA
+      25 2  3.5    25     1    red  0.5        1    NA
+      26 2 10.0    26     1    red  0.5        1    NA
+      27 2  8.0    27     1    red  0.5        1    NA
+      28 1 10.0     1     1    red  0.5        1    NA
+      29 1 10.0     2     1    red  0.5        1    NA
+      30 1 10.0     3     1    red  0.5        1    NA
+      31 1  9.0     4     1    red  0.5        1    NA
+      32 1  8.5     5     1    red  0.5        1    NA
+      33 1  3.0     6     1    red  0.5        1    NA
+      34 1 10.0     7     1    red  0.5        1    NA
+      35 1 10.0     8     1    red  0.5        1    NA
+      36 1 10.0     9     1    red  0.5        1    NA
+      37 1  0.0    10     1    red  0.5        1    NA
+      38 1 10.0    11     1    red  0.5        1    NA
+      39 1  8.5    12     1    red  0.5        1    NA
+      40 1  8.5    13     1    red  0.5        1    NA
+      41 1  7.0    14     1    red  0.5        1    NA
+      42 1  9.0    15     1    red  0.5        1    NA
+      43 1 10.0    16     1    red  0.5        1    NA
+      44 1 10.0    17     1    red  0.5        1    NA
+      45 1 10.0    18     1    red  0.5        1    NA
+      46 1  9.5    19     1    red  0.5        1    NA
+      47 1  9.5    20     1    red  0.5        1    NA
+      48 1  7.5    21     1    red  0.5        1    NA
+      49 1 10.0    22     1    red  0.5        1    NA
+      50 1  1.5    23     1    red  0.5        1    NA
+      51 1  5.5    24     1    red  0.5        1    NA
+      52 1 10.0    25     1    red  0.5        1    NA
+      53 1 10.0    26     1    red  0.5        1    NA
+      54 1  8.0    27     1    red  0.5        1    NA
       
       [[4]]
-      data frame with 0 columns and 0 rows
+        x   y         label PANEL group colour  fill size angle alpha family fontface
+      1 1 3.0        Europe     1     1  black white    3     0    NA               1
+      2 1 0.0 North America     1     1  black white    3     0    NA               1
+      3 1 1.5        Europe     1     1  black white    3     0    NA               1
+      4 1 5.5        Europe     1     1  black white    3     0    NA               1
+        lineheight hjust vjust point.size segment.linetype segment.size
+      1        1.2   0.5   0.5          1                1          0.5
+      2        1.2   0.5   0.5          1                1          0.5
+      3        1.2   0.5   0.5          1                1          0.5
+      4        1.2   0.5   0.5          1                1          0.5
+        segment.curvature segment.angle segment.ncp segment.shape segment.square
+      1                 0            90           1           0.5           TRUE
+      2                 0            90           1           0.5           TRUE
+      3                 0            90           1           0.5           TRUE
+      4                 0            90           1           0.5           TRUE
+        segment.squareShape segment.inflect segment.debug
+      1                   1           FALSE         FALSE
+      2                   1           FALSE         FALSE
+      3                   1           FALSE         FALSE
+      4                   1           FALSE         FALSE
       
       [[5]]
         x        y group PANEL colour size linetype alpha
-      1 1 7.866667     1     1   blue    2        1   0.8
-      2 2 6.738889     1     1   blue    2        1   0.8
+      1 1 8.333333     1     1   blue    2        1   0.8
+      2 2 7.074074     1     1   blue    2        1   0.8
       
       [[6]]
         x        y PANEL group shape    colour size fill alpha stroke
-      1 1 7.866667     1     1    19 darkgreen    3   NA   0.5    0.5
-      2 2 6.738889     1     2    19 darkgreen    3   NA   0.5    0.5
+      1 1 8.333333     1     1    19 darkgreen    3   NA   0.5    0.5
+      2 2 7.074074     1     2    19 darkgreen    3   NA   0.5    0.5
       
 
 # basic plotting works - more than two groups
