@@ -99,7 +99,7 @@ labels." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -155,7 +155,16 @@ labels." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/web_only/session_info.html">session information</a>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
@@ -164,13 +173,7 @@ labels." />
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Development-focused</li>
@@ -452,7 +455,50 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
     <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples">ggcoefstats,Dot-and-whisker plots for regression analyses,Dot-and-whisker plots for regression analyses — ggcoefstats,Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggcoefstats.R'><code>R/ggcoefstats.R</code></a>,ggcoefstats.Rd,character(0),ggcoefstats,character(0),list(title = "Description", contents = "<p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>\n<p>Plot with the regression coefficients' point estimates as dots with\nconfidence interval whiskers and other statistical details included as\nlabels.</p>"),list(image = list(src = "https://indrajeetpatil.github.io/ggstatsplot/logo.png"), description = "\nPlot with the regression coefficients' point estimates as dots with\nconfidence interval whiskers and other statistical details included as\nlabels."),<span class='fu'>ggcoefstats</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  statistic <span class='op'>=</span> <span class='cn'>NULL</span>,
+  conf.int <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
+  exclude.intercept <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  effsize <span class='op'>=</span> <span class='st'>"eta"</span>,
+  meta.analytic.effect <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  meta.type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sort <span class='op'>=</span> <span class='st'>"none"</span>,
+  xlab <span class='op'>=</span> <span class='st'>"regression coefficient"</span>,
+  ylab <span class='op'>=</span> <span class='st'>"term"</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption <span class='op'>=</span> <span class='cn'>NULL</span>,
+  only.significant <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
+  errorbar.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>height <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
+  vline <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  vline.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
+  stats.labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stats.label.color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  stats.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, direction <span class='op'>=</span> <span class='st'>"y"</span><span class='op'>)</span>,
+  package <span class='op'>=</span> <span class='st'>"RColorBrewer"</span>,
+  palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>,list(list(name = "x", description = "<p>A model object to be tidied, or a tidy data frame containing results\nfrom a regression model. Function internally uses\n<code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code> to get a tidy dataframe. If\na data frame is used, it <em>must</em> contain columns named <code>term</code> (names of\npredictors) and <code>estimate</code> (corresponding estimates of coefficients or\nother quantities of interest).</p>"), 
+    list(name = "output", description = "<p>Character describing the expected output from this function:\n<code>\"plot\"</code> (visualization of regression coefficients) or <code>\"tidy\"</code> (tidy\ndataframe of results <code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code>) or <code>\"glance\"</code> (object\nfrom <code><a href='https://easystats.github.io/performance/reference/model_performance.html'>performance::model_performance</a></code>).</p>"), 
+    list(name = "statistic", description = "<p>Which statistic is to be displayed (either <code>\"t\"</code> or <code>\"f\"</code>or\n<code>\"z\"</code> or <code>\"chi\"</code>) in the label. This is relevant if the <code>x</code> argument is a\n<em>dataframe</em>.</p>"), list(name = "conf.int", description = "<p>Logical. Decides whether to display confidence intervals as\nerror bars (Default: <code>TRUE</code>).</p>"), list(name = "conf.level", description = "<p>Numeric deciding level of confidence or credible intervals\n(Default: <code>0.95</code>).</p>"), 
+    list(name = "k", description = "<p>Number of digits after decimal point (should be an integer)\n(Default: <code>k = 2L</code>).</p>"), list(name = "exclude.intercept", description = "<p>Logical that decides whether the intercept should be\nexcluded from the plot (Default: <code>FALSE</code>).</p>"), list(name = "effsize", description = "<p>Character describing the effect size to be displayed: <code>\"eta\"</code>\n(default) or <code>\"omega\"</code>. This argument is relevant only for models objects\nof class <code>aov</code>, <code>anova</code>, <code>aovlist</code>, <code>\"Gam\"</code>, and <code>\"manova\"</code>.</p>"), 
+    list(name = "meta.analytic.effect", description = "<p>Logical that decides whether subtitle for\nmeta-analysis via linear (mixed-effects) models (default: <code>FALSE</code>). If\n<code>TRUE</code>, input to argument <code>subtitle</code> will be ignored. This will be mostly\nrelevant if a data frame with estimates and their standard errors is\nentered.</p>"), list(name = "meta.type", description = "<p>Type of statistics used to carry out random-effects\nmeta-analysis. If <code>\"parametric\"</code> (default), <code><a href='https://wviechtb.github.io/metafor/reference/rma.uni.html'>metafor::rma</a></code> function will be\nused. If <code>\"robust\"</code>, <code><a href='https://rdrr.io/pkg/metaplus/man/metaplus.html'>metaplus::metaplus</a></code> function will be used. If\n<code>\"bayes\"</code>, <code><a href='https://rdrr.io/pkg/metaBMA/man/meta_random.html'>metaBMA::meta_random</a></code> function will be used.</p>"), 
+    list(name = "bf.message", description = "<p>Logical that decides whether results from running a\nBayesian meta-analysis assuming that the effect size <em>d</em> varies across\nstudies with standard deviation <em>t</em> (i.e., a random-effects analysis)\nshould be displayed in caption. Defaults to <code>TRUE</code>.</p>"), list(name = "sort", description = "<p>If <code>\"none\"</code> (default) do not sort, <code>\"ascending\"</code> sort by\nincreasing coefficient value, or <code>\"descending\"</code> sort by decreasing\ncoefficient value.</p>"), 
+    list(name = "xlab, ylab", description = "<p>Labels for <code>x</code>- and <code>y</code>- axis variables, respectively\n(Defaults: <code>\"regression coefficient\"</code> and <code>\"term\"</code>).</p>"), list(name = "title", description = "<p>The text for the plot title.</p>"), list(name = "subtitle", description = "<p>The text for the plot subtitle. The input to this argument\nwill be ignored if <code>meta.analytic.effect</code> is set to <code>TRUE</code>.</p>"), list(name = "caption", description = "<p>The text for the plot caption.</p>"), 
+    list(name = "only.significant", description = "<p>If <code>TRUE</code>, only stats labels for significant effects\nis shown (Default: <code>FALSE</code>). This can be helpful when a large number of\nregression coefficients are to be displayed in a single plot. Relevant only\nwhen the <code>output</code> is a plot.</p>"), list(name = "point.args", description = "<p>Additional arguments that will be passed to\n<code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> geom. Please see documentation for that function to\nknow more about these arguments.</p>"), 
+    list(name = "errorbar.args", description = "<p>Additional arguments that will be passed to\n<code><a href='https://ggplot2.tidyverse.org/reference/geom_errorbarh.html'>ggplot2::geom_errorbarh</a></code> geom. Please see documentation for that function\nto know more about these arguments.</p>"), list(name = "vline", description = "<p>Decides whether to display a vertical line (Default: <code>\"TRUE\"</code>).</p>"), list(name = "vline.args", description = "<p>Additional arguments that will be passed to\n<code><a href='https://ggplot2.tidyverse.org/reference/geom_abline.html'>ggplot2::geom_vline</a></code> geom. Please see documentation for that function to\nknow more about these arguments.</p>"), 
+    list(name = "stats.labels", description = "<p>Logical. Decides whether the statistic and <em>p</em>-values for\neach coefficient are to be attached to each dot as a text label using\n<code>ggrepel</code> (Default: <code>TRUE</code>).</p>"), list(name = "stats.label.color", description = "<p>Color for the labels. If set to <code>NULL</code>, colors will\nbe chosen from the specified <code>package</code> (Default: <code>\"RColorBrewer\"</code>) and\n<code>palette</code> (Default: <code>\"Dark2\"</code>).</p>"), 
+    list(name = "stats.label.args", description = "<p>Additional arguments that will be passed to\n<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geom. Please see documentation for that\nfunction to know more about these arguments.</p>"), list(name = "package", description = "<p>Name of the package from which the given palette is to\nbe extracted. The available palettes and packages can be checked by running\n<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p>"), 
+    list(name = "palette", description = "<p>Name of the package from which the given palette is to\nbe extracted. The available palettes and packages can be checked by running\n<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p>"), list(name = "ggtheme", description = "<p>A function, <code>ggplot2</code> theme name. Default value is\n<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from\nextension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,\n<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p>"), 
+    list(name = "ggstatsplot.layer", description = "<p>Logical that decides whether <code>theme_ggstatsplot</code>\ntheme elements are to be displayed along with the selected <code>ggtheme</code>\n(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that\noverride some aspects of the selected <code>ggtheme</code>.</p>"), list(name = "...", description = "<p>Additional arguments to tidying method. For more, see\n<code><a href='https://easystats.github.io/parameters/reference/model_parameters.html'>parameters::model_parameters</a></code>.</p>")),TRUE,<div class='input'><span class='co'># \donttest{</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
@@ -475,9 +521,9 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 #&gt;   </span><span style='font-weight: bold;'>df.error</span><span>  </span><span style='font-weight: bold;'>p.value</span><span>
 #&gt;      </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>       28 1.95</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-10</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>       28 1.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 4</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>       28 2.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>       28 7.55</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span>       </span><span style='color: #BB0000;'>NA</span><span> 1.41</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 4</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span>       </span><span style='color: #BB0000;'>NA</span><span> 2.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span>       </span><span style='color: #BB0000;'>NA</span><span> 7.55</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span><span>
 #&gt; </span><span style='color: #949494;'># ... with 1 more variable: </span><span style='color: #949494;font-weight: bold;'>label</span><span style='color: #949494;'> &lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># to get a glance summary</span>
 <span class='fu'>ggcoefstats</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"glance"</span><span class='op'>)</span>
@@ -485,7 +531,9 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 #&gt;     </span><span style='font-weight: bold;'>aic</span><span>   </span><span style='font-weight: bold;'>bic</span><span>    </span><span style='font-weight: bold;'>r2</span><span> </span><span style='font-weight: bold;'>r2.adjusted</span><span>  </span><span style='font-weight: bold;'>rmse</span><span> </span><span style='font-weight: bold;'>sigma</span><span>
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #BCBCBC;'>1</span><span>  166.  173. </span><span style='color: #949494;'>0.</span><span>785       </span><span style='color: #949494;'>0.</span><span>762  2.75  2.94</div><div class='input'><span class='co'># }</span>
-</div></span></pre>
+</div></span>,list(list(title = "Note", contents = "<p><strong>Important</strong>: In case you want to carry out meta-analysis using this\nfunction, it assumes that you have already downloaded the needed package\n(<code>metafor</code>, <code>metaplus</code>, or <code>metaBMA</code>) for meta-analysis.</p><ol>\n<li><p>All rows of regression estimates where either of the following\nquantities is <code>NA</code> will be removed if labels are requested: <code>estimate</code>,\n<code>statistic</code>, <code>p.value</code>.</p></li>\n<li><p>Given the rapid pace at which new methods are added to these packages, it\nis recommended that you install the GitHub versions of <code>parameters</code> and\n<code>performance</code> in order to make most of this function.</p></li>\n</ol>\n", 
+    slug = "note"), list(title = "References", contents = "<p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>", slug = "references")),2021,list(name = "ggstatsplot", version = "0.7.1.9000", authors = "<a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>"),list(destination = "dev", mode = "unreleased", version_label = "danger", version_tooltip = "Unreleased version", in_dev = FALSE),list(root = "../", title = "ggstatsplot"),list(css = "C:/Users/inp099/Documents/ggstatsplot/pkgdown/extra.css"),list(type = "default", left = "<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>\n<li class=\"dropdown\">\n  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n    Articles\n     \n    <span class=\"caret\"></span>\n  </a>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Primary functions</li>\n    <li>\n      <a href=\"../articles/web_only/ggbetweenstats.html\">ggbetweenstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggwithinstats.html\">ggwithinstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gghistostats.html\">gghistostats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggdotplotstats.html\">ggdotplotstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcorrmat.html\">ggcorrmat</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggscatterstats.html\">ggscatterstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggpiestats.html\">ggpiestats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcoefstats.html\">ggcoefstats</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Helper functions</li>\n    <li>\n      <a href=\"../articles/web_only/combine_plots.html\">combine_plots</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/theme_ggstatsplot.html\">ggstatsplot theme</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Miscellaneous</li>\n    <li>\n      <a href=\"../articles/additional.html\">additional vignettes</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/faq.html\">frequently asked questions (FAQ)</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/purrr_examples.html\">using `ggstatsplot` with the `purrr` package</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/principles.html\">Graphic design and statistical reporting principles</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/other_resources.html\">other resources to learn about `ggstatsplot`</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gallery.html\">gallery of `ggstatsplot` examples</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/effsize_interpretation.html\">effect size interpretation</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/session_info.html\">session information</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Development-focused</li>\n    <li>\n      <a href=\"../articles/web_only/benchmarking.html\">Benchmarking</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/dependencies.html\">Dependencies</a>\n    </li>\n  </ul>\n</li>\n<li>\n  <a href=\"../news/index.html\">Changelog</a>\n</li>", 
+    right = "<li>\n  <a href=\"https://github.com/IndrajeetPatil/ggstatsplot/\">\n    <span class=\"fab fa-github fa-lg\"></span>\n     \n  </a>\n</li>"),list(docsearch = list(api_key = "44345fbe359c5496fbc3955c513333d1", index_name = "ggstatsplot"), bootswatch = "lumen", .present = TRUE),list(version = "1.6.1.9000"),TRUE,list(left = "<p>Developed by <a href=\"https://sites.google.com/site/indrajeetspatilmorality/\" class=\"external-link\">Indrajeet Patil</a>.</p>", right = "<p>Site built with <a href=\"https://pkgdown.r-lib.org/\" class=\"external-link\">pkgdown</a> 1.6.1.9000.</p>"),TRUE</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -152,7 +152,16 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/web_only/session_info.html">session information</a>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
@@ -161,13 +170,7 @@
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Development-focused</li>
@@ -315,7 +318,24 @@ arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># this internal function may not have much utility outside of the package</span>
+    <pre class="examples">centrality_ggrepel,Adding labels for mean values.,Adding labels for mean values. — centrality_ggrepel,Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/helpers_ggbetweenstats_graphics.R'><code>R/helpers_ggbetweenstats_graphics.R</code></a>,centrality_ggrepel.Rd,character(0),centrality_ggrepel,internal,list(title = "Description", contents = "<p>Adding labels for mean values.</p>"),list(image = list(src = "https://indrajeetpatil.github.io/ggstatsplot/logo.png"), description = "Adding labels for mean values."),<span class='fu'>centrality_ggrepel</span><span class='op'>(</span>
+  <span class='va'>plot</span>,
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  tr <span class='op'>=</span> <span class='fl'>0.2</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
+  centrality.path <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  centrality.path.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"red"</span>, size <span class='op'>=</span> <span class='fl'>1</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
+  centrality.point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>5</span>, color <span class='op'>=</span> <span class='st'>"darkred"</span><span class='op'>)</span>,
+  centrality.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, nudge_x <span class='op'>=</span> <span class='fl'>0.4</span>, segment.linetype <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>,list(list(name = "plot", description = "<p>A <code>ggplot</code> object for which means are to be displayed.</p>"), list(name = "data", description = "<p>A dataframe (or a tibble) from which variables specified are to\nbe taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>\nbe accepted.</p>"), list(name = "x", description = "<p>The grouping (or independent) variable from the dataframe <code>data</code>.</p>"), list(name = "y", description = "<p>The response (or outcome or dependent) variable from the\ndataframe <code>data</code>.</p>"), 
+    list(name = "type", description = "<p>A character specifying the type of statistical approach.\nFour possible options:</p>\n<ul>\n<li><p><code>\"parametric\"</code></p></li>\n<li><p><code>\"nonparametric\"</code></p></li>\n<li><p><code>\"robust\"</code></p></li>\n<li><p><code>\"bayes\"</code></p></li>\n</ul>\n\n<p>Corresponding abbreviations are also accepted: <code>\"p\"</code> (for parametric),\n<code>\"np\"</code> (for nonparametric), <code>\"r\"</code> (for robust), or <code>\"bf\"</code> (for Bayesian).</p>"), 
+    list(name = "tr", description = "<p>Trim level for the mean when carrying out <code>robust</code> tests. In case\nof an error, try reducing the value of <code>tr</code>, which is by default set to\n<code>0.2</code>. Lowering the value might help.</p>"), list(name = "k", description = "<p>Number of digits after decimal point (should be an integer)\n(Default: <code>k = 2L</code>).</p>"), list(name = "centrality.path", description = "<p>Logical that decides whether individual data\npoints and means, respectively, should be connected using <code>geom_path</code>. Both\ndefault to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when\nthere are two groups (i.e., in case of a <em>t</em>-test). In case of large number\nof data points, it is advisable to set <code>point.path = FALSE</code> as these lines\ncan overwhelm the plot.</p>"), 
+    list(name = "centrality.path.args", description = "<p>A list of additional aesthetic\narguments passed on to <code>geom_path</code> connecting raw data points and mean\npoints.</p>"), list(name = "centrality.point.args", description = "<p>A list of additional aesthetic\narguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and\n<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p>"), 
+    list(name = "centrality.label.args", description = "<p>A list of additional aesthetic\narguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and\n<code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p>"), list(name = "...", description = "<p>Additional arguments.</p>")),TRUE,<div class='input'><span class='co'># this internal function may not have much utility outside of the package</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
@@ -330,7 +350,8 @@ arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference
   x <span class='op'>=</span> <span class='va'>Species</span>,
   y <span class='op'>=</span> <span class='va'>Sepal.Length</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='centrality_ggrepel-1.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='img'><img src='centrality_ggrepel-1.png' alt='' width='700' height='433' /></div>,list(),2021,list(name = "ggstatsplot", version = "0.7.1.9000", authors = "<a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>"),list(destination = "dev", mode = "unreleased", version_label = "danger", version_tooltip = "Unreleased version", in_dev = FALSE),list(root = "../", title = "ggstatsplot"),list(css = "C:/Users/inp099/Documents/ggstatsplot/pkgdown/extra.css"),list(type = "default", left = "<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>\n<li class=\"dropdown\">\n  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n    Articles\n     \n    <span class=\"caret\"></span>\n  </a>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Primary functions</li>\n    <li>\n      <a href=\"../articles/web_only/ggbetweenstats.html\">ggbetweenstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggwithinstats.html\">ggwithinstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gghistostats.html\">gghistostats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggdotplotstats.html\">ggdotplotstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcorrmat.html\">ggcorrmat</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggscatterstats.html\">ggscatterstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggpiestats.html\">ggpiestats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcoefstats.html\">ggcoefstats</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Helper functions</li>\n    <li>\n      <a href=\"../articles/web_only/combine_plots.html\">combine_plots</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/theme_ggstatsplot.html\">ggstatsplot theme</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Miscellaneous</li>\n    <li>\n      <a href=\"../articles/additional.html\">additional vignettes</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/faq.html\">frequently asked questions (FAQ)</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/purrr_examples.html\">using `ggstatsplot` with the `purrr` package</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/principles.html\">Graphic design and statistical reporting principles</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/other_resources.html\">other resources to learn about `ggstatsplot`</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gallery.html\">gallery of `ggstatsplot` examples</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/effsize_interpretation.html\">effect size interpretation</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/session_info.html\">session information</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Development-focused</li>\n    <li>\n      <a href=\"../articles/web_only/benchmarking.html\">Benchmarking</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/dependencies.html\">Dependencies</a>\n    </li>\n  </ul>\n</li>\n<li>\n  <a href=\"../news/index.html\">Changelog</a>\n</li>", 
+    right = "<li>\n  <a href=\"https://github.com/IndrajeetPatil/ggstatsplot/\">\n    <span class=\"fab fa-github fa-lg\"></span>\n     \n  </a>\n</li>"),list(docsearch = list(api_key = "44345fbe359c5496fbc3955c513333d1", index_name = "ggstatsplot"), bootswatch = "lumen", .present = TRUE),list(version = "1.6.1.9000"),TRUE,list(left = "<p>Developed by <a href=\"https://sites.google.com/site/indrajeetspatilmorality/\" class=\"external-link\">Indrajeet Patil</a>.</p>", right = "<p>Site built with <a href=\"https://pkgdown.r-lib.org/\" class=\"external-link\">pkgdown</a> 1.6.1.9000.</p>"),TRUE</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

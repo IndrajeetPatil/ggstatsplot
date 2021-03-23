@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -99,7 +99,16 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../../articles/web_only/session_info.html">session information</a>
+      <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
@@ -108,13 +117,7 @@
       <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../../articles/web_only/session_info.html">session information</a>
     </li>
     <li class="divider">
     <li class="dropdown-header">Development-focused</li>
@@ -159,7 +162,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-03-17</h4>
+            <h4 data-toc-skip class="date">2021-03-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -172,7 +175,7 @@
 <p>You can cite this package/vignette as:</p>
 <pre><code>
   Patil, I. (2018). ggstatsplot: 'ggplot2' Based Plots with Statistical
-  Details. CRAN. Retrieved from
+  Details. CRAN. doi:10.5281/zenodo.2074621. Retrieved from
   https://cran.r-project.org/web/packages/ggstatsplot/index.html
 
 A BibTeX entry for LaTeX users is
@@ -289,9 +292,9 @@ A BibTeX entry for LaTeX users is
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rvlenth/emmeans" class="external-link">emmeans</a></span><span class="op">)</span>
 
 <span class="co"># model and effect sizes</span>
-<span class="va">fiber.lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">strength</span> <span class="op">~</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">machine</span>, data <span class="op">=</span> <span class="va">fiber</span><span class="op">)</span>
+<span class="va">fiber.lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">strength</span> <span class="op">~</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">machine</span>, data <span class="op">=</span> <span class="va">fiber</span><span class="op">)</span>
 <span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">fiber.lm</span>, <span class="st">"machine"</span><span class="op">)</span>
-<span class="va">es</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/eff_size.html" class="external-link">eff_size</a></span><span class="op">(</span><span class="va">emm</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://mc-stan.org/rstanarm/reference/stanreg-methods.html" class="external-link">sigma</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span>, edf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/df.residual.html" class="external-link">df.residual</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span><span class="op">)</span>
+<span class="va">es</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/eff_size.html" class="external-link">eff_size</a></span><span class="op">(</span><span class="va">emm</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sigma.html" class="external-link">sigma</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span>, edf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html" class="external-link">df.residual</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
@@ -442,7 +445,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model</span>
 <span class="va">mod_mclogit</span> <span class="op">&lt;-</span>
   <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit.html" class="external-link">mclogit</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">resp</span>, <span class="va">suburb</span><span class="op">)</span> <span class="op">~</span> <span class="va">distance</span> <span class="op">+</span> <span class="va">cost</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">resp</span>, <span class="va">suburb</span><span class="op">)</span> <span class="op">~</span> <span class="va">distance</span> <span class="op">+</span> <span class="va">cost</span>,
     data <span class="op">=</span> <span class="va">Transport</span>,
     control <span class="op">=</span> <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit_control.html" class="external-link">mclogit.control</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
   <span class="op">)</span>
@@ -466,7 +469,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model</span>
 <span class="va">mod_mclogit</span> <span class="op">&lt;-</span>
   <span class="fu">mclogit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mclogit/man/mclogit.html" class="external-link">mclogit</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Freq</span>, <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span>
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Freq</span>, <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">~</span>
     <span class="va">econ.left</span> <span class="op">/</span> <span class="va">class</span> <span class="op">+</span> <span class="va">welfare</span> <span class="op">/</span> <span class="va">class</span> <span class="op">+</span> <span class="va">auth</span> <span class="op">/</span> <span class="va">class</span>,
     random <span class="op">=</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">party.time</span>,
     data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">electors</span>, <span class="va">party.time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/interaction.html" class="external-link">interaction</a></span><span class="op">(</span><span class="va">party</span>, <span class="va">time</span><span class="op">)</span><span class="op">)</span>
@@ -533,13 +536,13 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span><span class="op">)</span>
 <span class="va">mydata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">dv</span>, <span class="va">subject</span>, <span class="va">myfactor</span><span class="op">)</span>
 
-<span class="va">dvm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mydata</span>, <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>
+<span class="va">dvm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">mydata</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>
   <span class="va">dv</span><span class="op">[</span><span class="va">myfactor</span> <span class="op">==</span> <span class="st">"f1"</span><span class="op">]</span>,
   <span class="va">dv</span><span class="op">[</span><span class="va">myfactor</span> <span class="op">==</span> <span class="st">"f2"</span><span class="op">]</span>, <span class="va">dv</span><span class="op">[</span><span class="va">myfactor</span> <span class="op">==</span> <span class="st">"f3"</span><span class="op">]</span>
 <span class="op">)</span><span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">mlm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">dvm</span> <span class="op">~</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">mlm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">dvm</span> <span class="op">~</span> <span class="fl">1</span><span class="op">)</span>
 
 <span class="va">rfactor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"f1"</span>, <span class="st">"f2"</span>, <span class="st">"f3"</span><span class="op">)</span><span class="op">)</span>
 
@@ -697,7 +700,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># models</span>
 <span class="va">mod_elm</span> <span class="op">&lt;-</span> <span class="fu">eflm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eflm/man/elm.html" class="external-link">elm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
-<span class="va">mod_eglm</span> <span class="op">&lt;-</span> <span class="fu">eflm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eflm/man/eglm.html" class="external-link">eglm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/drc/man/gaussian.html" class="external-link">gaussian</a></span><span class="op">(</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+<span class="va">mod_eglm</span> <span class="op">&lt;-</span> <span class="fu">eflm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eflm/man/eglm.html" class="external-link">eglm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -716,7 +719,7 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span>
 <span class="co">#&gt; Error: Problem with `mutate()` input `label`.</span>
 <span class="co">#&gt; x non-numeric argument to mathematical function</span>
-<span class="co">#&gt; i Input `label` is `paste0(...)`.</span>
+<span class="co">#&gt; i Input `label` is `dplyr::case_when(...)`.</span>
 <span class="co">#&gt; i The error occurred in row 1.</span></code></pre></div>
 </div>
 <div id="linear-mixed-effects-model-lmerlmermod" class="section level2">
@@ -880,7 +883,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/joint.html" class="external-link">joint</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">heart.valve.jd</span>,
   long.formula <span class="op">=</span> <span class="va">log.lvmi</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">hs</span>,
-  surv.formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
+  surv.formula <span class="op">=</span> <span class="fu">Surv</span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
   model <span class="op">=</span> <span class="st">"intslope"</span>
 <span class="op">)</span>
 
@@ -1469,7 +1472,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>
 <span class="va">x3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="va">n</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x1</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/cut2.html" class="external-link">cut2</a></span><span class="op">(</span><span class="va">y</span>, g <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu">cut2</span><span class="op">(</span><span class="va">y</span>, g <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
 <span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rms/man/datadist.html" class="external-link">datadist</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span>, <span class="va">x3</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>datadist <span class="op">=</span> <span class="st">"dd"</span><span class="op">)</span>
 
@@ -1698,7 +1701,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model</span>
 <span class="va">mod_vgam</span> <span class="op">&lt;-</span>
   <span class="fu">VGAM</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/vgam.html" class="external-link">vgam</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/s.html" class="external-link">s</a></span><span class="op">(</span><span class="va">let</span><span class="op">)</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/s.html" class="external-link">s</a></span><span class="op">(</span><span class="va">let</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cumulative.html" class="external-link">cumulative</a></span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">pneumo</span>,
     trace <span class="op">=</span> <span class="cn">FALSE</span>
@@ -1723,7 +1726,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model</span>
 <span class="va">mod_vglm</span> <span class="op">&lt;-</span>
   <span class="fu">VGAM</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/vglm.html" class="external-link">vglm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="va">let</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">normal</span>, <span class="va">mild</span>, <span class="va">severe</span><span class="op">)</span> <span class="op">~</span> <span class="va">let</span>,
     family <span class="op">=</span> <span class="va">multinomial</span>,
     data <span class="op">=</span> <span class="va">pneumo</span>
   <span class="op">)</span>
@@ -1882,7 +1885,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">b_scam</span> <span class="op">&lt;-</span>
   <span class="fu">scam</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/scam/man/scam.html" class="external-link">scam</a></span><span class="op">(</span>
     <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/cgam/man/s.html" class="external-link">s</a></span><span class="op">(</span><span class="va">x1</span>, k <span class="op">=</span> <span class="fl">15</span>, bs <span class="op">=</span> <span class="st">"cr"</span>, m <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/cgam/man/s.html" class="external-link">s</a></span><span class="op">(</span><span class="va">x2</span>, k <span class="op">=</span> <span class="fl">25</span>, bs <span class="op">=</span> <span class="st">"mpi"</span>, m <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-    family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/drc/man/gaussian.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>,
+    family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">dat</span>,
     not.exp <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span>
@@ -1954,7 +1957,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">eta</span> <span class="op">&lt;-</span> <span class="va">beta</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">beta</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">*</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/crossprod.html" class="external-link">crossprod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span>, <span class="va">u</span><span class="op">)</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">eta</span><span class="op">)</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/PROreg/man/BB.html" class="external-link">rBB</a></span><span class="op">(</span><span class="va">k</span>, <span class="va">m</span>, <span class="va">p</span>, <span class="va">phi</span><span class="op">)</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">z</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">z</span><span class="op">)</span><span class="op">)</span>
 <span class="va">dat</span><span class="op">$</span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">z</span><span class="op">)</span>
 
 <span class="co"># apply the model</span>
@@ -2513,7 +2516,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># fit the model using maximum likelihood mean bias-reduced fit</span>
 <span class="va">lizards.brglm</span> <span class="op">&lt;-</span>
   <span class="fu">brglm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/brglm/man/brglm.html" class="external-link">brglm</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
+    <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
     family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="va">logit</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">lizards</span>,
     method <span class="op">=</span> <span class="st">"brglm.fit"</span>
@@ -2540,7 +2543,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># fit the model using maximum likelihood mean bias-reduced fit:</span>
 <span class="va">lizardsBR_mean</span> <span class="op">&lt;-</span>
   <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">grahami</span>, <span class="va">opalinus</span><span class="op">)</span> <span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">light</span> <span class="op">+</span> <span class="va">time</span>,
     family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span><span class="va">logit</span><span class="op">)</span>,
     data <span class="op">=</span> <span class="va">lizards</span>,
     method <span class="op">=</span> <span class="st">"brglmFit"</span>
@@ -2620,10 +2623,10 @@ A BibTeX entry for LaTeX users is
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">glmc</span><span class="op">)</span>
 
 <span class="co"># data</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5903</span>, <span class="fl">230</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5157</span>, <span class="fl">350</span><span class="op">)</span><span class="op">)</span>
-<span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5903</span>, <span class="fl">230</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5157</span>, <span class="fl">350</span><span class="op">)</span><span class="op">)</span>
+<span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">mat</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span>, nrow <span class="op">=</span> <span class="va">n</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span>, nrow <span class="op">=</span> <span class="va">n</span><span class="op">[</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,
     <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span>, nrow <span class="op">=</span> <span class="va">n</span><span class="op">[</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">]</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%*%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>,
@@ -2676,7 +2679,7 @@ A BibTeX entry for LaTeX users is
 <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">filter_group</span> <span class="op">&lt;-</span> <span class="va">sleepstudy</span><span class="op">$</span><span class="va">mygrp</span> <span class="op">==</span> <span class="va">i</span>
   <span class="va">sleepstudy</span><span class="op">$</span><span class="va">mysubgrp</span><span class="op">[</span><span class="va">filter_group</span><span class="op">]</span> <span class="op">&lt;-</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">filter_group</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">filter_group</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co"># model</span>
@@ -2753,7 +2756,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model (converting all numeric columns in data to z-scores)</span>
 <span class="va">mod_mlm</span> <span class="op">&lt;-</span>
   <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span> <span class="op">~</span> <span class="va">wt</span>,
+    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span> <span class="op">~</span> <span class="va">wt</span>,
     data <span class="op">=</span> <span class="fu">effectsize</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/effectsize/reference/standardize.html" class="external-link">standardize</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
   <span class="op">)</span>
 
@@ -2772,7 +2775,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html" class="external-link">lm</a></span><span class="op">(</span><span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
+<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/notdocumentedyet.html" class="external-link">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span>, <span class="va">hp</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
 <span class="va">m_maov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
 
 <span class="co"># plot</span>
@@ -3914,7 +3917,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># model</span>
 <span class="va">fCO</span> <span class="op">&lt;-</span> <span class="fu">quantreg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/rqss.html" class="external-link">rqss</a></span><span class="op">(</span>
-  formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html" class="external-link">qss</a></span><span class="op">(</span><span class="fu"><a href="https://amices.org/mice/reference/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
+  formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html" class="external-link">qss</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
   data <span class="op">=</span> <span class="va">CobarOre</span>
 <span class="op">)</span>
 
@@ -4860,7 +4863,7 @@ A BibTeX entry for LaTeX users is
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms" class="external-link">brms</a></span><span class="op">)</span>
 
 <span class="co"># prior</span>
-<span class="va">bprior1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html" class="external-link">prior</a></span><span class="op">(</span><span class="fu"><a href="https://mc-stan.org/rstanarm/reference/priors.html" class="external-link">student_t</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html" class="external-link">prior</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cauchy.html" class="external-link">cauchy</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">sd</span><span class="op">)</span>
+<span class="va">bprior1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html" class="external-link">prior</a></span><span class="op">(</span><span class="fu">student_t</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/brms/man/set_prior.html" class="external-link">prior</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/VGAM/man/cauchy.html" class="external-link">cauchy</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span>, class <span class="op">=</span> <span class="va">sd</span><span class="op">)</span>
 
 <span class="co"># model</span>
 <span class="va">fit_brm</span> <span class="op">&lt;-</span>
@@ -5648,18 +5651,14 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt;   term  estimate std.error conf.level conf.low conf.high statistic df.error</span>
 <span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;int&gt;</span>
 <span class="co">#&gt; 1 Asym      2.35    0.0782       0.95    2.19       2.50      30.0       13</span>
-<span class="co">#&gt; 2 xmid      1.48    0.0814       0.95    1.32       1.64      18.2       13</span>
-<span class="co">#&gt; 3 scal      1.04    0.0323       0.95    0.978      1.10      32.3       13</span>
+<span class="co">#&gt; 2 xmid      1.48    0.0814       0.95    1.32       1.64      18.2       NA</span>
+<span class="co">#&gt; 3 scal      1.04    0.0323       0.95    0.978      1.10      32.3       NA</span>
 <span class="co">#&gt;    p.value</span>
 <span class="co">#&gt;      &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 2.17e-13</span>
 <span class="co">#&gt; 2 1.22e-10</span>
 <span class="co">#&gt; 3 8.51e-14</span>
-<span class="co">#&gt;   label                                                                         </span>
-<span class="co">#&gt;   &lt;chr&gt;                                                                         </span>
-<span class="co">#&gt; 1 list(~widehat(italic(beta))==2.35, ~italic(t)(13)==30.01, ~italic(p)=='2.17e-~</span>
-<span class="co">#&gt; 2 list(~widehat(italic(beta))==1.48, ~italic(t)(13)==18.23, ~italic(p)=='1.22e-~</span>
-<span class="co">#&gt; 3 list(~widehat(italic(beta))==1.04, ~italic(t)(13)==32.27, ~italic(p)=='8.51e-~</span>
+<span class="co">#&gt; # ... with 1 more variable: label &lt;chr&gt;</span>
 
 <span class="co"># glance summary</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span>, output <span class="op">=</span> <span class="st">"glance"</span><span class="op">)</span>

@@ -29,7 +29,7 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::mutate(
         label = dplyr::case_when(
-          is.na(df.error) ~ paste0(
+          is.na(df.error) || is.infinite(df.error) ~ paste0(
             "list(~widehat(italic(beta))==", format_num(estimate, k),
             ", ~italic(t)==", format_num(statistic, k),
             ", ~italic(p)=='", format_num(p.value, k, TRUE),

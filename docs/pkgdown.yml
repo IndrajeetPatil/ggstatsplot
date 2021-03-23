@@ -1,6 +1,6 @@
 pandoc: 2.11.4
 pkgdown: 1.6.1.9000
-pkgdown_sha: ae4332d48aedc46be2b532b26661a9bc6b7244fc
+pkgdown_sha: 39071eea1bc3e40e88e5f4e474e5441e3add2b0b
 articles:
   additional: additional.html
   web_only/benchmarking: benchmarking.html
@@ -18,10 +18,11 @@ articles:
   web_only/ggscatterstats: ggscatterstats.html
   web_only/ggwithinstats: ggwithinstats.html
   web_only/other_resources: other_resources.html
+  web_only/principles: principles.html
   web_only/purrr_examples: purrr_examples.html
   web_only/session_info: session_info.html
   web_only/theme_ggstatsplot: theme_ggstatsplot.html
-last_built: 2021-03-15T17:04Z
+last_built: 2021-03-23T08:16Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot/reference
   article: https://indrajeetpatil.github.io/ggstatsplot/articles

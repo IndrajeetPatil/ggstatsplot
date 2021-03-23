@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -152,7 +152,16 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/web_only/session_info.html">session information</a>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
@@ -161,13 +170,7 @@
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Development-focused</li>
@@ -239,7 +242,7 @@ economic status (class), sex, age and survival.</p>
 <p>This is a modified dataset from <code>datasets</code> package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span>
+    <pre class="examples">Titanic_full,Titanic dataset.,Titanic dataset. — Titanic_full,Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/data.R'><code>R/data.R</code></a>,Titanic_full.Rd,character(0),Titanic_full,datasets,list(title = "Description", contents = "<p>Titanic dataset.</p>"),list(image = list(src = "https://indrajeetpatil.github.io/ggstatsplot/logo.png"), description = "Titanic dataset."),<span class='va'>Titanic_full</span>,<div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 2201    5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span><span>
 #&gt;      </span><span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>Class</span><span> </span><span style='font-weight: bold;'>Sex</span><span>   </span><span style='font-weight: bold;'>Age</span><span>   </span><span style='font-weight: bold;'>Survived</span><span>
@@ -256,7 +259,9 @@ economic status (class), sex, age and survival.</p>
 #&gt; $ </span><span style='font-weight: bold;'>Class   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~
 #&gt; $ </span><span style='font-weight: bold;'>Sex     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~
 #&gt; $ </span><span style='font-weight: bold;'>Age     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Child, Child, Child, Child, Child, Child, Child, Child, Child~
-#&gt; $ </span><span style='font-weight: bold;'>Survived</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</div></span></pre>
+#&gt; $ </span><span style='font-weight: bold;'>Survived</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</div></span>,list(list(title = "Format", contents = "<p>A data frame with 2201 rows and 5 variables</p><ul>\n<li><p>id. Dummy identity number for each person.</p></li>\n<li><p>Class. 1st, 2nd, 3rd, Crew.</p></li>\n<li><p>Sex. Male, Female.</p></li>\n<li><p>Age. Child, Adult.</p></li>\n<li><p>Survived. No, Yes.</p></li>\n</ul>\n", slug = "format"), list(title = "Details", contents = "<p>This data set provides information on the fate of passengers on the\nfatal maiden voyage of the ocean liner 'Titanic', summarized according to\neconomic status (class), sex, age and survival.</p>\n<p>This is a modified dataset from <code>datasets</code> package.</p>", 
+    slug = "details")),2021,list(name = "ggstatsplot", version = "0.7.1.9000", authors = "<a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>"),list(destination = "dev", mode = "unreleased", version_label = "danger", version_tooltip = "Unreleased version", in_dev = FALSE),list(root = "../", title = "ggstatsplot"),list(css = "C:/Users/inp099/Documents/ggstatsplot/pkgdown/extra.css"),list(type = "default", left = "<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>\n<li class=\"dropdown\">\n  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n    Articles\n     \n    <span class=\"caret\"></span>\n  </a>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Primary functions</li>\n    <li>\n      <a href=\"../articles/web_only/ggbetweenstats.html\">ggbetweenstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggwithinstats.html\">ggwithinstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gghistostats.html\">gghistostats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggdotplotstats.html\">ggdotplotstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcorrmat.html\">ggcorrmat</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggscatterstats.html\">ggscatterstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggpiestats.html\">ggpiestats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcoefstats.html\">ggcoefstats</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Helper functions</li>\n    <li>\n      <a href=\"../articles/web_only/combine_plots.html\">combine_plots</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/theme_ggstatsplot.html\">ggstatsplot theme</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Miscellaneous</li>\n    <li>\n      <a href=\"../articles/additional.html\">additional vignettes</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/faq.html\">frequently asked questions (FAQ)</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/purrr_examples.html\">using `ggstatsplot` with the `purrr` package</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/principles.html\">Graphic design and statistical reporting principles</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/other_resources.html\">other resources to learn about `ggstatsplot`</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gallery.html\">gallery of `ggstatsplot` examples</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/effsize_interpretation.html\">effect size interpretation</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/session_info.html\">session information</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Development-focused</li>\n    <li>\n      <a href=\"../articles/web_only/benchmarking.html\">Benchmarking</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/dependencies.html\">Dependencies</a>\n    </li>\n  </ul>\n</li>\n<li>\n  <a href=\"../news/index.html\">Changelog</a>\n</li>", 
+    right = "<li>\n  <a href=\"https://github.com/IndrajeetPatil/ggstatsplot/\">\n    <span class=\"fab fa-github fa-lg\"></span>\n     \n  </a>\n</li>"),list(docsearch = list(api_key = "44345fbe359c5496fbc3955c513333d1", index_name = "ggstatsplot"), bootswatch = "lumen", .present = TRUE),list(version = "1.6.1.9000"),TRUE,list(left = "<p>Developed by <a href=\"https://sites.google.com/site/indrajeetspatilmorality/\" class=\"external-link\">Indrajeet Patil</a>.</p>", right = "<p>Site built with <a href=\"https://pkgdown.r-lib.org/\" class=\"external-link\">pkgdown</a> 1.6.1.9000.</p>"),TRUE</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -20,8 +20,16 @@ vignette: >
 
 ```{r setup, include = FALSE}
 # show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
-options(mc.cores = parallel::detectCores()) # use max # CPUs
+options(
+  tibble.width = Inf,
+  pillar.bold = TRUE,
+  pillar.neg = TRUE,
+  pillar.subtle_num = TRUE,
+  pillar.min_chars = Inf
+)
+
+# use max # CPUs
+options(mc.cores = parallel::detectCores()) 
 
 knitr::opts_chunk$set(
   collapse = TRUE,

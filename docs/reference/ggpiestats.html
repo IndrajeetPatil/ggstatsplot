@@ -98,7 +98,7 @@ as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -154,7 +154,16 @@ as a subtitle." />
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/web_only/session_info.html">session information</a>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
@@ -163,13 +172,7 @@ as a subtitle." />
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Development-focused</li>
@@ -456,7 +459,50 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code><a href='grouped_ggbarstats.html'>grouped_ggbarstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples">ggpiestats,Pie charts with statistical tests,Pie charts with statistical tests — ggpiestats,Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/ggpiestats.R'><code>R/ggpiestats.R</code></a>,ggpiestats.Rd,character(0),ggpiestats,character(0),list(title = "Description", contents = "<p><a href='https://www.tidyverse.org/lifecycle/#maturing'><img src='figures/lifecycle-maturing.svg' alt='Maturing lifecycle'></a></p>\n<p>Pie charts for categorical data with statistical details included in the plot\nas a subtitle.</p>"),list(image = list(src = "https://indrajeetpatil.github.io/ggstatsplot/logo.png"), description = "\nPie charts for categorical data with statistical details included in the plot\nas a subtitle."),<span class='fu'>ggpiestats</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>x</span>,
+  y <span class='op'>=</span> <span class='cn'>NULL</span>,
+  counts <span class='op'>=</span> <span class='cn'>NULL</span>,
+  type <span class='op'>=</span> <span class='st'>"parametric"</span>,
+  paired <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  label <span class='op'>=</span> <span class='st'>"percentage"</span>,
+  label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>direction <span class='op'>=</span> <span class='st'>"both"</span><span class='op'>)</span>,
+  label.repel <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  k <span class='op'>=</span> <span class='fl'>2L</span>,
+  proportion.test <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  perc.k <span class='op'>=</span> <span class='fl'>0</span>,
+  bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ratio <span class='op'>=</span> <span class='cn'>NULL</span>,
+  conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
+  sampling.plan <span class='op'>=</span> <span class='st'>"indepMulti"</span>,
+  fixed.margin <span class='op'>=</span> <span class='st'>"rows"</span>,
+  prior.concentration <span class='op'>=</span> <span class='fl'>1</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  caption <span class='op'>=</span> <span class='cn'>NULL</span>,
+  legend.title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  package <span class='op'>=</span> <span class='st'>"RColorBrewer"</span>,
+  palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
+  ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output <span class='op'>=</span> <span class='st'>"plot"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>,list(list(name = "data", description = "<p>A dataframe (or a tibble) from which variables specified are to\nbe taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>\nbe accepted.</p>"), list(name = "x", description = "<p>The variable to use as the <strong>rows</strong> in the contingency table. Please\nnote that if there are empty factor levels in your variable, they will be\ndropped.</p>"), list(name = "y", description = "<p>The variable to use as the <strong>columns</strong> in the contingency table.\nPlease note that if there are empty factor levels in your variable, they\nwill be dropped. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test\n(a goodness of fit test) will be run for the <code>x</code> variable. Otherwise an\nappropriate association test will be run. This argument can not be <code>NULL</code>\nfor <code>ggbarstats</code> function.</p>"), 
+    list(name = "counts", description = "<p>A string naming a variable in data containing counts, or <code>NULL</code>\nif each row represents a single observation.</p>"), list(name = "type", description = "<p>A character specifying the type of statistical approach.\nFour possible options:</p>\n<ul>\n<li><p><code>\"parametric\"</code></p></li>\n<li><p><code>\"nonparametric\"</code></p></li>\n<li><p><code>\"robust\"</code></p></li>\n<li><p><code>\"bayes\"</code></p></li>\n</ul>\n\n<p>Corresponding abbreviations are also accepted: <code>\"p\"</code> (for parametric),\n<code>\"np\"</code> (for nonparametric), <code>\"r\"</code> (for robust), or <code>\"bf\"</code> (for Bayesian).</p>"), 
+    list(name = "paired", description = "<p>Logical indicating whether data came from a within-subjects or\nrepeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's\ntest expression will be returned. If <code>FALSE</code>, Pearson's chi-square test will\nbe returned.</p>"), list(name = "results.subtitle", description = "<p>Decides whether the results of statistical tests are\nto be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only\nthe plot will be returned.</p>"), 
+    list(name = "label", description = "<p>Character decides what information needs to be displayed\non the label in each pie slice. Possible options are <code>\"percentage\"</code>\n(default), <code>\"counts\"</code>, <code>\"both\"</code>.</p>"), list(name = "label.args", description = "<p>Additional aesthetic arguments that will be passed to\n<code>geom_label</code>.</p>"), list(name = "label.repel", description = "<p>Whether labels should be repelled using <code>ggrepel</code> package.\nThis can be helpful in case the labels are overlapping.</p>"), 
+    list(name = "k", description = "<p>Number of digits after decimal point (should be an integer)\n(Default: <code>k = 2L</code>).</p>"), list(name = "proportion.test", description = "<p>Decides whether proportion test for <code>x</code> variable is to\nbe carried out for each level of <code>y</code> (Default: <code>TRUE</code>). In <code>ggbarstats</code>,\nonly <em>p</em>-values from this test will be displayed.</p>"), list(name = "perc.k", description = "<p>Numeric that decides number of decimal places for percentage\nlabels (Default: <code>0</code>).</p>"), 
+    list(name = "bf.message", description = "<p>Logical that decides whether to display Bayes Factor in\nfavor of the <em>null</em> hypothesis. This argument is relevant only <strong>for\nparametric test</strong> (Default: <code>TRUE</code>).</p>"), list(name = "ratio", description = "<p>A vector of proportions: the expected proportions for the\nproportion test (should sum to 1). Default is <code>NULL</code>, which means the null\nis equal theoretical proportions across the levels of the nominal variable.\nThis means if there are two levels this will be <code>ratio = c(0.5,0.5)</code> or if\nthere are four levels this will be <code>ratio = c(0.25,0.25,0.25,0.25)</code>, etc.</p>"), 
+    list(name = "conf.level", description = "<p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults\nreturn <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p>"), list(name = "sampling.plan", description = "<p>Character describing the sampling plan. Possible options\nare <code>\"indepMulti\"</code> (independent multinomial; default), <code>\"poisson\"</code>,\n<code>\"jointMulti\"</code> (joint multinomial), <code>\"hypergeom\"</code> (hypergeometric). For\nmore, see <code>?BayesFactor::contingencyTableBF()</code>.</p>"), 
+    list(name = "fixed.margin", description = "<p>For the independent multinomial sampling plan, which\nmargin is fixed (<code>\"rows\"</code> or <code>\"cols\"</code>). Defaults to <code>\"rows\"</code>.</p>"), list(name = "prior.concentration", description = "<p>Specifies the prior concentration parameter, set\nto <code>1</code> by default. It indexes the expected deviation from the null\nhypothesis under the alternative, and corresponds to Gunel and Dickey's\n(1974) <code>\"a\"</code> parameter.</p>"), 
+    list(name = "title", description = "<p>The text for the plot title.</p>"), list(name = "subtitle", description = "<p>The text for the plot subtitle. Will work only if\n<code>results.subtitle = FALSE</code>.</p>"), list(name = "caption", description = "<p>The text for the plot caption.</p>"), list(name = "legend.title", description = "<p>Title text for the legend.</p>"), list(name = "ggtheme", description = "<p>A function, <code>ggplot2</code> theme name. Default value is\n<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from\nextension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,\n<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p>"), 
+    list(name = "ggstatsplot.layer", description = "<p>Logical that decides whether <code>theme_ggstatsplot</code>\ntheme elements are to be displayed along with the selected <code>ggtheme</code>\n(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that\noverride some aspects of the selected <code>ggtheme</code>.</p>"), list(name = "package", description = "<p>Name of the package from which the given palette is to\nbe extracted. The available palettes and packages can be checked by running\n<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p>"), 
+    list(name = "palette", description = "<p>Name of the package from which the given palette is to\nbe extracted. The available palettes and packages can be checked by running\n<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p>"), list(name = "ggplot.component", description = "<p>A <code>ggplot</code> component to be added to the plot prepared\nby <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code>\nvariants of all primary functions. Default is <code>NULL</code>. The argument should\nbe entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> functions.</p>"), 
+    list(name = "output", description = "<p>Character that describes what is to be returned: can be\n<code>\"plot\"</code> (default) or <code>\"subtitle\"</code> or <code>\"caption\"</code>. Setting this to\n<code>\"subtitle\"</code> will return the expression containing statistical results. If\nyou have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.\nSetting this to <code>\"caption\"</code> will return the expression containing details\nabout Bayes Factor analysis, but valid only when <code>type = \"parametric\"</code> and\n<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p>"), 
+    list(name = "...", description = "<p>Currently ignored.</p>")),TRUE,<div class='input'><span class='co'># \donttest{</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 
@@ -470,7 +516,9 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
   y <span class='op'>=</span> <span class='va'>cyl</span>
 <span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='ggpiestats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+</div>,list(list(title = "References", contents = "<p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>", slug = "references"), list(title = "See also", contents = "<div class='dont-index'><p><code><a href='grouped_ggpiestats.html'>grouped_ggpiestats</a></code>, <code><a href='ggbarstats.html'>ggbarstats</a></code>,\n<code><a href='grouped_ggbarstats.html'>grouped_ggbarstats</a></code></p></div>", 
+    slug = "see-also")),2021,list(name = "ggstatsplot", version = "0.7.1.9000", authors = "<a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>"),list(destination = "dev", mode = "unreleased", version_label = "danger", version_tooltip = "Unreleased version", in_dev = FALSE),list(root = "../", title = "ggstatsplot"),list(css = "C:/Users/inp099/Documents/ggstatsplot/pkgdown/extra.css"),list(type = "default", left = "<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>\n<li class=\"dropdown\">\n  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n    Articles\n     \n    <span class=\"caret\"></span>\n  </a>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Primary functions</li>\n    <li>\n      <a href=\"../articles/web_only/ggbetweenstats.html\">ggbetweenstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggwithinstats.html\">ggwithinstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gghistostats.html\">gghistostats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggdotplotstats.html\">ggdotplotstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcorrmat.html\">ggcorrmat</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggscatterstats.html\">ggscatterstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggpiestats.html\">ggpiestats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcoefstats.html\">ggcoefstats</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Helper functions</li>\n    <li>\n      <a href=\"../articles/web_only/combine_plots.html\">combine_plots</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/theme_ggstatsplot.html\">ggstatsplot theme</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Miscellaneous</li>\n    <li>\n      <a href=\"../articles/additional.html\">additional vignettes</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/faq.html\">frequently asked questions (FAQ)</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/purrr_examples.html\">using `ggstatsplot` with the `purrr` package</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/principles.html\">Graphic design and statistical reporting principles</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/other_resources.html\">other resources to learn about `ggstatsplot`</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gallery.html\">gallery of `ggstatsplot` examples</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/effsize_interpretation.html\">effect size interpretation</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/session_info.html\">session information</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Development-focused</li>\n    <li>\n      <a href=\"../articles/web_only/benchmarking.html\">Benchmarking</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/dependencies.html\">Dependencies</a>\n    </li>\n  </ul>\n</li>\n<li>\n  <a href=\"../news/index.html\">Changelog</a>\n</li>", 
+    right = "<li>\n  <a href=\"https://github.com/IndrajeetPatil/ggstatsplot/\">\n    <span class=\"fab fa-github fa-lg\"></span>\n     \n  </a>\n</li>"),list(docsearch = list(api_key = "44345fbe359c5496fbc3955c513333d1", index_name = "ggstatsplot"), bootswatch = "lumen", .present = TRUE),list(version = "1.6.1.9000"),TRUE,list(left = "<p>Developed by <a href=\"https://sites.google.com/site/indrajeetspatilmorality/\" class=\"external-link\">Indrajeet Patil</a>.</p>", right = "<p>Site built with <a href=\"https://pkgdown.r-lib.org/\" class=\"external-link\">pkgdown</a> 1.6.1.9000.</p>"),TRUE</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -96,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.1.9000</span>
       </span>
     </div>
 
@@ -152,7 +152,16 @@
       <a href="../articles/additional.html">additional vignettes</a>
     </li>
     <li>
-      <a href="../articles/web_only/session_info.html">session information</a>
+      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
     </li>
     <li>
       <a href="../articles/web_only/gallery.html">gallery of `ggstatsplot` examples</a>
@@ -161,13 +170,7 @@
       <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
-      <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
+      <a href="../articles/web_only/session_info.html">session information</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Development-focused</li>
@@ -249,7 +252,7 @@ dataset has been constructed such that every movie appears in one and only one
 genre category.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>movies_long</span><span class='op'>)</span>
+    <pre class="examples">movies_long,Movie information and user ratings from IMDB.com (long format).,Movie information and user ratings from IMDB.com (long format). — movies_long,Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/data.R'><code>R/data.R</code></a>,movies_long.Rd,character(0),movies_long,datasets,list(title = "Description", contents = "<p>Movie information and user ratings from IMDB.com (long format).</p>"),list(image = list(src = "https://indrajeetpatil.github.io/ggstatsplot/logo.png"), description = "Movie information and user ratings from IMDB.com (long format)."),<span class='va'>movies_long</span>,<div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>movies_long</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 1579    8</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>movies_long</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 8</span><span>
 #&gt;   </span><span style='font-weight: bold;'>title</span><span>                                               </span><span style='font-weight: bold;'>year</span><span> </span><span style='font-weight: bold;'>length</span><span> </span><span style='font-weight: bold;'>budget</span><span> </span><span style='font-weight: bold;'>rating</span><span>
@@ -277,7 +280,10 @@ genre category.</p>
 #&gt; $ </span><span style='font-weight: bold;'>rating</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 9.1, 9.0, 8.8, 8.8, 8.8, 8.8, 8.8, 8.8, 8.7, 8.7, 8.7, 8.7, 8.6~
 #&gt; $ </span><span style='font-weight: bold;'>votes </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> 149494, 103631, 157608, 114797, 132745, 97667, 134640, 103706, ~
 #&gt; $ </span><span style='font-weight: bold;'>mpaa  </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> R, PG-13, PG-13, PG-13, R, R, PG, PG, PG-13, R, PG, R, R, R, R,~
-#&gt; $ </span><span style='font-weight: bold;'>genre </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Drama, Action, Action, Action, Drama, Drama, Action, Action, Dr~</div></span></pre>
+#&gt; $ </span><span style='font-weight: bold;'>genre </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Drama, Action, Action, Action, Drama, Drama, Action, Action, Dr~</div></span>,list(list(title = "Format", contents = "<p>A data frame with 1,579 rows and 8 variables</p><ul>\n<li><p>title. Title of the movie.</p></li>\n<li><p>year. Year of release.</p></li>\n<li><p>budget. Total budget (if known) in US dollars</p></li>\n<li><p>length. Length in minutes.</p></li>\n<li><p>rating. Average IMDB user rating.</p></li>\n<li><p>votes. Number of IMDB users who rated this movie.</p></li>\n<li><p>mpaa. MPAA rating.</p></li>\n<li><p>genre. Different genres of movies (action, animation, comedy, drama,\ndocumentary, romance, short).</p></li>\n</ul>\n", 
+    slug = "format"), list(title = "Source", contents = "<p><a href='https://CRAN.R-project.org/package=ggplot2movies'>https://CRAN.R-project.org/package=ggplot2movies</a></p>", slug = "source"), list(title = "Details", contents = "<p>Modified dataset from <code>ggplot2movies</code> package.</p>\n<p>The internet movie database, <a href='https://imdb.com/'>https://imdb.com/</a>, is a website devoted\nto collecting movie data supplied by studios and fans. It claims to be the\nbiggest movie database on the web and is run by amazon.</p>\n<p>Movies were are identical to those selected for inclusion in movies_wide but this\ndataset has been constructed such that every movie appears in one and only one\ngenre category.</p>", 
+    slug = "details")),2021,list(name = "ggstatsplot", version = "0.7.1.9000", authors = "<a href='https://sites.google.com/site/indrajeetspatilmorality/'>Indrajeet Patil</a>"),list(destination = "dev", mode = "unreleased", version_label = "danger", version_tooltip = "Unreleased version", in_dev = FALSE),list(root = "../", title = "ggstatsplot"),list(css = "C:/Users/inp099/Documents/ggstatsplot/pkgdown/extra.css"),list(type = "default", left = "<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>\n<li class=\"dropdown\">\n  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">\n    Articles\n     \n    <span class=\"caret\"></span>\n  </a>\n  <ul class=\"dropdown-menu\" role=\"menu\">\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Primary functions</li>\n    <li>\n      <a href=\"../articles/web_only/ggbetweenstats.html\">ggbetweenstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggwithinstats.html\">ggwithinstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gghistostats.html\">gghistostats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggdotplotstats.html\">ggdotplotstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcorrmat.html\">ggcorrmat</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggscatterstats.html\">ggscatterstats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggpiestats.html\">ggpiestats</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/ggcoefstats.html\">ggcoefstats</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Helper functions</li>\n    <li>\n      <a href=\"../articles/web_only/combine_plots.html\">combine_plots</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/theme_ggstatsplot.html\">ggstatsplot theme</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Miscellaneous</li>\n    <li>\n      <a href=\"../articles/additional.html\">additional vignettes</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/faq.html\">frequently asked questions (FAQ)</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/purrr_examples.html\">using `ggstatsplot` with the `purrr` package</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/principles.html\">Graphic design and statistical reporting principles</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/other_resources.html\">other resources to learn about `ggstatsplot`</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/gallery.html\">gallery of `ggstatsplot` examples</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/effsize_interpretation.html\">effect size interpretation</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/session_info.html\">session information</a>\n    </li>\n    <li class=\"divider\"></li>\n    <li class=\"dropdown-header\">Development-focused</li>\n    <li>\n      <a href=\"../articles/web_only/benchmarking.html\">Benchmarking</a>\n    </li>\n    <li>\n      <a href=\"../articles/web_only/dependencies.html\">Dependencies</a>\n    </li>\n  </ul>\n</li>\n<li>\n  <a href=\"../news/index.html\">Changelog</a>\n</li>", 
+    right = "<li>\n  <a href=\"https://github.com/IndrajeetPatil/ggstatsplot/\">\n    <span class=\"fab fa-github fa-lg\"></span>\n     \n  </a>\n</li>"),list(docsearch = list(api_key = "44345fbe359c5496fbc3955c513333d1", index_name = "ggstatsplot"), bootswatch = "lumen", .present = TRUE),list(version = "1.6.1.9000"),TRUE,list(left = "<p>Developed by <a href=\"https://sites.google.com/site/indrajeetspatilmorality/\" class=\"external-link\">Indrajeet Patil</a>.</p>", right = "<p>Site built with <a href=\"https://pkgdown.r-lib.org/\" class=\"external-link\">pkgdown</a> 1.6.1.9000.</p>"),TRUE</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
