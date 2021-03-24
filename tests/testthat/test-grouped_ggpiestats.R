@@ -101,7 +101,7 @@ test_that(
 
     set.seed(123)
     sexpr_results <-
-      suppressWarnings(statsExpressions::expr_contingency_tab(
+      suppressWarnings(statsExpressions::contingency_table(
         data = dplyr::filter(df, race == "Other") %>%
           dplyr::mutate_if(., is.factor, droplevels),
         x = relig,

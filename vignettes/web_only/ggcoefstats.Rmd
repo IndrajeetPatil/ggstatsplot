@@ -29,7 +29,7 @@ options(
 )
 
 # use max # CPUs
-options(mc.cores = parallel::detectCores()) 
+options(mc.cores = parallel::detectCores())
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -42,6 +42,7 @@ knitr::opts_chunk$set(
 
 # for faster post-MCMC computations
 future::plan("multicore")
+library(ggstatsplot)
 ```
 
 ---
@@ -252,6 +253,30 @@ combine_plots(
     ggcoefstats(mod9, title = "proportion test")
   ),
   annotation.args = list(title = "Example from `BayesFactor` package")
+)
+```
+
+## Fixed Effects Individual Slope Estimator (`feis`)
+
+```{r feis, fig.height = 8, fig.width = 6}
+# setup
+set.seed(123)
+library(feisr)
+data("mwp", package = "feisr")
+
+# model
+feis.mod <-
+  feisr::feis(
+    formula = lnw ~ marry + enrol + as.factor(yeargr) | exp + I(exp^2),
+    data = mwp,
+    id = "id",
+    robust = TRUE
+  )
+
+# plot
+ggcoefstats(
+  x = feis.mod,
+  title = "Fixed Effects Individual Slope Estimator"
 )
 ```
 
@@ -664,17 +689,19 @@ library(MEMSS)
 data("Machines", package = "MEMSS")
 
 # simple model with random-slopes for repeated-measures factor
-m1_afex <- afex::mixed(
-  formula = score ~ Machine + (Machine | Worker),
-  data = Machines
-)
+m1_afex <-
+  afex::mixed(
+    formula = score ~ Machine + (Machine | Worker),
+    data = Machines
+  )
 
 # suppress correlations among random effect parameters with || and expand_re = TRUE
-m2_afex <- afex::mixed(
-  formula = score ~ Machine + (Machine || Worker),
-  data = Machines,
-  expand_re = TRUE
-)
+m2_afex <-
+  afex::mixed(
+    formula = score ~ Machine + (Machine || Worker),
+    data = Machines,
+    expand_re = TRUE
+  )
 
 # plot
 combine_plots(
@@ -3259,30 +3286,6 @@ ggcoefstats(
 )
 ```
 
-## Fixed Effects Individual Slope Estimator (`feis`)
-
-```{r feis, fig.height = 8, fig.width = 6}
-# setup
-set.seed(123)
-library(feisr)
-data("mwp", package = "feisr")
-
-# model
-feis.mod <-
-  feisr::feis(
-    formula = lnw ~ marry + enrol + as.factor(yeargr) | exp + I(exp^2),
-    data = mwp,
-    id = "id",
-    robust = TRUE
-  )
-
-# plot
-ggcoefstats(
-  x = feis.mod,
-  title = "Fixed Effects Individual Slope Estimator"
-)
-```
-
 ## Competing Risks Regression (`crr`)
 
 ```{r crr, fig.height = 6, fig.width = 6}
@@ -4950,7 +4953,6 @@ combine_plots(
 ```{r manova, fig.height = 8, fig.width = 8}
 # setup
 set.seed(123)
-op <- options(contrasts = c("contr.helmert", "contr.poly"))
 
 # fake a 2nd response variable
 npk2 <- within(npk, foo <- rnorm(24))

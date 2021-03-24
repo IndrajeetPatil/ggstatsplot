@@ -38,7 +38,7 @@
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
 #'  `y`)). Note that the defaults are colorblind-friendly.
-#' @inheritParams statsExpressions::expr_corr_test
+#' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggExtra::ggMarginal
@@ -51,7 +51,7 @@
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom ggExtra ggMarginal
-#' @importFrom statsExpressions expr_corr_test
+#' @importFrom statsExpressions corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -157,7 +157,7 @@ ggscatterstats <- function(data,
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
       caption_df <-
-        statsExpressions::expr_corr_test(
+        statsExpressions::corr_test(
           data = data,
           x = {{ x }},
           y = {{ y }},
@@ -172,7 +172,7 @@ ggscatterstats <- function(data,
 
     # extracting the subtitle using the switch function
     subtitle_df <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = data,
         x = {{ x }},
         y = {{ y }},

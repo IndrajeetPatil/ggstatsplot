@@ -41,7 +41,7 @@ if (require("afex")) {
       # subtitle
       set.seed(123)
       p1_subtitle <-
-        statsExpressions::expr_t_twosample(
+        statsExpressions::two_sample_test(
           data = data_bugs_2,
           x = condition,
           y = desire,
@@ -110,7 +110,7 @@ if (require("afex")) {
         # subtitle
         set.seed(123)
         p1_subtitle <-
-          statsExpressions::expr_oneway_anova(
+          statsExpressions::oneway_anova(
             data = WineTasting,
             x = "Wine",
             y = Taste,
@@ -209,7 +209,7 @@ if (require("afex")) {
 
         set.seed(123)
         p1_subtitle <-
-          statsExpressions::expr_oneway_anova(
+          statsExpressions::oneway_anova(
             data = iris_long,
             x = condition,
             y = value,
@@ -233,7 +233,7 @@ if (require("afex")) {
 
         set.seed(123)
         p2_subtitle <-
-          statsExpressions::expr_oneway_anova(
+          statsExpressions::oneway_anova(
             data = iris_long,
             x = condition,
             y = value,
@@ -259,7 +259,7 @@ if (require("afex")) {
 
         set.seed(123)
         p3_subtitle <-
-          suppressWarnings(statsExpressions::expr_t_twosample(
+          suppressWarnings(statsExpressions::two_sample_test(
             data = ggstatsplot::VR_dilemma,
             x = modality,
             y = score,
@@ -287,7 +287,7 @@ if (require("afex")) {
 
         set.seed(123)
         p4_subtitle <-
-          suppressWarnings(statsExpressions::expr_t_twosample(
+          suppressWarnings(statsExpressions::two_sample_test(
             data = ggstatsplot::VR_dilemma,
             x = modality,
             y = score,

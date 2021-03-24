@@ -351,15 +351,15 @@ outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
 #' @param element Which expression is needed (`"subtitle"` or `"caption"`)
 #' @param ... Arguments passed to respective subtitle helper functions.
 #'
-#' @importFrom statsExpressions expr_t_twosample expr_oneway_anova
+#' @importFrom statsExpressions two_sample_test oneway_anova
 #' @importFrom rlang exec
 #'
 #' @noRd
 
 function_switch <- function(test, element, ...) {
   # which function?
-  if (test == "t") .f <- statsExpressions::expr_t_twosample
-  if (test == "anova") .f <- statsExpressions::expr_oneway_anova
+  if (test == "t") .f <- statsExpressions::two_sample_test
+  if (test == "anova") .f <- statsExpressions::oneway_anova
 
   # evaluate it
   suppressWarnings(suppressMessages(rlang::exec(.fn = .f, ...)))

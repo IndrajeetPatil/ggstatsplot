@@ -178,7 +178,7 @@ test_that(
 
     set.seed(123)
     basic_results <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = df,
         x = "rating",
         y = length,

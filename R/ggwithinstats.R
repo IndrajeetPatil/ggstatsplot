@@ -29,7 +29,7 @@
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
 #'   arguments passed on to `geom_path` connecting raw data points and mean
 #'   points.
-#' @inheritParams statsExpressions::expr_oneway_anova
+#' @inheritParams statsExpressions::oneway_anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}

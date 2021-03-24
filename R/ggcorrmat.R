@@ -42,7 +42,7 @@
 #'   any of the following arguments since they are already internally being
 #'   used: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `lab`,
 #'   `pch`, `legend.title`, `digits`.
-#' @inheritParams statsExpressions::expr_corr_test
+#' @inheritParams statsExpressions::corr_test
 #' @inheritParams ggbetweenstats
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggcorrplot::ggcorrplot

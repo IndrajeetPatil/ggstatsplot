@@ -34,7 +34,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = as.data.frame(Titanic),
         x = "Sex",
         y = "Survived",
@@ -188,7 +188,7 @@ test_that(
 
     set.seed(123)
     stats_output <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = df,
         x = race,
         y = marital,
@@ -210,7 +210,7 @@ test_that(
     # caption output
     set.seed(123)
     p_cap_exp <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = df,
         x = "race",
         y = marital,

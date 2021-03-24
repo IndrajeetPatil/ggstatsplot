@@ -20,7 +20,7 @@
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
 #'   and explore multiple widths to find the best to illustrate the stories in
 #'   your data.
-#' @inheritParams statsExpressions::expr_t_onesample
+#' @inheritParams statsExpressions::one_sample_test
 #' @inheritParams histo_labeller
 #' @inheritParams ggbetweenstats
 #'
@@ -33,7 +33,7 @@
 #' @importFrom dplyr group_by n arrange
 #' @importFrom rlang enquo as_name !! %||%
 #' @importFrom stats dnorm
-#' @importFrom statsExpressions expr_t_onesample
+#' @importFrom statsExpressions one_sample_test
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
@@ -104,7 +104,7 @@ gghistostats <- function(data,
   if (isTRUE(results.subtitle)) {
     # preparing the subtitle with statistical results
     subtitle_df <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = df,
         x = {{ x }},
         type = type,
@@ -122,7 +122,7 @@ gghistostats <- function(data,
     # preparing the BF message
     if (type == "parametric" && isTRUE(bf.message)) {
       caption_df <-
-        statsExpressions::expr_t_onesample(
+        statsExpressions::one_sample_test(
           data = df,
           x = {{ x }},
           type = "bayes",

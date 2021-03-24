@@ -26,7 +26,7 @@ test_that(
     # subtitle used
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = ggplot2::msleep,
         x = "vore"
       )$expression[[1]]
@@ -34,7 +34,7 @@ test_that(
     # caption
     set.seed(123)
     p_cap <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = ggplot2::msleep,
         type = "bayes",
         x = "vore",
@@ -106,7 +106,7 @@ test_that(
     # subtitle used
     set.seed(123)
     p_subtitle <-
-      suppressWarnings(statsExpressions::expr_contingency_tab(
+      suppressWarnings(statsExpressions::contingency_table(
         data = mtcars,
         x = "am",
         y = "cyl"
@@ -115,7 +115,7 @@ test_that(
     # subtitle used
     set.seed(123)
     p_cap <-
-      suppressWarnings(statsExpressions::expr_contingency_tab(
+      suppressWarnings(statsExpressions::contingency_table(
         data = mtcars,
         x = "am",
         y = "cyl",
@@ -160,7 +160,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = as.data.frame(Titanic),
         x = Sex,
         y = Survived,
@@ -227,7 +227,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = survey.data,
         x = `1st survey`,
         y = `2nd survey`,
@@ -390,7 +390,7 @@ test_that(
 
     set.seed(123)
     stats_output <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = df,
         x = race,
         y = marital,
@@ -412,7 +412,7 @@ test_that(
     # caption output
     set.seed(123)
     p_cap_exp <-
-      statsExpressions::expr_contingency_tab(
+      statsExpressions::contingency_table(
         data = df,
         x = "race",
         y = marital,

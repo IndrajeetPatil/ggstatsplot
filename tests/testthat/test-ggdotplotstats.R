@@ -47,7 +47,7 @@ test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = morley_new,
         x = Speed,
         y = "Expt",

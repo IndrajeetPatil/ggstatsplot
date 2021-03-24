@@ -34,7 +34,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = "sleep_total",
         y = sleep_cycle,
@@ -44,7 +44,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_cap <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = "sleep_total",
         y = sleep_cycle,
@@ -90,7 +90,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
@@ -128,7 +128,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
@@ -171,7 +171,7 @@ test_that(
     # subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
         x = sleep_total,
         y = sleep_cycle,
@@ -333,7 +333,7 @@ test_that(
       )
 
     fun_sub <-
-      statsExpressions::expr_corr_test(
+      statsExpressions::corr_test(
         data = dplyr::starwars,
         x = mass,
         y = height,

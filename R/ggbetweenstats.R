@@ -106,9 +106,9 @@
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
-#' @inheritParams statsExpressions::expr_oneway_anova
-#' @inheritParams statsExpressions::expr_t_twosample
-#' @inheritParams statsExpressions::expr_t_onesample
+#' @inheritParams statsExpressions::oneway_anova
+#' @inheritParams statsExpressions::two_sample_test
+#' @inheritParams statsExpressions::one_sample_test
 #'
 #' @import ggplot2
 #'

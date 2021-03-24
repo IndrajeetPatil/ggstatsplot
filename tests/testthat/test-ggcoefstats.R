@@ -490,7 +490,7 @@ test_that(
     # subtitle output
     set.seed(123)
     using_function1 <-
-      statsExpressions::expr_meta_random(
+      statsExpressions::meta_analysis(
         data = df_eg,
         k = 4,
         type = "p"

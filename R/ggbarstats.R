@@ -22,7 +22,7 @@
 #' @importFrom rlang !!! as_name ensym exec
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom tidyr uncount drop_na
-#' @importFrom statsExpressions expr_contingency_tab
+#' @importFrom statsExpressions contingency_table
 #'
 #' @inherit ggpiestats return details
 #'
@@ -101,7 +101,7 @@ ggbarstats <- function(data,
   if (isTRUE(results.subtitle)) {
     subtitle_df <-
       tryCatch(
-        expr = statsExpressions::expr_contingency_tab(
+        expr = statsExpressions::contingency_table(
           data = data,
           x = {{ x }},
           y = {{ y }},
@@ -120,7 +120,7 @@ ggbarstats <- function(data,
     if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
       caption_df <-
         tryCatch(
-          expr = statsExpressions::expr_contingency_tab(
+          expr = statsExpressions::contingency_table(
             data = data,
             x = {{ x }},
             y = {{ y }},

@@ -17,7 +17,7 @@
 #' @inheritParams ggcoefstats
 #'
 #' @importFrom dplyr row_number percent_rank pull
-#' @importFrom statsExpressions expr_t_onesample
+#' @importFrom statsExpressions one_sample_test
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
@@ -102,7 +102,7 @@ ggdotplotstats <- function(data,
     # preparing the BF message for NULL
     if (isTRUE(bf.message) && type == "parametric") {
       caption_df <-
-        statsExpressions::expr_t_onesample(
+        statsExpressions::one_sample_test(
           data = data,
           x = {{ x }},
           type = "bayes",
@@ -117,7 +117,7 @@ ggdotplotstats <- function(data,
 
     # preparing the subtitle with statistical results
     subtitle_df <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = data,
         x = {{ x }},
         type = type,

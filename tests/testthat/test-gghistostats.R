@@ -31,7 +31,7 @@ test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = dplyr::starwars,
         x = height,
         type = "p",
@@ -41,7 +41,7 @@ test_that(
     # checking caption
     set.seed(123)
     p_cap <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = dplyr::starwars,
         x = height,
         type = "bayes",
@@ -176,7 +176,7 @@ test_that(
     # checking subtitle
     set.seed(123)
     p_subtitle <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = mtcars,
         x = wt,
         test.value = 2.5,
@@ -261,7 +261,7 @@ test_that(
 
     set.seed(123)
     sub <-
-      statsExpressions::expr_t_onesample(
+      statsExpressions::one_sample_test(
         data = ggplot2::msleep,
         x = brainwt,
         type = "np",

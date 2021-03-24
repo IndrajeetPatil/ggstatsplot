@@ -31,7 +31,7 @@
 #'   This can be helpful in case the labels are overlapping.
 #' @param legend.title Title text for the legend.
 #' @inheritParams ggbetweenstats
-#' @inheritParams statsExpressions::expr_contingency_tab
+#' @inheritParams statsExpressions::contingency_table
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
 #'
@@ -45,7 +45,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom tidyr uncount drop_na
-#' @importFrom statsExpressions expr_contingency_tab
+#' @importFrom statsExpressions contingency_table
 #'
 #' @references
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
@@ -144,7 +144,7 @@ ggpiestats <- function(data,
   if (isTRUE(results.subtitle)) {
     subtitle_df <-
       tryCatch(
-        expr = statsExpressions::expr_contingency_tab(
+        expr = statsExpressions::contingency_table(
           data = data,
           x = {{ x }},
           y = {{ y }},
@@ -163,7 +163,7 @@ ggpiestats <- function(data,
     if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
       caption_df <-
         tryCatch(
-          expr = statsExpressions::expr_contingency_tab(
+          expr = statsExpressions::contingency_table(
             data = data,
             x = {{ x }},
             y = {{ y }},

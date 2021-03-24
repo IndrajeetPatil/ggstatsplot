@@ -78,7 +78,7 @@
 #'   `parameters::model_parameters`.
 #' @inheritParams parameters::model_parameters
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams statsExpressions::expr_meta_random
+#' @inheritParams statsExpressions::meta_analysis
 #' @inheritParams ggbetweenstats
 #'
 #' @note
@@ -101,7 +101,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic
-#' @importFrom statsExpressions expr_meta_random
+#' @importFrom statsExpressions meta_analysis
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom performance model_performance
 #'
@@ -337,14 +337,14 @@ ggcoefstats <- function(x,
     meta.type <- ipmisc::stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
-    subtitle_df <- statsExpressions::expr_meta_random(tidy_df, type = meta.type, k = k)
+    subtitle_df <- statsExpressions::meta_analysis(tidy_df, type = meta.type, k = k)
 
     subtitle <- subtitle_df$expression[[1]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && isTRUE(bf.message)) {
       caption_df <-
-        statsExpressions::expr_meta_random(
+        statsExpressions::meta_analysis(
           top.text = caption,
           type = "bayes",
           data = tidy_df,
