@@ -2,9 +2,8 @@
 
 MINOR CHANGES
 
-  - To reflect changes made in `parameters` package, `ggcoefstats` now shows
-    degrees of freedom for *t*-statistic in `ggcoefststs` only for intercept
-    term.
+  - To reflect changes made in `parameters` package, `ggcoefstats` now does not
+    show degrees of freedom when they are not available instead of `Inf`.
 
 # ggstatsplot 0.7.1
 

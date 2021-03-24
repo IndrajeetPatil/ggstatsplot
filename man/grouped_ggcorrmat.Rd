@@ -121,9 +121,10 @@ multiple levels of a given factor and combining the resulting plots using
 \donttest{
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # for plot
-ggstatsplot::grouped_ggcorrmat(
+grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
   type = "robust",
@@ -131,7 +132,7 @@ ggstatsplot::grouped_ggcorrmat(
 )
 
 # for dataframe
-ggstatsplot::grouped_ggcorrmat(
+grouped_ggcorrmat(
   data = ggplot2::msleep,
   grouping.var = vore,
   type = "bayes",

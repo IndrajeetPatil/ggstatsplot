@@ -386,6 +386,7 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
 <span class='co'># let's create a smaller dataframe</span>
 <span class='va'>diamonds_short</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span> <span class='op'>%&gt;%</span>
@@ -395,7 +396,7 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 
 <span class='co'># plot</span>
 <span class='co'># let's skip statistical analysis</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggbarstats</span><span class='op'>(</span>
+<span class='fu'>grouped_ggbarstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>diamonds_short</span>,
   x <span class='op'>=</span> <span class='va'>color</span>,
   y <span class='op'>=</span> <span class='va'>clarity</span>,

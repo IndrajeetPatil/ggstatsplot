@@ -438,9 +438,10 @@ of an error, try reducing the value of <code>tr</code>, which is by default set 
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
 <span class='co'># the most basic function call</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
+<span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='va'>drv</span> <span class='op'>!=</span> <span class='st'>"4"</span><span class='op'>)</span>,
   x <span class='op'>=</span> <span class='va'>year</span>,
   y <span class='op'>=</span> <span class='va'>hwy</span>,
@@ -449,7 +450,7 @@ of an error, try reducing the value of <code>tr</code>, which is by default set 
 <span class='op'>)</span>
 </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># modifying individual plots using `ggplot.component` argument</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
+<span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span>
     <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='va'><a href='movies_long.html'>movies_long</a></span>,
     <span class='va'>genre</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Action"</span>, <span class='st'>"Comedy"</span><span class='op'>)</span>,

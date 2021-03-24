@@ -377,27 +377,20 @@ override some aspects of the selected <code>ggtheme</code>.</p></dd>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># for reproducibility</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
 <span class='co'># removing factor level with very few no. of observations</span>
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span>.data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='va'>cyl</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"4"</span>, <span class='st'>"6"</span>, <span class='st'>"8"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># plot</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggdotplotstats</span><span class='op'>(</span>
+<span class='fu'>grouped_ggdotplotstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>df</span>,
   x <span class='op'>=</span> <span class='va'>cty</span>,
   y <span class='op'>=</span> <span class='va'>manufacturer</span>,
   grouping.var <span class='op'>=</span> <span class='va'>cyl</span>,
-  test.value <span class='op'>=</span> <span class='fl'>15.5</span>,
-  ggplot.component <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>
-    sec.axis <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/sec_axis.html'>dup_axis</a></span><span class='op'>(</span><span class='op'>)</span>,
-    limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>24</span><span class='op'>)</span>,
-    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>12</span>, <span class='fl'>24</span>, <span class='fl'>2</span><span class='op'>)</span>
-  <span class='op'>)</span>
+  test.value <span class='op'>=</span> <span class='fl'>15.5</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='message'>Scale for 'x' is already present. Adding another scale for 'x', which will</span>
-#&gt; <span class='message'>replace the existing scale.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 3 rows containing missing values (geom_point).</span></div><div class='img'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='img'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

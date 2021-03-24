@@ -66,7 +66,7 @@
 #'   bf.message = FALSE,
 #'   label.var = "title",
 #'   marginal = FALSE,
-#'   annotation.args = list(caption = "All movies have IMDB rating greater than 7")
+#'   annotation.args = list(tag_levels = "a")
 #' )
 #' @export
 
