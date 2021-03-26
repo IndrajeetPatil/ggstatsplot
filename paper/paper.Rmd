@@ -1,5 +1,5 @@
 ---
-title: "Enhancing 'ggplot2' with statistical details: The 'ggstatsplot' approach"
+title: "Visualizations with statistical details: The 'ggstatsplot' approach"
 tags:
   - R
   - parametric statistics
@@ -21,11 +21,6 @@ output: rticles::joss_article
 csl: apa.csl
 journal: JOSS
 link-citations: yes
-header-includes:
-  - \usepackage{tabularx}
-  - \usepackage{booktabs}
-  - \usepackage{tikz}
-  - \usepackage{float}
 ---
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
@@ -40,27 +35,53 @@ knitr::opts_chunk$set(
   out.width = "100%",
   dpi = 450,
   comment = "#>",
-  fig.pos = "H",
   message = FALSE,
   warning = FALSE
 )
-
-library(ggstatsplot)
 ```
 
 # Summary
 
-In a typical exploratory data analysis workflow, data visualization and
-statistical modeling are two different phases: visualization informs modeling,
-and modeling in its turn can suggest a different visualization method, and so on
-and so forth. The central idea of `ggstatsplot` is simple: combine these two
-phases into one in the form of graphics with statistical details, which makes
-data exploration simpler and faster.
 
 # Statement of Need
 
+In a typical exploratory data analysis workflow, data visualization and
+statistical modeling are two different phases: visualization informs modeling,
+and modeling in its turn can suggest a different visualization method, and so on
+and so forth [@wickham2016r]. The central idea of `ggstatsplot` package in R
+programming language [@base2021] is simple: combine these two phases into one in
+the form of graphics with statistical details. The package is designed to follow
+the best practices in **both** data visualization [@cleveland1985;
+@grant2018data; @healy2018data; @tufte2001;
+@wilke2019fundamentals] and (Frequentist/Bayesian) statistical reporting
+[@american1985publication; @van2020jasp].
 
-# `ggstatsplot` at a glance
+Before discussing benefits of this approach, we will see output from one of its
+functions to understand its behavior.
+
+```{r, fig.width=8, fig.height=5, fig.cap="Example plot from the 'ggstatsplot' package illustrates its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analysis, see the package website: https://indrajeetpatil.github.io/ggstatsplot/"}
+library(ggstatsplot)
+library(palmerpenguins) # for 'penguins' dataset
+
+ggbetweenstats(penguins, species, body_mass_g)
+```
+
+As can be seen, with a **single** line of code, the function produces details
+about descriptive statistics, inferential statistics, effect size estimate and
+its uncertainty, pairwise comparisons, Bayesian hypothesis testing, Bayesian
+posterior estimate and its uncertainty. Moreover, these details are juxtaposed
+with informative and well-labeled visualizations, designed to follow best
+practice guidelines from data visualization research. Without `ggstatsplot`,
+getting these statistical details and customizing a plot would require more than
+an hour of work, but, with `ggstatsplot`, it takes a little more than a few
+seconds. In other words, this package takes away *an* excuse from researchers to
+thoroughly explore their data - since it lowers the technical and time barriers
+to entry significantly - and instills good data sanitation/exploration habits.
+
+All statistical analysis in the package is carried out via `statsExpressions`
+package [@Patil2021] and `easystats` ecosystem of packages to achieve this
+[@Ben-Shachar2020; @Lüdecke2020parameters;
+@Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020].
 
 # Benefits
 
@@ -81,16 +102,17 @@ corresponding issue tracker for bug reporting and feature enhancements. In the
 spirit of honest and open science, we encourage requests/tips for fixes, feature
 updates, as well as general questions and concerns via direct interaction with
 contributors and developers, by [filing an issue](https://github.com/IndrajeetPatil/ggstatsplot/issues). See the
-package's [*Contribution Guidelines*](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/.github/CODE_OF_CONDUCT.md).
+package's [*Contribution Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
 
 # Acknowledgements
 
 I would like to acknowledge the support of Mina Cikara, Fiery Cushman, and Iyad
-Rahwan during the development of this project. `ggstatsplot` relies heavily
-on the [`easystats`](https://github.com/easystats/easystats) ecosystem, a
+Rahwan during the development of this project. `ggstatsplot` relies heavily on
+the [`easystats`](https://github.com/easystats/easystats) ecosystem, a
 collaborative project created to facilitate the usage of `R` for statistical
-analyses. Thus, I would like to thank the [members of easystats](https://github.com/orgs/easystats/people) as well as the users.
-
-\newpage
+analyses. Thus, I would like to thank the
+[members](https://github.com/orgs/easystats/people) of `easystats` as well as
+the users. I would additionally like to thank the users of `ggstatsplot` for
+reporting bugs and providing helpful feedback.
 
 # References

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  22 MAR 2021 21:09
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  26 MAR 2021 17:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -958,90 +958,62 @@ File: microtype.cfg 2021/03/14 v2.8c microtype main configuration file (RS)
 ))
 Package hyperref Info: Option `unicode' set `true' on input line 151.
 Package hyperref Info: Option `breaklinks' set `true' on input line 151.
-(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/grffile/grffile.sty
+(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count459
+\FV@InFile=\read5
+\FV@TabBox=\box71
+\c@FancyVerbLine=\count460
+\FV@StepNumber=\count461
+\FV@OutFile=\write7
+) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip91
+\fb@frw=\dimen286
+\fb@frh=\dimen287
+\FrameRule=\dimen288
+\FrameSep=\dimen289
+) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/grffile/grffile.sty
 Package: grffile 2019/11/11 v2.1 Extended file name support for graphics (legac
 y)
 Package grffile Info: This package is an empty stub for compatibility on input 
 line 40.
 ) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/tools/tabularx.sty
-Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
-(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
-\col@sep=\dimen286
-\ar@mcellbox=\box71
-\extrarowheight=\dimen287
-\NC@list=\toks42
-\extratabsurround=\skip91
-\backup@length=\skip92
-\ar@cellbox=\box72
 )
-\TX@col@width=\dimen288
-\TX@old@table=\dimen289
-\TX@old@col=\dimen290
-\TX@target=\dimen291
-\TX@delta=\dimen292
-\TX@cols=\count459
-\TX@ftn=\toks43
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen293
-\lightrulewidth=\dimen294
-\cmidrulewidth=\dimen295
-\belowrulesep=\dimen296
-\belowbottomsep=\dimen297
-\aboverulesep=\dimen298
-\abovetopsep=\dimen299
-\cmidrulesep=\dimen300
-\cmidrulekern=\dimen301
-\defaultaddspace=\dimen302
-\@cmidla=\count460
-\@cmidlb=\count461
-\@aboverulesep=\dimen303
-\@belowrulesep=\dimen304
-\@thisruleclass=\count462
-\@lastruleclass=\count463
-\@thisrulewidth=\dimen305
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count464
-\float@exts=\toks44
-\float@box=\box73
-\@float@everytoks=\toks45
-\@floatcapt=\box74
-)
-\@quotelevel=\count465
-\@quotereset=\count466
+\csllabelwidth=\skip92
+\cslhangindent=\skip93
+\@quotelevel=\count462
+\@quotereset=\count463
 (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 198.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-98.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 259.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
+59.
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 198.
-LaTeX Font Info:    ... okay on input line 198.
-Package hyperref Info: Link coloring ON on input line 198.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 259.
+LaTeX Font Info:    ... okay on input line 259.
+Package hyperref Info: Link coloring ON on input line 259.
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1051,17 +1023,16 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ing.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count467
+\c@section@level=\count464
 )
-LaTeX Info: Redefining \ref on input line 198.
-LaTeX Info: Redefining \pageref on input line 198.
-LaTeX Info: Redefining \nameref on input line 198.
+LaTeX Info: Redefining \ref on input line 259.
+LaTeX Info: Redefining \pageref on input line 259.
+LaTeX Info: Redefining \nameref on input line 259.
 (./paper.out) (./paper.out)
-\@outlinefile=\write7
-\openout7 = `paper.out'.
+\@outlinefile=\write8
+\openout8 = `paper.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -1085,8 +1056,8 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'paper.bbl' not found.
 No file paper.bbl.
-Package biblatex Info: Reference section=0 on input line 198.
-Package biblatex Info: Reference segment=0 on input line 198.
+Package biblatex Info: Reference section=0 on input line 259.
+Package biblatex Info: Reference segment=0 on input line 259.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1121,7 +1092,7 @@ Package biblatex Info: Reference segment=0 on input line 198.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 198.
+LaTeX Info: Redefining \microtypecontext on input line 259.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1141,14 +1112,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 199
+LaTeX Font Info:    Trying to load font information for U+msa on input line 260
 .
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 199
+LaTeX Font Info:    Trying to load font information for U+msb on input line 260
 .
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1156,19 +1127,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
-Package hyperref Warning: Suppressing link with empty target on input line 225.
+Package hyperref Warning: Suppressing link with empty target on input line 286.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 225.
+Package hyperref Warning: Suppressing link with empty target on input line 286.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 225.
+Package hyperref Warning: Suppressing link with empty target on input line 286.
 
 
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 249.
+File: paper_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/unnamed-chunk-2-1.pdf>
 File: /Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resou
 rces/JOSS-logo.png Graphic file (type bmp)
 </Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resources/
@@ -1182,7 +1153,7 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 290.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 369.
 [1
 
 ]
@@ -1198,20 +1169,38 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
-[2] (./paper.aux)
+[2]
+Underfull \hbox (badness 1286) in paragraph at lines 467--472
+[][]\TU/lmr/m/n/10 Patil, I. (2021). statsExpressions: R package for tidy dataf
+rames and expres-
+ []
+
+File: /Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resou
+rces/JOSS-logo.png Graphic file (type bmp)
+</Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resources/
+JOSS-logo.png>
+
+Package fancyhdr Warning: \headheight is too small (62.59596pt): 
+(fancyhdr)                Make it at least 63.55022pt, for example:
+(fancyhdr)                \setlength{\headheight}{63.55022pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
+
+[3] (./paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 819EEC2063AD712EF966A04CECE5A13B;864.
+(rerunfilecheck)             Checksum: 71CFA4B5DDBF7C4F305C56E479E323D6;696.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34601 strings out of 478922
- 697135 string characters out of 5866020
- 1498525 words of memory out of 5000000
- 53896 multiletter control sequences out of 15000+600000
- 408595 words of font info for 66 fonts, out of 8000000 for 9000
+ 34913 strings out of 478922
+ 702490 string characters out of 5866020
+ 1507029 words of memory out of 5000000
+ 54208 multiletter control sequences out of 15000+600000
+ 410294 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 95i,12n,103p,1194b,806s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 95i,12n,103p,1194b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (2 pages).
+Output written on paper.pdf (3 pages).
