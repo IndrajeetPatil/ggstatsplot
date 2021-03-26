@@ -28,21 +28,26 @@ link-citations: yes
 # Summary
 
 
+
 # Statement of Need
 
-In a typical exploratory data analysis workflow, data visualization and
-statistical modeling are two different phases: visualization informs modeling,
-and modeling in its turn can suggest a different visualization method, and so on
-and so forth [@wickham2016r]. The central idea of `ggstatsplot` package in R
-programming language [@base2021] is simple: combine these two phases into one in
-the form of graphics with statistical details. The package is designed to follow
-the best practices in **both** data visualization [@cleveland1985;
-@grant2018data; @healy2018data; @tufte2001;
-@wilke2019fundamentals] and (Frequentist/Bayesian) statistical reporting
-[@american1985publication; @van2020jasp].
+Recent meta-research has revealed a number of problems plaguing the credibility
+of scientific research: findings are not replicable, codes are computationally
+irreproducible, the statistical reporting is inaccurate, the effects do not
+survive further robustness checks, etc. A *few* of these problems can be
+alleviated simply by adopting good practices while exploring (analyzing and
+visualizing) data and reporting results from statistical analysis. This is where
+`ggstatsplot` comes in.
 
-Before discussing benefits of this approach, we will see output from one of its
-functions to understand its behavior.
+In a typical data analysis workflow, data visualization and statistical modeling
+are two different phases: visualization informs modeling, and modeling in its
+turn can suggest a different visualization method, and so on and so forth
+[@wickham2016r]. The central idea of `ggstatsplot` package in R programming
+language [@base2021] is simple: combine these two phases into one in the form of
+an informative graphic with statistical details.
+
+Before discussing benefits of this approach, we will see an example output to
+understand its behavior.
 
 
 ```r
@@ -53,7 +58,7 @@ ggbetweenstats(penguins, species, body_mass_g)
 ```
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{paper_files/figure-latex/unnamed-chunk-2-1} \caption{Example plot from the 'ggstatsplot' package illustrates its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analysis, see the package website: https://indrajeetpatil.github.io/ggstatsplot/}\label{fig:unnamed-chunk-2}
+\includegraphics[width=1\linewidth]{paper_files/figure-latex/penguins-1} \caption{Example plot from the `ggstatsplot` package illustrates its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: https://indrajeetpatil.github.io/ggstatsplot/}\label{fig:penguins}
 \end{figure}
 
 As can be seen, with a **single** line of code, the function produces details
@@ -61,27 +66,37 @@ about descriptive statistics, inferential statistics, effect size estimate and
 its uncertainty, pairwise comparisons, Bayesian hypothesis testing, Bayesian
 posterior estimate and its uncertainty. Moreover, these details are juxtaposed
 with informative and well-labeled visualizations, designed to follow best
-practice guidelines from data visualization research. Without `ggstatsplot`,
-getting these statistical details and customizing a plot would require more than
-an hour of work, but, with `ggstatsplot`, it takes a little more than a few
-seconds. In other words, this package takes away *an* excuse from researchers to
-thoroughly explore their data - since it lowers the technical and time barriers
-to entry significantly - and instills good data sanitation/exploration habits.
+practices in **both** data visualization [@cleveland1985;
+@grant2018data; @healy2018data; @tufte2001;
+@wilke2019fundamentals] and (Frequentist/Bayesian) statistical reporting
+[@american1985publication; @van2020jasp]. Without `ggstatsplot`, getting these
+statistical details and customizing a plot would require significant amount of
+time and work. In other words, this package takes away *an* excuse from
+researchers to thoroughly explore their data and instills good data
+sanitation/exploration habits.
 
-All statistical analysis in the package is carried out via `statsExpressions`
-package [@Patil2021] and `easystats` ecosystem of packages to achieve this
-[@Ben-Shachar2020; @Lüdecke2020parameters;
-@Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020].
+Behind the scenes, data cleaning is carried out using `tidyverse`
+[@Wickham2019], while statistical analysis is carried out via `statsExpressions`
+[@Patil2021] and `easystats` [@Ben-Shachar2020;
+@Lüdecke2020parameters; @Lüdecke2020performance; @Lüdecke2019; @Makowski2019;
+@Makowski2020]. All visualizations are constructed using `ggplot2` [@Wickham2016;
+@Wilkinson2012].
 
 # Benefits
 
-This approach- (*a*) avoids errors in statistical reporting, (*b*) highlights
-the importance of the effect by providing effect size measures by default, (*c*)
-provides an easy way to evaluate *absence* of an effect using Bayesian
-framework, (*d*) forces to evaluate statistical assumptions behind chosen
-analysis in the context of the underlying data, and is (*e*) easy and (*f*)
-simple enough that somebody with little-to-no coding experience can use it
-without making an error.
+We can now succinctly summarize the benefits of `ggstatsplot`'s approach. It-
+
+a. produces charts displaying both raw data, and numerical plus graphical summary indices,
+b. avoids errors in statistical reporting,
+c. highlights the importance of
+the effect by providing effect size measures by default, 
+cd. provides an easy
+way to evaluate *absence* of an effect using Bayesian framework, 
+e. forces to
+evaluate statistical assumptions behind chosen analysis in the context of the
+underlying data, and 
+f. is easy and simple enough that somebody with
+little-to-no coding experience can use it without making an error.
 
 # Licensing and Availability
 
@@ -102,7 +117,7 @@ the [`easystats`](https://github.com/easystats/easystats) ecosystem, a
 collaborative project created to facilitate the usage of `R` for statistical
 analyses. Thus, I would like to thank the
 [members](https://github.com/orgs/easystats/people) of `easystats` as well as
-the users. I would additionally like to thank the users of `ggstatsplot` for
-reporting bugs and providing helpful feedback.
+the users. I would additionally like to thank the contributors to `ggstatsplot`
+for reporting bugs, providing helpful feedback, or helping with enhancements.
 
 # References
