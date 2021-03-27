@@ -10,6 +10,7 @@ output:
     toc: true
     warning: FALSE
     message: FALSE
+    number_sections: true
 vignette: >
   %\VignetteIndexEntry{frequently asked questions (FAQ)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -40,8 +41,8 @@ citation("ggstatsplot")
 
 ---
 
-Here are some of the common questions that have been asked in GitHub issues and
-on social media platforms.  
+Following are a few of the common questions asked in GitHub issues and on social
+media platforms.
 
 # I just want the plot, not the statistical details. How can I turn them off?
 
@@ -422,7 +423,7 @@ p + geom_point(shape = 23, aes(color = am))
 Sometimes you may not be satisfied with the available color palette values. In
 this case, you can also change the colors by manually specifying these values.
 
-```{r ggbar_colors, fig.width = 6, fig.height = 6}
+```{r ggbar_colors, fig.width = 4, fig.height = 4}
 # needed libraries
 set.seed(123)
 library(ggstatsplot)

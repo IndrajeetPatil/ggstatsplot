@@ -27,6 +27,20 @@ link-citations: yes
 
 # Summary
 
+During exploratory data analysis, the graphical displays can reveal problems in
+a statistical model that might not be apparent from purely numerical summaries.
+Such visualizations can also be helpful for the reader to evaluate validity of a
+model if the said analysis is reported in a scholary publication/report. But
+given the onerous cost of preparing information-rich graphics and exploring
+several statistical approaches/tests available, researchers can avoid this
+practice. The `ggstatsplot` package in R programming language [@base2021]
+provides a one-line syntax to create densely informative `ggplot2`-based
+visualizations with the results from statistical analysis embedded in the
+visualization itself. In doing so, the package helps researchers adopt a
+**rigorous, reliable, and robust** data exploratory and reporting workflow and
+holds the potential to alleviate a few of the crises affecting scientific
+research.
+
 # Statement of Need
 
 Recent meta-research has revealed a number of problems plaguing the credibility
@@ -40,12 +54,10 @@ visualizing) data and reporting results from statistical analysis. This is where
 In a typical data analysis workflow, data visualization and statistical modeling
 are two different phases: visualization informs modeling, and modeling in its
 turn can suggest a different visualization method, and so on and so forth
-[@wickham2016r]. The central idea of `ggstatsplot` package in R programming
-language [@base2021] is simple: combine these two phases into one in the form of
-an informative graphic with statistical details.
+[@wickham2016r]. The central idea of `ggstatsplot` is simple: combine these two
+phases into one in the form of an informative graphic with statistical details.
 
-Before discussing benefits of this approach, we will see an example output to
-understand its behavior.
+Before discussing benefits of this approach, we will see one example (Figure 1).
 
 
 ```r
@@ -78,6 +90,10 @@ Behind the scenes, data cleaning is carried out using `tidyverse`
 @Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020]. All
 visualizations are constructed using `ggplot2` [@Wickham2016; @Wilkinson2012].
 
+This package is an ambitious, ongoing, long-term project, and it will continue
+to grow to support ever increasing collection of visualiazations and statistical
+analyses.
+
 # Benefits
 
 We can now succinctly summarize the benefits of `ggstatsplot`'s approach. It-
@@ -88,14 +104,20 @@ a. produces charts displaying both raw data, and numerical plus graphical
 b. avoids errors in statistical reporting,
 
 c. highlights the importance of the effect by providing effect size measures by
-   default, cd. provides an easy way to evaluate *absence* of an effect using
-   Bayesian framework,
+   default,
 
-e. forces to evaluate statistical assumptions behind chosen analysis in the
-   context of the underlying data, and
+d. provides an easy way to evaluate *absence* of an effect using Bayesian
+   framework,
+
+e. forces to evaluate statistical assumptions of a model in the
+   context of the underlying data (Figure 2), and
 
 f. is easy and simple enough that somebody with little-to-no coding experience
    can use it without making an error.
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{reporting} \caption{Comparing the standard approach of reporting statistical analysis in a scholarly publications with the `ggstatsplot` with approach of reporting the same analysis next to an informative graphic.}\label{fig:reporting}
+\end{figure}
 
 # Licensing and Availability
 
@@ -106,7 +128,8 @@ enhancements. In the spirit of honest and open science, we encourage
 requests/tips for fixes, feature updates, as well as general questions and
 concerns via direct interaction with contributors and developers, by filing an
 [issue](https://github.com/IndrajeetPatil/ggstatsplot/issues). See the package's
-[*Contribution Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
+[*Contribution
+Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
 
 # Acknowledgements
 
