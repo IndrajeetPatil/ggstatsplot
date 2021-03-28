@@ -15,7 +15,7 @@ authors:
 affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
 citation_author: Patil
-date: "2021-03-27"
+date: "2021-03-28"
 bibliography: paper.bib
 output: rticles::joss_article
 csl: apa.csl
@@ -27,19 +27,18 @@ link-citations: yes
 
 # Summary
 
-During exploratory data analysis, the graphical displays can reveal problems in
-a statistical model that might not be apparent from purely numerical summaries.
-Such visualizations can also be helpful for the reader to evaluate validity of a
-model if the said analysis is reported in a scholary publication/report. But
-given the onerous cost of preparing information-rich graphics and exploring
-several statistical approaches/tests available, researchers can avoid this
-practice. The `ggstatsplot` package in R programming language [@base2021]
-provides a one-line syntax to create densely informative `ggplot2`-based
-visualizations with the results from statistical analysis embedded in the
-visualization itself. In doing so, the package helps researchers adopt a
-**rigorous, reliable, and robust** data exploratory and reporting workflow. It
-thus holds the potential to alleviate a few of the crises affecting scientific
-research.
+The graphical displays can reveal problems in a statistical model that might not
+be apparent from purely numerical summaries. Such visualizations can also be
+helpful for the reader to evaluate validity of a model if the said analysis is
+reported in a scholarly publication/report. But given the onerous cost of
+preparing information-rich graphics and exploring several statistical
+approaches/tests available, researchers can avoid this practice. The
+`ggstatsplot` package in R programming language [@base2021] provides a one-line
+syntax to create densely informative `ggplot2`-based visualizations with the
+results from statistical analysis embedded in the visualization itself. In doing
+so, the package helps researchers adopt a **rigorous, reliable, and robust**
+data exploratory and reporting workflow. It thus holds the potential to
+alleviate a few of the crises affecting scientific research.
 
 # Statement of Need
 
@@ -78,11 +77,12 @@ posterior estimate and its uncertainty. Moreover, these details are juxtaposed
 with informative and well-labeled visualizations, designed to follow best
 practices in **both** data visualization [@cleveland1985; @grant2018data;
 @healy2018data; @tufte2001; @wilke2019fundamentals] and (Frequentist/Bayesian)
-statistical reporting [@american1985publication; @van2020jasp]. Without
-`ggstatsplot`, getting these statistical details and customizing a plot would
-require significant amount of time and work. In other words, this package takes
-away *an* excuse from researchers to thoroughly explore their data and instills
-good data sanitation/exploration habits.
+statistical reporting [@apa2019; @van2020jasp]. Without `ggstatsplot`, getting
+these statistical details (from parametric, non-parametric, robust, or Bayesian
+statistical approaches) and customizing a plot would require significant amount
+of time and work. In other words, this package takes away *an* excuse from
+researchers to thoroughly explore their data and instills good data
+sanitation/exploration habits.
 
 Behind the scenes, data cleaning is carried out using `tidyverse`
 [@Wickham2019], while statistical analysis is carried out via `statsExpressions`
