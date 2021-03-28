@@ -42,7 +42,7 @@ knitr::opts_chunk$set(
 
 # Summary
 
-The graphical displays can reveal problems in a statistical model that might not
+Graphical displays can reveal problems in a statistical model that might not
 be apparent from purely numerical summaries. Such visualizations can also be
 helpful for the reader to evaluate validity of a model if the said analysis is
 reported in a scholarly publication/report. But given the onerous cost of
@@ -52,18 +52,17 @@ approaches/tests available, researchers can avoid this practice. The
 syntax to create densely informative `ggplot2`-based visualizations with the
 results from statistical analysis embedded in the visualization itself. In doing
 so, the package helps researchers adopt a **rigorous, reliable, and robust**
-data exploratory and reporting workflow. It thus holds the potential to
-alleviate a few of the crises affecting scientific research.
+data exploratory and reporting workflow.
 
 # Statement of Need
 
-Recent meta-research has revealed a number of problems plaguing the credibility
-of scientific research (e.g., @chambers2019seven): findings are not replicable,
-codes are computationally irreproducible, the statistical reporting is
-inaccurate, the effects do not survive further robustness checks, etc. A *few*
-of these problems can be alleviated simply by adopting good practices while
-exploring (analyzing and visualizing) data and reporting results from
-statistical analysis. This is where `ggstatsplot` comes in.
+<!-- Recent meta-research has revealed a number of problems plaguing the credibility -->
+<!-- of scientific research (e.g., @chambers2019seven): findings are not replicable, -->
+<!-- codes are computationally irreproducible, the statistical reporting is -->
+<!-- inaccurate, the effects do not survive further robustness checks, etc. A *few* -->
+<!-- of these problems can be alleviated simply by adopting good practices while -->
+<!-- exploring (analyzing and visualizing) data and reporting results from -->
+<!-- statistical analysis. This is where `ggstatsplot` comes in. -->
 
 In a typical data analysis workflow, data visualization and statistical modeling
 are two different phases: visualization informs modeling, and modeling in its
@@ -98,11 +97,8 @@ Behind the scenes, data cleaning is carried out using `tidyverse`
 [@Wickham2019], while statistical analysis is carried out via `statsExpressions`
 [@Patil2021] and `easystats` [@Ben-Shachar2020; @Lüdecke2020parameters;
 @Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020]. All
-visualizations are constructed using `ggplot2` [@Wickham2016; @Wilkinson2012].
-
-This package is an ambitious, ongoing, long-term project, and it will continue
-to grow to support ever increasing collection of visualiazations and statistical
-analyses.
+visualizations are constructed using the grammar of graphics framework
+[@Wilkinson2012], as implemented in the `ggplot2` package [@Wickham2016].
 
 # Benefits
 
@@ -125,9 +121,15 @@ e. forces researchers/readers to evaluate statistical assumptions of a model in 
 f. is easy and simple enough that somebody with little-to-no coding experience
    can use it without making an error.
 
-```{r reporting, echo=FALSE, fig.cap="Comparing the standard approach of reporting statistical analysis in a scholarly publications with the `ggstatsplot` with approach of reporting the same analysis next to an informative graphic."}
+```{r reporting, echo=FALSE, fig.cap="Comparing the 'Standard' approach of reporting statistical analysis in a publication/report with the 'ggstatsplot' approach of reporting the same analysis next to an informative graphic. Note that the results described in the 'Standard' approach are about the 'Dinosaur' dataset plotted on the right. Without the accompanying visualization, it is hard to evaluate the validity of the results. The ideal reporting practice will be a hybrid of these two approaches where the plot contains both the visual and numerical summaries about a statistical model, while the narrative provides interpretive context for the reported statistics."}
 knitr::include_graphics("reporting.png")
 ```
+
+# Future Scope
+
+This package is an ambitious, ongoing, long-term project, and it will continue
+to grow to support ever increasing collection of visualizations and statistical
+analyses.
 
 # Licensing and Availability
 
