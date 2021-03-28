@@ -52,19 +52,19 @@ practice. The `ggstatsplot` package in R programming language [@base2021]
 provides a one-line syntax to create densely informative `ggplot2`-based
 visualizations with the results from statistical analysis embedded in the
 visualization itself. In doing so, the package helps researchers adopt a
-**rigorous, reliable, and robust** data exploratory and reporting workflow and
-holds the potential to alleviate a few of the crises affecting scientific
+**rigorous, reliable, and robust** data exploratory and reporting workflow. It
+thus holds the potential to alleviate a few of the crises affecting scientific
 research.
 
 # Statement of Need
 
 Recent meta-research has revealed a number of problems plaguing the credibility
-of scientific research: findings are not replicable, codes are computationally
-irreproducible, the statistical reporting is inaccurate, the effects do not
-survive further robustness checks, etc. A *few* of these problems can be
-alleviated simply by adopting good practices while exploring (analyzing and
-visualizing) data and reporting results from statistical analysis. This is where
-`ggstatsplot` comes in.
+of scientific research (e.g., @chambers2019seven): findings are not replicable,
+codes are computationally irreproducible, the statistical reporting is
+inaccurate, the effects do not survive further robustness checks, etc. A *few*
+of these problems can be alleviated simply by adopting good practices while
+exploring (analyzing and visualizing) data and reporting results from
+statistical analysis. This is where `ggstatsplot` comes in.
 
 In a typical data analysis workflow, data visualization and statistical modeling
 are two different phases: visualization informs modeling, and modeling in its
@@ -116,10 +116,10 @@ b. avoids errors in statistical reporting,
 c. highlights the importance of the effect by providing effect size measures by
    default,
 
-d. provides an easy way to evaluate *absence* of an effect using Bayesian
+d. provides an easy way to evaluate *absence* of an effect using a Bayesian
    framework,
 
-e. forces to evaluate statistical assumptions of a model in the
+e. forces researchers/readers to evaluate statistical assumptions of a model in the
    context of the underlying data (Figure 2), and
 
 f. is easy and simple enough that somebody with little-to-no coding experience
