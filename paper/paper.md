@@ -83,16 +83,16 @@ of time and work. In other words, this package takes away *an* excuse from
 researchers to thoroughly explore their data and instills good data
 sanitation/exploration habits.
 
-Behind the scenes, data cleaning is carried out using `tidyverse`
-[@Wickham2019], while statistical analysis is carried out via `statsExpressions`
-[@Patil2021] and `easystats` [@Ben-Shachar2020; @Lüdecke2020parameters;
-@Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020]. All
-visualizations are constructed using the grammar of graphics framework
+Internally, data cleaning is carried out using `tidyverse` [@Wickham2019], while
+statistical analysis is carried out via `statsExpressions` [@Patil2021] and
+`easystats` [@Ben-Shachar2020; @Lüdecke2020parameters;
+@Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020] packages.
+All visualizations are constructed using the grammar of graphics framework
 [@Wilkinson2012], as implemented in the `ggplot2` package [@Wickham2016].
 
 # Benefits
 
-We can now succinctly summarize the benefits of `ggstatsplot`'s approach. It-
+In summary, the benefits of `ggstatsplot`'s approach are the following. It-
 
 a. produces charts displaying both raw data, and numerical plus graphical
    summary indices,
@@ -105,8 +105,8 @@ c. highlights the importance of the effect by providing effect size measures by
 d. provides an easy way to evaluate *absence* of an effect using a Bayesian
    framework,
 
-e. forces researchers/readers to evaluate statistical assumptions of a model in the
-   context of the underlying data (Figure 2), and
+e. encourages researchers/readers to evaluate statistical assumptions of a model
+   in the context of the underlying data (Figure 2), and
 
 f. is easy and simple enough that somebody with little-to-no coding experience
    can use it without making an error.
@@ -117,21 +117,20 @@ f. is easy and simple enough that somebody with little-to-no coding experience
 
 # Future Scope
 
-This package is an ambitious, ongoing, long-term project, and it will continue
-to grow to support ever increasing collection of visualizations and statistical
-analyses.
+This package is an ambitious, ongoing, and long-term project that will continue
+expanding to support ever increasing collection of visualizations and
+statistical analyses.
 
 # Licensing and Availability
 
 `ggstatsplot` is licensed under the GNU General Public License (v3.0), with all
 source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/),
-and with a corresponding issue tracker for bug reporting and feature
-enhancements. In the spirit of honest and open science, we encourage
-requests/tips for fixes, feature updates, as well as general questions and
-concerns via direct interaction with contributors and developers, by filing an
+and a corresponding issue tracker for bug reporting and feature enhancements. In
+the spirit of honest and open science, requests/tips for fixes, feature updates,
+as well as general questions and concerns via direct interaction with
+contributors and developers are encouraged by filing an
 [issue](https://github.com/IndrajeetPatil/ggstatsplot/issues). See the package's
-[*Contribution
-Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
+[*Contribution Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
 
 # Acknowledgements
 
