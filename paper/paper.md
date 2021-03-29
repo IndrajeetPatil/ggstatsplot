@@ -15,7 +15,7 @@ authors:
 affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
 citation_author: Patil
-date: "2021-03-28"
+date: "2021-03-29"
 bibliography: paper.bib
 output: rticles::joss_article
 csl: apa.csl
@@ -77,10 +77,9 @@ with informative and well-labeled visualizations, designed to follow best
 practices in **both** data visualization [@cleveland1985; @grant2018data;
 @healy2018data; @tufte2001; @wilke2019fundamentals] and (Frequentist/Bayesian)
 statistical reporting [@apa2019; @van2020jasp]. Without `ggstatsplot`, getting
-these statistical details (from parametric, non-parametric, robust, or Bayesian
-statistical approaches) and customizing a plot would require significant amount
-of time and work. In other words, this package takes away *an* excuse from
-researchers to thoroughly explore their data and instills good data
+these statistical details and customizing a plot would require significant
+amount of time and work. In other words, this package takes away *an* excuse
+from researchers to thoroughly explore their data and instills good data
 sanitation/exploration habits.
 
 Internally, data cleaning is carried out using `tidyverse` [@Wickham2019], while
@@ -117,9 +116,13 @@ f. is easy and simple enough that somebody with little-to-no coding experience
 
 # Future Scope
 
-This package is an ambitious, ongoing, and long-term project that will continue
-expanding to support ever increasing collection of visualizations and
-statistical analyses.
+This package is an ambitious, ongoing, and long-term project. It currently
+supports common statistical tests (parametric, non-parametric, robust, or
+Bayesian *t*-test, one-way ANOVA, contingency table analysis, correlation
+analysis, meta-analysis, regression analyses, etc.) and corresponding
+visualizations (box/violin plot, scatter plot, dot-and-whisker plot, pie chart,
+bar chart, etc.). It will continue expanding to support ever increasing
+collection of statistical analyses and visualizations.
 
 # Licensing and Availability
 

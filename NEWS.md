@@ -2,8 +2,8 @@
 
 MINOR CHANGES
 
-  - To reflect changes made in `parameters` package, `ggcoefstats` now does not
-    show degrees of freedom when they are not available instead of `Inf`.
+  - The `ggcoefstats` labels do not contain degrees of freedom when they are not
+    available instead of displaying `Inf`.
 
 # ggstatsplot 0.7.1
 
