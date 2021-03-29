@@ -162,7 +162,7 @@
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-03-23</h4>
+            <h4 data-toc-skip class="date">2021-03-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -263,11 +263,11 @@ A BibTeX entry for LaTeX users is
 <span class="va">plots</span>
 <span class="co">#&gt; # A tibble: 3 x 3</span>
 <span class="co">#&gt; # Groups:   Species [3]</span>
-<span class="co">#&gt;   Species    data              plot      </span>
-<span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;    </span>
-<span class="co">#&gt; 1 setosa     &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span>
-<span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span>
-<span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl&gt;</span>
+<span class="co">#&gt;   Species    data                  plot           </span>
+<span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;                &lt;list&gt;         </span>
+<span class="co">#&gt; 1 setosa     &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 2 versicolor &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 3 virginica  &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
 
 <span class="co"># creating a grid with patchwork</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -329,7 +329,7 @@ A BibTeX entry for LaTeX users is
       title <span class="op">=</span> <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"Continent: {data$continent}"</span><span class="op">)</span>,
       marginal <span class="op">=</span> <span class="cn">FALSE</span>
     <span class="op">)</span> <span class="op">+</span>
-      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org//reference/label_number.html" class="external-link">comma</a></span><span class="op">)</span>
+      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">comma</a></span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">)</span>
 
@@ -417,7 +417,7 @@ A BibTeX entry for LaTeX users is
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
