@@ -42,14 +42,14 @@ knitr::opts_chunk$set(
 Graphical displays can reveal problems in a statistical model that might not be
 apparent from purely numerical summaries. Such visualizations can also be
 helpful for the reader to evaluate validity of a model if the said analysis is
-reported in a scholarly publication/report. But given the onerous cost of
-preparing information-rich graphics and exploring several statistical
-approaches/tests available, researchers can avoid this practice. The
-`ggstatsplot` package in R programming language [@base2021] provides a one-line
-syntax to create densely informative `ggplot2`-based visualizations with the
-results from statistical analysis embedded in the visualization itself. In doing
-so, the package helps researchers adopt a **rigorous, reliable, and robust**
-data exploratory and reporting workflow.
+reported in a scholarly publication/report. But, given the onerous costs
+involved, researchers can avoid preparing information-rich graphics and
+exploring several statistical approaches/tests available. The `ggstatsplot`
+package in R programming language [@base2021] provides a one-line syntax to
+create densely informative `ggplot2`-based visualizations with the results from
+statistical analysis embedded in the visualization itself. In doing so, the
+package helps researchers adopt a **rigorous, reliable, and robust** data
+exploratory and reporting workflow.
 
 # Statement of Need
 
@@ -79,9 +79,10 @@ follow best practices in **both** data visualization [@cleveland1985;
 @grant2018data; @healy2018data; @tufte2001; @wilke2019fundamentals] and
 (Frequentist/Bayesian) statistical reporting [@apa2019; @van2020jasp]. Without
 `ggstatsplot`, getting these statistical details and customizing a plot would
-require significant amount of time and work. In other words, this package takes
-away the ease versus thoroughness trade-off researchers often face while
-exploring data and further cements good data sanitation/exploration habits.
+require significant amount of time and effort In other words, this package
+removes the trade-off often faced by researchers between ease versus
+thoroughness of exploring data and further cements good data
+sanitation/exploration habits.
 
 Internally, data cleaning is carried out using `tidyverse` [@Wickham2019], while
 statistical analysis is carried out via `statsExpressions` [@Patil2021] and
