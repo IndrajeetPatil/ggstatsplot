@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  29 MAR 2021 13:14
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  30 MAR 2021 09:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1153,7 +1153,7 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 370.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 372.
 [1
 
 ]
@@ -1185,7 +1185,7 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 [3]
-Underfull \hbox (badness 1286) in paragraph at lines 511--516
+Underfull \hbox (badness 1286) in paragraph at lines 515--520
 [][]\TU/lmr/m/n/10 Patil, I. (2021). statsExpressions: R package for tidy dataf
 rames and expres-
  []
@@ -1216,6 +1216,6 @@ Here is how much of TeX's memory you used:
  54220 multiletter control sequences out of 15000+600000
  410294 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 95i,12n,103p,1194b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 95i,13n,103p,1194b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on paper.pdf (4 pages).

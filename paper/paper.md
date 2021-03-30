@@ -15,7 +15,7 @@ authors:
 affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
 citation_author: Patil
-date: "2021-03-29"
+date: "2021-03-30"
 bibliography: paper.bib
 output: rticles::joss_article
 csl: apa.csl
@@ -27,8 +27,8 @@ link-citations: yes
 
 # Summary
 
-Graphical displays can reveal problems in a statistical model that might not
-be apparent from purely numerical summaries. Such visualizations can also be
+Graphical displays can reveal problems in a statistical model that might not be
+apparent from purely numerical summaries. Such visualizations can also be
 helpful for the reader to evaluate validity of a model if the said analysis is
 reported in a scholarly publication/report. But given the onerous cost of
 preparing information-rich graphics and exploring several statistical
@@ -41,26 +41,20 @@ data exploratory and reporting workflow.
 
 # Statement of Need
 
-<!-- Recent meta-research has revealed a number of problems plaguing the credibility -->
-<!-- of scientific research (e.g., @chambers2019seven): findings are not replicable, -->
-<!-- codes are computationally irreproducible, the statistical reporting is -->
-<!-- inaccurate, the effects do not survive further robustness checks, etc. A *few* -->
-<!-- of these problems can be alleviated simply by adopting good practices while -->
-<!-- exploring (analyzing and visualizing) data and reporting results from -->
-<!-- statistical analysis. This is where `ggstatsplot` comes in. -->
-
 In a typical data analysis workflow, data visualization and statistical modeling
 are two different phases: visualization informs modeling, and modeling in its
 turn can suggest a different visualization method, and so on and so forth
 [@wickham2016r]. The central idea of `ggstatsplot` is simple: combine these two
 phases into one in the form of an informative graphic with statistical details.
 
-Before discussing benefits of this approach, we will see one example (Figure 1).
+Before discussing benefits of this approach, we will see one example (Figure
+1).
 
 
 ```r
-library(ggstatsplot)
+set.seed(123) # for reproducibility
 library(palmerpenguins) # for 'penguins' dataset
+library(ggstatsplot)
 
 ggbetweenstats(penguins, species, body_mass_g)
 ```
@@ -73,21 +67,21 @@ As can be seen, with a **single** line of code, the function produces details
 about descriptive statistics, inferential statistics, effect size estimate and
 its uncertainty, pairwise comparisons, Bayesian hypothesis testing, Bayesian
 posterior estimate and its uncertainty. Moreover, these details are juxtaposed
-with informative and well-labeled visualizations, designed to follow best
-practices in **both** data visualization [@cleveland1985; @grant2018data;
-@healy2018data; @tufte2001; @wilke2019fundamentals] and (Frequentist/Bayesian)
-statistical reporting [@apa2019; @van2020jasp]. Without `ggstatsplot`, getting
-these statistical details and customizing a plot would require significant
-amount of time and work. In other words, this package takes away *an* excuse
-from researchers to thoroughly explore their data and instills good data
-sanitation/exploration habits.
+with informative and well-labeled visualizations. The defaults are designed to
+follow best practices in **both** data visualization [@cleveland1985;
+@grant2018data; @healy2018data; @tufte2001; @wilke2019fundamentals] and
+(Frequentist/Bayesian) statistical reporting [@apa2019; @van2020jasp]. Without
+`ggstatsplot`, getting these statistical details and customizing a plot would
+require significant amount of time and work. In other words, this package takes
+away the ease versus thoroughness trade-off researchers often face while
+exploring data and further cements good data sanitation/exploration habits.
 
 Internally, data cleaning is carried out using `tidyverse` [@Wickham2019], while
 statistical analysis is carried out via `statsExpressions` [@Patil2021] and
-`easystats` [@Ben-Shachar2020; @Lüdecke2020parameters;
-@Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020] packages.
-All visualizations are constructed using the grammar of graphics framework
-[@Wilkinson2012], as implemented in the `ggplot2` package [@Wickham2016].
+`easystats` [@Ben-Shachar2020; @Lüdecke2020parameters; @Lüdecke2020performance;
+@Lüdecke2019; @Makowski2019; @Makowski2020] packages. All visualizations are
+constructed using the grammar of graphics framework [@Wilkinson2012], as
+implemented in the `ggplot2` package [@Wickham2016].
 
 # Benefits
 
@@ -96,19 +90,19 @@ In summary, the benefits of `ggstatsplot`'s approach are the following. It-
 a. produces charts displaying both raw data, and numerical plus graphical
    summary indices,
 
-b. avoids errors in statistical reporting,
+b. avoids errors in and increases reproducibility of statistical reporting,
 
 c. highlights the importance of the effect by providing effect size measures by
    default,
 
-d. provides an easy way to evaluate *absence* of an effect using a Bayesian
-   framework,
+d. provides an easy way to evaluate *absence* of an effect using Bayes factors,
 
 e. encourages researchers/readers to evaluate statistical assumptions of a model
-   in the context of the underlying data (Figure 2), and
+   in the context of the underlying data (Figure 2),
 
-f. is easy and simple enough that somebody with little-to-no coding experience
-   can use it without making an error.
+f. is easy and simple enough that someone with little-to-no coding experience
+   can use it without making an error and may even encourage beginners to
+   programmatically (instead of using GUI software) analyze data.
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{reporting} \caption{Comparing the 'Standard' approach of reporting statistical analysis in a publication/report with the 'ggstatsplot' approach of reporting the same analysis next to an informative graphic. Note that the results described in the 'Standard' approach are about the 'Dinosaur' dataset plotted on the right. Without the accompanying visualization, it is hard to evaluate the validity of the results. The ideal reporting practice will be a hybrid of these two approaches where the plot contains both the visual and numerical summaries about a statistical model, while the narrative provides interpretive context for the reported statistics.}\label{fig:reporting}
@@ -127,12 +121,11 @@ collection of statistical analyses and visualizations.
 # Licensing and Availability
 
 `ggstatsplot` is licensed under the GNU General Public License (v3.0), with all
-source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/),
-and a corresponding issue tracker for bug reporting and feature enhancements. In
-the spirit of honest and open science, requests/tips for fixes, feature updates,
-as well as general questions and concerns via direct interaction with
+source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/).
+In the spirit of honest and open science, requests/tips for fixes, feature
+updates, as well as general questions and concerns via direct interaction with
 contributors and developers are encouraged by filing an
-[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues). See the package's
+[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues) while respecting
 [*Contribution Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
 
 # Acknowledgements
