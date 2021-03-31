@@ -30,13 +30,17 @@
 #' set.seed(123)
 #' library(ggstatsplot)
 #'
+#' # skipping marginal distributions so that the examples run fast
+#'
 #' # basic function call
 #' grouped_ggscatterstats(
 #'   data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x = length,
 #'   y = rating,
 #'   type = "robust",
-#'   grouping.var = genre
+#'   grouping.var = genre,
+#'   marginal = FALSE,
+#'   ggplot.component = list(ggplot2::geom_rug(sides = "b"))
 #' )
 #'
 #' # using labeling
@@ -47,6 +51,7 @@
 #'   y = hwy,
 #'   grouping.var = cyl,
 #'   type = "robust",
+#'   marginal = FALSE,
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
 #'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())

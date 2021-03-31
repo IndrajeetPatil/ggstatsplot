@@ -22,8 +22,9 @@
 #'   to `ggplot2::geom_smooth` geom used to display the regression line.
 #' @param point.args A list of additional aesthetic arguments to be passed
 #'   to `ggplot2::geom_point` geom used to display the raw data points.
-#' @param marginal Decides whether `ggExtra::ggMarginal()` plots will be
-#'   displayed; the default is `TRUE`.
+#' @param marginal Decides whether marginal distributions will be plotted on
+#'   axes using `ggExtra::ggMarginal()`. The default is `TRUE`. The package
+#'   `ggExtra` must already be installed by the user.
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data. Note that the jitter should not be specified in the `point.args`
@@ -50,7 +51,6 @@
 #' @importFrom stats lm
 #' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom ggExtra ggMarginal
 #' @importFrom statsExpressions corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
@@ -71,7 +71,6 @@
 #' have a lot of labels that overlap.
 #'
 #' @examples
-#' \donttest{
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
@@ -80,18 +79,16 @@
 #' mtcars_new <- as_tibble(mtcars, rownames = "car")
 #'
 #' # simple function call with the defaults
-#' ggstatsplot::ggscatterstats(
-#'   data = mtcars_new,
-#'   x = wt,
-#'   y = mpg,
-#'   label.var = car,
-#'   label.expression = wt < 4 & mpg < 20,
-#'   # making further customizations with `ggplot2` functions
-#'   ggplot.component = list(ggplot2::scale_y_continuous(
-#'     limits = c(5, 35),
-#'     breaks = seq(5, 35, 5)
-#'   ))
-#' )
+#' if (require("ggExtra")) {
+#'   ggscatterstats(
+#'     data = mtcars_new,
+#'     x = wt,
+#'     y = mpg,
+#'     label.var = car,
+#'     label.expression = wt < 4 & mpg < 20,
+#'     # making further customization with `ggplot2` functions
+#'     ggplot.component = list(ggplot2::geom_rug(sides = "b"))
+#'   )
 #' }
 #' @export
 
@@ -279,6 +276,7 @@ ggscatterstats <- function(data,
 
   # creating the `ggMarginal` plot of a given `marginal.type`
   if (isTRUE(marginal)) {
+    if (!requireNamespace("ggExtra")) stop("Package 'ggExtra' needs to be installed.")
     plot <-
       ggExtra::ggMarginal(
         p = plot,

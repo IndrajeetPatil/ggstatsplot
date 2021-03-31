@@ -27,7 +27,6 @@ Depends:
 Imports:
     dplyr,
     ggcorrplot,
-    ggExtra,
     ggplot2,
     ggrepel,
     ggsignif (>= 0.6.1),
@@ -47,6 +46,7 @@ Imports:
 Suggests:
     afex,
     forcats,
+    ggExtra,
     knitr,
     MASS,
     metaBMA,

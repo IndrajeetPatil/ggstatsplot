@@ -1,5 +1,9 @@
 # ggstatsplot 0.7.1.9000
 
+MAJOR CHANGES
+
+  - To reduce the dependency load, `ggExtra` moves from `Imports` to `Suggests`.
+
 MINOR CHANGES
 
   - The `ggcoefstats` labels do not contain degrees of freedom when they are not

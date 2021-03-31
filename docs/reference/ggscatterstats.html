@@ -371,8 +371,9 @@ to <code><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>ggpl
     </tr>
     <tr>
       <th>marginal</th>
-      <td><p>Decides whether <code><a href='https://rdrr.io/pkg/ggExtra/man/ggMarginal.html'>ggExtra::ggMarginal()</a></code> plots will be
-displayed; the default is <code>TRUE</code>.</p></td>
+      <td><p>Decides whether marginal distributions will be plotted on
+axes using <code><a href='https://rdrr.io/pkg/ggExtra/man/ggMarginal.html'>ggExtra::ggMarginal()</a></code>. The default is <code>TRUE</code>. The package
+<code>ggExtra</code> must already be installed by the user.</p></td>
     </tr>
     <tr>
       <th>marginal.type</th>
@@ -474,8 +475,7 @@ have a lot of labels that overlap.</p></li>
 <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># to get reproducible results from bootstrapping</span>
+    <pre class="examples"><div class='input'><span class='co'># to get reproducible results from bootstrapping</span>
 <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
 
@@ -483,20 +483,18 @@ have a lot of labels that overlap.</p></li>
 <span class='va'>mtcars_new</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>mtcars</span>, rownames <span class='op'>=</span> <span class='st'>"car"</span><span class='op'>)</span>
 
 <span class='co'># simple function call with the defaults</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggscatterstats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>mtcars_new</span>,
-  x <span class='op'>=</span> <span class='va'>wt</span>,
-  y <span class='op'>=</span> <span class='va'>mpg</span>,
-  label.var <span class='op'>=</span> <span class='va'>car</span>,
-  label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,
-  <span class='co'># making further customizations with `ggplot2` functions</span>
-  ggplot.component <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>
-    limits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>35</span><span class='op'>)</span>,
-    breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>35</span>, <span class='fl'>5</span><span class='op'>)</span>
-  <span class='op'>)</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/daattali/ggExtra'>"ggExtra"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>ggscatterstats</span><span class='op'>(</span>
+    data <span class='op'>=</span> <span class='va'>mtcars_new</span>,
+    x <span class='op'>=</span> <span class='va'>wt</span>,
+    y <span class='op'>=</span> <span class='va'>mpg</span>,
+    label.var <span class='op'>=</span> <span class='va'>car</span>,
+    label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,
+    <span class='co'># making further customization with `ggplot2` functions</span>
+    ggplot.component <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>geom_rug</a></span><span class='op'>(</span>sides <span class='op'>=</span> <span class='st'>"b"</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggExtra</span></div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

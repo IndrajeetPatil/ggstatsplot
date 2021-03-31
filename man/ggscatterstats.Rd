@@ -110,8 +110,9 @@ to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_smooth} geom used to display the regression line.}
 
-\item{marginal}{Decides whether \code{ggExtra::ggMarginal()} plots will be
-displayed; the default is \code{TRUE}.}
+\item{marginal}{Decides whether marginal distributions will be plotted on
+axes using \code{ggExtra::ggMarginal()}. The default is \code{TRUE}. The package
+\code{ggExtra} must already be installed by the user.}
 
 \item{marginal.type}{Type of marginal distribution to be plotted on the axes
 (\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
@@ -182,7 +183,6 @@ have a lot of labels that overlap.
 }
 }
 \examples{
-\donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
@@ -191,18 +191,16 @@ library(ggstatsplot)
 mtcars_new <- as_tibble(mtcars, rownames = "car")
 
 # simple function call with the defaults
-ggstatsplot::ggscatterstats(
-  data = mtcars_new,
-  x = wt,
-  y = mpg,
-  label.var = car,
-  label.expression = wt < 4 & mpg < 20,
-  # making further customizations with `ggplot2` functions
-  ggplot.component = list(ggplot2::scale_y_continuous(
-    limits = c(5, 35),
-    breaks = seq(5, 35, 5)
-  ))
-)
+if (require("ggExtra")) {
+  ggscatterstats(
+    data = mtcars_new,
+    x = wt,
+    y = mpg,
+    label.var = car,
+    label.expression = wt < 4 & mpg < 20,
+    # making further customization with `ggplot2` functions
+    ggplot.component = list(ggplot2::geom_rug(sides = "b"))
+  )
 }
 }
 \references{
