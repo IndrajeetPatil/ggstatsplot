@@ -77,10 +77,6 @@ only available on the website for this package: <br>
     
   - Interpreting effect sizes for different tests:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>)
-    
-  - Gallery of `ggstatsplot` examples (shows how `ggstatsplot` can be further
-    modified using `ggplot2` functions):
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gallery.html>)
 
   - Graphic design and statistical reporting principles guiding `ggstatsplot` development: (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>)
 

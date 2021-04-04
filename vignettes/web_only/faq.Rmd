@@ -365,7 +365,7 @@ pb$plot$plot_env$df_proptest
 pb$plot$plot_env$df_descriptive
 ```
 
-# How can I remove a a particular `geom` layer from the plot?
+# How can I remove a particular `geom` layer from the plot?
 
 Sometimes you may not want a particular `geom` layer to be displayed. You can
 remove them using `gginnards`. 
