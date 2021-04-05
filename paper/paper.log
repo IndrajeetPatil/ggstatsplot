@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  30 MAR 2021 10:39
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  5 APR 2021 09:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1185,9 +1185,9 @@ Package fancyhdr Warning: \headheight is too small (62.59596pt):
 (fancyhdr)                \addtolength{\topmargin}{-0.95425pt}.
 
 [3]
-Underfull \hbox (badness 1286) in paragraph at lines 515--520
-[][]\TU/lmr/m/n/10 Patil, I. (2021). statsExpressions: R package for tidy dataf
-rames and expres-
+Underfull \hbox (badness 1577) in paragraph at lines 490--495
+\TU/lmr/m/n/10 Assessment, testing and comparison of statistical models using R
+. \TU/lmr/m/it/10 PsyArXiv\TU/lmr/m/n/10 .
  []
 
 File: /Users/patil/Library/R/4.0/library/rticles/rmarkdown/templates/joss/resou
