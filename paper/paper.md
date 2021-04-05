@@ -13,8 +13,8 @@ authors:
     orcid: 0000-0003-1995-6531
     affiliation: 1
 affiliations:
-  - index: 1
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
+  - index: 1
 date: "2021-04-05"
 bibliography: paper.bib
 ---
