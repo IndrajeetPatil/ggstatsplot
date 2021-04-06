@@ -213,7 +213,6 @@ test_that(
     )
 
     expect_snapshot(list(tidy_df2, p$labels))
-
   }
 )
 
