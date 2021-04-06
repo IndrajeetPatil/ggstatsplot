@@ -166,43 +166,9 @@ test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # tidy dataframe from the function
-    tidy_df <- p$plot_env$tidy_df
+    tidy_df1 <- p$plot_env$tidy_df
 
-    expect_equal(tidy_df$estimate,
-      c(0.8093822, 0.2068347, 0.1176152),
-      tolerance = 1e-3
-    )
-    expect_equal(tidy_df$df[1], 1L)
-    expect_equal(tidy_df$df.error[1], 28L)
-    expect_equal(tidy_df$p.value,
-      c(1.378306e-11, 1.156944e-02, 6.355055e-02),
-      tolerance = 1e-5
-    )
-
-    expect_identical(p$labels$x, "partial eta-squared")
-    expect_identical(p$labels$y, "effect")
-    expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(NULL),
-        expr = paste(
-          "AIC = ",
-          "43",
-          ", BIC = ",
-          "50"
-        )
-      ))
-    )
-    expect_null(p$labels$title, NULL)
-    expect_null(p$labels$subtitle, NULL)
-    expect_identical(
-      tidy_df$label,
-      c(
-        "list(~italic(F)(1*\",\"*28)==118.89, ~italic(p)=='1.38e-11', ~widehat(italic(eta)[p]^2)==0.81)",
-        "list(~italic(F)(1*\",\"*28)==7.30, ~italic(p)=='0.012', ~widehat(italic(eta)[p]^2)==0.21)",
-        "list(~italic(F)(1*\",\"*28)==3.73, ~italic(p)=='0.064', ~widehat(italic(eta)[p]^2)==0.12)"
-      )
-    )
+    expect_snapshot(list(tidy_df1, p$labels))
 
     ## partial omega-squared
 
@@ -235,50 +201,19 @@ test_that(
     pb <- ggplot2::ggplot_build(p)
 
     # tidy dataframe from the function
-    tidy_df <- p$plot_env$tidy_df
+    tidy_df2 <- p$plot_env$tidy_df
 
     # tests
-    expect_identical(p$labels$x, "partial omega-squared")
-    expect_identical(p$labels$y, "term")
-    expect_identical(
-      p$labels$caption,
-      ggplot2::expr(atop(
-        displaystyle(paste(italic("Note"), ": From `tidyverse`")),
-        expr = paste("AIC = ", "126", ", BIC = ", "142")
-      ))
-    )
-    expect_identical(p$labels$title, "mammalian sleep")
-    expect_identical(p$labels$subtitle, "Source: `ggplot2` package")
-
-    expect_equal(pb$data[[2]]$x, tidy_df$estimate, tolerance = 0.001)
-    expect_equal(pb$data[[2]]$xmin, tidy_df$conf.low, tolerance = 0.001)
-    expect_equal(pb$data[[2]]$xmax, tidy_df$conf.high, tolerance = 0.001)
+    expect_equal(pb$data[[2]]$x, tidy_df2$estimate, tolerance = 0.001)
+    expect_equal(pb$data[[2]]$xmin, tidy_df2$conf.low, tolerance = 0.001)
+    expect_equal(pb$data[[2]]$xmax, tidy_df2$conf.high, tolerance = 0.001)
     expect_equal(
       pb$data[[2]]$y,
       structure(c(3L, 1L, 2L), class = c("mapped_discrete", "numeric"))
     )
 
-    expect_identical(tidy_df$label, pb$data[[4]]$label)
+    expect_snapshot(list(tidy_df2, p$labels))
 
-    expect_equal(tidy_df$estimate,
-      c(0.30828881, 0.02348073, 0.17365008),
-      tolerance = 0.001
-    )
-    expect_equal(tidy_df$df[1], 3L)
-    expect_equal(tidy_df$df.error[1], 35L)
-    expect_equal(tidy_df$p.value,
-      c(0.0005838887, 0.1626797382, 0.0148476585),
-      tolerance = 0.001
-    )
-
-    expect_identical(
-      tidy_df$label,
-      c(
-        "list(~italic(F)(3*\",\"*35)==7.388, ~italic(p)=='0.001', ~widehat(italic(omega)[p]^2)==0.308)",
-        "list(~italic(F)(1*\",\"*35)==2.034, ~italic(p)=='0.163', ~widehat(italic(omega)[p]^2)==0.023)",
-        "list(~italic(F)(3*\",\"*35)==4.012, ~italic(p)=='0.015', ~widehat(italic(omega)[p]^2)==0.174)"
-      )
-    )
   }
 )
 
@@ -303,102 +238,7 @@ test_that(
     tidy_df2 <- ggcoefstats(m2, output = "tidy")
 
     # checking entire objects
-    expect_equal(
-      tidy_df1,
-      structure(list(
-        group = c(
-          "block", "Within", "Within", "Within",
-          "Within", "Within", "Within"
-        ), term = structure(1:7, .Label = c(
-          "N:P:K",
-          "N", "P", "K", "N:P", "N:K", "P:K"
-        ), class = "factor"), df = c(
-          1,
-          1, 1, 1, 1, 1, 1
-        ), statistic = c(
-          0.483218701027338, 12.2587342136509,
-          0.544129816860359, 6.16568920231712, 1.37829669341201, 2.14597200733998,
-          0.0311949051919548
-        ), p.value = c(
-          0.525236141197407, 0.00437181182579937,
-          0.474904092674435, 0.0287950535002327, 0.263165282877168, 0.168647878500492,
-          0.862752085685407
-        ), estimate = c(
-          0.107783878782583, 0.505332805318122,
-          0.0433772469517178, 0.33941399820551, 0.103024826328657, 0.151701983167116,
-          0.00259283516207463
-        ), conf.low = c(
-          0, 0.084350699680618, 0, 0,
-          0, 0, 0
-        ), conf.high = c(
-          0.638747800504964, 0.740593750884156,
-          0.377609203815996, 0.641576291838933, 0.454996866706633, 0.502438966717436,
-          0.223149127768657
-        ), df.error = c(4, 12, 12, 12, 12, 12, 12),
-        estimate.type = c(
-          "partial eta-squared", "partial eta-squared",
-          "partial eta-squared", "partial eta-squared", "partial eta-squared",
-          "partial eta-squared", "partial eta-squared"
-        ), label = c(
-          "list(~italic(F)(1*\",\"*4)==0.48, ~italic(p)=='0.525', ~widehat(italic(eta)[p]^2)==0.11)",
-          "list(~italic(F)(1*\",\"*12)==12.26, ~italic(p)=='0.004', ~widehat(italic(eta)[p]^2)==0.51)",
-          "list(~italic(F)(1*\",\"*12)==0.54, ~italic(p)=='0.475', ~widehat(italic(eta)[p]^2)==0.04)",
-          "list(~italic(F)(1*\",\"*12)==6.17, ~italic(p)=='0.029', ~widehat(italic(eta)[p]^2)==0.34)",
-          "list(~italic(F)(1*\",\"*12)==1.38, ~italic(p)=='0.263', ~widehat(italic(eta)[p]^2)==0.10)",
-          "list(~italic(F)(1*\",\"*12)==2.15, ~italic(p)=='0.169', ~widehat(italic(eta)[p]^2)==0.15)",
-          "list(~italic(F)(1*\",\"*12)==0.03, ~italic(p)=='0.863', ~widehat(italic(eta)[p]^2)==0.00)"
-        )
-      ),
-      row.names = c(NA, -7L),
-      class = c("tbl_df", "tbl", "data.frame")
-      ),
-      tolerance = 0.001
-    )
-
-    expect_equal(
-      tidy_df2,
-      structure(list(
-        term = structure(1:7, .Label = c(
-          "N", "P", "K", "N:P", "N:K", "P:K", "N:P:K"
-        ), class = "factor"), df = c(
-          1, 1,
-          1, 1, 1, 1, 1
-        ), statistic = c(
-          6.1607605408411, 0.273458372323257,
-          3.09863433554389, 0.692678031381803, 1.07848163066032, 0.0156773397344615,
-          1.20433432333835
-        ), p.value = c(
-          0.0245421094142749, 0.608187501010219,
-          0.0974576803101534, 0.417504736737997, 0.314477857657635, 0.901917664764329,
-          0.288698985559183
-        ), estimate = c(
-          0.278003118597268, 0.0168039494781475,
-          0.162243764716575, 0.0414959199524239, 0.063148566364598, 0.000978874599050923,
-          0.0700017972624853
-        ), conf.low = c(
-          0.000467178720183505, 0, 0,
-          0, 0, 0, 0
-        ), conf.high = c(
-          0.568063130817655, 0.273991917185563,
-          0.472609487705818, 0.328449842009168, 0.3622247504399, 0.146641480018096,
-          0.371691379747126
-        ), df.error = c(16, 16, 16, 16, 16, 16, 16),
-        estimate.type = c(
-          "partial eta-squared", "partial eta-squared",
-          "partial eta-squared", "partial eta-squared", "partial eta-squared",
-          "partial eta-squared", "partial eta-squared"
-        ), label = c(
-          "list(~italic(F)(1*\",\"*16)==6.16, ~italic(p)=='0.025', ~widehat(italic(eta)[p]^2)==0.28)",
-          "list(~italic(F)(1*\",\"*16)==0.27, ~italic(p)=='0.608', ~widehat(italic(eta)[p]^2)==0.02)",
-          "list(~italic(F)(1*\",\"*16)==3.10, ~italic(p)=='0.097', ~widehat(italic(eta)[p]^2)==0.16)",
-          "list(~italic(F)(1*\",\"*16)==0.69, ~italic(p)=='0.418', ~widehat(italic(eta)[p]^2)==0.04)",
-          "list(~italic(F)(1*\",\"*16)==1.08, ~italic(p)=='0.314', ~widehat(italic(eta)[p]^2)==0.06)",
-          "list(~italic(F)(1*\",\"*16)==0.02, ~italic(p)=='0.902', ~widehat(italic(eta)[p]^2)==0.00)",
-          "list(~italic(F)(1*\",\"*16)==1.20, ~italic(p)=='0.289', ~widehat(italic(eta)[p]^2)==0.07)"
-        )
-      ), row.names = c(NA, -7L), class = c("tbl_df", "tbl", "data.frame")),
-      tolerance = 0.001
-    )
+    expect_snapshot(list(tidy_df1, tidy_df2))
   }
 )
 

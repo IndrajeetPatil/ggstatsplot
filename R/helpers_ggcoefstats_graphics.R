@@ -30,16 +30,14 @@ ggcoefstats_label_maker <- function(tidy_df,
       dplyr::mutate(
         label = dplyr::case_when(
           is.na(df.error) || is.infinite(df.error) ~ paste0(
-            "list(~widehat(italic(beta))==", format_num(estimate, k),
-            ", ~italic(t)==", format_num(statistic, k),
-            ", ~italic(p)=='", format_num(p.value, k, TRUE),
-            "')"
+            "list(~widehat(italic(beta))=='", format_num(estimate, k),
+            "', ~italic(t)=='", format_num(statistic, k),
+            "', ~italic(p)=='", format_num(p.value, k, TRUE), "')"
           ),
           TRUE ~ paste0(
-            "list(~widehat(italic(beta))==", format_num(estimate, k),
-            ", ~italic(t)", "(", format_num(df.error, 0L), ")==", format_num(statistic, k),
-            ", ~italic(p)=='", format_num(p.value, k, TRUE),
-            "')"
+            "list(~widehat(italic(beta))=='", format_num(estimate, k),
+            "', ~italic(t)", "('", format_num(df.error, 0L), "')=='", format_num(statistic, k),
+            "', ~italic(p)=='", format_num(p.value, k, TRUE), "')"
           )
         )
       )
@@ -52,10 +50,9 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::mutate(
         label = paste0(
-          "list(~widehat(italic(beta))==", format_num(estimate, k),
-          ", ~italic(z)==", format_num(statistic, k),
-          ", ~italic(p)=='", format_num(p.value, k, TRUE),
-          "')"
+          "list(~widehat(italic(beta))=='", format_num(estimate, k),
+          "', ~italic(z)=='", format_num(statistic, k),
+          "', ~italic(p)=='", format_num(p.value, k, TRUE), "')"
         )
       )
   }
@@ -70,9 +67,9 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::mutate(
         label = paste0(
-          "list(~widehat(italic(beta))==", format_num(estimate, k),
-          ", ~italic(chi)^2~", "(", format_num(df.error, 0L), ")==", format_num(statistic, k),
-          ", ~italic(p)=='", format_num(p.value, k, TRUE), "')"
+          "list(~widehat(italic(beta))=='", format_num(estimate, k),
+          "', ~italic(chi)^2~", "('", format_num(df.error, 0L), "')==", format_num(statistic, k),
+          "', ~italic(p)=='", format_num(p.value, k, TRUE), "')"
         )
       )
   }
@@ -88,10 +85,10 @@ ggcoefstats_label_maker <- function(tidy_df,
     tidy_df %<>%
       dplyr::mutate(
         label = paste0(
-          "list(~italic(F)", "(", df, "*\",\"*", df.error, ")==", format_num(statistic, k),
-          ", ~italic(p)=='", format_num(p.value, k, TRUE),
-          "', ~", effsize.text, "==", format_num(estimate, k),
-          ")"
+          "list(~italic(F)", "('", format_num(df, 0L), "'*\",\"*'", format_num(df.error, 0L),
+          "')=='", format_num(statistic, k),
+          "', ~italic(p)=='", format_num(p.value, k, TRUE),
+          "', ~", effsize.text, "=='", format_num(estimate, k), "')"
         )
       )
   }

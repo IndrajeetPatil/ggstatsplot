@@ -1143,17 +1143,21 @@ plot that will be invariant across models:
 -   The dot-whisker plot contains a dot representing the **estimate**
     and their **confidence intervals** (`95%` is the default). The
     estimate can either be effect sizes (for tests that depend on the
-    `F` statistic) or regression coefficients (for tests with `t` and
-    `z` statistic), etc. The function will, by default, display a
+    `F`-statistic) or regression coefficients (for tests with `t`-,
+    ![\\chi^{2}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E%7B2%7D "\chi^{2}")-,
+    and `z`-statistic), etc. The function will, by default, display a
     helpful `x`-axis label that should clear up what estimates are being
     displayed. The confidence intervals can sometimes be asymmetric if
     bootstrapping was used.
 
--   The caption will always contain diagnostic information, if
-    available, about models that can be useful for model selection: The
-    smaller the Akaike’s Information Criterion (**AIC**) and the
-    Bayesian Information Criterion (**BIC**) values, the “better” the
-    model is.
+-   The label attached to dot will provide more details from the
+    statistical test carried out and it will typically contain estimate,
+    statistic, and *p*-value.
+
+-   The caption will contain diagnostic information, if available, about
+    models that can be useful for model selection: The smaller the
+    Akaike’s Information Criterion (**AIC**) and the Bayesian
+    Information Criterion (**BIC**) values, the “better” the model is.
 
 -   The output of this function will be a `ggplot2` object and, thus, it
     can be further modified (e.g., change themes, etc.) with `ggplot2`

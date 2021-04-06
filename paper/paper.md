@@ -14,7 +14,7 @@ authors:
     affiliation: 1
 affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
-  - index: 1
+    index: 1
 date: "2021-04-05"
 bibliography: paper.bib
 ---

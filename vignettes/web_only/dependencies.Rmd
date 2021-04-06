@@ -54,7 +54,7 @@ plot_dependencies("ggstatsplot", depth = 3)
 
 ```{r pkgndep, fig.height=8, fig.width=12, eval=FALSE}
 library(pkgndep)
-x = pkgndep("ggstatsplot")
+x <- pkgndep("ggstatsplot")
 plot(x)
 ```
 

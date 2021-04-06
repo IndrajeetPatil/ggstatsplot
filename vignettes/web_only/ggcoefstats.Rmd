@@ -3891,7 +3891,7 @@ ggcoefstats(
 )
 ```
 
-## GGM: Estimation (`BGGM`)
+## Bayesian Gaussian Graphical Model (`BGGM`)
 
 ```{r BGGM, fig.height = 10, fig.width = 6}
 set.seed(123)
@@ -3906,7 +3906,7 @@ fit_ggm <- estimate(Y + 1, type = "ordinal", iter = 250)
 # plot
 ggcoefstats(
   x = fit_ggm,
-  title = "GGM: Estimation"
+  title = "Bayesian Gaussian Graphical Model"
 )
 ```
 
