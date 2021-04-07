@@ -228,7 +228,7 @@ if (all(unlist(lapply(
 
       expect_identical(
         as.character(meta_info)[2],
-        "\"log\"[\"e\"] * \"(BF\"[\"01\"] * \") = \" * \"1.233\" * \", \""
+        "\"log\"[\"e\"] * \"(BF\"[\"01\"] * \") = \" * \"1.23\" * \", \""
       )
     }
   )
