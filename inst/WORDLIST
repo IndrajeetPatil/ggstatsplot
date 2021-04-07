@@ -10,6 +10,7 @@ Benchmarking
 BusinessScience
 Cikara
 Cochrane
+CodeFactor
 Codecov
 Conover
 Correlalogram
@@ -211,7 +212,6 @@ textit
 tibble
 tibbles
 tidiers
-tidyBF
 tidyverse
 tobit
 tskam

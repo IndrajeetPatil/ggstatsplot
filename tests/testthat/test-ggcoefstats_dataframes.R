@@ -161,7 +161,7 @@ if (all(unlist(lapply(
           ggcoefstats(
             x = df5,
             statistic = "t",
-            k = 3,
+            k = 2,
             meta.analytic.effect = TRUE,
             bf.message = TRUE
           )
@@ -219,7 +219,7 @@ if (all(unlist(lapply(
           ggcoefstats(
             x = df5,
             statistic = "t",
-            k = 3,
+            k = 2,
             meta.analytic.effect = TRUE,
             bf.message = TRUE,
             output = "caption"
