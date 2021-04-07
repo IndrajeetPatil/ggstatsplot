@@ -173,7 +173,7 @@ if (all(unlist(lapply(
           ggcoefstats(
             x = df5,
             statistic = "T",
-            k = 3,
+            k = 2,
             meta.analytic.effect = TRUE,
             meta.type = "bayes",
             caption = "mnp",
