@@ -10,7 +10,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom rlang !! enquo ensym exec
 #' @importFrom parameters describe_distribution
-#' @importFrom insight standardize_names
+#' @importFrom insight standardize_names format_value
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
@@ -124,7 +124,7 @@ centrality_data <- function(data, x, y, type = "parametric", tr = 0.2, k = 2L, .
     ) %>%
     dplyr::ungroup() %>%
     dplyr::rowwise() %>%
-    dplyr::mutate(label = paste0("list(~widehat(mu)[", centrality, "]=='", format_num(estimate, k), "')")) %>%
+    dplyr::mutate(label = paste0("list(~widehat(mu)[", centrality, "]=='", format_value(estimate, k), "')")) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", .prettyNum(n), ")")) %>%
     dplyr::arrange({{ x }}) %>%

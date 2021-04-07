@@ -68,8 +68,7 @@ only available on the website for this package: <br>
     
 ## General vignettes
 
-  - Introduction to `ggstatsplot` (publication describing philosophy and
-    principles behind this package):
+  - Publication describing philosophy and principles behind this package:
     (<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/paper/paper.pdf>)
 
   - Frequently Asked Questions (FAQ)-
@@ -107,15 +106,6 @@ default displayed in as plot **subtitle**.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/statsExpressions/>
-
-## `tidyBF`
-
-The `tidyBF` package forms the backend that processes data and creates
-expressions containing results from Bayes Factor tests and are by default
-displayed in as plot **caption**.
-
-For more exhaustive documentation for this package, see:
-<https://indrajeetpatil.github.io/tidyBF/>
 
 ## `pairwiseComparisons`
 

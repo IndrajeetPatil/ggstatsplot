@@ -48,6 +48,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #' @importFrom dplyr group_modify rowwise ungroup
 #' @importFrom rlang as_name ensym
 #' @importFrom ipmisc format_num
+#' @importFrom insight format_value
 #'
 #' @noRd
 
@@ -70,7 +71,7 @@ df_proptest <- function(data, x, y, k = 2L, ...) {
         "(",
         df,
         ")==",
-        format_num(statistic, k),
+        format_value(statistic, k),
         ", ~italic(p)=='",
         format_num(p.value, k, p.value = TRUE),
         "', ~italic(n)==",

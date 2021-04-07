@@ -100,7 +100,7 @@
 #' @importFrom dplyr select mutate matches across row_number last group_by ungroup
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
-#' @importFrom insight is_model find_statistic
+#' @importFrom insight is_model find_statistic format_value
 #' @importFrom statsExpressions meta_analysis
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom performance model_performance
@@ -324,8 +324,8 @@ ggcoefstats <- function(x,
           expr = atop(displaystyle(top.text), expr = paste("AIC = ", AIC, ", BIC = ", BIC)),
           env = list(
             top.text = caption,
-            AIC = format_num(glance_df$aic[[1]], k = 0L),
-            BIC = format_num(glance_df$bic[[1]], k = 0L)
+            AIC = format_value(glance_df$aic[[1]], 0L),
+            BIC = format_value(glance_df$bic[[1]], 0L)
           )
         )
     }

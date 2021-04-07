@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2021-02-11 r79990)",
+  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -448,7 +448,7 @@
   "citation": [
     {
       "@type": "ScholarlyArticle",
-      "datePublished": "2018",
+      "datePublished": "2021",
       "author": [
         {
           "@type": "Person",
@@ -456,17 +456,17 @@
           "familyName": "Patil"
         }
       ],
-      "name": "{ggstatsplot}: 'ggplot2' Based Plots with Statistical Details",
-      "identifier": "10.5281/zenodo.2074621",
-      "url": "https://CRAN.R-project.org/package=ggstatsplot",
-      "@id": "https://doi.org/10.5281/zenodo.2074621",
-      "sameAs": "https://doi.org/10.5281/zenodo.2074621",
+      "name": "Visualizations with statistical details: The 'ggstatsplot' approach",
+      "identifier": "10.31234/osf.io/p7mku",
+      "url": "https://psyarxiv.com/p7mku/",
+      "@id": "https://doi.org/10.31234/osf.io/p7mku",
+      "sameAs": "https://doi.org/10.31234/osf.io/p7mku",
       "isPartOf": {
         "@type": "PublicationIssue",
-        "datePublished": "2018",
+        "datePublished": "2021",
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
-          "name": "CRAN"
+          "name": "PsyArxiv"
         }
       }
     }
@@ -481,6 +481,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "117957.866KB",
+  "fileSize": "116470.835KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

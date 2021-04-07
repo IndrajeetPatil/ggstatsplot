@@ -194,7 +194,7 @@
       2 0.5420 2
       3 0.0450 3
                                                                                         label
-      1  list(~widehat(italic(beta))=='0.066', ~italic(t)('5')=='0.158', ~italic(p)=='0.875')
+      1  list(~widehat(italic(beta))=='0.067', ~italic(t)('5')=='0.158', ~italic(p)=='0.875')
       2 list(~widehat(italic(beta))=='0.542', ~italic(t)('10')=='1.330', ~italic(p)=='0.191')
       3 list(~widehat(italic(beta))=='0.045', ~italic(t)('12')=='1.240', ~italic(p)=='0.001')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
@@ -238,7 +238,7 @@
       2 0.5420 2
       3 0.0450 3
                                                                                         label
-      1  list(~widehat(italic(beta))=='0.066', ~italic(t)('5')=='0.158', ~italic(p)=='0.875')
+      1  list(~widehat(italic(beta))=='0.067', ~italic(t)('5')=='0.158', ~italic(p)=='0.875')
       2 list(~widehat(italic(beta))=='0.542', ~italic(t)('10')=='1.330', ~italic(p)=='0.191')
       3 list(~widehat(italic(beta))=='0.045', ~italic(t)('12')=='1.240', ~italic(p)=='0.001')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
