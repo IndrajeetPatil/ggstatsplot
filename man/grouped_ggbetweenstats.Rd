@@ -188,8 +188,6 @@ of an error, try reducing the value of \code{tr}, which is by default set to
   }}
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 Helper function for \code{ggstatsplot::ggbetweenstats} to apply this function
 across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.

@@ -166,8 +166,6 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{Currently ignored.}
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 Histogram with statistical details from one-sample test included in the plot
 as a subtitle.
 }

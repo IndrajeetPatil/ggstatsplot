@@ -141,8 +141,6 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
   }}
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 Grouped scatterplots from \code{ggplot2} combined with marginal distribution plots
 with statistical details added as a subtitle.
 }

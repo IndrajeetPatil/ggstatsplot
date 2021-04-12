@@ -4,7 +4,7 @@
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
 #'
 #' A combination of box and violin plots along with raw (unjittered) data points
 #' for within-subjects designs with statistical details included in the plot as

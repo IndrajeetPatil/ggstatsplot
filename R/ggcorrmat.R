@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
 #'
 #' Correlation matrix plot or a dataframe containing results from pairwise
 #' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for

@@ -164,8 +164,6 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{Currently ignored.}
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 Scatterplots from \code{ggplot2} combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle.

@@ -27,8 +27,6 @@ override some aspects of the selected \code{ggtheme}.}
 A \code{ggplot2} object with the \code{theme_ggstatsplot} theme overlaid.
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 Common theme used across all plots generated in \code{ggstatsplot} and \emph{assumed}
 by the author to be aesthetically pleasing to the user/reader.
 }

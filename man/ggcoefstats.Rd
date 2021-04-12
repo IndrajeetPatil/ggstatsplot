@@ -153,8 +153,6 @@ override some aspects of the selected \code{ggtheme}.}
 \code{parameters::model_parameters}.}
 }
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 Plot with the regression coefficients' point estimates as dots with
 confidence interval whiskers and other statistical details included as
 labels.

@@ -7,8 +7,6 @@
 \alias{ggstatsplot}
 \title{ggstatsplot: 'ggplot2' Based Plots with Statistical Details}
 \description{
-\Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
-
 \code{ggstatsplot} is an extension of \code{ggplot2} package. It creates
 graphics with details from statistical tests included in the plots
 themselves. It provides an easier \code{API} to generate information-rich plots

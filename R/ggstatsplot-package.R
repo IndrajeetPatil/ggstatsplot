@@ -4,7 +4,7 @@
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
 #'
 #' `ggstatsplot` is an extension of `ggplot2` package. It creates
 #'   graphics with details from statistical tests included in the plots

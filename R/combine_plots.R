@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
 #'
 #' Wrapper around `patchwork::wrap_plots` that will return a combined grid of
 #' plots with annotations.

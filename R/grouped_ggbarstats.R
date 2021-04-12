@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' \Sexpr[results=rd, stage=render]{rlang:::lifecycle("maturing")}
+#'
 #'
 #' Helper function for `ggstatsplot::ggbarstats` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
