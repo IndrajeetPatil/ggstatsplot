@@ -2,7 +2,15 @@
 
 MAJOR CHANGES
 
-  - To reduce the dependency load, `ggExtra` moves from `Imports` to `Suggests`.
+  - To reduce the dependency load, `ggExtra` moves from `Imports` to
+    `Suggests`.
+
+  - All functions are more *robust* in the sense that when statistical analysis
+    fails, they will return only the plots with no subtitles/captions. This
+    helps avoid difficult-to-diagnose edge case failures when the primary
+    functions are used in `grouped_` functions (e.g., #559). The `ggpiestats`
+    and `ggbarstats` functions always behaved this way, but the rest of the
+    functions now also mimic this behavior. 
 
 MINOR CHANGES
 

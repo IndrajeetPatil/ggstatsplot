@@ -342,30 +342,6 @@ test_that(
   }
 )
 
-# without enough data ---------------------------------------------------------
-
-test_that(
-  desc = "checking if functions work without enough data",
-  code = {
-    skip_on_cran()
-    set.seed(123)
-
-    # creating a dataframe
-    df <-
-      tibble::tribble(
-        ~x, ~y,
-        "one", "one"
-      )
-
-    # subtitle
-    expect_null(ggpiestats(
-      data = df,
-      x = x,
-      output = "subtitle"
-    ))
-  }
-)
-
 # expression output --------------------------------------------------
 
 test_that(

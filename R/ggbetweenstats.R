@@ -247,7 +247,7 @@ ggbetweenstats <- function(data,
   if (isTRUE(results.subtitle)) {
     # preparing the Bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <-
+      caption_df <- tryCatch(
         function_switch(
           test = test,
           # arguments relevant for expression helper functions
@@ -259,13 +259,15 @@ ggbetweenstats <- function(data,
           top.text = caption,
           paired = FALSE,
           k = k
-        )
+        ),
+        error = function(e) NULL
+      )
 
-      caption <- caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
 
     # extracting the subtitle using the switch function
-    subtitle_df <-
+    subtitle_df <- tryCatch(
       function_switch(
         test = test,
         # arguments relevant for expression helper functions
@@ -281,9 +283,11 @@ ggbetweenstats <- function(data,
         nboot = nboot,
         conf.level = conf.level,
         k = k
-      )
+      ),
+      error = function(e) NULL
+    )
 
-    subtitle <- subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
   }
 
   # return early if anything other than plot

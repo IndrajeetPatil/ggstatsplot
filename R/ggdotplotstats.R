@@ -101,7 +101,7 @@ ggdotplotstats <- function(data,
   if (isTRUE(results.subtitle)) {
     # preparing the BF message for NULL
     if (isTRUE(bf.message) && type == "parametric") {
-      caption_df <-
+      caption_df <- tryCatch(
         statsExpressions::one_sample_test(
           data = data,
           x = {{ x }},
@@ -110,13 +110,15 @@ ggdotplotstats <- function(data,
           bf.prior = bf.prior,
           top.text = caption,
           k = k
-        )
+        ),
+        error = function(e) NULL
+      )
 
-      caption <- caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
 
     # preparing the subtitle with statistical results
-    subtitle_df <-
+    subtitle_df <- tryCatch(
       statsExpressions::one_sample_test(
         data = data,
         x = {{ x }},
@@ -128,9 +130,11 @@ ggdotplotstats <- function(data,
         nboot = nboot,
         tr = tr,
         k = k
-      )
+      ),
+      error = function(e) NULL
+    )
 
-    subtitle <- subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
   }
 
   # return early if anything other than plot
