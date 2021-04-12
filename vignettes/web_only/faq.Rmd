@@ -10,7 +10,6 @@ output:
     toc: true
     warning: FALSE
     message: FALSE
-    number_sections: true
 vignette: >
   %\VignetteIndexEntry{frequently asked questions (FAQ)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -39,18 +38,21 @@ You can cite this package/vignette as:
 citation("ggstatsplot")
 ```
 
+<!-- The sections are numbered manually because `pkgdown` doesn't render -->
+<!-- numbered sections for `rmarkdown::html_vignette` format -->
+
 ---
 
 Following are a few of the common questions asked in GitHub issues and on social
 media platforms.
 
-# I just want the plot, not the statistical details. How can I turn them off?
+# 1. I just want the plot, not the statistical details. How can I turn them off?
 
 All functions in `ggstatsplot` that display results from statistical analysis in
 a subtitle have argument `results.subtitle`. Setting it to `FALSE` will return
 only the plot.
 
-# How can I customize the details contained in the subtitle?
+# 2. How can I customize the details contained in the subtitle?
 
 Sometimes you may not wish include so many details in the subtitle. In that
 case, you can extract the expression and copy-paste only the part you wish to
@@ -76,7 +78,7 @@ ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   )))
 ```
 
-# I am getting `Error in grid.Call` error
+# 3. I am getting `Error in grid.Call` error
 
 Sometimes, if you are working in `RStudio`, you might see the following error-
 
@@ -91,7 +93,7 @@ those solutions solve your problem.
 If not, pray to the old and the new gods, and try again. It might just solve
 your problem. `r emo::ji("shrug")`
 
-# Why do I get only plot in return but not the subtitle/caption?
+# 4. Why do I get only plot in return but not the subtitle/caption?
 
 In order to prevent the function from failing when statistical analysis fails,
 functions in `ggstatsplot` default to first attempting to run the analysis and
@@ -119,7 +121,7 @@ df <- data.frame(x = c("a", "b"), y = c(1, 2))
 two_sample_test(data = df, x = x, y = y)
 ```
 
-# What statistical test was carried out?
+# 5. What statistical test was carried out?
 
 In case you are not sure what was the statistical test that produced the results
 shown in the subtitle of the plot, the best way to get that information is to
@@ -129,7 +131,7 @@ associated vignette.
 Summary of all analysis is handily available in `README`: 
 <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
-# How can I use `ggstatsplot` functions in a `for` loop?
+# 6. How can I use `ggstatsplot` functions in a `for` loop?
 
 Given that all functions in `ggstatsplot` use tidy evaluation, running these
 functions in a `for` loop requires minor adjustment to how inputs are entered:
@@ -156,7 +158,7 @@ dataframe in what you want to do, I will recommend you to have a look at
 
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-dataframe-1>
 
-# How can I have uniform Y-axes ranges in `grouped_` functions?
+# 7. How can I have uniform Y-axes ranges in `grouped_` functions?
 
 ```{r grouped_y_axes, fig.height=10, fig.width=8}
 # setup
@@ -190,7 +192,7 @@ combine_plots(
 )
 ```
 
-# Does `ggstatsplot` work with `plotly`?
+# 8. Does `ggstatsplot` work with `plotly`?
 
 The `plotly` R graphing library makes it easy to produce interactive web
 graphics via `plotly.js`. 
@@ -215,7 +217,7 @@ p <-
 plotly::ggplotly(p, width = 480, height = 480)
 ```
 
-# How can I use `grouped_` functions with more than one group?
+# 9. How can I use `grouped_` functions with more than one group?
 
 Currently, the `grouped_` variants of functions only support repeating the
 analysis across a _single_ grouping variable. Often, you have to run the same
@@ -261,7 +263,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-# How can I include statistical expressions in facet labels?
+# 10. How can I include statistical expressions in facet labels?
 
 ```{r facet_expr, fig.width = 6, fig.height = 8}
 set.seed(123)
@@ -292,7 +294,7 @@ mtcars1 %>%
   )
 ```
 
-# Can you customize which pairs are shown in pairwise comparisons?
+# 11. Can you customize which pairs are shown in pairwise comparisons?
 
 Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
 **significant** comparisons, all **non-significant** comparisons, or **all**
@@ -310,7 +312,7 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
   geom_signif(comparisons = list(c("4", "6")))
 ```
 
-# How to access dataframe with results from pairwise comparisons?
+# 12. How to access dataframe with results from pairwise comparisons?
 
 ```{r}
 library(ggstatsplot)
@@ -331,7 +333,7 @@ library(pairwiseComparisons)
 pairwise_comparisons(mtcars, cyl, wt)
 ```
 
-# How can I change annotation in pairwise comparisons?
+# 13. How can I change annotation in pairwise comparisons?
 
 `ggstatsplot` defaults to displaying exact p-values or logged Bayes Factor
 values for pairwise comparisons. But what if you wish to adopt a different
@@ -373,7 +375,7 @@ p +
   )
 ```
 
-# How to access dataframe with results from `ggpiestats` and `ggbarstats`?
+# 14. How to access dataframe with results from `ggpiestats` and `ggbarstats`?
 
 ```{r proptest_df}
 # setup
@@ -393,7 +395,7 @@ pb$plot$plot_env$df_proptest
 pb$plot$plot_env$df_descriptive
 ```
 
-# How can I remove a particular `geom` layer from the plot?
+# 15. How can I remove a particular `geom` layer from the plot?
 
 Sometimes you may not want a particular `geom` layer to be displayed. You can
 remove them using `gginnards`. 
@@ -446,12 +448,12 @@ p <- gginnards::delete_layers(x = p, match_type = "GeomPoint")
 p + geom_point(shape = 23, aes(color = am))
 ```
 
-# How can I modify the fill colors with custom values?
+# 16. How can I modify the fill colors with custom values?
 
 Sometimes you may not be satisfied with the available color palette values. In
 this case, you can also change the colors by manually specifying these values.
 
-```{r ggbar_colors, fig.width = 3, fig.height = 3}
+```{r ggbar_colors, fig.width = 5, fig.height = 5}
 # needed libraries
 set.seed(123)
 library(ggstatsplot)
@@ -472,7 +474,7 @@ ggstatsplot::grouped_ggpiestats(
 )
 ```
 
-# How can I modify `grouped_` outputs using `ggplot2` functions?
+# 17. How can I modify `grouped_` outputs using `ggplot2` functions?
 
 All `ggstatsplot` are `ggplot` objects, which can be further modified, just like
 any other `ggplot` object. But exception to these are all plots returned by
@@ -502,7 +504,7 @@ grouped_ggbetweenstats(
 )
 ```
 
-# How can I extract dataframe containing results from `ggstatsplot`?
+# 18. How can I extract dataframe containing results from `ggstatsplot`?
 
 `ggstatsplot` can return expressions in the subtitle and caption, but what if
 you want to actually get back dataframe containing the results?
@@ -510,7 +512,7 @@ you want to actually get back dataframe containing the results?
 This is possible via `statsExpressions`:
 <https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html>
 
-# How can I remove sample size labels for `ggbarstats`?
+# 19. How can I remove sample size labels for `ggbarstats`?
 
 ```{r ggbar_samplesize}
 library(ggstatsplot)
@@ -523,7 +525,7 @@ p <- ggbarstats(mtcars, am, cyl)
 delete_layers(p, "GeomText")
 ```
 
-# Test I need is not available. What can I do?
+# 20. Test I need is not available. What can I do?
 
 By default, since `ggstatsplot` always allows just **one** type of test per
 statistical approach, sometimes your favorite test might not be available. For
@@ -531,7 +533,8 @@ example, `ggstatsplot` provides only Spearman's $\rho$, but not Kendall's
 $\tau$ as a non-parametric correlation test. 
 
 In such cases, you can override the defaults and use `statsExpressions` to
-create custom expressions to display in the plot.
+create custom expressions to display in the plot. But be forewarned that the
+expression building functions in `statsExpressions` are not stable yet.
 
 ```{r custom_test, fig.width = 6, fig.height = 6}
 # setup
