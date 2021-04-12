@@ -538,39 +538,14 @@
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
-<p>A number of other arguments can be specified to make this plot even more informative or change some of the default options.</p>
+<p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-
-<span class="co"># plot</span>
-<span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">ToothGrowth</span>,
-  x <span class="op">=</span> <span class="va">supp</span>,
-  y <span class="op">=</span> <span class="va">len</span>,
-  type <span class="op">=</span> <span class="st">"r"</span>, <span class="co"># robust statistics</span>
-  k <span class="op">=</span> <span class="fl">3</span>, <span class="co"># number of decimal places for statistical results</span>
-  xlab <span class="op">=</span> <span class="st">"Supplement type"</span>, <span class="co"># label for the x-axis variable</span>
-  ylab <span class="op">=</span> <span class="st">"Tooth length"</span>, <span class="co"># label for the y-axis variable</span>
-  title <span class="op">=</span> <span class="st">"The Effect of Vitamin C on Tooth Growth"</span>, <span class="co"># title text for the plot</span>
-  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># choosing a different theme</span>
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># turn off `ggstatsplot` theme layer</span>
-  package <span class="op">=</span> <span class="st">"wesanderson"</span>, <span class="co"># package from which color palette is to be taken</span>
-  palette <span class="op">=</span> <span class="st">"Darjeeling1"</span> <span class="co"># choosing a different color palette</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">movies_long</span>,
-    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
-  <span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Comedy"</span><span class="op">)</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">mpaa</span>,
   y <span class="op">=</span> <span class="va">length</span>,
   grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
@@ -584,10 +559,10 @@
   caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"Source"</span><span class="op">)</span>, <span class="st">": IMDb (Internet Movie Database)"</span><span class="op">)</span><span class="op">)</span>,
   palette <span class="op">=</span> <span class="st">"default_jama"</span>,
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-ggbetweenstats3-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
 <p>Note here that the function can be used to tag outliers!</p>
 <div id="summary-of-tests" class="section level3">
 <h3 class="hasAnchor">
@@ -823,7 +798,7 @@
 <a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
 </h2>
 <p><code>ggbetweenstats</code> function has an identical twin function <code>ggwithinstats</code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility and data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co"># for data</span>
@@ -873,7 +848,7 @@
 </tbody>
 </table>
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># common setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1124,7 +1099,7 @@
 <a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
 </h2>
 <p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1143,16 +1118,13 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">movies_long</span>,
-    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
-  <span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Comedy"</span><span class="op">)</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">budget</span>,
   test.value <span class="op">=</span> <span class="fl">50</span>,
   type <span class="op">=</span> <span class="st">"nonparametric"</span>,
@@ -1163,7 +1135,7 @@
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># modify the defaults from `ggstatsplot` for each plot</span>
   ggplot.component <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Source: IMDB.com"</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
@@ -1285,7 +1257,7 @@
 <a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
 </h2>
 <p>This function is similar to <code>gghistostats</code>, but is intended to be used when the numeric variable also has a label.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1309,7 +1281,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1338,7 +1310,7 @@
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h2>
 <p>This function creates a scatterplot with marginal distributions overlaid on the axes (from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html" class="external-link">ggExtra::ggMarginal</a></code>) and results from statistical tests in the subtitle:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
   x <span class="op">=</span> <span class="va">sleep_rem</span>,
@@ -1359,13 +1331,13 @@
 <li>densigram (density + histogram)</li>
 </ul>
 <p>Number of other arguments can be specified to modify this basic plot-</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Action"</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Action"</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">budget</span>,
   y <span class="op">=</span> <span class="va">rating</span>,
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># type of test that needs to be run</span>
@@ -1383,16 +1355,13 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Also, note that, as opposed to the other functions, this function does not return a <code>ggplot</code> object and any modification you want to make can be made in advance using <code>ggplot.component</code> argument (available for all functions, but especially useful here):</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">movies_long</span>,
-    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
-  <span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Comedy"</span><span class="op">)</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">rating</span>,
   y <span class="op">=</span> <span class="va">length</span>,
   grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
@@ -1403,8 +1372,8 @@
   ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span>, limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie length by IMDB ratings for different genres"</span><span class="op">)</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie length and IMDB ratings"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
 <div id="summary-of-tests-4" class="section level3">
@@ -1459,7 +1428,7 @@
 <a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
 </h2>
 <p><code>ggcorrmat</code> makes a correlalogram (a matrix of correlation coefficients) with minimal amount of code. Just sticking to the defaults itself produces publication-ready correlation matrices. But, for the sake of exploring the available options, let’s change some of the defaults. For example, multiple aesthetics-related arguments can be modified to change the appearance of the correlation matrix.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1475,16 +1444,13 @@
 <p>✅ effect size + significance<br> ✅ careful handling of <code>NA</code>s</p>
 <p>If there are <code>NA</code>s present in the selected variables, the legend will display minimum, median, and maximum number of pairs used for correlation tests.</p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">movies_long</span>,
-    <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
-  <span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Comedy"</span><span class="op">)</span><span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># correlation method</span>
   colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span><span class="op">)</span>,
   grouping.var <span class="op">=</span> <span class="va">genre</span>, <span class="co"># grouping variable</span>
@@ -1492,7 +1458,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat2-1.png" width="100%"></p>
 <p>You can also get a dataframe containing all relevant details from the statistical tests:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1555,7 +1521,7 @@
 <span class="co">#&gt; 14 Bayesian Pearson correlation    83</span>
 <span class="co">#&gt; 15 Bayesian Pearson correlation    56</span></code></pre></div>
 <p>Additionally, <strong>partial</strong> correlation are also supported:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1676,7 +1642,7 @@
 </h2>
 <p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s chi-squared test for between-subjects design and McNemar’s chi-squared test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a chi-squared goodness of fit test) will be displayed as a subtitle.</p>
 <p>To study an interaction between two categorical variables:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1685,6 +1651,8 @@
   data <span class="op">=</span> <span class="va">mtcars</span>,
   x <span class="op">=</span> <span class="va">am</span>,
   y <span class="op">=</span> <span class="va">cyl</span>,
+  package <span class="op">=</span> <span class="st">"wesanderson"</span>,
+  palette <span class="op">=</span> <span class="st">"Royal1"</span>,
   title <span class="op">=</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>, <span class="co"># title for the plot</span>
   legend.title <span class="op">=</span> <span class="st">"Transmission"</span>, <span class="co"># title for the legend</span>
   caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"Source"</span><span class="op">)</span>, <span class="st">": 1974 Motor Trend US magazine"</span><span class="op">)</span><span class="op">)</span>
@@ -1692,50 +1660,21 @@
 <p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
-<p>In case of repeated measures designs, setting <code>paired = TRUE</code> will produce results from McNemar’s chi-squared test-</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-
-<span class="co"># data</span>
-<span class="va">df_paired</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-    <span class="st">"before"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Approve"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Disapprove"</span><span class="op">)</span>,
-    <span class="st">"after"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Approve"</span>, <span class="st">"Disapprove"</span>, <span class="st">"Approve"</span>, <span class="st">"Disapprove"</span><span class="op">)</span>,
-    counts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">794</span>, <span class="fl">150</span>, <span class="fl">86</span>, <span class="fl">570</span><span class="op">)</span>,
-    check.names <span class="op">=</span> <span class="cn">FALSE</span>
-  <span class="op">)</span>
-
-<span class="co"># plot</span>
-<span class="fu"><a href="reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">df_paired</span>,
-  x <span class="op">=</span> <span class="va">before</span>,
-  y <span class="op">=</span> <span class="va">after</span>,
-  counts <span class="op">=</span> <span class="va">counts</span>,
-  title <span class="op">=</span> <span class="st">"Survey results before and after the intervention"</span>,
-  label <span class="op">=</span> <span class="st">"both"</span>,
-  paired <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># within-subjects design</span>
-  package <span class="op">=</span> <span class="st">"wesanderson"</span>,
-  palette <span class="op">=</span> <span class="st">"Royal1"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
-<p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">movies_long</span>,
-  x <span class="op">=</span> <span class="va">genre</span>,
-  grouping.var <span class="op">=</span> <span class="va">mpaa</span>, <span class="co"># grouping variable</span>
+  data <span class="op">=</span> <span class="va">mtcars</span>,
+  x <span class="op">=</span> <span class="va">cyl</span>,
+  grouping.var <span class="op">=</span> <span class="va">am</span>, <span class="co"># grouping variable</span>
   label.repel <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># repel labels (helpful for overlapping labels)</span>
   package <span class="op">=</span> <span class="st">"ggsci"</span>, <span class="co"># package from which color palette is to be taken</span>
-  palette <span class="op">=</span> <span class="st">"default_ucscgb"</span>, <span class="co"># choosing a different color palette</span>
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Composition of MPAA ratings for different genres"</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  palette <span class="op">=</span> <span class="st">"default_ucscgb"</span> <span class="co"># choosing a different color palette</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-ggpiestats3-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
 <div id="summary-of-tests-6" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-6" class="anchor"></a>Summary of tests</h3>
@@ -1818,7 +1757,7 @@
 </h2>
 <p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code>ggbarstats</code> function which has a similar syntax.</p>
 <p>N.B. The <em>p</em>-values from one-sample proportion test are displayed on top of each bar.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
@@ -1839,33 +1778,20 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># smaller dataset</span>
-<span class="va">df</span> <span class="op">&lt;-</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">forcats</span><span class="fu">::</span><span class="va"><a href="https://forcats.tidyverse.org/reference/gss_cat.html" class="external-link">gss_cat</a></span>,
-    <span class="va">race</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Black"</span>, <span class="st">"White"</span><span class="op">)</span>,
-    <span class="va">relig</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Protestant"</span>, <span class="st">"Catholic"</span>, <span class="st">"None"</span><span class="op">)</span>,
-    <span class="op">!</span><span class="va">partyid</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span><span class="op">)</span>
-  <span class="op">)</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">df</span>,
-  x <span class="op">=</span> <span class="va">relig</span>,
-  y <span class="op">=</span> <span class="va">partyid</span>,
-  grouping.var <span class="op">=</span> <span class="va">race</span>,
-  label <span class="op">=</span> <span class="st">"both"</span>,
-  xlab <span class="op">=</span> <span class="st">"Party affiliation"</span>,
+  data <span class="op">=</span> <span class="va">mtcars</span>,
+  x <span class="op">=</span> <span class="va">am</span>,
+  y <span class="op">=</span> <span class="va">cyl</span>,
+  grouping.var <span class="op">=</span> <span class="va">vs</span>,
   package <span class="op">=</span> <span class="st">"wesanderson"</span>,
   palette <span class="op">=</span> <span class="st">"Darjeeling2"</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Race, religion, and political affiliation"</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
 <div id="summary-of-tests-7" class="section level3">
@@ -1886,7 +1812,7 @@
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1899,7 +1825,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC + BIC) <br></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1985,7 +1911,7 @@
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor"></a>Using <code>ggstatsplot</code> statistical details with custom plots</h2>
 <p>Sometimes you may not like the default plots produced by <code>ggstatsplot</code>. In such cases, you can use other <strong>custom</strong> plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create plot (<em>ridgeplot</em>) using <code>ggridges</code> package and use <code>ggstatsplot</code> function for extracting results.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loading the needed libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/" class="external-link">ggridges</a></span><span class="op">)</span>
@@ -2063,7 +1989,7 @@
 <h2 class="hasAnchor">
 <a href="#statsexpressions" class="anchor"></a><code>statsExpressions</code>
 </h2>
-<p>The <code>statsExpressions</code> package forms the statistical backend that processes data and creates expressions containing results from statistical tests and are by default displayed in as plot <strong>subtitle</strong> and <strong>caption</strong>.</p>
+<p>The <code>statsExpressions</code> package forms the statistical backend that processes data and creates expressions containing results from statistical tests.</p>
 <p>For more exhaustive documentation for this package, see: <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/</a></p>
 </div>
 <div id="pairwisecomparisons" class="section level2">
@@ -2077,7 +2003,7 @@
 <h2 class="hasAnchor">
 <a href="#ipmisc" class="anchor"></a><code>ipmisc</code>
 </h2>
-<p>The <code>ipmisc</code> package contains some of the data wrangling/cleaning functions and a few other miscellaneous functions.</p>
+<p>The <code>ipmisc</code> package contains the data wrangling/cleaning functions and a few other miscellaneous functions.</p>
 <p>For more exhaustive documentation for this package, see: <a href="https://indrajeetpatil.github.io/ipmisc/" class="external-link uri">https://indrajeetpatil.github.io/ipmisc/</a></p>
 </div>
 </div>
@@ -2090,7 +2016,7 @@
 <h1 class="hasAnchor">
 <a href="#acknowledgments" class="anchor"></a>Acknowledgments</h1>
 <p>I would like to thank all the contributors to <code>ggstatsplot</code> who pointed out bugs or requested features I hadn’t considered. I would especially like to thank other package developers (especially Daniel Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Patrick Mair, Salvatore Mangiafico, etc.) who have patiently and diligently answered my relentless number of questions and added feature requests I wanted. I also want to thank Chuck Powell for his initial contributions to the package.</p>
-<p>The hexsticker was generously designed by Sarah Otterstetter (Max Planck Institute for Human Development, Berlin). This package has also benefited from the larger <code>rstats</code> community on Twitter and StackOverflow.</p>
+<p>The hexsticker was generously designed by Sarah Otterstetter (Max Planck Institute for Human Development, Berlin). This package has also benefited from the larger <code>rstats</code> community on Twitter and <code>StackOverflow</code>.</p>
 <p>Thanks are also due to my postdoc advisers (Mina Cikara and Fiery Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for Human Development) who patiently supported me spending hundreds of hours working on this package rather than what I was paid to do. 😄</p>
 </div>
 <div id="code-coverage" class="section level1">

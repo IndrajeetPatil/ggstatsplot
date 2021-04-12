@@ -225,35 +225,9 @@ comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
 A number of other arguments can be specified to make this plot even more
-informative or change some of the default options.
-
-``` r
-# for reproducibility
-set.seed(123)
-library(ggplot2)
-
-# plot
-ggbetweenstats(
-  data = ToothGrowth,
-  x = supp,
-  y = len,
-  type = "r", # robust statistics
-  k = 3, # number of decimal places for statistical results
-  xlab = "Supplement type", # label for the x-axis variable
-  ylab = "Tooth length", # label for the y-axis variable
-  title = "The Effect of Vitamin C on Tooth Growth", # title text for the plot
-  ggtheme = ggthemes::theme_fivethirtyeight(), # choosing a different theme
-  ggstatsplot.layer = FALSE, # turn off `ggstatsplot` theme layer
-  package = "wesanderson", # package from which color palette is to be taken
-  palette = "Darjeeling1" # choosing a different color palette
-)
-```
-
-<img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
-
-Additionally, there is also a `grouped_` variant of this function that
-makes it easy to repeat the same operation across a **single** grouping
-variable:
+informative or change some of the default options. Additionally, there
+is also a `grouped_` variant of this function that makes it easy to
+repeat the same operation across a **single** grouping variable:
 
 ``` r
 # for reproducibility
@@ -261,10 +235,7 @@ set.seed(123)
 
 # plot
 grouped_ggbetweenstats(
-  data = dplyr::filter(
-    .data = movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
+  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x = mpaa,
   y = length,
   grouping.var = genre, # grouping variable
@@ -278,12 +249,12 @@ grouped_ggbetweenstats(
   caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
   palette = "default_jama",
   package = "ggsci",
-  plotgrid.args = list(nrow = 2),
+  plotgrid.args = list(nrow = 1),
   annotation.args = list(title = "Differences in movie length by mpaa ratings for different genres")
 )
 ```
 
-<img src="man/figures/README-ggbetweenstats3-1.png" width="100%" />
+<img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
 
 Note here that the function can be used to tag outliers!
 
@@ -510,10 +481,7 @@ set.seed(123)
 
 # plot
 grouped_gghistostats(
-  data = dplyr::filter(
-    .data = movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
+  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x = budget,
   test.value = 50,
   type = "nonparametric",
@@ -524,7 +492,7 @@ grouped_gghistostats(
   ggtheme = ggthemes::theme_tufte(),
   # modify the defaults from `ggstatsplot` for each plot
   ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
-  plotgrid.args = list(nrow = 2),
+  plotgrid.args = list(nrow = 1),
   annotation.args = list(title = "Movies budgets for different genres")
 )
 ```
@@ -670,7 +638,7 @@ set.seed(123)
 
 # plot
 ggscatterstats(
-  data = dplyr::filter(.data = movies_long, genre == "Action"),
+  data = dplyr::filter(movies_long, genre == "Action"),
   x = budget,
   y = rating,
   type = "robust", # type of test that needs to be run
@@ -703,10 +671,7 @@ set.seed(123)
 
 # plot
 grouped_ggscatterstats(
-  data = dplyr::filter(
-    .data = movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
+  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x = rating,
   y = length,
   grouping.var = genre, # grouping variable
@@ -717,8 +682,8 @@ grouped_ggscatterstats(
   ggplot.component = list(
     ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
   ),
-  plotgrid.args = list(nrow = 2),
-  annotation.args = list(title = "Relationship between movie length by IMDB ratings for different genres")
+  plotgrid.args = list(nrow = 1),
+  annotation.args = list(title = "Relationship between movie length and IMDB ratings")
 )
 ```
 
@@ -781,10 +746,7 @@ set.seed(123)
 
 # plot
 grouped_ggcorrmat(
-  data = dplyr::filter(
-    .data = movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
+  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   type = "robust", # correlation method
   colors = c("#cbac43", "white", "#550000"),
   grouping.var = genre, # grouping variable
@@ -961,6 +923,8 @@ ggpiestats(
   data = mtcars,
   x = am,
   y = cyl,
+  package = "wesanderson",
+  palette = "Royal1",
   title = "Dataset: Motor Trend Car Road Tests", # title for the plot
   legend.title = "Transmission", # title for the legend
   caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine"))
@@ -975,42 +939,10 @@ ggpiestats(
 effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
-In case of repeated measures designs, setting `paired = TRUE` will
-produce results from McNemar’s chi-squared test-
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# data
-df_paired <-
-  data.frame(
-    "before" = c("Approve", "Approve", "Disapprove", "Disapprove"),
-    "after" = c("Approve", "Disapprove", "Approve", "Disapprove"),
-    counts = c(794, 150, 86, 570),
-    check.names = FALSE
-  )
-
-# plot
-ggpiestats(
-  data = df_paired,
-  x = before,
-  y = after,
-  counts = counts,
-  title = "Survey results before and after the intervention",
-  label = "both",
-  paired = TRUE, # within-subjects design
-  package = "wesanderson",
-  palette = "Royal1"
-)
-```
-
-<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
-
-Additionally, there is also a `grouped_` variant of this function that
-makes it easy to repeat the same operation across a **single** grouping
-variable. Following example is a case where the theoretical question is
-about proportions for different levels of a single nominal variable:
+There is also a `grouped_` variant of this function that makes it easy
+to repeat the same operation across a **single** grouping variable.
+Following example is a case where the theoretical question is about
+proportions for different levels of a single nominal variable:
 
 ``` r
 # for reproducibility
@@ -1018,18 +950,16 @@ set.seed(123)
 
 # plot
 grouped_ggpiestats(
-  data = movies_long,
-  x = genre,
-  grouping.var = mpaa, # grouping variable
+  data = mtcars,
+  x = cyl,
+  grouping.var = am, # grouping variable
   label.repel = TRUE, # repel labels (helpful for overlapping labels)
   package = "ggsci", # package from which color palette is to be taken
-  palette = "default_ucscgb", # choosing a different color palette
-  annotation.args = list(title = "Composition of MPAA ratings for different genres"),
-  plotgrid.args = list(nrow = 2)
+  palette = "default_ucscgb" # choosing a different color palette
 )
 ```
 
-<img src="man/figures/README-ggpiestats3-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
 
 ### Summary of tests
 
@@ -1095,29 +1025,16 @@ function-
 # setup
 set.seed(123)
 
-# smaller dataset
-df <-
-  dplyr::filter(
-    .data = forcats::gss_cat,
-    race %in% c("Black", "White"),
-    relig %in% c("Protestant", "Catholic", "None"),
-    !partyid %in% c("No answer", "Don't know", "Other party")
-  )
-
 # plot
 grouped_ggbarstats(
-  data = df,
-  x = relig,
-  y = partyid,
-  grouping.var = race,
-  label = "both",
-  xlab = "Party affiliation",
+  data = mtcars,
+  x = am,
+  y = cyl,
+  grouping.var = vs,
   package = "wesanderson",
   palette = "Darjeeling2",
   ggtheme = ggthemes::theme_tufte(base_size = 12),
-  ggstatsplot.layer = FALSE,
-  annotation.args = list(title = "Race, religion, and political affiliation"),
-  plotgrid.args = list(nrow = 2)
+  ggstatsplot.layer = FALSE
 )
 ```
 
@@ -1381,8 +1298,7 @@ different aspects of statistical analyses:
 
 The `statsExpressions` package forms the statistical backend that
 processes data and creates expressions containing results from
-statistical tests and are by default displayed in as plot **subtitle**
-and **caption**.
+statistical tests.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/statsExpressions/>
@@ -1398,8 +1314,8 @@ For more exhaustive documentation for this package, see:
 
 ## `ipmisc`
 
-The `ipmisc` package contains some of the data wrangling/cleaning
-functions and a few other miscellaneous functions.
+The `ipmisc` package contains the data wrangling/cleaning functions and
+a few other miscellaneous functions.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/ipmisc/>
@@ -1425,7 +1341,7 @@ package.
 The hexsticker was generously designed by Sarah Otterstetter (Max Planck
 Institute for Human Development, Berlin). This package has also
 benefited from the larger `rstats` community on Twitter and
-StackOverflow.
+`StackOverflow`.
 
 Thanks are also due to my postdoc advisers (Mina Cikara and Fiery
 Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for
