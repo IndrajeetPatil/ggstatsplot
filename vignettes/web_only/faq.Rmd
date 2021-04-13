@@ -160,35 +160,26 @@ dataframe in what you want to do, I will recommend you to have a look at
 
 # 7. How can I have uniform Y-axes ranges in `grouped_` functions?
 
-```{r grouped_y_axes, fig.height=10, fig.width=8}
+Across different facets of a `grouped_` plot, the axes ranges might sometimes
+differ. You can use the `ggplot.component` (present in all functions) to have
+the same scale across the individual plots:
+
+```{r grouped_y_axes, fig.height=6, fig.width=8}
 # setup
 set.seed(123)
 library(ggstatsplot)
 
-combine_plots(
-  list(
-    # with unequal Y-axes ranges
-    grouped_ggscatterstats(
-      mtcars,
-      disp,
-      hp,
-      grouping.var = am,
-      results.subtitle = FALSE,
-      annotation.args = list(title = "before")
-    ),
-    # with equal Y-axes ranges
-    grouped_ggscatterstats(
-      mtcars,
-      disp,
-      hp,
-      grouping.var = am,
-      results.subtitle = FALSE,
-      ggplot.component =
-        list(ggplot2::scale_y_continuous(breaks = seq(50, 350, 50), limits = (c(50, 350)))),
-      annotation.args = list(title = "after")
-    )
-  ),
-  plotgrid.args = list(nrow = 2)
+# provide a list of further `ggplot2` modifications using `ggplot.component`
+grouped_ggscatterstats(
+  mtcars,
+  disp,
+  hp,
+  grouping.var = am,
+  results.subtitle = FALSE,
+  ggplot.component = list(ggplot2::scale_y_continuous(
+      breaks = seq(50, 350, 50),
+      limits = (c(50, 350))
+    ))
 )
 ```
 

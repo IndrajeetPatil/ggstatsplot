@@ -18,7 +18,7 @@ options(
 
 knitr::opts_chunk$set(
   collapse = TRUE,
-  dpi = 150, # change to 300 once on CRAN
+  dpi = 300, # change to 300 once on CRAN
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
