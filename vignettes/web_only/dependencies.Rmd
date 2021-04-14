@@ -47,6 +47,7 @@ sort(tools::package_dependencies("ggstatsplot", recursive = TRUE)[[1]])
 
 ```{r deepdep, fig.height=12, fig.width=12}
 library(deepdep)
+
 plot_dependencies("ggstatsplot", depth = 3)
 ```
 

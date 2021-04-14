@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="ggbetweenstats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="ggbetweenstats_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd" class="external-link"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -192,10 +192,10 @@ A BibTeX entry for LaTeX users is
 <li><p>to compare distributions visually and check for outliers</p></li>
 </ul>
 <p><strong>Note</strong>: This vignette uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
-<div id="comparisons-between-groups-with-ggbetweenstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="comparisons-between-groups-with-ggbetweenstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#comparisons-between-groups-with-ggbetweenstats" class="anchor"></a>Comparisons between groups with <code>ggbetweenstats</code>
-</h2>
+</h1>
 <p>To illustrate how this function can be used, we will use the <code>gapminder</code> dataset throughout this vignette. This dataset provides values for life expectancy, GDP per capita, and population, at 5 year intervals, from 1952 to 2007, for each of 142 countries (courtesy <a href="https://www.gapminder.org/" class="external-link">Gapminder Foundation</a>). Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
@@ -203,12 +203,12 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span></code></pre></div>
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span></code></pre></div>
 <p><strong>Note</strong>: For the remainder of the vignette, we’re going to exclude <em>Oceania</em> from the analysis simply because there are so few observations (countries).</p>
 <p>Suppose the first thing we want to inspect is the distribution of life expectancy for the countries of a continent in 2007. We also want to know if the mean differences in life expectancy between the continents is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
@@ -357,10 +357,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" width="100%"></p>
 </div>
-<div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-grouped_ggbetweenstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggbetweenstats" class="anchor"></a>Grouped analysis with <code>grouped_ggbetweenstats</code>
-</h2>
+</h1>
 <p>What if we want to analyze both by continent and between 1957 and 2007? A combination of our two previous efforts.</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggbetweenstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggbetweenstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s focus on the same 4 continents for the following years: 1967, 1987, 2007. Also, let’s carry out pairwise comparisons to see if there differences between every pair of continents.</p>
@@ -394,21 +394,21 @@ A BibTeX entry for LaTeX users is
 <p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" width="100%"></p>
 <p>As seen from the plot, although the life expectancy has been improving steadily across all continents as we go from 1967 to 2007, this improvement has not been happening at the same rate for all continents. Additionally, irrespective of which year we look at, we still find significant differences in life expectancy across continents which have been surprisingly consistent across five decades (based on the observed effect sizes).</p>
 </div>
-<div id="grouped-analysis-with-ggbetweenstats-purrr" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-ggbetweenstats-purrr" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-ggbetweenstats-purrr" class="anchor"></a>Grouped analysis with <code>ggbetweenstats</code> + <code>purrr</code>
-</h2>
+</h1>
 <p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, the same type of plot and test is applied for all years, but maybe we want to change this for different years, or maybe we want to gave different effect sizes for different years. This type of customization for different levels of a grouping variable is not possible with <code>grouped_ggbetweenstats</code>, but this can be easily achieved using the <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
-<div id="within-subjects-designs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
+<div id="within-subjects-designs" class="section level1">
+<h1 class="hasAnchor">
+<a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h1>
 <p>For repeated measures designs, <code>ggwithinstats</code> function can be used: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
 </div>
-<div id="summary-of-tests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<div id="summary-of-tests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>The central tendency measure displayed will depend on the statistics:</p>
 <table class="table">
 <thead><tr class="header">
@@ -633,9 +633,9 @@ A BibTeX entry for LaTeX users is
 </tbody>
 </table>
 </div>
-<div id="effect-size-interpretation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h2>
+<div id="effect-size-interpretation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">

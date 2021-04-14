@@ -49,13 +49,13 @@ for each `factor` of this variable the `grouped_` variants
 `ggstatsplot` functions will allow you do to this. They specifically use the
 `combine_plots` function under the covers.
 
-## Combining multiple plots: Example-1 using `dplyr::group_map`
+# Example-1 using `dplyr::group_map`
 
 The easiest way to run the same `ggstatsplot` operation across multiple grouping
 variables is by using `dplyr::group_map` functions and then - of course - one
 would like to combine these plots in a single plot.
 
-```{r ggscatterstats_groupmap, message = FALSE, warning = FALSE, fig.height = 6, fig.width = 10}
+```{r ggscatterstats_groupmap, fig.height = 6, fig.width = 10}
 # libraries
 set.seed(123)
 library(tidyverse)
@@ -74,8 +74,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-
-## Combining multiple plots: Example-2 using `purrr`
+# Example-2 using `purrr`
 
 The full power of `ggstatsplot` can be leveraged with a functional programming
 package like [`purrr`](http://purrr.tidyverse.org/) which can replace many `for`
@@ -90,7 +89,7 @@ gluing the results or using `patchwork` directly, we'll create a `tibble` called
 `plots` using `purrr::map` then feed that to `combine_plots` to get our combined
 plot.
 
-```{r ggscatterstats_purrr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 8}
+```{r ggscatterstats_purrr, fig.height = 12, fig.width = 8}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -144,7 +143,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Combining multiple plots: Example-3 with `plyr`
+# Example-3 with `plyr`
 
 Another popular package for handling big datasets is `plyr`, which allows us to
 repeatedly apply a common function on smaller pieces and then combine the
@@ -160,7 +159,7 @@ is of that is a list of plots called `plots`.  We then feed `plots` to the
 the countries which have very low life expectancy (< 45 years) by labeling those
 countries when they occur.
 
-```{r ggscatterstats_plyr, message = FALSE, warning = FALSE, fig.height = 12, fig.width = 12}
+```{r ggscatterstats_plyr, fig.height = 12, fig.width = 12}
 library(plyr)
 library(gapminder)
 
@@ -214,7 +213,7 @@ caption. But we want to add at the bottom an annotation to show the formula we
 are using for our regression.  `combine_plots` allows us to add `sub.text =` to
 accomplish that task as shown in the resulting plot.
 
-```{r ggbetweenstats_subtext, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 8}
+```{r ggbetweenstats_subtext, fig.height = 8, fig.width = 8}
 library(ggstatsplot)
 
 ggstatsplot::combine_plots(

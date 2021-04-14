@@ -57,7 +57,7 @@ To begin with, here are some instances where you would want to use
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Comparisons between groups with `ggwithistats`
+# Comparisons between groups with `ggwithistats`
 
 To illustrate how this function can be used, we will use the `bugs` dataset
 throughout this vignette. This data set, "Bugs", provides the extent to which
@@ -253,7 +253,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Grouped analysis with `grouped_ggwithinstats`
+# Grouped analysis with `grouped_ggwithinstats`
 
 What if we want to carry out this same analysis but for each region (or gender)?
 
@@ -297,7 +297,7 @@ ggstatsplot::grouped_ggwithinstats(
 )
 ```
 
-## Grouped analysis with `ggwithinstats` + `purrr` 
+# Grouped analysis with `ggwithinstats` + `purrr` 
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of test and theme is
@@ -310,12 +310,12 @@ package.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Between-subjects designs
+# Between-subjects designs
 
 For independent measures designs, `ggbetweenstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
-## Summary of tests
+# Summary of tests
 
 The central tendency measure displayed will depend on the statistics:
 
@@ -365,7 +365,7 @@ Non-parametric | Durbin-Conover test | <font color="green">Yes</font> | `PMCMRpl
 Robust | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
-## Effect size interpretation
+# Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>

@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="ggpiestats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="ggpiestats_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -185,10 +185,10 @@ A BibTeX entry for LaTeX users is
     doi = {10.31234/osf.io/p7mku},
   }</code></pre>
 <hr>
-<div id="introduction-to-ggpiestats" class="section level2">
-<h2 class="hasAnchor">
+<div id="introduction-to-ggpiestats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#introduction-to-ggpiestats" class="anchor"></a>Introduction to <code>ggpiestats</code>
-</h2>
+</h1>
 <p>The function <code><a href="../../reference/ggpiestats.html">ggstatsplot::ggpiestats</a></code> can be used for quick <strong>data exploration</strong> and/or to prepare <strong>publication-ready pie charts</strong> to summarize the statistical relationship(s) among one or more categorical variables. We will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggpiestats</code>-</p>
 <ul>
@@ -218,16 +218,16 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,201</span>
 <span class="co">#&gt; Columns: 5</span>
-<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span>
-<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~</span>
-<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~</span>
-<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Child~</span>
-<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</span></code></pre></div>
+<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</span>
+<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3…</span>
+<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…</span>
+<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Child…</span>
+<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…</span></code></pre></div>
 </div>
-<div id="goodness-of-fit-with-ggpiestats" class="section level2">
-<h2 class="hasAnchor">
+<div id="goodness-of-fit-with-ggpiestats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#goodness-of-fit-with-ggpiestats" class="anchor"></a>Goodness of Fit with <code>ggpiestats</code>
-</h2>
+</h1>
 <p>The simplest use case for <code>ggpiestats</code> is that we want to display information about <strong>one</strong> categorical or nominal variable. As part of that display or plot, we may also choose to execute a chi-squared goodness of fit test to see whether the proportions (or percentages) in categories of the single variable appear to line up with our hypothesis or model. To start simple and then expand, let’s say that we’d like to display a piechart with the percentages of passengers who did or did not survive. Our initial hypothesis is that it was no different than flipping a coin. People had a 50/50 chance of surviving.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
@@ -248,10 +248,10 @@ A BibTeX entry for LaTeX users is
 <p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="100%"></p>
 <p><strong>Note:</strong> equal proportions per category are the default, e.g. 50/50, but you can specify any hypothesized ratio you like with <code>ratio</code> so if our hypothesis was that 80% died and 20% survived we would add <code>ratio = c(.80,.20)</code> when we entered the code.</p>
 </div>
-<div id="independence-or-association-with-ggpiestats" class="section level2">
-<h2 class="hasAnchor">
+<div id="independence-or-association-with-ggpiestats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#independence-or-association-with-ggpiestats" class="anchor"></a>Independence (or association) with <code>ggpiestats</code>
-</h2>
+</h1>
 <p>Let’s next investigate whether the passenger’s gender was independent of, or associated with, gender. The test is whether the proportion of people who survived was different between the sexes using <code>ggpiestats</code>.</p>
 <p>We’ll modify a number of arguments to change the appearance of this plot and showcase the flexibility of <code>ggpiestats</code>. We will:</p>
 <ol style="list-style-type: decimal">
@@ -292,10 +292,10 @@ A BibTeX entry for LaTeX users is
 <p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="100%"></p>
 <p>The plot clearly shows that survival rates were very different between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is significant given our large sample size. Additionally, for both females and males, the survival rates were significantly different than 50% as indicated by a goodness of fit test for each gender.</p>
 </div>
-<div id="grouped-analysis-with-grouped_ggpiestats" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-grouped_ggpiestats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggpiestats" class="anchor"></a>Grouped analysis with <code>grouped_ggpiestats</code>
-</h2>
+</h1>
 <p>What if we want to do the same analysis of gender but also factor in the passenger’s age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference to their survival rate?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. It is a convenient wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -321,17 +321,17 @@ A BibTeX entry for LaTeX users is
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="100%"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>
-<div id="grouped-analysis-with-ggpiestats-purrr" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-ggpiestats-purrr" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-ggpiestats-purrr" class="anchor"></a>Grouped analysis with <code>ggpiestats</code> + <code>purrr</code>
-</h2>
+</h1>
 <p>Although <code>grouped_ggpiestats</code> provides a quick way to explore the data, it leaves much to be desired. For example, we may want to add different captions, titles, themes, or palettes for each level of the grouping variable, etc. For cases like these, it would be better to use <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
-<div id="working-with-data-organized-by-counts" class="section level2">
-<h2 class="hasAnchor">
+<div id="working-with-data-organized-by-counts" class="section level1">
+<h1 class="hasAnchor">
 <a href="#working-with-data-organized-by-counts" class="anchor"></a>Working with data organized by <code>counts</code>
-</h2>
+</h1>
 <p><code>ggpiestats</code> can also work with dataframe containing counts (aka tabled data), i.e., when each row doesn’t correspond to a unique observation. For example, consider the following notional <code>fishing</code> dataframe containing data from two boats (<code>A</code> and <code>B</code>) about the number of different types fish they caught in the months of <code>February</code> and <code>March</code>. In this dataframe, each row corresponds to a unique combination of <code>Boat</code> and <code>Month</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -402,9 +402,9 @@ A BibTeX entry for LaTeX users is
 <p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="100%"></p>
 <p>The results support our hypothesis that the type of fish caught is related to the month in which we’re fishing. The <span class="math inline">\(\chi^2\)</span> independence test results at the top of the plot. In February we catch significantly more Haddock than we would hypothesize for an equal distribution. Whereas in March our results indicate there’s no strong evidence that the distribution isn’t equal.</p>
 </div>
-<div id="within-subjects-designs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h2>
+<div id="within-subjects-designs" class="section level1">
+<h1 class="hasAnchor">
+<a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h1>
 <p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -436,9 +436,9 @@ A BibTeX entry for LaTeX users is
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="100%"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>
 </div>
-<div id="summary-of-tests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<div id="summary-of-tests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
 <colgroup>
@@ -510,9 +510,9 @@ A BibTeX entry for LaTeX users is
 </tbody>
 </table>
 </div>
-<div id="effect-size-interpretation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h2>
+<div id="effect-size-interpretation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">

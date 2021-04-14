@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="ggscatterstats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="ggscatterstats_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd" class="external-link"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -175,10 +175,10 @@
 <li>to check distribution of two continuous variables</li>
 </ul>
 <p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
-<div id="correlation-plot-with-ggscatterstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="correlation-plot-with-ggscatterstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#correlation-plot-with-ggscatterstats" class="anchor"></a>Correlation plot with <code>ggscatterstats</code>
-</h2>
+</h1>
 <p>To illustrate how this function can be used, we will rely on the <code>ggplot2movies</code> dataset. This dataset provides information about movies scraped from <a href="https://www.imdb.com/" class="external-link">IMDB</a>. Specifically, we will be using cleaned version of this dataset included in the <code>ggstatsplot</code> package itself.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -187,19 +187,19 @@
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/movies_wide.html">movies_wide</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,579</span>
 <span class="co">#&gt; Columns: 13</span>
-<span class="co">#&gt; $ title     &lt;chr&gt; "'Til There Was You", "10 Things I Hate About You", "100 Mil~</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 2000, ~</span>
-<span class="co">#&gt; $ length    &lt;int&gt; 113, 97, 98, 98, 102, 120, 180, 107, 101, 99, 129, 124, 93, ~</span>
-<span class="co">#&gt; $ budget    &lt;dbl&gt; 23.0, 16.0, 1.1, 37.0, 85.0, 42.0, 4.0, 76.0, 6.0, 26.0, 12.~</span>
-<span class="co">#&gt; $ rating    &lt;dbl&gt; 4.8, 6.7, 5.6, 6.4, 6.1, 6.1, 7.3, 5.1, 5.4, 2.5, 7.6, 8.0, ~</span>
-<span class="co">#&gt; $ votes     &lt;int&gt; 799, 19095, 181, 7859, 14344, 10866, 1754, 9556, 4514, 2023,~</span>
-<span class="co">#&gt; $ mpaa      &lt;fct&gt; PG-13, PG-13, R, PG-13, R, R, PG, PG-13, R, R, R, R, R, R, P~</span>
-<span class="co">#&gt; $ Action    &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, ~</span>
-<span class="co">#&gt; $ Animation &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~</span>
-<span class="co">#&gt; $ Comedy    &lt;int&gt; 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, ~</span>
-<span class="co">#&gt; $ Drama     &lt;int&gt; 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, ~</span>
-<span class="co">#&gt; $ Romance   &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, ~</span>
-<span class="co">#&gt; $ NumGenre  &lt;int&gt; 2, 2, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 3, 2, 2, 1, ~</span></code></pre></div>
+<span class="co">#&gt; $ title     &lt;chr&gt; "'Til There Was You", "10 Things I Hate About You", "100 Mil…</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1997, 1999, 2002, 2004, 1999, 2001, 1972, 2003, 1999, 2000, …</span>
+<span class="co">#&gt; $ length    &lt;int&gt; 113, 97, 98, 98, 102, 120, 180, 107, 101, 99, 129, 124, 93, …</span>
+<span class="co">#&gt; $ budget    &lt;dbl&gt; 23.0, 16.0, 1.1, 37.0, 85.0, 42.0, 4.0, 76.0, 6.0, 26.0, 12.…</span>
+<span class="co">#&gt; $ rating    &lt;dbl&gt; 4.8, 6.7, 5.6, 6.4, 6.1, 6.1, 7.3, 5.1, 5.4, 2.5, 7.6, 8.0, …</span>
+<span class="co">#&gt; $ votes     &lt;int&gt; 799, 19095, 181, 7859, 14344, 10866, 1754, 9556, 4514, 2023,…</span>
+<span class="co">#&gt; $ mpaa      &lt;fct&gt; PG-13, PG-13, R, PG-13, R, R, PG, PG-13, R, R, R, R, R, R, P…</span>
+<span class="co">#&gt; $ Action    &lt;int&gt; 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, …</span>
+<span class="co">#&gt; $ Animation &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span>
+<span class="co">#&gt; $ Comedy    &lt;int&gt; 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, …</span>
+<span class="co">#&gt; $ Drama     &lt;int&gt; 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, …</span>
+<span class="co">#&gt; $ Romance   &lt;int&gt; 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, …</span>
+<span class="co">#&gt; $ NumGenre  &lt;int&gt; 2, 2, 1, 3, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 3, 2, 2, 1, …</span></code></pre></div>
 <p>Now that we have a clean dataset, we can start asking some interesting questions. For example, let’s see if the average IMDB rating for a movie has any relationship to its budget. Additionally, let’s also see which movies had a high budget but low IMDB rating by labeling those data points.</p>
 <p>To reduce the processing time, let’s only work with 30% of the dataset.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -230,10 +230,10 @@
 <p><strong>Important</strong>:</p>
 <p>In contrast to all other functions in this package, the <code>ggscatterstats</code> function returns object that is <strong>not</strong> further modifiable with <code>ggplot2</code>. This can be avoided by not plotting the marginal distributions (<code>marginal = FALSE</code>). Currently trying to find a workaround this problem.</p>
 </div>
-<div id="grouped-analysis-with-grouped_ggscatterstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-grouped_ggscatterstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggscatterstats" class="anchor"></a>Grouped analysis with <code>grouped_ggscatterstats</code>
-</h2>
+</h1>
 <p>What if we want to do the same analysis do the same analysis for movies with different MPAA (Motion Picture Association of America) film ratings (NC-17, PG, PG-13, R)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggstatsplot</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggstatsplot</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a robust test this time.</p>
@@ -271,16 +271,16 @@
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="100%"></p>
 <p>As seen from the plot, this analysis has revealed something interesting: The relationship we found between budget and IMDB rating holds only for PG-13 and R-rated movies.</p>
 </div>
-<div id="grouped-analysis-with-ggscatterstats-purrr" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-ggscatterstats-purrr" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-ggscatterstats-purrr" class="anchor"></a>Grouped analysis with <code>ggscatterstats</code> + <code>purrr</code>
-</h2>
+</h1>
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate type of marginal distribution plot for each MPAA rating or if we wanted to use different types of correlations across different levels of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would be a good idea), this is not possible. But this can be easily done using <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
-<div id="summary-of-tests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<div id="summary-of-tests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>Following tests are carried out for each type of analyses. Additionally, the correlation coefficients (and their confidence intervals) are used as effect sizes-</p>
 <table class="table">
 <colgroup>
@@ -323,9 +323,27 @@
 </tbody>
 </table>
 </div>
-<div id="effect-size-interpretation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h2>
+<div id="reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reporting" class="anchor"></a>Reporting</h1>
+<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<ul>
+<li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+</ul>
+<p>For example, let’s see the following example:</p>
+<p>The <code>ggstatsplot</code> reporting -</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></code></pre></div>
+<p><img src="ggscatterstats_files/figure-html/reporting-1.png" width="100%"></p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<blockquote>
+<p>Pearson’s correlation test revealed that, across 32 cars, a measure of acceleration (1/4 mile time; <code>qsec</code>) was positively correlated with rear axle ratio (<code>drat</code>), but this effect was not statistically significant. The effect size <span class="math inline">\((r = 0.09)\)</span> was small, as per Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that the data were 3.32 times more probable under the null hypothesis as compared to the alternative hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor of the null hypothesis (of absence of any correlation between these two variables).</p>
+</blockquote>
+</div>
+<div id="effect-size-interpretation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">

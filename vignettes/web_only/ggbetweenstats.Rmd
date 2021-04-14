@@ -57,7 +57,7 @@ To begin with, here are some instances where you would want to use
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Comparisons between groups with `ggbetweenstats`
+# Comparisons between groups with `ggbetweenstats`
 
 To illustrate how this function can be used, we will use the `gapminder` dataset
 throughout this vignette. This dataset provides values for life expectancy, GDP
@@ -263,7 +263,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-## Grouped analysis with `grouped_ggbetweenstats`
+# Grouped analysis with `grouped_ggbetweenstats`
 
 What if we want to analyze both by continent and between 1957 and 2007? A
 combination of our two previous efforts. 
@@ -315,7 +315,7 @@ which year we look at, we still find significant differences in life expectancy
 across continents which have been surprisingly consistent across five decades
 (based on the observed effect sizes).
 
-## Grouped analysis with `ggbetweenstats` + `purrr` 
+# Grouped analysis with `ggbetweenstats` + `purrr` 
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of plot and test is
@@ -328,12 +328,12 @@ package.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Within-subjects designs
+# Within-subjects designs
 
 For repeated measures designs, `ggwithinstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-## Summary of tests
+# Summary of tests
 
 The central tendency measure displayed will depend on the statistics:
 
@@ -384,7 +384,7 @@ Non-parametric | No | Dunn test | <font color="green">Yes</font> | `PMCMRplus::k
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::lincon`
 Bayes Factor | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
-## Effect size interpretation
+# Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>

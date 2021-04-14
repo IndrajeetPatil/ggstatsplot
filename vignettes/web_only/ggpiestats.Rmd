@@ -40,7 +40,7 @@ citation("ggstatsplot")
 
 ---
 
-## Introduction to `ggpiestats`
+# Introduction to `ggpiestats`
 
 The function `ggstatsplot::ggpiestats` can be used for quick **data
 exploration** and/or to prepare **publication-ready pie charts** to summarize
@@ -90,7 +90,7 @@ dplyr::glimpse(x = Titanic)
 dplyr::glimpse(x = ggstatsplot::Titanic_full)
 ```
 
-## Goodness of Fit with `ggpiestats`
+# Goodness of Fit with `ggpiestats`
 
 The simplest use case for `ggpiestats` is that we want to display information
 about **one** categorical or nominal variable. As part of that display or plot,
@@ -124,7 +124,7 @@ can specify any hypothesized ratio you like with `ratio` so if our hypothesis
 was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we
 entered the code.
 
-## Independence (or association) with `ggpiestats`
+# Independence (or association) with `ggpiestats`
 
 Let's next investigate whether the passenger's gender was independent of, or
 associated with, gender. The test is whether the proportion of people who
@@ -180,7 +180,7 @@ large sample size. Additionally, for both females and males, the survival rates
 were significantly different than 50% as indicated by a goodness of fit test for
 each gender.
 
-## Grouped analysis with `grouped_ggpiestats`
+# Grouped analysis with `grouped_ggpiestats`
 
 What if we want to do the same analysis of gender but also factor in the
 passenger's age (Age)? We have information that classifies the passengers as
@@ -220,7 +220,7 @@ very much matters. Women survived at much higher rates than men. For children
 gender is not significantly associated with survival and both male and female
 children have a survival rate that is not significantly different from 50/50.
 
-## Grouped analysis with `ggpiestats` + `purrr` 
+# Grouped analysis with `ggpiestats` + `purrr` 
 
 Although `grouped_ggpiestats` provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
@@ -230,7 +230,7 @@ cases like these, it would be better to use `purrr` package.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Working with data organized by `counts` 
+# Working with data organized by `counts` 
 
 `ggpiestats` can also work with dataframe containing counts (aka tabled data),
 i.e., when each row doesn't correspond to a unique observation. For example,
@@ -300,7 +300,7 @@ the top of the plot. In February we catch significantly more Haddock than we
 would hypothesize for an equal distribution. Whereas in March our results
 indicate there's no strong evidence that the distribution isn't equal.
 
-## Within-subjects designs
+# Within-subjects designs
 
 For our final example let's imagine we're conducting clinical trials for some
 new imaginary wonder drug. We have 134 subjects entering the trial. Some of them
@@ -347,7 +347,7 @@ out healthy only 4% were sick after a month. Ideally, we would have hoped for
 zero but reality is seldom perfect. On the other side of the 38 who started out
 sick that number has reduced to just 13 or 34% which is a marked improvement.
 
-## Summary of tests
+# Summary of tests
 
 Following tests are carried out for each type of analyses-
 
@@ -366,7 +366,7 @@ Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font> | `effect
 McNemar's test | Cohen's $g$ | <font color="green">Yes<font> | `effectsize::cohens_g`
 Goodness-of-fit | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
 
-## Effect size interpretation
+# Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>

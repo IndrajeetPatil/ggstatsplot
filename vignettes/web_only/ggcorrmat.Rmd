@@ -64,7 +64,7 @@ To begin with, here are some instances where you would want to use
 you are not familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Correlation matrix plot with `ggcorrmat`
+# Correlation matrix plot with `ggcorrmat`
 
 For the first example, we will use the `gapminder` dataset (available in
 eponymous [package](https://CRAN.R-project.org/package=gapminder) on CRAN)
@@ -212,7 +212,7 @@ As seen here, and unsurprisingly, the strongest predictor of the diamond price
 is its carat value, which a unit of mass equal to 200 mg. In other words, the
 heavier the diamond, the more expensive it is going to be.
 
-## Dataframe containing statistics with `ggcorrmat`
+# Dataframe containing statistics with `ggcorrmat`
 
 Another utility of `ggcorrmat` is in obtaining a dataframe containing all
 details from statistical analyses. Such dataframes can be easily embedded in
@@ -250,7 +250,7 @@ ggstatsplot::ggcorrmat(
 )
 ```
 
-## Grouped analysis with `grouped_ggcorrmat`
+# Grouped analysis with `grouped_ggcorrmat`
 
 What if we want to do the same analysis separately for each quality of the
 diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? 
@@ -297,7 +297,7 @@ ggstatsplot::grouped_ggcorrmat(
 )
 ```
 
-## Grouped analysis with `ggcorrmat` + `purrr`
+# Grouped analysis with `ggcorrmat` + `purrr`
 
 Although `grouped_` function is good for quickly exploring the data, it reduces
 the flexibility with which this function can be used. This is the because the
@@ -309,7 +309,7 @@ levels of the grouping variable. We will see how this can be done using the
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Summary of tests
+# Summary of tests
 
 Following tests are carried out for each type of analyses-
 

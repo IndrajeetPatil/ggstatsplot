@@ -52,7 +52,7 @@ Some instances where you would want to use `gghistostats`-
   - to test if the mean of a sample variable is different from a specified value
   (population parameter)
 
-## Statistical analysis with `gghistostats`
+# Statistical analysis with `gghistostats`
 
 
 Let's begin with a very simple example from the `psych` package
@@ -104,7 +104,7 @@ in favor of the research hypothesis: these ACT scores are much higher than the
 national average.  The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1
 that this sample is different.
 
-## Grouped analysis with `grouped_gghistostats`
+# Grouped analysis with `grouped_gghistostats`
 
 What if we want to do the same analysis separately for each gender? 
 `ggstatsplot` provides a special helper function for such instances:
@@ -144,7 +144,7 @@ As can be seen from these plots, the mean value is much higher than the national
 norm. Additionally, we see the benefits of plotting this data separately for
 each gender. We can *see* the differences in distributions.
 
-## Grouped analysis with `purrr`
+# Grouped analysis with `purrr`
 
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -158,7 +158,7 @@ would be better to use `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Summary of tests
+# Summary of tests
 
 The central tendency measure displayed will depend on the statistics:
 
@@ -190,7 +190,7 @@ Non-parametric | *r* (rank-biserial correlation) | <font color="green">Yes<font>
 Robust | trimmed mean | <font color="green">Yes<font> | `trimcibt` (custom)
 Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
-## Effect size interpretation
+# Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>

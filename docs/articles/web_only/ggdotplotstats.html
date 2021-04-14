@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="ggdotplotstats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="ggdotplotstats_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd" class="external-link"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -187,27 +187,27 @@ A BibTeX entry for LaTeX users is
 <hr>
 <p>The function <code><a href="../../reference/ggdotplotstats.html">ggstatsplot::ggdotplotstats</a></code> can be used for <strong>data exploration</strong> and to provide an easy way to make <strong>publication-ready dot plots/charts</strong> with appropriate and selected statistical details embedded in the plot itself. In this vignette we will explore several examples of how to use it.</p>
 <p>This function is a sister function of <code>gghistostats</code> with the difference being it expects a labeled numeric variable.</p>
-<div id="distribution-of-a-sample-with-ggdotplotstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="distribution-of-a-sample-with-ggdotplotstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#distribution-of-a-sample-with-ggdotplotstats" class="anchor"></a>Distribution of a sample with <code>ggdotplotstats</code>
-</h2>
+</h1>
 <p>Let’s begin with a very simple example from the <code>ggplot2</code> package (<code><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">ggplot2::mpg</a></code>), a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" class="external-link uri">http://fueleconomy.gov</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># looking at the structure of the data using glimpse</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 234</span>
 <span class="co">#&gt; Columns: 11</span>
-<span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi", "~</span>
-<span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "~</span>
-<span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~</span>
-<span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~</span>
-<span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~</span>
-<span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto~</span>
-<span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4~</span>
-<span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~</span>
-<span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~</span>
-<span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p~</span>
-<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact", "c~</span></code></pre></div>
+<span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi", "…</span>
+<span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "…</span>
+<span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…</span>
+<span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…</span>
+<span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …</span>
+<span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto…</span>
+<span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4…</span>
+<span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…</span>
+<span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…</span>
+<span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p…</span>
+<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact", "c…</span></code></pre></div>
 <p>Let’s say we want to visualize the distribution of mileage by car manufacturer.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -243,10 +243,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/mpg2-1.png" width="100%"></p>
 </div>
-<div id="grouped-analysis-with-grouped_ggdotplotstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-grouped_ggdotplotstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggdotplotstats" class="anchor"></a>Grouped analysis with <code>grouped_ggdotplotstats</code>
-</h2>
+</h1>
 <p>What if we want to do the same analysis separately for different engines with different numbers of cylinders?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggdotplotstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggdotplotstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot.</p>
 <p>Let’s see how we can use this function to apply <code>ggdotplotstats</code> to accomplish our task.</p>
@@ -269,22 +269,22 @@ A BibTeX entry for LaTeX users is
   type <span class="op">=</span> <span class="st">"bayes"</span>, <span class="co"># Bayesian test</span>
   test.value <span class="op">=</span> <span class="fl">15.5</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
+  <span class="co"># arguments relevant for `ggstatsplot::combine_plots`</span>
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Fuel economy data"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/grouped1-1.png" width="100%"></p>
 </div>
-<div id="grouped-analysis-with-purrr" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-purrr" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-purrr" class="anchor"></a>Grouped analysis with <code>purrr</code>
-</h2>
+</h1>
 <p>Although this is a quick and dirty way to explore a large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each gender, this is not possible with <code>grouped_ggdotplotstats</code>. For cases like these, or to run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
-<div id="summary-of-tests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<div id="summary-of-tests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>The central tendency measure displayed will depend on the statistics:</p>
 <table class="table">
 <thead><tr class="header">
@@ -394,9 +394,9 @@ A BibTeX entry for LaTeX users is
 </tbody>
 </table>
 </div>
-<div id="effect-size-interpretation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h2>
+<div id="effect-size-interpretation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">

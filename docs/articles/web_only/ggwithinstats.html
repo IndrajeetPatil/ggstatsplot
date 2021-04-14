@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="ggwithinstats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="ggwithinstats_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd" class="external-link"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -192,10 +192,10 @@ A BibTeX entry for LaTeX users is
 <li><p>to compare distributions visually and check for outliers</p></li>
 </ul>
 <p><strong>Note</strong>: This vignette uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
-<div id="comparisons-between-groups-with-ggwithistats" class="section level2">
-<h2 class="hasAnchor">
+<div id="comparisons-between-groups-with-ggwithistats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#comparisons-between-groups-with-ggwithistats" class="anchor"></a>Comparisons between groups with <code>ggwithistats</code>
-</h2>
+</h1>
 <p>To illustrate how this function can be used, we will use the <code>bugs</code> dataset throughout this vignette. This data set, “Bugs”, provides the extent to which men and women want to kill arthropods that vary in freighteningness (low, high) and disgustingness (low, high). Each participant rates their attitudes towards all anthropods. Subset of the data reported by <a href="https://www.sciencedirect.com/science/article/pii/S0747563213000277" class="external-link">Ryan et al. (2013)</a>. Note that this is a repeated measures design because the same participant gave four different ratings across four different conditions (LDLF, LDHF, HDLF, HDHF).</p>
 <p>Suppose the first thing we want to inspect is the distribution of desire to kill across all conditions (disregarding the factorial structure of the experiment). We also want to know if the mean differences in this desire across conditions is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
@@ -342,10 +342,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats3-1.png" width="100%"></p>
 </div>
-<div id="grouped-analysis-with-grouped_ggwithinstats" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-grouped_ggwithinstats" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-grouped_ggwithinstats" class="anchor"></a>Grouped analysis with <code>grouped_ggwithinstats</code>
-</h2>
+</h1>
 <p>What if we want to carry out this same analysis but for each region (or gender)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggwithinstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggwithinstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s focus on the two regions and for years: 1967, 1987, 2007. Also, let’s carry out pairwise comparisons to see if there differences between every pair of continents.</p>
@@ -378,21 +378,21 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/grouped1-1.png" width="100%"></p>
 </div>
-<div id="grouped-analysis-with-ggwithinstats-purrr" class="section level2">
-<h2 class="hasAnchor">
+<div id="grouped-analysis-with-ggwithinstats-purrr" class="section level1">
+<h1 class="hasAnchor">
 <a href="#grouped-analysis-with-ggwithinstats-purrr" class="anchor"></a>Grouped analysis with <code>ggwithinstats</code> + <code>purrr</code>
-</h2>
+</h1>
 <p>Although this grouping function provides a quick way to explore the data, it leaves much to be desired. For example, the same type of test and theme is applied for all genders, but maybe we want to change this for different genders, or maybe we want to gave different effect sizes for different years. This type of customization for different levels of a grouping variable is not possible with <code>grouped_ggwithinstats</code>, but this can be easily achieved using the <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
-<div id="between-subjects-designs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#between-subjects-designs" class="anchor"></a>Between-subjects designs</h2>
+<div id="between-subjects-designs" class="section level1">
+<h1 class="hasAnchor">
+<a href="#between-subjects-designs" class="anchor"></a>Between-subjects designs</h1>
 <p>For independent measures designs, <code>ggbetweenstats</code> function can be used: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
 </div>
-<div id="summary-of-tests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h2>
+<div id="summary-of-tests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>The central tendency measure displayed will depend on the statistics:</p>
 <table class="table">
 <thead><tr class="header">
@@ -613,9 +613,9 @@ A BibTeX entry for LaTeX users is
 </tbody>
 </table>
 </div>
-<div id="effect-size-interpretation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h2>
+<div id="effect-size-interpretation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">

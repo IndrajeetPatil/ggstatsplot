@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="combine_plots_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="combine_plots_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -191,10 +191,11 @@ A BibTeX entry for LaTeX users is
 </h1>
 <p><code>ggstatsplot</code> contains a “helper” function named <code>combine_plots</code> to help you combine several plots into one plot or add a combination of title, caption, and annotation texts with suitable default parameters. It is a wrapper around <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>. Some examples below.</p>
 <p><strong>Note Before</strong>: If you have just one grouping variable and you’d like a plot for each <code>factor</code> of this variable the <code>grouped_</code> variants (<a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/index.html</a>) of all <code>ggstatsplot</code> functions will allow you do to this. They specifically use the <code>combine_plots</code> function under the covers.</p>
-<div id="combining-multiple-plots-example-1-using-dplyrgroup_map" class="section level2">
-<h2 class="hasAnchor">
-<a href="#combining-multiple-plots-example-1-using-dplyrgroup_map" class="anchor"></a>Combining multiple plots: Example-1 using <code>dplyr::group_map</code>
-</h2>
+</div>
+<div id="example-1-using-dplyrgroup_map" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-1-using-dplyrgroup_map" class="anchor"></a>Example-1 using <code>dplyr::group_map</code>
+</h1>
 <p>The easiest way to run the same <code>ggstatsplot</code> operation across multiple grouping variables is by using <code><a href="https://dplyr.tidyverse.org/reference/group_map.html" class="external-link">dplyr::group_map</a></code> functions and then - of course - one would like to combine these plots in a single plot.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># libraries</span>
@@ -215,10 +216,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_groupmap-1.png" width="960"></p>
 </div>
-<div id="combining-multiple-plots-example-2-using-purrr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#combining-multiple-plots-example-2-using-purrr" class="anchor"></a>Combining multiple plots: Example-2 using <code>purrr</code>
-</h2>
+<div id="example-2-using-purrr" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-2-using-purrr" class="anchor"></a>Example-2 using <code>purrr</code>
+</h1>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/" class="external-link"><code>purrr</code></a> which can replace many <code>for</code> loops, is more succinct, and easier to read. Consider <code>purrr</code> as your first choice for combining multiple plots.</p>
 <p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>patchwork</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -261,9 +262,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; # Groups:   Species [3]</span>
 <span class="co">#&gt;   Species    data                  plot           </span>
 <span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;                &lt;list&gt;         </span>
-<span class="co">#&gt; 1 setosa     &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 2 versicolor &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 3 virginica  &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 1 setosa     &lt;tibble[,5] [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 2 versicolor &lt;tibble[,5] [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 3 virginica  &lt;tibble[,5] [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
 
 <span class="co"># creating a grid with patchwork</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -282,10 +283,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_purrr-1.png" width="768"></p>
 </div>
-<div id="combining-multiple-plots-example-3-with-plyr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#combining-multiple-plots-example-3-with-plyr" class="anchor"></a>Combining multiple plots: Example-3 with <code>plyr</code>
-</h2>
+<div id="example-3-with-plyr" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-3-with-plyr" class="anchor"></a>Example-3 with <code>plyr</code>
+</h1>
 <p>Another popular package for handling big datasets is <code>plyr</code>, which allows us to repeatedly apply a common function on smaller pieces and then combine the results into a larger whole.</p>
 <p>In this example we’ll start with the <code>gapminder</code> dataset. We’re interested in the linear relationship between Gross Domestic Product (per capita) and life expectancy in the year 2007, for all the continents except Oceania. We’ll use <code>dplyr</code> to filter to the right rows then use <code>plyr</code> to repeat the <code>ggscatterstats</code> function across each of the 4 continents remaining. The result is of that is a list of plots called <code>plots</code>. We then feed <code>plots</code> to the <code>combine_plots</code> function to merge them into one plot. We will call attention to the countries which have very low life expectancy (&lt; 45 years) by labeling those countries when they occur.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -299,12 +300,12 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span>
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span>
 
 <span class="co"># creating a list of plots</span>
 <span class="va">plots</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/dlply.html" class="external-link">dlply</a></span><span class="op">(</span>
@@ -336,7 +337,6 @@ A BibTeX entry for LaTeX users is
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="combine_plots_files/figure-html/ggscatterstats_plyr-1.png" width="1152"></p>
-</div>
 </div>
 <div id="adding-additional-details-to-plots" class="section level1">
 <h1 class="hasAnchor">

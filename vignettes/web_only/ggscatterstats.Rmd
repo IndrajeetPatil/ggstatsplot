@@ -52,7 +52,7 @@ To begin with, here are some instances where you would want to use
 you are not familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Correlation plot with `ggscatterstats`
+# Correlation plot with `ggscatterstats`
 
 To illustrate how this function can be used, we will rely on the `ggplot2movies`
 dataset. This dataset provides information about movies scraped from
@@ -109,7 +109,7 @@ function returns object that is **not** further modifiable with `ggplot2`. This
 can be avoided by not plotting the marginal distributions (`marginal = FALSE`).
 Currently trying to find a workaround this problem.
 
-## Grouped analysis with `grouped_ggscatterstats`
+# Grouped analysis with `grouped_ggscatterstats`
 
 What if we want to do the same analysis do the same analysis for movies with
 different MPAA (Motion Picture Association of America) film ratings (NC-17, PG,
@@ -162,7 +162,7 @@ As seen from the plot, this analysis has revealed something interesting: The
 relationship we found between budget and IMDB rating holds only for PG-13 and
 R-rated movies. 
 
-## Grouped analysis with `ggscatterstats` + `purrr`
+# Grouped analysis with `ggscatterstats` + `purrr`
 
 Although this is a quick and dirty way to explore large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -175,7 +175,7 @@ can be easily done using `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Summary of tests
+# Summary of tests
 
 Following tests are carried out for each type of analyses. Additionally, the
 correlation coefficients (and their confidence intervals) are used as effect
@@ -188,7 +188,39 @@ Non-parametric | Spearman's rank correlation coefficient | <font color="green">Y
 Robust | Winsorized Pearson correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
 Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font> | `correlation::correlation`
 
-## Effect size interpretation
+# Reporting
+
+If you wish to include statistical analysis results in a publication/report, the
+ideal reporting practice will be a hybrid of two approaches:
+
+- the `ggstatsplot` approach, where the plot contains both the visual and
+numerical summaries about a statistical model, and
+
+- the *standard* narrative approach, which provides interpretive context for the
+reported statistics.
+
+For example, let's see the following example:
+
+The `ggstatsplot` reporting -
+
+```{r reporting}
+ggscatterstats(mtcars, qsec, drat)
+```
+
+The narrative context (assuming `type = "parametric"`) can complement this plot
+either as a figure caption or in the main text-
+
+> Pearson's correlation test revealed that, across 32 cars, a measure of
+acceleration (1/4 mile time; `qsec`) was positively correlated with rear axle
+ratio (`drat`), but this effect was not statistically significant. The effect
+size $(r = 0.09)$ was small, as per Cohen’s (1988) conventions. The Bayes Factor
+for the same analysis revealed that the data were `r round(exp(1.20), 2)` times
+more probable under the null hypothesis as compared to the alternative
+hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor
+of the null hypothesis (of absence of any correlation between these two
+variables).
+
+# Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
