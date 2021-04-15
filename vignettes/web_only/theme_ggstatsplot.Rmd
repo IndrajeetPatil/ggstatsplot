@@ -47,7 +47,9 @@ citation("ggstatsplot")
 
 ---
 
-## Default theme for the package: `theme_ggstatsplot`
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+# Default theme for the package: `theme_ggstatsplot`
 
 `ggstatsplot` uses a default theme `theme_ggstatsplot()`, which is a selected
 `ggplot2` theme with few aesthetic modifications overlaid on top, that can be

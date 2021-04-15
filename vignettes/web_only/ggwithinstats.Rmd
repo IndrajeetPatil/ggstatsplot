@@ -41,6 +41,8 @@ citation("ggstatsplot")
 
 ---
 
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
 The function `ggstatsplot::ggwithinstats` is designed to facilitate 
 **data exploration**, and for making highly customizable **publication-ready plots**,
 with relevant statistical details included in the plot itself if desired. We

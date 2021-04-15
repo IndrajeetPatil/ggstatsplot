@@ -41,10 +41,12 @@ citation("ggstatsplot")
 
 ---
 
-The function `ggstatsplot::ggbetweenstats` is designed to facilitate 
-**data exploration**, and for making highly customizable **publication-ready plots**,
-with relevant statistical details included in the plot itself if desired. We
-will see examples of how to use this function in this vignette.
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+The function `ggbetweenstats` is designed to facilitate **data exploration**,
+and for making highly customizable **publication-ready plots**, with relevant
+statistical details included in the plot itself if desired. We will see examples
+of how to use this function in this vignette.
 
 To begin with, here are some instances where you would want to use
 `ggbetweenstats`-

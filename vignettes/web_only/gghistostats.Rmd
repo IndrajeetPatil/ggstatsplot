@@ -41,6 +41,8 @@ citation("ggstatsplot")
 
 ---
 
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
 The function `ggstatsplot::gghistostats` can be used for **data exploration**
 and to provide an easy way to make **publication-ready histograms** with
 appropriate and selected statistical details embedded in the plot itself. In
@@ -53,7 +55,6 @@ Some instances where you would want to use `gghistostats`-
   (population parameter)
 
 # Statistical analysis with `gghistostats`
-
 
 Let's begin with a very simple example from the `psych` package
 (`psych::sat.act`), a sample of 700 self-reported scores on the SAT Verbal, SAT

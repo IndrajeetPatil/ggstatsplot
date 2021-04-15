@@ -59,17 +59,17 @@ details, which makes data exploration simpler and faster.
 
 It, therefore, produces a limited kinds of plots for the supported analyses:
 
-Function | Plot | Description
-------- | ---------- | ----------------- 
-`ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions
-`ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions
-`gghistostats` | **histograms** | for distribution about numeric variable
-`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable
-`ggscatterstats` | **scatterplots** | for correlation between two variables
-`ggcorrmat` | **correlation matrices** | for correlations between multiple variables
-`ggpiestats` | **pie charts** | for categorical data 
-`ggbarstats` | **bar charts** | for categorical data 
-`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis
+Function | Plot | Description | Lifecycle
+------- | ---------- | ----------------- | ------
+`ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`gghistostats` | **histograms** | for distribution about numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggscatterstats` | **scatterplots** | for correlation between two variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggcorrmat` | **correlation matrices** | for correlations between multiple variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggpiestats` | **pie charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggbarstats` | **bar charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
 versions (see below) that makes it easy to repeat the same analysis for

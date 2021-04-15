@@ -40,9 +40,11 @@ citation("ggstatsplot")
 
 ---
 
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
 # Introduction to `ggpiestats`
 
-The function `ggstatsplot::ggpiestats` can be used for quick **data
+The function `ggpiestats` can be used for quick **data
 exploration** and/or to prepare **publication-ready pie charts** to summarize
 the statistical relationship(s) among one or more categorical variables. We will
 see examples of how to use this function in this vignette.

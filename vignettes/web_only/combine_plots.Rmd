@@ -36,6 +36,8 @@ citation("ggstatsplot")
 
 ---
 
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
 # Combining plots with `combine_plots`
 
 `ggstatsplot` contains a "helper" function named `combine_plots` to help you

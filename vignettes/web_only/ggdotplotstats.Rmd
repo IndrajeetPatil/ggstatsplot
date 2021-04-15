@@ -41,10 +41,12 @@ citation("ggstatsplot")
 
 ---
 
-The function `ggstatsplot::ggdotplotstats` can be used for **data exploration**
-and to provide an easy way to make **publication-ready dot plots/charts** with
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+The function `ggdotplotstats` can be used for **data exploration** and to
+provide an easy way to make **publication-ready dot plots/charts** with
 appropriate and selected statistical details embedded in the plot itself. In
-this vignette we will explore several examples of how to use it.
+this vignette, we will explore several examples of how to use it.
 
 This function is a sister function of `gghistostats` with the difference being
 it expects a labeled numeric variable.
