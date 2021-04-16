@@ -55,68 +55,6 @@ method, and so on and so forth. The central idea of `ggstatsplot` is simple:
 combine these two phases into one in the form of graphics with statistical
 details, which makes data exploration simpler and faster.
 
-# Summary of available plots
-
-It, therefore, produces a limited kinds of plots for the supported analyses:
-
-Function | Plot | Description | Lifecycle
-------- | ---------- | ----------------- | ------
-`ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`gghistostats` | **histograms** | for distribution about numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggscatterstats` | **scatterplots** | for correlation between two variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggcorrmat` | **correlation matrices** | for correlations between multiple variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggpiestats` | **pie charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggbarstats` | **bar charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-
-In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
-versions (see below) that makes it easy to repeat the same analysis for
-any grouping variable.
-
-# Summary of types of statistical analyses
-
-The table below summarizes all the different types of analyses currently
-supported in this package-
-
-Functions | Description | Parametric | Non-parametric | Robust | Bayesian
-------- | ------------------ | ---- | ----- | ----| ----- 
-`ggbetweenstats` | Between group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggwithinstats` | Within group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
-`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
-`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
-`ggcoefstats` | Random-effects meta-analysis | <font color="green">Yes</font> | `NA` | <font color="green">Yes</font> | <font color="green">Yes</font>
-
-Summary of Bayesian analysis
-
-Analysis | Hypothesis testing | Estimation
------------------- | ---------- | ---------
-(one/two-sample) t-test | <font color="green">Yes</font> | <font color="green">Yes</font>
-one-way ANOVA | <font color="green">Yes</font> |<font color="green">Yes</font>
-correlation | <font color="green">Yes</font> | <font color="green">Yes</font>
-(one/two-way) contingency table | <font color="green">Yes</font> | <font color="green">Yes</font>
-random-effects meta-analysis | <font color="green">Yes</font> | <font color="green">Yes</font>
-
-# Statistical reporting
-
-For **all** statistical tests reported in the plots, the default template abides
-by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold standard for
-statistical reporting. For example, here are results from Yuen's test for
-trimmed means (robust *t*-test):
-
-<img src="man/figures/stats_reporting_format.png" align="center" />
-
-# Summary of statistical tests and effect sizes
-
-Here is a summary table of all the statistical tests currently supported across
-various functions:
-<https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
-
 # Installation
 
 To get the latest, stable `CRAN` release:
@@ -190,6 +128,68 @@ version of the package, see:
 To see the documentation relevant for the **development** version of the package,
 see the dedicated website for `ggstatplot`, which is updated after every new
 commit: <https://indrajeetpatil.github.io/ggstatsplot/>.
+
+# Summary of available plots
+
+It, therefore, produces a limited kinds of plots for the supported analyses:
+
+Function | Plot | Description | Lifecycle
+------- | ---------- | ------------------------- | ----
+`ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`gghistostats` | **histograms** | for distribution about numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggscatterstats` | **scatterplots** | for correlation between two variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggcorrmat` | **correlation matrices** | for correlations between multiple variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggpiestats` | **pie charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggbarstats` | **bar charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
+versions (see below) that makes it easy to repeat the same analysis for
+any grouping variable.
+
+# Summary of types of statistical analyses
+
+The table below summarizes all the different types of analyses currently
+supported in this package-
+
+Functions | Description | Parametric | Non-parametric | Robust | Bayesian
+------- | ------------------ | ---- | ----- | ----| ----- 
+`ggbetweenstats` | Between group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggwithinstats` | Within group/condition comparisons | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggcorrmat` | Correlation matrix | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggscatterstats` | Correlation between two variables | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggpiestats`, `ggbarstats` | Association between categorical variables | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
+`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | <font color="green">Yes</font> | `NA` | `NA` | <font color="green">Yes</font>
+`ggcoefstats` | Regression model coefficients | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font> | <font color="green">Yes</font>
+`ggcoefstats` | Random-effects meta-analysis | <font color="green">Yes</font> | `NA` | <font color="green">Yes</font> | <font color="green">Yes</font>
+
+Summary of Bayesian analysis
+
+Analysis | Hypothesis testing | Estimation
+------------------ | ---------- | ---------
+(one/two-sample) t-test | <font color="green">Yes</font> | <font color="green">Yes</font>
+one-way ANOVA | <font color="green">Yes</font> |<font color="green">Yes</font>
+correlation | <font color="green">Yes</font> | <font color="green">Yes</font>
+(one/two-way) contingency table | <font color="green">Yes</font> | <font color="green">Yes</font>
+random-effects meta-analysis | <font color="green">Yes</font> | <font color="green">Yes</font>
+
+# Statistical reporting
+
+For **all** statistical tests reported in the plots, the default template abides
+by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html) gold standard for
+statistical reporting. For example, here are results from Yuen's test for
+trimmed means (robust *t*-test):
+
+<img src="man/figures/stats_reporting_format.png" align="center" />
+
+# Summary of statistical tests and effect sizes
+
+Here is a summary table of all the statistical tests currently supported across
+various functions:
+<https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
 
 # Primary functions
 

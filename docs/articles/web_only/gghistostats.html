@@ -159,7 +159,7 @@
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-15</h4>
+            <h4 data-toc-skip class="date">2021-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd" class="external-link"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -382,6 +382,24 @@ A BibTeX entry for LaTeX users is
 </tr>
 </tbody>
 </table>
+</div>
+<div id="reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reporting" class="anchor"></a>Reporting</h1>
+<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<ul>
+<li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+</ul>
+<p>For example, let’s see the following example:</p>
+<p>The <code>ggstatsplot</code> reporting -</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span><span class="va">trees</span>, <span class="va">Height</span>, test.value <span class="op">=</span> <span class="fl">75</span><span class="op">)</span></code></pre></div>
+<p><img src="gghistostats_files/figure-html/reporting-1.png" width="100%"></p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<blockquote>
+<p>Student’s <em>t</em>-test revealed that, across 31 felled black cherry trees, although the height was higher than expected height of 75 ft., this effect was not statistically significant. The effect size <span class="math inline">\((g = 0.15)\)</span> was small, as per Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that the data were 3.67 times more probable under the null hypothesis as compared to the alternative hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor of the null hypothesis.</p>
+</blockquote>
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">

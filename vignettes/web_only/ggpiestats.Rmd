@@ -368,6 +368,40 @@ Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font> | `effect
 McNemar's test | Cohen's $g$ | <font color="green">Yes<font> | `effectsize::cohens_g`
 Goodness-of-fit | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
 
+# Reporting
+
+If you wish to include statistical analysis results in a publication/report, the
+ideal reporting practice will be a hybrid of two approaches:
+
+- the `ggstatsplot` approach, where the plot contains both the visual and
+numerical summaries about a statistical model, and
+
+- the *standard* narrative approach, which provides interpretive context for the
+reported statistics.
+
+For example, let's see the following example:
+
+The `ggstatsplot` reporting -
+
+```{r reporting}
+ggpiestats(mtcars, am, cyl)
+```
+
+The narrative context (assuming `type = "parametric"`) can complement this plot
+either as a figure caption or in the main text-
+
+> Pearson's $\chi^2$-test of independence revealed that, across 32 automobiles,
+showed that there was a significant association between transmission engine and
+number of cylinders. The Bayes Factor for the same analysis revealed that the
+data were `r round(exp(2.82), 2)` times more probable under the alternative
+hypothesis as compared to the null hypothesis. This can be considered strong
+evidence (Jeffreys, 1961) in favor of the alternative hypothesis.
+
+Similar reporting style can be followed when the function performs one-sample
+goodness-of-fit test instead of a $\chi^2$-test.
+
+Same holds true for `ggbarstats`.
+
 # Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:

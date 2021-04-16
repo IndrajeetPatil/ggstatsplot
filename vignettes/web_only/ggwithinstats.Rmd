@@ -367,6 +367,43 @@ Non-parametric | Durbin-Conover test | <font color="green">Yes</font> | `PMCMRpl
 Robust | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
+# Reporting
+
+If you wish to include statistical analysis results in a publication/report, the
+ideal reporting practice will be a hybrid of two approaches:
+
+- the `ggstatsplot` approach, where the plot contains both the visual and
+numerical summaries about a statistical model, and
+
+- the *standard* narrative approach, which provides interpretive context for the
+reported statistics.
+
+For example, let's see the following example:
+
+The `ggstatsplot` reporting -
+
+```{r reporting}
+library(WRS2) # for data
+ggwithinstats(WineTasting, Wine, Taste)
+```
+
+The narrative context (assuming `type = "parametric"`) can complement this plot
+either as a figure caption or in the main text-
+
+> Fisher's repeated measures one-way ANOVA revealed that, across 22 friends to
+taste each of the three wines, there was a statistically significant difference
+across persons preference for each wine. The effect size $(\omega_{p} = 0.02)$
+was medium, as per Field’s (2013) conventions. The Bayes Factor for the same
+analysis revealed that the data were `r round(exp(2.11), 2)` times more probable
+under the alternative hypothesis as compared to the null hypothesis. This can be
+considered moderate evidence (Jeffreys, 1961) in favor of the alternative
+hypothesis. This global effect was carried out by post hoc pairwise *t*-tests,
+which revealed that Wine C was preferred across participants to be the least
+desirable compared to Wines A and B.
+
+Similar reporting style can be followed when the function performs *t*-test
+instead of a one-way ANOVA.
+
 # Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:

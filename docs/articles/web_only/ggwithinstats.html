@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-15</h4>
+            <h4 data-toc-skip class="date">2021-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd" class="external-link"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -613,6 +613,26 @@ A BibTeX entry for LaTeX users is
 </tr>
 </tbody>
 </table>
+</div>
+<div id="reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reporting" class="anchor"></a>Reporting</h1>
+<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<ul>
+<li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+</ul>
+<p>For example, let’s see the following example:</p>
+<p>The <code>ggstatsplot</code> reporting -</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co"># for data</span>
+<span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">WineTasting</span>, <span class="va">Wine</span>, <span class="va">Taste</span><span class="op">)</span></code></pre></div>
+<p><img src="ggwithinstats_files/figure-html/reporting-1.png" width="100%"></p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<blockquote>
+<p>Fisher’s repeated measures one-way ANOVA revealed that, across 22 friends to taste each of the three wines, there was a statistically significant difference across persons preference for each wine. The effect size <span class="math inline">\((\omega_{p} = 0.02)\)</span> was medium, as per Field’s (2013) conventions. The Bayes Factor for the same analysis revealed that the data were 8.25 times more probable under the alternative hypothesis as compared to the null hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor of the alternative hypothesis. This global effect was carried out by post hoc pairwise <em>t</em>-tests, which revealed that Wine C was preferred across participants to be the least desirable compared to Wines A and B.</p>
+</blockquote>
+<p>Similar reporting style can be followed when the function performs <em>t</em>-test instead of a one-way ANOVA.</p>
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">

@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-15</h4>
+            <h4 data-toc-skip class="date">2021-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd" class="external-link"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -213,6 +213,7 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># removing factor level with very few no. of observations</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>
@@ -226,7 +227,7 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">df</span>,
   x <span class="op">=</span> <span class="va">cty</span>,
   y <span class="op">=</span> <span class="va">manufacturer</span>,
@@ -259,7 +260,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for ggstatsplot::ggdotplotstats</span>
   data <span class="op">=</span> <span class="va">df</span>,
   x <span class="op">=</span> <span class="va">cty</span>,
@@ -394,6 +395,24 @@ A BibTeX entry for LaTeX users is
 </tr>
 </tbody>
 </table>
+</div>
+<div id="reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reporting" class="anchor"></a>Reporting</h1>
+<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<ul>
+<li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+</ul>
+<p>For example, let’s see the following example:</p>
+<p>The <code>ggstatsplot</code> reporting -</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span><span class="va">morley</span>, <span class="va">Speed</span>, <span class="va">Expt</span>, test.value <span class="op">=</span> <span class="fl">800</span><span class="op">)</span></code></pre></div>
+<p><img src="ggdotplotstats_files/figure-html/reporting-1.png" width="100%"></p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<blockquote>
+<p>Student’s <em>t</em>-test revealed that, across 5 experiments, the speed of light was significantly different than posited speed. The effect size <span class="math inline">\((g = 1.22)\)</span> was very large, as per Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that the data were 3.46 times more probable under the alternative hypothesis as compared to the null hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor of the alternative hypothesis.</p>
+</blockquote>
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">

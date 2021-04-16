@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-15</h4>
+            <h4 data-toc-skip class="date">2021-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -510,6 +510,26 @@ A BibTeX entry for LaTeX users is
 </tr>
 </tbody>
 </table>
+</div>
+<div id="reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reporting" class="anchor"></a>Reporting</h1>
+<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<ul>
+<li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+</ul>
+<p>For example, let’s see the following example:</p>
+<p>The <code>ggstatsplot</code> reporting -</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></code></pre></div>
+<p><img src="ggpiestats_files/figure-html/reporting-1.png" width="100%"></p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<blockquote>
+<p>Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence revealed that, across 32 automobiles, showed that there was a significant association between transmission engine and number of cylinders. The Bayes Factor for the same analysis revealed that the data were 16.78 times more probable under the alternative hypothesis as compared to the null hypothesis. This can be considered strong evidence (Jeffreys, 1961) in favor of the alternative hypothesis.</p>
+</blockquote>
+<p>Similar reporting style can be followed when the function performs one-sample goodness-of-fit test instead of a <span class="math inline">\(\chi^2\)</span>-test.</p>
+<p>Same holds true for <code>ggbarstats</code>.</p>
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">

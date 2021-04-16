@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-15</h4>
+            <h4 data-toc-skip class="date">2021-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd" class="external-link"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -633,6 +633,25 @@ A BibTeX entry for LaTeX users is
 </tr>
 </tbody>
 </table>
+</div>
+<div id="reporting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#reporting" class="anchor"></a>Reporting</h1>
+<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<ul>
+<li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+</ul>
+<p>For example, let’s see the following example:</p>
+<p>The <code>ggstatsplot</code> reporting -</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="va">supp</span>, <span class="va">len</span><span class="op">)</span></code></pre></div>
+<p><img src="ggbetweenstats_files/figure-html/reporting-1.png" width="100%"></p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<blockquote>
+<p>Welch’s <em>t</em>-test revealed that, across 60 guinea pigs, although the tooth length was higher when the animal received vitamic C via orange juice as compared to via ascorbic acid, this effect was not statistically significant. The effect size <span class="math inline">\((g = 0.49)\)</span> was medium, as per Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that the data were 1.2 times more probable under the alternative hypothesis as compared to the null hypothesis. This can be considered weak evidence (Jeffreys, 1961) in favor of the alternative hypothesis.</p>
+</blockquote>
+<p>Similar reporting style can be followed when the function performs one-way ANOVA instead of a <em>t</em>-test.</p>
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">

@@ -191,6 +191,36 @@ Non-parametric | *r* (rank-biserial correlation) | <font color="green">Yes<font>
 Robust | trimmed mean | <font color="green">Yes<font> | `trimcibt` (custom)
 Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
 
+# Reporting
+
+If you wish to include statistical analysis results in a publication/report, the
+ideal reporting practice will be a hybrid of two approaches:
+
+- the `ggstatsplot` approach, where the plot contains both the visual and
+numerical summaries about a statistical model, and
+
+- the *standard* narrative approach, which provides interpretive context for the
+reported statistics.
+
+For example, let's see the following example:
+
+The `ggstatsplot` reporting -
+
+```{r reporting}
+gghistostats(trees, Height, test.value = 75)
+```
+
+The narrative context (assuming `type = "parametric"`) can complement this plot
+either as a figure caption or in the main text-
+
+> Student's *t*-test revealed that, across 31 felled black cherry trees,
+although the height was higher than expected height of 75 ft., this effect was
+not statistically significant. The effect size $(g = 0.15)$ was small, as per
+Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that
+the data were `r round(exp(1.3), 2)` times more probable under the null
+hypothesis as compared to the alternative hypothesis. This can be considered
+moderate evidence (Jeffreys, 1961) in favor of the null hypothesis.
+
 # Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:

@@ -386,6 +386,39 @@ Non-parametric | No | Dunn test | <font color="green">Yes</font> | `PMCMRplus::k
 Robust | No | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::lincon`
 Bayes Factor | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
+# Reporting
+
+If you wish to include statistical analysis results in a publication/report, the
+ideal reporting practice will be a hybrid of two approaches:
+
+- the `ggstatsplot` approach, where the plot contains both the visual and
+numerical summaries about a statistical model, and
+
+- the *standard* narrative approach, which provides interpretive context for the
+reported statistics.
+
+For example, let's see the following example:
+
+The `ggstatsplot` reporting -
+
+```{r reporting}
+ggbetweenstats(ToothGrowth, supp, len)
+```
+
+The narrative context (assuming `type = "parametric"`) can complement this plot
+either as a figure caption or in the main text-
+
+> Welch's *t*-test revealed that, across 60 guinea pigs, although the tooth
+length was higher when the animal received vitamin C via orange juice as
+compared to via ascorbic acid, this effect was not statistically significant.
+The effect size $(g = 0.49)$ was medium, as per Cohen’s (1988) conventions. The
+Bayes Factor for the same analysis revealed that the data were `r round(exp(0.18), 2)` times more probable under the alternative hypothesis as
+compared to the null hypothesis. This can be considered weak evidence
+(Jeffreys, 1961) in favor of the alternative hypothesis.
+
+Similar reporting style can be followed when the function performs one-way ANOVA
+instead of a *t*-test.
+
 # Effect size interpretation
 
 To see how the effect sizes displayed in these tests can be interpreted, see:

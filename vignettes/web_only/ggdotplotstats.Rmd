@@ -67,6 +67,7 @@ Let's say we want to visualize the distribution of mileage by car manufacturer.
 ```{r mpg2, fig.height = 7, fig.width = 9}
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # removing factor level with very few no. of observations
 df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6"))
@@ -80,7 +81,7 @@ paletter_vector <-
   )
 
 # plot
-ggstatsplot::ggdotplotstats(
+ggdotplotstats(
   data = df,
   x = cty,
   y = manufacturer,
@@ -120,7 +121,7 @@ set.seed(123)
 df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6"))
 
 # plot
-ggstatsplot::grouped_ggdotplotstats(
+grouped_ggdotplotstats(
   # arguments relevant for ggstatsplot::ggdotplotstats
   data = df,
   x = cty,
@@ -181,6 +182,36 @@ Parametric | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effects
 Non-parametric | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
 Robust | trimmed mean | <font color="green">Yes<font> | `trimcibt` (custom)
 Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
+
+# Reporting
+
+If you wish to include statistical analysis results in a publication/report, the
+ideal reporting practice will be a hybrid of two approaches:
+
+- the `ggstatsplot` approach, where the plot contains both the visual and
+numerical summaries about a statistical model, and
+
+- the *standard* narrative approach, which provides interpretive context for the
+reported statistics.
+
+For example, let's see the following example:
+
+The `ggstatsplot` reporting -
+
+```{r reporting}
+ggdotplotstats(morley, Speed, Expt, test.value = 800)
+```
+
+The narrative context (assuming `type = "parametric"`) can complement this plot
+either as a figure caption or in the main text-
+
+> Student's *t*-test revealed that, across 5 experiments, the speed of light was
+significantly different than posited speed. The effect size $(g = 1.22)$ was
+very large, as per Cohen’s (1988) conventions. The Bayes Factor for the same
+analysis revealed that the data were `r round(exp(1.24), 2)` times more probable
+under the alternative hypothesis as compared to the null hypothesis. This can be
+considered moderate evidence (Jeffreys, 1961) in favor of the alternative
+hypothesis.
 
 # Effect size interpretation
 
