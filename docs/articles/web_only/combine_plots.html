@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="combine_plots_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
+      </header><script src="combine_plots_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-15</h4>
+            <h4 data-toc-skip class="date">2021-04-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -201,7 +201,7 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
 
 <span class="co"># creating a list of plots</span>
 <span class="va">p_list</span> <span class="op">&lt;-</span>
@@ -263,9 +263,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; # Groups:   Species [3]</span>
 <span class="co">#&gt;   Species    data                  plot           </span>
 <span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;                &lt;list&gt;         </span>
-<span class="co">#&gt; 1 setosa     &lt;tibble[,5] [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 2 versicolor &lt;tibble[,5] [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 3 virginica  &lt;tibble[,5] [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 1 setosa     &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 2 versicolor &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 3 virginica  &lt;tibble[,5] [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
 
 <span class="co"># creating a grid with patchwork</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -301,12 +301,12 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span>
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span>
 
 <span class="co"># creating a list of plots</span>
 <span class="va">plots</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/dlply.html" class="external-link">dlply</a></span><span class="op">(</span>

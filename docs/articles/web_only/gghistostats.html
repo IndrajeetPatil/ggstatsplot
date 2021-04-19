@@ -153,13 +153,13 @@
 
       
 
-      </header><script src="gghistostats_files/header-attrs-2.7.8/header-attrs.js"></script><div class="row">
+      </header><script src="gghistostats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>gghistostats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-16</h4>
+            <h4 data-toc-skip class="date">2021-04-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd" class="external-link"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
@@ -207,12 +207,12 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 700</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, …</span>
-<span class="co">#&gt; $ education &lt;int&gt; 3, 3, 3, 4, 2, 5, 5, 3, 4, 5, 3, 4, 4, 4, 3, 4, 3, 4, 4, 4, …</span>
-<span class="co">#&gt; $ age       &lt;int&gt; 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, 41, 20, …</span>
-<span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, 35, 27, …</span>
-<span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 710, …</span>
-<span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 600, …</span></code></pre></div>
+<span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, ~</span>
+<span class="co">#&gt; $ education &lt;int&gt; 3, 3, 3, 4, 2, 5, 5, 3, 4, 5, 3, 4, 4, 4, 3, 4, 3, 4, 4, 4, ~</span>
+<span class="co">#&gt; $ age       &lt;int&gt; 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, 41, 20, ~</span>
+<span class="co">#&gt; $ ACT       &lt;int&gt; 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, 35, 27, ~</span>
+<span class="co">#&gt; $ SATV      &lt;int&gt; 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 710, ~</span>
+<span class="co">#&gt; $ SATQ      &lt;int&gt; 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 600, ~</span></code></pre></div>
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
 <p>Let’s display the national norms (labeled as “Test”) and test the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample <em>t</em>-test (<code>type = "p"</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">

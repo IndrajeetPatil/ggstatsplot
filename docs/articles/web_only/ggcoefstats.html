@@ -43,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
       </span>
     </div>
 
@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-06</h4>
+            <h4 data-toc-skip class="date">2021-04-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -801,10 +801,21 @@ A BibTeX entry for LaTeX users is
     control <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html" class="external-link">lmerControl</a></span><span class="op">(</span>calc.derivs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span>
+<span class="co">#&gt; # Fixed Effects</span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; Parameter   | Coefficient |   SE |        95% CI | t(1573) |     p</span>
 <span class="co">#&gt; ------------------------------------------------------------------</span>
 <span class="co">#&gt; (Intercept) |       -0.06 | 0.14 | [-0.33, 0.20] |   -0.46 | 0.649</span>
-<span class="co">#&gt; budget      |        0.10 | 0.04 | [ 0.02, 0.19] |    2.50 | 0.012</span></code></pre></div>
+<span class="co">#&gt; budget      |        0.10 | 0.04 | [ 0.02, 0.19] |    2.50 | 0.012</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; # Random Effects</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Parameter             | Coefficient</span>
+<span class="co">#&gt; -----------------------------------</span>
+<span class="co">#&gt; SD (Intercept: genre) |        0.43</span>
+<span class="co">#&gt; SD (budget: genre)    |    3.03e-03</span>
+<span class="co">#&gt; Cor (Intercept~genre) |       -0.49</span>
+<span class="co">#&gt; SD (Residual)         |        0.96</span></code></pre></div>
 </div>
 <div id="analysis-of-factorial-experiments-mixed" class="section level2">
 <h2 class="hasAnchor">
@@ -1622,8 +1633,8 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_glmer</span>,
   title <span class="op">=</span> <span class="st">"generalized linear mixed-effects model"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/glmer-1.png" width="480"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in rbind(deparse.level, ...): numbers of columns of arguments do not match</span></code></pre></div>
 </div>
 <div id="fitting-generalized-linear-mixed-models-using-mcml-glmm" class="section level2">
 <h2 class="hasAnchor">
@@ -4162,22 +4173,34 @@ A BibTeX entry for LaTeX users is
 <div id="bayesian-gaussian-graphical-model-bggm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-gaussian-graphical-model-bggm" class="anchor"></a>Bayesian Gaussian Graphical Model (<code>BGGM</code>)</h2>
-<div class="sourceCode" id="cb137"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">BGGM</span><span class="op">)</span>
-
-<span class="co"># data</span>
-<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">ptsd</span>, <span class="va">B1</span><span class="op">:</span><span class="va">B5</span><span class="op">)</span>
-
-<span class="co"># fit model (note + 1, due to zeros)</span>
-<span class="va">fit_ggm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BGGM/man/estimate.html" class="external-link">estimate</a></span><span class="op">(</span><span class="va">Y</span> <span class="op">+</span> <span class="fl">1</span>, type <span class="op">=</span> <span class="st">"ordinal"</span>, iter <span class="op">=</span> <span class="fl">250</span><span class="op">)</span>
-
-<span class="co"># plot</span>
-<span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">fit_ggm</span>,
-  title <span class="op">=</span> <span class="st">"Bayesian Gaussian Graphical Model"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in f$conditional[[3L]]: subscript out of bounds</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BGGM)</span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="co"># data</span></span>
+<span id="cb137-5"><a href="#cb137-5" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(ptsd, B1<span class="sc">:</span>B5)</span>
+<span id="cb137-6"><a href="#cb137-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-7"><a href="#cb137-7" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model (note + 1, due to zeros)</span></span>
+<span id="cb137-8"><a href="#cb137-8" aria-hidden="true" tabindex="-1"></a>fit_ggm <span class="ot">&lt;-</span> <span class="fu">estimate</span>(Y <span class="sc">+</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">"ordinal"</span>, <span class="at">iter =</span> <span class="dv">250</span>)</span>
+<span id="cb137-9"><a href="#cb137-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-10"><a href="#cb137-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb137-11"><a href="#cb137-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcoefstats</span>(</span>
+<span id="cb137-12"><a href="#cb137-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> fit_ggm,</span>
+<span id="cb137-13"><a href="#cb137-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Bayesian Gaussian Graphical Model"</span></span>
+<span id="cb137-14"><a href="#cb137-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb137-15"><a href="#cb137-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb137-16"><a href="#cb137-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb137-17"><a href="#cb137-17" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb137-18"><a href="#cb137-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb137-19"><a href="#cb137-19" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============</span>                                                        <span class="er">|</span>  <span class="dv">20</span>%</span>
+<span id="cb137-20"><a href="#cb137-20" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb137-21"><a href="#cb137-21" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================</span>                                          <span class="er">|</span>  <span class="dv">40</span>%</span>
+<span id="cb137-22"><a href="#cb137-22" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb137-23"><a href="#cb137-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">60</span>%</span>
+<span id="cb137-24"><a href="#cb137-24" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb137-25"><a href="#cb137-25" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================================================</span>              <span class="er">|</span>  <span class="dv">80</span>%</span>
+<span id="cb137-26"><a href="#cb137-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb137-27"><a href="#cb137-27" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%<span class="cn">NULL</span></span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/BGGM-1.png" width="576"></p>
 </div>
 <div id="bayesian-additive-models-for-location-scale-and-shape-bamlss" class="section level2">
 <h2 class="hasAnchor">
@@ -5451,8 +5474,8 @@ speed =~ x7 + x8 + x9 "</span>
     <span class="op">)</span>
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/list_gamm4-1.png" width="960"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in rbind(deparse.level, ...): numbers of columns of arguments do not match</span></code></pre></div>
 </div>
 <div id="meta-analysis" class="section level1">
 <h1 class="hasAnchor">
