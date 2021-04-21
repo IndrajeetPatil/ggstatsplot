@@ -201,7 +201,7 @@
 <td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue" alt="Monthly downloads badge"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link"><img src="https://img.shields.io/badge/issues-13-red.svg" alt="Github Issues"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link"><img src="https://img.shields.io/badge/issues-17-red.svg" alt="Github Issues"></a></td>
 <td><a href="https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot" class="external-link"><img src="https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot/badge" alt="CodeFactor"></a></td>
 </tr>
 <tr class="even">
@@ -215,7 +215,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg" alt="HitCount"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--04--19-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--04--21-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -379,14 +379,14 @@
 <h1 class="hasAnchor">
 <a href="#summary-of-types-of-statistical-analyses" class="anchor"></a>Summary of types of statistical analyses</h1>
 <p>The table below summarizes all the different types of analyses currently supported in this package-</p>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="15%">
-<col width="23%">
-<col width="15%">
-<col width="15%">
-<col width="15%">
-<col width="15%">
+<col width="25%">
+<col width="38%">
+<col width="9%">
+<col width="12%">
+<col width="6%">
+<col width="7%">
 </colgroup>
 <thead><tr class="header">
 <th>Functions</th>
@@ -400,80 +400,80 @@
 <tr class="odd">
 <td><code>ggbetweenstats</code></td>
 <td>Between group/condition comparisons</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="even">
 <td><code>ggwithinstats</code></td>
 <td>Within group/condition comparisons</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="odd">
 <td>
 <code>gghistostats</code>, <code>ggdotplotstats</code>
 </td>
 <td>Distribution of a numeric variable</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="even">
 <td><code>ggcorrmat</code></td>
 <td>Correlation matrix</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="odd">
 <td><code>ggscatterstats</code></td>
 <td>Correlation between two variables</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="even">
 <td>
 <code>ggpiestats</code>, <code>ggbarstats</code>
 </td>
 <td>Association between categorical variables</td>
-<td><font color="green">Yes</font></td>
-<td><code>NA</code></td>
-<td><code>NA</code></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
 </tr>
 <tr class="odd">
 <td>
 <code>ggpiestats</code>, <code>ggbarstats</code>
 </td>
 <td>Equal proportions for categorical variable levels</td>
-<td><font color="green">Yes</font></td>
-<td><code>NA</code></td>
-<td><code>NA</code></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
 </tr>
 <tr class="even">
 <td><code>ggcoefstats</code></td>
 <td>Regression model coefficients</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="odd">
 <td><code>ggcoefstats</code></td>
 <td>Random-effects meta-analysis</td>
-<td><font color="green">Yes</font></td>
-<td><code>NA</code></td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
@@ -487,28 +487,28 @@
 <tbody>
 <tr class="odd">
 <td>(one/two-sample) t-test</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="even">
 <td>one-way ANOVA</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="odd">
 <td>correlation</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="even">
 <td>(one/two-way) contingency table</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 <tr class="odd">
 <td>random-effects meta-analysis</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
@@ -672,10 +672,10 @@
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="5%">
-<col width="4%">
-<col width="62%">
-<col width="9%">
-<col width="17%">
+<col width="5%">
+<col width="68%">
+<col width="1%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -691,7 +691,7 @@
 <td>
 <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Ceta_%7Bp%7D%5E2" title="\eta_{p}^2" alt="\eta_{p}^2">, <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Comega_%7Bp%7D%5E2" title="\omega_{p}^2" alt="\omega_{p}^2">
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::omega_squared</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::eta_squared</a></code>
 </td>
@@ -700,7 +700,7 @@
 <td>Non-parametric</td>
 <td>&gt; 2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cepsilon_%7Bordinal%7D%5E2" title="\epsilon_{ordinal}^2" alt="\epsilon_{ordinal}^2"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_epsilon_squared</a></code></td>
 </tr>
 <tr class="odd">
@@ -708,14 +708,14 @@
 <td>&gt; 2</td>
 <td>
 <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cxi" title="\xi" alt="\xi"> (Explanatory measure of effect size)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=R_%7Bposterior%7D%5E2" title="R_{posterior}^2" alt="R_{posterior}^2"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
 <tr class="odd">
@@ -723,7 +723,7 @@
 <td>2</td>
 <td>Cohen’s <em>d</em>, Hedge’s <em>g</em>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
 </td>
@@ -733,7 +733,7 @@
 <td>2</td>
 <td>
 <em>r</em> (rank-biserial correlation)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
@@ -741,14 +741,14 @@
 <td>2</td>
 <td>
 <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cxi" title="\xi" alt="\xi"> (Explanatory measure of effect size)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::yuen.effect.ci</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
@@ -768,35 +768,35 @@
 <td>Parametric</td>
 <td>No</td>
 <td>Games-Howell test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Parametric</td>
 <td>Yes</td>
 <td>Student’s <em>t</em>-test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/gamesHowellTest.html" class="external-link">PMCMRplus::gamesHowellTest</a></code></td>
 </tr>
 <tr class="odd">
 <td>Non-parametric</td>
 <td>No</td>
 <td>Dunn test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/kwAllPairsDunnTest.html" class="external-link">PMCMRplus::kwAllPairsDunnTest</a></code></td>
 </tr>
 <tr class="even">
 <td>Robust</td>
 <td>No</td>
 <td>Yuen’s trimmed means test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::lincon</a></code></td>
 </tr>
 <tr class="odd">
 <td>Bayes Factor</td>
-<td><code>NA</code></td>
+<td>❌</td>
 <td>Student’s <em>t</em>-test</td>
-<td><code>NA</code></td>
+<td>❌</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
@@ -1002,7 +1002,7 @@
 <td>
 <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Ceta_%7Bp%7D%5E2" title="\eta_{p}^2" alt="\eta_{p}^2">, <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Comega_%7Bp%7D%5E2" title="\omega_{p}^2" alt="\omega_{p}^2">
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::omega_squared</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::eta_squared</a></code>
 </td>
@@ -1012,15 +1012,14 @@
 <td>&gt; 2</td>
 <td>
 <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=W_%7BKendall%7D" title="W_{Kendall}" alt="W_{Kendall}"> (Kendall’s coefficient of concordance)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::kendalls_w</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>
-<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D" title="\delta_{R-avg}^{AKP}" alt="\delta_{R-avg}^{AKP}"><font color="green">Yes<font></font></font>
-</td>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D" title="\delta_{R-avg}^{AKP}" alt="\delta_{R-avg}^{AKP}"> ✅</td>
 <td>Algina-Keselman-Penfield robust standardized difference average</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP</a></code></td>
 </tr>
@@ -1028,7 +1027,7 @@
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=R_%7Bposterior%7D%5E2" title="R_{posterior}^2" alt="R_{posterior}^2"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
 <tr class="odd">
@@ -1036,7 +1035,7 @@
 <td>2</td>
 <td>Cohen’s <em>d</em>, Hedge’s <em>g</em>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
 </td>
@@ -1046,7 +1045,7 @@
 <td>2</td>
 <td>
 <em>r</em> (rank-biserial correlation)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
@@ -1054,14 +1053,14 @@
 <td>2</td>
 <td>
 <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7BR%7D%5E%7BAKP%7D" title="\delta_{R}^{AKP}" alt="\delta_{R}^{AKP}"> (Algina-Keselman-Penfield robust standardized difference)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuend.html" class="external-link">WRS2::dep.effect</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
@@ -1079,25 +1078,25 @@
 <tr class="odd">
 <td>Parametric</td>
 <td>Student’s <em>t</em>-test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Durbin-Conover test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/durbinAllPairsTest.html" class="external-link">PMCMRplus::durbinAllPairsTest</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Yuen’s trimmed means test</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/rmanova.html" class="external-link">WRS2::rmmcp</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Student’s <em>t</em>-test</td>
-<td><code>NA</code></td>
+<td>❌</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
@@ -1217,10 +1216,10 @@
 <p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
 <table class="table">
 <colgroup>
-<col width="7%">
-<col width="55%">
-<col width="14%">
-<col width="22%">
+<col width="8%">
+<col width="63%">
+<col width="2%">
+<col width="25%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1233,7 +1232,7 @@
 <td>Parametric</td>
 <td>Cohen’s <em>d</em>, Hedge’s <em>g</em>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
 </td>
@@ -1242,20 +1241,20 @@
 <td>Non-parametric</td>
 <td>
 <em>r</em> (rank-biserial correlation)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>trimmed mean</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code>trimcibt</code> (custom)</td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
@@ -1393,10 +1392,10 @@
 <p>Following tests are carried out for each type of analyses. Additionally, the correlation coefficients (and their confidence intervals) are used as effect sizes-</p>
 <table class="table">
 <colgroup>
-<col width="13%">
-<col width="36%">
-<col width="26%">
-<col width="23%">
+<col width="17%">
+<col width="47%">
+<col width="5%">
+<col width="30%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1408,25 +1407,25 @@
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Winsorized Pearson correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Pearson’s correlation coefficient</td>
-<td><font color="green">Yes</font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 </tbody>
@@ -1598,13 +1597,13 @@
 <div id="summary-of-tests-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-5" class="anchor"></a>Summary of tests</h3>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="10%">
-<col width="29%">
-<col width="21%">
-<col width="20%">
-<col width="18%">
+<col width="15%">
+<col width="42%">
+<col width="4%">
+<col width="9%">
+<col width="27%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1617,29 +1616,29 @@
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Winsorized Pearson correlation coefficient</td>
-<td><font color="green">Yes<font></font></font></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Pearson’s correlation coefficient</td>
-<td><font color="green">Yes</font></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 </tbody>
@@ -1740,21 +1739,21 @@
 <td>Pearson’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
 </tr>
 <tr class="even">
 <td>McNemar’s test</td>
 <td>Cohen’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=g" title="g" alt="g">
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
 </tr>
 <tr class="odd">
 <td>Goodness of fit</td>
 <td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
 </tr>
 </tbody>
@@ -1867,13 +1866,13 @@
 <div id="summary-of-meta-analysis-tests" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-meta-analysis-tests" class="anchor"></a>Summary of meta-analysis tests</h3>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="6%">
-<col width="26%">
-<col width="39%">
-<col width="16%">
-<col width="12%">
+<col width="27%">
+<col width="41%">
+<col width="10%">
+<col width="13%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1887,21 +1886,21 @@
 <td>Parametric</td>
 <td>Meta-analysis via random-effects models</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code></td>
 </tr>
 <tr class="even">
 <td>Robust</td>
 <td>Meta-analysis via robust random-effects models</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code></td>
 </tr>
 <tr class="odd">
 <td>Bayes</td>
 <td>Meta-analysis via Bayesian random-effects models</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
 </tr>
 </tbody>
