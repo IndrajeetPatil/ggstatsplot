@@ -81,6 +81,37 @@
       2 #D0622D 1 2     1     1 cross  white    5    NA    0.5
       
 
+---
+
+    Code
+      p$labels
+    Output
+      $xlab
+      NULL
+      
+      $ylab
+      NULL
+      
+      $title
+      [1] "Iris dataset"
+      
+      $subtitle
+      [1] "By Edgar Anderson"
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste(bold("X"), " = non-significant at ", 
+          italic("p"), " < ", 0.001, " (Adjustment: ", "FDR", ")"))
+      
+      $fill
+      [1] "value"
+      
+      $x
+      [1] "Var1"
+      
+      $y
+      [1] "Var2"
+      
+
 # checking ggcorrmat - without NAs - robust r
 
     Code
@@ -235,6 +266,37 @@
       25 #009E73 7 7     1    25 cross  black   14    NA    0.5
       
 
+---
+
+    Code
+      p$labels
+    Output
+      $xlab
+      NULL
+      
+      $ylab
+      NULL
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste(bold("X"), " = non-significant at ", 
+          italic("p"), " < ", 0.05, " (Adjustment: ", "Holm", ")"))
+      
+      $fill
+      [1] "value"
+      
+      $x
+      [1] "Var1"
+      
+      $y
+      [1] "Var2"
+      
+
 # checking ggcorrmat - with NAs - robust r - partial
 
     Code
@@ -325,6 +387,36 @@
       13 #93CDB4 5 5     1    13 cross  black   14    NA    0.5
       
 
+---
+
+    Code
+      p$labels
+    Output
+      $caption
+      NULL
+      
+      $xlab
+      NULL
+      
+      $ylab
+      NULL
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $fill
+      [1] "value"
+      
+      $x
+      [1] "Var1"
+      
+      $y
+      [1] "Var2"
+      
+
 # checking ggcorrmat - with NAs - spearman's rho
 
     Code
@@ -408,6 +500,37 @@
       2 #DEBA91 2 3     1     1 cross  black   14    NA    0.5
       
 
+---
+
+    Code
+      p$labels
+    Output
+      $xlab
+      NULL
+      
+      $ylab
+      NULL
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste(bold("X"), " = non-significant at ", 
+          italic("p"), " < ", 0.01, " (Adjustment: ", "Hommel", ")"))
+      
+      $fill
+      [1] "value"
+      
+      $x
+      [1] "Var1"
+      
+      $y
+      [1] "Var2"
+      
+
 # checking Bayesian pearson (with NA)
 
     Code
@@ -483,6 +606,36 @@
       
       [[3]]
       data frame with 0 columns and 0 rows
+      
+
+---
+
+    Code
+      p$labels
+    Output
+      $xlab
+      NULL
+      
+      $ylab
+      NULL
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "value"
+      
+      $x
+      [1] "Var1"
+      
+      $y
+      [1] "Var2"
       
 
 # checking all dataframe outputs
