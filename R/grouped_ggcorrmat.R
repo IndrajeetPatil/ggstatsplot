@@ -4,8 +4,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Helper function for `ggstatsplot::ggcorrmat` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
 #' `ggstatsplot::combine_plots`.
@@ -15,7 +13,7 @@
 #' @inheritDotParams ggcorrmat -title
 #'
 #' @importFrom dplyr select bind_rows
-#' @importFrom rlang !! enquo quo_name ensym %||%
+#' @importFrom rlang !! enquo quo_name ensym
 #' @importFrom purrr map pmap
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
@@ -35,7 +33,9 @@
 #'   data = iris,
 #'   grouping.var = Species,
 #'   type = "robust",
-#'   p.adjust.method = "holm"
+#'   p.adjust.method = "holm",
+#'   plotgrid.args = list(ncol = 1),
+#'   annotation.args = list(tag_levels = "i")
 #' )
 #'
 #' # for dataframe

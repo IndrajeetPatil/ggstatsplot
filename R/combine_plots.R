@@ -50,6 +50,7 @@
 #' # combining the plot with a title and a caption
 #' combine_plots(
 #'   plotlist = list(p1, p2),
+#'   plotgrid.args = list(nrow = 1),
 #'   annotation.args = list(
 #'     tag_levels = "a",
 #'     title = "Dataset: Iris Flower dataset",
@@ -67,9 +68,7 @@ combine_plots <- function(plotlist,
                           ...) {
   rlang::exec(
     .fn = patchwork::wrap_plots,
-    !!!plotlist,
-    guides = guides,
-    !!!plotgrid.args
+    !!!plotlist, guides = guides, !!!plotgrid.args
   ) +
     rlang::exec(.fn = patchwork::plot_annotation, !!!annotation.args)
 }

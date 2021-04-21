@@ -22,8 +22,7 @@ test_that(
         k = 4,
         ggcorrplot.args = list(
           lab_col = "white",
-          pch.col = "white",
-          pch.cex = 14
+          pch.col = "white"
         )
       )
 

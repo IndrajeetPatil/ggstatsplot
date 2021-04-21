@@ -440,14 +440,13 @@ of an error, try reducing the value of <code>tr</code>, which is by default set 
   data <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>, <span class='va'>drv</span> <span class='op'>!=</span> <span class='st'>"4"</span><span class='op'>)</span>,
   x <span class='op'>=</span> <span class='va'>year</span>,
   y <span class='op'>=</span> <span class='va'>hwy</span>,
-  grouping.var <span class='op'>=</span> <span class='va'>drv</span>,
-  conf.level <span class='op'>=</span> <span class='fl'>0.99</span>
+  grouping.var <span class='op'>=</span> <span class='va'>drv</span>
 <span class='op'>)</span>
 </div><div class='img'><img src='grouped_ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># modifying individual plots using `ggplot.component` argument</span>
 <span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span>
-    <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='va'><a href='movies_long.html'>movies_long</a></span>,
+    <span class='va'>movies_long</span>,
     <span class='va'>genre</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Action"</span>, <span class='st'>"Comedy"</span><span class='op'>)</span>,
     <span class='va'>mpaa</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"R"</span>, <span class='st'>"PG"</span><span class='op'>)</span>
   <span class='op'>)</span>,

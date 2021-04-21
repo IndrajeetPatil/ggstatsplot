@@ -1,5 +1,10 @@
 # ggstatsplot 0.7.2.9000
 
+MINOR CHANGES
+
+  - The `pch` size for `ggcorrmat` has been increased to 14 (#579) to increase
+    its visibility compared to the correlation value text.
+
 # ggstatsplot 0.7.2
 
 MAJOR CHANGES

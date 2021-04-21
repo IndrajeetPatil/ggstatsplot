@@ -276,7 +276,8 @@ separately specified here.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># loading the necessary libraries</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>Want to understand how all the pieces fit together? Read R for Data</span>
+#&gt; <span class='message'>Science: https://r4ds.had.co.nz/</span></div><div class='input'>
 <span class='co'># preparing the first plot</span>
 <span class='va'>p1</span> <span class='op'>&lt;-</span>
   <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>
@@ -298,6 +299,7 @@ separately specified here.</p></td>
 <span class='co'># combining the plot with a title and a caption</span>
 <span class='fu'>combine_plots</span><span class='op'>(</span>
   plotlist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span>,
+  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
   annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
     tag_levels <span class='op'>=</span> <span class='st'>"a"</span>,
     title <span class='op'>=</span> <span class='st'>"Dataset: Iris Flower dataset"</span>,

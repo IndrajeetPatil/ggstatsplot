@@ -203,14 +203,13 @@ grouped_ggbetweenstats(
   data = dplyr::filter(ggplot2::mpg, drv != "4"),
   x = year,
   y = hwy,
-  grouping.var = drv,
-  conf.level = 0.99
+  grouping.var = drv
 )
 
 # modifying individual plots using `ggplot.component` argument
 grouped_ggbetweenstats(
   data = dplyr::filter(
-    ggstatsplot::movies_long,
+    movies_long,
     genre \%in\% c("Action", "Comedy"),
     mpaa \%in\% c("R", "PG")
   ),

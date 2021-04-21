@@ -108,7 +108,11 @@ ggcorrmat <- function(data,
                       bf.prior = 0.707,
                       p.adjust.method = "holm",
                       pch = "cross",
-                      ggcorrplot.args = list(method = "square", outline.color = "black"),
+                      ggcorrplot.args = list(
+                        method = "square",
+                        outline.color = "black",
+                        pch.cex = 14
+                      ),
                       package = "RColorBrewer",
                       palette = "Dark2",
                       colors = c("#E69F00", "white", "#009E73"),

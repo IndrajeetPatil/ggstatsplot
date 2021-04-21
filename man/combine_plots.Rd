@@ -65,6 +65,7 @@ p2 <-
 # combining the plot with a title and a caption
 combine_plots(
   plotlist = list(p1, p2),
+  plotgrid.args = list(nrow = 1),
   annotation.args = list(
     tag_levels = "a",
     title = "Dataset: Iris Flower dataset",

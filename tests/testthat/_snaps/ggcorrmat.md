@@ -77,8 +77,8 @@
       
       [[3]]
            fill x y PANEL group shape colour size alpha stroke
-      1 #D0622D 2 1     1     2 cross  white   14    NA    0.5
-      2 #D0622D 1 2     1     1 cross  white   14    NA    0.5
+      1 #D0622D 2 1     1     2 cross  white    5    NA    0.5
+      2 #D0622D 1 2     1     1 cross  white    5    NA    0.5
       
 
 # checking ggcorrmat - without NAs - robust r
@@ -208,31 +208,31 @@
       
       [[3]]
             fill x y PANEL group shape colour size alpha stroke
-      1  #009E73 1 3     1     1 cross  black    5    NA    0.5
-      2  #009E73 2 3     1     6 cross  black    5    NA    0.5
-      3  #009E73 3 3     1    11 cross  black    5    NA    0.5
-      4  #009E73 1 4     1     2 cross  black    5    NA    0.5
-      5  #009E73 2 4     1     7 cross  black    5    NA    0.5
-      6  #009E73 3 4     1    12 cross  black    5    NA    0.5
-      7  #009E73 4 4     1    16 cross  black    5    NA    0.5
-      8  #009E73 1 5     1     3 cross  black    5    NA    0.5
-      9  #009E73 2 5     1     8 cross  black    5    NA    0.5
-      10 #009E73 3 5     1    13 cross  black    5    NA    0.5
-      11 #009E73 4 5     1    17 cross  black    5    NA    0.5
-      12 #009E73 5 5     1    20 cross  black    5    NA    0.5
-      13 #009E73 1 6     1     4 cross  black    5    NA    0.5
-      14 #009E73 2 6     1     9 cross  black    5    NA    0.5
-      15 #009E73 3 6     1    14 cross  black    5    NA    0.5
-      16 #009E73 4 6     1    18 cross  black    5    NA    0.5
-      17 #009E73 5 6     1    21 cross  black    5    NA    0.5
-      18 #009E73 6 6     1    23 cross  black    5    NA    0.5
-      19 #009E73 1 7     1     5 cross  black    5    NA    0.5
-      20 #009E73 2 7     1    10 cross  black    5    NA    0.5
-      21 #009E73 3 7     1    15 cross  black    5    NA    0.5
-      22 #D6ECE2 4 7     1    19 cross  black    5    NA    0.5
-      23 #009E73 5 7     1    22 cross  black    5    NA    0.5
-      24 #009E73 6 7     1    24 cross  black    5    NA    0.5
-      25 #009E73 7 7     1    25 cross  black    5    NA    0.5
+      1  #009E73 1 3     1     1 cross  black   14    NA    0.5
+      2  #009E73 2 3     1     6 cross  black   14    NA    0.5
+      3  #009E73 3 3     1    11 cross  black   14    NA    0.5
+      4  #009E73 1 4     1     2 cross  black   14    NA    0.5
+      5  #009E73 2 4     1     7 cross  black   14    NA    0.5
+      6  #009E73 3 4     1    12 cross  black   14    NA    0.5
+      7  #009E73 4 4     1    16 cross  black   14    NA    0.5
+      8  #009E73 1 5     1     3 cross  black   14    NA    0.5
+      9  #009E73 2 5     1     8 cross  black   14    NA    0.5
+      10 #009E73 3 5     1    13 cross  black   14    NA    0.5
+      11 #009E73 4 5     1    17 cross  black   14    NA    0.5
+      12 #009E73 5 5     1    20 cross  black   14    NA    0.5
+      13 #009E73 1 6     1     4 cross  black   14    NA    0.5
+      14 #009E73 2 6     1     9 cross  black   14    NA    0.5
+      15 #009E73 3 6     1    14 cross  black   14    NA    0.5
+      16 #009E73 4 6     1    18 cross  black   14    NA    0.5
+      17 #009E73 5 6     1    21 cross  black   14    NA    0.5
+      18 #009E73 6 6     1    23 cross  black   14    NA    0.5
+      19 #009E73 1 7     1     5 cross  black   14    NA    0.5
+      20 #009E73 2 7     1    10 cross  black   14    NA    0.5
+      21 #009E73 3 7     1    15 cross  black   14    NA    0.5
+      22 #D6ECE2 4 7     1    19 cross  black   14    NA    0.5
+      23 #009E73 5 7     1    22 cross  black   14    NA    0.5
+      24 #009E73 6 7     1    24 cross  black   14    NA    0.5
+      25 #009E73 7 7     1    25 cross  black   14    NA    0.5
       
 
 # checking ggcorrmat - with NAs - robust r - partial
@@ -310,19 +310,19 @@
       
       [[3]]
             fill x y PANEL group shape colour size alpha stroke
-      1  #0F9F75 1 1     1     1 cross  black    5    NA    0.5
-      2  #0F9F75 1 2     1     2 cross  black    5    NA    0.5
-      3  #0F9F75 2 2     1     5 cross  black    5    NA    0.5
-      4  #0F9F75 2 3     1     6 cross  black    5    NA    0.5
-      5  #0F9F75 3 3     1     9 cross  black    5    NA    0.5
-      6  #0F9F75 1 4     1     3 cross  black    5    NA    0.5
-      7  #0F9F75 2 4     1     7 cross  black    5    NA    0.5
-      8  #0F9F75 4 4     1    11 cross  black    5    NA    0.5
-      9  #0F9F75 1 5     1     4 cross  black    5    NA    0.5
-      10 #0F9F75 2 5     1     8 cross  black    5    NA    0.5
-      11 #0F9F75 3 5     1    10 cross  black    5    NA    0.5
-      12 #0F9F75 4 5     1    12 cross  black    5    NA    0.5
-      13 #93CDB4 5 5     1    13 cross  black    5    NA    0.5
+      1  #0F9F75 1 1     1     1 cross  black   14    NA    0.5
+      2  #0F9F75 1 2     1     2 cross  black   14    NA    0.5
+      3  #0F9F75 2 2     1     5 cross  black   14    NA    0.5
+      4  #0F9F75 2 3     1     6 cross  black   14    NA    0.5
+      5  #0F9F75 3 3     1     9 cross  black   14    NA    0.5
+      6  #0F9F75 1 4     1     3 cross  black   14    NA    0.5
+      7  #0F9F75 2 4     1     7 cross  black   14    NA    0.5
+      8  #0F9F75 4 4     1    11 cross  black   14    NA    0.5
+      9  #0F9F75 1 5     1     4 cross  black   14    NA    0.5
+      10 #0F9F75 2 5     1     8 cross  black   14    NA    0.5
+      11 #0F9F75 3 5     1    10 cross  black   14    NA    0.5
+      12 #0F9F75 4 5     1    12 cross  black   14    NA    0.5
+      13 #93CDB4 5 5     1    13 cross  black   14    NA    0.5
       
 
 # checking ggcorrmat - with NAs - spearman's rho
@@ -404,8 +404,8 @@
       
       [[3]]
            fill x y PANEL group shape colour size alpha stroke
-      1 #DEBA91 3 2     1     2 cross  black    5    NA    0.5
-      2 #DEBA91 2 3     1     1 cross  black    5    NA    0.5
+      1 #DEBA91 3 2     1     2 cross  black   14    NA    0.5
+      2 #DEBA91 2 3     1     1 cross  black   14    NA    0.5
       
 
 # checking Bayesian pearson (with NA)

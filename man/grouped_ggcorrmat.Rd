@@ -126,7 +126,9 @@ grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
   type = "robust",
-  p.adjust.method = "holm"
+  p.adjust.method = "holm",
+  plotgrid.args = list(ncol = 1),
+  annotation.args = list(tag_levels = "i")
 )
 
 # for dataframe
