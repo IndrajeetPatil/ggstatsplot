@@ -366,14 +366,14 @@ of test-
 
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
-Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | <font color="green">Yes<font> | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | <font color="green">Yes<font> | `effectsize::rank_epsilon_squared`
-Robust | > 2 | $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::t1way`
-Bayes Factor | > 2 | $R_{posterior}^2$ | <font color="green">Yes<font> | `performance::r2_bayes`
-Parametric | 2 | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
-Robust | 2 |  $\xi$ (Explanatory measure of effect size) | <font color="green">Yes<font> | `WRS2::yuen.effect.ci`
-Bayesian | 2 | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
+Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | ✅ | `effectsize::omega_squared`, `effectsize::eta_squared`
+Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | ✅ | `effectsize::rank_epsilon_squared`
+Robust | > 2 | $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::t1way`
+Bayes Factor | > 2 | $R_{posterior}^2$ | ✅ | `performance::r2_bayes`
+Parametric | 2 | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
+Non-parametric | 2 | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
+Robust | 2 |  $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::yuen.effect.ci`
+Bayesian | 2 | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
 Here is a summary of *multiple pairwise comparison* tests supported in
 *ggbetweenstats*-

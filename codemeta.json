@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
+  "runtimePlatform": "R Under development (unstable) (2021-04-18 r80182)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -419,7 +419,7 @@
   ],
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
   "contIntegration": ["https://travis-ci.org/IndrajeetPatil/ggstatsplot", "https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot", "https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master", "https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master"],
-  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html", "https://www.repostatus.org/#active"],
+  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html", "https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html"],
   "keywords": [
     "ggplot-extension",
     "statistical-tests",
@@ -481,6 +481,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "115423.715KB",
+  "fileSize": "111770.671KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

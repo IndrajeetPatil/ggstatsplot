@@ -159,7 +159,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-19</h4>
+            <h4 data-toc-skip class="date">2021-04-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -187,7 +187,7 @@ A BibTeX entry for LaTeX users is
 <hr>
 <div id="why-use-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#why-use-purrr" class="anchor"></a>Why use <code>purrr</code>?</h1>
+<a href="#why-use-purrr" class="anchor" aria-hidden="true"></a>Why use <code>purrr</code>?</h1>
 <p>Most of the <code>ggstatsplot</code> functions have <code>grouped_</code> variants, which are designed to quickly run the same <code>ggstatsplot</code> function across multiple levels of a <strong>single</strong> grouping variable. Although this function is useful for data exploration, it has two strong weaknesses-</p>
 <ul>
 <li><p>The arguments applied to <code>grouped_</code> function call are applied uniformly to all levels of the grouping variable when we might want to customize them for different levels of the grouping variable.</p></li>
@@ -203,7 +203,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="introduction-and-methodology" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction-and-methodology" class="anchor"></a>Introduction and methodology</h1>
+<a href="#introduction-and-methodology" class="anchor" aria-hidden="true"></a>Introduction and methodology</h1>
 <p>For all the examples in this vignette we are going to build <code>list</code>s of things that we will pass along to <code>purrr</code> which will in turn return a list of plots that will be passed to <code>combine_plots</code>. As the name implies <code>combine_plots</code> merges the individual plots into one bigger plot with common labeling and aesthetics.</p>
 <p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <code>ggstatsplot</code> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code> themes.</p>
 <p>You can pass:</p>
@@ -215,7 +215,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggbetweenstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggbetweenstats" class="anchor"></a><code>ggbetweenstats</code>
+<a href="#ggbetweenstats" class="anchor" aria-hidden="true"></a><code>ggbetweenstats</code>
 </h1>
 <p>Let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item <code>list</code> called <code>year_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter</a></code> and <code>split</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -296,7 +296,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggwithinstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggwithinstats" class="anchor"></a><code>ggwithinstats</code>
+<a href="#ggwithinstats" class="anchor" aria-hidden="true"></a><code>ggwithinstats</code>
 </h1>
 <p>We will be using simulated data from then Attention Network Test provided in ANT dataset in <code>ez</code> package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -371,7 +371,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggscatterstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
+<a href="#ggscatterstats" class="anchor" aria-hidden="true"></a><code>ggscatterstats</code>
 </h1>
 <p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_wide</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
@@ -433,7 +433,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggcorrmat" class="anchor"></a><code>ggcorrmat</code>
+<a href="#ggcorrmat" class="anchor" aria-hidden="true"></a><code>ggcorrmat</code>
 </h1>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -499,7 +499,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="gghistostats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#gghistostats" class="anchor"></a><code>gghistostats</code>
+<a href="#gghistostats" class="anchor" aria-hidden="true"></a><code>gghistostats</code>
 </h1>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -563,7 +563,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggdotplotstats" class="anchor"></a><code>ggdotplotstats</code>
+<a href="#ggdotplotstats" class="anchor" aria-hidden="true"></a><code>ggdotplotstats</code>
 </h1>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -629,7 +629,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggpiestats" class="anchor"></a><code>ggpiestats</code>
+<a href="#ggpiestats" class="anchor" aria-hidden="true"></a><code>ggpiestats</code>
 </h1>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -691,7 +691,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="ggbarstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#ggbarstats" class="anchor"></a><code>ggbarstats</code>
+<a href="#ggbarstats" class="anchor" aria-hidden="true"></a><code>ggbarstats</code>
 </h1>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -755,7 +755,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped_-variants" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped_-variants" class="anchor"></a><code>grouped_</code> variants</h1>
+<a href="#grouped_-variants" class="anchor" aria-hidden="true"></a><code>grouped_</code> variants</h1>
 <p>Note that although all the above examples were written with the non-grouped variants of functions, the same rule holds true for the <code>grouped_</code> variants of all the above functions.</p>
 <p>For example, if we want to use the <code>grouped_gghistostats</code> across three different datasets, you can use <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code> function. For the sake of brevity, the plots are not displayed here, but you can run the following code and check the individual <code>grouped_</code> plots (e.g., <code>plotlist[[1]]</code>).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -778,7 +778,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="repeating-function-execution-across-multiple-columns-in-a-dataframe" class="section level1">
 <h1 class="hasAnchor">
-<a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe" class="anchor"></a>Repeating function execution across multiple columns in a dataframe</h1>
+<a href="#repeating-function-execution-across-multiple-columns-in-a-dataframe" class="anchor" aria-hidden="true"></a>Repeating function execution across multiple columns in a dataframe</h1>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -803,12 +803,12 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>

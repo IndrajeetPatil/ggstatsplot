@@ -159,7 +159,7 @@
       <h1 data-toc-skip>Graphic design and statistical reporting principles</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-19</h4>
+            <h4 data-toc-skip class="date">2021-04-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
       <div class="hidden name"><code>principles.Rmd</code></div>
@@ -187,10 +187,10 @@ A BibTeX entry for LaTeX users is
 <hr>
 <div id="graphic-design-principles" class="section level1">
 <h1 class="hasAnchor">
-<a href="#graphic-design-principles" class="anchor"></a>Graphic design principles</h1>
+<a href="#graphic-design-principles" class="anchor" aria-hidden="true"></a>Graphic design principles</h1>
 <div id="graphical-perception" class="section level2">
 <h2 class="hasAnchor">
-<a href="#graphical-perception" class="anchor"></a>Graphical perception</h2>
+<a href="#graphical-perception" class="anchor" aria-hidden="true"></a>Graphical perception</h2>
 <p>Graphical perception involves visual decoding of the encoded information in graphs. <code>ggstatsplot</code> incorporates the paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous. Based on experiments, Cleveland proposes that there are ten elementary graphical-perception tasks that we perform to visually decode quantitative information in graphs (organized from most to least accurate; <span class="citation">(Cleveland, 1985)</span>, p.254)-</p>
 <ul>
 <li><p>Position along a common scale</p></li>
@@ -299,7 +299,7 @@ Comparing different aspects of data is much more accurate in () a  plot, which i
 </div>
 <div id="graphical-excellence" class="section level2">
 <h2 class="hasAnchor">
-<a href="#graphical-excellence" class="anchor"></a>Graphical excellence</h2>
+<a href="#graphical-excellence" class="anchor" aria-hidden="true"></a>Graphical excellence</h2>
 <p>Graphical excellence consists of communicating complex ideas with clarity and in a way that the viewer understands the greatest number of ideas in a short amount of time all the while not quoting the data out of context. The package follows the principles for <em>graphical integrity</em> <span class="citation">(Tufte, 2001)</span>:</p>
 <ul>
 <li><p>The physical representation of numbers is proportional to the numerical quantities they represent. The plot show how means (in <code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>) are proportional to the vertical distance or the area, respectively).</p></li>
@@ -323,7 +323,7 @@ Comparing different aspects of data is much more accurate in () a  plot, which i
 </div>
 <div id="statistical-variation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#statistical-variation" class="anchor"></a>Statistical variation</h2>
+<a href="#statistical-variation" class="anchor" aria-hidden="true"></a>Statistical variation</h2>
 <p>One of the important functions of a plot is to show the variation in the data, which comes in two forms:</p>
 <ul>
 <li>
@@ -372,10 +372,10 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 </div>
 <div id="statistical-analysis" class="section level1">
 <h1 class="hasAnchor">
-<a href="#statistical-analysis" class="anchor"></a>Statistical analysis</h1>
+<a href="#statistical-analysis" class="anchor" aria-hidden="true"></a>Statistical analysis</h1>
 <div id="data-requirements" class="section level2">
 <h2 class="hasAnchor">
-<a href="#data-requirements" class="anchor"></a>Data requirements</h2>
+<a href="#data-requirements" class="anchor" aria-hidden="true"></a>Data requirements</h2>
 <p>As an extension of <code>ggplot2</code>, <code>ggstatsplot</code> has the same expectations about the structure of the data. More specifically,</p>
 <ul>
 <li><p>The data should be organized following the principles of <em>tidy data</em>, which specify how statistical structure of a data frame (variables and observations) should be mapped to physical structure (columns and rows). More specifically, tidy data means all variables have their own columns and each row corresponds to a unique observation (<span class="citation">(Wickham, 2014)</span>).</p></li>
@@ -416,7 +416,7 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 </div>
 <div id="statistical-reporting" class="section level2">
 <h2 class="hasAnchor">
-<a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h2>
+<a href="#statistical-reporting" class="anchor" aria-hidden="true"></a>Statistical reporting</h2>
 <p>But why would combining statistical analysis with data visualization be helpful? We list few reasons below-</p>
 <ul>
 <li>A recent survey <span class="citation">(Nuijten, Hartgerink, van Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight papers in major psychology journals contained a grossly inconsistent <em>p</em>-value that may have affected the statistical conclusion. <code>ggstatsplot</code> helps avoid such reporting errors: Since the plot and the statistical analysis are yoked together, the chances of making an error in reporting the results are minimized. One need not write the results manually or copy-paste them from a different statistics software program (like SPSS, SAS, and so on).</li>
@@ -436,23 +436,23 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 </div>
 <div id="dealing-with-null-results" class="section level2">
 <h2 class="hasAnchor">
-<a href="#dealing-with-null-results" class="anchor"></a>Dealing with <strong>null results</strong>:</h2>
+<a href="#dealing-with-null-results" class="anchor" aria-hidden="true"></a>Dealing with <strong>null results</strong>:</h2>
 <p>All functions therefore by default return Bayesian in favor of the null hypothesis by default. If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>). By default, natural logarithms are shown because Bayesian values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
 </div>
 <div id="avoiding-the-p-value-error" class="section level2">
 <h2 class="hasAnchor">
-<a href="#avoiding-the-p-value-error" class="anchor"></a>Avoiding the <strong>“p-value error”</strong>:</h2>
+<a href="#avoiding-the-p-value-error" class="anchor" aria-hidden="true"></a>Avoiding the <strong>“p-value error”</strong>:</h2>
 <p>The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p =0.000</code>, putatively due to relying on default computer software outputs <span class="citation">(Lilienfeld et al., 2015)</span>. All <em>p</em>-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p>
 </div>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-apa2009" class="csl-entry">

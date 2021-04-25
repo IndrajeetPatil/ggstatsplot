@@ -178,10 +178,10 @@ of test-
 
 Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
-Parametric | Cohen's *d*, Hedge's *g* | <font color="green">Yes<font> | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | *r* (rank-biserial correlation) | <font color="green">Yes<font> | `effectsize::rank_biserial`
-Robust | trimmed mean | <font color="green">Yes<font> | `trimcibt` (custom)
-Bayes Factor | $\delta_{posterior}$ | <font color="green">Yes<font> | `bayestestR::describe_posterior`
+Parametric | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
+Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
+Robust | trimmed mean | ✅ | `trimcibt` (custom)
+Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
 # Reporting
 

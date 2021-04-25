@@ -364,9 +364,9 @@ of test-
 
 Test | Effect size | CI? | Function used
 --------------- | ------------------------- | --- | -----
-Pearson's $\chi^2$ test | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
-McNemar's test | Cohen's $g$ | <font color="green">Yes<font> | `effectsize::cohens_g`
-Goodness-of-fit | Cramer's $V$ | <font color="green">Yes<font> | `effectsize::cramers_v`
+Pearson's $\chi^2$ test | Cramer's $V$ | ✅ | `effectsize::cramers_v`
+McNemar's test | Cohen's $g$ | ✅ | `effectsize::cohens_g`
+Goodness-of-fit | Cramer's $V$ | ✅ | `effectsize::cramers_v`
 
 # Reporting
 

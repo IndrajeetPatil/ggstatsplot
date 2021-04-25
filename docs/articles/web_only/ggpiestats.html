@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-19</h4>
+            <h4 data-toc-skip class="date">2021-04-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -188,7 +188,7 @@ A BibTeX entry for LaTeX users is
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
 <div id="introduction-to-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction-to-ggpiestats" class="anchor"></a>Introduction to <code>ggpiestats</code>
+<a href="#introduction-to-ggpiestats" class="anchor" aria-hidden="true"></a>Introduction to <code>ggpiestats</code>
 </h1>
 <p>The function <code>ggpiestats</code> can be used for quick <strong>data exploration</strong> and/or to prepare <strong>publication-ready pie charts</strong> to summarize the statistical relationship(s) among one or more categorical variables. We will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggpiestats</code>-</p>
@@ -227,7 +227,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="goodness-of-fit-with-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#goodness-of-fit-with-ggpiestats" class="anchor"></a>Goodness of Fit with <code>ggpiestats</code>
+<a href="#goodness-of-fit-with-ggpiestats" class="anchor" aria-hidden="true"></a>Goodness of Fit with <code>ggpiestats</code>
 </h1>
 <p>The simplest use case for <code>ggpiestats</code> is that we want to display information about <strong>one</strong> categorical or nominal variable. As part of that display or plot, we may also choose to execute a chi-squared goodness of fit test to see whether the proportions (or percentages) in categories of the single variable appear to line up with our hypothesis or model. To start simple and then expand, let’s say that we’d like to display a piechart with the percentages of passengers who did or did not survive. Our initial hypothesis is that it was no different than flipping a coin. People had a 50/50 chance of surviving.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -251,7 +251,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="independence-or-association-with-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#independence-or-association-with-ggpiestats" class="anchor"></a>Independence (or association) with <code>ggpiestats</code>
+<a href="#independence-or-association-with-ggpiestats" class="anchor" aria-hidden="true"></a>Independence (or association) with <code>ggpiestats</code>
 </h1>
 <p>Let’s next investigate whether the passenger’s gender was independent of, or associated with, gender. The test is whether the proportion of people who survived was different between the sexes using <code>ggpiestats</code>.</p>
 <p>We’ll modify a number of arguments to change the appearance of this plot and showcase the flexibility of <code>ggpiestats</code>. We will:</p>
@@ -295,7 +295,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped-analysis-with-grouped_ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-grouped_ggpiestats" class="anchor"></a>Grouped analysis with <code>grouped_ggpiestats</code>
+<a href="#grouped-analysis-with-grouped_ggpiestats" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_ggpiestats</code>
 </h1>
 <p>What if we want to do the same analysis of gender but also factor in the passenger’s age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference to their survival rate?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. It is a convenient wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
@@ -324,14 +324,14 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped-analysis-with-ggpiestats-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-ggpiestats-purrr" class="anchor"></a>Grouped analysis with <code>ggpiestats</code> + <code>purrr</code>
+<a href="#grouped-analysis-with-ggpiestats-purrr" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>ggpiestats</code> + <code>purrr</code>
 </h1>
 <p>Although <code>grouped_ggpiestats</code> provides a quick way to explore the data, it leaves much to be desired. For example, we may want to add different captions, titles, themes, or palettes for each level of the grouping variable, etc. For cases like these, it would be better to use <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div id="working-with-data-organized-by-counts" class="section level1">
 <h1 class="hasAnchor">
-<a href="#working-with-data-organized-by-counts" class="anchor"></a>Working with data organized by <code>counts</code>
+<a href="#working-with-data-organized-by-counts" class="anchor" aria-hidden="true"></a>Working with data organized by <code>counts</code>
 </h1>
 <p><code>ggpiestats</code> can also work with dataframe containing counts (aka tabled data), i.e., when each row doesn’t correspond to a unique observation. For example, consider the following notional <code>fishing</code> dataframe containing data from two boats (<code>A</code> and <code>B</code>) about the number of different types fish they caught in the months of <code>February</code> and <code>March</code>. In this dataframe, each row corresponds to a unique combination of <code>Boat</code> and <code>Month</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -405,7 +405,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="within-subjects-designs" class="section level1">
 <h1 class="hasAnchor">
-<a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h1>
+<a href="#within-subjects-designs" class="anchor" aria-hidden="true"></a>Within-subjects designs</h1>
 <p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -439,7 +439,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
+<a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h1>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
 <colgroup>
@@ -491,21 +491,21 @@ A BibTeX entry for LaTeX users is
 <td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
 <td>Cramer’s <span class="math inline">\(V\)</span>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
 </tr>
 <tr class="even">
 <td>McNemar’s test</td>
 <td>Cohen’s <span class="math inline">\(g\)</span>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
 </tr>
 <tr class="odd">
 <td>Goodness-of-fit</td>
 <td>Cramer’s <span class="math inline">\(V\)</span>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
 </tr>
 </tbody>
@@ -513,7 +513,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="reporting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#reporting" class="anchor"></a>Reporting</h1>
+<a href="#reporting" class="anchor" aria-hidden="true"></a>Reporting</h1>
 <p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
 <ul>
 <li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
@@ -533,17 +533,17 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
+<a href="#effect-size-interpretation" class="anchor" aria-hidden="true"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>

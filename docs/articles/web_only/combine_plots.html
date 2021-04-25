@@ -159,7 +159,7 @@
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-19</h4>
+            <h4 data-toc-skip class="date">2021-04-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -188,14 +188,14 @@ A BibTeX entry for LaTeX users is
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="lifecycle"></a></p>
 <div id="combining-plots-with-combine_plots" class="section level1">
 <h1 class="hasAnchor">
-<a href="#combining-plots-with-combine_plots" class="anchor"></a>Combining plots with <code>combine_plots</code>
+<a href="#combining-plots-with-combine_plots" class="anchor" aria-hidden="true"></a>Combining plots with <code>combine_plots</code>
 </h1>
 <p><code>ggstatsplot</code> contains a “helper” function named <code>combine_plots</code> to help you combine several plots into one plot or add a combination of title, caption, and annotation texts with suitable default parameters. It is a wrapper around <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>. Some examples below.</p>
 <p><strong>Note Before</strong>: If you have just one grouping variable and you’d like a plot for each <code>factor</code> of this variable the <code>grouped_</code> variants (<a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/index.html</a>) of all <code>ggstatsplot</code> functions will allow you do to this. They specifically use the <code>combine_plots</code> function under the covers.</p>
 </div>
 <div id="example-1-using-dplyrgroup_map" class="section level1">
 <h1 class="hasAnchor">
-<a href="#example-1-using-dplyrgroup_map" class="anchor"></a>Example-1 using <code>dplyr::group_map</code>
+<a href="#example-1-using-dplyrgroup_map" class="anchor" aria-hidden="true"></a>Example-1 using <code>dplyr::group_map</code>
 </h1>
 <p>The easiest way to run the same <code>ggstatsplot</code> operation across multiple grouping variables is by using <code><a href="https://dplyr.tidyverse.org/reference/group_map.html" class="external-link">dplyr::group_map</a></code> functions and then - of course - one would like to combine these plots in a single plot.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -219,7 +219,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="example-2-using-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#example-2-using-purrr" class="anchor"></a>Example-2 using <code>purrr</code>
+<a href="#example-2-using-purrr" class="anchor" aria-hidden="true"></a>Example-2 using <code>purrr</code>
 </h1>
 <p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="http://purrr.tidyverse.org/" class="external-link"><code>purrr</code></a> which can replace many <code>for</code> loops, is more succinct, and easier to read. Consider <code>purrr</code> as your first choice for combining multiple plots.</p>
 <p>An example using the <code>iris</code> dataset is provided below. Imagine that we want to separately plot the linear relationship between sepal length and sepal width for each of the three species but combine them into one consistent plot with common labeling and as one plot. Rather than call <code>ggscatterstats</code> three times and gluing the results or using <code>patchwork</code> directly, we’ll create a <code>tibble</code> called <code>plots</code> using <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map</a></code> then feed that to <code>combine_plots</code> to get our combined plot.</p>
@@ -286,7 +286,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="example-3-with-plyr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#example-3-with-plyr" class="anchor"></a>Example-3 with <code>plyr</code>
+<a href="#example-3-with-plyr" class="anchor" aria-hidden="true"></a>Example-3 with <code>plyr</code>
 </h1>
 <p>Another popular package for handling big datasets is <code>plyr</code>, which allows us to repeatedly apply a common function on smaller pieces and then combine the results into a larger whole.</p>
 <p>In this example we’ll start with the <code>gapminder</code> dataset. We’re interested in the linear relationship between Gross Domestic Product (per capita) and life expectancy in the year 2007, for all the continents except Oceania. We’ll use <code>dplyr</code> to filter to the right rows then use <code>plyr</code> to repeat the <code>ggscatterstats</code> function across each of the 4 continents remaining. The result is of that is a list of plots called <code>plots</code>. We then feed <code>plots</code> to the <code>combine_plots</code> function to merge them into one plot. We will call attention to the countries which have very low life expectancy (&lt; 45 years) by labeling those countries when they occur.</p>
@@ -341,7 +341,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="adding-additional-details-to-plots" class="section level1">
 <h1 class="hasAnchor">
-<a href="#adding-additional-details-to-plots" class="anchor"></a>Adding additional details to plots</h1>
+<a href="#adding-additional-details-to-plots" class="anchor" aria-hidden="true"></a>Adding additional details to plots</h1>
 <p>The <code>combine_plots</code> function can also be useful for adding additional textual information that can not be added by making a single call to a <code>ggstatsplot</code> function via the title, subtitle, or caption options. For this example let’s assume we want to assess the relationship between a movie’s rating and its budget from the <strong>Internet Movie Database</strong> using polynomial regression.</p>
 <p><code>ggcoefstats</code> will do most of the work, including the title, subtitle, and caption. But we want to add at the bottom an annotation to show the formula we are using for our regression. <code>combine_plots</code> allows us to add <code>sub.text =</code> to accomplish that task as shown in the resulting plot.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -387,12 +387,12 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>

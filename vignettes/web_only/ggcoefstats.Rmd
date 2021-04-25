@@ -54,6 +54,8 @@ citation("ggstatsplot")
 
 ---
 
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
 The function `ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
 using `parameters::model_parameters`. Additionally, if available, the model
@@ -105,7 +107,7 @@ also supported by `ggcoefstats`. For example-
 `coxph`, `coxr`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `crr`,
 `DirichReg`, `drc`, `eglm`, `elm`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
 `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`,
-`geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`,
+`geeglm`, `gjrm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`,
 `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`,
 `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
 `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`,
@@ -116,17 +118,17 @@ also supported by `ggcoefstats`. For example-
 `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
 `poissonmfx`, `poissonirr`, `polr`, `probitmfx`, `ridgelm`, `riskRegression`,
 `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`,
-`semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
-`summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`, `truncreg`,
-`varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`selection`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
+`stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
+`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 # Summary of meta-analysis tests
 
 Type | Test | Effect size | 95% CI available? | Function
 ----------- | -------------------- | -------- | ---  | -----
-Parametric | Meta-analysis via random-effects models | $\beta$ | <font color="green">$\checkmark$</font> | `metafor::metafor`
-Robust | Meta-analysis via robust random-effects models | $\beta$ | <font color="green">$\checkmark$</font> | `metaplus::metaplus`
-Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | <font color="green">$\checkmark$</font> | `metaBMA::meta_random`
+Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor`
+Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus`
+Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `metaBMA::meta_random`
 
 # Examples of supported models
 
@@ -674,6 +676,25 @@ parameters::model_parameters(
 )
 ```
 
+## nonlinear model using generalized least squares (`gnls`)
+
+```{r gnls, fig.height = 6, fig.width = 8}
+set.seed(123)
+library(nlme)
+
+# variance increases with a power of the absolute fitted values
+mod_gnls <- gnls(
+  model = weight ~ SSlogis(Time, Asym, xmid, scal),
+  data = Soybean,
+  weights = varPower()
+)
+
+ggcoefstats(
+  x = mod_gnls,
+  title = "nonlinear model using generalized least squares"
+)
+```
+
 ## analysis of factorial experiments (`mixed`)
 
 ```{r mixed, fig.height = 4, fig.width = 8}
@@ -877,6 +898,58 @@ b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
 ggcoefstats(
   x = b1,
   title = "STAR Models with BayesX"
+)
+```
+
+## Generalised Joint Regression Models with Binary/Continuous/Discrete/Survival Margins (`gjrm`)
+
+```{r gjrm, width = 7, height = 7}
+library(GJRM)
+
+# data
+set.seed(123)
+dat <- data.frame(
+  x1 = rnorm(40, 1:10),
+  x2 = rnorm(40, 1:30),
+  bid1 = sample(1:5, 40, replace = TRUE),
+  bid2 = sample(1:5, 40, replace = TRUE),
+  y1 = sample(0:1, 40, replace = TRUE),
+  y2 = sample(0:1, 40, replace = TRUE)
+)
+
+f.list <- list(
+  y1 ~ bid1 + x1 + x2,
+  y2 ~ bid2 + x1 + x2
+)
+
+# model
+mod_gjrm <- gjrm(f.list, dat, Model = "B", margins = c("probit", "probit"))
+
+# plot
+ggcoefstats(
+  x = mod_gjrm,
+  title = "Generalised Joint Regression Models\n with Binary/Continuous/Discrete/Survival Margins"
+)
+```
+
+## Heckman-style selection and treatment effect models (`selection`)
+
+```{r selection, width = 6, height = 6}
+library(sampleSelection)
+library(wooldridge) # for data
+data(mroz)
+
+# model
+mod_selection <- selection(
+  inlf ~ educ + kidslt6 + kidsge6, 
+  wage ~ educ + exper + expersq,
+  method = "2step",
+  data = mroz)
+
+# plot
+ggcoefstats(
+  x = mod_selection,
+  title = "Heckman-style selection and treatment effect models"
 )
 ```
 

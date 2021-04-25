@@ -561,6 +561,17 @@ ggscatterstats(
 )
 ```
 
+# 21. Is there way to adjust my alpha level?
+
+No, there is no way to adjust alpha if you use `grouped_` functions (e.g.,
+`grouped_ggwithinstats`). You will have to just report in the
+paper/article/report, what your adjusted alpha is.
+
+So, for example, iif 2 tests are being carried out, the alpha is going to be
+`0.05/2 = 0.025`. So, when you describe the _Methods_ section, you can mention
+that only those tests should be considered significant where `p < 0.025`. Or you
+can even mention this in the caption.
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

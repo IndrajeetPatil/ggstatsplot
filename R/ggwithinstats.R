@@ -59,12 +59,11 @@
 #' # more than two groups (anova)
 #' library(WRS2)
 #'
-#' ggstatsplot::ggwithinstats(
+#' ggwithinstats(
 #'   data = WineTasting,
 #'   x = Wine,
 #'   y = Taste,
-#'   type = "np", # non-parametric test
-#'   pairwise.comparisons = TRUE,
+#'   type = "r",
 #'   outlier.tagging = TRUE,
 #'   outlier.label = Taster
 #' )

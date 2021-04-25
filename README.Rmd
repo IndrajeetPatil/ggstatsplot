@@ -1015,7 +1015,7 @@ also supported by `ggcoefstats`. For example-
 `coxph`, `coxr`, `coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `crr`,
 `DirichReg`, `drc`, `eglm`, `elm`, `emmGrid`, `epi.2by2`, `ergm`, `feis`,
 `felm`, `fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`,
-`geeglm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`,
+`geeglm`, `gjrm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`, `glmm`,
 `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`, `HLfit`, `hurdle`,
 `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`, `lavaan`, `lm`, `lm.beta`,
 `lmerMod`, `lmerModLmerTest`, `lmodel2`, `lmRob`, `lmrob`, `lm_robust`,
@@ -1026,9 +1026,9 @@ also supported by `ggcoefstats`. For example-
 `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
 `poissonmfx`, `poissonirr`, `polr`, `probitmfx`, `ridgelm`, `riskRegression`,
 `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`,
-`semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`,
-`summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`, `truncreg`,
-`varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`selection`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
+`stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
+`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out parametric,
 robust, and Bayesian random-effects meta-analysis.

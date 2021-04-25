@@ -159,7 +159,7 @@
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-19</h4>
+            <h4 data-toc-skip class="date">2021-04-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd" class="external-link"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -190,7 +190,7 @@ A BibTeX entry for LaTeX users is
 <p>This function is a sister function of <code>gghistostats</code> with the difference being it expects a labeled numeric variable.</p>
 <div id="distribution-of-a-sample-with-ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#distribution-of-a-sample-with-ggdotplotstats" class="anchor"></a>Distribution of a sample with <code>ggdotplotstats</code>
+<a href="#distribution-of-a-sample-with-ggdotplotstats" class="anchor" aria-hidden="true"></a>Distribution of a sample with <code>ggdotplotstats</code>
 </h1>
 <p>Let’s begin with a very simple example from the <code>ggplot2</code> package (<code><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">ggplot2::mpg</a></code>), a subset of the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" class="external-link uri">http://fueleconomy.gov</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -247,7 +247,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped-analysis-with-grouped_ggdotplotstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-grouped_ggdotplotstats" class="anchor"></a>Grouped analysis with <code>grouped_ggdotplotstats</code>
+<a href="#grouped-analysis-with-grouped_ggdotplotstats" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_ggdotplotstats</code>
 </h1>
 <p>What if we want to do the same analysis separately for different engines with different numbers of cylinders?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggdotplotstats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggdotplotstats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot.</p>
@@ -279,14 +279,14 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped-analysis-with-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-purrr" class="anchor"></a>Grouped analysis with <code>purrr</code>
+<a href="#grouped-analysis-with-purrr" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>purrr</code>
 </h1>
 <p>Although this is a quick and dirty way to explore a large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each gender, this is not possible with <code>grouped_ggdotplotstats</code>. For cases like these, or to run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
+<a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h1>
 <p>The central tendency measure displayed will depend on the statistics:</p>
 <table class="table">
 <thead><tr class="header">
@@ -368,7 +368,7 @@ A BibTeX entry for LaTeX users is
 <td>Parametric</td>
 <td>Cohen’s <em>d</em>, Hedge’s <em>g</em>
 </td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
 </td>
@@ -377,20 +377,20 @@ A BibTeX entry for LaTeX users is
 <td>Non-parametric</td>
 <td>
 <em>r</em> (rank-biserial correlation)</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>trimmed mean</td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td>
 <code>trimcibt</code> (custom)</td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td><span class="math inline">\(\delta_{posterior}\)</span></td>
-<td><font color="green">Yes<font></font></font></td>
+<td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
@@ -398,7 +398,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="reporting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#reporting" class="anchor"></a>Reporting</h1>
+<a href="#reporting" class="anchor" aria-hidden="true"></a>Reporting</h1>
 <p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
 <ul>
 <li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
@@ -416,17 +416,17 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
+<a href="#effect-size-interpretation" class="anchor" aria-hidden="true"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>

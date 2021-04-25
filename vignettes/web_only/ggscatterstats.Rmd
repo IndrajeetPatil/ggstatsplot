@@ -185,9 +185,9 @@ sizes-
 
 Type | Test | CI? | Function
 ----------- | ------------------------- | --- | -----
-Parametric | Pearson's correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
-Non-parametric | Spearman's rank correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
-Robust | Winsorized Pearson correlation coefficient | <font color="green">Yes<font> | `correlation::correlation`
+Parametric | Pearson's correlation coefficient | ✅ | `correlation::correlation`
+Non-parametric | Spearman's rank correlation coefficient | ✅ | `correlation::correlation`
+Robust | Winsorized Pearson correlation coefficient | ✅ | `correlation::correlation`
 Bayes Factor | Pearson's correlation coefficient | <font color="green">Yes</font> | `correlation::correlation`
 
 # Reporting
