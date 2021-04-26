@@ -162,6 +162,30 @@
       2 2 7.074074     1     2    19 darkgreen    3   NA   0.5    0.5
       
 
+---
+
+    Code
+      within(pb1$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "condition"
+      
+      $y
+      [1] "desire"
+      
+      $colour
+      [1] "condition"
+      
+      $title
+      [1] "bugs dataset"
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "outlier.label"
+      
+
 # basic plotting works - more than two groups
 
     Code
@@ -306,5 +330,170 @@
       1         FALSE
       2         FALSE
       3         FALSE
+      
+
+---
+
+    Code
+      within(pb1$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "Wine"
+      
+      $y
+      [1] "Taste"
+      
+      $colour
+      [1] "Wine"
+      
+      $title
+      [1] "wine tasting data"
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "outlier.label"
+      
+
+# checking subtitle outputs - without NAs
+
+    Code
+      within(pb1$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "condition"
+      
+      $y
+      [1] "value"
+      
+      $colour
+      [1] "condition"
+      
+      $title
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Durbin-Conover test"), 
+          "; Comparisons shown: ", bold("only significant")))
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "label"
+      
+
+---
+
+    Code
+      within(pb2$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "condition"
+      
+      $y
+      [1] "value"
+      
+      $colour
+      [1] "condition"
+      
+      $title
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Yuen's trimmed means test"), 
+          "; Comparisons shown: ", bold("only non-significant")))
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "label"
+      
+
+---
+
+    Code
+      within(pb3$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "modality"
+      
+      $y
+      [1] "score"
+      
+      $colour
+      [1] "modality"
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "label"
+      
+
+---
+
+    Code
+      within(pb4$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "modality"
+      
+      $y
+      [1] "score"
+      
+      $colour
+      [1] "modality"
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "label"
+      
+
+# ggplot component addition works
+
+    Code
+      pb$plot$labels
+    Output
+      $y
+      [1] "Taste rating"
+      
+      $x
+      [1] "Wine"
+      
+      $colour
+      [1] "Wine"
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Student's t-test"), 
+          "; Comparisons shown: ", bold("only significant")))
+      
+      $group
+      [1] ".rowid"
+      
+      $label
+      [1] "label"
       
 

@@ -154,6 +154,27 @@
       4 4 0.14573118     1     4    19 darkred    5   NA    NA    0.5
       
 
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "vore"
+      
+      $y
+      [1] "brain weight"
+      
+      $colour
+      [1] "vore"
+      
+      $title
+      [1] "mammalian sleep"
+      
+      $label
+      [1] "outlier.label"
+      
+
 # checking mean labels are working
 
     Code
@@ -258,6 +279,30 @@
       1 1 2.200     1     1    19 darkred    5   NA    NA    0.5
       2 2 3.215     1     2    19 darkred    5   NA    NA    0.5
       3 3 3.755     1     3    19 darkred    5   NA    NA    0.5
+      
+
+---
+
+    Code
+      within(pb$plot$labels, rm(caption))
+    Output
+      $x
+      [1] "cyl"
+      
+      $y
+      [1] "n"
+      
+      $colour
+      [1] "cyl"
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $label
+      [1] "outlier.label"
       
 
 # checking if plot.type argument works
@@ -557,8 +602,8 @@
       
       [[2]][[2]]
         x    y PANEL group shape colour size fill alpha stroke
-      1 2 33.9     1     1    19   blue    3   NA   0.7      0
-      2 2 32.5     1     1    19   blue    3   NA   0.7      0
+      1 2 33.9     1     1    19  black    3   NA   0.7      0
+      2 2 32.5     1     1    19  black    3   NA   0.7      0
       
       [[2]][[3]]
         x    y label PANEL group colour  fill size angle alpha family fontface
@@ -579,5 +624,47 @@
       1 1 21.70556     1     1    19 darkred    5   NA    NA    0.5
       2 2 16.58333     1     2    19 darkred    5   NA    NA    0.5
       
+      
+
+---
+
+    Code
+      within(pb1$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "supp"
+      
+      $y
+      [1] "len"
+      
+      $colour
+      [1] "supp"
+      
+      $title
+      NULL
+      
+      $label
+      [1] "outlier.label"
+      
+
+---
+
+    Code
+      within(pb2$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "supp"
+      
+      $y
+      [1] "len"
+      
+      $colour
+      [1] "supp"
+      
+      $title
+      NULL
+      
+      $label
+      [1] "outlier.label"
       
 

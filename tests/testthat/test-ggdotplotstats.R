@@ -21,7 +21,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      suppressMessages(ggstatsplot::ggdotplotstats(
+      suppressMessages(ggdotplotstats(
         data = morley_new,
         x = Speed,
         y = "Expt",
@@ -210,7 +210,7 @@ test_that(
     # should output a list of length 3
     set.seed(123)
     p_sub <-
-      suppressWarnings(ggstatsplot::ggdotplotstats(
+      suppressWarnings(ggdotplotstats(
         data = morley,
         x = Speed,
         y = Expt,
@@ -223,7 +223,7 @@ test_that(
     set.seed(123)
     expect_identical(
       p_sub,
-      suppressWarnings(ggstatsplot::gghistostats(
+      suppressWarnings(gghistostats(
         data = dplyr::group_by(.data = morley, Expt) %>%
           dplyr::summarise(mean = mean(Speed)),
         x = mean,

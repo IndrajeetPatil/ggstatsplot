@@ -8,7 +8,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggcorrmat(
+      ggcorrmat(
         data = iris,
         cor.vars.names = "x",
         type = "p",
@@ -47,7 +47,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggcorrmat(
+      ggcorrmat(
         data = anscombe,
         type = "r",
         partial = TRUE,
@@ -74,7 +74,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggcorrmat(
+      ggcorrmat(
         data = ggplot2::msleep,
         type = "r",
         sig.level = 0.01,
@@ -104,7 +104,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      suppressWarnings(ggstatsplot::ggcorrmat(
+      suppressWarnings(ggcorrmat(
         data = ggplot2::msleep,
         cor.vars = sleep_total:awake,
         cor.vars.names = "sleep_total",

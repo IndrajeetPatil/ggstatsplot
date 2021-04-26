@@ -24,7 +24,7 @@ Titanic_full <-
     .vars = dplyr::vars("id"),
     .funs = ~ as.factor(.)
   ) %>%
-  split(x = ., f = .$id) %>%
+  split(f = .$id) %>%
   purrr::map_dfr(.x = ., .f = ~ rep_df(df = ., rep = .$n)) %>%
   dplyr::mutate_at(
     .vars = dplyr::vars("id"),

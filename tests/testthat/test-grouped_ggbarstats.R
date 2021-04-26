@@ -9,19 +9,19 @@ test_that(
     mpg_short <- dplyr::filter(.data = ggplot2::mpg, drv %in% c("4", "f"))
 
     ## expecting error message
-    expect_error(ggstatsplot::grouped_ggbarstats(
+    expect_error(grouped_ggbarstats(
       data = mpg_short,
       x = cyl,
       grouping.var = class
     ))
 
-    expect_error(ggstatsplot::grouped_ggbarstats(
+    expect_error(grouped_ggbarstats(
       data = mpg_short,
       x = cyl
     ))
 
     expect_s3_class(
-      ggstatsplot::grouped_ggbarstats(
+      grouped_ggbarstats(
         data = mpg_short,
         x = cyl,
         y = class,
@@ -33,7 +33,7 @@ test_that(
     # when arguments are entered as bare expressions
     set.seed(123)
     expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggbarstats(
+      grouped_ggbarstats(
         data = mpg_short,
         x = "cyl",
         y = class,
@@ -46,7 +46,7 @@ test_that(
     # when arguments are entered as character
     set.seed(123)
     expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggbarstats(
+      grouped_ggbarstats(
         data = mpg_short,
         x = cyl,
         y = "class",
@@ -61,7 +61,7 @@ test_that(
     # when arguments are entered as bare expressions
     set.seed(123)
     expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggbarstats(
+      grouped_ggbarstats(
         data = as.data.frame(Titanic),
         grouping.var = Class,
         x = Sex,
@@ -75,7 +75,7 @@ test_that(
     # when arguments are entered as character
     set.seed(123)
     expect_true(inherits(suppressWarnings(
-      ggstatsplot::grouped_ggbarstats(
+      grouped_ggbarstats(
         data = as.data.frame(Titanic),
         grouping.var = "Class",
         x = "Sex",
@@ -103,7 +103,7 @@ test_that(
     # should output a list of length 3
     set.seed(123)
     ls_results <-
-      suppressWarnings(ggstatsplot::grouped_ggbarstats(
+      suppressWarnings(grouped_ggbarstats(
         data = df,
         x = relig,
         y = "marital",

@@ -104,6 +104,146 @@
       
       
 
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      NULL
+      
+      $y
+      NULL
+      
+      $title
+      NULL
+      
+      $fill
+      [1] "am"
+      
+      $label
+      [1] ".label"
+      
+      $group
+      [1] "am"
+      
+
+# checking labels with counts
+
+    Code
+      pb$data
+    Output
+      [[1]]
+             fill         y x PANEL group flipped_aes      ymin      ymax xmin xmax
+      1 #1B9E77FF 1.0000000 1     1     1       FALSE 0.9154362 1.0000000  0.5  1.5
+      2 #D95F02FF 0.9154362 1     1     2       FALSE 0.0000000 0.9154362  0.5  1.5
+      3 #1B9E77FF 1.0000000 1     2     1       FALSE 0.5161744 1.0000000  0.5  1.5
+      4 #D95F02FF 0.5161744 1     2     2       FALSE 0.0000000 0.5161744  0.5  1.5
+        colour size linetype alpha
+      1  black  0.5        1    NA
+      2  black  0.5        1    NA
+      3  black  0.5        1    NA
+      4  black  0.5        1    NA
+      
+      [[2]]
+                y x  label group PANEL      ymax xmin xmax      ymin colour  fill
+      1 0.9577181 1  8.46%     1     1 1.0000000    1    1 0.9154362  black white
+      2 0.4577181 1 91.54%     2     1 0.9154362    1    1 0.0000000  black white
+      3 0.7580872 1 48.38%     1     2 1.0000000    1    1 0.5161744  black white
+      4 0.2580872 1 51.62%     2     2 0.5161744    1    1 0.0000000  black white
+        size angle hjust vjust alpha family fontface lineheight
+      1 3.88     0   0.5   0.5     1               1        1.2
+      2 3.88     0   0.5   0.5     1               1        1.2
+      3 3.88     0   0.5   0.5     1               1        1.2
+      4 3.88     0   0.5   0.5     1               1        1.2
+      
+      [[3]]
+        y    x
+      1 1 1.65
+      2 1 1.65
+                                                                               label
+      1 list(~chi['gof']^2~(1)==1028.62, ~italic(p)=='1.08e-225', ~italic(n)==1,490)
+      2          list(~chi['gof']^2~(1)==0.74, ~italic(p)=='0.388', ~italic(n)==711)
+        PANEL group ymax xmin xmax ymin colour size angle hjust vjust alpha family
+      1     1    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
+      2     2    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
+        fontface lineheight
+      1        1        1.2
+      2        1        1.2
+      
+
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle))
+    Output
+      $x
+      NULL
+      
+      $y
+      NULL
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "Sex"
+      
+      $label
+      [1] ".label"
+      
+      $group
+      [1] "Sex"
+      
+
+# checking labels with contingency tab (paired)
+
+    Code
+      within(pb$plot$labels, rm(subtitle))
+    Output
+      $x
+      NULL
+      
+      $y
+      NULL
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "1st survey"
+      
+      $label
+      [1] ".label"
+      
+      $group
+      [1] "1st survey"
+      
+
+---
+
+    Code
+      pb$data[[3]]
+    Output
+        y    x
+      1 1 1.65
+      2 1 1.65
+                                                                           label
+      1 list(~chi['gof']^2~(1)==569.62, ~italic(p)=='6.8e-126', ~italic(n)==880)
+      2  list(~chi['gof']^2~(1)==245.00, ~italic(p)=='3.2e-55', ~italic(n)==720)
+        PANEL group ymax xmin xmax ymin colour size angle hjust vjust alpha family
+      1     1    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
+      2     2    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
+        fontface lineheight
+      1        1        1.2
+      2        1        1.2
+
 # repelling labels
 
     Code
@@ -175,5 +315,35 @@
       6         FALSE
       7         FALSE
       8         FALSE
+      
+
+---
+
+    Code
+      pb$plot$labels
+    Output
+      $x
+      NULL
+      
+      $y
+      NULL
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "mode"
+      
+      $label
+      [1] ".label"
+      
+      $group
+      [1] "mode"
       
 

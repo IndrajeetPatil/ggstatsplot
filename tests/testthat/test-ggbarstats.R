@@ -44,12 +44,10 @@ test_that(
     # check data
     set.seed(123)
     expect_snapshot(pb$data)
+    expect_snapshot(within(pb$plot$labels, rm(subtitle)))
 
     # checking plot labels
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
-    expect_identical(pb$plot$labels$caption, NULL)
-    expect_identical(pb$plot$labels$x, "Passenger sex")
-    expect_identical(pb$plot$labels$y, "proportion")
   }
 )
 
@@ -67,7 +65,6 @@ test_that(
         data = mtcars,
         x = vs,
         y = "cyl",
-        bf.message = TRUE,
         label = "both",
         package = "wesanderson",
         palette = "Royal2",
@@ -120,20 +117,7 @@ test_that(
     # check data
     set.seed(123)
     expect_snapshot(pb$data)
-
-    expect_equal(
-      pb$plot$labels,
-      list(
-        x = "am",
-        y = NULL,
-        title = NULL,
-        subtitle = NULL,
-        caption = NULL,
-        fill = "cyl",
-        label = ".label",
-        group = "cyl"
-      )
-    )
+    expect_snapshot(pb$plot$labels)
   }
 )
 

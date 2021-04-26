@@ -8,7 +8,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::gghistostats(
+      gghistostats(
         data = dplyr::starwars,
         x = height,
         xlab = "character height",
@@ -67,7 +67,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::gghistostats(
+      gghistostats(
         data = ggplot2::mpg,
         x = cty,
         xlab = "city miles per gallon",
@@ -161,7 +161,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::gghistostats(
+      gghistostats(
         data = mtcars,
         x = wt,
         binwidth = 0.5,
@@ -204,7 +204,7 @@ test_that(
     # plot
     set.seed(123)
     p1 <-
-      ggstatsplot::gghistostats(
+      gghistostats(
         data = ggplot2::msleep,
         x = awake,
         binwidth = 1,
@@ -251,7 +251,7 @@ test_that(
     # should output a list of length 3
     set.seed(123)
     p_sub <-
-      ggstatsplot::gghistostats(
+      gghistostats(
         data = ggplot2::msleep,
         x = brainwt,
         type = "np",

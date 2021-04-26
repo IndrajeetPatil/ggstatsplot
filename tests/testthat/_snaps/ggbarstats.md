@@ -44,6 +44,33 @@
       2        1        1.2
       
 
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "Passenger sex"
+      
+      $y
+      [1] "proportion"
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "Sex"
+      
+      $label
+      [1] ".label"
+      
+      $group
+      [1] "Sex"
+      
+
 # aesthetic modifications
 
     Code
@@ -180,5 +207,35 @@
       1 -0.05 1 (n = 19)     1     1  black    4     0   0.5   0.5    NA       
         fontface lineheight
       1        1        1.2
+      
+
+---
+
+    Code
+      pb$plot$labels
+    Output
+      $x
+      [1] "am"
+      
+      $y
+      NULL
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "cyl"
+      
+      $label
+      [1] ".label"
+      
+      $group
+      [1] "cyl"
       
 

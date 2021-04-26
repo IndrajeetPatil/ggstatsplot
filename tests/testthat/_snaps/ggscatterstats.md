@@ -46,6 +46,24 @@
       2           TRUE                   1           FALSE         FALSE
       
 
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "sleep (total)"
+      
+      $y
+      [1] "sleep cycle"
+      
+      $title
+      [1] "Mammalian sleep"
+      
+      $label
+      [1] "name"
+      
+
 # checking ggscatterstats - without NAs - spearman's rho
 
     Code
@@ -62,6 +80,24 @@
       8  8.4 0.1666667     1    -1    19  black    3   NA   0.4      0
       9 13.8 0.2166667     1    -1    19  black    3   NA   0.4      0
 
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "sleep_total"
+      
+      $y
+      [1] "sleep_cycle"
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+
 # checking ggscatterstats - without NAs - winsorized Pearson
 
     Code
@@ -77,6 +113,24 @@
       7 13.0 0.1833333     1    -1    19    red    5   NA    NA      0
       8  8.4 0.1666667     1    -1    19    red    5   NA    NA      0
       9 13.8 0.2166667     1    -1    19    red    5   NA    NA      0
+
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "sleep_total"
+      
+      $y
+      [1] "sleep_cycle"
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
 
 # aesthetic modifications work
 
@@ -128,5 +182,29 @@
       1           TRUE                   1           FALSE         FALSE
       2           TRUE                   1           FALSE         FALSE
       3           TRUE                   1           FALSE         FALSE
+      
+
+---
+
+    Code
+      pb$plot$labels
+    Output
+      $x
+      [1] "sleep_total"
+      
+      $y
+      [1] "sleep_cycle"
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      NULL
+      
+      $label
+      [1] "order"
       
 

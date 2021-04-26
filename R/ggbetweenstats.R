@@ -114,7 +114,6 @@
 #'
 #' @importFrom dplyr select group_by arrange mutate
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom stats t.test oneway.test
 #' @importFrom rlang enquo as_name !! as_string
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d

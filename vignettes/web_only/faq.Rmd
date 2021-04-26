@@ -227,7 +227,7 @@ library(ggstatsplot)
 df_list <-
   mpg %>%
   dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) %>%
-  split(x = ., f = list(.$drv, .$fl), drop = TRUE)
+  split(f = list(.$drv, .$fl), drop = TRUE)
 
 # checking if the length of the list is 4
 length(df_list)

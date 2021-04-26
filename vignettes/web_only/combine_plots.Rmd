@@ -65,8 +65,8 @@ library(tidyverse)
 # creating a list of plots
 p_list <-
   mtcars %>%
-  dplyr::filter(.data = ., cyl != 4) %>%
-  dplyr::group_by(.data = ., cyl) %>%
+  dplyr::filter(cyl != 4) %>%
+  dplyr::group_by(cyl) %>%
   dplyr::group_map(.f = ~ ggstatsplot::ggbetweenstats(data = ., x = am, y = wt))
 
 # combining plots
@@ -98,9 +98,9 @@ library(ggstatsplot)
 
 # creating a list column with `ggstatsplot` plots
 plots <- iris %>%
-  dplyr::mutate(.data = ., Species2 = Species) %>%
+  dplyr::mutate(Species2 = Species) %>%
   # just creates a copy of this variable
-  dplyr::group_by(.data = ., Species) %>%
+  dplyr::group_by(Species) %>%
   tidyr::nest(.) %>%
   # a nested dataframe with list column called `data`
   dplyr::mutate(

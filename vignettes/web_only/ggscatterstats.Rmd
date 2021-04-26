@@ -135,7 +135,7 @@ set.seed(123)
 # also since there are only 7 movies with NC-17 ratings, leave them out
 movies_20 <-
   ggstatsplot::movies_wide %>%
-  dplyr::filter(.data = ., mpaa != "NC-17") %>%
+  dplyr::filter(mpaa != "NC-17") %>%
   dplyr::sample_frac(tbl = ., size = 0.2)
 
 # plot

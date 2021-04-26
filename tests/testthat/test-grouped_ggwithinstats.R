@@ -10,7 +10,7 @@ if (require("afex")) {
 
       # expect error when no grouping.var is specified
       expect_error(
-        ggstatsplot::grouped_ggwithinstats(
+        grouped_ggwithinstats(
           VR_dilemma,
           x = modality,
           y = score
@@ -19,7 +19,7 @@ if (require("afex")) {
 
       # outlier tagging is not required
       expect_s3_class(
-        ggstatsplot::grouped_ggwithinstats(
+        grouped_ggwithinstats(
           VR_dilemma,
           x = modality,
           y = score,
@@ -33,7 +33,7 @@ if (require("afex")) {
       # `outlier.label` is not specified
       set.seed(123)
       expect_true(inherits(
-        ggstatsplot::grouped_ggwithinstats(
+        grouped_ggwithinstats(
           VR_dilemma,
           x = modality,
           y = score,
@@ -56,7 +56,7 @@ if (require("afex")) {
       dat$id <- as.character(dat$id)
 
       expect_true(inherits(
-        ggstatsplot::grouped_ggwithinstats(
+        grouped_ggwithinstats(
           data = dat,
           x = "attribute",
           y = "value",
@@ -81,13 +81,13 @@ if (require("afex")) {
       skip_on_cran()
 
       # data
-      df <- ggstatsplot::bugs_long %>%
+      df <- bugs_long %>%
         dplyr::filter(., region %in% c("North America"))
 
       # should output a list of length 2
       set.seed(123)
       ls_results <-
-        ggstatsplot::grouped_ggwithinstats(
+        grouped_ggwithinstats(
           data = df,
           x = condition,
           y = desire,
@@ -98,7 +98,7 @@ if (require("afex")) {
 
       set.seed(123)
       basic_results <-
-        ggstatsplot::ggwithinstats(
+        ggwithinstats(
           data = df,
           x = condition,
           y = desire,

@@ -9,7 +9,7 @@ test_that(
     # creating lists
     df1 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
     df2 <- ggstatsplot:::grouped_list(
-      data = dplyr::filter(.data = ggplot2::msleep, vore != "herbi"),
+      data = dplyr::filter(ggplot2::msleep, vore != "herbi"),
       grouping.var = "vore"
     )
     df5 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = "vore")

@@ -117,8 +117,8 @@ set.seed(123)
 # let's split the dataframe and create a list by years of interest
 year_list <-
   gapminder::gapminder %>%
-  dplyr::filter(.data = ., year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
-  split(x = ., f = .$year, drop = TRUE)
+  dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
+  split(f = .$year, drop = TRUE)
 
 # checking the length of the list and the names of each element
 length(year_list)
@@ -132,8 +132,10 @@ accept `.l` which is a list of lists. The length of `.l` determines the number o
 arguments that `.f` will be called with. List names will be used if present.
 `.f` is the function we want to apply (here, `.f = ggstatsplot::ggbetweenstats`).
 
-So let's keep building `.l`. First is `data = year_list`, the `x` & `y` axes are
-constant in all three plots so we pass the variable name as a string `x = "continent"`. 
+Let's keep building the list of arguments, `.l`. First is `data = year_list`,
+the `x` and `y` axes are constant in all three plots so we pass the variable
+name as a string `x = "continent"`.
+
 Same with the label we'll use for outliers where needed. For demonstration
 purposes let's assume we want the outliers on each plot to be a different color.
 Not actually recommending it just demonstrating what's possible. The rest of the
@@ -216,7 +218,7 @@ library(ez)
 data("ANT") # loading data from `ez` package
 
 # let's split the dataframe and create a list by years of interest
-cue_list <- ANT %>% split(x = ., f = .$cue, drop = TRUE)
+cue_list <- ANT %>% split(f = .$cue, drop = TRUE)
 
 # checking the length of the list and the names of each element
 length(cue_list)
@@ -295,9 +297,9 @@ set.seed(123)
 
 mpaa_list <-
   ggstatsplot::movies_wide %>%
-  dplyr::filter(.data = ., mpaa != "NC-17") %>%
-  dplyr::sample_frac(tbl = ., size = 0.25) %>%
-  split(x = ., f = .$mpaa, drop = TRUE)
+  dplyr::filter(mpaa != "NC-17") %>%
+  dplyr::sample_frac(size = 0.25) %>%
+  split(f = .$mpaa, drop = TRUE)
 
 # creating a list of plots
 plot_list <-
@@ -358,9 +360,9 @@ set.seed(123)
 # also, to make this fast, let's only use 5% of the sample
 cut_list <-
   ggplot2::diamonds %>%
-  dplyr::sample_frac(tbl = ., size = 0.05) %>%
-  dplyr::filter(.data = ., cut != "Fair") %>%
-  split(x = ., f = .$cut, drop = TRUE)
+  dplyr::sample_frac(size = 0.05) %>%
+  dplyr::filter(cut != "Fair") %>%
+  split(f = .$cut, drop = TRUE)
 
 # checking the length and names of each element
 length(cut_list)
@@ -419,8 +421,8 @@ set.seed(123)
 # let's leave out Oceania because it has just two data points
 continent_list <-
   gapminder::gapminder %>%
-  dplyr::filter(.data = ., year == 2007, continent != "Oceania") %>%
-  split(x = ., f = .$continent, drop = TRUE)
+  dplyr::filter(year == 2007, continent != "Oceania") %>%
+  split(f = .$continent, drop = TRUE)
 
 # checking the length and names of each element
 length(continent_list)
@@ -481,8 +483,8 @@ library(hrbrthemes)
 # let's leave out Oceania because it has just two data points
 continent_list <-
   gapminder::gapminder %>%
-  dplyr::filter(.data = ., continent != "Oceania") %>%
-  split(x = ., f = .$continent, drop = TRUE)
+  dplyr::filter(continent != "Oceania") %>%
+  split(f = .$continent, drop = TRUE)
 
 # checking the length and names of each element
 length(continent_list)
@@ -538,7 +540,7 @@ ggstatsplot::combine_plots(
 set.seed(123)
 
 # let's split the dataframe and create a list by passenger class
-class_list <- ggstatsplot::Titanic_full %>% split(x = ., f = .$Class, drop = TRUE)
+class_list <- ggstatsplot::Titanic_full %>% split(f = .$Class, drop = TRUE)
 
 # checking the length and names of each element
 length(class_list)
@@ -596,7 +598,7 @@ ggstatsplot::combine_plots(
 set.seed(123)
 
 # let's split the dataframe and create a list by passenger class
-class_list <- ggstatsplot::Titanic_full %>% split(x = ., f = .$Class, drop = TRUE)
+class_list <- ggstatsplot::Titanic_full %>% split(f = .$Class, drop = TRUE)
 
 # checking the length and names of each element
 length(class_list)

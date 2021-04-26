@@ -64,7 +64,7 @@ grouped_ggcorrmat <- function(data,
 
   # getting the dataframe ready
   if ("cor.vars" %in% names(param_list)) {
-    data %<>% dplyr::select(.data = ., {{ grouping.var }}, {{ cor.vars }})
+    data %<>% dplyr::select({{ grouping.var }}, {{ cor.vars }})
   }
 
   # creating a list for grouped analysis

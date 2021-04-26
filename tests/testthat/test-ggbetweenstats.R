@@ -9,7 +9,7 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggbetweenstats(
+      ggbetweenstats(
         data = ggplot2::msleep,
         x = vore,
         y = brainwt,
@@ -43,6 +43,7 @@ test_that(
     # check data
     set.seed(123)
     expect_snapshot(list(pb$data[[1]], pb$data[[2]], pb$data[[4]], pb$data[[5]]))
+    expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
 
     # checking x-axis sample size labels
     expect_identical(
@@ -106,9 +107,9 @@ test_that(
     # creating the plot
     set.seed(123)
     p <-
-      ggstatsplot::ggbetweenstats(
+      ggbetweenstats(
         data = tibble::as_tibble(mtcars, rownames = "name") %>%
-          dplyr::rename(.data = ., n = wt),
+          dplyr::rename(n = wt),
         x = "cyl",
         y = "n",
         type = "np",
@@ -118,7 +119,6 @@ test_that(
         outlier.tagging = TRUE,
         outlier.label = "name",
         outlier.coef = 2.5,
-        nboot = 5,
         results.subtitle = FALSE
       ) +
       ggplot2::coord_cartesian(ylim = c(1, 6)) +
@@ -130,6 +130,7 @@ test_that(
     # check data
     set.seed(123)
     expect_snapshot(list(pb$data[[1]], pb$data[[2]], pb$data[[4]], pb$data[[5]]))
+    expect_snapshot(within(pb$plot$labels, rm(caption)))
 
     # check if the y-axis labels have changed
     expect_identical(
@@ -150,7 +151,7 @@ test_that(
 
     # plot
     p1 <-
-      suppressWarnings(ggstatsplot::ggbetweenstats(
+      suppressWarnings(ggbetweenstats(
         data = a,
         x = "group",
         y = "centrality.a",
@@ -181,7 +182,7 @@ test_that(
     # boxplot
     set.seed(123)
     p1 <-
-      ggstatsplot::ggbetweenstats(
+      ggbetweenstats(
         data = ToothGrowth,
         x = supp,
         y = len,
@@ -189,7 +190,6 @@ test_that(
         plot.type = "box",
         results.subtitle = FALSE,
         outlier.tagging = TRUE,
-        bf.message = TRUE,
         outlier.coef = 0.75,
         outlier.color = "blue",
         centrality.point.args = list(size = 5, color = "darkgreen"),
@@ -199,17 +199,15 @@ test_that(
     # violin
     set.seed(123)
     p2 <-
-      ggstatsplot::ggbetweenstats(
+      ggbetweenstats(
         data = ToothGrowth,
         x = supp,
         y = len,
         type = "r",
         results.subtitle = FALSE,
-        effsize.noncentral = FALSE,
         plot.type = "violin",
         outlier.tagging = TRUE,
         outlier.coef = 0.75,
-        outlier.color = "blue",
         bf.message = FALSE,
         package = "wesanderson",
         palette = "Royal1"
@@ -225,6 +223,9 @@ test_that(
       pb1$data,
       list(pb2$data[[1]], pb2$data[[2]], pb2$data[[4]], pb2$data[[5]])
     ))
+
+    expect_snapshot(within(pb1$plot$labels, rm(subtitle, caption)))
+    expect_snapshot(within(pb2$plot$labels, rm(subtitle, caption)))
   }
 )
 
@@ -242,7 +243,7 @@ test_that(
     # plot
     set.seed(123)
     subtitle_exp <-
-      ggstatsplot::ggbetweenstats(
+      ggbetweenstats(
         data = df,
         x = am,
         y = wt,

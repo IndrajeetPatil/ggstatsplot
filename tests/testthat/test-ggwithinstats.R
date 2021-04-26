@@ -1,7 +1,7 @@
 if (require("afex")) {
 
   # for t-test
-  data_bugs_2 <- ggstatsplot::bugs_long %>%
+  data_bugs_2 <- bugs_long %>%
     dplyr::filter(subject <= 30, condition %in% c("HDLF", "HDHF"))
 
   # basic plotting works - two groups ---------------------------------
@@ -15,7 +15,7 @@ if (require("afex")) {
       # plot
       set.seed(123)
       p1 <-
-        ggstatsplot::ggwithinstats(
+        ggwithinstats(
           data = data_bugs_2,
           x = condition,
           y = desire,
@@ -67,10 +67,8 @@ if (require("afex")) {
       )
 
       # checking plot labels
-      expect_identical(p1$labels$title, "bugs dataset")
+      expect_snapshot(within(pb1$plot$labels, rm(subtitle, caption)))
       expect_identical(p1$labels$subtitle, p1_subtitle)
-      expect_identical(p1$labels$x, "condition")
-      expect_identical(p1$labels$y, "desire")
     }
   )
 
@@ -88,7 +86,7 @@ if (require("afex")) {
         # plot
         set.seed(123)
         p1 <-
-          ggstatsplot::ggwithinstats(
+          ggwithinstats(
             data = WineTasting,
             x = Wine,
             y = "Taste",
@@ -141,7 +139,8 @@ if (require("afex")) {
         )
 
         # checking plot labels
-        expect_identical(p1$labels$title, "wine tasting data")
+        expect_snapshot(within(pb1$plot$labels, rm(subtitle, caption)))
+
         expect_identical(p1$labels$subtitle, p1_subtitle)
         # expect_identical(
         #   pb1$plot$labels$caption,
@@ -177,8 +176,6 @@ if (require("afex")) {
         #     )
         #   ))
         # )
-        expect_identical(p1$labels$x, "Wine")
-        expect_identical(p1$labels$y, "Taste")
       }
     }
   )
@@ -194,7 +191,7 @@ if (require("afex")) {
       if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
         set.seed(123)
         p1 <-
-          ggstatsplot::ggwithinstats(
+          ggwithinstats(
             data = iris_long,
             x = condition,
             y = value,
@@ -203,7 +200,6 @@ if (require("afex")) {
             pairwise.display = "s",
             pairwise.annotation = "p",
             outlier.tagging = FALSE,
-            pairwise.comparisons = TRUE,
             conf.level = 0.90
           )
 
@@ -220,7 +216,7 @@ if (require("afex")) {
 
         set.seed(123)
         p2 <-
-          suppressWarnings(ggstatsplot::ggwithinstats(
+          suppressWarnings(ggwithinstats(
             data = iris_long,
             x = condition,
             y = value,
@@ -244,8 +240,8 @@ if (require("afex")) {
 
         set.seed(123)
         p3 <-
-          suppressWarnings(ggstatsplot::ggwithinstats(
-            data = ggstatsplot::VR_dilemma,
+          suppressWarnings(ggwithinstats(
+            data = VR_dilemma,
             x = modality,
             y = score,
             type = "r",
@@ -260,7 +256,7 @@ if (require("afex")) {
         set.seed(123)
         p3_subtitle <-
           suppressWarnings(statsExpressions::two_sample_test(
-            data = ggstatsplot::VR_dilemma,
+            data = VR_dilemma,
             x = modality,
             y = score,
             paired = TRUE,
@@ -271,8 +267,8 @@ if (require("afex")) {
 
         set.seed(123)
         p4 <-
-          ggstatsplot::ggwithinstats(
-            data = ggstatsplot::VR_dilemma,
+          ggwithinstats(
+            data = VR_dilemma,
             x = modality,
             y = score,
             type = "np",
@@ -281,14 +277,13 @@ if (require("afex")) {
             conf.level = 0.50,
             pairwise.comparisons = TRUE,
             pairwise.display = "all",
-            pairwise.annotation = "p",
-            bf.message = TRUE
+            pairwise.annotation = "p"
           )
 
         set.seed(123)
         p4_subtitle <-
           suppressWarnings(statsExpressions::two_sample_test(
-            data = ggstatsplot::VR_dilemma,
+            data = VR_dilemma,
             x = modality,
             y = score,
             type = "np",
@@ -311,36 +306,14 @@ if (require("afex")) {
         expect_identical(p4$labels$subtitle, p4_subtitle)
 
         # testing captions
-        expect_identical(
-          pb1$plot$labels$caption,
-          ggplot2::expr(atop(
-            displaystyle(NULL),
-            expr = paste(
-              "Pairwise test: ",
-              bold("Durbin-Conover test"),
-              "; Comparisons shown: ",
-              bold("only significant")
-            )
-          ))
-        )
-        expect_identical(
-          pb2$plot$labels$caption,
-          ggplot2::expr(atop(
-            displaystyle(NULL),
-            expr = paste(
-              "Pairwise test: ",
-              bold("Yuen's trimmed means test"),
-              "; Comparisons shown: ",
-              bold("only non-significant")
-            )
-          ))
-        )
-        expect_null(p3$labels$caption, NULL)
-        expect_null(p4$labels$caption, NULL)
+        expect_snapshot(within(pb1$plot$labels, rm(subtitle)))
+        expect_snapshot(within(pb2$plot$labels, rm(subtitle)))
+        expect_snapshot(within(pb3$plot$labels, rm(subtitle)))
+        expect_snapshot(within(pb4$plot$labels, rm(subtitle)))
 
 
         p5 <-
-          ggstatsplot::ggwithinstats(
+          ggwithinstats(
             data = iris_long,
             x = condition,
             y = value,
@@ -372,7 +345,7 @@ if (require("afex")) {
 
       # plot
       p <-
-        ggstatsplot::ggwithinstats(
+        ggwithinstats(
           data = WineTasting,
           x = Wine,
           y = Taste,
@@ -385,7 +358,7 @@ if (require("afex")) {
       pb <- ggplot2::ggplot_build(p)
 
       # test
-      expect_identical(p$labels$y, "Taste rating")
+      expect_snapshot(pb$plot$labels)
     }
   )
 

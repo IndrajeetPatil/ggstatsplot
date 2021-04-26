@@ -7,15 +7,15 @@ test_that(
 
     # creating a smaller dataframe
     set.seed(123)
-    dat <- dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.25) %>%
+    dat <- dplyr::sample_frac(tbl = movies_long, size = 0.25) %>%
       dplyr::filter(
-        .data = ., mpaa %in% c("R", "PG-13"),
+        mpaa %in% c("R", "PG-13"),
         genre %in% c("Drama", "Comedy")
       )
 
     # expect error when no grouping.var is specified
     expect_error(
-      ggstatsplot::grouped_ggbetweenstats(
+      grouped_ggbetweenstats(
         data = dat,
         x = genre,
         y = rating
@@ -23,7 +23,7 @@ test_that(
     )
 
     # outlier tagging is not required
-    ggstatsplot::grouped_ggbetweenstats(
+    grouped_ggbetweenstats(
       data = dat,
       x = genre,
       y = rating,
@@ -35,7 +35,7 @@ test_that(
     # `outlier.label` is not specified
     set.seed(123)
     expect_true(inherits(
-      ggstatsplot::grouped_ggbetweenstats(
+      grouped_ggbetweenstats(
         data = dat,
         x = genre,
         y = "rating",
@@ -56,7 +56,7 @@ test_that(
     # `outlier.label` is factor
     set.seed(123)
     expect_true(inherits(
-      ggstatsplot::grouped_ggbetweenstats(
+      grouped_ggbetweenstats(
         data = dat,
         x = "genre",
         y = rating,
@@ -78,7 +78,7 @@ test_that(
     dat$title <- as.character(dat$title)
 
     expect_true(inherits(
-      ggstatsplot::grouped_ggbetweenstats(
+      grouped_ggbetweenstats(
         data = dat,
         x = "genre",
         y = "rating",
@@ -107,14 +107,14 @@ test_that(
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, 0.25) %>%
       dplyr::filter(
-        .data = ., marital %in% c("Never married"),
+        marital %in% c("Never married"),
         race %in% c("White", "Black")
       )
 
 
     set.seed(123)
     ls_results <-
-      ggstatsplot::grouped_ggbetweenstats(
+      grouped_ggbetweenstats(
         data = df,
         x = race,
         y = "tvhours",
@@ -127,7 +127,7 @@ test_that(
 
     set.seed(123)
     basic_results <-
-      ggstatsplot::ggbetweenstats(
+      ggbetweenstats(
         data = df,
         x = race,
         y = "tvhours",

@@ -36,7 +36,7 @@ df_descriptive <- function(data,
 cat_counter <- function(data, x, y = NULL, ...) {
   data %>%
     dplyr::group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
-    dplyr::tally(x = ., name = "counts") %>%
+    dplyr::tally(name = "counts") %>%
     dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
     dplyr::ungroup(.) %>%
     dplyr::arrange(dplyr::desc({{ x }})) %>%

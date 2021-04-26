@@ -43,9 +43,17 @@ centrality_ggrepel <- function(plot,
                                tr = 0.2,
                                k = 2L,
                                centrality.path = FALSE,
-                               centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
+                               centrality.path.args = list(
+                                 color = "red",
+                                 size = 1,
+                                 alpha = 0.5
+                               ),
                                centrality.point.args = list(size = 5, color = "darkred"),
-                               centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+                               centrality.label.args = list(
+                                 size = 3,
+                                 nudge_x = 0.4,
+                                 segment.linetype = 4
+                               ),
                                ...) {
   # creating the dataframe
   centrality_df <- centrality_data(data, {{ x }}, {{ y }}, type = type, tr = tr, k = k)
@@ -307,10 +315,9 @@ aesthetic_addon <- function(plot,
 #'   additional columns: `isanoutlier` and `outlier` denoting which observation
 #'   are outliers and their corresponding labels.
 #'
-#' @importFrom rlang enquo ensym
-#' @importFrom stats quantile
 #' @importFrom dplyr group_by mutate ungroup
-#'
+#' @importFrom ipmisc %$%
+#' @importFrom performance check_outliers
 #'
 #' @examples
 #' # adding column for outlier and a label for that outlier
@@ -324,19 +331,13 @@ aesthetic_addon <- function(plot,
 #'   dplyr::arrange(outlier)
 #' @noRd
 
-# function body
+# add a logical column indicating whether a point is or isn't an outlier
 outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
-  # defining function to detect outliers based on interquartile range
-  check_outlier <- function(var, coef = 1.5) {
-    quantiles <- stats::quantile(x = var, probs = c(0.25, 0.75), na.rm = TRUE)
-    IQR <- quantiles[2] - quantiles[1]
-    (var < (quantiles[1] - coef * IQR)) | (var > (quantiles[2] + coef * IQR))
-  }
-
-  # add a logical column indicating whether a point is or is not an outlier
-  dplyr::group_by(.data = data, {{ x }}) %>%
+  dplyr::group_by(data, {{ x }}) %>%
     dplyr::mutate(
-      isanoutlier = ifelse(check_outlier({{ y }}, outlier.coef), TRUE, FALSE),
+      isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{ y }},
+        method = "iqr", threshold = list("iqr" = outlier.coef)
+      )), TRUE, FALSE),
       outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
     ) %>%
     dplyr::ungroup(.)

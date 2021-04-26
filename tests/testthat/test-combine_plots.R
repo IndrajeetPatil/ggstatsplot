@@ -42,37 +42,7 @@ test_that(
     # built plot
     pb <- ggplot2::ggplot_build(p)
 
-    # testing labels
-    expect_equal(
-      pb$plot$labels,
-      list(title = "versicolor", x = "Sepal.Length", y = "Sepal.Width")
-    )
-
-    expect_equal(
-      pb$plot$patches$annotation,
-      structure(
-        list(
-          title = "Dataset: Iris Flower dataset",
-          subtitle = "Edgar Anderson collected this data",
-          caption = "Note: Only two species of flower are displayed",
-          tag_levels = "a",
-          tag_prefix = NULL,
-          tag_suffix = NULL,
-          tag_sep = NULL,
-          theme = structure(
-            list(),
-            .Names = character(0),
-            class = c(
-              "theme",
-              "gg"
-            ),
-            complete = FALSE,
-            validate = TRUE
-          )
-        ),
-        class = "plot_annotation"
-      )
-    )
-    expect_identical(class(p), c("patchwork", "gg", "ggplot"))
+    expect_snapshot(pb$plot$labels)
+    expect_snapshot(pb$plot$patches$annotation)
   }
 )

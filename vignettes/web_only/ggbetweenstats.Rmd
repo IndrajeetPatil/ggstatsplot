@@ -287,7 +287,7 @@ set.seed(123)
 
 # select part of the dataset and use it for plotting
 gapminder::gapminder %>%
-  dplyr::filter(.data = ., year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
+  dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   ggstatsplot::grouped_ggbetweenstats(
     # arguments relevant for ggstatsplot::ggbetweenstats
     data = .,

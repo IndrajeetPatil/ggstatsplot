@@ -14,7 +14,7 @@ test_that(
     # plot
     # when arguments are entered as bare expressions
     set.seed(123)
-    p1 <- ggstatsplot::grouped_ggdotplotstats(
+    p1 <- grouped_ggdotplotstats(
       data = df,
       x = cty,
       y = manufacturer,
@@ -31,7 +31,7 @@ test_that(
     )
 
     # when arguments are entered as characters
-    p2 <- ggstatsplot::grouped_ggdotplotstats(
+    p2 <- grouped_ggdotplotstats(
       data = df,
       x = "cty",
       y = manufacturer,
@@ -64,7 +64,7 @@ test_that(
     # should output a list of length 3
     set.seed(123)
     ls_results <-
-      ggstatsplot::grouped_ggdotplotstats(
+      grouped_ggdotplotstats(
         data = df,
         x = "cty",
         y = manufacturer,
@@ -75,7 +75,7 @@ test_that(
 
     set.seed(123)
     basic_results <-
-      ggstatsplot::ggdotplotstats(
+      ggdotplotstats(
         data = df,
         x = "cty",
         y = manufacturer,

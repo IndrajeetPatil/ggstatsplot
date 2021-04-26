@@ -10,7 +10,7 @@ if (require("ggExtra")) {
       # creating the plot
       set.seed(123)
       p <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = "sleep_cycle",
@@ -56,10 +56,8 @@ if (require("ggExtra")) {
 
       # checking plot labels
       expect_identical(pb$plot$labels$caption, p_cap)
-      expect_identical(pb$plot$labels$title, "Mammalian sleep")
       expect_identical(pb$plot$labels$subtitle, p_subtitle)
-      expect_identical(pb$plot$labels$x, "sleep (total)")
-      expect_identical(pb$plot$labels$y, "sleep cycle")
+      expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
     }
   )
 
@@ -73,7 +71,7 @@ if (require("ggExtra")) {
       # creating the plot
       set.seed(123)
       p <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = "sleep_total",
           y = sleep_cycle,
@@ -102,7 +100,7 @@ if (require("ggExtra")) {
 
       # testing data and annotations
       expect_identical(pb$plot$labels$subtitle, p_subtitle)
-      expect_null(pb$plot$labels$caption, NULL)
+      expect_snapshot(within(pb$plot$labels, rm(subtitle)))
     }
   )
 
@@ -117,7 +115,7 @@ if (require("ggExtra")) {
       # creating the plot
       set.seed(123)
       p <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = sleep_cycle,
@@ -145,6 +143,7 @@ if (require("ggExtra")) {
       expect_snapshot(pb$data[[1]])
 
       expect_identical(pb$plot$labels$subtitle, p_subtitle)
+      expect_snapshot(within(pb$plot$labels, rm(subtitle)))
     }
   )
 
@@ -158,7 +157,7 @@ if (require("ggExtra")) {
       # creating the plot
       set.seed(123)
       p <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = sleep_cycle,
@@ -214,7 +213,7 @@ if (require("ggExtra")) {
       # creating the plot
       set.seed(123)
       p <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = sleep_cycle,
@@ -233,6 +232,7 @@ if (require("ggExtra")) {
       # check data
       set.seed(123)
       expect_snapshot(list(pb$data[[1]], head(pb$data[[2]]), pb$data[[3]]))
+      expect_snapshot(pb$plot$labels)
 
       # both quoted
       expect_s3_class(p, "gg")
@@ -248,7 +248,7 @@ if (require("ggExtra")) {
 
       # both quoted
       expect_true(inherits(
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = sleep_cycle,
@@ -262,7 +262,7 @@ if (require("ggExtra")) {
 
       # both unquoted
       expect_true(inherits(
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = sleep_cycle,
@@ -276,7 +276,7 @@ if (require("ggExtra")) {
 
       # label.expression not specified
       expect_true(inherits(
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::sample_frac(dplyr::filter(ggplot2::msleep, conservation == "lc"), 0.1),
           x = sleep_total,
           y = sleep_cycle,
@@ -300,7 +300,7 @@ if (require("ggExtra")) {
       # creating the plot
       set.seed(123)
       p <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
           x = sleep_total,
           y = sleep_cycle,
@@ -325,7 +325,7 @@ if (require("ggExtra")) {
       # creating the messages
       set.seed(123)
       p_sub <-
-        ggstatsplot::ggscatterstats(
+        ggscatterstats(
           data = dplyr::starwars,
           x = mass,
           y = height,
