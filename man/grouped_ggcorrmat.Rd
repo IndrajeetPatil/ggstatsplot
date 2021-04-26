@@ -122,14 +122,16 @@ set.seed(123)
 library(ggstatsplot)
 
 # for plot
-grouped_ggcorrmat(
-  data = iris,
-  grouping.var = Species,
-  type = "robust",
-  p.adjust.method = "holm",
-  plotgrid.args = list(ncol = 1),
-  annotation.args = list(tag_levels = "i")
-)
+if (require("ggcorrplot")) {
+  grouped_ggcorrmat(
+    data = iris,
+    grouping.var = Species,
+    type = "robust",
+    p.adjust.method = "holm",
+    plotgrid.args = list(ncol = 1),
+    annotation.args = list(tag_levels = "i")
+  )
+}
 
 # for dataframe
 grouped_ggcorrmat(

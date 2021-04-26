@@ -2,8 +2,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Common theme used across all plots generated in `ggstatsplot` and *assumed*
 #' by the author to be aesthetically pleasing to the user/reader.
 #'

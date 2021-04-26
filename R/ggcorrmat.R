@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Correlation matrix plot or a dataframe containing results from pairwise
 #' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for
 #' creating the visualization matrix, while the correlation analysis is carried
@@ -50,7 +48,6 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom ggcorrplot ggcorrplot
 #' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
 #' @importFrom rlang exec !!!
@@ -68,23 +65,14 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
-#' # if `cor.vars` not specified, all numeric variables used
-#' ggstatsplot::ggcorrmat(iris)
-#'
-#' # to get the correlation matrix
-#' # note that the function will run even if the vector with variable names is
-#' # not of same length as the number of variables
-#' ggstatsplot::ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   type = "robust",
-#'   cor.vars = sleep_total:bodywt,
-#'   cor.vars.names = c("total sleep", "REM sleep"),
-#'   matrix.type = "lower"
-#' )
-#'
+#' # for plot
+#' if (require("ggcorrplot")) {
+#'   ggcorrmat(iris)
+#' }
 #' # to get the correlation analyses results in a dataframe
-#' ggstatsplot::ggcorrmat(
+#' ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   partial = TRUE,
@@ -220,6 +208,7 @@ ggcorrmat <- function(data,
   }
 
   # plotting the correlalogram
+  if (!requireNamespace("ggcorrplot")) stop("Package 'ggcorrplot' needs to be installed.")
   plot <-
     rlang::exec(
       .f = ggcorrplot::ggcorrplot,
@@ -251,13 +240,13 @@ ggcorrmat <- function(data,
             " < ",
             sig.level,
             " (Adjustment: ",
-            adj_text,
+            adj.text,
             ")"
           )
         ),
         env = list(
           sig.level = sig.level,
-          adj_text = pairwiseComparisons::p_adjust_text(p.adjust.method),
+          adj.text = pairwiseComparisons::p_adjust_text(p.adjust.method),
           top.text = caption
         )
       )

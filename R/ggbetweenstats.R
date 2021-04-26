@@ -4,8 +4,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' A combination of box and violin plots along with jittered data points for
 #' between-subjects designs with statistical details included in the plot as a
 #' subtitle.

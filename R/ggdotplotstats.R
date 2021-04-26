@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test included in the plot as a subtitle.
 #'

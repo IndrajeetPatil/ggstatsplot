@@ -26,7 +26,6 @@ Depends:
     R (>= 3.6.0)
 Imports:
     dplyr,
-    ggcorrplot,
     ggplot2,
     ggrepel,
     ggsignif,
@@ -46,6 +45,7 @@ Imports:
 Suggests:
     afex,
     forcats,
+    ggcorrplot,
     ggExtra,
     knitr,
     MASS,

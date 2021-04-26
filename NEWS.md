@@ -1,5 +1,10 @@
 # ggstatsplot 0.7.2.9000
 
+MAJOR CHANGES
+
+  - To reduce the dependency load, `ggcorrplot` moves from `Imports` to
+    `Suggests`.
+
 MINOR CHANGES
 
   - The `pch` size for `ggcorrmat` has been increased to 14 (#579) to increase

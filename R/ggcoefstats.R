@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Plot with the regression coefficients' point estimates as dots with
 #' confidence interval whiskers and other statistical details included as
 #' labels.

@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Scatterplots from `ggplot2` combined with marginal
 #' histograms/boxplots/density plots with statistical details added as a
 #' subtitle.

@@ -146,23 +146,14 @@ out using the \code{correlation::correlation} function.
 \donttest{
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
-# if `cor.vars` not specified, all numeric variables used
-ggstatsplot::ggcorrmat(iris)
-
-# to get the correlation matrix
-# note that the function will run even if the vector with variable names is
-# not of same length as the number of variables
-ggstatsplot::ggcorrmat(
-  data = ggplot2::msleep,
-  type = "robust",
-  cor.vars = sleep_total:bodywt,
-  cor.vars.names = c("total sleep", "REM sleep"),
-  matrix.type = "lower"
-)
-
+# for plot
+if (require("ggcorrplot")) {
+  ggcorrmat(iris)
+}
 # to get the correlation analyses results in a dataframe
-ggstatsplot::ggcorrmat(
+ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
   partial = TRUE,

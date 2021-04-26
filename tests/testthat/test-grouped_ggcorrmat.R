@@ -1,94 +1,97 @@
-# output: plot ---------------------------------------------------------------
+if (require("ggcorrplot")) {
 
-test_that(
-  desc = "grouped_ggcorrmat plots work",
-  code = {
-    skip_on_cran()
+  # output: plot ---------------------------------------------------------------
 
-    # with grouping.var missing ---------------------------------------------
+  test_that(
+    desc = "grouped_ggcorrmat plots work",
+    code = {
+      skip_on_cran()
 
-    expect_error(grouped_ggcorrmat(iris))
+      # with grouping.var missing ---------------------------------------------
 
-    # with cor.vars specified -----------------------------------------------
+      expect_error(grouped_ggcorrmat(iris))
 
-    # creating a smaller dataframe
-    set.seed(123)
-    movies_filtered <-
-      movies_long %>%
-      dplyr::filter(mpaa != "NC-17") %>%
-      dplyr::sample_frac(tbl = ., size = 0.25)
+      # with cor.vars specified -----------------------------------------------
 
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = mpaa,
-        cor.vars = length:votes,
-        type = "p"
-      )),
-      what = "gg"
-    ))
+      # creating a smaller dataframe
+      set.seed(123)
+      movies_filtered <-
+        movies_long %>%
+        dplyr::filter(mpaa != "NC-17") %>%
+        dplyr::sample_frac(tbl = ., size = 0.25)
 
-    # when arguments are entered as character
-    set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = "mpaa",
-        cor.vars = c("length":"votes"),
-        cor.vars.names = c("w", "x", "y", "z"),
-        type = "np"
-      )),
-      what = "gg"
-    ))
+      # when arguments are entered as bare expressions
+      set.seed(123)
+      expect_true(inherits(
+        suppressWarnings(grouped_ggcorrmat(
+          data = movies_filtered,
+          grouping.var = mpaa,
+          cor.vars = length:votes,
+          type = "p"
+        )),
+        what = "gg"
+      ))
 
-    # without cor.vars specified -------------------------------------------
+      # when arguments are entered as character
+      set.seed(123)
+      expect_true(inherits(
+        suppressWarnings(grouped_ggcorrmat(
+          data = movies_filtered,
+          grouping.var = "mpaa",
+          cor.vars = c("length":"votes"),
+          cor.vars.names = c("w", "x", "y", "z"),
+          type = "np"
+        )),
+        what = "gg"
+      ))
 
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = mpaa,
-        type = "p"
-      )),
-      what = "gg"
-    ))
+      # without cor.vars specified -------------------------------------------
 
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = "mpaa",
-        type = "r"
-      )),
-      what = "gg"
-    ))
-  }
-)
+      # when arguments are entered as bare expressions
+      set.seed(123)
+      expect_true(inherits(
+        suppressWarnings(grouped_ggcorrmat(
+          data = movies_filtered,
+          grouping.var = mpaa,
+          type = "p"
+        )),
+        what = "gg"
+      ))
 
-# output: stats ---------------------------------------------------------------
+      # when arguments are entered as bare expressions
+      set.seed(123)
+      expect_true(inherits(
+        suppressWarnings(grouped_ggcorrmat(
+          data = movies_filtered,
+          grouping.var = "mpaa",
+          type = "r"
+        )),
+        what = "gg"
+      ))
+    }
+  )
 
-test_that(
-  desc = "grouped_ggcorrmat stats work",
-  code = {
-    skip_on_cran()
+  # output: stats ---------------------------------------------------------------
 
-    # without cor.vars specified --------------------------------------------
+  test_that(
+    desc = "grouped_ggcorrmat stats work",
+    code = {
+      skip_on_cran()
 
-    # tidy dataframe
-    set.seed(123)
-    df1 <-
-      grouped_ggcorrmat(
-        data = ggplot2::msleep,
-        grouping.var = vore,
-        output = "r",
-        k = 3
-      )
+      # without cor.vars specified --------------------------------------------
 
-    # testing dataframe
-    expect_equal(dim(df1), c(60L, 12L))
-  }
-)
+      # tidy dataframe
+      set.seed(123)
+      df1 <-
+        grouped_ggcorrmat(
+          data = ggplot2::msleep,
+          grouping.var = vore,
+          output = "r",
+          k = 3
+        )
+
+      # testing dataframe
+      expect_equal(dim(df1), c(60L, 12L))
+    }
+  )
+}

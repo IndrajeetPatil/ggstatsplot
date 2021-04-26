@@ -45,12 +45,12 @@ if (all(unlist(lapply(
           0.001,
           12L
         )
-      df2 <- dplyr::select(.data = df1, -p.value)
-      df3 <- dplyr::select(.data = df1, -statistic)
+      df2 <- dplyr::select(df1, -p.value)
+      df3 <- dplyr::select(df1, -statistic)
       df3$p.value <- as.factor(df3$p.value)
-      df4 <- dplyr::select(.data = df1, -df.error)
+      df4 <- dplyr::select(df1, -df.error)
       df5 <- tibble::add_column(df1, std.error = c(0.015, 0.2, 0.09))
-      df6 <- dplyr::select(.data = df5, -term, -estimate, -std.error)
+      df6 <- dplyr::select(df5, -term, -estimate, -std.error)
 
       # repeated term dataframe
       df7 <-
@@ -161,7 +161,7 @@ if (all(unlist(lapply(
           ggcoefstats(
             x = df5,
             statistic = "t",
-            k = 2,
+            k = 2L,
             meta.analytic.effect = TRUE,
             bf.message = TRUE
           )
@@ -173,7 +173,7 @@ if (all(unlist(lapply(
           ggcoefstats(
             x = df5,
             statistic = "T",
-            k = 2,
+            k = 2L,
             meta.analytic.effect = TRUE,
             meta.type = "bayes",
             caption = "mnp",
@@ -197,11 +197,11 @@ if (all(unlist(lapply(
         pb5$data, pb6$data, pb7$data
       ))
 
-      # annotations
-      expect_identical(p4$labels$x, "location")
-      expect_null(p4$labels$y, NULL)
-      expect_null(p4$labels$title, NULL)
-      expect_null(p4$labels$subtitle, NULL)
+      # labels
+      expect_snapshot(list(
+        pb1$plot$labels, pb2$plot$labels, pb3$plot$labels,
+        pb4$plot$labels, pb5$plot$labels
+      ))
 
       # checking meta-analysis
       expect_error(ggcoefstats(

@@ -260,3 +260,149 @@
       
       
 
+---
+
+    Code
+      list(pb1$plot$labels, pb2$plot$labels, pb3$plot$labels, pb4$plot$labels, pb5$
+        plot$labels)
+    Output
+      [[1]]
+      [[1]]$x
+      [1] "regression coefficient"
+      
+      [[1]]$y
+      [1] "term"
+      
+      [[1]]$title
+      NULL
+      
+      [[1]]$subtitle
+      NULL
+      
+      [[1]]$caption
+      NULL
+      
+      [[1]]$xintercept
+      [1] "xintercept"
+      
+      [[1]]$xmin
+      [1] "conf.low"
+      
+      [[1]]$xmax
+      [1] "conf.high"
+      
+      [[1]]$label
+      [1] "label"
+      
+      
+      [[2]]
+      [[2]]$x
+      [1] "regression coefficient"
+      
+      [[2]]$y
+      [1] "term"
+      
+      [[2]]$title
+      NULL
+      
+      [[2]]$subtitle
+      NULL
+      
+      [[2]]$caption
+      NULL
+      
+      [[2]]$xintercept
+      [1] "xintercept"
+      
+      [[2]]$xmin
+      [1] "conf.low"
+      
+      [[2]]$xmax
+      [1] "conf.high"
+      
+      [[2]]$label
+      [1] "label"
+      
+      
+      [[3]]
+      [[3]]$x
+      [1] "regression coefficient"
+      
+      [[3]]$y
+      [1] "term"
+      
+      [[3]]$title
+      NULL
+      
+      [[3]]$subtitle
+      NULL
+      
+      [[3]]$caption
+      NULL
+      
+      [[3]]$xintercept
+      [1] "xintercept"
+      
+      [[3]]$xmin
+      [1] "conf.low"
+      
+      [[3]]$xmax
+      [1] "conf.high"
+      
+      
+      [[4]]
+      [[4]]$x
+      [1] "location"
+      
+      [[4]]$y
+      NULL
+      
+      [[4]]$title
+      NULL
+      
+      [[4]]$subtitle
+      NULL
+      
+      [[4]]$caption
+      NULL
+      
+      [[4]]$xintercept
+      [1] "xintercept"
+      
+      [[4]]$xmin
+      [1] "conf.low"
+      
+      [[4]]$xmax
+      [1] "conf.high"
+      
+      
+      [[5]]
+      [[5]]$x
+      [1] "regression coefficient"
+      
+      [[5]]$y
+      [1] "term"
+      
+      [[5]]$title
+      NULL
+      
+      [[5]]$subtitle
+      NULL
+      
+      [[5]]$caption
+      NULL
+      
+      [[5]]$xintercept
+      [1] "xintercept"
+      
+      [[5]]$xmin
+      [1] "conf.low"
+      
+      [[5]]$xmax
+      [1] "conf.high"
+      
+      [[5]]$label
+      [1] "label"
+      
+      
+

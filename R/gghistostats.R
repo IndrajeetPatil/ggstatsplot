@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Histogram with statistical details from one-sample test included in the plot
 #' as a subtitle.
 #'
