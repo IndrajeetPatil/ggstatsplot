@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Wrapper around `patchwork::wrap_plots` that will return a combined grid of
 #' plots with annotations.
 #'
@@ -66,9 +64,6 @@ combine_plots <- function(plotlist,
                           plotgrid.args = list(),
                           annotation.args = list(),
                           ...) {
-  rlang::exec(
-    .fn = patchwork::wrap_plots,
-    !!!plotlist, guides = guides, !!!plotgrid.args
-  ) +
-    rlang::exec(.fn = patchwork::plot_annotation, !!!annotation.args)
+  rlang::exec(patchwork::wrap_plots, !!!plotlist, guides = guides, !!!plotgrid.args) +
+    rlang::exec(patchwork::plot_annotation, !!!annotation.args)
 }

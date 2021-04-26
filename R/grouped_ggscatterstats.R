@@ -4,8 +4,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Grouped scatterplots from `ggplot2` combined with marginal distribution plots
 #' with statistical details added as a subtitle.
 #'

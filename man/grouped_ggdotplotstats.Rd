@@ -140,7 +140,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # removing factor level with very few no. of observations
-df <- dplyr::filter(.data = ggplot2::mpg, cyl \%in\% c("4", "6", "8"))
+df <- dplyr::filter(ggplot2::mpg, cyl \%in\% c("4", "6", "8"))
 
 # plot
 grouped_ggdotplotstats(

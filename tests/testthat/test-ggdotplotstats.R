@@ -8,7 +8,7 @@ test_that(
     # creating a new dataset
     morley_new <-
       dplyr::mutate(
-        .data = morley,
+        morley,
         Expt = dplyr::case_when(
           Expt == 1 ~ "1st",
           Expt == 2 ~ "2nd",
@@ -27,13 +27,12 @@ test_that(
         y = "Expt",
         test.value = 800,
         type = "p",
-        k = 4,
+        k = 4L,
         effsize.type = "d",
         title = "Michelson-Morley experiment",
         caption = "Studies carried out in 1887",
         xlab = substitute(paste("Speed of light (", italic("c"), ")")),
         ylab = "Experimental run",
-        bf.message = TRUE,
         ggplot.component = ggplot2::scale_x_continuous(
           breaks = seq(800, 900, 10),
           sec.axis = ggplot2::dup_axis()
@@ -57,13 +56,10 @@ test_that(
         effsize.type = "d"
       )$expression[[1]]
 
-    # testing labels
-    expect_identical(
-      p$labels$x,
-      ggplot2::expr(paste("Speed of light (", italic("c"), ")"))
-    )
-    expect_identical(pb$plot$labels$y, "Experimental run")
-    expect_identical(pb$plot$labels$title, "Michelson-Morley experiment")
+    # check data and labels
+    expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
+    expect_snapshot(within(pb$layout$panel_params[[1]], rm(x, y, x.sec, y.sec)))
+    expect_snapshot(pb$data)
 
     # checking panel parameters
     expect_equal(
@@ -122,21 +118,11 @@ test_that(
           4.4996996996997,
           5.0018018018018
         ),
-        major_source_user = c(
-          1, 2,
-          3, 4, 5
-        ),
-        minor_source_user = c(
-          1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5,
-          5
-        )
+        major_source_user = c(1, 2, 3, 4, 5),
+        minor_source_user = c(1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)
       ),
       tolerance = 0.01
     )
-
-    # check data
-    set.seed(123)
-    expect_snapshot(pb$data)
   }
 )
 
@@ -151,14 +137,10 @@ test_that(
     df_msleep <- ggplot2::msleep
 
     # leaving out a level
-    df_msleep %<>% dplyr::filter(., vore != "omni")
+    df_msleep %<>% dplyr::filter(vore != "omni")
 
     # reordering factor levels
-    df_msleep %<>%
-      dplyr::mutate(
-        .data = .,
-        vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni")
-      )
+    df_msleep %<>% dplyr::mutate(vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni"))
 
     # plot with original data
     p1 <-
@@ -181,6 +163,9 @@ test_that(
     # build those plots
     pb1 <- ggplot2::ggplot_build(p1)
     pb2 <- ggplot2::ggplot_build(p2)
+
+    # check all data
+    expect_snapshot(pb1$data)
 
     # tests
     expect_identical(
@@ -224,7 +209,7 @@ test_that(
     expect_identical(
       p_sub,
       suppressWarnings(gghistostats(
-        data = dplyr::group_by(.data = morley, Expt) %>%
+        data = dplyr::group_by(morley, Expt) %>%
           dplyr::summarise(mean = mean(Speed)),
         x = mean,
         test.value = 800,
