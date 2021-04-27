@@ -56,7 +56,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 df_proptest <- function(data, x, y, k = 2L, ...) {
   dplyr::full_join(
     # descriptives
-    x = cat_counter(data = data, x = {{ y }}) %>%
+    x = cat_counter(data, {{ y }}) %>%
       dplyr::mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
     # proportion tests
     y = dplyr::group_by(data, {{ y }}) %>%
@@ -67,16 +67,9 @@ df_proptest <- function(data, x, y, k = 2L, ...) {
     dplyr::rowwise() %>%
     dplyr::mutate(
       .label = paste0(
-        "list(~chi['gof']^2~",
-        "(",
-        df,
-        ")==",
-        format_value(statistic, k),
-        ", ~italic(p)=='",
-        format_num(p.value, k, p.value = TRUE),
-        "', ~italic(n)==",
-        .prettyNum(counts),
-        ")"
+        "list(~chi['gof']^2~", "(", df, ")==", format_value(statistic, k),
+        ", ~italic(p)=='", format_num(p.value, k, p.value = TRUE),
+        "', ~italic(n)==", .prettyNum(counts), ")"
       ),
       .p.label = paste0("list(~italic(p)=='", format_num(p.value, k, TRUE), "')")
     ) %>%
@@ -105,12 +98,10 @@ chisq_test_safe <- function(data, x, ...) {
 
   # if not null, return tidy output, otherwise return NAs
   if (!is.null(result)) {
-    as_tibble(parameters::standardize_names(data = result, style = "broom"))
+    as_tibble(parameters::standardize_names(result, style = "broom"))
   } else {
     tibble(
-      statistic = NA_real_,
-      p.value = NA_real_,
-      df = NA_real_,
+      statistic = NA_real_, p.value = NA_real_, df = NA_real_,
       method = "Chi-squared test for given probabilities"
     )
   }
