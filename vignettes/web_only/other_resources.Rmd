@@ -17,66 +17,76 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE
 )
+
+# needed for embedding videos
+library(vembedr)
+library("htmltools")
+library("fs")
 ```
 
-Below is a collection of blogposts or other documents that talk about different
-functions included in `ggstatsplot`.
+# Introduction
 
-# Presentation
+One of the best resources to learn about functionality afforded by `ggstatsplot`
+package is to read the dedicated
+[website](https://indrajeetpatil.github.io/ggstatsplot/). A lot of love and work
+has gone into writing detailed function documentation and vignettes, and I will
+highly recommend you check them out.
 
-  - <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
+But, the website is certainly not the only resource available to learn about
+this package, and below are some other resources that might be helpful for you
+to learn about `ggstatsplot` package.
 
-# Blogs
+# Presentations
 
-  - <https://anevaluator.com.au/2019/12/exploratory-data-analysis-into-machiavellianism/>
+  - My own `xaringan` presentation:
+    <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
-  - <https://ibecav.netlify.com/post/comparing-frequentist-bayesian-and-simulation-methods-and-conclusions/>
-
-  - <https://www.dsquintana.blog/labeling-boxplot-outliers/>
-
-  - <https://paulvanderlaken.com/2018/08/26/ggstatsplot-creating-graphics-including-statistical-details/>
-
-  - <https://medium.com/yulun-ding-ambassador/ggplot-ch1-3-ways-to-present-discrete-vs-discrete-in-graph-7cbcbbfa4803>
- 
-  - <https://www.r-bloggers.com/how-to-remove-outliers-in-r/>
-  
-  - <https://yury-zablotski.netlify.app/post/boxplot/#fn3>
-
-# Videos
+# YouTube Videos
 
 ## My own talks at online meetings
-
-  - <https://www.youtube.com/watch?v=8Em1bCFBMWg&ab_channel=BusinessScience>
   
-  - <https://www.youtube.com/watch?v=_wCo7rnt6NA&ab_channel=UseROslo>
+  - [At UseR Oslo meeting](https://www.youtube.com/watch?v=_wCo7rnt6NA)
+
+  - [At R-Ladies Tunis meeting](https://www.youtube.com/watch?v=n-sXeshyVRI)
 
 ## Other
 
-  - <https://www.youtube.com/watch?v=n-sXeshyVRI&t=297s&ab_channel=R-LadiesTunis>
+### English
 
-  - <https://www.youtube.com/watch?v=cNJIMwtLWv0&feature=youtu.be&ab_channel=YuryZablotski>
+  - [Yury Zablotski's review](https://www.youtube.com/watch?v=cNJIMwtLWv0)
+
+  - [Business Science R tips](https://www.youtube.com/watch?v=8Em1bCFBMWg)
 
   - <https://www.youtube.com/watch?v=aw6HDz9zA1Q>
-  
-  - <https://www.youtube.com/watch?v=m3uInetiC8w>
-  
-  - <https://www.youtube.com/watch?v=-p6_K_l__N4>
-  
-  - <https://gorilla.sc/academy/#advancedpreprocessingandusingggstatsplotinrstudio>
 
-# RPubs posts
+  - [Serdar Belci's demo](https://www.youtube.com/watch?v=m3uInetiC8w) on how to
+    use `ggstatsplot` in `jamovi` GUI software
 
-  - <https://rpubs.com/adg93/IGNITE_RepeatedMs>
-  
-  - <https://rpubs.com/tskam/SMT483-Step01>
+  - Data pre-processing and analysis in
+    [RStudio](https://www.youtube.com/watch?v=IMgv5pc7N7U) and `ggstatsplot`
+
+### Other languages
+
+  - [Pablo Vallejo Medina's demo](https://www.youtube.com/watch?v=6Ds9L4NpRVQ)
+    of `ggbetweenstats` (in **Spanish**)
+
+  - [Andre Chocó Cedillos's talk](https://www.youtube.com/watch?v=yDyrgvvWLpc)
+    (in **Spanish**)
+
+# Blogs
+
+This is a bit difficult to keep track of. I would recommend just googling it.
 
 # Publications
 
 A list of publications that use `ggstatsplot` can be found in Google Scholar:
 
 <https://scholar.google.com/scholar?hl=en&scisbd=2&as_sdt=0%2C22&q=ggstatsplot&btnG=>
+
