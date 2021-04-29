@@ -572,6 +572,34 @@ So, for example, iif 2 tests are being carried out, the alpha is going to be
 that only those tests should be considered significant where `p < 0.025`. Or you
 can even mention this in the caption.
 
+22. How can I build a `Shiny` app using `ggstatsplot` functions?
+
+Below is an example using `ggbetweenstats` function.
+
+```{r shiny, eval=FALSE}
+set.seed(123)
+library(ggstatsplot)
+library(shiny)
+library(rlang)
+
+ui <- fluidPage(
+  headerPanel("Example - ggbetweenstats"),
+  sidebarPanel(
+    selectInput("x", "xcol", "X Variable", choices = names(iris)[5]),
+    selectInput("y", "ycol", "Y Variable", choices = names(iris)[1:4])
+  ),
+  mainPanel(plotOutput("plot"))
+)
+
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    ggbetweenstats(iris, !! input$x , !! input$y)
+  })
+}
+
+shinyApp(ui, server)
+```
+
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

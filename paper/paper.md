@@ -11,11 +11,9 @@ tags:
 authors:
   - name: Indrajeet Patil
     orcid: 0000-0003-1995-6531
-    affiliation: 1
 affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
     index: 1
-date: "2021-04-21"
 bibliography: paper.bib
 ---
 
@@ -56,7 +54,7 @@ ggbetweenstats(penguins, species, body_mass_g)
 ```
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{paper_files/figure-latex/penguins-1} \caption{Example plot from the `ggstatsplot` package illustrates its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: https://indrajeetpatil.github.io/ggstatsplot/}\label{fig:penguins}
+\includegraphics[width=1\linewidth]{paper_files/figure-latex/penguins-1} \caption{Example plot from the `ggstatsplot` package illustrates its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \url{https://indrajeetpatil.github.io/ggstatsplot/}}\label{fig:penguins}
 \end{figure}
 
 As can be seen, with a single line of code, the function produces details about

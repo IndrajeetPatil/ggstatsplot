@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.22)  21 APR 2021 14:51
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.4.24)  29 APR 2021 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -39,7 +39,7 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 105.
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/xetex.def
-File: xetex.def 2020/08/26 v5.0i Graphics/color driver for xetex
+File: xetex.def 2021/03/18 v5.0k Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen139
 \Gin@req@width=\dimen140
@@ -391,8 +391,9 @@ Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/Users/patil/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+) (/Users/patil/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.st
+y
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
@@ -436,8 +437,6 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 \Hy@SavedSpaceFactor=\count281
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Hyper figures OFF on input line 4192.
 Package hyperref Info: Link nesting OFF on input line 4197.
@@ -889,11 +888,12 @@ File: l3backend-xetex.def 2021-03-18 L3 backend support: XeTeX
 (|extractbb --version)
 \c__kernel_sys_dvipdfmx_version_int=\count436
 \l__color_backend_stack_int=\count437
-\g__graphics_track_int=\count438
+\g__color_backend_stack_int=\count438
+\g__graphics_track_int=\count439
 \l__pdf_internal_box=\box70
-\g__pdf_backend_object_int=\count439
-\g__pdf_backend_annotation_int=\count440
-\g__pdf_backend_link_int=\count441
+\g__pdf_backend_object_int=\count440
+\g__pdf_backend_annotation_int=\count441
+\g__pdf_backend_link_int=\count442
 ))
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse-202
 0-10-01.sty
@@ -903,17 +903,17 @@ Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
 Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
 X
-\l__fontspec_script_int=\count442
-\l__fontspec_language_int=\count443
-\l__fontspec_strnum_int=\count444
-\l__fontspec_tmp_int=\count445
-\l__fontspec_tmpa_int=\count446
-\l__fontspec_tmpb_int=\count447
-\l__fontspec_tmpc_int=\count448
-\l__fontspec_em_int=\count449
-\l__fontspec_emdef_int=\count450
-\l__fontspec_strong_int=\count451
-\l__fontspec_strongdef_int=\count452
+\l__fontspec_script_int=\count443
+\l__fontspec_language_int=\count444
+\l__fontspec_strnum_int=\count445
+\l__fontspec_tmp_int=\count446
+\l__fontspec_tmpa_int=\count447
+\l__fontspec_tmpb_int=\count448
+\l__fontspec_tmpc_int=\count449
+\l__fontspec_em_int=\count450
+\l__fontspec_emdef_int=\count451
+\l__fontspec_strong_int=\count452
+\l__fontspec_strongdef_int=\count453
 \l__fontspec_tmpa_dim=\dimen282
 \l__fontspec_tmpb_dim=\dimen283
 \l__fontspec_tmpc_dim=\dimen284
@@ -927,25 +927,20 @@ s/patil/Library/TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks39
 \XKV@tempa@toks=\toks40
 )
-\XKV@depth=\count453
+\XKV@depth=\count454
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-\c@eu@=\count454
-\c@eu@i=\count455
-\c@mkern=\count456
-) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/upquote/upquote.sty
-Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
-tim
-(/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-)) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
+\c@eu@=\count455
+\c@eu@i=\count456
+\c@mkern=\count457
+) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2021/03/14 v2.8c Micro-typographical refinements (RS)
 \MT@toks=\toks41
-\MT@count=\count457
+\MT@count=\count458
 LaTeX Info: Redefining \textls on input line 790.
 \MT@outer@kern=\dimen285
 LaTeX Info: Redefining \textmicrotypecontext on input line 1374.
-\MT@listname@count=\count458
+\MT@listname@count=\count459
 
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-xetex.de
 f
@@ -960,11 +955,11 @@ Package hyperref Info: Option `unicode' set `true' on input line 151.
 Package hyperref Info: Option `breaklinks' set `true' on input line 151.
 (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count459
+\FV@CodeLineNo=\count460
 \FV@InFile=\read5
 \FV@TabBox=\box71
-\c@FancyVerbLine=\count460
-\FV@StepNumber=\count461
+\c@FancyVerbLine=\count461
+\FV@StepNumber=\count462
 \FV@OutFile=\write7
 ) (/Users/patil/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
@@ -983,8 +978,8 @@ Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 )
 \csllabelwidth=\skip92
 \cslhangindent=\skip93
-\@quotelevel=\count462
-\@quotereset=\count463
+\@quotelevel=\count463
+\@quotereset=\count464
 (./paper.aux)
 \openout1 = `paper.aux'.
 
@@ -1023,7 +1018,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ing.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count464
+\c@section@level=\count465
 )
 LaTeX Info: Redefining \ref on input line 259.
 LaTeX Info: Redefining \pageref on input line 259.
@@ -1210,11 +1205,11 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34927 strings out of 478922
- 702590 string characters out of 5866020
- 1508857 words of memory out of 5000000
- 54219 multiletter control sequences out of 15000+600000
- 410294 words of font info for 74 fonts, out of 8000000 for 9000
+ 34910 strings out of 478918
+ 702008 string characters out of 5865955
+ 1492954 words of memory out of 5000000
+ 54208 multiletter control sequences out of 15000+600000
+ 411839 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  95i,13n,103p,1194b,804s stack positions out of 5000i,500n,10000p,200000b,80000s
 
