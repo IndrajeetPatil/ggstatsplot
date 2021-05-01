@@ -11,6 +11,7 @@ tags:
 authors:
   - name: Indrajeet Patil
     orcid: 0000-0003-1995-6531
+    affiliation: 1
 affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
     index: 1

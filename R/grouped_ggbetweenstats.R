@@ -78,7 +78,7 @@ grouped_ggbetweenstats <- function(data,
 
   # ============== creating a list of plots using `pmap`=======================
 
-  plotlist_purrr <-
+  p_ls <-
     purrr::pmap(
       .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggbetweenstats,
@@ -91,9 +91,8 @@ grouped_ggbetweenstats <- function(data,
     )
 
   # combining the list of plots into a single plot
-  if (output == "plot") {
-    return(combine_plots(plotlist_purrr, plotgrid.args = plotgrid.args, annotation.args = annotation.args))
-  } else {
-    return(plotlist_purrr) # subtitle list
-  }
+  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
+
+  # return the object
+  p_ls
 }

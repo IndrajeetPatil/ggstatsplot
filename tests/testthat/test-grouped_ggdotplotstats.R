@@ -9,7 +9,7 @@ test_that(
     set.seed(123)
 
     # removing factor level with very few no. of observations
-    df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6", "8"))
+    df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 
     # plot
     # when arguments are entered as bare expressions
@@ -22,11 +22,8 @@ test_that(
       ylab = "car manufacturer",
       grouping.var = cyl,
       test.value = 15.5,
-      point.color = "red",
-      point.size = 5,
+      point.args = list(color = "red", size = 5, shape = 13),
       results.subtitle = FALSE,
-      point.shape = 13,
-      test.value.line = TRUE,
       ggtheme = ggplot2::theme_classic()
     )
 

@@ -43,7 +43,6 @@
 #' @importFrom dplyr select mutate vars pull across everything
 #' @importFrom rlang !! enquo as_name ensym !!! exec
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom paletteer scale_fill_paletteer_d
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions contingency_table
 #'

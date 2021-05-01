@@ -6,14 +6,21 @@
 \usage{
 combine_plots(
   plotlist,
-  guides = "collect",
   plotgrid.args = list(),
   annotation.args = list(),
+  guides = "collect",
   ...
 )
 }
 \arguments{
 \item{plotlist}{A list containing \code{ggplot} objects.}
+
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
+
+\item{annotation.args}{A \code{list} of additional arguments passed to
+\code{patchwork::plot_annotation}.}
 
 \item{guides}{A string specifying how guides should be treated in the layout.
 \code{'collect'} will collect guides below to the given nesting level, removing
@@ -23,13 +30,6 @@ upper level tries, but place them alongside the plot if not.  If you modify
 default guide "position" with \link[ggplot2:theme]{theme(legend.position=...)}
 while also collecting guides you must apply that change to the overall
 patchwork (see example).}
-
-\item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
-separately specified here.}
-
-\item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation}.}
 
 \item{...}{Currently ignored.}
 }

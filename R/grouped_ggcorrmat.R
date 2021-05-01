@@ -77,7 +77,7 @@ grouped_ggcorrmat <- function(data,
   # ===================== grouped analysis ===================================
 
   # creating a list of results
-  plotlist_purrr <-
+  p_ls <-
     purrr::pmap(
       .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggcorrmat,
@@ -91,12 +91,12 @@ grouped_ggcorrmat <- function(data,
   # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
     return(combine_plots(
-      plotlist = plotlist_purrr,
+      plotlist = p_ls,
       guides = "keep", # each legend is going to be different
       plotgrid.args = plotgrid.args,
       annotation.args = annotation.args
     ))
   } else {
-    return(dplyr::bind_rows(plotlist_purrr, .id = rlang::as_name(rlang::ensym(grouping.var))))
+    return(dplyr::bind_rows(p_ls, .id = rlang::as_name(rlang::ensym(grouping.var))))
   }
 }

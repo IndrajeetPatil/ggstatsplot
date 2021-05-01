@@ -55,11 +55,11 @@ grouped_ggdotplotstats <- function(data,
 
   # creating a dataframe
   df <-
-    dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
+    dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of plots
-  plotlist_purrr <-
+  p_ls <-
     purrr::pmap(
       .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggdotplotstats,
@@ -70,9 +70,8 @@ grouped_ggdotplotstats <- function(data,
     )
 
   # combining the list of plots into a single plot
-  if (output == "plot") {
-    return(combine_plots(plotlist_purrr, plotgrid.args = plotgrid.args, annotation.args = annotation.args))
-  } else {
-    return(plotlist_purrr) # subtitle list
-  }
+  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
+
+  # return the object
+  p_ls
 }

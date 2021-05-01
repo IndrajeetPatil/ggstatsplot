@@ -56,13 +56,12 @@ grouped_ggwithinstats <- function(data,
 
   # creating a dataframe
   df <-
-    data %>%
-    dplyr::select({{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
+    dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # ============== creating a list of plots using `pmap`======================
 
-  plotlist_purrr <-
+  p_ls <-
     purrr::pmap(
       .l = list(data = df, title = names(df)),
       .f = ggstatsplot::ggwithinstats,
@@ -75,10 +74,8 @@ grouped_ggwithinstats <- function(data,
     )
 
   # combining the list of plots into a single plot
-  if (output == "plot") {
-    return(combine_plots(plotlist_purrr, plotgrid.args = plotgrid.args, annotation.args = annotation.args))
-  } else {
-    # subtitle list
-    return(plotlist_purrr)
-  }
+  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
+
+  # return the object
+  p_ls
 }
