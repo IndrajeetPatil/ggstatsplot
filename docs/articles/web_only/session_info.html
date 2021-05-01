@@ -5,15 +5,32 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>session information • ggstatsplot</title>
+<!-- Inform modern browsers that this page supports both dark and light color schemes,
+  and the page author prefers light. --><meta name="color-scheme" content="dark light">
+<script>
+  // If `prefers-color-scheme` is not supported, fall back to light mode.
+  // i.e. In this case, inject the `light` CSS before the others, with
+  // no media filter so that it will be downloaded with highest priority.
+  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
+    document.documentElement.style.display = "none";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
+    );
+  }
+</script><title>session information • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
+<!-- preferably CSS --><link rel="stylesheet" href="../../preferably.css">
+<link id="css-code-light" rel="stylesheet" href="../../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<link id="css-code-dark" rel="stylesheet" href="../../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
+<!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
 <script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -29,8 +46,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,12 +58,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -132,11 +153,15 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
+        
+        
+
+
       </ul>
 <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
@@ -157,11 +182,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>session information</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-25</h4>
+            <h4 class="date">2021-05-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/session_info.Rmd" class="external-link"><code>vignettes/web_only/session_info.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/session_info.Rmd"><code>vignettes/web_only/session_info.Rmd</code></a></small>
       <div class="hidden name"><code>session_info.Rmd</code></div>
 
     </div>
@@ -170,20 +195,20 @@
     
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor" aria-hidden="true"></a>Session information</h1>
+<a href="#session-information" class="anchor"></a>Session information</h1>
 <p>This vignette provides exhaustive details about the session (attached packages, their versions, date, source, etc.) in which the vignettes were rendered and the website was built. This is helpful information for reproducibility. If you see any divergences between function behavior as described on the website and what you see on your system, this information can come in handy for diagnosing the source of those divergences.</p>
-<p>This session information was generated on 2021-04-25:</p>
+<p>This session information was generated on 2021-05-01:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup for the session</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
 
 <span class="co"># for pretty printing of tibbles</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>tibble.width <span class="op">=</span> <span class="cn">Inf</span>, pillar.bold <span class="op">=</span> <span class="cn">TRUE</span>, pillar.subtle_num <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>tibble.width <span class="op">=</span> <span class="cn">Inf</span>, pillar.bold <span class="op">=</span> <span class="cn">TRUE</span>, pillar.subtle_num <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># session information</span>
-<span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html" class="external-link">session_info</a></span><span class="op">(</span>include_base <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sessioninfo/man/session_info.html">session_info</a></span><span class="op">(</span>include_base <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; - Session info ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
 <span class="co">#&gt;  setting  value                                             </span>
 <span class="co">#&gt;  version  R Under development (unstable) (2021-04-18 r80182)</span>
@@ -194,7 +219,7 @@
 <span class="co">#&gt;  collate  English_United States.1252                        </span>
 <span class="co">#&gt;  ctype    English_United States.1252                        </span>
 <span class="co">#&gt;  tz       Europe/Berlin                                     </span>
-<span class="co">#&gt;  date     2021-04-25                                        </span>
+<span class="co">#&gt;  date     2021-05-01                                        </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; - Packages -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
 <span class="co">#&gt;  ! package             * version    date       lib source                                    </span>
@@ -205,20 +230,20 @@
 <span class="co">#&gt;    bslib                 0.2.4      2021-01-25 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    BWStest               0.2.2      2018-10-18 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    cachem                1.0.4      2021-02-13 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    cli                   2.4.0      2021-04-05 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    cli                   2.5.0      2021-04-26 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    coda                  0.19-4     2020-09-30 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    codetools             0.2-18     2020-11-04 [2] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    colorspace            2.0-0      2020-11-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;  P compiler              4.1.0      2021-04-19 [2] local                                     </span>
 <span class="co">#&gt;    correlation           0.6.1      2021-04-09 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    crayon                1.4.1.9000 2021-02-18 [1] Github (r-lib/crayon@965d1dc)             </span>
+<span class="co">#&gt;    crayon                1.4.1.9000 2021-05-01 [1] Github (r-lib/crayon@0374453)             </span>
 <span class="co">#&gt;  P datasets            * 4.1.0      2021-04-19 [2] local                                     </span>
 <span class="co">#&gt;    DBI                   1.1.1      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    desc                  1.3.0      2021-03-05 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    digest                0.6.27     2020-10-24 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    dplyr                 1.0.5      2021-03-05 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    effectsize            0.4.4-2    2021-04-25 [1] Github (easystats/effectsize@8a10aea)     </span>
-<span class="co">#&gt;    ellipsis              0.3.1      2020-05-15 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    ellipsis              0.3.2      2021-04-29 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    emmeans               1.6.0      2021-04-24 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    estimability          1.3        2018-02-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    evaluate              0.14       2019-05-28 [1] CRAN (R 4.1.0)                            </span>
@@ -226,11 +251,10 @@
 <span class="co">#&gt;    fastmap               1.1.0      2021-01-25 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    fs                    1.5.0      2020-07-31 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    generics              0.1.0      2020-10-31 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    ggcorrplot            0.1.3      2019-05-19 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    ggplot2               3.3.3      2020-12-30 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    ggrepel               0.9.1      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    ggsignif              0.6.1      2021-02-23 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    ggstatsplot         * 0.7.2.9000 2021-04-25 [1] local                                     </span>
+<span class="co">#&gt;    ggstatsplot         * 0.7.2.9000 2021-05-01 [1] local                                     </span>
 <span class="co">#&gt;    glue                  1.4.2      2020-08-27 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    gmp                   0.6-2      2021-01-07 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;  P graphics            * 4.1.0      2021-04-19 [2] local                                     </span>
@@ -239,9 +263,9 @@
 <span class="co">#&gt;    gtable                0.3.0      2019-03-25 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    gtools                3.8.2      2020-03-31 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    htmltools             0.5.1.1    2021-01-22 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    insight               0.13.2.1   2021-04-25 [1] Github (easystats/insight@306c467)        </span>
+<span class="co">#&gt;    insight               0.13.2.1   2021-05-01 [1] Github (easystats/insight@661d54d)        </span>
 <span class="co">#&gt;    ipmisc                6.0.0.9000 2021-03-05 [1] Github (IndrajeetPatil/ipmisc@cff5ab9)    </span>
-<span class="co">#&gt;    jquerylib             0.1.3      2020-12-17 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    jquerylib             0.1.4      2021-04-26 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    jsonlite              1.7.2      2020-12-09 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    knitr                 1.33       2021-04-24 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    kSamples              1.2-9      2019-05-20 [1] CRAN (R 4.1.0)                            </span>
@@ -254,20 +278,20 @@
 <span class="co">#&gt;    mc2d                  0.1-19     2021-04-18 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    memoise               2.0.0      2021-01-26 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;  P methods             * 4.1.0      2021-04-19 [2] local                                     </span>
-<span class="co">#&gt;    multcomp              1.4-16     2021-02-08 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    multcomp              1.4-17     2021-04-29 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    multcompView          0.1-8      2019-12-19 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    munsell               0.5.0      2018-06-12 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    mvtnorm               1.1-1      2020-06-09 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    pairwiseComparisons   3.1.3.9000 2021-02-11 [1] local                                     </span>
+<span class="co">#&gt;    pairwiseComparisons   3.1.5      2021-04-27 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    paletteer             1.3.0      2021-01-06 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;  P parallel              4.1.0      2021-04-19 [2] local                                     </span>
-<span class="co">#&gt;    parameters            0.13.0.1   2021-04-25 [1] Github (easystats/parameters@1221d28)     </span>
+<span class="co">#&gt;    parameters            0.13.0.1   2021-05-01 [1] Github (easystats/parameters@fc31903)     </span>
 <span class="co">#&gt;    patchwork             1.1.1      2020-12-17 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    pbapply               1.4-3      2020-08-18 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    performance           0.7.1      2021-04-25 [1] Github (easystats/performance@d529bb3)    </span>
+<span class="co">#&gt;    performance           0.7.1      2021-05-01 [1] Github (easystats/performance@b4228c8)    </span>
 <span class="co">#&gt;    pillar                1.6.0      2021-04-13 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    pkgconfig             2.0.3      2019-09-22 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    pkgdown               1.6.1.9001 2021-04-25 [1] Github (r-lib/pkgdown@1224e7d)            </span>
+<span class="co">#&gt;    pkgdown               1.6.1      2020-09-12 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    plyr                  1.8.6      2020-03-03 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    PMCMRplus             1.9.0      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    purrr                 0.3.4      2020-04-17 [1] CRAN (R 4.1.0)                            </span>
@@ -276,7 +300,7 @@
 <span class="co">#&gt;    Rcpp                  1.0.6      2021-01-15 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    rematch2              2.1.2      2020-05-01 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    reshape               0.8.8      2018-10-23 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    rlang                 0.4.10     2020-12-30 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    rlang                 0.4.11     2021-04-30 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    rmarkdown             2.7        2021-02-19 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    Rmpfr                 0.8-4      2021-04-11 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    rprojroot             2.0.2      2020-11-15 [1] CRAN (R 4.1.0)                            </span>
@@ -296,11 +320,11 @@
 <span class="co">#&gt;    TH.data               1.0-10     2019-01-21 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    tibble                3.1.1      2021-04-18 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    tidyr                 1.1.3      2021-03-03 [1] CRAN (R 4.1.0)                            </span>
-<span class="co">#&gt;    tidyselect            1.1.0      2020-05-11 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    tidyselect            1.1.1      2021-04-30 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;  P tools                 4.1.0      2021-04-19 [2] local                                     </span>
 <span class="co">#&gt;    utf8                  1.2.1      2021-03-12 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;  P utils               * 4.1.0      2021-04-19 [2] local                                     </span>
-<span class="co">#&gt;    vctrs                 0.3.7      2021-03-29 [1] CRAN (R 4.1.0)                            </span>
+<span class="co">#&gt;    vctrs                 0.3.8      2021-04-29 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    withr                 2.4.2      2021-04-18 [1] CRAN (R 4.1.0)                            </span>
 <span class="co">#&gt;    WRS2                  1.1-1      2021-02-09 [1] R-Forge (R 4.1.0)                         </span>
 <span class="co">#&gt;    xfun                  0.22       2021-03-11 [1] CRAN (R 4.1.0)                            </span>
@@ -316,8 +340,8 @@
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </div>
 
@@ -332,13 +356,11 @@
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>

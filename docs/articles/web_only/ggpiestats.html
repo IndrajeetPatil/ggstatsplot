@@ -5,15 +5,32 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ggpiestats • ggstatsplot</title>
+<!-- Inform modern browsers that this page supports both dark and light color schemes,
+  and the page author prefers light. --><meta name="color-scheme" content="dark light">
+<script>
+  // If `prefers-color-scheme` is not supported, fall back to light mode.
+  // i.e. In this case, inject the `light` CSS before the others, with
+  // no media filter so that it will be downloaded with highest priority.
+  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
+    document.documentElement.style.display = "none";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
+    );
+  }
+</script><title>ggpiestats • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
+<!-- preferably CSS --><link rel="stylesheet" href="../../preferably.css">
+<link id="css-code-light" rel="stylesheet" href="../../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<link id="css-code-dark" rel="stylesheet" href="../../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
+<!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
 <script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -29,8 +46,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,12 +58,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -132,11 +153,15 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
+        
+        
+
+
       </ul>
 <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
@@ -157,11 +182,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggpiestats</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-25</h4>
+            <h4 class="date">2021-05-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
 
     </div>
@@ -185,10 +210,10 @@ A BibTeX entry for LaTeX users is
     doi = {10.31234/osf.io/p7mku},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
 <div id="introduction-to-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction-to-ggpiestats" class="anchor" aria-hidden="true"></a>Introduction to <code>ggpiestats</code>
+<a href="#introduction-to-ggpiestats" class="anchor"></a>Introduction to <code>ggpiestats</code>
 </h1>
 <p>The function <code>ggpiestats</code> can be used for quick <strong>data exploration</strong> and/or to prepare <strong>publication-ready pie charts</strong> to summarize the statistical relationship(s) among one or more categorical variables. We will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggpiestats</code>-</p>
@@ -197,17 +222,17 @@ A BibTeX entry for LaTeX users is
 <li><p>to see if the frequency distribution of two categorical variables are independent of each other using the contingency table analysis</p></li>
 <li><p>to check if the proportion of observations at each level of a categorical variable is equal</p></li>
 </ul>
-<p><strong>Note:</strong> The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a>.</p>
+<p><strong>Note:</strong> The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), if you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a>.</p>
 <p><code>ggpiestats</code> works <strong>only</strong> with data organized in dataframes or tibbles. It will not work with other data structures like base-R tables or matrices. It can operate on dataframes that are organized with one row per observation or dataframes that have one column containing counts. This vignette provides examples of both (see examples below).</p>
 <p>To help demonstrate how <code>ggpiestats</code> can be used with categorical (also known as nominal) data, a modified version of the original <code>Titanic</code> dataset (from the <code>datasets</code> library) has been provided in the <code>ggstatsplot</code> package with the name <code>Titanic_full</code>. The Titanic Passenger Survival Dataset provides information “on the fate of passengers on the fatal maiden voyage of the ocean liner <em>Titanic</em>, including economic status (class), sex, age, and survival.”</p>
 <p>Let’s have a look at the structure of both.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># looking at the original data in tabular format</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Titanic</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Titanic</span><span class="op">)</span>
 <span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span>
 <span class="co">#&gt;  - attr(*, "dimnames")=List of 4</span>
 <span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span>
@@ -216,7 +241,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span>
 
 <span class="co"># looking at the dataset as a tibble or dataframe</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,201</span>
 <span class="co">#&gt; Columns: 5</span>
 <span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span>
@@ -227,16 +252,16 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="goodness-of-fit-with-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#goodness-of-fit-with-ggpiestats" class="anchor" aria-hidden="true"></a>Goodness of Fit with <code>ggpiestats</code>
+<a href="#goodness-of-fit-with-ggpiestats" class="anchor"></a>Goodness of Fit with <code>ggpiestats</code>
 </h1>
 <p>The simplest use case for <code>ggpiestats</code> is that we want to display information about <strong>one</strong> categorical or nominal variable. As part of that display or plot, we may also choose to execute a chi-squared goodness of fit test to see whether the proportions (or percentages) in categories of the single variable appear to line up with our hypothesis or model. To start simple and then expand, let’s say that we’d like to display a piechart with the percentages of passengers who did or did not survive. Our initial hypothesis is that it was no different than flipping a coin. People had a 50/50 chance of surviving.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to speed up the process, let's use only half of the dataset</span>
-<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
@@ -251,12 +276,12 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="independence-or-association-with-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#independence-or-association-with-ggpiestats" class="anchor" aria-hidden="true"></a>Independence (or association) with <code>ggpiestats</code>
+<a href="#independence-or-association-with-ggpiestats" class="anchor"></a>Independence (or association) with <code>ggpiestats</code>
 </h1>
 <p>Let’s next investigate whether the passenger’s gender was independent of, or associated with, gender. The test is whether the proportion of people who survived was different between the sexes using <code>ggpiestats</code>.</p>
 <p>We’ll modify a number of arguments to change the appearance of this plot and showcase the flexibility of <code>ggpiestats</code>. We will:</p>
 <ol style="list-style-type: decimal">
-<li><p>Change the plot theme to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_grey()</a></code></p></li>
+<li><p>Change the plot theme to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">ggplot2::theme_grey()</a></code></p></li>
 <li><p>Change our color palette to <code>category10_d3</code> from <code>ggsci</code> package</p></li>
 <li><p>We’ll customize the subtitle by being more precise about which chi squared test this is <code>stat.title = "chi squared test of independence: "</code></p></li>
 <li><p>Finally, we’ll make a call to <code>ggplot2</code> to modify the size of our plot title and to make it right justified</p></li>
@@ -264,10 +289,10 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to speed up the process, let's use only half of the dataset</span>
-<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
@@ -277,14 +302,14 @@ A BibTeX entry for LaTeX users is
   title <span class="op">=</span> <span class="st">"Passenger survival on the Titanic by gender"</span>, <span class="co"># title for the entire plot</span>
   caption <span class="op">=</span> <span class="st">"Source: Titanic survival dataset"</span>, <span class="co"># caption for the entire plot</span>
   legend.title <span class="op">=</span> <span class="st">"Survived?"</span>, <span class="co"># legend title</span>
-  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_grey</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing plot theme</span>
+  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing plot theme</span>
   palette <span class="op">=</span> <span class="st">"category10_d3"</span>, <span class="co"># choosing a different color palette</span>
   package <span class="op">=</span> <span class="st">"ggsci"</span>, <span class="co"># package to which color palette belongs</span>
   k <span class="op">=</span> <span class="fl">3</span>, <span class="co"># decimal places in result</span>
   perc.k <span class="op">=</span> <span class="fl">1</span> <span class="co"># decimal places in percentage labels</span>
 <span class="op">)</span> <span class="op">+</span> <span class="co"># further modification with `ggplot2` commands</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>
       color <span class="op">=</span> <span class="st">"black"</span>,
       size <span class="op">=</span> <span class="fl">14</span>,
       hjust <span class="op">=</span> <span class="fl">0</span>
@@ -295,14 +320,14 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped-analysis-with-grouped_ggpiestats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-grouped_ggpiestats" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_ggpiestats</code>
+<a href="#grouped-analysis-with-grouped_ggpiestats" class="anchor"></a>Grouped analysis with <code>grouped_ggpiestats</code>
 </h1>
 <p>What if we want to do the same analysis of gender but also factor in the passenger’s age (Age)? We have information that classifies the passengers as Child or Adult, perhaps that makes a difference to their survival rate?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggpiestats</code>. It is a convenient wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggpiestats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># since effect size confidence intervals are computed using bootstrapping, let's</span>
 <span class="co"># set seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span>
@@ -317,34 +342,34 @@ A BibTeX entry for LaTeX users is
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   title.text <span class="op">=</span> <span class="st">"Passenger survival on the Titanic by gender and age"</span>,
   caption.text <span class="op">=</span> <span class="st">"Asterisks denote results from proportion tests; \n***: p &lt; 0.001, ns: non-significant"</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="100%"></p>
 <p>The resulting pie charts and statistics make the story clear. For adults gender very much matters. Women survived at much higher rates than men. For children gender is not significantly associated with survival and both male and female children have a survival rate that is not significantly different from 50/50.</p>
 </div>
 <div id="grouped-analysis-with-ggpiestats-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-ggpiestats-purrr" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>ggpiestats</code> + <code>purrr</code>
+<a href="#grouped-analysis-with-ggpiestats-purrr" class="anchor"></a>Grouped analysis with <code>ggpiestats</code> + <code>purrr</code>
 </h1>
 <p>Although <code>grouped_ggpiestats</code> provides a quick way to explore the data, it leaves much to be desired. For example, we may want to add different captions, titles, themes, or palettes for each level of the grouping variable, etc. For cases like these, it would be better to use <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div id="working-with-data-organized-by-counts" class="section level1">
 <h1 class="hasAnchor">
-<a href="#working-with-data-organized-by-counts" class="anchor" aria-hidden="true"></a>Working with data organized by <code>counts</code>
+<a href="#working-with-data-organized-by-counts" class="anchor"></a>Working with data organized by <code>counts</code>
 </h1>
 <p><code>ggpiestats</code> can also work with dataframe containing counts (aka tabled data), i.e., when each row doesn’t correspond to a unique observation. For example, consider the following notional <code>fishing</code> dataframe containing data from two boats (<code>A</code> and <code>B</code>) about the number of different types fish they caught in the months of <code>February</code> and <code>March</code>. In this dataframe, each row corresponds to a unique combination of <code>Boat</code> and <code>Month</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># creating a dataframe</span>
 <span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span>
 <span class="op">(</span>
-  <span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-    Boat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
-    Month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,
-    Fish <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+  <span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+    Boat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
+    Month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,
+    Fish <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
       <span class="st">"Bass"</span>,
       <span class="st">"Catfish"</span>,
       <span class="st">"Cod"</span>,
@@ -362,9 +387,9 @@ A BibTeX entry for LaTeX users is
       <span class="st">"Bass"</span>,
       <span class="st">"Catfish"</span>
     <span class="op">)</span>,
-    SumOfCaught <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">42</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">33</span>, <span class="fl">26</span>, <span class="fl">100</span>, <span class="fl">30</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>
+    SumOfCaught <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">42</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">33</span>, <span class="fl">26</span>, <span class="fl">100</span>, <span class="fl">30</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># converting to a tibble dataframe</span>
-    <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/deprecated.html" class="external-link">as_data_frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
+    <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/deprecated.html">as_data_frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 16 x 4</span>
 <span class="co">#&gt;    Boat  Month    Fish    SumOfCaught</span>
@@ -405,16 +430,16 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="within-subjects-designs" class="section level1">
 <h1 class="hasAnchor">
-<a href="#within-subjects-designs" class="anchor" aria-hidden="true"></a>Within-subjects designs</h1>
+<a href="#within-subjects-designs" class="anchor"></a>Within-subjects designs</h1>
 <p>For our final example let’s imagine we’re conducting clinical trials for some new imaginary wonder drug. We have 134 subjects entering the trial. Some of them enter healthy (<em>n</em> = 96), some of them enter the trial already being sick (<em>n</em> = 38). All of them receive our treatment or intervention. Then we check back in a month to see if they are healthy or sick. A classic pre/post experimental design. We’re interested in seeing the change in both groupings. In the case of within-subjects designs, you can set <code>paired = TRUE</code>, which will display results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set <code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># create our imaginary data</span>
 <span class="va">clinical_trial</span> <span class="op">&lt;-</span>
-  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span>
+  <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
     <span class="op">~</span><span class="va">SickBefore</span>, <span class="op">~</span><span class="va">SickAfter</span>, <span class="op">~</span><span class="va">Counts</span>,
     <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="fl">4</span>,
     <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="fl">25</span>,
@@ -439,7 +464,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h1>
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>Following tests are carried out for each type of analyses-</p>
 <table class="table">
 <colgroup>
@@ -460,21 +485,21 @@ A BibTeX entry for LaTeX users is
 <td>
 <span class="math inline">\(n \times p\)</span> contingency table</td>
 <td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
-<td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/chisq.test.html">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Paired</td>
 <td>
 <span class="math inline">\(n \times p\)</span> contingency table</td>
 <td>McNemar’s <span class="math inline">\(\chi^2\)</span> test</td>
-<td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html">stats::mcnemar.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Frequency</td>
 <td>
 <span class="math inline">\(n \times 1\)</span> contingency table</td>
 <td>Goodness-of-fit (<span class="math inline">\(\chi^2\)</span> test)</td>
-<td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/chisq.test.html">stats::chisq.test</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -492,28 +517,28 @@ A BibTeX entry for LaTeX users is
 <td>Cramer’s <span class="math inline">\(V\)</span>
 </td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html">effectsize::cramers_v</a></code></td>
 </tr>
 <tr class="even">
 <td>McNemar’s test</td>
 <td>Cohen’s <span class="math inline">\(g\)</span>
 </td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html">effectsize::cohens_g</a></code></td>
 </tr>
 <tr class="odd">
 <td>Goodness-of-fit</td>
 <td>Cramer’s <span class="math inline">\(V\)</span>
 </td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html">effectsize::cramers_v</a></code></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="reporting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#reporting" class="anchor" aria-hidden="true"></a>Reporting</h1>
+<a href="#reporting" class="anchor"></a>Reporting</h1>
 <p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
 <ul>
 <li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
@@ -533,17 +558,17 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor" aria-hidden="true"></a>Effect size interpretation</h1>
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
+<a href="#session-information" class="anchor"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>
@@ -559,13 +584,11 @@ A BibTeX entry for LaTeX users is
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>

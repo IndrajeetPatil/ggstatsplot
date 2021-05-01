@@ -24,11 +24,6 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE
 )
-
-# needed for embedding videos
-library(vembedr)
-library("htmltools")
-library("fs")
 ```
 
 # Introduction

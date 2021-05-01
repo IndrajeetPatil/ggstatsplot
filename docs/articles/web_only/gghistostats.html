@@ -5,15 +5,32 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>gghistostats • ggstatsplot</title>
+<!-- Inform modern browsers that this page supports both dark and light color schemes,
+  and the page author prefers light. --><meta name="color-scheme" content="dark light">
+<script>
+  // If `prefers-color-scheme` is not supported, fall back to light mode.
+  // i.e. In this case, inject the `light` CSS before the others, with
+  // no media filter so that it will be downloaded with highest priority.
+  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
+    document.documentElement.style.display = "none";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
+    );
+  }
+</script><title>gghistostats • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
+<!-- preferably CSS --><link rel="stylesheet" href="../../preferably.css">
+<link id="css-code-light" rel="stylesheet" href="../../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<link id="css-code-dark" rel="stylesheet" href="../../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
+<!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
 <script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -29,8 +46,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,12 +58,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -132,11 +153,15 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
+        
+        
+
+
       </ul>
 <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
@@ -157,11 +182,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>gghistostats</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-25</h4>
+            <h4 class="date">2021-05-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd" class="external-link"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/gghistostats.Rmd"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="hidden name"><code>gghistostats.Rmd</code></div>
 
     </div>
@@ -185,7 +210,7 @@ A BibTeX entry for LaTeX users is
     doi = {10.31234/osf.io/p7mku},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
 <p>The function <code><a href="../../reference/gghistostats.html">ggstatsplot::gghistostats</a></code> can be used for <strong>data exploration</strong> and to provide an easy way to make <strong>publication-ready histograms</strong> with appropriate and selected statistical details embedded in the plot itself. In this vignette we will explore several examples of how to use it.</p>
 <p>Some instances where you would want to use <code>gghistostats</code>-</p>
 <ul>
@@ -194,17 +219,17 @@ A BibTeX entry for LaTeX users is
 </ul>
 <div id="statistical-analysis-with-gghistostats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#statistical-analysis-with-gghistostats" class="anchor" aria-hidden="true"></a>Statistical analysis with <code>gghistostats</code>
+<a href="#statistical-analysis-with-gghistostats" class="anchor"></a>Statistical analysis with <code>gghistostats</code>
 </h1>
-<p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
+<p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="https://rdrr.io/pkg/psych/man/sat.act.html">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loading needed libraries</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/" class="external-link">psych</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
 <span class="co"># looking at the structure of the data using glimpse</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 700</span>
 <span class="co">#&gt; Columns: 6</span>
 <span class="co">#&gt; $ gender    &lt;int&gt; 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, ~</span>
@@ -216,56 +241,56 @@ A BibTeX entry for LaTeX users is
 <p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
 <p>Let’s display the national norms (labeled as “Test”) and test the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample <em>t</em>-test (<code>type = "p"</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
+  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>, <span class="co"># data from which variable is to be taken</span>
   x <span class="op">=</span> <span class="va">ACT</span>, <span class="co"># numeric variable</span>
   xlab <span class="op">=</span> <span class="st">"ACT Score"</span>, <span class="co"># x-axis label</span>
   title <span class="op">=</span> <span class="st">"Distribution of ACT Scores"</span>, <span class="co"># title for the plot</span>
   type <span class="op">=</span> <span class="st">"p"</span>, <span class="co"># one sample t-test</span>
   bf.message <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># display Bayes method results</span>
-  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing default theme</span>
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing default theme</span>
   bar.fill <span class="op">=</span> <span class="st">"#D55E00"</span>, <span class="co"># change fill color</span>
   test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co"># test value</span>
   caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" width="100%"></p>
-<p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf" class="external-link">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
+<p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
 </div>
 <div id="grouped-analysis-with-grouped_gghistostats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-grouped_gghistostats" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_gghistostats</code>
+<a href="#grouped-analysis-with-grouped_gghistostats" class="anchor"></a>Grouped analysis with <code>grouped_gghistostats</code>
 </h1>
 <p>What if we want to do the same analysis separately for each gender? <code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for ggstatsplot::gghistostats</span>
-  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span>,
+  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html">sat.act</a></span>,
   x <span class="op">=</span> <span class="va">ACT</span>, <span class="co"># same outcome variable</span>
   xlab <span class="op">=</span> <span class="st">"ACT Score"</span>,
   grouping.var <span class="op">=</span> <span class="va">gender</span>, <span class="co"># grouping variable males = 1, females = 2</span>
   type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co"># robust test: one-sample percentile bootstrap</span>
   test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co"># test value against which sample mean is to be compared</span>
-  centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
-  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html" class="external-link">theme_stata</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing default theme</span>
+  centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D55E00"</span><span class="op">)</span>,
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html">theme_stata</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># changing default theme</span>
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># turn off ggstatsplot theme layer</span>
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Distribution of ACT scores across genders"</span>,
     caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>
   <span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="100%"></p>
 <p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>
 </div>
 <div id="grouped-analysis-with-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-purrr" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>purrr</code>
+<a href="#grouped-analysis-with-purrr" class="anchor"></a>Grouped analysis with <code>purrr</code>
 </h1>
 <p>Although this is a quick and dirty way to explore a large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each gender, this is not possible with <code>grouped_gghistostats</code>.</p>
 <p>For cases like these, or to run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use <code>purrr</code>.</p>
@@ -273,7 +298,7 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h1>
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p>The central tendency measure displayed will depend on the statistics:</p>
 <table class="table">
 <thead><tr class="header">
@@ -285,22 +310,22 @@ A BibTeX entry for LaTeX users is
 <tr class="odd">
 <td>Parametric</td>
 <td>mean</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>median</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>trimmed mean</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>MAP estimate</td>
-<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html" class="external-link">parameters::describe_distribution</a></code></td>
+<td><code><a href="https://easystats.github.io/parameters/reference/describe_distribution.html">parameters::describe_distribution</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -316,12 +341,12 @@ A BibTeX entry for LaTeX users is
 <tr class="odd">
 <td>Parametric</td>
 <td>One-sample Student’s <em>t</em>-test</td>
-<td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/t.test.html">stats::t.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>One-sample Wilcoxon test</td>
-<td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test</a></code></td>
+<td><code><a href="https://rdrr.io/r/stats/wilcox.test.html">stats::wilcox.test</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -332,12 +357,12 @@ A BibTeX entry for LaTeX users is
 <tr class="even">
 <td>Bayesian</td>
 <td>One-sample Student’s <em>t</em>-test</td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html">BayesFactor::ttestBF</a></code></td>
 </tr>
 </tbody>
 </table>
 <p>Following effect sizes (and confidence intervals/CI) are available for each type of test-</p>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="27%">
 <col width="53%">
@@ -357,7 +382,7 @@ A BibTeX entry for LaTeX users is
 </td>
 <td>✅</td>
 <td>
-<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
+<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html">effectsize::hedges_g</a></code>
 </td>
 </tr>
 <tr class="even">
@@ -365,7 +390,7 @@ A BibTeX entry for LaTeX users is
 <td>
 <em>r</em> (rank-biserial correlation)</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html">effectsize::rank_biserial</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -378,14 +403,14 @@ A BibTeX entry for LaTeX users is
 <td>Bayes Factor</td>
 <td><span class="math inline">\(\delta_{posterior}\)</span></td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
+<td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html">bayestestR::describe_posterior</a></code></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="reporting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#reporting" class="anchor" aria-hidden="true"></a>Reporting</h1>
+<a href="#reporting" class="anchor"></a>Reporting</h1>
 <p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
 <ul>
 <li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
@@ -403,17 +428,17 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor" aria-hidden="true"></a>Effect size interpretation</h1>
+<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
+<a href="#session-information" class="anchor"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>
@@ -429,13 +454,11 @@ A BibTeX entry for LaTeX users is
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>

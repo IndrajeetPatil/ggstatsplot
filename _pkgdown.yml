@@ -1,15 +1,12 @@
 url: https://indrajeetpatil.github.io/ggstatsplot/
 
 template:
+  package: preferably
   ganalytics: "UA-46037435-2"
   params:
     docsearch:
       api_key: 44345fbe359c5496fbc3955c513333d1
       index_name: ggstatsplot
-    bootswatch: lumen
-
-development:
-  mode: unreleased
 
 authors:
   Indrajeet Patil:

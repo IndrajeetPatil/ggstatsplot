@@ -5,15 +5,32 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>other resources to learn about `ggstatsplot` • ggstatsplot</title>
+<!-- Inform modern browsers that this page supports both dark and light color schemes,
+  and the page author prefers light. --><meta name="color-scheme" content="dark light">
+<script>
+  // If `prefers-color-scheme` is not supported, fall back to light mode.
+  // i.e. In this case, inject the `light` CSS before the others, with
+  // no media filter so that it will be downloaded with highest priority.
+  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
+    document.documentElement.style.display = "none";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
+    );
+  }
+</script><title>other resources to learn about `ggstatsplot` • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/lumen/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
+<!-- preferably CSS --><link rel="stylesheet" href="../../preferably.css">
+<link id="css-code-light" rel="stylesheet" href="../../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<link id="css-code-dark" rel="stylesheet" href="../../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
+<!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
 <script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -29,8 +46,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,12 +58,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -132,11 +153,15 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
+        
+        
+
+
       </ul>
 <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
@@ -153,16 +178,16 @@
 
       
 
-      </header><script src="other_resources_files/header-attrs-2.7.12/header-attrs.js"></script><div class="row">
+      </header><script src="other_resources_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>other resources to learn about <code>ggstatsplot</code>
 </h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-04-29</h4>
+            <h4 class="date">2021-05-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/other_resources.Rmd" class="external-link"><code>vignettes/web_only/other_resources.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/other_resources.Rmd"><code>vignettes/web_only/other_resources.Rmd</code></a></small>
       <div class="hidden name"><code>other_resources.Rmd</code></div>
 
     </div>
@@ -171,13 +196,13 @@
     
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#introduction" class="anchor" aria-hidden="true"></a>Introduction</h1>
+<a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>One of the best resources to learn about functionality afforded by <code>ggstatsplot</code> package is to read the dedicated <a href="https://indrajeetpatil.github.io/ggstatsplot/">website</a>. A lot of love and work has gone into writing detailed function documentation and vignettes, and I will highly recommend you check them out.</p>
 <p>But, the website is certainly not the only resource available to learn about this package, and below are some other resources that might be helpful for you to learn about <code>ggstatsplot</code> package.</p>
 </div>
 <div id="presentations" class="section level1">
 <h1 class="hasAnchor">
-<a href="#presentations" class="anchor" aria-hidden="true"></a>Presentations</h1>
+<a href="#presentations" class="anchor"></a>Presentations</h1>
 <ul>
 <li>My own <code>xaringan</code> presentation: <a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1" class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1</a>
 </li>
@@ -185,49 +210,49 @@
 </div>
 <div id="youtube-videos" class="section level1">
 <h1 class="hasAnchor">
-<a href="#youtube-videos" class="anchor" aria-hidden="true"></a>YouTube Videos</h1>
+<a href="#youtube-videos" class="anchor"></a>YouTube Videos</h1>
 <div id="my-own-talks-at-online-meetings" class="section level2">
 <h2 class="hasAnchor">
-<a href="#my-own-talks-at-online-meetings" class="anchor" aria-hidden="true"></a>My own talks at online meetings</h2>
+<a href="#my-own-talks-at-online-meetings" class="anchor"></a>My own talks at online meetings</h2>
 <ul>
-<li><p><a href="https://www.youtube.com/watch?v=_wCo7rnt6NA" class="external-link">At UseR Oslo meeting</a></p></li>
-<li><p><a href="https://www.youtube.com/watch?v=n-sXeshyVRI" class="external-link">At R-Ladies Tunis meeting</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=_wCo7rnt6NA">At UseR Oslo meeting</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=n-sXeshyVRI">At R-Ladies Tunis meeting</a></p></li>
 </ul>
 </div>
 <div id="other" class="section level2">
 <h2 class="hasAnchor">
-<a href="#other" class="anchor" aria-hidden="true"></a>Other</h2>
+<a href="#other" class="anchor"></a>Other</h2>
 <div id="english" class="section level3">
 <h3 class="hasAnchor">
-<a href="#english" class="anchor" aria-hidden="true"></a>English</h3>
+<a href="#english" class="anchor"></a>English</h3>
 <ul>
-<li><p><a href="https://www.youtube.com/watch?v=cNJIMwtLWv0" class="external-link">Yury Zablotski’s review</a></p></li>
-<li><p><a href="https://www.youtube.com/watch?v=8Em1bCFBMWg" class="external-link">Business Science R tips</a></p></li>
-<li><p><a href="https://www.youtube.com/watch?v=aw6HDz9zA1Q" class="external-link uri">https://www.youtube.com/watch?v=aw6HDz9zA1Q</a></p></li>
-<li><p><a href="https://www.youtube.com/watch?v=m3uInetiC8w" class="external-link">Serdar Belci’s demo</a> on how to use <code>ggstatsplot</code> in <code>jamovi</code> GUI software</p></li>
-<li><p>Data pre-processing and analysis in <a href="https://www.youtube.com/watch?v=IMgv5pc7N7U" class="external-link">RStudio</a> and <code>ggstatsplot</code></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=cNJIMwtLWv0">Yury Zablotski’s review</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=8Em1bCFBMWg">Business Science R tips</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=aw6HDz9zA1Q" class="uri">https://www.youtube.com/watch?v=aw6HDz9zA1Q</a></p></li>
+<li><p><a href="https://www.youtube.com/watch?v=m3uInetiC8w">Serdar Belci’s demo</a> on how to use <code>ggstatsplot</code> in <code>jamovi</code> GUI software</p></li>
+<li><p>Data pre-processing and analysis in <a href="https://www.youtube.com/watch?v=IMgv5pc7N7U">RStudio</a> and <code>ggstatsplot</code></p></li>
 </ul>
 </div>
 <div id="other-languages" class="section level3">
 <h3 class="hasAnchor">
-<a href="#other-languages" class="anchor" aria-hidden="true"></a>Other languages</h3>
+<a href="#other-languages" class="anchor"></a>Other languages</h3>
 <ul>
-<li><p><a href="https://www.youtube.com/watch?v=6Ds9L4NpRVQ" class="external-link">Pablo Vallejo Medina’s demo</a> of <code>ggbetweenstats</code> (in <strong>Spanish</strong>)</p></li>
-<li><p><a href="https://www.youtube.com/watch?v=yDyrgvvWLpc" class="external-link">Andre Chocó Cedillos’s talk</a> (in <strong>Spanish</strong>)</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=6Ds9L4NpRVQ">Pablo Vallejo Medina’s demo</a> of <code>ggbetweenstats</code> (in <strong>Spanish</strong>)</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=yDyrgvvWLpc">Andre Chocó Cedillos’s talk</a> (in <strong>Spanish</strong>)</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="blogs" class="section level1">
 <h1 class="hasAnchor">
-<a href="#blogs" class="anchor" aria-hidden="true"></a>Blogs</h1>
+<a href="#blogs" class="anchor"></a>Blogs</h1>
 <p>This is a bit difficult to keep track of. I would recommend just googling it.</p>
 </div>
 <div id="publications" class="section level1">
 <h1 class="hasAnchor">
-<a href="#publications" class="anchor" aria-hidden="true"></a>Publications</h1>
+<a href="#publications" class="anchor"></a>Publications</h1>
 <p>A list of publications that use <code>ggstatsplot</code> can be found in Google Scholar:</p>
-<p><a href="https://scholar.google.com/scholar?hl=en&amp;scisbd=2&amp;as_sdt=0%2C22&amp;q=ggstatsplot&amp;btnG=" class="external-link uri">https://scholar.google.com/scholar?hl=en&amp;scisbd=2&amp;as_sdt=0%2C22&amp;q=ggstatsplot&amp;btnG=</a></p>
+<p><a href="https://scholar.google.com/scholar?hl=en&amp;scisbd=2&amp;as_sdt=0%2C22&amp;q=ggstatsplot&amp;btnG=" class="uri">https://scholar.google.com/scholar?hl=en&amp;scisbd=2&amp;as_sdt=0%2C22&amp;q=ggstatsplot&amp;btnG=</a></p>
 </div>
   </div>
 
@@ -242,13 +267,11 @@
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>

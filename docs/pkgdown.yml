@@ -1,6 +1,6 @@
 pandoc: '2.13'
-pkgdown: 1.6.1.9001
-pkgdown_sha: 1224e7d19dc1247a45d2885cf7b18b37bd02797b
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
   additional: additional.html
   web_only/benchmarking: benchmarking.html
@@ -21,8 +21,8 @@ articles:
   web_only/purrr_examples: purrr_examples.html
   web_only/session_info: session_info.html
   web_only/theme_ggstatsplot: theme_ggstatsplot.html
-last_built: 2021-04-25T09:11Z
+last_built: 2021-05-01T07:58Z
 urls:
-  reference: https://indrajeetpatil.github.io/ggstatsplot/reference
-  article: https://indrajeetpatil.github.io/ggstatsplot/articles
+  reference: https://indrajeetpatil.github.io/ggstatsplot//reference
+  article: https://indrajeetpatil.github.io/ggstatsplot//articles
 

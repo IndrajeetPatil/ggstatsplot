@@ -15,6 +15,7 @@ affiliations:
   - name: Center for Humans and Machines, Max Planck Institute for Human Development, Berlin, Germany
     index: 1
 bibliography: paper.bib
+date: "`r Sys.Date()`"
 output: rticles::joss_article
 csl: apa.csl
 journal: JOSS

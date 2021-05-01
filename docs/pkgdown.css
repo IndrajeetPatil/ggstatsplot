@@ -264,50 +264,7 @@ table {
 
 /* Syntax highlighting ---------------------------------------------------- */
 
-pre {
-  word-wrap: normal;
-  word-break: normal;
-  border: 1px solid #eee;
-}
-
-pre, code {
-  background-color: #f8f8f8;
-  color: #333;
-}
-
-pre code {
-  overflow: auto;
-  word-wrap: normal;
-  white-space: pre;
-}
-
-pre .img {
-  margin: 5px 0;
-}
-
-pre .img img {
-  background-color: #fff;
-  display: block;
-  height: auto;
-}
-
-code a, pre a {
-  color: #375f84;
-}
-
-a.sourceLine:hover {
-  text-decoration: none;
-}
-
-.fl      {color: #1514b5;}
-.fu      {color: #000000;} /* function */
-.ch,.st  {color: #036a07;} /* string */
-.kw      {color: #264D66;} /* keyword */
-.co      {color: #888888;} /* comment */
-
-.message { color: black;   font-weight: bolder;}
-.error   { color: orange;  font-weight: bolder;}
-.warning { color: #6A0366; font-weight: bolder;}
+  /* Moved to new files.*/
 
 /* Clipboard --------------------------*/
 

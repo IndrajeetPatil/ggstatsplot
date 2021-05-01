@@ -94,7 +94,7 @@ ggdotplotstats(
     size = 5
   ),
   title = "Distribution of mileage of cars",
-  ggtheme = hrbrthemes::theme_ipsum_ps(),
+  ggtheme = hrbrthemes::theme_ipsum_tw(),
   ggstatsplot.layer = FALSE
 )
 ```

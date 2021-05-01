@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
+  "runtimePlatform": "R Under development (unstable) (2021-04-18 r80182)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -481,6 +481,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "111568.657KB",
+  "fileSize": "86971.723KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
