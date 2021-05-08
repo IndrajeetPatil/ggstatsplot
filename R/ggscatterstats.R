@@ -149,42 +149,42 @@ ggscatterstats <- function(data,
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
+    # no need to use `tryCatch` because `correlation` already does this
+
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <-
-        statsExpressions::corr_test(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          type = "bayes",
-          bf.prior = bf.prior,
-          top.text = caption,
-          k = k
-        )
+      caption_df <- statsExpressions::corr_test(
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        type = "bayes",
+        bf.prior = bf.prior,
+        top.text = caption,
+        k = k
+      )
 
       caption <- caption_df$expression[[1]]
     }
 
     # extracting the subtitle using the switch function
-    subtitle_df <-
-      statsExpressions::corr_test(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        tr = tr,
-        type = type,
-        conf.level = conf.level,
-        k = k
-      )
+    subtitle_df <- statsExpressions::corr_test(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      tr = tr,
+      type = type,
+      conf.level = conf.level,
+      k = k
+    )
 
     subtitle <- subtitle_df$expression[[1]]
   }
 
   # quit early if only subtitle is needed
-  if (output %in% c("subtitle", "caption")) {
+  if (output != "plot") {
     return(switch(output,
-      "subtitle" = subtitle,
-      "caption" = caption
+      "caption" = caption,
+      subtitle
     ))
   }
 
@@ -224,8 +224,7 @@ ggscatterstats <- function(data,
   pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # preparing the scatterplot
-  plot <-
-    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
     rlang::exec(
       .fn = ggplot2::geom_point,
       stroke = 0,
@@ -272,17 +271,18 @@ ggscatterstats <- function(data,
 
   #------------------------- ggMarginal  ---------------------------------
 
-  # creating the `ggMarginal` plot of a given `marginal.type`
+  # adding marginal distributions
   if (isTRUE(marginal)) {
-    if (!requireNamespace("ggExtra")) stop("Package 'ggExtra' needs to be installed.")
-    plot <-
-      ggExtra::ggMarginal(
-        p = plot,
-        type = marginal.type,
-        size = marginal.size,
-        xparams = list(fill = xfill),
-        yparams = list(fill = yfill)
-      )
+    # installed?
+    insight::check_if_installed("ggExtra")
+
+    plot <- ggExtra::ggMarginal(
+      p = plot,
+      type = marginal.type,
+      size = marginal.size,
+      xparams = list(fill = xfill),
+      yparams = list(fill = yfill)
+    )
   }
 
   # return the final plot

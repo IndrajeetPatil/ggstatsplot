@@ -298,7 +298,7 @@ ggbetweenstats <- function(data,
     ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
     rlang::exec(
       .fn = ggplot2::geom_point,
-      data = dplyr::filter(.data = data, !isanoutlier),
+      data = dplyr::filter(data, !isanoutlier),
       ggplot2::aes(color = {{ x }}),
       !!!point.args
     )
@@ -308,7 +308,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       rlang::exec(
         .fn = ggplot2::geom_point,
-        data = dplyr::filter(.data = data, isanoutlier),
+        data = dplyr::filter(data, isanoutlier),
         ggplot2::aes(color = {{ x }}),
         !!!point.args
       )

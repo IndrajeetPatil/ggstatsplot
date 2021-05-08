@@ -182,15 +182,14 @@ gghistostats <- function(data,
 
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
-    plot <-
-      histo_labeller(
-        plot = plot,
-        x = x_vec,
-        type = ipmisc::stats_type_switch(centrality.type),
-        tr = tr,
-        k = k,
-        centrality.line.args = centrality.line.args
-      )
+    plot <- histo_labeller(
+      plot,
+      x = x_vec,
+      type = ipmisc::stats_type_switch(centrality.type),
+      tr = tr,
+      k = k,
+      centrality.line.args = centrality.line.args
+    )
   }
 
   # adding the theme and labels

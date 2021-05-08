@@ -146,12 +146,8 @@ ggdotplotstats <- function(data,
   # ------------------------------ basic plot ----------------------------
 
   # creating the basic plot
-  plot <-
-    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
-    rlang::exec(
-      .fn = ggplot2::geom_point,
-      !!!point.args
-    ) +
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = rank)) +
+    rlang::exec(ggplot2::geom_point, !!!point.args) +
     ggplot2::scale_y_continuous(
       name = ylab,
       labels = data %>% dplyr::pull({{ y }}),
@@ -166,15 +162,14 @@ ggdotplotstats <- function(data,
 
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
-    plot <-
-      histo_labeller(
-        plot = plot,
-        x = data %>% dplyr::pull({{ x }}),
-        type = ipmisc::stats_type_switch(centrality.type),
-        tr = tr,
-        k = k,
-        centrality.line.args = centrality.line.args
-      )
+    plot <- histo_labeller(
+      plot,
+      x = data %>% dplyr::pull({{ x }}),
+      type = ipmisc::stats_type_switch(centrality.type),
+      tr = tr,
+      k = k,
+      centrality.line.args = centrality.line.args
+    )
   }
 
   # ------------------------ annotations and themes -------------------------

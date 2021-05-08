@@ -4,8 +4,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Helper function for `ggstatsplot::gghistostats` to apply this function
 #' across multiple levels of a given factor and combining the resulting plots
 #' using `ggstatsplot::combine_plots`.
@@ -57,10 +55,10 @@ grouped_gghistostats <- function(data,
   # ======================== computing binwidth ============================
 
   # maximum value for x
-  binmax <- max(dplyr::select(.data = data, {{ x }}), na.rm = TRUE)
+  binmax <- max(dplyr::select(data, {{ x }}), na.rm = TRUE)
 
   # minimum value for x
-  binmin <- min(dplyr::select(.data = data, {{ x }}), na.rm = TRUE)
+  binmin <- min(dplyr::select(data, {{ x }}), na.rm = TRUE)
 
   # number of datapoints
   bincount <- as.integer(data %>% dplyr::count(.))
@@ -71,21 +69,19 @@ grouped_gghistostats <- function(data,
   # ======================== preparing dataframe ============================
 
   # getting the dataframe ready
-  df <-
-    dplyr::select(data, {{ grouping.var }}, {{ x }}) %>%
+  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of plots
-  p_ls <-
-    purrr::pmap(
-      .l = list(data = df, title = names(df)),
-      .f = ggstatsplot::gghistostats,
-      # put common parameters here
-      x = {{ x }},
-      binwidth = binwidth,
-      output = output,
-      ...
-    )
+  p_ls <- purrr::pmap(
+    .l = list(data = df, title = names(df)),
+    .f = ggstatsplot::gghistostats,
+    # put common parameters here
+    x = {{ x }},
+    binwidth = binwidth,
+    output = output,
+    ...
+  )
 
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)

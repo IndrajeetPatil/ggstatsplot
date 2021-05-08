@@ -103,9 +103,15 @@ resulting plots using ggstatsplot::combine_plots." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -126,12 +132,6 @@ resulting plots using ggstatsplot::combine_plots." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -337,14 +337,15 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
     <dt><code>label.repel</code></dt><dd><p>Whether labels should be repelled using <code>ggrepel</code> package.
 This can be helpful in case the labels are overlapping.</p></dd>
     <dt><code>legend.title</code></dt><dd><p>Title text for the legend.</p></dd>
-    <dt><code>type</code></dt><dd><p>A character specifying the type of statistical approach.
-Four possible options:<ul>
+    <dt><code>type</code></dt><dd><p>A character specifying the type of statistical approach:
+<ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
-<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></dd>
+</ul>This argument also accepts the following abbreviations: <code>"p"</code> (for
+<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
+(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></dd>
     <dt><code>results.subtitle</code></dt><dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
@@ -368,10 +369,10 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
 override some aspects of the selected <code>ggtheme</code>.</p></dd>
     <dt><code>package</code></dt><dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
-<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></dd>
+<code>View(paletteer::palettes_d_names)</code>.</p></dd>
     <dt><code>palette</code></dt><dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
-<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></dd>
+<code>View(paletteer::palettes_d_names)</code>.</p></dd>
     <dt><code>ggplot.component</code></dt><dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
@@ -409,16 +410,18 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 <code><a href='grouped_ggbarstats.html'>grouped_ggbarstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># grouped one-sample proportion test</span>
-<span class='co'># let's skip statistical analysis</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggpiestats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>mtcars</span>,
-  grouping.var <span class='op'>=</span> <span class='va'>am</span>,
-  x <span class='op'>=</span> <span class='va'>cyl</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='img'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='co'># grouped one-sample proportion test</span></span>
+<span class='r-in'><span class='co'># let's skip statistical analysis</span></span>
+<span class='r-in'><span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>grouped_ggpiestats</span><span class='op'>(</span></span>
+<span class='r-in'>  data <span class='op'>=</span> <span class='va'>mtcars</span>,</span>
+<span class='r-in'>  grouping.var <span class='op'>=</span> <span class='va'>am</span>,</span>
+<span class='r-in'>  x <span class='op'>=</span> <span class='va'>cyl</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Chi-squared approximation may be incorrect</span>
+<span class='r-plt'><img src='grouped_ggpiestats-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -434,7 +437,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -459,6 +462,8 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 </script>
 
 
+
+  
 
   </body>
 </html>

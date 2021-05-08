@@ -32,7 +32,7 @@
 #'   x = Species,
 #'   y = Sepal.Length
 #' )
-#' @keywords internal
+#' @noRd
 
 # function body
 centrality_ggrepel <- function(plot,
@@ -176,7 +176,7 @@ centrality_data <- function(data, x, y, type = "parametric", tr = 0.2, k = 2L, .
 #'   y = Sepal.Length,
 #'   df_pairwise = df_pair
 #' )
-#' @keywords internal
+#' @noRd
 
 ggsignif_adder <- function(plot,
                            df_pairwise,

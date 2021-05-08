@@ -90,11 +90,10 @@ chisq_test_safe <- function(data, x, ...) {
   xtab <- table(data %>% dplyr::pull({{ x }}))
 
   # run chi-square test
-  result <-
-    tryCatch(
-      expr = parameters::model_parameters(suppressWarnings(stats::chisq.test(xtab))),
-      error = function(e) NULL
-    )
+  result <- tryCatch(
+    expr = parameters::model_parameters(suppressWarnings(stats::chisq.test(xtab))),
+    error = function(e) NULL
+  )
 
   # if not null, return tidy output, otherwise return NAs
   if (!is.null(result)) {

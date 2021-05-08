@@ -1,5 +1,10 @@
 # ggstatsplot 0.7.2.9000
 
+N.B. All statistical analysis in `ggstatsplot` is carried out in
+`statsExpressions`. Thus, to see changes related to statistical expressions,
+read the `NEWS` for that package:
+<https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
 MAJOR CHANGES
 
   - To reduce the dependency load, `ggcorrplot` moves from `Imports` to
@@ -9,6 +14,8 @@ MINOR CHANGES
 
   - The `pch` size for `ggcorrmat` has been increased to 14 (#579) to increase
     its visibility compared to the correlation value text.
+    
+  - `ggwithinstats` gains `point.args` to change `geom_point`.
 
 # ggstatsplot 0.7.2
 

@@ -102,9 +102,15 @@ as a subtitle." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -125,12 +131,6 @@ as a subtitle." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -317,17 +317,16 @@ if each row represents a single observation.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>A character specifying the type of statistical approach.
-Four possible options:</p>
-<ul>
+      <td><p>A character specifying the type of statistical approach:</p><ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
 </ul>
 
-<p>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
-<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></td>
+<p>This argument also accepts the following abbreviations: <code>"p"</code> (for
+<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
+(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></td>
     </tr>
     <tr>
       <th>paired</th>
@@ -451,13 +450,13 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
       <th>package</th>
       <td><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
-<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
+<code>View(paletteer::palettes_d_names)</code>.</p></td>
     </tr>
     <tr>
       <th>palette</th>
       <td><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
-<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
+<code>View(paletteer::palettes_d_names)</code>.</p></td>
     </tr>
     <tr>
       <th>ggplot.component</th>
@@ -488,18 +487,21 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code><a href='grouped_ggpiestats.html'>grouped_ggpiestats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># for reproducibility</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-
-<span class='co'># association test (or contingency table analysis)</span>
-<span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggbarstats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>mtcars</span>,
-  x <span class='op'>=</span> <span class='va'>vs</span>,
-  y <span class='op'>=</span> <span class='va'>cyl</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Chi-squared approximation may be incorrect</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Could not estimate a good default ROPE range. Using 'c(-0.1, 0.1)'.</span></div><div class='img'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='co'># for reproducibility</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># association test (or contingency table analysis)</span></span>
+<span class='r-in'><span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'>ggbarstats</span><span class='op'>(</span></span>
+<span class='r-in'>  data <span class='op'>=</span> <span class='va'>mtcars</span>,</span>
+<span class='r-in'>  x <span class='op'>=</span> <span class='va'>vs</span>,</span>
+<span class='r-in'>  y <span class='op'>=</span> <span class='va'>cyl</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Chi-squared approximation may be incorrect</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Could not estimate a good default ROPE range. Using 'c(-0.1, 0.1)'.</span>
+<span class='r-plt'><img src='ggbarstats-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -515,7 +517,7 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -540,6 +542,8 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 </script>
 
 
+
+  
 
   </body>
 </html>

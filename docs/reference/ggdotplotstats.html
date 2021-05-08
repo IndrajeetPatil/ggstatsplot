@@ -102,9 +102,15 @@ from one-sample test included in the plot as a subtitle." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -125,12 +131,6 @@ from one-sample test included in the plot as a subtitle." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -324,17 +324,16 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>A character specifying the type of statistical approach.
-Four possible options:</p>
-<ul>
+      <td><p>A character specifying the type of statistical approach:</p><ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
 </ul>
 
-<p>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
-<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></td>
+<p>This argument also accepts the following abbreviations: <code>"p"</code> (for
+<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
+(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></td>
     </tr>
     <tr>
       <th>test.value</th>
@@ -344,7 +343,11 @@ Four possible options:</p>
     <tr>
       <th>bf.prior</th>
       <td><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors and posterior estimates.</p></td>
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+<code>"medium"</code>, <code>"wide"</code>, and <code>"ultrawide"</code>, corresponding to <em>r</em> scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -365,7 +368,7 @@ argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (f
     <tr>
       <th>nboot</th>
       <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
+for the effect size (Default: <code>100L</code>).</p></td>
     </tr>
     <tr>
       <th>tr</th>
@@ -469,23 +472,27 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code><a href='grouped_ggdotplotstats.html'>grouped_ggdotplotstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># for reproducibility</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-
-<span class='co'># plot</span>
-<span class='fu'>ggdotplotstats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>,
-  x <span class='op'>=</span> <span class='va'>cty</span>,
-  y <span class='op'>=</span> <span class='va'>manufacturer</span>,
-  title <span class='op'>=</span> <span class='st'>"Fuel economy data"</span>,
-  xlab <span class='op'>=</span> <span class='st'>"city miles per gallon"</span>,
-  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Source"</span><span class='op'>)</span>, <span class='st'>": EPA dataset on http://fueleconomy.gov"</span><span class='op'>)</span>
-  <span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>t is large; approximation invoked.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='img'><img src='ggdotplotstats-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='co'># for reproducibility</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># plot</span></span>
+<span class='r-in'><span class='fu'>ggdotplotstats</span><span class='op'>(</span></span>
+<span class='r-in'>  data <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/mpg.html'>mpg</a></span>,</span>
+<span class='r-in'>  x <span class='op'>=</span> <span class='va'>cty</span>,</span>
+<span class='r-in'>  y <span class='op'>=</span> <span class='va'>manufacturer</span>,</span>
+<span class='r-in'>  title <span class='op'>=</span> <span class='st'>"Fuel economy data"</span>,</span>
+<span class='r-in'>  xlab <span class='op'>=</span> <span class='st'>"city miles per gallon"</span>,</span>
+<span class='r-in'>  caption <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span></span>
+<span class='r-in'>    <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/grDevices/plotmath.html'>italic</a></span><span class='op'>(</span><span class='st'>"Source"</span><span class='op'>)</span>, <span class='st'>": EPA dataset on http://fueleconomy.gov"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> t is large; approximation invoked.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to min; returning Inf</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to max; returning -Inf</span>
+<span class='r-plt'><img src='ggdotplotstats-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -501,7 +508,7 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -526,6 +533,8 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 </script>
 
 
+
+  
 
   </body>
 </html>

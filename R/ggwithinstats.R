@@ -9,10 +9,7 @@
 #' a subtitle.
 #'
 #' @note
-#' 1. Please note that the function expects that the data is
-#'   already sorted by subject/repeated measures ID.
-#'
-#' 2. To carry out Bayesian analysis for ANOVA designs, you will need to install
+#' To carry out Bayesian analysis for ANOVA designs, you will need to install
 #' the development version of `BayesFactor` (`0.9.12-4.3`). You can download it
 #' by running:
 #' `remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")`.
@@ -94,7 +91,8 @@ ggwithinstats <- function(data,
                           centrality.point.args = list(size = 5, color = "darkred"),
                           centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                           centrality.path = TRUE,
-                          centrality.path.args = list(color = "red", size = 1, alpha = 0.5),
+                          centrality.path.args = list(size = 1, color = "red", alpha = 0.5),
+                          point.args = list(size = 3, alpha = 0.5),
                           point.path = TRUE,
                           point.path.args = list(alpha = 0.5, linetype = "dashed"),
                           outlier.tagging = FALSE,
@@ -187,7 +185,6 @@ ggwithinstats <- function(data,
         paired = TRUE,
         type = type,
         effsize.type = effsize.type,
-        var.equal = TRUE,
         bf.prior = bf.prior,
         tr = tr,
         nboot = nboot,
@@ -216,10 +213,10 @@ ggwithinstats <- function(data,
       data = data,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)
     ) +
-    ggplot2::geom_point(
-      alpha = 0.5,
-      size = 3,
-      ggplot2::aes(color = {{ x }})
+    rlang::exec(
+      .fn = ggplot2::geom_point,
+      ggplot2::aes(color = {{ x }}),
+      !!!point.args
     ) +
     ggplot2::geom_boxplot(
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),

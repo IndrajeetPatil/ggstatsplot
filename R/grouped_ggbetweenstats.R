@@ -71,24 +71,21 @@ grouped_ggbetweenstats <- function(data,
   # ======================== preparing dataframe ==========================
 
   # creating a dataframe
-  df <-
-    data %>%
-    dplyr::select({{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
+  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # ============== creating a list of plots using `pmap`=======================
 
-  p_ls <-
-    purrr::pmap(
-      .l = list(data = df, title = names(df)),
-      .f = ggstatsplot::ggbetweenstats,
-      # put common parameters here
-      x = {{ x }},
-      y = {{ y }},
-      outlier.label = {{ outlier.label }},
-      output = output,
-      ...
-    )
+  p_ls <- purrr::pmap(
+    .l = list(data = df, title = names(df)),
+    .f = ggstatsplot::ggbetweenstats,
+    # put common parameters here
+    x = {{ x }},
+    y = {{ y }},
+    outlier.label = {{ outlier.label }},
+    output = output,
+    ...
+  )
 
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)

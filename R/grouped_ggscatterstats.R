@@ -96,18 +96,17 @@ grouped_ggscatterstats <- function(data,
   # ==================== creating a list of plots =======================
 
   # creating a list of plots using `pmap`
-  p_ls <-
-    purrr::pmap(
-      .l = list(data = df, title = names(df)),
-      .f = ggstatsplot::ggscatterstats,
-      # put common parameters here
-      x = {{ x }},
-      y = {{ y }},
-      label.var = {{ label.var }},
-      label.expression = !!rlang::enexpr(label.expression),
-      output = output,
-      ...
-    )
+  p_ls <- purrr::pmap(
+    .l = list(data = df, title = names(df)),
+    .f = ggstatsplot::ggscatterstats,
+    # put common parameters here
+    x = {{ x }},
+    y = {{ y }},
+    label.var = {{ label.var }},
+    label.expression = !!rlang::enexpr(label.expression),
+    output = output,
+    ...
+  )
 
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)

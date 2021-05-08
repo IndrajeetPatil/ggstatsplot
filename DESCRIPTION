@@ -29,9 +29,9 @@ Imports:
     ggplot2,
     ggrepel,
     ggsignif,
-    insight (>= 0.13.2),
-    ipmisc,
-    pairwiseComparisons,
+    insight (>= 0.14.0),
+    ipmisc (>= 6.0.2),
+    pairwiseComparisons (>= 3.1.5),
     paletteer,
     parameters (>= 0.13.0),
     patchwork,
@@ -39,7 +39,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 1.0.0),
+    statsExpressions (>= 1.0.1),
     tidyr,
     utils
 Suggests:
@@ -59,10 +59,10 @@ Suggests:
     WRS2
 VignetteBuilder: 
     knitr
-Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate",
     "pkgapi::api_roclet"))
 RoxygenNote: 7.1.1.9001
+Config/testthat/edition: 3

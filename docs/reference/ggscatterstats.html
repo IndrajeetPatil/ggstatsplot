@@ -103,9 +103,15 @@ subtitle." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -126,12 +132,6 @@ subtitle." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -312,17 +312,16 @@ be plotted on the <code>y</code>-axis. Can be entered either as a character stri
     </tr>
     <tr>
       <th>type</th>
-      <td><p>A character specifying the type of statistical approach.
-Four possible options:</p>
-<ul>
+      <td><p>A character specifying the type of statistical approach:</p><ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
 </ul>
 
-<p>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
-<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></td>
+<p>This argument also accepts the following abbreviations: <code>"p"</code> (for
+<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
+(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -332,7 +331,11 @@ return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></
     <tr>
       <th>bf.prior</th>
       <td><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors and posterior estimates.</p></td>
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+<code>"medium"</code>, <code>"wide"</code>, and <code>"ultrawide"</code>, corresponding to <em>r</em> scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.</p></td>
     </tr>
     <tr>
       <th>bf.message</th>
@@ -499,26 +502,28 @@ have a lot of labels that overlap.</p></li>
 <code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
-
-<span class='co'># creating dataframe with rownames converted to a new column</span>
-<span class='va'>mtcars_new</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>mtcars</span>, rownames <span class='op'>=</span> <span class='st'>"car"</span><span class='op'>)</span>
-
-<span class='co'># simple function call with the defaults</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/daattali/ggExtra'>"ggExtra"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>ggscatterstats</span><span class='op'>(</span>
-    data <span class='op'>=</span> <span class='va'>mtcars_new</span>,
-    x <span class='op'>=</span> <span class='va'>wt</span>,
-    y <span class='op'>=</span> <span class='va'>mpg</span>,
-    label.var <span class='op'>=</span> <span class='va'>car</span>,
-    label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,
-    <span class='co'># making further customization with `ggplot2` functions</span>
-    ggplot.component <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>geom_rug</a></span><span class='op'>(</span>sides <span class='op'>=</span> <span class='st'>"b"</span><span class='op'>)</span><span class='op'>)</span>
-  <span class='op'>)</span>
-<span class='op'>}</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggExtra</span></div><div class='img'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># to get reproducible results from bootstrapping</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># creating dataframe with rownames converted to a new column</span></span>
+<span class='r-in'><span class='va'>mtcars_new</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>mtcars</span>, rownames <span class='op'>=</span> <span class='st'>"car"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># simple function call with the defaults</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/daattali/ggExtra'>"ggExtra"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'>  <span class='fu'>ggscatterstats</span><span class='op'>(</span></span>
+<span class='r-in'>    data <span class='op'>=</span> <span class='va'>mtcars_new</span>,</span>
+<span class='r-in'>    x <span class='op'>=</span> <span class='va'>wt</span>,</span>
+<span class='r-in'>    y <span class='op'>=</span> <span class='va'>mpg</span>,</span>
+<span class='r-in'>    label.var <span class='op'>=</span> <span class='va'>car</span>,</span>
+<span class='r-in'>    label.expression <span class='op'>=</span> <span class='va'>wt</span> <span class='op'>&lt;</span> <span class='fl'>4</span> <span class='op'>&amp;</span> <span class='va'>mpg</span> <span class='op'>&lt;</span> <span class='fl'>20</span>,</span>
+<span class='r-in'>    <span class='co'># making further customization with `ggplot2` functions</span></span>
+<span class='r-in'>    ggplot.component <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>geom_rug</a></span><span class='op'>(</span>sides <span class='op'>=</span> <span class='st'>"b"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggExtra</span>
+<span class='r-plt'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -534,7 +539,7 @@ have a lot of labels that overlap.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -559,6 +564,8 @@ have a lot of labels that overlap.</p></li>
 </script>
 
 
+
+  
 
   </body>
 </html>

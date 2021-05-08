@@ -100,9 +100,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -123,12 +129,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -246,76 +246,54 @@
 
     <div id="ggstatsplot-0729000" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.2.9000">
-<a href="#ggstatsplot-0729000" class="anchor"></a>ggstatsplot 0.7.2.9000<small> Unreleased </small>
-</h1>
+<a href="#ggstatsplot-0729000" class="anchor" aria-hidden="true"></a>ggstatsplot 0.7.2.9000<small> Unreleased </small></h1>
+<p>N.B. All statistical analysis in <code>ggstatsplot</code> is carried out in <code>statsExpressions</code>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
 <p>MAJOR CHANGES</p>
-<ul>
-<li>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li>The <code>pch</code> size for <code>ggcorrmat</code> has been increased to 14 (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/579'>#579</a>) to increase its visibility compared to the correlation value text.</li>
-</ul>
-</div>
+<ul><li>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>The <code>pch</code> size for <code>ggcorrmat</code> has been increased to 14 (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/579'>#579</a>) to increase its visibility compared to the correlation value text.</p></li>
+<li><p><code>ggwithinstats</code> gains <code>point.args</code> to change <code>geom_point</code>.</p></li>
+</ul></div>
     <div id="ggstatsplot-072" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.2">
-<a href="#ggstatsplot-072" class="anchor"></a>ggstatsplot 0.7.2<small> 2021-04-12 </small>
-</h1>
+<a href="#ggstatsplot-072" class="anchor" aria-hidden="true"></a>ggstatsplot 0.7.2<small> 2021-04-12 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li><p>To reduce the dependency load, <code>ggExtra</code> moves from <code>Imports</code> to <code>Suggests</code>.</p></li>
+<ul><li><p>To reduce the dependency load, <code>ggExtra</code> moves from <code>Imports</code> to <code>Suggests</code>.</p></li>
 <li><p>All functions are more <em>robust</em> in the sense that when statistical analysis fails, they will return only the plots with no subtitles/captions. This helps avoid difficult-to-diagnose edge case failures when the primary functions are used in <code>grouped_</code> functions (e.g., <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/559'>#559</a>). The <code>ggpiestats</code> and <code>ggbarstats</code> functions always behaved this way, but the rest of the functions now also mimic this behavior.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li>The <code>ggcoefstats</code> labels do not contain degrees of freedom when they are not available instead of displaying <code>Inf</code>.</li>
-</ul>
-</div>
+</ul><p>MINOR CHANGES</p>
+<ul><li>The <code>ggcoefstats</code> labels do not contain degrees of freedom when they are not available instead of displaying <code>Inf</code>.</li>
+</ul></div>
     <div id="ggstatsplot-071" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.1">
-<a href="#ggstatsplot-071" class="anchor"></a>ggstatsplot 0.7.1<small> 2021-03-11 </small>
-</h1>
+<a href="#ggstatsplot-071" class="anchor" aria-hidden="true"></a>ggstatsplot 0.7.1<small> 2021-03-11 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li>Based on feedback from the users, the argument <code>title.prefix</code> is now removed. It led to redundant title prefixes across different facets of the plot. Given that <code>grouped_</code> functions require users to set <code>grouping.var</code>, it is fair to assume what variable the levels in the title correspond to.</li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>Adapts to changes made in <code>statsExpressions 1.0.0</code>.</p></li>
+<ul><li>Based on feedback from the users, the argument <code>title.prefix</code> is now removed. It led to redundant title prefixes across different facets of the plot. Given that <code>grouped_</code> functions require users to set <code>grouping.var</code>, it is fair to assume what variable the levels in the title correspond to.</li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>Adapts to changes made in <code>statsExpressions 1.0.0</code>.</p></li>
 <li><p><code>sample.size.label</code> argument is retired for <code>ggbetweenstats</code>, <code>ggwithinstats</code>, and <code>ggbarstats</code>. I do not think it is ever a good idea to not do this. If the users wish to not display sample sizes, they can easily do this using <code>scale_*</code> functions from <code>ggplot2</code>.</p></li>
 <li><p>In <code>ggpiestats</code> and <code>ggbarstats</code>, parametric proportion tests are now turned off when <code>type = "bayes"</code>.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-070" class="section level1">
 <h1 class="page-header" data-toc-text="0.7.0">
-<a href="#ggstatsplot-070" class="anchor"></a>ggstatsplot 0.7.0<small> 2021-02-19 </small>
-</h1>
+<a href="#ggstatsplot-070" class="anchor" aria-hidden="true"></a>ggstatsplot 0.7.0<small> 2021-02-19 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li><p><code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is when you specified <code>labels</code> argument. So, if you used <code>plotgrid.args = list(labels = "auto")</code>, you will now have to replace it with <code>plotgrid.args = list(tag_level = "keep")</code>. You can also use <code>annotation.args</code> (e.g., <code>annotation.args = list(tag_levels = "a")</code> to customize labels (this will create labels with pattern <code>a</code>, <code>b</code>, <code>c</code>, etc.). Another instance of breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</p></li>
+<ul><li><p><code>combine_plots</code> has been completely revised to rely not on <code>patchwork</code>, but on <code>patchwork</code>, to combine a list of <code>ggplot</code> together. This was done to have a leaner syntax. With this revision, its vestigial twin <code>combine_plots</code> is no longer needed and has been removed. This should not break any of the existing instances of <code>grouped_</code> functions, although it will lead to changed graphical layouts. The only instance in which this change will lead to a breakage is when you specified <code>labels</code> argument. So, if you used <code>plotgrid.args = list(labels = "auto")</code>, you will now have to replace it with <code>plotgrid.args = list(tag_level = "keep")</code>. You can also use <code>annotation.args</code> (e.g., <code>annotation.args = list(tag_levels = "a")</code> to customize labels (this will create labels with pattern <code>a</code>, <code>b</code>, <code>c</code>, etc.). Another instance of breakage is if you had used <code>combine_plots</code> function and provided individual plots to <code>...</code> instead as a <code>list</code>.</p></li>
 <li><p>To avoid confusion among users, the default trimming level for all functions is now changed from <code>tr = 0.1</code> to <code>tr = 0.2</code> (which is what <code>WRS2</code> defaults to).</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>All robust tests in this package were based on trimmed means, except for correlation test. This has been changed: the robust correlation measure is now Winsorized correlation, which is based on trimming. Therefore, the <code>beta</code> argument has been replaced by <code>tr</code> argument. This should result only in minor changes in correlation coefficient estimates.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>All robust tests in this package were based on trimmed means, except for correlation test. This has been changed: the robust correlation measure is now Winsorized correlation, which is based on trimming. Therefore, the <code>beta</code> argument has been replaced by <code>tr</code> argument. This should result only in minor changes in correlation coefficient estimates.</p></li>
 <li><p>Using <code>annotate</code> instead of <code>geom_label</code> had significantly slowed down <code>gghistostats</code> and <code>ggdotplotstats</code> functions. This has been fixed.</p></li>
 <li><p>Removes the vestigial <code>notch</code> and <code>notchwidth</code> arguments for <code>ggbetweenstats</code> and <code>ggwithinstats</code>.</p></li>
 <li><p>All Bayesian expression templates are now explicit about the type of estimate being displayed.</p></li>
-<li><p>For <code>gghistostats</code> and <code>ggdotplotstats</code>, the centrality measure labels used to be attached to the vertical line, but this occluded the underlying data. Now this label is instead shown on the top <code>x</code>-axis. Note that this means that if you make any further changes to the resulting plot using the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">ggplot2::scale_x_continuous</a></code> function, this label will likely disappear. The <code>centrality.k</code> argument is retired in favor of <code>k</code>.</p></li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>crr</code>, <code>eglm</code>, <code>elm</code>, <code>varest</code>.</p></li>
+<li><p>For <code>gghistostats</code> and <code>ggdotplotstats</code>, the centrality measure labels used to be attached to the vertical line, but this occluded the underlying data. Now this label is instead shown on the top <code>x</code>-axis. Note that this means that if you make any further changes to the resulting plot using the <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">ggplot2::scale_x_continuous</a></code> function, this label will likely disappear. The <code>centrality.k</code> argument is retired in favor of <code>k</code>.</p></li>
+</ul><p>NEW FEATURES</p>
+<ul><li><p>More models supported in <code>ggcoefstats</code>: <code>crr</code>, <code>eglm</code>, <code>elm</code>, <code>varest</code>.</p></li>
 <li><p><code>ggbetweenstats</code>, <code>ggwithinstats</code>, <code>gghistostats</code>, <code>ggdotplotstats</code> gain argument <code>centrality.type</code> that can be used to specify which centrality parameter is to be displayed. So one can have <code>type = "robust"</code> and still show median as centrality parameter by choosing <code>centrality.type =     "nonparametric"</code>.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-068" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.8">
-<a href="#ggstatsplot-068" class="anchor"></a>ggstatsplot 0.6.8<small> 2021-01-19 </small>
-</h1>
+<a href="#ggstatsplot-068" class="anchor" aria-hidden="true"></a>ggstatsplot 0.6.8<small> 2021-01-19 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li><p><code>gghistostats</code> removes <code>bar.measure</code> argument. The function now defaults to showing the <code>count</code> information on the <code>x</code>-axis and the <code>proportion</code> information on the duplicated <code>x</code>-axis.</p></li>
+<ul><li><p><code>gghistostats</code> removes <code>bar.measure</code> argument. The function now defaults to showing the <code>count</code> information on the <code>x</code>-axis and the <code>proportion</code> information on the duplicated <code>x</code>-axis.</p></li>
 <li><p><code>ggscatterstats</code> removes <code>method</code> and <code>method.args</code> arguments. It will no longer be possible to use this function to visualize data for when the model is not linear. It also retires <code>margins</code> argument.</p></li>
 <li><p>For <code>ggbetweenstats</code> and <code>ggwithinstats</code> functions, the arguments of type <code>mean.*</code> have all been replaced by <code>centrality.*</code>. This is because now these functions decide which central tendency measure to show depending on the <code>type</code> argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric, <strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes).</p></li>
 <li><p>Similarly, <code>gghistostats</code> and <code>ggdotplotstats</code> functions also decide which central tendency measure to show depending on the <code>type</code> argument (<strong>mean</strong> for parametric, <strong>median</strong> for non-parametric, <strong>trimmed mean</strong> for robust, and <strong>MAP estimator</strong> for Bayes). Therefore, <code>centrality.parameter</code> argument has been removed. If you want to turn off displaying centrality measure, set <code>centrality.plotting = FALSE</code>.</p></li>
@@ -323,372 +301,257 @@
 <li><p><code>ggscatterstats</code> defaults to <code>densigram</code> as the marginal distribution visualization.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> now display the centrality tendency measure in such a way that the label doesn’t occlude any of the raw data points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/429'>#429</a>).</p></li>
 <li><p><code>mean.ci</code> argument is retired for <code>ggbetweenstats</code> and <code>ggwithinstats</code>. Future <code>ggstatsplot</code> releases will be providing different centrality measures depending on the <code>type</code> argument and it is not guaranteed that all of them will have CIs available. So, for the sake of consistency, this argument is just going to be retired.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>ggcorrmat</code> uses pretty formatting to display sample size information.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>ggcorrmat</code> uses pretty formatting to display sample size information.</p></li>
 <li><p><code>ggcoefstats</code> now also displays degrees of freedom for chi-squared tests.</p></li>
 <li><p>Expects minor changes in some of the effect sizes and their confidence intervals due to changes in <code>statsExpressions</code>.</p></li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>fixest</code>, <code>ivFixed</code>, <code>ivprobit</code>, <code>riskRegression</code>.</p></li>
+</ul><p>NEW FEATURES</p>
+<ul><li><p>More models supported in <code>ggcoefstats</code>: <code>fixest</code>, <code>ivFixed</code>, <code>ivprobit</code>, <code>riskRegression</code>.</p></li>
 <li><p><code>ggcorrmat</code> supports partial correlations.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-066" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.6">
-<a href="#ggstatsplot-066" class="anchor"></a>ggstatsplot 0.6.6<small> 2020-12-03 </small>
-</h1>
+<a href="#ggstatsplot-066" class="anchor" aria-hidden="true"></a>ggstatsplot 0.6.6<small> 2020-12-03 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li><p><code>ggcoefstats</code> no longer supports <code>exponentiate</code> argument. If it is specified, the user will have to themselves adjust the scales appropriately.</p></li>
+<ul><li><p><code>ggcoefstats</code> no longer supports <code>exponentiate</code> argument. If it is specified, the user will have to themselves adjust the scales appropriately.</p></li>
 <li>
 <p><code>ggcorrmat</code> defaults have changed significantly:</p>
-<ol>
-<li><p>As a matter of good practice, the <em>p</em>-values are adjusted by default for multiple comparisons.</p></li>
+<ol style="list-style-type: decimal"><li><p>As a matter of good practice, the <em>p</em>-values are adjusted by default for multiple comparisons.</p></li>
 <li><p>The default matrix is upper type, and not the full matrix, which features many redundant comparisons and self-correlations diagonally.</p></li>
 <li><p>Default text size for legend has been increased to 15 and background grid has been removed.</p></li>
-</ol>
-</li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li><p>In the prior release, when the GitHub version of <code>BayesFactor</code> wasn’t present, <code>ggwithinstats</code> just outright failed to run for ANOVA designs. This has been fixed.</p></li>
+</ol></li>
+</ul><p>BUG FIXES</p>
+<ul><li><p>In the prior release, when the GitHub version of <code>BayesFactor</code> wasn’t present, <code>ggwithinstats</code> just outright failed to run for ANOVA designs. This has been fixed.</p></li>
 <li><p>Setting <code>mean.path = FALSE</code> in <code>ggwithinstats</code> produced incorrect colors for points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/470'>#470</a>). This bug was introduced in <code>0.6.5</code> and is now fixed.</p></li>
-<li><p>If user had set <code><a href="https://rdrr.io/r/base/options.html">options(scipen = 999)</a></code> in their session, the <em>p</em>-value formatting for <code>ggpiestats</code> and <code>ggcoefstats</code> looked super-ugly (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/478'>#478</a>). This has been fixed.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>Drops <code>broomExtra</code> from dependencies. All regression modeling-related analysis now relies on <code>easystats</code> ecosystem.</p></li>
+<li><p>If user had set <code>options(scipen = 999)</code> in their session, the <em>p</em>-value formatting for <code>ggpiestats</code> and <code>ggcoefstats</code> looked super-ugly (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/478'>#478</a>). This has been fixed.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>Drops <code>broomExtra</code> from dependencies. All regression modeling-related analysis now relies on <code>easystats</code> ecosystem.</p></li>
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> don’t support returning dataframes. See FAQ vignette on how to get these dataframes: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1</a></p></li>
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> were not supposed to support returning Bayes Factor for paired contingency table analysis, which is not supported in <code>BayesFactor</code> itself.</p></li>
 <li><p><code>ggcoefstats</code> defaults to displaying the intercept term. Also, when the degrees of freedom are not available for <code>t</code>-statistic, they are displayed to be <code>Inf</code>, in keeping with <code>easystats</code> conventions.</p></li>
 <li><p>Instead of showing significance of <em>p</em>-values with APA’s asterisks conventions, <code>ggbarstats</code> now instead shows the actual <em>p</em>-values from one-sample proportion tests.</p></li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>Glm</code>.</li>
-</ul>
-</div>
+</ul><p>NEW FEATURES</p>
+<ul><li>More models supported in <code>ggcoefstats</code>: <code>Glm</code>.</li>
+</ul></div>
     <div id="ggstatsplot-065" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.5">
-<a href="#ggstatsplot-065" class="anchor"></a>ggstatsplot 0.6.5<small> 2020-10-31 </small>
-</h1>
+<a href="#ggstatsplot-065" class="anchor" aria-hidden="true"></a>ggstatsplot 0.6.5<small> 2020-10-31 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li>
+<ul><li>
 <code>ggpiestats</code> and <code>ggbarstats</code> no longer have the vestigial arguments <code>main</code> and <code>condition</code>, which are superseded by <code>x</code> and <code>y</code>, respectively.</li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>For consistency and to reduce confusion, all Bayes Factor (irrespective of whether in the subtitle or caption) are always in favor of null over alternative (<code>BF01</code>).</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>For consistency and to reduce confusion, all Bayes Factor (irrespective of whether in the subtitle or caption) are always in favor of null over alternative (<code>BF01</code>).</p></li>
 <li><p>Retires centrality parameter tagging functionality of <code>ggscatterstats</code>. Although it was not the default, when turned on, it definitely created a cluttered plot.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-061" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.1">
-<a href="#ggstatsplot-061" class="anchor"></a>ggstatsplot 0.6.1<small> 2020-10-06 </small>
-</h1>
+<a href="#ggstatsplot-061" class="anchor" aria-hidden="true"></a>ggstatsplot 0.6.1<small> 2020-10-06 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li>
+<ul><li>
 <code>ggbetweenstats</code> and <code>ggwithinstats</code> functions now default to <code>pairwise.comparisons = TRUE</code>.</li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>Plot borders are now removed from the default theme.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>Plot borders are now removed from the default theme.</p></li>
 <li><p>Small <em>p</em>-values (&lt; 0.001) are now displayed in scientific notation.</p></li>
-</ul>
-<p>BREAKING CHANGES</p>
-<ul>
-<li>
+</ul><p>BREAKING CHANGES</p>
+<ul><li>
 <code>pairwiseComparisons</code> re-exports are deprecated.</li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-060" class="section level1">
 <h1 class="page-header" data-toc-text="0.6.0">
-<a href="#ggstatsplot-060" class="anchor"></a>ggstatsplot 0.6.0<small> 2020-09-13 </small>
-</h1>
+<a href="#ggstatsplot-060" class="anchor" aria-hidden="true"></a>ggstatsplot 0.6.0<small> 2020-09-13 </small></h1>
 <p>NEW FEATURES</p>
-<ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>BFBayesFactor</code>, <code>betamfx</code>, <code>crq</code>, <code>coxph.penal</code>, <code>geeglm</code>, <code>glht</code>, <code>glmm</code>, <code>lm_robust</code>, <code>lqm</code>, <code>lqmm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>negbinmfx</code>, <code>logitmfx</code>, <code>logitsf</code>, <code>margins</code>, <code>poissonmfx</code>, <code>betaor</code>, <code>negbinirr</code>, <code>logitor</code>, <code>metafor</code>, <code>metaplus</code>, <code>orm</code>, <code>poissonirr</code>, <code>semLm</code>, <code>semLme</code>, <code>vgam</code>.</p></li>
+<ul><li><p>More models supported in <code>ggcoefstats</code>: <code>BFBayesFactor</code>, <code>betamfx</code>, <code>crq</code>, <code>coxph.penal</code>, <code>geeglm</code>, <code>glht</code>, <code>glmm</code>, <code>lm_robust</code>, <code>lqm</code>, <code>lqmm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>negbinmfx</code>, <code>logitmfx</code>, <code>logitsf</code>, <code>margins</code>, <code>poissonmfx</code>, <code>betaor</code>, <code>negbinirr</code>, <code>logitor</code>, <code>metafor</code>, <code>metaplus</code>, <code>orm</code>, <code>poissonirr</code>, <code>semLm</code>, <code>semLme</code>, <code>vgam</code>.</p></li>
 <li><p><code>ggpiestats</code> gains <code>label.repel</code> argument to cover contexts in which the labels might overlap. Setting it to <code>TRUE</code> will minimize such an overlap.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> gain <code>ggsignif.args</code> argument to make it easy to change aesthetics of the pairwise comparison geom.</p></li>
 <li><p>The subtitle and caption for Bayes Factor tests now also provide information about posterior estimates, when relevant.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>Removed unused <code>intent_morality</code> dataset.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>Removed unused <code>intent_morality</code> dataset.</p></li>
 <li><p><code>ggcoefstats</code> retires <code>caption.summary</code> argument. So, by default, the caption is going to contain as much information as it can and the users can then choose to modify the default caption using <code>ggplot2</code> functions.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>The argument <code>method</code> for <code>ggcorrmat</code> has been renamed to <code>matrix.method</code>, since it was confusing whether this method referred to correlation method.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>The argument <code>method</code> for <code>ggcorrmat</code> has been renamed to <code>matrix.method</code>, since it was confusing whether this method referred to correlation method.</p></li>
 <li><p>For both <code>ggpiestats</code> and <code>ggbarstats</code>, the count labels no longer include <code>n =</code> in them as this was confusing since all labels had <code>n =</code> in them with no further explanation about how this <code>n</code> differed from <code>n</code> in the proportion test.</p></li>
 <li><p>No longer relies on <code>groupedstats</code> package.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-050" class="section level1">
 <h1 class="page-header" data-toc-text="0.5.0">
-<a href="#ggstatsplot-050" class="anchor"></a>ggstatsplot 0.5.0<small> 2020-05-30 </small>
-</h1>
+<a href="#ggstatsplot-050" class="anchor" aria-hidden="true"></a>ggstatsplot 0.5.0<small> 2020-05-30 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li>
+<ul><li>
 <p>The <code>pairwise.annotation</code> argument for <code>ggbetweenstats</code> and <code>ggwithinstats</code> is deprecated. This was done because-</p>
-<ol>
-<li><p>Different fields have different schema for what significance levels asterisks represent.</p></li>
+<ol style="list-style-type: decimal"><li><p>Different fields have different schema for what significance levels asterisks represent.</p></li>
 <li><p>The <em>p</em>-value labels also contain information about whether they are adjusted for multiple comparisons.</p></li>
-</ol>
-</li>
+</ol></li>
 <li><p>The <code>normality_message</code> and <code>bartlett_message</code> helper functions have been removed. This is because model assumption checks don’t really fall under the purview of this package. There are excellent visualization tools out there for model assumption checks (<code>ggResidpanel</code>, <code>performance</code>, <code>DHARMa</code>, <code>olsrr</code>, etc.), which should be preferred over unhelpful messages with only <em>p</em>-values that these functions were printing. For what it’s worth, the functions where these messages were displayed (<code>ggbetweenstats</code> or <code>ggwithinstats</code>) feature visualizations rich enough and defaults sensible enough that most of the time one can either assess these assumptions from the plots or need not worry about them.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p><code>ggcoefstats</code> has been refactored to reflect that <code><a href="https://indrajeetpatil.github.io/broomExtra//reference/tidy_parameters.html" class="external-link">broomExtra::tidy_parameters</a></code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
 <li><p>Reverts aligning title and subtitle with the plot and not the axes, since it looked pretty ugly (esp., <code>ggcoefstats</code>) and was causing problems for labels.</p></li>
 <li><p><code>factor.levels</code> (for <code>ggpiestats</code>) and <code>labels.legend</code> (for <code>ggbarstats</code>) are deprecated. If users would like to changes the names for factor levels, this should be done outside of <code>ggstatsplot</code>.</p></li>
 <li><p>The non-parametric post hoc test for between-subjects design has been changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.</p></li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>clmm2</code>, <code>mcmc.list</code>, <code>robmixglm</code>.</li>
-</ul>
-</div>
+</ul><p>NEW FEATURES</p>
+<ul><li>More models supported in <code>ggcoefstats</code>: <code>bayesGARCH</code>, <code>clm2</code>, <code>clmm2</code>, <code>mcmc.list</code>, <code>robmixglm</code>.</li>
+</ul></div>
     <div id="ggstatsplot-040" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.0">
-<a href="#ggstatsplot-040" class="anchor"></a>ggstatsplot 0.4.0<small> 2020-04-15 </small>
-</h1>
+<a href="#ggstatsplot-040" class="anchor" aria-hidden="true"></a>ggstatsplot 0.4.0<small> 2020-04-15 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li><p><code>ggcorrmat</code> no longer returns matrices of correlation coefficients or other details. It now returns either a plot or a dataframe and this can dataframe can then be used to create matrices.</p></li>
-<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this: <a href="https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code" class="uri">https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code</a></p></li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>bayesx</code>, <code>BBmm</code>, <code>brmultinom</code>, <code>lmerModLmerTest</code>, <code>lrm</code>.</p></li>
+<ul><li><p><code>ggcorrmat</code> no longer returns matrices of correlation coefficients or other details. It now returns either a plot or a dataframe and this can dataframe can then be used to create matrices.</p></li>
+<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this: <a href="https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code" class="external-link uri">https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code</a></p></li>
+</ul><p>NEW FEATURES</p>
+<ul><li><p>More models supported in <code>ggcoefstats</code>: <code>bayesx</code>, <code>BBmm</code>, <code>brmultinom</code>, <code>lmerModLmerTest</code>, <code>lrm</code>.</p></li>
 <li><p>Specifying <code>output = "proptest"</code> for <code>ggpiestats</code> and <code>ggbarstats</code> functions will now return a dataframe containing results from proportion test.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> will display pairwise comparisons even if <code>results.subtitle</code> is set to <code>FALSE</code>.</p></li>
 <li><p><code>ggcorrmat</code> supports computing Bayes Factors for Pearson’s <em>r</em> correlation.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> now support pairwise comparisons for Bayes Factor test.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
-<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="external-link uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
+<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html" class="external-link">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html" class="external-link">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
 <li><p>Due to changes in one of the downstream dependencies, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>ggcorrmat</code> now internally relies on <code>correlation</code> for correlation analyses.</p></li>
 <li><p><code>ggbarstats</code> no longer displays <code>"percent"</code> for Y-axis label as this was redundant information.</p></li>
 <li><p>Continuing the argument cleanup that began in <code>0.3.0</code>, <code>ggcoefstats</code> gains <code>point.args</code> argument instead of individuals <code>point.*</code> arguments.</p></li>
 <li><p>The subtitles are more explicit about the details of the test. For the same reason <code>stat.title</code> argument from all relevant functions is retired since this argument was supposed to be for entering some additional details about the test. Additionally, the plot titles and subtitles for some of the plots are aligned with the plot.</p></li>
 <li><p><code>ggcorrmat</code> legend, in case of missing values, shows mode - instead of median - for the distribution of sample pairs.</p></li>
 <li>
 <p>The following vestigial arguments are retired:</p>
-<ul>
-<li><p><code>caption.default</code> in <code>ggcorrmat</code></p></li>
+<ul><li><p><code>caption.default</code> in <code>ggcorrmat</code></p></li>
 <li><p><code>k.caption.summary</code> in <code>ggcoefstats</code></p></li>
-</ul>
-</li>
-</ul>
-</div>
+</ul></li>
+</ul></div>
     <div id="ggstatsplot-031" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1">
-<a href="#ggstatsplot-031" class="anchor"></a>ggstatsplot 0.3.1<small> 2020-03-06 </small>
-</h1>
+<a href="#ggstatsplot-031" class="anchor" aria-hidden="true"></a>ggstatsplot 0.3.1<small> 2020-03-06 </small></h1>
 <p>This is a hotfix release to correct some of the failing tests and other minor breakages resulting from the new release of <code>ggplot2 3.3.0</code>.</p>
 <p>MAJOR CHANGES</p>
-<ul>
-<li>
+<ul><li>
 <code>ggpiestats</code> loses <code>sample.size.label</code> argument since this information is included in the goodness of fit test results itself. So setting <code>proportion.test</code> to <code>FALSE</code> will suppress this information.</li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-030" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
-<a href="#ggstatsplot-030" class="anchor"></a>ggstatsplot 0.3.0<small> 2020-03-01 </small>
-</h1>
+<a href="#ggstatsplot-030" class="anchor" aria-hidden="true"></a>ggstatsplot 0.3.0<small> 2020-03-01 </small></h1>
 <p>BREAKING CHANGES</p>
-<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get arguments like <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code><a href="https://rdrr.io/r/base/list.html">list(size = 5, color = "darkgreen", alpha = 0.8)</a></code> can be supplied).</p>
-<ul>
-<li><p>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</p></li>
+<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get arguments like <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code>list(size = 5, color = "darkgreen", alpha = 0.8)</code> can be supplied).</p>
+<ul><li><p>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</p></li>
 <li><p>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</p></li>
-<li><p><code>ggcorrmat</code> no longer has <code>corr.method</code> argument. To be consistent with rest of the functions in this package, the type of statistics should be specified using <code>type</code> argument. Additional, it gains a new argument <code>ggcorrplot.args</code>, which can be used to pass additional arguments to the underlying plotting function (<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code>).</p></li>
+<li><p><code>ggcorrmat</code> no longer has <code>corr.method</code> argument. To be consistent with rest of the functions in this package, the type of statistics should be specified using <code>type</code> argument. Additional, it gains a new argument <code>ggcorrplot.args</code>, which can be used to pass additional arguments to the underlying plotting function (<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code>).</p></li>
 <li><p>Both <code>gghistostats</code> and <code>ggdotplotstats</code> now use the following arguments to modify <code>geom</code>s corresponding to the lines and labels: <code>test.value.line.args</code>, <code>test.value.label.args</code>, <code>centrality.line.args</code>, <code>centrality.label.args</code>. This helps avoid specifying millions of arguments.</p></li>
 <li><p>Removes the vestigial <code>ggplot_converter</code> function.</p></li>
 <li><p><code>ggpiestats</code> and <code>ggbarstats</code> remove the following vestigial arguments: <code>facet.wrap.name</code>, <code>bias.correct</code>, <code>bar.outline.color</code>. The <code>bar.proptest</code> and <code>facet.proptest</code> arguments were difficult to remember and confusing and are replaced by a common <code>proportion.test</code> argument. Additionally, the following arguments have all been removed and replaced by <code>label</code> argument: <code>slice.label</code>, <code>bar.label</code>, <code>data.label</code>. These plethora of options was a headache to remember.</p></li>
 <li><p><code>gghistostats</code> loses the following arguments: <code>fill.gradient</code>, <code>low.color</code>, <code>high.color</code>. It made no sense to add a color gradient to this plot when the Y-axis already displayed the information about what the bar represented.</p></li>
-<li><p><code>ggscatterstats</code> loses the following arguments: <code>palette</code> and <code>package</code>. Since this function requires only two colors, it didn’t make much sense to use color palettes to specify this. They can be instead specified using <code>xfill</code> and <code>yfill</code>. You can always use <code><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html">paletteer::paletteer_d</a></code> to get a vector of color values and then provide values of your choosing to <code>xfill</code> and <code>yfill</code>.</p></li>
+<li><p><code>ggscatterstats</code> loses the following arguments: <code>palette</code> and <code>package</code>. Since this function requires only two colors, it didn’t make much sense to use color palettes to specify this. They can be instead specified using <code>xfill</code> and <code>yfill</code>. You can always use <code><a href="https://rdrr.io/pkg/paletteer/man/paletteer_d.html" class="external-link">paletteer::paletteer_d</a></code> to get a vector of color values and then provide values of your choosing to <code>xfill</code> and <code>yfill</code>.</p></li>
 <li><p>Removes sorting options in <code>ggbetweenstats</code> and <code>ggwithinstats</code> functions. This is something the users can easily do before entering the data in these functions.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p><code>ggcorrmat</code> was never supposed to work with Kendall’s correlation coefficient but it accidentally did. This is no longer the case.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p><code>ggcorrmat</code> was never supposed to work with Kendall’s correlation coefficient but it accidentally did. This is no longer the case.</p></li>
 <li><p><code>ggstatsplot</code> now has a logo, thanks to Sarah! :)</p></li>
 <li><p>The default <code>theme_ggstatsplot</code> changes slightly. The biggest change is that the title and the subtitle for plots are now aligned to the left of the plot. This change also forced the legend for <code>ggpiestats</code> to be displayed on the right side of the plot rather than at the bottom.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>bcplm</code>, <code>bife</code>, <code>cglm</code>, <code>crch</code>, <code>DirichReg</code>, <code>LORgee</code>, <code>zcpglm</code>, <code>zeroinfl</code>.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>More models supported in <code>ggcoefstats</code>: <code>BBreg</code>, <code>bcplm</code>, <code>bife</code>, <code>cglm</code>, <code>crch</code>, <code>DirichReg</code>, <code>LORgee</code>, <code>zcpglm</code>, <code>zeroinfl</code>.</p></li>
 <li><p>Following functions are now re-exported from <code>ipmisc</code>: <code>bartlett_message</code>, <code>normality_message</code>. A few other internal data wrangling functions now reside in <code>ipmisc</code>.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-020" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0">
-<a href="#ggstatsplot-020" class="anchor"></a>ggstatsplot 0.2.0<small> 2020-02-03 </small>
-</h1>
+<a href="#ggstatsplot-020" class="anchor" aria-hidden="true"></a>ggstatsplot 0.2.0<small> 2020-02-03 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li><p>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</p></li>
+<ul><li><p>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</p></li>
 <li><p><code>ggstatsplot</code> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <code>statsExpressions</code> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code> and follow a more logical nomenclature. For the same reason, <code>lm_effsize_ci</code> function is also no longer exported and lives in the <code>groupedstats</code> package.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>The summary caption no longer displays log-likelihood value because it tends to be not available for a number of regression model objects and so the caption was unnecessarily being skipped.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>The summary caption no longer displays log-likelihood value because it tends to be not available for a number of regression model objects and so the caption was unnecessarily being skipped.</p></li>
 <li><p>Supports robust and Bayes Factors for random-effects meta-analysis.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>New dataset included: <code>bugs_wide</code></p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>New dataset included: <code>bugs_wide</code></p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>cgam</code>, <code>cgamm</code>, <code>coxme</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>complmrob</code>, <code>feis</code>, <code>flexsurvreg</code>, <code>glmx</code>, <code>hurdle</code>, <code>iv_robust</code>, <code>mixor</code>, <code>rqss</code>, <code>truncreg</code>, <code>vgam</code>.</p></li>
 <li><p>Removed vestigial arguments from <code>ggcorrmat</code> (e.g., <code>exact</code>, <code>continuity</code>, etc.) and <code>ggpiestats</code> (<code>bf.prior</code>, <code>simulate.p.value</code>, <code>B</code>, etc.).</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-014" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.4">
-<a href="#ggstatsplot-014" class="anchor"></a>ggstatsplot 0.1.4<small> 2019-12-18 </small>
-</h1>
+<a href="#ggstatsplot-014" class="anchor" aria-hidden="true"></a>ggstatsplot 0.1.4<small> 2019-12-18 </small></h1>
 <p>BUG FIXES</p>
-<ul>
-<li>
+<ul><li>
 <code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce error with variables with pattern <code>mean</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/336'>#336</a>).</li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li>
 <code>pairwise_p</code> has been reintroduced as a number of users found it useful to call the function from <code>ggstatsplot</code> itself rather than using <code>pairwiseComparisons</code> package.</li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> instead of <code>(</code> to display confidence intervals. Additionally, <span class="math display"><em>μ</em></span> denoted sample mean, but was confused with population mean by some users. So these functions instead display <span class="math display"><em>μ̂</em></span>.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> use <code>[</code> instead of <code>(</code> to display confidence intervals. Additionally, <span class="math display"><em>μ</em></span> denoted sample mean, but was confused with population mean by some users. So these functions instead display <span class="math display"><em>μ̂</em></span>.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>bmlm</code>, <code>coeftest</code></p></li>
 <li><p>Adapts to the new syntax provided in <code>paletteer</code> package.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-013" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.3">
-<a href="#ggstatsplot-013" class="anchor"></a>ggstatsplot 0.1.3<small> 2019-11-21 </small>
-</h1>
+<a href="#ggstatsplot-013" class="anchor" aria-hidden="true"></a>ggstatsplot 0.1.3<small> 2019-11-21 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li>To avoid excessive arguments to function, most arguments relevant for <code>ggrepel</code> in <code>ggcoefstats</code> function have been removed. The users can instead provide all such arguments in a list to <code>stats.labels.args</code> argument.</li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce incorrect label if the dataframe already contains a variable named <code>n</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/317'>#317</a>) or variables with pattern <code>mean</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/322'>#322</a>).</p></li>
+<ul><li>To avoid excessive arguments to function, most arguments relevant for <code>ggrepel</code> in <code>ggcoefstats</code> function have been removed. The users can instead provide all such arguments in a list to <code>stats.labels.args</code> argument.</li>
+</ul><p>BUG FIXES</p>
+<ul><li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer produce incorrect label if the dataframe already contains a variable named <code>n</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/317'>#317</a>) or variables with pattern <code>mean</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/322'>#322</a>).</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> mean labels respect <code>k</code> argument (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/331'>#331</a>).</p></li>
-</ul>
-<p>MINOR</p>
-<ul>
-<li><p><code>ggcoefstats</code> now uses <code><a href="https://easystats.github.io/parameters/reference/p_value.html">parameters::p_value</a></code> instead of <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
+</ul><p>MINOR</p>
+<ul><li><p><code>ggcoefstats</code> now uses <code><a href="https://easystats.github.io/parameters/reference/p_value.html" class="external-link">parameters::p_value</a></code> instead of <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html" class="external-link">sjstats::p_value</a></code>, as requested by the maintainer of that package. This might lead to differences in <em>p</em>-values for <code>lmer</code> models.</p></li>
 <li><p>More models supported in <code>ggcoefstats</code>: <code>blavaan</code>, <code>bracl</code>, <code>brglm2</code>, <code>glmc</code>, <code>lavaan</code>, <code>nlreg</code>, <code>slm</code>, <code>wbgee</code>.</p></li>
 <li><p><code>ggcoefstats</code> gains <code>only.significant</code> argument to only display display stats labels for significant effects. This can be helpful when a large number of regression coefficients are to be displayed in a single plot.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-012" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.2">
-<a href="#ggstatsplot-012" class="anchor"></a>ggstatsplot 0.1.2<small> 2019-09-17 </small>
-</h1>
+<a href="#ggstatsplot-012" class="anchor" aria-hidden="true"></a>ggstatsplot 0.1.2<small> 2019-09-17 </small></h1>
 <p>MINOR</p>
-<ul>
-<li>Minor code refactoring that gets rid of the following dependencies: <code>magrittr</code>, <code>ellipsis</code>, <code>purrrlyr</code>.</li>
-</ul>
-<p>MAJOR</p>
-<ul>
-<li>The <em>p</em>-value label now specifies whether the <em>p</em>-value displayed in <code>ggbetweenstats</code> and <code>ggwithinstats</code> pairwise comparisons were adjusted or not for multiple comparisons.</li>
-</ul>
-</div>
+<ul><li>Minor code refactoring that gets rid of the following dependencies: <code>magrittr</code>, <code>ellipsis</code>, <code>purrrlyr</code>.</li>
+</ul><p>MAJOR</p>
+<ul><li>The <em>p</em>-value label now specifies whether the <em>p</em>-value displayed in <code>ggbetweenstats</code> and <code>ggwithinstats</code> pairwise comparisons were adjusted or not for multiple comparisons.</li>
+</ul></div>
     <div id="ggstatsplot-011" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.1">
-<a href="#ggstatsplot-011" class="anchor"></a>ggstatsplot 0.1.1<small> 2019-08-30 </small>
-</h1>
+<a href="#ggstatsplot-011" class="anchor" aria-hidden="true"></a>ggstatsplot 0.1.1<small> 2019-08-30 </small></h1>
 <p>ANNOUNCEMENTS</p>
 <p><code>ggstatsplot</code> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions that make stats subtitles are being moved to a new package called <code>statsExpressions</code>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <code>ggstatsplot</code> unless you have been using the helper functions.</p>
 <p>Additionally, multiple pairwise comparison tests are being moved to an independent package called <code>pairwiseComparisons</code>.</p>
 <p>This uncoupling is designed to achieve two things:</p>
-<ul>
-<li><p>Make the code base of more manageable size in <code>ggstatsplot</code>, which will make package development a bit easier.</p></li>
+<ul><li><p>Make the code base of more manageable size in <code>ggstatsplot</code>, which will make package development a bit easier.</p></li>
 <li><p>Make the workflow more customizable since now you can prepare your own plots and then use <code>statsExpressions</code> to display results in the plot rather than relying on <code>ggstatsplot</code> default plots which are heavily opinionated and not appealing to everyone.</p></li>
-</ul>
-<p>BREAKING CHANGES</p>
-<ul>
-<li><p>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <code>statsExpressions</code> package.</p></li>
+</ul><p>BREAKING CHANGES</p>
+<ul><li><p>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <code>statsExpressions</code> package.</p></li>
 <li><p>To be consistent with all the other <code>subtitle_</code> and <code>bf_</code> functions, <code>subtitle_contingency_tab</code> and <code>bf_contingency_tab</code> now use the arguments <code>x</code> and <code>y</code> instead of <code>main</code> and <code>condition</code>.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>Major refactoring to reduce the codesize and to rely fully on <code>rlang</code>.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>Major refactoring to reduce the codesize and to rely fully on <code>rlang</code>.</p></li>
 <li><p>There was confusion about what did the red point in <code>ggbetweenstats</code> and <code>ggbetweenstats</code> plots represents. Now the label also contains <span class="math inline"><em>μ</em></span> to highlight that what is being displayed is a mean value.</p></li>
 <li><p>To be consistent with the rest of the functions, <code>ggpiestats</code> and <code>ggbarstats</code> now uses the following aliases for arguments: <code>x</code> for <code>main</code> and <code>y</code> for <code>condition</code>. This change is backward-compatible and should not pose any problems for scripts that used <code>main</code> and <code>condition</code> arguments in these functions.</p></li>
 <li><p>Most subtitle expressions now report details about the design. In case of between-subjects design, this will be <span class="math inline"><em>n</em>_<em>o</em><em>b</em><em>s</em></span>, while in case of repeated measures design, this will be <span class="math inline"><em>n</em>_<em>p</em><em>a</em><em>i</em><em>r</em><em>s</em></span>.</p></li>
 <li><p><code>pairwise.annotation</code> now defaults to <code>"p.value"</code> rather than <code>"asterisk"</code> for <code>ggbetweenstats</code> and <code>ggwithinstats</code> (and their <code>grouped_</code> variants) functions. This was done because the asterisk conventions are not consistent across various scientific disciplines.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
 <li><p><code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> supports following objects: <code>bglmerMod</code>, <code>blmerMod</code>, <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>tobit</code>, <code>wblm</code>.</p></li>
-<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://generics.r-lib.org/reference/tidy.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
+<li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
 <li><p>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</p></li>
 <li><p>Removed <code>conf.method</code> and <code>conf.type</code> arguments for <code>ggcoefstats</code>. Also, <code>p.kr</code> argument removed because <code>ggcoefstats</code> will begin to rely on <code>parameters</code> instead of <code>sjstats</code> package to compute <em>p</em>-values for some regression models.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-0012" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.12">
-<a href="#ggstatsplot-0012" class="anchor"></a>ggstatsplot 0.0.12<small> 2019-07-12 </small>
-</h1>
+<a href="#ggstatsplot-0012" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.12<small> 2019-07-12 </small></h1>
 <p>BUG FIXES</p>
-<ul>
-<li>Bayes Factor in <code>ggwithinstats</code> caption, displayed by default, was incorrect. This has been fixed. This stemmed from a line of code which should have been <code>paired = TRUE</code>, but was instead <code>paired = FALSE</code>.</li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li>The effect size measure for Kruskal-Wallis test has been changed from the more obscure H-based eta-squared statistic to more common and interpretable epsilon-squared.</li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>ggcoefstats</code> defaults to <code>bf.message = TRUE</code> to be consistent with the rest of the functions in the package.</p></li>
+<ul><li>Bayes Factor in <code>ggwithinstats</code> caption, displayed by default, was incorrect. This has been fixed. This stemmed from a line of code which should have been <code>paired = TRUE</code>, but was instead <code>paired = FALSE</code>.</li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li>The effect size measure for Kruskal-Wallis test has been changed from the more obscure H-based eta-squared statistic to more common and interpretable epsilon-squared.</li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>ggcoefstats</code> defaults to <code>bf.message = TRUE</code> to be consistent with the rest of the functions in the package.</p></li>
 <li><p><code>ggcoefstats</code> supports the following class of objects: <code>epi.2by2</code>, <code>negbin</code>, <code>emmGrid</code>, <code>lmrob</code>, <code>glmrob</code>, <code>glmmPQL</code>, <code>data.table</code>.</p></li>
 <li><p><code>bf_ttest</code> is introduced as a general function. The previously exported <code>bf_one_sample_ttest</code> and <code>bf_two_sample_ttest</code> become its aliases.</p></li>
 <li><p><code>bf_meta_message</code> syntax changes to adapt to updates made to <code>metaBMA</code> package (thanks to <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/259'>#259</a>).</p></li>
-</ul>
-<p>BREAKING CHANGES</p>
-<ul>
-<li><p>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://ggplot2.tidyverse.org/reference/element.html">ggplot2::margin()</a></code>.</p></li>
+</ul><p>BREAKING CHANGES</p>
+<ul><li><p>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">ggplot2::margin()</a></code>.</p></li>
 <li><p><code>gghistostats</code> no longer allows <code>data</code> argument to be <code>NULL</code>. This is to make this function’s syntax consistent with rest of the functions in this package (none of which allow <code>data</code> to be <code>NULL</code>). This also removes confusion that arose for some users when <code>data</code> couldn’t be <code>NULL</code> for its <code>grouped_</code> cousin (<code>grouped_gghistostats</code>).</p></li>
 <li><p><code>outlier_df</code> function is no longer exported since it was always meant to be an internal function and was accidently exported during initial release and was retained for a while for backward compatibility.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-0011" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.11">
-<a href="#ggstatsplot-0011" class="anchor"></a>ggstatsplot 0.0.11<small> 2019-06-14 </small>
-</h1>
+<a href="#ggstatsplot-0011" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.11<small> 2019-06-14 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li><p>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</p></li>
+<ul><li><p>Instead of having two separate functions that dealt with repeated measures (<code>subtitle_friedman_nonparametric</code>) and between-subjects (<code>subtitle_kw_nonparametric</code>), a single function <code>subtitle_anova_nonparametric</code> handles both of these designs with the <code>paired</code> argument determining which test is run.</p></li>
 <li><p>All functions that supported Bayes Factor analysis (<code>type = "bf"</code>) will only return BF value and the scale used. Previously, this was a mix of parametric statistics and BF, which was confusing and often times misleading since these two types of analyses relied on different tests.</p></li>
 <li><p>The default for <code>bf.message</code> has been changed from <code>FALSE</code> to <code>TRUE</code>. This is to make the Bayes Factor analysis more visible to the user.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li>
 <code>ggscatterstats</code> returns only plot (without any statistical details) when the specified model is not linear (i.e., either when <code>method</code> argument is not <code>"lm"</code> or when <code>formula</code> is not <code>y ~ x</code>).</li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li><p>New functions <code>ggwithinstats</code> (and its <code>grouped_</code> variant) are introduced as a counterpart to <code>ggbetweenstats</code> to handle repeated measures designs.</p></li>
+</ul><p>NEW FEATURES</p>
+<ul><li><p>New functions <code>ggwithinstats</code> (and its <code>grouped_</code> variant) are introduced as a counterpart to <code>ggbetweenstats</code> to handle repeated measures designs.</p></li>
 <li><p>For repeated measures ANOVA, <code>subtitle_anova_nonparametric</code> now returns confidence intervals for Kendall’s <em>W</em>.</p></li>
 <li><p>All functions get <code>return</code> argument that can be used to return either <code>"plot"</code>, <code>"subtitle"</code>, or <code>"caption"</code>. This makes it unnecessary to remember which subtitle function is to be used where. As a result, in the next release, all subtitle making functions will not be exported and are encouraged not be used either by other developers or by users.</p></li>
 <li><p>Both <code>subtitle_anova_robust</code> and <code>subtitle_anova_parametric</code> gain a new argument <code>paired</code> to support repeated measures designs.</p></li>
@@ -696,112 +559,80 @@
 <li><p><code>ggcoefstats</code> gains <code>bf.message</code> argument to display a caption containing results from Bayesian random-effects meta-analysis. It therefore gains a new dependency: <code>metaBMA</code>.</p></li>
 <li><p><code>ggpiestats</code> and <code>ggcatstats</code> will now display Cramer’s <em>V</em> as effect size for one-sample proportion tests.</p></li>
 <li><p>All functions gain <code>stat.title</code> argument (<code>NULL</code> by default) that can be used to prefix the subtitle with a string of interest. This is possibly useful for specifying the details of the statistical test.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>pairwise_p()</code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>pairwise_p()</code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</p></li>
 <li><p>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <code>ggstatsplot</code> therefore gains <code>DescTools</code> as a dependency.</p></li>
 <li><p>The <code>sampling.plan</code> argument default for <code>ggbarstats</code> function has been changed from <code>"indepMulti"</code> to <code>"jointMulti"</code> to be consistent with its sister function <code>ggpiestats</code>.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-0010" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.10">
-<a href="#ggstatsplot-0010" class="anchor"></a>ggstatsplot 0.0.10<small> 2019-03-17 </small>
-</h1>
+<a href="#ggstatsplot-0010" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.10<small> 2019-03-17 </small></h1>
 <p>NEW FEATURES</p>
-<ul>
-<li><p><code>ggcoefstats</code> can support following new model objects: <code>rjags</code>.</p></li>
+<ul><li><p><code>ggcoefstats</code> can support following new model objects: <code>rjags</code>.</p></li>
 <li><p>New <code>VR_dilemma</code> dataset for toying around with within-subjects design.</p></li>
 <li><p><code>subtitle_t_onesample</code> supports both Cohen’s <em>d</em> and Hedge’s <em>g</em> as effect sizes and also produces their confidence intervals. Additionally, non-central variants of these effect sizes are also supported. Thus, <code>gghistostats</code> and its <code>grouped_</code> variant gets two new arguments: <code>effsize.type</code>, <code>effsize.noncentral</code>.</p></li>
 <li><p><code>ggpiestats</code> used to display odds ratio as effect size for paired designs (McNemar test). But this was only working when the analysis was a 2 x 2 contingency table. It now instead displays Cohen’s <em>G</em> as effect size, which generalizes to any kind of design.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>The internal function <code>outlier_df</code> to add a column specifying outlier status of any given data point is now exported.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>The internal function <code>outlier_df</code> to add a column specifying outlier status of any given data point is now exported.</p></li>
 <li><p><code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</p></li>
 <li><p><code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as <span class="math display">$$Z/\sqrt{N}$$</span> (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-009" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.9">
-<a href="#ggstatsplot-009" class="anchor"></a>ggstatsplot 0.0.9<small> 2019-02-18 </small>
-</h1>
+<a href="#ggstatsplot-009" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.9<small> 2019-02-18 </small></h1>
 <p>BREAKING CHANGES</p>
-<ul>
-<li>
+<ul><li>
 <code>subtitle_t_onesample</code> no longer has <code>data</code> as the optional argument. This was done to be consistent with other subtitle helper functions.</li>
-</ul>
-<p>NEW FEATURES</p>
-<ul>
-<li><p>New function <code>ggbarstats</code> (and its <code>grouped_</code> variant) introduced for making bar charts (thanks to <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/78'>#78</a>).</p></li>
+</ul><p>NEW FEATURES</p>
+<ul><li><p>New function <code>ggbarstats</code> (and its <code>grouped_</code> variant) introduced for making bar charts (thanks to <a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/78'>#78</a>).</p></li>
 <li><p><code>ggcoefstats</code> also displays a caption with model summary when meta-analysis is required.</p></li>
 <li><p><code>gghistostats</code> and its <code>grouped_</code> variant has a new argument <code>normal.curve</code> to superpose a normal distribution curve on top of the histogram (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/138'>#138</a>).</p></li>
 <li><p><code>ggcoefstats</code> can support following new regression model objects: <code>brmsfit</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>mcmc</code>, <code>mjoint</code>, <code>stanreg</code>.</p></li>
 <li><p>New function to convert plots which are not of <code>gg</code>/<code>ggplot</code> class to <code>ggplot</code> class objects.</p></li>
 <li><p>Instead of using <code>effsize</code> to compute Cohen’s <em>d</em> and Hedge’s <em>g</em>, <code>ggstatsplot</code> now relies on a new (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/159'>#159</a>) internal function <code>effect_t_parametric</code> to compute them. This removes <code>effsize</code> from dependencies.</p></li>
 <li><p>To be consistent with other functions in this package, both <code>ggbarstats</code> and <code>ggpiestats</code> gain <code>results.subtitle</code> which can be set to <code>FALSE</code> if statistical analysis is not required, in which case <code>subtitle</code> argument can be used to provide alternative subtitle.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li>
 <code>ggbetweenstats</code> now defaults to using noncentral-<em>t</em> distribution for computing Cohen’s <em>d</em> and Hedge’s <em>g</em>. To get variants with central-<em>t</em> distribution, use <code>effsize.noncentral = FALSE</code>.</li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>All <code>grouped_</code> functions had argument <code>title.prefix</code> that defaulted to <code>"Group"</code>. It now instead defaults to <code>NULL</code>, in which case the prefix will variable name for <code>grouping.var</code> argument.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>All <code>grouped_</code> functions had argument <code>title.prefix</code> that defaulted to <code>"Group"</code>. It now instead defaults to <code>NULL</code>, in which case the prefix will variable name for <code>grouping.var</code> argument.</p></li>
 <li><p>To accommodate non-parametric tests, <code>subtitle_template</code> function can now work with <code>parameter = NULL</code>.</p></li>
 <li><p>For <code>ggbetweenstats</code>, details contained in the subtitle for non-parametric test are modified. It now uses Spearman’s <em>rho</em>-based effect size estimates. This removes <code>coin</code> from dependencies.</p></li>
 <li><p><code>ggbetweenstats</code> and its <code>grouped_</code> variant gain a new argument <code>axes.range.restrict</code> (which defaults to <code>FALSE</code>). This restricts <code>y</code>-axes limits to minimum and maximum of <code>y</code> variable. This is what these functions were doing by default in the past versions, which created issues for additional ggplot components using the <code>ggplot.component</code> argument.</p></li>
 <li><p>All bayes factor related subtitle and captions replace <code>prior.width</code> with <code>r_{Cauchy}</code>.</p></li>
 <li><p><code>ggcoefstats</code> passes dots (<code>...</code>) to <code>augment</code> method from <code>broom</code>.</p></li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li><p>The helper function <code>bf_extractor</code> no longer provides option to extract information about posterior distribution because these details were incorrect. The <code>posterior = TRUE</code> details were not used anywhere in the package so nothing about the results changes.</p></li>
+</ul><p>BUG FIXES</p>
+<ul><li><p>The helper function <code>bf_extractor</code> no longer provides option to extract information about posterior distribution because these details were incorrect. The <code>posterior = TRUE</code> details were not used anywhere in the package so nothing about the results changes.</p></li>
 <li><p><code>ggcorrmat</code> didn’t output pair names when <code>output == "ci"</code> was used. This is fixed.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-008" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.8">
-<a href="#ggstatsplot-008" class="anchor"></a>ggstatsplot 0.0.8<small> 2019-01-07 </small>
-</h1>
+<a href="#ggstatsplot-008" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.8<small> 2019-01-07 </small></h1>
 <p>NEW FEATURES</p>
-<ul>
-<li><p><code>ggcoefstats</code> gains <code>meta.analytic.effect</code> that can be used to carry out meta-analysis on regression estimates. This especially useful when a dataframe with regression estimates and standard error is available from prior analyses. The <code>subtitle</code> is prepared with the new function <code>subtitle_meta_ggcoefstats</code> which is also exported.</p></li>
+<ul><li><p><code>ggcoefstats</code> gains <code>meta.analytic.effect</code> that can be used to carry out meta-analysis on regression estimates. This especially useful when a dataframe with regression estimates and standard error is available from prior analyses. The <code>subtitle</code> is prepared with the new function <code>subtitle_meta_ggcoefstats</code> which is also exported.</p></li>
 <li><p><code>ggbetweenstats</code>, <code>ggscatterstats</code>, <code>gghistostats</code>, and <code>ggdotplotstats</code> (and their <code>grouped_</code> variants) all gain a new <code>ggplot.component</code> argument. This argument will primarily be helpful to change the individual plots in a <code>grouped_</code> plot.</p></li>
 <li><p><code>ggcoefstats</code> can support following new regression model objects: <code>polr</code>, <code>survreg</code>, <code>cch</code>, <code>Arima</code>, <code>biglm</code>, <code>glmmTMB</code>, <code>coxph</code>, <code>ridgelm</code>, <code>aareg</code>, <code>plm</code>, <code>nlrq</code>, <code>ivreg</code>, <code>ergm</code>, <code>btergm</code>, <code>garch</code>, <code>gmm</code>, <code>lmodel2</code>, <code>svyolr</code>, <code>confusionMatrix</code>, <code>multinom</code>, <code>nlmerMod</code>, <code>svyglm</code>, <code>MCMCglmm</code>, <code>lm.beta</code>, <code>speedlm</code>, <code>fitdistr</code>, <code>mle2</code>, <code>orcutt</code>, <code>glmmadmb</code>.</p></li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li><p><code>ggcoefstats</code> didn’t work when <code>statistic</code> argument was set to <code>NULL</code>. This was not expected behavior. This has been fixed. Now, if <code>statistic</code> is not specified, only the dot-and-whiskers will be shown without any labels.</p></li>
+</ul><p>BUG FIXES</p>
+<ul><li><p><code>ggcoefstats</code> didn’t work when <code>statistic</code> argument was set to <code>NULL</code>. This was not expected behavior. This has been fixed. Now, if <code>statistic</code> is not specified, only the dot-and-whiskers will be shown without any labels.</p></li>
 <li><p><code>subtitle_t_parametric</code> was producing incorrect sample size information when <code>paired = TRUE</code> and the data contained <code>NA</code>s. This has been fixed.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p><code>ggscatterstats</code> and its <code>grouped_</code> variant accept both character and bare exressions as input to arguments <code>label.var</code> and <code>labe.expression</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/110'>#110</a>).</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p><code>ggscatterstats</code> and its <code>grouped_</code> variant accept both character and bare exressions as input to arguments <code>label.var</code> and <code>labe.expression</code> (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/110'>#110</a>).</p></li>
 <li><p>To be consistent with rest of the functions in the package, both Pearson’s <em>r</em>, Spearman’s <em>rho</em>, and robust percentage bend correlations also display information about statistic associated with these tests.</p></li>
 <li><p><code>ggscatterstats</code>, by default, showed jittered data points (because it relied on <code>position_jitter</code> defaults). This could be visually inaccurate and, therefore, <code>ggscatterstats</code> now displays points without any jitter. The user can introduce jitter if they wish to using <code>point.width.jitter</code> and <code>point.height.jitter</code> arguments. For similar reasons, for <code>ggbetweenstats</code> and its <code>grouped_</code> variant, <code>point.jitter.height</code> default has been changed from <code>0.1</code> to <code>0</code> (no vertical jitter, i.e.).</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>Confidence interval for Kendall’s <em>W</em> is now computed using <code><a href="https://rdrr.io/r/stats/kruskal.test.html">stats::kruskal.test</a></code>. As a result, <code>PMCMRplus</code> removed from dependencies.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>Confidence interval for Kendall’s <em>W</em> is now computed using <code><a href="https://rdrr.io/r/stats/kruskal.test.html" class="external-link">stats::kruskal.test</a></code>. As a result, <code>PMCMRplus</code> removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> gains a <code>caption</code> argument. If <code>caption.summary</code> is set to <code>TRUE</code>, the specified caption will be added on top of the <code>caption.summary</code>.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-007" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.7">
-<a href="#ggstatsplot-007" class="anchor"></a>ggstatsplot 0.0.7<small> 2018-12-08 </small>
-</h1>
+<a href="#ggstatsplot-007" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.7<small> 2018-12-08 </small></h1>
 <p>BUG FIXES</p>
-<ul>
-<li><p><code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="uri">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</p></li>
+<ul><li><p><code>ggcoefstats</code> was showing wrong confidence intervals for <code>merMod</code> class objects due to a bug in the <code>broom.mixed</code> package (<a href="https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005" class="external-link uri">https://github.com/bbolker/broom.mixed/issues/30#issuecomment-428385005</a>). This was fixed in <code>broom.mixed</code> and so <code>ggcoefstats</code> should no longer have any issues.</p></li>
 <li><p><code>specify_decimal_p</code> has been modified because it produced incorrect results when <code>k &lt; 3</code> and <code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt; 0.001</code>).</p></li>
 <li><p><code>ggpiestats</code> produced incorrect results if some levels of the factor had been filtered out prior to using this function. It now drops unused levels and produces correct results.</p></li>
 <li><p><code>gghistostats</code> wasn’t filtering out <code>NA</code>s properly. This has been fixed.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>New function <code>ggdotplotstats</code> for creating a dot plot/chart for labelled numeric data.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>New function <code>ggdotplotstats</code> for creating a dot plot/chart for labelled numeric data.</p></li>
 <li><p>All primary functions gain <code>conf.level</code> argument to control confidence level for effect size measures.</p></li>
 <li><p>As per APA guidelines, all results show results with two decimal places. That is, the default value for <code>k</code> argument for all functions has been changed from <code>3</code> to <code>2</code>.</p></li>
 <li><p>All helper functions for the <code>ggbetweenstats</code> subtitles have been renamed to remove <code>_ggbetween_</code> from their names as this was becoming confusing for the user. Some of these functions work both with the between- and within-subjects designs, so having <code>_ggbetween_</code> in their names made users suspect if they could use these functions for within-subjects designs.</p></li>
@@ -812,14 +643,12 @@
 <li><p>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>, and <code>set_cwd</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</p></li>
 <li><p><code>gghistostats</code> can now show both counts and proportions information on the same plot when <code>bar.measure</code> argument is set to <code>"mix"</code>.</p></li>
 <li><p><code>ggcoefstats</code> works with tidy dataframes.</p></li>
-<li><p>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</p></li>
+<li><p>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html" class="external-link">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</p></li>
 <li><p>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</p></li>
 <li><p><code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</p></li>
-<li><p>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>, <code><a href="https://magrittr.tidyverse.org/reference/compound.html">%&lt;&gt;%</a></code>, <code><a href="https://magrittr.tidyverse.org/reference/exposition.html">%$%</a></code>.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>ggscatterstats</code>, <code>ggpiestats</code>, and their <code>grouped_</code> variant support bayes factor tests and gain new arguments relevant to this test.</p></li>
+<li><p>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code>%&gt;%</code>, <code>%&lt;&gt;%</code>, <code>%$%</code>.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>ggscatterstats</code>, <code>ggpiestats</code>, and their <code>grouped_</code> variant support bayes factor tests and gain new arguments relevant to this test.</p></li>
 <li><p>Effect size and their confidence intervals now available for Kruskal-Wallis test.</p></li>
 <li><p>Minor stylistic changes to how symbols for partial-eta-/omega-squared were being displayed in subtitles.</p></li>
 <li><p><code>ggbetweenstats</code> supports bayes factor tests for anova designs.</p></li>
@@ -831,159 +660,118 @@
 <li><p>New dataset added: <code>iris_long</code>.</p></li>
 <li><p>More tests added and the code coverage has now jumped to over 75%.</p></li>
 <li><p>To avoid code repetition, there is a now a function that produces a generic message any time confidence intervals for effect size estimate are computed using bootstrapping.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-006" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.6">
-<a href="#ggstatsplot-006" class="anchor"></a>ggstatsplot 0.0.6<small> 2018-09-30 </small>
-</h1>
+<a href="#ggstatsplot-006" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.6<small> 2018-09-30 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li><p>The package now exports all functions used to create text expressions with results. This makes it easy for people to use these results in their own plots at any location they want (and not just in <code>subtitle</code>, the current default for <code>ggstatsplot</code>).</p></li>
+<ul><li><p>The package now exports all functions used to create text expressions with results. This makes it easy for people to use these results in their own plots at any location they want (and not just in <code>subtitle</code>, the current default for <code>ggstatsplot</code>).</p></li>
 <li><p><code>ggcorrmat</code> gains <code>p.adjust.method</code> argument which allows <em>p</em>-values for correlations to be corrected for multiple comparisons.</p></li>
 <li><p><code>ggscatterstats</code> gains <code>label.var</code> and <code>label.expression</code> arguments to attach labels to points.</p></li>
 <li><p><code>gghistostats</code> now defaults to not showing (redundant) color gradient (<code>fill.gradient = FALSE</code>) and shows both <code>"count"</code> and <code>"proportion"</code> data. It also gains a new argument <code>bar.fill</code> that can be used to fill bars with a uniform color.</p></li>
 <li><p><code>ggbetweenstats</code>, <code>ggcoefstats</code>, <code>ggcorrmat</code>, <code>ggscatterstats</code>, and <code>ggpiestats</code> now support all palettes contained in the <code>paletteer</code> package. This helps avoid situations where people had large number of groups (&gt; 12) and there were not enough colors in any of the <code>RColorBrewer</code> palettes.</p></li>
 <li><p><code>ggbetweenstats</code> gains <code>bf.message</code> argument to display bayes factors in favor of the null (currently works only for parametric <em>t</em>-test).</p></li>
 <li><p><code>gghistostats</code> function no longer has <code>line.labeller.y</code> argument; this position is automatically determined now.</p></li>
-</ul>
-<p>BREAKING CHANGES</p>
-<ul>
-<li><p><code>legend.title.margin</code> function has been deprecated since <code>ggplot2 3.0.0</code> has improved on the margin issues from previous versions. All functions that wrapped around this function now lose the relevant arguments (<code>legend.title.margin</code>, <code>t.margin</code>, <code>b.margin</code>).</p></li>
+</ul><p>BREAKING CHANGES</p>
+<ul><li><p><code>legend.title.margin</code> function has been deprecated since <code>ggplot2 3.0.0</code> has improved on the margin issues from previous versions. All functions that wrapped around this function now lose the relevant arguments (<code>legend.title.margin</code>, <code>t.margin</code>, <code>b.margin</code>).</p></li>
 <li><p>The argument <code>ggstatsplot.theme</code> has been changed to <code>ggstatsplot.layer</code> for <code>ggcorrmat</code> function to be consistent across functions.</p></li>
 <li><p>For consistency, <code>conf.level</code> and <code>conf.type</code> arguments for <code>ggbetweenstats</code> have been deprecated. No other function in the package allowed changing confidence interval or their type for effect size estimation. These arguments were relevant only for <code>robust</code> tests anyway.</p></li>
 <li><p><code>ggocorrmat</code> argument <code>type</code> has been changed to <code>matrix.type</code> because for all other functions <code>type</code> argument specifies the type of the test, while for this function it specified the display of the visualization matrix. This will make the syntax more consistent across functions.</p></li>
 <li><p><code>ggscatterstats</code> gains new arguments to specify aesthetics for geom point (<code>point.color</code>, <code>point.size</code>, <code>point.alpha</code>). To be consistent with this naming schema, the <code>width.jitter</code> and <code>height.jitter</code> arguments have been renamed to <code>point.width.jitter</code> and <code>point.height.jitter</code>, resp.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p><code>gghistostats</code>: To be compatible with <code>JASP</code>, natural logarithm of Bayes Factors is displayed, and not base 10 logarithm.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p><code>gghistostats</code>: To be compatible with <code>JASP</code>, natural logarithm of Bayes Factors is displayed, and not base 10 logarithm.</p></li>
 <li><p><code>ggscatterstats</code> gains <code>method</code> and <code>formula</code> arguments to modify smoothing functions.</p></li>
 <li><p><code>ggcorrmat</code> can now show <code>robust</code> correlation coefficients in the matrix plot.</p></li>
 <li><p>For <code>gghistostats</code>, <code>binwidth</code> value, if not specified, is computed with <code>(max-min)/sqrt(n)</code>. This is basically to get rid of the warnings ggplot2 produces. Thanks to Chuck Powell’s PR (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/43'>#43</a>).</p></li>
 <li><p><code>ggcoefstats</code> gains a new argument <code>partial</code> and can display eta-squared and omega-squared effect sizes for anovas, in addition to the prior partial variants of these effect sizes.</p></li>
 <li><p><code>ggpiestats</code> gains <code>perc.k</code> argument to show desired number of decimal places in percentage labels.</p></li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li>
+</ul><p>BUG FIXES</p>
+<ul><li>
 <code>grouped_ggpiestats</code> wasn’t working when only <code>main</code> variable was provided with <code>counts</code> data. Fixed that.</li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-005" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.5">
-<a href="#ggstatsplot-005" class="anchor"></a>ggstatsplot 0.0.5<small> 2018-08-14 </small>
-</h1>
+<a href="#ggstatsplot-005" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.5<small> 2018-08-14 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li><p>For the sake of consistency, <code>theme_mprl</code> is now called <code>theme_ggstatsplot</code>. The <code>theme_mprl</code> function will still be around and will <strong>not</strong> be deprecated, so feel free to use either or both of them since they are identical.</p></li>
+<ul><li><p>For the sake of consistency, <code>theme_mprl</code> is now called <code>theme_ggstatsplot</code>. The <code>theme_mprl</code> function will still be around and will <strong>not</strong> be deprecated, so feel free to use either or both of them since they are identical.</p></li>
 <li><p><code>ggcoefstats</code> no longer has arguments <code>effects</code> and <code>ran_params</code> because only fixed effects are shown for mixed-effects models.</p></li>
 <li><p><code>ggpiestats</code> can now handle within-subjects designs (McNemar test results will be displayed).</p></li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li><p><code>ggbetweenstats</code> was producing wrong axes labels when <code>sample.size.label</code> was set to <code>TRUE</code> and user had reordered factor levels before using this function. The new version fixes this.</p></li>
+</ul><p>BUG FIXES</p>
+<ul><li><p><code>ggbetweenstats</code> was producing wrong axes labels when <code>sample.size.label</code> was set to <code>TRUE</code> and user had reordered factor levels before using this function. The new version fixes this.</p></li>
 <li><p><code>ggcoefstats</code> wasn’t producing partial omega-squared for <code>aovlist</code> objects. Fixed that with new version of <code>sjstats</code>.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>Removed the trailing comma from the robust correlation analyses.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>Removed the trailing comma from the robust correlation analyses.</p></li>
 <li><p><code>gghistostats</code> has a new argument to remove color fill gradient.</p></li>
 <li><p><code>ggbetweenstats</code> takes new argument <code>mean.ci</code> to show confidence intervals for the mean values.</p></li>
-<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
+<li><p>For <code>lmer</code> models, <em>p</em>-values are now computed using <code><a href="https://strengejacke.github.io/sjstats/reference/r2.html" class="external-link">sjstats::p_value</a></code>. This removes <code>lmerTest</code> package from dependencies.</p></li>
 <li><p><code>sjstats</code> no longer suggests <code>apaTables</code> package to compute confidence intervals for partial eta- and omega-squared. Therefore, <code>apaTables</code> and <code>MBESS</code> are removed from dependencies.</p></li>
 <li><p><code>ggscatterstats</code> supports <code>densigram</code> with the development version of <code>ggExtra</code>. It additionally gains few extra arguments to change aesthetics of marginals (alpha, size, etc.).</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-004" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.4">
-<a href="#ggstatsplot-004" class="anchor"></a>ggstatsplot 0.0.4<small> 2018-07-05 </small>
-</h1>
+<a href="#ggstatsplot-004" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.4<small> 2018-07-05 </small></h1>
 <p>MAJOR CHANGES</p>
-<ul>
-<li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
-<li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
+<ul><li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>.</p></li>
+<li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html" class="external-link">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html" class="external-link">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>Switched back to Shapiro-Wilk test of normality to remove <code>nortest</code> from imports.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>Switched back to Shapiro-Wilk test of normality to remove <code>nortest</code> from imports.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggpiestats</code> now display sample sizes for each level of the groping factor by default. This behavior can be turned off by setting <code>sample.size.label</code> to <code>FALSE</code>.</p></li>
 <li><p>Three new datasets added: <code>Titanic_full</code>, <code>movies_wide</code>, <code>movies_long</code>.</p></li>
 <li><p>Added confidence interval for effect size for robust ANOVA.</p></li>
-<li><p>The 95% CI for Cramer’V computed using <code><a href="https://rdrr.io/pkg/boot/man/boot.html">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</p></li>
+<li><p>The 95% CI for Cramer’V computed using <code><a href="https://rdrr.io/pkg/boot/man/boot.html" class="external-link">boot::boot</a></code>. Therefore, the package no longer imports <code>DescTools</code>.</p></li>
 <li><p>To be consistent across correlations covered, all correlations now show estimates for correlation coefficients, confidence intervals for the estimate, and <em>p</em>-values. Therefore, <em>t</em>-values and regression coefficients are no longer displayed for Pearson’s <em>r</em>.</p></li>
 <li><p>The <code>legend.title.margin</code> arguments for <code>gghistostats</code> and <code>ggcorrmat</code> now default to <code>FALSE</code>, since <code>ggplot2 3.0.0</code> has better legend title margins.</p></li>
 <li><p><code>ggpiestats</code> now sorts the summary dataframes not by percentages but by the levels of <code>main</code> variable. This was done to have the same legends across different levels of a grouping variable in <code>grouped_ggpiestats</code>.</p></li>
 <li><p>To remove cluttered display of results in the subtitle, <code>ggpiestats</code> no longer shows titles for the tests run (these were “Proportion test” and “Chi-Square test”). From the pie charts, it should be obvious to the user or reader what test was run.</p></li>
 <li><p><code>gghistostats</code> also allows running robust version of one-sample test now (One-sample percentile bootstrap).</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-003" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.3">
-<a href="#ggstatsplot-003" class="anchor"></a>ggstatsplot 0.0.3<small> 2018-05-22 </small>
-</h1>
+<a href="#ggstatsplot-003" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.3<small> 2018-05-22 </small></h1>
 <p>NEW FEATURES</p>
-<ul>
-<li><p>The <code>ggbetweenstats</code> function can now show notched box plots. Two new arguments <code>notch</code> and <code>notchwidth</code> control its behavior. The defaults are still standard box plots.</p></li>
+<ul><li><p>The <code>ggbetweenstats</code> function can now show notched box plots. Two new arguments <code>notch</code> and <code>notchwidth</code> control its behavior. The defaults are still standard box plots.</p></li>
 <li><p>Removed warnings that were appearing when <code>outlier.label</code> argument was of <code>character</code> type.</p></li>
 <li><p>The default color palette used for all plots is colorblind friendly.</p></li>
 <li><p><code>gghistostats</code> supports <code>proportion</code> and <code>density</code> as a value measure for bar heights to show proportions and density. New argument <code>bar.measure</code> controls this behavior.</p></li>
 <li><p><code>grouped_</code> variants of functions <code>ggcorrmat</code>, <code>ggscatterstats</code>, <code>ggbetweenstats</code>, and <code>ggpiestats</code> introduced to create multiple plots for different levels of a grouping variable.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>To be internally consistent, all functions in <code>ggstatsplot</code> use the spelling <code>color</code>, rather than <code>colour</code> in some functions, while <code>color</code> in others.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>To be internally consistent, all functions in <code>ggstatsplot</code> use the spelling <code>color</code>, rather than <code>colour</code> in some functions, while <code>color</code> in others.</p></li>
 <li><p>Removed the redundant argument <code>binwidth.adjust</code> from <code>gghistostats</code> function. This argument was relevant for the first avatar of this function, but is no longer playing any role.</p></li>
 <li><p>To be internally consistent, the argument <code>lab_col</code> and <code>lab_size</code> in <code>ggcorrmat</code> have been changed to <code>lab.col</code> and <code>lab.size</code>, respectively.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>Added a new argument to <code>ggstatsplot.theme</code> function to control if <code>ggstatsplot::theme_mprl</code> is to be overlaid on top of the selected <code>ggtheme</code> (ggplot2 theme, i.e.).</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>Added a new argument to <code>ggstatsplot.theme</code> function to control if <code>ggstatsplot::theme_mprl</code> is to be overlaid on top of the selected <code>ggtheme</code> (ggplot2 theme, i.e.).</p></li>
 <li><p>Two new arguments added to <code>gghistostats</code> to allow user to change colorbar gradient. Defaults are colorblind friendly.</p></li>
 <li><p>Both <code>gghistostats</code> and <code>ggcorrmat</code> have a new argument <code>legend.title.margin</code> to control margin adjustment between the title and the colorbar.</p></li>
 <li><p>The vertical lines denoting test values and centrality parameters can be tagged with text labels with a new argument <code>line.labeller</code> in <code>gghistostats</code> function.</p></li>
-</ul>
-<p>BUG FIXES</p>
-<ul>
-<li>The <code>centrality.para</code> argument for <code>ggscatterstats</code> was not working properly. Choosing <code>"median"</code> didn’t show median, but the mean. This is fixed now.</li>
-</ul>
-</div>
+</ul><p>BUG FIXES</p>
+<ul><li>The <code>centrality.para</code> argument for <code>ggscatterstats</code> was not working properly. Choosing <code>"median"</code> didn’t show median, but the mean. This is fixed now.</li>
+</ul></div>
     <div id="ggstatsplot-002" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.2">
-<a href="#ggstatsplot-002" class="anchor"></a>ggstatsplot 0.0.2<small> 2018-04-28 </small>
-</h1>
+<a href="#ggstatsplot-002" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.2<small> 2018-04-28 </small></h1>
 <p>NEW FEATURES</p>
-<ul>
-<li><p>Bayesian test added to <code>gghistostats</code> and two new arguments to also display a vertical line for <code>test.value</code> argument.</p></li>
+<ul><li><p>Bayesian test added to <code>gghistostats</code> and two new arguments to also display a vertical line for <code>test.value</code> argument.</p></li>
 <li><p>Vignette added for <code>gghistostats</code>.</p></li>
 <li><p>Added new function <code>grouped_gghistostats</code> to facilitate applying <code>gghistostats</code> for multiple levels of a grouping factor.</p></li>
 <li><p><code>ggbetweenstats</code> has a new argument <code>outlier.coef</code> to adjust threshold used to detect outliers. Removed bug from the same function when <code>outlier.label</code> argument is of factor/character type.</p></li>
-</ul>
-<p>MAJOR CHANGES</p>
-<ul>
-<li><p>Functions <code>signif_column</code> and <code>grouped_proptest</code> are now deprecated. They were exported in the first release by mistake.</p></li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li><p>Functions <code>signif_column</code> and <code>grouped_proptest</code> are now deprecated. They were exported in the first release by mistake.</p></li>
 <li><p>Function <code>gghistostats</code> no longer displays both density and count since the density information was redundant. The <code>density.plot</code> argument has also been deprecated.</p></li>
 <li><p><code>ggscatterstats</code> argument <code>intercept</code> has now been changed to <code>centrality.para</code>. This was due to possible confusion about interpretation of these lines; they show central tendency measures and not intercept for the linear model. Thus the change.</p></li>
 <li><p>The default for <code>effsize.type = "biased"</code> effect size for <code>ggbetweenstats</code> in case of ANOVA is <strong>partial</strong> omega-squared, and not omega-squared. Additionally, both partial eta- and omega-squared are not computed using bootstrapping with (default) 100 bootstrap samples.</p></li>
-</ul>
-<p>MINOR CHANGES</p>
-<ul>
-<li><p>More examples added to the <code>README</code> document.</p></li>
+</ul><p>MINOR CHANGES</p>
+<ul><li><p>More examples added to the <code>README</code> document.</p></li>
 <li><p>95% confidence intervals for Spearman’s rho are now computed using <code>broom</code> package. <code>RVAideMemoire</code> package is thus removed from dependencies.</p></li>
 <li><p>95% confidence intervals for partial eta- and omega-squared for <code>ggbetweenstats</code> function are now computed using <code>sjstats</code> package, which allows bootstrapping. <code>apaTables</code> and <code>userfriendlyscience</code> packages are thus removed from dependencies.</p></li>
-</ul>
-</div>
+</ul></div>
     <div id="ggstatsplot-001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
-<a href="#ggstatsplot-001" class="anchor"></a>ggstatsplot 0.0.1<small> 2018-04-03 </small>
-</h1>
-<ul>
-<li>First release of the package.</li>
-</ul>
-</div>
+<a href="#ggstatsplot-001" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.1<small> 2018-04-03 </small></h1>
+<ul><li>First release of the package.</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -1001,7 +789,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -1026,6 +814,8 @@
 </script>
 
 
+
+  
 
   </body>
 </html>

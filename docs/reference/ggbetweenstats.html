@@ -105,9 +105,15 @@ subtitle." />
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -128,12 +134,6 @@ subtitle." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -314,7 +314,14 @@ be accepted.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>The grouping (or independent) variable from the dataframe <code>data</code>.</p></td>
+      <td><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
+case of a repeated measures or within-subjects design, if <code>subject.id</code>
+argument is not available or not explicitly specified, the function assumes
+that the data has already been sorted by such an id by the user and creates
+an internal identifier. So if your data is <strong>not</strong> sorted, the results
+<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
+are <code>NA</code>s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.</p></td>
     </tr>
     <tr>
       <th>y</th>
@@ -329,17 +336,16 @@ and <code>"boxviolin"</code> (for a combination of box and violin plots; default
     </tr>
     <tr>
       <th>type</th>
-      <td><p>A character specifying the type of statistical approach.
-Four possible options:</p>
-<ul>
+      <td><p>A character specifying the type of statistical approach:</p><ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
 </ul>
 
-<p>Corresponding abbreviations are also accepted: <code>"p"</code> (for parametric),
-<code>"np"</code> (for nonparametric), <code>"r"</code> (for robust), or <code>"bf"</code> (for Bayesian).</p></td>
+<p>This argument also accepts the following abbreviations: <code>"p"</code> (for
+<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
+(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></td>
     </tr>
     <tr>
       <th>pairwise.comparisons</th>
@@ -431,7 +437,7 @@ return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></
     <tr>
       <th>nboot</th>
       <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100</code>).</p></td>
+for the effect size (Default: <code>100L</code>).</p></td>
     </tr>
     <tr>
       <th>tr</th>
@@ -539,7 +545,7 @@ override some aspects of the selected <code>ggtheme</code>.</p></td>
       <th>package, palette</th>
       <td><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
-<code><a href='https://rdrr.io/r/utils/View.html'>View(paletteer::palettes_d_names)</a></code>.</p></td>
+<code>View(paletteer::palettes_d_names)</code>.</p></td>
     </tr>
     <tr>
       <th>ggplot.component</th>
@@ -573,34 +579,36 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <code><a href='grouped_ggwithinstats.html'>grouped_ggwithinstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># to get reproducible results from bootstrapping</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span>
-
-<span class='co'># simple function call with the defaults</span>
-<span class='fu'>ggbetweenstats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>mtcars</span>,
-  x <span class='op'>=</span> <span class='va'>am</span>,
-  y <span class='op'>=</span> <span class='va'>mpg</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># more detailed function call</span>
-<span class='fu'>ggbetweenstats</span><span class='op'>(</span>
-  data <span class='op'>=</span> <span class='va'>morley</span>,
-  x <span class='op'>=</span> <span class='va'>Expt</span>,
-  y <span class='op'>=</span> <span class='va'>Speed</span>,
-  type <span class='op'>=</span> <span class='st'>"robust"</span>,
-  plot.type <span class='op'>=</span> <span class='st'>"box"</span>,
-  xlab <span class='op'>=</span> <span class='st'>"The experiment number"</span>,
-  ylab <span class='op'>=</span> <span class='st'>"Speed-of-light measurement"</span>,
-  pairwise.comparisons <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  p.adjust.method <span class='op'>=</span> <span class='st'>"fdr"</span>,
-  outlier.tagging <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  outlier.label <span class='op'>=</span> <span class='va'>Run</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='co'># to get reproducible results from bootstrapping</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># simple function call with the defaults</span></span>
+<span class='r-in'><span class='fu'>ggbetweenstats</span><span class='op'>(</span></span>
+<span class='r-in'>  data <span class='op'>=</span> <span class='va'>mtcars</span>,</span>
+<span class='r-in'>  x <span class='op'>=</span> <span class='va'>am</span>,</span>
+<span class='r-in'>  y <span class='op'>=</span> <span class='va'>mpg</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-plt'><img src='ggbetweenstats-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># more detailed function call</span></span>
+<span class='r-in'><span class='fu'>ggbetweenstats</span><span class='op'>(</span></span>
+<span class='r-in'>  data <span class='op'>=</span> <span class='va'>morley</span>,</span>
+<span class='r-in'>  x <span class='op'>=</span> <span class='va'>Expt</span>,</span>
+<span class='r-in'>  y <span class='op'>=</span> <span class='va'>Speed</span>,</span>
+<span class='r-in'>  type <span class='op'>=</span> <span class='st'>"robust"</span>,</span>
+<span class='r-in'>  plot.type <span class='op'>=</span> <span class='st'>"box"</span>,</span>
+<span class='r-in'>  xlab <span class='op'>=</span> <span class='st'>"The experiment number"</span>,</span>
+<span class='r-in'>  ylab <span class='op'>=</span> <span class='st'>"Speed-of-light measurement"</span>,</span>
+<span class='r-in'>  pairwise.comparisons <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>  p.adjust.method <span class='op'>=</span> <span class='st'>"fdr"</span>,</span>
+<span class='r-in'>  outlier.tagging <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span class='r-in'>  outlier.label <span class='op'>=</span> <span class='va'>Run</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-plt'><img src='ggbetweenstats-2.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -616,7 +624,7 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -641,6 +649,8 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 </script>
 
 
+
+  
 
   </body>
 </html>

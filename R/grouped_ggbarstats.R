@@ -64,24 +64,22 @@ grouped_ggbarstats <- function(data,
   # ======================== preparing dataframe =============================
 
   # creating a dataframe
-  df <-
-    dplyr::select(.data = data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
+  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # ================ creating a list of return objects ========================
 
   # creating a list of plots using `pmap`
-  p_ls <-
-    purrr::pmap(
-      .l = list(data = df, title = names(df)),
-      .f = ggstatsplot::ggbarstats,
-      # put common parameters here
-      x = {{ x }},
-      y = {{ y }},
-      counts = {{ counts }},
-      output = output,
-      ...
-    )
+  p_ls <- purrr::pmap(
+    .l = list(data = df, title = names(df)),
+    .f = ggstatsplot::ggbarstats,
+    # put common parameters here
+    x = {{ x }},
+    y = {{ y }},
+    counts = {{ counts }},
+    output = output,
+    ...
+  )
 
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
