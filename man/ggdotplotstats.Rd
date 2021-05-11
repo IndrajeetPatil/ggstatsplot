@@ -19,7 +19,6 @@ ggdotplotstats(
   bf.message = TRUE,
   effsize.type = "g",
   conf.level = 0.95,
-  nboot = 100,
   tr = 0.2,
   k = 2,
   results.subtitle = TRUE,
@@ -64,9 +63,7 @@ variable names for \code{x} and \code{y} will be used.}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
 
 \item{test.value}{A number indicating the true value of the mean (Default:
 \code{0}).}
@@ -87,9 +84,6 @@ argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \em
 
 \item{conf.level}{Confidence/Credible Interval (CI) level. Default to \code{0.95}
 (\verb{95\%}).}
-
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to

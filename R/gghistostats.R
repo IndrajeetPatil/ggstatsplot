@@ -18,8 +18,10 @@
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
 #'   and explore multiple widths to find the best to illustrate the stories in
 #'   your data.
+#' @param centrality.line.args A list of additional aesthetic arguments to be
+#'   passed to the `geom_line` used to display the lines corresponding to the
+#'   centrality parameter.
 #' @inheritParams statsExpressions::one_sample_test
-#' @inheritParams histo_labeller
 #' @inheritParams ggbetweenstats
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
@@ -64,7 +66,6 @@ gghistostats <- function(data,
                          bf.message = TRUE,
                          effsize.type = "g",
                          conf.level = 0.95,
-                         nboot = 100,
                          tr = 0.2,
                          k = 2L,
                          ggtheme = ggplot2::theme_bw(),
@@ -110,7 +111,6 @@ gghistostats <- function(data,
         bf.prior = bf.prior,
         effsize.type = effsize.type,
         conf.level = conf.level,
-        nboot = nboot,
         tr = tr,
         k = k
       ),

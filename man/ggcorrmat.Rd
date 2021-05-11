@@ -60,9 +60,7 @@ display full matrix, lower triangular or upper triangular matrix.}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to

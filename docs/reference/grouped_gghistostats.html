@@ -321,15 +321,16 @@ normal curve using <code>stats::dnorm(mean(x), sd(x))</code>. Default is <code>F
 passed to the normal curve.</p></dd>
     <dt><code>bar.fill</code></dt><dd><p>Character input that decides which color will uniformly fill
 all the bars in the histogram (Default: <code>"grey50"</code>).</p></dd>
+    <dt><code>centrality.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be
+passed to the <code>geom_line</code> used to display the lines corresponding to the
+centrality parameter.</p></dd>
     <dt><code>type</code></dt><dd><p>A character specifying the type of statistical approach:
 <ul>
 <li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul>This argument also accepts the following abbreviations: <code>"p"</code> (for
-<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
-(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></dd>
+</ul>You can specify just the initial letter.</p></dd>
     <dt><code>test.value</code></dt><dd><p>A number indicating the true value of the mean (Default:
 <code>0</code>).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
@@ -342,16 +343,11 @@ corresponds to scale for fixed effects.</p></dd>
 argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Confidence/Credible Interval (CI) level. Default to <code>0.95</code>
 (<code>95%</code>).</p></dd>
-    <dt><code>nboot</code></dt><dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></dd>
     <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
     <dt><code>k</code></dt><dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></dd>
-    <dt><code>centrality.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be
-passed to the <code>geom_line</code> used to display the lines corresponding to the
-centrality parameter.</p></dd>
     <dt><code>xlab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
 variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if

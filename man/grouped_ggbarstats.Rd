@@ -67,9 +67,7 @@ will cause the \code{x} axis label to be the \code{x} variable).}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
 test expression will be returned. If \code{FALSE}, Pearson's chi-square test will

@@ -313,14 +313,14 @@ See the associated vignette here:
 
 # Summary of tests
 
-Following tests are carried out for each type of analyses-
+**Hypothesis testing** and **Effect size estimation**
 
-Type | Test | CI? | partial? | Function used
------------ | ------------------------- | --- | --- | -----
-Parametric | Pearson's correlation coefficient | ✅ | ✅ | `correlation::correlation`
-Non-parametric | Spearman's rank correlation coefficient | ✅ | ✅ | `correlation::correlation`
-Robust | Winsorized Pearson correlation coefficient | ✅ | ✅ | `correlation::correlation`
-Bayesian | Pearson's correlation coefficient | <font color="green">Yes</font> | ✅ | `correlation::correlation`
+Type | Test | CI? | Function used
+----------- | ------------------------- | --- | -----
+Parametric | Pearson's correlation coefficient | ✅ | `correlation::correlation`
+Non-parametric | Spearman's rank correlation coefficient | ✅ | `correlation::correlation`
+Robust | Winsorized Pearson correlation coefficient | ✅ | `correlation::correlation`
+Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 
 # Suggestions
 

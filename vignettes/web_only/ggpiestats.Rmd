@@ -351,22 +351,41 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 
 # Summary of tests
 
-Following tests are carried out for each type of analyses-
+**two-way table**
 
-Type of data | Design | Test | Function used
------------ | ------------ | ------------------------- | -----
-Unpaired | $n \times p$ contingency table | Pearson's $\chi^2$ test | `stats::chisq.test`
-Paired | $n \times p$ contingency table | McNemar's $\chi^2$ test | `stats::mcnemar.test`
-Frequency | $n \times 1$ contingency table | Goodness-of-fit ($\chi^2$ test) | `stats::chisq.test`
+**Hypothesis testing**
 
-Following effect sizes (and confidence intervals/CI) are available for each type
-of test-
+Type | Design | Test | Function used
+----------- | ----- | ------------------------- | -----
+Parametric/Non-parametric | Unpaired | Pearson's $\chi^2$ test | `stats::chisq.test`
+Bayesian | Unpaired | Bayesian Pearson's $\chi^2$ test | `BayesFactor::contingencyTableBF`
+Parametric/Non-parametric | Paired  | McNemar's $\chi^2$ test | `stats::mcnemar.test`
+Bayesian | Paired  | ❌ | ❌
 
-Test | Effect size | CI? | Function used
---------------- | ------------------------- | --- | -----
-Pearson's $\chi^2$ test | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-McNemar's test | Cohen's $g$ | ✅ | `effectsize::cohens_g`
-Goodness-of-fit | Cramer's $V$ | ✅ | `effectsize::cramers_v`
+**Effect size estimation**
+
+Type | Design | Effect size | CI? | Function used
+----------- | ----- | ------------------------- | --- | -----
+Parametric/Non-parametric | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
+Bayesian | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
+Parametric/Non-parametric | Paired | Cohen's $g$ | ✅ | `effectsize::cohens_g`
+Bayesian | Paired | ❌ | ❌ | ❌
+
+**one-way table**
+
+**Hypothesis testing**
+
+Type | Test | Function used
+----------- | ------------------------- | -----
+Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test`
+Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
+
+**Effect size estimation**
+
+Type | Effect size | CI? | Function used
+----------- | ------------------------- | --- | -----
+Parametric/Non-parametric | Cramer's $V$ | ✅ | `bayestestR::describe_posterior`
+Bayesian | ❌ | ❌ | ❌
 
 # Reporting
 

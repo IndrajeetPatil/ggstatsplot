@@ -71,9 +71,7 @@ used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
     \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}

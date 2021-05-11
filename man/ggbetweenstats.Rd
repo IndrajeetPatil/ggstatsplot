@@ -80,9 +80,7 @@ and \code{"boxviolin"} (for a combination of box and violin plots; default).}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
 
 \item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
 are to be displayed (default: \code{TRUE}). Please note that only

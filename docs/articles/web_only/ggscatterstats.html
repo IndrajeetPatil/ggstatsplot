@@ -46,6 +46,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -64,12 +66,6 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -153,7 +149,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -178,39 +174,39 @@
 
       
 
-      </header><script src="ggscatterstats_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="ggscatterstats_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggscatterstats</h1>
-                        <h4 class="author">Indrajeet Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-05-01</h4>
+            <h4 data-toc-skip class="date">2021-05-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd" class="external-link"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
 
     </div>
 
     
     
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggscatterstats</code> is meant to provide a <strong>publication-ready scatterplot</strong> with all statistical details included in the plot itself to show association between two continuous variables. This function is also helpful during the <strong>data exploration</strong> phase. We will see examples of how to use this function in this vignette with the <code>ggplot2movies</code> dataset.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggscatterstats</code>-</p>
 <ul>
 <li>to check linear association between two continuous variables</li>
 <li>to check distribution of two continuous variables</li>
 </ul>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note before</strong>: The following demo uses the pipe operator (<code>%&gt;%</code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="correlation-plot-with-ggscatterstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#correlation-plot-with-ggscatterstats" class="anchor"></a>Correlation plot with <code>ggscatterstats</code>
+<a href="#correlation-plot-with-ggscatterstats" class="anchor" aria-hidden="true"></a>Correlation plot with <code>ggscatterstats</code>
 </h1>
-<p>To illustrate how this function can be used, we will rely on the <code>ggplot2movies</code> dataset. This dataset provides information about movies scraped from <a href="https://www.imdb.com/">IMDB</a>. Specifically, we will be using cleaned version of this dataset included in the <code>ggstatsplot</code> package itself.</p>
+<p>To illustrate how this function can be used, we will rely on the <code>ggplot2movies</code> dataset. This dataset provides information about movies scraped from <a href="https://www.imdb.com/" class="external-link">IMDB</a>. Specifically, we will be using cleaned version of this dataset included in the <code>ggstatsplot</code> package itself.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># see the selected data (we have data from 1813 movies)</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/movies_wide.html">movies_wide</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/movies_wide.html">movies_wide</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,579</span>
 <span class="co">#&gt; Columns: 13</span>
 <span class="co">#&gt; $ title     &lt;chr&gt; "'Til There Was You", "10 Things I Hate About You", "100 Mil~</span>
@@ -230,10 +226,10 @@
 <p>To reduce the processing time, let’s only work with 30% of the dataset.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to speed up the calculation, let's use only 10% of the data</span>
-<span class="va">movies_10</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="va">movies_long</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
+<span class="va">movies_10</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="va">movies_long</span>, size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
@@ -244,7 +240,7 @@
   ylab <span class="op">=</span> <span class="st">"Rating on IMDB"</span>, <span class="co"># label for the y-axis</span>
   label.var <span class="op">=</span> <span class="va">title</span>, <span class="co"># variable to use for labeling data points</span>
   label.expression <span class="op">=</span> <span class="va">rating</span> <span class="op">&lt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">budget</span> <span class="op">&gt;</span> <span class="fl">75</span>, <span class="co"># expression for deciding which points to label</span>
-  point.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span>, size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span>,
+  point.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span>, size <span class="op">=</span> <span class="fl">4</span>, color <span class="op">=</span> <span class="st">"grey50"</span><span class="op">)</span>,
   marginal.type <span class="op">=</span> <span class="st">"density"</span>, <span class="co"># type of plot for marginal distribution</span>
   xfill <span class="op">=</span> <span class="st">"#CC79A7"</span>, <span class="co"># fill for marginals on the x-axis</span>
   yfill <span class="op">=</span> <span class="st">"#009E73"</span>, <span class="co"># fill for marginals on the y-axis</span>
@@ -258,21 +254,21 @@
 </div>
 <div id="grouped-analysis-with-grouped_ggscatterstats" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-grouped_ggscatterstats" class="anchor"></a>Grouped analysis with <code>grouped_ggscatterstats</code>
+<a href="#grouped-analysis-with-grouped_ggscatterstats" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_ggscatterstats</code>
 </h1>
 <p>What if we want to do the same analysis do the same analysis for movies with different MPAA (Motion Picture Association of America) film ratings (NC-17, PG, PG-13, R)?</p>
 <p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggstatsplot</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggstatsplot</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a robust test this time.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to speed up the calculation, let's use only 20% of the data</span>
 <span class="co"># also since there are only 7 movies with NC-17 ratings, leave them out</span>
 <span class="va">movies_20</span> <span class="op">&lt;-</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/movies_wide.html">movies_wide</a></span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">mpaa</span> <span class="op">!=</span> <span class="st">"NC-17"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="va">.</span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>
+  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/movies_wide.html">movies_wide</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">mpaa</span> <span class="op">!=</span> <span class="st">"NC-17"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="va">.</span>, size <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span>
@@ -285,29 +281,29 @@
   label.var <span class="op">=</span> <span class="va">title</span>,
   label.expression <span class="op">=</span> <span class="va">rating</span> <span class="op">&lt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">budget</span> <span class="op">&lt;</span> <span class="fl">20</span>,
   marginal.type <span class="op">=</span> <span class="st">"boxplot"</span>,
-  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
+  ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,
     caption <span class="op">=</span> <span class="st">"Source: www.imdb.com"</span>
   <span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="100%"></p>
 <p>As seen from the plot, this analysis has revealed something interesting: The relationship we found between budget and IMDB rating holds only for PG-13 and R-rated movies.</p>
 </div>
 <div id="grouped-analysis-with-ggscatterstats-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-ggscatterstats-purrr" class="anchor"></a>Grouped analysis with <code>ggscatterstats</code> + <code>purrr</code>
+<a href="#grouped-analysis-with-ggscatterstats-purrr" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>ggscatterstats</code> + <code>purrr</code>
 </h1>
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate type of marginal distribution plot for each MPAA rating or if we wanted to use different types of correlations across different levels of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would be a good idea), this is not possible. But this can be easily done using <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
-<p>Following tests are carried out for each type of analyses. Additionally, the correlation coefficients (and their confidence intervals) are used as effect sizes-</p>
+<a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h1>
+<p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -319,39 +315,39 @@
 <th>Type</th>
 <th>Test</th>
 <th>CI?</th>
-<th>Function</th>
+<th>Function used</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Winsorized Pearson correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
-<td>Bayes Factor</td>
+<td>Bayesian</td>
 <td>Pearson’s correlation coefficient</td>
-<td><font color="green">Yes</font></td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
+<td>✅</td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="reporting" class="section level1">
 <h1 class="hasAnchor">
-<a href="#reporting" class="anchor"></a>Reporting</h1>
+<a href="#reporting" class="anchor" aria-hidden="true"></a>Reporting</h1>
 <p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
 <ul>
 <li><p>the <code>ggstatsplot</code> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
@@ -369,17 +365,17 @@
 </div>
 <div id="effect-size-interpretation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#effect-size-interpretation" class="anchor"></a>Effect size interpretation</h1>
+<a href="#effect-size-interpretation" class="anchor" aria-hidden="true"></a>Effect size interpretation</h1>
 <p>To see how the effect sizes displayed in these tests can be interpreted, see: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html</a></p>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
-<a href="#session-information" class="anchor"></a>Session Information</h1>
+<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
 <p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>
@@ -395,11 +391,11 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
       </footer>

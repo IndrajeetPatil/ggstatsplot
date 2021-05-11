@@ -319,18 +319,16 @@ For independent measures designs, `ggbetweenstats` function can be used:
 
 # Summary of tests
 
-The central tendency measure displayed will depend on the statistics:
+**Central tendency measure**
 
 Type | Measure | Function used
 ----------- | --------- | ------------------ 
 Parametric | mean | `parameters::describe_distribution`
 Non-parametric | median | `parameters::describe_distribution`
 Robust | trimmed mean | `parameters::describe_distribution`
-Bayesian | MAP estimate | `parameters::describe_distribution`
+Bayesian | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution`
 
-MAP: maximum a posteriori probability
-
-Following (within-subjects) tests are carried out for each type of analyses-
+**Hypothesis testing**
 
 Type | No. of groups | Test | Function used
 ----------- | --- | ------------------------- | -----
@@ -343,29 +341,27 @@ Non-parametric | 2 | Wilcoxon signed-rank test | `stats::wilcox.test`
 Robust | 2 | Yuen's test on trimmed means for dependent samples | `WRS2::yuend`
 Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 
-Following effect sizes (and confidence intervals/CI) are available for each type
-of test-
+**Effect size estimation**
 
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
 Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | ✅ | `effectsize::omega_squared`, `effectsize::eta_squared`
 Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | ✅ | `effectsize::kendalls_w`
-Robust | > 2 | $\delta_{R-avg}^{AKP}$ ✅ | Algina-Keselman-Penfield robust standardized difference average | `WRS2::wmcpAKP`
-Bayes Factor | > 2 | $R_{posterior}^2$ | ✅ | `performance::r2_bayes`
+Robust | > 2 | $\delta_{R-avg}^{AKP}$ (Algina-Keselman-Penfield robust standardized difference average) | ✅ | `WRS2::wmcpAKP`
+Bayes Factor | > 2 | $R_{Bayesian}^2$ | ✅ | `performance::r2_bayes`
 Parametric | 2 | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | 2 | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | 2 |  $\delta_{R}^{AKP}$ (Algina-Keselman-Penfield robust standardized difference) | ✅ | `WRS2::dep.effect`
+Robust | 2 |  $\delta_{R}^{AKP}$ (Algina-Keselman-Penfield robust standardized difference) | ✅ | `WRS2::wmcpAKP`
 Bayesian | 2 | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
-Here is a summary of *multiple pairwise comparison* tests supported in
-*ggwithinstats*-
+**Pairwise comparison tests**
 
 Type | Test | *p*-value adjustment? | Function used
 ----------- | ---------------------------- | --- | -----
-Parametric | Student's *t*-test | <font color="green">Yes</font> | `stats::pairwise.t.test`
-Non-parametric | Durbin-Conover test | <font color="green">Yes</font> | `PMCMRplus::durbinAllPairsTest` 
-Robust | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::rmmcp`
-Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
+Parametric | Student's *t*-test | ✅ | `stats::pairwise.t.test`
+Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest` 
+Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
+Bayesian | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 
 # Reporting
 

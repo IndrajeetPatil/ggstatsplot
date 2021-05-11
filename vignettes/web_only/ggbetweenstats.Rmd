@@ -336,19 +336,16 @@ For repeated measures designs, `ggwithinstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 # Summary of tests
-
-The central tendency measure displayed will depend on the statistics:
+**Central tendency measure**
 
 Type | Measure | Function used
 ----------- | --------- | ------------------ 
 Parametric | mean | `parameters::describe_distribution`
 Non-parametric | median | `parameters::describe_distribution`
 Robust | trimmed mean | `parameters::describe_distribution`
-Bayesian | MAP estimate | `parameters::describe_distribution`
+Bayesian | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution`
 
-MAP: maximum a posteriori probability
-
-Following (between-subjects) tests are carried out for each type of analyses-
+**Hypothesis testing**
 
 Type | No. of groups | Test | Function used
 ----------- | --- | ------------------------- | -----
@@ -361,8 +358,7 @@ Non-parametric | 2 | Mann–Whitney *U* test | `stats::wilcox.test`
 Robust | 2 |  Yuen's test for trimmed means | `WRS2::yuen`
 Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
 
-Following effect sizes (and confidence intervals/CI) are available for each type
-of test-
+**Effect size estimation**
 
 Type | No. of groups | Effect size | CI? | Function used
 ----------- | --- | ------------------------- | --- | -----
@@ -375,16 +371,15 @@ Non-parametric | 2 | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_b
 Robust | 2 |  $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::yuen.effect.ci`
 Bayesian | 2 | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
-Here is a summary of *multiple pairwise comparison* tests supported in
-*ggbetweenstats*-
+**Pairwise comparison tests**
 
 Type | Equal variance? | Test | *p*-value adjustment? | Function used
 ----------- | --- | ------------------------- | --- | -----
-Parametric | No | Games-Howell test | <font color="green">Yes</font> | `stats::pairwise.t.test`
-Parametric | Yes | Student's *t*-test | <font color="green">Yes</font> | `PMCMRplus::gamesHowellTest`
-Non-parametric | No | Dunn test | <font color="green">Yes</font> | `PMCMRplus::kwAllPairsDunnTest`
-Robust | No | Yuen's trimmed means test | <font color="green">Yes</font> | `WRS2::lincon`
-Bayes Factor | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
+Parametric | No | Games-Howell test | ✅ | `stats::pairwise.t.test`
+Parametric | Yes | Student's *t*-test | ✅ | `PMCMRplus::gamesHowellTest`
+Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
+Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
+Bayes Factor | ❌ | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 
 # Reporting
 

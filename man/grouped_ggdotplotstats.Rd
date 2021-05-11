@@ -47,6 +47,11 @@ separately specified here.}
   \describe{
     \item{\code{point.args}}{A list of additional aesthetic arguments passed to
 \code{geom_point}.}
+    \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
+    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}
@@ -55,22 +60,7 @@ separately specified here.}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
-    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
-of an error, try reducing the value of \code{tr}, which is by default set to
-\code{0.2}. Lowering the value might help.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
-    \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
-passed to the \code{geom_line} used to display the lines corresponding to the
-centrality parameter.}
-    \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
-\code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption.}
+You can specify just the initial letter.}
     \item{\code{test.value}}{A number indicating the true value of the mean (Default:
 \code{0}).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
@@ -86,8 +76,11 @@ parametric test} (Default: \code{TRUE}).}
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
     \item{\code{conf.level}}{Confidence/Credible Interval (CI) level. Default to \code{0.95}
 (\verb{95\%}).}
-    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
+of an error, try reducing the value of \code{tr}, which is by default set to
+\code{0.2}. Lowering the value might help.}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
@@ -115,6 +108,9 @@ to be:
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
+    \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
+passed to the \code{geom_line} used to display the lines corresponding to the
+centrality parameter.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should

@@ -267,7 +267,6 @@ from one-sample test included in the plot as a subtitle.</p>
   bf.message <span class='op'>=</span> <span class='cn'>TRUE</span>,
   effsize.type <span class='op'>=</span> <span class='st'>"g"</span>,
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
-  nboot <span class='op'>=</span> <span class='fl'>100</span>,
   tr <span class='op'>=</span> <span class='fl'>0.2</span>,
   k <span class='op'>=</span> <span class='fl'>2</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -331,9 +330,7 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
 <li><p><code>"bayes"</code></p></li>
 </ul>
 
-<p>This argument also accepts the following abbreviations: <code>"p"</code> (for
-<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
-(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></td>
+<p>You can specify just the initial letter.</p></td>
     </tr>
     <tr>
       <th>test.value</th>
@@ -364,11 +361,6 @@ argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (f
       <th>conf.level</th>
       <td><p>Confidence/Credible Interval (CI) level. Default to <code>0.95</code>
 (<code>95%</code>).</p></td>
-    </tr>
-    <tr>
-      <th>nboot</th>
-      <td><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></td>
     </tr>
     <tr>
       <th>tr</th>

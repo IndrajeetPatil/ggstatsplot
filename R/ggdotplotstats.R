@@ -10,7 +10,6 @@
 #' @param y Label or grouping variable.
 #' @param point.args A list of additional aesthetic arguments passed to
 #'   `geom_point`.
-#' @inheritParams histo_labeller
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #'
@@ -57,7 +56,6 @@ ggdotplotstats <- function(data,
                            bf.message = TRUE,
                            effsize.type = "g",
                            conf.level = 0.95,
-                           nboot = 100,
                            tr = 0.2,
                            k = 2,
                            results.subtitle = TRUE,
@@ -125,7 +123,6 @@ ggdotplotstats <- function(data,
         bf.prior = bf.prior,
         effsize.type = effsize.type,
         conf.level = conf.level,
-        nboot = nboot,
         tr = tr,
         k = k
       ),

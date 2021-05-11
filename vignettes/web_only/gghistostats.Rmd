@@ -161,18 +161,16 @@ See the associated vignette here:
 
 # Summary of tests
 
-The central tendency measure displayed will depend on the statistics:
+**Central tendency measure**
 
 Type | Measure | Function used
 ----------- | --------- | ------------------ 
 Parametric | mean | `parameters::describe_distribution`
 Non-parametric | median | `parameters::describe_distribution`
 Robust | trimmed mean | `parameters::describe_distribution`
-Bayesian | MAP estimate | `parameters::describe_distribution`
+Bayesian | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution`
 
-MAP: maximum a posteriori probability
-
-Following tests are carried out for each type of analyses-
+**Hypothesis testing**
 
 Type | Test | Function used
 ------------------ | ------------------------- | -----
@@ -181,8 +179,7 @@ Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
 Robust | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)
 Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
 
-Following effect sizes (and confidence intervals/CI) are available for each type
-of test-
+**Effect size estimation**
 
 Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----

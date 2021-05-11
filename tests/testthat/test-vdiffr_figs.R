@@ -1,6 +1,7 @@
-if (getRversion() < "4.1" && require("vdiffr")) {
+if (getRversion() < "4.1" && packageVersion("statsExpressions") <= "1.0.1") {
   test_that("plots are rendered correctly", {
     skip_on_cran()
+    skip_if_not_installed("vdiffr")
 
     ## ----ggbetweenstats-------------------------------
 

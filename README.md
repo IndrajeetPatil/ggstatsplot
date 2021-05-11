@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)        | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                                          | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                            |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                      | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)      | [![CoC](https://img.shields.io/badge/CoC-v2.0%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html)                    | [![CodeFactor](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot/badge)](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot) |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)       | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                             |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![status](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg)](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c) | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--05--08-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)       |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![status](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg)](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c) | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--05--11-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)       |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)       |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -153,7 +153,7 @@ supported in this package-
 | `ggcorrmat`                      | Correlation matrix                                | ✅          | ✅              | ✅      | ✅        |
 | `ggscatterstats`                 | Correlation between two variables                 | ✅          | ✅              | ✅      | ✅        |
 | `ggpiestats`, `ggbarstats`       | Association between categorical variables         | ✅          | ✅              | ❌      | ✅        |
-| `ggpiestats`, `ggbarstats`       | Equal proportions for categorical variable levels | ✅          | ❌              | ❌      | ✅        |
+| `ggpiestats`, `ggbarstats`       | Equal proportions for categorical variable levels | ✅          | ✅              | ❌      | ✅        |
 | `ggcoefstats`                    | Regression model coefficients                     | ✅          | ✅              | ✅      | ✅        |
 | `ggcoefstats`                    | Random-effects meta-analysis                      | ✅          | ❌              | ✅      | ✅        |
 
@@ -260,19 +260,16 @@ Note here that the function can be used to tag outliers!
 
 ### Summary of tests
 
-The central tendency measure displayed will depend on the statistics:
+**Central tendency measure**
 
-| Type           | Measure      | Function used                       |
-|----------------|--------------|-------------------------------------|
-| Parametric     | mean         | `parameters::describe_distribution` |
-| Non-parametric | median       | `parameters::describe_distribution` |
-| Robust         | trimmed mean | `parameters::describe_distribution` |
-| Bayesian       | MAP estimate | `parameters::describe_distribution` |
+| Type           | Measure                                           | Function used                       |
+|----------------|---------------------------------------------------|-------------------------------------|
+| Parametric     | mean                                              | `parameters::describe_distribution` |
+| Non-parametric | median                                            | `parameters::describe_distribution` |
+| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
 
-MAP: maximum a posteriori probability
-
-Following (between-subjects) tests are carried out for each type of
-analyses-
+**Hypothesis testing**
 
 | Type           | No. of groups | Test                                            | Function used          |
 |----------------|---------------|-------------------------------------------------|------------------------|
@@ -285,8 +282,7 @@ analyses-
 | Robust         | 2             | Yuen’s test for trimmed means                   | `WRS2::yuen`           |
 | Bayesian       | 2             | Student’s *t*-test                              | `BayesFactor::ttestBF` |
 
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
+**Effect size estimation**
 
 | Type           | No. of groups | Effect size                                                  | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------|-----|--------------------------------------------------------|
@@ -299,8 +295,7 @@ each type of test-
 | Robust         | 2             | *ξ* (Explanatory measure of effect size)                     | ✅   | `WRS2::yuen.effect.ci`                                 |
 | Bayesian       | 2             | *δ*<sub>*p**o**s**t**e**r**i**o**r*</sub>                    | ✅   | `bayestestR::describe_posterior`                       |
 
-Here is a summary of *multiple pairwise comparison* tests supported in
-*ggbetweenstats*-
+**Pairwise comparison tests**
 
 | Type           | Equal variance? | Test                      | *p*-value adjustment? | Function used                   |
 |----------------|-----------------|---------------------------|-----------------------|---------------------------------|
@@ -389,19 +384,16 @@ grouped_ggwithinstats(
 
 ### Summary of tests
 
-The central tendency measure displayed will depend on the statistics:
+**Central tendency measure**
 
-| Type           | Measure      | Function used                       |
-|----------------|--------------|-------------------------------------|
-| Parametric     | mean         | `parameters::describe_distribution` |
-| Non-parametric | median       | `parameters::describe_distribution` |
-| Robust         | trimmed mean | `parameters::describe_distribution` |
-| Bayesian       | MAP estimate | `parameters::describe_distribution` |
+| Type           | Measure                                           | Function used                       |
+|----------------|---------------------------------------------------|-------------------------------------|
+| Parametric     | mean                                              | `parameters::describe_distribution` |
+| Non-parametric | median                                            | `parameters::describe_distribution` |
+| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
 
-MAP: maximum a posteriori probability
-
-Following (within-subjects) tests are carried out for each type of
-analyses-
+**Hypothesis testing**
 
 | Type           | No. of groups | Test                                                              | Function used          |
 |----------------|---------------|-------------------------------------------------------------------|------------------------|
@@ -414,22 +406,20 @@ analyses-
 | Robust         | 2             | Yuen’s test on trimmed means for dependent samples                | `WRS2::yuend`          |
 | Bayesian       | 2             | Student’s *t*-test                                                | `BayesFactor::ttestBF` |
 
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
+**Effect size estimation**
 
-| Type           | No. of groups | Effect size                                                                                     | CI?                                                             | Function used                                          |
-|----------------|---------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|
-| Parametric     | &gt; 2        | *η*<sub>*p*</sub><sup>2</sup>, *ω*<sub>*p*</sub><sup>2</sup>                                    | ✅                                                               | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | &gt; 2        | *W*<sub>*K**e**n**d**a**l**l*</sub> (Kendall’s coefficient of concordance)                      | ✅                                                               | `effectsize::kendalls_w`                               |
-| Robust         | &gt; 2        | *δ*<sub>*R* − *a**v**g*</sub><sup>*A**K**P*</sup> ✅                                             | Algina-Keselman-Penfield robust standardized difference average | `WRS2::wmcpAKP`                                        |
-| Bayes Factor   | &gt; 2        | *R*<sub>*p**o**s**t**e**r**i**o**r*</sub><sup>2</sup>                                           | ✅                                                               | `performance::r2_bayes`                                |
-| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                        | ✅                                                               | `effectsize::cohens_d`, `effectsize::hedges_g`         |
-| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                 | ✅                                                               | `effectsize::rank_biserial`                            |
-| Robust         | 2             | *δ*<sub>*R*</sub><sup>*A**K**P*</sup> (Algina-Keselman-Penfield robust standardized difference) | ✅                                                               | `WRS2::dep.effect`                                     |
-| Bayesian       | 2             | *δ*<sub>*p**o**s**t**e**r**i**o**r*</sub>                                                       | ✅                                                               | `bayestestR::describe_posterior`                       |
+| Type           | No. of groups | Effect size                                                                                                         | CI? | Function used                                          |
+|----------------|---------------|---------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
+| Parametric     | &gt; 2        | *η*<sub>*p*</sub><sup>2</sup>, *ω*<sub>*p*</sub><sup>2</sup>                                                        | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | &gt; 2        | *W*<sub>*K**e**n**d**a**l**l*</sub> (Kendall’s coefficient of concordance)                                          | ✅   | `effectsize::kendalls_w`                               |
+| Robust         | &gt; 2        | *δ*<sub>*R* − *a**v**g*</sub><sup>*A**K**P*</sup> (Algina-Keselman-Penfield robust standardized difference average) | ✅   | `WRS2::wmcpAKP`                                        |
+| Bayes Factor   | &gt; 2        | *R*<sub>*B**a**y**e**s**i**a**n*</sub><sup>2</sup>                                                                  | ✅   | `performance::r2_bayes`                                |
+| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                            | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
+| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                     | ✅   | `effectsize::rank_biserial`                            |
+| Robust         | 2             | *δ*<sub>*R*</sub><sup>*A**K**P*</sup> (Algina-Keselman-Penfield robust standardized difference)                     | ✅   | `WRS2::wmcpAKP`                                        |
+| Bayesian       | 2             | *δ*<sub>*p**o**s**t**e**r**i**o**r*</sub>                                                                           | ✅   | `bayestestR::describe_posterior`                       |
 
-Here is a summary of *multiple pairwise comparison* tests supported in
-*ggwithinstats*-
+**Pairwise comparison tests**
 
 | Type           | Test                      | *p*-value adjustment? | Function used                   |
 |----------------|---------------------------|-----------------------|---------------------------------|
@@ -501,16 +491,16 @@ grouped_gghistostats(
 
 ### Summary of tests
 
-The central tendency measure displayed will depend on the statistics:
+**Central tendency measure**
 
-| Type           | Measure      | Function used                       |
-|----------------|--------------|-------------------------------------|
-| Parametric     | mean         | `parameters::describe_distribution` |
-| Non-parametric | median       | `parameters::describe_distribution` |
-| Robust         | trimmed mean | `parameters::describe_distribution` |
-| Bayesian       | MAP estimate | `parameters::describe_distribution` |
+| Type           | Measure                                           | Function used                       |
+|----------------|---------------------------------------------------|-------------------------------------|
+| Parametric     | mean                                              | `parameters::describe_distribution` |
+| Non-parametric | median                                            | `parameters::describe_distribution` |
+| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
 
-Following tests are carried out for each type of analyses-
+**Hypothesis testing**
 
 | Type           | Test                                     | Function used          |
 |----------------|------------------------------------------|------------------------|
@@ -519,8 +509,7 @@ Following tests are carried out for each type of analyses-
 | Robust         | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)    |
 | Bayesian       | One-sample Student’s *t*-test            | `BayesFactor::ttestBF` |
 
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
+**Effect size estimation**
 
 | Type           | Effect size                               | CI? | Function used                                  |
 |----------------|-------------------------------------------|-----|------------------------------------------------|
@@ -595,7 +584,32 @@ grouped_ggdotplotstats(
 
 ### Summary of tests
 
-This is identical to summary of tests for `gghistostats`.
+**Central tendency measure**
+
+| Type           | Measure                                           | Function used                       |
+|----------------|---------------------------------------------------|-------------------------------------|
+| Parametric     | mean                                              | `parameters::describe_distribution` |
+| Non-parametric | median                                            | `parameters::describe_distribution` |
+| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
+
+**Hypothesis testing**
+
+| Type           | Test                                     | Function used          |
+|----------------|------------------------------------------|------------------------|
+| Parametric     | One-sample Student’s *t*-test            | `stats::t.test`        |
+| Non-parametric | One-sample Wilcoxon test                 | `stats::wilcox.test`   |
+| Robust         | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)    |
+| Bayesian       | One-sample Student’s *t*-test            | `BayesFactor::ttestBF` |
+
+**Effect size estimation**
+
+| Type           | Effect size                               | CI? | Function used                                  |
+|----------------|-------------------------------------------|-----|------------------------------------------------|
+| Parametric     | Cohen’s *d*, Hedge’s *g*                  | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g` |
+| Non-parametric | *r* (rank-biserial correlation)           | ✅   | `effectsize::rank_biserial`                    |
+| Robust         | trimmed mean                              | ✅   | `trimcibt` (custom)                            |
+| Bayes Factor   | *δ*<sub>*p**o**s**t**e**r**i**o**r*</sub> | ✅   | `bayestestR::describe_posterior`               |
 
 ## `ggscatterstats`
 
@@ -691,9 +705,7 @@ grouped_ggscatterstats(
 
 ### Summary of tests
 
-Following tests are carried out for each type of analyses. Additionally,
-the correlation coefficients (and their confidence intervals) are used
-as effect sizes-
+**Hypothesis testing** and **Effect size estimation**
 
 | Type           | Test                                       | CI? | Function used              |
 |----------------|--------------------------------------------|-----|----------------------------|
@@ -892,12 +904,14 @@ ggcorrmat(
 
 ### Summary of tests
 
-| Type           | Test                                       | CI? | partial? | Function used              |
-|----------------|--------------------------------------------|-----|----------|----------------------------|
-| Parametric     | Pearson’s correlation coefficient          | ✅   | ✅        | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient    | ✅   | ✅        | `correlation::correlation` |
-| Robust         | Winsorized Pearson correlation coefficient | ✅   | ✅        | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient          | ✅   | ✅        | `correlation::correlation` |
+**Hypothesis testing** and **Effect size estimation**
+
+| Type           | Test                                       | CI? | Function used              |
+|----------------|--------------------------------------------|-----|----------------------------|
+| Parametric     | Pearson’s correlation coefficient          | ✅   | `correlation::correlation` |
+| Non-parametric | Spearman’s rank correlation coefficient    | ✅   | `correlation::correlation` |
+| Robust         | Winsorized Pearson correlation coefficient | ✅   | `correlation::correlation` |
+| Bayesian       | Pearson’s correlation coefficient          | ✅   | `correlation::correlation` |
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
@@ -963,22 +977,41 @@ grouped_ggpiestats(
 
 ### Summary of tests
 
-Following tests are carried out for each type of analyses-
+**two-way table**
 
-| Type of data | Design                      | Test                                   | Function used         |
-|--------------|-----------------------------|----------------------------------------|-----------------------|
-| Unpaired     | *n* × *p* contingency table | Pearson’s *χ*<sup>2</sup> test         | `stats::chisq.test`   |
-| Paired       | *n* × *p* contingency table | McNemar’s *χ*<sup>2</sup> test         | `stats::mcnemar.test` |
-| Frequency    | *n* × 1 contingency table   | Goodness of fit (*χ*<sup>2</sup> test) | `stats::chisq.test`   |
+**Hypothesis testing**
 
-Following effect sizes (and confidence intervals/CI) are available for
-each type of test-
+| Type                      | Design   | Test                                    | Function used                     |
+|---------------------------|----------|-----------------------------------------|-----------------------------------|
+| Parametric/Non-parametric | Unpaired | Pearson’s *χ*<sup>2</sup> test          | `stats::chisq.test`               |
+| Bayesian                  | Unpaired | Bayesian Pearson’s *χ*<sup>2</sup> test | `BayesFactor::contingencyTableBF` |
+| Parametric/Non-parametric | Paired   | McNemar’s *χ*<sup>2</sup> test          | `stats::mcnemar.test`             |
+| Bayesian                  | Paired   | ❌                                       | ❌                                 |
 
-| Test                           | Effect size  | CI? | Function used           |
-|--------------------------------|--------------|-----|-------------------------|
-| Pearson’s *χ*<sup>2</sup> test | Cramer’s *V* | ✅   | `effectsize::cramers_v` |
-| McNemar’s test                 | Cohen’s *g*  | ✅   | `effectsize::cohens_g`  |
-| Goodness of fit                | Cramer’s *V* | ✅   | `effectsize::cramers_v` |
+**Effect size estimation**
+
+| Type                      | Design   | Effect size  | CI? | Function used           |
+|---------------------------|----------|--------------|-----|-------------------------|
+| Parametric/Non-parametric | Unpaired | Cramer’s *V* | ✅   | `effectsize::cramers_v` |
+| Bayesian                  | Unpaired | Cramer’s *V* | ✅   | `effectsize::cramers_v` |
+| Parametric/Non-parametric | Paired   | Cohen’s *g*  | ✅   | `effectsize::cohens_g`  |
+| Bayesian                  | Paired   | ❌            | ❌   | ❌                       |
+
+**one-way table**
+
+**Hypothesis testing**
+
+| Type                      | Test                                          | Function used       |
+|---------------------------|-----------------------------------------------|---------------------|
+| Parametric/Non-parametric | Goodness of fit *χ*<sup>2</sup> test          | `stats::chisq.test` |
+| Bayesian                  | Bayesian Goodness of fit *χ*<sup>2</sup> test | (custom)            |
+
+**Effect size estimation**
+
+| Type                      | Effect size  | CI? | Function used                    |
+|---------------------------|--------------|-----|----------------------------------|
+| Parametric/Non-parametric | Cramer’s *V* | ✅   | `bayestestR::describe_posterior` |
+| Bayesian                  | ❌            | ❌   | ❌                                |
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -1042,7 +1075,41 @@ grouped_ggbarstats(
 
 ### Summary of tests
 
-This is identical to the `ggpiestats` function summary of tests.
+**two-way table**
+
+**Hypothesis testing**
+
+| Type                      | Design   | Test                                    | Function used                     |
+|---------------------------|----------|-----------------------------------------|-----------------------------------|
+| Parametric/Non-parametric | Unpaired | Pearson’s *χ*<sup>2</sup> test          | `stats::chisq.test`               |
+| Bayesian                  | Unpaired | Bayesian Pearson’s *χ*<sup>2</sup> test | `BayesFactor::contingencyTableBF` |
+| Parametric/Non-parametric | Paired   | McNemar’s *χ*<sup>2</sup> test          | `stats::mcnemar.test`             |
+| Bayesian                  | Paired   | ❌                                       | ❌                                 |
+
+**Effect size estimation**
+
+| Type                      | Design   | Effect size  | CI? | Function used           |
+|---------------------------|----------|--------------|-----|-------------------------|
+| Parametric/Non-parametric | Unpaired | Cramer’s *V* | ✅   | `effectsize::cramers_v` |
+| Bayesian                  | Unpaired | Cramer’s *V* | ✅   | `effectsize::cramers_v` |
+| Parametric/Non-parametric | Paired   | Cohen’s *g*  | ✅   | `effectsize::cohens_g`  |
+| Bayesian                  | Paired   | ❌            | ❌   | ❌                       |
+
+**one-way table**
+
+**Hypothesis testing**
+
+| Type                      | Test                                          | Function used       |
+|---------------------------|-----------------------------------------------|---------------------|
+| Parametric/Non-parametric | Goodness of fit *χ*<sup>2</sup> test          | `stats::chisq.test` |
+| Bayesian                  | Bayesian Goodness of fit *χ*<sup>2</sup> test | (custom)            |
+
+**Effect size estimation**
+
+| Type                      | Effect size  | CI? | Function used                    |
+|---------------------------|--------------|-----|----------------------------------|
+| Parametric/Non-parametric | Cramer’s *V* | ✅   | `bayestestR::describe_posterior` |
+| Bayesian                  | ❌            | ❌   | ❌                                |
 
 ## `ggcoefstats`
 
@@ -1094,7 +1161,7 @@ ggcoefstats(mod)
 📝 **Defaults** return<br>
 
 ✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC
-+ BIC) <br>
+and BIC) <br>
 
 This default plot can be further modified to one’s liking with
 additional arguments (also, let’s use a different model now):
@@ -1160,11 +1227,13 @@ parametric, robust, and Bayesian random-effects meta-analysis.
 
 ### Summary of meta-analysis tests
 
-| Type       | Test                                             | Effect size | 95% CI available? | Function used          |
-|------------|--------------------------------------------------|-------------|-------------------|------------------------|
-| Parametric | Meta-analysis via random-effects models          | *β*         | ✅                 | `metafor::metafor`     |
-| Robust     | Meta-analysis via robust random-effects models   | *β*         | ✅                 | `metaplus::metaplus`   |
-| Bayes      | Meta-analysis via Bayesian random-effects models | *β*         | ✅                 | `metaBMA::meta_random` |
+**Hypothesis testing** and **Effect size estimation**
+
+| Type       | Test                                             | Effect size | CI? | Function used          |
+|------------|--------------------------------------------------|-------------|-----|------------------------|
+| Parametric | Meta-analysis via random-effects models          | *β*         | ✅   | `metafor::metafor`     |
+| Robust     | Meta-analysis via robust random-effects models   | *β*         | ✅   | `metaplus::metaplus`   |
+| Bayes      | Meta-analysis via Bayesian random-effects models | *β*         | ✅   | `metaBMA::meta_random` |
 
 For a more exhaustive account of this function, see the associated
 vignette-

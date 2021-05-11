@@ -23,7 +23,16 @@ pre, code, pre.usage, code.sourceCode.r, .sourceCode, .examples, .downlit, .sour
     fill: #ea4aaa;
 }
 
+a, a:hover, a:focus {
+    color: #11866F;
+}
+
 @media (prefers-color-scheme: dark) {
+
+    a, a:hover, a:focus {
+        color: #0ce3ac;
+    }
+
     .github-love {
         stroke: #db61a2;
         fill: #db61a2;

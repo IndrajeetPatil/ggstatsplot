@@ -101,9 +101,15 @@
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -124,12 +130,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -271,24 +271,27 @@ economic status (class), sex, age and survival.</p>
 <p>This is a modified dataset from <code>datasets</code> package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 2201    5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span><span>
-#&gt;      </span><span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>Class</span><span> </span><span style='font-weight: bold;'>Sex</span><span>   </span><span style='font-weight: bold;'>Age</span><span>   </span><span style='font-weight: bold;'>Survived</span><span>
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span>     1 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span>     2 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span>     3 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span>     4 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span>     5 3rd   Male  Child No      
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span>     6 3rd   Male  Child No      </div><div class='input'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Rows: 2,201
-#&gt; Columns: 5
-#&gt; $ </span><span style='font-weight: bold;'>id      </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~
-#&gt; $ </span><span style='font-weight: bold;'>Class   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~
-#&gt; $ </span><span style='font-weight: bold;'>Sex     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~
-#&gt; $ </span><span style='font-weight: bold;'>Age     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Child, Child, Child, Child, Child, Child, Child, Child, Child~
-#&gt; $ </span><span style='font-weight: bold;'>Survived</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</div></span></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2201    5</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>Class</span><span> </span><span style='font-weight: bold;'>Sex</span><span>   </span><span style='font-weight: bold;'>Age</span><span>   </span><span style='font-weight: bold;'>Survived</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span>     1 3rd   Male  Child No      </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span><span>     2 3rd   Male  Child No      </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span><span>     3 3rd   Male  Child No      </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span><span>     4 3rd   Male  Child No      </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span><span>     5 3rd   Male  Child No      </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span><span>     6 3rd   Male  Child No      </span></span>
+<span class='r-in'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Rows: 2,201</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Columns: 5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>id      </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Class   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Sex     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Age     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Child, Child, Child, Child, Child, Child, Child, Child, Child~</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Survived</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -304,7 +307,7 @@ economic status (class), sex, age and survival.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -329,6 +332,8 @@ economic status (class), sex, age and survival.</p>
 </script>
 
 
+
+  
 
   </body>
 </html>

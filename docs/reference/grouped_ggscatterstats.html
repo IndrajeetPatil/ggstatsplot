@@ -280,14 +280,12 @@ be accepted.</p></td>
     <tr>
       <th>x</th>
       <td><p>The column in <code>data</code> containing the explanatory variable to be
-plotted on the <code>x</code>-axis. Can be entered either as a character string (e.g.,
-<code>"x"</code>) or as a bare expression (e.g, <code>x</code>).</p></td>
+plotted on the <code>x</code>-axis.</p></td>
     </tr>
     <tr>
       <th>y</th>
       <td><p>The column in <code>data</code> containing the response (outcome) variable to
-be plotted on the <code>y</code>-axis. Can be entered either as a character string
-(e.g., <code>"y"</code>) or as a bare expression (e.g, <code>y</code>).</p></td>
+be plotted on the <code>y</code>-axis.</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
@@ -368,9 +366,7 @@ marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul>This argument also accepts the following abbreviations: <code>"p"</code> (for
-<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>), <code>"bf"</code>
-(for <em>Bayes Factor</em> or <em>Bayesian</em>).</p></dd>
+</ul>You can specify just the initial letter.</p></dd>
     <dt><code>conf.level</code></dt><dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
 return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
     <dt><code>bf.prior</code></dt><dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior

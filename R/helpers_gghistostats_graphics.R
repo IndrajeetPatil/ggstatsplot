@@ -9,9 +9,6 @@
 #'   for a test value and/or a centrality parameter (mean/median) value.
 #' @param ... Currently ignored.
 #' @inheritParams statsExpressions::one_sample_test
-#' @param centrality.line.args A list of additional aesthetic arguments to be
-#'   passed to the `geom_line` used to display the lines corresponding to the
-#'   centrality parameter.
 #'
 #' @examples
 #' \donttest{
@@ -28,6 +25,7 @@
 #' )
 #' }
 #' @keywords internal
+#' @noRd
 
 # function body
 histo_labeller <- function(plot,

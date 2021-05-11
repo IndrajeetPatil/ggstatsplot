@@ -124,7 +124,9 @@ also supported by `ggcoefstats`. For example-
 
 # Summary of meta-analysis tests
 
-Type | Test | Effect size | 95% CI available? | Function
+**Hypothesis testing** and **Effect size estimation**
+
+Type | Test | Effect size | CI? | Function used
 ----------- | -------------------- | -------- | ---  | -----
 Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor`
 Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus`

@@ -84,9 +84,7 @@ points.}
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
     \item{\code{pairwise.comparisons}}{Logical that decides whether pairwise comparisons
 are to be displayed (default: \code{TRUE}). Please note that only
 \strong{significant} comparisons will be shown by default. To change this

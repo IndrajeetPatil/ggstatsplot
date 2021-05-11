@@ -2,21 +2,21 @@
   "index_name": "ggstatsplot",
   "start_urls": [
     {
-      "url": "https://indrajeetpatil.github.io/ggstatsplot//index.html",
+      "url": "https://indrajeetpatil.github.io/ggstatsplot/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://indrajeetpatil.github.io/ggstatsplot//reference",
+      "url": "https://indrajeetpatil.github.io/ggstatsplot/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://indrajeetpatil.github.io/ggstatsplot//articles",
+      "url": "https://indrajeetpatil.github.io/ggstatsplot/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://indrajeetpatil.github.io/ggstatsplot//sitemap.xml"
+    "https://indrajeetpatil.github.io/ggstatsplot/sitemap.xml"
   ],
   "selectors": {
     "homepage": {

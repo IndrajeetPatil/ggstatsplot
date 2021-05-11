@@ -45,12 +45,10 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
 
 \item{x}{The column in \code{data} containing the explanatory variable to be
-plotted on the \code{x}-axis. Can be entered either as a character string (e.g.,
-\code{"x"}) or as a bare expression (e.g, \code{x}).}
+plotted on the \code{x}-axis.}
 
 \item{y}{The column in \code{data} containing the response (outcome) variable to
-be plotted on the \code{y}-axis. Can be entered either as a character string
-(e.g., \code{"y"}) or as a bare expression (e.g, \code{y}).}
+be plotted on the \code{y}-axis.}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -60,9 +58,7 @@ be plotted on the \code{y}-axis. Can be entered either as a character string
 \item \code{"bayes"}
 }
 
-This argument also accepts the following abbreviations: \code{"p"} (for
-\emph{parametric}), \code{"np"} (for \emph{nonparametric}), \code{"r"} (for \emph{robust}), \code{"bf"}
-(for \emph{Bayes Factor} or \emph{Bayesian}).}
+You can specify just the initial letter.}
 
 \item{conf.level}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
 return \verb{95\%} confidence/credible intervals (\code{0.95}).}
