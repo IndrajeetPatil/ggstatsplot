@@ -237,6 +237,19 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "effectsize",
+      "name": "effectsize",
+      "version": ">= 0.4.4-2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://github.com/easystats/effectsize"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
       "provider": {
@@ -483,6 +496,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "7641.479KB",
+  "fileSize": "7635.061KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

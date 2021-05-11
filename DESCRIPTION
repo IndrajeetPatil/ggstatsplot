@@ -26,6 +26,7 @@ Depends:
     R (>= 3.6.0)
 Imports:
     dplyr,
+    effectsize (>= 0.4.4-2),
     ggplot2,
     ggrepel,
     ggsignif,
@@ -58,6 +59,7 @@ Suggests:
     vdiffr,
     WRS2
 Remotes:
+    easystats/effectsize,
     IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
