@@ -147,7 +147,7 @@ ggcorrmat <- function(data,
   )
 
   # is it a partial correlation?
-  corr.nature <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
+  r.type <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
 
   # ===================== statistics ========================================
 
@@ -187,7 +187,7 @@ ggcorrmat <- function(data,
   if (isFALSE(any(is.na(df))) || isTRUE(partial)) {
     legend.title <- bquote(atop(
       atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))),
-      atop(scriptstyle(bold(.(corr.nature))), .(r.method.text))
+      atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
     # creating legend with sample size info
@@ -199,7 +199,7 @@ ggcorrmat <- function(data,
           italic(n)[max] ~ "=" ~ .(.prettyNum(max(stats_df$n_Obs)))
         )
       ),
-      atop(scriptstyle(bold(.(corr.nature))), .(r.method.text))
+      atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   }
 
@@ -230,14 +230,8 @@ ggcorrmat <- function(data,
       atop(
         displaystyle(top.text),
         expr = paste(
-          bold("X"),
-          " = non-significant at ",
-          italic("p"),
-          " < ",
-          sig.level,
-          " (Adjustment: ",
-          adj.text,
-          ")"
+          bold("X"), " = non-significant at ",
+          italic("p"), " < ", sig.level, " (Adjustment: ", adj.text, ")"
         )
       ),
       env = list(

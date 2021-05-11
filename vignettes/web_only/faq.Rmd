@@ -177,9 +177,9 @@ grouped_ggscatterstats(
   grouping.var = am,
   results.subtitle = FALSE,
   ggplot.component = list(ggplot2::scale_y_continuous(
-      breaks = seq(50, 350, 50),
-      limits = (c(50, 350))
-    ))
+    breaks = seq(50, 350, 50),
+    limits = (c(50, 350))
+  ))
 )
 ```
 
@@ -593,7 +593,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$plot <- renderPlot({
-    ggbetweenstats(iris, !! input$x , !! input$y)
+    ggbetweenstats(iris, !!input$x, !!input$y)
   })
 }
 

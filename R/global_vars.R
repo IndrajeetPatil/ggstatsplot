@@ -34,7 +34,8 @@ utils::globalVariables(
     "r.method",
     "r.method.text",
     ".temp",
-    "var"
+    "var",
+    "renderPlot"
   ),
   package = "ggstatsplot",
   add = FALSE

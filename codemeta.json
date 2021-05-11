@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2021-04-18 r80182)",
+  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -392,14 +392,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.0.1",
+      "version": ">= 1.0.1.9000",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     {
       "@type": "SoftwareApplication",
@@ -483,6 +483,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "0KB",
+  "fileSize": "7641.479KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
