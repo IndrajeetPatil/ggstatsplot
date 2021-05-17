@@ -4,7 +4,7 @@
 test_that(
   desc = "checking ggcorrmat - without NAs - pearson's r",
   code = {
-    skip_on_cran()
+
     skip_if_not_installed("ggcorrplot")
 
     # creating the plot
@@ -44,7 +44,7 @@ test_that(
 test_that(
   desc = "checking ggcorrmat - without NAs - robust r",
   code = {
-    skip_on_cran()
+
     skip_if_not_installed("ggcorrplot")
 
     # creating the plot
@@ -71,7 +71,7 @@ test_that(
 test_that(
   desc = "checking ggcorrmat - with NAs - robust r - partial",
   code = {
-    skip_on_cran()
+
     skip_if_not_installed("ggcorrplot")
     skip_on_ci()
 
@@ -103,7 +103,7 @@ test_that(
 test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
-    skip_on_cran()
+
     skip_if_not_installed("ggcorrplot")
 
     # creating the plot
@@ -138,7 +138,7 @@ test_that(
 test_that(
   desc = "checking Bayesian pearson (with NA)",
   code = {
-    skip_on_cran()
+
     skip_if_not_installed("ggcorrplot")
 
     set.seed(123)
@@ -157,9 +157,8 @@ test_that(
 test_that(
   desc = "checking all dataframe outputs",
   code = {
-    options(tibble.width = Inf, tibble.print_max = 50)
-
     skip_on_cran()
+    options(tibble.width = Inf, tibble.print_max = 50)
     skip_if_not_installed("ggcorrplot")
     skip_on_ci()
     skip_on_appveyor()
