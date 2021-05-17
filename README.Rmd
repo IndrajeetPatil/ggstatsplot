@@ -282,7 +282,7 @@ Note here that the function can be used to tag outliers!
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
-raw points | `ggplot2::geom_point` | `point.args`
+raw data | `ggplot2::geom_point` | `point.args`
 box plot | `ggplot2::geom_boxplot` | ❌
 density plot | `ggplot2::geom_violin` | `violin.args`
 centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
@@ -417,7 +417,7 @@ grouped_ggwithinstats(
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
-raw points | `ggplot2::geom_point` | `point.args`
+raw data | `ggplot2::geom_point` | `point.args`
 point path | `ggplot2::geom_path` | `point.path.args`
 box plot | `ggplot2::geom_boxplot` | ❌
 density plot | `ggplot2::geom_violin` | `violin.args`
@@ -534,6 +534,14 @@ grouped_gghistostats(
 )
 ```
 
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+histogram bin | `ggplot2::stat_bin` | `bin.args`
+centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
+normality curve | `ggplot2::stat_function` | `normal.curve.args`
+
 ### Summary of tests
 
 **Central tendency measure**
@@ -624,6 +632,13 @@ grouped_ggdotplotstats(
   annotation.args = list(title = "Fuel economy data")
 )
 ```
+
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+raw data | `ggplot2::geom_point` | `point.args`
+centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
 
 ### Summary of tests
 
@@ -743,6 +758,15 @@ grouped_ggscatterstats(
 )
 ```
 
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+raw data | `ggplot2::geom_point` | `point.args`
+labels for raw data | `ggrepel::geom_label_repel` | `point.label.args`
+smooth line | `ggplot2::geom_smooth` | `smooth.line.args`
+marginal distributions | `ggExtra::ggMarginal` | ❌
+
 ### Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**
@@ -834,6 +858,12 @@ ggcorrmat(
 )
 ```
 
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+correlation matrix | `ggcorrplot::ggcorrplot` | `ggcorrplot.args`
+
 ### Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**
@@ -904,6 +934,13 @@ grouped_ggpiestats(
   palette = "default_ucscgb" # choosing a different color palette
 )
 ```
+
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+pie slices | `ggplot2::geom_col` | ❌
+descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`
 
 ### Summary of tests
 
@@ -1001,6 +1038,13 @@ grouped_ggbarstats(
   ggstatsplot.layer = FALSE
 )
 ```
+
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+bars | `ggplot2::geom_bar` | ❌
+descriptive labels | `ggplot2::geom_label` | `label.args`
 
 ### Summary of tests
 
@@ -1144,6 +1188,15 @@ also supported by `ggcoefstats`. For example-
 
 Although not shown here, this function can also be used to carry out parametric,
 robust, and Bayesian random-effects meta-analysis.
+
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+regression estimate | `ggplot2::geom_point` | `point.args`
+error bars | `ggplot2::geom_errorbarh` | `errorbar.args`
+vertical line | `ggplot2::geom_vline` | `vline.args`
+label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
 
 ### Summary of meta-analysis tests
 

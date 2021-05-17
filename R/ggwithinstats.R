@@ -33,7 +33,7 @@
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 #'
 #' @examples
@@ -211,14 +211,14 @@ ggwithinstats <- function(data,
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
     rlang::exec(ggplot2::geom_point, ggplot2::aes(color = {{ x }}), !!!point.args) +
     ggplot2::geom_boxplot(
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      mapping = ggplot2::aes({{ x }}, {{ y }}),
       inherit.aes = FALSE,
       width = 0.2,
       alpha = 0.5
     ) +
     rlang::exec(
       .fn = ggplot2::geom_violin,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      mapping = ggplot2::aes({{ x }}, {{ y }}),
       inherit.aes = FALSE,
       !!!violin.args
     )

@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' \donttest{
-#' ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
+#' ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
 #' }
 #' @keywords internal
 

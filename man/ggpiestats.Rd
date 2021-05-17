@@ -167,6 +167,10 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 Pie charts for categorical data with statistical details included in the plot
 as a subtitle.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+}
 \examples{
 \donttest{
 # for reproducibility
@@ -182,9 +186,6 @@ ggstatsplot::ggpiestats(
   y = cyl
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \seealso{
 \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},

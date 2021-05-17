@@ -58,7 +58,7 @@
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 #'
 #' @examples
@@ -112,7 +112,7 @@ ggcorrmat <- function(data,
                       caption = NULL,
                       ...) {
 
-  # ======================= dataframe ========================================
+  # --------------------------------- data -----------------------------------
 
   # creating a dataframe out of the entered variables
   if (missing(cor.vars)) {
@@ -131,7 +131,7 @@ ggcorrmat <- function(data,
     }
   }
 
-  # ============================ checking r.method =======================
+  # ---------------------------- statistics -----------------------------------
 
   # if any of the abbreviations have been entered, change them
   type <- ipmisc::stats_type_switch(type)
@@ -148,8 +148,6 @@ ggcorrmat <- function(data,
 
   # is it a partial correlation?
   r.type <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
-
-  # ===================== statistics ========================================
 
   # creating a dataframe of results
   stats_df <- statsExpressions::correlation(
@@ -170,7 +168,7 @@ ggcorrmat <- function(data,
     return(as_tibble(parameters::standardize_names(stats_df, "broom")))
   }
 
-  # ========================== plot =========================================
+  # -------------------------------- plot -----------------------------------
 
   # creating the basic plot
   # if user has not specified colors, then use a color palette

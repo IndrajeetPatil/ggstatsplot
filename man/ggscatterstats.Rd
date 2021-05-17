@@ -17,7 +17,7 @@ ggscatterstats(
   results.subtitle = TRUE,
   label.var = NULL,
   label.expression = NULL,
-  point.args = list(size = 3, alpha = 0.4),
+  point.args = list(size = 3, alpha = 0.4, stroke = 0),
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e+06),
@@ -167,6 +167,10 @@ Scatterplots from \code{ggplot2} combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
+}
 \note{
 \itemize{
 \item If you set \code{marginal = TRUE}, the resulting plot can \strong{not} be further
@@ -199,9 +203,6 @@ if (require("ggExtra")) {
     ggplot.component = list(ggplot2::geom_rug(sides = "b"))
   )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \seealso{
 \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},

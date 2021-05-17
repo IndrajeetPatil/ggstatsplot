@@ -349,6 +349,13 @@ out healthy only 4% were sick after a month. Ideally, we would have hoped for
 zero but reality is seldom perfect. On the other side of the 38 who started out
 sick that number has reduced to just 13 or 34% which is a marked improvement.
 
+# Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+pie slices | `ggplot2::geom_col` | ❌
+descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`
+
 # Summary of tests
 
 **two-way table**

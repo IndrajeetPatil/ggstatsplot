@@ -34,7 +34,6 @@
 #'   x = Sepal.Length,
 #'   test.value = 5,
 #'   grouping.var = Species,
-#'   bar.fill = "orange",
 #'   plotgrid.args = list(nrow = 1),
 #'   annotation.args = list(tag_levels = "i"),
 #' )

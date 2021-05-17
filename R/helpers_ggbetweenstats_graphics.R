@@ -71,7 +71,7 @@ centrality_ggrepel <- function(plot,
   plot +
     rlang::exec(
       ggplot2::geom_point,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
+      mapping = ggplot2::aes({{ x }}, {{ y }}),
       data = centrality_df,
       inherit.aes = FALSE,
       !!!centrality.point.args
@@ -214,7 +214,6 @@ ggsignif_adder <- function(plot,
       annotations = df_mcp$label,
       test = NULL,
       parse = TRUE,
-      vjust = 0,
       !!!ggsignif.args
     )
 }
@@ -252,7 +251,7 @@ ggsignif_xy <- function(x, y) {
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
 #'
-#' @keywords internal
+#' @noRd
 
 aesthetic_addon <- function(plot,
                             x,

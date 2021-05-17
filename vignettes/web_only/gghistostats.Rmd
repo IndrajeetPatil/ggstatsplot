@@ -89,10 +89,7 @@ ggstatsplot::gghistostats(
   x = ACT, # numeric variable
   xlab = "ACT Score", # x-axis label
   title = "Distribution of ACT Scores", # title for the plot
-  type = "p", # one sample t-test
-  bf.message = TRUE, # display Bayes method results
   ggtheme = ggthemes::theme_tufte(), # changing default theme
-  bar.fill = "#D55E00", # change fill color
   test.value = 20, # test value
   caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
@@ -129,7 +126,7 @@ ggstatsplot::grouped_gghistostats(
   grouping.var = gender, # grouping variable males = 1, females = 2
   type = "robust", # robust test: one-sample percentile bootstrap
   test.value = 20, # test value against which sample mean is to be compared
-  centrality.line.args = list(color = "#D55E00"),
+  centrality.line.args = list(color = "#D55E00", linetype = "dashed"),
   ggtheme = ggthemes::theme_stata(), # changing default theme
   ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots
@@ -158,6 +155,14 @@ would be better to use `purrr`.
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+
+# Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+histogram bin | `ggplot2::stat_bin` | `bin.args`
+centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
+normality curve | `ggplot2::stat_function` | `normal.curve.args`
 
 # Summary of tests
 

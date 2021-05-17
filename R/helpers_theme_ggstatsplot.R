@@ -18,7 +18,7 @@
 #'
 #' @import ggplot2
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 #'
 #' @export

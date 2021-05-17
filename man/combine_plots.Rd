@@ -40,6 +40,10 @@ Combined plot with annotation labels
 Wrapper around \code{patchwork::wrap_plots} that will return a combined grid of
 plots with annotations.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
+}
 \examples{
 # loading the necessary libraries
 library(ggplot2)
@@ -71,7 +75,4 @@ combine_plots(
     caption = "Note: Only two species of flower are displayed"
   )
 )
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
 }

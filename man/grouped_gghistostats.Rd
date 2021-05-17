@@ -53,8 +53,9 @@ separately specified here.}
 normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
     \item{\code{normal.curve.args}}{A list of additional aesthetic arguments to be
 passed to the normal curve.}
-    \item{\code{bar.fill}}{Character input that decides which color will uniformly fill
-all the bars in the histogram (Default: \code{"grey50"}).}
+    \item{\code{bin.args}}{A list of additional aesthetic arguments to be passed to the
+\code{stat_bin} used to display the bins. Do not specify \code{binwidth} argument in
+this list since it has already been specified using the dedicated argument.}
     \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
 passed to the \code{geom_line} used to display the lines corresponding to the
 centrality parameter.}
@@ -138,6 +139,10 @@ Helper function for \code{ggstatsplot::gghistostats} to apply this function
 across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+}
 \examples{
 \donttest{
 # for reproducibility
@@ -150,14 +155,10 @@ grouped_gghistostats(
   x = Sepal.Length,
   test.value = 5,
   grouping.var = Species,
-  bar.fill = "orange",
   plotgrid.args = list(nrow = 1),
   annotation.args = list(tag_levels = "i"),
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \seealso{
 \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},

@@ -228,9 +228,6 @@ grouped_ggbetweenstats(
 )
 }
 }
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
-}
 \seealso{
 \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
 \code{\link{grouped_ggwithinstats}}

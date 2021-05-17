@@ -155,10 +155,7 @@ ggbarstats <- function(data,
   palette_message(package, palette, nlevels(data %>% dplyr::pull({{ x }}))[[1]])
 
   # plot
-  p <- ggplot2::ggplot(
-    data = df_descriptive,
-    mapping = ggplot2::aes(x = {{ y }}, y = perc, fill = {{ x }})
-  ) +
+  p <- ggplot2::ggplot(df_descriptive, ggplot2::aes({{ y }}, perc, fill = {{ x }})) +
     ggplot2::geom_bar(
       stat = "identity",
       position = "fill",
@@ -170,7 +167,7 @@ ggbarstats <- function(data,
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     rlang::exec(
-      .fn = ggplot2::geom_label,
+      ggplot2::geom_label,
       mapping = ggplot2::aes(label = .label, group = {{ x }}),
       show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),

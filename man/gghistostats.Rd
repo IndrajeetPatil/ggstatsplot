@@ -22,11 +22,11 @@ gghistostats(
   k = 2L,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
-  bar.fill = "grey50",
   results.subtitle = TRUE,
+  bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(size = 1, color = "blue"),
+  centrality.line.args = list(color = "blue", size = 1, linetype = "dashed"),
   normal.curve = FALSE,
   normal.curve.args = list(size = 2),
   ggplot.component = NULL,
@@ -104,12 +104,13 @@ theme elements are to be displayed along with the selected \code{ggtheme}
 (Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
 override some aspects of the selected \code{ggtheme}.}
 
-\item{bar.fill}{Character input that decides which color will uniformly fill
-all the bars in the histogram (Default: \code{"grey50"}).}
-
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
+
+\item{bin.args}{A list of additional aesthetic arguments to be passed to the
+\code{stat_bin} used to display the bins. Do not specify \code{binwidth} argument in
+this list since it has already been specified using the dedicated argument.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -166,9 +167,14 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 Histogram with statistical details from one-sample test included in the plot
 as a subtitle.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+}
 \examples{
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 \donttest{
 # using defaults, but modifying which centrality parameter is to be shown
 gghistostats(
@@ -178,9 +184,6 @@ gghistostats(
   centrality.type = "np"
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},

@@ -11,13 +11,14 @@
 #'   normal curve using `stats::dnorm(mean(x), sd(x))`. Default is `FALSE`.
 #' @param normal.curve.args A list of additional aesthetic arguments to be
 #'   passed to the normal curve.
-#' @param bar.fill Character input that decides which color will uniformly fill
-#'   all the bars in the histogram (Default: `"grey50"`).
 #' @param binwidth The width of the histogram bins. Can be specified as a
 #'   numeric value, or a function that calculates width from `x`. The default is
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
 #'   and explore multiple widths to find the best to illustrate the stories in
 #'   your data.
+#' @param bin.args A list of additional aesthetic arguments to be passed to the
+#'   `stat_bin` used to display the bins. Do not specify `binwidth` argument in
+#'   this list since it has already been specified using the dedicated argument.
 #' @param centrality.line.args A list of additional aesthetic arguments to be
 #'   passed to the `geom_line` used to display the lines corresponding to the
 #'   centrality parameter.
@@ -35,12 +36,13 @@
 #' @importFrom stats dnorm
 #' @importFrom statsExpressions one_sample_test
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 #'
 #' @examples
 #' # for reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #' \donttest{
 #' # using defaults, but modifying which centrality parameter is to be shown
 #' gghistostats(
@@ -70,11 +72,19 @@ gghistostats <- function(data,
                          k = 2L,
                          ggtheme = ggplot2::theme_bw(),
                          ggstatsplot.layer = TRUE,
-                         bar.fill = "grey50",
                          results.subtitle = TRUE,
+                         bin.args = list(
+                           color = "black",
+                           fill = "grey50",
+                           alpha = 0.7
+                         ),
                          centrality.plotting = TRUE,
                          centrality.type = type,
-                         centrality.line.args = list(size = 1, color = "blue"),
+                         centrality.line.args = list(
+                           color = "blue",
+                           size = 1,
+                           linetype = "dashed"
+                         ),
                          normal.curve = FALSE,
                          normal.curve.args = list(size = 2),
                          ggplot.component = NULL,
@@ -84,7 +94,7 @@ gghistostats <- function(data,
   # convert entered stats type to a standard notation
   type <- ipmisc::stats_type_switch(type)
 
-  # ================================= dataframe ==============================
+  # --------------------------------- data -----------------------------------
 
   # to ensure that x will be read irrespective of whether it is quoted or unquoted
   x <- rlang::ensym(x)
@@ -92,13 +102,11 @@ gghistostats <- function(data,
   # if dataframe is provided
   df <- tidyr::drop_na(dplyr::select(data, {{ x }}))
 
-  # column as a vector
-  x_vec <- df %>% dplyr::pull({{ x }})
-
   # if binwidth not specified
+  x_vec <- df %>% dplyr::pull({{ x }})
   if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
-  # ================ stats labels ==========================================
+  # --------------------- subtitle/caption preparation ------------------------
 
   if (isTRUE(results.subtitle)) {
     # preparing the subtitle with statistical results
@@ -149,14 +157,12 @@ gghistostats <- function(data,
   # ============================= plot ====================================
 
   # adding axes info
-  plot <-
-    ggplot2::ggplot(data = df, mapping = ggplot2::aes(x = {{ x }})) +
-    ggplot2::stat_bin(
-      col = "black",
-      fill = bar.fill,
-      alpha = 0.7,
+  plot <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = {{ x }})) +
+    rlang::exec(
+      ggplot2::stat_bin,
+      mapping = ggplot2::aes(y = ..count.., fill = ..count..),
       binwidth = binwidth,
-      mapping = ggplot2::aes(y = ..count.., fill = ..count..)
+      !!!bin.args
     ) +
     ggplot2::scale_y_continuous(
       sec.axis = ggplot2::sec_axis(

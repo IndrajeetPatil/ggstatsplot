@@ -54,7 +54,7 @@
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 #'
 #' @note
@@ -103,7 +103,7 @@ ggscatterstats <- function(data,
                            results.subtitle = TRUE,
                            label.var = NULL,
                            label.expression = NULL,
-                           point.args = list(size = 3, alpha = 0.4),
+                           point.args = list(size = 3, alpha = 0.4, stroke = 0),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
@@ -224,13 +224,8 @@ ggscatterstats <- function(data,
   pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # preparing the scatterplot
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
-    rlang::exec(
-      .fn = ggplot2::geom_point,
-      stroke = 0,
-      position = pos,
-      !!!point.args
-    ) +
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
+    rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
     rlang::exec(
       .fn = ggplot2::geom_smooth,
       method = "lm",

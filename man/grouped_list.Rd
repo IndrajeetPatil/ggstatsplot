@@ -21,7 +21,7 @@ element of the list will be a tibble.
 }
 \examples{
 \donttest{
-ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
+ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
 }
 }
 \keyword{internal}

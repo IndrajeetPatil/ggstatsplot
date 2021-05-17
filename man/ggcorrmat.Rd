@@ -143,6 +143,10 @@ correlation tests. The package internally uses \code{ggcorrplot::ggcorrplot} for
 creating the visualization matrix, while the correlation analysis is carried
 out using the \code{correlation::correlation} function.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+}
 \examples{
 \donttest{
 # for reproducibility
@@ -161,9 +165,6 @@ ggcorrmat(
   output = "dataframe"
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \seealso{
 \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}

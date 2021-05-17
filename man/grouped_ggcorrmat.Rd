@@ -116,6 +116,10 @@ Helper function for \code{ggstatsplot::ggcorrmat} to apply this function across
 multiple levels of a given factor and combining the resulting plots using
 \code{ggstatsplot::combine_plots}.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+}
 \examples{
 \donttest{
 # for reproducibility
@@ -142,9 +146,6 @@ grouped_ggcorrmat(
   output = "dataframe"
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \seealso{
 \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},

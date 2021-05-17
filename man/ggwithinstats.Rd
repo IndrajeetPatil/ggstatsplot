@@ -248,6 +248,10 @@ A combination of box and violin plots along with raw (unjittered) data points
 for within-subjects designs with statistical details included in the plot as
 a subtitle.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
+}
 \note{
 To carry out Bayesian analysis for ANOVA designs, you will need to install
 the development version of \code{BayesFactor} (\verb{0.9.12-4.3}). You can download it
@@ -281,9 +285,6 @@ ggwithinstats(
   outlier.label = Taster
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},

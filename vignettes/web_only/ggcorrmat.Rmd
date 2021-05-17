@@ -311,6 +311,12 @@ levels of the grouping variable. We will see how this can be done using the
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
+# Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+correlation matrix | `ggcorrplot::ggcorrplot` | `ggcorrplot.args`
+
 # Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**

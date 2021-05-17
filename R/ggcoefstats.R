@@ -103,7 +103,7 @@
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom performance model_performance
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 #'
 #'
@@ -149,7 +149,11 @@ ggcoefstats <- function(x,
                         point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
                         vline = TRUE,
-                        vline.args = list(size = 1, linetype = "dashed", xintercept = 0),
+                        vline.args = list(
+                          size = 1,
+                          linetype = "dashed",
+                          xintercept = 0
+                        ),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
                         stats.label.args = list(size = 3, direction = "y"),
@@ -374,13 +378,10 @@ ggcoefstats <- function(x,
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
-    plot <- ggplot2::ggplot(tidy_df, mapping = ggplot2::aes(x = estimate, y = term))
+    plot <- ggplot2::ggplot(tidy_df, mapping = ggplot2::aes(estimate, term))
 
     # if needed, adding the vertical line
-    if (isTRUE(vline)) {
-      # adding the line geom
-      plot <- plot + rlang::exec(.fn = ggplot2::geom_vline, !!!vline.args)
-    }
+    if (isTRUE(vline)) plot <- plot + rlang::exec(ggplot2::geom_vline, !!!vline.args)
 
     # if the confidence intervals are to be displayed on the plot
     if (isTRUE(conf.int)) {

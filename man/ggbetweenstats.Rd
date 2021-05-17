@@ -243,6 +243,10 @@ A combination of box and violin plots along with jittered data points for
 between-subjects designs with statistical details included in the plot as a
 subtitle.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
+}
 \examples{
 \donttest{
 # to get reproducible results from bootstrapping
@@ -271,9 +275,6 @@ ggbetweenstats(
   outlier.label = Run
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},

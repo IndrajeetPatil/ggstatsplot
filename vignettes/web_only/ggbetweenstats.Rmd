@@ -339,7 +339,7 @@ For repeated measures designs, `ggwithinstats` function can be used:
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
-raw points | `ggplot2::geom_point` | `point.args`
+raw data | `ggplot2::geom_point` | `point.args`
 box plot | `ggplot2::geom_boxplot` | ❌
 density plot | `ggplot2::geom_violin` | `violin.args`
 centrality measure point | `ggplot2::geom_point` | `centrality.point.args`

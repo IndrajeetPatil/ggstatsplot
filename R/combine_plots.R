@@ -20,7 +20,7 @@
 #' @importFrom patchwork wrap_plots plot_annotation
 #' @importFrom rlang exec !!!
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
 #'
 #' @examples

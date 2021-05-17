@@ -46,7 +46,7 @@
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions contingency_table
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 #'
 #' @examples
@@ -213,7 +213,7 @@ ggpiestats <- function(data,
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +
     rlang::exec(
-      .fn = .fn,
+      .fn,
       mapping = ggplot2::aes(label = .label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
       min.segment.length = 0,
@@ -239,7 +239,7 @@ ggpiestats <- function(data,
   if (isTRUE(facet) && isTRUE(proportion.test)) {
     p <- p +
       rlang::exec(
-        .fn = ggplot2::geom_text,
+        ggplot2::geom_text,
         data = df_proptest,
         mapping = ggplot2::aes(label = .label, x = 1.65, y = 0.5),
         position = ggplot2::position_fill(vjust = 1),

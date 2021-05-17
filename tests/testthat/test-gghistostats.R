@@ -14,7 +14,11 @@ test_that(
         xlab = "character height",
         title = "starwars: character heights",
         binwidth = 20,
-        bar.fill = "orange",
+        bin.args = list(
+          col = "black",
+          fill = "orange",
+          alpha = 0.7
+        ),
         test.value = 150,
         bf.prior = 0.9
       )

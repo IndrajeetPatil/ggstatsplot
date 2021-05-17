@@ -132,6 +132,10 @@ Helper function for \code{ggstatsplot::ggdotplotstats} to apply this function
 across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
+}
 \examples{
 \donttest{
 # for reproducibility
@@ -150,9 +154,6 @@ grouped_ggdotplotstats(
   test.value = 15.5
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},

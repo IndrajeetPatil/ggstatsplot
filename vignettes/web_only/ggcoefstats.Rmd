@@ -122,6 +122,15 @@ also supported by `ggcoefstats`. For example-
 `stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
 `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
+# Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+regression estimate | `ggplot2::geom_point` | `point.args`
+error bars | `ggplot2::geom_errorbarh` | `errorbar.args`
+vertical line | `ggplot2::geom_vline` | `vline.args`
+label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
+
 # Summary of meta-analysis tests
 
 **Hypothesis testing** and **Effect size estimation**

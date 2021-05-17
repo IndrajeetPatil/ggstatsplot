@@ -20,12 +20,12 @@ ggdotplotstats(
   effsize.type = "g",
   conf.level = 0.95,
   tr = 0.2,
-  k = 2,
+  k = 2L,
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(color = "blue", size = 1),
+  centrality.line.args = list(color = "blue", size = 1, linetype = "dashed"),
   ggplot.component = NULL,
   ggtheme = ggplot2::theme_bw(),
   ggstatsplot.layer = TRUE,
@@ -156,7 +156,11 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 }
 \description{
 A dot chart (as described by William S. Cleveland) with statistical details
-from one-sample test included in the plot as a subtitle.
+from one-sample test details.
+}
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \examples{
 \donttest{
@@ -175,9 +179,6 @@ ggdotplotstats(
   )
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},

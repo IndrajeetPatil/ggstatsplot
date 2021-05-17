@@ -321,7 +321,7 @@ For independent measures designs, `ggbetweenstats` function can be used:
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
-raw points | `ggplot2::geom_point` | `point.args`
+raw data | `ggplot2::geom_point` | `point.args`
 point path | `ggplot2::geom_path` | `point.path.args`
 box plot | `ggplot2::geom_boxplot` | ❌
 density plot | `ggplot2::geom_violin` | `violin.args`

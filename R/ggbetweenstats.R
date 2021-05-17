@@ -121,7 +121,7 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @references
+#' @details For more details, see:
 #' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 #'
 #' @examples
@@ -291,11 +291,10 @@ ggbetweenstats <- function(data,
     ))
   }
 
-  # -------------------------- basic plot -----------------------------------
+  # -------------------------------- plot -----------------------------------
 
   # first add only the points which are *not* outliers
-  plot <-
-    ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
     rlang::exec(
       .fn = ggplot2::geom_point,
       data = dplyr::filter(data, !isanoutlier),
@@ -307,7 +306,7 @@ ggbetweenstats <- function(data,
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
       rlang::exec(
-        .fn = ggplot2::geom_point,
+        ggplot2::geom_point,
         data = dplyr::filter(data, isanoutlier),
         ggplot2::aes(color = {{ x }}),
         !!!point.args

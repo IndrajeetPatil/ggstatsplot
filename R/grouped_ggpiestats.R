@@ -21,9 +21,11 @@
 #'
 #' @examples
 #' \donttest{
+#' set.seed(123)
+#' library(ggstatsplot)
+#'
 #' # grouped one-sample proportion test
-#' # let's skip statistical analysis
-#' ggstatsplot::grouped_ggpiestats(
+#' grouped_ggpiestats(
 #'   data = mtcars,
 #'   grouping.var = am,
 #'   x = cyl

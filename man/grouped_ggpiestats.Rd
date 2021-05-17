@@ -135,19 +135,22 @@ Helper function for \code{ggstatsplot::ggpiestats} to apply this
 function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+}
 \examples{
 \donttest{
+set.seed(123)
+library(ggstatsplot)
+
 # grouped one-sample proportion test
-# let's skip statistical analysis
-ggstatsplot::grouped_ggpiestats(
+grouped_ggpiestats(
   data = mtcars,
   grouping.var = am,
   x = cyl
 )
 }
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \seealso{
 \code{\link{ggbarstats}}, \code{\link{ggpiestats}},

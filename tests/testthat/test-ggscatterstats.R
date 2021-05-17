@@ -121,7 +121,7 @@ test_that(
         y = sleep_cycle,
         type = "r",
         conf.level = 0.90,
-        point.args = list(color = "red", size = 5),
+        point.args = list(color = "red", size = 5, stroke = 0),
         marginal = FALSE
       )
 

@@ -143,6 +143,10 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
 Grouped scatterplots from \code{ggplot2} combined with marginal distribution plots
 with statistical details added as a subtitle.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
+}
 \examples{
 # to ensure reproducibility
 set.seed(123)
@@ -191,9 +195,6 @@ grouped_ggscatterstats(
   marginal = FALSE,
   annotation.args = list(tag_levels = "a")
 )
-}
-\references{
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \seealso{
 \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},

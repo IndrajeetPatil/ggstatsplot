@@ -446,7 +446,6 @@ plot_list <-
         "Continent: Asia",
         "Continent: Europe"
       ),
-      bar.fill = list("white", "red", "orange", "blue"),
       effsize.type = list("d", "d", "g", "g"),
       normal.curve = list(TRUE, FALSE, FALSE, TRUE),
       ggtheme = list(

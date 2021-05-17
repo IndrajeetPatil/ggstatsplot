@@ -136,6 +136,10 @@ Helper function for \code{ggstatsplot::ggbarstats} to apply this function across
 multiple levels of a given factor and combining the resulting plots using
 \code{ggstatsplot::combine_plots}.
 }
+\details{
+For more details, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+}
 \examples{
 \donttest{
 # for reproducibility
