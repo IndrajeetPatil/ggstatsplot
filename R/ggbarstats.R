@@ -152,7 +152,7 @@ ggbarstats <- function(data,
   df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(package, palette, min_length = nlevels(data %>% dplyr::pull({{ x }}))[[1]])
+  palette_message(package, palette, nlevels(data %>% dplyr::pull({{ x }}))[[1]])
 
   # plot
   p <- ggplot2::ggplot(
@@ -162,8 +162,7 @@ ggbarstats <- function(data,
     ggplot2::geom_bar(
       stat = "identity",
       position = "fill",
-      color = "black",
-      na.rm = TRUE
+      color = "black"
     ) +
     ggplot2::scale_y_continuous(
       labels = function(x) paste0(x * 100, "%"),
@@ -201,8 +200,7 @@ ggbarstats <- function(data,
     ggplot2::geom_text(
       data = df_proptest,
       mapping = ggplot2::aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-      size = 4,
-      na.rm = TRUE
+      size = 4
     )
 
   # =========================== putting all together ========================

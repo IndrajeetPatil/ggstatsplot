@@ -4,7 +4,6 @@
 test_that(
   desc = "checking ggcorrmat - without NAs - pearson's r",
   code = {
-
     skip_if_not_installed("ggcorrplot")
 
     # creating the plot
@@ -44,7 +43,6 @@ test_that(
 test_that(
   desc = "checking ggcorrmat - without NAs - robust r",
   code = {
-
     skip_if_not_installed("ggcorrplot")
 
     # creating the plot
@@ -71,7 +69,6 @@ test_that(
 test_that(
   desc = "checking ggcorrmat - with NAs - robust r - partial",
   code = {
-
     skip_if_not_installed("ggcorrplot")
     skip_on_ci()
 
@@ -103,7 +100,6 @@ test_that(
 test_that(
   desc = "checking ggcorrmat - with NAs - spearman's rho",
   code = {
-
     skip_if_not_installed("ggcorrplot")
 
     # creating the plot
@@ -138,11 +134,12 @@ test_that(
 test_that(
   desc = "checking Bayesian pearson (with NA)",
   code = {
-
     skip_if_not_installed("ggcorrplot")
 
     set.seed(123)
-    p <- suppressWarnings(ggcorrmat(ggplot2::msleep, type = "bayes"))
+    p <- suppressWarnings(ggcorrmat(dplyr::select(ggplot2::msleep, brainwt, bodywt),
+      type = "bayes"
+    ))
     pb <- ggplot2::ggplot_build(p)
 
     # check data

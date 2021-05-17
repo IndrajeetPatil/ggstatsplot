@@ -83,7 +83,7 @@ ggdotplotstats <- function(data,
     tidyr::drop_na(.) %>%
     dplyr::mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
     dplyr::group_by({{ y }}) %>%
-    dplyr::summarise({{ x }} := mean({{ x }}, na.rm = TRUE)) %>%
+    dplyr::summarise({{ x }} := mean({{ x }})) %>%
     dplyr::ungroup(.) %>%
     # rank ordering the data
     dplyr::arrange({{ x }}) %>%

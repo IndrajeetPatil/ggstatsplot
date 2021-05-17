@@ -48,8 +48,7 @@ histo_labeller <- function(plot,
       .f = ggplot2::geom_vline,
       xintercept = centrality_df$var[[1]],
       !!!centrality.line.args,
-      linetype = "dashed",
-      na.rm = TRUE
+      linetype = "dashed"
     ) +
     ggplot2::scale_x_continuous(
       sec.axis = ggplot2::sec_axis(

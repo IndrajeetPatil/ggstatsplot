@@ -149,7 +149,7 @@ ggcoefstats <- function(x,
                         point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
                         vline = TRUE,
-                        vline.args = list(size = 1, linetype = "dashed"),
+                        vline.args = list(size = 1, linetype = "dashed", xintercept = 0),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
                         stats.label.args = list(size = 3, direction = "y"),
@@ -379,34 +379,22 @@ ggcoefstats <- function(x,
     # if needed, adding the vertical line
     if (isTRUE(vline)) {
       # adding the line geom
-      plot <- plot +
-        rlang::exec(
-          .fn = ggplot2::geom_vline,
-          xintercept = 0,
-          na.rm = TRUE,
-          !!!vline.args
-        )
+      plot <- plot + rlang::exec(.fn = ggplot2::geom_vline, !!!vline.args)
     }
 
     # if the confidence intervals are to be displayed on the plot
     if (isTRUE(conf.int)) {
       plot <- plot +
         rlang::exec(
-          .fn = ggplot2::geom_errorbarh,
+          ggplot2::geom_errorbarh,
           data = tidy_df,
           mapping = ggplot2::aes(xmin = conf.low, xmax = conf.high),
-          na.rm = TRUE,
           !!!errorbar.args
         )
     }
 
     # changing the point aesthetics
-    plot <- plot +
-      rlang::exec(
-        .fn = ggplot2::geom_point,
-        na.rm = TRUE,
-        !!!point.args
-      )
+    plot <- plot + rlang::exec(ggplot2::geom_point, !!!point.args)
 
     # ========================= ggrepel labels ================================
 
@@ -448,7 +436,6 @@ ggcoefstats <- function(x,
           .fn = ggrepel::geom_label_repel,
           data = tidy_df,
           mapping = ggplot2::aes(x = estimate, y = term, label = label),
-          na.rm = TRUE,
           show.legend = FALSE,
           parse = TRUE,
           min.segment.length = 0,

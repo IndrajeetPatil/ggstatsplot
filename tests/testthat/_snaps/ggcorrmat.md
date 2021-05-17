@@ -537,72 +537,16 @@
       pb$data
     Output
       [[1]]
-            fill x y PANEL group xmin xmax ymin ymax colour size linetype alpha width
-      1  #65B997 1 1     1     1  0.5  1.5  0.5  1.5  black  0.1        1    NA    NA
-      2  #FED5A1 1 2     1     2  0.5  1.5  1.5  2.5  black  0.1        1    NA    NA
-      3  #FFE1BB 2 2     1     6  1.5  2.5  1.5  2.5  black  0.1        1    NA    NA
-      4  #E69F00 1 3     1     3  0.5  1.5  2.5  3.5  black  0.1        1    NA    NA
-      5  #F4B85B 2 3     1     7  1.5  2.5  2.5  3.5  black  0.1        1    NA    NA
-      6  #A7D6C1 3 3     1    10  2.5  3.5  2.5  3.5  black  0.1        1    NA    NA
-      7  #FFDEB5 1 4     1     4  0.5  1.5  3.5  4.5  black  0.1        1    NA    NA
-      8  #FFEBD2 2 4     1     8  1.5  2.5  3.5  4.5  black  0.1        1    NA    NA
-      9  #52B18C 3 4     1    11  2.5  3.5  3.5  4.5  black  0.1        1    NA    NA
-      10 #B9DECD 4 4     1    13  3.5  4.5  3.5  4.5  black  0.1        1    NA    NA
-      11 #FFE1BB 1 5     1     5  0.5  1.5  4.5  5.5  black  0.1        1    NA    NA
-      12 #FFE0B9 2 5     1     9  1.5  2.5  4.5  5.5  black  0.1        1    NA    NA
-      13 #B1DBC8 3 5     1    12  2.5  3.5  4.5  5.5  black  0.1        1    NA    NA
-      14 #C1E2D3 4 5     1    14  3.5  4.5  4.5  5.5  black  0.1        1    NA    NA
-      15 #31A67D 5 5     1    15  4.5  5.5  4.5  5.5  black  0.1        1    NA    NA
-         height
-      1      NA
-      2      NA
-      3      NA
-      4      NA
-      5      NA
-      6      NA
-      7      NA
-      8      NA
-      9      NA
-      10     NA
-      11     NA
-      12     NA
-      13     NA
-      14     NA
-      15     NA
+           fill x y PANEL group xmin xmax ymin ymax colour size linetype alpha width
+      1 #2DA57C 1 1     1     1  0.5  1.5  0.5  1.5  black  0.1        1    NA    NA
+        height
+      1     NA
       
       [[2]]
-            fill x y PANEL group colour size angle hjust vjust alpha family fontface
-      1  #65B997 1 1     1     1  black    4     0   0.5   0.5    NA               1
-      2  #FED5A1 1 2     1     2  black    4     0   0.5   0.5    NA               1
-      3  #FFE1BB 2 2     1     6  black    4     0   0.5   0.5    NA               1
-      4  #E69F00 1 3     1     3  black    4     0   0.5   0.5    NA               1
-      5  #F4B85B 2 3     1     7  black    4     0   0.5   0.5    NA               1
-      6  #A7D6C1 3 3     1    10  black    4     0   0.5   0.5    NA               1
-      7  #FFDEB5 1 4     1     4  black    4     0   0.5   0.5    NA               1
-      8  #FFEBD2 2 4     1     8  black    4     0   0.5   0.5    NA               1
-      9  #52B18C 3 4     1    11  black    4     0   0.5   0.5    NA               1
-      10 #B9DECD 4 4     1    13  black    4     0   0.5   0.5    NA               1
-      11 #FFE1BB 1 5     1     5  black    4     0   0.5   0.5    NA               1
-      12 #FFE0B9 2 5     1     9  black    4     0   0.5   0.5    NA               1
-      13 #B1DBC8 3 5     1    12  black    4     0   0.5   0.5    NA               1
-      14 #C1E2D3 4 5     1    14  black    4     0   0.5   0.5    NA               1
-      15 #31A67D 5 5     1    15  black    4     0   0.5   0.5    NA               1
-         lineheight label
-      1         1.2  0.73
-      2         1.2 -0.42
-      3         1.2 -0.30
-      4         1.2 -1.00
-      5         1.2 -0.73
-      6         1.2  0.43
-      7         1.2 -0.33
-      8         1.2 -0.20
-      9         1.2  0.81
-      10        1.2  0.34
-      11        1.2 -0.30
-      12        1.2 -0.31
-      13        1.2  0.38
-      14        1.2  0.30
-      15        1.2  0.92
+           fill x y PANEL group colour size angle hjust vjust alpha family fontface
+      1 #2DA57C 1 1     1     1  black    4     0   0.5   0.5    NA               1
+        lineheight label
+      1        1.2  0.93
       
       [[3]]
       data frame with 0 columns and 0 rows
@@ -726,11 +670,11 @@
       
       [[7]]
       # A tibble: 3 x 15
-        parameter1 parameter2 estimate conf.level conf.low conf.high std.dev    pd
-        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl>   <dbl> <dbl>
-      1 brainwt    sleep_rem   -0.0908       0.95   -0.306     0.147   0.141 0.740
-      2 brainwt    bodywt       0.454        0.95    0.267     0.623   0.113 1    
-      3 sleep_rem  bodywt      -0.0956       0.95   -0.322     0.116   0.139 0.756
+        parameter1 parameter2 estimate conf.level conf.low conf.high   mad    pd
+        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl> <dbl> <dbl>
+      1 brainwt    sleep_rem   -0.0911       0.95   -0.306     0.147 0.143 0.740
+      2 brainwt    bodywt       0.461        0.95    0.267     0.623 0.114 1    
+      3 sleep_rem  bodywt      -0.0959       0.95   -0.322     0.116 0.142 0.756
         rope.percentage prior.distribution prior.location prior.scale bayes.factor
                   <dbl> <chr>                       <dbl>       <dbl>        <dbl>
       1         0.430   beta                         1.41        1.41        0.269
@@ -744,11 +688,11 @@
       
       [[8]]
       # A tibble: 3 x 15
-        parameter1 parameter2 estimate conf.level conf.low conf.high std.dev    pd
-        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl>   <dbl> <dbl>
-      1 brainwt    sleep_rem    -0.201       0.95   -0.402    0.0248  0.135  0.928
-      2 brainwt    bodywt        0.924       0.95    0.894    0.955   0.0203 1    
-      3 sleep_rem  bodywt       -0.306       0.95   -0.481   -0.129   0.114  0.990
+        parameter1 parameter2 estimate conf.level conf.low conf.high    mad    pd
+        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl>  <dbl> <dbl>
+      1 brainwt    sleep_rem    -0.205       0.95   -0.402    0.0248 0.135  0.928
+      2 brainwt    bodywt        0.926       0.95    0.894    0.955  0.0193 1    
+      3 sleep_rem  bodywt       -0.310       0.95   -0.481   -0.129  0.113  0.990
         rope.percentage prior.distribution prior.location prior.scale bayes.factor
                   <dbl> <chr>                       <dbl>       <dbl>        <dbl>
       1          0.212  beta                         1.41        1.41     6.54e- 1

@@ -198,14 +198,12 @@ ggpiestats <- function(data,
   palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
-  p <-
-    ggplot2::ggplot(data = df_descriptive, mapping = ggplot2::aes(x = "", y = perc)) +
+  p <- ggplot2::ggplot(df_descriptive, mapping = ggplot2::aes(x = "", y = perc)) +
     ggplot2::geom_col(
       mapping = ggplot2::aes(fill = {{ x }}),
       position = "fill",
       color = "black",
-      width = 1,
-      na.rm = TRUE
+      width = 1
     )
 
   # whether labels need to be repelled
