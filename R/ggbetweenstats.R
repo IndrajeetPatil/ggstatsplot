@@ -295,7 +295,7 @@ ggbetweenstats <- function(data,
 
   # first add only the points which are *not* outliers
   plot <-
-    ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
+    ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }})) +
     rlang::exec(
       .fn = ggplot2::geom_point,
       data = dplyr::filter(data, !isanoutlier),
@@ -371,7 +371,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,
-        data = dplyr::filter(.data = data, isanoutlier),
+        data = dplyr::filter(data, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         show.legend = FALSE,
         min.segment.length = 0,
@@ -384,57 +384,53 @@ ggbetweenstats <- function(data,
 
   # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
-    plot <-
-      centrality_ggrepel(
-        plot = plot,
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        k = k,
-        type = ipmisc::stats_type_switch(centrality.type),
-        tr = tr,
-        centrality.point.args = centrality.point.args,
-        centrality.label.args = centrality.label.args
-      )
+    plot <- centrality_ggrepel(
+      plot = plot,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      k = k,
+      type = ipmisc::stats_type_switch(centrality.type),
+      tr = tr,
+      centrality.point.args = centrality.point.args,
+      centrality.label.args = centrality.label.args
+    )
   }
 
   # ggsignif labels -----------------------------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
-    df_pairwise <-
-      pairwiseComparisons::pairwise_comparisons(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        type = type,
-        tr = tr,
-        paired = FALSE,
-        var.equal = var.equal,
-        p.adjust.method = p.adjust.method,
-        k = k
-      )
+    df_pairwise <- pairwiseComparisons::pairwise_comparisons(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      type = type,
+      tr = tr,
+      paired = FALSE,
+      var.equal = var.equal,
+      p.adjust.method = p.adjust.method,
+      k = k
+    )
 
     # adding the layer for pairwise comparisons
-    plot <-
-      ggsignif_adder(
-        plot = plot,
-        df_pairwise = df_pairwise,
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        pairwise.display = pairwise.display,
-        ggsignif.args = ggsignif.args
-      )
+    plot <- ggsignif_adder(
+      plot = plot,
+      df_pairwise = df_pairwise,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      pairwise.display = pairwise.display,
+      ggsignif.args = ggsignif.args
+    )
 
     # preparing the caption for pairwise comparisons test
     if (type != "bayes") {
-      caption <-
-        pairwiseComparisons::pairwise_caption(
-          caption,
-          unique(df_pairwise$test.details),
-          pairwise.display
-        )
+      caption <- pairwiseComparisons::pairwise_caption(
+        caption,
+        unique(df_pairwise$test.details),
+        pairwise.display
+      )
     }
   }
 

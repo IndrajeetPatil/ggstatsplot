@@ -208,10 +208,7 @@ ggwithinstats <- function(data,
   # --------------------------------- basic plot ------------------------------
 
   # plot
-  plot <- ggplot2::ggplot(
-    data = data,
-    mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)
-  ) +
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
     rlang::exec(ggplot2::geom_point, ggplot2::aes(color = {{ x }}), !!!point.args) +
     ggplot2::geom_boxplot(
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),

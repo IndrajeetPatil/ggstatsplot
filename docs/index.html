@@ -236,7 +236,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c" class="external-link"><img src="https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg" alt="status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--05--11-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--05--17-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -265,8 +265,6 @@
 <p>To get the latest, stable <code>CRAN</code> release:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span><span class="op">)</span></code></pre></div>
-<p><em>Note</em>:</p>
-<p>Linux users may encounter some installation problems, as several R packages require external libraries on the system, especially for <code>PMCMRplus</code> package. The following <code>README</code> file briefly describes the installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/readme/README.html" class="external-link uri">https://CRAN.R-project.org/package=PMCMRplus/readme/README.html</a></p>
 <p>You can get the <strong>development</strong> version of the package from <code>GitHub</code>.</p>
 <p>If you are in hurry and want to reduce the time of installation, prefer-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -288,25 +286,37 @@
 <span class="op">)</span></code></pre></div>
 <p>To see what new changes (and bug fixes) have been made to the package since the last release on <code>CRAN</code>, you can check the detailed log of changes here: <a href="https://indrajeetpatil.github.io/ggstatsplot/news/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/news/index.html</a></p>
 </div>
+<div id="troubleshooting" class="section level1">
+<h1 class="hasAnchor">
+<a href="#troubleshooting" class="anchor" aria-hidden="true"></a>Troubleshooting</h1>
+<p>Linux users may encounter some installation problems. In particular, the <code>ggstatsplot</code> package depends on the <code>PMCMRplus</code> package.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ERROR<span class="sc">:</span> dependencies ‘gmp’, ‘Rmpfr’ are not available <span class="cf">for</span> package ‘PMCMRplus’</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ERROR<span class="sc">:</span> dependency ‘pairwiseComparisons’ is not available <span class="cf">for</span> package ‘ggstatsplot’</span></code></pre></div>
+<p>This means that your operating system lacks <code>gmp</code> and <code>Rmpfr</code> libraries.</p>
+<p>If you use <code>Ubuntu</code>, you can install these dependencies:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install libgmp3<span class="sc">-</span>dev</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install libmpfr<span class="sc">-</span>dev</span></code></pre></div>
+<p>The following <code>README</code> file briefly describes the installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/readme/README.html" class="external-link uri">https://CRAN.R-project.org/package=PMCMRplus/readme/README.html</a></p>
+</div>
 <div id="citation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#citation" class="anchor" aria-hidden="true"></a>Citation</h1>
 <p>If you want to cite this package in a scientific journal or in any other context, run the following code in your <code>R</code> console:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"ggstatsplot"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  Patil, <span class="fu">I.</span> (<span class="dv">2018</span>). Visualizations with statistical details<span class="sc">:</span> The</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ggstatsplot'</span> approach. PsyArxiv. doi<span class="sc">:</span><span class="fl">10.31234</span><span class="sc">/</span>osf.io<span class="sc">/</span>p7mku</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {Visualizations with statistical details<span class="sc">:</span> The <span class="st">'ggstatsplot'</span> approach},</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Indrajeet Patil},</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    journal <span class="ot">=</span> {PsyArxiv},</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>psyarxiv.com<span class="sc">/</span>p7mku<span class="sc">/</span>},</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.31234</span><span class="sc">/</span>osf.io<span class="sc">/</span>p7mku},</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"ggstatsplot"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  Patil, <span class="fu">I.</span> (<span class="dv">2018</span>). Visualizations with statistical details<span class="sc">:</span> The</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ggstatsplot'</span> approach. PsyArxiv. doi<span class="sc">:</span><span class="fl">10.31234</span><span class="sc">/</span>osf.io<span class="sc">/</span>p7mku</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {Visualizations with statistical details<span class="sc">:</span> The <span class="st">'ggstatsplot'</span> approach},</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Indrajeet Patil},</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    journal <span class="ot">=</span> {PsyArxiv},</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>psyarxiv.com<span class="sc">/</span>p7mku<span class="sc">/</span>},</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.31234</span><span class="sc">/</span>osf.io<span class="sc">/</span>p7mku},</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 <p>There is currently a publication in preparation corresponding to this package and the citation will be updated once it’s published.</p>
 </div>
 <div id="documentation-and-examples" class="section level1">
@@ -555,7 +565,7 @@
 <a href="#ggbetweenstats" class="anchor" aria-hidden="true"></a><code>ggbetweenstats</code>
 </h2>
 <p>This function creates either a violin plot, a box plot, or a mix of two for <strong>between</strong>-group or <strong>between</strong>-condition comparisons with results from statistical tests in the subtitle. The simplest function call looks like this-</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -571,7 +581,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -596,6 +606,60 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
 <p>Note here that the function can be used to tag outliers!</p>
+<div id="summary-of-graphics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>raw points</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>box plot</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>density plot</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin</a></code></td>
+<td><code>violin.args</code></td>
+</tr>
+<tr class="even">
+<td>centrality measure point</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>centrality.point.args</code></td>
+</tr>
+<tr class="odd">
+<td>centrality measure label</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>centrality.label.args</code></td>
+</tr>
+<tr class="even">
+<td>outlier point</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::stat_boxplot</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>outlier label</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>outlier.label.args</code></td>
+</tr>
+<tr class="even">
+<td>pairwise comparisons</td>
+<td><code>ggsignif::geom_ggsignif</code></td>
+<td><code>ggsignif.args</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -694,13 +758,13 @@
 </tbody>
 </table>
 <p><strong>Effect size estimation</strong></p>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="10%">
-<col width="9%">
-<col width="40%">
-<col width="3%">
-<col width="36%">
+<col width="5%">
+<col width="5%">
+<col width="68%">
+<col width="1%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -714,7 +778,7 @@
 <td>Parametric</td>
 <td>&gt; 2</td>
 <td>
-<em>η</em><sub><em>p</em></sub><sup>2</sup>, <em>ω</em><sub><em>p</em></sub><sup>2</sup>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Ceta_%7Bp%7D%5E2" title="\eta_{p}^2" alt="\eta_{p}^2">, <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Comega_%7Bp%7D%5E2" title="\omega_{p}^2" alt="\omega_{p}^2">
 </td>
 <td>✅</td>
 <td>
@@ -724,9 +788,7 @@
 <tr class="even">
 <td>Non-parametric</td>
 <td>&gt; 2</td>
-<td>
-<em>ϵ</em><sub><em>o<strong>r</strong>d<strong>i</strong>n<strong>a</strong>l</em></sub><sup>2</sup>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cepsilon_%7Bordinal%7D%5E2" title="\epsilon_{ordinal}^2" alt="\epsilon_{ordinal}^2"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_epsilon_squared</a></code></td>
 </tr>
@@ -734,16 +796,14 @@
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>
-<em>ξ</em> (Explanatory measure of effect size)</td>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cxi" title="\xi" alt="\xi"> (Explanatory measure of effect size)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
-<td>
-<em>R</em><sub><em>p<strong>o</strong>s<strong>t</strong>e<strong>r</strong>i<strong>o</strong>r</em></sub><sup>2</sup>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=R_%7Bposterior%7D%5E2" title="R_{posterior}^2" alt="R_{posterior}^2"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
@@ -769,16 +829,14 @@
 <td>Robust</td>
 <td>2</td>
 <td>
-<em>ξ</em> (Explanatory measure of effect size)</td>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cxi" title="\xi" alt="\xi"> (Explanatory measure of effect size)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::yuen.effect.ci</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
-<td>
-<em>δ</em><sub><em>p<strong>o</strong>s<strong>t</strong>e<strong>r</strong>i<strong>o</strong>r</em></sub>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -840,7 +898,7 @@
 <a href="#ggwithinstats" class="anchor" aria-hidden="true"></a><code>ggwithinstats</code>
 </h2>
 <p><code>ggbetweenstats</code> function has an identical twin function <code>ggwithinstats</code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility and data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co"># for data</span>
@@ -890,7 +948,7 @@
 </tbody>
 </table>
 <p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># common setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -911,6 +969,70 @@
   outlier.label <span class="op">=</span> <span class="va">education</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats2-1.png" width="100%"></p>
+<div id="summary-of-graphics-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-1" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>raw points</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>point path</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path</a></code></td>
+<td><code>point.path.args</code></td>
+</tr>
+<tr class="odd">
+<td>box plot</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>density plot</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin</a></code></td>
+<td><code>violin.args</code></td>
+</tr>
+<tr class="odd">
+<td>centrality measure point</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>centrality.point.args</code></td>
+</tr>
+<tr class="even">
+<td>centrality measure point path</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path</a></code></td>
+<td><code>centrality.path.args</code></td>
+</tr>
+<tr class="odd">
+<td>centrality measure label</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>centrality.label.args</code></td>
+</tr>
+<tr class="even">
+<td>outlier point</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::stat_boxplot</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>outlier label</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>outlier.label.args</code></td>
+</tr>
+<tr class="even">
+<td>pairwise comparisons</td>
+<td><code>ggsignif::geom_ggsignif</code></td>
+<td><code>ggsignif.args</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-1" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -1015,13 +1137,13 @@
 </tbody>
 </table>
 <p><strong>Effect size estimation</strong></p>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="7%">
-<col width="7%">
-<col width="55%">
-<col width="2%">
-<col width="26%">
+<col width="5%">
+<col width="5%">
+<col width="68%">
+<col width="1%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1035,7 +1157,7 @@
 <td>Parametric</td>
 <td>&gt; 2</td>
 <td>
-<em>η</em><sub><em>p</em></sub><sup>2</sup>, <em>ω</em><sub><em>p</em></sub><sup>2</sup>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Ceta_%7Bp%7D%5E2" title="\eta_{p}^2" alt="\eta_{p}^2">, <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Comega_%7Bp%7D%5E2" title="\omega_{p}^2" alt="\omega_{p}^2">
 </td>
 <td>✅</td>
 <td>
@@ -1046,7 +1168,7 @@
 <td>Non-parametric</td>
 <td>&gt; 2</td>
 <td>
-<em>W</em><sub><em>K<strong>e</strong>n<strong>d</strong>a<strong>l</strong>l</em></sub> (Kendall’s coefficient of concordance)</td>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=W_%7BKendall%7D" title="W_{Kendall}" alt="W_{Kendall}"> (Kendall’s coefficient of concordance)</td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::kendalls_w</a></code></td>
 </tr>
@@ -1054,16 +1176,14 @@
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>
-<em>δ</em><sub><em>R</em> − <em>a<strong>v</strong>g</em></sub><sup><em>A<strong>K</strong>P</em></sup> (Algina-Keselman-Penfield robust standardized difference average)</td>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D" title="\delta_{R-avg}^{AKP}" alt="\delta_{R-avg}^{AKP}"> (Algina-Keselman-Penfield robust standardized difference average)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
-<td>
-<em>R</em><sub>*B<strong>a</strong>y<strong>e</strong>s<strong>i</strong>a**n*</sub><sup>2</sup>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=R_%7BBayesian%7D%5E2" title="R_{Bayesian}^2" alt="R_{Bayesian}^2"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
@@ -1089,16 +1209,14 @@
 <td>Robust</td>
 <td>2</td>
 <td>
-<em>δ</em><sub><em>R</em></sub><sup><em>A<strong>K</strong>P</em></sup> (Algina-Keselman-Penfield robust standardized difference)</td>
+<img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7BR%7D%5E%7BAKP%7D" title="\delta_{R}^{AKP}" alt="\delta_{R}^{AKP}"> (Algina-Keselman-Penfield robust standardized difference)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
-<td>
-<em>δ</em><sub><em>p<strong>o</strong>s<strong>t</strong>e<strong>r</strong>i<strong>o</strong>r</em></sub>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1148,7 +1266,7 @@
 <a href="#gghistostats" class="anchor" aria-hidden="true"></a><code>gghistostats</code>
 </h2>
 <p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1167,7 +1285,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1260,10 +1378,10 @@
 <p><strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="14%">
-<col width="38%">
-<col width="4%">
-<col width="42%">
+<col width="8%">
+<col width="63%">
+<col width="2%">
+<col width="25%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1297,9 +1415,7 @@
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
-<td>
-<em>δ</em><sub><em>p<strong>o</strong>s<strong>t</strong>e<strong>r</strong>i<strong>o</strong>r</em></sub>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1313,7 +1429,7 @@
 <a href="#ggdotplotstats" class="anchor" aria-hidden="true"></a><code>ggdotplotstats</code>
 </h2>
 <p>This function is similar to <code>gghistostats</code>, but is intended to be used when the numeric variable also has a label.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1337,7 +1453,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1427,10 +1543,10 @@
 <p><strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="14%">
-<col width="38%">
-<col width="4%">
-<col width="42%">
+<col width="8%">
+<col width="63%">
+<col width="2%">
+<col width="25%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1464,9 +1580,7 @@
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
-<td>
-<em>δ</em><sub><em>p<strong>o</strong>s<strong>t</strong>e<strong>r</strong>i<strong>o</strong>r</em></sub>
-</td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="\delta_{posterior}"></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1479,7 +1593,7 @@
 <a href="#ggscatterstats" class="anchor" aria-hidden="true"></a><code>ggscatterstats</code>
 </h2>
 <p>This function creates a scatterplot with marginal distributions overlaid on the axes (from <code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html" class="external-link">ggExtra::ggMarginal</a></code>) and results from statistical tests in the subtitle:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
   x <span class="op">=</span> <span class="va">sleep_rem</span>,
@@ -1500,7 +1614,7 @@
 <li>densigram (density + histogram)</li>
 </ul>
 <p>Number of other arguments can be specified to modify this basic plot-</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1524,7 +1638,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats2-1.png" width="100%"></p>
 <p>Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Also, note that, as opposed to the other functions, this function does not return a <code>ggplot</code> object and any modification you want to make can be made in advance using <code>ggplot.component</code> argument (available for all functions, but especially useful here):</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1597,7 +1711,7 @@
 <a href="#ggcorrmat" class="anchor" aria-hidden="true"></a><code>ggcorrmat</code>
 </h2>
 <p><code>ggcorrmat</code> makes a correlalogram (a matrix of correlation coefficients) with minimal amount of code. Just sticking to the defaults itself produces publication-ready correlation matrices. But, for the sake of exploring the available options, let’s change some of the defaults. For example, multiple aesthetics-related arguments can be modified to change the appearance of the correlation matrix.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1613,7 +1727,7 @@
 <p>✅ effect size + significance<br> ✅ careful handling of <code>NA</code>s</p>
 <p>If there are <code>NA</code>s present in the selected variables, the legend will display minimum, median, and maximum number of pairs used for correlation tests.</p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1627,7 +1741,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat2-1.png" width="100%"></p>
 <p>You can also get a dataframe containing all relevant details from the statistical tests:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1637,60 +1751,60 @@
   type <span class="op">=</span> <span class="st">"bayes"</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 x 14</span>
-<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    </span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.995</span>
-<span class="co">#&gt;  3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
-<span class="co">#&gt;  4 sleep_total brainwt       -0.339       0.95   -0.523   -0.156  0.996</span>
-<span class="co">#&gt;  5 sleep_total bodywt        -0.300       0.95   -0.458   -0.142  0.997</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle   -0.306       0.95   -0.535   -0.0555 0.965</span>
-<span class="co">#&gt;  7 sleep_rem   awake         -0.734       0.95   -0.824   -0.638  1    </span>
-<span class="co">#&gt;  8 sleep_rem   brainwt       -0.202       0.95   -0.410    0.0130 0.927</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt        -0.315       0.95   -0.481   -0.120  0.994</span>
-<span class="co">#&gt; 10 sleep_cycle awake          0.441       0.95    0.226    0.662  0.995</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt        0.823       0.95    0.720    0.911  1    </span>
-<span class="co">#&gt; 12 sleep_cycle bodywt         0.386       0.95    0.145    0.610  0.992</span>
-<span class="co">#&gt; 13 awake       brainwt        0.341       0.95    0.154    0.524  0.992</span>
-<span class="co">#&gt; 14 awake       bodywt         0.299       0.95    0.139    0.454  0.998</span>
-<span class="co">#&gt; 15 brainwt     bodywt         0.926       0.95    0.896    0.957  1    </span>
-<span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
-<span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">#&gt;  1          0      beta                         1.41        1.41     3.00e+ 9</span>
-<span class="co">#&gt;  2          0.0173 beta                         1.41        1.41     8.85e+ 0</span>
-<span class="co">#&gt;  3          0      beta                         1.41        1.41    NA       </span>
-<span class="co">#&gt;  4          0.028  beta                         1.41        1.41     7.29e+ 0</span>
-<span class="co">#&gt;  5          0.0292 beta                         1.41        1.41     9.28e+ 0</span>
-<span class="co">#&gt;  6          0.091  beta                         1.41        1.41     1.42e+ 0</span>
-<span class="co">#&gt;  7          0      beta                         1.41        1.41     3.01e+ 9</span>
-<span class="co">#&gt;  8          0.212  beta                         1.41        1.41     6.54e- 1</span>
-<span class="co">#&gt;  9          0.0362 beta                         1.41        1.41     4.80e+ 0</span>
-<span class="co">#&gt; 10          0.0158 beta                         1.41        1.41     8.85e+ 0</span>
-<span class="co">#&gt; 11          0      beta                         1.41        1.41     3.80e+ 6</span>
-<span class="co">#&gt; 12          0.0392 beta                         1.41        1.41     3.76e+ 0</span>
-<span class="co">#&gt; 13          0.0253 beta                         1.41        1.41     7.29e+ 0</span>
-<span class="co">#&gt; 14          0.0265 beta                         1.41        1.41     9.27e+ 0</span>
-<span class="co">#&gt; 15          0      beta                         1.41        1.41     1.58e+22</span>
-<span class="co">#&gt;    method                       n.obs</span>
-<span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span>
-<span class="co">#&gt;  1 Bayesian Pearson correlation    61</span>
-<span class="co">#&gt;  2 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt;  3 Bayesian Pearson correlation    83</span>
-<span class="co">#&gt;  4 Bayesian Pearson correlation    56</span>
-<span class="co">#&gt;  5 Bayesian Pearson correlation    83</span>
-<span class="co">#&gt;  6 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt;  7 Bayesian Pearson correlation    61</span>
-<span class="co">#&gt;  8 Bayesian Pearson correlation    48</span>
-<span class="co">#&gt;  9 Bayesian Pearson correlation    61</span>
-<span class="co">#&gt; 10 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; 11 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 12 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; 13 Bayesian Pearson correlation    56</span>
-<span class="co">#&gt; 14 Bayesian Pearson correlation    83</span>
-<span class="co">#&gt; 15 Bayesian Pearson correlation    56</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 15 x 15</span>
+<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high         mad</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  0.0593     </span>
+<span class="co">#&gt;  2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.138      </span>
+<span class="co">#&gt;  3 sleep_total awake         -1.00        0.95   -1.00    -1.00   0.000000354</span>
+<span class="co">#&gt;  4 sleep_total brainwt       -0.339       0.95   -0.523   -0.156  0.116      </span>
+<span class="co">#&gt;  5 sleep_total bodywt        -0.300       0.95   -0.458   -0.142  0.0992     </span>
+<span class="co">#&gt;  6 sleep_rem   sleep_cycle   -0.306       0.95   -0.535   -0.0555 0.155      </span>
+<span class="co">#&gt;  7 sleep_rem   awake         -0.734       0.95   -0.824   -0.638  0.0585     </span>
+<span class="co">#&gt;  8 sleep_rem   brainwt       -0.202       0.95   -0.410    0.0130 0.134      </span>
+<span class="co">#&gt;  9 sleep_rem   bodywt        -0.315       0.95   -0.481   -0.120  0.116      </span>
+<span class="co">#&gt; 10 sleep_cycle awake          0.441       0.95    0.226    0.662  0.141      </span>
+<span class="co">#&gt; 11 sleep_cycle brainwt        0.823       0.95    0.720    0.911  0.0581     </span>
+<span class="co">#&gt; 12 sleep_cycle bodywt         0.386       0.95    0.145    0.610  0.148      </span>
+<span class="co">#&gt; 13 awake       brainwt        0.341       0.95    0.154    0.524  0.111      </span>
+<span class="co">#&gt; 14 awake       bodywt         0.299       0.95    0.139    0.454  0.0962     </span>
+<span class="co">#&gt; 15 brainwt     bodywt         0.926       0.95    0.896    0.957  0.0191     </span>
+<span class="co">#&gt;       pd rope.percentage prior.distribution prior.location prior.scale</span>
+<span class="co">#&gt;    &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 1              0      beta                         1.41        1.41</span>
+<span class="co">#&gt;  2 0.995          0.0173 beta                         1.41        1.41</span>
+<span class="co">#&gt;  3 1              0      beta                         1.41        1.41</span>
+<span class="co">#&gt;  4 0.996          0.028  beta                         1.41        1.41</span>
+<span class="co">#&gt;  5 0.997          0.0292 beta                         1.41        1.41</span>
+<span class="co">#&gt;  6 0.965          0.091  beta                         1.41        1.41</span>
+<span class="co">#&gt;  7 1              0      beta                         1.41        1.41</span>
+<span class="co">#&gt;  8 0.927          0.212  beta                         1.41        1.41</span>
+<span class="co">#&gt;  9 0.994          0.0362 beta                         1.41        1.41</span>
+<span class="co">#&gt; 10 0.995          0.0158 beta                         1.41        1.41</span>
+<span class="co">#&gt; 11 1              0      beta                         1.41        1.41</span>
+<span class="co">#&gt; 12 0.992          0.0392 beta                         1.41        1.41</span>
+<span class="co">#&gt; 13 0.992          0.0253 beta                         1.41        1.41</span>
+<span class="co">#&gt; 14 0.998          0.0265 beta                         1.41        1.41</span>
+<span class="co">#&gt; 15 1              0      beta                         1.41        1.41</span>
+<span class="co">#&gt;    bayes.factor method                       n.obs</span>
+<span class="co">#&gt;           &lt;dbl&gt; &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt;  1     3.00e+ 9 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt;  2     8.85e+ 0 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt;  3    NA        Bayesian Pearson correlation    83</span>
+<span class="co">#&gt;  4     7.29e+ 0 Bayesian Pearson correlation    56</span>
+<span class="co">#&gt;  5     9.28e+ 0 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt;  6     1.42e+ 0 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt;  7     3.01e+ 9 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt;  8     6.54e- 1 Bayesian Pearson correlation    48</span>
+<span class="co">#&gt;  9     4.80e+ 0 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 10     8.85e+ 0 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 11     3.80e+ 6 Bayesian Pearson correlation    30</span>
+<span class="co">#&gt; 12     3.76e+ 0 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 13     7.29e+ 0 Bayesian Pearson correlation    56</span>
+<span class="co">#&gt; 14     9.27e+ 0 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt; 15     1.58e+22 Bayesian Pearson correlation    56</span></code></pre></div>
 <p>Additionally, <strong>partial</strong> correlation are also supported:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1701,24 +1815,24 @@
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 x 14</span>
-<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem    0.279         0.95   0.0202     0.550 0.940</span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle -0.0181        0.95  -0.306      0.254 0.543</span>
-<span class="co">#&gt;  3 sleep_total awake       -1             0.95  -1         -1     1    </span>
-<span class="co">#&gt;  4 sleep_total brainwt     -0.0818        0.95  -0.352      0.192 0.678</span>
-<span class="co">#&gt;  5 sleep_total bodywt      -0.163         0.95  -0.425      0.121 0.818</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.0666        0.95  -0.335      0.222 0.643</span>
-<span class="co">#&gt;  7 sleep_rem   awake        0.0505        0.95  -0.212      0.328 0.611</span>
-<span class="co">#&gt;  8 sleep_rem   brainwt      0.0811        0.95  -0.235      0.326 0.668</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt      -0.0190        0.95  -0.296      0.265 0.544</span>
-<span class="co">#&gt; 10 sleep_cycle awake       -0.00603       0.95  -0.278      0.279 0.516</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt      0.764         0.95   0.637      0.871 1    </span>
-<span class="co">#&gt; 12 sleep_cycle bodywt      -0.0865        0.95  -0.351      0.187 0.691</span>
-<span class="co">#&gt; 13 awake       brainwt     -0.0854        0.95  -0.349      0.205 0.690</span>
-<span class="co">#&gt; 14 awake       bodywt      -0.407         0.95  -0.630     -0.146 0.991</span>
-<span class="co">#&gt; 15 brainwt     bodywt       0.229         0.95  -0.0341     0.484 0.904</span>
+<span class="co">#&gt; # A tibble: 15 x 15</span>
+<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    mad    pd</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 sleep_total sleep_rem    0.279         0.95   0.0202     0.550 0.169  0.940</span>
+<span class="co">#&gt;  2 sleep_total sleep_cycle -0.0181        0.95  -0.306      0.254 0.180  0.543</span>
+<span class="co">#&gt;  3 sleep_total awake       -1             0.95  -1         -1     0      1    </span>
+<span class="co">#&gt;  4 sleep_total brainwt     -0.0818        0.95  -0.352      0.192 0.178  0.678</span>
+<span class="co">#&gt;  5 sleep_total bodywt      -0.163         0.95  -0.425      0.121 0.174  0.818</span>
+<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.0666        0.95  -0.335      0.222 0.173  0.643</span>
+<span class="co">#&gt;  7 sleep_rem   awake        0.0505        0.95  -0.212      0.328 0.173  0.611</span>
+<span class="co">#&gt;  8 sleep_rem   brainwt      0.0811        0.95  -0.235      0.326 0.177  0.668</span>
+<span class="co">#&gt;  9 sleep_rem   bodywt      -0.0190        0.95  -0.296      0.265 0.176  0.544</span>
+<span class="co">#&gt; 10 sleep_cycle awake       -0.00603       0.95  -0.278      0.279 0.179  0.516</span>
+<span class="co">#&gt; 11 sleep_cycle brainwt      0.764         0.95   0.637      0.871 0.0786 1    </span>
+<span class="co">#&gt; 12 sleep_cycle bodywt      -0.0865        0.95  -0.351      0.187 0.177  0.691</span>
+<span class="co">#&gt; 13 awake       brainwt     -0.0854        0.95  -0.349      0.205 0.172  0.690</span>
+<span class="co">#&gt; 14 awake       bodywt      -0.407         0.95  -0.630     -0.146 0.150  0.991</span>
+<span class="co">#&gt; 15 brainwt     bodywt       0.229         0.95  -0.0341     0.484 0.167  0.904</span>
 <span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
 <span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
 <span class="co">#&gt;  1           0.133 beta                         1.41        1.41        1.04 </span>
@@ -1806,7 +1920,7 @@
 </h2>
 <p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s chi-squared test for between-subjects design and McNemar’s chi-squared test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a chi-squared goodness of fit test) will be displayed as a subtitle.</p>
 <p>To study an interaction between two categorical variables:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1825,7 +1939,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1846,10 +1960,10 @@
 <p><strong>Hypothesis testing</strong></p>
 <table class="table">
 <colgroup>
-<col width="23%">
-<col width="8%">
-<col width="36%">
-<col width="30%">
+<col width="15%">
+<col width="5%">
+<col width="59%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1861,19 +1975,19 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Pearson’s <em>χ</em><sup>2</sup> test</td>
+<td>Pearson’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Bayesian Pearson’s <em>χ</em><sup>2</sup> test</td>
+<td>Bayesian Pearson’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>McNemar’s <em>χ</em><sup>2</sup> test</td>
+<td>McNemar’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test</a></code></td>
 </tr>
 <tr class="even">
@@ -1897,7 +2011,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Cramer’s <em>V</em>
+<td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -1905,7 +2019,7 @@
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Cramer’s <em>V</em>
+<td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -1913,7 +2027,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>Cohen’s <em>g</em>
+<td>Cohen’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=g" title="g" alt="g">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
@@ -1938,12 +2052,12 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Goodness of fit <em>χ</em><sup>2</sup> test</td>
+<td>Goodness of fit <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
-<td>Bayesian Goodness of fit <em>χ</em><sup>2</sup> test</td>
+<td>Bayesian Goodness of fit <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td>(custom)</td>
 </tr>
 </tbody>
@@ -1959,7 +2073,7 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Cramer’s <em>V</em>
+<td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
@@ -1981,7 +2095,7 @@
 </h2>
 <p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code>ggbarstats</code> function which has a similar syntax.</p>
 <p>N.B. The <em>p</em>-values from one-sample proportion test are displayed on top of each bar.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
@@ -2002,7 +2116,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2025,10 +2139,10 @@
 <p><strong>Hypothesis testing</strong></p>
 <table class="table">
 <colgroup>
-<col width="23%">
-<col width="8%">
-<col width="36%">
-<col width="30%">
+<col width="15%">
+<col width="5%">
+<col width="59%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2040,19 +2154,19 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Pearson’s <em>χ</em><sup>2</sup> test</td>
+<td>Pearson’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Bayesian Pearson’s <em>χ</em><sup>2</sup> test</td>
+<td>Bayesian Pearson’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>McNemar’s <em>χ</em><sup>2</sup> test</td>
+<td>McNemar’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test</a></code></td>
 </tr>
 <tr class="even">
@@ -2076,7 +2190,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Cramer’s <em>V</em>
+<td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -2084,7 +2198,7 @@
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Cramer’s <em>V</em>
+<td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -2092,7 +2206,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>Cohen’s <em>g</em>
+<td>Cohen’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=g" title="g" alt="g">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
@@ -2117,12 +2231,12 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Goodness of fit <em>χ</em><sup>2</sup> test</td>
+<td>Goodness of fit <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
-<td>Bayesian Goodness of fit <em>χ</em><sup>2</sup> test</td>
+<td>Bayesian Goodness of fit <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E2" title="\chi^2" alt="\chi^2"> test</td>
 <td>(custom)</td>
 </tr>
 </tbody>
@@ -2138,7 +2252,7 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Cramer’s <em>V</em>
+<td>Cramer’s <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=V" title="V" alt="V">
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
@@ -2160,12 +2274,12 @@
 <p>The function <code>ggcoefstats</code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance</a></code>.</p>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
-<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <em>χ</em><sup>2</sup>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
+<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E%7B2%7D" title="\chi^{2}" alt="\chi^{2}">-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
 <li><p>The label attached to dot will provide more details from the statistical test carried out and it will typically contain estimate, statistic, and <em>p</em>-value.</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2178,7 +2292,7 @@
 <p>📝 <strong>Defaults</strong> return<br></p>
 <p>✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC and BIC) <br></p>
 <p>This default plot can be further modified to one’s liking with additional arguments (also, let’s use a different model now):</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2212,11 +2326,11 @@
 <p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="11%">
-<col width="48%">
-<col width="12%">
-<col width="4%">
-<col width="23%">
+<col width="7%">
+<col width="30%">
+<col width="45%">
+<col width="3%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2229,21 +2343,21 @@
 <tr class="odd">
 <td>Parametric</td>
 <td>Meta-analysis via random-effects models</td>
-<td><em>β</em></td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
 <td>✅</td>
 <td><code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code></td>
 </tr>
 <tr class="even">
 <td>Robust</td>
 <td>Meta-analysis via robust random-effects models</td>
-<td><em>β</em></td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code></td>
 </tr>
 <tr class="odd">
 <td>Bayes</td>
 <td>Meta-analysis via Bayesian random-effects models</td>
-<td><em>β</em></td>
+<td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
 </tr>
@@ -2265,7 +2379,7 @@
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor" aria-hidden="true"></a>Using <code>ggstatsplot</code> statistical details with custom plots</h2>
 <p>Sometimes you may not like the default plots produced by <code>ggstatsplot</code>. In such cases, you can use other <strong>custom</strong> plots (from <code>ggplot2</code> or other plotting packages) and still use <code>ggstatsplot</code> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create plot (<em>ridgeplot</em>) using <code>ggridges</code> package and use <code>ggstatsplot</code> function for extracting results.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loading the needed libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/" class="external-link">ggridges</a></span><span class="op">)</span>

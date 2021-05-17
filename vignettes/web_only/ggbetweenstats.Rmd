@@ -335,7 +335,21 @@ See the associated vignette here:
 For repeated measures designs, `ggwithinstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
+# Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+raw points | `ggplot2::geom_point` | `point.args`
+box plot | `ggplot2::geom_boxplot` | ❌
+density plot | `ggplot2::geom_violin` | `violin.args`
+centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
+centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`
+outlier point | `ggplot2::stat_boxplot` | ❌
+outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
+pairwise comparisons | `ggsignif::geom_ggsignif` | `ggsignif.args`
+
 # Summary of tests
+
 **Central tendency measure**
 
 Type | Measure | Function used

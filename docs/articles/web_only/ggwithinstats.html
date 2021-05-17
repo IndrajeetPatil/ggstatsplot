@@ -180,7 +180,7 @@
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-11</h4>
+            <h4 data-toc-skip class="date">2021-05-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd" class="external-link"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -411,6 +411,70 @@ A BibTeX entry for LaTeX users is
 <h1 class="hasAnchor">
 <a href="#between-subjects-designs" class="anchor" aria-hidden="true"></a>Between-subjects designs</h1>
 <p>For independent measures designs, <code>ggbetweenstats</code> function can be used: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
+</div>
+<div id="summary-of-graphics" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h1>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>raw points</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>point path</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path</a></code></td>
+<td><code>point.path.args</code></td>
+</tr>
+<tr class="odd">
+<td>box plot</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>density plot</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin</a></code></td>
+<td><code>violin.args</code></td>
+</tr>
+<tr class="odd">
+<td>centrality measure point</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>centrality.point.args</code></td>
+</tr>
+<tr class="even">
+<td>centrality measure point path</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path</a></code></td>
+<td><code>centrality.path.args</code></td>
+</tr>
+<tr class="odd">
+<td>centrality measure label</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>centrality.label.args</code></td>
+</tr>
+<tr class="even">
+<td>outlier point</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::stat_boxplot</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="odd">
+<td>outlier label</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>outlier.label.args</code></td>
+</tr>
+<tr class="even">
+<td>pairwise comparisons</td>
+<td><code>ggsignif::geom_ggsignif</code></td>
+<td><code>ggsignif.args</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">

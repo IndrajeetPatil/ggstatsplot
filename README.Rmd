@@ -1,5 +1,7 @@
 ---
-output: github_document
+output:  
+   github_document: 
+     pandoc_args: --webtex=https://chart.apis.google.com/chart?cht=tx&chl= 
 ---
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -61,13 +63,6 @@ To get the latest, stable `CRAN` release:
 install.packages("ggstatsplot")
 ```
 
-*Note*:
-
-Linux users may encounter some installation problems, as several R packages
-require external libraries on the system, especially for `PMCMRplus` package.
-The following `README` file briefly describes the installation procedure:
-<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
-
 You can get the **development** version of the package from `GitHub`.
 
 If you are in hurry and want to reduce the time of installation,
@@ -98,6 +93,28 @@ remotes::install_github(
 To see what new changes (and bug fixes) have been made to the package since the
 last release on `CRAN`, you can check the detailed log of changes here:
 <https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
+
+# Troubleshooting
+
+Linux users may encounter some installation problems. In particular, the
+`ggstatsplot` package depends on the `PMCMRplus` package.
+
+```
+ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
+ERROR: dependency ‘pairwiseComparisons’ is not available for package ‘ggstatsplot’
+```
+
+This means that your operating system lacks `gmp` and `Rmpfr` libraries.
+
+If you use `Ubuntu`, you can install these dependencies:
+
+```
+sudo apt-get install libgmp3-dev
+sudo apt-get install libmpfr-dev
+```
+
+The following `README` file briefly describes the installation procedure:
+<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
 
 # Citation
 
@@ -261,6 +278,19 @@ grouped_ggbetweenstats(
 
 Note here that the function can be used to tag outliers!
 
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+raw points | `ggplot2::geom_point` | `point.args`
+box plot | `ggplot2::geom_boxplot` | ❌
+density plot | `ggplot2::geom_violin` | `violin.args`
+centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
+centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`
+outlier point | `ggplot2::stat_boxplot` | ❌
+outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
+pairwise comparisons | `ggsignif::geom_ggsignif` | `ggsignif.args`
+
 ### Summary of tests
 
 **Central tendency measure**
@@ -382,6 +412,21 @@ grouped_ggwithinstats(
   outlier.label = education
 )
 ```
+
+### Summary of graphics
+
+graphical element | `geom_` used | argument for further modification
+--------- | ------- | --------------------------
+raw points | `ggplot2::geom_point` | `point.args`
+point path | `ggplot2::geom_path` | `point.path.args`
+box plot | `ggplot2::geom_boxplot` | ❌
+density plot | `ggplot2::geom_violin` | `violin.args`
+centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
+centrality measure point path | `ggplot2::geom_path` | `centrality.path.args`
+centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`
+outlier point | `ggplot2::stat_boxplot` | ❌
+outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
+pairwise comparisons | `ggsignif::geom_ggsignif` | `ggsignif.args`
 
 ### Summary of tests
 
