@@ -154,13 +154,12 @@ test_that(
 test_that(
   desc = "checking all dataframe outputs",
   code = {
+    skip_on_os("windows")
     skip_on_cran()
     options(tibble.width = Inf, tibble.print_max = 50)
-    skip_if_not_installed("ggcorrplot")
     skip_on_ci()
     skip_on_appveyor()
     skip_on_travis()
-    skip_on_covr()
 
     set.seed(123)
     expect_snapshot(suppressWarnings(purrr::pmap(

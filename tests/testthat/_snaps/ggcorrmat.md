@@ -534,27 +534,6 @@
 # checking Bayesian pearson (with NA)
 
     Code
-      pb$data
-    Output
-      [[1]]
-           fill x y PANEL group xmin xmax ymin ymax colour size linetype alpha width
-      1 #2DA57C 1 1     1     1  0.5  1.5  0.5  1.5  black  0.1        1    NA    NA
-        height
-      1     NA
-      
-      [[2]]
-           fill x y PANEL group colour size angle hjust vjust alpha family fontface
-      1 #2DA57C 1 1     1     1  black    4     0   0.5   0.5    NA               1
-        lineheight label
-      1        1.2  0.93
-      
-      [[3]]
-      data frame with 0 columns and 0 rows
-      
-
----
-
-    Code
       p$labels
     Output
       $xlab
@@ -670,11 +649,11 @@
       
       [[7]]
       # A tibble: 3 x 15
-        parameter1 parameter2 estimate conf.level conf.low conf.high   mad    pd
-        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl> <dbl> <dbl>
-      1 brainwt    sleep_rem   -0.0911       0.95   -0.306     0.147 0.143 0.740
-      2 brainwt    bodywt       0.461        0.95    0.267     0.623 0.114 1    
-      3 sleep_rem  bodywt      -0.0959       0.95   -0.322     0.116 0.142 0.756
+        parameter1 parameter2 estimate conf.level conf.low conf.high std.dev    pd
+        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl>   <dbl> <dbl>
+      1 brainwt    sleep_rem   -0.0908       0.95   -0.306     0.147   0.141 0.740
+      2 brainwt    bodywt       0.454        0.95    0.267     0.623   0.113 1    
+      3 sleep_rem  bodywt      -0.0956       0.95   -0.322     0.116   0.139 0.756
         rope.percentage prior.distribution prior.location prior.scale bayes.factor
                   <dbl> <chr>                       <dbl>       <dbl>        <dbl>
       1         0.430   beta                         1.41        1.41        0.269
@@ -688,11 +667,11 @@
       
       [[8]]
       # A tibble: 3 x 15
-        parameter1 parameter2 estimate conf.level conf.low conf.high    mad    pd
-        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl>  <dbl> <dbl>
-      1 brainwt    sleep_rem    -0.205       0.95   -0.402    0.0248 0.135  0.928
-      2 brainwt    bodywt        0.926       0.95    0.894    0.955  0.0193 1    
-      3 sleep_rem  bodywt       -0.310       0.95   -0.481   -0.129  0.113  0.990
+        parameter1 parameter2 estimate conf.level conf.low conf.high std.dev    pd
+        <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl>   <dbl> <dbl>
+      1 brainwt    sleep_rem    -0.201       0.95   -0.402    0.0248  0.135  0.928
+      2 brainwt    bodywt        0.924       0.95    0.894    0.955   0.0203 1    
+      3 sleep_rem  bodywt       -0.306       0.95   -0.481   -0.129   0.114  0.990
         rope.percentage prior.distribution prior.location prior.scale bayes.factor
                   <dbl> <chr>                       <dbl>       <dbl>        <dbl>
       1          0.212  beta                         1.41        1.41     6.54e- 1
