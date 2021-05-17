@@ -144,7 +144,7 @@ test_that(
 
     # check data
     set.seed(123)
-    expect_snapshot(pb$data)
+    #expect_snapshot(pb$data)
     expect_snapshot(p$labels)
   }
 )
