@@ -7,18 +7,16 @@ test_that(
     set.seed(123)
 
     # creating lists
-    df1 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = vore)
-    df2 <- ggstatsplot:::grouped_list(
-      data = dplyr::filter(ggplot2::msleep, vore != "herbi"),
+    df1 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
+    df2 <- ggstatsplot:::grouped_list(dplyr::filter(ggplot2::msleep, vore != "herbi"),
       grouping.var = "vore"
     )
-    df5 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = "vore")
-    df6 <- ggstatsplot:::grouped_list(data = ggplot2::msleep, grouping.var = NULL)
+    df5 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = "vore")
+    df6 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = NULL)
 
     # testing lengths of lists
-    expect_equal(length(df1), 4L)
-    expect_equal(length(df2), 3L)
-    expect_identical(class(df1), "list")
+    expect_snapshot(list(length(df1), length(df2), length(df5), length(df6)))
+    expect_snapshot(list(names(df1), names(df2), names(df5), names(df6)))
     expect_identical(df1$carni, df5$carni)
     expect_identical(ggplot2::msleep, df6)
   }
@@ -30,14 +28,12 @@ test_that(
 test_that(
   desc = "palette_message is working",
   code = {
-    expect_output(
+    expect_snapshot(
       ggstatsplot:::palette_message(
         package = "RColorBrewer",
         palette = "Dark2",
         min_length = 20
-      ),
-      "Number of labels",
-      fixed = TRUE
+      )
     )
   }
 )
