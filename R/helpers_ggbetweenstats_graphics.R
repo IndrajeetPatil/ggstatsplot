@@ -56,13 +56,17 @@ centrality_ggrepel <- function(plot,
                                ),
                                ...) {
   # creating the dataframe
-  centrality_df <- centrality_data(data, {{ x }}, {{ y }}, type = type, tr = tr, k = k)
+  centrality_df <- centrality_data(data, {{ x }}, {{ y }},
+    type = type,
+    tr = tr,
+    k = k
+  )
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
     plot <- plot +
       rlang::exec(
-        .fn = ggplot2::geom_path,
+        ggplot2::geom_path,
         data = centrality_df,
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = 1),
         inherit.aes = FALSE,
@@ -73,19 +77,16 @@ centrality_ggrepel <- function(plot,
   # ------------------------ plot -------------------------------------
 
   # highlight the mean of each group
-  plot <- plot +
+  plot +
     rlang::exec(
-      .fn = ggplot2::geom_point,
+      ggplot2::geom_point,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       data = centrality_df,
       inherit.aes = FALSE,
       !!!centrality.point.args
-    )
-
-  # attach the labels with means to the plot
-  plot +
+    ) + # attach the labels with means to the plot
     rlang::exec(
-      .fn = ggrepel::geom_label_repel,
+      ggrepel::geom_label_repel,
       data = centrality_df,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
       show.legend = FALSE,
@@ -99,25 +100,30 @@ centrality_ggrepel <- function(plot,
 
 #' @noRd
 
-centrality_data <- function(data, x, y, type = "parametric", tr = 0.2, k = 2L, ...) {
+centrality_data <- function(data,
+                            x,
+                            y,
+                            type = "parametric",
+                            tr = 0.2,
+                            k = 2L,
+                            ...) {
 
   # ------------------------ measure -------------------------------------
 
   # which centrality measure?
-  centrality <-
-    dplyr::case_when(
-      type == "parametric" ~ "mean",
-      type == "nonparametric" ~ "median",
-      type == "robust" ~ "trimmed",
-      type == "bayes" ~ "MAP"
-    )
+  centrality <- dplyr::case_when(
+    type == "parametric" ~ "mean",
+    type == "nonparametric" ~ "median",
+    type == "robust" ~ "trimmed",
+    type == "bayes" ~ "MAP"
+  )
 
   # ------------------------ dataframe -------------------------------------
 
   # creating the dataframe
   data %>%
     dplyr::select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na() %>%
+    tidyr::drop_na(.) %>%
     dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     dplyr::group_by({{ x }}) %>%
     dplyr::group_modify(
@@ -290,8 +296,7 @@ aesthetic_addon <- function(plot,
     ) +
     theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
     ggplot2::theme(legend.position = "none") +
-    paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette))
+    paletteer::scale_color_paletteer_d(paste0(package, "::", palette))
 
   # ---------------- adding ggplot component ---------------------------------
 
@@ -303,12 +308,7 @@ aesthetic_addon <- function(plot,
 #' @title Adding a column to dataframe describing outlier status
 #' @name outlier_df
 #'
-#' @inheritParams long_to_wide_converter
-#' @param outlier.label Label to put on the outliers that have been tagged. This
-#'   can't be the same as x argument.
-#' @param outlier.coef Coefficient for outlier detection using Tukey's method.
-#'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
-#'   Quartile) `coef` times the Inter-Quartile Range (IQR) (Default: `1.5`).
+#' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
 #'
 #' @return The dataframe entered as `data` argument is returned with two
@@ -363,5 +363,5 @@ function_switch <- function(test, element, ...) {
   if (test == "anova") .f <- statsExpressions::oneway_anova
 
   # evaluate it
-  suppressWarnings(suppressMessages(rlang::exec(.fn = .f, ...)))
+  suppressWarnings(suppressMessages(rlang::exec(.f, ...)))
 }

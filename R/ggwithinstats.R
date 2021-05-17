@@ -208,20 +208,14 @@ ggwithinstats <- function(data,
   # --------------------------------- basic plot ------------------------------
 
   # plot
-  plot <-
-    ggplot2::ggplot(
-      data = data,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)
-    ) +
-    rlang::exec(
-      .fn = ggplot2::geom_point,
-      ggplot2::aes(color = {{ x }}),
-      !!!point.args
-    ) +
+  plot <- ggplot2::ggplot(
+    data = data,
+    mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)
+  ) +
+    rlang::exec(ggplot2::geom_point, ggplot2::aes(color = {{ x }}), !!!point.args) +
     ggplot2::geom_boxplot(
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       inherit.aes = FALSE,
-      fill = "white",
       width = 0.2,
       alpha = 0.5
     ) +
@@ -229,17 +223,12 @@ ggwithinstats <- function(data,
       .fn = ggplot2::geom_violin,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}),
       inherit.aes = FALSE,
-      fill = "white",
       !!!violin.args
     )
 
   # add a connecting path only if there are only two groups
   if (test != "anova" && isTRUE(point.path)) {
-    plot <- plot +
-      rlang::exec(
-        .fn = ggplot2::geom_path,
-        !!!point.path.args
-      )
+    plot <- plot + rlang::exec(ggplot2::geom_path, !!!point.path.args)
   }
 
   # ---------------------------- outlier labeling -----------------------------
@@ -266,58 +255,54 @@ ggwithinstats <- function(data,
 
   # add labels for mean values
   if (isTRUE(centrality.plotting)) {
-    plot <-
-      centrality_ggrepel(
-        plot = plot,
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        k = k,
-        type = ipmisc::stats_type_switch(centrality.type),
-        tr = tr,
-        centrality.path = centrality.path,
-        centrality.path.args = centrality.path.args,
-        centrality.point.args = centrality.point.args,
-        centrality.label.args = centrality.label.args
-      )
+    plot <- centrality_ggrepel(
+      plot = plot,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      k = k,
+      type = ipmisc::stats_type_switch(centrality.type),
+      tr = tr,
+      centrality.path = centrality.path,
+      centrality.path.args = centrality.path.args,
+      centrality.point.args = centrality.point.args,
+      centrality.label.args = centrality.label.args
+    )
   }
 
   # ggsignif labels -----------------------------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
-    df_pairwise <-
-      pairwiseComparisons::pairwise_comparisons(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        type = type,
-        tr = tr,
-        paired = TRUE,
-        p.adjust.method = p.adjust.method,
-        k = k
-      )
+    df_pairwise <- pairwiseComparisons::pairwise_comparisons(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      type = type,
+      tr = tr,
+      paired = TRUE,
+      p.adjust.method = p.adjust.method,
+      k = k
+    )
 
     # adding the layer for pairwise comparisons
-    plot <-
-      ggsignif_adder(
-        plot = plot,
-        df_pairwise = df_pairwise,
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        pairwise.display = pairwise.display,
-        ggsignif.args = ggsignif.args
-      )
+    plot <- ggsignif_adder(
+      plot = plot,
+      df_pairwise = df_pairwise,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      pairwise.display = pairwise.display,
+      ggsignif.args = ggsignif.args
+    )
 
     # preparing the caption for pairwise comparisons test
     if (type != "bayes") {
-      caption <-
-        pairwiseComparisons::pairwise_caption(
-          caption,
-          unique(df_pairwise$test.details),
-          pairwise.display
-        )
+      caption <- pairwiseComparisons::pairwise_caption(
+        caption,
+        unique(df_pairwise$test.details),
+        pairwise.display
+      )
     }
   }
 

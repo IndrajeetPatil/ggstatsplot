@@ -157,6 +157,8 @@ test_that(
 test_that(
   desc = "checking all dataframe outputs",
   code = {
+    options(tibble.width = Inf, tibble.print_max = 50)
+
     skip_on_cran()
     skip_if_not_installed("ggcorrplot")
     skip_on_ci()
@@ -165,9 +167,9 @@ test_that(
     skip_on_covr()
 
     set.seed(123)
-    expect_snapshot(suppressWarnings(purrr::pmap_dfr(
+    expect_snapshot(suppressWarnings(purrr::pmap(
       .l = list(
-        data = list(ggplot2::msleep),
+        data = list(dplyr::select(ggplot2::msleep, brainwt, sleep_rem, bodywt)),
         type = list("p", "p", "np", "np", "r", "r", "bf", "bayes"),
         output = list("dataframe"),
         partial = list(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)

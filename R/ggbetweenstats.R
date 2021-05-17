@@ -349,7 +349,6 @@ ggbetweenstats <- function(data,
         .fn = .f,
         width = 0.3,
         alpha = 0.2,
-        fill = "white",
         geom = "boxplot",
         coef = outlier.coef,
         !!!outlier_list
@@ -358,12 +357,7 @@ ggbetweenstats <- function(data,
 
   # add violin geom
   if (plot.type %in% c("violin", "boxviolin")) {
-    plot <- plot +
-      rlang::exec(
-        .fn = ggplot2::geom_violin,
-        fill = "white",
-        !!!violin.args
-      )
+    plot <- plot + rlang::exec(ggplot2::geom_violin, !!!violin.args)
   }
 
   # ---------------------------- outlier labeling -----------------------------
