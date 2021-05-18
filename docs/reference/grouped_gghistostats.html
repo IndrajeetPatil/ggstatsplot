@@ -125,7 +125,7 @@ using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -254,7 +254,7 @@ across multiple levels of a given factor and combining the resulting plots
 using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>grouped_gghistostats</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_gghistostats</span><span class='op'>(</span>
   <span class='va'>data</span>,
   <span class='va'>x</span>,
   <span class='va'>grouping.var</span>,
@@ -263,7 +263,7 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -319,8 +319,9 @@ separately specified here.</p></td>
 normal curve using <code>stats::dnorm(mean(x), sd(x))</code>. Default is <code>FALSE</code>.</p></dd>
     <dt><code>normal.curve.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to the normal curve.</p></dd>
-    <dt><code>bar.fill</code></dt><dd><p>Character input that decides which color will uniformly fill
-all the bars in the histogram (Default: <code>"grey50"</code>).</p></dd>
+    <dt><code>bin.args</code></dt><dd><p>A list of additional aesthetic arguments to be passed to the
+<code>stat_bin</code> used to display the bins. Do not specify <code>binwidth</code> argument in
+this list since it has already been specified using the dedicated argument.</p></dd>
     <dt><code>centrality.line.args</code></dt><dd><p>A list of additional aesthetic arguments to be
 passed to the <code>geom_line</code> used to display the lines corresponding to the
 centrality parameter.</p></dd>
@@ -396,16 +397,17 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
+    <p>For more details, see:
+<a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='gghistostats.html'>gghistostats</a></code>, <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code>,
 <code><a href='grouped_ggdotplotstats.html'>grouped_ggdotplotstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='co'># for reproducibility</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
@@ -416,7 +418,6 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-in'>  x <span class='op'>=</span> <span class='va'>Sepal.Length</span>,</span>
 <span class='r-in'>  test.value <span class='op'>=</span> <span class='fl'>5</span>,</span>
 <span class='r-in'>  grouping.var <span class='op'>=</span> <span class='va'>Species</span>,</span>
-<span class='r-in'>  bar.fill <span class='op'>=</span> <span class='st'>"orange"</span>,</span>
 <span class='r-in'>  plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,</span>
 <span class='r-in'>  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>tag_levels <span class='op'>=</span> <span class='st'>"i"</span><span class='op'>)</span>,</span>
 <span class='r-in'><span class='op'>)</span></span>
@@ -429,7 +430,7 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class='r-plt'><img src='grouped_gghistostats-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'><span class='co'># }</span></span>
-</pre>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

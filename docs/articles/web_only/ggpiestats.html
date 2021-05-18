@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -180,7 +180,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-11</h4>
+            <h4 data-toc-skip class="date">2021-05-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -457,6 +457,37 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="100%"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who started out healthy only 4% were sick after a month. Ideally, we would have hoped for zero but reality is seldom perfect. On the other side of the 38 who started out sick that number has reduced to just 13 or 34% which is a marked improvement.</p>
+</div>
+<div id="summary-of-graphics" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h1>
+<table class="table">
+<colgroup>
+<col width="21%">
+<col width="16%">
+<col width="61%">
+</colgroup>
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>pie slices</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_col</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>descriptive labels</td>
+<td>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label</a></code>/<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code>
+</td>
+<td><code>label.args</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">

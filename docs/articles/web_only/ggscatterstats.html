@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -180,7 +180,7 @@
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-11</h4>
+            <h4 data-toc-skip class="date">2021-05-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd" class="external-link"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -299,6 +299,40 @@
 </h1>
 <p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate type of marginal distribution plot for each MPAA rating or if we wanted to use different types of correlations across different levels of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would be a good idea), this is not possible. But this can be easily done using <code>purrr</code>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
+</div>
+<div id="summary-of-graphics" class="section level1">
+<h1 class="hasAnchor">
+<a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h1>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>raw data</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>labels for raw data</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>point.label.args</code></td>
+</tr>
+<tr class="odd">
+<td>smooth line</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::geom_smooth</a></code></td>
+<td><code>smooth.line.args</code></td>
+</tr>
+<tr class="even">
+<td>marginal distributions</td>
+<td><code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html" class="external-link">ggExtra::ggMarginal</a></code></td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">

@@ -273,7 +273,7 @@ Note here that the function can be used to tag outliers!
 
 | graphical element        | `geom_` used                | argument for further modification |
 |--------------------------|-----------------------------|-----------------------------------|
-| raw points               | `ggplot2::geom_point`       | `point.args`                      |
+| raw data                 | `ggplot2::geom_point`       | `point.args`                      |
 | box plot                 | `ggplot2::geom_boxplot`     | ❌                                 |
 | density plot             | `ggplot2::geom_violin`      | `violin.args`                     |
 | centrality measure point | `ggplot2::geom_point`       | `centrality.point.args`           |
@@ -410,7 +410,7 @@ grouped_ggwithinstats(
 
 | graphical element             | `geom_` used                | argument for further modification |
 |-------------------------------|-----------------------------|-----------------------------------|
-| raw points                    | `ggplot2::geom_point`       | `point.args`                      |
+| raw data                      | `ggplot2::geom_point`       | `point.args`                      |
 | point path                    | `ggplot2::geom_path`        | `point.path.args`                 |
 | box plot                      | `ggplot2::geom_boxplot`     | ❌                                 |
 | density plot                  | `ggplot2::geom_violin`      | `violin.args`                     |
@@ -528,6 +528,14 @@ grouped_gghistostats(
 
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
+### Summary of graphics
+
+| graphical element       | `geom_` used             | argument for further modification |
+|-------------------------|--------------------------|-----------------------------------|
+| histogram bin           | `ggplot2::stat_bin`      | `bin.args`                        |
+| centrality measure line | `ggplot2::geom_vline`    | `centrality.line.args`            |
+| normality curve         | `ggplot2::stat_function` | `normal.curve.args`               |
+
 ### Summary of tests
 
 **Central tendency measure**
@@ -620,6 +628,13 @@ grouped_ggdotplotstats(
 ```
 
 <img src="man/figures/README-ggdotplotstats2-1.png" width="100%" />
+
+### Summary of graphics
+
+| graphical element       | `geom_` used          | argument for further modification |
+|-------------------------|-----------------------|-----------------------------------|
+| raw data                | `ggplot2::geom_point` | `point.args`                      |
+| centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`            |
 
 ### Summary of tests
 
@@ -741,6 +756,15 @@ grouped_ggscatterstats(
 ```
 
 <img src="man/figures/README-ggscatterstats3-1.png" width="100%" />
+
+### Summary of graphics
+
+| graphical element      | `geom_` used                | argument for further modification |
+|------------------------|-----------------------------|-----------------------------------|
+| raw data               | `ggplot2::geom_point`       | `point.args`                      |
+| labels for raw data    | `ggrepel::geom_label_repel` | `point.label.args`                |
+| smooth line            | `ggplot2::geom_smooth`      | `smooth.line.args`                |
+| marginal distributions | `ggExtra::ggMarginal`       | ❌                                 |
 
 ### Summary of tests
 
@@ -941,6 +965,12 @@ ggcorrmat(
 #> 15 Bayesian Pearson correlation    30
 ```
 
+### Summary of graphics
+
+| graphical element  | `geom_` used             | argument for further modification |
+|--------------------|--------------------------|-----------------------------------|
+| correlation matrix | `ggcorrplot::ggcorrplot` | `ggcorrplot.args`                 |
+
 ### Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**
@@ -1013,6 +1043,13 @@ grouped_ggpiestats(
 ```
 
 <img src="man/figures/README-ggpiestats2-1.png" width="100%" />
+
+### Summary of graphics
+
+| graphical element  | `geom_` used                                      | argument for further modification |
+|--------------------|---------------------------------------------------|-----------------------------------|
+| pie slices         | `ggplot2::geom_col`                               | ❌                                 |
+| descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`                      |
 
 ### Summary of tests
 
@@ -1111,6 +1148,13 @@ grouped_ggbarstats(
 ```
 
 <img src="man/figures/README-ggbarstats2-1.png" width="100%" />
+
+### Summary of graphics
+
+| graphical element  | `geom_` used          | argument for further modification |
+|--------------------|-----------------------|-----------------------------------|
+| bars               | `ggplot2::geom_bar`   | ❌                                 |
+| descriptive labels | `ggplot2::geom_label` | `label.args`                      |
 
 ### Summary of tests
 
@@ -1217,7 +1261,6 @@ mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 ggcoefstats(
   x = mod,
   point.args = list(color = "red", size = 3, shape = 15),
-  vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
   exclude.intercept = TRUE,
@@ -1264,6 +1307,15 @@ packages are also supported by `ggcoefstats`. For example-
 
 Although not shown here, this function can also be used to carry out
 parametric, robust, and Bayesian random-effects meta-analysis.
+
+### Summary of graphics
+
+| graphical element              | `geom_` used                | argument for further modification |
+|--------------------------------|-----------------------------|-----------------------------------|
+| regression estimate            | `ggplot2::geom_point`       | `point.args`                      |
+| error bars                     | `ggplot2::geom_errorbarh`   | `errorbar.args`                   |
+| vertical line                  | `ggplot2::geom_vline`       | `vline.args`                      |
+| label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`                |
 
 ### Summary of meta-analysis tests
 

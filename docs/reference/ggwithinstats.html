@@ -127,7 +127,7 @@ a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -257,7 +257,7 @@ for within-subjects designs with statistical details included in the plot as
 a subtitle.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggwithinstats</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>ggwithinstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
   <span class='va'>x</span>,
   <span class='va'>y</span>,
@@ -300,7 +300,7 @@ a subtitle.</p>
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -575,22 +575,23 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For more details, see:
+<a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>To carry out Bayesian analysis for ANOVA designs, you will need to install
 the development version of <code>BayesFactor</code> (<code>0.9.12-4.3</code>). You can download it
 by running:
 <code>remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")</code>.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='grouped_ggbetweenstats.html'>grouped_ggbetweenstats</a></code>, <code><a href='ggbetweenstats.html'>ggbetweenstats</a></code>,
 <code><a href='grouped_ggwithinstats.html'>grouped_ggwithinstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='co'># setup</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
@@ -618,7 +619,7 @@ by running:
 <span class='r-in'><span class='op'>)</span></span>
 <span class='r-plt'><img src='ggwithinstats-2.png' alt='' width='700' height='433' /></span>
 <span class='r-in'><span class='co'># }</span></span>
-</pre>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -68,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -618,7 +618,7 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>raw points</td>
+<td>raw data</td>
 <td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
 <td><code>point.args</code></td>
 </tr>
@@ -981,7 +981,7 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>raw points</td>
+<td>raw data</td>
 <td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
 <td><code>point.args</code></td>
 </tr>
@@ -1306,6 +1306,35 @@
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
+<div id="summary-of-graphics-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-2" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>histogram bin</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::stat_bin</a></code></td>
+<td><code>bin.args</code></td>
+</tr>
+<tr class="even">
+<td>centrality measure line</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code></td>
+<td><code>centrality.line.args</code></td>
+</tr>
+<tr class="odd">
+<td>normality curve</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_function.html" class="external-link">ggplot2::stat_function</a></code></td>
+<td><code>normal.curve.args</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-2" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -1471,6 +1500,30 @@
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Fuel economy data"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats2-1.png" width="100%"></p>
+<div id="summary-of-graphics-3" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-3" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>raw data</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>centrality measure line</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code></td>
+<td><code>centrality.line.args</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests-3" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-3" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -1659,6 +1712,40 @@
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie length and IMDB ratings"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats3-1.png" width="100%"></p>
+<div id="summary-of-graphics-4" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-4" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>raw data</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>labels for raw data</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>point.label.args</code></td>
+</tr>
+<tr class="odd">
+<td>smooth line</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::geom_smooth</a></code></td>
+<td><code>smooth.line.args</code></td>
+</tr>
+<tr class="even">
+<td>marginal distributions</td>
+<td><code><a href="https://rdrr.io/pkg/ggExtra/man/ggMarginal.html" class="external-link">ggExtra::ggMarginal</a></code></td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests-4" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-4" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -1867,6 +1954,23 @@
 <span class="co">#&gt; 13 Bayesian Pearson correlation    30</span>
 <span class="co">#&gt; 14 Bayesian Pearson correlation    30</span>
 <span class="co">#&gt; 15 Bayesian Pearson correlation    30</span></code></pre></div>
+<div id="summary-of-graphics-5" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-5" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td>correlation matrix</td>
+<td><code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code></td>
+<td><code>ggcorrplot.args</code></td>
+</tr></tbody>
+</table>
+</div>
 <div id="summary-of-tests-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-5" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -1953,6 +2057,37 @@
   palette <span class="op">=</span> <span class="st">"default_ucscgb"</span> <span class="co"># choosing a different color palette</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
+<div id="summary-of-graphics-6" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-6" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<colgroup>
+<col width="18%">
+<col width="48%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>pie slices</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_col</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>descriptive labels</td>
+<td>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label</a></code>/<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code>
+</td>
+<td><code>label.args</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests-6" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-6" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -2132,6 +2267,30 @@
   ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
+<div id="summary-of-graphics-7" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-7" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>bars</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_bar</a></code></td>
+<td>❌</td>
+</tr>
+<tr class="even">
+<td>descriptive labels</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label</a></code></td>
+<td><code>label.args</code></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="summary-of-tests-7" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-tests-7" class="anchor" aria-hidden="true"></a>Summary of tests</h3>
@@ -2303,7 +2462,6 @@
 <span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod</span>,
   point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,
-  vline.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span>, color <span class="op">=</span> <span class="st">"#CC79A7"</span>, linetype <span class="op">=</span> <span class="st">"dotdash"</span><span class="op">)</span>,
   title <span class="op">=</span> <span class="st">"Car performance predicted by transmission &amp; cylinder count"</span>,
   subtitle <span class="op">=</span> <span class="st">"Source: 1974 Motor Trend US magazine"</span>,
   exclude.intercept <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -2319,6 +2477,40 @@
 <p>Most of the regression models that are supported in the underlying packages are also supported by <code>ggcoefstats</code>. For example-</p>
 <p><code>aareg</code>, <code>afex_aov</code>, <code>anova</code>, <code>anova.mlm</code>, <code>anova</code>, <code>aov</code>, <code>aovlist</code>, <code>Arima</code>, <code>bam</code>, <code>bayesx</code>, <code>bayesGARCH</code>, <code>bayesQR</code>, <code>BBmm</code>, <code>BBreg</code>, <code>bcplm</code>, <code>betamfx</code>, <code>betaor</code>, <code>BFBayesFactor</code>, <code>BGGM</code>, <code>bglmerMod</code>, <code>bife</code>, <code>bigglm</code>, <code>biglm</code>, <code>blavaan</code>, <code>bmlm</code>, <code>blmerMod</code>, <code>blrm</code>, <code>bracl</code>, <code>brglm</code>, <code>brglm2</code>, <code>brmsfit</code>, <code>brmultinom</code>, <code>btergm</code>, <code>cch</code>, <code>censReg</code>, <code>cgam</code>, <code>cgamm</code>, <code>cglm</code>, <code>clm</code>, <code>clm2</code>, <code>clmm</code>, <code>clmm2</code>, <code>coeftest</code>, <code>complmrob</code>, <code>confusionMatrix</code>, <code>coxme</code>, <code>coxph</code>, <code>coxr</code>, <code>coxph.penal</code>, <code>cpglm</code>, <code>cpglmm</code>, <code>crch</code>, <code>crq</code>, <code>crr</code>, <code>DirichReg</code>, <code>drc</code>, <code>eglm</code>, <code>elm</code>, <code>emmGrid</code>, <code>epi.2by2</code>, <code>ergm</code>, <code>feis</code>, <code>felm</code>, <code>fitdistr</code>, <code>fixest</code>, <code>flexsurvreg</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>garch</code>, <code>geeglm</code>, <code>gjrm</code>, <code>glmc</code>, <code>glmerMod</code>, <code>glmmTMB</code>, <code>gls</code>, <code>glht</code>, <code>glm</code>, <code>glmm</code>, <code>glmmadmb</code>, <code>glmmPQL</code>, <code>glmRob</code>, <code>glmrob</code>, <code>glmx</code>, <code>gmm</code>, <code>HLfit</code>, <code>hurdle</code>, <code>ivFixed</code>, <code>ivprobit</code>, <code>ivreg</code>, <code>iv_robust</code>, <code>lavaan</code>, <code>lm</code>, <code>lm.beta</code>, <code>lmerMod</code>, <code>lmerModLmerTest</code>, <code>lmodel2</code>, <code>lmRob</code>, <code>lmrob</code>, <code>lm_robust</code>, <code>logitmfx</code>, <code>logitor</code>, <code>logitsf</code>, <code>LORgee</code>, <code>lqm</code>, <code>lqmm</code>, <code>lrm</code>, <code>manova</code>, <code>maov</code>, <code>margins</code>, <code>mcmc</code>, <code>mcmc.list</code>, <code>MCMCglmm</code>, <code>mclogit</code>, <code>mice</code>, <code>mmclogit</code>, <code>mediate</code>, <code>metafor</code>, <code>merMod</code>, <code>merModList</code>, <code>metaplus</code>, <code>mhurdle</code>, <code>mixor</code>, <code>mjoint</code>, <code>mle2</code>, <code>mlm</code>, <code>multinom</code>, <code>mvord</code>, <code>negbin</code>, <code>negbinmfx</code>, <code>negbinirr</code>, <code>nlmerMod</code>, <code>nlrq</code>, <code>nlreg</code>, <code>nls</code>, <code>orcutt</code>, <code>orm</code>, <code>plm</code>, <code>poissonmfx</code>, <code>poissonirr</code>, <code>polr</code>, <code>probitmfx</code>, <code>ridgelm</code>, <code>riskRegression</code>, <code>rjags</code>, <code>rlm</code>, <code>rlmerMod</code>, <code>robmixglm</code>, <code>rq</code>, <code>rqs</code>, <code>rqss</code>, <code>rrvglm</code>, <code>scam</code>, <code>selection</code>, <code>semLm</code>, <code>semLme</code>, <code>slm</code>, <code>speedglm</code>, <code>speedlm</code>, <code>stanfit</code>, <code>stanreg</code>, <code>summary.lm</code>, <code>survreg</code>, <code>svyglm</code>, <code>svy_vglm</code>, <code>svyolr</code>, <code>tobit</code>, <code>truncreg</code>, <code>varest</code>, <code>vgam</code>, <code>vglm</code>, <code>wbgee</code>, <code>wblm</code>, <code>zeroinfl</code>, etc.</p>
 <p>Although not shown here, this function can also be used to carry out parametric, robust, and Bayesian random-effects meta-analysis.</p>
+</div>
+<div id="summary-of-graphics-8" class="section level3">
+<h3 class="hasAnchor">
+<a href="#summary-of-graphics-8" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>regression estimate</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>error bars</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh</a></code></td>
+<td><code>errorbar.args</code></td>
+</tr>
+<tr class="odd">
+<td>vertical line</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code></td>
+<td><code>vline.args</code></td>
+</tr>
+<tr class="even">
+<td>label with statistical details</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>stats.label.args</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="summary-of-meta-analysis-tests" class="section level3">
 <h3 class="hasAnchor">

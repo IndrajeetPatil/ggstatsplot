@@ -1146,7 +1146,6 @@ mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 ggcoefstats(
   x = mod,
   point.args = list(color = "red", size = 3, shape = 15),
-  vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
   exclude.intercept = TRUE,

@@ -124,7 +124,7 @@ as a subtitle." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -252,7 +252,7 @@ as a subtitle." />
 as a subtitle.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>gghistostats</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>gghistostats</span><span class='op'>(</span>
   <span class='va'>data</span>,
   <span class='va'>x</span>,
   binwidth <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -270,17 +270,17 @@ as a subtitle.</p>
   k <span class='op'>=</span> <span class='fl'>2L</span>,
   ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
   ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  bar.fill <span class='op'>=</span> <span class='st'>"grey50"</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  bin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"black"</span>, fill <span class='op'>=</span> <span class='st'>"grey50"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span>,
   centrality.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
   centrality.type <span class='op'>=</span> <span class='va'>type</span>,
-  centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
+  centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
   normal.curve <span class='op'>=</span> <span class='cn'>FALSE</span>,
   normal.curve.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -388,15 +388,16 @@ theme elements are to be displayed along with the selected <code>ggtheme</code>
 override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
-      <th>bar.fill</th>
-      <td><p>Character input that decides which color will uniformly fill
-all the bars in the histogram (Default: <code>"grey50"</code>).</p></td>
-    </tr>
-    <tr>
       <th>results.subtitle</th>
       <td><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></td>
+    </tr>
+    <tr>
+      <th>bin.args</th>
+      <td><p>A list of additional aesthetic arguments to be passed to the
+<code>stat_bin</code> used to display the bins. Do not specify <code>binwidth</code> argument in
+this list since it has already been specified using the dedicated argument.</p></td>
     </tr>
     <tr>
       <th>centrality.plotting</th>
@@ -465,17 +466,19 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
+    <p>For more details, see:
+<a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='grouped_gghistostats.html'>grouped_gghistostats</a></code>, <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code>,
 <code><a href='grouped_ggdotplotstats.html'>grouped_ggdotplotstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># for reproducibility</span></span>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># for reproducibility</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
 <span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='co'># using defaults, but modifying which centrality parameter is to be shown</span></span>
 <span class='r-in'><span class='fu'>gghistostats</span><span class='op'>(</span></span>
@@ -489,7 +492,7 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class='r-plt'><img src='gghistostats-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'><span class='co'># }</span></span>
-</pre>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

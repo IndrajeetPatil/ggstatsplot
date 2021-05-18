@@ -122,7 +122,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -244,12 +244,13 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ggstatsplot-0729000" class="section level1">
-<h1 class="page-header" data-toc-text="0.7.2.9000">
-<a href="#ggstatsplot-0729000" class="anchor" aria-hidden="true"></a>ggstatsplot 0.7.2.9000<small> Unreleased </small></h1>
+    <div id="ggstatsplot-080" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.0">
+<a href="#ggstatsplot-080" class="anchor" aria-hidden="true"></a>ggstatsplot 0.8.0<small> Unreleased </small></h1>
 <p>N.B. All statistical analysis in <code>ggstatsplot</code> is carried out in <code>statsExpressions</code>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
 <p>MAJOR CHANGES</p>
-<ul><li>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</li>
+<ul><li><p>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</p></li>
+<li><p>The <code>bar.fill</code> argument in <code>gghistostats</code> is retired in favor of the new <code>bin.args</code> argument that can be used to pass aesthetic arguments to <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::stat_bin</a></code>.</p></li>
 </ul><p>MINOR CHANGES</p>
 <ul><li><p>The <code>pch</code> size for <code>ggcorrmat</code> has been increased to 14 (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/579'>#579</a>) to increase its visibility compared to the correlation value text.</p></li>
 <li><p><code>ggwithinstats</code> gains <code>point.args</code> to change <code>geom_point</code>.</p></li>

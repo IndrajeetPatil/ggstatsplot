@@ -126,7 +126,7 @@ out using the correlation::correlation function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -256,7 +256,7 @@ creating the visualization matrix, while the correlation analysis is carried
 out using the <code><a href='https://easystats.github.io/correlation/reference/correlation.html'>correlation::correlation</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggcorrmat</span><span class='op'>(</span>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>ggcorrmat</span><span class='op'>(</span>
   <span class='va'>data</span>,
   cor.vars <span class='op'>=</span> <span class='cn'>NULL</span>,
   cor.vars.names <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -282,7 +282,7 @@ out using the <code><a href='https://easystats.github.io/correlation/reference/c
   subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
   caption <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></pre>
+<span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -442,16 +442,17 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>
+    <p>For more details, see:
+<a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='grouped_ggcorrmat.html'>grouped_ggcorrmat</a></code> <code><a href='ggscatterstats.html'>ggscatterstats</a></code>
 <code><a href='grouped_ggscatterstats.html'>grouped_ggscatterstats</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='co'># for reproducibility</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
@@ -505,7 +506,7 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span><span>       28 </span><span style='color: #949494;'>0.</span><span>170      Pearson correlation    30</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span><span>       28 1          Pearson correlation    30</span></span>
 <span class='r-in'><span class='co'># }</span></span>
-</pre>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
