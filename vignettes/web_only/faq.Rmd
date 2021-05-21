@@ -87,8 +87,8 @@ Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
 polygon edge not found
 ```
 
-There is no unique solution for this. Just Google this error and see if any of
-those solutions solve your problem.
+This can possibly be solved by increasing the size of RStudio viewer pane.
+If this doesn't solve your problem, just Google this error and see if that helps.
 
 If not, pray to the old and the new gods, and try again. It might just solve
 your problem. `r emo::ji("shrug")`
