@@ -339,7 +339,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.13.0",
+      "version": ">= 0.13.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -496,6 +496,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "7655.089KB",
+  "fileSize": "7657.758KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
