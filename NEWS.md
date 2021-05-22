@@ -5,6 +5,11 @@ N.B. All statistical analysis in `ggstatsplot` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+NEW FUNCTIONS
+
+  - Adds `extract_stats` function to extract dataframes containing statistical
+    details.
+
 MAJOR CHANGES
 
   - To reduce the dependency load, `ggcorrplot` moves from `Imports` to

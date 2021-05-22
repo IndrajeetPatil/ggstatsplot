@@ -49,9 +49,10 @@ reference:
     contents:
       - tibble
 
-  - title: Graphics helper functions
-    desc: The `ggplot2` themes and other graphics-related helpers in `ggstatsplot`
+  - title: Helper functions
+    desc: Statistics and graphics-related helpers in `ggstatsplot`
     contents:
+      - extract_stats
       - starts_with("theme_")
       - starts_with("combine")
 

@@ -131,11 +131,7 @@
 #' library(ggstatsplot)
 #'
 #' # simple function call with the defaults
-#' ggbetweenstats(
-#'   data = mtcars,
-#'   x = am,
-#'   y = mpg
-#' )
+#' ggbetweenstats(mtcars, am, mpg)
 #'
 #' # more detailed function call
 #' ggbetweenstats(

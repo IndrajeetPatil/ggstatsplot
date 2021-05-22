@@ -3,8 +3,6 @@
 test_that(
   desc = "checking if combining plots works",
   code = {
-    skip_on_cran()
-
     # setup
     set.seed(123)
     library(ggplot2)
