@@ -57,44 +57,10 @@ details, which makes data exploration simpler and faster.
 
 # Installation
 
-To get the latest, stable `CRAN` release:
-
-```{r installationCRAN, eval = FALSE}
-install.packages("ggstatsplot")
-```
-
-You can get the **development** version of the package from `GitHub`.
-
-If you are in hurry and want to reduce the time of installation,
-prefer-
-
-```{r installation1, eval = FALSE}
-# needed package to download from GitHub repo
-install.packages("remotes")
-
-# downloading the package from GitHub (needs `remotes` package to be installed)
-remotes::install_github(
-  repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-  dependencies = FALSE, # assumes you have already installed needed packages
-  quick = TRUE # skips docs, demos, and vignettes
-)
-```
-
-If time is not a constraint-
-
-```{r installation2, eval = FALSE}
-remotes::install_github(
-  repo = "IndrajeetPatil/ggstatsplot", # package path on GitHub
-  dependencies = TRUE, # installs packages which ggstatsplot depends on
-  upgrade_dependencies = TRUE # updates any out of date dependencies
-)
-```
-
-To see what new changes (and bug fixes) have been made to the package since the
-last release on `CRAN`, you can check the detailed log of changes here:
-<https://indrajeetpatil.github.io/ggstatsplot/news/index.html>
-
-# Troubleshooting
+Type | Source | Command
+---|---|---
+Release | CRAN | `install.packages("ggstatsplot")`
+Development | GitHub | `remotes::install_github("IndrajeetPatil/ggstatsplot")`
 
 Linux users may encounter some installation problems. In particular, the
 `ggstatsplot` package depends on the `PMCMRplus` package.
@@ -1210,21 +1176,21 @@ Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `meta
 For a more exhaustive account of this function, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-## `combine_plots`
+## Extracting dataframes with statistical details
 
-The full power of `ggstatsplot` can be leveraged with a functional programming
-package like [`purrr`](https://purrr.tidyverse.org/) that replaces `for` loops
-with code that is both more succinct and easier to read and, therefore, `purrr`
-should be preferrred `r emo::ji("heart_eyes_cat")`.
+`ggstatsplot` also offers a convenience function to extract dataframes with
+statistical details that are used to create expressions displayed in
+`ggstatsplot` plots.
 
-In such cases, `ggstatsplot` contains a helper function `combine_plots` to
-combine multiple plots, which can be useful for combining a list of plots
-produced with `purrr`. This is a wrapper around `patchwork::wrap_plots` and lets
-you combine multiple plots and add a combination of title, caption, and
-annotation texts with suitable defaults.
+```{r extract_stats}
+set.seed(123)
+p <- ggbetweenstats(mtcars, am, mpg)
 
-For examples (both with `plyr` and `purrr`), see the associated vignette-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>
+extract_stats(p)
+```
+
+Note that all of this analysis is carried out by `statsExpressions`
+package: <https://indrajeetpatil.github.io/statsExpressions/>
 
 ## Using `ggstatsplot` statistical details with custom plots
 
