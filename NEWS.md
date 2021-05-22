@@ -18,6 +18,8 @@ MAJOR CHANGES
   - The `bar.fill` argument in `gghistostats` is retired in favor of the new
     `bin.args` argument that can be used to pass aesthetic arguments to
     `ggplot2::stat_bin`.
+    
+  - `ggstatsplot.layer` argument has been retired for a
 
 MINOR CHANGES
 

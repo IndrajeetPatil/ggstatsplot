@@ -282,8 +282,7 @@ subtitle.</p>
   title <span class='op'>=</span> <span class='cn'>NULL</span>,
   subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
   caption <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
-  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>
@@ -437,20 +436,6 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></td>
     <tr>
       <th>caption</th>
       <td><p>The text for the plot caption.</p></td>
-    </tr>
-    <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
-    </tr>
-    <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>ggplot.component</th>

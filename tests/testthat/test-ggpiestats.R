@@ -15,7 +15,6 @@ test_that(
         legend.title = "vore",
         caption = "From ggplot2 package",
         perc.k = 2,
-        ggstatsplot.layer = FALSE,
         label = "both"
       )
 

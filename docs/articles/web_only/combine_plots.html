@@ -174,13 +174,13 @@
 
       
 
-      </header><script src="combine_plots_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="combine_plots_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-17</h4>
+            <h4 data-toc-skip class="date">2021-05-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -211,7 +211,8 @@ A BibTeX entry for LaTeX users is
 <h1 class="hasAnchor">
 <a href="#combining-plots-with-combine_plots" class="anchor" aria-hidden="true"></a>Combining plots with <code>combine_plots</code>
 </h1>
-<p><code>ggstatsplot</code> contains a “helper” function named <code>combine_plots</code> to help you combine several plots into one plot or add a combination of title, caption, and annotation texts with suitable default parameters. It is a wrapper around <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>. Some examples below.</p>
+<p>The full power of <code>ggstatsplot</code> can be leveraged with a functional programming package like <a href="https://purrr.tidyverse.org/" class="external-link"><code>purrr</code></a> that replaces <code>for</code> loops with code that is both more succinct and easier to read and, therefore, <code>purrr</code> should be preferrred 😻.</p>
+<p>In such cases, <code>ggstatsplot</code> contains a helper function <code>combine_plots</code> to combine multiple plots, which can be useful for combining a list of plots produced with <code>purrr</code>. This is a wrapper around <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots</a></code> and lets you combine multiple plots and add a combination of title, caption, and annotation texts with suitable defaults.</p>
 <p><strong>Note Before</strong>: If you have just one grouping variable and you’d like a plot for each <code>factor</code> of this variable the <code>grouped_</code> variants (<a href="https://indrajeetpatil.github.io/ggstatsplot/reference/index.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/index.html</a>) of all <code>ggstatsplot</code> functions will allow you do to this. They specifically use the <code>combine_plots</code> function under the covers.</p>
 </div>
 <div id="example-1-using-dplyrgroup_map" class="section level1">
@@ -268,7 +269,7 @@ A BibTeX entry for LaTeX users is
           xfill <span class="op">=</span> <span class="st">"#0072B2"</span>,
           yfill <span class="op">=</span> <span class="st">"#009E73"</span>,
           ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
-          ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
+          
           messages <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># turns off warnings and notes messages</span>
           marginal.type <span class="op">=</span> <span class="st">"boxplot"</span>,
           title <span class="op">=</span>
@@ -284,9 +285,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; # Groups:   Species [3]</span>
 <span class="co">#&gt;   Species    data              plot           </span>
 <span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;         </span>
-<span class="co">#&gt; 1 setosa     &lt;tibble [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 1 setosa     &lt;tibble [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 2 versicolor &lt;tibble [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 3 virginica  &lt;tibble [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
 
 <span class="co"># creating a grid with patchwork</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -322,12 +323,12 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span>
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span>
 
 <span class="co"># creating a list of plots</span>
 <span class="va">plots</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/dlply.html" class="external-link">dlply</a></span><span class="op">(</span>

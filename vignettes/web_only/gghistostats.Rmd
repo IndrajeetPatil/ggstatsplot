@@ -128,7 +128,7 @@ ggstatsplot::grouped_gghistostats(
   test.value = 20, # test value against which sample mean is to be compared
   centrality.line.args = list(color = "#D55E00", linetype = "dashed"),
   ggtheme = ggthemes::theme_stata(), # changing default theme
-  ggstatsplot.layer = FALSE, # turn off ggstatsplot theme layer
+   # turn off ggstatsplot theme layer
   # arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(
     title = "Distribution of ACT scores across genders",

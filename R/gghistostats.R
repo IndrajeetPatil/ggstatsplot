@@ -70,8 +70,7 @@ gghistostats <- function(data,
                          conf.level = 0.95,
                          tr = 0.2,
                          k = 2L,
-                         ggtheme = ggplot2::theme_bw(),
-                         ggstatsplot.layer = TRUE,
+                         ggtheme = ggstatsplot::theme_ggstatsplot(),
                          results.subtitle = TRUE,
                          bin.args = list(
                            color = "black",
@@ -207,6 +206,6 @@ gghistostats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+    ggtheme +
     ggplot.component
 }

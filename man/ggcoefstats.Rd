@@ -32,8 +32,7 @@ ggcoefstats(
   stats.label.args = list(size = 3, direction = "y"),
   package = "RColorBrewer",
   palette = "Dark2",
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
   ...
 )
 }
@@ -138,16 +137,6 @@ be extracted. The available palettes and packages can be checked by running
 \item{palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
-
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
 
 \item{...}{Additional arguments to tidying method. For more, see
 \code{parameters::model_parameters}.}

@@ -91,14 +91,6 @@ return \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
-    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
     \item{\code{package}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}

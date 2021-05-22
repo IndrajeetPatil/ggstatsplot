@@ -293,8 +293,7 @@ a subtitle.</p>
   outlier.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
   violin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.5</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>,
   ggsignif.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>textsize <span class='op'>=</span> <span class='fl'>3</span>, tip_length <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span>,
-  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
-  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
   package <span class='op'>=</span> <span class='st'>"RColorBrewer"</span>,
   palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -525,20 +524,6 @@ the <code>geom_violin</code>.</p></td>
       <th>ggsignif.args</th>
       <td><p>A list of additional aesthetic
 arguments to be passed to <code><a href='https://const-ae.github.io/ggsignif//reference/stat_signif.html'>ggsignif::geom_signif</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
-    </tr>
-    <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>package</th>

@@ -23,8 +23,7 @@ ggcorrmat(
   package = "RColorBrewer",
   palette = "Dark2",
   colors = c("#E69F00", "white", "#009E73"),
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
   subtitle = NULL,
@@ -113,15 +112,10 @@ be extracted. The available palettes and packages can be checked by running
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
 
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
+\item{ggtheme}{ggplot2 function or theme object. Default value is
+`theme_minimal`. Allowed values are the official ggplot2 themes including
+theme_gray, theme_bw, theme_minimal, theme_classic, theme_void, .... Theme
+objects are also allowed (e.g., `theme_classic()`).}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}

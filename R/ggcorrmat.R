@@ -104,8 +104,7 @@ ggcorrmat <- function(data,
                       package = "RColorBrewer",
                       palette = "Dark2",
                       colors = c("#E69F00", "white", "#009E73"),
-                      ggtheme = ggplot2::theme_bw(),
-                      ggstatsplot.layer = TRUE,
+                      ggtheme = ggstatsplot::theme_ggstatsplot(),
                       ggplot.component = NULL,
                       title = NULL,
                       subtitle = NULL,
@@ -243,17 +242,18 @@ ggcorrmat <- function(data,
   # adding text details to the plot
   plot <- plot +
     ggplot2::labs(
-      xlab = NULL,
-      ylab = NULL,
       title = title,
       subtitle = subtitle,
       caption = caption
     )
 
-  # adding `ggstatsplot` theme for correlation matrix
-  if (isTRUE(ggstatsplot.layer)) plot <- plot + theme_corrmat()
-
-  # if any additional modification needs to be made to the plot
-  # this is primarily useful for grouped_ variant of this function
-  plot + ggplot.component
+  # further theme modification
+  plot +
+    ggplot2::theme(
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      legend.title = ggplot2::element_text(size = 15)
+    ) +
+    ggplot2::labs(xlab = NULL, ylab = NULL) +
+    ggplot.component
 }

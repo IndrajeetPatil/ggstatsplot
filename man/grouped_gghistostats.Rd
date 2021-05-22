@@ -93,14 +93,6 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
-    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}

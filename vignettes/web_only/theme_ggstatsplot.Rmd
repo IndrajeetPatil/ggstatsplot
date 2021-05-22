@@ -86,8 +86,7 @@ argument. Let's see an example with `ggcorrmat` function.
 ggcorrmat(
   data = iris,
   cor.vars = c(Sepal.Length:Petal.Width),
-  ggtheme = ggthemes::theme_fivethirtyeight(), # selected ggplot2 theme
-  ggstatsplot.layer = FALSE # turn of default theme layer
+  ggtheme = ggthemes::theme_fivethirtyeight()
 )
 ```
 

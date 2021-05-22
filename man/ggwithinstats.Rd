@@ -41,8 +41,7 @@ ggwithinstats(
   outlier.label.args = list(size = 3),
   violin.args = list(width = 0.5, alpha = 0.2),
   ggsignif.args = list(textsize = 3, tip_length = 0.01),
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
   package = "RColorBrewer",
   palette = "Dark2",
   ggplot.component = NULL,
@@ -209,16 +208,6 @@ the \code{geom_violin}.}
 
 \item{ggsignif.args}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}
-
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
 
 \item{package}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running

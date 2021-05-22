@@ -20,8 +20,7 @@ gghistostats(
   conf.level = 0.95,
   tr = 0.2,
   k = 2L,
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
   results.subtitle = TRUE,
   bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
   centrality.plotting = TRUE,
@@ -93,16 +92,6 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only

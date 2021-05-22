@@ -150,7 +150,7 @@ ggstatsplot::grouped_ggscatterstats(
   label.expression = rating < 5 & budget < 20,
   marginal.type = "boxplot",
   ggtheme = ggthemes::theme_tufte(),
-  ggstatsplot.layer = FALSE,
+  
   # arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(
     title = "Relationship between movie budget and IMDB rating",

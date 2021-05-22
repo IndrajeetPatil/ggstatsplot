@@ -112,14 +112,6 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}

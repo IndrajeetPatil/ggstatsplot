@@ -27,8 +27,7 @@ ggdotplotstats(
   centrality.type = type,
   centrality.line.args = list(color = "blue", size = 1, linetype = "dashed"),
   ggplot.component = NULL,
-  ggtheme = ggplot2::theme_bw(),
-  ggstatsplot.layer = TRUE,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
   output = "plot",
   ...
 )
@@ -133,16 +132,6 @@ centrality parameter.}
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
-
-\item{ggtheme}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-
-\item{ggstatsplot.layer}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

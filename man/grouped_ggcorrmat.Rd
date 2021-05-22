@@ -94,14 +94,6 @@ be extracted. The available palettes and packages can be checked by running
     \item{\code{palette}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
-    \item{\code{ggtheme}}{A function, \code{ggplot2} theme name. Default value is
-\code{ggplot2::theme_bw()}. Any of the \code{ggplot2} themes, or themes from
-extension packages are allowed (e.g., \code{ggthemes::theme_fivethirtyeight()},
-\code{hrbrthemes::theme_ipsum_ps()}, etc.).}
-    \item{\code{ggstatsplot.layer}}{Logical that decides whether \code{theme_ggstatsplot}
-theme elements are to be displayed along with the selected \code{ggtheme}
-(Default: \code{TRUE}). \code{theme_ggstatsplot} is an opinionated theme layer that
-override some aspects of the selected \code{ggtheme}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
@@ -109,6 +101,10 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
+    \item{\code{ggtheme}}{ggplot2 function or theme object. Default value is
+`theme_minimal`. Allowed values are the official ggplot2 themes including
+theme_gray, theme_bw, theme_minimal, theme_classic, theme_void, .... Theme
+objects are also allowed (e.g., `theme_classic()`).}
   }}
 }
 \description{

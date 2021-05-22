@@ -275,8 +275,7 @@ from one-sample test details.</p>
   centrality.type <span class='op'>=</span> <span class='va'>type</span>,
   centrality.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"blue"</span>, size <span class='op'>=</span> <span class='fl'>1</span>, linetype <span class='op'>=</span> <span class='st'>"dashed"</span><span class='op'>)</span>,
   ggplot.component <span class='op'>=</span> <span class='cn'>NULL</span>,
-  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
-  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></code></pre></div>
@@ -424,20 +423,6 @@ centrality parameter.</p></td>
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> functions.</p></td>
-    </tr>
-    <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
-    </tr>
-    <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>output</th>

@@ -90,8 +90,7 @@ ggpiestats <- function(data,
                        subtitle = NULL,
                        caption = NULL,
                        legend.title = NULL,
-                       ggtheme = ggplot2::theme_bw(),
-                       ggstatsplot.layer = TRUE,
+                       ggtheme = ggstatsplot::theme_ggstatsplot(),
                        package = "RColorBrewer",
                        palette = "Dark2",
                        ggplot.component = NULL,
@@ -230,7 +229,13 @@ ggpiestats <- function(data,
     ggplot2::coord_polar(theta = "y") +
     ggplot2::scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
-    theme_pie(ggtheme, ggstatsplot.layer) +
+    ggtheme +
+    ggplot2::theme(
+      panel.grid = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_blank(),
+      axis.title = ggplot2::element_blank(),
+      strip.text = ggplot2::element_text(face = "bold")
+    ) +
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
   # ================ sample size + proportion test labels =================

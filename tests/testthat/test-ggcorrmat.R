@@ -15,7 +15,6 @@ test_that(
         type = "p",
         title = "Iris dataset",
         subtitle = "By Edgar Anderson",
-        ggstatsplot.layer = FALSE,
         sig.level = 0.001,
         matrix.type = "full",
         p.adjust.method = "fdr",

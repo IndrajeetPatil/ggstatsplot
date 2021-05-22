@@ -268,8 +268,7 @@ as a subtitle.</p>
   conf.level <span class='op'>=</span> <span class='fl'>0.95</span>,
   tr <span class='op'>=</span> <span class='fl'>0.2</span>,
   k <span class='op'>=</span> <span class='fl'>2L</span>,
-  ggtheme <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span>,
-  ggstatsplot.layer <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
   results.subtitle <span class='op'>=</span> <span class='cn'>TRUE</span>,
   bin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"black"</span>, fill <span class='op'>=</span> <span class='st'>"grey50"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span>,
   centrality.plotting <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -372,20 +371,6 @@ of an error, try reducing the value of <code>tr</code>, which is by default set 
       <th>k</th>
       <td><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></td>
-    </tr>
-    <tr>
-      <th>ggtheme</th>
-      <td><p>A function, <code>ggplot2</code> theme name. Default value is
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>. Any of the <code>ggplot2</code> themes, or themes from
-extension packages are allowed (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>,
-<code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>, etc.).</p></td>
-    </tr>
-    <tr>
-      <th>ggstatsplot.layer</th>
-      <td><p>Logical that decides whether <code>theme_ggstatsplot</code>
-theme elements are to be displayed along with the selected <code>ggtheme</code>
-(Default: <code>TRUE</code>). <code>theme_ggstatsplot</code> is an opinionated theme layer that
-override some aspects of the selected <code>ggtheme</code>.</p></td>
     </tr>
     <tr>
       <th>results.subtitle</th>

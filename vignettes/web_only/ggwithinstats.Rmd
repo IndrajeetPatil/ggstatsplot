@@ -120,7 +120,6 @@ color palette in use.
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
-library(firatheme)
 
 # plot
 ggstatsplot::ggwithinstats(
@@ -139,8 +138,6 @@ ggstatsplot::ggwithinstats(
   outlier.label.color = "red", # outlier point label color
   mean.plotting = TRUE, # whether the mean is to be displayed
   mean.color = "darkblue", # color for mean
-  ggtheme = firatheme::theme_fira(), # a different theme
-  ggstatsplot.layer = FALSE, # turn off default modification of the used theme
   package = "yarrr", # package from which color palette is to be taken
   palette = "info2", # choosing a different color palette
   title = "Comparison of desire to kill bugs",
@@ -208,8 +205,7 @@ p2 <-
     title = "Non-parametric Test",
     package = "ggsci",
     palette = "uniform_startrek",
-    ggtheme = ggthemes::theme_map(),
-    ggstatsplot.layer = FALSE
+    ggtheme = ggthemes::theme_map()
   )
 
 # robust t-test
@@ -225,8 +221,7 @@ p3 <-
     title = "Robust Test",
     package = "wesanderson",
     palette = "Royal2",
-    ggtheme = hrbrthemes::theme_ipsum_tw(),
-    ggstatsplot.layer = FALSE
+    ggtheme = hrbrthemes::theme_ipsum_tw()
   )
 
 # Bayes Factor for parametric t-test
@@ -290,7 +285,7 @@ ggstatsplot::grouped_ggwithinstats(
   package = "ggsci",
   palette = "default_jco",
   outlier.tagging = TRUE,
-  ggstatsplot.layer = FALSE,
+  
   outlier.label = education,
   k = 3,
   # arguments relevant for ggstatsplot::combine_plots

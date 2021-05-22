@@ -159,8 +159,7 @@ ggcoefstats <- function(x,
                         stats.label.args = list(size = 3, direction = "y"),
                         package = "RColorBrewer",
                         palette = "Dark2",
-                        ggtheme = ggplot2::theme_bw(),
-                        ggstatsplot.layer = TRUE,
+                        ggtheme = ggstatsplot::theme_ggstatsplot(),
                         ...) {
   # ============================= dataframe ===============================
 
@@ -456,7 +455,7 @@ ggcoefstats <- function(x,
         subtitle = subtitle,
         title = title
       ) +
-      theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+      ggtheme +
       ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
   }
 

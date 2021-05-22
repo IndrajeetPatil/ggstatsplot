@@ -18,7 +18,6 @@ test_that(
         xlab = "vore",
         ylab = "brain weight",
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
-        ggstatsplot.layer = FALSE,
         outlier.tagging = TRUE,
         outlier.label = name,
         outlier.label.args = list(color = "darkgreen"),

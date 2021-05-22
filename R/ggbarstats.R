@@ -64,8 +64,7 @@ ggbarstats <- function(data,
                        legend.title = NULL,
                        xlab = NULL,
                        ylab = NULL,
-                       ggtheme = ggplot2::theme_bw(),
-                       ggstatsplot.layer = TRUE,
+                       ggtheme = ggstatsplot::theme_ggstatsplot(),
                        package = "RColorBrewer",
                        palette = "Dark2",
                        ggplot.component = NULL,
@@ -173,7 +172,7 @@ ggbarstats <- function(data,
       position = ggplot2::position_fill(vjust = 0.5),
       !!!label.args
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+    ggtheme +
     ggplot2::theme(panel.grid.major.x = ggplot2::element_blank()) +
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
