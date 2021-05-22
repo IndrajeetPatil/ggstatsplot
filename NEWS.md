@@ -18,8 +18,10 @@ MAJOR CHANGES
   - The `bar.fill` argument in `gghistostats` is retired in favor of the new
     `bin.args` argument that can be used to pass aesthetic arguments to
     `ggplot2::stat_bin`.
-    
-  - `ggstatsplot.layer` argument has been retired for a
+
+  - `ggstatsplot.layer` argument has been retired. If the user _chooses_ a
+    certain `ggplot2` theme, it means they _want_ that theme, and not
+    `ggstatsplot`'s varnish on it. So the previous behavior was undesirable.
 
 MINOR CHANGES
 

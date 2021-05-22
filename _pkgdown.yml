@@ -91,7 +91,6 @@ articles:
     desc: Details about helper functions for graphics
     contents:
     - web_only/combine_plots
-    - web_only/theme_ggstatsplot
 
   - title: Miscellaneous
     navbar: Miscellaneous

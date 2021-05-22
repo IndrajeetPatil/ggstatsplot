@@ -328,7 +328,8 @@ plot_list <-
         ggplot2::theme_classic(),
         ggplot2::theme_light()
       )
-    )
+    ),
+    .f = ggstatsplot::ggscatterstats
   )
 
 # combining all individual plots from the list into a single plot using combine_plots function

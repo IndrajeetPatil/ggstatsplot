@@ -33,7 +33,7 @@ utils::globalVariables(
     "group",
     "r.method",
     "r.method.text",
-    ".temp",
+    ".x",
     "var",
     "renderPlot"
   ),

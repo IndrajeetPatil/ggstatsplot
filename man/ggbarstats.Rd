@@ -132,6 +132,12 @@ will cause the \code{x} axis label to be the \code{x} variable).}
 
 \item{ylab}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
 
+\item{ggtheme}{A \code{ggplot2} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{ggplot2} themes (e.g.,
+\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.).}
+
 \item{package}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
