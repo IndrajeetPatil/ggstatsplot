@@ -260,8 +260,7 @@ aesthetic_addon <- function(plot,
                             title = NULL,
                             subtitle = NULL,
                             caption = NULL,
-                            ggtheme = ggplot2::theme_bw(),
-                            ggstatsplot.layer = TRUE,
+                            ggtheme = ggstatsplot::theme_ggstatsplot(),
                             package = "RColorBrewer",
                             palette = "Dark2",
                             ggplot.component = NULL,
@@ -279,7 +278,7 @@ aesthetic_addon <- function(plot,
       caption = caption,
       color = xlab
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+    ggtheme +
     ggplot2::theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
     ggplot.component

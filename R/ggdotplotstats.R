@@ -72,8 +72,7 @@ ggdotplotstats <- function(data,
                              linetype = "dashed"
                            ),
                            ggplot.component = NULL,
-                           ggtheme = ggplot2::theme_bw(),
-                           ggstatsplot.layer = TRUE,
+                           ggtheme = ggstatsplot::theme_ggstatsplot(),
                            output = "plot",
                            ...) {
 
@@ -188,6 +187,6 @@ ggdotplotstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+    ggtheme +
     ggplot.component
 }

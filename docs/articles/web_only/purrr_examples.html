@@ -107,9 +107,6 @@
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
-    <li>
-      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
-    </li>
     <li class="divider">
     <li class="dropdown-header">Miscellaneous</li>
     <li>
@@ -174,13 +171,13 @@
 
       
 
-      </header><script src="purrr_examples_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="purrr_examples_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-18</h4>
+            <h4 data-toc-skip class="date">2021-05-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -301,8 +298,7 @@ A BibTeX entry for LaTeX users is
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_stata.html" class="external-link">theme_stata</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>
-      <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span>
+      <span class="op">)</span>
     <span class="op">)</span>,
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span>
   <span class="op">)</span></code></pre></div>
@@ -377,8 +373,7 @@ A BibTeX entry for LaTeX users is
         <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html" class="external-link">theme_ft_rc</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_solarized.html" class="external-link">theme_solarized</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_gdocs.html" class="external-link">theme_gdocs</a></span><span class="op">(</span><span class="op">)</span>
-      <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+      <span class="op">)</span>
     <span class="op">)</span>,
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span>
   <span class="op">)</span>
@@ -435,8 +430,7 @@ A BibTeX entry for LaTeX users is
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_light</a></span><span class="op">(</span><span class="op">)</span>
-      <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
+      <span class="op">)</span>
     <span class="op">)</span>,
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span>
   <span class="op">)</span>
@@ -500,8 +494,7 @@ A BibTeX entry for LaTeX users is
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>
-      <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+      <span class="op">)</span>
     <span class="op">)</span>,
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span>
   <span class="op">)</span>
@@ -695,7 +688,6 @@ A BibTeX entry for LaTeX users is
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html" class="external-link">theme_economist</a></span><span class="op">(</span><span class="op">)</span>
       <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
       proportion.test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>,
       type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"p"</span>, <span class="st">"bf"</span>, <span class="st">"p"</span><span class="op">)</span>
     <span class="op">)</span>,
@@ -757,8 +749,7 @@ A BibTeX entry for LaTeX users is
         <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html" class="external-link">theme_economist</a></span><span class="op">(</span><span class="op">)</span>
-      <span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span>
+      <span class="op">)</span>
     <span class="op">)</span>,
     .f <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/ggbarstats.html">ggbarstats</a></span>
   <span class="op">)</span>

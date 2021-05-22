@@ -302,7 +302,7 @@ gapminder::gapminder %>%
     package = "ggsci",
     palette = "default_jco",
     outlier.tagging = TRUE,
-    ggstatsplot.layer = FALSE,
+    
     outlier.label = country,
     # arguments relevant for ggstatsplot::combine_plots
     annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),

@@ -116,7 +116,7 @@ ggstatsplot::ggcorrmat(
   type = "spearman", # which correlation coefficient is to be computed
   lab.col = "red", # label color
   ggtheme = ggplot2::theme_light(), # selected ggplot2 theme
-  ggstatsplot.layer = FALSE, # turn off default ggestatsplot theme overlay
+   # turn off default ggestatsplot theme overlay
   matrix.type = "lower", # correlation matrix structure
   colors = NULL, # turning off manual specification of colors
   palette = "category10_d3", # choosing a color palette

@@ -184,8 +184,7 @@ plot_list <-
         ggthemes::theme_stata(),
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight()
-      ),
-      ggstatsplot.layer = list(FALSE, FALSE, TRUE)
+      )
     ),
     .f = ggstatsplot::ggbetweenstats
   )
@@ -265,8 +264,7 @@ plot_list <-
         hrbrthemes::theme_ft_rc(),
         ggthemes::theme_solarized(),
         ggthemes::theme_gdocs()
-      ),
-      ggstatsplot.layer = FALSE
+      )
     ),
     .f = ggstatsplot::ggwithinstats
   )
@@ -329,8 +327,7 @@ plot_list <-
         ggthemes::theme_tufte(),
         ggplot2::theme_classic(),
         ggplot2::theme_light()
-      ),
-      ggstatsplot.layer = list(FALSE, TRUE, TRUE)
+      )
     ),
     .f = ggstatsplot::ggscatterstats
   )
@@ -392,8 +389,7 @@ plot_list <-
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight(),
         ggthemes::theme_tufte()
-      ),
-      ggstatsplot.layer = FALSE
+      )
     ),
     .f = ggstatsplot::ggcorrmat
   )
@@ -575,7 +571,6 @@ plot_list <-
         ggthemes::theme_tufte(),
         ggthemes::theme_economist()
       ),
-      ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE),
       proportion.test = list(TRUE, FALSE, TRUE, FALSE),
       type = list("p", "p", "bf", "p")
     ),
@@ -633,8 +628,7 @@ plot_list <-
         ggplot2::theme_bw(),
         ggthemes::theme_tufte(),
         ggthemes::theme_economist()
-      ),
-      ggstatsplot.layer = list(TRUE, TRUE, FALSE, FALSE)
+      )
     ),
     .f = ggstatsplot::ggbarstats
   )

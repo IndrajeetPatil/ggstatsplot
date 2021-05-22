@@ -118,8 +118,7 @@ ggscatterstats <- function(data,
                            title = NULL,
                            subtitle = NULL,
                            caption = NULL,
-                           ggtheme = ggplot2::theme_bw(),
-                           ggstatsplot.layer = TRUE,
+                           ggtheme = ggstatsplot::theme_ggstatsplot(),
                            ggplot.component = NULL,
                            output = "plot",
                            ...) {
@@ -261,7 +260,7 @@ ggscatterstats <- function(data,
       subtitle = subtitle,
       caption = caption
     ) +
-    theme_ggstatsplot(ggtheme, ggstatsplot.layer) +
+    ggtheme +
     ggplot.component
 
   #------------------------- ggMarginal  ---------------------------------

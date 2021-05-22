@@ -320,8 +320,7 @@ ggwithinstats(
   y = Taste,
   title = "Wine tasting",
   caption = "Data source: `WRS2` R package",
-  ggtheme = ggthemes::theme_fivethirtyeight(),
-  ggstatsplot.layer = FALSE
+  ggtheme = ggthemes::theme_fivethirtyeight()
 )
 ```
 
@@ -454,8 +453,7 @@ gghistostats(
   caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
   test.value = 12, # default value is 0
   binwidth = 1, # binwidth value (experiment)
-  ggtheme = hrbrthemes::theme_ipsum_tw(), # choosing a different theme
-  ggstatsplot.layer = FALSE # turn off ggstatsplot theme layer
+  ggtheme = hrbrthemes::theme_ipsum_tw()
 )
 ```
 
@@ -683,7 +681,7 @@ ggscatterstats(
   title = "Movie budget and IMDB rating (action)", # title text for the plot
   caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
-  ggstatsplot.layer = FALSE, # turn off `ggstatsplot` theme layer
+   # turn off `ggstatsplot` theme layer
   marginal.type = "boxplot", # type of marginal distribution to be displayed
   xfill = "pink", # color fill for x-axis marginal distribution
   yfill = "#009E73" # color fill for y-axis marginal distribution
@@ -1108,8 +1106,7 @@ grouped_ggbarstats(
   grouping.var = vs,
   package = "wesanderson",
   palette = "Darjeeling2",
-  ggtheme = ggthemes::theme_tufte(base_size = 12),
-  ggstatsplot.layer = FALSE
+  ggtheme = ggthemes::theme_tufte(base_size = 12)
 )
 ```
 
@@ -1230,8 +1227,7 @@ ggcoefstats(
   title = "Car performance predicted by transmission & cylinder count",
   subtitle = "Source: 1974 Motor Trend US magazine",
   exclude.intercept = TRUE,
-  ggtheme = hrbrthemes::theme_ipsum_ps(),
-  ggstatsplot.layer = FALSE
+  ggtheme = hrbrthemes::theme_ipsum_ps()
 ) + # note the order in which the labels are entered
   ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
   ggplot2::labs(x = "regression coefficient", y = NULL)

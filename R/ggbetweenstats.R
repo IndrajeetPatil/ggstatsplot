@@ -104,6 +104,11 @@
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
+#' @param ggtheme A `ggplot2` theme. Default value is
+#'   `ggstatsplot::theme_ggstatsplot()`. Any of the `ggplot2` themes (e.g.,
+#'   `ggplot2::theme_bw()`), or themes from extension packages are allowed
+#'   (e.g., `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
+#'   etc.).
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
 #' @inheritParams statsExpressions::one_sample_test
@@ -191,8 +196,7 @@ ggbetweenstats <- function(data,
                            ),
                            violin.args = list(width = 0.5, alpha = 0.2),
                            ggsignif.args = list(textsize = 3, tip_length = 0.01),
-                           ggtheme = ggplot2::theme_bw(),
-                           ggstatsplot.layer = TRUE,
+                           ggtheme = ggstatsplot::theme_ggstatsplot(),
                            package = "RColorBrewer",
                            palette = "Dark2",
                            ggplot.component = NULL,
@@ -441,7 +445,6 @@ ggbetweenstats <- function(data,
     subtitle = subtitle,
     caption = caption,
     ggtheme = ggtheme,
-    ggstatsplot.layer = ggstatsplot.layer,
     package = package,
     palette = palette,
     ggplot.component = ggplot.component

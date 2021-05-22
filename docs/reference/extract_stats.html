@@ -22,7 +22,7 @@
   }
 </script>
 
-<title>Extracting dataframes with statistical details from plot — extract_stats • ggstatsplot</title>
+<title>Extracting dataframes with statistical details from ggstatsplot — extract_stats • ggstatsplot</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -80,8 +80,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Extracting dataframes with statistical details from plot — extract_stats" />
-<meta property="og:description" content="Extracting dataframes with statistical details from plot" />
+<meta property="og:title" content="Extracting dataframes with statistical details from ggstatsplot — extract_stats" />
+<meta property="og:description" content="Extracting dataframes with statistical details from ggstatsplot" />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -241,13 +241,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extracting dataframes with statistical details from plot</h1>
+    <h1>Extracting dataframes with statistical details from <code>ggstatsplot</code></h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/extract_stats.R'><code>R/extract_stats.R</code></a></small>
     <div class="hidden name"><code>extract_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extracting dataframes with statistical details from plot</p>
+    <p>Extracting dataframes with statistical details from <code>ggstatsplot</code></p>
     </div>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>extract_stats</span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>...</span><span class='op'>)</span></code></pre></div>
@@ -268,8 +268,9 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This is a convenience function to extract dataframes with statistical details
-that are used to create expressions displayed in <code>ggstatsplot</code> plots. Note
-that all of this analysis is carried out by <code>statsExpressions</code> package.</p>
+that are used to create expressions displayed in <code>ggstatsplot</code> plots as
+subtitle and/or as caption. Note that all of this analysis is carried out by
+the <code>statsExpressions</code> package.</p>
 <p>For more details about underlying tests and effect size estimates, see the
 following vignette:
 https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html</p>
@@ -286,26 +287,26 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 <span class='r-in'><span class='fu'>extract_stats</span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $subtitle_data</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 x 16</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   term  group mean.group1 mean.group2 statistic df.error p.value</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>term</span><span>  </span><span style='font-weight: bold;'>group</span><span> </span><span style='font-weight: bold;'>mean.group1</span><span> </span><span style='font-weight: bold;'>mean.group2</span><span> </span><span style='font-weight: bold;'>statistic</span><span> </span><span style='font-weight: bold;'>df.error</span><span> </span><span style='font-weight: bold;'>p.value</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> mpg   am           17.1        24.4     -</span><span style='color: #BB0000;'>3.77</span><span>     18.3 0.001</span><span style='text-decoration: underline;'>37</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   method                  estimate conf.level conf.low conf.high effectsize</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> mpg   am           17.1        24.4     -</span><span style='color: #BB0000;'>3.77</span><span>     18.3 </span><span style='color: #949494;'>0.00</span><span>1</span><span style='text-decoration: underline;'>37</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>method</span><span>                  </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>conf.level</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span> </span><span style='font-weight: bold;'>effectsize</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> Welch Two Sample t-test    -</span><span style='color: #BB0000;'>1.35</span><span>       0.95    -</span><span style='color: #BB0000;'>2.17</span><span>    -</span><span style='color: #BB0000;'>0.512</span><span> Hedges' g </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   conf.method conf.distribution expression</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> Welch Two Sample t-test    -</span><span style='color: #BB0000;'>1.35</span><span>       </span><span style='color: #949494;'>0.</span><span>95    -</span><span style='color: #BB0000;'>2.17</span><span>    -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>512</span><span> Hedges' g </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>conf.method</span><span> </span><span style='font-weight: bold;'>conf.distribution</span><span> </span><span style='font-weight: bold;'>expression</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>    </span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> ncp         t                 </span><span style='color: #949494;'>&lt;language&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $caption_data</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 13</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   term       estimate conf.level conf.low conf.high    pd rope.percentage</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>term</span><span>       </span><span style='font-weight: bold;'>estimate</span><span> </span><span style='font-weight: bold;'>conf.level</span><span> </span><span style='font-weight: bold;'>conf.low</span><span> </span><span style='font-weight: bold;'>conf.high</span><span>    </span><span style='font-weight: bold;'>pd</span><span> </span><span style='font-weight: bold;'>rope.percentage</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> Difference     6.44       0.95     2.68    10.0   0.999               0</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span><span> Cohens_d      -</span><span style='color: #BB0000;'>1.30</span><span>       0.95    -</span><span style='color: #BB0000;'>2.11</span><span>    -</span><span style='color: #BB0000;'>0.519</span><span> 0.999               0</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   prior.distribution prior.location prior.scale  bf10 method          expression</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> Difference     6.44       </span><span style='color: #949494;'>0.</span><span>95     2.68    10.0   </span><span style='color: #949494;'>0.</span><span>999               </span><span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span><span> Cohens_d      -</span><span style='color: #BB0000;'>1.30</span><span>       </span><span style='color: #949494;'>0.</span><span>95    -</span><span style='color: #BB0000;'>2.11</span><span>    -</span><span style='color: #949494;'>0.</span><span style='color: #BB0000;'>519</span><span> </span><span style='color: #949494;'>0.</span><span>999               </span><span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>prior.distribution</span><span> </span><span style='font-weight: bold;'>prior.location</span><span> </span><span style='font-weight: bold;'>prior.scale</span><span>  </span><span style='font-weight: bold;'>bf10</span><span> </span><span style='font-weight: bold;'>method</span><span>          </span><span style='font-weight: bold;'>expression</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>    </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> cauchy                          0       0.707  86.6 Bayesian t-test </span><span style='color: #949494;'>&lt;language&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span><span> cauchy                          0       0.707  86.6 Bayesian t-test </span><span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span> cauchy                          </span><span style='color: #949494;'>0</span><span>       </span><span style='color: #949494;'>0.</span><span>707  86.6 Bayesian t-test </span><span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span><span> cauchy                          </span><span style='color: #949494;'>0</span><span>       </span><span style='color: #949494;'>0.</span><span>707  86.6 Bayesian t-test </span><span style='color: #949494;'>&lt;language&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-in'><span class='co'># }</span></span>
 </code></pre></div>

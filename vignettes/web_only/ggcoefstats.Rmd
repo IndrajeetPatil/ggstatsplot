@@ -1196,7 +1196,7 @@ mod_glm <-
 ggcoefstats(
   x = mod_glm,
   ggtheme = ggthemes::theme_economist_white(),
-  ggstatsplot.layer = FALSE,
+  
   title = "generalized linear model (glm)",
   vline.args = list(color = "red", linetype = "solid")
 )
@@ -2876,7 +2876,7 @@ ggcoefstats(
   x = mod_aovlist,
   effsize = "eta",
   ggtheme = ggthemes::theme_fivethirtyeight(),
-  ggstatsplot.layer = FALSE,
+  
   title = "Variation in measurements for Iris species",
   subtitle = "Source: Iris data set (by Fisher or Anderson)",
   caption = "Results from 2 by 2 RM ANOVA"
@@ -2897,8 +2897,7 @@ combine_plots(
         family = stats::binomial(link = "logit")
       ),
       title = "generalized robust linear model",
-      ggtheme = ggthemes::theme_fivethirtyeight(),
-      ggstatsplot.layer = FALSE
+      ggtheme = ggthemes::theme_fivethirtyeight()
     ),
     # plot 2: lmRob
     ggcoefstats(
@@ -2909,8 +2908,7 @@ combine_plots(
       title = "robust linear model",
       package = "awtools",
       palette = "a_palette",
-      ggtheme = ggthemes::theme_tufte(),
-      ggstatsplot.layer = FALSE
+      ggtheme = ggthemes::theme_tufte()
     )
   ),
   # arguments relevant for `combine_plots` function
@@ -3614,7 +3612,7 @@ ggcoefstats(
   x = mod_gls,
   stats.label.color = "black",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
-  ggstatsplot.layer = FALSE,
+  
   title = "generalized least squares model"
 )
 ```

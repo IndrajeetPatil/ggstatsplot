@@ -19,6 +19,10 @@ MAJOR CHANGES
     `bin.args` argument that can be used to pass aesthetic arguments to
     `ggplot2::stat_bin`.
 
+  - `ggstatsplot.layer` argument has been retired. If the user _chooses_ a
+    certain `ggplot2` theme, it means they _want_ that theme, and not
+    `ggstatsplot`'s varnish on it. So the previous behavior was undesirable.
+
 MINOR CHANGES
 
   - The `pch` size for `ggcorrmat` has been increased to 14 (#579) to increase

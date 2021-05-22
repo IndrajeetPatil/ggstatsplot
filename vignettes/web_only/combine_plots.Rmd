@@ -121,7 +121,7 @@ plots <- iris %>%
           xfill = "#0072B2",
           yfill = "#009E73",
           ggtheme = ggthemes::theme_fivethirtyeight(),
-          ggstatsplot.layer = FALSE,
+          
           messages = FALSE, # turns off warnings and notes messages
           marginal.type = "boxplot",
           title =

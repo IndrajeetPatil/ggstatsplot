@@ -169,9 +169,6 @@
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
-    <li>
-      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
-    </li>
     <li class="divider"></li>
     <li class="dropdown-header">Miscellaneous</li>
     <li>
@@ -248,9 +245,12 @@
 <h1 class="page-header" data-toc-text="0.8.0">
 <a href="#ggstatsplot-080" class="anchor" aria-hidden="true"></a>ggstatsplot 0.8.0<small> Unreleased </small></h1>
 <p>N.B. All statistical analysis in <code>ggstatsplot</code> is carried out in <code>statsExpressions</code>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
-<p>MAJOR CHANGES</p>
+<p>NEW FUNCTIONS</p>
+<ul><li>Adds <code>extract_stats</code> function to extract dataframes containing statistical details.</li>
+</ul><p>MAJOR CHANGES</p>
 <ul><li><p>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</p></li>
 <li><p>The <code>bar.fill</code> argument in <code>gghistostats</code> is retired in favor of the new <code>bin.args</code> argument that can be used to pass aesthetic arguments to <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::stat_bin</a></code>.</p></li>
+<li><p><code>ggstatsplot.layer</code> argument has been retired. If the user <em>chooses</em> a certain <code>ggplot2</code> theme, it means they <em>want</em> that theme, and not <code>ggstatsplot</code>’s varnish on it. So the previous behavior was undesirable.</p></li>
 </ul><p>MINOR CHANGES</p>
 <ul><li><p>The <code>pch</code> size for <code>ggcorrmat</code> has been increased to 14 (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/579'>#579</a>) to increase its visibility compared to the correlation value text.</p></li>
 <li><p><code>ggwithinstats</code> gains <code>point.args</code> to change <code>geom_point</code>.</p></li>
@@ -638,7 +638,7 @@
 <li><p>As per APA guidelines, all results show results with two decimal places. That is, the default value for <code>k</code> argument for all functions has been changed from <code>3</code> to <code>2</code>.</p></li>
 <li><p>All helper functions for the <code>ggbetweenstats</code> subtitles have been renamed to remove <code>_ggbetween_</code> from their names as this was becoming confusing for the user. Some of these functions work both with the between- and within-subjects designs, so having <code>_ggbetween_</code> in their names made users suspect if they could use these functions for within-subjects designs.</p></li>
 <li><p><code>ggstatsplot</code> now depends on <code>R 3.5.0</code>. This is because some of its dependencies require 3.5.0 to work (e.g., <code>broom.mixed</code>).</p></li>
-<li><p>All <code>theme_</code> functions are now exported (<code><a href="../reference/theme_ggstatsplot.html">theme_pie()</a></code>, <code><a href="../reference/theme_ggstatsplot.html">theme_corrmat()</a></code>).</p></li>
+<li><p>All <code>theme_</code> functions are now exported (<code>theme_pie()</code>, <code>theme_corrmat()</code>).</p></li>
 <li><p><code>ggbetweenstats</code> now supports multiple pairwise comparison tests (parametric, nonparametric, and robust variants). It gains a new dependency <code>ggsignif</code>.</p></li>
 <li><p><code>ggbetweenstats</code> now supports eta-squared and omega-squared effect sizes for anova models. This function gains a new argument <code>partial</code>.</p></li>
 <li><p>Following functions are now reexported from the <code>groupedstats</code> package to avoid repeating the same code in two packages: <code>specify_decimal_p</code>, <code>signif_column</code>, <code>lm_effsize_ci</code>, and <code>set_cwd</code>. Therefore, <code>groupedstats</code> is now added as a dependency.</p></li>
