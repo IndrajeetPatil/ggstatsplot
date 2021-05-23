@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' Correlation matrix plot or a dataframe containing results from pairwise
+#' Correlation matrix or a dataframe containing results from pairwise
 #' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for
 #' creating the visualization matrix, while the correlation analysis is carried
 #' out using the `correlation::correlation` function.
@@ -135,19 +135,6 @@ ggcorrmat <- function(data,
   # if any of the abbreviations have been entered, change them
   type <- ipmisc::stats_type_switch(type)
 
-  # see which method was used to specify type of correlation
-  # create unique name for each method
-  r.method.text <- switch(
-    EXPR = type,
-    "parametric" = "Pearson",
-    "nonparametric" = "Spearman",
-    "robust" = "Pearson (Winsorized)",
-    "bayes" = "Pearson (Bayesian)"
-  )
-
-  # is it a partial correlation?
-  r.type <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
-
   # creating a dataframe of results
   stats_df <- statsExpressions::correlation(
     data = df,
@@ -162,16 +149,16 @@ ggcorrmat <- function(data,
     winsorize = ifelse(type == "robust", tr, FALSE)
   )
 
+  # type of correlation and if it is a partial correlation
+  r.method.text <- gsub(" correlation", "", unique(stats_df$Method))
+  r.type <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
+
   # early stats return
   if (output != "plot") {
     return(as_tibble(parameters::standardize_names(stats_df, "broom")))
   }
 
   # -------------------------------- plot -----------------------------------
-
-  # creating the basic plot
-  # if user has not specified colors, then use a color palette
-  if (is.null(colors)) colors <- paletteer::paletteer_d(paste0(package, "::", palette), 3L)
 
   # in case of NAs, compute minimum and maximum sample sizes of pairs
   # also compute mode
@@ -210,7 +197,7 @@ ggcorrmat <- function(data,
     p.mat = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^p"))),
     sig.level = ifelse(type == "bayes", Inf, sig.level),
     ggtheme = ggtheme,
-    colors = colors,
+    colors = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
     type = matrix.type,
     lab = TRUE,
     pch = pch,
@@ -240,20 +227,18 @@ ggcorrmat <- function(data,
   }
 
   # adding text details to the plot
-  plot <- plot +
-    ggplot2::labs(
-      title = title,
-      subtitle = subtitle,
-      caption = caption
-    )
-
-  # further theme modification
   plot +
     ggplot2::theme(
       panel.grid.major = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
       legend.title = ggplot2::element_text(size = 15)
     ) +
-    ggplot2::labs(xlab = NULL, ylab = NULL) +
+    ggplot2::labs(
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      xlab = NULL,
+      ylab = NULL
+    ) +
     ggplot.component
 }

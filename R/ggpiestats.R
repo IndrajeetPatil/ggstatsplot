@@ -233,8 +233,7 @@ ggpiestats <- function(data,
     ggplot2::theme(
       panel.grid = ggplot2::element_blank(),
       axis.ticks = ggplot2::element_blank(),
-      axis.title = ggplot2::element_blank(),
-      strip.text = ggplot2::element_text(face = "bold")
+      axis.title = ggplot2::element_blank()
     ) +
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 

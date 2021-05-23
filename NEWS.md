@@ -30,6 +30,9 @@ MINOR CHANGES
 
   - `ggwithinstats` gains `point.args` to change `geom_point`.
 
+  - Minor change to `ggcorrmat` legend title - content in parentheses is now
+    shown outside of it.
+
 # ggstatsplot 0.7.2
 
 MAJOR CHANGES

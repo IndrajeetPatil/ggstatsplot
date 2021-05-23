@@ -7,7 +7,7 @@
 theme_ggstatsplot()
 }
 \value{
-A \code{ggplot2} object with the \code{theme_ggstatsplot} theme overlaid.
+A \code{ggplot} object with the \code{theme_ggstatsplot} theme overlaid.
 }
 \description{
 Common theme used across all plots generated in \code{ggstatsplot} and \emph{assumed}

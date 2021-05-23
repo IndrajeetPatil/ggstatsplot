@@ -133,7 +133,7 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
 \item{...}{Currently ignored.}
 }
 \description{
-Correlation matrix plot or a dataframe containing results from pairwise
+Correlation matrix or a dataframe containing results from pairwise
 correlation tests. The package internally uses \code{ggcorrplot::ggcorrplot} for
 creating the visualization matrix, while the correlation analysis is carried
 out using the \code{correlation::correlation} function.

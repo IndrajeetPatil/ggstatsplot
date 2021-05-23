@@ -48,3 +48,15 @@
       NULL
       
 
+---
+
+    Code
+      extract_stats(p3)
+    Output
+      $subtitle_data
+      NULL
+      
+      $caption_data
+      NULL
+      
+
