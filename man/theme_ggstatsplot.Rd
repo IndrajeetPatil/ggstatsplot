@@ -11,9 +11,6 @@ A \code{ggplot2} object with the \code{theme_ggstatsplot} theme overlaid.
 }
 \description{
 Common theme used across all plots generated in \code{ggstatsplot} and \emph{assumed}
-by the author to be aesthetically pleasing to the user/reader.
-}
-\details{
-For more details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
+by the author to be aesthetically pleasing to the user/reader. The theme is a
+wrapper around \code{ggplot2::theme_bw()}.
 }

@@ -3,15 +3,12 @@
 #' @description
 #'
 #' Common theme used across all plots generated in `ggstatsplot` and *assumed*
-#' by the author to be aesthetically pleasing to the user/reader.
-#'
+#' by the author to be aesthetically pleasing to the user/reader. The theme is a
+#' wrapper around `ggplot2::theme_bw()`.
 #'
 #' @return A `ggplot2` object with the `theme_ggstatsplot` theme overlaid.
 #'
 #' @import ggplot2
-#'
-#' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html}
 #'
 #' @export
 
