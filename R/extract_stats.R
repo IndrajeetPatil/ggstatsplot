@@ -33,7 +33,7 @@ extract_stats <- function(p, ...) {
 
   # caption dataframe might not be present when `type` is not "parametric"
   list(
-    subtitle_data = p$plot_env$subtitle_df,
+    subtitle_data = tryCatch(p$plot_env$subtitle_df, error = function(e) NULL),
     caption_data = tryCatch(p$plot_env$caption_df, error = function(e) NULL)
   )
 }

@@ -177,7 +177,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-22</h4>
+            <h4 data-toc-skip class="date">2021-05-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -252,7 +252,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 3</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1967" "1987" "2007"</span></code></pre></div>
-<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">?pmap</a></code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
+<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
 <p>Let’s keep building the list of arguments, <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> and <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>.</p>
 <p>Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">

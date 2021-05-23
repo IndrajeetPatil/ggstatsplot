@@ -84,32 +84,38 @@
 ---
 
     Code
-      p$labels
+      list(p$labels, pb$plot$plot_env$legend.title)
     Output
-      $xlab
+      [[1]]
+      [[1]]$xlab
       NULL
       
-      $ylab
+      [[1]]$ylab
       NULL
       
-      $title
+      [[1]]$title
       [1] "Iris dataset"
       
-      $subtitle
+      [[1]]$subtitle
       [1] "By Edgar Anderson"
       
-      $caption
+      [[1]]$caption
       atop(displaystyle(NULL), expr = paste(bold("X"), " = non-significant at ", 
           italic("p"), " < ", 0.001, " (Adjustment: ", "FDR", ")"))
       
-      $fill
+      [[1]]$fill
       [1] "value"
       
-      $x
+      [[1]]$x
       [1] "Var1"
       
-      $y
+      [[1]]$y
       [1] "Var2"
+      
+      
+      [[2]]
+      atop(atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ 
+          "150"), atop(scriptstyle(bold("correlation:")), "Pearson"))
       
 
 # checking ggcorrmat - without NAs - robust r
@@ -269,32 +275,39 @@
 ---
 
     Code
-      p$labels
+      list(p$labels, pb$plot$plot_env$legend.title)
     Output
-      $xlab
+      [[1]]
+      [[1]]$xlab
       NULL
       
-      $ylab
+      [[1]]$ylab
       NULL
       
-      $title
+      [[1]]$title
       NULL
       
-      $subtitle
+      [[1]]$subtitle
       NULL
       
-      $caption
+      [[1]]$caption
       atop(displaystyle(NULL), expr = paste(bold("X"), " = non-significant at ", 
           italic("p"), " < ", 0.05, " (Adjustment: ", "Holm", ")"))
       
-      $fill
+      [[1]]$fill
       [1] "value"
       
-      $x
+      [[1]]$x
       [1] "Var1"
       
-      $y
+      [[1]]$y
       [1] "Var2"
+      
+      
+      [[2]]
+      atop(atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ 
+          "11"), atop(scriptstyle(bold("correlation (partial):")), 
+          "Winsorized Pearson"))
       
 
 # checking ggcorrmat - with NAs - robust r - partial
@@ -390,31 +403,38 @@
 ---
 
     Code
-      p$labels
+      list(p$labels, pb$plot$plot_env$legend.title)
     Output
-      $caption
+      [[1]]
+      [[1]]$caption
       NULL
       
-      $xlab
+      [[1]]$xlab
       NULL
       
-      $ylab
+      [[1]]$ylab
       NULL
       
-      $title
+      [[1]]$title
       NULL
       
-      $subtitle
+      [[1]]$subtitle
       NULL
       
-      $fill
+      [[1]]$fill
       [1] "value"
       
-      $x
+      [[1]]$x
       [1] "Var1"
       
-      $y
+      [[1]]$y
       [1] "Var2"
+      
+      
+      [[2]]
+      atop(atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ 
+          "30"), atop(scriptstyle(bold("correlation (partial):")), 
+          "Winsorized Pearson"))
       
 
 # checking ggcorrmat - with NAs - spearman's rho
@@ -503,62 +523,76 @@
 ---
 
     Code
-      p$labels
+      list(p$labels, pb$plot$plot_env$legend.title)
     Output
-      $xlab
+      [[1]]
+      [[1]]$xlab
       NULL
       
-      $ylab
+      [[1]]$ylab
       NULL
       
-      $title
+      [[1]]$title
       NULL
       
-      $subtitle
+      [[1]]$subtitle
       NULL
       
-      $caption
+      [[1]]$caption
       atop(displaystyle(NULL), expr = paste(bold("X"), " = non-significant at ", 
           italic("p"), " < ", 0.01, " (Adjustment: ", "Hommel", ")"))
       
-      $fill
+      [[1]]$fill
       [1] "value"
       
-      $x
+      [[1]]$x
       [1] "Var1"
       
-      $y
+      [[1]]$y
       [1] "Var2"
+      
+      
+      [[2]]
+      atop(atop(atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ 
+          "=" ~ "32"), atop(italic(n)[mode] ~ "=" ~ "32", italic(n)[max] ~ 
+          "=" ~ "83")), atop(scriptstyle(bold("correlation:")), "Spearman"))
       
 
 # checking Bayesian pearson (with NA)
 
     Code
-      p$labels
+      list(p$labels, pb$plot$plot_env$legend.title)
     Output
-      $xlab
+      [[1]]
+      [[1]]$xlab
       NULL
       
-      $ylab
+      [[1]]$ylab
       NULL
       
-      $title
+      [[1]]$title
       NULL
       
-      $subtitle
+      [[1]]$subtitle
       NULL
       
-      $caption
+      [[1]]$caption
       NULL
       
-      $fill
+      [[1]]$fill
       [1] "value"
       
-      $x
+      [[1]]$x
       [1] "Var1"
       
-      $y
+      [[1]]$y
       [1] "Var2"
+      
+      
+      [[2]]
+      atop(atop(atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ 
+          "=" ~ "56"), atop(italic(n)[mode] ~ "=" ~ "56", italic(n)[max] ~ 
+          "=" ~ "56")), atop(scriptstyle(bold("correlation:")), "Bayesian Pearson"))
       
 
 # checking all dataframe outputs

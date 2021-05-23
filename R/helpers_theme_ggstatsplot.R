@@ -6,7 +6,7 @@
 #' by the author to be aesthetically pleasing to the user/reader. The theme is a
 #' wrapper around `ggplot2::theme_bw()`.
 #'
-#' @return A `ggplot2` object with the `theme_ggstatsplot` theme overlaid.
+#' @return A `ggplot` object with the `theme_ggstatsplot` theme overlaid.
 #'
 #' @import ggplot2
 #'
@@ -21,6 +21,7 @@ theme_ggstatsplot <- function() {
       legend.title = ggplot2::element_text(size = 10, face = "bold"),
       plot.title = ggplot2::element_text(size = 12, face = "bold"),
       plot.subtitle = ggplot2::element_text(size = 10),
-      panel.border = ggplot2::element_blank()
+      panel.border = ggplot2::element_blank(),
+      strip.text = ggplot2::element_text(face = "bold")
     )
 }
