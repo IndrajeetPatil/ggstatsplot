@@ -21,7 +21,7 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release', args: "--no-manual"}
-          - {os: windows-latest, r: 'devel', args: "--no-manual"}
+          #- {os: windows-latest, r: 'devel', args: "--no-manual"}
           - {os: windows-latest, r: 'oldrel', args: "--no-manual"}
           # 'Rmpfr' not available on 3.6 for Windows
           - {os: macOS-latest, r: 'release', args: "--no-manual"}
