@@ -1,46 +1,155 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-%
-\documentclass[
-]{article}
-\usepackage{amsmath,amssymb}
-\usepackage{lmodern}
+\documentclass[10pt,a4paper,onecolumn]{article}
+\usepackage{marginnote}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{authblk,etoolbox}
+\usepackage{titlesec}
+\usepackage{calc}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{colorlinks,breaklinks,
+            urlcolor=[rgb]{0.0, 0.5, 1.0},
+            linkcolor=[rgb]{0.0, 0.5, 1.0}}
+\usepackage{caption}
+\usepackage{tcolorbox}
+\usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{seqsplit}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[
+  backend=biber,
+%  style=alphabetic,
+%  citestyle=numeric
+]{biblatex}
+\bibliography{paper.bib}
+
+
+% --- Page layout -------------------------------------------------------------
+\usepackage[top=3.5cm, bottom=3cm, right=1.5cm, left=1.0cm,
+            headheight=2.2cm, reversemp, includemp, marginparwidth=4.5cm]{geometry}
+
+% --- Default font ------------------------------------------------------------
+% \renewcommand\familydefault{\sfdefault}
+
+% --- Style -------------------------------------------------------------------
+\renewcommand{\bibfont}{\small \sffamily}
+\renewcommand{\captionfont}{\small\sffamily}
+\renewcommand{\captionlabelfont}{\bfseries}
+
+% --- Section/SubSection/SubSubSection ----------------------------------------
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries}
+  {}{0pt}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries}
+  {}{0pt}{}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\bfseries}
+  {}{0pt}{}
+\titleformat*{\paragraph}
+  {\sffamily\normalsize}
+
+
+% --- Header / Footer ---------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+%\renewcommand{\headrulewidth}{0.50pt}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{C:/Users/inp099/Documents/R/win-library/4.2/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\renewcommand{\footrulewidth}{0.25pt}
+
+\fancyfoot[L]{\footnotesize{\sffamily , (). Visualizations with
+statistical details: The `ggstatsplot'
+approach. \textit{Journal of Open Source Software}, (), . \href{https://doi.org/}{https://doi.org/}}}
+
+
+\fancyfoot[R]{\sffamily \thepage}
+\makeatletter
+\let\ps@plain\ps@fancy
+\fancyheadoffset[L]{4.5cm}
+\fancyfootoffset[L]{4.5cm}
+
+% --- Macros ---------
+
+\definecolor{linky}{rgb}{0.0, 0.5, 1.0}
+
+\newtcolorbox{repobox}
+   {colback=red, colframe=red!75!black,
+     boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=3pt, bottom=3pt}
+
+\newcommand{\ExternalLink}{%
+   \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{%
+       \begin{scope}[x=1ex, y=1ex]
+           \clip (-0.1,-0.1)
+               --++ (-0, 1.2)
+               --++ (0.6, 0)
+               --++ (0, -0.6)
+               --++ (0.6, 0)
+               --++ (0, -1);
+           \path[draw,
+               line width = 0.5,
+               rounded corners=0.5]
+               (0,0) rectangle (1,1);
+       \end{scope}
+       \path[draw, line width = 0.5] (0.5, 0.5)
+           -- (1, 1);
+       \path[draw, line width = 0.5] (0.6, 1)
+           -- (1, 1) -- (1, 0.6);
+       }
+   }
+
+% --- Title / Authors ---------------------------------------------------------
+% patch \maketitle so that it doesn't center
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+% patch \maketitle so that the font size for the title is normal
+\patchcmd{\@maketitle}{\LARGE}{\LARGE\sffamily}{}{}
+% patch the patch by authblk so that the author block is flush left
+\def\maketitle{{%
+  \renewenvironment{tabular}[2][]
+    {\begin{flushleft}}
+    {\end{flushleft}}
+  \AB@maketitle}}
+\makeatletter
+\renewcommand\AB@affilsepx{ \protect\Affilfont}
+%\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{2pt}}
+\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{3pt}}
+\makeatother
+\renewcommand\Authfont{\sffamily\bfseries}
+\renewcommand\Affilfont{\sffamily\small\mdseries}
+\setlength{\affilsep}{1em}
+
+
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+
 \fi
-% Use upquote if available, for straight quotes in verbatim environments
+% use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Visualizations with statistical details: The `ggstatsplot' approach},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
-\usepackage[margin=1in]{geometry}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Visualizations with statistical details: The `ggstatsplot' approach},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -81,7 +190,7 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{graphicx}
+\usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -90,22 +199,37 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-% Set default figure placement to htbp
-\makeatletter
-\def\fps@figure{htbp}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\ifluatex
-  \usepackage{selnolig}  % disable illegal ligatures
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
 \fi
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% Pandoc citation processing
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[3] % #1 hanging-ident, #2 entry spacing
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
@@ -116,19 +240,50 @@
   \fi
  }%
  {}
-\usepackage{calc}
+\usepackage{calc} % for calculating minipage widths
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
 
 \title{Visualizations with statistical details: The `ggstatsplot'
 approach}
-\author{}
-\date{\vspace{-2.5em}2021-05-24}
+
+        \author[1]{Indrajeet Patil}
+    
+      \affil[1]{Center for Humans and Machines, Max Planck Institute for
+Human Development, Berlin, Germany}
+  \date{\vspace{-5ex}}
 
 \begin{document}
 \maketitle
+
+\marginpar{
+  %\hrule
+  \sffamily\small
+
+  {\bfseries DOI:} \href{https://doi.org/}{\color{linky}{}}
+
+  \vspace{2mm}
+
+  {\bfseries Software}
+  \begin{itemize}
+    \setlength\itemsep{0em}
+    \item \href{}{\color{linky}{Review}} \ExternalLink
+    \item \href{}{\color{linky}{Repository}} \ExternalLink
+    \item \href{}{\color{linky}{Archive}} \ExternalLink
+  \end{itemize}
+
+  \vspace{2mm}
+
+  {\bfseries Submitted:} \\
+  {\bfseries Published:} 
+
+  \vspace{2mm}
+  {\bfseries License}\\
+  Authors of papers retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{http://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC-BY}}).
+}
 
 \hypertarget{summary}{%
 \section{Summary}\label{summary}}
@@ -136,15 +291,15 @@ approach}
 Graphical displays can reveal problems in a statistical model that might
 not be apparent from purely numerical summaries. Such visualizations can
 also be helpful for the reader to evaluate the validity of a model if it
-is reported in a scholarly publication/report. But, given the onerous
-costs involved, researchers can avoid preparing information-rich
-graphics and exploring several statistical approaches/tests available.
-The \texttt{ggstatsplot} package in R programming language
-(\protect\hyperlink{ref-base2021}{R Core Team, 2021}) provides a
-one-line syntax to enrich \texttt{ggplot2}-based visualizations with the
-results from statistical analysis embedded in the visualization itself.
-In doing so, the package helps researchers adopt a rigorous, reliable,
-and robust data exploratory and reporting workflow.
+is reported in a scholarly publication or report. But, given the onerous
+costs involved, researchers often avoid preparing information-rich
+graphics and exploring several statistical approaches or tests
+available. The \texttt{ggstatsplot} package in the R programming
+language (\protect\hyperlink{ref-base2021}{R Core Team, 2021}) provides
+a one-line syntax to enrich \texttt{ggplot2}-based visualizations with
+the results from statistical analysis embedded in the visualization
+itself. In doing so, the package helps researchers adopt a rigorous,
+reliable, and robust data exploratory and reporting workflow.
 
 \hypertarget{statement-of-need}{%
 \section{Statement of Need}\label{statement-of-need}}
@@ -157,7 +312,7 @@ Grolemund, 2016}). The central idea of \texttt{ggstatsplot} is simple:
 combine these two phases into one in the form of an informative graphic
 with statistical details.
 
-Before discussing benefits of this approach, we will see one example
+Before discussing benefits of this approach, we will show an example
 (Figure 1).
 
 \begin{Shaded}
@@ -171,7 +326,7 @@ Before discussing benefits of this approach, we will see one example
 \end{Shaded}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{paper_files/figure-latex/penguins-1} \caption{Example plot from the `ggstatsplot` package illustrates its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \url{https://indrajeetpatil.github.io/ggstatsplot/}}\label{fig:penguins}
+\includegraphics[width=1\linewidth]{paper_files/figure-latex/penguins-1} \caption{Example plot from the `ggstatsplot` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \url{https://indrajeetpatil.github.io/ggstatsplot/}}\label{fig:penguins}
 \end{figure}
 
 As can be seen, with a single line of code, the function produces
@@ -186,30 +341,26 @@ both data visualization
 \protect\hyperlink{ref-healy2018data}{Healy, 2018};
 \protect\hyperlink{ref-tufte2001}{Tufte, 2001};
 \protect\hyperlink{ref-wilke2019fundamentals}{Wilke, 2019}) and
-(Frequentist/Bayesian) statistical reporting
+(frequentist/Bayesian) statistical reporting
 (\protect\hyperlink{ref-apa2019}{American Psychological Association,
 2019}; \protect\hyperlink{ref-van2020jasp}{Doorn et al., 2020}). Without
 \texttt{ggstatsplot}, getting these statistical details and customizing
-a plot would require significant amount of time and effort In other
+a plot would require significant amount of time and effort. In other
 words, this package removes the trade-off often faced by researchers
 between ease and thoroughness of data exploration and further cements
 good data exploration habits.
 
-Internally, data cleaning is carried out using \texttt{tidyverse}
+Internally, data cleaning is carried out using the \texttt{tidyverse}
 (\protect\hyperlink{ref-Wickham2019}{Wickham et al., 2019}), while
-statistical analysis is carried out via \texttt{statsExpressions}
+statistical analysis is carried out via the \texttt{statsExpressions}
 (\protect\hyperlink{ref-Patil2021}{Indrajeet Patil, 2021}) and
-\texttt{easystats} (\protect\hyperlink{ref-Ben-Shachar2020}{Ben-Shachar,
-Lüdecke, \& Makowski, 2020};
-\protect\hyperlink{ref-Luxfcdecke2020parameters}{Lüdecke, Ben-Shachar,
-Patil, \& Makowski, 2020};
-\protect\hyperlink{ref-Luxfcdecke2020performance}{Lüdecke, Ben-Shachar,
-Patil, Waggoner, \& Makowski, 2021};
-\protect\hyperlink{ref-Luxfcdecke2019}{Lüdecke, Waggoner, \& Makowski,
-2019}; \protect\hyperlink{ref-Makowski2019}{Makowski, Ben-Shachar, \&
-Lüdecke, 2019}; \protect\hyperlink{ref-Makowski2020}{Makowski,
-Ben-Shachar, Patil, \& Lüdecke, 2020}) packages. All visualizations are
-constructed using the grammar of graphics framework
+\texttt{easystats} (\protect\hyperlink{ref-Ben-Shachar2020}{Ben-Shachar
+et al., 2020}; \protect\hyperlink{ref-Luxfcdecke2019}{Lüdecke et al.,
+2019}, \protect\hyperlink{ref-Luxfcdecke2020parameters}{2020},
+\protect\hyperlink{ref-Luxfcdecke2020performance}{2021};
+\protect\hyperlink{ref-Makowski2019}{Makowski et al., 2019},
+\protect\hyperlink{ref-Makowski2020}{2020}) packages. All visualizations
+are constructed using the grammar of graphics framework
 (\protect\hyperlink{ref-Wilkinson2012}{Wilkinson, 2012}), as implemented
 in the \texttt{ggplot2} package
 (\protect\hyperlink{ref-Wickham2016}{Wickham, 2016}).
@@ -218,7 +369,7 @@ in the \texttt{ggplot2} package
 \section{Benefits}\label{benefits}}
 
 In summary, the benefits of \texttt{ggstatsplot}'s approach are the
-following. It-
+following. It:
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -238,7 +389,7 @@ following. It-
   encourages researchers and readers to evaluate statistical assumptions
   of a model in the context of the underlying data (Figure 2),
 \item
-  is easy and simple enough that someone with little-to-no coding
+  is easy and simple enough that someone with little to no coding
   experience can use it without making an error and may even encourage
   beginners to programmatically analyze data, instead of using GUI
   software.
@@ -257,7 +408,7 @@ robust, or Bayesian \emph{t}-test, one-way ANOVA, contingency table
 analysis, correlation analysis, meta-analysis, regression analyses,
 etc.) and corresponding visualizations (box/violin plot, scatter plot,
 dot-and-whisker plot, pie chart, bar chart, etc.). It will continue
-expanding to support ever increasing collection of statistical analyses
+expanding to support an increasing collection of statistical analyses
 and visualizations.
 
 \hypertarget{licensing-and-availability}{%
@@ -297,25 +448,27 @@ providing helpful feedback, or helping with enhancements.
 \begin{CSLReferences}{1}{0}
 \leavevmode\hypertarget{ref-apa2019}{}%
 American Psychological Association. (2019). \emph{Publication {Manual}
-of the {American Psychological Association}, 7th {Edition}}.
-{Washington, DC}: {American Psychological Association}.
+of the {American Psychological Association}, 7th {Edition}}. {American
+Psychological Association}.
 
 \leavevmode\hypertarget{ref-Ben-Shachar2020}{}%
 Ben-Shachar, M. S., Lüdecke, D., \& Makowski, D. (2020). {e}ffectsize:
 Estimation of effect size indices and standardized parameters.
 \emph{Journal of Open Source Software}, \emph{5}(56), 2815.
-doi:\href{https://doi.org/10.21105/joss.02815}{10.21105/joss.02815}
+\url{https://doi.org/10.21105/joss.02815}
 
 \leavevmode\hypertarget{ref-cleveland1985}{}%
 Cleveland, W. S. (1985). \emph{The {Elements} of {Graphing Data}} (1st
-edition.). {Monterey, Cal}: {Wadsworth, Inc.}
+edition). {Wadsworth, Inc.}
 
 \leavevmode\hypertarget{ref-van2020jasp}{}%
 Doorn, van, Bergh, J. van den, Böhm, D., Dablander, U., Derks, F.,
-Draws, K., Etz, T., et al. (2020). The JASP guidelines for conducting
-and reporting a {B}ayesian analysis. \emph{Psychonomic Bulletin \&
-Review}, 1--14.
-doi:\href{https://doi.org/10.3758/s13423-020-01798-5}{10.3758/s13423-020-01798-5}
+Draws, K., Etz, T., Evans, A., Gronau, N. J., Haaf, Q. F., Hinne, J. M.,
+Kucharský, M., Ly, Š., Marsman, A., Matzke, M., Gupta, D., Sarafoglou,
+A. R. K. N., Stefan, A., Voelkel, A., \ldots{} Eric-Jan. (2020). The
+JASP guidelines for conducting and reporting a {B}ayesian analysis.
+\emph{Psychonomic Bulletin \& Review}, 1--14.
+\url{https://doi.org/10.3758/s13423-020-01798-5}
 
 \leavevmode\hypertarget{ref-grant2018data}{}%
 Grant, R. (2018). \emph{{Data Visualization: Charts, Maps, and
@@ -329,48 +482,46 @@ Princeton University Press.
 Indrajeet Patil. (2021). {statsExpressions: {R} Package for Tidy
 Dataframes and Expressions with Statistical Details}. \emph{{Journal of
 Open Source Software}}, \emph{6}(61), 3236.
-doi:\href{https://doi.org/10.21105/joss.03236}{10.21105/joss.03236}
+\url{https://doi.org/10.21105/joss.03236}
 
 \leavevmode\hypertarget{ref-Luxfcdecke2020parameters}{}%
 Lüdecke, D., Ben-Shachar, M. S., Patil, I., \& Makowski, D. (2020).
 Extracting, computing and exploring the parameters of statistical models
 using {R}. \emph{Journal of Open Source Software}, \emph{5}(53), 2445.
-doi:\href{https://doi.org/10.21105/joss.02445}{10.21105/joss.02445}
+\url{https://doi.org/10.21105/joss.02445}
 
 \leavevmode\hypertarget{ref-Luxfcdecke2020performance}{}%
 Lüdecke, D., Ben-Shachar, M. S., Patil, I., Waggoner, P., \& Makowski,
 D. (2021). {performance}: An {R} package for assessment, comparison and
 testing of statistical models. \emph{Journal of Open Source Software},
-\emph{6}(60), 3139.
-doi:\href{https://doi.org/10.21105/joss.03139}{10.21105/joss.03139}
+\emph{6}(60), 3139. \url{https://doi.org/10.21105/joss.03139}
 
 \leavevmode\hypertarget{ref-Luxfcdecke2019}{}%
 Lüdecke, D., Waggoner, P., \& Makowski, D. (2019). Insight: A unified
 interface to access information from model objects in {R}. \emph{Journal
 of Open Source Software}, \emph{4}(38), 1412.
-doi:\href{https://doi.org/10.21105/joss.01412}{10.21105/joss.01412}
+\url{https://doi.org/10.21105/joss.01412}
 
 \leavevmode\hypertarget{ref-Makowski2019}{}%
 Makowski, D., Ben-Shachar, M. S., \& Lüdecke, D. (2019). bayestestR:
 Describing effects and their uncertainty, existence and significance
 within the {B}ayesian framework. \emph{Journal of Open Source Software},
-\emph{4}(40), 1541.
-doi:\href{https://doi.org/10.21105/joss.01541}{10.21105/joss.01541}
+\emph{4}(40), 1541. \url{https://doi.org/10.21105/joss.01541}
 
 \leavevmode\hypertarget{ref-Makowski2020}{}%
 Makowski, D., Ben-Shachar, M. S., Patil, I., \& Lüdecke, D. (2020).
 Methods and algorithms for correlation analysis in {R}. \emph{Journal of
 Open Source Software}, \emph{5}(51), 2306.
-doi:\href{https://doi.org/10.21105/joss.02306}{10.21105/joss.02306}
+\url{https://doi.org/10.21105/joss.02306}
 
 \leavevmode\hypertarget{ref-base2021}{}%
 R Core Team. (2021). \emph{{R}: A language and environment for
-statistical computing}. Vienna, Austria: R Foundation for Statistical
-Computing. Retrieved from \url{https://www.R-project.org/}
+statistical computing}. R Foundation for Statistical Computing.
+\url{https://www.R-project.org/}
 
 \leavevmode\hypertarget{ref-tufte2001}{}%
 Tufte, E. R. (2001). \emph{The {Visual Display} of {Quantitative
-Information}} (2nd edition.). {Cheshire, Conn}: {Graphics Press}.
+Information}} (2nd edition). {Graphics Press}.
 
 \leavevmode\hypertarget{ref-Wickham2016}{}%
 Wickham, H. (2016). \emph{{ggplot2}: Elegant graphics for data
@@ -378,9 +529,11 @@ analysis}. Springer-Verlag New York.
 
 \leavevmode\hypertarget{ref-Wickham2019}{}%
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
-François, R., Grolemund, G., et al. (2019). Welcome to the {tidyverse}.
-\emph{Journal of Open Source Software}, \emph{4}(43), 1686.
-doi:\href{https://doi.org/10.21105/joss.01686}{10.21105/joss.01686}
+François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M.,
+Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J.,
+Robinson, D., Seidel, D. P., Spinu, V., \ldots{} Yutani, H. (2019).
+Welcome to the {tidyverse}. \emph{Journal of Open Source Software},
+\emph{4}(43), 1686. \url{https://doi.org/10.21105/joss.01686}
 
 \leavevmode\hypertarget{ref-wickham2016r}{}%
 Wickham, H., \& Grolemund, G. (2016). \emph{{R for Data Science}}.
@@ -391,7 +544,7 @@ Wilke, C. O. (2019). \emph{{Fundamentals of Data Visualization}}.
 O'Reilly Media.
 
 \leavevmode\hypertarget{ref-Wilkinson2012}{}%
-Wilkinson, L. (2012). {The Grammar of Graphics}. \emph{Handbook of
+Wilkinson, L. (2012). {The Grammar of Graphics}. In \emph{Handbook of
 computational statistics} (pp. 375--414). Springer.
 
 \end{CSLReferences}
