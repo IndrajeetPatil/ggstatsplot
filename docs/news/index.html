@@ -250,7 +250,7 @@
 </ul><p>MAJOR CHANGES</p>
 <ul><li><p>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</p></li>
 <li><p>The <code>bar.fill</code> argument in <code>gghistostats</code> is retired in favor of the new <code>bin.args</code> argument that can be used to pass aesthetic arguments to <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::stat_bin</a></code>.</p></li>
-<li><p><code>ggstatsplot.layer</code> argument has been retired. If the user <em>chooses</em> a certain <code>ggplot2</code> theme, it means they <em>want</em> that theme, and not <code>ggstatsplot</code>’s varnish on it. So the previous behavior was undesirable.</p></li>
+<li><p><code>ggstatsplot.layer</code> argument has been retired. If the user <em>chooses</em> a certain <code>ggplot2</code> theme, it means they <em>want</em> that theme, and not <code>ggstatsplot</code>’s varnish on it. So the previous behavior was undesirable. This is a backward compatible change, so the plots should not look different.</p></li>
 </ul><p>MINOR CHANGES</p>
 <ul><li><p>The <code>pch</code> size for <code>ggcorrmat</code> has been increased to 14 (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/579'>#579</a>) to increase its visibility compared to the correlation value text.</p></li>
 <li><p><code>ggwithinstats</code> gains <code>point.args</code> to change <code>geom_point</code>.</p></li>
@@ -714,7 +714,7 @@
 <a href="#ggstatsplot-004" class="anchor" aria-hidden="true"></a>ggstatsplot 0.0.4<small> 2018-07-05 </small></h1>
 <p>MAJOR CHANGES</p>
 <ul><li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html" class="external-link">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html" class="external-link">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>

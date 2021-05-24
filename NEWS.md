@@ -22,6 +22,8 @@ MAJOR CHANGES
   - `ggstatsplot.layer` argument has been retired. If the user _chooses_ a
     certain `ggplot2` theme, it means they _want_ that theme, and not
     `ggstatsplot`'s varnish on it. So the previous behavior was undesirable.
+    This is a backward compatible change, so the plots should not look
+    different.
 
 MINOR CHANGES
 
