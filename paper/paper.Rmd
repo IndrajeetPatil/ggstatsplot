@@ -17,7 +17,11 @@ affiliations:
     index: 1
 bibliography: paper.bib
 date: "`r Sys.Date()`"
-output: rticles::joss_article
+output: 
+  rmarkdown::pdf_document:
+  #rticles::joss_article:
+    keep_md: true
+    keep_tex: true
 csl: apa.csl
 journal: JOSS
 link-citations: yes
@@ -32,6 +36,7 @@ knitr::opts_chunk$set(
   out.width = "100%",
   dpi = 450,
   comment = "#>",
+  error = TRUE,
   message = FALSE,
   warning = FALSE
 )
@@ -48,8 +53,7 @@ statistical approaches/tests available. The `ggstatsplot` package in R
 programming language [@base2021] provides a one-line syntax to enrich
 `ggplot2`-based visualizations with the results from statistical analysis
 embedded in the visualization itself. In doing so, the package helps researchers
-adopt a rigorous, reliable, and robust data exploratory and reporting
-workflow.
+adopt a rigorous, reliable, and robust data exploratory and reporting workflow.
 
 # Statement of Need
 
