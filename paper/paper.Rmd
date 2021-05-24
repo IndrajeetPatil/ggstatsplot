@@ -17,10 +17,7 @@ affiliations:
     index: 1
 bibliography: paper.bib
 date: "`r Sys.Date()`"
-output: 
-  rticles::joss_article:
-    keep_md: true
-    keep_tex: true
+output: rticles::joss_article
 csl: apa.csl
 journal: JOSS
 link-citations: yes
@@ -39,6 +36,8 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE
 )
+
+set.seed(123) # for reproducibility
 ```
 
 # Summary
@@ -66,7 +65,6 @@ Before discussing benefits of this approach, we will show an example (Figure
 1).
 
 ```{r penguins, fig.width=8, fig.height=5, fig.cap="Example plot from the `ggstatsplot` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \\url{https://indrajeetpatil.github.io/ggstatsplot/}"}
-set.seed(123) # for reproducibility
 library(palmerpenguins) # for 'penguins' dataset
 library(ggstatsplot)
 

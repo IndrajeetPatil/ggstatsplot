@@ -47,7 +47,6 @@ Before discussing benefits of this approach, we will show an example (Figure
 
 
 ```r
-set.seed(123) # for reproducibility
 library(palmerpenguins) # for 'penguins' dataset
 library(ggstatsplot)
 
