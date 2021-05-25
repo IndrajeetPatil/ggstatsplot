@@ -181,7 +181,12 @@ ggbetweenstats <- function(data,
                            centrality.plotting = TRUE,
                            centrality.type = type,
                            centrality.point.args = list(size = 5, color = "darkred"),
-                           centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+                           centrality.label.args = list(
+                             size = 3,
+                             nudge_x = 0.4,
+                             segment.linetype = 4,
+                             min.segment.length = 0
+                           ),
                            outlier.tagging = FALSE,
                            outlier.label = NULL,
                            outlier.coef = 1.5,

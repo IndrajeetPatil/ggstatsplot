@@ -49,7 +49,8 @@ centrality_ggrepel <- function(plot,
                                centrality.label.args = list(
                                  size = 3,
                                  nudge_x = 0.4,
-                                 segment.linetype = 4
+                                 segment.linetype = 4,
+                                 min.segment.length = 0
                                ),
                                ...) {
   # creating the dataframe
@@ -81,7 +82,6 @@ centrality_ggrepel <- function(plot,
       data = centrality_df,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
       show.legend = FALSE,
-      min.segment.length = 0,
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args

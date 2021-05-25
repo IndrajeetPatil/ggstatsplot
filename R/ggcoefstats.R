@@ -156,7 +156,11 @@ ggcoefstats <- function(x,
                         ),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
-                        stats.label.args = list(size = 3, direction = "y"),
+                        stats.label.args = list(
+                          size = 3,
+                          direction = "y",
+                          min.segment.length = 0
+                        ),
                         package = "RColorBrewer",
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -433,12 +437,11 @@ ggcoefstats <- function(x,
       # adding labels
       plot <- plot +
         rlang::exec(
-          .fn = ggrepel::geom_label_repel,
+          ggrepel::geom_label_repel,
           data = tidy_df,
           mapping = ggplot2::aes(x = estimate, y = term, label = label),
           show.legend = FALSE,
           parse = TRUE,
-          min.segment.length = 0,
           color = stats.label.color,
           !!!stats.label.args
         )

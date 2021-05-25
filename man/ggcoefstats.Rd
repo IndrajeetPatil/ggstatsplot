@@ -29,7 +29,7 @@ ggcoefstats(
   vline.args = list(size = 1, linetype = "dashed", xintercept = 0),
   stats.labels = TRUE,
   stats.label.color = NULL,
-  stats.label.args = list(size = 3, direction = "y"),
+  stats.label.args = list(size = 3, direction = "y", min.segment.length = 0),
   package = "RColorBrewer",
   palette = "Dark2",
   ggtheme = ggstatsplot::theme_ggstatsplot(),
