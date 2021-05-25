@@ -539,7 +539,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">pb</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html" class="external-link">ggplot_build</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>
 
 <span class="co"># dataframe with proportion test results</span>
-<span class="va">pb</span><span class="op">$</span><span class="va">plot</span><span class="op">$</span><span class="va">plot_env</span><span class="op">$</span><span class="va">df_proptest</span>
+<span class="va">pb</span><span class="op">$</span><span class="va">plot</span><span class="op">$</span><span class="va">plot_env</span><span class="op">$</span><span class="va">onesample_df</span>
 <span class="co">#&gt; # A tibble: 3 x 10</span>
 <span class="co">#&gt;   cyl   counts  perc N        statistic    df p.value</span>
 <span class="co">#&gt;   &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
@@ -563,7 +563,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; 3 list(~italic(p)=='0.132')</span>
 
 <span class="co"># dataframe with counts and proportions details</span>
-<span class="va">pb</span><span class="op">$</span><span class="va">plot</span><span class="op">$</span><span class="va">plot_env</span><span class="op">$</span><span class="va">df_descriptive</span>
+<span class="va">pb</span><span class="op">$</span><span class="va">plot</span><span class="op">$</span><span class="va">plot_env</span><span class="op">$</span><span class="va">descriptive_df</span>
 <span class="co">#&gt; # A tibble: 6 x 5</span>
 <span class="co">#&gt;   cyl   am    counts  perc .label</span>
 <span class="co">#&gt;   &lt;fct&gt; &lt;fct&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; </span>

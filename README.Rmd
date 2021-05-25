@@ -686,7 +686,7 @@ ggscatterstats(
   title = "Movie budget and IMDB rating (action)", # title text for the plot
   caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
-   # turn off `ggstatsplot` theme layer
+  # turn off `ggstatsplot` theme layer
   marginal.type = "boxplot", # type of marginal distribution to be displayed
   xfill = "pink", # color fill for x-axis marginal distribution
   yfill = "#009E73" # color fill for y-axis marginal distribution
@@ -1180,9 +1180,10 @@ statistical details that are used to create expressions displayed in
 
 ```{r extract_stats}
 set.seed(123)
-p <- ggbetweenstats(mtcars, am, mpg)
 
-extract_stats(p)
+# a list of tibbles containing statistical analysis summaries
+ggbetweenstats(mtcars, cyl, mpg) %>%
+  extract_stats()
 ```
 
 Note that all of this analysis is carried out by `statsExpressions`

@@ -11,6 +11,9 @@ extract_stats(p, ...)
 
 \item{...}{Ignored}
 }
+\value{
+A list of tibbles containing statistical analysis summaries.
+}
 \description{
 Extracting dataframes with statistical details from \code{ggstatsplot}
 }
@@ -32,7 +35,12 @@ have to set \code{marginal = FALSE} to return an object of \code{ggplot} type.
 \donttest{
 set.seed(123)
 library(ggstatsplot)
-p <- ggbetweenstats(mtcars, am, mpg)
+
+# in case of group comparisons
+p <- ggbetweenstats(mtcars, cyl, mpg)
 extract_stats(p)
+
+# the exact details depend on the function
+extract_stats(ggbarstats(mtcars, cyl, am))
 }
 }

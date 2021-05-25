@@ -6,7 +6,7 @@
 #' @noRd
 
 # function body
-df_descriptive <- function(data,
+descriptive_df <- function(data,
                            x,
                            y = NULL,
                            label.content = "percentage",
@@ -53,7 +53,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #' @noRd
 
 # combine info about sample size plus proportion test
-df_proptest <- function(data, x, y, k = 2L, ...) {
+onesample_df <- function(data, x, y, k = 2L, ...) {
   dplyr::full_join(
     # descriptives
     x = cat_counter(data, {{ y }}) %>%

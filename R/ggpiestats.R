@@ -188,16 +188,16 @@ ggpiestats <- function(data,
   # =================================== plot =================================
 
   # dataframe with summary labels
-  df_descriptive <- df_descriptive(data, {{ x }}, {{ y }}, label, perc.k)
+  descriptive_df <- descriptive_df(data, {{ x }}, {{ y }}, label, perc.k)
 
   # dataframe containing all details needed for prop test
-  if (test == "two.way") df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
+  if (test == "two.way") onesample_df <- onesample_df(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
-  p <- ggplot2::ggplot(df_descriptive, mapping = ggplot2::aes(x = "", y = perc)) +
+  p <- ggplot2::ggplot(descriptive_df, mapping = ggplot2::aes(x = "", y = perc)) +
     ggplot2::geom_col(
       mapping = ggplot2::aes(fill = {{ x }}),
       position = "fill",
@@ -244,7 +244,7 @@ ggpiestats <- function(data,
     p <- p +
       rlang::exec(
         ggplot2::geom_text,
-        data = df_proptest,
+        data = onesample_df,
         mapping = ggplot2::aes(label = .label, x = 1.65, y = 0.5),
         position = ggplot2::position_fill(vjust = 1),
         size = 2.8,

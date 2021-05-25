@@ -1,7 +1,6 @@
 # dataframe as input ----------------------------------------------------
 
 # should be run last
-
 if (all(unlist(lapply(
   c("metafor", "metaBMA"), # needed packages
   require,

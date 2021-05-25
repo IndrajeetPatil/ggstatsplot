@@ -145,16 +145,16 @@ ggbarstats <- function(data,
   # =================================== plot =================================
 
   # dataframe with summary labels
-  df_descriptive <- df_descriptive(data, {{ x }}, {{ y }}, label, perc.k)
+  descriptive_df <- descriptive_df(data, {{ x }}, {{ y }}, label, perc.k)
 
   # dataframe containing all details needed for prop test
-  df_proptest <- df_proptest(data, {{ x }}, {{ y }}, k)
+  onesample_df <- onesample_df(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
   palette_message(package, palette, nlevels(data %>% dplyr::pull({{ x }}))[[1]])
 
   # plot
-  p <- ggplot2::ggplot(df_descriptive, ggplot2::aes({{ y }}, perc, fill = {{ x }})) +
+  p <- ggplot2::ggplot(descriptive_df, ggplot2::aes({{ y }}, perc, fill = {{ x }})) +
     ggplot2::geom_bar(
       stat = "identity",
       position = "fill",
@@ -184,7 +184,7 @@ ggbarstats <- function(data,
     # modify plot
     p <- p +
       ggplot2::geom_text(
-        data = df_proptest,
+        data = onesample_df,
         mapping = ggplot2::aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
         size = 2.8,
         parse = TRUE
@@ -194,7 +194,7 @@ ggbarstats <- function(data,
   # adding sample size info
   p <- p +
     ggplot2::geom_text(
-      data = df_proptest,
+      data = onesample_df,
       mapping = ggplot2::aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
       size = 4
     )

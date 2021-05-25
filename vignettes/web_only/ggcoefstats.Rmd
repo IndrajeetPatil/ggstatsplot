@@ -18,7 +18,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -48,7 +48,7 @@ library(ggstatsplot)
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r citation, echo=FALSE, comment=""}
 citation("ggstatsplot")
 ```
 
@@ -153,7 +153,7 @@ The following demos are in **no particular order**.
 
 ## summary grid from `emmeans` package (`emmGrid`)
 
-```{r emmGrid, fig.height = 5, fig.width = 5}
+```{r emmGrid, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(emmeans)
@@ -165,7 +165,7 @@ oranges_lm1 <-
     data = oranges
   )
 
-# reference grid; see vignette("basics", package = "emmeans")
+# reference grid; see vignette("basics", package="emmeans")
 oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
 marginal <- emmeans::emmeans(oranges_rg1, "day")
 
@@ -179,7 +179,7 @@ ggcoefstats(
 
 Another example with output containing effect sizes
 
-```{r emmGrid2, fig.height = 5, fig.width = 5}
+```{r emmGrid2, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(emmeans)
@@ -266,7 +266,7 @@ combine_plots(
 
 ## Fixed Effects Individual Slope Estimator (`feis`)
 
-```{r feis, fig.height = 8, fig.width = 6}
+```{r feis, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(feisr)
@@ -290,7 +290,7 @@ ggcoefstats(
 
 ## omnibus ANOVA (`aov`)
 
-```{r aov1, fig.height = 6, fig.width = 8}
+```{r aov1, fig.height=6, fig.width=8}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -318,7 +318,7 @@ ggcoefstats(
 Note that we can also use this function for model selection. You can try out
 different models with the code below and see how the AIC and BIC values change.
 
-```{r aov2, fig.height = 10, fig.width = 10}
+```{r aov2, fig.height=10, fig.width=10}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -353,7 +353,7 @@ combine_plots(
 
 ## conditional logit models (`mclogit`)
 
-```{r mclogit, fig.height = 4, fig.width = 4}
+```{r mclogit, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(mclogit)
@@ -376,7 +376,7 @@ ggcoefstats(
 
 ## mixed conditional logit models (`mmclogit`)
 
-```{r mmclogit, fig.height = 8, fig.width = 7}
+```{r mmclogit, fig.height=8, fig.width=7}
 # setup
 set.seed(123)
 library(mclogit)
@@ -400,7 +400,7 @@ ggcoefstats(
 
 ## anova with `car` package (`Anova`)
 
-```{r Anova, fig.height = 6, fig.width = 6}
+```{r Anova, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(car)
@@ -423,7 +423,7 @@ ggcoefstats(
 
 ## ANOVA with `car` package on multiple linear models (`Anova.mlm`)
 
-```{r Anova.mlm, fig.height = 6, fig.width = 6, eval=FALSE}
+```{r Anova.mlm, fig.height=6, fig.width=6, eval=FALSE}
 # setup
 set.seed(123)
 library(car)
@@ -467,7 +467,7 @@ ggcoefstats(
 
 ## Anova with `ez` package
 
-```{r anova_ez, fig.height = 4, fig.width = 4}
+```{r anova_ez, fig.height=4, fig.width=4}
 set.seed(123)
 library(ez)
 data(ANT)
@@ -492,7 +492,7 @@ ggcoefstats(
 
 ## linear model (`lm`)
 
-```{r lm, fig.height = 8, fig.width = 8}
+```{r lm, fig.height=8, fig.width=8}
 # setup
 set.seed(123)
 
@@ -548,7 +548,7 @@ combine_plots(
 
 ## bounded memory linear regression (`biglm`)
 
-```{r biglm, fig.height = 4, fig.width = 6}
+```{r biglm, fig.height=4, fig.width=6}
 # setup
 set.seed(123)
 library(biglm)
@@ -569,7 +569,7 @@ ggcoefstats(
 
 ## bounded memory general linear regression (`bigglm`)
 
-```{r bigglm, fig.height = 4, fig.width = 6}
+```{r bigglm, fig.height=4, fig.width=6}
 # setup
 set.seed(123)
 library(biglm)
@@ -593,7 +593,7 @@ ggcoefstats(
 
 ## efficient (general) linear model (`elm`/`eglm`)
 
-```{r eflm, fig.height = 5, fig.width = 12}
+```{r eflm, fig.height=5, fig.width=12}
 # setup
 set.seed(123)
 library(eflm)
@@ -621,7 +621,7 @@ combine_plots(
 
 ## linear mixed-effects model (`lmer`/`lmerMod`)
 
-```{r lmer1, fig.height = 12, fig.width = 7}
+```{r lmer1, fig.height=12, fig.width=7}
 # set up
 library(lme4)
 library(ggstatsplot)
@@ -689,7 +689,7 @@ parameters::model_parameters(
 
 ## nonlinear model using generalized least squares (`gnls`)
 
-```{r gnls, fig.height = 6, fig.width = 8}
+```{r gnls, fig.height=6, fig.width=8}
 set.seed(123)
 library(nlme)
 
@@ -708,7 +708,7 @@ ggcoefstats(
 
 ## analysis of factorial experiments (`mixed`)
 
-```{r mixed, fig.height = 4, fig.width = 8}
+```{r mixed, fig.height=4, fig.width=8}
 # setup
 set.seed(123)
 library(afex)
@@ -722,7 +722,7 @@ m1_afex <-
     data = Machines
   )
 
-# suppress correlations among random effect parameters with || and expand_re = TRUE
+# suppress correlations among random effect parameters with || and expand_re=TRUE
 m2_afex <-
   afex::mixed(
     formula = score ~ Machine + (Machine || Worker),
@@ -742,7 +742,7 @@ combine_plots(
 
 ## anova using `afex` (`afex_aov`)
 
-```{r afex_aov, fig.height = 6, fig.width = 6}
+```{r afex_aov, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(afex)
@@ -808,7 +808,7 @@ ggcoefstats(
 
 ## risk regression (`riskRegression`)
 
-```{r riskRegression, fig.height = 6, fig.width = 6}
+```{r riskRegression, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(riskRegression)
@@ -835,7 +835,7 @@ ggcoefstats(
 
 ## Aalen's additive regression model for censored data (`aareg`)
 
-```{r aareg, fig.height = 5, fig.width = 5}
+```{r aareg, fig.height=5, fig.width=5}
 # setup
 library(survival)
 set.seed(123)
@@ -859,7 +859,7 @@ ggcoefstats(
 
 ## multivariate generalized linear mixed models (`MCMCglmm`)
 
-```{r MCMCglmm, fig.height = 4, fig.width = 6}
+```{r MCMCglmm, fig.height=4, fig.width=6}
 # setup
 set.seed(123)
 library(lme4)
@@ -888,7 +888,7 @@ ggcoefstats(
 
 ## STAR Models with BayesX (`bayesx`)
 
-```{r bayesx, fig.height = 4, fig.width = 5}
+```{r bayesx, fig.height=4, fig.width=5}
 # setup
 set.seed(111)
 library(R2BayesX)
@@ -914,7 +914,7 @@ ggcoefstats(
 
 ## Generalised Joint Regression Models with Binary/Continuous/Discrete/Survival Margins (`gjrm`)
 
-```{r gjrm, width = 7, height = 7}
+```{r gjrm, width=7, height=7}
 library(GJRM)
 
 # data
@@ -945,17 +945,18 @@ ggcoefstats(
 
 ## Heckman-style selection and treatment effect models (`selection`)
 
-```{r selection, width = 6, height = 6}
+```{r selection, width=6, height=6}
 library(sampleSelection)
 library(wooldridge) # for data
 data(mroz)
 
 # model
 mod_selection <- selection(
-  inlf ~ educ + kidslt6 + kidsge6, 
+  inlf ~ educ + kidslt6 + kidsge6,
   wage ~ educ + exper + expersq,
   method = "2step",
-  data = mroz)
+  data = mroz
+)
 
 # plot
 ggcoefstats(
@@ -966,7 +967,7 @@ ggcoefstats(
 
 ## inference in spatial GLMMs (`HLfit`)
 
-```{r HLfit, width = 4, height = 4}
+```{r HLfit, width=4, height=4}
 # setup
 set.seed(123)
 library(spaMM)
@@ -990,7 +991,7 @@ ggcoefstats(
 
 ## robust linear mixed-effects models (`rlmer`)
 
-```{r rlmer, width = 5, height = 5}
+```{r rlmer, width=5, height=5}
 # setups
 set.seed(123)
 library(robustlmm)
@@ -1014,7 +1015,7 @@ ggcoefstats(
 
 ## linear mixed-effects models with `lmerTest` (`lmerModLmerTest`)
 
-```{r lmerModLmerTest, width = 8, height = 18}
+```{r lmerModLmerTest, width=8, height=18}
 # setup
 set.seed(123)
 library(lmerTest)
@@ -1036,7 +1037,7 @@ ggcoefstats(
 
 ## non-linear mixed-effects model (`nlmer`/`nlmerMod`)
 
-```{r nlmer, fig.height = 5, fig.width = 6}
+```{r nlmer, fig.height=5, fig.width=6}
 # data
 library(lme4)
 set.seed(123)
@@ -1059,7 +1060,7 @@ ggcoefstats(
 
 ## non-linear least-squares model (`nls`)
 
-```{r nls, fig.height = 5, fig.width = 5}
+```{r nls, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -1082,7 +1083,7 @@ ggcoefstats(
 
 ## conditional generalized linear models for clustered data (`cglm`)
 
-```{r cglm, fig.height = 6, fig.width = 6}
+```{r cglm, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(cglm)
@@ -1107,7 +1108,7 @@ ggcoefstats(
 
 ## joint model to time-to-event data and multivariate longitudinal data (`mjoint`)
 
-```{r mjoint, fig.height = 8, fig.width = 8}
+```{r mjoint, fig.height=8, fig.width=8}
 # setup
 set.seed(123)
 library(joineRML)
@@ -1148,7 +1149,7 @@ ggcoefstats(
 
 ## stationary linear model (`slm`)
 
-```{r slm, fig.height = 6, fig.width = 6}
+```{r slm, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(slm)
@@ -1175,7 +1176,7 @@ ggcoefstats(
 
 ## generalized linear model (`glm`)
 
-```{r glm1, fig.height = 6, fig.width = 6}
+```{r glm1, fig.height=6, fig.width=6}
 # setup
 library(ggstatsplot)
 set.seed(123)
@@ -1196,7 +1197,6 @@ mod_glm <-
 ggcoefstats(
   x = mod_glm,
   ggtheme = ggthemes::theme_economist_white(),
-  
   title = "generalized linear model (glm)",
   vline.args = list(color = "red", linetype = "solid")
 )
@@ -1207,7 +1207,7 @@ The exact statistic will depend on the family used for `glm` models: Some
 families will have a `t` statistic associated with them, while others a `z`
 statistic. The function will figure this out for you.
 
-```{r glm_full, fig.height = 13, fig.width = 10}
+```{r glm_full, fig.height=13, fig.width=10}
 # creating dataframes to use for regression analyses
 set.seed(123)
 library(ggstatsplot)
@@ -1318,7 +1318,7 @@ combine_plots(
 
 The version of `glm` implemented in `rms` is also supported.
 
-```{r rms_Glm, fig.height = 5, fig.width = 5}
+```{r rms_Glm, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -1339,7 +1339,7 @@ ggcoefstats(
 
 ## modified fitting for generalized linear models (`glm2`)
 
-```{r glm2, fig.height = 5, fig.width = 5}
+```{r glm2, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(glm2)
@@ -1362,7 +1362,7 @@ ggcoefstats(
 
 ## Fit Generalized Estimating Equations with `geepack` (`geeglm`)
 
-```{r geeglm, fig.height = 7, fig.width = 7}
+```{r geeglm, fig.height=7, fig.width=7}
 # setup
 set.seed(123)
 library(geepack)
@@ -1391,7 +1391,7 @@ ggcoefstats(
 
 ## ordinal regression model (`orm`)
 
-```{r orm, fig.height = 5, fig.width = 5}
+```{r orm, fig.height=5, fig.width=5}
 # setup
 library(rms)
 set.seed(123)
@@ -1414,7 +1414,7 @@ ggcoefstats(
 
 ## logistic regression model (`lrm`)
 
-```{r lrm, fig.height = 12, fig.width = 7}
+```{r lrm, fig.height=12, fig.width=7}
 # setup
 library(rms)
 set.seed(123)
@@ -1443,7 +1443,7 @@ ggcoefstats(
 
 ## Two-Stage Least Squares Instrumental Variables Regression (`iv_robust`)
 
-```{r iv_robust, fig.height = 6, fig.width = 8}
+```{r iv_robust, fig.height=6, fig.width=8}
 # setup
 set.seed(123)
 library(fabricatr)
@@ -1472,7 +1472,7 @@ ggcoefstats(
 
 ## ordinary least squares with robust standard errors (`lm_robust`)
 
-```{r lm_robust, fig.height = 5, fig.width = 5}
+```{r lm_robust, fig.height=5, fig.width=5}
 # for reproducibility
 set.seed(123)
 library(estimatr)
@@ -1495,7 +1495,7 @@ ggcoefstats(
 
 Just to demonstrate that this can be done, let's also flip the axes:
 
-```{r negbin, fig.height = 6, fig.width = 8}
+```{r negbin, fig.height=6, fig.width=8}
 # setup
 library(MASS)
 library(lme4)
@@ -1528,7 +1528,7 @@ ggcoefstats(
 
 ## generalized linear mixed-effects model (`glmer`/`glmerMod`)
 
-```{r glmer, fig.height = 5, fig.width = 5}
+```{r glmer, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(lme4)
@@ -1555,7 +1555,7 @@ ggcoefstats(
 
 ## Fitting Generalized Linear Mixed Models using MCML (`glmm`)
 
-```{r glmm, fig.height = 5, fig.width = 5}
+```{r glmm, fig.height=5, fig.width=5}
 # setup
 library(glmm)
 data(BoothHobert)
@@ -1582,7 +1582,7 @@ ggcoefstats(
 
 ## fitting negative binomial GLMM (`glmer.nb`)
 
-```{r glmer.nb, fig.height = 7, fig.width = 6}
+```{r glmer.nb, fig.height=7, fig.width=6}
 # setup
 library(MASS)
 library(lme4)
@@ -1612,7 +1612,7 @@ ggcoefstats(
 
 ## Zero-Inflated Count Data Regression (`zeroinfl`)
 
-```{r zeroinfl, fig.height = 6, fig.width = 6}
+```{r zeroinfl, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(pscl)
@@ -1637,7 +1637,7 @@ ggcoefstats(
 
 ## Vector Generalized Additive Models (`vgam`)
 
-```{r vgam, fig.height = 4, fig.width = 4}
+```{r vgam, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(VGAM)
@@ -1661,7 +1661,7 @@ ggcoefstats(
 
 ## Vector Generalized Linear Models (`vglm`)
 
-```{r vglm, fig.height = 4, fig.width = 6}
+```{r vglm, fig.height=4, fig.width=6}
 # setup
 set.seed(123)
 library(VGAM)
@@ -1684,7 +1684,7 @@ ggcoefstats(
 
 ## Reduced-Rank Vector Generalized Linear Models (`rrvglm`)
 
-```{r rrvglm, fig.height = 6, fig.width = 6}
+```{r rrvglm, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(VGAM)
@@ -1718,7 +1718,7 @@ ggcoefstats(
 
 ## Vector autoregression models (`varest`)
 
-```{r varest, fig.height = 12, fig.width = 7}
+```{r varest, fig.height=12, fig.width=7}
 # setup
 set.seed(123)
 library(vars)
@@ -1736,7 +1736,7 @@ ggcoefstats(
 
 ## Constrained Generalized Additive Model Fitting (`cgam`)
 
-```{r cgam, fig.height = 4, fig.width = 6}
+```{r cgam, fig.height=4, fig.width=6}
 # setup
 set.seed(123)
 library(cgam)
@@ -1754,7 +1754,7 @@ ggcoefstats(
 
 ## Constrained Generalized Additive Mixed-Effects Model Fitting (`cgamm`)
 
-```{r cgamm, fig.height = 4, fig.width = 7}
+```{r cgamm, fig.height=4, fig.width=7}
 # setup
 set.seed(123)
 library(cgam)
@@ -1836,7 +1836,7 @@ ggcoefstats(
 
 ## Hurdle Models for Count Data Regression (`hurdle`)
 
-```{r hurdle, fig.height = 10, fig.width = 8}
+```{r hurdle, fig.height=10, fig.width=8}
 # setup
 set.seed(123)
 library(pscl)
@@ -1861,7 +1861,7 @@ ggcoefstats(
 
 ## beta-binomial mixed-effects model (`BBmm`)
 
-```{r BBmm, fig.height = 5, fig.width = 6}
+```{r BBmm, fig.height=5, fig.width=6}
 # setup
 if (isFALSE("PROreg" %in% installed.packages())) {
   install.packages("https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz",
@@ -1911,7 +1911,7 @@ ggcoefstats(
 
 ## beta-binomial logistic regression model (`BBreg`)
 
-```{r BBreg, fig.height = 5, fig.width = 5}
+```{r BBreg, fig.height=5, fig.width=5}
 # setup
 set.seed(18)
 library(PROreg)
@@ -1939,7 +1939,7 @@ ggcoefstats(
 
 ## binary choice models with fixed effects (`bife`)
 
-```{r bife, fig.height = 10, fig.width = 8}
+```{r bife, fig.height=10, fig.width=8}
 # setup
 set.seed(123)
 library(bife)
@@ -1960,7 +1960,7 @@ ggcoefstats(
 
 ## Dirichlet regression model (`DirichReg`)
 
-```{r DirichReg, fig.height = 8, fig.width = 6}
+```{r DirichReg, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(DirichletReg)
@@ -1981,7 +1981,7 @@ ggcoefstats(
 
 ## robust generalized linear models (`robmixglm`)
 
-```{r robmixglm, fig.height = 4, fig.width = 4}
+```{r robmixglm, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(robmixglm)
@@ -2000,7 +2000,7 @@ ggcoefstats(
 
 ## generalized linear models with extra parameters (`glmx`)
 
-```{r glmx, fig.height = 6, fig.width = 8}
+```{r glmx, fig.height=6, fig.width=8}
 # setup
 library(glmx)
 library(MASS)
@@ -2026,7 +2026,7 @@ ggcoefstats(
 
 ## generalized linear mixed model trees (`glmertree`)
 
-```{r glmertree, fig.height = 6, fig.width = 12}
+```{r glmertree, fig.height=6, fig.width=12}
 # setup
 set.seed(123)
 library(glmertree)
@@ -2061,7 +2061,7 @@ combine_plots(
 
 ## generalized linear mixed models using Penalized Quasi-Likelihood (`glmmPQL`)
 
-```{r glmmPQL, fig.height = 5, fig.width = 6}
+```{r glmmPQL, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(MASS)
@@ -2089,7 +2089,7 @@ ggcoefstats(
 `glmmTMB` package allows for flexibly fitting generalized linear mixed models
 (GLMMs) and extensions. Model objects from this package are also supported.
 
-```{r glmmTMB, fig.height = 5, fig.width = 6}
+```{r glmmTMB, fig.height=5, fig.width=6}
 # set up
 library(glmmTMB)
 library(lme4)
@@ -2113,7 +2113,7 @@ ggcoefstats(
 Another example (given the number of terms, let's only display labels for
 significant effects):
 
-```{r glmmTMB2, fig.height = 14, fig.width = 8}
+```{r glmmTMB2, fig.height=14, fig.width=8}
 # setup
 set.seed(123)
 library(glmmTMB)
@@ -2138,7 +2138,7 @@ ggcoefstats(
 
 ## generalized linear mixed models using AD Model Builder (`glmmadmb`)
 
-```{r glmmadmb, fig.height = 5, fig.width = 5}
+```{r glmmadmb, fig.height=5, fig.width=5}
 # setup
 if (isFALSE("glmmADMB" %in% installed.packages())) {
   install.packages("glmmADMB",
@@ -2178,7 +2178,7 @@ ggcoefstats(
 
 ## multilevel model to a list of data frames (`merModList`)
 
-```{r merModList, fig.height = 4, fig.width = 4}
+```{r merModList, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(lme4)
@@ -2205,7 +2205,7 @@ ggcoefstats(
 
 ## cumulative link models (`clm`)
 
-```{r clm, fig.height = 6, fig.width = 8}
+```{r clm, fig.height=6, fig.width=8}
 # for reproducibility
 set.seed(123)
 library(ordinal)
@@ -2225,7 +2225,7 @@ ggcoefstats(
 
 ## cumulative link models - older version (`clm2`)
 
-```{r clm2, fig.height = 6, fig.width = 6}
+```{r clm2, fig.height=6, fig.width=6}
 # for reproducibility
 set.seed(123)
 library(ordinal)
@@ -2257,7 +2257,7 @@ ggcoefstats(
 
 ## cumulative link mixed models (`clmm`)
 
-```{r clmm1, fig.height = 6, fig.width = 6}
+```{r clmm1, fig.height=6, fig.width=6}
 # for reproducibility
 set.seed(123)
 library(ordinal)
@@ -2282,7 +2282,7 @@ ggcoefstats(
 
 ## cumulative link mixed models - older version (`clmm2`)
 
-```{r clmm2, fig.height = 6, fig.width = 6}
+```{r clmm2, fig.height=6, fig.width=6}
 # for reproducibility
 set.seed(123)
 library(ordinal)
@@ -2312,7 +2312,7 @@ ggcoefstats(
 
 ## marginal effects estimation (`margins`)
 
-```{r margins, fig.height = 6, fig.width = 6}
+```{r margins, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(margins)
@@ -2336,7 +2336,7 @@ ggcoefstats(
 
 ## Linear Regression with Interval-Censored Dependent Variable (`semLm`)
 
-```{r semLm, fig.height = 5, fig.width = 6}
+```{r semLm, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(smicd)
@@ -2363,7 +2363,7 @@ ggcoefstats(
 
 ## Linear Mixed Regression with Interval-Censored Dependent Variable (`semLme`)
 
-```{r semLme, fig.height = 5, fig.width = 6}
+```{r semLme, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(smicd)
@@ -2390,7 +2390,7 @@ ggcoefstats(
 
 ## Mixed-Effects Ordinal Regression Analysis (`mixor`)
 
-```{r mixor, fig.height = 8, fig.width = 6}
+```{r mixor, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(mixor)
@@ -2417,7 +2417,7 @@ ggcoefstats(
 
 ## bias reduction in Binomial-response GLMs (`brglm`)
 
-```{r brglm, fig.height = 6, fig.width = 5}
+```{r brglm, fig.height=6, fig.width=5}
 # setup
 set.seed(123)
 library(brglm)
@@ -2442,7 +2442,7 @@ ggcoefstats(
 
 ## bias reduction in generalized linear models (`brglm2`)
 
-```{r brglm2, fig.height = 6, fig.width = 5}
+```{r brglm2, fig.height=6, fig.width=5}
 # setup
 set.seed(123)
 library(brglm2)
@@ -2467,7 +2467,7 @@ ggcoefstats(
 
 ## Bias Reduction For Multinomial Response Models Using The Poisson Trick (`brmultinom`)
 
-```{r brmultinom, fig.height = 12, fig.width = 7}
+```{r brmultinom, fig.height=12, fig.width=7}
 # setup
 set.seed(123)
 library(MASS)
@@ -2493,7 +2493,7 @@ ggcoefstats(
 
 ## bias reduction for adjacent category logit models (`bracl`)
 
-```{r bracl, fig.height = 6, fig.width = 7}
+```{r bracl, fig.height=6, fig.width=7}
 # setup
 set.seed(123)
 library(brglm2)
@@ -2518,7 +2518,7 @@ ggcoefstats(
 
 ## generalized linear models subject to population constraints
 
-```{r glmc, fig.height = 5, fig.width = 6}
+```{r glmc, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(glmc)
@@ -2567,7 +2567,7 @@ ggcoefstats(
 
 ## Bayesian linear mixed-effects models (`blmerMod`)
 
-```{r blmerMod, fig.height = 5, fig.width = 5}
+```{r blmerMod, fig.height=5, fig.width=5}
 # for reproducibility
 set.seed(123)
 library(blme)
@@ -2600,7 +2600,7 @@ ggcoefstats(
 
 ## Bayesian generalized linear mixed-effects models (`bglmerMod`)
 
-```{r bglmerMod, fig.height = 6, fig.width = 6}
+```{r bglmerMod, fig.height=6, fig.width=6}
 # for reproducibility
 set.seed(123)
 library(blme)
@@ -2623,7 +2623,7 @@ ggcoefstats(
 
 ## ordered logistic or probit regression (`polr`)
 
-```{r polr, fig.height = 6, fig.width = 8}
+```{r polr, fig.height=6, fig.width=8}
 # polr model
 set.seed(123)
 library(MASS)
@@ -2645,7 +2645,7 @@ ggcoefstats(
 
 ## multiple linear regression models (`mlm`)
 
-```{r mlm, fig.height = 5, fig.width = 6}
+```{r mlm, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(effectsize)
@@ -2666,7 +2666,7 @@ ggcoefstats(
 
 ## anova on multiple linear regression models (`maov`)
 
-```{r maov, fig.height = 8, fig.width = 6}
+```{r maov, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 
@@ -2686,7 +2686,7 @@ ggcoefstats(
 
 ## multinomial logistic regression models (`multinom`)
 
-```{r multinom, fig.height = 8, fig.width = 6}
+```{r multinom, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(nnet)
@@ -2712,7 +2712,7 @@ ggcoefstats(
 
 ## multilevel mediation model (`bmlm`)
 
-```{r bmlm, fig.height = 7, fig.width = 5}
+```{r bmlm, fig.height=7, fig.width=5}
 # setup
 set.seed(123)
 library(bmlm)
@@ -2741,7 +2741,7 @@ ggcoefstats(
 
 ## proportional odds and related models (`svyolr`)
 
-```{r svyolr, fig.height = 8, fig.width = 6}
+```{r svyolr, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(survey)
@@ -2776,7 +2776,7 @@ ggcoefstats(
 
 ## survey-weighted generalized linear models (`svyglm`)
 
-```{r svyglm, fig.height = 5, fig.width = 5}
+```{r svyglm, fig.height=5, fig.width=5}
 # data
 library(survey)
 set.seed(123)
@@ -2807,7 +2807,7 @@ ggcoefstats(
 
 ## design-based inference for vector generalised linear models (`svy_vglm`)
 
-```{r , fig.height = 7, fig.width = 5}
+```{r , fig.height=7, fig.width=5}
 # setup
 set.seed(123)
 library(svyVGAM)
@@ -2835,7 +2835,7 @@ ggcoefstats(
 
 ## estimation of limited dependent variable models (`mhurdle`)
 
-```{r mhurdle, fig.height = 6, fig.width = 8}
+```{r mhurdle, fig.height=6, fig.width=8}
 # setup
 data("Interview", package = "mhurdle")
 library(mhurdle)
@@ -2859,7 +2859,7 @@ ggcoefstats(
 ## repeated measures ANOVA (`aovlist`)
 
 
-```{r aovlist1, fig.height = 6, fig.width = 8}
+```{r aovlist1, fig.height=6, fig.width=8}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -2876,7 +2876,6 @@ ggcoefstats(
   x = mod_aovlist,
   effsize = "eta",
   ggtheme = ggthemes::theme_fivethirtyeight(),
-  
   title = "Variation in measurements for Iris species",
   subtitle = "Source: Iris data set (by Fisher or Anderson)",
   caption = "Results from 2 by 2 RM ANOVA"
@@ -2886,7 +2885,7 @@ ggcoefstats(
 
 ## robust regression with `robust` package (`lmRob`, `glmRob`)
 
-```{r robust, fig.height = 10, fig.width = 6}
+```{r robust, fig.height=10, fig.width=6}
 combine_plots(
   plotlist = list(
     # plot 1: glmRob
@@ -2922,7 +2921,7 @@ combine_plots(
 Another alternative is to use robust models, as implemented in the `robustbase`
 package.
 
-```{r robustbase, fig.height = 10, fig.width = 6}
+```{r robustbase, fig.height=10, fig.width=6}
 # setup
 set.seed(123)
 library(robustbase)
@@ -2962,7 +2961,7 @@ combine_plots(
 
 ## MM-type estimators for linear regression on compositional data (`complmrob`)
 
-```{r complmrob, fig.height = 7, fig.width = 6}
+```{r complmrob, fig.height=7, fig.width=6}
 # setup
 set.seed(123)
 library(complmrob)
@@ -2985,7 +2984,7 @@ ggcoefstats(
 
 ## fit a nonlinear heteroscedastic model via maximum likelihood (`nlreg`)
 
-```{r nlreg, fig.height = 5, fig.width = 5}
+```{r nlreg, fig.height=5, fig.width=5}
 set.seed(123)
 library(nlreg)
 library(boot)
@@ -3009,7 +3008,7 @@ ggcoefstats(
 
 ## fit a linear model with multiple group fixed effects (`felm`)
 
-```{r felm, fig.height = 5, fig.width = 5}
+```{r felm, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(lfe)
@@ -3042,7 +3041,7 @@ ggcoefstats(
 
 ## linear models for panel data (`plm`)
 
-```{r plm, fig.height = 5, fig.width = 5}
+```{r plm, fig.height=5, fig.width=5}
 # data
 set.seed(123)
 library(plm)
@@ -3065,7 +3064,7 @@ ggcoefstats(
 
 ## multinomial logit model (`mlogit`)
 
-```{r mlogit, fig.height = 8, fig.width = 7}
+```{r mlogit, fig.height=8, fig.width=7}
 # setup
 set.seed(123)
 library(mlogit)
@@ -3091,7 +3090,7 @@ ggcoefstats(
 
 ## Cox proportional hazards regression model (`coxph`)
 
-```{r coxph, fig.height = 4, fig.width = 4}
+```{r coxph, fig.height=4, fig.width=4}
 # for reproducibility
 set.seed(123)
 library(survival)
@@ -3120,7 +3119,7 @@ ggcoefstats(
 
 Another example with `frailty` term.
 
-```{r coxph.penal, fig.height = 4, fig.width = 4}
+```{r coxph.penal, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(survival)
@@ -3140,7 +3139,7 @@ ggcoefstats(
 
 ## mixed effects Cox model (`coxme`)
 
-```{r coxme, fig.height = 4, fig.width = 4}
+```{r coxme, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(survival)
@@ -3161,7 +3160,7 @@ ggcoefstats(
 
 ## robust Cox proportional hazards regression model (`coxr`)
 
-```{r coxr, fig.height = 6, fig.width = 6}
+```{r coxr, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(coxrobust)
@@ -3181,7 +3180,7 @@ ggstatsplot::ggcoefstats(
 
 ## truncated Gaussian Regression Models (`truncreg`)
 
-```{r truncreg, fig.height = 5, fig.width = 5}
+```{r truncreg, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(truncreg)
@@ -3207,7 +3206,7 @@ ggcoefstats(
 
 ## Fitting Linear Quantile Models
 
-```{r lqm, fig.height = 5, fig.width = 5}
+```{r lqm, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(lqmm)
@@ -3237,7 +3236,7 @@ ggcoefstats(
 
 ## Fitting Linear Quantile Mixed Models
 
-```{r lqmm, fig.height = 4, fig.width = 5}
+```{r lqmm, fig.height=4, fig.width=5}
 # setup
 set.seed(123)
 library(lqmm)
@@ -3269,7 +3268,7 @@ ggcoefstats(
 
 ## autoregressive integrated moving average (`Arima`)
 
-```{r arima, fig.height = 5, fig.width = 5}
+```{r arima, fig.height=5, fig.width=5}
 # for reproducibility
 set.seed(123)
 
@@ -3287,7 +3286,7 @@ ggcoefstats(
 
 Example of high performance linear model-
 
-```{r speedlm, fig.height = 5, fig.width = 5}
+```{r speedlm, fig.height=5, fig.width=5}
 # setup
 library(speedglm)
 set.seed(123)
@@ -3309,7 +3308,7 @@ ggcoefstats(
 
 Example of high performance generalized linear model-
 
-```{r speedglm, fig.height = 5, fig.width = 5}
+```{r speedglm, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(speedglm)
@@ -3340,7 +3339,7 @@ ggcoefstats(
 
 ## parametric survival regression model (`survreg`)
 
-```{r survreg, fig.height = 5, fig.width = 5}
+```{r survreg, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(survival)
@@ -3365,7 +3364,7 @@ ggcoefstats(
 
 ## Competing Risks Regression (`crr`)
 
-```{r crr, fig.height = 6, fig.width = 6}
+```{r crr, fig.height=6, fig.width=6}
 # setup
 set.seed(10)
 library(cmprsk)
@@ -3388,7 +3387,7 @@ ggcoefstats(
 
 ## tobit regression (`tobit`)
 
-```{r tobit, fig.height = 5, fig.width = 5}
+```{r tobit, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(AER)
@@ -3410,7 +3409,7 @@ ggcoefstats(
 
 ## censored regression (tobit) regression (`censReg`)
 
-```{r censReg, fig.height = 5, fig.width = 5}
+```{r censReg, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(censReg)
@@ -3432,7 +3431,7 @@ ggcoefstats(
 
 ## relative risk regression model for case-cohort studies (`cch`)
 
-```{r cch, fig.height = 6, fig.width = 6}
+```{r cch, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(survival)
@@ -3474,7 +3473,7 @@ ggcoefstats(
 For ridge regression, neither statistic values nor confidence intervals for
 estimates are available, so only estimates will be displayed.
 
-```{r ridgelm, fig.height = 5, fig.width = 5}
+```{r ridgelm, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(MASS)
@@ -3495,7 +3494,7 @@ ggcoefstats(
 **Important**: These model outputs contains both parametric and smooth terms.
 `ggcoefstats` only displays the parametric terms.
 
-```{r gam_mgcv, fig.height = 5, fig.width = 5}
+```{r gam_mgcv, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(mgcv)
@@ -3518,7 +3517,7 @@ ggcoefstats(
 
 ## 
 
-```{r bam_mgcv, fig.height = 5, fig.width = 5}
+```{r bam_mgcv, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(mgcv)
@@ -3545,7 +3544,7 @@ ggcoefstats(
 
 ## generalized additive model (`Gam`)
 
-```{r Gam, fig.height = 5, fig.width = 5}
+```{r Gam, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(gam)
@@ -3566,7 +3565,7 @@ ggcoefstats(
 
 ## linear mixed-effects models (`lme`)
 
-```{r lme, fig.height = 5, fig.width = 5}
+```{r lme, fig.height=5, fig.width=5}
 # for reproducibility
 set.seed(123)
 library(lme4)
@@ -3594,7 +3593,7 @@ The `nlme` package provides a function to fit a linear model using generalized
 least squares. The errors are allowed to be correlated and/or have unequal
 variances.
 
-```{r gls, fig.height = 5, fig.width = 6}
+```{r gls, fig.height=5, fig.width=6}
 # for reproducibility
 set.seed(123)
 library(nlme)
@@ -3612,14 +3611,13 @@ ggcoefstats(
   x = mod_gls,
   stats.label.color = "black",
   ggtheme = hrbrthemes::theme_ipsum_ps(),
-  
   title = "generalized least squares model"
 )
 ```
 
 ## inference for estimated coefficients (`coeftest`)
 
-```{r coeftest, fig.height = 4, fig.width = 4}
+```{r coeftest, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(lmtest)
@@ -3641,7 +3639,7 @@ ggcoefstats(
 
 ## robust regression using an M estimator (`rlm`)
 
-```{r rlm, fig.height = 5, fig.width = 5}
+```{r rlm, fig.height=5, fig.width=5}
 # for reproducibility
 set.seed(123)
 
@@ -3661,7 +3659,7 @@ ggcoefstats(
 
 ## quantile regression (`rq`)
 
-```{r rq, fig.height = 5, fig.width = 6}
+```{r rq, fig.height=5, fig.width=6}
 # for reproducibility
 set.seed(123)
 library(quantreg)
@@ -3687,7 +3685,7 @@ ggcoefstats(
 
 ## multiple response quantile regression (`rqs`)
 
-```{r rqs, fig.height = 7, fig.width = 6}
+```{r rqs, fig.height=7, fig.width=6}
 # setup
 set.seed(123)
 library(quantreg)
@@ -3710,7 +3708,7 @@ ggcoefstats(
 
 ## nonlinear quantile regression estimates (`nlrq`)
 
-```{r nlrq, fig.height = 5, fig.width = 5}
+```{r nlrq, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(quantreg)
@@ -3739,7 +3737,7 @@ ggcoefstats(
 
 ## additive quantile regression (`rqss`)
 
-```{r rqss, fig.height = 4, fig.width = 4}
+```{r rqss, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(quantreg)
@@ -3760,7 +3758,7 @@ ggcoefstats(
 
 ## censored quantile regression (`crq`)
 
-```{r crq, fig.height = 5, fig.width = 5}
+```{r crq, fig.height=5, fig.width=5}
 # crq example with left censoring
 set.seed(1968)
 library(quantreg)
@@ -3786,7 +3784,7 @@ ggcoefstats(
 
 ## instrumental-variable regression (`ivreg`)
 
-```{r ivreg, fig.height = 5, fig.width = 5}
+```{r ivreg, fig.height=5, fig.width=5}
 # setup
 suppressPackageStartupMessages(library(AER))
 set.seed(123)
@@ -3809,7 +3807,7 @@ ggcoefstats(
 
 ## instrumental variables probit regression (`ivprobit`)
 
-```{r ivprobit, fig.height = 6, fig.width = 6}
+```{r ivprobit, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(ivprobit)
@@ -3831,7 +3829,7 @@ ggcoefstats(
 
 ## instrumental fixed effect panel regression (`ivFixed`)
 
-```{r ivFixed, fig.height = 6, fig.width = 6}
+```{r ivFixed, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(ivfixed)
@@ -3867,7 +3865,7 @@ ggcoefstats(
 
 ## causal mediation analysis (`mediate`)
 
-```{r mediate, fig.height = 5, fig.width = 5}
+```{r mediate, fig.height=5, fig.width=5}
 # setup
 set.seed(123)
 library(mediation)
@@ -3904,7 +3902,7 @@ ggcoefstats(
 
 ## Model II regression (`lmodel2`)
 
-```{r lmodel2, fig.height = 6, fig.width = 6}
+```{r lmodel2, fig.height=6, fig.width=6}
 # setup
 set.seed(123)
 library(lmodel2)
@@ -3929,7 +3927,7 @@ ggcoefstats(
 
 ## Multivariate Ordinal Regression Models (`mvord`)
 
-```{r mvord, fig.height = 6, fig.width = 5}
+```{r mvord, fig.height=6, fig.width=5}
 set.seed(123)
 library(mvord)
 
@@ -3951,7 +3949,7 @@ ggcoefstats(
 
 ## generalized additive models for location scale and shape (`gamlss`)
 
-```{r gamlss, fig.height = 5, fig.width = 6}
+```{r gamlss, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(gamlss)
@@ -3975,7 +3973,7 @@ ggcoefstats(
 
 ## Bayesian Gaussian Graphical Model (`BGGM`)
 
-```{r BGGM, fig.height = 10, fig.width = 6}
+```{r BGGM, fig.height=10, fig.width=6}
 set.seed(123)
 library(BGGM)
 
@@ -3994,7 +3992,7 @@ ggcoefstats(
 
 ## Bayesian additive models for location scale and shape (`bamlss`)
 
-```{r bamlss, fig.height = 5, fig.width = 6}
+```{r bamlss, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(bamlss)
@@ -4020,7 +4018,7 @@ ggcoefstats(
 
 ## generalized method of moment estimation (`gmm`)
 
-```{r gmm, fig.height = 8, fig.width = 5}
+```{r gmm, fig.height=8, fig.width=5}
 # setup
 set.seed(123)
 library(gmm)
@@ -4052,7 +4050,7 @@ Although these models are not directly supported in `ggcoefstats` because of the
 sheer number of terms that are typically present. But this function can still be
 used to selectively show few of the terms of interest:
 
-```{r glmnet, fig.height = 4, fig.width = 4}
+```{r glmnet, fig.height=4, fig.width=4}
 # setup
 library(glmnet)
 set.seed(2014)
@@ -4069,7 +4067,7 @@ ggcoefstats(x = dplyr::filter(df, step == 4))
 
 ## exponential-family random graph models (`ergm`)
 
-```{r ergm, fig.height = 5, fig.width = 5}
+```{r ergm, fig.height=5, fig.width=5}
 # load the Florentine marriage network data
 set.seed(123)
 suppressPackageStartupMessages(library(ergm))
@@ -4089,7 +4087,7 @@ ggcoefstats(
 
 ## TERGM by bootstrapped pseudolikelihood or MCMC MLE (`btergm`)
 
-```{r btergm, fig.height = 5, fig.width = 6}
+```{r btergm, fig.height=5, fig.width=6}
 # setup
 library(network)
 library(btergm)
@@ -4131,7 +4129,7 @@ ggcoefstats(
 
 ## generalized autoregressive conditional heteroscedastic regression (`garch`)
 
-```{r garch, fig.height = 5, fig.width = 6}
+```{r garch, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(tseries)
@@ -4150,7 +4148,7 @@ ggcoefstats(
 
 ## Bayesian Estimation of the GARCH(1,1) Model with Student-t Innovations (`bayesGARCH`)
 
-```{r bayesGARCH, fig.height = 4, fig.width = 5}
+```{r bayesGARCH, fig.height=4, fig.width=5}
 # setup
 set.seed(123)
 library(bayesGARCH)
@@ -4173,7 +4171,7 @@ ggcoefstats(
 
 ## maximum-likelihood fitting of univariate distributions (`fitdistr`)
 
-```{r fitdistr, fig.height = 4, fig.width = 4}
+```{r fitdistr, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(MASS)
@@ -4192,7 +4190,7 @@ ggcoefstats(
 
 ## maximum likelihood estimation (`mle2`)
 
-```{r mle2, fig.height = 4, fig.width = 4}
+```{r mle2, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(bbmle)
@@ -4220,7 +4218,7 @@ ggcoefstats(
 
 ## General Linear Hypotheses (`glht`)
 
-```{r glht, fig.height = 5, fig.width = 6}
+```{r glht, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(multcomp)
@@ -4233,11 +4231,11 @@ mod_glht <-
   multcomp::glht(
     model = lmod,
     linfct = c(
-      "Agriculture = 0",
-      "Examination = 0",
-      "Education = 0",
-      "Catholic = 0",
-      "Infant.Mortality = 0"
+      "Agriculture=0",
+      "Examination=0",
+      "Education=0",
+      "Catholic=0",
+      "Infant.Mortality=0"
     )
   )
 
@@ -4250,7 +4248,7 @@ ggcoefstats(
 
 ## Cochrane-Orcutt estimation (`orcutt`)
 
-```{r orcutt, fig.height = 5, fig.width = 5}
+```{r orcutt, fig.height=5, fig.width=5}
 # setup
 library(orcutt)
 set.seed(123)
@@ -4268,7 +4266,7 @@ ggcoefstats(
 
 ## confusion matrix (`confusionMatrix`)
 
-```{r confusionMatrix, fig.height = 4, fig.width = 4}
+```{r confusionMatrix, fig.height=4, fig.width=4}
 # setup
 library(caret)
 set.seed(123)
@@ -4289,7 +4287,7 @@ ggcoefstats(
 
 ## dose-response models/curves (`drc`)
 
-```{r drc, fig.height = 7, fig.width = 5}
+```{r drc, fig.height=7, fig.width=5}
 # setup
 set.seed(123)
 library(drc)
@@ -4315,7 +4313,7 @@ ggcoefstats(
 
 ## Firth's bias-reduced logistic regression (`logitsf`)
 
-```{r logitsf, fig.height = 4, fig.width = 4}
+```{r logitsf, fig.height=4, fig.width=4}
 # setup
 set.seed(123)
 library(logistf)
@@ -4335,7 +4333,7 @@ ggcoefstats(
 
 ## Flexible parametric regression for time-to-event data (`flexsurvreg`)
 
-```{r flexsurvreg, fig.height = 6, fig.width = 7}
+```{r flexsurvreg, fig.height=6, fig.width=7}
 # setup
 set.seed(123)
 library(flexsurv)
@@ -4357,7 +4355,7 @@ ggcoefstats(
 
 ## panel regression models fit via multilevel modeling (`wblm`)
 
-```{r wblm, fig.height = 6, fig.width = 7}
+```{r wblm, fig.height=6, fig.width=7}
 # setup
 set.seed(123)
 library(panelr)
@@ -4382,7 +4380,7 @@ ggcoefstats(
 
 ## panel regression models fit via generalized estimating equations (`wbgee`)
 
-```{r wbgee, fig.height = 8, fig.width = 6}
+```{r wbgee, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(panelr)
@@ -4408,7 +4406,7 @@ ggcoefstats(
 
 ## Censored Regression with Conditional Heteroscedasticy (`crch`)
 
-```{r crch, fig.height = 4, fig.width = 8}
+```{r crch, fig.height=4, fig.width=8}
 # setup
 set.seed(123)
 library(crch)
@@ -4435,7 +4433,7 @@ ggcoefstats(
 
 ## Marginal Models For Correlated Ordinal Multinomial Responses (`LORgee`)
 
-```{r LORgee, fig.height = 10, fig.width = 8}
+```{r LORgee, fig.height=10, fig.width=8}
 # setup
 set.seed(123)
 library(multgee)
@@ -4461,7 +4459,7 @@ ggcoefstats(
 
 ## summary measures for count data (`epi.2by2`)
 
-```{r epi.2by2, fig.height = 4, fig.width = 6}
+```{r epi.2by2, fig.height=4, fig.width=6}
 # setup
 set.seed(123)
 library(epiR)
@@ -4490,7 +4488,7 @@ ggcoefstats(
 
 ## marginal effects for a probit regression (`probitmfx`)
 
-```{r probitmfx, fig.height = 4, fig.width = 5}
+```{r probitmfx, fig.height=4, fig.width=5}
 # setup
 set.seed(123)
 library(mfx)
@@ -4516,7 +4514,7 @@ ggcoefstats(
 
 ## marginal effects for a beta regression (`betamfx`)
 
-```{r betamfx, fig.height = 4, fig.width = 5}
+```{r betamfx, fig.height=4, fig.width=5}
 # setup
 set.seed(123)
 library(mfx)
@@ -4548,7 +4546,7 @@ ggcoefstats(
 
 Same example can also be used for `logitor` object.
 
-```{r logitmfx, fig.height = 4, fig.width = 5}
+```{r logitmfx, fig.height=4, fig.width=5}
 # setup
 set.seed(123)
 library(mfx)
@@ -4577,7 +4575,7 @@ ggcoefstats(
 
 Same example can also be used for `negbinirr` object.
 
-```{r negbinmfx, fig.height = 4, fig.width = 5}
+```{r negbinmfx, fig.height=4, fig.width=5}
 # simulate some data
 set.seed(123)
 n <- 1000
@@ -4601,7 +4599,7 @@ ggcoefstats(
 
 Same example can also be used for `poissonirr` object.
 
-```{r poissonmfx, fig.height = 4, fig.width = 5}
+```{r poissonmfx, fig.height=4, fig.width=5}
 # simulate some data
 set.seed(123)
 n <- 1000
@@ -4621,7 +4619,7 @@ ggcoefstats(
 
 ## Bayesian generalized (non-)linear multivariate multilevel models (`brmsfit`)
 
-```{r brmsfit, fig.height = 5, fig.width = 7}
+```{r brmsfit, fig.height=5, fig.width=7}
 # setup
 set.seed(123)
 library(brms)
@@ -4652,7 +4650,7 @@ ggcoefstats(
 Let's see another example where we use `brms` to run the same model on multiple
 datasets-
 
-```{r brmsfit_multiple, fig.height = 5, fig.width = 7}
+```{r brmsfit_multiple, fig.height=5, fig.width=7}
 # setup
 set.seed(123)
 library(brms)
@@ -4680,7 +4678,7 @@ ggcoefstats(
 
 ## Bayesian nonlinear models via Stan (`nlstanreg`)
 
-```{r nlstanreg, fig.height = 5, fig.width = 5, error=TRUE}
+```{r nlstanreg, fig.height=5, fig.width=5, error=TRUE}
 # setup
 set.seed(123)
 library(rstanarm)
@@ -4708,7 +4706,7 @@ ggcoefstats(
 
 ## Markov Chain Monte Carlo objects (`mcmc`)
 
-```{r mcmc, fig.height = 5, fig.width = 5}
+```{r mcmc, fig.height=5, fig.width=5}
 # loading the data
 set.seed(123)
 library(coda)
@@ -4728,7 +4726,7 @@ ggcoefstats(
 
 ## MCMC with Just Another Gibbs Sampler (`rjags`)
 
-```{r R2jags, fig.height = 8, fig.width = 6}
+```{r R2jags, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(R2jags)
@@ -4767,7 +4765,7 @@ ggcoefstats(
 
 ## latent variable model (`lavaan`)
 
-```{r lavaan, fig.height = 10, fig.width = 6}
+```{r lavaan, fig.height=10, fig.width=6}
 # setup
 set.seed(123)
 library(lavaan)
@@ -4799,7 +4797,7 @@ ggcoefstats(
 
 Too time-consuming to be run here, so currently skipped.
 
-```{r blavaan, fig.height = 10, fig.width = 6, eval=FALSE}
+```{r blavaan, fig.height=10, fig.width=6, eval=FALSE}
 # setup
 set.seed(123)
 library(blavaan)
@@ -4828,7 +4826,7 @@ ggcoefstats(
 
 ## Bayesian regression models via Stan (`stanreg`)
 
-```{r stanreg, fig.height = 5, fig.width = 5}
+```{r stanreg, fig.height=5, fig.width=5}
 # set up
 set.seed(123)
 library(rstanarm)
@@ -4851,7 +4849,7 @@ ggcoefstats(
 
 ## Bayesian multivariate generalized linear models via Stan (`stanmvreg`)
 
-```{r stanmvreg, fig.height = 5, fig.width = 5, error=TRUE}
+```{r stanmvreg, fig.height=5, fig.width=5, error=TRUE}
 # setup
 set.seed(123)
 library(rstanarm)
@@ -4880,7 +4878,7 @@ ggcoefstats(
 
 ## Bayesian quantile regression (`bayesQR`)
 
-```{r bayesQR, fig.height = 6, fig.width = 6}
+```{r bayesQR, fig.height=6, fig.width=6}
 # needed library
 library(bayesQR)
 
@@ -4908,7 +4906,7 @@ ggstatsplot::ggcoefstats(
 
 ## Bayesian binary and ordinal logistic regression (`blrm`)
 
-```{r blrm, fig.height = 8, fig.width = 10}
+```{r blrm, fig.height=8, fig.width=10}
 # setup
 set.seed(123)
 library(rmsb)
@@ -4930,7 +4928,7 @@ ggstatsplot::ggcoefstats(
 
 ## Compound Poisson Generalized Linear Models (`cpglm`)
 
-```{r cpglm, fig.height = 6, fig.width = 10}
+```{r cpglm, fig.height=6, fig.width=10}
 # set up
 set.seed(123)
 library(cplm)
@@ -4951,7 +4949,7 @@ ggcoefstats(
 
 ## Compound Poisson Generalized Linear Mixed Models (`cpglmm`)
 
-```{r cpglmm, fig.height = 6, fig.width = 10}
+```{r cpglmm, fig.height=6, fig.width=10}
 # set up
 set.seed(123)
 library(cplm)
@@ -4972,7 +4970,7 @@ ggcoefstats(
 
 ## Bayesian Compound Poisson Linear Models (`bcplm`)
 
-```{r bcplm, fig.height = 6, fig.width = 10}
+```{r bcplm, fig.height=6, fig.width=10}
 # set up
 set.seed(123)
 library(cplm)
@@ -4998,7 +4996,7 @@ ggcoefstats(
 
 ## Multivariate Imputation by Chained Equations (`mice`)
 
-```{r mice, fig.height = 6, fig.width = 6}
+```{r mice, fig.height=6, fig.width=6}
 library(mice)
 data(nhanes2)
 imp <- mice(nhanes2)
@@ -5012,7 +5010,7 @@ ggcoefstats(
 
 ## estimations with multiple fixed-effects (`fixest`)
 
-```{r fixest, fig.height = 10, fig.width = 10}
+```{r fixest, fig.height=10, fig.width=10}
 # setup
 library(fixest)
 
@@ -5068,7 +5066,7 @@ combine_plots(
 
 ## multivariate analysis of variance (`manova`)
 
-```{r manova, fig.height = 8, fig.width = 8}
+```{r manova, fig.height=8, fig.width=8}
 # setup
 set.seed(123)
 
@@ -5091,7 +5089,7 @@ Note that a number of regression models will return an object of class `list`,
 in which case this function will fail. But often you can extract the object of
 interest from this list and use it to plot the regression coefficients.
 
-```{r list_gamm4, fig.height = 6, fig.width = 10}
+```{r list_gamm4, fig.height=6, fig.width=10}
 # setup
 library(gamm4)
 set.seed(123)
@@ -5146,7 +5144,7 @@ you enter **must** contain at the minimum the following three columns-
 
 ### parametric
 
-```{r meta1, fig.height = 7, fig.width = 8}
+```{r meta1, fig.height=7, fig.width=8}
 # setup
 set.seed(123)
 library(metaplus)
@@ -5166,7 +5164,7 @@ ggcoefstats(
 
 ### robust
 
-```{r meta2, fig.height = 7, fig.width = 8}
+```{r meta2, fig.height=7, fig.width=8}
 # setup
 set.seed(123)
 library(metaplus)
@@ -5185,7 +5183,7 @@ ggcoefstats(
 
 ### Bayesian
 
-```{r meta3, fig.height = 7, fig.width = 8}
+```{r meta3, fig.height=7, fig.width=8}
 # setup
 set.seed(123)
 library(metaplus)
@@ -5205,7 +5203,7 @@ ggcoefstats(
 You can also provide a dataframe containing all the other relevant
 information for additionally displaying labels with statistical information.
 
-```{r meta4, fig.height = 7, fig.width = 7}
+```{r meta4, fig.height=7, fig.width=7}
 # let's make up a dataframe (with all available details)
 df_full <-
   tibble::tribble(
@@ -5239,7 +5237,7 @@ optional columns are `conf.low` and `conf.high` (for confidence intervals), and
 regression models (`"t"`, `"z"`, `"f"`, `"chi"`) in case you want to display
 statistical labels.
 
-```{r dataframe, fig.height = 6, fig.width = 6}
+```{r dataframe, fig.height=6, fig.width=6}
 # set up
 set.seed(123)
 library(ggstatsplot)

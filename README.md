@@ -9,7 +9,7 @@
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)        | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                                          | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                            |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                      | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)      | [![CoC](https://img.shields.io/badge/CoC-v2.0%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html)                    | [![CodeFactor](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot/badge)](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot) |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)       | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                             |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![status](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg)](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c) | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--05--23-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)       |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![status](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg)](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c) | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--05--25-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)       |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)       |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -681,7 +681,7 @@ ggscatterstats(
   title = "Movie budget and IMDB rating (action)", # title text for the plot
   caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
   ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
-   # turn off `ggstatsplot` theme layer
+  # turn off `ggstatsplot` theme layer
   marginal.type = "boxplot", # type of marginal distribution to be displayed
   xfill = "pink", # color fill for x-axis marginal distribution
   yfill = "#009E73" # color fill for y-axis marginal distribution
@@ -1301,31 +1301,80 @@ in `ggstatsplot` plots.
 
 ``` r
 set.seed(123)
-p <- ggbetweenstats(mtcars, am, mpg)
 
-extract_stats(p)
+# a list of tibbles containing statistical analysis summaries
+ggbetweenstats(mtcars, cyl, mpg) %>%
+  extract_stats()
 #> $subtitle_data
-#> # A tibble: 1 x 16
-#>   term  group mean.group1 mean.group2 statistic df.error p.value
-#>   <chr> <chr>       <dbl>       <dbl>     <dbl>    <dbl>   <dbl>
-#> 1 mpg   am           17.1        24.4     -3.77     18.3 0.00137
-#>   method                  estimate conf.level conf.low conf.high effectsize
-#>   <chr>                      <dbl>      <dbl>    <dbl>     <dbl> <chr>     
-#> 1 Welch Two Sample t-test    -1.35       0.95    -2.17    -0.512 Hedges' g 
-#>   conf.method conf.distribution expression
-#>   <chr>       <chr>             <list>    
-#> 1 ncp         t                 <language>
+#> # A tibble: 1 x 13
+#>   statistic    df df.error    p.value
+#>       <dbl> <dbl>    <dbl>      <dbl>
+#> 1      31.6     2     18.0 0.00000127
+#>   method                                                   estimate conf.level
+#>   <chr>                                                       <dbl>      <dbl>
+#> 1 One-way analysis of means (not assuming equal variances)    0.744       0.95
+#>   conf.low conf.high effectsize conf.method conf.distribution expression
+#>      <dbl>     <dbl> <chr>      <chr>       <chr>             <list>    
+#> 1    0.475     0.853 Omega2     ncp         F                 <language>
 #> 
 #> $caption_data
-#> # A tibble: 2 x 13
-#>   term       estimate conf.level conf.low conf.high    pd rope.percentage
-#>   <chr>         <dbl>      <dbl>    <dbl>     <dbl> <dbl>           <dbl>
-#> 1 Difference     6.44       0.95     2.68    10.0   0.999               0
-#> 2 Cohens_d      -1.30       0.95    -2.11    -0.519 0.999               0
-#>   prior.distribution prior.location prior.scale  bf10 method          expression
-#>   <chr>                       <dbl>       <dbl> <dbl> <chr>           <list>    
-#> 1 cauchy                          0       0.707  86.6 Bayesian t-test <language>
-#> 2 cauchy                          0       0.707  86.6 Bayesian t-test <language>
+#> # A tibble: 6 x 19
+#>   term  estimate conf.level conf.low conf.high    pd rope.percentage
+#>   <chr>    <dbl>      <dbl>    <dbl>     <dbl> <dbl>           <dbl>
+#> 1 mu      20.5         0.95  19.3        21.9  1              0     
+#> 2 cyl-4    5.90        0.95   4.11        7.52 1              0     
+#> 3 cyl-6   -0.704       0.95  -2.64        1.06 0.780          0.416 
+#> 4 cyl-8   -5.18        0.95  -6.76       -3.55 1              0     
+#> 5 sig2    11.0         0.95   6.24       18.3  1              0     
+#> 6 g_cyl    2.69        0.95   0.0911     18.7  1              0.0438
+#>   prior.distribution prior.location prior.scale component       bf10
+#>   <chr>                       <dbl>       <dbl> <chr>          <dbl>
+#> 1 cauchy                          0       0.707 extra       3008850.
+#> 2 cauchy                          0       0.707 conditional 3008850.
+#> 3 cauchy                          0       0.707 conditional 3008850.
+#> 4 cauchy                          0       0.707 conditional 3008850.
+#> 5 cauchy                          0       0.707 extra       3008850.
+#> 6 cauchy                          0       0.707 extra       3008850.
+#>   method                             r2 std.dev r2.conf.level r2.conf.low
+#>   <chr>                           <dbl>   <dbl>         <dbl>       <dbl>
+#> 1 Bayes factors for linear models 0.714  0.0503          0.95       0.574
+#> 2 Bayes factors for linear models 0.714  0.0503          0.95       0.574
+#> 3 Bayes factors for linear models 0.714  0.0503          0.95       0.574
+#> 4 Bayes factors for linear models 0.714  0.0503          0.95       0.574
+#> 5 Bayes factors for linear models 0.714  0.0503          0.95       0.574
+#> 6 Bayes factors for linear models 0.714  0.0503          0.95       0.574
+#>   r2.conf.high expression
+#>          <dbl> <list>    
+#> 1        0.788 <language>
+#> 2        0.788 <language>
+#> 3        0.788 <language>
+#> 4        0.788 <language>
+#> 5        0.788 <language>
+#> 6        0.788 <language>
+#> 
+#> $pairwise_comparisons_data
+#> # A tibble: 3 x 11
+#>   group1 group2 statistic   p.value alternative method            distribution
+#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>             <chr>       
+#> 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           
+#> 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           
+#> 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           
+#>   p.adjustment test.details      p.value.adjustment
+#>   <chr>        <chr>             <chr>             
+#> 1 none         Games-Howell test Holm              
+#> 2 none         Games-Howell test Holm              
+#> 3 none         Games-Howell test Holm              
+#>   label                                     
+#>   <chr>                                     
+#> 1 list(~italic(p)[Holm-corrected]==0.001)   
+#> 2 list(~italic(p)[Holm-corrected]==1.4e-05) 
+#> 3 list(~italic(p)[Holm-corrected]==2.57e-04)
+#> 
+#> $descriptive_data
+#> NULL
+#> 
+#> $one_sample_data
+#> NULL
 ```
 
 Note that all of this analysis is carried out by `statsExpressions`

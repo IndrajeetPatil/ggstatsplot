@@ -141,7 +141,7 @@ centrality_data <- function(data,
 #'
 #' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
-#' @param df_mcp A dataframe containing results from pairwise comparisons
+#' @param mpc_df A dataframe containing results from pairwise comparisons
 #'   (produced by `pairwiseComparisons::pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
 #'
@@ -171,12 +171,12 @@ centrality_data <- function(data,
 #'   data = iris,
 #'   x = Species,
 #'   y = Sepal.Length,
-#'   df_mcp = df_pair
+#'   mpc_df = df_pair
 #' )
 #' @noRd
 
 ggsignif_adder <- function(plot,
-                           df_mcp,
+                           mpc_df,
                            data,
                            x,
                            y,
@@ -184,34 +184,34 @@ ggsignif_adder <- function(plot,
                            ggsignif.args = list(textsize = 3, tip_length = 0.01),
                            ...) {
   # creating a column for group combinations
-  df_mcp %<>% dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
+  mpc_df %<>% dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
   # for Bayes Factor, there will be no "p.value" column
-  if ("p.value" %in% names(df_mcp)) {
+  if ("p.value" %in% names(mpc_df)) {
     # decide what needs to be displayed
-    if (grepl("^s", pairwise.display)) df_mcp %<>% dplyr::filter(p.value < 0.05)
-    if (grepl("^n", pairwise.display)) df_mcp %<>% dplyr::filter(p.value >= 0.05)
+    if (grepl("^s", pairwise.display)) mpc_df %<>% dplyr::filter(p.value < 0.05)
+    if (grepl("^n", pairwise.display)) mpc_df %<>% dplyr::filter(p.value >= 0.05)
 
     # proceed only if there are any significant comparisons to display
-    if (dim(df_mcp)[[1]] == 0L) {
+    if (dim(mpc_df)[[1]] == 0L) {
       return(plot)
     }
   }
 
   # arrange the dataframe so that annotations are properly aligned
-  df_mcp %<>% dplyr::arrange(group1, group2)
+  mpc_df %<>% dplyr::arrange(group1, group2)
 
   # adding ggsignif comparisons to the plot
   plot +
     rlang::exec(
       ggsignif::geom_signif,
-      comparisons = df_mcp$groups,
+      comparisons = mpc_df$groups,
       map_signif_level = TRUE,
       y_position = ggsignif_xy(
         data %>% dplyr::pull({{ x }}),
         data %>% dplyr::pull({{ y }})
       ),
-      annotations = df_mcp$label,
+      annotations = mpc_df$label,
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args

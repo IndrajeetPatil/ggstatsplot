@@ -3,7 +3,7 @@
 test_that(
   desc = "ggcoefstats with glm with z",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
     set.seed(123)
 
     # having a look at the Titanic dataset
@@ -41,7 +41,7 @@ test_that(
 test_that(
   desc = "ggcoefstats with coxph.panel model",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     # model
     df <-
@@ -105,7 +105,7 @@ test_that(
 test_that(
   desc = "ggcoefstats with lm model",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
     set.seed(123)
 
     # model
@@ -142,7 +142,7 @@ test_that(
 test_that(
   desc = "ggcoefstats with partial variants of effect size for f-statistic",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     ## partial eta-squared
 
@@ -221,7 +221,7 @@ test_that(
 test_that(
   desc = "check tidy output",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     library(ggstatsplot)
 
@@ -246,7 +246,7 @@ test_that(
 test_that(
   desc = "check if glance works",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     # lm
     set.seed(123)
@@ -263,7 +263,7 @@ test_that(
 test_that(
   desc = "CIs missing and palette change message",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     df <-
       structure(list(
@@ -313,7 +313,7 @@ test_that(
 test_that(
   desc = "meta subtitle",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     # dataframe
     df_eg <-
@@ -355,7 +355,7 @@ test_that(
 test_that(
   desc = "duplicated terms",
   code = {
-    skip_on_cran()
+    options(tibble.width = Inf)
 
     df <-
       structure(

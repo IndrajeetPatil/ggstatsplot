@@ -157,7 +157,16 @@
       1 mpg        1    119.   1.38e-11    0.809   0.663      0.880       28
       2 am         1      7.30 1.16e- 2    0.207   0.0118     0.448       28
       3 mpg:am     1      3.73 6.36e- 2    0.118   0          0.357       28
-      # ... with 2 more variables: estimate.type <chr>, label <chr>
+        estimate.type      
+        <chr>              
+      1 partial eta-squared
+      2 partial eta-squared
+      3 partial eta-squared
+        label                                                                         
+        <chr>                                                                         
+      1 "list(~italic(F)('1'*\",\"*'28')=='118.89', ~italic(p)=='1.38e-11', ~widehat(~
+      2 "list(~italic(F)('1'*\",\"*'28')=='7.30', ~italic(p)=='0.012', ~widehat(itali~
+      3 "list(~italic(F)('1'*\",\"*'28')=='3.73', ~italic(p)=='0.064', ~widehat(itali~
       
       [[2]]
       [[2]]$x
@@ -202,7 +211,16 @@
       1 vore             3      7.39 0.000584   0.308    0.0458     0.498       35
       2 brainwt          1      2.03 0.163      0.0235   0          0.192       35
       3 vore:brainwt     3      4.01 0.0148     0.174    0          0.364       35
-      # ... with 2 more variables: estimate.type <chr>, label <chr>
+        estimate.type        
+        <chr>                
+      1 partial omega-squared
+      2 partial omega-squared
+      3 partial omega-squared
+        label                                                                         
+        <chr>                                                                         
+      1 "list(~italic(F)('3'*\",\"*'35')=='7.388', ~italic(p)=='0.001', ~widehat(ital~
+      2 "list(~italic(F)('1'*\",\"*'35')=='2.034', ~italic(p)=='0.163', ~widehat(ital~
+      3 "list(~italic(F)('3'*\",\"*'35')=='4.012', ~italic(p)=='0.015', ~widehat(ital~
       
       [[2]]
       [[2]]$x
@@ -251,7 +269,24 @@
       5 Within N:P       1    1.38   0.263    0.103     0          0.455       12
       6 Within N:K       1    2.15   0.169    0.152     0          0.502       12
       7 Within P:K       1    0.0312 0.863    0.00259   0          0.223       12
-      # ... with 2 more variables: estimate.type <chr>, label <chr>
+        estimate.type      
+        <chr>              
+      1 partial eta-squared
+      2 partial eta-squared
+      3 partial eta-squared
+      4 partial eta-squared
+      5 partial eta-squared
+      6 partial eta-squared
+      7 partial eta-squared
+        label                                                                         
+        <chr>                                                                         
+      1 "list(~italic(F)('1'*\",\"*'4')=='0.48', ~italic(p)=='0.525', ~widehat(italic~
+      2 "list(~italic(F)('1'*\",\"*'12')=='12.26', ~italic(p)=='0.004', ~widehat(ital~
+      3 "list(~italic(F)('1'*\",\"*'12')=='0.54', ~italic(p)=='0.475', ~widehat(itali~
+      4 "list(~italic(F)('1'*\",\"*'12')=='6.17', ~italic(p)=='0.029', ~widehat(itali~
+      5 "list(~italic(F)('1'*\",\"*'12')=='1.38', ~italic(p)=='0.263', ~widehat(itali~
+      6 "list(~italic(F)('1'*\",\"*'12')=='2.15', ~italic(p)=='0.169', ~widehat(itali~
+      7 "list(~italic(F)('1'*\",\"*'12')=='0.03', ~italic(p)=='0.863', ~widehat(itali~
       
       [[2]]
       # A tibble: 7 x 10
@@ -264,7 +299,24 @@
       5 N:K       1    1.08    0.314  0.0631   0            0.362       16
       6 P:K       1    0.0157  0.902  0.000979 0            0.147       16
       7 N:P:K     1    1.20    0.289  0.0700   0            0.372       16
-      # ... with 2 more variables: estimate.type <chr>, label <chr>
+        estimate.type      
+        <chr>              
+      1 partial eta-squared
+      2 partial eta-squared
+      3 partial eta-squared
+      4 partial eta-squared
+      5 partial eta-squared
+      6 partial eta-squared
+      7 partial eta-squared
+        label                                                                         
+        <chr>                                                                         
+      1 "list(~italic(F)('1'*\",\"*'16')=='6.16', ~italic(p)=='0.025', ~widehat(itali~
+      2 "list(~italic(F)('1'*\",\"*'16')=='0.27', ~italic(p)=='0.608', ~widehat(itali~
+      3 "list(~italic(F)('1'*\",\"*'16')=='3.10', ~italic(p)=='0.097', ~widehat(itali~
+      4 "list(~italic(F)('1'*\",\"*'16')=='0.69', ~italic(p)=='0.418', ~widehat(itali~
+      5 "list(~italic(F)('1'*\",\"*'16')=='1.08', ~italic(p)=='0.314', ~widehat(itali~
+      6 "list(~italic(F)('1'*\",\"*'16')=='0.02', ~italic(p)=='0.902', ~widehat(itali~
+      7 "list(~italic(F)('1'*\",\"*'16')=='1.20', ~italic(p)=='0.289', ~widehat(itali~
       
 
 # duplicated terms

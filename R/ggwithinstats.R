@@ -270,7 +270,7 @@ ggwithinstats <- function(data,
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
-    df_mcp <- pairwiseComparisons::pairwise_comparisons(
+    mpc_df <- pairwiseComparisons::pairwise_comparisons(
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -284,7 +284,7 @@ ggwithinstats <- function(data,
     # adding the layer for pairwise comparisons
     plot <- ggsignif_adder(
       plot = plot,
-      df_mcp = df_mcp,
+      mpc_df = mpc_df,
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -296,7 +296,7 @@ ggwithinstats <- function(data,
     if (type != "bayes") {
       caption <- pairwiseComparisons::pairwise_caption(
         caption,
-        unique(df_mcp$test.details),
+        unique(mpc_df$test.details),
         pairwise.display
       )
     }
