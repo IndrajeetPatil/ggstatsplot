@@ -28,7 +28,3 @@ ipmisc::enframe
 #' @importFrom ipmisc as_tibble
 ipmisc::as_tibble
 
-
-#' @export
-#' @importFrom effectsize effectsize
-effectsize::effectsize

@@ -237,19 +237,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "effectsize",
-      "name": "effectsize",
-      "version": ">= 0.4.4-2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://github.com/easystats/effectsize"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
       "provider": {
@@ -405,7 +392,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.0.1.9000",
+      "version": ">= 1.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -471,17 +458,20 @@
           "familyName": "Patil"
         }
       ],
-      "name": "Visualizations with statistical details: The 'ggstatsplot' approach",
-      "identifier": "10.31234/osf.io/p7mku",
-      "url": "https://psyarxiv.com/p7mku/",
-      "@id": "https://doi.org/10.31234/osf.io/p7mku",
-      "sameAs": "https://doi.org/10.31234/osf.io/p7mku",
+      "name": "{Visualizations with statistical details: The {'ggstatsplot'} approach}",
+      "identifier": "10.21105/joss.03167",
+      "url": "https://doi.org/10.21105/joss.03167",
+      "pagination": "3167",
+      "@id": "https://doi.org/10.21105/joss.03167",
+      "sameAs": "https://doi.org/10.21105/joss.03167",
       "isPartOf": {
         "@type": "PublicationIssue",
+        "issueNumber": "61",
         "datePublished": "2021",
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
-          "name": "PsyArxiv"
+          "volumeNumber": "6",
+          "name": "{Journal of Open Source Software}"
         }
       }
     }
@@ -496,6 +486,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "12802.804KB",
+  "fileSize": "12815.487KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
