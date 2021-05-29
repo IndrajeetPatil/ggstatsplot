@@ -412,26 +412,14 @@ ggcoefstats <- function(x,
         ))
       }
 
-      # ========================== palette check =================================
+      # palette check ----------------------
 
-      # if no. of factor levels is greater than the default palette color count
-      palette_message(package, palette, length(tidy_df$term))
-
-      # computing the number of colors in a given palette
-      palette_df <- as_tibble(paletteer::palettes_d_names) %>%
-        dplyr::filter(package == !!package, palette == !!palette) %>%
-        dplyr::select(length)
-
-      # if insufficient number of colors are available in a given palette
-      if (palette_df$length[[1]] < length(tidy_df$term)) stats.label.color <- "black"
-
-      # if user has not specified colors, then use a color palette
-      if (is.null(stats.label.color)) {
-        stats.label.color <- paletteer::paletteer_d(
-          palette = paste0(package, "::", palette),
-          n = length(tidy_df$term),
-          type = "discrete"
-        )
+      # has user specified if a specific color for the label?
+      # if not, use a palette, assuming enough no. of colors are available
+      if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
+        stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
+      } else {
+        stats.label.color <- "black"
       }
 
       # adding labels

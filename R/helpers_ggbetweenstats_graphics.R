@@ -360,16 +360,20 @@ function_switch <- function(test, element, ...) {
 
 # function body
 palette_message <- function(package, palette, min_length) {
-  # computing the number of colors in a given palette
-  palette_length <- paletteer::palettes_d_names %>%
-    dplyr::filter(package == !!package, palette == !!palette) %$%
-    length[[1]]
+  # computing the palette length
+  dplyr::filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
+    length[[1]] -> pl
 
-  # if insufficient number of colors are available in a given palette
-  if (palette_length < min_length) {
+  # check if insufficient number of colors are available in a given palette
+  pl_message <- ifelse(pl < min_length, FALSE, TRUE)
+
+  # inform the user
+  if (isFALSE(pl_message)) {
     message(cat(
       "Warning: Number of labels is greater than default palette color count.\n",
       "Try using another color `palette` (and/or `package`).\n"
     ))
   }
+
+  invisible(pl_message)
 }
