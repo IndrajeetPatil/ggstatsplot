@@ -143,9 +143,9 @@ test_that(
     # creating the plot
     set.seed(123)
     p <- ggbetweenstats(
-      data = mtcars,
-      x = cyl,
-      y = wt,
+      data = iris,
+      x = Species,
+      y = Sepal.Length,
       results.subtitle = FALSE,
       bf.message = FALSE,
       k = 3,

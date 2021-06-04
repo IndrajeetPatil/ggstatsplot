@@ -451,9 +451,9 @@
     Output
       [[1]]
         x        y                            label PANEL group nudge_x  nudge_y
-      1 1 2.093311 list(~widehat(mu)[MAP]=='2.093')     1     1     1.4 2.093311
-      2 2 3.426334 list(~widehat(mu)[MAP]=='3.426')     1     2     2.4 3.426334
-      3 3 3.626088 list(~widehat(mu)[MAP]=='3.626')     1     3     3.4 3.626088
+      1 1 5.021408 list(~widehat(mu)[MAP]=='5.021')     1     1     1.4 5.021408
+      2 2 5.747801 list(~widehat(mu)[MAP]=='5.748')     1     2     2.4 5.747801
+      3 3 6.398534 list(~widehat(mu)[MAP]=='6.399')     1     3     3.4 6.398534
         colour  fill size angle alpha family fontface lineheight hjust vjust
       1  black white    3     0    NA               1        1.2   0.5   0.5
       2  black white    3     0    NA               1        1.2   0.5   0.5
@@ -472,36 +472,36 @@
       3         FALSE
       
       [[2]]
-        x xend        y     yend                      annotation group PANEL shape
-      1 1    1 5.716040 5.755150 list(~log[e](BF['01'])==-2.437) 4-6-1     1    19
-      2 1    2 5.755150 5.755150 list(~log[e](BF['01'])==-2.437) 4-6-1     1    19
-      3 2    2 5.755150 5.716040 list(~log[e](BF['01'])==-2.437) 4-6-1     1    19
-      4 1    1 6.009365 6.048475 list(~log[e](BF['01'])==-8.561) 4-8-2     1    19
-      5 1    3 6.048475 6.048475 list(~log[e](BF['01'])==-8.561) 4-8-2     1    19
-      6 3    3 6.048475 6.009365 list(~log[e](BF['01'])==-8.561) 4-8-2     1    19
-      7 2    2 6.302690 6.341800 list(~log[e](BF['01'])==-1.679) 6-8-3     1    19
-      8 2    3 6.341800 6.341800 list(~log[e](BF['01'])==-1.679) 6-8-3     1    19
-      9 3    3 6.341800 6.302690 list(~log[e](BF['01'])==-1.679) 6-8-3     1    19
-        colour textsize angle hjust vjust alpha family fontface lineheight linetype
-      1  black        3     0   0.5     0    NA               1        1.2        1
-      2  black        3     0   0.5     0    NA               1        1.2        1
-      3  black        3     0   0.5     0    NA               1        1.2        1
-      4  black        3     0   0.5     0    NA               1        1.2        1
-      5  black        3     0   0.5     0    NA               1        1.2        1
-      6  black        3     0   0.5     0    NA               1        1.2        1
-      7  black        3     0   0.5     0    NA               1        1.2        1
-      8  black        3     0   0.5     0    NA               1        1.2        1
-      9  black        3     0   0.5     0    NA               1        1.2        1
-        size
-      1  0.5
-      2  0.5
-      3  0.5
-      4  0.5
-      5  0.5
-      6  0.5
-      7  0.5
-      8  0.5
-      9  0.5
+        x xend      y   yend                       annotation                  group
+      1 1    1 8.2415 8.2775 list(~log[e](BF['01'])==-33.669)    setosa-versicolor-1
+      2 1    2 8.2775 8.2775 list(~log[e](BF['01'])==-33.669)    setosa-versicolor-1
+      3 2    2 8.2775 8.2415 list(~log[e](BF['01'])==-33.669)    setosa-versicolor-1
+      4 1    1 8.5115 8.5475 list(~log[e](BF['01'])==-56.343)     setosa-virginica-2
+      5 1    3 8.5475 8.5475 list(~log[e](BF['01'])==-56.343)     setosa-virginica-2
+      6 3    3 8.5475 8.5115 list(~log[e](BF['01'])==-56.343)     setosa-virginica-2
+      7 2    2 8.7815 8.8175 list(~log[e](BF['01'])==-11.162) versicolor-virginica-3
+      8 2    3 8.8175 8.8175 list(~log[e](BF['01'])==-11.162) versicolor-virginica-3
+      9 3    3 8.8175 8.7815 list(~log[e](BF['01'])==-11.162) versicolor-virginica-3
+        PANEL shape colour textsize angle hjust vjust alpha family fontface
+      1     1    19  black        3     0   0.5     0    NA               1
+      2     1    19  black        3     0   0.5     0    NA               1
+      3     1    19  black        3     0   0.5     0    NA               1
+      4     1    19  black        3     0   0.5     0    NA               1
+      5     1    19  black        3     0   0.5     0    NA               1
+      6     1    19  black        3     0   0.5     0    NA               1
+      7     1    19  black        3     0   0.5     0    NA               1
+      8     1    19  black        3     0   0.5     0    NA               1
+      9     1    19  black        3     0   0.5     0    NA               1
+        lineheight linetype size
+      1        1.2        1  0.5
+      2        1.2        1  0.5
+      3        1.2        1  0.5
+      4        1.2        1  0.5
+      5        1.2        1  0.5
+      6        1.2        1  0.5
+      7        1.2        1  0.5
+      8        1.2        1  0.5
+      9        1.2        1  0.5
       
 
 ---
@@ -510,13 +510,13 @@
       pb$plot$labels
     Output
       $x
-      [1] "cyl"
+      [1] "Species"
       
       $y
-      [1] "wt"
+      [1] "Sepal.Length"
       
       $colour
-      [1] "cyl"
+      [1] "Species"
       
       $title
       NULL

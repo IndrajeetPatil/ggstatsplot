@@ -29,11 +29,11 @@ Imports:
     ggplot2,
     ggrepel,
     ggsignif,
-    insight (>= 0.14.0),
+    insight (>= 0.14.1),
     ipmisc (>= 6.0.2),
     pairwiseComparisons (>= 3.1.5),
     paletteer,
-    parameters (>= 0.13.0),
+    parameters (>= 0.14.0),
     patchwork,
     performance,
     purrr,
@@ -57,8 +57,6 @@ Suggests:
     tibble,
     vdiffr,
     WRS2
-Remotes:
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

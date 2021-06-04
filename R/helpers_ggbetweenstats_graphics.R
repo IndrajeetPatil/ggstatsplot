@@ -112,18 +112,18 @@ centrality_data <- function(data,
   # ------------------------ dataframe -------------------------------------
 
   # creating the dataframe
-  data %>%
-    dplyr::select({{ x }}, {{ y }}) %>%
+  dplyr::select(data, {{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
     dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     dplyr::group_by({{ x }}) %>%
     dplyr::group_modify(
       .f = ~ parameters::standardize_names(
-        data = as.data.frame(suppressWarnings(parameters::describe_distribution(
+        data = parameters::describe_distribution(
           x = .,
           centrality = centrality,
-          threshold = tr
-        ))),
+          threshold = tr,
+          ci = NULL # TODO: https://github.com/easystats/bayestestR/issues/429
+        ),
         style = "broom"
       )
     ) %>%
@@ -133,7 +133,9 @@ centrality_data <- function(data,
     dplyr::ungroup() %>%
     dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", .prettyNum(n), ")")) %>%
     dplyr::arrange({{ x }}) %>%
-    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate, dplyr::matches("label"))
+    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate,
+      n_obs = n, dplyr::everything()
+    )
 }
 
 #' @title Adding `geom_signif` to `ggplot`
@@ -158,12 +160,11 @@ centrality_data <- function(data,
 #'   geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
-#' df_pair <-
-#'   pairwiseComparisons::pairwise_comparisons(
-#'     data = iris,
-#'     x = Species,
-#'     y = Sepal.Length
-#'   )
+#' df_pair <- pairwiseComparisons::pairwise_comparisons(
+#'   data = iris,
+#'   x = Species,
+#'   y = Sepal.Length
+#' )
 #'
 #' # adding a geom for pairwise comparisons
 #' ggstatsplot:::ggsignif_adder(
