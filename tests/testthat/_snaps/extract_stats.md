@@ -24,7 +24,7 @@
     Code
       length(extract_stats(p4)$pairwise_comparisons_data)
     Output
-      [1] 11
+      [1] 12
 
 ---
 

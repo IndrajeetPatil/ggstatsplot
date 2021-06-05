@@ -204,9 +204,9 @@
       1 1    1 167852.2 169428.2 list(~italic(p)[uncorrected]==0.0467) PG-PG-13-1
       2 1    2 169428.2 169428.2 list(~italic(p)[uncorrected]==0.0467) PG-PG-13-1
       3 2    2 169428.2 167852.2 list(~italic(p)[uncorrected]==0.0467) PG-PG-13-1
-      4 2    2 179672.2 181248.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
-      5 2    3 181248.2 181248.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
-      6 3    3 181248.2 179672.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
+      4 2    2 191492.2 193068.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
+      5 2    3 193068.2 193068.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
+      6 3    3 193068.2 191492.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
         PANEL shape colour textsize angle hjust vjust alpha family fontface
       1     1    19  black        3     0   0.5     0    NA               1
       2     1    19  black        3     0   0.5     0    NA               1
@@ -397,9 +397,9 @@
       1 1    1 36.915 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
       2 1    2 37.175 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
       3 2    2 37.175 36.915    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
-      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
-      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
-      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
+      4 2    2 40.815 41.075 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
+      5 2    3 41.075 41.075 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
+      6 3    3 41.075 40.815 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
         shape colour textsize angle hjust vjust alpha family fontface lineheight
       1    19  black        3     0   0.5     0    NA               1        1.2
       2    19  black        3     0   0.5     0    NA               1        1.2

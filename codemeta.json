@@ -301,14 +301,14 @@
       "@type": "SoftwareApplication",
       "identifier": "pairwiseComparisons",
       "name": "pairwiseComparisons",
-      "version": ">= 3.1.5",
+      "version": ">= 3.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=pairwiseComparisons"
+      "sameAs": "https://github.com/IndrajeetPatil/pairwiseComparisons"
     },
     {
       "@type": "SoftwareApplication",
@@ -486,6 +486,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "12806.882KB",
+  "fileSize": "12806.035KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
