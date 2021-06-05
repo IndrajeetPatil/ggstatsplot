@@ -293,11 +293,11 @@ ggwithinstats <- function(data,
     )
 
     # preparing the caption for pairwise comparisons test
-      caption <- pairwiseComparisons::pairwise_caption(
-        caption,
-        unique(mpc_df$test.details),
-        ifelse(type == "bayes", "all", pairwise.display)
-      )
+    caption <- pairwiseComparisons::pairwise_caption(
+      caption,
+      unique(mpc_df$test.details),
+      ifelse(type == "bayes", "all", pairwise.display)
+    )
   }
 
   # ------------------------ annotations and themes -------------------------

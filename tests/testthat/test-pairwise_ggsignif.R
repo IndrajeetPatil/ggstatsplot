@@ -135,7 +135,7 @@ test_that(
   }
 )
 
-# check bayesian test display works -------------------------------------------------
+# check bayesian test display works ----------------------------------------
 
 test_that(
   desc = "check bayesian test display",
@@ -160,5 +160,33 @@ test_that(
     set.seed(123)
     expect_snapshot(list(pb$data[[6]], pb$data[[7]]))
     expect_snapshot(pb$plot$labels)
+  }
+)
+
+test_that(
+  desc = "additional test",
+  code = {
+    set.seed(123)
+    p1 <- ggbetweenstats(dplyr::filter(movies_long, genre == "Comedy"), mpaa, length,
+      results.subtitle = FALSE,
+      bf.message = FALSE
+    )
+
+    set.seed(123)
+    p2 <- ggbetweenstats(dplyr::filter(movies_long, genre == "Action"), mpaa, length,
+      results.subtitle = FALSE,
+      bf.message = FALSE
+    )
+
+    # build the plot
+    pb1 <- ggplot2::ggplot_build(p1)
+    pb2 <- ggplot2::ggplot_build(p2)
+
+    # check data
+    set.seed(123)
+    expect_snapshot(length(pb1$data))
+    expect_snapshot(list(pb2$data[[6]], pb2$data[[7]]))
+    expect_snapshot(pb1$plot$labels)
+    expect_snapshot(pb2$plot$labels)
   }
 )

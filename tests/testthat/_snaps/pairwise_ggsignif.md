@@ -532,3 +532,108 @@
       [1] "label"
       
 
+# additional test
+
+    Code
+      length(pb1$data)
+    Output
+      [1] 6
+
+---
+
+    Code
+      list(pb2$data[[6]], pb2$data[[7]])
+    Output
+      [[1]]
+        x        y                              label PANEL group nudge_x  nudge_y
+      1 1 116.2667 list(~widehat(mu)[mean]=='116.27')     1     1     1.4 116.2667
+      2 2 116.6944 list(~widehat(mu)[mean]=='116.69')     1     2     2.4 116.6944
+      3 3 102.3838 list(~widehat(mu)[mean]=='102.38')     1     3     3.4 102.3838
+        colour  fill size angle alpha family fontface lineheight hjust vjust
+      1  black white    3     0    NA               1        1.2   0.5   0.5
+      2  black white    3     0    NA               1        1.2   0.5   0.5
+      3  black white    3     0    NA               1        1.2   0.5   0.5
+        point.size segment.linetype segment.size segment.curvature segment.angle
+      1          1                4          0.5                 0            90
+      2          1                4          0.5                 0            90
+      3          1                4          0.5                 0            90
+        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
+      1           1           0.5           TRUE                   1           FALSE
+      2           1           0.5           TRUE                   1           FALSE
+      3           1           0.5           TRUE                   1           FALSE
+        segment.debug
+      1         FALSE
+      2         FALSE
+      3         FALSE
+      
+      [[2]]
+        x xend       y    yend                              annotation     group
+      1 2    2 264.115 265.825 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
+      2 2    3 265.825 265.825 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
+      3 3    3 265.825 264.115 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
+        PANEL shape colour textsize angle hjust vjust alpha family fontface
+      1     1    19  black        3     0   0.5     0    NA               1
+      2     1    19  black        3     0   0.5     0    NA               1
+      3     1    19  black        3     0   0.5     0    NA               1
+        lineheight linetype size
+      1        1.2        1  0.5
+      2        1.2        1  0.5
+      3        1.2        1  0.5
+      
+
+---
+
+    Code
+      pb1$plot$labels
+    Output
+      $x
+      [1] "mpaa"
+      
+      $y
+      [1] "length"
+      
+      $colour
+      [1] "mpaa"
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Games-Howell test"), 
+          "; Comparisons shown: ", bold("only significant")))
+      
+      $label
+      [1] "label"
+      
+
+---
+
+    Code
+      pb2$plot$labels
+    Output
+      $x
+      [1] "mpaa"
+      
+      $y
+      [1] "length"
+      
+      $colour
+      [1] "mpaa"
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Games-Howell test"), 
+          "; Comparisons shown: ", bold("only significant")))
+      
+      $label
+      [1] "label"
+      
+
