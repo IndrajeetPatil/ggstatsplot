@@ -177,6 +177,9 @@ centrality_data <- function(data,
 #' @noRd
 
 ggsignif_adder <- function(plot,
+                           data,
+                           x,
+                           y,
                            mpc_df,
                            pairwise.display = "significant",
                            ggsignif.args = list(textsize = 3, tip_length = 0.01),
@@ -205,13 +208,42 @@ ggsignif_adder <- function(plot,
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
-      y_position = mpc_df$y_position,
+      y_position = ggsignif_xy(
+        data %>% dplyr::pull({{ x }}),
+        data %>% dplyr::pull({{ y }})
+      ),
       annotations = mpc_df$label,
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args
     )
 }
+
+#' @name ggsignif_xy
+#' @importFrom utils combn
+#'
+#' @inheritParams ggbetweenstats
+#'
+#' @keywords internal
+#' @noRd
+
+ggsignif_xy <- function(x, y) {
+  # number of comparisons
+  n_comparions <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
+
+  # start position on `y`-axis for the `ggsignif` lines
+  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
+
+  # steps in which the y values need to increase
+  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
+
+  # end position on `y`-axis for the `ggsignif` lines
+  y_end <- y_start + (step_length * n_comparions)
+
+  # creating a vector of positions for the `ggsignif` lines
+  seq(y_start, y_end, length.out = n_comparions)
+}
+
 
 #' @title Making aesthetic modifications to the plot
 #' @name aesthetic_addon
