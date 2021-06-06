@@ -1,7 +1,6 @@
-if (getRversion() < "4.1") {
+if (getRversion() > "4.3") {
   test_that("plots are rendered correctly", {
     skip_on_cran()
-    skip_on_os("windows")
     skip_if_not_installed("vdiffr")
 
     ## ----ggbetweenstats-------------------------------
