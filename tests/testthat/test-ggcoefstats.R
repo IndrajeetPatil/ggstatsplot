@@ -254,7 +254,7 @@ test_that(
     glance_df1 <- ggcoefstats(x = mod1, output = "glance")
 
     # checking if they are present
-    expect_true(all(c("aic", "bic") %in% names(glance_df1)))
+    expect_true(all(c("AIC", "BIC") %in% names(glance_df1)))
   }
 )
 

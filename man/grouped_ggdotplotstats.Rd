@@ -120,8 +120,8 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
-    \item{\code{ylab}}{Labels for \code{x}- and \code{y}- axis variables, respectively
-(Defaults: \code{"regression coefficient"} and \code{"term"}).}
+    \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
   }}
 }
 \description{

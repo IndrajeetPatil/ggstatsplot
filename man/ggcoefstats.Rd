@@ -17,8 +17,8 @@ ggcoefstats(
   meta.type = "parametric",
   bf.message = TRUE,
   sort = "none",
-  xlab = "regression coefficient",
-  ylab = "term",
+  xlab = NULL,
+  ylab = NULL,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -67,7 +67,7 @@ excluded from the plot (Default: \code{FALSE}).}
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant only for models objects
-of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
+with \emph{F}-statistic.}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
@@ -89,8 +89,11 @@ should be displayed in caption. Defaults to \code{TRUE}.}
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab, ylab}{Labels for \code{x}- and \code{y}- axis variables, respectively
-(Defaults: \code{"regression coefficient"} and \code{"term"}).}
+\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
+
+\item{ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 
@@ -157,10 +160,10 @@ For more details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \note{
-\strong{Important}: In case you want to carry out meta-analysis using this
+\enumerate{
+\item In case you want to carry out meta-analysis using this
 function, it assumes that you have already downloaded the needed package
 (\code{metafor}, \code{metaplus}, or \code{metaBMA}) for meta-analysis.
-\enumerate{
 \item All rows of regression estimates where either of the following
 quantities is \code{NA} will be removed if labels are requested: \code{estimate},
 \code{statistic}, \code{p.value}.

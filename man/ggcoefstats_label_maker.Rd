@@ -24,7 +24,7 @@ ggcoefstats_label_maker(
 
 \item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
 (default) or \code{"omega"}. This argument is relevant only for models objects
-of class \code{aov}, \code{anova}, \code{aovlist}, \code{"Gam"}, and \code{"manova"}.}
+with \emph{F}-statistic.}
 
 \item{...}{Currently ignored.}
 }

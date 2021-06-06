@@ -44,8 +44,8 @@ be accepted.}
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
-\item{ylab}{Labels for \code{x}- and \code{y}- axis variables, respectively
-(Defaults: \code{"regression coefficient"} and \code{"term"}).}
+\item{ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+variable names for \code{x} and \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 
