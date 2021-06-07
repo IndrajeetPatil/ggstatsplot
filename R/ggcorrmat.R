@@ -117,7 +117,7 @@ ggcorrmat <- function(data,
   if (missing(cor.vars)) {
     df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
-    df <- dplyr::select(.data = data, {{ cor.vars }})
+    df <- dplyr::select(data, {{ cor.vars }})
   }
 
   # renaming the columns if so desired

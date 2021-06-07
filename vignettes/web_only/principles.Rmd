@@ -92,7 +92,7 @@ set.seed(123)
 # plot
 ggbetweenstats(
   data = dplyr::filter(
-    .data = movies_long,
+    movies_long,
     genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
   ),
   x = genre,
@@ -328,7 +328,7 @@ set.seed(123)
 # creating a new dataset without any NAs in variables of interest
 msleep_no_na <-
   dplyr::filter(
-    .data = ggplot2::msleep,
+    ggplot2::msleep,
     !is.na(sleep_rem), !is.na(awake), !is.na(brainwt), !is.na(bodywt)
   )
 

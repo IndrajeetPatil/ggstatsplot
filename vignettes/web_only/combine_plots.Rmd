@@ -43,7 +43,7 @@ Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg
 The full power of `ggstatsplot` can be leveraged with a functional programming
 package like [`purrr`](https://purrr.tidyverse.org/) that replaces `for` loops
 with code that is both more succinct and easier to read and, therefore, `purrr`
-should be preferrred `r emo::ji("heart_eyes_cat")`.
+should be preferrred 😻.
 
 In such cases, `ggstatsplot` contains a helper function `combine_plots` to
 combine multiple plots, which can be useful for combining a list of plots
@@ -110,7 +110,6 @@ plots <- iris %>%
   tidyr::nest(.) %>%
   # a nested dataframe with list column called `data`
   dplyr::mutate(
-    .data = .,
     plot = data %>%
       purrr::map(
         .x = .,
@@ -179,7 +178,7 @@ dplyr::glimpse(gapminder::gapminder)
 
 # creating a list of plots
 plots <- plyr::dlply(
-  .data = dplyr::filter(
+  dplyr::filter(
     gapminder::gapminder,
     year == 2007, continent != "Oceania"
   ),

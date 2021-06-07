@@ -171,13 +171,13 @@
 
       
 
-      </header><script src="ggdotplotstats_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
+      </header><script src="ggdotplotstats_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-22</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd" class="external-link"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -189,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
@@ -216,17 +221,17 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 234</span>
 <span class="co">#&gt; Columns: 11</span>
-<span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi", "…</span>
-<span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "…</span>
-<span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…</span>
-<span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…</span>
-<span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …</span>
-<span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto…</span>
-<span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4…</span>
-<span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…</span>
-<span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…</span>
-<span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p…</span>
-<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact", "c…</span></code></pre></div>
+<span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi", "~</span>
+<span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "~</span>
+<span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~</span>
+<span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~</span>
+<span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~</span>
+<span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto~</span>
+<span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4~</span>
+<span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~</span>
+<span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~</span>
+<span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p~</span>
+<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact", "c~</span></code></pre></div>
 <p>Let’s say we want to visualize the distribution of mileage by car manufacturer.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -234,7 +239,7 @@ A BibTeX entry for LaTeX users is
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># removing factor level with very few no. of observations</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># creating a vector of colors using `paletteer` package</span>
 <span class="va">paletter_vector</span> <span class="op">&lt;-</span>
@@ -274,7 +279,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># removing factor level with very few no. of observations</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>

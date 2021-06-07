@@ -11,18 +11,13 @@ VR_dilemma <- readr::read_csv(file = "data-raw/VR_dilemma.csv")
 VR_dilemma %<>%
   dplyr::select(ID:vrD) %>%
   tidyr::gather(
-    data = .,
     key = "modality",
     value = "score",
     textD:vrD,
     na.rm = TRUE
   ) %>%
   dplyr::mutate(
-    .data = .,
-    modality = stringr::str_remove(modality, "D$")
-  ) %>%
-  dplyr::mutate(
-    .data = .,
+    modality = stringr::str_remove(modality, "D$"),
     order = tolower(sjlabelled::as_label(order))
   ) %>%
   dplyr::rename(id = ID)

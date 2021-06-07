@@ -323,7 +323,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       # add all outliers in
       ggplot2::geom_point(
-        data = dplyr::filter(.data = data, isanoutlier),
+        data = dplyr::filter(data, isanoutlier),
         size = 3,
         stroke = 0,
         alpha = 0.7,

@@ -101,7 +101,7 @@ test_that(
     skip_on_cran()
 
     # dropped level dataset
-    mtcars_small <- dplyr::filter(.data = mtcars, am == "0")
+    mtcars_small <- dplyr::filter(mtcars, am == "0")
 
     set.seed(123)
     p <-

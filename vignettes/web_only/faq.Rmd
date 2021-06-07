@@ -88,10 +88,6 @@ polygon edge not found
 ```
 
 This can possibly be solved by increasing the size of RStudio viewer pane.
-If this doesn't solve your problem, just Google this error and see if that helps.
-
-If not, pray to the old and the new gods, and try again. It might just solve
-your problem. `r emo::ji("shrug")`
 
 # 4. Why do I get only plot in return but not the subtitle/caption?
 

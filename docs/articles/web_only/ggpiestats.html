@@ -171,13 +171,13 @@
 
       
 
-      </header><script src="ggpiestats_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
+      </header><script src="ggpiestats_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-22</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -189,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
@@ -232,16 +237,15 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;   ..$ Sex     : chr [1:2] "Male" "Female"</span>
 <span class="co">#&gt;   ..$ Age     : chr [1:2] "Child" "Adult"</span>
 <span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span>
-
 <span class="co"># looking at the dataset as a tibble or dataframe</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,201</span>
 <span class="co">#&gt; Columns: 5</span>
-<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</span>
-<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3…</span>
-<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…</span>
-<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Child…</span>
-<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…</span></code></pre></div>
+<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span>
+<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~</span>
+<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~</span>
+<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Child~</span>
+<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</span></code></pre></div>
 </div>
 <div id="goodness-of-fit-with-ggpiestats" class="section level1">
 <h1 class="hasAnchor">

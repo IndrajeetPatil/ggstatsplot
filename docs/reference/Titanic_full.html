@@ -170,9 +170,6 @@
     <li>
       <a href="../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
-    <li>
-      <a href="../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
-    </li>
     <li class="divider"></li>
     <li class="dropdown-header">Miscellaneous</li>
     <li>
@@ -275,22 +272,22 @@ economic status (class), sex, age and survival.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2201    5</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='font-weight: bold;'>id</span><span> </span><span style='font-weight: bold;'>Class</span><span> </span><span style='font-weight: bold;'>Sex</span><span>   </span><span style='font-weight: bold;'>Age</span><span>   </span><span style='font-weight: bold;'>Survived</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>   </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span><span>     1 3rd   Male  Child No      </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span><span>     2 3rd   Male  Child No      </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span><span>     3 3rd   Male  Child No      </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span><span>     4 3rd   Male  Child No      </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span><span>     5 3rd   Male  Child No      </span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span><span>     6 3rd   Male  Child No      </span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='font-weight: bold;'>id</span> <span style='font-weight: bold;'>Class</span> <span style='font-weight: bold;'>Sex</span>   <span style='font-weight: bold;'>Age</span>   <span style='font-weight: bold;'>Survived</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>     1 3rd   Male  Child No      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>     2 3rd   Male  Child No      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span>     3 3rd   Male  Child No      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span>     4 3rd   Male  Child No      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span>     5 3rd   Male  Child No      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span>     6 3rd   Male  Child No      </span>
 <span class='r-in'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Rows: 2,201</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Columns: 5</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>id      </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Class   </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3…</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Sex     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Age     </span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> Child, Child, Child, Child, Child, Child, Child, Child, Child…</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Survived</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>id      </span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Class   </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Sex     </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Age     </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Child, Child, Child, Child, Child, Child, Child, Child, Child~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Survived</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

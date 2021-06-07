@@ -107,9 +107,6 @@
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
-    <li>
-      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
-    </li>
     <li class="divider">
     <li class="dropdown-header">Miscellaneous</li>
     <li>
@@ -174,13 +171,13 @@
 
       
 
-      </header><script src="combine_plots_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
+      </header><script src="combine_plots_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>combine_plots</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-22</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/combine_plots.Rmd" class="external-link"><code>vignettes/web_only/combine_plots.Rmd</code></a></small>
       <div class="hidden name"><code>combine_plots.Rmd</code></div>
@@ -192,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="lifecycle"></a></p>
@@ -258,7 +260,6 @@ A BibTeX entry for LaTeX users is
   <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">nest</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># a nested dataframe with list column called `data`</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">.</span>,
     plot <span class="op">=</span> <span class="va">data</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
       <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>
         .x <span class="op">=</span> <span class="va">.</span>,
@@ -285,10 +286,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; # Groups:   Species [3]</span>
 <span class="co">#&gt;   Species    data              plot           </span>
 <span class="co">#&gt;   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;         </span>
-<span class="co">#&gt; 1 setosa     &lt;tibble [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 2 versicolor &lt;tibble [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-<span class="co">#&gt; 3 virginica  &lt;tibble [50 × 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
-
+<span class="co">#&gt; 1 setosa     &lt;tibble [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 2 versicolor &lt;tibble [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
+<span class="co">#&gt; 3 virginica  &lt;tibble [50 x 5]&gt; &lt;ggExtrPl[,10]&gt;</span>
 <span class="co"># creating a grid with patchwork</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="va">plots</span><span class="op">$</span><span class="va">plot</span>,
@@ -323,16 +323,15 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span>
-
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span>
 <span class="co"># creating a list of plots</span>
 <span class="va">plots</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/dlply.html" class="external-link">dlply</a></span><span class="op">(</span>
-  .data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
     <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>,
     <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span>
   <span class="op">)</span>,

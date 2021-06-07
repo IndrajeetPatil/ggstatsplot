@@ -171,13 +171,13 @@
 
       
 
-      </header><script src="principles_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
+      </header><script src="principles_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Graphic design and statistical reporting principles</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-22</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
       <div class="hidden name"><code>principles.Rmd</code></div>
@@ -189,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <div id="graphic-design-principles" class="section level1">
@@ -231,7 +236,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">movies_long</span>,
+    <span class="va">movies_long</span>,
     <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
   x <span class="op">=</span> <span class="va">genre</span>,
@@ -406,7 +411,7 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 <span class="co"># creating a new dataset without any NAs in variables of interest</span>
 <span class="va">msleep_no_na</span> <span class="op">&lt;-</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
     <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">sleep_rem</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">awake</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">brainwt</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">bodywt</span><span class="op">)</span>
   <span class="op">)</span>
 
@@ -483,7 +488,7 @@ Cleveland, W. S. (1985). <em>The <span>Elements</span> of <span>Graphing Data</s
 Lilienfeld, S. O., Sauvign’e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., &amp; Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. <em>Frontiers in Psychology</em>, <em>6</em>. doi:<a href="https://doi.org/10.3389/fpsyg.2015.01100" class="external-link">10.3389/fpsyg.2015.01100</a>
 </div>
 <div id="ref-nuijten2016" class="csl-entry">
-Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., &amp; Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (1985<span></span>2013). <em>Behavior Research Methods</em>, <em>48</em>(4), 1205–1226. doi:<a href="https://doi.org/10.3758/s13428-015-0664-2" class="external-link">10.3758/s13428-015-0664-2</a>
+Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., &amp; Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (19852013). <em>Behavior Research Methods</em>, <em>48</em>(4), 1205–1226. doi:<a href="https://doi.org/10.3758/s13428-015-0664-2" class="external-link">10.3758/s13428-015-0664-2</a>
 </div>
 <div id="ref-tufte2001" class="csl-entry">
 Tufte, E. R. (2001). <em>The <span>Visual Display</span> of <span>Quantitative Information</span></em> (2nd edition edition.). <span>Cheshire, Conn</span>: <span>Graphics Press</span>.

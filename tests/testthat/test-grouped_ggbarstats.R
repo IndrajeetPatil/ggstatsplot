@@ -6,7 +6,7 @@ test_that(
     # --------------------- without counts -----------------------------------
 
     # creating a smaller dataframe
-    mpg_short <- dplyr::filter(.data = ggplot2::mpg, drv %in% c("4", "f"))
+    mpg_short <- dplyr::filter(ggplot2::mpg, drv %in% c("4", "f"))
 
     ## expecting error message
     expect_error(grouped_ggbarstats(

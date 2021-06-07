@@ -65,7 +65,7 @@ this dataset included in the `ggstatsplot` package itself.
 library(ggstatsplot)
 
 # see the selected data (we have data from 1813 movies)
-dplyr::glimpse(x = ggstatsplot::movies_wide)
+dplyr::glimpse(movies_wide)
 ```
 
 Now that we have a clean dataset, we can start asking some interesting
@@ -80,10 +80,10 @@ To reduce the processing time, let's only work with 30% of the dataset.
 set.seed(123)
 
 # to speed up the calculation, let's use only 10% of the data
-movies_10 <- dplyr::sample_frac(tbl = movies_long, size = 0.1)
+movies_10 <- dplyr::sample_frac(movies_long, size = 0.1)
 
 # plot
-ggstatsplot::ggscatterstats(
+ggscatterstats(
   data = movies_10, # dataframe from which variables are taken
   x = budget, # predictor/independent variable
   y = rating, # dependent variable
@@ -134,12 +134,12 @@ set.seed(123)
 # to speed up the calculation, let's use only 20% of the data
 # also since there are only 7 movies with NC-17 ratings, leave them out
 movies_20 <-
-  ggstatsplot::movies_wide %>%
+  movies_wide %>%
   dplyr::filter(mpaa != "NC-17") %>%
   dplyr::sample_frac(tbl = ., size = 0.2)
 
 # plot
-ggstatsplot::grouped_ggscatterstats(
+grouped_ggscatterstats(
   # arguments relevant for ggstatsplot::ggscatterstats
   data = movies_10,
   x = budget,
@@ -150,7 +150,7 @@ ggstatsplot::grouped_ggscatterstats(
   label.expression = rating < 5 & budget < 20,
   marginal.type = "boxplot",
   ggtheme = ggthemes::theme_tufte(),
-  
+
   # arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(
     title = "Relationship between movie budget and IMDB rating",

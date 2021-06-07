@@ -202,15 +202,15 @@ ggbetweenstats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` raw data + distributions <br>
-`r emo::ji("check")` descriptive statistics <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` pairwise comparisons <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ raw data + distributions <br>
+✅ descriptive statistics <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <brFemo>
+✅ pairwise comparisons <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. Additionally, there is also a
@@ -333,15 +333,15 @@ ggwithinstats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` raw data + distributions <br>
-`r emo::ji("check")` descriptive statistics <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` pairwise comparisons <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ raw data + distributions <br>
+✅ descriptive statistics <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <br>
+✅ pairwise comparisons <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 The central tendency measure displayed will depend on the statistics:
 
@@ -363,7 +363,7 @@ set.seed(123)
 # plot
 grouped_ggwithinstats(
   data = dplyr::filter(
-    .data = bugs_long,
+    bugs_long,
     region %in% c("Europe", "North America"),
     condition %in% c("LDLF", "LDHF")
   ),
@@ -464,14 +464,14 @@ gghistostats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` counts + proportion for bins<br>
-`r emo::ji("check")` descriptive statistics <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ counts + proportion for bins<br>
+✅ descriptive statistics <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
@@ -550,7 +550,7 @@ set.seed(123)
 
 # plot
 ggdotplotstats(
-  data = dplyr::filter(.data = gapminder::gapminder, continent == "Asia"),
+  data = dplyr::filter(gapminder::gapminder, continent == "Asia"),
   y = country,
   x = lifeExp,
   test.value = 55,
@@ -566,13 +566,13 @@ ggdotplotstats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` descriptives (mean + sample size) <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ descriptives (mean + sample size) <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 As with the rest of the functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
@@ -584,7 +584,7 @@ set.seed(123)
 
 # plot
 grouped_ggdotplotstats(
-  data = dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+  data = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x = cty,
   y = manufacturer,
   type = "bayes", # Bayesian test
@@ -650,14 +650,14 @@ ggscatterstats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` raw data + distributions <br>
-`r emo::ji("check")` marginal distributions <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ raw data + distributions <br>
+✅ marginal distributions <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 The available marginal distributions are-
 
@@ -767,10 +767,10 @@ ggcorrmat(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` effect size + significance<br>
-`r emo::ji("check")` careful handling of `NA`s
+✅ effect size + significance<br>
+✅ careful handling of `NA`s
 
 If there are `NA`s present in the selected variables, the legend will display
 minimum, median, and maximum number of pairs used for correlation tests.
@@ -870,14 +870,14 @@ ggpiestats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` descriptives (frequency + %s) <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` Goodness-of-fit tests <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ descriptives (frequency + %s) <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <br>
+✅ Goodness-of-fit tests <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
@@ -974,14 +974,14 @@ ggbarstats(
 )
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` descriptives (frequency + %s) <br>
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` effect size + CIs <br>
-`r emo::ji("check")` Goodness-of-fit tests <br>
-`r emo::ji("check")` Bayesian hypothesis-testing <br>
-`r emo::ji("check")` Bayesian estimation <br>
+✅ descriptives (frequency + %s) <br>
+✅ inferential statistics <br>
+✅ effect size + CIs <br>
+✅ Goodness-of-fit tests <br>
+✅ Bayesian hypothesis-testing <br>
+✅ Bayesian estimation <br>
 
 
 And, needless to say, there is also a `grouped_` variant of this function-
@@ -1089,11 +1089,11 @@ mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 ggcoefstats(mod)
 ```
 
-`r emo::ji("pencil")` **Defaults** return<br>
+**Defaults** return<br>
 
-`r emo::ji("check")` inferential statistics <br>
-`r emo::ji("check")` estimate + CIs <br>
-`r emo::ji("check")` model summary (AIC and BIC) <br>
+✅ inferential statistics <br>
+✅ estimate + CIs <br>
+✅ model summary (AIC and BIC) <br>
 
 This default plot can be further modified to one's liking with additional
 arguments (also, let's use a different model now):
@@ -1270,16 +1270,16 @@ less cognitively demanding and easy to remember.
 
 This package is... 
 
-`r emo::ji("x")` an alternative to learning `ggplot2`<br>
-`r emo::ji("check")` (The better you know `ggplot2`, the more you can modify the defaults to your
+❌ an alternative to learning `ggplot2`<br>
+✅ (The better you know `ggplot2`, the more you can modify the defaults to your
 liking.)
 
-`r emo::ji("x")` meant to be used in talks/presentations<br>
-`r emo::ji("check")` (Default plots can be too complicated for effectively communicating results in
+❌ meant to be used in talks/presentations<br>
+✅ (Default plots can be too complicated for effectively communicating results in
 time-constrained presentation settings, e.g. conference talks.)
 
-`r emo::ji("x")` the only game in town<br>
-`r emo::ji("check")` (GUI software alternatives: [JASP](https://jasp-stats.org/) and [jamovi](https://www.jamovi.org/)).
+❌ the only game in town<br>
+✅ (GUI software alternatives: [JASP](https://jasp-stats.org/) and [jamovi](https://www.jamovi.org/)).
 
 # `ggstatsverse`: Components of `ggstatsplot`
 
@@ -1336,8 +1336,8 @@ the larger `rstats` community on Twitter and `StackOverflow`.
 
 Thanks are also due to my postdoc advisers (Mina Cikara and Fiery Cushman at
 Harvard University; Iyad Rahwan at Max Planck Institute for Human Development)
-who patiently supported me spending hundreds of hours working on this package
-rather than what I was paid to do. `r emo::ji("smile")`
+who patiently supported me spending hundreds (?) of hours working on this
+package rather than what I was paid to do. 😁
 
 # Code coverage
 

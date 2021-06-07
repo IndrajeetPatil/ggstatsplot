@@ -5,11 +5,11 @@
 
 | Package                                                                                                                                                         | Status                                                                                                                                                                                       | Usage                                                                                                                                                  | GitHub                                                                                                                                                         | Miscellaneous                                                                                                                                                         |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                 | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)          | [![GitHub version](https://img.shields.io/badge/GitHub-0.7.2.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                                |
+| [![CRAN_Release_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                   | [![Travis Build Status](https://travis-ci.org/IndrajeetPatil/ggstatsplot.svg?branch=master)](https://travis-ci.org/IndrajeetPatil/ggstatsplot)                                               | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)          | [![GitHub version](https://img.shields.io/badge/GitHub-0.7.2.9000-orange.svg?style=flat-square)](https://github.com/IndrajeetPatil/ggstatsplot/)               | [![Website](https://img.shields.io/badge/website-ggstatsplot-orange.svg?colorB=E91E63)](https://indrajeetpatil.github.io/ggstatsplot/)                                |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html)                      | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/IndrajeetPatil/ggstatsplot?branch=master&svg=true)](https://ci.appveyor.com/project/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)        | [![HitCount](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot.svg)](https://hits.dwyl.com/IndrajeetPatil/ggstatsplot)                                          | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                            |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                      | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                            | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)      | [![CoC](https://img.shields.io/badge/CoC-v2.0%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html)                    | [![CodeFactor](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot/badge)](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot) |
 | [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Coverage Status](https://coveralls.io/repos/github/IndrajeetPatil/ggstatsplot/badge.svg?branch=master)](https://coveralls.io/github/IndrajeetPatil/ggstatsplot?branch=master)             | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)       | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2074621.svg)](https://doi.org/10.5281/zenodo.2074621)                                                             |
-| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![status](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg)](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c) | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--06--06-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)       |
+| [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                | [![Codecov test coverage](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)                   | [![status](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg)](https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c) | [![Last-changedate](https://img.shields.io/badge/last%20change-2021--06--07-yellowgreen.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)    | [![GitHub last commit](https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot/commits/master)       |
 | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                    | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                                                            | [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/ggstatsplot/community)                                                | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                                                   | [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)       |
 
 # Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
@@ -199,10 +199,10 @@ ggbetweenstats(
 
 <img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
-inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
+inferential statistics <br> ✅ effect size + CIs <brFemo> ✅ pairwise
 comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
@@ -268,10 +268,10 @@ Note here that the function can be used to tag outliers!
 
 | Type           | No. of groups | Test                                            | Function used          |
 |----------------|---------------|-------------------------------------------------|------------------------|
-| Parametric     | &gt; 2        | Fisher’s or Welch’s one-way ANOVA               | `stats::oneway.test`   |
-| Non-parametric | &gt; 2        | Kruskal–Wallis one-way ANOVA                    | `stats::kruskal.test`  |
-| Robust         | &gt; 2        | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`          |
-| Bayes Factor   | &gt; 2        | Fisher’s ANOVA                                  | `BayesFactor::anovaBF` |
+| Parametric     | \> 2          | Fisher’s or Welch’s one-way ANOVA               | `stats::oneway.test`   |
+| Non-parametric | \> 2          | Kruskal–Wallis one-way ANOVA                    | `stats::kruskal.test`  |
+| Robust         | \> 2          | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`          |
+| Bayes Factor   | \> 2          | Fisher’s ANOVA                                  | `BayesFactor::anovaBF` |
 | Parametric     | 2             | Student’s or Welch’s *t*-test                   | `stats::t.test`        |
 | Non-parametric | 2             | Mann–Whitney *U* test                           | `stats::wilcox.test`   |
 | Robust         | 2             | Yuen’s test for trimmed means                   | `WRS2::yuen`           |
@@ -281,10 +281,10 @@ Note here that the function can be used to tag outliers!
 
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | &gt; 2        | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | &gt; 2        | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | ✅   | `effectsize::rank_epsilon_squared`                     |
-| Robust         | &gt; 2        | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::t1way`                                          |
-| Bayes Factor   | &gt; 2        | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | ✅   | `performance::r2_bayes`                                |
+| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | ✅   | `effectsize::rank_epsilon_squared`                     |
+| Robust         | \> 2          | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::t1way`                                          |
+| Bayes Factor   | \> 2          | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | ✅   | `performance::r2_bayes`                                |
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
 | Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅   | `effectsize::rank_biserial`                            |
 | Robust         | 2             | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::yuen.effect.ci`                                 |
@@ -331,7 +331,7 @@ ggwithinstats(
 
 <img src="man/figures/README-ggwithinstats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
 inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
@@ -406,10 +406,10 @@ grouped_ggwithinstats(
 
 | Type           | No. of groups | Test                                                              | Function used          |
 |----------------|---------------|-------------------------------------------------------------------|------------------------|
-| Parametric     | &gt; 2        | One-way repeated measures ANOVA                                   | `afex::aov_ez`         |
-| Non-parametric | &gt; 2        | Friedman rank sum test                                            | `stats::friedman.test` |
-| Robust         | &gt; 2        | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`        |
-| Bayes Factor   | &gt; 2        | One-way repeated measures ANOVA                                   | `BayesFactor::anovaBF` |
+| Parametric     | \> 2          | One-way repeated measures ANOVA                                   | `afex::aov_ez`         |
+| Non-parametric | \> 2          | Friedman rank sum test                                            | `stats::friedman.test` |
+| Robust         | \> 2          | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`        |
+| Bayes Factor   | \> 2          | One-way repeated measures ANOVA                                   | `BayesFactor::anovaBF` |
 | Parametric     | 2             | Student’s *t*-test                                                | `stats::t.test`        |
 | Non-parametric | 2             | Wilcoxon signed-rank test                                         | `stats::wilcox.test`   |
 | Robust         | 2             | Yuen’s test on trimmed means for dependent samples                | `WRS2::yuend`          |
@@ -419,10 +419,10 @@ grouped_ggwithinstats(
 
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | &gt; 2        | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | &gt; 2        | ![W\_{Kendall}](https://chart.apis.google.com/chart?cht=tx&chl=W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                   | ✅   | `effectsize::kendalls_w`                               |
-| Robust         | &gt; 2        | ![\\delta\_{R-avg}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)    | ✅   | `WRS2::wmcpAKP`                                        |
-| Bayes Factor   | &gt; 2        | ![R\_{Bayesian}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                               | ✅   | `performance::r2_bayes`                                |
+| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![W\_{Kendall}](https://chart.apis.google.com/chart?cht=tx&chl=W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                   | ✅   | `effectsize::kendalls_w`                               |
+| Robust         | \> 2          | ![\\delta\_{R-avg}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)    | ✅   | `WRS2::wmcpAKP`                                        |
+| Bayes Factor   | \> 2          | ![R\_{Bayesian}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                               | ✅   | `performance::r2_bayes`                                |
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
 | Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅   | `effectsize::rank_biserial`                            |
 | Robust         | 2             | ![\\delta\_{R}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR%7D%5E%7BAKP%7D "\delta_{R}^{AKP}") (Algina-Keselman-Penfield robust standardized difference)                        | ✅   | `WRS2::wmcpAKP`                                        |
@@ -464,7 +464,7 @@ gghistostats(
 
 <img src="man/figures/README-gghistostats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅
 inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
@@ -567,7 +567,7 @@ ggdotplotstats(
 
 <img src="man/figures/README-ggdotplotstats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br> ✅
 effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
@@ -653,7 +653,7 @@ ggscatterstats(
 
 <img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ marginal distributions <br> ✅
 inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
@@ -773,7 +773,7 @@ ggcorrmat(
 
 <img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ effect size + significance<br> ✅ careful handling of `NA`s
 
@@ -985,7 +985,7 @@ ggpiestats(
 
 <img src="man/figures/README-ggpiestats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅
 effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
@@ -1090,7 +1090,7 @@ ggbarstats(
 
 <img src="man/figures/README-ggbarstats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅
 effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
@@ -1210,7 +1210,7 @@ ggcoefstats(mod)
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
 
-📝 **Defaults** return<br>
+**Defaults** return<br>
 
 ✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC
 and BIC) <br>

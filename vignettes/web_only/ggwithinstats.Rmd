@@ -175,7 +175,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # selecting subset of the data
-df_disgust <- dplyr::filter(.data = bugs_long, condition %in% c("LDHF", "HDHF"))
+df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
 
 # parametric t-test
 p1 <-
@@ -189,7 +189,7 @@ p1 <-
     title = "Parametric test",
     package = "ggsci",
     palette = "nrc_npg",
-    ggtheme = ggthemr::ggthemr(palette = "light")
+    ggtheme = hrbrthemes::theme_ipsum_pub()
   )
 
 # Mann-Whitney U test (nonparametric test)

@@ -498,7 +498,7 @@ set.seed(123)
 
 # data
 df <- dplyr::filter(
-  .data = movies_long,
+  movies_long,
   genre %in% c(
     "Action",
     "Action Comedy",
@@ -2724,7 +2724,6 @@ fit_bmlm <- bmlm::mlm(BLch9, verbose = FALSE)
 df_summary <-
   bmlm::mlm_summary(fit_bmlm) %>%
   dplyr::rename(
-    .data = .,
     estimate = Mean,
     term = Parameter,
     std.error = SE,

@@ -99,7 +99,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # select data only from the year 2007
-gapminder_2007 <- dplyr::filter(.data = gapminder::gapminder, year == 2007)
+gapminder_2007 <- dplyr::filter(gapminder::gapminder, year == 2007)
 
 # producing the correlation matrix
 ggstatsplot::ggcorrmat(

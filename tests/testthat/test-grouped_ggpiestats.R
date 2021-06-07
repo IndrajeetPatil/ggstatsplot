@@ -36,7 +36,6 @@ test_that(
     mpg_short <-
       ggplot2::mpg %>%
       dplyr::filter(
-        .data = .,
         drv %in% c("4", "f"),
         class %in% c("suv", "midsize"),
         trans %in% c("auto(l4)", "auto(l5)")

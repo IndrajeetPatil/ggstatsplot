@@ -129,7 +129,7 @@ library(gapminder)
 
 # plot
 ggstatsplot::ggbetweenstats(
-  data = dplyr::filter(.data = gapminder, year == 2007, continent != "Oceania"),
+  data = dplyr::filter(gapminder, year == 2007, continent != "Oceania"),
   x = continent, # grouping/independent variable
   y = lifeExp, # dependent variables
   type = "robust", # type of statistics
@@ -187,7 +187,7 @@ library(ggstatsplot)
 library(gapminder)
 
 # selecting subset of the data
-df_year <- dplyr::filter(.data = gapminder::gapminder, year == 2007 | year == 1957)
+df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
 
 # parametric t-test and box plot
 p1 <-

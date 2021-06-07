@@ -59,7 +59,7 @@
 #'
 #' grouped_ggscatterstats(
 #'   data = dplyr::filter(
-#'     .data = movies_long,
+#'     movies_long,
 #'     rating == 7,
 #'     genre %in% c("Drama", "Comedy")
 #'   ),

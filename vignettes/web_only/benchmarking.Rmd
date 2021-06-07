@@ -51,7 +51,7 @@ set.seed(123)
 bench::mark(
   ggbetweenstats(
     data = dplyr::filter(
-      .data = movies_long,
+      movies_long,
       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
     ),
     x = mpaa,
@@ -64,7 +64,7 @@ set.seed(123)
 bench::mark(
   grouped_ggbetweenstats(
     data = dplyr::filter(
-      .data = movies_long,
+      movies_long,
       genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
     ),
     x = mpaa,
@@ -123,7 +123,7 @@ library(ggstatsplot)
 
 set.seed(123)
 bench::mark(ggdotplotstats(
-  dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+  dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   cty,
   manufacturer,
   test.value = 15
@@ -133,7 +133,7 @@ bench::mark(ggdotplotstats(
 set.seed(123)
 bench::mark(
   grouped_ggdotplotstats(
-    dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+    dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
     cty,
     manufacturer,
     test.value = 15,

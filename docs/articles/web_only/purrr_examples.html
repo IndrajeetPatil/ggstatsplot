@@ -171,13 +171,13 @@
 
       
 
-      </header><script src="purrr_examples_files/header-attrs-2.8.1/header-attrs.js"></script><div class="row">
+      </header><script src="purrr_examples_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-23</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -189,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <div id="why-use-purrr" class="section level1">
@@ -252,7 +257,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 3</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1967" "1987" "2007"</span></code></pre></div>
-<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
+<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">?pmap</a></code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
 <p>Let’s keep building the list of arguments, <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> and <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>.</p>
 <p>Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -330,7 +335,6 @@ A BibTeX entry for LaTeX users is
 <span class="co"># checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cue_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4</span>
-
 <span class="co"># creating a list of plots by applying the same function for elements of the list</span>
 <span class="va">plot_list</span> <span class="op">&lt;-</span>
   <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
@@ -469,7 +473,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">cut_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Good"      "Very Good" "Premium"   "Ideal"</span>
-
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -532,7 +535,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
-
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -597,7 +599,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
-
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -657,7 +658,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
-
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -718,7 +718,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
-
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>

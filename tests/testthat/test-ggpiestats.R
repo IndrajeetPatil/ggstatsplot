@@ -78,7 +78,7 @@ test_that(
       )
 
     # dropped level dataset
-    mtcars_small <- dplyr::filter(.data = mtcars, am == "0")
+    mtcars_small <- dplyr::filter(mtcars, am == "0")
 
     # plot
     p1 <-

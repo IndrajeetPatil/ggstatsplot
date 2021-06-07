@@ -107,9 +107,6 @@
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
-    <li>
-      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
-    </li>
     <li class="divider">
     <li class="dropdown-header">Miscellaneous</li>
     <li>
@@ -174,13 +171,13 @@
 
       
 
-      </header><script src="ggwithinstats_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="ggwithinstats_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggwithinstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-18</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggwithinstats.Rmd" class="external-link"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggwithinstats.Rmd</code></div>
@@ -192,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
@@ -246,7 +248,6 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">firatheme</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
@@ -265,8 +266,6 @@ A BibTeX entry for LaTeX users is
   outlier.label.color <span class="op">=</span> <span class="st">"red"</span>, <span class="co"># outlier point label color</span>
   mean.plotting <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># whether the mean is to be displayed</span>
   mean.color <span class="op">=</span> <span class="st">"darkblue"</span>, <span class="co"># color for mean</span>
-  ggtheme <span class="op">=</span> <span class="fu">firatheme</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/firatheme/man/theme_fira.html" class="external-link">theme_fira</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># a different theme</span>
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># turn off default modification of the used theme</span>
   package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co"># package from which color palette is to be taken</span>
   palette <span class="op">=</span> <span class="st">"info2"</span>, <span class="co"># choosing a different color palette</span>
   title <span class="op">=</span> <span class="st">"Comparison of desire to kill bugs"</span>,
@@ -287,7 +286,7 @@ A BibTeX entry for LaTeX users is
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># selecting subset of the data</span>
-<span class="va">df_disgust</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDHF"</span>, <span class="st">"HDHF"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df_disgust</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDHF"</span>, <span class="st">"HDHF"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># parametric t-test</span>
 <span class="va">p1</span> <span class="op">&lt;-</span>
@@ -301,7 +300,7 @@ A BibTeX entry for LaTeX users is
     title <span class="op">=</span> <span class="st">"Parametric test"</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
     palette <span class="op">=</span> <span class="st">"nrc_npg"</span>,
-    ggtheme <span class="op">=</span> <span class="fu">ggthemr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemr/man/ggthemr.html" class="external-link">ggthemr</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"light"</span><span class="op">)</span>
+    ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_pub.html" class="external-link">theme_ipsum_pub</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>
 
 <span class="co"># Mann-Whitney U test (nonparametric test)</span>
@@ -317,8 +316,7 @@ A BibTeX entry for LaTeX users is
     title <span class="op">=</span> <span class="st">"Non-parametric Test"</span>,
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
     palette <span class="op">=</span> <span class="st">"uniform_startrek"</span>,
-    ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span>,
-    ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+    ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_map.html" class="external-link">theme_map</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>
 
 <span class="co"># robust t-test</span>
@@ -334,8 +332,7 @@ A BibTeX entry for LaTeX users is
     title <span class="op">=</span> <span class="st">"Robust Test"</span>,
     package <span class="op">=</span> <span class="st">"wesanderson"</span>,
     palette <span class="op">=</span> <span class="st">"Royal2"</span>,
-    ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html" class="external-link">theme_ipsum_tw</a></span><span class="op">(</span><span class="op">)</span>,
-    ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+    ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_tw.html" class="external-link">theme_ipsum_tw</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span>
 
 <span class="co"># Bayes Factor for parametric t-test</span>
@@ -391,7 +388,7 @@ A BibTeX entry for LaTeX users is
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
   palette <span class="op">=</span> <span class="st">"default_jco"</span>,
   outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
+  
   outlier.label <span class="op">=</span> <span class="va">education</span>,
   k <span class="op">=</span> <span class="fl">3</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>

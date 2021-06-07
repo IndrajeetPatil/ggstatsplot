@@ -107,9 +107,6 @@
     <li>
       <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
     </li>
-    <li>
-      <a href="../../articles/web_only/theme_ggstatsplot.html">ggstatsplot theme</a>
-    </li>
     <li class="divider">
     <li class="dropdown-header">Miscellaneous</li>
     <li>
@@ -174,13 +171,13 @@
 
       
 
-      </header><script src="ggcoefstats_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="ggcoefstats_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-05-17</h4>
+            <h4 data-toc-skip class="date">2021-06-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -192,18 +189,23 @@
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
-  Patil, I. (2018). Visualizations with statistical details: The
-  'ggstatsplot' approach. PsyArxiv. doi:10.31234/osf.io/p7mku
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
   @Article{,
-    title = {Visualizations with statistical details: The 'ggstatsplot' approach},
-    author = {Indrajeet Patil},
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
     year = {2021},
-    journal = {PsyArxiv},
-    url = {https://psyarxiv.com/p7mku/},
-    doi = {10.31234/osf.io/p7mku},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
@@ -299,7 +301,7 @@ A BibTeX entry for LaTeX users is
 <td>Meta-analysis via Bayesian random-effects models</td>
 <td><span class="math inline">\(\beta\)</span></td>
 <td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
+<td><code>metaBMA::meta_random</code></td>
 </tr>
 </tbody>
 </table>
@@ -326,7 +328,7 @@ A BibTeX entry for LaTeX users is
     data <span class="op">=</span> <span class="va">oranges</span>
   <span class="op">)</span>
 
-<span class="co"># reference grid; see vignette("basics", package = "emmeans")</span>
+<span class="co"># reference grid; see vignette("basics", package="emmeans")</span>
 <span class="va">oranges_rg1</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/ref_grid.html" class="external-link">ref_grid</a></span><span class="op">(</span><span class="va">oranges_lm1</span><span class="op">)</span>
 <span class="va">marginal</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">oranges_rg1</span>, <span class="st">"day"</span><span class="op">)</span>
 
@@ -559,7 +561,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; Iteration 6 - deviance = 881.2041 - criterion = 1.394381e-07</span>
 <span class="co">#&gt; Iteration 7 - deviance = 881.1809 - criterion = 1.04388e-09</span>
 <span class="co">#&gt; converged</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_mclogit</span>,
@@ -672,7 +673,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># data</span>
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-  .data <span class="op">=</span> <span class="va">movies_long</span>,
+  <span class="va">movies_long</span>,
   <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
     <span class="st">"Action"</span>,
     <span class="st">"Action Comedy"</span>,
@@ -773,7 +774,7 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pachamaltese/eflm/" class="external-link">eflm</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pachadotdev/eflm/" class="external-link">eflm</a></span><span class="op">)</span>
 
 <span class="co"># models</span>
 <span class="va">mod_elm</span> <span class="op">&lt;-</span> <span class="fu">eflm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eflm/man/elm.html" class="external-link">elm</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span>
@@ -912,8 +913,7 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>
 <span class="co">#&gt; Fitting one lmer() model. [DONE]</span>
 <span class="co">#&gt; Calculating p-values. [DONE]</span>
-
-<span class="co"># suppress correlations among random effect parameters with || and expand_re = TRUE</span>
+<span class="co"># suppress correlations among random effect parameters with || and expand_re=TRUE</span>
 <span class="va">m2_afex</span> <span class="op">&lt;-</span>
   <span class="fu">afex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/afex/man/mixed.html" class="external-link">mixed</a></span><span class="op">(</span>
     formula <span class="op">=</span> <span class="va">score</span> <span class="op">~</span> <span class="va">Machine</span> <span class="op">+</span> <span class="op">(</span><span class="va">Machine</span> <span class="op">||</span> <span class="va">Worker</span><span class="op">)</span>,
@@ -922,7 +922,6 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>
 <span class="co">#&gt; Fitting one lmer() model. [DONE]</span>
 <span class="co">#&gt; Calculating p-values. [DONE]</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
@@ -965,20 +964,20 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/petephilipson/joineR/" class="external-link">joineR</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">joineR</span><span class="op">)</span>
 
 <span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">heart.valve</span><span class="op">)</span>
-<span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/UniqueVariables.html" class="external-link">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,
+<span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu">UniqueVariables</span><span class="op">(</span><span class="va">heart.valve</span>,
   var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fuyrs"</span>, <span class="st">"status"</span><span class="op">)</span>,
   id.col <span class="op">=</span> <span class="st">"num"</span>
 <span class="op">)</span>
 <span class="va">heart.long</span> <span class="op">&lt;-</span> <span class="va">heart.valve</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"num"</span>, <span class="st">"time"</span>, <span class="st">"log.lvmi"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/UniqueVariables.html" class="external-link">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,
+<span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu">UniqueVariables</span><span class="op">(</span><span class="va">heart.valve</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"hs"</span>, <span class="st">"sex"</span><span class="op">)</span>,
   id.col <span class="op">=</span> <span class="st">"num"</span>
 <span class="op">)</span>
-<span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/jointdata.html" class="external-link">jointdata</a></span><span class="op">(</span>
+<span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu">jointdata</span><span class="op">(</span>
   longitudinal <span class="op">=</span> <span class="va">heart.long</span>,
   baseline <span class="op">=</span> <span class="va">heart.cov</span>,
   survival <span class="op">=</span> <span class="va">heart.surv</span>,
@@ -987,10 +986,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/joint.html" class="external-link">joint</a></span><span class="op">(</span>
+<span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu">joint</span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">heart.valve.jd</span>,
   long.formula <span class="op">=</span> <span class="va">log.lvmi</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">hs</span>,
-  surv.formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
+  surv.formula <span class="op">=</span> <span class="fu">Surv</span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
   model <span class="op">=</span> <span class="st">"intslope"</span>
 <span class="op">)</span>
 
@@ -1007,6 +1006,8 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tagteam/riskRegression" class="external-link">riskRegression</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package or namespace load failed for 'riskRegression' in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):</span>
+<span class="co">#&gt;  there is no package called 'htmlTable'</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">prodlim</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Melanoma</span>, package <span class="op">=</span> <span class="st">"riskRegression"</span><span class="op">)</span>
 
@@ -1020,13 +1021,13 @@ A BibTeX entry for LaTeX users is
     data <span class="op">=</span> <span class="va">Melanoma</span>,
     cause <span class="op">=</span> <span class="fl">1</span>
   <span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">multi.arr</span>,
   title <span class="op">=</span> <span class="st">"risk regression"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/riskRegression-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'multi.arr' not found</span></code></pre></div>
 </div>
 <div id="aalens-additive-regression-model-for-censored-data-aareg" class="section level2">
 <h2 class="hasAnchor">
@@ -1152,10 +1153,11 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># model</span>
 <span class="va">mod_selection</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sampleSelection/man/selection.html" class="external-link">selection</a></span><span class="op">(</span>
-  <span class="va">inlf</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">kidslt6</span> <span class="op">+</span> <span class="va">kidsge6</span>, 
+  <span class="va">inlf</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">kidslt6</span> <span class="op">+</span> <span class="va">kidsge6</span>,
   <span class="va">wage</span> <span class="op">~</span> <span class="va">educ</span> <span class="op">+</span> <span class="va">exper</span> <span class="op">+</span> <span class="va">expersq</span>,
   method <span class="op">=</span> <span class="st">"2step"</span>,
-  data <span class="op">=</span> <span class="va">mroz</span><span class="op">)</span>
+  data <span class="op">=</span> <span class="va">mroz</span>
+<span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
@@ -1409,7 +1411,6 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_glm</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_economist.html" class="external-link">theme_economist_white</a></span><span class="op">(</span><span class="op">)</span>,
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
   title <span class="op">=</span> <span class="st">"generalized linear model (glm)"</span>,
   vline.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, linetype <span class="op">=</span> <span class="st">"solid"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -1530,19 +1531,19 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/" class="external-link">rms</a></span><span class="op">)</span>
-
+<span class="co">#&gt; Error: package 'Hmisc' could not be loaded</span>
 <span class="co"># Dobson (1990) Page 93: Randomized Controlled Trial :</span>
 <span class="va">counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">17</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">13</span>, <span class="fl">12</span><span class="op">)</span>
 <span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">9</span><span class="op">)</span>
 <span class="va">treatment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="va">f_Glm</span> <span class="op">&lt;-</span> <span class="fu">rms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rms/man/Glm.html" class="external-link">Glm</a></span><span class="op">(</span><span class="va">counts</span> <span class="op">~</span> <span class="va">outcome</span> <span class="op">+</span> <span class="va">treatment</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">poisson</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">f_Glm</span>,
   title <span class="op">=</span> <span class="st">"rms' implementation of glm"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/rms_Glm-1.png" width="480"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'f_Glm' not found</span></code></pre></div>
 </div>
 <div id="modified-fitting-for-generalized-linear-models-glm2" class="section level2">
 <h2 class="hasAnchor">
@@ -1607,6 +1608,7 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/" class="external-link">rms</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package 'Hmisc' could not be loaded</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># data</span>
@@ -1617,13 +1619,13 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># model</span>
 <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">rms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rms/man/orm.html" class="external-link">orm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, eps <span class="op">=</span> <span class="fl">1e-5</span><span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">g</span>,
   title <span class="op">=</span> <span class="st">"Ordinal Regression Model"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/orm-1.png" width="480"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'g' not found</span></code></pre></div>
 </div>
 <div id="logistic-regression-model-lrm" class="section level2">
 <h2 class="hasAnchor">
@@ -1631,6 +1633,7 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/" class="external-link">rms</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package 'Hmisc' could not be loaded</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># data</span>
@@ -1639,21 +1642,23 @@ A BibTeX entry for LaTeX users is
 <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>
 <span class="va">x3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">1</span>, <span class="va">n</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x1</span> <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/cut2.html" class="external-link">cut2</a></span><span class="op">(</span><span class="va">y</span>, g <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu">cut2</span><span class="op">(</span><span class="va">y</span>, g <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Error in cut2(y, g = 10): could not find function "cut2"</span>
 <span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rms/man/datadist.html" class="external-link">datadist</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span>, <span class="va">x3</span><span class="op">)</span>
+<span class="co">#&gt; Error in datadist(x1, x2, x3): could not find function "datadist"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>datadist <span class="op">=</span> <span class="st">"dd"</span><span class="op">)</span>
 
 <span class="co"># model</span>
 <span class="va">f_lrm</span> <span class="op">&lt;-</span> <span class="fu">rms</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rms/man/lrm.html" class="external-link">lrm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/rms/man/rms.trans.html" class="external-link">pol</a></span><span class="op">(</span><span class="va">x2</span>, <span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="va">x3</span>, eps <span class="op">=</span> <span class="fl">1e-7</span><span class="op">)</span> <span class="co"># eps to check against rstan</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">f_lrm</span>,
   title <span class="op">=</span> <span class="st">"Logistic Regression Model"</span>,
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
   palette <span class="op">=</span> <span class="st">"category20c_d3"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/lrm-1.png" width="672"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'f_lrm' not found</span></code></pre></div>
 </div>
 <div id="two-stage-least-squares-instrumental-variables-regression-iv_robust" class="section level2">
 <h2 class="hasAnchor">
@@ -2143,7 +2148,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; Iteration number: 3 </span>
 <span class="co">#&gt; Iteration number: 4 </span>
 <span class="co">#&gt; Iteration number: 5</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_BBmm</span>,
@@ -2434,7 +2438,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">merTools</span><span class="op">)</span>
-
+<span class="co">#&gt; Error: package 'arm' could not be loaded</span>
 <span class="co"># data</span>
 <span class="va">sim_list</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span>
@@ -2446,13 +2450,13 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># model</span>
 <span class="va">mod_lmerModList</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/merTools/man/merModList.html" class="external-link">lmerModList</a></span><span class="op">(</span><span class="va">fml</span>, data <span class="op">=</span> <span class="va">sim_list</span><span class="op">)</span>
-
+<span class="co">#&gt; Error in lmerModList(fml, data = sim_list): could not find function "lmerModList"</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_lmerModList</span>,
   title <span class="op">=</span> <span class="st">"a multilevel model to a list of data frames"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/merModList-1.png" width="384"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'mod_lmerModList' not found</span></code></pre></div>
 </div>
 <div id="cumulative-link-models-clm" class="section level2">
 <h2 class="hasAnchor">
@@ -2597,12 +2601,14 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">smicd</span><span class="op">)</span>
-
+<span class="co">#&gt; Error: package or namespace load failed for 'smicd' in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):</span>
+<span class="co">#&gt;  there is no package called 'htmlTable'</span>
 <span class="co"># Load and prepare data</span>
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">Exam</span>
+<span class="co">#&gt; Error in eval(expr, envir, enclos): object 'Exam' not found</span>
 <span class="va">classes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>, <span class="fl">7.7</span>, <span class="fl">8.5</span>, <span class="cn">Inf</span><span class="op">)</span>
 <span class="va">data</span><span class="op">$</span><span class="va">examsc.class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">examsc</span>, <span class="va">classes</span><span class="op">)</span>
-
+<span class="co">#&gt; Error in data$examsc: object of type 'closure' is not subsettable</span>
 <span class="co"># run model with random intercept and default settings</span>
 <span class="va">mod_semLm</span> <span class="op">&lt;-</span>
   <span class="fu">smicd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/smicd/man/semLm.html" class="external-link">semLm</a></span><span class="op">(</span>
@@ -2610,13 +2616,13 @@ A BibTeX entry for LaTeX users is
     data <span class="op">=</span> <span class="va">data</span>,
     classes <span class="op">=</span> <span class="va">classes</span>
   <span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_semLm</span>,
   title <span class="op">=</span> <span class="st">"Linear Regression with \nInterval-Censored Dependent Variable"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/semLm-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'mod_semLm' not found</span></code></pre></div>
 </div>
 <div id="linear-mixed-regression-with-interval-censored-dependent-variable-semlme" class="section level2">
 <h2 class="hasAnchor">
@@ -2625,12 +2631,14 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">smicd</span><span class="op">)</span>
-
+<span class="co">#&gt; Error: package or namespace load failed for 'smicd' in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):</span>
+<span class="co">#&gt;  there is no package called 'htmlTable'</span>
 <span class="co"># Load and prepare data</span>
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="va">Exam</span>
+<span class="co">#&gt; Error in eval(expr, envir, enclos): object 'Exam' not found</span>
 <span class="va">classes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>, <span class="fl">6.5</span>, <span class="fl">7.7</span>, <span class="fl">8.5</span>, <span class="cn">Inf</span><span class="op">)</span>
 <span class="va">data</span><span class="op">$</span><span class="va">examsc.class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">examsc</span>, <span class="va">classes</span><span class="op">)</span>
-
+<span class="co">#&gt; Error in data$examsc: object of type 'closure' is not subsettable</span>
 <span class="co"># run model with random intercept and default settings</span>
 <span class="va">model1</span> <span class="op">&lt;-</span>
   <span class="fu">smicd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/smicd/man/semLme.html" class="external-link">semLme</a></span><span class="op">(</span>
@@ -2638,13 +2646,13 @@ A BibTeX entry for LaTeX users is
     data <span class="op">=</span> <span class="va">data</span>,
     classes <span class="op">=</span> <span class="va">classes</span>
   <span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">model1</span>,
   title <span class="op">=</span> <span class="st">"Linear Mixed Regression with \nInterval-Censored Dependent Variable"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/semLme-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'model1' not found</span></code></pre></div>
 </div>
 <div id="mixed-effects-ordinal-regression-analysis-mixor" class="section level2">
 <h2 class="hasAnchor">
@@ -3000,7 +3008,6 @@ A BibTeX entry for LaTeX users is
 <span class="va">df_summary</span> <span class="op">&lt;-</span>
   <span class="fu">bmlm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/bmlm/man/mlm_summary.html" class="external-link">mlm_summary</a></span><span class="op">(</span><span class="va">fit_bmlm</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">.</span>,
     estimate <span class="op">=</span> <span class="va">Mean</span>,
     term <span class="op">=</span> <span class="va">Parameter</span>,
     std.error <span class="op">=</span> <span class="va">SE</span>,
@@ -3158,7 +3165,6 @@ A BibTeX entry for LaTeX users is
   x <span class="op">=</span> <span class="va">mod_aovlist</span>,
   effsize <span class="op">=</span> <span class="st">"eta"</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
   title <span class="op">=</span> <span class="st">"Variation in measurements for Iris species"</span>,
   subtitle <span class="op">=</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,
   caption <span class="op">=</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>
@@ -3180,8 +3186,7 @@ A BibTeX entry for LaTeX users is
         family <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>
       <span class="op">)</span>,
       title <span class="op">=</span> <span class="st">"generalized robust linear model"</span>,
-      ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+      ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span>,
     <span class="co"># plot 2: lmRob</span>
     <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
@@ -3192,8 +3197,7 @@ A BibTeX entry for LaTeX users is
       title <span class="op">=</span> <span class="st">"robust linear model"</span>,
       package <span class="op">=</span> <span class="st">"awtools"</span>,
       palette <span class="op">=</span> <span class="st">"a_palette"</span>,
-      ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
-      ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>
+      ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span>,
   <span class="co"># arguments relevant for `combine_plots` function</span>
@@ -3455,15 +3459,12 @@ A BibTeX entry for LaTeX users is
   formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">y</span>, <span class="va">uncens</span><span class="op">)</span> <span class="op">~</span> <span class="va">trt</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">center</span><span class="op">)</span>,
   data <span class="op">=</span> <span class="va">eortc</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in MASS::ginv(a): 'X' must be a numeric or complex matrix</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit</span>,
   title <span class="op">=</span> <span class="st">"mixed effects Cox model"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Warning: Number of labels is greater than default palette color count.</span>
-<span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/coxme-1.png" width="384"></p>
 </div>
 <div id="robust-cox-proportional-hazards-regression-model-coxr" class="section level2">
@@ -3926,7 +3927,6 @@ A BibTeX entry for LaTeX users is
   x <span class="op">=</span> <span class="va">mod_gls</span>,
   stats.label.color <span class="op">=</span> <span class="st">"black"</span>,
   ggtheme <span class="op">=</span> <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html" class="external-link">theme_ipsum_ps</a></span><span class="op">(</span><span class="op">)</span>,
-  ggstatsplot.layer <span class="op">=</span> <span class="cn">FALSE</span>,
   title <span class="op">=</span> <span class="st">"generalized least squares model"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/gls-1.png" width="576"></p>
@@ -4071,13 +4071,13 @@ A BibTeX entry for LaTeX users is
   formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html" class="external-link">qss</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
   data <span class="op">=</span> <span class="va">CobarOre</span>
 <span class="op">)</span>
-
+<span class="co">#&gt; Error in qss2(x, constraint = constraint, dummies = dummies, lambda = lambda, : requireNamespace("tripack") is not TRUE</span>
 <span class="co"># model info</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fCO</span>,
   title <span class="op">=</span> <span class="st">"Additive Quantile Regression"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/rqss-1.png" width="384"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'fCO' not found</span></code></pre></div>
 </div>
 <div id="censored-quantile-regression-crq" class="section level2">
 <h2 class="hasAnchor">
@@ -4197,6 +4197,8 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://imai.princeton.edu/projects/mechanisms.html" class="external-link">mediation</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package or namespace load failed for 'mediation' in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):</span>
+<span class="co">#&gt;  there is no package called 'htmlTable'</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">jobs</span><span class="op">)</span>
 
 <span class="co"># base models</span>
@@ -4205,12 +4207,13 @@ A BibTeX entry for LaTeX users is
     formula <span class="op">=</span> <span class="va">job_seek</span> <span class="op">~</span> <span class="va">treat</span> <span class="op">+</span> <span class="va">econ_hard</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">age</span>,
     data <span class="op">=</span> <span class="va">jobs</span>
   <span class="op">)</span>
+<span class="co">#&gt; Error in is.data.frame(data): object 'jobs' not found</span>
 <span class="va">c</span> <span class="op">&lt;-</span>
   <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>
     formula <span class="op">=</span> <span class="va">depress2</span> <span class="op">~</span> <span class="va">treat</span> <span class="op">+</span> <span class="va">job_seek</span> <span class="op">+</span> <span class="va">econ_hard</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">age</span>,
     data <span class="op">=</span> <span class="va">jobs</span>
   <span class="op">)</span>
-
+<span class="co">#&gt; Error in is.data.frame(data): object 'jobs' not found</span>
 <span class="co"># mediation model</span>
 <span class="va">mod_mediate</span> <span class="op">&lt;-</span>
   <span class="fu">mediation</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/mediation/man/mediate.html" class="external-link">mediate</a></span><span class="op">(</span>
@@ -4220,13 +4223,13 @@ A BibTeX entry for LaTeX users is
     treat <span class="op">=</span> <span class="st">"treat"</span>,
     mediator <span class="op">=</span> <span class="st">"job_seek"</span>
   <span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_mediate</span>,
   title <span class="op">=</span> <span class="st">"causal mediation analysis"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/mediate-1.png" width="480"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'mod_mediate' not found</span></code></pre></div>
 </div>
 <div id="model-ii-regression-lmodel2" class="section level2">
 <h2 class="hasAnchor">
@@ -4300,7 +4303,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; GAMLSS-CG iteration 1: Global Deviance = 4771.013 </span>
 <span class="co">#&gt; GAMLSS-CG iteration 2: Global Deviance = 4770.994 </span>
 <span class="co">#&gt; GAMLSS-CG iteration 3: Global Deviance = 4770.994</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">g_gamlss</span>,
@@ -4360,7 +4362,6 @@ A BibTeX entry for LaTeX users is
     data <span class="op">=</span> <span class="va">SwissLabor</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in terms.formula(formula(fF), data = data): invalid term in model formula</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">b_bamlss</span>,
@@ -4427,7 +4428,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;  9 (Intercept)     9   -0.209 0.0724   0.0593 </span>
 <span class="co">#&gt; 10 (Intercept)    10   -0.208 0.0660   0.0682 </span>
 <span class="co">#&gt; # ... with 1,076 more rows</span>
-
 <span class="co"># displaying only a certain step</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">step</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
@@ -4447,7 +4447,6 @@ A BibTeX entry for LaTeX users is
 <span class="co"># families depends on the absolute difference in wealth</span>
 <span class="va">gest</span> <span class="op">&lt;-</span> <span class="fu">ergm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm.html" class="external-link">ergm</a></span><span class="op">(</span><span class="va">flomarriage</span> <span class="op">~</span> <span class="va">edges</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html" class="external-link">absdiff</a></span><span class="op">(</span><span class="st">"wealth"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Error in get(myctrlname, mode = "function"): first argument has length &gt; 1</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">gest</span>,
@@ -4608,11 +4607,11 @@ A BibTeX entry for LaTeX users is
   <span class="fu">multcomp</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">glht</a></span><span class="op">(</span>
     model <span class="op">=</span> <span class="va">lmod</span>,
     linfct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
-      <span class="st">"Agriculture = 0"</span>,
-      <span class="st">"Examination = 0"</span>,
-      <span class="st">"Education = 0"</span>,
-      <span class="st">"Catholic = 0"</span>,
-      <span class="st">"Infant.Mortality = 0"</span>
+      <span class="st">"Agriculture=0"</span>,
+      <span class="st">"Examination=0"</span>,
+      <span class="st">"Education=0"</span>,
+      <span class="st">"Catholic=0"</span>,
+      <span class="st">"Infant.Mortality=0"</span>
     <span class="op">)</span>
   <span class="op">)</span>
 
@@ -4876,8 +4875,8 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_epiR</span>,
   title <span class="op">=</span> <span class="st">"Summary measures for count data presented in a 2 by 2 table"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/epi.2by2-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in names(cf) &lt;- gsub(".strata.wald", "", names(cf), fixed = TRUE): attempt to set an attribute on NULL</span></code></pre></div>
 </div>
 <div id="marginal-effects-for-a-probit-regression-probitmfx" class="section level2">
 <h2 class="hasAnchor">
@@ -5034,7 +5033,6 @@ A BibTeX entry for LaTeX users is
     refresh <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in cleanup_makevar(old): argument "RMU" is missing, with no default</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_brm</span>,
@@ -5062,7 +5060,6 @@ A BibTeX entry for LaTeX users is
     refresh <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in cleanup_makevar(old): argument "RMU" is missing, with no default</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_brm_m</span>,
@@ -5093,7 +5090,6 @@ A BibTeX entry for LaTeX users is
     refresh <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in rstanarm::stan_nlmer(formula = circumference ~ SSlogis(age, Asym, : 'stan_nlmer' requires a named self-starting nonlinear function.</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_nlstanreg</span>,
@@ -5163,7 +5159,6 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;    Total graph size: 41</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Initializing model</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">jagsfit</span>,
@@ -5220,7 +5215,7 @@ speed =~ x7 + x8 + x9 "</span>
 
 <span class="co"># model</span>
 <span class="va">fit_blavaan</span> <span class="op">&lt;-</span>
-  <span class="fu">blavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/blavaan/man/blavaan.html" class="external-link">blavaan</a></span><span class="op">(</span>
+  <span class="fu">blavaan</span><span class="fu">::</span><span class="fu">blavaan</span><span class="op">(</span>
     <span class="va">HS.model</span>,
     data <span class="op">=</span> <span class="va">HolzingerSwineford1939</span>,
     auto.var <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -5283,7 +5278,6 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; Fitting a multivariate glmer model.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Please note the warmup may be much slower than later iterations!</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_stanmvreg</span>,
@@ -5337,7 +5331,6 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; ************************************************ </span>
 <span class="co">#&gt; Current iteration :</span>
 <span class="co">#&gt; [1] 500</span>
-
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_bayesqr</span>,
@@ -5352,22 +5345,27 @@ speed =~ x7 + x8 + x9 "</span>
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rmsb/" class="external-link">rmsb</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package 'Hmisc' could not be loaded</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/" class="external-link">rms</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package 'Hmisc' could not be loaded</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/Hmisc/" class="external-link">Hmisc</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package or namespace load failed for 'Hmisc' in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):</span>
+<span class="co">#&gt;  there is no package called 'htmlTable'</span>
 <span class="fu"><a href="https://rdrr.io/pkg/Hmisc/man/getHdata.html" class="external-link">getHdata</a></span><span class="op">(</span><span class="va">titanic3</span><span class="op">)</span>
+<span class="co">#&gt; Error in getHdata(titanic3): could not find function "getHdata"</span>
 <span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rms/man/datadist.html" class="external-link">datadist</a></span><span class="op">(</span><span class="va">titanic3</span><span class="op">)</span>
+<span class="co">#&gt; Error in datadist(titanic3): could not find function "datadist"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>datadist <span class="op">=</span> <span class="st">"dd"</span><span class="op">)</span>
 
 <span class="co"># model</span>
 <span class="va">mod_blrm</span> <span class="op">&lt;-</span> <span class="fu">rmsb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rmsb/man/blrm.html" class="external-link">blrm</a></span><span class="op">(</span><span class="va">survived</span> <span class="op">~</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/rms/man/rms.trans.html" class="external-link">rcs</a></span><span class="op">(</span><span class="va">age</span>, <span class="fl">5</span><span class="op">)</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">pclass</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span>, data <span class="op">=</span> <span class="va">titanic3</span><span class="op">)</span>
-
+<span class="co">#&gt; Error in loadNamespace(j &lt;- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]): there is no package called 'htmlTable'</span>
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_blrm</span>,
   title <span class="op">=</span> <span class="st">"Bayesian binary and ordinal logistic regression"</span>
 <span class="op">)</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/blrm-1.png" width="960"></p>
+<span class="co">#&gt; Error in .get_class_list(x): object 'mod_blrm' not found</span></code></pre></div>
 </div>
 <div id="compound-poisson-generalized-linear-models-cpglm" class="section level2">
 <h2 class="hasAnchor">
@@ -5475,7 +5473,6 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt;   5   3  bmi  hyp  chl</span>
 <span class="co">#&gt;   5   4  bmi  hyp  chl</span>
 <span class="co">#&gt;   5   5  bmi  hyp  chl</span>
-
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">imp</span>, exp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">hyp</span> <span class="op">+</span> <span class="va">chl</span><span class="op">)</span><span class="op">)</span>,
@@ -5573,10 +5570,9 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co"># data</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gamSim.html" class="external-link">gamSim</a></span><span class="op">(</span><span class="fl">1</span>, n <span class="op">=</span> <span class="fl">400</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; Gu &amp; Wahba 4 term additive model</span>
-
 <span class="co"># now add 20 level random effect `fac'...</span>
 <span class="va">dat</span><span class="op">$</span><span class="va">fac</span> <span class="op">&lt;-</span> <span class="va">fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">400</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/SparseM/man/SparseM.hb.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">fac</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.5</span>
+<span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">fac</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.5</span>
 
 <span class="co"># model object</span>
 <span class="va">br</span> <span class="op">&lt;-</span>
@@ -5595,7 +5591,6 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $gam</span>
 <span class="co">#&gt; [1] "gam"</span>
-
 <span class="co"># plotting</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
@@ -5648,8 +5643,8 @@ speed =~ x7 + x8 + x9 "</span>
   title <span class="op">=</span> <span class="st">"parametric random-effects meta-analysis"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta1-1.png" width="768"></p>
+<span class="co">#&gt;  Skipping labels with statistical details.</span>
+<span class="co">#&gt; Error in loadNamespace(x): there is no package called 'metaBMA'</span></code></pre></div>
 </div>
 <div id="robust" class="section level3">
 <h3 class="hasAnchor">
@@ -5692,8 +5687,8 @@ speed =~ x7 + x8 + x9 "</span>
   title <span class="op">=</span> <span class="st">"Bayesian random-effects meta-analysis"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta3-1.png" width="768"></p>
+<span class="co">#&gt;  Skipping labels with statistical details.</span>
+<span class="co">#&gt; Error in loadNamespace(x): there is no package called 'metaBMA'</span></code></pre></div>
 <p>You can also provide a dataframe containing all the other relevant information for additionally displaying labels with statistical information.</p>
 <div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># let's make up a dataframe (with all available details)</span>
@@ -5715,8 +5710,8 @@ speed =~ x7 + x8 + x9 "</span>
   statistic <span class="op">=</span> <span class="st">"t"</span>,
   package <span class="op">=</span> <span class="st">"LaCroixColoR"</span>,
   palette <span class="op">=</span> <span class="st">"paired"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta4-1.png" width="672"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in loadNamespace(x): there is no package called 'metaBMA'</span></code></pre></div>
 </div>
 </div>
 <div id="dataframes" class="section level1">
@@ -5818,7 +5813,6 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; 2 1.22e-10</span>
 <span class="co">#&gt; 3 8.51e-14</span>
 <span class="co">#&gt; # ... with 1 more variable: label &lt;chr&gt;</span>
-
 <span class="co"># glance summary</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span>, output <span class="op">=</span> <span class="st">"glance"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 0 x 0</span></code></pre></div>

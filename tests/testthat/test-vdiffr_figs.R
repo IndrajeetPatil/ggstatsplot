@@ -10,7 +10,7 @@ if (getRversion() > "4.3") {
       title = "ggbetweenstats works",
       fig = ggbetweenstats(
         data = dplyr::filter(
-          .data = movies_long,
+          movies_long,
           genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
         ),
         x = mpaa,
@@ -24,7 +24,7 @@ if (getRversion() > "4.3") {
       title = "grouped_ggbetweenstats works",
       fig = grouped_ggbetweenstats(
         data = dplyr::filter(
-          .data = movies_long,
+          movies_long,
           genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
         ),
         x = mpaa,
@@ -77,7 +77,7 @@ if (getRversion() > "4.3") {
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "ggdotplotstats works",
-      fig = ggdotplotstats(dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+      fig = ggdotplotstats(dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
         cty, manufacturer,
         test.value = 15
       )
@@ -87,7 +87,7 @@ if (getRversion() > "4.3") {
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "grouped_ggdotplotstats works",
-      fig = grouped_ggdotplotstats(dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+      fig = grouped_ggdotplotstats(dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
         cty, manufacturer,
         test.value = 15, grouping.var = cyl
       )

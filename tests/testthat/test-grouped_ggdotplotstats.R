@@ -56,7 +56,7 @@ test_that(
     skip_on_cran()
 
     # removing factor level with very few no. of observations
-    df <- dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4"))
+    df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4"))
 
     # should output a list of length 3
     set.seed(123)

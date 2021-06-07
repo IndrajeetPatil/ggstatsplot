@@ -162,7 +162,7 @@ test_that(
     skip_on_cran()
 
     # data
-    df <- dplyr::filter(.data = movies_long, genre %in% c("Action Drama"))
+    df <- dplyr::filter(movies_long, genre %in% c("Action Drama"))
 
     set.seed(123)
     ls_results <-
