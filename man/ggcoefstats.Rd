@@ -26,7 +26,7 @@ ggcoefstats(
   point.args = list(size = 3, color = "blue"),
   errorbar.args = list(height = 0),
   vline = TRUE,
-  vline.args = list(size = 1, linetype = "dashed", xintercept = 0),
+  vline.args = list(size = 1, linetype = "dashed"),
   stats.labels = TRUE,
   stats.label.color = NULL,
   stats.label.args = list(size = 3, direction = "y", min.segment.length = 0),

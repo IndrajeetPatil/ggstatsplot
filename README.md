@@ -202,7 +202,7 @@ ggbetweenstats(
 **Defaults** return<br>
 
 ✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
-inferential statistics <br> ✅ effect size + CIs <brFemo> ✅ pairwise
+inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
 comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
 estimation <br>
 
@@ -359,7 +359,7 @@ set.seed(123)
 # plot
 grouped_ggwithinstats(
   data = dplyr::filter(
-    .data = bugs_long,
+    bugs_long,
     region %in% c("Europe", "North America"),
     condition %in% c("LDLF", "LDHF")
   ),
@@ -549,7 +549,7 @@ set.seed(123)
 
 # plot
 ggdotplotstats(
-  data = dplyr::filter(.data = gapminder::gapminder, continent == "Asia"),
+  data = dplyr::filter(gapminder::gapminder, continent == "Asia"),
   y = country,
   x = lifeExp,
   test.value = 55,
@@ -583,7 +583,7 @@ set.seed(123)
 
 # plot
 grouped_ggdotplotstats(
-  data = dplyr::filter(.data = ggplot2::mpg, cyl %in% c("4", "6")),
+  data = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x = cty,
   y = manufacturer,
   type = "bayes", # Bayesian test
@@ -1542,8 +1542,8 @@ benefited from the larger `rstats` community on Twitter and
 
 Thanks are also due to my postdoc advisers (Mina Cikara and Fiery
 Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for
-Human Development) who patiently supported me spending hundreds of hours
-working on this package rather than what I was paid to do. 😄
+Human Development) who patiently supported me spending hundreds (?) of
+hours working on this package rather than what I was paid to do. 😁
 
 # Code coverage
 

@@ -149,8 +149,7 @@ ggcoefstats <- function(x,
                         vline = TRUE,
                         vline.args = list(
                           size = 1,
-                          linetype = "dashed",
-                          xintercept = 0
+                          linetype = "dashed"
                         ),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
@@ -372,7 +371,7 @@ ggcoefstats <- function(x,
     plot <- ggplot2::ggplot(tidy_df, mapping = ggplot2::aes(estimate, term))
 
     # if needed, adding the vertical line
-    if (isTRUE(vline)) plot <- plot + rlang::exec(ggplot2::geom_vline, !!!vline.args)
+    if (isTRUE(vline)) plot <- plot + rlang::exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
 
     # if the confidence intervals are to be displayed on the plot
     if (isTRUE(conf.int)) {

@@ -5,9 +5,6 @@ N.B. All statistical analysis in `ggstatsplot` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
-There is finally a publication for `ggstatsplot` package! 🎉
-
-<https://joss.theoj.org/papers/10.21105/joss.03167>
 
 NEW FUNCTIONS
 
@@ -15,6 +12,9 @@ NEW FUNCTIONS
     details.
 
 MAJOR CHANGES
+
+  - There is finally a publication for `ggstatsplot` package! 🎉
+    <https://joss.theoj.org/papers/10.21105/joss.03167>
 
   - To reduce the dependency load, `ggcorrplot` moves from `Imports` to
     `Suggests`.
@@ -38,6 +38,11 @@ MINOR CHANGES
 
   - Minor change to `ggcorrmat` legend title - content in parentheses is now
     shown outside of it.
+
+BUG FIXES
+
+  - `ggcoefstats` didn't work when statistic for the given model was
+    chi-squared. This has been fixed.
 
 # ggstatsplot 0.7.2
 

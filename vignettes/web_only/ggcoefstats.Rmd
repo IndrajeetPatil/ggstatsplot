@@ -1140,7 +1140,7 @@ fit_mjoint <-
 ggcoefstats(
   x = fit_mjoint,
   conf.level = 0.99,
-  component = "longitudinal",
+  component = "survival",
   package = "yarrr",
   palette = "basel",
   title = "joint model to time-to-event data and multivariate longitudinal data"

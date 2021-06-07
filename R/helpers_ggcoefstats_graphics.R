@@ -68,7 +68,7 @@ ggcoefstats_label_maker <- function(tidy_df,
       dplyr::mutate(
         label = paste0(
           "list(~widehat(italic(beta))=='", format_value(estimate, k),
-          "', ~italic(chi)^2~", "('", format_value(df.error, 0L), "')==", format_value(statistic, k),
+          "', ~italic(chi)^2~", "('", format_value(df.error, 0L), "')=='", format_value(statistic, k),
           "', ~italic(p)=='", format_num(p.value, k, TRUE), "')"
         )
       )

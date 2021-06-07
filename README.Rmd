@@ -207,7 +207,7 @@ ggbetweenstats(
 ✅ raw data + distributions <br>
 ✅ descriptive statistics <br>
 ✅ inferential statistics <br>
-✅ effect size + CIs <brFemo>
+✅ effect size + CIs <br>
 ✅ pairwise comparisons <br>
 ✅ Bayesian hypothesis-testing <br>
 ✅ Bayesian estimation <br>
