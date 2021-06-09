@@ -58,14 +58,10 @@ only available on the website for this package: <br>
     the `combine_plots` helper function:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>)
 
-  - Default theme (`theme_ggstatsplot`) used for the package and how it can be
-    modified:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html>)
-
 ## General vignettes
 
   - Publication describing philosophy and principles behind this package:
-    (<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/paper/paper.pdf>)
+    (<https://joss.theoj.org/papers/10.21105/joss.03167>)
 
   - Frequently Asked Questions (FAQ)-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
