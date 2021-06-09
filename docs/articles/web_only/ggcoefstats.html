@@ -177,7 +177,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-06-07</h4>
+            <h4 data-toc-skip class="date">2021-06-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -216,7 +216,7 @@ A BibTeX entry for LaTeX users is
 <a href="#general-structure-of-the-plots" class="anchor" aria-hidden="true"></a>General structure of the plots</h1>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
-<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline">\(\chi^{2}\)</span>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
+<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline">\(\chi^{2}\)</span>-, and <code>z</code>-statistic), etc. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
 <li><p>The label attached to dot will provide more details from the statistical test carried out and it will typically contain estimate, statistic, and <em>p</em>-value.</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
@@ -231,80 +231,13 @@ A BibTeX entry for LaTeX users is
 <div id="summary-of-graphics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h1>
-<table class="table">
-<thead><tr class="header">
-<th>graphical element</th>
-<th>
-<code>geom_</code> used</th>
-<th>argument for further modification</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>regression estimate</td>
-<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
-<td><code>point.args</code></td>
-</tr>
-<tr class="even">
-<td>error bars</td>
-<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh</a></code></td>
-<td><code>errorbar.args</code></td>
-</tr>
-<tr class="odd">
-<td>vertical line</td>
-<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code></td>
-<td><code>vline.args</code></td>
-</tr>
-<tr class="even">
-<td>label with statistical details</td>
-<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
-<td><code>stats.label.args</code></td>
-</tr>
-</tbody>
-</table>
+<p>graphical element | <code>geom_</code> used | argument for further modification ——— | ——- | ————————– regression estimate | <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code> | <code>point.args</code> error bars | <code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh</a></code> | <code>errorbar.args</code> vertical line | <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code> | <code>vline.args</code> label with statistical details | <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> | <code>stats.label.args</code></p>
 </div>
 <div id="summary-of-meta-analysis-tests" class="section level1">
 <h1 class="hasAnchor">
 <a href="#summary-of-meta-analysis-tests" class="anchor" aria-hidden="true"></a>Summary of meta-analysis tests</h1>
 <p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
-<table class="table">
-<colgroup>
-<col width="23%">
-<col width="42%">
-<col width="17%">
-<col width="6%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Test</th>
-<th>Effect size</th>
-<th>CI?</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric</td>
-<td>Meta-analysis via random-effects models</td>
-<td><span class="math inline">\(\beta\)</span></td>
-<td>✅</td>
-<td><code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code></td>
-</tr>
-<tr class="even">
-<td>Robust</td>
-<td>Meta-analysis via robust random-effects models</td>
-<td><span class="math inline">\(\beta\)</span></td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code></td>
-</tr>
-<tr class="odd">
-<td>Bayes</td>
-<td>Meta-analysis via Bayesian random-effects models</td>
-<td><span class="math inline">\(\beta\)</span></td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
-</tr>
-</tbody>
-</table>
+<p>Type | Test | Effect size | CI? | Function used ———– | ——————– | ——– | — | —– Parametric | Meta-analysis via random-effects models | <span class="math inline">\(\beta\)</span> | ✅ | <code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code> Robust | Meta-analysis via robust random-effects models | <span class="math inline">\(\beta\)</span> | ✅ | <code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code> Bayes | Meta-analysis via Bayesian random-effects models | <span class="math inline">\(\beta\)</span> | ✅ | <code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></p>
 </div>
 <div id="examples-of-supported-models" class="section level1">
 <h1 class="hasAnchor">
@@ -348,7 +281,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model and effect sizes</span>
 <span class="va">fiber.lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">strength</span> <span class="op">~</span> <span class="va">diameter</span> <span class="op">+</span> <span class="va">machine</span>, data <span class="op">=</span> <span class="va">fiber</span><span class="op">)</span>
 <span class="va">emm</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/emmeans.html" class="external-link">emmeans</a></span><span class="op">(</span><span class="va">fiber.lm</span>, <span class="st">"machine"</span><span class="op">)</span>
-<span class="va">es</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/eff_size.html" class="external-link">eff_size</a></span><span class="op">(</span><span class="va">emm</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sigma.html" class="external-link">sigma</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span>, edf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html" class="external-link">df.residual</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span><span class="op">)</span>
+<span class="va">es</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/emmeans/man/eff_size.html" class="external-link">eff_size</a></span><span class="op">(</span><span class="va">emm</span>, sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/lme4/man/sigma.html" class="external-link">sigma</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span>, edf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/df.residual.html" class="external-link">df.residual</a></span><span class="op">(</span><span class="va">fiber.lm</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
@@ -5586,12 +5519,9 @@ speed =~ x7 + x8 + x9 "</span>
 <a href="#meta-analysis" class="anchor" aria-hidden="true"></a>Meta-analysis</h1>
 <p>In case the estimates you are displaying come from multiple studies, you can also use this function to carry out random-effects meta-analysis. The dataframe you enter <strong>must</strong> contain at the minimum the following three columns-</p>
 <ul>
-<li>
-<code>term</code>: a column with names/identifiers to annotate each study/effect</li>
-<li>
-<code>estimate</code>: a column with the observed effect sizes or outcomes</li>
-<li>
-<code>std.error</code>: a column the corresponding standard errors</li>
+<li><p><code>term</code>: a column with names/identifiers to annotate each study/effect</p></li>
+<li><p><code>estimate</code>: a column with the observed effect sizes or outcomes</p></li>
+<li><p><code>std.error</code>: a column the corresponding standard errors</p></li>
 </ul>
 <div id="parametric" class="section level3">
 <h3 class="hasAnchor">

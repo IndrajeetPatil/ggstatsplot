@@ -1,17 +1,11 @@
 # dataframe as input ----------------------------------------------------
 
-# should be run last
-if (all(unlist(lapply(
-  c("metafor", "metaBMA"), # needed packages
-  require,
-  character.only = TRUE,
-  quietly = TRUE,
-  warn.conflicts = FALSE
-)))) {
   test_that(
     desc = "ggcoefstats works with data frames",
     code = {
       skip_on_cran()
+      skip_if_not_installed("metafor")
+      skip_if_not_installed("metaBMA")
       set.seed(123)
 
       # creating dataframe
@@ -233,4 +227,4 @@ if (all(unlist(lapply(
       )
     }
   )
-}
+

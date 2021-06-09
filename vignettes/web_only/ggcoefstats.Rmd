@@ -54,12 +54,13 @@ citation("ggstatsplot")
 
 ---
 
-Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+Lifecycle:
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggcoefstats` generates **dot-and-whisker plots** for
-regression models saved in a tidy data frame. The tidy dataframes are prepared
-using `parameters::model_parameters`. Additionally, if available, the model
-summary indices are also extracted from `performance::model_performance`.
+The function `ggcoefstats` generates **dot-and-whisker plots** for regression
+models saved in a tidy data frame. The tidy dataframes are prepared using
+`parameters::model_parameters`. Additionally, if available, the model summary
+indices are also extracted from `performance::model_performance`.
 
 In this vignette, we will see examples of how to use this function. We will try
 to cover as many classes of objects as possible. Unfortunately, there is no
@@ -77,18 +78,16 @@ be invariant across models:
     **confidence intervals** (`95%` is the default). The estimate can either be
     effect sizes (for tests that depend on the `F`-statistic) or regression
     coefficients (for tests with `t`-, $\chi^{2}$-, and `z`-statistic), etc. The
-    function will, by default, display a helpful `x`-axis label that should
-    clear up what estimates are being displayed. The confidence intervals can
-    sometimes be asymmetric if bootstrapping was used.
-    
+    confidence intervals can sometimes be asymmetric if bootstrapping was used.
+
   - The label attached to dot will provide more details from the statistical
     test carried out and it will typically contain estimate, statistic, and
     *p*-value.
 
-  - The caption will contain diagnostic information, if available, about
-    models that can be useful for model selection: The smaller the Akaike's
-    Information Criterion (**AIC**) and the Bayesian Information Criterion
-    (**BIC**) values, the "better" the model is.
+  - The caption will contain diagnostic information, if available, about models
+    that can be useful for model selection: The smaller the Akaike's Information
+    Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**) values,
+    the "better" the model is.
 
   - The output of this function will be a `ggplot2` object and, thus, it can be
     further modified (e.g., change themes, etc.) with `ggplot2` functions.
@@ -124,22 +123,22 @@ also supported by `ggcoefstats`. For example-
 
 # Summary of graphics
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-regression estimate | `ggplot2::geom_point` | `point.args`
-error bars | `ggplot2::geom_errorbarh` | `errorbar.args`
-vertical line | `ggplot2::geom_vline` | `vline.args`
-label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
+graphical element | `geom_` used | argument for further modification --------- |
+------- | -------------------------- regression estimate | `ggplot2::geom_point`
+| `point.args` error bars | `ggplot2::geom_errorbarh` | `errorbar.args` vertical
+line | `ggplot2::geom_vline` | `vline.args` label with statistical details |
+`ggrepel::geom_label_repel` | `stats.label.args`
 
 # Summary of meta-analysis tests
 
 **Hypothesis testing** and **Effect size estimation**
 
-Type | Test | Effect size | CI? | Function used
------------ | -------------------- | -------- | ---  | -----
-Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor`
-Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus`
-Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `metaBMA::meta_random`
+Type | Test | Effect size | CI? | Function used ----------- |
+-------------------- | -------- | --- | ----- Parametric | Meta-analysis via
+random-effects models | $\beta$ | ✅ | `metafor::metafor` Robust | Meta-analysis
+via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus` Bayes |
+Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ |
+`metaBMA::meta_random`
 
 # Examples of supported models
 
@@ -1202,9 +1201,8 @@ ggcoefstats(
 )
 ```
 
-**Note**:
-The exact statistic will depend on the family used for `glm` models: Some
-families will have a `t` statistic associated with them, while others a `z`
+**Note**: The exact statistic will depend on the family used for `glm` models:
+Some families will have a `t` statistic associated with them, while others a `z`
 statistic. The function will figure this out for you.
 
 ```{r glm_full, fig.height=13, fig.width=10}
@@ -2856,7 +2854,6 @@ ggcoefstats(
 ```
 
 ## repeated measures ANOVA (`aovlist`)
-
 
 ```{r aovlist1, fig.height=6, fig.width=8}
 # for reproducibility
@@ -5138,7 +5135,9 @@ also use this function to carry out random-effects meta-analysis. The dataframe
 you enter **must** contain at the minimum the following three columns-
 
   - `term`: a column with names/identifiers to annotate each study/effect
+
   - `estimate`: a column with the observed effect sizes or outcomes
+
   - `std.error`: a column the corresponding standard errors
 
 ### parametric
@@ -5199,8 +5198,8 @@ ggcoefstats(
 )
 ```
 
-You can also provide a dataframe containing all the other relevant
-information for additionally displaying labels with statistical information.
+You can also provide a dataframe containing all the other relevant information
+for additionally displaying labels with statistical information.
 
 ```{r meta4, fig.height=7, fig.width=7}
 # let's make up a dataframe (with all available details)
@@ -5305,7 +5304,8 @@ ggcoefstats(
 # Other types of outputs
 
 This function can also be used to extract outputs other than a plot, although it
-is much more preferable to use the underlying functions instead (`parameters::model_parameters`).
+is much more preferable to use the underlying functions instead
+(`parameters::model_parameters`).
 
 ```{r other_output, error=TRUE}
 # setup
@@ -5345,3 +5345,4 @@ If you find any bugs or have any suggestions/remarks, please file an issue on
 
 For details, see-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+

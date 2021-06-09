@@ -268,7 +268,7 @@
     Output
       [[1]]
       [[1]]$x
-      [1] "regression coefficient"
+      [1] "estimate"
       
       [[1]]$y
       [1] "term"
@@ -297,7 +297,7 @@
       
       [[2]]
       [[2]]$x
-      [1] "regression coefficient"
+      [1] "estimate"
       
       [[2]]$y
       [1] "term"
@@ -326,7 +326,7 @@
       
       [[3]]
       [[3]]$x
-      [1] "regression coefficient"
+      [1] "estimate"
       
       [[3]]$y
       [1] "term"
@@ -378,7 +378,7 @@
       
       [[5]]
       [[5]]$x
-      [1] "regression coefficient"
+      [1] "estimate"
       
       [[5]]$y
       [1] "term"

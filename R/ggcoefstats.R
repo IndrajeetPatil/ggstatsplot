@@ -213,7 +213,7 @@ ggcoefstats <- function(x,
 
       # final cleanup
       tidy_df %<>%
-        dplyr::mutate(estimate.type = paste0("partial ", effsize, "-squared")) %>%
+        dplyr::mutate(effectsize = paste0("partial ", effsize, "-squared")) %>%
         dplyr::ungroup()
     }
   }
@@ -424,14 +424,10 @@ ggcoefstats <- function(x,
 
     # ========================== annotations =============================
 
-    if (!"estimate.type" %in% names(tidy_df)) {
-      tidy_df %<>% dplyr::mutate(estimate.type = "regression coefficient")
-    }
-
     # adding other labels to the plot
     plot <- plot +
       ggplot2::labs(
-        x = xlab %||% tidy_df$estimate.type[[1]],
+        x = xlab %||% "estimate",
         y = ylab %||% "term",
         caption = caption,
         subtitle = subtitle,

@@ -157,7 +157,7 @@
       1 mpg    22.3       1 22.3      119.   1.38e-11    0.809   0.663      0.880
       2 am      1.37      1  1.37       7.30 1.16e- 2    0.207   0.0118     0.448
       3 mpg:am  0.701     1  0.701      3.73 6.36e- 2    0.118   0          0.357
-        df.error estimate.type      
+        df.error effectsize         
            <dbl> <chr>              
       1       28 partial eta-squared
       2       28 partial eta-squared
@@ -170,7 +170,7 @@
       
       [[2]]
       [[2]]$x
-      [1] "partial eta-squared"
+      [1] "estimate"
       
       [[2]]$y
       [1] "effect"
@@ -211,7 +211,7 @@
       1 vore         19.6      3   6.54      7.39 0.000584   0.308    0.0458     0.498
       2 brainwt       1.80     1   1.80      2.03 0.163      0.0235   0          0.192
       3 vore:brainwt 10.7      3   3.55      4.01 0.0148     0.174    0          0.364
-        df.error estimate.type        
+        df.error effectsize           
            <dbl> <chr>                
       1       35 partial omega-squared
       2       35 partial omega-squared
@@ -224,7 +224,7 @@
       
       [[2]]
       [[2]]$x
-      [1] "partial omega-squared"
+      [1] "estimate"
       
       [[2]]$y
       [1] "term"
@@ -269,7 +269,7 @@
       5 Within N:P    21.3       1  21.3      1.38   0.263    0.103     0     
       6 Within N:K    33.1       1  33.1      2.15   0.169    0.152     0     
       7 Within P:K     0.482     1   0.482    0.0312 0.863    0.00259   0     
-        conf.high df.error estimate.type      
+        conf.high df.error effectsize         
             <dbl>    <dbl> <chr>              
       1     0.639        4 partial eta-squared
       2     0.741       12 partial eta-squared
@@ -299,7 +299,7 @@
       5 N:K    33.1       1  33.1      1.08    0.314  0.0631   0            0.362
       6 P:K     0.482     1   0.482    0.0157  0.902  0.000979 0            0.147
       7 N:P:K  37.0       1  37.0      1.20    0.289  0.0700   0            0.372
-        df.error estimate.type      
+        df.error effectsize         
            <dbl> <chr>              
       1       16 partial eta-squared
       2       16 partial eta-squared

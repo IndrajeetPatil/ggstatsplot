@@ -5,7 +5,6 @@ N.B. All statistical analysis in `ggstatsplot` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
-
 NEW FUNCTIONS
 
   - Adds `extract_stats` function to extract dataframes containing statistical
@@ -13,8 +12,14 @@ NEW FUNCTIONS
 
 MAJOR CHANGES
 
-  - There is finally a publication for `ggstatsplot` package! 🎉
+  - There is finally a publication for `ggstatsplot` package!
     <https://joss.theoj.org/papers/10.21105/joss.03167>
+
+  - The `ggcoefstats` function defaults to `NULL` for `xlab` and `ylab`
+    arguments, which lets users change these labels if they wish to do so.
+    Additionally, the x-axis label, if not specified, now defaults to
+    `"estimate"`. Whether this estimate corresponds to regression coefficient or
+    effect size like partial eta-squared should be clear from the label itself.
 
   - To reduce the dependency load, `ggcorrplot` moves from `Imports` to
     `Suggests`.

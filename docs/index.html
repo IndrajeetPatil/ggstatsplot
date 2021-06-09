@@ -233,7 +233,7 @@
 <td><a href="https://www.gnu.org/licenses/gpl-3.0.en.html" class="external-link"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></td>
 <td><a href="https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></td>
 <td><a href="https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c" class="external-link"><img src="https://joss.theoj.org/papers/254890248268a43a0365abe1a607939c/status.svg" alt="status"></a></td>
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--06--07-yellowgreen.svg" alt="Last-changedate"></a></td>
+<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/badge/last%20change-2021--06--09-yellowgreen.svg" alt="Last-changedate"></a></td>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/IndrajeetPatil/ggstatsplot.svg" alt="GitHub last commit"></a></td>
 </tr>
 <tr class="even">
@@ -573,7 +573,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
-<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <brfemo> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></brfemo></p>
+<p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -948,7 +948,7 @@
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
-    .data <span class="op">=</span> <span class="va">bugs_long</span>,
+    <span class="va">bugs_long</span>,
     <span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Europe"</span>, <span class="st">"North America"</span><span class="op">)</span>,
     <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDLF"</span>, <span class="st">"LDHF"</span><span class="op">)</span>
   <span class="op">)</span>,
@@ -1456,7 +1456,7 @@
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>,
   y <span class="op">=</span> <span class="va">country</span>,
   x <span class="op">=</span> <span class="va">lifeExp</span>,
   test.value <span class="op">=</span> <span class="fl">55</span>,
@@ -1480,7 +1480,7 @@
 
 <span class="co"># plot</span>
 <span class="fu"><a href="reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>.data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="va">cty</span>,
   y <span class="op">=</span> <span class="va">manufacturer</span>,
   type <span class="op">=</span> <span class="st">"bayes"</span>, <span class="co"># Bayesian test</span>
@@ -2541,7 +2541,7 @@
 <td>Meta-analysis via Bayesian random-effects models</td>
 <td><img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cbeta" title="\beta" alt="\beta"></td>
 <td>✅</td>
-<td><code>metaBMA::meta_random</code></td>
+<td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -2741,7 +2741,7 @@
 <a href="#acknowledgments" class="anchor" aria-hidden="true"></a>Acknowledgments</h1>
 <p>I would like to thank all the contributors to <code>ggstatsplot</code> who pointed out bugs or requested features I hadn’t considered. I would especially like to thank other package developers (especially Daniel Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Patrick Mair, Salvatore Mangiafico, etc.) who have patiently and diligently answered my relentless number of questions and added feature requests I wanted. I also want to thank Chuck Powell for his initial contributions to the package.</p>
 <p>The hexsticker was generously designed by Sarah Otterstetter (Max Planck Institute for Human Development, Berlin). This package has also benefited from the larger <code>rstats</code> community on Twitter and <code>StackOverflow</code>.</p>
-<p>Thanks are also due to my postdoc advisers (Mina Cikara and Fiery Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for Human Development) who patiently supported me spending hundreds of hours working on this package rather than what I was paid to do. 😄</p>
+<p>Thanks are also due to my postdoc advisers (Mina Cikara and Fiery Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for Human Development) who patiently supported me spending hundreds (?) of hours working on this package rather than what I was paid to do. 😁</p>
 </div>
 <div id="code-coverage" class="section level1">
 <h1 class="hasAnchor">
