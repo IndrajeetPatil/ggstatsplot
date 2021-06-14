@@ -97,7 +97,7 @@ ggpiestats <- function(data,
                        output = "plot",
                        ...) {
   # convert entered stats type to a standard notation
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
   x <- rlang::ensym(x)

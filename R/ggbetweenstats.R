@@ -209,7 +209,7 @@ ggbetweenstats <- function(data,
                            ...) {
 
   # convert entered stats type to a standard notation
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
@@ -394,7 +394,7 @@ ggbetweenstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       k = k,
-      type = ipmisc::stats_type_switch(centrality.type),
+      type = statsExpressions::stats_type_switch(centrality.type),
       tr = tr,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args

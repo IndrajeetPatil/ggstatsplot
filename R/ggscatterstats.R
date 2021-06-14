@@ -124,7 +124,7 @@ ggscatterstats <- function(data,
                            ...) {
 
   # convert entered stats type to a standard notation
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   #---------------------- variable names --------------------------------
 

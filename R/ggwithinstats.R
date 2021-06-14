@@ -109,7 +109,7 @@ ggwithinstats <- function(data,
                           ...) {
 
   # convert entered stats type to a standard notation
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
@@ -257,7 +257,7 @@ ggwithinstats <- function(data,
       x = {{ x }},
       y = {{ y }},
       k = k,
-      type = ipmisc::stats_type_switch(centrality.type),
+      type = statsExpressions::stats_type_switch(centrality.type),
       tr = tr,
       centrality.path = centrality.path,
       centrality.path.args = centrality.path.args,

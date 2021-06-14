@@ -17,6 +17,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ipmisc}{\code{\link[ipmisc:reexports]{\%$\%}}, \code{\link[ipmisc:reexports]{\%<-\%}}, \code{\link[ipmisc:reexports]{\%<>\%}}, \code{\link[ipmisc:reexports]{\%>\%}}, \code{\link[ipmisc:reexports]{as_tibble}}, \code{\link[ipmisc:reexports]{enframe}}, \code{\link[ipmisc:reexports]{tibble}}}
+  \item{statsExpressions}{\code{\link[statsExpressions:reexports]{\%$\%}}, \code{\link[statsExpressions:reexports]{\%<-\%}}, \code{\link[statsExpressions:reexports]{\%<>\%}}, \code{\link[statsExpressions:reexports]{\%>\%}}, \code{\link[statsExpressions:reexports]{as_tibble}}, \code{\link[statsExpressions:reexports]{enframe}}, \code{\link[statsExpressions:reexports]{tibble}}}
 }}
 

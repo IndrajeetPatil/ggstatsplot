@@ -14,7 +14,7 @@
 #' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
 #' @importFrom rlang !! enquo ensym :=
 #' @importFrom tidyr drop_na
-#' @importFrom ipmisc format_num
+#' @importFrom statsExpressions format_num
 #'
 #' @examples
 #' # this internal function may not have much utility outside of the package
@@ -299,7 +299,7 @@ aesthetic_addon <- function(plot,
 #'   are outliers and their corresponding labels.
 #'
 #' @importFrom dplyr group_by mutate ungroup
-#' @importFrom ipmisc %$%
+#' @importFrom statsExpressions %$%
 #' @importFrom performance check_outliers
 #'
 #' @examples
@@ -357,7 +357,7 @@ function_switch <- function(test, element, ...) {
 #'
 #' @importFrom dplyr filter select
 #' @importFrom rlang !!
-#' @importFrom ipmisc %$%
+#' @importFrom statsExpressions %$%
 #'
 #' @noRd
 

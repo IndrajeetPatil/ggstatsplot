@@ -91,7 +91,7 @@ gghistostats <- function(data,
                          ...) {
 
   # convert entered stats type to a standard notation
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   # --------------------------------- data -----------------------------------
 
@@ -190,7 +190,7 @@ gghistostats <- function(data,
     plot <- histo_labeller(
       plot,
       x = x_vec,
-      type = ipmisc::stats_type_switch(centrality.type),
+      type = statsExpressions::stats_type_switch(centrality.type),
       tr = tr,
       k = k,
       centrality.line.args = centrality.line.args

@@ -77,7 +77,7 @@ ggdotplotstats <- function(data,
                            ...) {
 
   # convert entered stats type to a standard notation
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
@@ -169,7 +169,7 @@ ggdotplotstats <- function(data,
     plot <- histo_labeller(
       plot,
       x = data %>% dplyr::pull({{ x }}),
-      type = ipmisc::stats_type_switch(centrality.type),
+      type = statsExpressions::stats_type_switch(centrality.type),
       tr = tr,
       k = k,
       centrality.line.args = centrality.line.args

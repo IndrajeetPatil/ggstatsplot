@@ -324,7 +324,7 @@ ggcoefstats <- function(x,
   # running meta-analysis
   if (isTRUE(meta.analytic.effect)) {
     # standardizing type of statistics name
-    meta.type <- ipmisc::stats_type_switch(meta.type)
+    meta.type <- statsExpressions::stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
     subtitle_df <- statsExpressions::meta_analysis(tidy_df, type = meta.type, k = k)

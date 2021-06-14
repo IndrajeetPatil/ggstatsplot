@@ -47,7 +47,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
 #'
 #' @importFrom dplyr group_modify rowwise ungroup
 #' @importFrom rlang as_name ensym
-#' @importFrom ipmisc format_num
+#' @importFrom statsExpressions format_num
 #' @importFrom insight format_value
 #'
 #' @noRd

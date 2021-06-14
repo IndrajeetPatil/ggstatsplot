@@ -133,7 +133,7 @@ ggcorrmat <- function(data,
   # ---------------------------- statistics -----------------------------------
 
   # if any of the abbreviations have been entered, change them
-  type <- ipmisc::stats_type_switch(type)
+  type <- statsExpressions::stats_type_switch(type)
 
   # creating a dataframe of results
   stats_df <- statsExpressions::correlation(

@@ -1305,14 +1305,6 @@ displayed in `ggbetweenstats` and `ggwithinstats` functions.
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/pairwiseComparisons/>
 
-## `ipmisc`
-
-The `ipmisc` package contains the data wrangling/cleaning functions and a few
-other miscellaneous functions.
-
-For more exhaustive documentation for this package, see:
-<https://indrajeetpatil.github.io/ipmisc/>
-
 # Extensions
 
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/), you can
