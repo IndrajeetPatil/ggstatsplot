@@ -125,7 +125,7 @@ using ggstatsplot::combine_plots." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -168,11 +168,6 @@ using ggstatsplot::combine_plots." />
       <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     </li>
     <li class="divider"></li>
-    <li class="dropdown-header">Helper functions</li>
-    <li>
-      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li class="divider"></li>
     <li class="dropdown-header">Miscellaneous</li>
     <li>
       <a href="../articles/additional.html">additional vignettes</a>
@@ -185,12 +180,6 @@ using ggstatsplot::combine_plots." />
     </li>
     <li>
       <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
@@ -335,8 +324,8 @@ favor of the <em>null</em> hypothesis. This argument is relevant only <strong>fo
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
     <dt><code>effsize.type</code></dt><dd><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></dd>
-    <dt><code>conf.level</code></dt><dd><p>Confidence/Credible Interval (CI) level. Default to <code>0.95</code>
-(<code>95%</code>).</p></dd>
+    <dt><code>conf.level</code></dt><dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
+return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
     <dt><code>tr</code></dt><dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
@@ -410,12 +399,6 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
 <span class='r-in'>  grouping.var <span class='op'>=</span> <span class='va'>cyl</span>,</span>
 <span class='r-in'>  test.value <span class='op'>=</span> <span class='fl'>15.5</span></span>
 <span class='r-in'><span class='op'>)</span></span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to min; returning Inf</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to max; returning -Inf</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to min; returning Inf</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to max; returning -Inf</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to min; returning Inf</span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class='r-plt'><img src='grouped_ggdotplotstats-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'><span class='co'># }</span></span>
 </code></pre></div>

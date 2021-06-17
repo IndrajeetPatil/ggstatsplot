@@ -117,6 +117,9 @@
       $label
       [1] "label"
       
+      $alt
+      [1] ""
+      
 
 # check mcp displays - non-significant
 
@@ -251,6 +254,9 @@
       [[1]]$label
       [1] "label"
       
+      [[1]]$alt
+      [1] ""
+      
       
       [[2]]
       [[2]]$x
@@ -274,6 +280,9 @@
       
       [[2]]$label
       [1] "label"
+      
+      [[2]]$alt
+      [1] ""
       
       
 
@@ -364,6 +373,9 @@
       $label
       [1] "label"
       
+      $alt
+      [1] ""
+      
 
 # check robust test display - FDR-corrected
 
@@ -442,6 +454,9 @@
       
       $label
       [1] "label"
+      
+      $alt
+      [1] ""
       
 
 # check bayesian test display
@@ -531,6 +546,9 @@
       $label
       [1] "label"
       
+      $alt
+      [1] ""
+      
 
 # additional test
 
@@ -608,6 +626,9 @@
       $label
       [1] "label"
       
+      $alt
+      [1] ""
+      
 
 ---
 
@@ -635,5 +656,8 @@
       
       $label
       [1] "label"
+      
+      $alt
+      [1] ""
       
 

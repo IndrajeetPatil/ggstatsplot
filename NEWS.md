@@ -4,11 +4,18 @@ N.B. All statistical analysis in `ggstatsplot` is carried out in
 `statsExpressions`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
-  
+
 MAJOR CHANGES
 
   - Gets rid of `ipmisc` dependency.
-  
+
+MINOR CHANGES
+
+  - Online vignette about `combine_plots` has been removed. In case you want to
+    create a grid of plots, it is highly recommended that you use `patchwork`
+    package directly and not this wrapper around it which is mostly useful with
+    `ggstatsplot` plots.
+
 # ggstatsplot 0.8.0
 
 NEW FUNCTIONS

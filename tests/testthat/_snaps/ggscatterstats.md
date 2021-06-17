@@ -63,6 +63,9 @@
       $label
       [1] "name"
       
+      $alt
+      [1] ""
+      
 
 # checking ggscatterstats - without NAs - spearman's rho
 
@@ -97,6 +100,9 @@
       $caption
       NULL
       
+      $alt
+      [1] ""
+      
 
 # checking ggscatterstats - without NAs - winsorized Pearson
 
@@ -130,6 +136,9 @@
       
       $caption
       NULL
+      
+      $alt
+      [1] ""
       
 
 # aesthetic modifications work
@@ -206,5 +215,8 @@
       
       $label
       [1] "order"
+      
+      $alt
+      [1] ""
       
 

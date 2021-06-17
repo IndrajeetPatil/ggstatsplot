@@ -153,11 +153,9 @@ test_that(
 test_that(
   desc = "checking all dataframe outputs",
   code = {
-    skip_on_os("windows")
     skip_on_cran()
     options(tibble.width = Inf)
-    skip_on_ci()
-    skip_on_travis()
+    skip_if_not(.Platform$OS.type == "windows")
 
     set.seed(123)
     expect_snapshot(suppressWarnings(purrr::pmap(

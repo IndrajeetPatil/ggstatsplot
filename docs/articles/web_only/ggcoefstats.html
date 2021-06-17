@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -103,11 +103,6 @@
       <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Helper functions</li>
-    <li>
-      <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li class="divider">
     <li class="dropdown-header">Miscellaneous</li>
     <li>
       <a href="../../articles/additional.html">additional vignettes</a>
@@ -120,12 +115,6 @@
     </li>
     <li>
       <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../../articles/web_only/session_info.html">session information</a>
@@ -171,13 +160,13 @@
 
       
 
-      </header><script src="ggcoefstats_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
+      </header><script src="ggcoefstats_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-06-09</h4>
+            <h4 data-toc-skip class="date">2021-06-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -231,13 +220,80 @@ A BibTeX entry for LaTeX users is
 <div id="summary-of-graphics" class="section level1">
 <h1 class="hasAnchor">
 <a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h1>
-<p>graphical element | <code>geom_</code> used | argument for further modification ——— | ——- | ————————– regression estimate | <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code> | <code>point.args</code> error bars | <code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh</a></code> | <code>errorbar.args</code> vertical line | <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code> | <code>vline.args</code> label with statistical details | <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> | <code>stats.label.args</code></p>
+<table class="table">
+<thead><tr class="header">
+<th>graphical element</th>
+<th>
+<code>geom_</code> used</th>
+<th>argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>regression estimate</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point</a></code></td>
+<td><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td>error bars</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh</a></code></td>
+<td><code>errorbar.args</code></td>
+</tr>
+<tr class="odd">
+<td>vertical line</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline</a></code></td>
+<td><code>vline.args</code></td>
+</tr>
+<tr class="even">
+<td>label with statistical details</td>
+<td><code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code></td>
+<td><code>stats.label.args</code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="summary-of-meta-analysis-tests" class="section level1">
 <h1 class="hasAnchor">
 <a href="#summary-of-meta-analysis-tests" class="anchor" aria-hidden="true"></a>Summary of meta-analysis tests</h1>
 <p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
-<p>Type | Test | Effect size | CI? | Function used ———– | ——————– | ——– | — | —– Parametric | Meta-analysis via random-effects models | <span class="math inline">\(\beta\)</span> | ✅ | <code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code> Robust | Meta-analysis via robust random-effects models | <span class="math inline">\(\beta\)</span> | ✅ | <code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code> Bayes | Meta-analysis via Bayesian random-effects models | <span class="math inline">\(\beta\)</span> | ✅ | <code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></p>
+<table class="table">
+<colgroup>
+<col width="23%">
+<col width="42%">
+<col width="17%">
+<col width="6%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th>Type</th>
+<th>Test</th>
+<th>Effect size</th>
+<th>CI?</th>
+<th>Function used</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Parametric</td>
+<td>Meta-analysis via random-effects models</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td>✅</td>
+<td><code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code></td>
+</tr>
+<tr class="even">
+<td>Robust</td>
+<td>Meta-analysis via robust random-effects models</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td>✅</td>
+<td><code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code></td>
+</tr>
+<tr class="odd">
+<td>Bayes</td>
+<td>Meta-analysis via Bayesian random-effects models</td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td>✅</td>
+<td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="examples-of-supported-models" class="section level1">
 <h1 class="hasAnchor">
@@ -806,7 +862,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; SD (Intercept: genre) |        0.43</span>
 <span class="co">#&gt; SD (budget: genre)    |    3.03e-03</span>
 <span class="co">#&gt; Cor (Intercept~genre) |       -0.49</span>
-<span class="co">#&gt; SD (Residual)         |        0.96</span></code></pre></div>
+<span class="co">#&gt; SD (Residual)         |        0.92</span></code></pre></div>
 </div>
 <div id="nonlinear-model-using-generalized-least-squares-gnls" class="section level2">
 <h2 class="hasAnchor">
@@ -4357,14 +4413,14 @@ A BibTeX entry for LaTeX users is
 <span class="co"># fit a model where the propensity to form ties between</span>
 <span class="co"># families depends on the absolute difference in wealth</span>
 <span class="va">gest</span> <span class="op">&lt;-</span> <span class="fu">ergm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm.html" class="external-link">ergm</a></span><span class="op">(</span><span class="va">flomarriage</span> <span class="op">~</span> <span class="va">edges</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html" class="external-link">absdiff</a></span><span class="op">(</span><span class="st">"wealth"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in get(myctrlname, mode = "function"): first argument has length &gt; 1</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">gest</span>,
   conf.level <span class="op">=</span> <span class="fl">0.99</span>,
   title <span class="op">=</span> <span class="st">"exponential-family random graph models"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'gest' not found</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/ergm-1.png" width="480"></p>
 </div>
 <div id="tergm-by-bootstrapped-pseudolikelihood-or-mcmc-mle-btergm" class="section level2">
 <h2 class="hasAnchor">
@@ -4373,6 +4429,8 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://statnet.org/" class="external-link">network</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leifeld/btergm" class="external-link">btergm</a></span><span class="op">)</span>
+<span class="co">#&gt; Error: package or namespace load failed for 'btergm':</span>
+<span class="co">#&gt;  object 'ergm.Cprepare' is not exported by 'namespace:ergm'</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># create 10 random networks with 10 actors</span>
@@ -4400,14 +4458,14 @@ A BibTeX entry for LaTeX users is
     R <span class="op">=</span> <span class="fl">100</span>,
     verbose <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span>
-
+<span class="co">#&gt; Error: object 'ergm.Cprepare' is not exported by 'namespace:ergm'</span>
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_btergm</span>,
   title <span class="op">=</span> <span class="st">"Terms used in Exponential Family Random Graph Models"</span>,
   subtitle <span class="op">=</span> <span class="st">"by bootstrapped pseudolikelihood or MCMC MLE"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/btergm-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .get_class_list(x): object 'fit_btergm' not found</span></code></pre></div>
 </div>
 <div id="generalized-autoregressive-conditional-heteroscedastic-regression-garch" class="section level2">
 <h2 class="hasAnchor">
@@ -5727,11 +5785,6 @@ speed =~ x7 + x8 + x9 "</span>
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
-</div>
-<div id="session-information" class="section level1">
-<h1 class="hasAnchor">
-<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
-<p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>
 

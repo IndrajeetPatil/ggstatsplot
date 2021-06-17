@@ -13,7 +13,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   message = FALSE,
@@ -66,9 +66,6 @@ only available on the website for this package: <br>
   - Frequently Asked Questions (FAQ)-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
 
-  - Interpreting effect sizes for different tests:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>)
-
   - Graphic design and statistical reporting principles guiding `ggstatsplot`
     development:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>)
@@ -109,12 +106,6 @@ displayed in `ggbetweenstats` and `ggwithinstats` functions.
 
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/pairwiseComparisons/>
-
-# Other resources
-
-Few other people have also written about `ggstatsplot` and its usage in their
-workflows:
-(<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/other_resources.html>)
 
 # Suggestions
 

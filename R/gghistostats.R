@@ -170,7 +170,7 @@ gghistostats <- function(data,
         name = "proportion"
       )
     ) +
-    ggplot2::guides(fill = FALSE)
+    ggplot2::guides(fill = "none")
 
   # if normal curve overlay  needs to be displayed
   if (isTRUE(normal.curve)) {

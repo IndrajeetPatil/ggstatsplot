@@ -51,20 +51,8 @@ library(deepdep)
 plot_dependencies("ggstatsplot", depth = 3)
 ```
 
-# Heaviness of package dependencies
-
-```{r pkgndep, fig.height=8, fig.width=12, eval=FALSE}
-library(pkgndep)
-x <- pkgndep("ggstatsplot")
-plot(x)
-```
-
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-# Session Information
-
-For details, see-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>

@@ -27,4 +27,3 @@ statsExpressions::enframe
 #' @export
 #' @importFrom statsExpressions as_tibble
 statsExpressions::as_tibble
-

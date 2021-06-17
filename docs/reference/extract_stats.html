@@ -123,7 +123,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -166,11 +166,6 @@
       <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     </li>
     <li class="divider"></li>
-    <li class="dropdown-header">Helper functions</li>
-    <li>
-      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li class="divider"></li>
     <li class="dropdown-header">Miscellaneous</li>
     <li>
       <a href="../articles/additional.html">additional vignettes</a>
@@ -183,12 +178,6 @@
     </li>
     <li>
       <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
@@ -288,16 +277,7 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 <span class='r-in'><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ggbetweenstats.html'>ggbetweenstats</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='va'>cyl</span>, <span class='va'>mpg</span><span class='op'>)</span></span>
 <span class='r-in'><span class='fu'>extract_stats</span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $subtitle_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 x 13</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>statistic</span>    <span style='font-weight: bold;'>df</span> <span style='font-weight: bold;'>df.error</span>    <span style='font-weight: bold;'>p.value</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>      31.6     2     18.0 <span style='color: #949494;'>0.000</span><span style='color: #949494; text-decoration: underline;'>00</span><span style='text-decoration: underline;'>1</span>27</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>method</span>                                                   <span style='font-weight: bold;'>estimate</span> <span style='font-weight: bold;'>conf.level</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                                       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> One-way analysis of means (not assuming equal variances)    <span style='color: #949494;'>0.</span>744       <span style='color: #949494;'>0.</span>95</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span> <span style='font-weight: bold;'>effectsize</span> <span style='font-weight: bold;'>conf.method</span> <span style='font-weight: bold;'>conf.distribution</span> <span style='font-weight: bold;'>expression</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>    <span style='color: #949494;'>0.</span>475     <span style='color: #949494;'>0.</span>853 Omega2     ncp         F                 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $caption_data</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 19</span></span>

@@ -70,6 +70,9 @@
       $group
       [1] "Sex"
       
+      $alt
+      [1] ""
+      
 
 # aesthetic modifications
 
@@ -237,5 +240,8 @@
       
       $group
       [1] "cyl"
+      
+      $alt
+      [1] ""
       
 

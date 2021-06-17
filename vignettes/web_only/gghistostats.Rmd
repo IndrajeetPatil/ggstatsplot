@@ -223,17 +223,8 @@ the data were `r round(exp(1.3), 2)` times more probable under the null
 hypothesis as compared to the alternative hypothesis. This can be considered
 moderate evidence (Jeffreys, 1961) in favor of the null hypothesis.
 
-# Effect size interpretation
-
-To see how the effect sizes displayed in these tests can be interpreted, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
-
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-# Session Information
-
-For details, see-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>

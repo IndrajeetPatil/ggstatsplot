@@ -428,17 +428,8 @@ goodness-of-fit test instead of a $\chi^2$-test.
 
 Same holds true for `ggbarstats`.
 
-# Effect size interpretation
-
-To see how the effect sizes displayed in these tests can be interpreted, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/effsize_interpretation.html>
-
 # Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
-# Session Information
-
-For details, see-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
