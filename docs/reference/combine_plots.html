@@ -82,7 +82,9 @@
 
 <meta property="og:title" content="Combining and arranging multiple plots in a grid — combine_plots" />
 <meta property="og:description" content="Wrapper around patchwork::wrap_plots that will return a combined grid of
-plots with annotations." />
+plots with annotations. In case you want to create a grid of plots, it is
+highly recommended that you use patchwork package directly and not this
+wrapper around it which is mostly useful with ggstatsplot plots." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -124,7 +126,7 @@ plots with annotations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -167,11 +169,6 @@ plots with annotations." />
       <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     </li>
     <li class="divider"></li>
-    <li class="dropdown-header">Helper functions</li>
-    <li>
-      <a href="../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li class="divider"></li>
     <li class="dropdown-header">Miscellaneous</li>
     <li>
       <a href="../articles/additional.html">additional vignettes</a>
@@ -184,12 +181,6 @@ plots with annotations." />
     </li>
     <li>
       <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../articles/web_only/session_info.html">session information</a>
@@ -246,7 +237,9 @@ plots with annotations." />
 
     <div class="ref-description">
     <p>Wrapper around <code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code> that will return a combined grid of
-plots with annotations.</p>
+plots with annotations. In case you want to create a grid of plots, it is
+highly recommended that you use <code>patchwork</code> package directly and not this
+wrapper around it which is mostly useful with <code>ggstatsplot</code> plots.</p>
     </div>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>combine_plots</span><span class='op'>(</span>
@@ -295,10 +288,6 @@ patchwork (see example).</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Combined plot with annotation labels</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>For more details, see:
-<a href='https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html'>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># loading the necessary libraries</span></span>

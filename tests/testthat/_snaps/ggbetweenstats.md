@@ -174,6 +174,9 @@
       $label
       [1] "outlier.label"
       
+      $alt
+      [1] ""
+      
 
 # checking mean labels are working
 
@@ -303,6 +306,9 @@
       
       $label
       [1] "outlier.label"
+      
+      $alt
+      [1] ""
       
 
 # checking if plot.type argument works
@@ -646,6 +652,9 @@
       $label
       [1] "outlier.label"
       
+      $alt
+      [1] ""
+      
 
 ---
 
@@ -666,5 +675,8 @@
       
       $label
       [1] "outlier.label"
+      
+      $alt
+      [1] ""
       
 

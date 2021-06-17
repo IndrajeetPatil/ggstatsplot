@@ -20,7 +20,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R Under development (unstable) (2021-05-17 r80314)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -239,6 +239,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
+      "version": ">= 3.3.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -474,6 +475,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "5550.828KB",
+  "fileSize": "0KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

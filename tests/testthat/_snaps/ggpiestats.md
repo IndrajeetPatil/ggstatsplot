@@ -127,6 +127,9 @@
       $group
       [1] "am"
       
+      $alt
+      [1] ""
+      
 
 # checking labels with counts
 
@@ -198,6 +201,9 @@
       $group
       [1] "Sex"
       
+      $alt
+      [1] ""
+      
 
 # checking labels with contingency tab (paired)
 
@@ -224,6 +230,9 @@
       
       $group
       [1] "1st survey"
+      
+      $alt
+      [1] ""
       
 
 ---
@@ -345,5 +354,8 @@
       
       $group
       [1] "mode"
+      
+      $alt
+      [1] ""
       
 

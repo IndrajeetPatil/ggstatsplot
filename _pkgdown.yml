@@ -86,12 +86,6 @@ articles:
     - web_only/ggpiestats
     - web_only/ggcoefstats
 
-  - title: Helper functions
-    navbar: Helper functions
-    desc: Details about helper functions for graphics
-    contents:
-    - web_only/combine_plots
-
   - title: Miscellaneous
     navbar: Miscellaneous
     desc: Salad of various things
@@ -100,9 +94,6 @@ articles:
     - web_only/faq
     - web_only/purrr_examples
     - web_only/principles
-    - web_only/other_resources
-    - web_only/effsize_interpretation
-    - web_only/session_info
 
   - title: Development-focused
     navbar: Development-focused

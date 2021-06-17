@@ -123,22 +123,22 @@ also supported by `ggcoefstats`. For example-
 
 # Summary of graphics
 
-graphical element | `geom_` used | argument for further modification --------- |
-------- | -------------------------- regression estimate | `ggplot2::geom_point`
-| `point.args` error bars | `ggplot2::geom_errorbarh` | `errorbar.args` vertical
-line | `ggplot2::geom_vline` | `vline.args` label with statistical details |
-`ggrepel::geom_label_repel` | `stats.label.args`
+graphical element | `geom_` used | argument for further modification 
+--------- | ------- | -------------------------- 
+regression estimate | `ggplot2::geom_point`| `point.args` 
+error bars | `ggplot2::geom_errorbarh` | `errorbar.args` 
+vertical line | `ggplot2::geom_vline` | `vline.args` 
+label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
 
 # Summary of meta-analysis tests
 
 **Hypothesis testing** and **Effect size estimation**
 
-Type | Test | Effect size | CI? | Function used ----------- |
--------------------- | -------- | --- | ----- Parametric | Meta-analysis via
-random-effects models | $\beta$ | ✅ | `metafor::metafor` Robust | Meta-analysis
-via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus` Bayes |
-Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ |
-`metaBMA::meta_random`
+Type | Test | Effect size | CI? | Function used 
+----------- | -------------------- | -------- | --- | -----
+Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor` 
+Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus` 
+Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `metaBMA::meta_random`
 
 # Examples of supported models
 
@@ -5340,9 +5340,4 @@ not supported.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-
-# Session Information
-
-For details, see-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
 

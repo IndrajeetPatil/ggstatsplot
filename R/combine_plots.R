@@ -4,7 +4,9 @@
 #' @description
 #'
 #' Wrapper around `patchwork::wrap_plots` that will return a combined grid of
-#' plots with annotations.
+#' plots with annotations. In case you want to create a grid of plots, it is
+#' highly recommended that you use `patchwork` package directly and not this
+#' wrapper around it which is mostly useful with `ggstatsplot` plots.
 #'
 #' @return Combined plot with annotation labels
 #'
@@ -19,9 +21,6 @@
 #'
 #' @importFrom patchwork wrap_plots plot_annotation
 #' @importFrom rlang exec !!!
-#'
-#' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html}
 #'
 #' @examples
 #' # loading the necessary libraries

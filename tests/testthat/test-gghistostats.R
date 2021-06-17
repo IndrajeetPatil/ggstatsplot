@@ -238,8 +238,9 @@ test_that(
         subtitle = NULL,
         caption = NULL,
         fill = "count",
-        weight = "weight",
-        xintercept = "xintercept"
+        xintercept = "xintercept",
+        weight = structure("weight", fallback = TRUE),
+        alt = ""
       )
     )
   }

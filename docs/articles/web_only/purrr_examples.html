@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -103,11 +103,6 @@
       <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     </li>
     <li class="divider">
-    <li class="dropdown-header">Helper functions</li>
-    <li>
-      <a href="../../articles/web_only/combine_plots.html">combine_plots</a>
-    </li>
-    <li class="divider">
     <li class="dropdown-header">Miscellaneous</li>
     <li>
       <a href="../../articles/additional.html">additional vignettes</a>
@@ -120,12 +115,6 @@
     </li>
     <li>
       <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/other_resources.html">other resources to learn about `ggstatsplot`</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/effsize_interpretation.html">effect size interpretation</a>
     </li>
     <li>
       <a href="../../articles/web_only/session_info.html">session information</a>
@@ -171,13 +160,13 @@
 
       
 
-      </header><script src="purrr_examples_files/header-attrs-2.8.6/header-attrs.js"></script><div class="row">
+      </header><script src="purrr_examples_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-06-07</h4>
+            <h4 data-toc-skip class="date">2021-06-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -257,7 +246,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 3</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1967" "1987" "2007"</span></code></pre></div>
-<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">?pmap</a></code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
+<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
 <p>Let’s keep building the list of arguments, <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> and <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>.</p>
 <p>Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -816,11 +805,6 @@ A BibTeX entry for LaTeX users is
 <h1 class="hasAnchor">
 <a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
-</div>
-<div id="session-information" class="section level1">
-<h1 class="hasAnchor">
-<a href="#session-information" class="anchor" aria-hidden="true"></a>Session Information</h1>
-<p>For details, see- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</a></p>
 </div>
   </div>
 
