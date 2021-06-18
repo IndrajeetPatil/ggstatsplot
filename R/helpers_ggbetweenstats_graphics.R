@@ -9,12 +9,8 @@
 #'
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom rlang !! enquo ensym exec
-#' @importFrom parameters describe_distribution
 #' @importFrom insight standardize_names format_value
-#' @importFrom dplyr select group_by matches mutate rowwise group_modify arrange ungroup
-#' @importFrom rlang !! enquo ensym :=
-#' @importFrom tidyr drop_na
-#' @importFrom statsExpressions format_num
+#' @importFrom statsExpressions format_num centrality_description
 #'
 #' @examples
 #' # this internal function may not have much utility outside of the package
@@ -54,7 +50,7 @@ centrality_ggrepel <- function(plot,
                                ),
                                ...) {
   # creating the dataframe
-  centrality_df <- centrality_data(data, {{ x }}, {{ y }}, ...)
+  centrality_df <- centrality_description(data, {{ x }}, {{ y }}, ...)
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
@@ -80,63 +76,13 @@ centrality_ggrepel <- function(plot,
     rlang::exec(
       ggrepel::geom_label_repel,
       data = centrality_df,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = label),
+      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = expression),
       show.legend = FALSE,
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args
     ) + # adding sample size labels to the x axes
     ggplot2::scale_x_discrete(labels = c(unique(centrality_df$n_label)))
-}
-
-#' @noRd
-
-centrality_data <- function(data,
-                            x,
-                            y,
-                            type = "parametric",
-                            tr = 0.2,
-                            k = 2L,
-                            ...) {
-
-  # ------------------------ measure -------------------------------------
-
-  # which centrality measure?
-  centrality <- dplyr::case_when(
-    type == "parametric" ~ "mean",
-    type == "nonparametric" ~ "median",
-    type == "robust" ~ "trimmed",
-    type == "bayes" ~ "MAP"
-  )
-
-  # ------------------------ dataframe -------------------------------------
-
-  # creating the dataframe
-  dplyr::select(data, {{ x }}, {{ y }}) %>%
-    tidyr::drop_na(.) %>%
-    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    dplyr::group_by({{ x }}) %>%
-    dplyr::group_modify(
-      .f = ~ parameters::standardize_names(
-        data = parameters::describe_distribution(
-          x = .,
-          centrality = centrality,
-          threshold = tr,
-          # verbose = FALSE,
-          ci = 0.95 # TODO: https://github.com/easystats/bayestestR/issues/429
-        ),
-        style = "broom"
-      )
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(label = paste0("list(~widehat(mu)[", centrality, "]=='", format_value(estimate, k), "')")) %>%
-    dplyr::ungroup() %>%
-    dplyr::mutate(n_label = paste0({{ x }}, "\n(n = ", .prettyNum(n), ")")) %>%
-    dplyr::arrange({{ x }}) %>%
-    dplyr::select({{ x }}, !!as.character(rlang::ensym(y)) := estimate,
-      n_obs = n, dplyr::everything()
-    )
 }
 
 #' @title Adding `geom_signif` to `ggplot`
