@@ -73,11 +73,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "geeglm",
-      "name": "geeglm"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
       "provider": {
@@ -171,6 +166,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=spelling"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "survival",
+      "name": "survival",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=survival"
     },
     {
       "@type": "SoftwareApplication",
@@ -480,6 +487,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "10336.125KB",
+  "fileSize": "10412.673KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
