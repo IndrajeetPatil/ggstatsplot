@@ -21,7 +21,7 @@ ggscatterstats(
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e+06),
-  smooth.line.args = list(size = 1.5, color = "blue"),
+  smooth.line.args = list(size = 1.5, color = "blue", method = "lm", formula = y ~ x),
   marginal = TRUE,
   marginal.type = "densigram",
   marginal.size = 5,

@@ -107,7 +107,10 @@ ggscatterstats <- function(data,
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
-                           smooth.line.args = list(size = 1.5, color = "blue"),
+                           smooth.line.args = list(size = 1.5,
+                                                   color = "blue",
+                                                   method = "lm",
+                                                   formula = y ~ x),
                            marginal = TRUE,
                            marginal.type = "densigram",
                            marginal.size = 5,
@@ -225,13 +228,7 @@ ggscatterstats <- function(data,
   # preparing the scatterplot
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
     rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
-    rlang::exec(
-      .fn = ggplot2::geom_smooth,
-      method = "lm",
-      formula = y ~ x,
-      level = conf.level,
-      !!!smooth.line.args
-    )
+    rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
 
   #-------------------- adding point labels --------------------------------
 
