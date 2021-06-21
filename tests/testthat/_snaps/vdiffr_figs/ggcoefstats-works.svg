@@ -43,7 +43,10 @@
 <polyline points='482.37,518.95 482.37,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='591.21,518.95 591.21,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='700.05,518.95 700.05,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<line x1='373.53' y1='518.95' x2='373.53' y2='5.48' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
+<circle cx='554.01' cy='445.59' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='269.46' cy='323.34' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='406.60' cy='201.09' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='377.10' cy='78.83' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
 <polyline points='684.91,445.59 684.91,445.59 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='684.91,445.59 423.10,445.59 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='423.10,445.59 423.10,445.59 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
@@ -56,10 +59,7 @@
 <polyline points='406.13,78.83 406.13,78.83 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='406.13,78.83 348.07,78.83 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='348.07,78.83 348.07,78.83 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<circle cx='554.01' cy='445.59' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='269.46' cy='323.34' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='406.60' cy='201.09' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='377.10' cy='78.83' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<line x1='373.53' y1='518.95' x2='373.53' y2='5.48' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 <line x1='554.01' y1='450.31' x2='554.01' y2='446.62' style='stroke-width: 1.07; stroke: #1B9E77;' />
 <line x1='269.46' y1='327.87' x2='269.46' y2='324.37' style='stroke-width: 1.07; stroke: #D95F02;' />
 <line x1='406.60' y1='196.37' x2='406.60' y2='200.06' style='stroke-width: 1.07; stroke: #7570B3;' />

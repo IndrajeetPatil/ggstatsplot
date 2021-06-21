@@ -108,19 +108,20 @@ test_that(
     set.seed(123)
     df <- data.frame(x = 2.4, y = 3.4)
 
-    expect_type(ggscatterstats(
+    expect_type(
+      suppressWarnings(ggscatterstats(
       data = df,
       x = x,
       y = y,
       output = "subtitle"
-    ), "language")
+    )), "language")
 
-    expect_type(ggscatterstats(
+    expect_type(suppressWarnings(ggscatterstats(
       data = df,
       x = x,
       y = y,
       output = "caption"
-    ), "language")
+    )), "language")
   }
 )
 

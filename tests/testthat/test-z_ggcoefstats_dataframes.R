@@ -115,12 +115,11 @@ test_that(
     )
 
     # expect errors
-    expect_message(ggcoefstats(x = df1))
     expect_error(ggcoefstats(
       x = df6,
       meta.analytic.effect = TRUE
     ))
-    expect_message(ggcoefstats(x = df7))
+    expect_error(ggcoefstats(x = df7))
 
     # plotting the dataframe
     set.seed(123)

@@ -169,18 +169,7 @@ ggcoefstats <- function(x,
     tidy_df <- as_tibble(x)
 
     # check that `statistic` is specified
-    if (rlang::is_null(statistic)) {
-      # inform the user
-      if (output == "plot" && isTRUE(stats.labels)) {
-        message(cat(
-          "Note: The argument `statistic` must be specified.\n",
-          "Skipping labels with statistical details.\n"
-        ))
-      }
-
-      # skip labels
-      stats.labels <- FALSE
-    }
+    if (is.null(statistic)) stats.labels <- FALSE
   }
 
   # =========================== tidy it ====================================
@@ -216,17 +205,12 @@ ggcoefstats <- function(x,
   # =================== tidy dataframe cleanup ================================
 
   # check for the one necessary column
-  if (rlang::is_null(tidy_df) || !"estimate" %in% names(tidy_df)) {
-    stop(message(cat(
-      "Error: The tidy dataframe *must* contain column called 'estimate'.\n",
-      "Check the tidy output using argument `output = 'tidy'`."
-    )),
-    call. = FALSE
-    )
+  if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
+    stop("The tidy dataframe *must* contain 'estimate' column.", call. = FALSE)
   }
 
   # remove NAs
-  if (isTRUE(stats.labels)) {
+  if (stats.labels) {
     tidy_df %<>%
       dplyr::filter(dplyr::across(
         .cols = c(dplyr::matches("estimate|statistic|std.error|p.value")),
@@ -254,10 +238,7 @@ ggcoefstats <- function(x,
   }
 
   # halt if there are still repeated terms
-  if (any(duplicated(dplyr::select(tidy_df, term)))) {
-    message("Error: All elements in the column `term` should be unique.")
-    return(invisible(tidy_df))
-  }
+  if (any(duplicated(tidy_df$term))) stop("Elements in `term` column must be unique.")
 
   # if `parameters` output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
@@ -274,19 +255,19 @@ ggcoefstats <- function(x,
   }
 
   # whether to show model intercept
-  if (isTRUE(exclude.intercept)) tidy_df %<>% dplyr::filter(!grepl("(Intercept)", term, TRUE))
+  if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
 
   # ========================== preparing label ================================
 
   # adding a column with labels to be used with `ggrepel`
-  if (isTRUE(stats.labels)) {
+  if (stats.labels) {
     # in case a dataframe was entered, `x` and `tidy_df` are going to be same
-    if (isTRUE(insight::is_model(x))) statistic <- insight::find_statistic(x)
+    if (insight::is_model(x)) statistic <- insight::find_statistic(x)
 
     # adding a column with labels using custom function
     tidy_df %<>%
       ggcoefstats_label_maker(
-        statistic = substring(tolower(statistic), 1, 1),
+        statistic = substring(tolower(statistic), 1L, 1L),
         k = k,
         effsize = effsize
       )
@@ -317,7 +298,7 @@ ggcoefstats <- function(x,
   }
 
   # running meta-analysis
-  if (isTRUE(meta.analytic.effect)) {
+  if (meta.analytic.effect) {
     # standardizing type of statistics name
     meta.type <- statsExpressions::stats_type_switch(meta.type)
 
@@ -363,13 +344,11 @@ ggcoefstats <- function(x,
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
-    plot <- ggplot2::ggplot(tidy_df, mapping = ggplot2::aes(estimate, term))
-
-    # if needed, adding the vertical line
-    if (isTRUE(vline)) plot <- plot + rlang::exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
+    plot <- ggplot2::ggplot(tidy_df, mapping = ggplot2::aes(estimate, term)) +
+      rlang::exec(ggplot2::geom_point, !!!point.args)
 
     # if the confidence intervals are to be displayed on the plot
-    if (isTRUE(conf.int)) {
+    if (conf.int) {
       plot <- plot +
         rlang::exec(
           ggplot2::geom_errorbarh,
@@ -379,15 +358,15 @@ ggcoefstats <- function(x,
         )
     }
 
-    # changing the point aesthetics
-    plot <- plot + rlang::exec(ggplot2::geom_point, !!!point.args)
+    # if needed, adding the vertical line
+    if (vline) plot <- plot + rlang::exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
 
     # ========================= ggrepel labels ================================
 
     # adding the labels
-    if (isTRUE(stats.labels)) {
+    if (stats.labels) {
       # only significant p-value labels are shown
-      if (isTRUE(only.significant) && "p.value" %in% names(tidy_df)) {
+      if (only.significant && "p.value" %in% names(tidy_df)) {
         tidy_df %<>% dplyr::mutate(label = dplyr::case_when(
           p.value >= 0.05 ~ NA_character_,
           TRUE ~ label

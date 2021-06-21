@@ -42,7 +42,13 @@
 <polyline points='240.51,545.11 240.51,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='404.63,545.11 404.63,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='568.76,545.11 568.76,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<line x1='76.38' y1='545.11' x2='76.38' y2='5.48' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
+<circle cx='491.07' cy='500.14' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='111.98' cy='425.19' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='354.91' cy='350.24' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='160.93' cy='275.30' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='200.87' cy='200.35' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='78.51' cy='125.40' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='164.83' cy='50.45' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
 <polyline points='684.13,500.14 684.13,500.14 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='684.13,500.14 145.60,500.14 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='145.60,500.14 145.60,500.14 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
@@ -64,13 +70,7 @@
 <polyline points='600.56,50.45 600.56,50.45 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='600.56,50.45 76.38,50.45 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='76.38,50.45 76.38,50.45 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<circle cx='491.07' cy='500.14' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='111.98' cy='425.19' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='354.91' cy='350.24' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='160.93' cy='275.30' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='200.87' cy='200.35' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='78.51' cy='125.40' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='164.83' cy='50.45' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<line x1='76.38' y1='545.11' x2='76.38' y2='5.48' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 <line x1='491.07' y1='504.87' x2='491.07' y2='501.18' style='stroke-width: 1.07; stroke: #1B9E77;' />
 <line x1='117.25' y1='429.82' x2='112.85' y2='425.96' style='stroke-width: 1.07; stroke: #D95F02;' />
 <line x1='354.91' y1='345.60' x2='354.91' y2='349.21' style='stroke-width: 1.07; stroke: #7570B3;' />

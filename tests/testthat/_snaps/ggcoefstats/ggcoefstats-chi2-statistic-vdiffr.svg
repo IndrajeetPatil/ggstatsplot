@@ -38,15 +38,15 @@
 <polyline points='377.93,518.95 377.93,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='518.50,518.95 518.50,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='659.06,518.95 659.06,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<line x1='659.06' y1='518.95' x2='659.06' y2='5.48' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
+<circle cx='671.04' cy='378.91' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='299.44' cy='145.52' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
 <polyline points='683.76,378.91 683.76,378.91 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='683.76,378.91 658.32,378.91 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='658.32,378.91 658.32,378.91 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='530.43,145.52 530.43,145.52 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='530.43,145.52 68.45,145.52 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polyline points='68.45,145.52 68.45,145.52 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
-<circle cx='671.04' cy='378.91' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='299.44' cy='145.52' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<line x1='659.06' y1='518.95' x2='659.06' y2='5.48' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 <line x1='665.21' y1='383.40' x2='670.10' y2='379.63' style='stroke-width: 1.07; stroke: #1B9E77;' />
 <line x1='299.44' y1='150.23' x2='299.44' y2='146.52' style='stroke-width: 1.07; stroke: #D95F02;' />
 <polygon points='564.44,401.48 708.76,401.48 708.67,401.48 709.02,401.47 709.36,401.40 709.69,401.28 709.99,401.10 710.26,400.88 710.49,400.62 710.67,400.33 710.81,400.01 710.89,399.67 710.92,399.32 710.92,399.32 710.92,385.56 710.92,385.56 710.89,385.21 710.81,384.87 710.67,384.55 710.49,384.26 710.26,384.00 709.99,383.78 709.69,383.61 709.36,383.48 709.02,383.41 708.76,383.40 564.44,383.40 564.70,383.41 564.35,383.40 564.01,383.44 563.67,383.54 563.36,383.69 563.07,383.88 562.82,384.12 562.61,384.40 562.45,384.71 562.34,385.04 562.28,385.38 562.28,385.56 562.28,399.32 562.28,399.15 562.28,399.50 562.34,399.84 562.45,400.17 562.61,400.48 562.82,400.76 563.07,401.00 563.36,401.19 563.67,401.34 564.01,401.44 564.35,401.48 ' style='stroke-width: 0.53; stroke: #1B9E77; fill: #FFFFFF;' />

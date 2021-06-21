@@ -5,8 +5,10 @@
     Output
       [[1]]
       [[1]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+             x y PANEL group shape colour size fill alpha stroke
+      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
+      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
+      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
       
       [[1]][[2]]
              x   xmin  xmax y PANEL group ymin ymax colour size linetype height alpha
@@ -15,10 +17,8 @@
       3 0.0450  0.030 0.650 3     1     3    3    3  black  0.5        1      0    NA
       
       [[1]][[3]]
-             x y PANEL group shape colour size fill alpha stroke
-      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
-      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
-      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       [[1]][[4]]
              x y
@@ -49,8 +49,10 @@
       
       [[2]]
       [[2]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+             x y PANEL group shape colour size fill alpha stroke
+      1 0.0665 2     1     2    19   blue    3   NA    NA    0.5
+      2 0.5420 1     1     1    19   blue    3   NA    NA    0.5
+      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
       
       [[2]][[2]]
              x   xmin  xmax y PANEL group ymin ymax colour size linetype height alpha
@@ -59,10 +61,8 @@
       3 0.0450  0.030 0.650 3     1     3    3    3  black  0.5        1      0    NA
       
       [[2]][[3]]
-             x y PANEL group shape colour size fill alpha stroke
-      1 0.0665 2     1     2    19   blue    3   NA    NA    0.5
-      2 0.5420 1     1     1    19   blue    3   NA    NA    0.5
-      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       [[2]][[4]]
              x y
@@ -93,8 +93,10 @@
       
       [[3]]
       [[3]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+             x y PANEL group shape colour size fill alpha stroke
+      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
+      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
+      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
       
       [[3]][[2]]
              x   xmin  xmax y PANEL group ymin ymax colour size linetype height alpha
@@ -103,16 +105,16 @@
       3 0.0450  0.030 0.650 3     1     3    3    3  black  0.5        1      0    NA
       
       [[3]][[3]]
-             x y PANEL group shape colour size fill alpha stroke
-      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
-      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
-      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       
       [[4]]
       [[4]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+        y      x PANEL group shape colour size fill alpha stroke
+      1 1 0.0665     1     1    19   blue    3   NA    NA    0.5
+      2 2 0.5420     1     2    19   blue    3   NA    NA    0.5
+      3 3 0.0450     1     3    19   blue    3   NA    NA    0.5
       
       [[4]][[2]]
         y      x   xmin  xmax PANEL group ymin ymax colour size linetype height alpha
@@ -121,16 +123,16 @@
       3 3 0.0450  0.030 0.650     1     3    3    3  black  0.5        1      0    NA
       
       [[4]][[3]]
-        y      x PANEL group shape colour size fill alpha stroke
-      1 1 0.0665     1     1    19   blue    3   NA    NA    0.5
-      2 2 0.5420     1     2    19   blue    3   NA    NA    0.5
-      3 3 0.0450     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       
       [[5]]
       [[5]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+             x y PANEL group shape colour size fill alpha stroke
+      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
+      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
+      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
       
       [[5]][[2]]
              x   xmin  xmax y PANEL group ymin ymax colour size linetype height alpha
@@ -139,10 +141,8 @@
       3 0.0450  0.030 0.650 3     1     3    3    3  black  0.5        1      0    NA
       
       [[5]][[3]]
-             x y PANEL group shape colour size fill alpha stroke
-      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
-      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
-      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       [[5]][[4]]
              x y
@@ -173,8 +173,10 @@
       
       [[6]]
       [[6]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+             x y PANEL group shape colour size fill alpha stroke
+      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
+      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
+      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
       
       [[6]][[2]]
              x   xmin  xmax y PANEL group ymin ymax colour size linetype height alpha
@@ -183,10 +185,8 @@
       3 0.0450  0.030 0.650 3     1     3    3    3  black  0.5        1      0    NA
       
       [[6]][[3]]
-             x y PANEL group shape colour size fill alpha stroke
-      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
-      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
-      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       [[6]][[4]]
              x y
@@ -217,8 +217,10 @@
       
       [[7]]
       [[7]][[1]]
-        xintercept PANEL group colour size linetype alpha
-      1          0     1    -1  black    1   dashed    NA
+             x y PANEL group shape colour size fill alpha stroke
+      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
+      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
+      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
       
       [[7]][[2]]
              x   xmin  xmax y PANEL group ymin ymax colour size linetype height alpha
@@ -227,10 +229,8 @@
       3 0.0450  0.030 0.650 3     1     3    3    3  black  0.5        1      0    NA
       
       [[7]][[3]]
-             x y PANEL group shape colour size fill alpha stroke
-      1 0.0665 1     1     1    19   blue    3   NA    NA    0.5
-      2 0.5420 2     1     2    19   blue    3   NA    NA    0.5
-      3 0.0450 3     1     3    19   blue    3   NA    NA    0.5
+        xintercept PANEL group colour size linetype alpha
+      1          0     1    -1  black    1   dashed    NA
       
       [[7]][[4]]
              x y
@@ -282,14 +282,14 @@
       [[1]]$caption
       NULL
       
-      [[1]]$xintercept
-      [1] "xintercept"
-      
       [[1]]$xmin
       [1] "conf.low"
       
       [[1]]$xmax
       [1] "conf.high"
+      
+      [[1]]$xintercept
+      [1] "xintercept"
       
       [[1]]$label
       [1] "label"
@@ -314,14 +314,14 @@
       [[2]]$caption
       NULL
       
-      [[2]]$xintercept
-      [1] "xintercept"
-      
       [[2]]$xmin
       [1] "conf.low"
       
       [[2]]$xmax
       [1] "conf.high"
+      
+      [[2]]$xintercept
+      [1] "xintercept"
       
       [[2]]$label
       [1] "label"
@@ -346,14 +346,14 @@
       [[3]]$caption
       NULL
       
-      [[3]]$xintercept
-      [1] "xintercept"
-      
       [[3]]$xmin
       [1] "conf.low"
       
       [[3]]$xmax
       [1] "conf.high"
+      
+      [[3]]$xintercept
+      [1] "xintercept"
       
       [[3]]$alt
       [1] ""
@@ -375,14 +375,14 @@
       [[4]]$caption
       NULL
       
-      [[4]]$xintercept
-      [1] "xintercept"
-      
       [[4]]$xmin
       [1] "conf.low"
       
       [[4]]$xmax
       [1] "conf.high"
+      
+      [[4]]$xintercept
+      [1] "xintercept"
       
       [[4]]$alt
       [1] ""
@@ -404,14 +404,14 @@
       [[5]]$caption
       NULL
       
-      [[5]]$xintercept
-      [1] "xintercept"
-      
       [[5]]$xmin
       [1] "conf.low"
       
       [[5]]$xmax
       [1] "conf.high"
+      
+      [[5]]$xintercept
+      [1] "xintercept"
       
       [[5]]$label
       [1] "label"
