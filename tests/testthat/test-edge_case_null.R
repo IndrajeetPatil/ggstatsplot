@@ -110,11 +110,12 @@ test_that(
 
     expect_type(
       suppressWarnings(ggscatterstats(
-      data = df,
-      x = x,
-      y = y,
-      output = "subtitle"
-    )), "language")
+        data = df,
+        x = x,
+        y = y,
+        output = "subtitle"
+      )), "language"
+    )
 
     expect_type(suppressWarnings(ggscatterstats(
       data = df,

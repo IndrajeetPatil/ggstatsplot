@@ -79,9 +79,9 @@
 #'
 #' @note
 #'
-#' 1. In case you want to carry out meta-analysis using this
-#' function, it assumes that you have already downloaded the needed package
-#' (`metafor`, `metaplus`, or `metaBMA`) for meta-analysis.
+#' 1. In case you want to carry out meta-analysis, you will be asked to install
+#'    the needed packages (`metafor`, `metaplus`, or `metaBMA`) for meta-analysis
+#'    (if unavailable).
 #'
 #' 2. All rows of regression estimates where either of the following
 #'   quantities is `NA` will be removed if labels are requested: `estimate`,
@@ -93,7 +93,7 @@
 #'
 #' @import ggplot2
 #' @importFrom rlang exec !!! !!
-#' @importFrom dplyr select mutate matches across row_number last group_by ungroup
+#' @importFrom dplyr select mutate matches across row_number
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic format_value
@@ -194,13 +194,9 @@ ggcoefstats <- function(x,
       dplyr::rename_all(~ gsub("omega2.|eta2.", "", .x))
 
     # anova objects need further cleaning
-    if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
-      # final cleanup
-      tidy_df %<>%
-        dplyr::mutate(effectsize = paste0("partial ", effsize, "-squared")) %>%
-        dplyr::ungroup()
-    }
+    if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
   }
+
 
   # =================== tidy dataframe cleanup ================================
 

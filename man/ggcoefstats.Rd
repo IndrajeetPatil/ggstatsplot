@@ -161,9 +161,9 @@ For more details, see:
 }
 \note{
 \enumerate{
-\item In case you want to carry out meta-analysis using this
-function, it assumes that you have already downloaded the needed package
-(\code{metafor}, \code{metaplus}, or \code{metaBMA}) for meta-analysis.
+\item In case you want to carry out meta-analysis, you will be asked to install
+the needed packages (\code{metafor}, \code{metaplus}, or \code{metaBMA}) for meta-analysis
+(if unavailable).
 \item All rows of regression estimates where either of the following
 quantities is \code{NA} will be removed if labels are requested: \code{estimate},
 \code{statistic}, \code{p.value}.
