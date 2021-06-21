@@ -17,7 +17,7 @@
 #' @importFrom statsExpressions one_sample_test
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 #'  \code{\link{grouped_ggdotplotstats}}

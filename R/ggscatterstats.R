@@ -55,7 +55,7 @@
 #' \code{\link{grouped_ggcorrmat}}
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
 #' - If you set `marginal = TRUE`, the resulting plot can **not** be further
@@ -107,10 +107,12 @@ ggscatterstats <- function(data,
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
-                           smooth.line.args = list(size = 1.5,
-                                                   color = "blue",
-                                                   method = "lm",
-                                                   formula = y ~ x),
+                           smooth.line.args = list(
+                             size = 1.5,
+                             color = "blue",
+                             method = "lm",
+                             formula = y ~ x
+                           ),
                            marginal = TRUE,
                            marginal.type = "densigram",
                            marginal.size = 5,

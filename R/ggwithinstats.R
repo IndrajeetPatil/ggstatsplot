@@ -34,7 +34,7 @@
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
 #' @examples
 #' \donttest{

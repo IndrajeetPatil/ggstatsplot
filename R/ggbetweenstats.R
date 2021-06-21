@@ -127,7 +127,7 @@
 #'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
 #' @examples
 #' \donttest{

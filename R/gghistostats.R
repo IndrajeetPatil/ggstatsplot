@@ -37,7 +37,7 @@
 #' @importFrom statsExpressions one_sample_test
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 #'
 #' @examples
 #' # for reproducibility

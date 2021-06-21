@@ -47,7 +47,7 @@
 #' @importFrom statsExpressions contingency_table
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
 #' @examples
 #' \donttest{

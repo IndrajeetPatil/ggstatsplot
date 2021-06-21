@@ -2,7 +2,7 @@
 #' @name movies_wide
 #' @details Modified dataset from `ggplot2movies` package.
 #'
-#' The internet movie database, \url{https://imdb.com/}, is a website devoted
+#' The internet movie database, <https://imdb.com/>, is a website devoted
 #' to collecting movie data supplied by studios and fans. It claims to be the
 #' biggest movie database on the web and is run by amazon.
 #'
@@ -11,21 +11,21 @@
 #' and NC-17 movies were removed.
 #'
 #' @format A data frame with 1,579 rows and 13 variables
-#' \itemize{
-#'   \item title. Title of the movie.
-#'   \item year. Year of release.
-#'   \item budget. Total budget in millions of US dollars
-#'   \item length. Length in minutes.
-#'   \item rating. Average IMDB user rating.
-#'   \item votes. Number of IMDB users who rated this movie.
-#'   \item mpaa. MPAA rating.
-#'   \item action, animation, comedy, drama, documentary, romance, short. Binary
-#'   variables representing if movie was classified as belonging to that genre.
-#'   \item NumGenre. The number of different genres a film was classified in an
-#'   integer between one and four
-#' }
 #'
-#' @source \url{https://CRAN.R-project.org/package=ggplot2movies}
+#'   - title. Title of the movie.
+#'   - year. Year of release.
+#'   - budget. Total budget in millions of US dollars
+#'   - length. Length in minutes.
+#'   - rating. Average IMDB user rating.
+#'   - votes. Number of IMDB users who rated this movie.
+#'   - mpaa. MPAA rating.
+#'   - action, animation, comedy, drama, documentary, romance, short. Binary
+#'   variables representing if movie was classified as belonging to that genre.
+#'   - NumGenre. The number of different genres a film was classified in an
+#'   integer between one and four
+#'
+#'
+#' @source <https://CRAN.R-project.org/package=ggplot2movies>
 #'
 #' @examples
 #' dim(movies_wide)
@@ -37,7 +37,7 @@
 #' @name movies_long
 #' @details Modified dataset from `ggplot2movies` package.
 #'
-#' The internet movie database, \url{https://imdb.com/}, is a website devoted
+#' The internet movie database, <https://imdb.com/>, is a website devoted
 #' to collecting movie data supplied by studios and fans. It claims to be the
 #' biggest movie database on the web and is run by amazon.
 #'
@@ -46,19 +46,19 @@
 #' genre category.
 #'
 #' @format A data frame with 1,579 rows and 8 variables
-#' \itemize{
-#'   \item title. Title of the movie.
-#'   \item year. Year of release.
-#'   \item budget. Total budget (if known) in US dollars
-#'   \item length. Length in minutes.
-#'   \item rating. Average IMDB user rating.
-#'   \item votes. Number of IMDB users who rated this movie.
-#'   \item mpaa. MPAA rating.
-#'   \item genre. Different genres of movies (action, animation, comedy, drama,
-#'   documentary, romance, short).
-#' }
 #'
-#' @source \url{https://CRAN.R-project.org/package=ggplot2movies}
+#'   - title. Title of the movie.
+#'   - year. Year of release.
+#'   - budget. Total budget (if known) in US dollars
+#'   - length. Length in minutes.
+#'   - rating. Average IMDB user rating.
+#'   - votes. Number of IMDB users who rated this movie.
+#'   - mpaa. MPAA rating.
+#'   - genre. Different genres of movies (action, animation, comedy, drama,
+#'   documentary, romance, short).
+#'
+#'
+#' @source <https://CRAN.R-project.org/package=ggplot2movies>
 #'
 #' @examples
 #' dim(movies_long)
@@ -74,14 +74,15 @@
 #'
 #' This is a modified dataset from `datasets` package.
 #'
-#' @format A data frame with 2201 rows and 5 variables
-#' \itemize{
-#'   \item id. Dummy identity number for each person.
-#'   \item Class. 1st, 2nd, 3rd, Crew.
-#'   \item Sex. Male, Female.
-#'   \item Age. Child, Adult.
-#'   \item Survived. No, Yes.
-#' }
+#' @format
+#'
+#' A data frame with 2201 rows and 5 variables
+#'
+#'   - id. Dummy identity number for each person.
+#'   - Class. 1st, 2nd, 3rd, Crew.
+#'   - Sex. Male, Female.
+#'   - Age. Child, Adult.
+#'   - Survived. No, Yes.
 #'
 #' @examples
 #' dim(Titanic_full)
@@ -99,18 +100,17 @@
 #' This is a modified dataset from `datasets` package.
 #'
 #' @format A data frame with 600 rows and 5 variables
-#' \itemize{
-#'   \item id. Dummy identity number for each flower (150 flowers in total).
-#'   \item Species. The species are *Iris setosa*, *versicolor*, and
+#'
+#'   - id. Dummy identity number for each flower (150 flowers in total).
+#'   - Species. The species are *Iris setosa*, *versicolor*, and
 #'   *virginica*.
-#'   \item condition. Factor giving a detailed description of the attribute
+#'   - condition. Factor giving a detailed description of the attribute
 #'   (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`,
 #'   `"Sepal.Width"`).
-#'   \item attribute. What attribute is being measured (`"Sepal"` or `"Pepal"`).
-#'   \item measure. What aspect of the attribute is being measured (`"Length"`
+#'   - attribute. What attribute is being measured (`"Sepal"` or `"Pepal"`).
+#'   - measure. What aspect of the attribute is being measured (`"Length"`
 #'   or `"Width"`).
-#'   \item value. Value of the measurement.
-#' }
+#'   - value. Value of the measurement.
 #'
 #' @examples
 #' dim(iris_long)
@@ -125,25 +125,24 @@
 #'   dilemmas in two different sessions held on separate days: in one session,
 #'   they read text description of the scenario, while in another session they
 #'   completed the same scenarios in Virtual Reality (videos:
-#'   \url{https://www.youtube.com/watch?v=ebdU3HhhYs8}). The study investigated
+#'   <https://www.youtube.com/watch?v=ebdU3HhhYs8>). The study investigated
 #'   if there was a discrepancy between how people judged the same scenarios
 #'   while reading them in text versus experiencing them in virtual reality.
 #'
 #' @format A data frame with 68 rows and 4 variables
-#' \itemize{
-#'   \item id. Dummy identity number for each participant.
-#'   \item order. The order in which the participants completed the two
+#'
+#'   - id. Dummy identity number for each participant.
+#'   - order. The order in which the participants completed the two
 #'   sessions: `"text_first"` (`0`) or `"text_second"` (`1`).
-#'   \item modality. Describes how the moral dilemmas were presented to the
+#'   - modality. Describes how the moral dilemmas were presented to the
 #'   participants: either in text format (`"text"`) or in Virtual Reality
 #'   (`"vr"`).
-#'   \item score. Proportion of "utilitarian" decisions. In other words, of the
+#'   - score. Proportion of "utilitarian" decisions. In other words, of the
 #'   4 decisions, how many affirmative were responses. Range: 0 (all
 #'   utilitarian) - 1 (none utilitarian).
-#' }
 #'
-#' @source
-#' \url{https://psyarxiv.com/ry3ap/}
+#'
+#' @source <https://psyarxiv.com/ry3ap/>
 #'
 #' @examples
 #' dim(VR_dilemma)
@@ -160,22 +159,20 @@
 #'   all anthropods. Subset of the data reported by Ryan et al. (2013).
 #'
 #' @format A data frame with 372 rows and 6 variables
-#' \itemize{
-#'   \item subject. Dummy identity number for each participant.
-#'   \item gender. Participant's gender (Female, Male).
-#'   \item region. Region of the world the participant was from.
-#'   \item education. Level of education.
-#'   \item condition. Condition of the experiment the participant gave rating
+#'
+#'   - subject. Dummy identity number for each participant.
+#'   - gender. Participant's gender (Female, Male).
+#'   - region. Region of the world the participant was from.
+#'   - education. Level of education.
+#'   - condition. Condition of the experiment the participant gave rating
 #'   for (**LDLF**: low freighteningness and low disgustingness; **LFHD**: low
 #'   freighteningness and high disgustingness; **HFHD**: high freighteningness
 #'   and low disgustingness; **HFHD**: high freighteningness and high
 #'   disgustingness).
-#'   \item desire. The desire to kill an arthropod was indicated on a scale from
+#'   - desire. The desire to kill an arthropod was indicated on a scale from
 #'   0 to 10.
-#' }
 #'
-#' @source
-#' \url{https://www.sciencedirect.com/science/article/pii/S0747563213000277}
+#' @source <https://www.sciencedirect.com/science/article/pii/S0747563213000277>
 #'
 #' @examples
 #' dim(bugs_long)
@@ -192,20 +189,20 @@
 #'   all anthropods. Subset of the data reported by Ryan et al. (2013).
 #'
 #' @format A data frame with 93 rows and 6 variables
-#' \itemize{
-#'   \item subject. Dummy identity number for each participant.
-#'   \item gender. Participant's gender (Female, Male).
-#'   \item region. Region of the world the participant was from.
-#'   \item education. Level of education.
-#'   \item ldlf,ldhf,hdlf,hdhf.The desire to kill an arthropod was indicated on
+#'
+#'   - subject. Dummy identity number for each participant.
+#'   - gender. Participant's gender (Female, Male).
+#'   - region. Region of the world the participant was from.
+#'   - education. Level of education.
+#'   - ldlf,ldhf,hdlf,hdhf.The desire to kill an arthropod was indicated on
 #'   a scale from 0 to 10 in each condition of the experiment (**LDLF**: low
 #'   freighteningness and low disgustingness; **LFHD**: low freighteningness and
 #'   high disgustingness; **HFHD**: high freighteningness and low
 #'   disgustingness; **HFHD**: high freighteningness and high disgustingness).
-#' }
+#'
 #'
 #' @source
-#' \url{https://www.sciencedirect.com/science/article/pii/S0747563213000277}
+#' <https://www.sciencedirect.com/science/article/pii/S0747563213000277>
 #'
 #' @examples
 #' dim(bugs_wide)

@@ -59,7 +59,7 @@
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
 #' @examples
 #' \donttest{

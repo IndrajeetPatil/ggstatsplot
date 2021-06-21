@@ -102,7 +102,7 @@
 #' @importFrom performance model_performance
 #'
 #' @details For more details, see:
-#' \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 #'
 #'
 #' @examples
