@@ -24,8 +24,8 @@ knitr::opts_chunk$set(
 
 # Additional vignettes
 
-Due to constraints on the size of the `R` package, all available vignettes are
-only available on the website for this package: <br>
+Due to size constraints, all available vignettes are only available on the
+website for this package: <br>
 <https://indrajeetpatil.github.io/ggstatsplot/articles/>
 
 ## Vignettes for individual functions
@@ -54,14 +54,7 @@ only available on the website for this package: <br>
   - `ggcoefstats`:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>)
 
-  - How to arrange multiple plots in a single plot along with annotations using
-    the `combine_plots` helper function:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/combine_plots.html>)
-
 ## General vignettes
-
-  - Publication describing philosophy and principles behind this package:
-    (<https://joss.theoj.org/papers/10.21105/joss.03167>)
 
   - Frequently Asked Questions (FAQ)-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
@@ -74,8 +67,10 @@ only available on the website for this package: <br>
     to extend `ggstatsplot` functionality-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
 
-  - Session information:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>)
+# Publication
+
+A journal articles describing philosophy and principles behind this package:
+(<https://joss.theoj.org/papers/10.21105/joss.03167>)
 
 # Presentation
 

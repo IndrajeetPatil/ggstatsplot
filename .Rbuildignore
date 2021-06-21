@@ -43,3 +43,4 @@ references.bib
 ^\.github/workflows/pr-commands\.yaml$
 ^hextools/.
 ^WIP/.
+^old/.
