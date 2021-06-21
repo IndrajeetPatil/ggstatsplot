@@ -39,57 +39,27 @@ test_that(
 # chi^2-statistic --------------------------------------------------
 
 test_that(
-  desc = "ggcoefstats with coxph.panel model",
+  desc = "ggcoefstats with chi-squared statistic model",
   code = {
+    skip_if_not_installed("survival")
     options(tibble.width = Inf)
 
+    # setup
+    set.seed(123)
+    library(survival)
+
     # model
-    df <-
-      structure(
-        list(
-          term = c("age", "sex"),
-          estimate = c(
-            0.0170335066199796,
-            -0.511668342705175
-          ),
-          std.error = c(0.00923266440539569, 0.167678592139827),
-          conf.low = c(-0.00106218309594089, -0.840312344277616),
-          conf.high = c(
-            0.0351291963359,
-            -0.183024341132734
-          ),
-          statistic = c(3.40372002622092, 9.31154544604583),
-          df.error = c(225L, 225L),
-          p.value = c(
-            0.0650495624855354,
-            0.002277143223301
-          )
-        ),
-        row.names = c(NA, -2L),
-        pretty_names = c(
-          age = "age",
-          sex = "sex"
-        ),
-        ci = 0.95,
-        exponentiate = FALSE,
-        ordinal_model = FALSE,
-        model_class = c(
-          "coxph.penal",
-          "coxph"
-        ),
-        digits = 2,
-        ci_digits = 2,
-        p_digits = 3,
-        object_name = "x",
-        class = c(
-          "tbl_df",
-          "tbl", "data.frame"
-        )
-      )
+    mod_coxph <- survival::coxph(
+      formula = Surv(time, status) ~ age + sex + frailty(inst),
+      data = lung
+    )
 
     # plot
-    set.seed(123)
-    p <- ggcoefstats(df, statistic = "chi")
+    p <- ggcoefstats(
+      x = mod_coxph,
+      package = "ggsci",
+      palette = "category20c_d3"
+    )
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
@@ -152,15 +122,14 @@ test_that(
     mod <- stats::aov(data = mtcars, formula = wt ~ mpg * am)
 
     # plot
-    p <-
-      ggcoefstats(
-        x = mod,
-        exclude.intercept = FALSE,
-        effsize = "eta",
-        partial = TRUE,
-        k = 2,
-        ylab = "effect"
-      )
+    p <- ggcoefstats(
+      x = mod,
+      exclude.intercept = FALSE,
+      effsize = "eta",
+      partial = TRUE,
+      k = 2,
+      ylab = "effect"
+    )
 
     # plot build
     pb <- ggplot2::ggplot_build(p)
@@ -457,3 +426,60 @@ test_that(
     expect_snapshot(pb$data)
   }
 )
+
+
+if (getRversion() >= "4.1") {
+  test_that("plots are rendered correctly", {
+    skip_on_cran()
+    skip_if_not_installed("vdiffr")
+    skip_if_not_installed("survival")
+
+    # vidffr tests --------------------------------
+
+    ## F-statistic --------------------------------
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "ggcoefstats F-statistic - vdiffr",
+      fig = ggcoefstats(aov(yield ~ N * P * K + Error(block), npk))
+    )
+
+    ## chi2-statistic --------------------------------
+
+    # setup
+    set.seed(123)
+    library(survival)
+
+    # model
+    mod_coxph <- survival::coxph(
+      formula = Surv(time, status) ~ age + sex + frailty(inst),
+      data = lung
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "ggcoefstats chi2-statistic - vdiffr",
+      fig = ggcoefstats(mod_coxph)
+    )
+
+    ## z-statistic --------------------------------
+
+    # having a look at the Titanic dataset
+    df <- as.data.frame(Titanic)
+
+    # model
+    mod_glm <-
+      stats::glm(
+        formula = Survived ~ Sex + Age,
+        data = df,
+        weights = df$Freq,
+        family = stats::binomial(link = "logit")
+      )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "ggcoefstats z-statistic - vdiffr",
+      fig = ggcoefstats(mod_glm, conf.level = 0.90)
+    )
+  })
+}

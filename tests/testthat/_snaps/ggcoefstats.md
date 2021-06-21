@@ -50,7 +50,7 @@
       3           FALSE         FALSE
       
 
-# ggcoefstats with coxph.panel model
+# ggcoefstats with chi-squared statistic model
 
     Code
       pb$data
@@ -80,8 +80,8 @@
       1  list(~widehat(italic(beta))=='0.02', ~italic(chi)^2~('225')=='3.40', ~italic(p)=='0.065')
       2 list(~widehat(italic(beta))=='-0.51', ~italic(chi)^2~('225')=='9.31', ~italic(p)=='0.002')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
-      1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
-      2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5
+      1     1     1 #3182BDFF white    3     0    NA               1        1.2   0.5
+      2     1     2 #E6550DFF white    3     0    NA               1        1.2   0.5
         vjust point.size segment.linetype segment.size segment.curvature
       1   0.5          1                1          0.5                 0
       2   0.5          1                1          0.5                 0
@@ -151,17 +151,17 @@
       list(tidy_df1, p$labels)
     Output
       [[1]]
-      # A tibble: 3 x 12
-        term    sumsq    df meansq statistic  p.value estimate conf.low conf.high
-        <fct>   <dbl> <dbl>  <dbl>     <dbl>    <dbl>    <dbl>    <dbl>     <dbl>
-      1 mpg    22.3       1 22.3      119.   1.38e-11    0.809   0.663      0.880
-      2 am      1.37      1  1.37       7.30 1.16e- 2    0.207   0.0118     0.448
-      3 mpg:am  0.701     1  0.701      3.73 6.36e- 2    0.118   0          0.357
-        df.error effectsize         
-           <dbl> <chr>              
-      1       28 partial eta-squared
-      2       28 partial eta-squared
-      3       28 partial eta-squared
+      # A tibble: 3 x 14
+        term   statistic    df df.error  p.value  sumsq meansq estimate conf.low
+        <fct>      <dbl> <dbl>    <dbl>    <dbl>  <dbl>  <dbl>    <dbl>    <dbl>
+      1 mpg       119.       1       28 1.38e-11 22.3   22.3      0.809   0.663 
+      2 am          7.30     1       28 1.16e- 2  1.37   1.37     0.207   0.0118
+      3 mpg:am      3.73     1       28 6.36e- 2  0.701  0.701    0.118   0     
+        conf.high sum.squares.error mean.square.error effectsize         
+            <dbl>             <dbl>             <dbl> <chr>              
+      1     0.880              5.26              5.26 partial eta-squared
+      2     0.448              5.26              5.26 partial eta-squared
+      3     0.357              5.26              5.26 partial eta-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('1'*\",\"*'28')=='118.89', ~italic(p)=='1.38e-11', ~widehat(~
@@ -205,17 +205,17 @@
       list(tidy_df2, p$labels)
     Output
       [[1]]
-      # A tibble: 3 x 12
-        term         sumsq    df meansq statistic  p.value estimate conf.low conf.high
-        <fct>        <dbl> <dbl>  <dbl>     <dbl>    <dbl>    <dbl>    <dbl>     <dbl>
-      1 vore         19.6      3   6.54      7.39 0.000584   0.308    0.0458     0.498
-      2 brainwt       1.80     1   1.80      2.03 0.163      0.0235   0          0.192
-      3 vore:brainwt 10.7      3   3.55      4.01 0.0148     0.174    0          0.364
-        df.error effectsize           
-           <dbl> <chr>                
-      1       35 partial omega-squared
-      2       35 partial omega-squared
-      3       35 partial omega-squared
+      # A tibble: 3 x 14
+        term         statistic    df df.error  p.value sumsq meansq estimate conf.low
+        <fct>            <dbl> <dbl>    <dbl>    <dbl> <dbl>  <dbl>    <dbl>    <dbl>
+      1 vore              7.39     3       35 0.000584 19.6    6.54   0.308    0.0458
+      2 brainwt           2.03     1       35 0.163     1.80   1.80   0.0235   0     
+      3 vore:brainwt      4.01     3       35 0.0148   10.7    3.55   0.174    0     
+        conf.high sum.squares.error mean.square.error effectsize           
+            <dbl>             <dbl>             <dbl> <chr>                
+      1     0.498              31.0              31.0 partial omega-squared
+      2     0.192              31.0              31.0 partial omega-squared
+      3     0.364              31.0              31.0 partial omega-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('3'*\",\"*'35')=='7.388', ~italic(p)=='0.001', ~widehat(ital~
@@ -259,55 +259,55 @@
       list(tidy_df1, tidy_df2)
     Output
       [[1]]
-      # A tibble: 7 x 13
-        group  term    sumsq    df  meansq statistic p.value estimate conf.low
-        <chr>  <fct>   <dbl> <dbl>   <dbl>     <dbl>   <dbl>    <dbl>    <dbl>
-      1 block  N:P:K  37.0       1  37.0      0.483  0.525    0.108     0     
-      2 Within N     189.        1 189.      12.3    0.00437  0.505     0.0844
-      3 Within P       8.40      1   8.40     0.544  0.475    0.0434    0     
-      4 Within K      95.2       1  95.2      6.17   0.0288   0.339     0     
-      5 Within N:P    21.3       1  21.3      1.38   0.263    0.103     0     
-      6 Within N:K    33.1       1  33.1      2.15   0.169    0.152     0     
-      7 Within P:K     0.482     1   0.482    0.0312 0.863    0.00259   0     
-        conf.high df.error effectsize         
-            <dbl>    <dbl> <chr>              
-      1     0.639        4 partial eta-squared
-      2     0.741       12 partial eta-squared
-      3     0.378       12 partial eta-squared
-      4     0.642       12 partial eta-squared
-      5     0.455       12 partial eta-squared
-      6     0.502       12 partial eta-squared
-      7     0.223       12 partial eta-squared
+      # A tibble: 7 x 15
+        term  statistic    df df.error p.value group    sumsq  meansq estimate
+        <fct>     <dbl> <dbl>    <dbl>   <dbl> <chr>    <dbl>   <dbl>    <dbl>
+      1 N       12.3        1       12 0.00437 Within 189.    189.     0.505  
+      2 P        0.544      1       12 0.475   Within   8.40    8.40   0.0434 
+      3 K        6.17       1       12 0.0288  Within  95.2    95.2    0.339  
+      4 N:P      1.38       1       12 0.263   Within  21.3    21.3    0.103  
+      5 N:K      2.15       1       12 0.169   Within  33.1    33.1    0.152  
+      6 P:K      0.0312     1       12 0.863   Within   0.482   0.482  0.00259
+      7 N:P:K    0.483      1        4 0.525   block   37.0    37.0    0.108  
+        conf.low conf.high sum.squares.error mean.square.error effectsize         
+           <dbl>     <dbl>             <dbl>             <dbl> <chr>              
+      1   0.0844     0.741              185.              185. partial eta-squared
+      2   0          0.378              185.              185. partial eta-squared
+      3   0          0.642              185.              185. partial eta-squared
+      4   0          0.455              185.              185. partial eta-squared
+      5   0          0.502              185.              185. partial eta-squared
+      6   0          0.223              185.              185. partial eta-squared
+      7   0          0.639              306.              306. partial eta-squared
         label                                                                         
         <chr>                                                                         
-      1 "list(~italic(F)('1'*\",\"*'4')=='0.48', ~italic(p)=='0.525', ~widehat(italic~
-      2 "list(~italic(F)('1'*\",\"*'12')=='12.26', ~italic(p)=='0.004', ~widehat(ital~
-      3 "list(~italic(F)('1'*\",\"*'12')=='0.54', ~italic(p)=='0.475', ~widehat(itali~
-      4 "list(~italic(F)('1'*\",\"*'12')=='6.17', ~italic(p)=='0.029', ~widehat(itali~
-      5 "list(~italic(F)('1'*\",\"*'12')=='1.38', ~italic(p)=='0.263', ~widehat(itali~
-      6 "list(~italic(F)('1'*\",\"*'12')=='2.15', ~italic(p)=='0.169', ~widehat(itali~
-      7 "list(~italic(F)('1'*\",\"*'12')=='0.03', ~italic(p)=='0.863', ~widehat(itali~
+      1 "list(~italic(F)('1'*\",\"*'12')=='12.26', ~italic(p)=='0.004', ~widehat(ital~
+      2 "list(~italic(F)('1'*\",\"*'12')=='0.54', ~italic(p)=='0.475', ~widehat(itali~
+      3 "list(~italic(F)('1'*\",\"*'12')=='6.17', ~italic(p)=='0.029', ~widehat(itali~
+      4 "list(~italic(F)('1'*\",\"*'12')=='1.38', ~italic(p)=='0.263', ~widehat(itali~
+      5 "list(~italic(F)('1'*\",\"*'12')=='2.15', ~italic(p)=='0.169', ~widehat(itali~
+      6 "list(~italic(F)('1'*\",\"*'12')=='0.03', ~italic(p)=='0.863', ~widehat(itali~
+      7 "list(~italic(F)('1'*\",\"*'4')=='0.48', ~italic(p)=='0.525', ~widehat(italic~
       
       [[2]]
-      # A tibble: 7 x 12
-        term    sumsq    df  meansq statistic p.value estimate conf.low conf.high
-        <fct>   <dbl> <dbl>   <dbl>     <dbl>   <dbl>    <dbl>    <dbl>     <dbl>
-      1 N     189.        1 189.       6.16    0.0245 0.278    0.000467     0.568
-      2 P       8.40      1   8.40     0.273   0.608  0.0168   0            0.274
-      3 K      95.2       1  95.2      3.10    0.0975 0.162    0            0.473
-      4 N:P    21.3       1  21.3      0.693   0.418  0.0415   0            0.328
-      5 N:K    33.1       1  33.1      1.08    0.314  0.0631   0            0.362
-      6 P:K     0.482     1   0.482    0.0157  0.902  0.000979 0            0.147
-      7 N:P:K  37.0       1  37.0      1.20    0.289  0.0700   0            0.372
-        df.error effectsize         
-           <dbl> <chr>              
-      1       16 partial eta-squared
-      2       16 partial eta-squared
-      3       16 partial eta-squared
-      4       16 partial eta-squared
-      5       16 partial eta-squared
-      6       16 partial eta-squared
-      7       16 partial eta-squared
+      # A tibble: 7 x 14
+        term  statistic    df df.error p.value   sumsq  meansq estimate conf.low
+        <fct>     <dbl> <dbl>    <dbl>   <dbl>   <dbl>   <dbl>    <dbl>    <dbl>
+      1 N        6.16       1       16  0.0245 189.    189.    0.278    0.000467
+      2 P        0.273      1       16  0.608    8.40    8.40  0.0168   0       
+      3 K        3.10       1       16  0.0975  95.2    95.2   0.162    0       
+      4 N:P      0.693      1       16  0.418   21.3    21.3   0.0415   0       
+      5 N:K      1.08       1       16  0.314   33.1    33.1   0.0631   0       
+      6 P:K      0.0157     1       16  0.902    0.482   0.482 0.000979 0       
+      7 N:P:K    1.20       1       16  0.289   37.0    37.0   0.0700   0       
+        conf.high sum.squares.error mean.square.error effectsize         
+            <dbl>             <dbl>             <dbl> <chr>              
+      1     0.568              492.              492. partial eta-squared
+      2     0.274              492.              492. partial eta-squared
+      3     0.473              492.              492. partial eta-squared
+      4     0.328              492.              492. partial eta-squared
+      5     0.362              492.              492. partial eta-squared
+      6     0.147              492.              492. partial eta-squared
+      7     0.372              492.              492. partial eta-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('1'*\",\"*'16')=='6.16', ~italic(p)=='0.025', ~widehat(itali~

@@ -32,7 +32,7 @@ Imports:
     insight (>= 0.14.1),
     pairwiseComparisons (>= 3.2.0),
     paletteer,
-    parameters (>= 0.14.0),
+    parameters (>= 0.14.0.1),
     patchwork,
     performance,
     purrr,
@@ -52,11 +52,13 @@ Suggests:
     metafor,
     rmarkdown,
     spelling,
+    survival,
     testthat,
     tibble,
     vdiffr,
     WRS2
 Remotes:
+    easystats/parameters,
     IndrajeetPatil/statsExpressions,
     IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 

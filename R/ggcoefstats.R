@@ -198,6 +198,7 @@ ggcoefstats <- function(x,
       omega_squared = omega_squared,
       ci = conf.level,
       verbose = FALSE,
+      table_wide = TRUE,
       ...
     ) %>%
       parameters::standardize_names(style = "broom") %>%
@@ -205,12 +206,6 @@ ggcoefstats <- function(x,
 
     # anova objects need further cleaning
     if (class(x)[[1]] %in% c("aov", "aovlist", "anova", "Gam", "manova", "maov")) {
-      if (dim(dplyr::filter(tidy_df, term == "Residuals"))[[1]] > 0L) {
-        if ("group" %in% names(tidy_df)) tidy_df %<>% group_by(group)
-        # creating a new column for residual degrees of freedom
-        tidy_df %<>% dplyr::mutate(df.error = dplyr::last(df))
-      }
-
       # final cleanup
       tidy_df %<>%
         dplyr::mutate(effectsize = paste0("partial ", effsize, "-squared")) %>%
