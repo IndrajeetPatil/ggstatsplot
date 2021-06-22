@@ -181,9 +181,6 @@ subtitle." />
     <li>
       <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
     </li>
-    <li>
-      <a href="../articles/web_only/session_info.html">session information</a>
-    </li>
     <li class="divider"></li>
     <li class="dropdown-header">Development-focused</li>
     <li>
@@ -257,7 +254,7 @@ subtitle.</p>
   point.width.jitter <span class='op'>=</span> <span class='fl'>0</span>,
   point.height.jitter <span class='op'>=</span> <span class='fl'>0</span>,
   point.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span>, max.overlaps <span class='op'>=</span> <span class='fl'>1e+06</span><span class='op'>)</span>,
-  smooth.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1.5</span>, color <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span>,
+  smooth.line.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>1.5</span>, color <span class='op'>=</span> <span class='st'>"blue"</span>, method <span class='op'>=</span> <span class='st'>"lm"</span>, formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>,
   marginal <span class='op'>=</span> <span class='cn'>TRUE</span>,
   marginal.type <span class='op'>=</span> <span class='st'>"densigram"</span>,
   marginal.size <span class='op'>=</span> <span class='fl'>5</span>,

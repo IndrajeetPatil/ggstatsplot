@@ -116,9 +116,6 @@
     <li>
       <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
     </li>
-    <li>
-      <a href="../../articles/web_only/session_info.html">session information</a>
-    </li>
     <li class="divider">
     <li class="dropdown-header">Development-focused</li>
     <li>
@@ -166,7 +163,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-06-17</h4>
+            <h4 data-toc-skip class="date">2021-06-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -2907,7 +2904,7 @@ A BibTeX entry for LaTeX users is
 <span class="va">mod_mlm</span> <span class="op">&lt;-</span>
   <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>
     formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span> <span class="op">~</span> <span class="va">wt</span>,
-    data <span class="op">=</span> <span class="fu">effectsize</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/effectsize/reference/standardize.html" class="external-link">standardize</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
+    data <span class="op">=</span> <span class="fu">effectsize</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/datawizard/reference/standardize.html" class="external-link">standardize</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
   <span class="op">)</span>
 
 <span class="co"># plot</span>
@@ -4841,8 +4838,8 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_epiR</span>,
   title <span class="op">=</span> <span class="st">"Summary measures for count data presented in a 2 by 2 table"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in names(cf) &lt;- gsub(".strata.wald", "", names(cf), fixed = TRUE): attempt to set an attribute on NULL</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/epi.2by2-1.png" width="576"></p>
 </div>
 <div id="marginal-effects-for-a-probit-regression-probitmfx" class="section level2">
 <h2 class="hasAnchor">
@@ -5495,8 +5492,8 @@ speed =~ x7 + x8 + x9 "</span>
   <span class="op">)</span>,
   labels <span class="op">=</span> <span class="st">"auto"</span>,
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"fast and user-friendly fixed-effects estimations"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/fixest-1.png" width="960"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: Sorry, `model_parameters()` does currently not work for objects of class 'fixest'.</span></code></pre></div>
 </div>
 <div id="multivariate-analysis-of-variance-manova" class="section level2">
 <h2 class="hasAnchor">

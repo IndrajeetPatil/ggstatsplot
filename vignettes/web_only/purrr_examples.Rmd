@@ -391,7 +391,7 @@ plot_list <-
         c("#999999", "white", "#0072B2")
       ),
       ggtheme = list(
-        sjPlot::theme_sjplot(),
+        ggplot2::theme_linedraw(),
         ggplot2::theme_classic(),
         ggthemes::theme_fivethirtyeight(),
         ggthemes::theme_tufte()
