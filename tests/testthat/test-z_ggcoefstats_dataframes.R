@@ -8,6 +8,8 @@ test_that(
     skip_if_not_installed("metaBMA")
     set.seed(123)
 
+    options(tibble.width = Inf)
+
     # creating dataframe
     df1 <-
       tibble::tribble(
@@ -147,9 +149,6 @@ test_that(
       ggplot2::labs(x = "location", y = NULL)
 
     set.seed(123)
-    p5 <- ggcoefstats(x = df4, statistic = "T-value")
-
-    set.seed(123)
     p6 <-
       suppressWarnings(
         ggcoefstats(
@@ -180,7 +179,6 @@ test_that(
     pb2 <- ggplot2::ggplot_build(p2)
     pb3 <- ggplot2::ggplot_build(p3)
     pb4 <- ggplot2::ggplot_build(p4)
-    pb5 <- ggplot2::ggplot_build(p5)
     pb6 <- ggplot2::ggplot_build(p6)
     pb7 <- ggplot2::ggplot_build(p7)
 
@@ -188,13 +186,13 @@ test_that(
     set.seed(123)
     expect_snapshot(list(
       pb1$data, pb2$data, pb3$data, pb4$data,
-      pb5$data, pb6$data, pb7$data
+      pb6$data, pb7$data
     ))
 
     # labels
     expect_snapshot(list(
       pb1$plot$labels, pb2$plot$labels, pb3$plot$labels,
-      pb4$plot$labels, pb5$plot$labels
+      pb4$plot$labels
     ))
 
     # checking meta-analysis

@@ -97,7 +97,7 @@
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
 #' @importFrom insight is_model find_statistic format_value
-#' @importFrom statsExpressions meta_analysis
+#' @importFrom statsExpressions meta_analysis tidy_model_expressions
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom performance model_performance
 #'
@@ -162,7 +162,7 @@ ggcoefstats <- function(x,
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
                         ...) {
-  # ============================= dataframe ===============================
+  # dataframe -------------------------
 
   if (isFALSE(insight::is_model(x))) {
     # set tidy_df to entered dataframe
@@ -172,7 +172,7 @@ ggcoefstats <- function(x,
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
-  # =========================== tidy it ====================================
+  #tidy it -------------------------
 
   if (isTRUE(insight::is_model(x))) {
     # which effect size?
@@ -198,7 +198,7 @@ ggcoefstats <- function(x,
   }
 
 
-  # =================== tidy dataframe cleanup ================================
+  # tidy dataframe cleanup -------------------------
 
   # check for the one necessary column
   if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
@@ -219,7 +219,7 @@ ggcoefstats <- function(x,
     tidy_df %<>% dplyr::mutate(term = paste("term", dplyr::row_number(), sep = "_"))
   }
 
-  # ================ check for duplicate terms and columns ===================
+  # check for duplicate terms and columns -------------------------
 
   # a check if there are repeated terms
   # needed for maov, lqm, lqmm, etc. kind of objects
@@ -239,7 +239,7 @@ ggcoefstats <- function(x,
   # if `parameters` output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
 
-  # =========================== CIs and intercepts ===========================
+  # CIs and intercepts -------------------------
 
   # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
@@ -253,7 +253,7 @@ ggcoefstats <- function(x,
   # whether to show model intercept
   if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
 
-  # ========================== preparing label ================================
+  # preparing label -------------------------
 
   # adding a column with labels to be used with `ggrepel`
   if (stats.labels) {
@@ -261,15 +261,10 @@ ggcoefstats <- function(x,
     if (insight::is_model(x)) statistic <- insight::find_statistic(x)
 
     # adding a column with labels using custom function
-    tidy_df %<>%
-      ggcoefstats_label_maker(
-        statistic = substring(tolower(statistic), 1L, 1L),
-        k = k,
-        effsize = effsize
-      )
+    tidy_df %<>% statsExpressions::tidy_model_expressions(statistic, k, effsize)
   }
 
-  # ========================== summary caption ================================
+  # summary caption -------------------------
 
   # for non-dataframe objects
   if (isTRUE(insight::is_model(x))) {
@@ -316,7 +311,7 @@ ggcoefstats <- function(x,
     }
   }
 
-  # ========================== sorting ===================================
+  # sorting -------------------------
 
   # whether the term need to be arranged in any specified order
   tidy_df %<>% dplyr::mutate(term = as.factor(term), .rowid = dplyr::row_number())
@@ -335,7 +330,7 @@ ggcoefstats <- function(x,
     dplyr::mutate(term = factor(x = term, levels = term[new_order])) %>%
     dplyr::select(-.rowid)
 
-  # ========================== basic plot ===================================
+  # basic plot -------------------------
 
   # palette check is necessary only if output is a plot
   if (output == "plot") {
@@ -357,7 +352,7 @@ ggcoefstats <- function(x,
     # if needed, adding the vertical line
     if (vline) plot <- plot + rlang::exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
 
-    # ========================= ggrepel labels ================================
+    # ggrepel labels -------------------------
 
     # adding the labels
     if (stats.labels) {
@@ -392,7 +387,7 @@ ggcoefstats <- function(x,
         )
     }
 
-    # ========================== annotations =============================
+    # annotations -------------------------
 
     # adding other labels to the plot
     plot <- plot +
@@ -407,7 +402,7 @@ ggcoefstats <- function(x,
       ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
   }
 
-  # =========================== output =====================================
+  # output -------------------------
 
   # what needs to be returned?
   switch(output,

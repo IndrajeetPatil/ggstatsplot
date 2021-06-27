@@ -269,7 +269,7 @@ test_that(
       ), row.names = c(NA, -12L))
 
 
-    p <- ggcoefstats(df, statistic = "chi")
+    p <- ggcoefstats(df, statistic = "z")
 
     pb <- ggplot2::ggplot_build(p)
 
@@ -417,7 +417,7 @@ test_that(
         object_name = "fit.lqm"
       )
 
-    p <- ggcoefstats(df, statistic = "t")
+    p <- ggcoefstats(df, statistic = "z")
 
     pb <- ggplot2::ggplot_build(p)
 
