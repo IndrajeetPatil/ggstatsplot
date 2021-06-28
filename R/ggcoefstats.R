@@ -205,15 +205,6 @@ ggcoefstats <- function(x,
     stop("The tidy dataframe *must* contain 'estimate' column.", call. = FALSE)
   }
 
-  # remove NAs
-  if (stats.labels) {
-    tidy_df %<>%
-      dplyr::filter(dplyr::across(
-        .cols = c(dplyr::matches("estimate|statistic|std.error|p.value")),
-        .fns = ~ !is.na(.)
-      ))
-  }
-
   # create a new term column if it's not present
   if (!"term" %in% names(tidy_df)) {
     tidy_df %<>% dplyr::mutate(term = paste("term", dplyr::row_number(), sep = "_"))
@@ -257,11 +248,16 @@ ggcoefstats <- function(x,
 
   # adding a column with labels to be used with `ggrepel`
   if (stats.labels) {
-    # in case a dataframe was entered, `x` and `tidy_df` are going to be same
+    # extract statistic for a model
     if (insight::is_model(x)) statistic <- insight::find_statistic(x)
 
-    # adding a column with labels using custom function
-    tidy_df %<>% statsExpressions::tidy_model_expressions(statistic, k, effsize)
+    # remove NAs
+    tidy_df %<>%
+      dplyr::filter(dplyr::across(
+        .cols = c(dplyr::matches("estimate|statistic|std.error|p.value")),
+        .fns = ~ !is.na(.)
+      )) %>%
+      statsExpressions::tidy_model_expressions(statistic, k, effsize)
 
     # only significant p-value labels are shown
     if (only.significant && "p.value" %in% names(tidy_df)) {
@@ -269,10 +265,28 @@ ggcoefstats <- function(x,
     }
   }
 
+  # sorting -------------------------
+
+  # whether the term need to be arranged in any specified order
+  tidy_df %<>% dplyr::mutate(term = as.factor(term), .rowid = dplyr::row_number())
+
+  # sorting factor levels
+  new_order <- switch(sort,
+    "ascending" = order(tidy_df$estimate, decreasing = FALSE),
+    "descending" = order(tidy_df$estimate, decreasing = TRUE),
+    order(tidy_df$.rowid, decreasing = FALSE)
+  )
+
+  # sorting `term` factor levels according to new sorting order
+  tidy_df %<>%
+    dplyr::mutate(term = as.character(term)) %>%
+    dplyr::mutate(term = factor(x = term, levels = term[new_order])) %>%
+    dplyr::select(-.rowid)
+
   # summary caption -------------------------
 
   # for non-dataframe objects
-  if (isTRUE(insight::is_model(x))) {
+  if (insight::is_model(x)) {
     # creating glance dataframe
     glance_df <- performance::model_performance(x, verbose = FALSE)
 
@@ -306,34 +320,15 @@ ggcoefstats <- function(x,
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && isTRUE(bf.message)) {
       caption_df <- statsExpressions::meta_analysis(
-        data = tidy_df,
-        top.text = caption,
+        tidy_df,
         type = "bayes",
-        k = k
+        k = k,
+        top.text = caption
       )
 
       caption <- caption_df$expression[[1]]
     }
   }
-
-  # sorting -------------------------
-
-  # whether the term need to be arranged in any specified order
-  tidy_df %<>% dplyr::mutate(term = as.factor(term), .rowid = dplyr::row_number())
-
-  # sorting factor levels
-  new_order <- switch(sort,
-    "none" = order(tidy_df$.rowid, decreasing = FALSE),
-    "ascending" = order(tidy_df$estimate, decreasing = FALSE),
-    "descending" = order(tidy_df$estimate, decreasing = TRUE),
-    order(tidy_df$.rowid, decreasing = FALSE)
-  )
-
-  # sorting `term` factor levels according to new sorting order
-  tidy_df %<>%
-    dplyr::mutate(term = as.character(term)) %>%
-    dplyr::mutate(term = factor(x = term, levels = term[new_order])) %>%
-    dplyr::select(-.rowid)
 
   # basic plot -------------------------
 
@@ -361,10 +356,7 @@ ggcoefstats <- function(x,
 
     # adding the labels
     if (stats.labels) {
-      # palette check ----------------------
-
-      # has user specified if a specific color for the label?
-      # if not, use a palette, assuming enough no. of colors are available
+      # use a palette, assuming enough no. of colors are available
       if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
         stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
       } else {
