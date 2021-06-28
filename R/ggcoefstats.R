@@ -172,7 +172,7 @@ ggcoefstats <- function(x,
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
-  #tidy it -------------------------
+  # tidy it -------------------------
 
   if (isTRUE(insight::is_model(x))) {
     # which effect size?
@@ -244,7 +244,7 @@ ggcoefstats <- function(x,
   # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
     # add NAs so that only dots will be shown
-    tidy_df %<>% dplyr::mutate(conf.low = NA_character_, conf.high = NA_character_)
+    tidy_df %<>% dplyr::mutate(conf.low = NA, conf.high = NA)
 
     # stop displaying whiskers
     conf.int <- FALSE
@@ -262,6 +262,11 @@ ggcoefstats <- function(x,
 
     # adding a column with labels using custom function
     tidy_df %<>% statsExpressions::tidy_model_expressions(statistic, k, effsize)
+
+    # only significant p-value labels are shown
+    if (only.significant && "p.value" %in% names(tidy_df)) {
+      tidy_df %<>% dplyr::mutate(label = ifelse(p.value >= 0.05, NA, label))
+    }
   }
 
   # summary caption -------------------------
@@ -356,14 +361,6 @@ ggcoefstats <- function(x,
 
     # adding the labels
     if (stats.labels) {
-      # only significant p-value labels are shown
-      if (only.significant && "p.value" %in% names(tidy_df)) {
-        tidy_df %<>% dplyr::mutate(label = dplyr::case_when(
-          p.value >= 0.05 ~ NA_character_,
-          TRUE ~ label
-        ))
-      }
-
       # palette check ----------------------
 
       # has user specified if a specific color for the label?
