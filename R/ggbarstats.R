@@ -76,7 +76,7 @@ ggbarstats <- function(data,
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # =============================== dataframe ================================
+  # dataframe ------------------------------------------
 
   # creating a dataframe
   data %<>%
@@ -93,7 +93,7 @@ ggbarstats <- function(data,
   if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
   if (type == "bayes") proportion.test <- FALSE
 
-  # -------------------------- statistical analysis --------------------------
+  # statistical analysis ------------------------------------------
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
@@ -142,7 +142,7 @@ ggbarstats <- function(data,
     ))
   }
 
-  # =================================== plot =================================
+  # plot ------------------------------------------
 
   # dataframe with summary labels
   descriptive_df <- descriptive_df(data, {{ x }}, {{ y }}, label, perc.k)
@@ -177,7 +177,7 @@ ggbarstats <- function(data,
     ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
 
-  # ================ sample size and proportion test labels ===================
+  # sample size + proportion test ------------------------------------------
 
   # adding significance labels to bars for proportion tests
   if (isTRUE(proportion.test)) {
@@ -199,7 +199,7 @@ ggbarstats <- function(data,
       size = 4
     )
 
-  # =========================== putting all together ========================
+  # annotations ------------------------------------------
 
   # preparing the plot
   p +

@@ -28,10 +28,10 @@
       1 -0.7800447 1
       2  2.2940067 2
       3 -0.5564393 3
-                                                                                    label
-      1   list(~widehat(italic(beta))=='-0.78', ~italic(z)=='-3.47', ~italic(p)=='0.001')
-      2 list(~widehat(italic(beta))=='2.29', ~italic(z)=='19.13', ~italic(p)=='1.54e-81')
-      3   list(~widehat(italic(beta))=='-0.56', ~italic(z)=='-2.44', ~italic(p)=='0.014')
+                                                                                     label
+      1 list(~widehat(italic(beta))=='-0.78', ~italic(z)=='-3.47', ~italic(p)=='5.14e-04')
+      2  list(~widehat(italic(beta))=='2.29', ~italic(z)=='19.13', ~italic(p)=='1.54e-81')
+      3    list(~widehat(italic(beta))=='-0.56', ~italic(z)=='-2.44', ~italic(p)=='0.014')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
       2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5
@@ -218,7 +218,7 @@
       3     0.364              31.0              31.0 partial omega-squared
         label                                                                         
         <chr>                                                                         
-      1 "list(~italic(F)('3'*\",\"*'35')=='7.388', ~italic(p)=='0.001', ~widehat(ital~
+      1 "list(~italic(F)('3'*\",\"*'35')=='7.388', ~italic(p)=='5.84e-04', ~widehat(i~
       2 "list(~italic(F)('1'*\",\"*'35')=='2.034', ~italic(p)=='0.163', ~widehat(ital~
       3 "list(~italic(F)('3'*\",\"*'35')=='4.012', ~italic(p)=='0.015', ~widehat(ital~
       

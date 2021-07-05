@@ -149,12 +149,23 @@ ggscatterstats <- function(data,
   # preparing the dataframe
   data %<>% dplyr::filter(!is.na({{ x }}), !is.na({{ y }}))
 
-  #----------------------- creating results subtitle ------------------------
+  # statistical analysis ------------------------------------------
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
-    # no need to use `tryCatch` because `correlation` already does this
+    subtitle_df <- statsExpressions::corr_test(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      tr = tr,
+      type = type,
+      conf.level = conf.level,
+      k = k
+    )
 
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
+    # no need to use `tryCatch` because `correlation` already does this
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
       caption_df <- statsExpressions::corr_test(
@@ -169,19 +180,6 @@ ggscatterstats <- function(data,
 
       caption <- caption_df$expression[[1]]
     }
-
-    # extracting the subtitle using the switch function
-    subtitle_df <- statsExpressions::corr_test(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      tr = tr,
-      type = type,
-      conf.level = conf.level,
-      k = k
-    )
-
-    subtitle <- subtitle_df$expression[[1]]
   }
 
   # quit early if only subtitle is needed
@@ -222,7 +220,7 @@ ggscatterstats <- function(data,
     }
   }
 
-  # --------------------------------- basic plot ---------------------------
+  # plot ------------------------------------------
 
   # creating jittered positions
   pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
@@ -232,7 +230,7 @@ ggscatterstats <- function(data,
     rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
     rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
 
-  #-------------------- adding point labels --------------------------------
+  # point labels --------------------------------
 
   # using geom_repel_label
   if (isTRUE(point.labelling)) {
@@ -248,7 +246,7 @@ ggscatterstats <- function(data,
       )
   }
 
-  #-------------------------- annotations -------------------------------------
+  # annotations -------------------------------------
 
   # annotations
   plot <- plot +
@@ -262,7 +260,7 @@ ggscatterstats <- function(data,
     ggtheme +
     ggplot.component
 
-  #------------------------- ggMarginal  ---------------------------------
+  # ggMarginal  ---------------------------------------------
 
   # adding marginal distributions
   if (isTRUE(marginal)) {

@@ -106,7 +106,7 @@ ggpiestats <- function(data,
   # one-way or two-way table?
   test <- ifelse(!rlang::quo_is_null(rlang::enquo(y)), "two.way", "one.way")
 
-  # =============================== dataframe ================================
+  # dataframe ------------------------------------------
 
   # creating a dataframe
   data %<>%
@@ -136,7 +136,7 @@ ggpiestats <- function(data,
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
   if ((x_levels == 1L && isTRUE(facet)) || type == "bayes") proportion.test <- FALSE
 
-  # -------------------------- statistical analysis --------------------------
+  # statistical analysis ------------------------------------------
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
@@ -185,7 +185,7 @@ ggpiestats <- function(data,
     ))
   }
 
-  # =================================== plot =================================
+  # plot ------------------------------------------
 
   # dataframe with summary labels
   descriptive_df <- descriptive_df(data, {{ x }}, {{ y }}, label, perc.k)
@@ -237,7 +237,7 @@ ggpiestats <- function(data,
     ) +
     ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
 
-  # ================ sample size + proportion test labels =================
+  # sample size + proportion test ------------------------------------------
 
   # adding labels with proportion tests
   if (isTRUE(facet) && isTRUE(proportion.test)) {
@@ -252,9 +252,8 @@ ggpiestats <- function(data,
       )
   }
 
-  # =========================== putting all together ========================
+  # annotations ------------------------------------------
 
-  # preparing the plot
   p +
     ggplot2::labs(
       x = NULL,

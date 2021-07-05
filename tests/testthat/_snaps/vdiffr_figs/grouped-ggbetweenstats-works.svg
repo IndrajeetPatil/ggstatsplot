@@ -916,25 +916,25 @@
 <text x='140.65' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>, </text>
 <text x='146.20' y='331.71' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='152.57' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='11.40px' lengthAdjust='spacingAndGlyphs'> = </text>
-<text x='163.97' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='25.03px' lengthAdjust='spacingAndGlyphs'>0.001</text>
-<text x='189.00' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>, </text>
-<text x='194.55' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='6.48px' lengthAdjust='spacingAndGlyphs'>ω</text>
-<text x='201.03' y='334.81' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>p</text>
-<text x='201.03' y='326.69' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>2</text>
-<polyline points='194.55,320.43 199.74,318.36 204.93,320.43 ' style='stroke-width: 0.75;' />
-<text x='204.93' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='11.40px' lengthAdjust='spacingAndGlyphs'> = </text>
-<text x='216.33' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.76</text>
-<text x='235.79' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='15.56px' lengthAdjust='spacingAndGlyphs'>, CI</text>
-<text x='251.35' y='333.56' style='font-size: 7.00px; font-family: sans;' textLength='14.01px' lengthAdjust='spacingAndGlyphs'>95%</text>
-<text x='265.36' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'> [</text>
-<text x='270.92' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.29</text>
-<text x='290.38' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>, </text>
-<text x='295.94' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.89</text>
-<text x='315.40' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='8.33px' lengthAdjust='spacingAndGlyphs'>], </text>
-<text x='323.74' y='331.71' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>n</text>
-<text x='330.10' y='333.56' style='font-size: 7.00px; font-family: sans;' textLength='11.29px' lengthAdjust='spacingAndGlyphs'>obs</text>
-<text x='341.39' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='11.40px' lengthAdjust='spacingAndGlyphs'> = </text>
-<text x='352.79' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='16.69px' lengthAdjust='spacingAndGlyphs'>122</text>
+<text x='163.97' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='39.48px' lengthAdjust='spacingAndGlyphs'>6.32e-04</text>
+<text x='203.45' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>, </text>
+<text x='209.01' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='6.48px' lengthAdjust='spacingAndGlyphs'>ω</text>
+<text x='215.49' y='334.81' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='215.49' y='326.69' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>2</text>
+<polyline points='209.01,320.43 214.20,318.36 219.38,320.43 ' style='stroke-width: 0.75;' />
+<text x='219.38' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='11.40px' lengthAdjust='spacingAndGlyphs'> = </text>
+<text x='230.78' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.76</text>
+<text x='250.25' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='15.56px' lengthAdjust='spacingAndGlyphs'>, CI</text>
+<text x='265.80' y='333.56' style='font-size: 7.00px; font-family: sans;' textLength='14.01px' lengthAdjust='spacingAndGlyphs'>95%</text>
+<text x='279.82' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'> [</text>
+<text x='285.37' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.29</text>
+<text x='304.84' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>, </text>
+<text x='310.39' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.89</text>
+<text x='329.86' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='8.33px' lengthAdjust='spacingAndGlyphs'>], </text>
+<text x='338.19' y='331.71' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>n</text>
+<text x='344.56' y='333.56' style='font-size: 7.00px; font-family: sans;' textLength='11.29px' lengthAdjust='spacingAndGlyphs'>obs</text>
+<text x='355.85' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='11.40px' lengthAdjust='spacingAndGlyphs'> = </text>
+<text x='367.25' y='331.71' style='font-size: 10.00px; font-family: sans;' textLength='16.69px' lengthAdjust='spacingAndGlyphs'>122</text>
 <text x='43.17' y='310.39' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='72.71px' lengthAdjust='spacingAndGlyphs'>Action Drama</text>
 <text x='84.28' y='543.42' style='font-size: 8.80px; font-family: sans;' textLength='11.74px' lengthAdjust='spacingAndGlyphs'>log</text>
 <text x='96.02' y='545.05' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>e</text>
