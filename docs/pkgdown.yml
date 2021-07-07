@@ -1,22 +1,22 @@
-pandoc: 2.14.0.2
+pandoc: 2.14.0.3
 pkgdown: 1.6.1.9001
-pkgdown_sha: 51268b0d9cb0588d7a6404a2b8ef4ee19c435e89
+pkgdown_sha: ce9781a15c7ea07df9fb17a11295ba4abec0b54b
 articles:
   additional: additional.html
-  web_only/benchmarking: benchmarking.html
-  web_only/dependencies: dependencies.html
-  web_only/faq: faq.html
-  web_only/ggbetweenstats: ggbetweenstats.html
-  web_only/ggcoefstats: ggcoefstats.html
-  web_only/ggcorrmat: ggcorrmat.html
-  web_only/ggdotplotstats: ggdotplotstats.html
-  web_only/gghistostats: gghistostats.html
-  web_only/ggpiestats: ggpiestats.html
-  web_only/ggscatterstats: ggscatterstats.html
-  web_only/ggwithinstats: ggwithinstats.html
-  web_only/principles: principles.html
-  web_only/purrr_examples: purrr_examples.html
-last_built: 2021-06-22T08:55Z
+  benchmarking: web_only/benchmarking.html
+  dependencies: web_only/dependencies.html
+  faq: web_only/faq.html
+  ggbetweenstats: web_only/ggbetweenstats.html
+  ggcoefstats: web_only/ggcoefstats.html
+  ggcorrmat: web_only/ggcorrmat.html
+  ggdotplotstats: web_only/ggdotplotstats.html
+  gghistostats: web_only/gghistostats.html
+  ggpiestats: web_only/ggpiestats.html
+  ggscatterstats: web_only/ggscatterstats.html
+  ggwithinstats: web_only/ggwithinstats.html
+  principles: web_only/principles.html
+  purrr_examples: web_only/purrr_examples.html
+last_built: 2021-07-07T18:27Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot/reference
   article: https://indrajeetpatil.github.io/ggstatsplot/articles

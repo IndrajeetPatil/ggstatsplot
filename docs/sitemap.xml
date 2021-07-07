@@ -61,9 +61,6 @@
     <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html</loc>
   </url>
   <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/theme_ggstatsplot.html</loc>
-  </url>
-  <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot/authors.html</loc>
   </url>
   <url>
@@ -92,6 +89,9 @@
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.html</loc>
+  </url>
+  <url>
+    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.html</loc>
   </url>
   <url>
     <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html</loc>

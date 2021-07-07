@@ -163,7 +163,7 @@
       <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-06-22</h4>
+            <h4 data-toc-skip class="date">2021-07-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="hidden name"><code>purrr_examples.Rmd</code></div>
@@ -321,6 +321,7 @@ A BibTeX entry for LaTeX users is
 <span class="co"># checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cue_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4</span>
+
 <span class="co"># creating a list of plots by applying the same function for elements of the list</span>
 <span class="va">plot_list</span> <span class="op">&lt;-</span>
   <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
@@ -459,6 +460,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">cut_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Good"      "Very Good" "Premium"   "Ideal"</span>
+
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -521,6 +523,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
+
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -585,6 +588,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
+
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -644,6 +648,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
+
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>
@@ -704,6 +709,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
 <span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
+
 <span class="co"># running function on every element of this list note that if you want the same</span>
 <span class="co"># value for a given argument across all elements of the list, you need to</span>
 <span class="co"># specify it just once</span>

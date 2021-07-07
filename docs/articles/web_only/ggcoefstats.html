@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-06-22</h4>
+            <h4 data-toc-skip class="date">2021-07-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -547,6 +547,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; Iteration 6 - deviance = 881.2041 - criterion = 1.394381e-07</span>
 <span class="co">#&gt; Iteration 7 - deviance = 881.1809 - criterion = 1.04388e-09</span>
 <span class="co">#&gt; converged</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_mclogit</span>,
@@ -899,6 +900,7 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>
 <span class="co">#&gt; Fitting one lmer() model. [DONE]</span>
 <span class="co">#&gt; Calculating p-values. [DONE]</span>
+
 <span class="co"># suppress correlations among random effect parameters with || and expand_re=TRUE</span>
 <span class="va">m2_afex</span> <span class="op">&lt;-</span>
   <span class="fu">afex</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/afex/man/mixed.html" class="external-link">mixed</a></span><span class="op">(</span>
@@ -908,6 +910,7 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>
 <span class="co">#&gt; Fitting one lmer() model. [DONE]</span>
 <span class="co">#&gt; Calculating p-values. [DONE]</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
@@ -941,8 +944,8 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_all</span>,
   title <span class="op">=</span> <span class="st">"anova using `afex`"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/afex_aov-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error in .effectsizes_for_aov(model, parameters = out, omega_squared = omega_squared, : unused argument (table_wide = TRUE)</span></code></pre></div>
 </div>
 <div id="joint-model-for-survival-and-longitudinal-data-measured-with-error-joint" class="section level2">
 <h2 class="hasAnchor">
@@ -950,20 +953,20 @@ A BibTeX entry for LaTeX users is
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">joineR</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/graemeleehickey/joineR/" class="external-link">joineR</a></span><span class="op">)</span>
 
 <span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">heart.valve</span><span class="op">)</span>
-<span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu">UniqueVariables</span><span class="op">(</span><span class="va">heart.valve</span>,
+<span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/UniqueVariables.html" class="external-link">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,
   var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fuyrs"</span>, <span class="st">"status"</span><span class="op">)</span>,
   id.col <span class="op">=</span> <span class="st">"num"</span>
 <span class="op">)</span>
 <span class="va">heart.long</span> <span class="op">&lt;-</span> <span class="va">heart.valve</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"num"</span>, <span class="st">"time"</span>, <span class="st">"log.lvmi"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu">UniqueVariables</span><span class="op">(</span><span class="va">heart.valve</span>,
+<span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/UniqueVariables.html" class="external-link">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"hs"</span>, <span class="st">"sex"</span><span class="op">)</span>,
   id.col <span class="op">=</span> <span class="st">"num"</span>
 <span class="op">)</span>
-<span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu">jointdata</span><span class="op">(</span>
+<span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/jointdata.html" class="external-link">jointdata</a></span><span class="op">(</span>
   longitudinal <span class="op">=</span> <span class="va">heart.long</span>,
   baseline <span class="op">=</span> <span class="va">heart.cov</span>,
   survival <span class="op">=</span> <span class="va">heart.surv</span>,
@@ -972,10 +975,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu">joint</span><span class="op">(</span>
+<span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/joint.html" class="external-link">joint</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">heart.valve.jd</span>,
   long.formula <span class="op">=</span> <span class="va">log.lvmi</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">hs</span>,
-  surv.formula <span class="op">=</span> <span class="fu">Surv</span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
+  surv.formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
   model <span class="op">=</span> <span class="st">"intslope"</span>
 <span class="op">)</span>
 
@@ -1132,7 +1135,7 @@ A BibTeX entry for LaTeX users is
 <a href="#heckman-style-selection-and-treatment-effect-models-selection" class="anchor" aria-hidden="true"></a>Heckman-style selection and treatment effect models (<code>selection</code>)</h2>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.sampleSelection.org" class="external-link">sampleSelection</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justinmshea.github.io/wooldridge" class="external-link">wooldridge</a></span><span class="op">)</span> <span class="co"># for data</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://justinmshea.github.io/wooldridge/" class="external-link">wooldridge</a></span><span class="op">)</span> <span class="co"># for data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">mroz</span><span class="op">)</span>
 
 <span class="co"># model</span>
@@ -2121,6 +2124,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; Iteration number: 3 </span>
 <span class="co">#&gt; Iteration number: 4 </span>
 <span class="co">#&gt; Iteration number: 5</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_BBmm</span>,
@@ -2988,9 +2992,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">df_summary</span>,
   title <span class="op">=</span> <span class="st">"Bayesian multilevel mediation models with Stan"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/bmlm-1.png" width="480"></p>
 </div>
 <div id="proportional-odds-and-related-models-svyolr" class="section level2">
@@ -3138,8 +3140,8 @@ A BibTeX entry for LaTeX users is
   subtitle <span class="op">=</span> <span class="st">"Source: Iris data set (by Fisher or Anderson)"</span>,
   caption <span class="op">=</span> <span class="st">"Results from 2 by 2 RM ANOVA"</span>
 <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, face <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/aovlist1-1.png" width="768"></p>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span>, face <span class="op">=</span> <span class="st">"plain"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Error in `$&lt;-.data.frame`(`*tmp*`, "df_error", value = numeric(0)): replacement has 0 rows, data has 1</span></code></pre></div>
 </div>
 <div id="robust-regression-with-robust-package-lmrob-glmrob" class="section level2">
 <h2 class="hasAnchor">
@@ -3426,6 +3428,7 @@ A BibTeX entry for LaTeX users is
   data <span class="op">=</span> <span class="va">eortc</span>
 <span class="op">)</span>
 <span class="co">#&gt; Error in MASS::ginv(a): 'X' must be a numeric or complex matrix</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit</span>,
@@ -4038,13 +4041,13 @@ A BibTeX entry for LaTeX users is
   formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html" class="external-link">qss</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
   data <span class="op">=</span> <span class="va">CobarOre</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in qss2(x, constraint = constraint, dummies = dummies, lambda = lambda, : requireNamespace("tripack") is not TRUE</span>
+
 <span class="co"># model info</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fCO</span>,
   title <span class="op">=</span> <span class="st">"Additive Quantile Regression"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'fCO' not found</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/rqss-1.png" width="384"></p>
 </div>
 <div id="censored-quantile-regression-crq" class="section level2">
 <h2 class="hasAnchor">
@@ -4070,8 +4073,11 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">f_crq</span>,
   title <span class="op">=</span> <span class="st">"censored quantile regression models"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/crq-1.png" width="480"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: Problem with `mutate()` column `label`.</span>
+<span class="co">#&gt; i `label = dplyr::case_when(...)`.</span>
+<span class="co">#&gt; x object 'df.error' not found</span>
+<span class="co">#&gt; i The error occurred in row 1.</span></code></pre></div>
 </div>
 <div id="instrumental-variable-regression-ivreg" class="section level2">
 <h2 class="hasAnchor">
@@ -4218,8 +4224,8 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">Ex2.res</span>,
   title <span class="op">=</span> <span class="st">"Model II regression"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .model_parameters_generic(model = model, ci = 0.95, bootstrap = FALSE, : formal argument "ci" matched by multiple actual arguments</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/lmodel2-1.png" width="576"></p>
 </div>
 <div id="multivariate-ordinal-regression-models-mvord" class="section level2">
 <h2 class="hasAnchor">
@@ -4267,6 +4273,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; GAMLSS-CG iteration 1: Global Deviance = 4771.013 </span>
 <span class="co">#&gt; GAMLSS-CG iteration 2: Global Deviance = 4770.994 </span>
 <span class="co">#&gt; GAMLSS-CG iteration 3: Global Deviance = 4770.994</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">g_gamlss</span>,
@@ -4326,6 +4333,7 @@ A BibTeX entry for LaTeX users is
     data <span class="op">=</span> <span class="va">SwissLabor</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in terms.formula(formula(fF), data = data): invalid term in model formula</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">b_bamlss</span>,
@@ -4392,10 +4400,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;  9 (Intercept)     9   -0.209 0.0724   0.0593 </span>
 <span class="co">#&gt; 10 (Intercept)    10   -0.208 0.0660   0.0682 </span>
 <span class="co">#&gt; # ... with 1,076 more rows</span>
+
 <span class="co"># displaying only a certain step</span>
-<span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">step</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
+<span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">step</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmnet-1.png" width="384"></p>
 </div>
 <div id="exponential-family-random-graph-models-ergm" class="section level2">
@@ -4426,8 +4433,6 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://statnet.org/" class="external-link">network</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leifeld/btergm" class="external-link">btergm</a></span><span class="op">)</span>
-<span class="co">#&gt; Error: package or namespace load failed for 'btergm':</span>
-<span class="co">#&gt;  object 'ergm.Cprepare' is not exported by 'namespace:ergm'</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># create 10 random networks with 10 actors</span>
@@ -4449,20 +4454,20 @@ A BibTeX entry for LaTeX users is
 <span class="co"># model</span>
 <span class="va">fit_btergm</span> <span class="op">&lt;-</span>
   <span class="fu">btergm</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/btergm/man/btergm.html" class="external-link">btergm</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="va">networks</span> <span class="op">~</span> <span class="va">edges</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/btergm/man/gofstatistics.html" class="external-link">istar</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html" class="external-link">edgecov</a></span><span class="op">(</span><span class="va">covariates</span><span class="op">)</span>,
+    formula <span class="op">=</span> <span class="va">networks</span> <span class="op">~</span> <span class="va">edges</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/btergm/man/gof-statistics.html" class="external-link">istar</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/ergm/man/ergm-terms.html" class="external-link">edgecov</a></span><span class="op">(</span><span class="va">covariates</span><span class="op">)</span>,
     parallel <span class="op">=</span> <span class="st">"multicore"</span>,
     ncpus <span class="op">=</span> <span class="fl">4</span>,
     R <span class="op">=</span> <span class="fl">100</span>,
     verbose <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span>
-<span class="co">#&gt; Error: object 'ergm.Cprepare' is not exported by 'namespace:ergm'</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_btergm</span>,
   title <span class="op">=</span> <span class="st">"Terms used in Exponential Family Random Graph Models"</span>,
   subtitle <span class="op">=</span> <span class="st">"by bootstrapped pseudolikelihood or MCMC MLE"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'fit_btergm' not found</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/btergm-1.png" width="576"></p>
 </div>
 <div id="generalized-autoregressive-conditional-heteroscedastic-regression-garch" class="section level2">
 <h2 class="hasAnchor">
@@ -4996,6 +5001,7 @@ A BibTeX entry for LaTeX users is
     refresh <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in cleanup_makevar(old): argument "RMU" is missing, with no default</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_brm</span>,
@@ -5023,6 +5029,7 @@ A BibTeX entry for LaTeX users is
     refresh <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in cleanup_makevar(old): argument "RMU" is missing, with no default</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_brm_m</span>,
@@ -5053,6 +5060,7 @@ A BibTeX entry for LaTeX users is
     refresh <span class="op">=</span> <span class="fl">0</span>
   <span class="op">)</span>
 <span class="co">#&gt; Error in rstanarm::stan_nlmer(formula = circumference ~ SSlogis(age, Asym, : 'stan_nlmer' requires a named self-starting nonlinear function.</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_nlstanreg</span>,
@@ -5122,6 +5130,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;    Total graph size: 41</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Initializing model</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">jagsfit</span>,
@@ -5178,7 +5187,7 @@ speed =~ x7 + x8 + x9 "</span>
 
 <span class="co"># model</span>
 <span class="va">fit_blavaan</span> <span class="op">&lt;-</span>
-  <span class="fu">blavaan</span><span class="fu">::</span><span class="fu">blavaan</span><span class="op">(</span>
+  <span class="fu">blavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/blavaan/man/blavaan.html" class="external-link">blavaan</a></span><span class="op">(</span>
     <span class="va">HS.model</span>,
     data <span class="op">=</span> <span class="va">HolzingerSwineford1939</span>,
     auto.var <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -5241,6 +5250,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; Fitting a multivariate glmer model.</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Please note the warmup may be much slower than later iterations!</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_stanmvreg</span>,
@@ -5294,6 +5304,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; ************************************************ </span>
 <span class="co">#&gt; Current iteration :</span>
 <span class="co">#&gt; [1] 500</span>
+
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">mod_bayesqr</span>,
@@ -5431,6 +5442,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt;   5   3  bmi  hyp  chl</span>
 <span class="co">#&gt;   5   4  bmi  hyp  chl</span>
 <span class="co">#&gt;   5   5  bmi  hyp  chl</span>
+
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">imp</span>, exp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">hyp</span> <span class="op">+</span> <span class="va">chl</span><span class="op">)</span><span class="op">)</span>,
@@ -5528,6 +5540,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co"># data</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mgcv/man/gamSim.html" class="external-link">gamSim</a></span><span class="op">(</span><span class="fl">1</span>, n <span class="op">=</span> <span class="fl">400</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; Gu &amp; Wahba 4 term additive model</span>
+
 <span class="co"># now add 20 level random effect `fac'...</span>
 <span class="va">dat</span><span class="op">$</span><span class="va">fac</span> <span class="op">&lt;-</span> <span class="va">fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">400</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 <span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">y</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/SparseM/man/SparseM.hb.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">fac</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/Matrix/man/matrix-products.html" class="external-link">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> <span class="op">*</span> <span class="fl">.5</span>
@@ -5549,6 +5562,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $gam</span>
 <span class="co">#&gt; [1] "gam"</span>
+
 <span class="co"># plotting</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
@@ -5596,9 +5610,7 @@ speed =~ x7 + x8 + x9 "</span>
   bf.message <span class="op">=</span> <span class="cn">TRUE</span>,
   meta.type <span class="op">=</span> <span class="st">"parametric"</span>,
   title <span class="op">=</span> <span class="st">"parametric random-effects meta-analysis"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta1-1.png" width="768"></p>
 </div>
 <div id="robust" class="section level3">
@@ -5618,9 +5630,7 @@ speed =~ x7 + x8 + x9 "</span>
   meta.analytic.effect <span class="op">=</span> <span class="cn">TRUE</span>,
   meta.type <span class="op">=</span> <span class="st">"robust"</span>,
   title <span class="op">=</span> <span class="st">"robust random-effects meta-analysis"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta2-1.png" width="768"></p>
 </div>
 <div id="bayesian" class="section level3">
@@ -5640,9 +5650,7 @@ speed =~ x7 + x8 + x9 "</span>
   meta.analytic.effect <span class="op">=</span> <span class="cn">TRUE</span>,
   meta.type <span class="op">=</span> <span class="st">"bayes"</span>,
   title <span class="op">=</span> <span class="st">"Bayesian random-effects meta-analysis"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Note: The argument `statistic` must be specified.</span>
-<span class="co">#&gt;  Skipping labels with statistical details.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta3-1.png" width="768"></p>
 <p>You can also provide a dataframe containing all the other relevant information for additionally displaying labels with statistical information.</p>
 <div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
@@ -5665,8 +5673,11 @@ speed =~ x7 + x8 + x9 "</span>
   statistic <span class="op">=</span> <span class="st">"t"</span>,
   package <span class="op">=</span> <span class="st">"LaCroixColoR"</span>,
   palette <span class="op">=</span> <span class="st">"paired"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta4-1.png" width="672"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: Problem with `mutate()` column `label`.</span>
+<span class="co">#&gt; i `label = dplyr::case_when(...)`.</span>
+<span class="co">#&gt; x object 'df.error' not found</span>
+<span class="co">#&gt; i The error occurred in row 1.</span></code></pre></div>
 </div>
 </div>
 <div id="dataframes" class="section level1">
@@ -5736,8 +5747,11 @@ speed =~ x7 + x8 + x9 "</span>
   title <span class="op">=</span> <span class="st">"Relationship between life expectancy and GDP"</span>,
   subtitle <span class="op">=</span> <span class="st">"Source: Gapminder foundation"</span>,
   caption <span class="op">=</span> <span class="st">"Data from Oceania continent not included"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/dataframe-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: Problem with `mutate()` column `label`.</span>
+<span class="co">#&gt; i `label = dplyr::case_when(...)`.</span>
+<span class="co">#&gt; x object 'df.error' not found</span>
+<span class="co">#&gt; i The error occurred in row 1.</span></code></pre></div>
 </div>
 <div id="other-types-of-outputs" class="section level1">
 <h1 class="hasAnchor">
@@ -5768,6 +5782,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; 2 1.22e-10</span>
 <span class="co">#&gt; 3 8.51e-14</span>
 <span class="co">#&gt; # ... with 1 more variable: label &lt;chr&gt;</span>
+
 <span class="co"># glance summary</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span>, output <span class="op">=</span> <span class="st">"glance"</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 0 x 0</span></code></pre></div>
