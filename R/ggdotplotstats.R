@@ -102,41 +102,33 @@ ggdotplotstats <- function(data,
   # ================ stats labels ==========================================
 
   if (isTRUE(results.subtitle)) {
-    # preparing the BF message for NULL
-    if (isTRUE(bf.message) && type == "parametric") {
-      caption_df <- tryCatch(
-        statsExpressions::one_sample_test(
-          data = data,
-          x = {{ x }},
-          type = "bayes",
-          test.value = test.value,
-          bf.prior = bf.prior,
-          top.text = caption,
-          k = k
-        ),
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      k = k,
+      tr = tr,
+      bf.prior = bf.prior,
+      top.text = caption
+    )
+
+    # preparing the subtitle with statistical results
+    subtitle_df <- tryCatch(rlang::exec(one_sample_test, !!!.f.args, type = type),
+      error = function(e) NULL
+    )
+
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
+    # preparing the BF message
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption_df <- tryCatch(rlang::exec(one_sample_test, !!!.f.args, type = "bayes"),
         error = function(e) NULL
       )
 
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-
-    # preparing the subtitle with statistical results
-    subtitle_df <- tryCatch(
-      statsExpressions::one_sample_test(
-        data = data,
-        x = {{ x }},
-        type = type,
-        test.value = test.value,
-        bf.prior = bf.prior,
-        effsize.type = effsize.type,
-        conf.level = conf.level,
-        tr = tr,
-        k = k
-      ),
-      error = function(e) NULL
-    )
-
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
   }
 
   # return early if anything other than plot

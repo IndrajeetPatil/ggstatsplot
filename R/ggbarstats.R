@@ -97,17 +97,21 @@ ggbarstats <- function(data,
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
-    subtitle_df <- tryCatch(
-      expr = statsExpressions::contingency_table(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        type = type,
-        k = k,
-        paired = paired,
-        ratio = ratio,
-        conf.level = conf.level
-      ),
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      conf.level = conf.level,
+      k = k,
+      paired = paired,
+      ratio = ratio,
+      sampling.plan = sampling.plan,
+      fixed.margin = fixed.margin,
+      prior.concentration = prior.concentration,
+      top.text = caption
+    )
+
+    subtitle_df <- tryCatch(rlang::exec(contingency_table, !!!.f.args, type = type),
       error = function(e) NULL
     )
 
@@ -115,18 +119,7 @@ ggbarstats <- function(data,
 
     # preparing Bayes Factor caption
     if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
-      caption_df <- tryCatch(
-        expr = statsExpressions::contingency_table(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          type = "bayes",
-          k = k,
-          top.text = caption,
-          sampling.plan = sampling.plan,
-          fixed.margin = fixed.margin,
-          prior.concentration = prior.concentration
-        ),
+      caption_df <- tryCatch(rlang::exec(contingency_table, !!!.f.args, type = "bayes"),
         error = function(e) NULL
       )
 

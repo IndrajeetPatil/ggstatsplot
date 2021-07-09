@@ -153,30 +153,25 @@ ggscatterstats <- function(data,
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
-    subtitle_df <- statsExpressions::corr_test(
+    .f.args <- list(
       data = data,
       x = {{ x }},
       y = {{ y }},
-      tr = tr,
-      type = type,
       conf.level = conf.level,
-      k = k
+      k = k,
+      tr = tr,
+      bf.prior = bf.prior,
+      top.text = caption
     )
+
+    subtitle_df <- rlang::exec(corr_test, !!!.f.args, type = type)
 
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # no need to use `tryCatch` because `correlation` already does this
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- statsExpressions::corr_test(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        type = "bayes",
-        bf.prior = bf.prior,
-        top.text = caption,
-        k = k
-      )
+      caption_df <- rlang::exec(corr_test, !!!.f.args, type = "bayes")
 
       caption <- caption_df$expression[[1]]
     }
