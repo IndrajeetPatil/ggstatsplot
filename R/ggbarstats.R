@@ -98,6 +98,7 @@ ggbarstats <- function(data,
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = {{ x }},

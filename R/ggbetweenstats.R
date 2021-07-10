@@ -208,16 +208,14 @@ ggbetweenstats <- function(data,
                            output = "plot",
                            ...) {
 
+  # data -----------------------------------
+
   # convert entered stats type to a standard notation
   type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-  outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    rlang::ensym(outlier.label)
-  }
-
-  # data -----------------------------------
+  outlier.label <- if (!quo_is_null(enquo(outlier.label))) rlang::ensym(outlier.label)
 
   # creating a dataframe
   data %<>%
@@ -243,6 +241,7 @@ ggbetweenstats <- function(data,
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
   if (isTRUE(results.subtitle)) {
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = rlang::as_string(x),

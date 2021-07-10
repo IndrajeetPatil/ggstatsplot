@@ -90,24 +90,25 @@ gghistostats <- function(data,
                          output = "plot",
                          ...) {
 
-  # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
-
   # data -----------------------------------
 
-  # to ensure that x will be read irrespective of whether it is quoted or unquoted
+  # cover both quoted or unquoted arguments
   x <- rlang::ensym(x)
 
   # if dataframe is provided
-  df <- tidyr::drop_na(dplyr::select(data, {{ x }}))
+  data <- tidyr::drop_na(dplyr::select(data, {{ x }}))
 
   # if binwidth not specified
-  x_vec <- df %>% dplyr::pull({{ x }})
+  x_vec <- data %>% dplyr::pull({{ x }})
   if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
   # statistical analysis ------------------------------------------
 
   if (isTRUE(results.subtitle)) {
+    # convert entered stats type to a standard notation
+    type <- statsExpressions::stats_type_switch(type)
+
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = {{ x }},
@@ -142,7 +143,7 @@ gghistostats <- function(data,
   # plot -----------------------------------
 
   # adding axes info
-  plot <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = {{ x }})) +
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }})) +
     rlang::exec(
       ggplot2::stat_bin,
       mapping = ggplot2::aes(y = ..count.., fill = ..count..),
@@ -151,7 +152,7 @@ gghistostats <- function(data,
     ) +
     ggplot2::scale_y_continuous(
       sec.axis = ggplot2::sec_axis(
-        trans = ~ . / nrow(df),
+        trans = ~ . / nrow(data),
         labels = function(x) paste0(x * 100, "%"),
         name = "proportion"
       )
@@ -169,7 +170,7 @@ gghistostats <- function(data,
       )
   }
 
-  # ---------------- centrality tagging -------------------------------------
+  # centrality plotting -------------------------------------
 
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {

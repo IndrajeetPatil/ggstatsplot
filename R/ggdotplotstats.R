@@ -76,13 +76,10 @@ ggdotplotstats <- function(data,
                            output = "plot",
                            ...) {
 
-  # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
+  # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-
-  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -102,6 +99,10 @@ ggdotplotstats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (isTRUE(results.subtitle)) {
+    # convert entered stats type to a standard notation
+    type <- statsExpressions::stats_type_switch(type)
+
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = {{ x }},

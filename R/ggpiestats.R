@@ -96,6 +96,8 @@ ggpiestats <- function(data,
                        ggplot.component = NULL,
                        output = "plot",
                        ...) {
+  # dataframe ------------------------------------------
+
   # convert entered stats type to a standard notation
   type <- statsExpressions::stats_type_switch(type)
 
@@ -106,8 +108,6 @@ ggpiestats <- function(data,
   # one-way or two-way table?
   test <- ifelse(!rlang::quo_is_null(rlang::enquo(y)), "two.way", "one.way")
 
-  # dataframe ------------------------------------------
-
   # creating a dataframe
   data %<>%
     dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
@@ -117,7 +117,7 @@ ggpiestats <- function(data,
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% dplyr::mutate(dplyr::across(dplyr::everything(), ~ droplevels(as.factor(.x))))
+  data %<>% dplyr::mutate(dplyr::across(.fns = ~ droplevels(as.factor(.x))))
 
   # x
   x_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
@@ -134,12 +134,13 @@ ggpiestats <- function(data,
 
   # faceting is happening only if both vars have more than one levels
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
-  if ((x_levels == 1L && isTRUE(facet)) || type == "bayes") proportion.test <- FALSE
+  if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
 
   # statistical analysis ------------------------------------------
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = {{ x }},

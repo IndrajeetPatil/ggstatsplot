@@ -128,9 +128,6 @@ ggscatterstats <- function(data,
                            output = "plot",
                            ...) {
 
-  # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
-
   # data ---------------------------------------
 
   # ensure the arguments work quoted or unquoted
@@ -151,6 +148,10 @@ ggscatterstats <- function(data,
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
+    # convert entered stats type to a standard notation
+    type <- statsExpressions::stats_type_switch(type)
+
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = {{ x }},

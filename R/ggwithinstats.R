@@ -108,16 +108,14 @@ ggwithinstats <- function(data,
                           output = "plot",
                           ...) {
 
-  # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
+  # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-  outlier.label <- if (!rlang::quo_is_null(rlang::enquo(outlier.label))) {
-    rlang::ensym(outlier.label)
-  }
+  if (!quo_is_null(enquo(outlier.label))) rlang::ensym(outlier.label)
 
-  # data -----------------------------------
+  # convert entered stats type to a standard notation
+  type <- statsExpressions::stats_type_switch(type)
 
   # creating a dataframe
   data %<>%
@@ -142,16 +140,11 @@ ggwithinstats <- function(data,
 
   # statistical analysis ------------------------------------------
 
-  # figure out which test to run based on the no. of levels of the independent variable
+  # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
-  # these analyses do require latest Github version of Bayes Factor
-  if (type %in% c("parametric", "bayes") && test == "anova" &&
-    utils::packageVersion("BayesFactor") < "0.9.12-4.3") {
-    if (type == "parametric") bf.message <- FALSE else results.subtitle <- FALSE
-  }
-
   if (isTRUE(results.subtitle)) {
+    # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
       x = rlang::as_string(x),
@@ -188,7 +181,7 @@ ggwithinstats <- function(data,
   # plot -------------------------------------------
 
   # plot
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
+  plot <- ggplot2::ggplot(data, ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
     rlang::exec(ggplot2::geom_point, ggplot2::aes(color = {{ x }}), !!!point.args) +
     ggplot2::geom_boxplot(
       mapping = ggplot2::aes({{ x }}, {{ y }}),
@@ -197,14 +190,14 @@ ggwithinstats <- function(data,
       alpha = 0.5
     ) +
     rlang::exec(
-      .fn = ggplot2::geom_violin,
+      ggplot2::geom_violin,
       mapping = ggplot2::aes({{ x }}, {{ y }}),
       inherit.aes = FALSE,
       !!!violin.args
     )
 
   # add a connecting path only if there are only two groups
-  if (test != "anova" && isTRUE(point.path)) {
+  if (test != "anova" && point.path) {
     plot <- plot + rlang::exec(ggplot2::geom_path, !!!point.path.args)
   }
 
