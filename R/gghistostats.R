@@ -105,7 +105,7 @@ gghistostats <- function(data,
   x_vec <- df %>% dplyr::pull({{ x }})
   if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
-  #  subtitle/caption preparation ------------------------
+  # statistical analysis ------------------------------------------
 
   if (isTRUE(results.subtitle)) {
     .f.args <- list(
@@ -121,18 +121,12 @@ gghistostats <- function(data,
     )
 
     # preparing the subtitle with statistical results
-    subtitle_df <- tryCatch(rlang::exec(one_sample_test, !!!.f.args, type = type),
-      error = function(e) NULL
-    )
-
+    subtitle_df <- eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(rlang::exec(one_sample_test, !!!.f.args, type = "bayes"),
-        error = function(e) NULL
-      )
-
+      caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -145,7 +139,7 @@ gghistostats <- function(data,
     ))
   }
 
-  # ============================= plot ====================================
+  # plot -----------------------------------
 
   # adding axes info
   plot <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = {{ x }})) +

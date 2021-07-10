@@ -259,20 +259,12 @@ ggbetweenstats <- function(data,
     )
 
     .f <- function_switch(test)
-
-    subtitle_df <- tryCatch(
-      rlang::exec(.f, !!!.f.args, type = type),
-      error = function(e) NULL
-    )
-
+    subtitle_df <- eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the Bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(rlang::exec(.f, !!!.f.args, type = "bayes"),
-        error = function(e) NULL
-      )
-
+      caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }

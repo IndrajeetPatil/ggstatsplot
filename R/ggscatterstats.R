@@ -162,16 +162,13 @@ ggscatterstats <- function(data,
       top.text = caption
     )
 
-    subtitle_df <- rlang::exec(corr_test, !!!.f.args, type = type)
-
+    subtitle_df <- eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
-    # no need to use `tryCatch` because `correlation` already does this
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- rlang::exec(corr_test, !!!.f.args, type = "bayes")
-
-      caption <- caption_df$expression[[1]]
+      caption_df <- eval_f(corr_test, !!!.f.args, type = "bayes")
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
 

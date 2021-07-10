@@ -82,7 +82,7 @@ ggdotplotstats <- function(data,
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # --------------------------- data preparation ----------------------------
+  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -99,7 +99,7 @@ ggdotplotstats <- function(data,
       rank = dplyr::row_number()
     )
 
-  # ================ stats labels ==========================================
+  # statistical analysis ------------------------------------------
 
   if (isTRUE(results.subtitle)) {
     .f.args <- list(
@@ -115,18 +115,12 @@ ggdotplotstats <- function(data,
     )
 
     # preparing the subtitle with statistical results
-    subtitle_df <- tryCatch(rlang::exec(one_sample_test, !!!.f.args, type = type),
-      error = function(e) NULL
-    )
-
+    subtitle_df <- eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(rlang::exec(one_sample_test, !!!.f.args, type = "bayes"),
-        error = function(e) NULL
-      )
-
+      caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -139,7 +133,7 @@ ggdotplotstats <- function(data,
     ))
   }
 
-  # ------------------------------ basic plot ----------------------------
+  # plot -----------------------------------
 
   # creating the basic plot
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, y = rank)) +
@@ -154,7 +148,7 @@ ggdotplotstats <- function(data,
         labels = 25 * 0:4
       )
     )
-  # ---------------- centrality tagging -------------------------------------
+  # centrality plotting -------------------------------------
 
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
@@ -168,7 +162,7 @@ ggdotplotstats <- function(data,
     )
   }
 
-  # ------------------------ annotations and themes -------------------------
+  # annotations -------------------------
 
   # specifying theme and labels for the final plot
   plot +

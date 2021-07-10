@@ -154,18 +154,12 @@ ggpiestats <- function(data,
       top.text = caption
     )
 
-    subtitle_df <- tryCatch(rlang::exec(contingency_table, !!!.f.args, type = type),
-      error = function(e) NULL
-    )
-
+    subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
 
     # preparing Bayes Factor caption
     if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
-      caption_df <- tryCatch(rlang::exec(contingency_table, !!!.f.args, type = "bayes"),
-        error = function(e) NULL
-      )
-
+      caption_df <- eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
   }
