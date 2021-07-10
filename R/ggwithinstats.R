@@ -152,48 +152,37 @@ ggwithinstats <- function(data,
   }
 
   if (isTRUE(results.subtitle)) {
-    # preparing the bayes factor message
+    .f.args <- list(
+      data = data,
+      x = rlang::as_string(x),
+      y = rlang::as_string(y),
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      k = k,
+      tr = tr,
+      paired = TRUE,
+      bf.prior = bf.prior,
+      nboot = nboot,
+      top.text = caption
+    )
+
+    .f <- function_switch(test)
+
+    subtitle_df <- tryCatch(
+      rlang::exec(.f, !!!.f.args, type = type),
+      error = function(e) NULL
+    )
+
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
+    # preparing the Bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(
-        function_switch(
-          test = test,
-          # arguments relevant for expression helper functions
-          data = data,
-          x = rlang::as_string(x),
-          y = rlang::as_string(y),
-          type = "bayes",
-          bf.prior = bf.prior,
-          top.text = caption,
-          paired = TRUE,
-          k = k
-        ),
+      caption_df <- tryCatch(rlang::exec(.f, !!!.f.args, type = "bayes"),
         error = function(e) NULL
       )
 
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-
-    # extracting the subtitle using the switch function
-    subtitle_df <- tryCatch(
-      function_switch(
-        test = test,
-        # arguments relevant for expression helper functions
-        data = data,
-        x = rlang::as_string(x),
-        y = rlang::as_string(y),
-        paired = TRUE,
-        type = type,
-        effsize.type = effsize.type,
-        bf.prior = bf.prior,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        k = k
-      ),
-      error = function(e) NULL
-    )
-
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
   }
 
   # return early if anything other than plot

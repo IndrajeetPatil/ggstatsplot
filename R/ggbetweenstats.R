@@ -239,53 +239,42 @@ ggbetweenstats <- function(data,
 
   # statistical analysis ------------------------------------------
 
-  # figure out which test to run based on the no. of levels of the independent variable
+  # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
   if (isTRUE(results.subtitle)) {
+    .f.args <- list(
+      data = data,
+      x = rlang::as_string(x),
+      y = rlang::as_string(y),
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      var.equal = var.equal,
+      k = k,
+      tr = tr,
+      paired = FALSE,
+      bf.prior = bf.prior,
+      nboot = nboot,
+      top.text = caption
+    )
+
+    .f <- function_switch(test)
+
+    subtitle_df <- tryCatch(
+      rlang::exec(.f, !!!.f.args, type = type),
+      error = function(e) NULL
+    )
+
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
     # preparing the Bayes factor message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(
-        function_switch(
-          test = test,
-          # arguments relevant for expression helper functions
-          data = data,
-          x = rlang::as_string(x),
-          y = rlang::as_string(y),
-          type = "bayes",
-          bf.prior = bf.prior,
-          top.text = caption,
-          paired = FALSE,
-          k = k
-        ),
+      caption_df <- tryCatch(rlang::exec(.f, !!!.f.args, type = "bayes"),
         error = function(e) NULL
       )
 
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-
-    # extracting the subtitle using the switch function
-    subtitle_df <- tryCatch(
-      function_switch(
-        test = test,
-        # arguments relevant for expression helper functions
-        data = data,
-        x = rlang::as_string(x),
-        y = rlang::as_string(y),
-        paired = FALSE,
-        type = type,
-        effsize.type = effsize.type,
-        var.equal = var.equal,
-        bf.prior = bf.prior,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        k = k
-      ),
-      error = function(e) NULL
-    )
-
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
   }
 
   # return early if anything other than plot

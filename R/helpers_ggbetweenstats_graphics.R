@@ -291,8 +291,8 @@ function_switch <- function(test, element, ...) {
   if (test == "t") .f <- statsExpressions::two_sample_test
   if (test == "anova") .f <- statsExpressions::oneway_anova
 
-  # evaluate it
-  suppressWarnings(suppressMessages(rlang::exec(.f, ...)))
+  # return it
+  .f
 }
 
 #' @title Message if palette doesn't have enough number of colors.
