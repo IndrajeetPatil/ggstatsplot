@@ -59,7 +59,7 @@ grouped_ggcorrmat <- function(data,
                               annotation.args = list(),
                               ...) {
 
-  # ========================= preparing dataframe =============================
+  # dataframe ------------------------------------------
 
   # create a list of function call to check for label.expression
   param_list <- as.list(match.call())
@@ -73,7 +73,7 @@ grouped_ggcorrmat <- function(data,
   df <- grouped_list(data, grouping.var = {{ grouping.var }}) %>%
     purrr::map(.x = ., .f = ~ dplyr::select(.x, -{{ grouping.var }}))
 
-  # ===================== grouped analysis ===================================
+  # creating a list of return objects ----------------------------
 
   # creating a list of results
   p_ls <- purrr::pmap(
@@ -83,10 +83,7 @@ grouped_ggcorrmat <- function(data,
     ...
   )
 
-  # ===================== combining results ===================================
-
   # combining the list of plots into a single plot
-  # inform user this can't be modified further with ggplot commands
   if (output == "plot") {
     return(combine_plots(
       plotlist = p_ls,

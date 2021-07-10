@@ -217,7 +217,7 @@ ggbetweenstats <- function(data,
     rlang::ensym(outlier.label)
   }
 
-  # --------------------------------- data -----------------------------------
+  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -237,7 +237,7 @@ ggbetweenstats <- function(data,
       outlier.label = outlier.label
     )
 
-  # --------------------- subtitle/caption preparation ------------------------
+  # statistical analysis ------------------------------------------
 
   # figure out which test to run based on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
@@ -296,7 +296,7 @@ ggbetweenstats <- function(data,
     ))
   }
 
-  # -------------------------------- plot -----------------------------------
+  # plot -----------------------------------
 
   # first add only the points which are *not* outliers
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
@@ -364,7 +364,7 @@ ggbetweenstats <- function(data,
     plot <- plot + rlang::exec(ggplot2::geom_violin, !!!violin.args)
   }
 
-  # ---------------------------- outlier labeling -----------------------------
+  # outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
   # the `y` vector. If the outlier tag has been provided, just use the dataframe
@@ -384,7 +384,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # ---------------- centrality tagging -------------------------------------
+  # centrality tagging -------------------------------------
 
   # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
@@ -401,7 +401,7 @@ ggbetweenstats <- function(data,
     )
   }
 
-  # ggsignif labels -----------------------------------------------------------
+  # ggsignif labels -------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
@@ -436,7 +436,7 @@ ggbetweenstats <- function(data,
     )
   }
 
-  # ------------------------ annotations and themes -------------------------
+  # annotations ------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(

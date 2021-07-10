@@ -68,13 +68,13 @@ grouped_ggbetweenstats <- function(data,
                                    annotation.args = list(),
                                    ...) {
 
-  # ======================== preparing dataframe ==========================
+  # dataframe ------------------------------------------
 
   # creating a dataframe
   df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
-  # ============== creating a list of plots using `pmap`=======================
+  # creating a list of return objects ----------------------------
 
   p_ls <- purrr::pmap(
     .l = list(data = df, title = names(df)),

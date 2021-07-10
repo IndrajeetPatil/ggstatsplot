@@ -117,7 +117,7 @@ ggwithinstats <- function(data,
     rlang::ensym(outlier.label)
   }
 
-  # --------------------------------- data -----------------------------------
+  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -140,7 +140,7 @@ ggwithinstats <- function(data,
       outlier.label = outlier.label
     )
 
-  # --------------------- subtitle/caption preparation ------------------------
+  # statistical analysis ------------------------------------------
 
   # figure out which test to run based on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
@@ -204,7 +204,7 @@ ggwithinstats <- function(data,
     ))
   }
 
-  # --------------------------------- basic plot ------------------------------
+  # plot -------------------------------------------
 
   # plot
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
@@ -227,7 +227,7 @@ ggwithinstats <- function(data,
     plot <- plot + rlang::exec(ggplot2::geom_path, !!!point.path.args)
   }
 
-  # ---------------------------- outlier labeling -----------------------------
+  # outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
   # the `y` vector. If the outlier tag has been provided, just use the dataframe
@@ -247,7 +247,7 @@ ggwithinstats <- function(data,
       )
   }
 
-  # ---------------- centrality tagging -------------------------------------
+  # centrality tagging -------------------------------------
 
   # add labels for mean values
   if (isTRUE(centrality.plotting)) {
@@ -266,7 +266,7 @@ ggwithinstats <- function(data,
     )
   }
 
-  # ggsignif labels -----------------------------------------------------------
+  # ggsignif labels -------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
@@ -300,7 +300,7 @@ ggwithinstats <- function(data,
     )
   }
 
-  # ------------------------ annotations and themes -------------------------
+  # annotations -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(

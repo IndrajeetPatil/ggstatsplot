@@ -131,7 +131,7 @@ ggscatterstats <- function(data,
   # convert entered stats type to a standard notation
   type <- statsExpressions::stats_type_switch(type)
 
-  #---------------------- variable names --------------------------------
+  # data ---------------------------------------
 
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
@@ -143,8 +143,6 @@ ggscatterstats <- function(data,
   } else {
     point.labelling <- FALSE
   }
-
-  #----------------------- dataframe ---------------------------------------
 
   # preparing the dataframe
   data %<>% dplyr::filter(!is.na({{ x }}), !is.na({{ y }}))
@@ -185,9 +183,18 @@ ggscatterstats <- function(data,
     ))
   }
 
-  #---------------------------- user expression -------------------------
+  # plot ------------------------------------------
 
-  # check labeling variable has been entered
+  # creating jittered positions
+  pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
+
+  # preparing the scatterplot
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
+    rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
+    rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
+
+  # point labels --------------------------------
+
   if (isTRUE(point.labelling)) {
     # is expression provided?
     if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
@@ -213,22 +220,8 @@ ggscatterstats <- function(data,
     } else {
       label_data <- data
     }
-  }
 
-  # plot ------------------------------------------
-
-  # creating jittered positions
-  pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
-
-  # preparing the scatterplot
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
-    rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
-    rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
-
-  # point labels --------------------------------
-
-  # using geom_repel_label
-  if (isTRUE(point.labelling)) {
+    # using geom_repel_label
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,
