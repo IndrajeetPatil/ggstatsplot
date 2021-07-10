@@ -82,7 +82,7 @@ ggdotplotstats <- function(data,
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # --------------------------- data preparation ----------------------------
+  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -99,44 +99,30 @@ ggdotplotstats <- function(data,
       rank = dplyr::row_number()
     )
 
-  # ================ stats labels ==========================================
+  # statistical analysis ------------------------------------------
 
   if (isTRUE(results.subtitle)) {
-    # preparing the BF message for NULL
-    if (isTRUE(bf.message) && type == "parametric") {
-      caption_df <- tryCatch(
-        statsExpressions::one_sample_test(
-          data = data,
-          x = {{ x }},
-          type = "bayes",
-          test.value = test.value,
-          bf.prior = bf.prior,
-          top.text = caption,
-          k = k
-        ),
-        error = function(e) NULL
-      )
-
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
-    }
-
-    # preparing the subtitle with statistical results
-    subtitle_df <- tryCatch(
-      statsExpressions::one_sample_test(
-        data = data,
-        x = {{ x }},
-        type = type,
-        test.value = test.value,
-        bf.prior = bf.prior,
-        effsize.type = effsize.type,
-        conf.level = conf.level,
-        tr = tr,
-        k = k
-      ),
-      error = function(e) NULL
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      k = k,
+      tr = tr,
+      bf.prior = bf.prior,
+      top.text = caption
     )
 
+    # preparing the subtitle with statistical results
+    subtitle_df <- eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
+    # preparing the BF message
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+    }
   }
 
   # return early if anything other than plot
@@ -147,7 +133,7 @@ ggdotplotstats <- function(data,
     ))
   }
 
-  # ------------------------------ basic plot ----------------------------
+  # plot -----------------------------------
 
   # creating the basic plot
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, y = rank)) +
@@ -162,7 +148,7 @@ ggdotplotstats <- function(data,
         labels = 25 * 0:4
       )
     )
-  # ---------------- centrality tagging -------------------------------------
+  # centrality plotting -------------------------------------
 
   # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
@@ -176,7 +162,7 @@ ggdotplotstats <- function(data,
     )
   }
 
-  # ------------------------ annotations and themes -------------------------
+  # annotations -------------------------
 
   # specifying theme and labels for the final plot
   plot +

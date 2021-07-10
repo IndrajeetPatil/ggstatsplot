@@ -8,22 +8,21 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      ggbetweenstats(
-        data = ggplot2::msleep,
-        x = vore,
-        y = brainwt,
-        title = "mammalian sleep",
-        caption = "From ggplot2 package",
-        xlab = "vore",
-        ylab = "brain weight",
-        ggsignif.args = list(textsize = 6, tip_length = 0.01),
-        outlier.tagging = TRUE,
-        outlier.label = name,
-        outlier.label.args = list(color = "darkgreen"),
-        conf.level = 0.99,
-        k = 5
-      )
+    p <- ggbetweenstats(
+      data = ggplot2::msleep,
+      x = vore,
+      y = brainwt,
+      title = "mammalian sleep",
+      caption = "From ggplot2 package",
+      xlab = "vore",
+      ylab = "brain weight",
+      ggsignif.args = list(textsize = 6, tip_length = 0.01),
+      outlier.tagging = TRUE,
+      outlier.label = name,
+      outlier.label.args = list(color = "darkgreen"),
+      conf.level = 0.99,
+      k = 5
+    )
 
     # subtitle
     set.seed(123)

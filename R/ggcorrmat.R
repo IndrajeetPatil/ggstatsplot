@@ -111,7 +111,7 @@ ggcorrmat <- function(data,
                       caption = NULL,
                       ...) {
 
-  # --------------------------------- data -----------------------------------
+  # dataframe -----------------------------------
 
   # creating a dataframe out of the entered variables
   if (missing(cor.vars)) {
@@ -130,7 +130,7 @@ ggcorrmat <- function(data,
     }
   }
 
-  # ---------------------------- statistics -----------------------------------
+  # statistical analysis ------------------------------------------
 
   # if any of the abbreviations have been entered, change them
   type <- statsExpressions::stats_type_switch(type)
@@ -158,7 +158,7 @@ ggcorrmat <- function(data,
     return(as_tibble(parameters::standardize_names(stats_df, "broom")))
   }
 
-  # -------------------------------- plot -----------------------------------
+  # plot -------------------------------------
 
   # in case of NAs, compute minimum and maximum sample sizes of pairs
   # also compute mode
@@ -206,7 +206,7 @@ ggcorrmat <- function(data,
     !!!ggcorrplot.args
   )
 
-  # =========================== labels ==================================
+  # annotations ------------------------------------------
 
   # preparing the `pch` caption
   if ((pch == "cross" || pch == 4) && type != "bayes") {

@@ -51,11 +51,13 @@ grouped_ggdotplotstats <- function(data,
                                    annotation.args = list(),
                                    ...) {
 
-  # ======================== preparing dataframe ============================
+  # dataframe ------------------------------------------
 
   # creating a dataframe
   df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
+
+  # creating a list of return objects ----------------------------
 
   # creating a list of plots
   p_ls <- purrr::pmap(

@@ -198,7 +198,7 @@ test_that(
       "sleep cycle"
     )
     expect_identical(
-      enframe(p$grobs[[22]]$children)$value[[1]][[1]],
+      enframe(p$grobs[[22]]$children)$value[[1]][[1]]$expr,
       p_subtitle
     )
   }

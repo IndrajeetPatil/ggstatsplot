@@ -49,3 +49,12 @@ extract_stats <- function(p, ...) {
     one_sample_data = tryCatch(p$plot_env$onesample_df, error = function(e) NULL)
   )
 }
+
+#' @noRd
+
+eval_f <- function(.f, ...) {
+  tryCatch(
+    suppressWarnings(suppressMessages(rlang::exec(.f, ...))),
+    error = function(e) NULL
+  )
+}

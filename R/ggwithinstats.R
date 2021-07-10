@@ -117,7 +117,7 @@ ggwithinstats <- function(data,
     rlang::ensym(outlier.label)
   }
 
-  # --------------------------------- data -----------------------------------
+  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -140,7 +140,7 @@ ggwithinstats <- function(data,
       outlier.label = outlier.label
     )
 
-  # --------------------- subtitle/caption preparation ------------------------
+  # statistical analysis ------------------------------------------
 
   # figure out which test to run based on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
@@ -152,48 +152,29 @@ ggwithinstats <- function(data,
   }
 
   if (isTRUE(results.subtitle)) {
-    # preparing the bayes factor message
-    if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(
-        function_switch(
-          test = test,
-          # arguments relevant for expression helper functions
-          data = data,
-          x = rlang::as_string(x),
-          y = rlang::as_string(y),
-          type = "bayes",
-          bf.prior = bf.prior,
-          top.text = caption,
-          paired = TRUE,
-          k = k
-        ),
-        error = function(e) NULL
-      )
-
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
-    }
-
-    # extracting the subtitle using the switch function
-    subtitle_df <- tryCatch(
-      function_switch(
-        test = test,
-        # arguments relevant for expression helper functions
-        data = data,
-        x = rlang::as_string(x),
-        y = rlang::as_string(y),
-        paired = TRUE,
-        type = type,
-        effsize.type = effsize.type,
-        bf.prior = bf.prior,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        k = k
-      ),
-      error = function(e) NULL
+    .f.args <- list(
+      data = data,
+      x = rlang::as_string(x),
+      y = rlang::as_string(y),
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      k = k,
+      tr = tr,
+      paired = TRUE,
+      bf.prior = bf.prior,
+      nboot = nboot,
+      top.text = caption
     )
 
+    .f <- function_switch(test)
+    subtitle_df <- eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
+    # preparing the Bayes factor message
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+    }
   }
 
   # return early if anything other than plot
@@ -204,7 +185,7 @@ ggwithinstats <- function(data,
     ))
   }
 
-  # --------------------------------- basic plot ------------------------------
+  # plot -------------------------------------------
 
   # plot
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
@@ -227,7 +208,7 @@ ggwithinstats <- function(data,
     plot <- plot + rlang::exec(ggplot2::geom_path, !!!point.path.args)
   }
 
-  # ---------------------------- outlier labeling -----------------------------
+  # outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
   # the `y` vector. If the outlier tag has been provided, just use the dataframe
@@ -247,7 +228,7 @@ ggwithinstats <- function(data,
       )
   }
 
-  # ---------------- centrality tagging -------------------------------------
+  # centrality tagging -------------------------------------
 
   # add labels for mean values
   if (isTRUE(centrality.plotting)) {
@@ -266,7 +247,7 @@ ggwithinstats <- function(data,
     )
   }
 
-  # ggsignif labels -----------------------------------------------------------
+  # ggsignif labels -------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
@@ -300,7 +281,7 @@ ggwithinstats <- function(data,
     )
   }
 
-  # ------------------------ annotations and themes -------------------------
+  # annotations -------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(

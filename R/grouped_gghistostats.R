@@ -51,7 +51,7 @@ grouped_gghistostats <- function(data,
                                  annotation.args = list(),
                                  ...) {
 
-  # ======================== computing binwidth ============================
+  # binwidth ------------------------------------------
 
   # maximum value for x
   binmax <- max(dplyr::select(data, {{ x }}), na.rm = TRUE)
@@ -62,10 +62,7 @@ grouped_gghistostats <- function(data,
   # number of datapoints
   bincount <- as.integer(data %>% dplyr::count(.))
 
-  # adding some binwidth sanity checking
-  if (is.null(binwidth)) binwidth <- (binmax - binmin) / sqrt(bincount)
-
-  # ======================== preparing dataframe ============================
+  # dataframe ------------------------------------------
 
   # getting the dataframe ready
   df <- dplyr::select(data, {{ grouping.var }}, {{ x }}) %>%
@@ -77,7 +74,7 @@ grouped_gghistostats <- function(data,
     .f = ggstatsplot::gghistostats,
     # put common parameters here
     x = {{ x }},
-    binwidth = binwidth,
+    binwidth = binwidth %||% ((binmax - binmin) / sqrt(bincount)),
     output = output,
     ...
   )

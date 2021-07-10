@@ -131,7 +131,7 @@ ggscatterstats <- function(data,
   # convert entered stats type to a standard notation
   type <- statsExpressions::stats_type_switch(type)
 
-  #---------------------- variable names --------------------------------
+  # data ---------------------------------------
 
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
@@ -144,8 +144,6 @@ ggscatterstats <- function(data,
     point.labelling <- FALSE
   }
 
-  #----------------------- dataframe ---------------------------------------
-
   # preparing the dataframe
   data %<>% dplyr::filter(!is.na({{ x }}), !is.na({{ y }}))
 
@@ -153,32 +151,24 @@ ggscatterstats <- function(data,
 
   # adding a subtitle with statistical results
   if (isTRUE(results.subtitle)) {
-    subtitle_df <- statsExpressions::corr_test(
+    .f.args <- list(
       data = data,
       x = {{ x }},
       y = {{ y }},
-      tr = tr,
-      type = type,
       conf.level = conf.level,
-      k = k
+      k = k,
+      tr = tr,
+      bf.prior = bf.prior,
+      top.text = caption
     )
 
+    subtitle_df <- eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
-    # no need to use `tryCatch` because `correlation` already does this
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- statsExpressions::corr_test(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        type = "bayes",
-        bf.prior = bf.prior,
-        top.text = caption,
-        k = k
-      )
-
-      caption <- caption_df$expression[[1]]
+      caption_df <- eval_f(corr_test, !!!.f.args, type = "bayes")
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
 
@@ -190,9 +180,18 @@ ggscatterstats <- function(data,
     ))
   }
 
-  #---------------------------- user expression -------------------------
+  # plot ------------------------------------------
 
-  # check labeling variable has been entered
+  # creating jittered positions
+  pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
+
+  # preparing the scatterplot
+  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
+    rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
+    rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
+
+  # point labels --------------------------------
+
   if (isTRUE(point.labelling)) {
     # is expression provided?
     if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
@@ -218,22 +217,8 @@ ggscatterstats <- function(data,
     } else {
       label_data <- data
     }
-  }
 
-  # plot ------------------------------------------
-
-  # creating jittered positions
-  pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
-
-  # preparing the scatterplot
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
-    rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
-    rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
-
-  # point labels --------------------------------
-
-  # using geom_repel_label
-  if (isTRUE(point.labelling)) {
+    # using geom_repel_label
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,

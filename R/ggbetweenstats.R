@@ -217,7 +217,7 @@ ggbetweenstats <- function(data,
     rlang::ensym(outlier.label)
   }
 
-  # --------------------------------- data -----------------------------------
+  # data -----------------------------------
 
   # creating a dataframe
   data %<>%
@@ -237,55 +237,36 @@ ggbetweenstats <- function(data,
       outlier.label = outlier.label
     )
 
-  # --------------------- subtitle/caption preparation ------------------------
+  # statistical analysis ------------------------------------------
 
-  # figure out which test to run based on the no. of levels of the independent variable
+  # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
 
   if (isTRUE(results.subtitle)) {
-    # preparing the Bayes factor message
-    if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(
-        function_switch(
-          test = test,
-          # arguments relevant for expression helper functions
-          data = data,
-          x = rlang::as_string(x),
-          y = rlang::as_string(y),
-          type = "bayes",
-          bf.prior = bf.prior,
-          top.text = caption,
-          paired = FALSE,
-          k = k
-        ),
-        error = function(e) NULL
-      )
-
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
-    }
-
-    # extracting the subtitle using the switch function
-    subtitle_df <- tryCatch(
-      function_switch(
-        test = test,
-        # arguments relevant for expression helper functions
-        data = data,
-        x = rlang::as_string(x),
-        y = rlang::as_string(y),
-        paired = FALSE,
-        type = type,
-        effsize.type = effsize.type,
-        var.equal = var.equal,
-        bf.prior = bf.prior,
-        tr = tr,
-        nboot = nboot,
-        conf.level = conf.level,
-        k = k
-      ),
-      error = function(e) NULL
+    .f.args <- list(
+      data = data,
+      x = rlang::as_string(x),
+      y = rlang::as_string(y),
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      var.equal = var.equal,
+      k = k,
+      tr = tr,
+      paired = FALSE,
+      bf.prior = bf.prior,
+      nboot = nboot,
+      top.text = caption
     )
 
+    .f <- function_switch(test)
+    subtitle_df <- eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+
+    # preparing the Bayes factor message
+    if (type == "parametric" && isTRUE(bf.message)) {
+      caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+    }
   }
 
   # return early if anything other than plot
@@ -296,7 +277,7 @@ ggbetweenstats <- function(data,
     ))
   }
 
-  # -------------------------------- plot -----------------------------------
+  # plot -----------------------------------
 
   # first add only the points which are *not* outliers
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
@@ -364,7 +345,7 @@ ggbetweenstats <- function(data,
     plot <- plot + rlang::exec(ggplot2::geom_violin, !!!violin.args)
   }
 
-  # ---------------------------- outlier labeling -----------------------------
+  # outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
   # the `y` vector. If the outlier tag has been provided, just use the dataframe
@@ -384,7 +365,7 @@ ggbetweenstats <- function(data,
       )
   }
 
-  # ---------------- centrality tagging -------------------------------------
+  # centrality tagging -------------------------------------
 
   # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
@@ -401,7 +382,7 @@ ggbetweenstats <- function(data,
     )
   }
 
-  # ggsignif labels -----------------------------------------------------------
+  # ggsignif labels -------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
@@ -436,7 +417,7 @@ ggbetweenstats <- function(data,
     )
   }
 
-  # ------------------------ annotations and themes -------------------------
+  # annotations ------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(

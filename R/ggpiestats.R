@@ -140,39 +140,26 @@ ggpiestats <- function(data,
 
   # if subtitle with results is to be displayed
   if (isTRUE(results.subtitle)) {
-    subtitle_df <- tryCatch(
-      expr = statsExpressions::contingency_table(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        type = type,
-        k = k,
-        paired = paired,
-        ratio = ratio,
-        conf.level = conf.level
-      ),
-      error = function(e) NULL
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      conf.level = conf.level,
+      k = k,
+      paired = paired,
+      ratio = ratio,
+      sampling.plan = sampling.plan,
+      fixed.margin = fixed.margin,
+      prior.concentration = prior.concentration,
+      top.text = caption
     )
 
+    subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
 
     # preparing Bayes Factor caption
     if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
-      caption_df <- tryCatch(
-        expr = statsExpressions::contingency_table(
-          data = data,
-          x = {{ x }},
-          y = {{ y }},
-          type = "bayes",
-          k = k,
-          top.text = caption,
-          sampling.plan = sampling.plan,
-          fixed.margin = fixed.margin,
-          prior.concentration = prior.concentration
-        ),
-        error = function(e) NULL
-      )
-
+      caption_df <- eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
   }

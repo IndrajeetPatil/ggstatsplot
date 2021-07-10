@@ -93,7 +93,7 @@ gghistostats <- function(data,
   # convert entered stats type to a standard notation
   type <- statsExpressions::stats_type_switch(type)
 
-  # --------------------------------- data -----------------------------------
+  # data -----------------------------------
 
   # to ensure that x will be read irrespective of whether it is quoted or unquoted
   x <- rlang::ensym(x)
@@ -105,42 +105,28 @@ gghistostats <- function(data,
   x_vec <- df %>% dplyr::pull({{ x }})
   if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
-  # --------------------- subtitle/caption preparation ------------------------
+  # statistical analysis ------------------------------------------
 
   if (isTRUE(results.subtitle)) {
-    # preparing the subtitle with statistical results
-    subtitle_df <- tryCatch(
-      statsExpressions::one_sample_test(
-        data = df,
-        x = {{ x }},
-        type = type,
-        test.value = test.value,
-        bf.prior = bf.prior,
-        effsize.type = effsize.type,
-        conf.level = conf.level,
-        tr = tr,
-        k = k
-      ),
-      error = function(e) NULL
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      k = k,
+      tr = tr,
+      bf.prior = bf.prior,
+      top.text = caption
     )
 
+    # preparing the subtitle with statistical results
+    subtitle_df <- eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message
     if (type == "parametric" && isTRUE(bf.message)) {
-      caption_df <- tryCatch(
-        statsExpressions::one_sample_test(
-          data = df,
-          x = {{ x }},
-          type = "bayes",
-          test.value = test.value,
-          bf.prior = bf.prior,
-          top.text = caption,
-          k = k
-        ),
-        error = function(e) NULL
-      )
-
+      caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -153,7 +139,7 @@ gghistostats <- function(data,
     ))
   }
 
-  # ============================= plot ====================================
+  # plot -----------------------------------
 
   # adding axes info
   plot <- ggplot2::ggplot(df, mapping = ggplot2::aes(x = {{ x }})) +
