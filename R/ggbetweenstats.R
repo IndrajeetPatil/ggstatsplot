@@ -282,7 +282,7 @@ ggbetweenstats <- function(data,
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
     rlang::exec(
       .fn = ggplot2::geom_point,
-      data = dplyr::filter(data, !isanoutlier),
+      data = ~ dplyr::filter(.x, !isanoutlier),
       ggplot2::aes(color = {{ x }}),
       !!!point.args
     )
@@ -292,7 +292,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       rlang::exec(
         ggplot2::geom_point,
-        data = dplyr::filter(data, isanoutlier),
+        data = ~ dplyr::filter(.x, isanoutlier),
         ggplot2::aes(color = {{ x }}),
         !!!point.args
       )
@@ -303,7 +303,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       # add all outliers in
       ggplot2::geom_point(
-        data = dplyr::filter(data, isanoutlier),
+        data = ~ dplyr::filter(.x, isanoutlier),
         size = 3,
         stroke = 0,
         alpha = 0.7,
@@ -355,7 +355,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,
-        data = dplyr::filter(data, isanoutlier),
+        data = ~ dplyr::filter(.x, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         show.legend = FALSE,
         min.segment.length = 0,

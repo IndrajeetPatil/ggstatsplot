@@ -1,5 +1,3 @@
-
-
 # pearson's r with NAs ---------------------------------------------
 
 test_that(
@@ -240,57 +238,6 @@ test_that(
   }
 )
 
-# labeling input variations ---------------------------------------------
-
-test_that(
-  desc = "checking ggscatterstats with different kinds of inputs to labeling",
-  code = {
-    skip_on_cran()
-
-    # both quoted
-    expect_true(inherits(
-      ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = "sleep_total > 17",
-        label.var = "order",
-        results.subtitle = FALSE,
-        marginal = FALSE
-      ),
-      what = "gg"
-    ))
-
-    # both unquoted
-    expect_true(inherits(
-      ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = sleep_total > 17,
-        label.var = order,
-        results.subtitle = FALSE,
-        marginal = FALSE
-      ),
-      what = "gg"
-    ))
-
-    # label.expression not specified
-    expect_true(inherits(
-      ggscatterstats(
-        data = dplyr::sample_frac(dplyr::filter(ggplot2::msleep, conservation == "lc"), 0.1),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = NULL,
-        label.var = order,
-        results.subtitle = FALSE,
-        marginal = FALSE
-      ),
-      what = "gg"
-    ))
-  }
-)
-
 # with marginals ----------------------------------------------------------
 
 test_that(
@@ -350,3 +297,68 @@ test_that(
     expect_identical(p_sub, fun_sub)
   }
 )
+
+if (getRversion() >= "4.1") {
+  test_that("plots are rendered correctly - ggscatterstats", {
+    skip_on_cran()
+    skip_if_not_installed("vdiffr")
+
+    # vidffr tests --------------------------------
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "label character args - vdiffr",
+      fig = ggscatterstats(
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = "sleep_total > 17",
+        label.var = "order",
+        results.subtitle = FALSE,
+        marginal = FALSE
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "label symbol args - vdiffr",
+      fig = ggscatterstats(
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = sleep_total > 17,
+        label.var = order,
+        results.subtitle = FALSE,
+        marginal = FALSE
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "label var NULL - vdiffr",
+      fig = ggscatterstats(
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = sleep_total > 17,
+        label.var = NULL,
+        results.subtitle = FALSE,
+        marginal = FALSE
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "label expr NULL - vdiffr",
+      fig = ggscatterstats(
+        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+        x = sleep_total,
+        y = sleep_cycle,
+        label.expression = NULL,
+        label.var = order,
+        results.subtitle = FALSE,
+        marginal = FALSE
+      )
+    )
+  })
+}

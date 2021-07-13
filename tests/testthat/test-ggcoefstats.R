@@ -429,7 +429,7 @@ test_that(
 
 
 if (getRversion() >= "4.1") {
-  test_that("plots are rendered correctly", {
+  test_that("plots are rendered correctly - ggcoefstats", {
     skip_on_cran()
     skip_if_not_installed("vdiffr")
     skip_if_not_installed("survival")
@@ -444,7 +444,7 @@ if (getRversion() >= "4.1") {
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "ggcoefstats F-statistic - vdiffr",
+      title = "F-statistic - vdiffr",
       fig = ggcoefstats(aov(yield ~ N * P * K + Error(block), npk))
     )
 
@@ -462,7 +462,7 @@ if (getRversion() >= "4.1") {
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "ggcoefstats chi2-statistic - vdiffr",
+      title = "chi2-statistic - vdiffr",
       fig = ggcoefstats(mod_coxph)
     )
 
@@ -472,17 +472,16 @@ if (getRversion() >= "4.1") {
     df <- as.data.frame(Titanic)
 
     # model
-    mod_glm <-
-      stats::glm(
-        formula = Survived ~ Sex + Age,
-        data = df,
-        weights = df$Freq,
-        family = stats::binomial(link = "logit")
-      )
+    mod_glm <- stats::glm(
+      formula = Survived ~ Sex + Age,
+      data = df,
+      weights = df$Freq,
+      family = stats::binomial(link = "logit")
+    )
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "ggcoefstats z-statistic - vdiffr",
+      title = "z-statistic - vdiffr",
       fig = ggcoefstats(mod_glm, conf.level = 0.90)
     )
   })

@@ -251,7 +251,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.3.4",
+      "version": ">= 3.3.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -487,6 +487,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "10412.673KB",
+  "fileSize": "10456.71KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
