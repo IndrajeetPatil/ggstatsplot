@@ -16,7 +16,7 @@
 #' @importFrom dplyr row_number percent_rank pull
 #' @importFrom statsExpressions one_sample_test
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},

@@ -36,7 +36,7 @@
 #' @importFrom stats dnorm
 #' @importFrom statsExpressions one_sample_test
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 #'
 #' @examples

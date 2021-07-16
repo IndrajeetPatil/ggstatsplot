@@ -9,9 +9,9 @@
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
-#'   `parameters::model_parameters` to get a tidy dataframe. If
-#'   a data frame is used, it *must* contain columns named `term` (names of
-#'   predictors) and `estimate` (corresponding estimates of coefficients or
+#'   `parameters::model_parameters` to get a tidy dataframe. If a dataframe is
+#'   entered, it *must* contain at the minimum two columns named `term` (names
+#'   of predictors) and `estimate` (corresponding estimates of coefficients or
 #'   other quantities of interest).
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
@@ -101,9 +101,8 @@
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom performance model_performance
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
-#'
 #'
 #' @examples
 #' \donttest{
@@ -115,13 +114,13 @@
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
 #'
 #' # to get a plot
-#' ggcoefstats(x = mod, output = "plot")
+#' ggcoefstats(mod, output = "plot")
 #'
 #' # to get a tidy dataframe
-#' ggcoefstats(x = mod, output = "tidy")
+#' ggcoefstats(mod, output = "tidy")
 #'
 #' # to get a glance summary
-#' ggcoefstats(x = mod, output = "glance")
+#' ggcoefstats(mod, output = "glance")
 #' }
 #' @export
 

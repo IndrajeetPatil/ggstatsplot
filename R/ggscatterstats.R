@@ -54,7 +54,7 @@
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note

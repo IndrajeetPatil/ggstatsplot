@@ -29,13 +29,10 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # association test (or contingency table analysis)
-#' ggstatsplot::ggbarstats(
-#'   data = mtcars,
-#'   x = vs,
-#'   y = cyl
-#' )
+#' ggbarstats(mtcars, vs, cyl)
 #' }
 #' @export
 

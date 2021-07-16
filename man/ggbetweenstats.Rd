@@ -240,7 +240,7 @@ between-subjects designs with statistical details included in the plot as a
 subtitle.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
 \examples{

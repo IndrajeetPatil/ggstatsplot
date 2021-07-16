@@ -19,7 +19,7 @@ $(document).ready(function(){
 
   // function to initialise the css
   function init_color_scheme_css($id, $mode) {
-    if ($("#"+$id)) $("#"+$id).remove();  // remove exitsing id
+    if ($("#"+$id)) $("#"+$id).remove();  // remove existing id
     $("#"+$id+"-"+$mode).attr( {
       "data-href-light": $("#"+$id+"-light").attr("href"),  // store the light CSS url
       "data-href-dark": $("#"+$id+"-dark").attr("href"), // store the dark CSS url

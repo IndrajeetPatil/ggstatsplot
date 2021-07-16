@@ -163,7 +163,7 @@ Histogram with statistical details from one-sample test included in the plot
 as a subtitle.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \examples{

@@ -33,7 +33,7 @@
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
 #' @examples

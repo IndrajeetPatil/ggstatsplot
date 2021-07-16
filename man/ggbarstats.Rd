@@ -166,20 +166,17 @@ Bar charts for categorical data with statistical details included in the plot
 as a subtitle.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \examples{
 \donttest{
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # association test (or contingency table analysis)
-ggstatsplot::ggbarstats(
-  data = mtcars,
-  x = vs,
-  y = cyl
-)
+ggbarstats(mtcars, vs, cyl)
 }
 }
 \seealso{

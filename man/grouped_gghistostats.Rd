@@ -137,7 +137,7 @@ across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \examples{

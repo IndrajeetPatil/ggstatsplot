@@ -58,27 +58,24 @@
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
 #' @examples
-#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
 #'
-#' # for plot
-#' if (require("ggcorrplot")) {
-#'   ggcorrmat(iris)
-#' }
-#' # to get the correlation analyses results in a dataframe
+#' # to get a plot (assumes that `ggcorrplot` is installed)
+#' if (require("ggcorrplot")) ggcorrmat(iris)
+#'
+#' # to get a dataframe
 #' ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
 #'   partial = TRUE,
 #'   output = "dataframe"
 #' )
-#' }
 #' @export
 
 # defining the function

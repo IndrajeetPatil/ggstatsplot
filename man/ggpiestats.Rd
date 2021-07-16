@@ -163,23 +163,20 @@ Pie charts for categorical data with statistical details included in the plot
 as a subtitle.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \examples{
 \donttest{
 # for reproducibility
 set.seed(123)
+library(ggstatsplot)
 
 # one sample goodness of fit proportion test
-ggstatsplot::ggpiestats(ggplot2::msleep, vore)
+ggpiestats(mtcars, vs)
 
 # association test (or contingency table analysis)
-ggstatsplot::ggpiestats(
-  data = mtcars,
-  x = vs,
-  y = cyl
-)
+ggpiestats(mtcars, vs, cyl)
 }
 }
 \seealso{

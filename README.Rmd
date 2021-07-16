@@ -517,7 +517,7 @@ Type | Test | Function used
 ------------------ | ------------------------- | -----
 Parametric | One-sample Student's *t*-test | `stats::t.test`
 Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
-Robust | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)
+Robust | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`
 Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
 
 **Effect size estimation**
@@ -526,7 +526,7 @@ Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
 Parametric | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | trimmed mean | ✅ | `trimcibt` (custom)
+Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
 For more, including information about the variant of this function
@@ -615,7 +615,7 @@ Type | Test | Function used
 ------------------ | ------------------------- | -----
 Parametric | One-sample Student's *t*-test | `stats::t.test`
 Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
-Robust | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)
+Robust | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`
 Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
 
 **Effect size estimation**
@@ -624,7 +624,7 @@ Type | Effect size | CI? | Function used
 ------------ | ----------------------- | --- | -----
 Parametric | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
 Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | trimmed mean | ✅ | `trimcibt` (custom)
+Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
 ## `ggscatterstats`

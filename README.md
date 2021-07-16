@@ -516,7 +516,7 @@ grouped_gghistostats(
 |----------------|------------------------------------------|------------------------|
 | Parametric     | One-sample Student’s *t*-test            | `stats::t.test`        |
 | Non-parametric | One-sample Wilcoxon test                 | `stats::wilcox.test`   |
-| Robust         | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)    |
+| Robust         | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`       |
 | Bayesian       | One-sample Student’s *t*-test            | `BayesFactor::ttestBF` |
 
 **Effect size estimation**
@@ -525,7 +525,7 @@ grouped_gghistostats(
 |----------------|-----------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
 | Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g` |
 | Non-parametric | *r* (rank-biserial correlation)                                                                                       | ✅   | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                                                                                                          | ✅   | `trimcibt` (custom)                            |
+| Robust         | trimmed mean                                                                                                          | ✅   | `WRS2::trimcibt`                               |
 | Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅   | `bayestestR::describe_posterior`               |
 
 For more, including information about the variant of this function
@@ -616,7 +616,7 @@ grouped_ggdotplotstats(
 |----------------|------------------------------------------|------------------------|
 | Parametric     | One-sample Student’s *t*-test            | `stats::t.test`        |
 | Non-parametric | One-sample Wilcoxon test                 | `stats::wilcox.test`   |
-| Robust         | Bootstrap-*t* method for one-sample test | `trimcibt` (custom)    |
+| Robust         | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`       |
 | Bayesian       | One-sample Student’s *t*-test            | `BayesFactor::ttestBF` |
 
 **Effect size estimation**
@@ -625,7 +625,7 @@ grouped_ggdotplotstats(
 |----------------|-----------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
 | Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g` |
 | Non-parametric | *r* (rank-biserial correlation)                                                                                       | ✅   | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                                                                                                          | ✅   | `trimcibt` (custom)                            |
+| Robust         | trimmed mean                                                                                                          | ✅   | `WRS2::trimcibt`                               |
 | Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅   | `bayestestR::describe_posterior`               |
 
 ## `ggscatterstats`

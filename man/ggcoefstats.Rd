@@ -39,9 +39,9 @@ ggcoefstats(
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame containing results
 from a regression model. Function internally uses
-\code{parameters::model_parameters} to get a tidy dataframe. If
-a data frame is used, it \emph{must} contain columns named \code{term} (names of
-predictors) and \code{estimate} (corresponding estimates of coefficients or
+\code{parameters::model_parameters} to get a tidy dataframe. If a dataframe is
+entered, it \emph{must} contain at the minimum two columns named \code{term} (names
+of predictors) and \code{estimate} (corresponding estimates of coefficients or
 other quantities of interest).}
 
 \item{output}{Character describing the expected output from this function:
@@ -156,7 +156,7 @@ confidence interval whiskers and other statistical details included as
 labels.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \note{
@@ -182,12 +182,12 @@ library(ggstatsplot)
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
 
 # to get a plot
-ggcoefstats(x = mod, output = "plot")
+ggcoefstats(mod, output = "plot")
 
 # to get a tidy dataframe
-ggcoefstats(x = mod, output = "tidy")
+ggcoefstats( mod, output = "tidy")
 
 # to get a glance summary
-ggcoefstats(x = mod, output = "glance")
+ggcoefstats(mod, output = "glance")
 }
 }

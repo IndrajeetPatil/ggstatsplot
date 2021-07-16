@@ -141,7 +141,7 @@ Grouped scatterplots from \code{ggplot2} combined with marginal distribution plo
 with statistical details added as a subtitle.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \examples{

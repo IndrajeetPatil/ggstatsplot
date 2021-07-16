@@ -154,7 +154,7 @@ A dot chart (as described by William S. Cleveland) with statistical details
 from one-sample test details.
 }
 \details{
-For more details, see:
+For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \examples{

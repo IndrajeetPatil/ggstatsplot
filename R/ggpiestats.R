@@ -2,9 +2,6 @@
 #' @name ggpiestats
 #'
 #' @description
-#'
-#'
-#'
 #' Pie charts for categorical data with statistical details included in the plot
 #' as a subtitle.
 #'
@@ -46,23 +43,20 @@
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions contingency_table
 #'
-#' @details For more details, see:
+#' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
 #' @examples
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
+#' library(ggstatsplot)
 #'
 #' # one sample goodness of fit proportion test
-#' ggstatsplot::ggpiestats(ggplot2::msleep, vore)
+#' ggpiestats(mtcars, vs)
 #'
 #' # association test (or contingency table analysis)
-#' ggstatsplot::ggpiestats(
-#'   data = mtcars,
-#'   x = vs,
-#'   y = cyl
-#' )
+#' ggpiestats(mtcars, vs, cyl)
 #' }
 #' @export
 
@@ -120,17 +114,15 @@ ggpiestats <- function(data,
   data %<>% dplyr::mutate(dplyr::across(.fns = ~ droplevels(as.factor(.x))))
 
   # x
-  x_levels <- nlevels(data %>% dplyr::pull({{ x }}))[[1]]
+  x_levels <- nlevels(data %>% dplyr::pull({{ x }}))
 
   # y
+  if (test == "one.way") y_levels <- 0L
   if (test == "two.way") {
-    y_levels <- nlevels(data %>% dplyr::pull({{ y }}))[[1]]
-
-    # TO DO: until one-way table is supported by `BayesFactor`
-    if (y_levels == 1L) bf.message <- FALSE
-  } else {
-    y_levels <- 0L
+    y_levels <- nlevels(data %>% dplyr::pull({{ y }}))
+    if (y_levels == 1L) bf.message <- FALSE # TODO: one-way table in `BayesFactor`
   }
+
 
   # faceting is happening only if both vars have more than one levels
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
@@ -139,7 +131,7 @@ ggpiestats <- function(data,
   # statistical analysis ------------------------------------------
 
   # if subtitle with results is to be displayed
-  if (isTRUE(results.subtitle)) {
+  if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
@@ -194,8 +186,8 @@ ggpiestats <- function(data,
     )
 
   # whether labels need to be repelled
-  if (isTRUE(label.repel)) .fn <- ggrepel::geom_label_repel
-  if (isFALSE(label.repel)) .fn <- ggplot2::geom_label
+  if (label.repel) .fn <- ggrepel::geom_label_repel
+  if (!label.repel) .fn <- ggplot2::geom_label
 
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +
@@ -210,7 +202,7 @@ ggpiestats <- function(data,
     )))
 
   # if facet_wrap *is* happening
-  if (isTRUE(facet)) p <- p + ggplot2::facet_wrap(facets = dplyr::vars({{ y }}))
+  if (facet) p <- p + ggplot2::facet_wrap(facets = dplyr::vars({{ y }}))
 
   # polar coordinates plus formatting
   p <- p +
@@ -228,7 +220,7 @@ ggpiestats <- function(data,
   # sample size + proportion test ------------------------------------------
 
   # adding labels with proportion tests
-  if (isTRUE(facet) && isTRUE(proportion.test)) {
+  if (facet && proportion.test) {
     p <- p +
       rlang::exec(
         ggplot2::geom_text,
