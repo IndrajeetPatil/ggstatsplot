@@ -7,21 +7,20 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      gghistostats(
-        data = dplyr::starwars,
-        x = height,
-        xlab = "character height",
-        title = "starwars: character heights",
-        binwidth = 20,
-        bin.args = list(
-          col = "black",
-          fill = "orange",
-          alpha = 0.7
-        ),
-        test.value = 150,
-        bf.prior = 0.9
-      )
+    p <- gghistostats(
+      data = dplyr::starwars,
+      x = height,
+      xlab = "character height",
+      title = "starwars: character heights",
+      binwidth = 20,
+      bin.args = list(
+        col = "black",
+        fill = "orange",
+        alpha = 0.7
+      ),
+      test.value = 150,
+      bf.prior = 0.9
+    )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)

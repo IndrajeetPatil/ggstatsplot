@@ -37,7 +37,6 @@
 #'   y = rating,
 #'   type = "robust",
 #'   grouping.var = genre,
-#'   marginal = FALSE,
 #'   ggplot.component = list(ggplot2::geom_rug(sides = "b"))
 #' )
 #'
@@ -49,7 +48,6 @@
 #'   y = hwy,
 #'   grouping.var = cyl,
 #'   type = "robust",
-#'   marginal = FALSE,
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
 #'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
@@ -68,7 +66,6 @@
 #'   grouping.var = genre,
 #'   bf.message = FALSE,
 #'   label.var = "title",
-#'   marginal = FALSE,
 #'   annotation.args = list(tag_levels = "a")
 #' )
 #' @export

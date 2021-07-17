@@ -95,7 +95,7 @@ if (getRversion() >= "4.1") {
 
     ## ----ggscatterstats-------------------------------
 
-    if (require("ggExtra")) {
+    if (require("ggside")) {
       set.seed(123)
       vdiffr::expect_doppelganger(
         title = "ggscatterstats works",
@@ -118,6 +118,10 @@ if (getRversion() >= "4.1") {
         fig = ggcorrmat(iris)
       )
 
+      vdiffr::expect_doppelganger(
+        title = "ggcorrmat works - with NAs",
+        fig = ggcorrmat(ggplot2::msleep)
+      )
 
       set.seed(123)
       vdiffr::expect_doppelganger(

@@ -85,15 +85,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "ggExtra",
-      "name": "ggExtra",
+      "identifier": "ggside",
+      "name": "ggside",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ggExtra"
+      "sameAs": "https://CRAN.R-project.org/package=ggside"
     },
     {
       "@type": "SoftwareApplication",
@@ -487,6 +487,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "10456.71KB",
+  "fileSize": "10457.936KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

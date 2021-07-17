@@ -29,8 +29,8 @@ the statistical tests in the subtitle.
 \emph{within} different groups or conditions with \code{ggplot2} and details from the
 statistical tests in the subtitle.
 \item \code{ggscatterstats} function to produce \code{ggplot2} scatterplots along with a
-marginal distribution plots from \code{ggExtra} and details from the statistical
-tests in the subtitle.
+marginal distribution plots from \code{ggside} package and details from the
+statistical tests in the subtitle.
 \item \code{ggpiestats} function to produce pie chart with details from the
 statistical tests in the subtitle.
 \item \code{ggbarstats} function to produce stacked bar chart with details from the

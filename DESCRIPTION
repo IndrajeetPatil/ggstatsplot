@@ -45,7 +45,7 @@ Suggests:
     afex,
     forcats,
     ggcorrplot,
-    ggExtra,
+    ggside (>= 0.1.0.9002),
     knitr,
     MASS,
     metaBMA,
@@ -60,7 +60,8 @@ Suggests:
 Remotes:
     easystats/parameters,
     IndrajeetPatil/statsExpressions,
-    IndrajeetPatil/pairwiseComparisons
+    IndrajeetPatil/pairwiseComparisons,
+    jtlandis/ggside
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

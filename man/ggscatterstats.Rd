@@ -17,16 +17,19 @@ ggscatterstats(
   results.subtitle = TRUE,
   label.var = NULL,
   label.expression = NULL,
-  point.args = list(size = 3, alpha = 0.4, stroke = 0),
+  point.args = list(size = 3, alpha = 0.4, stroke = 0, na.rm = TRUE),
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e+06),
-  smooth.line.args = list(size = 1.5, color = "blue", method = "lm", formula = y ~ x),
+  smooth.line.args = list(size = 1.5, color = "blue", method = "lm", formula = y ~ x,
+    na.rm = TRUE),
   marginal = TRUE,
-  marginal.type = "densigram",
-  marginal.size = 5,
   xfill = "#009E73",
   yfill = "#D55E00",
+  xsidehistogram.args = list(fill = xfill, color = "black", na.rm = TRUE),
+  ysidehistogram.args = list(fill = yfill, color = "black", na.rm = TRUE),
+  xsidedensity.args = list(na.rm = TRUE),
+  ysidedensity.args = list(na.rm = TRUE),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -109,19 +112,15 @@ to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 to \code{ggplot2::geom_smooth} geom used to display the regression line.}
 
 \item{marginal}{Decides whether marginal distributions will be plotted on
-axes using \code{ggExtra::ggMarginal()}. The default is \code{TRUE}. The package
-\code{ggExtra} must already be installed by the user.}
-
-\item{marginal.type}{Type of marginal distribution to be plotted on the axes
-(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
-
-\item{marginal.size}{Integer describing the relative size of the marginal
-plots compared to the main plot. A size of \code{5} means that the main plot is
-5x wider and 5x taller than the marginal plots.}
+axes using \code{ggside} functions. The default is \code{TRUE}. The package
+\code{ggside} must already be installed by the user.}
 
 \item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). Note that the defaults are colorblind-friendly.}
+
+\item{xsidehistogram.args, ysidehistogram.args, xsidedensity.args, ysidedensity.args}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
+change the marginal distribution histograms and density plots.}
 
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
@@ -167,16 +166,10 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \note{
-\itemize{
-\item If you set \code{marginal = TRUE}, the resulting plot can \strong{not} be further
-modified with \code{ggplot2} functions since it is no longer a \code{ggplot} object. In
-case you want a \code{ggplot} object, set \code{marginal = FALSE}. Also have a look at
-the \code{ggplot.component} argument.
-\item The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
+The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
 from over-lapping to the largest degree possible.  As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
-}
 }
 \examples{
 # to get reproducible results from bootstrapping
@@ -187,16 +180,15 @@ library(ggstatsplot)
 mtcars_new <- as_tibble(mtcars, rownames = "car")
 
 # simple function call with the defaults
-if (require("ggExtra")) {
+if (require("ggside")) {
   ggscatterstats(
     data = mtcars_new,
     x = wt,
     y = mpg,
     label.var = car,
-    label.expression = wt < 4 & mpg < 20,
-    # making further customization with `ggplot2` functions
-    ggplot.component = list(ggplot2::geom_rug(sides = "b"))
-  )
+    label.expression = wt < 4 & mpg < 20
+  ) + # making further customization with `ggplot2` functions
+    ggplot2::geom_rug(sides = "b")
 }
 }
 \seealso{

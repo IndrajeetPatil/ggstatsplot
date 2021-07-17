@@ -21,26 +21,23 @@
 #' @param point.args A list of additional aesthetic arguments to be passed
 #'   to `ggplot2::geom_point` geom used to display the raw data points.
 #' @param marginal Decides whether marginal distributions will be plotted on
-#'   axes using `ggExtra::ggMarginal()`. The default is `TRUE`. The package
-#'   `ggExtra` must already be installed by the user.
+#'   axes using `ggside` functions. The default is `TRUE`. The package
+#'   `ggside` must already be installed by the user.
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data. Note that the jitter should not be specified in the `point.args`
 #'   because this information will be passed to two different `geom`s: one
 #'   displaying the **points** and the other displaying the ***labels** for
 #'   these points.
-#' @param marginal.type Type of marginal distribution to be plotted on the axes
-#'   (`"histogram"`, `"boxplot"`, `"density"`, `"violin"`, `"densigram"`).
-#' @param marginal.size Integer describing the relative size of the marginal
-#'   plots compared to the main plot. A size of `5` means that the main plot is
-#'   5x wider and 5x taller than the marginal plots.
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
 #'  `y`)). Note that the defaults are colorblind-friendly.
+#' @param xsidehistogram.args,ysidehistogram.args,xsidedensity.args,ysidedensity.args
+#'   A list of arguments passed to respective `geom_`s from `ggside` package to
+#'   change the marginal distribution histograms and density plots.
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
-#' @inheritParams ggExtra::ggMarginal
 #' @inheritParams gghistostats
 #'
 #' @import ggplot2
@@ -58,12 +55,7 @@
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
-#' - If you set `marginal = TRUE`, the resulting plot can **not** be further
-#' modified with `ggplot2` functions since it is no longer a `ggplot` object. In
-#' case you want a `ggplot` object, set `marginal = FALSE`. Also have a look at
-#' the `ggplot.component` argument.
-#'
-#' - The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#' The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
 #' from over-lapping to the largest degree possible.  As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
@@ -77,16 +69,15 @@
 #' mtcars_new <- as_tibble(mtcars, rownames = "car")
 #'
 #' # simple function call with the defaults
-#' if (require("ggExtra")) {
+#' if (require("ggside")) {
 #'   ggscatterstats(
 #'     data = mtcars_new,
 #'     x = wt,
 #'     y = mpg,
 #'     label.var = car,
-#'     label.expression = wt < 4 & mpg < 20,
-#'     # making further customization with `ggplot2` functions
-#'     ggplot.component = list(ggplot2::geom_rug(sides = "b"))
-#'   )
+#'     label.expression = wt < 4 & mpg < 20
+#'   ) + # making further customization with `ggplot2` functions
+#'     ggplot2::geom_rug(sides = "b")
 #' }
 #' @export
 
@@ -103,7 +94,12 @@ ggscatterstats <- function(data,
                            results.subtitle = TRUE,
                            label.var = NULL,
                            label.expression = NULL,
-                           point.args = list(size = 3, alpha = 0.4, stroke = 0),
+                           point.args = list(
+                             size = 3,
+                             alpha = 0.4,
+                             stroke = 0,
+                             na.rm = TRUE
+                           ),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
@@ -111,13 +107,24 @@ ggscatterstats <- function(data,
                              size = 1.5,
                              color = "blue",
                              method = "lm",
-                             formula = y ~ x
+                             formula = y ~ x,
+                             na.rm = TRUE
                            ),
                            marginal = TRUE,
-                           marginal.type = "densigram",
-                           marginal.size = 5,
                            xfill = "#009E73",
                            yfill = "#D55E00",
+                           xsidehistogram.args = list(
+                             fill = xfill,
+                             color = "black",
+                             na.rm = TRUE
+                           ),
+                           ysidehistogram.args = list(
+                             fill = yfill,
+                             color = "black",
+                             na.rm = TRUE
+                           ),
+                           xsidedensity.args = list(na.rm = TRUE),
+                           ysidedensity.args = list(na.rm = TRUE),
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -234,7 +241,6 @@ ggscatterstats <- function(data,
 
   # annotations -------------------------------------
 
-  # annotations
   plot <- plot +
     ggplot2::labs(
       x = xlab %||% rlang::as_name(x),
@@ -246,20 +252,22 @@ ggscatterstats <- function(data,
     ggtheme +
     ggplot.component
 
-  # ggMarginal  ---------------------------------------------
+  # marginal  ---------------------------------------------
 
   # adding marginal distributions
-  if (isTRUE(marginal)) {
+  if (marginal) {
     # installed?
-    insight::check_if_installed("ggExtra")
+    insight::check_if_installed("ggside")
 
-    plot <- ggExtra::ggMarginal(
-      p = plot,
-      type = marginal.type,
-      size = marginal.size,
-      xparams = list(fill = xfill),
-      yparams = list(fill = yfill)
-    )
+
+
+    plot <- plot +
+      rlang::exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
+      rlang::exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
+      rlang::exec(ggside::geom_xsidedensity, mapping = aes(y = after_stat(count)), !!!xsidedensity.args) +
+      rlang::exec(ggside::geom_ysidedensity, mapping = aes(x = after_stat(count)), !!!ysidedensity.args) +
+      ggside::scale_ysidex_continuous() +
+      ggside::scale_xsidey_continuous()
   }
 
   # return the final plot

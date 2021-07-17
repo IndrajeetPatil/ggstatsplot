@@ -92,7 +92,6 @@ ggscatterstats(
   label.var = title, # variable to use for labeling data points
   label.expression = rating < 5 & budget > 75, # expression for deciding which points to label
   point.label.args = list(alpha = 0.7, size = 4, color = "grey50"),
-  marginal.type = "density", # type of plot for marginal distribution
   xfill = "#CC79A7", # fill for marginals on the x-axis
   yfill = "#009E73", # fill for marginals on the y-axis
   title = "Relationship between movie budget and IMDB rating",
@@ -103,13 +102,6 @@ ggscatterstats(
 There is indeed a small, but significant, positive correlation between the
 amount of money studio invests in a movie and the ratings given by the
 audiences.
-
-**Important**: 
-
-In contrast to all other functions in this package, the `ggscatterstats`
-function returns object that is **not** further modifiable with `ggplot2`. This
-can be avoided by not plotting the marginal distributions (`marginal = FALSE`).
-Currently trying to find a workaround this problem.
 
 # Grouped analysis with `grouped_ggscatterstats`
 
@@ -148,7 +140,6 @@ grouped_ggscatterstats(
   grouping.var = mpaa,
   label.var = title,
   label.expression = rating < 5 & budget < 20,
-  marginal.type = "boxplot",
   ggtheme = ggthemes::theme_tufte(),
 
   # arguments relevant for ggstatsplot::combine_plots
@@ -184,7 +175,8 @@ graphical element | `geom_` used | argument for further modification
 raw data | `ggplot2::geom_point` | `point.args`
 labels for raw data | `ggrepel::geom_label_repel` | `point.label.args`
 smooth line | `ggplot2::geom_smooth` | `smooth.line.args`
-marginal distributions | `ggExtra::ggMarginal` | ❌
+marginal histograms | `ggside::geom_xsidehistogram`,  `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args`
+marginal density plots | `ggside::geom_xsidedensity`,  `ggside::geom_ysidedensity` | `xsidedensity.args`, `ysidedensity.args`
 
 # Summary of tests
 

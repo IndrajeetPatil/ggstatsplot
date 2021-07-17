@@ -98,9 +98,8 @@ gghistostats <- function(data,
   # if dataframe is provided
   data <- tidyr::drop_na(dplyr::select(data, {{ x }}))
 
-  # if binwidth not specified
+  # a vector for convenience
   x_vec <- data %>% dplyr::pull({{ x }})
-  if (is.null(binwidth)) binwidth <- (max(x_vec) - min(x_vec)) / sqrt(length(x_vec))
 
   # statistical analysis ------------------------------------------
 
@@ -147,7 +146,7 @@ gghistostats <- function(data,
     rlang::exec(
       ggplot2::stat_bin,
       mapping = ggplot2::aes(y = ..count.., fill = ..count..),
-      binwidth = binwidth,
+      binwidth = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
     ggplot2::scale_y_continuous(
@@ -165,7 +164,7 @@ gghistostats <- function(data,
       rlang::exec(
         .f = ggplot2::stat_function,
         fun = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
-        args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth),
+        args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
         !!!normal.curve.args
       )
   }
@@ -196,3 +195,8 @@ gghistostats <- function(data,
     ggtheme +
     ggplot.component
 }
+
+
+#' @noRd
+
+.binwidth <- function(x) (max(x) - min(x)) / sqrt(length(x))
