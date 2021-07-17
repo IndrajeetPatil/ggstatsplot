@@ -178,8 +178,10 @@ test_that(
       type = "bayes"
     )$expression[[1]]
 
+    # check just the names and dims and not the actual values
     set.seed(123)
-    expect_snapshot(pb$data)
+    expect_snapshot(purrr::map(pb$data, names))
+    expect_snapshot(purrr::map(pb$data, dim))
 
     expect_identical(p$labels$subtitle$expr, p_subtitle)
   }
