@@ -20,41 +20,39 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      suppressMessages(ggdotplotstats(
-        data = morley_new,
-        x = Speed,
-        y = "Expt",
-        test.value = 800,
-        type = "p",
-        k = 4L,
-        effsize.type = "d",
-        title = "Michelson-Morley experiment",
-        caption = "Studies carried out in 1887",
-        xlab = substitute(paste("Speed of light (", italic("c"), ")")),
-        ylab = "Experimental run",
-        ggplot.component = ggplot2::scale_x_continuous(
-          breaks = seq(800, 900, 10),
-          sec.axis = ggplot2::dup_axis()
-        ),
-        bf.prior = 0.88
-      ))
+    p <- suppressMessages(ggdotplotstats(
+      data = morley_new,
+      x = Speed,
+      y = Expt,
+      test.value = 800,
+      type = "p",
+      k = 4L,
+      effsize.type = "d",
+      title = "Michelson-Morley experiment",
+      caption = "Studies carried out in 1887",
+      xlab = substitute(paste("Speed of light (", italic("c"), ")")),
+      ylab = "Experimental run",
+      ggplot.component = ggplot2::scale_x_continuous(
+        breaks = seq(800, 900, 10),
+        sec.axis = ggplot2::dup_axis()
+      ),
+      bf.prior = 0.88
+    ))
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
 
     # checking subtitle
     set.seed(123)
-    p_subtitle <-
-      statsExpressions::one_sample_test(
-        data = morley_new,
-        x = Speed,
-        y = "Expt",
-        test.value = 800,
-        type = "p",
-        k = 4,
-        effsize.type = "d"
-      )$expression[[1]]
+    p_subtitle <- statsExpressions::one_sample_test(
+      data = morley_new,
+      x = Speed,
+      y = Expt,
+      test.value = 800,
+      type = "p",
+      k = 4,
+      effsize.type = "d"
+    )$expression[[1]]
 
     # check data and labels
     expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
@@ -143,22 +141,20 @@ test_that(
     df_msleep %<>% dplyr::mutate(vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni"))
 
     # plot with original data
-    p1 <-
-      ggdotplotstats(
-        data = df_msleep,
-        y = vore,
-        x = brainwt,
-        results.subtitle = FALSE
-      )
+    p1 <- ggdotplotstats(
+      data = df_msleep,
+      y = vore,
+      x = brainwt,
+      results.subtitle = FALSE
+    )
 
     # plot with modified data
-    p2 <-
-      ggdotplotstats(
-        data = dplyr::filter(ggplot2::msleep, vore != "omni"),
-        y = vore,
-        x = brainwt,
-        results.subtitle = FALSE
-      )
+    p2 <- ggdotplotstats(
+      data = dplyr::filter(ggplot2::msleep, vore != "omni"),
+      y = vore,
+      x = brainwt,
+      results.subtitle = FALSE
+    )
 
     # build those plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -194,15 +190,14 @@ test_that(
 
     # should output a list of length 3
     set.seed(123)
-    p_sub <-
-      suppressWarnings(ggdotplotstats(
-        data = morley,
-        x = Speed,
-        y = Expt,
-        test.value = 800,
-        type = "np",
-        output = "subtitle"
-      ))
+    p_sub <- suppressWarnings(ggdotplotstats(
+      data = morley,
+      x = Speed,
+      y = Expt,
+      test.value = 800,
+      type = "np",
+      output = "subtitle"
+    ))
 
     # tests
     set.seed(123)

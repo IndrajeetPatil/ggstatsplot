@@ -30,9 +30,9 @@ test_that(
     # when arguments are entered as characters
     p2 <- grouped_ggdotplotstats(
       data = df,
-      x = "cty",
+      x = cty,
       y = manufacturer,
-      grouping.var = "cyl",
+      grouping.var = cyl,
       test.value = 15.5,
       results.subtitle = FALSE,
       effsize.type = "d",
@@ -63,22 +63,21 @@ test_that(
     ls_results <-
       grouped_ggdotplotstats(
         data = df,
-        x = "cty",
+        x = cty,
         y = manufacturer,
-        grouping.var = "cyl",
+        grouping.var = cyl,
         test.value = 15.5,
         output = "subtitle"
       )
 
     set.seed(123)
-    basic_results <-
-      ggdotplotstats(
-        data = df,
-        x = "cty",
-        y = manufacturer,
-        test.value = 15.5,
-        output = "subtitle"
-      )
+    basic_results <- ggdotplotstats(
+      data = df,
+      x = cty,
+      y = manufacturer,
+      test.value = 15.5,
+      output = "subtitle"
+    )
 
     # tests
     expect_equal(length(ls_results), 1L)

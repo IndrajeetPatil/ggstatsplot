@@ -112,27 +112,25 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        type = "r",
-        conf.level = 0.90,
-        point.args = list(color = "red", size = 5, stroke = 0),
-        marginal = FALSE
-      )
+    p <- ggscatterstats(
+      data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+      x = sleep_total,
+      y = sleep_cycle,
+      type = "r",
+      conf.level = 0.90,
+      point.args = list(color = "red", size = 5, stroke = 0),
+      marginal = FALSE
+    )
 
     # subtitle
     set.seed(123)
-    p_subtitle <-
-      statsExpressions::corr_test(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        type = "r",
-        conf.level = 0.90
-      )$expression[[1]]
+    p_subtitle <- statsExpressions::corr_test(
+      data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+      x = sleep_total,
+      y = sleep_cycle,
+      type = "r",
+      conf.level = 0.90
+    )$expression[[1]]
 
     pb <- ggplot2::ggplot_build(p)
 
@@ -200,8 +198,8 @@ test_that(
       data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
       x = sleep_total,
       y = sleep_cycle,
-      label.expression = "sleep_total > 17",
-      label.var = "order",
+      label.expression = sleep_total > 17,
+      label.var = order,
       point.label.args = list(size = 4, color = "blue", alpha = 0.5),
       ggplot.component = list(
         ggplot2::coord_cartesian(ylim = c(0, 7000)),
@@ -263,19 +261,6 @@ if (getRversion() >= "4.1") {
     skip_if_not_installed("vdiffr")
 
     # vdiffr tests --------------------------------
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "label character args - vdiffr",
-      fig = ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = "sleep_total > 17",
-        label.var = "order",
-        results.subtitle = FALSE
-      )
-    )
 
     set.seed(123)
     vdiffr::expect_doppelganger(

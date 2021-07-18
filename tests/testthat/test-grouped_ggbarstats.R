@@ -35,7 +35,7 @@ test_that(
     expect_true(inherits(suppressWarnings(
       grouped_ggbarstats(
         data = mpg_short,
-        x = "cyl",
+        x = cyl,
         y = class,
         grouping.var = drv
       )
@@ -49,8 +49,8 @@ test_that(
       grouped_ggbarstats(
         data = mpg_short,
         x = cyl,
-        y = "class",
-        grouping.var = "drv"
+        y = class,
+        grouping.var = drv
       )
     ),
     what = "gg"
@@ -77,10 +77,10 @@ test_that(
     expect_true(inherits(suppressWarnings(
       grouped_ggbarstats(
         data = as.data.frame(Titanic),
-        grouping.var = "Class",
-        x = "Sex",
-        y = "Survived",
-        counts = "Freq"
+        grouping.var = Class,
+        x = Sex,
+        y = Survived,
+        counts = Freq
       )
     ),
     what = "gg"
@@ -102,14 +102,13 @@ test_that(
 
     # should output a list of length 3
     set.seed(123)
-    ls_results <-
-      suppressWarnings(grouped_ggbarstats(
-        data = df,
-        x = relig,
-        y = "marital",
-        grouping.var = race,
-        output = "subtitle"
-      ))
+    ls_results <- suppressWarnings(grouped_ggbarstats(
+      data = df,
+      x = relig,
+      y = marital,
+      grouping.var = race,
+      output = "subtitle"
+    ))
 
     set.seed(123)
     sexpr_results <-

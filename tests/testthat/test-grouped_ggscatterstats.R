@@ -34,21 +34,6 @@ test_that(
         genre %in% c("Drama", "Comedy")
       )
 
-    # both quoted
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "both labelling args quoted",
-      fig = grouped_ggscatterstats(
-        data = df,
-        x = length,
-        y = rating,
-        label.expression = "length > 150",
-        label.var = "title",
-        grouping.var = mpaa,
-        results.subtitle = FALSE
-      )
-    )
-
     # both unquoted
     set.seed(123)
     vdiffr::expect_doppelganger(
@@ -70,7 +55,7 @@ test_that(
       title = "without point labelling",
       fig = grouped_ggscatterstats(
         data = df,
-        x = "length",
+        x = length,
         y = rating,
         grouping.var = mpaa,
         label.expression = "length > 150",
@@ -84,7 +69,7 @@ test_that(
       title = "labeling all points",
       fig = grouped_ggscatterstats(
         data = dplyr::sample_frac(tbl = df, size = 0.1),
-        x = "length",
+        x = length,
         y = rating,
         grouping.var = mpaa,
         label.var = title,
@@ -103,7 +88,7 @@ test_that(
         x = sleep_total,
         y = bodywt,
         results.subtitle = FALSE,
-        grouping.var = "vore",
+        grouping.var = vore,
         xlab = "total sleep",
         ylab = "body weight",
         caption = "source: ggplot2 package",
@@ -127,7 +112,7 @@ test_that(
     ls_results <- grouped_ggscatterstats(
       data = df,
       x = rating,
-      y = "length",
+      y = length,
       k = 3,
       conf.level = 0.99,
       grouping.var = genre,
@@ -137,7 +122,7 @@ test_that(
     set.seed(123)
     basic_results <- statsExpressions::corr_test(
       data = df,
-      x = "rating",
+      x = rating,
       y = length,
       k = 3,
       conf.level = 0.99

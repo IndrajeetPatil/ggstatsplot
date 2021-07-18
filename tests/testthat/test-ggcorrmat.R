@@ -8,23 +8,22 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      ggcorrmat(
-        data = iris,
-        cor.vars.names = "x",
-        type = "p",
-        title = "Iris dataset",
-        subtitle = "By Edgar Anderson",
-        sig.level = 0.001,
-        matrix.type = "full",
-        p.adjust.method = "fdr",
-        colors = NULL,
-        k = 4,
-        ggcorrplot.args = list(
-          lab_col = "white",
-          pch.col = "white"
-        )
+    p <- ggcorrmat(
+      data = iris,
+      cor.vars.names = "x",
+      type = "p",
+      title = "Iris dataset",
+      subtitle = "By Edgar Anderson",
+      sig.level = 0.001,
+      matrix.type = "full",
+      p.adjust.method = "fdr",
+      colors = NULL,
+      k = 4,
+      ggcorrplot.args = list(
+        lab_col = "white",
+        pch.col = "white"
       )
+    )
 
     # checking legend title
     pb <- ggplot2::ggplot_build(p)
@@ -46,13 +45,12 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      ggcorrmat(
-        data = anscombe,
-        type = "r",
-        partial = TRUE,
-        cor.vars.names = names(anscombe)
-      )
+    p <- ggcorrmat(
+      data = anscombe,
+      type = "r",
+      partial = TRUE,
+      cor.vars.names = names(anscombe)
+    )
 
     pb <- ggplot2::ggplot_build(p)
 
@@ -73,15 +71,14 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      ggcorrmat(
-        data = ggplot2::msleep,
-        type = "r",
-        sig.level = 0.01,
-        partial = TRUE,
-        p.adjust.method = "hommel",
-        matrix.type = "upper"
-      ) +
+    p <- ggcorrmat(
+      data = ggplot2::msleep,
+      type = "r",
+      sig.level = 0.01,
+      partial = TRUE,
+      p.adjust.method = "hommel",
+      matrix.type = "upper"
+    ) +
       labs(caption = NULL)
 
     # checking legend title

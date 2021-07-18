@@ -33,13 +33,12 @@ test_that(
 
     # checking subtitle
     set.seed(123)
-    p_subtitle <-
-      statsExpressions::one_sample_test(
-        data = dplyr::starwars,
-        x = height,
-        type = "p",
-        test.value = 150
-      )$expression[[1]]
+    p_subtitle <- statsExpressions::one_sample_test(
+      data = dplyr::starwars,
+      x = height,
+      type = "p",
+      test.value = 150
+    )$expression[[1]]
 
     # checking caption
     set.seed(123)
@@ -69,19 +68,18 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      gghistostats(
-        data = ggplot2::mpg,
-        x = cty,
-        xlab = "city miles per gallon",
-        title = "fuel economy",
-        caption = substitute(paste(italic("source"), ": government website")),
-        binwidth = 5,
-        test.value = 20,
-        k = 3,
-        type = "np",
-        results.subtitle = FALSE
-      )
+    p <- gghistostats(
+      data = ggplot2::mpg,
+      x = cty,
+      xlab = "city miles per gallon",
+      title = "fuel economy",
+      caption = substitute(paste(italic("source"), ": government website")),
+      binwidth = 5,
+      test.value = 20,
+      k = 3,
+      type = "np",
+      results.subtitle = FALSE
+    )
 
     # build the plot
     pb <- ggplot2::ggplot_build(p)
@@ -163,14 +161,13 @@ test_that(
 
     # creating the plot
     set.seed(123)
-    p <-
-      gghistostats(
-        data = mtcars,
-        x = wt,
-        binwidth = 0.5,
-        test.value = 2.5,
-        type = "r"
-      ) +
+    p <- gghistostats(
+      data = mtcars,
+      x = wt,
+      binwidth = 0.5,
+      test.value = 2.5,
+      type = "r"
+    ) +
       scale_x_continuous(limits = c(1, 6))
 
     # build the plot
@@ -178,13 +175,12 @@ test_that(
 
     # checking subtitle
     set.seed(123)
-    p_subtitle <-
-      statsExpressions::one_sample_test(
-        data = mtcars,
-        x = wt,
-        test.value = 2.5,
-        type = "r"
-      )$expression[[1]]
+    p_subtitle <- statsExpressions::one_sample_test(
+      data = mtcars,
+      x = wt,
+      test.value = 2.5,
+      type = "r"
+    )$expression[[1]]
 
     # testing labels
     expect_identical(pb$plot$labels$subtitle, p_subtitle)
@@ -206,19 +202,18 @@ test_that(
 
     # plot
     set.seed(123)
-    p1 <-
-      gghistostats(
-        data = ggplot2::msleep,
-        x = awake,
-        binwidth = 1,
-        results.subtitle = FALSE,
-        normal.curve = TRUE,
-        normal.curve.args =
-          list(
-            color = "red",
-            size = 0.8
-          )
-      )
+    p1 <- gghistostats(
+      data = ggplot2::msleep,
+      x = awake,
+      binwidth = 1,
+      results.subtitle = FALSE,
+      normal.curve = TRUE,
+      normal.curve.args =
+        list(
+          color = "red",
+          size = 0.8
+        )
+    )
 
     # build plots
     pb1 <- ggplot2::ggplot_build(p1)
@@ -254,14 +249,13 @@ test_that(
 
     # should output a list of length 3
     set.seed(123)
-    p_sub <-
-      gghistostats(
-        data = ggplot2::msleep,
-        x = brainwt,
-        type = "np",
-        output = "subtitle",
-        test.value = 0.25
-      )
+    p_sub <- gghistostats(
+      data = ggplot2::msleep,
+      x = brainwt,
+      type = "np",
+      output = "subtitle",
+      test.value = 0.25
+    )
 
     set.seed(123)
     sub <-

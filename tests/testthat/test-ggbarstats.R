@@ -15,31 +15,29 @@ test_that(
 
     # plot
     set.seed(123)
-    p <-
-      ggbarstats(
-        data = as.data.frame(Titanic),
-        x = Sex,
-        y = Survived,
-        counts = "Freq",
-        perc.k = 2,
-        xlab = "Passenger sex",
-        ylab = "proportion",
-        label.separator = "\n",
-        bf.message = FALSE
-      )
+    p <- ggbarstats(
+      data = as.data.frame(Titanic),
+      x = Sex,
+      y = Survived,
+      counts = Freq,
+      perc.k = 2,
+      xlab = "Passenger sex",
+      ylab = "proportion",
+      label.separator = "\n",
+      bf.message = FALSE
+    )
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
 
     # subtitle
     set.seed(123)
-    p_subtitle <-
-      statsExpressions::contingency_table(
-        data = as.data.frame(Titanic),
-        x = "Sex",
-        y = "Survived",
-        counts = Freq
-      )$expression[[1]]
+    p_subtitle <- statsExpressions::contingency_table(
+      data = as.data.frame(Titanic),
+      x = Sex,
+      y = Survived,
+      counts = Freq
+    )$expression[[1]]
 
     # check data
     set.seed(123)
@@ -60,25 +58,23 @@ test_that(
 
     # plot
     set.seed(123)
-    p <-
-      suppressWarnings(ggbarstats(
-        data = mtcars,
-        x = vs,
-        y = "cyl",
-        label = "both",
-        package = "wesanderson",
-        palette = "Royal2",
-        legend.title = "Engine"
-      ))
+    p <- suppressWarnings(ggbarstats(
+      data = mtcars,
+      x = vs,
+      y = cyl,
+      label = "both",
+      package = "wesanderson",
+      palette = "Royal2",
+      legend.title = "Engine"
+    ))
 
-    p1 <-
-      suppressWarnings(ggbarstats(
-        data = mtcars,
-        x = vs,
-        y = cyl,
-        label = "counts",
-        bf.message = FALSE
-      ))
+    p1 <- suppressWarnings(ggbarstats(
+      data = mtcars,
+      x = vs,
+      y = cyl,
+      label = "counts",
+      bf.message = FALSE
+    ))
 
     # build plot
     pb <- ggplot2::ggplot_build(p)
@@ -104,13 +100,12 @@ test_that(
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
     set.seed(123)
-    p <-
-      ggbarstats(
-        data = mtcars_small,
-        x = cyl,
-        y = am,
-        results.subtitle = NULL
-      )
+    p <- ggbarstats(
+      data = mtcars_small,
+      x = cyl,
+      y = am,
+      results.subtitle = NULL
+    )
 
     pb <- ggplot2::ggplot_build(p)
 
@@ -130,50 +125,46 @@ test_that(
 
     set.seed(123)
     df <- dplyr::sample_frac(tbl = forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(., is.factor, droplevels)
+      dplyr::mutate_if(is.factor, droplevels)
 
     # subtitle output
     set.seed(123)
-    p_sub <-
-      ggbarstats(
-        data = df,
-        x = race,
-        y = marital,
-        output = "subtitle",
-        k = 4
-      )
+    p_sub <- ggbarstats(
+      data = df,
+      x = race,
+      y = marital,
+      output = "subtitle",
+      k = 4
+    )
 
     set.seed(123)
-    stats_output <-
-      statsExpressions::contingency_table(
-        data = df,
-        x = race,
-        y = marital,
-        k = 4
-      )$expression[[1]]
+    stats_output <- statsExpressions::contingency_table(
+      data = df,
+      x = race,
+      y = marital,
+      k = 4
+    )$expression[[1]]
 
     # caption output
     set.seed(123)
-    p_cap <-
-      ggbarstats(
-        data = df,
-        x = race,
-        y = "marital",
-        type = "bayes",
-        output = "subtitle",
-        k = 4
-      )
+    p_cap <- ggbarstats(
+      data = df,
+      x = race,
+      y = marital,
+      type = "bayes",
+      output = "subtitle",
+      k = 4
+    )
 
     # caption output
     set.seed(123)
-    p_cap_exp <-
-      statsExpressions::contingency_table(
-        data = df,
-        x = "race",
-        y = marital,
-        type = "bayes",
-        k = 4
-      )$expression[[1]]
+    p_cap_exp <- statsExpressions::contingency_table(
+      data = df,
+      x = race,
+      y = marital,
+      type = "bayes",
+      k = 4
+    )$expression[[1]]
 
     # tests
     expect_identical(p_sub, stats_output)
