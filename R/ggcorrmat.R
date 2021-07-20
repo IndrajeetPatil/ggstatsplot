@@ -117,16 +117,6 @@ ggcorrmat <- function(data,
     df <- dplyr::select(data, {{ cor.vars }})
   }
 
-  # renaming the columns if so desired
-  if (!is.null(cor.vars.names)) {
-    # check if number of cor.vars is equal to the number of names entered
-    if (length(df) != length(cor.vars.names)) {
-      message("Warning: Mismatch between number of variables and names.")
-    } else {
-      colnames(df) <- cor.vars.names
-    }
-  }
-
   # statistical analysis ------------------------------------------
 
   # if any of the abbreviations have been entered, change them
@@ -135,6 +125,7 @@ ggcorrmat <- function(data,
   # creating a dataframe of results
   stats_df <- statsExpressions::correlation(
     data = df,
+    rename = cor.vars.names,
     method = ifelse(type == "nonparametric", "spearman", "pearson"),
     p_adjust = p.adjust.method,
     ci = conf.level,

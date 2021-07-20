@@ -45,7 +45,7 @@ Suggests:
     afex,
     forcats,
     ggcorrplot,
-    ggside (>= 0.1.1),
+    ggside (>= 0.1.0.9002),
     knitr,
     MASS,
     metaBMA,
