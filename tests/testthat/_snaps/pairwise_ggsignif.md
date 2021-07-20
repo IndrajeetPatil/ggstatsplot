@@ -409,9 +409,9 @@
       1 1    1 36.915 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
       2 1    2 37.175 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
       3 2    2 37.175 36.915    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
-      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
-      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
-      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==6.09e-08) f-r-2     1
+      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2     1
+      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2     1
+      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2     1
         shape colour textsize angle hjust vjust alpha family fontface lineheight
       1    19  black        3     0   0.5     0    NA               1        1.2
       2    19  black        3     0   0.5     0    NA               1        1.2

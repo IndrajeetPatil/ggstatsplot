@@ -755,9 +755,9 @@ statistical tests:
 # setup
 set.seed(123)
 
-# dataframe in long format
+# tidy data as output
 ggcorrmat(
-  data = ggplot2::msleep,
+  data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
   type = "bayes",
   output = "dataframe"
 )
@@ -769,9 +769,9 @@ Additionally, **partial** correlation are also supported:
 # setup
 set.seed(123)
 
-# dataframe in long format
+# tidy data as output
 ggcorrmat(
-  data = ggplot2::msleep,
+  data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
   type = "bayes",
   partial = TRUE,
   output = "dataframe"
