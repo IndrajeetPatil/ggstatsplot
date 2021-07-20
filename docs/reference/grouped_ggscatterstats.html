@@ -283,7 +283,9 @@ bare name <code>x</code> or as a string <code>"x"</code>).</p></td>
     <tr>
       <th>label.expression</th>
       <td><p>An expression evaluating to a logical vector that
-determines the subset of data points to label (e.g. <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
+determines the subset of data points to label (e.g. <code>y &lt; 4 &amp; z &lt; 20</code>).
+While using this argument with <code><a href='https://purrr.tidyverse.org/reference/map2.html'>purrr::pmap</a></code>, you will have to provide a
+quoted expression  (e.g. <code>quote(y &lt; 4 &amp; z &lt; 20)</code>).</p></td>
     </tr>
     <tr>
       <th>output</th>

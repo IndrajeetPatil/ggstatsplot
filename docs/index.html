@@ -1777,128 +1777,74 @@
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># dataframe in long format</span>
+<span class="co"># tidy data as output</span>
 <span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>, <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="st">"sleep|awake"</span><span class="op">)</span><span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"bayes"</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 x 14</span>
-<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    </span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.995</span>
-<span class="co">#&gt;  3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
-<span class="co">#&gt;  4 sleep_total brainwt       -0.339       0.95   -0.523   -0.156  0.996</span>
-<span class="co">#&gt;  5 sleep_total bodywt        -0.300       0.95   -0.458   -0.142  0.997</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle   -0.306       0.95   -0.535   -0.0555 0.965</span>
-<span class="co">#&gt;  7 sleep_rem   awake         -0.734       0.95   -0.824   -0.638  1    </span>
-<span class="co">#&gt;  8 sleep_rem   brainwt       -0.202       0.95   -0.410    0.0130 0.927</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt        -0.315       0.95   -0.481   -0.120  0.994</span>
-<span class="co">#&gt; 10 sleep_cycle awake          0.441       0.95    0.226    0.662  0.995</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt        0.823       0.95    0.720    0.911  1    </span>
-<span class="co">#&gt; 12 sleep_cycle bodywt         0.386       0.95    0.145    0.610  0.992</span>
-<span class="co">#&gt; 13 awake       brainwt        0.341       0.95    0.154    0.524  0.992</span>
-<span class="co">#&gt; 14 awake       bodywt         0.299       0.95    0.139    0.454  0.998</span>
-<span class="co">#&gt; 15 brainwt     bodywt         0.926       0.95    0.896    0.957  1    </span>
-<span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
-<span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">#&gt;  1          0      beta                         1.41        1.41     3.00e+ 9</span>
-<span class="co">#&gt;  2          0.0173 beta                         1.41        1.41     8.85e+ 0</span>
-<span class="co">#&gt;  3          0      beta                         1.41        1.41    NA       </span>
-<span class="co">#&gt;  4          0.028  beta                         1.41        1.41     7.29e+ 0</span>
-<span class="co">#&gt;  5          0.0292 beta                         1.41        1.41     9.28e+ 0</span>
-<span class="co">#&gt;  6          0.091  beta                         1.41        1.41     1.42e+ 0</span>
-<span class="co">#&gt;  7          0      beta                         1.41        1.41     3.01e+ 9</span>
-<span class="co">#&gt;  8          0.212  beta                         1.41        1.41     6.54e- 1</span>
-<span class="co">#&gt;  9          0.0362 beta                         1.41        1.41     4.80e+ 0</span>
-<span class="co">#&gt; 10          0.0158 beta                         1.41        1.41     8.85e+ 0</span>
-<span class="co">#&gt; 11          0      beta                         1.41        1.41     3.80e+ 6</span>
-<span class="co">#&gt; 12          0.0392 beta                         1.41        1.41     3.76e+ 0</span>
-<span class="co">#&gt; 13          0.0253 beta                         1.41        1.41     7.29e+ 0</span>
-<span class="co">#&gt; 14          0.0265 beta                         1.41        1.41     9.27e+ 0</span>
-<span class="co">#&gt; 15          0      beta                         1.41        1.41     1.58e+22</span>
-<span class="co">#&gt;    method                       n.obs</span>
-<span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span>
-<span class="co">#&gt;  1 Bayesian Pearson correlation    61</span>
-<span class="co">#&gt;  2 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt;  3 Bayesian Pearson correlation    83</span>
-<span class="co">#&gt;  4 Bayesian Pearson correlation    56</span>
-<span class="co">#&gt;  5 Bayesian Pearson correlation    83</span>
-<span class="co">#&gt;  6 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt;  7 Bayesian Pearson correlation    61</span>
-<span class="co">#&gt;  8 Bayesian Pearson correlation    48</span>
-<span class="co">#&gt;  9 Bayesian Pearson correlation    61</span>
-<span class="co">#&gt; 10 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; 11 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 12 Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; 13 Bayesian Pearson correlation    56</span>
-<span class="co">#&gt; 14 Bayesian Pearson correlation    83</span>
-<span class="co">#&gt; 15 Bayesian Pearson correlation    56</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    </span>
+<span class="co">#&gt; 2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.995</span>
+<span class="co">#&gt; 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
+<span class="co">#&gt; 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.534   -0.0465 0.963</span>
+<span class="co">#&gt; 5 sleep_rem   awake         -0.733       0.95   -0.826   -0.639  1    </span>
+<span class="co">#&gt; 6 sleep_cycle awake          0.439       0.95    0.220    0.653  0.998</span>
+<span class="co">#&gt;   rope.percentage prior.distribution prior.location prior.scale  bayes.factor</span>
+<span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1          0      beta                         1.41        1.41 3000790806.  </span>
+<span class="co">#&gt; 2          0.0173 beta                         1.41        1.41          8.85</span>
+<span class="co">#&gt; 3          0      beta                         1.41        1.41         NA   </span>
+<span class="co">#&gt; 4          0.100  beta                         1.41        1.41          1.42</span>
+<span class="co">#&gt; 5          0      beta                         1.41        1.41 3005546544.  </span>
+<span class="co">#&gt; 6          0.015  beta                         1.41        1.41          8.85</span>
+<span class="co">#&gt;   method                       n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt; 1 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 3 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt; 4 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 5 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
 <p>Additionally, <strong>partial</strong> correlation are also supported:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># dataframe in long format</span>
+<span class="co"># tidy data as output</span>
 <span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>, <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">matches</a></span><span class="op">(</span><span class="st">"sleep|awake"</span><span class="op">)</span><span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"bayes"</span>,
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 x 14</span>
-<span class="co">#&gt;    parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 sleep_total sleep_rem    0.279         0.95   0.0202     0.550 0.940</span>
-<span class="co">#&gt;  2 sleep_total sleep_cycle -0.0181        0.95  -0.306      0.254 0.543</span>
-<span class="co">#&gt;  3 sleep_total awake       -1             0.95  -1         -1     1    </span>
-<span class="co">#&gt;  4 sleep_total brainwt     -0.0818        0.95  -0.352      0.192 0.678</span>
-<span class="co">#&gt;  5 sleep_total bodywt      -0.163         0.95  -0.425      0.121 0.818</span>
-<span class="co">#&gt;  6 sleep_rem   sleep_cycle -0.0666        0.95  -0.335      0.222 0.643</span>
-<span class="co">#&gt;  7 sleep_rem   awake        0.0505        0.95  -0.212      0.328 0.611</span>
-<span class="co">#&gt;  8 sleep_rem   brainwt      0.0811        0.95  -0.235      0.326 0.668</span>
-<span class="co">#&gt;  9 sleep_rem   bodywt      -0.0190        0.95  -0.296      0.265 0.544</span>
-<span class="co">#&gt; 10 sleep_cycle awake       -0.00603       0.95  -0.278      0.279 0.516</span>
-<span class="co">#&gt; 11 sleep_cycle brainwt      0.764         0.95   0.637      0.871 1    </span>
-<span class="co">#&gt; 12 sleep_cycle bodywt      -0.0865        0.95  -0.351      0.187 0.691</span>
-<span class="co">#&gt; 13 awake       brainwt     -0.0854        0.95  -0.349      0.205 0.690</span>
-<span class="co">#&gt; 14 awake       bodywt      -0.407         0.95  -0.630     -0.146 0.991</span>
-<span class="co">#&gt; 15 brainwt     bodywt       0.229         0.95  -0.0341     0.484 0.904</span>
-<span class="co">#&gt;    rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
-<span class="co">#&gt;              &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">#&gt;  1           0.133 beta                         1.41        1.41        1.04 </span>
-<span class="co">#&gt;  2           0.418 beta                         1.41        1.41        0.277</span>
-<span class="co">#&gt;  3           0     beta                         1.41        1.41       NA    </span>
-<span class="co">#&gt;  4           0.390 beta                         1.41        1.41        0.311</span>
-<span class="co">#&gt;  5           0.294 beta                         1.41        1.41        0.417</span>
-<span class="co">#&gt;  6           0.404 beta                         1.41        1.41        0.297</span>
-<span class="co">#&gt;  7           0.411 beta                         1.41        1.41        0.287</span>
-<span class="co">#&gt;  8           0.380 beta                         1.41        1.41        0.303</span>
-<span class="co">#&gt;  9           0.424 beta                         1.41        1.41        0.280</span>
-<span class="co">#&gt; 10           0.422 beta                         1.41        1.41        0.276</span>
-<span class="co">#&gt; 11           0     beta                         1.41        1.41   131029.   </span>
-<span class="co">#&gt; 12           0.393 beta                         1.41        1.41        0.309</span>
-<span class="co">#&gt; 13           0.390 beta                         1.41        1.41        0.310</span>
-<span class="co">#&gt; 14           0.033 beta                         1.41        1.41        4.82 </span>
-<span class="co">#&gt; 15           0.206 beta                         1.41        1.41        0.637</span>
-<span class="co">#&gt;    method                       n.obs</span>
-<span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span>
-<span class="co">#&gt;  1 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  2 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  3 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  4 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  5 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  6 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  7 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  8 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt;  9 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 10 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 11 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 12 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 13 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 14 Bayesian Pearson correlation    30</span>
-<span class="co">#&gt; 15 Bayesian Pearson correlation    30</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 sleep_total sleep_rem    0.0938        0.95   -0.165     0.385 0.704</span>
+<span class="co">#&gt; 2 sleep_total sleep_cycle  0.00194       0.95   -0.263     0.279 0.505</span>
+<span class="co">#&gt; 3 sleep_total awake       -1             0.95   -1        -1     1    </span>
+<span class="co">#&gt; 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.283     0.248 0.558</span>
+<span class="co">#&gt; 5 sleep_rem   awake        0.0889        0.95   -0.191     0.356 0.698</span>
+<span class="co">#&gt; 6 sleep_cycle awake        0.00381       0.95   -0.259     0.283 0.508</span>
+<span class="co">#&gt;   rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
+<span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
+<span class="co">#&gt; 1           0.378 beta                         1.41        1.41        0.311</span>
+<span class="co">#&gt; 2           0.434 beta                         1.41        1.41        0.267</span>
+<span class="co">#&gt; 3           0     beta                         1.41        1.41       NA    </span>
+<span class="co">#&gt; 4           0.429 beta                         1.41        1.41        0.272</span>
+<span class="co">#&gt; 5           0.386 beta                         1.41        1.41        0.309</span>
+<span class="co">#&gt; 6           0.444 beta                         1.41        1.41        0.267</span>
+<span class="co">#&gt;   method                       n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt; 1 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 3 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 4 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 5 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
 <div id="summary-of-graphics-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-graphics-5" class="anchor" aria-hidden="true"></a>Summary of graphics</h3>

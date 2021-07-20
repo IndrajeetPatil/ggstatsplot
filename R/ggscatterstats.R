@@ -11,6 +11,8 @@
 #'   `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label (e.g. `y < 4 & z < 20`).
+#'   While using this argument with `purrr::pmap`, you will have to provide a
+#'   quoted expression  (e.g. `quote(y < 4 & z < 20)`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed

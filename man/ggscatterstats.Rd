@@ -91,7 +91,9 @@ the plot will be returned.}
 \code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).}
+determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
+While using this argument with \code{purrr::pmap}, you will have to provide a
+quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}

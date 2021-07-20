@@ -36,7 +36,9 @@ bare name \code{x} or as a string \code{"x"}).}
 \code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).}
+determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
+While using this argument with \code{purrr::pmap}, you will have to provide a
+quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

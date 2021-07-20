@@ -320,10 +320,11 @@ plot_list <-
         "MPAA Rating: R"
       ),
       label.var = list("title"),
+      # note that you need to quote the expressions
       label.expression = list(
-        "rating > 7.5 & budget < 100",
-        "rating > 8 & budget < 50",
-        "rating > 8 & budget < 10"
+        quote(rating > 7.5 & budget < 100),
+        quote(rating > 8 & budget < 50),
+        quote(rating > 8 & budget < 10)
       ),
       type = list("r", "np", "bf"),
       xfill = list("#009E73", "#999999", "#0072B2"),

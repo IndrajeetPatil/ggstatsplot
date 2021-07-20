@@ -87,7 +87,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.1.0.9002",
+      "version": ">= 0.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -490,6 +490,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "11468.25KB",
+  "fileSize": "0KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
