@@ -30,6 +30,12 @@ MINOR CHANGES
     package directly and not this wrapper around it which is mostly useful with
     `ggstatsplot` plots.
 
+  - `ggscatterstats` labeling arguments accept only unquoted inputs now, and not
+    quoted or string inputs. Allowing this was a bad design choice in the past
+    since most functions in `ggstatsplot`, inspired by `tidyverse`, expect
+    unquoted (`x`) - and not quoted (`"x"`) - arguments. So this function was
+    the odd one out.
+
   - Gets rid of `ipmisc` dependency.
 
 # ggstatsplot 0.8.0

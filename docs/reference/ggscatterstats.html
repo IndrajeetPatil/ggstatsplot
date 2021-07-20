@@ -81,9 +81,8 @@
   
 
 <meta property="og:title" content="Scatterplot with marginal distributions and statistical results — ggscatterstats" />
-<meta property="og:description" content="Scatterplots from ggplot2 combined with marginal
-histograms/boxplots/density plots with statistical details added as a
-subtitle." />
+<meta property="og:description" content="Scatterplots from ggplot2 combined with marginal densigram (density +
+histogram) plots with statistical details." />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -232,9 +231,8 @@ subtitle." />
     </div>
 
     <div class="ref-description">
-    <p>Scatterplots from <code>ggplot2</code> combined with marginal
-histograms/boxplots/density plots with statistical details added as a
-subtitle.</p>
+    <p>Scatterplots from <code>ggplot2</code> combined with marginal densigram (density +
+histogram) plots with statistical details.</p>
     </div>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>ggscatterstats</span><span class='op'>(</span>
@@ -343,15 +341,13 @@ the plot will be returned.</p></td>
     </tr>
     <tr>
       <th>label.var</th>
-      <td><p>Variable to use for points labels. Can be entered either as
-a bare expression (e.g, <code>var1</code>) or as a string (e.g., <code>"var1"</code>).</p></td>
+      <td><p>Variable to use for points labels entered as a symbol (e.g.
+<code>var1</code>).</p></td>
     </tr>
     <tr>
       <th>label.expression</th>
       <td><p>An expression evaluating to a logical vector that
-determines the subset of data points to label. This argument can be entered
-either as a bare expression (e.g., <code>y &lt; 4 &amp; z &lt; 20</code>) or as a string (e.g.,
-<code>"y &lt; 4 &amp; z &lt; 20"</code>).</p></td>
+determines the subset of data points to label (e.g. <code>y &lt; 4 &amp; z &lt; 20</code>).</p></td>
     </tr>
     <tr>
       <th>point.args</th>
@@ -482,6 +478,8 @@ have a lot of labels that overlap.</p>
 <span class='r-in'>  <span class='op'>)</span> <span class='op'>+</span> <span class='co'># making further customization with `ggplot2` functions</span></span>
 <span class='r-in'>    <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_rug.html'>geom_rug</a></span><span class='op'>(</span>sides <span class='op'>=</span> <span class='st'>"b"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggside</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggplot2</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span>
 <span class='r-plt'><img src='ggscatterstats-1.png' alt='' width='700' height='433' /></span>

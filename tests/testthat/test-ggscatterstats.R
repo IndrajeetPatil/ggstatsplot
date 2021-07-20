@@ -215,8 +215,6 @@ test_that(
     set.seed(123)
     expect_snapshot(list(pb$data[[1]], head(pb$data[[2]]), pb$data[[3]]))
     expect_snapshot(pb$plot$labels)
-
-    # both quoted
     expect_s3_class(p, "gg")
   }
 )

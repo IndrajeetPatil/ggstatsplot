@@ -32,13 +32,11 @@ be plotted on the \code{y}-axis.}
 \item{grouping.var}{A single grouping variable (can be entered either as a
 bare name \code{x} or as a string \code{"x"}).}
 
-\item{label.var}{Variable to use for points labels. Can be entered either as
-a bare expression (e.g, \code{var1}) or as a string (e.g., \code{"var1"}).}
+\item{label.var}{Variable to use for points labels entered as a symbol (e.g.
+\code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label. This argument can be entered
-either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
-\code{"y < 4 & z < 20"}).}
+determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

@@ -3,17 +3,14 @@
 #'
 #' @description
 #'
-#' Scatterplots from `ggplot2` combined with marginal
-#' histograms/boxplots/density plots with statistical details added as a
-#' subtitle.
+#' Scatterplots from `ggplot2` combined with marginal densigram (density +
+#' histogram) plots with statistical details.
 #'
 #' @param ... Currently ignored.
-#' @param label.var Variable to use for points labels. Can be entered either as
-#'   a bare expression (e.g, `var1`) or as a string (e.g., `"var1"`).
+#' @param label.var Variable to use for points labels entered as a symbol (e.g.
+#'   `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
-#'   determines the subset of data points to label. This argument can be entered
-#'   either as a bare expression (e.g., `y < 4 & z < 20`) or as a string (e.g.,
-#'   `"y < 4 & z < 20"`).
+#'   determines the subset of data points to label (e.g. `y < 4 & z < 20`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed
@@ -44,7 +41,7 @@
 #'
 #' @importFrom dplyr filter pull
 #' @importFrom stats lm
-#' @importFrom rlang !! enquo quo_name parse_expr ensym as_name enexpr exec !!!
+#' @importFrom rlang !! enquo quo_name ensym as_name enexpr exec !!!
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom statsExpressions corr_test
 #'
@@ -200,33 +197,15 @@ ggscatterstats <- function(data,
 
   # point labels --------------------------------
 
-  if (isTRUE(point.labelling)) {
-    # is expression provided?
+  if (point.labelling) {
+    # select data based on expression
     if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
-      expression.present <- TRUE
-    } else {
-      expression.present <- FALSE
-    }
-
-    # creating a new dataframe for showing labels
-    if (isTRUE(expression.present)) {
-      if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
-        label.expression <- rlang::enexpr(label.expression)
-      }
-
-      # testing for whether we received bare or quoted
-      if (typeof(label.expression) == "language") {
-        # unquoted case
-        label_data <- dplyr::filter(data, !!label.expression)
-      } else {
-        # quoted case
-        label_data <- dplyr::filter(data, !!rlang::parse_expr(label.expression))
-      }
+      label_data <- dplyr::filter(data, !!rlang::enexpr(label.expression))
     } else {
       label_data <- data
     }
 
-    # using geom_repel_label
+    # display points labels using `geom_repel_label`
     plot <- plot +
       rlang::exec(
         .fn = ggrepel::geom_label_repel,
@@ -254,13 +233,11 @@ ggscatterstats <- function(data,
 
   # marginal  ---------------------------------------------
 
-  # adding marginal distributions
   if (marginal) {
     # installed?
     insight::check_if_installed("ggside")
 
-
-
+    # adding marginal distributions
     plot <- plot +
       rlang::exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       rlang::exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +

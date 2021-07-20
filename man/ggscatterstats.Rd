@@ -87,13 +87,11 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{label.var}{Variable to use for points labels. Can be entered either as
-a bare expression (e.g, \code{var1}) or as a string (e.g., \code{"var1"}).}
+\item{label.var}{Variable to use for points labels entered as a symbol (e.g.
+\code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label. This argument can be entered
-either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
-\code{"y < 4 & z < 20"}).}
+determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}
@@ -157,9 +155,8 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{Currently ignored.}
 }
 \description{
-Scatterplots from \code{ggplot2} combined with marginal
-histograms/boxplots/density plots with statistical details added as a
-subtitle.
+Scatterplots from \code{ggplot2} combined with marginal densigram (density +
+histogram) plots with statistical details.
 }
 \details{
 For details, see:

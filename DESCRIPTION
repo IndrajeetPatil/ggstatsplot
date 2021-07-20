@@ -29,12 +29,12 @@ Imports:
     ggplot2 (>= 3.3.5),
     ggrepel,
     ggsignif,
-    insight (>= 0.14.1),
+    insight (>= 0.14.2.1),
     pairwiseComparisons (>= 3.2.0),
     paletteer,
     parameters (>= 0.14.0.1),
     patchwork,
-    performance,
+    performance (>= 0.7.2.1),
     purrr,
     rlang,
     stats,
@@ -56,9 +56,11 @@ Suggests:
     testthat,
     tibble,
     vdiffr,
-    WRS2
+    WRS2 (>= 1.1-3)
 Remotes:
+    easystats/insight,
     easystats/parameters,
+    easystats/performance,
     IndrajeetPatil/statsExpressions,
     IndrajeetPatil/pairwiseComparisons,
     jtlandis/ggside
