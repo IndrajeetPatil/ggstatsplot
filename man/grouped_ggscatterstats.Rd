@@ -32,13 +32,11 @@ be plotted on the \code{y}-axis.}
 \item{grouping.var}{A single grouping variable (can be entered either as a
 bare name \code{x} or as a string \code{"x"}).}
 
-\item{label.var}{Variable to use for points labels. Can be entered either as
-a bare expression (e.g, \code{var1}) or as a string (e.g., \code{"var1"}).}
+\item{label.var}{Variable to use for points labels entered as a symbol (e.g.
+\code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label. This argument can be entered
-either as a bare expression (e.g., \code{y < 4 & z < 20}) or as a string (e.g.,
-\code{"y < 4 & z < 20"}).}
+determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -65,8 +63,8 @@ to \code{ggplot2::geom_smooth} geom used to display the regression line.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
-axes using \code{ggExtra::ggMarginal()}. The default is \code{TRUE}. The package
-\code{ggExtra} must already be installed by the user.}
+axes using \code{ggside} functions. The default is \code{TRUE}. The package
+\code{ggside} must already be installed by the user.}
     \item{\code{point.width.jitter}}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
@@ -79,17 +77,20 @@ data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the *\strong{labels} for
 these points.}
-    \item{\code{marginal.type}}{Type of marginal distribution to be plotted on the axes
-(\code{"histogram"}, \code{"boxplot"}, \code{"density"}, \code{"violin"}, \code{"densigram"}).}
-    \item{\code{marginal.size}}{Integer describing the relative size of the marginal
-plots compared to the main plot. A size of \code{5} means that the main plot is
-5x wider and 5x taller than the marginal plots.}
     \item{\code{xfill}}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). Note that the defaults are colorblind-friendly.}
     \item{\code{yfill}}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). Note that the defaults are colorblind-friendly.}
+    \item{\code{xsidehistogram.args}}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
+change the marginal distribution histograms and density plots.}
+    \item{\code{ysidehistogram.args}}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
+change the marginal distribution histograms and density plots.}
+    \item{\code{xsidedensity.args}}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
+change the marginal distribution histograms and density plots.}
+    \item{\code{ysidedensity.args}}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
+change the marginal distribution histograms and density plots.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}
@@ -158,7 +159,6 @@ grouped_ggscatterstats(
   y = rating,
   type = "robust",
   grouping.var = genre,
-  marginal = FALSE,
   ggplot.component = list(ggplot2::geom_rug(sides = "b"))
 )
 
@@ -170,7 +170,6 @@ grouped_ggscatterstats(
   y = hwy,
   grouping.var = cyl,
   type = "robust",
-  marginal = FALSE,
   label.var = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
@@ -189,7 +188,6 @@ grouped_ggscatterstats(
   grouping.var = genre,
   bf.message = FALSE,
   label.var = "title",
-  marginal = FALSE,
   annotation.args = list(tag_levels = "a")
 )
 }

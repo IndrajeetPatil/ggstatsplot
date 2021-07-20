@@ -185,7 +185,7 @@ mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
 ggcoefstats(mod, output = "plot")
 
 # to get a tidy dataframe
-ggcoefstats( mod, output = "tidy")
+ggcoefstats(mod, output = "tidy")
 
 # to get a glance summary
 ggcoefstats(mod, output = "glance")

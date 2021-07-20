@@ -50,7 +50,7 @@ centrality_ggrepel <- function(plot,
                                ),
                                ...) {
   # creating the dataframe
-  centrality_df <- centrality_description(data, {{ x }}, {{ y }}, ...)
+  centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
   # if there should be lines connecting mean values across groups
   if (isTRUE(centrality.path)) {

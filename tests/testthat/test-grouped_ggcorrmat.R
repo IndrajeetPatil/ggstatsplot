@@ -15,8 +15,7 @@ test_that(
 
     # creating a smaller dataframe
     set.seed(123)
-    movies_filtered <-
-      movies_long %>%
+    movies_filtered <- movies_long %>%
       dplyr::filter(mpaa != "NC-17") %>%
       dplyr::sample_frac(tbl = ., size = 0.25)
 
@@ -37,7 +36,7 @@ test_that(
     expect_true(inherits(
       suppressWarnings(grouped_ggcorrmat(
         data = movies_filtered,
-        grouping.var = "mpaa",
+        grouping.var = mpaa,
         cor.vars = c("length":"votes"),
         cor.vars.names = c("w", "x", "y", "z"),
         type = "np"
@@ -63,7 +62,7 @@ test_that(
     expect_true(inherits(
       suppressWarnings(grouped_ggcorrmat(
         data = movies_filtered,
-        grouping.var = "mpaa",
+        grouping.var = mpaa,
         type = "r"
       )),
       what = "gg"
@@ -83,13 +82,12 @@ test_that(
 
     # tidy dataframe
     set.seed(123)
-    df1 <-
-      grouped_ggcorrmat(
-        data = ggplot2::msleep,
-        grouping.var = vore,
-        output = "r",
-        k = 3
-      )
+    df1 <- grouped_ggcorrmat(
+      data = ggplot2::msleep,
+      grouping.var = vore,
+      output = "r",
+      k = 3
+    )
 
     # testing dataframe
     expect_equal(dim(df1), c(60L, 12L))

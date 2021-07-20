@@ -236,8 +236,7 @@ plot_list <-
       data = df_list,
       x = "displ",
       y = "hwy",
-      results.subtitle = FALSE,
-      marginal.type = "densigram"
+      results.subtitle = FALSE
     ),
     .f = ggstatsplot::ggscatterstats
   )

@@ -435,7 +435,7 @@ if (getRversion() >= "4.1") {
     skip_if_not_installed("survival")
     skip_on_os("linux")
 
-    # vidffr tests --------------------------------
+    # vdiffr tests --------------------------------
 
     ## t-statistic --------------------------------
     # already tested in vdiffr test main file

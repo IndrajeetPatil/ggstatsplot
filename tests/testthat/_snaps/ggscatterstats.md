@@ -141,6 +141,69 @@
       [1] ""
       
 
+# bayes factor plus class of object
+
+    Code
+      purrr::map(pb$data, names)
+    Output
+      [[1]]
+       [1] "y"      "x"      "PANEL"  "group"  "shape"  "colour" "size"   "fill"  
+       [9] "alpha"  "stroke"
+      
+      [[2]]
+       [1] "x"           "y"           "ymin"        "ymax"        "se"         
+       [6] "flipped_aes" "PANEL"       "group"       "colour"      "fill"       
+      [11] "size"        "linetype"    "weight"      "alpha"      
+      
+      [[3]]
+       [1] "y"           "count"       "x"           "xmin"        "xmax"       
+       [6] "density"     "ncount"      "ndensity"    "flipped_aes" "PANEL"      
+      [11] "group"       "ymin"        "ymax"        "colour"      "xcolour"    
+      [16] "fill"        "xfill"       "size"        "linetype"    "alpha"      
+      
+      [[4]]
+       [1] "x"           "count"       "y"           "ymin"        "ymax"       
+       [6] "density"     "ncount"      "ndensity"    "flipped_aes" "PANEL"      
+      [11] "group"       "xmin"        "xmax"        "colour"      "ycolour"    
+      [16] "fill"        "yfill"       "size"        "linetype"    "alpha"      
+      
+      [[5]]
+       [1] "y"           "x"           "density"     "scaled"      "ndensity"   
+       [6] "count"       "n"           "flipped_aes" "PANEL"       "group"      
+      [11] "ymin"        "ymax"        "fill"        "xfill"       "weight"     
+      [16] "colour"      "xcolour"     "alpha"       "size"        "linetype"   
+      
+      [[6]]
+       [1] "x"           "y"           "density"     "scaled"      "ndensity"   
+       [6] "count"       "n"           "flipped_aes" "PANEL"       "group"      
+      [11] "xmin"        "xmax"        "fill"        "yfill"       "weight"     
+      [16] "colour"      "ycolour"     "alpha"       "size"        "linetype"   
+      
+
+---
+
+    Code
+      purrr::map(pb$data, dim)
+    Output
+      [[1]]
+      [1]  9 10
+      
+      [[2]]
+      [1] 80 14
+      
+      [[3]]
+      [1] 30 20
+      
+      [[4]]
+      [1] 30 20
+      
+      [[5]]
+      [1] 512  20
+      
+      [[6]]
+      [1] 512  20
+      
+
 # aesthetic modifications work
 
     Code
@@ -148,24 +211,24 @@
     Output
       [[1]]
                 y    x PANEL group shape colour size fill alpha stroke
-      1 0.1333333 14.9     1    -1    19  black    3   NA   0.4      0
-      2 0.1500000  9.1     1    -1    19  black    3   NA   0.4      0
-      3 0.3833333 17.4     1    -1    19  black    3   NA   0.4      0
-      4 0.3333333 18.0     1    -1    19  black    3   NA   0.4      0
-      5 0.1166667 19.7     1    -1    19  black    3   NA   0.4      0
-      6 0.2833333 10.1     1    -1    19  black    3   NA   0.4      0
-      7 0.1833333 13.0     1    -1    19  black    3   NA   0.4      0
-      8 0.1666667  8.4     1    -1    19  black    3   NA   0.4      0
-      9 0.2166667 13.8     1    -1    19  black    3   NA   0.4      0
+      1 0.1333333 14.9     2    -1    19  black    3   NA   0.4      0
+      2 0.1500000  9.1     2    -1    19  black    3   NA   0.4      0
+      3 0.3833333 17.4     2    -1    19  black    3   NA   0.4      0
+      4 0.3333333 18.0     2    -1    19  black    3   NA   0.4      0
+      5 0.1166667 19.7     2    -1    19  black    3   NA   0.4      0
+      6 0.2833333 10.1     2    -1    19  black    3   NA   0.4      0
+      7 0.1833333 13.0     2    -1    19  black    3   NA   0.4      0
+      8 0.1666667  8.4     2    -1    19  black    3   NA   0.4      0
+      9 0.2166667 13.8     2    -1    19  black    3   NA   0.4      0
       
       [[2]]
                x         y       ymin      ymax         se flipped_aes PANEL group
-      1 8.400000 0.1868825 0.05397985 0.3197852 0.05620456       FALSE     1    -1
-      2 8.543038 0.1877171 0.05714189 0.3182922 0.05522027       FALSE     1    -1
-      3 8.686076 0.1885516 0.06028225 0.3168210 0.05424514       FALSE     1    -1
-      4 8.829114 0.1893862 0.06339976 0.3153726 0.05327968       FALSE     1    -1
-      5 8.972152 0.1902207 0.06649314 0.3139483 0.05232442       FALSE     1    -1
-      6 9.115190 0.1910553 0.06956104 0.3125495 0.05137994       FALSE     1    -1
+      1 8.400000 0.1868825 0.05397985 0.3197852 0.05620456       FALSE     2    -1
+      2 8.543038 0.1877171 0.05714189 0.3182922 0.05522027       FALSE     2    -1
+      3 8.686076 0.1885516 0.06028225 0.3168210 0.05424514       FALSE     2    -1
+      4 8.829114 0.1893862 0.06339976 0.3153726 0.05327968       FALSE     2    -1
+      5 8.972152 0.1902207 0.06649314 0.3139483 0.05232442       FALSE     2    -1
+      6 9.115190 0.1910553 0.06956104 0.3125495 0.05137994       FALSE     2    -1
         colour   fill size linetype weight alpha
       1   blue grey60  1.5        1      1   0.4
       2   blue grey60  1.5        1      1   0.4
@@ -176,9 +239,9 @@
       
       [[3]]
                 y    x           label PANEL group colour  fill size angle alpha
-      1 0.3833333 17.4       Cingulata     1    -1   blue white    4     0   0.5
-      2 0.3333333 18.0 Didelphimorphia     1    -1   blue white    4     0   0.5
-      3 0.1166667 19.7      Chiroptera     1    -1   blue white    4     0   0.5
+      1 0.3833333 17.4       Cingulata     2    -1   blue white    4     0   0.5
+      2 0.3333333 18.0 Didelphimorphia     2    -1   blue white    4     0   0.5
+      3 0.1166667 19.7      Chiroptera     2    -1   blue white    4     0   0.5
         family fontface lineheight hjust vjust point.size segment.linetype
       1               1        1.2   0.5   0.5          1                1
       2               1        1.2   0.5   0.5          1                1
@@ -215,6 +278,16 @@
       
       $label
       [1] "order"
+      
+      $fill
+      [1] "fill"
+      attr(,"fallback")
+      [1] TRUE
+      
+      $weight
+      [1] "weight"
+      attr(,"fallback")
+      [1] TRUE
       
       $alt
       [1] ""

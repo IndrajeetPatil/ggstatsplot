@@ -21,7 +21,7 @@ test_that(
       grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
-        x = "cyl",
+        x = cyl,
         results.subtitle = FALSE
       )
     ),
@@ -47,7 +47,7 @@ test_that(
       grouped_ggpiestats(
         data = mpg_short,
         x = cyl,
-        y = "class",
+        y = class,
         results.subtitle = FALSE,
         grouping.var = drv,
         label.repel = TRUE
@@ -67,7 +67,7 @@ test_that(
         x = Sex,
         results.subtitle = FALSE,
         y = Survived,
-        counts = "Freq"
+        counts = Freq
       )
     ),
     what = "gg"
@@ -89,24 +89,22 @@ test_that(
 
     # should output a list of length 3
     set.seed(123)
-    ls_results <-
-      suppressWarnings(grouped_ggpiestats(
-        data = df,
-        x = relig,
-        y = marital,
-        grouping.var = race,
-        output = "subtitle"
-      ))
+    ls_results <- suppressWarnings(grouped_ggpiestats(
+      data = df,
+      x = relig,
+      y = marital,
+      grouping.var = race,
+      output = "subtitle"
+    ))
 
     set.seed(123)
-    sexpr_results <-
-      suppressWarnings(statsExpressions::contingency_table(
-        data = dplyr::filter(df, race == "Other") %>%
-          dplyr::mutate_if(., is.factor, droplevels),
-        x = relig,
-        y = marital,
-        output = "subtitle"
-      )$expression[[1]])
+    sexpr_results <- suppressWarnings(statsExpressions::contingency_table(
+      data = dplyr::filter(df, race == "Other") %>%
+        dplyr::mutate_if(., is.factor, droplevels),
+      x = relig,
+      y = marital,
+      output = "subtitle"
+    )$expression[[1]])
 
     # checking subtitle
     expect_equal(ls_results$Other, sexpr_results)

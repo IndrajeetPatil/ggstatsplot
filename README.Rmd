@@ -85,7 +85,7 @@ The following `README` file briefly describes the installation procedure:
 If you want to cite this package in a scientific journal or in any other
 context, run the following code in your `R` console:
 
-```{r citation, comment = ""}
+```{r citation, comment=""}
 citation("ggstatsplot")
 ```
 
@@ -211,7 +211,7 @@ informative or change some of the default options. Additionally, there is also a
 `grouped_` variant of this function that makes it easy to repeat the same
 operation across a **single** grouping variable:
 
-```{r ggbetweenstats2, fig.height = 8, fig.width = 12}
+```{r ggbetweenstats2, fig.height=8, fig.width=12}
 # for reproducibility
 set.seed(123)
 
@@ -310,7 +310,7 @@ seen from an example below, the only difference between the plot structure is
 that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
-```{r ggwithinstats1, fig.width = 8, fig.height = 6}
+```{r ggwithinstats1, fig.width=8, fig.height=6}
 # for reproducibility and data
 set.seed(123)
 library(WRS2) # for data
@@ -350,7 +350,7 @@ As with the `ggbetweenstats`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
-```{r ggwithinstats2, fig.height = 6, fig.width = 14}
+```{r ggwithinstats2, fig.height=6, fig.width=14}
 # common setup
 set.seed(123)
 
@@ -470,7 +470,7 @@ gghistostats(
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r gghistostats2, fig.height = 6, fig.width = 10}
+```{r gghistostats2, fig.height=6, fig.width=10}
 # for reproducibility
 set.seed(123)
 
@@ -538,7 +538,7 @@ For more, including information about the variant of this function
 This function is similar to `gghistostats`, but is intended to be used when the
 numeric variable also has a label.
 
-```{r ggdotplotstats1, fig.height = 10, fig.width = 8}
+```{r ggdotplotstats1, fig.height=10, fig.width=8}
 # for reproducibility
 set.seed(123)
 
@@ -572,7 +572,7 @@ As with the rest of the functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
 
-```{r ggdotplotstats2, fig.height = 6, fig.width = 12}
+```{r ggdotplotstats2, fig.height=6, fig.width=12}
 # for reproducibility
 set.seed(123)
 
@@ -630,10 +630,9 @@ Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal distributions overlaid on the
-axes (from `ggExtra::ggMarginal`) and results from statistical tests in the
-subtitle:
+axes and results from statistical tests in the subtitle:
 
-```{r ggscatterstats1}
+```{r ggscatterstats1, fig.height=6}
 ggscatterstats(
   data = ggplot2::msleep,
   x = sleep_rem,
@@ -653,48 +652,10 @@ ggscatterstats(
 ✅ Bayesian hypothesis-testing <br>
 ✅ Bayesian estimation <br>
 
-The available marginal distributions are-
+There is also a `grouped_` variant of this function that makes it
+easy to repeat the same operation across a **single** grouping variable.
 
-  - histograms
-  - boxplots
-  - density
-  - violin
-  - densigram (density + histogram)
-
-Number of other arguments can be specified to modify this basic plot-
-
-```{r ggscatterstats2, fig.width=10}
-# for reproducibility
-set.seed(123)
-
-# plot
-ggscatterstats(
-  data = dplyr::filter(movies_long, genre == "Action"),
-  x = budget,
-  y = rating,
-  type = "robust", # type of test that needs to be run
-  xlab = "Movie budget (in million/ US$)", # label for x axis
-  ylab = "IMDB rating", # label for y axis
-  label.var = title, # variable for labeling data points
-  label.expression = rating < 5 & budget > 100, # expression that decides which points to label
-  title = "Movie budget and IMDB rating (action)", # title text for the plot
-  caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
-  ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
-  # turn off `ggstatsplot` theme layer
-  marginal.type = "boxplot", # type of marginal distribution to be displayed
-  xfill = "pink", # color fill for x-axis marginal distribution
-  yfill = "#009E73" # color fill for y-axis marginal distribution
-)
-```
-
-Additionally, there is also a `grouped_` variant of this function that makes it
-easy to repeat the same operation across a **single** grouping variable. Also,
-note that, as opposed to the other functions, this function does not return a
-`ggplot` object and any modification you want to make can be made in advance
-using `ggplot.component` argument (available for all functions, but especially
-useful here):
-
-```{r ggscatterstats3, fig.height = 6, fig.width = 14}
+```{r ggscatterstats2, fig.height=6, fig.width=14}
 # for reproducibility
 set.seed(123)
 
@@ -723,7 +684,8 @@ graphical element | `geom_` used | argument for further modification
 raw data | `ggplot2::geom_point` | `point.args`
 labels for raw data | `ggrepel::geom_label_repel` | `point.label.args`
 smooth line | `ggplot2::geom_smooth` | `smooth.line.args`
-marginal distributions | `ggExtra::ggMarginal` | ❌
+marginal histograms | `ggside::geom_xsidehistogram`,  `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args`
+marginal density plots | `ggside::geom_xsidedensity`,  `ggside::geom_ysidedensity` | `xsidedensity.args`, `ysidedensity.args`
 
 ### Summary of tests
 
@@ -772,7 +734,7 @@ minimum, median, and maximum number of pairs used for correlation tests.
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggcorrmat2, fig.height = 6, fig.width = 10}
+```{r ggcorrmat2, fig.height=6, fig.width=10}
 # for reproducibility
 set.seed(123)
 
@@ -878,7 +840,7 @@ easy to repeat the same operation across a **single** grouping variable.
 Following example is a case where the theoretical question is about proportions
 for different levels of a single nominal variable:
 
-```{r ggpiestats2, fig.height = 6, fig.width = 10}
+```{r ggpiestats2, fig.height=6, fig.width=10}
 # for reproducibility
 set.seed(123)
 
@@ -949,7 +911,7 @@ alternatively use `ggbarstats` function which has a similar syntax.
 N.B. The *p*-values from one-sample proportion test are displayed on top of each
 bar.
 
-```{r ggbarstats1, fig.height = 8, fig.width = 10}
+```{r ggbarstats1, fig.height=8, fig.width=10}
 # for reproducibility
 set.seed(123)
 library(ggplot2)
@@ -980,7 +942,7 @@ ggbarstats(
 
 And, needless to say, there is also a `grouped_` variant of this function-
 
-```{r ggbarstats2, fig.height = 6, fig.width = 12}
+```{r ggbarstats2, fig.height=6, fig.width=12}
 # setup
 set.seed(123)
 
@@ -1072,7 +1034,7 @@ be invariant across models:
   - The output of this function will be a `ggplot2` object and, thus, it can be
     further modified (e.g., change themes, etc.) with `ggplot2` functions.
 
-```{r ggcoefstats1, fig.height = 5, fig.width = 6}
+```{r ggcoefstats1, fig.height=5, fig.width=6}
 # for reproducibility
 set.seed(123)
 
@@ -1092,7 +1054,7 @@ ggcoefstats(mod)
 This default plot can be further modified to one's liking with additional
 arguments (also, let's use a different model now):
 
-```{r ggcoefstats2, fig.height = 6, fig.width = 8}
+```{r ggcoefstats2, fig.height=6, fig.width=8}
 # for reproducibility
 set.seed(123)
 
@@ -1193,7 +1155,7 @@ statistical test.
 For example, in the following chunk, we will create plot (*ridgeplot*) using
 `ggridges` package and use `ggstatsplot` function for extracting results.
 
-```{r ridgeplot, fig.height = 10, fig.width = 7}
+```{r ridgeplot, fig.height=10, fig.width=7}
 # loading the needed libraries
 set.seed(123)
 library(ggridges)
@@ -1342,4 +1304,3 @@ of commitment):
 
 Please note that this project is released with a 
 [Contributor Code of Conduct](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
-

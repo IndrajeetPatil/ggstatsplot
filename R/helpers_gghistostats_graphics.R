@@ -37,7 +37,7 @@ histo_labeller <- function(plot,
                            ),
                            ...) {
   # compute centrality measure (with a temporary dataframe)
-  df_central <- centrality_description(tibble(.x = ".x", "var" = x), .x, var, ...)
+  df_central <- suppressWarnings(centrality_description(tibble(.x = ".x", "var" = x), .x, var, ...))
 
   # adding a vertical line corresponding to centrality parameter
   plot +

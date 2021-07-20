@@ -67,16 +67,17 @@ would like to combine these plots in a single plot.
 # libraries
 set.seed(123)
 library(tidyverse)
+library(ggstatsplot)
 
 # creating a list of plots
 p_list <-
   mtcars %>%
   dplyr::filter(cyl != 4) %>%
   dplyr::group_by(cyl) %>%
-  dplyr::group_map(.f = ~ ggstatsplot::ggbetweenstats(data = ., x = am, y = wt))
+  dplyr::group_map(.f = ~ ggbetweenstats(data = ., x = am, y = wt))
 
 # combining plots
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = p_list,
   annotation.args = list(tag_levels = list(as.vector(rlang::set_names(levels(as.factor(mtcars$cyl))))))
 )
@@ -113,28 +114,20 @@ plots <- iris %>%
     plot = data %>%
       purrr::map(
         .x = .,
-        .f = ~ ggstatsplot::ggscatterstats(
+        .f = ~ ggscatterstats(
           data = .,
           x = Sepal.Length,
           y = Sepal.Width,
-          xfill = "#0072B2",
-          yfill = "#009E73",
-          ggtheme = ggthemes::theme_fivethirtyeight(),
-          
-          messages = FALSE, # turns off warnings and notes messages
-          marginal.type = "boxplot",
-          title =
-            glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
+          title = glue::glue("Species: {.$Species2} (n = {length(.$Sepal.Length)})")
         )
       )
   )
 
-# display the new object (notice that the class of the `plot` list column is
-# S3: ggExtraPlot)
+# display the new object 
 plots
 
 # creating a grid with patchwork
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plots$plot,
   plotgrid.args = list(nrow = 3, ncol = 1),
   annotation.args = list(
@@ -178,13 +171,10 @@ dplyr::glimpse(gapminder::gapminder)
 
 # creating a list of plots
 plots <- plyr::dlply(
-  dplyr::filter(
-    gapminder::gapminder,
-    year == 2007, continent != "Oceania"
-  ),
+  dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   .variables = .(continent),
   .fun = function(data) {
-    ggstatsplot::ggscatterstats(
+    ggscatterstats(
       data = data,
       x = gdpPercap,
       y = lifeExp,
@@ -192,15 +182,14 @@ plots <- plyr::dlply(
       yfill = "#009E73",
       label.var = "country",
       label.expression = "lifeExp < 45",
-      title = glue::glue("Continent: {data$continent}"),
-      marginal = FALSE
+      title = glue::glue("Continent: {data$continent}")
     ) +
       ggplot2::scale_x_continuous(labels = scales::comma)
   }
 )
 
 # combining individual plots
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plots,
   annotation.args = list(title = "Relationship between GDP (per capita) and life expectancy"),
   plotgrid.args = list(nrow = 2)
@@ -223,11 +212,11 @@ accomplish that task as shown in the resulting plot.
 ```{r ggbetweenstats_subtext, fig.height = 8, fig.width = 8}
 library(ggstatsplot)
 
-ggstatsplot::combine_plots(
-  plotlist = list(ggstatsplot::ggcoefstats(
+combine_plots(
+  plotlist = list(ggcoefstats(
     x = stats::lm(
       formula = rating ~ stats::poly(budget, degree = 3),
-      data = dplyr::sample_frac(tbl = ggstatsplot::movies_long, size = 0.2),
+      data = dplyr::sample_frac(tbl = movies_long, size = 0.2),
       na.action = na.omit
     ),
     exclude.intercept = FALSE,

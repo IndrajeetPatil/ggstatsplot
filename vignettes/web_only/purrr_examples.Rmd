@@ -326,7 +326,6 @@ plot_list <-
         "rating > 8 & budget < 10"
       ),
       type = list("r", "np", "bf"),
-      marginal.type = list("boxplot", "density", "violin"),
       xfill = list("#009E73", "#999999", "#0072B2"),
       yfill = list("#CC79A7", "#F0E442", "#D55E00"),
       ggtheme = list(

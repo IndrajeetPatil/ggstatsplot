@@ -631,8 +631,7 @@ grouped_ggdotplotstats(
 ## `ggscatterstats`
 
 This function creates a scatterplot with marginal distributions overlaid
-on the axes (from `ggExtra::ggMarginal`) and results from statistical
-tests in the subtitle:
+on the axes and results from statistical tests in the subtitle:
 
 ``` r
 ggscatterstats(
@@ -653,48 +652,8 @@ ggscatterstats(
 inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
-The available marginal distributions are-
-
--   histograms
--   boxplots
--   density
--   violin
--   densigram (density + histogram)
-
-Number of other arguments can be specified to modify this basic plot-
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# plot
-ggscatterstats(
-  data = dplyr::filter(movies_long, genre == "Action"),
-  x = budget,
-  y = rating,
-  type = "robust", # type of test that needs to be run
-  xlab = "Movie budget (in million/ US$)", # label for x axis
-  ylab = "IMDB rating", # label for y axis
-  label.var = title, # variable for labeling data points
-  label.expression = rating < 5 & budget > 100, # expression that decides which points to label
-  title = "Movie budget and IMDB rating (action)", # title text for the plot
-  caption = expression(paste(italic("Note"), ": IMDB stands for Internet Movie DataBase")),
-  ggtheme = hrbrthemes::theme_ipsum_ps(), # choosing a different theme
-  # turn off `ggstatsplot` theme layer
-  marginal.type = "boxplot", # type of marginal distribution to be displayed
-  xfill = "pink", # color fill for x-axis marginal distribution
-  yfill = "#009E73" # color fill for y-axis marginal distribution
-)
-```
-
-<img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
-
-Additionally, there is also a `grouped_` variant of this function that
-makes it easy to repeat the same operation across a **single** grouping
-variable. Also, note that, as opposed to the other functions, this
-function does not return a `ggplot` object and any modification you want
-to make can be made in advance using `ggplot.component` argument
-(available for all functions, but especially useful here):
+There is also a `grouped_` variant of this function that makes it easy
+to repeat the same operation across a **single** grouping variable.
 
 ``` r
 # for reproducibility
@@ -718,16 +677,17 @@ grouped_ggscatterstats(
 )
 ```
 
-<img src="man/figures/README-ggscatterstats3-1.png" width="100%" />
+<img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
 
 ### Summary of graphics
 
-| graphical element      | `geom_` used                | argument for further modification |
-|------------------------|-----------------------------|-----------------------------------|
-| raw data               | `ggplot2::geom_point`       | `point.args`                      |
-| labels for raw data    | `ggrepel::geom_label_repel` | `point.label.args`                |
-| smooth line            | `ggplot2::geom_smooth`      | `smooth.line.args`                |
-| marginal distributions | `ggExtra::ggMarginal`       | ❌                                 |
+| graphical element      | `geom_` used                                                 | argument for further modification            |
+|------------------------|--------------------------------------------------------------|----------------------------------------------|
+| raw data               | `ggplot2::geom_point`                                        | `point.args`                                 |
+| labels for raw data    | `ggrepel::geom_label_repel`                                  | `point.label.args`                           |
+| smooth line            | `ggplot2::geom_smooth`                                       | `smooth.line.args`                           |
+| marginal histograms    | `ggside::geom_xsidehistogram`, `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args` |
+| marginal density plots | `ggside::geom_xsidedensity`, `ggside::geom_ysidedensity`     | `xsidedensity.args`, `ysidedensity.args`     |
 
 ### Summary of tests
 

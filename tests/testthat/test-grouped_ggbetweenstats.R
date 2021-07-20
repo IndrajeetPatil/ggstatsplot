@@ -38,7 +38,7 @@ test_that(
       grouped_ggbetweenstats(
         data = dat,
         x = genre,
-        y = "rating",
+        y = rating,
         grouping.var = mpaa,
         type = "p",
         output = "plot",
@@ -58,9 +58,9 @@ test_that(
     expect_true(inherits(
       grouped_ggbetweenstats(
         data = dat,
-        x = "genre",
+        x = genre,
         y = rating,
-        grouping.var = "mpaa",
+        grouping.var = mpaa,
         type = "np",
         plot.type = "violin",
         pairwise.comparisons = TRUE,
@@ -80,14 +80,14 @@ test_that(
     expect_true(inherits(
       grouped_ggbetweenstats(
         data = dat,
-        x = "genre",
-        y = "rating",
+        x = genre,
+        y = rating,
         grouping.var = mpaa,
         type = "r",
         results.subtitle = FALSE,
         pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
-        outlier.label = "title",
+        outlier.label = title,
         outlier.coef = 5,
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
       ),
@@ -113,28 +113,26 @@ test_that(
 
 
     set.seed(123)
-    ls_results <-
-      grouped_ggbetweenstats(
-        data = df,
-        x = race,
-        y = "tvhours",
-        grouping.var = "marital",
-        output = "subtitle",
-        bf.message = FALSE,
-        k = 4
-      )
+    ls_results <- grouped_ggbetweenstats(
+      data = df,
+      x = race,
+      y = tvhours,
+      grouping.var = marital,
+      output = "subtitle",
+      bf.message = FALSE,
+      k = 4
+    )
 
 
     set.seed(123)
-    basic_results <-
-      ggbetweenstats(
-        data = df,
-        x = race,
-        y = "tvhours",
-        output = "subtitle",
-        bf.message = FALSE,
-        k = 4
-      )
+    basic_results <- ggbetweenstats(
+      data = df,
+      x = race,
+      y = tvhours,
+      output = "subtitle",
+      bf.message = FALSE,
+      k = 4
+    )
     # tests
     expect_equal(ls_results$`Never married`, basic_results)
   }

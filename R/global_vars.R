@@ -7,6 +7,7 @@ utils::globalVariables(
     "N",
     "conf.high",
     "conf.low",
+    "count",
     "counts",
     "df.error",
     "estimate",
