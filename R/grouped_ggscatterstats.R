@@ -81,16 +81,8 @@ grouped_ggscatterstats <- function(data,
                                    plotgrid.args = list(),
                                    annotation.args = list(),
                                    ...) {
-
-  # dataframe ------------------------------------------
-
-  # ensure the grouping variable works quoted or unquoted
-  label.var <- if (!rlang::quo_is_null(rlang::enquo(label.var))) rlang::ensym(label.var)
-
   # getting the dataframe ready
-  df <- grouped_list(data = data, grouping.var = {{ grouping.var }})
-
-  # creating a list of return objects ----------------------------
+  df <- grouped_list(data, {{ grouping.var }})
 
   # creating a list of plots using `pmap`
   p_ls <- purrr::pmap(

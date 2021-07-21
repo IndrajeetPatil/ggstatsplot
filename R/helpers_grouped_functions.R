@@ -5,8 +5,7 @@
 #' @name grouped_list
 #'
 #' @inheritParams ggbetweenstats
-#' @param grouping.var A single grouping variable (can be entered either as a
-#'   bare name `x` or as a string `"x"`).
+#' @param grouping.var A single grouping variable.
 #'
 #' @importFrom rlang enquo quo_text ensym quo_is_null
 #'

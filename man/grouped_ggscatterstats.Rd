@@ -29,8 +29,7 @@ plotted on the \code{x}-axis.}
 \item{y}{The column in \code{data} containing the response (outcome) variable to
 be plotted on the \code{y}-axis.}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
+\item{grouping.var}{A single grouping variable.}
 
 \item{label.var}{Variable to use for points labels entered as a symbol (e.g.
 \code{var1}).}

@@ -77,7 +77,6 @@ centrality_ggrepel <- function(plot,
       ggrepel::geom_label_repel,
       data = centrality_df,
       mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = expression),
-      show.legend = FALSE,
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args

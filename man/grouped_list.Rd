@@ -11,8 +11,7 @@ grouped_list(data, grouping.var = NULL)
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
+\item{grouping.var}{A single grouping variable.}
 }
 \description{
 This function splits the dataframe into a list, with the length

@@ -154,7 +154,6 @@ ggbarstats <- function(data,
     rlang::exec(
       ggplot2::geom_label,
       mapping = ggplot2::aes(label = .label, group = {{ x }}),
-      show.legend = FALSE,
       position = ggplot2::position_fill(vjust = 0.5),
       !!!label.args
     ) +

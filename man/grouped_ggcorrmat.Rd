@@ -23,8 +23,7 @@ taken.}
 computed and visualized. If \code{NULL} (default), all numeric variables from
 \code{data} will be used.}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
+\item{grouping.var}{A single grouping variable.}
 
 \item{output}{Character that decides expected output from this function. If
 \code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or

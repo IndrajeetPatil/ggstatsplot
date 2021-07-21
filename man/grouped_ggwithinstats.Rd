@@ -34,8 +34,7 @@ subject-1,subject-2, ..., pattern.}
 \item{y}{The response (or outcome or dependent) variable from the
 dataframe \code{data}.}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
+\item{grouping.var}{A single grouping variable.}
 
 \item{outlier.label}{Label to put on the outliers that have been tagged. This
 \strong{can't} be the same as \code{x} argument.}

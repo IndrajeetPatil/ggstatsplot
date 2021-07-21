@@ -79,7 +79,7 @@ grouped_ggbetweenstats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = df, title = names(df)),
     .f = ggstatsplot::ggbetweenstats,
-    # put common parameters here
+    # common parameters
     x = {{ x }},
     y = {{ y }},
     outlier.label = {{ outlier.label }},

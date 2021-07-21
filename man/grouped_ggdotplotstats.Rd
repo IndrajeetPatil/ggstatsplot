@@ -24,8 +24,7 @@ be accepted.}
 
 \item{y}{Label or grouping variable.}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
+\item{grouping.var}{A single grouping variable.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

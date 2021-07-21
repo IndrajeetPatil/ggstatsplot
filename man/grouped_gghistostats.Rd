@@ -22,8 +22,7 @@ be accepted.}
 
 \item{x}{A numeric variable from the dataframe \code{data}.}
 
-\item{grouping.var}{A single grouping variable (can be entered either as a
-bare name \code{x} or as a string \code{"x"}).}
+\item{grouping.var}{A single grouping variable.}
 
 \item{binwidth}{The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from \code{x}. The default is

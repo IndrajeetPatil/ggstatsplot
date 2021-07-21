@@ -139,14 +139,6 @@ ggscatterstats <- function(data,
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # point labeling
-  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
-    label.var <- rlang::ensym(label.var)
-    point.labelling <- TRUE
-  } else {
-    point.labelling <- FALSE
-  }
-
   # preparing the dataframe
   data %<>% dplyr::filter(!is.na({{ x }}), !is.na({{ y }}))
 
@@ -199,7 +191,9 @@ ggscatterstats <- function(data,
 
   # point labels --------------------------------
 
-  if (point.labelling) {
+  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
+    label.var <- rlang::ensym(label.var)
+
     # select data based on expression
     if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
       label_data <- dplyr::filter(data, !!rlang::enexpr(label.expression))
@@ -213,7 +207,6 @@ ggscatterstats <- function(data,
         .fn = ggrepel::geom_label_repel,
         data = label_data,
         mapping = ggplot2::aes(label = {{ label.var }}),
-        show.legend = FALSE,
         min.segment.length = 0,
         position = pos,
         !!!point.label.args
@@ -237,7 +230,7 @@ ggscatterstats <- function(data,
 
   if (marginal) {
     # installed?
-    insight::check_if_installed("ggside")
+    insight::check_if_installed("ggside", minimum_version = "0.1.2")
 
     # adding marginal distributions
     plot <- plot +

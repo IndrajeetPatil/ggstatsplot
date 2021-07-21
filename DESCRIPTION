@@ -34,7 +34,7 @@ Imports:
     paletteer,
     parameters (>= 0.14.0.1),
     patchwork,
-    performance (>= 0.7.2.1),
+    performance (>= 0.7.3.1),
     purrr,
     rlang,
     stats,
@@ -42,10 +42,10 @@ Imports:
     tidyr,
     utils
 Suggests:
-    afex,
+    afex (>= 1.0-0),
     forcats,
     ggcorrplot,
-    ggside (>= 0.1.0.9002),
+    ggside (>= 0.1.2),
     knitr,
     MASS,
     metaBMA,
@@ -62,8 +62,7 @@ Remotes:
     easystats/parameters,
     easystats/performance,
     IndrajeetPatil/statsExpressions,
-    IndrajeetPatil/pairwiseComparisons,
-    jtlandis/ggside
+    IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

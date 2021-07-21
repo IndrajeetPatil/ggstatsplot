@@ -357,7 +357,6 @@ ggbetweenstats <- function(data,
         .fn = ggrepel::geom_label_repel,
         data = ~ dplyr::filter(.x, isanoutlier),
         mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        show.legend = FALSE,
         min.segment.length = 0,
         inherit.aes = FALSE,
         !!!outlier.label.args

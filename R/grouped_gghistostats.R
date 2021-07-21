@@ -72,7 +72,7 @@ grouped_gghistostats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = df, title = names(df)),
     .f = ggstatsplot::gghistostats,
-    # put common parameters here
+    # common parameters
     x = {{ x }},
     binwidth = binwidth %||% ((binmax - binmin) / sqrt(bincount)),
     output = output,

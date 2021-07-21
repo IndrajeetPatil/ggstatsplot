@@ -3648,8 +3648,7 @@ ggcoefstats(
   point.args = list(color = "red", shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "robust regression using an M estimator",
-  ggtheme = ggthemes::theme_stata(),
-  ggstatsplot.layer = FALSE
+  ggtheme = ggthemes::theme_stata() 
 )
 ```
 

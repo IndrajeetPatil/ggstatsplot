@@ -368,7 +368,6 @@ ggcoefstats <- function(x,
           ggrepel::geom_label_repel,
           data = tidy_df,
           mapping = ggplot2::aes(x = estimate, y = term, label = label),
-          show.legend = FALSE,
           parse = TRUE,
           color = stats.label.color,
           !!!stats.label.args

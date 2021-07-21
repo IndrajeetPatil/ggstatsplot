@@ -73,7 +73,7 @@ grouped_ggbarstats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = df, title = names(df)),
     .f = ggstatsplot::ggbarstats,
-    # put common parameters here
+    # common parameters
     x = {{ x }},
     y = {{ y }},
     counts = {{ counts }},

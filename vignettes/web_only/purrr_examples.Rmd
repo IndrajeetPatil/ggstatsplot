@@ -71,9 +71,7 @@ We will see how to overcome this limitation by combining `ggstatsplot` with the
 
 **Note:**
 
- * Unlike the typical function call for `ggstatsplot` functions where arguments
-   can be a string (`"x"`) or a symbol (`x`), while using `purrr::pmap`, we
-   **must** input the arguments as strings.
+ * While using `purrr::pmap`, we **must** input the arguments as strings.
 
  * You can use `ggplot2` themes from extension packages (e.g. `ggthemes`).
 
@@ -415,7 +413,7 @@ ggstatsplot::combine_plots(
 
 # `gghistostats`
 
-```{r purrr_gghistostats, fig.height = 14, fig.width = 6}
+```{r purrr_gghistostats, fig.height = 14, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -455,8 +453,7 @@ plot_list <-
         hrbrthemes::theme_ipsum_tw(),
         ggplot2::theme_minimal(),
         hrbrthemes::theme_modern_rc()
-      ),
-      ggstatsplot.layes = FALSE
+      )
     ),
     .f = ggstatsplot::gghistostats
   )
@@ -474,7 +471,7 @@ ggstatsplot::combine_plots(
 
 # `ggdotplotstats`
 
-```{r purrr_ggdotplotstats, fig.height = 16, fig.width = 6}
+```{r purrr_ggdotplotstats, fig.height = 16, fig.width = 8}
 # for reproducibility
 set.seed(123)
 library(ggthemes)
@@ -530,7 +527,8 @@ plot_list <-
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Improvement in GDP per capita from 1952-2007"),
-  plotgrid.args = list(nrow = 4)
+  plotgrid.args = list(nrow = 4),
+  guides = "keep"
 )
 ```  
 
@@ -587,7 +585,8 @@ plot_list <-
 ggstatsplot::combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Survival in Titanic disaster by gender for all passenger classes"),
-  plotgrid.args = list(ncol = 1)
+  plotgrid.args = list(ncol = 1),
+  guides = "keep"
 )
 ``` 
 
@@ -646,7 +645,8 @@ ggstatsplot::combine_plots(
     title = "Survival in Titanic disaster by gender for all passenger classes",
     caption = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant"
   ),
-  plotgrid.args = list(ncol = 1)
+  plotgrid.args = list(ncol = 1),
+  guides = "keep"
 )
 ``` 
 
