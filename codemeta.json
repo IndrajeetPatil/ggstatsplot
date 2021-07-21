@@ -94,7 +94,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ggside"
+      "sameAs": "https://github.com/jtlandis/ggside"
     },
     {
       "@type": "SoftwareApplication",
@@ -490,6 +490,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "6534.006KB",
+  "fileSize": "6714.578KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

@@ -62,7 +62,8 @@ Remotes:
     easystats/parameters,
     easystats/performance,
     IndrajeetPatil/statsExpressions,
-    IndrajeetPatil/pairwiseComparisons
+    IndrajeetPatil/pairwiseComparisons,
+    jtlandis/ggside
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

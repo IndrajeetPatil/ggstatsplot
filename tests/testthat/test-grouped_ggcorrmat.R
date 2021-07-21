@@ -6,6 +6,7 @@ test_that(
   code = {
     skip_on_cran()
     skip_if_not_installed("ggcorrplot")
+    skip_if_not_installed("vdiffr")
 
     # with grouping.var missing ---------------------------------------------
 
@@ -17,56 +18,67 @@ test_that(
     set.seed(123)
     movies_filtered <- movies_long %>%
       dplyr::filter(mpaa != "NC-17") %>%
-      dplyr::sample_frac(tbl = ., size = 0.25)
+      dplyr::select(-year) %>%
+      dplyr::sample_frac(size = 0.1)
 
-    # when arguments are entered as bare expressions
+    # basic
     set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggcorrmat works",
+      fig = grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
-        cor.vars = length:votes,
-        type = "p"
-      )),
-      what = "gg"
-    ))
+        cor.vars = length:votes
+      )
+    )
 
-    # when arguments are entered as character
     set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggcorrmat works - with NAs",
+      fig = grouped_ggcorrmat(
+        data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
+        grouping.var = vore,
+        tr = 0.2
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggcorrmat works - np",
+      fig = grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
+        matrix.type = "lower",
         cor.vars = c("length":"votes"),
         cor.vars.names = c("w", "x", "y", "z"),
         type = "np"
-      )),
-      what = "gg"
-    ))
+      )
+    )
 
     # without cor.vars specified -------------------------------------------
 
-    # when arguments are entered as bare expressions
     set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggcorrmat - entire data",
+      fig = grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
-        type = "p"
-      )),
-      what = "gg"
-    ))
+        ggtheme = ggplot2::theme_dark(),
+        colors = NULL,
+        package = "RColorBrewer",
+        palette = "Paired"
+      )
+    )
 
-    # when arguments are entered as bare expressions
     set.seed(123)
-    expect_true(inherits(
-      suppressWarnings(grouped_ggcorrmat(
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggcorrmat works - r",
+      fig = grouped_ggcorrmat(
         data = movies_filtered,
         grouping.var = mpaa,
         type = "r"
-      )),
-      what = "gg"
-    ))
+      )
+    )
   }
 )
 
@@ -78,18 +90,16 @@ test_that(
     skip_on_cran()
     skip_if_not_installed("ggcorrplot")
 
-    # without cor.vars specified --------------------------------------------
+    options(tibble.width = Inf)
 
     # tidy dataframe
     set.seed(123)
-    df1 <- grouped_ggcorrmat(
-      data = ggplot2::msleep,
+    expect_snapshot(grouped_ggcorrmat(
+      data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
       grouping.var = vore,
-      output = "r",
-      k = 3
-    )
-
-    # testing dataframe
-    expect_equal(dim(df1), c(60L, 12L))
+      type = "r",
+      output = "data",
+      tr = 0.2
+    ))
   }
 )
