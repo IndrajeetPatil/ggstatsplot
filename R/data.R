@@ -1,38 +1,3 @@
-#' @title Movie information and user ratings from IMDB.com (wide format).
-#' @name movies_wide
-#' @details Modified dataset from `ggplot2movies` package.
-#'
-#' The internet movie database, <https://imdb.com/>, is a website devoted
-#' to collecting movie data supplied by studios and fans. It claims to be the
-#' biggest movie database on the web and is run by amazon.
-#'
-#' Movies were selected for inclusion if they had a known length and had been
-#' rated by at least one imdb user. Small categories such as documentaries
-#' and NC-17 movies were removed.
-#'
-#' @format A data frame with 1,579 rows and 13 variables
-#'
-#'   - title. Title of the movie.
-#'   - year. Year of release.
-#'   - budget. Total budget in millions of US dollars
-#'   - length. Length in minutes.
-#'   - rating. Average IMDB user rating.
-#'   - votes. Number of IMDB users who rated this movie.
-#'   - mpaa. MPAA rating.
-#'   - action, animation, comedy, drama, documentary, romance, short. Binary
-#'   variables representing if movie was classified as belonging to that genre.
-#'   - NumGenre. The number of different genres a film was classified in an
-#'   integer between one and four
-#'
-#'
-#' @source <https://CRAN.R-project.org/package=ggplot2movies>
-#'
-#' @examples
-#' dim(movies_wide)
-#' head(movies_wide)
-#' dplyr::glimpse(movies_wide)
-"movies_wide"
-
 #' @title Movie information and user ratings from IMDB.com (long format).
 #' @name movies_long
 #' @details Modified dataset from `ggplot2movies` package.
@@ -40,10 +5,6 @@
 #' The internet movie database, <https://imdb.com/>, is a website devoted
 #' to collecting movie data supplied by studios and fans. It claims to be the
 #' biggest movie database on the web and is run by amazon.
-#'
-#' Movies were are identical to those selected for inclusion in movies_wide but this
-#' dataset has been constructed such that every movie appears in one and only one
-#' genre category.
 #'
 #' @format A data frame with 1,579 rows and 8 variables
 #'
@@ -56,7 +17,6 @@
 #'   - mpaa. MPAA rating.
 #'   - genre. Different genres of movies (action, animation, comedy, drama,
 #'   documentary, romance, short).
-#'
 #'
 #' @source <https://CRAN.R-project.org/package=ggplot2movies>
 #'
@@ -140,7 +100,6 @@
 #'   - score. Proportion of "utilitarian" decisions. In other words, of the
 #'   4 decisions, how many affirmative were responses. Range: 0 (all
 #'   utilitarian) - 1 (none utilitarian).
-#'
 #'
 #' @source <https://psyarxiv.com/ry3ap/>
 #'

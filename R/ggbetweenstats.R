@@ -281,7 +281,7 @@ ggbetweenstats <- function(data,
   # first add only the points which are *not* outliers
   plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
     rlang::exec(
-      .fn = ggplot2::geom_point,
+      ggplot2::geom_point,
       data = ~ dplyr::filter(.x, !isanoutlier),
       ggplot2::aes(color = {{ x }}),
       !!!point.args

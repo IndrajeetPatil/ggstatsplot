@@ -33,10 +33,6 @@ Modified dataset from \code{ggplot2movies} package.
 The internet movie database, \url{https://imdb.com/}, is a website devoted
 to collecting movie data supplied by studios and fans. It claims to be the
 biggest movie database on the web and is run by amazon.
-
-Movies were are identical to those selected for inclusion in movies_wide but this
-dataset has been constructed such that every movie appears in one and only one
-genre category.
 }
 \examples{
 dim(movies_long)

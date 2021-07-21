@@ -3,11 +3,10 @@ library(ggplot2movies)
 library(dplyr)
 
 # looking at the table
-dplyr::glimpse(x = ggplot2movies::movies)
+dplyr::glimpse(ggplot2movies::movies)
 
 # clean data leave it in wide format
-movies_wide <-
-  ggplot2movies::movies %>%
+movies_wide <- ggplot2movies::movies %>%
   dplyr::select(c(title:votes, mpaa:Short)) %>%
   dplyr::filter(mpaa != "", mpaa != "NC-17") %>%
   dplyr::filter(Short != 1, Documentary != 1) %>%
@@ -23,8 +22,7 @@ dplyr::glimpse(movies_wide)
 
 # converting to long format
 
-movies_long <-
-  movies_wide %>%
+movies_long <- movies_wide %>%
   dplyr::mutate(
     genre = dplyr::case_when(
       Action == 1 & Comedy == 1 & Animation == 0 ~ "Action Comedy",

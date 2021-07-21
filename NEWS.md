@@ -15,12 +15,13 @@ MAJOR CHANGES
     #28). This change gets rid of this inconsistency. But it comes at a cost:
     there is no more `marginal.type` argument that lets you change the type of
     marginal distribution graphic and the densigram (density plus histogram,
-    i.e.) is the only possible option. Note that this is **not** a breaking
-    change. Your past code will continue to work but it will now always produce
-    a densigram instead of other marginal graphic you might have chosen.
-    Additionally, the densigrams will look slightly different due to differences
-    in how these packages compute density plots for marginal distributions (for
-    more, see: <https://github.com/jtlandis/ggside/issues/18>).
+
+i.e.) is the only possible option. Note that this is **not** a breaking change.
+Your past code will continue to work but it will now always produce a densigram
+instead of other marginal graphic you might have chosen. Additionally, the
+densigrams will look slightly different due to differences in how these packages
+compute density plots for marginal distributions (for more, see:
+<https://github.com/jtlandis/ggside/issues/18>).
 
 MINOR CHANGES
 
@@ -36,6 +37,9 @@ MINOR CHANGES
     the odd one out.
 
   - Gets rid of `ipmisc` dependency.
+
+  - Removes `movies_wide` dataset, which was virtually identical to
+    `movies_long` dataset and was not used anywhere in the package.
 
 # ggstatsplot 0.8.0
 

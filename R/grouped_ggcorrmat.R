@@ -61,17 +61,14 @@ grouped_ggcorrmat <- function(data,
 
   # dataframe ------------------------------------------
 
-  # create a list of function call to check for label.expression
-  param_list <- as.list(match.call())
-
   # getting the dataframe ready
-  if ("cor.vars" %in% names(param_list)) {
+  if ("cor.vars" %in% names(as.list(match.call()))) {
     data %<>% dplyr::select({{ grouping.var }}, {{ cor.vars }})
   }
 
   # creating a list for grouped analysis
-  df <- grouped_list(data, grouping.var = {{ grouping.var }}) %>%
-    purrr::map(.x = ., .f = ~ dplyr::select(.x, -{{ grouping.var }}))
+  df <- grouped_list(data, {{ grouping.var }}) %>%
+    purrr::map(.f = ~ dplyr::select(.x, -{{ grouping.var }}))
 
   # creating a list of return objects ----------------------------
 

@@ -286,7 +286,7 @@ ggstatsplot::combine_plots(
 For the next example lets use the same methodology on different data and using
 `ggscatterstats` to produce scatterplots combined with marginal
 histograms/boxplots/density plots with statistical details added as a subtitle.
-For data we'll use `movies_wide` which is from IMDB and part of the
+For data we'll use `movies_long` which is from IMDB and part of the
 `ggstatsplot` package. Since it's a large dataset with some relatively small
 categories like **NC-17** we'll sample only one quarter of the data and
 completely drop NC-17 using `dplyr`. 
@@ -297,8 +297,7 @@ This time we'll put all the code in one block-
 # for reproducibility
 set.seed(123)
 
-mpaa_list <-
-  ggstatsplot::movies_wide %>%
+mpaa_list <- ggstatsplot::movies_long %>%
   dplyr::filter(mpaa != "NC-17") %>%
   dplyr::sample_frac(size = 0.25) %>%
   split(f = .$mpaa, drop = TRUE)

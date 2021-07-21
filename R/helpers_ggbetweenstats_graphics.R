@@ -41,7 +41,10 @@ centrality_ggrepel <- function(plot,
                                  size = 1,
                                  alpha = 0.5
                                ),
-                               centrality.point.args = list(size = 5, color = "darkred"),
+                               centrality.point.args = list(
+                                 size = 5,
+                                 color = "darkred"
+                               ),
                                centrality.label.args = list(
                                  size = 3,
                                  nudge_x = 0.4,
@@ -292,36 +295,4 @@ function_switch <- function(test, element, ...) {
 
   # return it
   .f
-}
-
-#' @title Message if palette doesn't have enough number of colors.
-#' @name palette_message
-#' @description Informs the user about not using the default color palette
-#'   when the number of factor levels is greater than 8, the maximum number of
-#'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
-#'
-#' @importFrom dplyr filter select
-#' @importFrom rlang !!
-#' @importFrom statsExpressions %$%
-#'
-#' @noRd
-
-# function body
-palette_message <- function(package, palette, min_length) {
-  # computing the palette length
-  dplyr::filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
-    length[[1]] -> pl
-
-  # check if insufficient number of colors are available in a given palette
-  pl_message <- ifelse(pl < min_length, FALSE, TRUE)
-
-  # inform the user
-  if (isFALSE(pl_message)) {
-    message(cat(
-      "Warning: Number of labels is greater than default palette color count.\n",
-      "Try using another color `palette` (and/or `package`).\n"
-    ))
-  }
-
-  invisible(pl_message)
 }

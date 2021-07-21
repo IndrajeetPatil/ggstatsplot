@@ -53,7 +53,6 @@ grouped_ggdotplotstats <- function(data,
 
   # dataframe ------------------------------------------
 
-  # creating a dataframe
   df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 

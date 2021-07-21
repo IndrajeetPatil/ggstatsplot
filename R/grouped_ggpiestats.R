@@ -46,7 +46,6 @@ grouped_ggpiestats <- function(data,
 
   # dataframe ------------------------------------------
 
-  # creating a dataframe
   df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 

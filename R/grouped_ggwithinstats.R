@@ -54,7 +54,6 @@ grouped_ggwithinstats <- function(data,
 
   # dataframe ------------------------------------------
 
-  # creating a dataframe
   df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
