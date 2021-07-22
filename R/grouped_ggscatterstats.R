@@ -82,11 +82,11 @@ grouped_ggscatterstats <- function(data,
                                    annotation.args = list(),
                                    ...) {
   # getting the dataframe ready
-  df <- grouped_list(data, {{ grouping.var }})
+  data %<>% grouped_list({{ grouping.var }})
 
   # creating a list of plots using `pmap`
   p_ls <- purrr::pmap(
-    .l = list(data = df, title = names(df)),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggscatterstats,
     # put common parameters here
     x = {{ x }},

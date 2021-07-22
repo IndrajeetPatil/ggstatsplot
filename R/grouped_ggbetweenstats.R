@@ -15,8 +15,6 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom rlang as_name ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
@@ -68,16 +66,12 @@ grouped_ggbetweenstats <- function(data,
                                    annotation.args = list(),
                                    ...) {
 
-  # dataframe ------------------------------------------
-
   # creating a dataframe
-  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ outlier.label }}) %>%
-    grouped_list(grouping.var = {{ grouping.var }})
+  data %<>% grouped_list(grouping.var = {{ grouping.var }})
 
-  # creating a list of return objects ----------------------------
-
+  # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = df, title = names(df)),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbetweenstats,
     # common parameters
     x = {{ x }},

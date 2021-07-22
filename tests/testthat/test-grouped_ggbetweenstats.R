@@ -1,13 +1,13 @@
 # outlier labeling works --------------------------------------------------
 
 test_that(
-  desc = "grouping.var works across vector types",
+  desc = "grouped_ggbetweenstats works - vdiffr",
   code = {
     skip_on_cran()
 
     # creating a smaller dataframe
     set.seed(123)
-    dat <- dplyr::sample_frac(tbl = movies_long, size = 0.25) %>%
+    dat <- dplyr::sample_frac(movies_long, size = 0.25) %>%
       dplyr::filter(
         mpaa %in% c("R", "PG-13"),
         genre %in% c("Drama", "Comedy")
@@ -23,76 +23,73 @@ test_that(
     )
 
     # outlier tagging is not required
-    grouped_ggbetweenstats(
-      data = dat,
-      x = genre,
-      y = rating,
-      results.subtitle = FALSE,
-      grouping.var = mpaa,
-      outlier.tagging = FALSE
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "no outlier tagging",
+      fig = grouped_ggbetweenstats(
+        data = dat,
+        x = genre,
+        y = rating,
+        results.subtitle = FALSE,
+        grouping.var = mpaa,
+        outlier.tagging = FALSE
+      )
     )
 
     # `outlier.label` is not specified
     set.seed(123)
-    expect_true(inherits(
-      grouped_ggbetweenstats(
+    vdiffr::expect_doppelganger(
+      title = "outlier.label not specified",
+      fig = grouped_ggbetweenstats(
         data = dat,
         x = genre,
         y = rating,
         grouping.var = mpaa,
-        type = "p",
         output = "plot",
+        ggtheme = ggplot2::theme_linedraw(),
         results.subtitle = FALSE,
-        effsize.type = "biased",
-        plot.type = "box",
-        bf.message = TRUE,
-        outlier.tagging = TRUE,
-        pairwise.comparisons = TRUE,
-        pairwise.annotation = "p.value"
-      ),
-      what = "gg"
-    ))
+        outlier.tagging = TRUE
+      )
+    )
 
     # `outlier.label` is factor
     set.seed(123)
-    expect_true(inherits(
-      grouped_ggbetweenstats(
+    vdiffr::expect_doppelganger(
+      title = "outlier.label is factor",
+      fig = grouped_ggbetweenstats(
         data = dat,
         x = genre,
         y = rating,
         grouping.var = mpaa,
         type = "np",
-        plot.type = "violin",
-        pairwise.comparisons = TRUE,
+        palette = "default_jama",
+        package = "ggsci",
         outlier.tagging = TRUE,
         results.subtitle = FALSE,
         outlier.label = title
-      ),
-      what = "gg"
-    ))
-
+      )
+    )
 
     # `outlier.label` is character
-    # also x, y, and outlier.label arguments as characters
     set.seed(123)
     dat$title <- as.character(dat$title)
 
-    expect_true(inherits(
-      grouped_ggbetweenstats(
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "outlier.label is character",
+      fig = grouped_ggbetweenstats(
         data = dat,
         x = genre,
         y = rating,
         grouping.var = mpaa,
         type = "r",
         results.subtitle = FALSE,
-        pairwise.comparisons = TRUE,
         outlier.tagging = TRUE,
         outlier.label = title,
         outlier.coef = 5,
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
-      ),
-      what = "gg"
-    ))
+      )
+    )
   }
 )
 
@@ -111,7 +108,6 @@ test_that(
         race %in% c("White", "Black")
       )
 
-
     set.seed(123)
     ls_results <- grouped_ggbetweenstats(
       data = df,
@@ -122,7 +118,6 @@ test_that(
       bf.message = FALSE,
       k = 4
     )
-
 
     set.seed(123)
     basic_results <- ggbetweenstats(

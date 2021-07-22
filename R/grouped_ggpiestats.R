@@ -8,8 +8,6 @@
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggpiestats -title
 #'
-#' @importFrom dplyr select
-#' @importFrom rlang as_name ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
@@ -44,16 +42,12 @@ grouped_ggpiestats <- function(data,
                                annotation.args = list(),
                                ...) {
 
-  # dataframe ------------------------------------------
+  # creating a dataframe
+  data %<>% grouped_list(grouping.var = {{ grouping.var }})
 
-  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
-    grouped_list(grouping.var = {{ grouping.var }})
-
-  # creating a list of return objects ----------------------------
-
-  # creating a list of plots using `pmap`
+  # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = df, title = names(df)),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggpiestats,
     # common parameters
     x = {{ x }},

@@ -13,7 +13,7 @@
 #' @inheritDotParams ggcorrmat -title
 #'
 #' @importFrom dplyr select bind_rows
-#' @importFrom rlang !! enquo quo_name ensym
+#' @importFrom rlang as_name ensym
 #' @importFrom purrr map pmap
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
@@ -61,20 +61,19 @@ grouped_ggcorrmat <- function(data,
 
   # dataframe ------------------------------------------
 
-  # getting the dataframe ready
+  # if variable selection is specified
   if ("cor.vars" %in% names(as.list(match.call()))) {
     data %<>% dplyr::select({{ grouping.var }}, {{ cor.vars }})
   }
 
-  # creating a list for grouped analysis
-  df <- grouped_list(data, {{ grouping.var }}) %>%
+  # getting the dataframe ready
+  data %<>%
+    grouped_list({{ grouping.var }}) %>%
     purrr::map(.f = ~ dplyr::select(.x, -{{ grouping.var }}))
 
-  # creating a list of return objects ----------------------------
-
-  # creating a list of results
+  # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = df, title = names(df)),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggcorrmat,
     output = output,
     ...

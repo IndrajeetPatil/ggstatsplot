@@ -49,7 +49,7 @@ test_that(
         data = movies_filtered,
         grouping.var = mpaa,
         matrix.type = "lower",
-        cor.vars = c("length":"votes"),
+        cor.vars = c(length:votes),
         cor.vars.names = c("w", "x", "y", "z"),
         type = "np"
       )

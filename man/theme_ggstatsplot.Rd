@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{theme_ggstatsplot}
 \alias{theme_ggstatsplot}
-\title{Default theme used in all \code{ggstatsplot} package plots}
+\title{Default theme used in \code{ggstatsplot}}
 \usage{
 theme_ggstatsplot()
 }
@@ -13,4 +13,12 @@ A \code{ggplot} object with the \code{theme_ggstatsplot} theme overlaid.
 Common theme used across all plots generated in \code{ggstatsplot} and \emph{assumed}
 by the author to be aesthetically pleasing to the user/reader. The theme is a
 wrapper around \code{ggplot2::theme_bw()}.
+}
+\examples{
+library(ggplot2)
+library(ggstatsplot)
+
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point() +
+  theme_ggstatsplot()
 }

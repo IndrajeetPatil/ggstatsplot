@@ -28,7 +28,7 @@ test_that(
 
     # create a smaller dataset
     set.seed(123)
-    df <- dplyr::sample_frac(tbl = movies_long, size = 0.25) %>%
+    df <- dplyr::sample_frac(movies_long, size = 0.25) %>%
       dplyr::filter(
         mpaa %in% c("R", "PG-13"),
         genre %in% c("Drama", "Comedy")
@@ -68,7 +68,7 @@ test_that(
     vdiffr::expect_doppelganger(
       title = "labeling all points",
       fig = grouped_ggscatterstats(
-        data = dplyr::sample_frac(tbl = df, size = 0.1),
+        data = dplyr::sample_frac(df, size = 0.1),
         x = length,
         y = rating,
         grouping.var = mpaa,

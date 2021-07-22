@@ -1,4 +1,4 @@
-#' @title Default theme used in all `ggstatsplot` package plots
+#' @title Default theme used in `ggstatsplot`
 #'
 #' @description
 #'
@@ -10,6 +10,13 @@
 #'
 #' @import ggplot2
 #'
+#' @examples
+#' library(ggplot2)
+#' library(ggstatsplot)
+#'
+#' ggplot(mtcars, aes(wt, mpg)) +
+#'   geom_point() +
+#'   theme_ggstatsplot()
 #' @export
 
 # function body

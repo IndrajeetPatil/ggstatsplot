@@ -121,8 +121,7 @@ test_that(
       k = 3,
       type = "r",
       nboot = 20,
-      pairwise.display = "s",
-      pairwise.annotation = "p.value"
+      pairwise.display = "s"
     )
 
     # build the plot

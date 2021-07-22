@@ -216,7 +216,7 @@ combine_plots(
   plotlist = list(ggcoefstats(
     x = stats::lm(
       formula = rating ~ stats::poly(budget, degree = 3),
-      data = dplyr::sample_frac(tbl = movies_long, size = 0.2),
+      data = dplyr::sample_frac(movies_long, size = 0.2),
       na.action = na.omit
     ),
     exclude.intercept = FALSE,

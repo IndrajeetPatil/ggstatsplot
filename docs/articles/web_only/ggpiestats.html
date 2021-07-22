@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-20</h4>
+            <h4 data-toc-skip class="date">2021-07-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -228,11 +228,11 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,201</span>
 <span class="co">#&gt; Columns: 5</span>
-<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span>
-<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~</span>
-<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~</span>
-<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Child~</span>
-<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</span></code></pre></div>
+<span class="co">#&gt; $ id       &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</span>
+<span class="co">#&gt; $ Class    &lt;fct&gt; 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3…</span>
+<span class="co">#&gt; $ Sex      &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…</span>
+<span class="co">#&gt; $ Age      &lt;fct&gt; Child, Child, Child, Child, Child, Child, Child, Child, Child…</span>
+<span class="co">#&gt; $ Survived &lt;fct&gt; No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…</span></code></pre></div>
 </div>
 <div id="goodness-of-fit-with-ggpiestats" class="section level1">
 <h1 class="hasAnchor">
@@ -245,7 +245,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to speed up the process, let's use only half of the dataset</span>
-<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
@@ -276,7 +276,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to speed up the process, let's use only half of the dataset</span>
-<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span>tbl <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>

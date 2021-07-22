@@ -146,7 +146,7 @@ library(ggstatsplot)
 diamonds_short <- ggplot2::diamonds \%>\%
   dplyr::filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
   dplyr::filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
-  dplyr::sample_frac(tbl = ., size = 0.05)
+  dplyr::sample_frac(size = 0.05)
 
 # plot
 # let's skip statistical analysis

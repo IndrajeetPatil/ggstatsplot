@@ -159,7 +159,7 @@ set.seed(123)
 
 # let's use just 5% of the data to speed it up
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
+  data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
   cor.vars = c(carat, depth:z), # note how the variables are getting selected
   cor.vars.names = c(
     "carat",
@@ -184,7 +184,7 @@ set.seed(123)
 
 # let's use just 5% of the data to speed it up
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::diamonds, size = 0.05),
+  data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
   cor.vars = c(price, carat, depth:table, x:z), # note how the variables are getting selected
   cor.vars.names = c(
     "price",
@@ -232,7 +232,7 @@ set.seed(123)
 
 # to get correlations
 ggstatsplot::ggcorrmat(
-  data = dplyr::sample_frac(tbl = ggplot2::txhousing, size = 0.15),
+  data = dplyr::sample_frac(ggplot2::txhousing, size = 0.15),
   cor.vars = sales:inventory,
   output = "dataframe",
   type = "robust",

@@ -15,8 +15,6 @@
 #'
 #' @import ggplot2
 #'
-#' @importFrom dplyr select
-#' @importFrom rlang quo_name ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
@@ -36,7 +34,7 @@
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   dplyr::filter(cut %in% c("Very Good", "Ideal")) %>%
 #'   dplyr::filter(clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
-#'   dplyr::sample_frac(tbl = ., size = 0.05)
+#'   dplyr::sample_frac(size = 0.05)
 #'
 #' # plot
 #' # let's skip statistical analysis
@@ -61,17 +59,12 @@ grouped_ggbarstats <- function(data,
                                annotation.args = list(),
                                ...) {
 
-  # dataframe ------------------------------------------
-
   # creating a dataframe
-  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}, {{ counts }}) %>%
-    grouped_list(grouping.var = {{ grouping.var }})
+  data %<>% grouped_list(grouping.var = {{ grouping.var }})
 
-  # creating a list of return objects ----------------------------
-
-  # creating a list of plots using `pmap`
+  # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = df, title = names(df)),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbarstats,
     # common parameters
     x = {{ x }},

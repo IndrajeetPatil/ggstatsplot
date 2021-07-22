@@ -109,7 +109,7 @@ flipping a coin. People had a 50/50 chance of surviving.
 set.seed(123)
 
 # to speed up the process, let's use only half of the dataset
-Titanic_full_50 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.5)
+Titanic_full_50 <- dplyr::sample_frac(ggstatsplot::Titanic_full, size = 0.5)
 
 # plot
 ggstatsplot::ggpiestats(
@@ -151,7 +151,7 @@ showcase the flexibility of `ggpiestats`. We will:
 set.seed(123)
 
 # to speed up the process, let's use only half of the dataset
-Titanic_full_50 <- dplyr::sample_frac(tbl = ggstatsplot::Titanic_full, size = 0.5)
+Titanic_full_50 <- dplyr::sample_frac(ggstatsplot::Titanic_full, size = 0.5)
 
 # plot
 ggstatsplot::ggpiestats(

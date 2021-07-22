@@ -26,7 +26,6 @@ if (require("afex")) {
         bf.message = TRUE,
         pairwise.comparisons = TRUE,
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
-        pairwise.annotation = "asterisk",
         point.path.args = list(color = "red"),
         centrality.path.args = list(color = "blue", size = 2, alpha = 0.8),
         centrality.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
@@ -94,7 +93,6 @@ if (require("afex")) {
           outlier.tagging = TRUE,
           outlier.coef = 2.5,
           pairwise.comparisons = TRUE,
-          pairwise.annotation = "asterisk",
           title = "wine tasting data",
           caption = "From `WRS2` package"
         )
@@ -160,7 +158,6 @@ if (require("afex")) {
             type = "np",
             ggsignif.args = list(textsize = 6, tip_length = 0.01),
             pairwise.display = "s",
-            pairwise.annotation = "p",
             outlier.tagging = FALSE,
             conf.level = 0.90
           )
@@ -183,7 +180,6 @@ if (require("afex")) {
           type = "r",
           pairwise.display = "ns",
           outlier.tagging = FALSE,
-          pairwise.annotation = "p-value",
           conf.level = 0.90
         ))
 
@@ -207,7 +203,6 @@ if (require("afex")) {
           nboot = 25,
           pairwise.comparisons = TRUE,
           pairwise.display = "all",
-          pairwise.annotation = "p",
           bf.message = TRUE
         ))
 
@@ -232,8 +227,7 @@ if (require("afex")) {
           nboot = 15,
           conf.level = 0.50,
           pairwise.comparisons = TRUE,
-          pairwise.display = "all",
-          pairwise.annotation = "p"
+          pairwise.display = "all"
         )
 
         set.seed(123)
