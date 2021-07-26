@@ -180,7 +180,10 @@ ggbetweenstats <- function(data,
                            tr = 0.2,
                            centrality.plotting = TRUE,
                            centrality.type = type,
-                           centrality.point.args = list(size = 5, color = "darkred"),
+                           centrality.point.args = list(
+                             size = 5,
+                             color = "darkred"
+                           ),
                            centrality.label.args = list(
                              size = 3,
                              nudge_x = 0.4,
@@ -199,8 +202,14 @@ ggbetweenstats <- function(data,
                              size = 3,
                              stroke = 0
                            ),
-                           violin.args = list(width = 0.5, alpha = 0.2),
-                           ggsignif.args = list(textsize = 3, tip_length = 0.01),
+                           violin.args = list(
+                             width = 0.5,
+                             alpha = 0.2
+                           ),
+                           ggsignif.args = list(
+                             textsize = 3,
+                             tip_length = 0.01
+                           ),
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
                            package = "RColorBrewer",
                            palette = "Dark2",
@@ -238,7 +247,7 @@ ggbetweenstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
+  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
 
   if (isTRUE(results.subtitle)) {
     # relevant arguments for statistical tests

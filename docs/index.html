@@ -957,7 +957,7 @@
 <tr class="odd">
 <td>box plot</td>
 <td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot</a></code></td>
-<td>❌</td>
+<td><code>boxplot.args</code></td>
 </tr>
 <tr class="even">
 <td>density plot</td>
@@ -1783,7 +1783,7 @@
   type <span class="op">=</span> <span class="st">"bayes"</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt; # A tibble: 6 × 14</span>
 <span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    </span>
@@ -1820,7 +1820,7 @@
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt; # A tibble: 6 × 14</span>
 <span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 sleep_total sleep_rem    0.0938        0.95   -0.165     0.385 0.704</span>
@@ -2458,7 +2458,7 @@
 <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; $subtitle_data</span>
-<span class="co">#&gt; # A tibble: 1 x 13</span>
+<span class="co">#&gt; # A tibble: 1 × 13</span>
 <span class="co">#&gt;   statistic    df df.error    p.value</span>
 <span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span>
 <span class="co">#&gt; 1      31.6     2     18.0 0.00000127</span>
@@ -2470,7 +2470,7 @@
 <span class="co">#&gt; 1    0.475     0.853 Omega2     ncp         F                 &lt;language&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $caption_data</span>
-<span class="co">#&gt; # A tibble: 6 x 20</span>
+<span class="co">#&gt; # A tibble: 6 × 20</span>
 <span class="co">#&gt;   term  estimate conf.level conf.low conf.high    pd rope.percentage</span>
 <span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 mu      20.5         0.95  19.3        21.9  1              0     </span>
@@ -2505,7 +2505,7 @@
 <span class="co">#&gt; 6       0.574        0.788 &lt;language&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $pairwise_comparisons_data</span>
-<span class="co">#&gt; # A tibble: 3 x 11</span>
+<span class="co">#&gt; # A tibble: 3 × 11</span>
 <span class="co">#&gt;   group1 group2 statistic   p.value alternative method            distribution</span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;chr&gt;       </span>
 <span class="co">#&gt; 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           </span>
