@@ -230,3 +230,89 @@ ggcorrmat <- function(data,
     ) +
     ggplot.component
 }
+
+
+#' @title Visualization of a correlalogram (or correlation matrix) for all
+#'   levels of a grouping variable
+#' @name grouped_ggcorrmat
+#'
+#' @description
+#'
+#' Helper function for `ggstatsplot::ggcorrmat` to apply this function across
+#' multiple levels of a given factor and combining the resulting plots using
+#' `ggstatsplot::combine_plots`.
+#'
+#' @inheritParams ggcorrmat
+#' @inheritParams grouped_ggbetweenstats
+#' @inheritDotParams ggcorrmat -title
+#'
+#' @importFrom dplyr select bind_rows
+#' @importFrom rlang as_name ensym
+#' @importFrom purrr map pmap
+#'
+#' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
+#'   \code{\link{grouped_ggscatterstats}}
+#'
+#' @inherit ggcorrmat return references
+#' @inherit ggcorrmat return details
+#'
+#' @examples
+#' \donttest{
+#' # for reproducibility
+#' set.seed(123)
+#' library(ggstatsplot)
+#'
+#' # for plot
+#' if (require("ggcorrplot")) {
+#'   grouped_ggcorrmat(
+#'     data = iris,
+#'     grouping.var = Species,
+#'     type = "robust",
+#'     p.adjust.method = "holm",
+#'     plotgrid.args = list(ncol = 1),
+#'     annotation.args = list(tag_levels = "i")
+#'   )
+#' }
+#'
+#' # for dataframe
+#' grouped_ggcorrmat(
+#'   data = ggplot2::msleep,
+#'   grouping.var = vore,
+#'   type = "bayes",
+#'   output = "dataframe"
+#' )
+#' }
+#' @export
+
+# defining the function
+grouped_ggcorrmat <- function(data,
+                              grouping.var,
+                              output = "plot",
+                              plotgrid.args = list(),
+                              annotation.args = list(),
+                              ...) {
+
+  # dataframe
+  data %<>%
+    grouped_list({{ grouping.var }}) %>%
+    purrr::map(.f = ~ dplyr::select(.x, -{{ grouping.var }}))
+
+  # creating a list of return objects
+  p_ls <- purrr::pmap(
+    .l = list(data = data, title = names(data), output = output),
+    .f = ggstatsplot::ggcorrmat,
+    ...
+  )
+
+  # combining the list of plots into a single plot
+  if (output == "plot") {
+    return(combine_plots(
+      plotlist = p_ls,
+      guides = "keep", # each legend is going to be different
+      plotgrid.args = plotgrid.args,
+      annotation.args = annotation.args
+    ))
+  } else {
+    return(dplyr::bind_rows(p_ls, .id = rlang::as_name(rlang::ensym(grouping.var))))
+  }
+}
