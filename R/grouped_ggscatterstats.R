@@ -72,11 +72,7 @@
 
 # defining the function
 grouped_ggscatterstats <- function(data,
-                                   x,
-                                   y,
                                    grouping.var,
-                                   label.var = NULL,
-                                   label.expression = NULL,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list(),
@@ -88,11 +84,6 @@ grouped_ggscatterstats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggscatterstats,
-    # put common parameters here
-    x = {{ x }},
-    y = {{ y }},
-    label.var = {{ label.var }},
-    label.expression = !!rlang::enexpr(label.expression),
     output = output,
     ...
   )

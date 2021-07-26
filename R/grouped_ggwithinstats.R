@@ -43,10 +43,7 @@
 
 # defining the function
 grouped_ggwithinstats <- function(data,
-                                  x,
-                                  y,
                                   grouping.var,
-                                  outlier.label = NULL,
                                   output = "plot",
                                   plotgrid.args = list(),
                                   annotation.args = list(),
@@ -59,10 +56,6 @@ grouped_ggwithinstats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggwithinstats,
-    # common parameters
-    x = {{ x }},
-    y = {{ y }},
-    outlier.label = {{ outlier.label }},
     output = output,
     ...
   )

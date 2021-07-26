@@ -150,12 +150,9 @@ showcase the flexibility of `ggpiestats`. We will:
 # set seed for reproducibility
 set.seed(123)
 
-# to speed up the process, let's use only half of the dataset
-Titanic_full_50 <- dplyr::sample_frac(ggstatsplot::Titanic_full, size = 0.5)
-
 # plot
 ggstatsplot::ggpiestats(
-  data = Titanic_full_50,
+  data = Titanic_full,
   x = Survived,
   y = Sex,
   title = "Passenger survival on the Titanic by gender", # title for the entire plot
@@ -406,8 +403,6 @@ numerical summaries about a statistical model, and
 reported statistics.
 
 For example, let's see the following example:
-
-The `ggstatsplot` reporting -
 
 ```{r reporting}
 ggpiestats(mtcars, am, cyl)

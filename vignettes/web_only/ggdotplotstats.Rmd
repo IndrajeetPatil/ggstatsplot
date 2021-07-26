@@ -123,11 +123,11 @@ df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 grouped_ggdotplotstats(
   # arguments relevant for ggstatsplot::ggdotplotstats
   data = df,
+  grouping.var = cyl, # grouping variable
   x = cty,
   y = manufacturer,
   xlab = "city miles per gallon",
   ylab = "car manufacturer",
-  grouping.var = cyl, # grouping variable
   type = "bayes", # Bayesian test
   test.value = 15.5,
   ggtheme = ggthemes::theme_fivethirtyeight(),
@@ -191,8 +191,6 @@ numerical summaries about a statistical model, and
 reported statistics.
 
 For example, let's see the following example:
-
-The `ggstatsplot` reporting -
 
 ```{r reporting}
 ggdotplotstats(morley, Speed, Expt, test.value = 800)

@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggscatterstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-21</h4>
+            <h4 data-toc-skip class="date">2021-07-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggscatterstats.Rmd" class="external-link"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggscatterstats.Rmd</code></div>
@@ -241,10 +241,10 @@
   data <span class="op">=</span> <span class="va">movies_long</span>,
   x <span class="op">=</span> <span class="va">budget</span>,
   y <span class="op">=</span> <span class="va">rating</span>,
-  type <span class="op">=</span> <span class="st">"r"</span>,
   grouping.var <span class="op">=</span> <span class="va">mpaa</span>,
   label.var <span class="op">=</span> <span class="va">title</span>,
   label.expression <span class="op">=</span> <span class="va">rating</span> <span class="op">&lt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">budget</span> <span class="op">&gt;</span> <span class="fl">80</span>,
+  type <span class="op">=</span> <span class="st">"r"</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_tufte.html" class="external-link">theme_tufte</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
@@ -369,7 +369,6 @@
 <li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<p>The <code>ggstatsplot</code> reporting -</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/reporting-1.png" width="100%"></p>

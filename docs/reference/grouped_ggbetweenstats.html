@@ -242,10 +242,7 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>x</span>,
-  <span class='va'>y</span>,
   <span class='va'>grouping.var</span>,
-  outlier.label <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -262,29 +259,8 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</s
 be accepted.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
-case of a repeated measures or within-subjects design, if <code>subject.id</code>
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is <strong>not</strong> sorted, the results
-<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
-are <code>NA</code>s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The response (or outcome or dependent) variable from the
-dataframe <code>data</code>.</p></td>
-    </tr>
-    <tr>
       <th>grouping.var</th>
       <td><p>A single grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>outlier.label</th>
-      <td><p>Label to put on the outliers that have been tagged. This
-<strong>can't</strong> be the same as <code>x</code> argument.</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -350,6 +326,8 @@ the plot will be returned.</p></dd>
     <dt><code>outlier.color</code></dt><dd><p>Default aesthetics for outliers (Default: <code>"black"</code>).</p></dd>
     <dt><code>outlier.tagging</code></dt><dd><p>Decides whether outliers should be tagged (Default:
 <code>FALSE</code>).</p></dd>
+    <dt><code>outlier.label</code></dt><dd><p>Label to put on the outliers that have been tagged. This
+<strong>can't</strong> be the same as <code>x</code> argument.</p></dd>
     <dt><code>outlier.shape</code></dt><dd><p>Hiding the outliers can be achieved by setting
 <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the <code>y</code>-axis will be
@@ -407,6 +385,16 @@ arguments to be passed to <code><a href='https://const-ae.github.io/ggsignif//re
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
 (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>, <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>,
 etc.).</p></dd>
+    <dt><code>x</code></dt><dd><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
+case of a repeated measures or within-subjects design, if <code>subject.id</code>
+argument is not available or not explicitly specified, the function assumes
+that the data has already been sorted by such an id by the user and creates
+an internal identifier. So if your data is <strong>not</strong> sorted, the results
+<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
+are <code>NA</code>s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.</p></dd>
+    <dt><code>y</code></dt><dd><p>The response (or outcome or dependent) variable from the
+dataframe <code>data</code>.</p></dd>
     <dt><code>type</code></dt><dd><p>A character specifying the type of statistical approach:
 <ul>
 <li><p><code>"parametric"</code></p></li>

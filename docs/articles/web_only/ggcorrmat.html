@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-22</h4>
+            <h4 data-toc-skip class="date">2021-07-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd" class="external-link"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -357,7 +357,7 @@ A BibTeX entry for LaTeX users is
   type <span class="op">=</span> <span class="st">"robust"</span>,
   digits <span class="op">=</span> <span class="fl">3</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 x 11</span>
+<span class="co">#&gt; # A tibble: 10 × 11</span>
 <span class="co">#&gt;    parameter1 parameter2 estimate conf.level conf.low conf.high statistic</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 sales      volume        0.983       0.95    0.981     0.985    185.  </span>
@@ -395,7 +395,7 @@ A BibTeX entry for LaTeX users is
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
+<span class="co">#&gt; # A tibble: 6 × 10</span>
 <span class="co">#&gt;   parameter1   parameter2   estimate conf.level conf.low conf.high statistic</span>
 <span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 Sepal.Length Sepal.Width    0.6157       0.95   0.5017    0.7087   216164.</span>
@@ -446,35 +446,36 @@ A BibTeX entry for LaTeX users is
 <span class="co"># let's obtain correlation coefficients with their CIs</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
+  cor.vars <span class="op">=</span> <span class="va">sleep_total</span><span class="op">:</span><span class="va">awake</span>,
   grouping.var <span class="op">=</span> <span class="va">vore</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 60 x 12</span>
+<span class="co">#&gt; # A tibble: 24 × 12</span>
 <span class="co">#&gt;    vore  parameter1  parameter2  estimate conf.level conf.low conf.high</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 carni sleep_total sleep_rem     0.9189       0.95   0.6864   0.9810 </span>
-<span class="co">#&gt;  2 carni sleep_total sleep_cycle   0.3764       0.95  -0.7574   0.9449 </span>
-<span class="co">#&gt;  3 carni sleep_total awake        -1.000        0.95  -1.000   -1.000  </span>
-<span class="co">#&gt;  4 carni sleep_total brainwt      -0.5244       0.95  -0.8815   0.2144 </span>
-<span class="co">#&gt;  5 carni sleep_total bodywt       -0.4427       0.95  -0.7468   0.01441</span>
-<span class="co">#&gt;  6 carni sleep_rem   sleep_cycle   0.1216       0.95  -0.8521   0.9066 </span>
-<span class="co">#&gt;  7 carni sleep_rem   awake        -0.9189       0.95  -0.9810  -0.6865 </span>
-<span class="co">#&gt;  8 carni sleep_rem   brainwt      -0.5006       0.95  -0.9331   0.5237 </span>
-<span class="co">#&gt;  9 carni sleep_rem   bodywt       -0.4786       0.95  -0.8516   0.2162 </span>
-<span class="co">#&gt; 10 carni sleep_cycle awake        -0.3764       0.95  -0.9449   0.7574 </span>
-<span class="co">#&gt;     statistic df.error   p.value method              n.obs</span>
-<span class="co">#&gt;         &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;               &lt;int&gt;</span>
-<span class="co">#&gt;  1     6.589         8 2.398e- 3 Pearson correlation    10</span>
-<span class="co">#&gt;  2     0.7038        3 1    e+ 0 Pearson correlation     5</span>
-<span class="co">#&gt;  3 -1386.           17 3.210e-43 Pearson correlation    19</span>
-<span class="co">#&gt;  4    -1.629         7 1    e+ 0 Pearson correlation     9</span>
-<span class="co">#&gt;  5    -2.036        17 6.242e- 1 Pearson correlation    19</span>
-<span class="co">#&gt;  6     0.2122        3 1    e+ 0 Pearson correlation     5</span>
-<span class="co">#&gt;  7    -6.589         8 2.398e- 3 Pearson correlation    10</span>
-<span class="co">#&gt;  8    -1.157         4 1    e+ 0 Pearson correlation     6</span>
-<span class="co">#&gt;  9    -1.542         8 1    e+ 0 Pearson correlation    10</span>
-<span class="co">#&gt; 10    -0.7038        3 1    e+ 0 Pearson correlation     5</span>
-<span class="co">#&gt; # … with 50 more rows</span></code></pre></div>
+<span class="co">#&gt;  1 carni sleep_total sleep_rem     0.9189       0.95   0.6864    0.9810</span>
+<span class="co">#&gt;  2 carni sleep_total sleep_cycle   0.3764       0.95  -0.7574    0.9449</span>
+<span class="co">#&gt;  3 carni sleep_total awake        -1.000        0.95  -1.000    -1.000 </span>
+<span class="co">#&gt;  4 carni sleep_rem   sleep_cycle   0.1216       0.95  -0.8521    0.9066</span>
+<span class="co">#&gt;  5 carni sleep_rem   awake        -0.9189       0.95  -0.9810   -0.6865</span>
+<span class="co">#&gt;  6 carni sleep_cycle awake        -0.3764       0.95  -0.9449    0.7574</span>
+<span class="co">#&gt;  7 herbi sleep_total sleep_rem     0.8610       0.95   0.7012    0.9385</span>
+<span class="co">#&gt;  8 herbi sleep_total sleep_cycle  -0.7148       0.95  -0.9138   -0.2389</span>
+<span class="co">#&gt;  9 herbi sleep_total awake        -1            0.95  -1        -1     </span>
+<span class="co">#&gt; 10 herbi sleep_rem   sleep_cycle  -0.4070       0.95  -0.7952    0.2178</span>
+<span class="co">#&gt;    statistic df.error    p.value method              n.obs</span>
+<span class="co">#&gt;        &lt;dbl&gt;    &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;               &lt;int&gt;</span>
+<span class="co">#&gt;  1  6.589e+0        8 8.564e-  4 Pearson correlation    10</span>
+<span class="co">#&gt;  2  7.038e-1        3 1    e+  0 Pearson correlation     5</span>
+<span class="co">#&gt;  3 -1.386e+3       17 1.284e- 43 Pearson correlation    19</span>
+<span class="co">#&gt;  4  2.122e-1        3 1    e+  0 Pearson correlation     5</span>
+<span class="co">#&gt;  5 -6.589e+0        8 8.564e-  4 Pearson correlation    10</span>
+<span class="co">#&gt;  6 -7.038e-1        3 1    e+  0 Pearson correlation     5</span>
+<span class="co">#&gt;  7  7.942e+0       22 3.330e-  7 Pearson correlation    24</span>
+<span class="co">#&gt;  8 -3.232e+0       10 2.697e-  2 Pearson correlation    12</span>
+<span class="co">#&gt;  9 -3.676e+8       30 1.363e-235 Pearson correlation    32</span>
+<span class="co">#&gt; 10 -1.409e+0       10 1.891e-  1 Pearson correlation    12</span>
+<span class="co">#&gt; # … with 14 more rows</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level1">
 <h1 class="hasAnchor">

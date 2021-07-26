@@ -69,7 +69,7 @@ if (getRversion() >= "4.1") {
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "grouped_gghistostats works",
-      fig = grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am)
+      fig = grouped_gghistostats(mtcars, x = wt, test.value = 3, grouping.var = am)
     )
 
     ## ----ggdotplotstats-------------------------------
@@ -88,7 +88,7 @@ if (getRversion() >= "4.1") {
     vdiffr::expect_doppelganger(
       title = "grouped_ggdotplotstats works",
       fig = grouped_ggdotplotstats(dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
-        cty, manufacturer,
+        x = cty, y = manufacturer,
         test.value = 15, grouping.var = cyl
       )
     )
@@ -99,13 +99,13 @@ if (getRversion() >= "4.1") {
       set.seed(123)
       vdiffr::expect_doppelganger(
         title = "ggscatterstats works",
-        fig = ggscatterstats(mtcars, wt, mpg)
+        fig = ggscatterstats(mtcars, x = wt, y = mpg)
       )
 
       set.seed(123)
       vdiffr::expect_doppelganger(
         title = "grouped_ggscatterstats works",
-        fig = grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)
+        fig = grouped_ggscatterstats(mtcars, x = wt, y = mpg, grouping.var = am)
       )
     }
 
@@ -135,14 +135,14 @@ if (getRversion() >= "4.1") {
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "ggpiestats works",
-      fig = ggpiestats(mtcars, cyl)
+      fig = ggpiestats(mtcars, x = cyl)
     )
 
 
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "grouped_ggpiestats works",
-      fig = grouped_ggpiestats(mtcars, cyl, grouping.var = am)
+      fig = grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
     )
 
     ## ----ggbarstats-----------------------------------
@@ -156,7 +156,7 @@ if (getRversion() >= "4.1") {
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "grouped_ggbarstats works",
-      fig = grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)
+      fig = grouped_ggbarstats(ggplot2::mpg, x = fl, y = class, grouping.var = drv)
     )
 
     ## ----ggcoefstats----------------------------------

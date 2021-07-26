@@ -47,9 +47,6 @@
 
 # defining the function
 grouped_ggbarstats <- function(data,
-                               x,
-                               y,
-                               counts = NULL,
                                grouping.var,
                                output = "plot",
                                plotgrid.args = list(),
@@ -62,10 +59,6 @@ grouped_ggbarstats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbarstats,
-    # common parameters
-    x = {{ x }},
-    y = {{ y }},
-    counts = {{ counts }},
     output = output,
     ...
   )

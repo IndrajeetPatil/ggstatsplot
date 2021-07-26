@@ -52,21 +52,13 @@
 
 # defining the function
 grouped_ggcorrmat <- function(data,
-                              cor.vars = NULL,
                               grouping.var,
                               output = "plot",
                               plotgrid.args = list(),
                               annotation.args = list(),
                               ...) {
 
-  # dataframe ------------------------------------------
-
-  # if variable selection is specified
-  if ("cor.vars" %in% names(as.list(match.call()))) {
-    data %<>% dplyr::select({{ grouping.var }}, {{ cor.vars }})
-  }
-
-  # getting the dataframe ready
+  # dataframe
   data %<>%
     grouped_list({{ grouping.var }}) %>%
     purrr::map(.f = ~ dplyr::select(.x, -{{ grouping.var }}))

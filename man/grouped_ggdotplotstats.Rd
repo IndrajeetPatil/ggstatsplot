@@ -6,8 +6,6 @@
 \usage{
 grouped_ggdotplotstats(
   data,
-  x,
-  y,
   grouping.var,
   output = "plot",
   plotgrid.args = list(),
@@ -19,10 +17,6 @@ grouped_ggdotplotstats(
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
-
-\item{x}{A numeric variable from the dataframe \code{data}.}
-
-\item{y}{Label or grouping variable.}
 
 \item{grouping.var}{A single grouping variable.}
 
@@ -44,8 +38,10 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link[=ggdotplotstats]{ggdotplotstats}}
   \describe{
+    \item{\code{y}}{Label or grouping variable.}
     \item{\code{point.args}}{A list of additional aesthetic arguments passed to
 \code{geom_point}.}
+    \item{\code{x}}{A numeric variable from the dataframe \code{data}.}
     \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if

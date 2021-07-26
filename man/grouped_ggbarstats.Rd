@@ -6,9 +6,6 @@
 \usage{
 grouped_ggbarstats(
   data,
-  x,
-  y,
-  counts = NULL,
   grouping.var,
   output = "plot",
   plotgrid.args = list(),
@@ -20,20 +17,6 @@ grouped_ggbarstats(
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
-
-\item{x}{The variable to use as the \strong{rows} in the contingency table. Please
-note that if there are empty factor levels in your variable, they will be
-dropped.}
-
-\item{y}{The variable to use as the \strong{columns} in the contingency table.
-Please note that if there are empty factor levels in your variable, they
-will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
-(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{ggbarstats} function.}
-
-\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
-if each row represents a single observation.}
 
 \item{grouping.var}{A single grouping variable.}
 
@@ -58,6 +41,17 @@ separately specified here.}
     \item{\code{xlab}}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
 will cause the \code{x} axis label to be the \code{x} variable).}
     \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
+    \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Please
+note that if there are empty factor levels in your variable, they will be
+dropped.}
+    \item{\code{y}}{The variable to use as the \strong{columns} in the contingency table.
+Please note that if there are empty factor levels in your variable, they
+will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
+(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
+appropriate association test will be run. This argument can not be \code{NULL}
+for \code{ggbarstats} function.}
+    \item{\code{counts}}{A string naming a variable in data containing counts, or \code{NULL}
+if each row represents a single observation.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}

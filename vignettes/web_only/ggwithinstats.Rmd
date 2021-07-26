@@ -178,66 +178,62 @@ library(ggstatsplot)
 df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
 
 # parametric t-test
-p1 <-
-  ggstatsplot::ggwithinstats(
-    data = df_disgust,
-    x = condition,
-    y = desire,
-    type = "p",
-    effsize.type = "d",
-    conf.level = 0.99,
-    title = "Parametric test",
-    package = "ggsci",
-    palette = "nrc_npg",
-    ggtheme = hrbrthemes::theme_ipsum_pub()
-  )
+p1 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = condition,
+  y = desire,
+  type = "p",
+  effsize.type = "d",
+  conf.level = 0.99,
+  title = "Parametric test",
+  package = "ggsci",
+  palette = "nrc_npg",
+  ggtheme = hrbrthemes::theme_ipsum_pub()
+)
 
 # Mann-Whitney U test (nonparametric test)
-p2 <-
-  ggstatsplot::ggwithinstats(
-    data = df_disgust,
-    x = condition,
-    y = desire,
-    xlab = "Condition",
-    ylab = "Desire to kill bugs",
-    type = "np",
-    conf.level = 0.99,
-    title = "Non-parametric Test",
-    package = "ggsci",
-    palette = "uniform_startrek",
-    ggtheme = ggthemes::theme_map()
-  )
+p2 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = condition,
+  y = desire,
+  xlab = "Condition",
+  ylab = "Desire to kill bugs",
+  type = "np",
+  conf.level = 0.99,
+  title = "Non-parametric Test",
+  package = "ggsci",
+  palette = "uniform_startrek",
+  ggtheme = ggthemes::theme_map()
+)
 
 # robust t-test
-p3 <-
-  ggstatsplot::ggwithinstats(
-    data = df_disgust,
-    x = condition,
-    y = desire,
-    xlab = "Condition",
-    ylab = "Desire to kill bugs",
-    type = "r",
-    conf.level = 0.99,
-    title = "Robust Test",
-    package = "wesanderson",
-    palette = "Royal2",
-    ggtheme = hrbrthemes::theme_ipsum_tw()
-  )
+p3 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = condition,
+  y = desire,
+  xlab = "Condition",
+  ylab = "Desire to kill bugs",
+  type = "r",
+  conf.level = 0.99,
+  title = "Robust Test",
+  package = "wesanderson",
+  palette = "Royal2",
+  ggtheme = hrbrthemes::theme_ipsum_tw()
+)
 
 # Bayes Factor for parametric t-test
-p4 <-
-  ggstatsplot::ggwithinstats(
-    data = df_disgust,
-    x = condition,
-    y = desire,
-    xlab = "Condition",
-    ylab = "Desire to kill bugs",
-    type = "bayes",
-    title = "Bayesian Test",
-    package = "ggsci",
-    palette = "nrc_npg",
-    ggtheme = ggthemes::theme_fivethirtyeight()
-  )
+p4 <- ggstatsplot::ggwithinstats(
+  data = df_disgust,
+  x = condition,
+  y = desire,
+  xlab = "Condition",
+  ylab = "Desire to kill bugs",
+  type = "bayes",
+  title = "Bayesian Test",
+  package = "ggsci",
+  palette = "nrc_npg",
+  ggtheme = ggthemes::theme_fivethirtyeight()
+)
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
@@ -285,7 +281,6 @@ ggstatsplot::grouped_ggwithinstats(
   package = "ggsci",
   palette = "default_jco",
   outlier.tagging = TRUE,
-  
   outlier.label = education,
   k = 3,
   # arguments relevant for ggstatsplot::combine_plots
@@ -386,7 +381,7 @@ reported statistics.
 
 For example, let's see the following example:
 
-The `ggstatsplot` reporting -
+
 
 ```{r reporting}
 library(WRS2) # for data
@@ -414,4 +409,3 @@ instead of a one-way ANOVA.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-

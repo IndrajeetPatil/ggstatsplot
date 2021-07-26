@@ -6,9 +6,6 @@
 \usage{
 grouped_ggpiestats(
   data,
-  x,
-  y = NULL,
-  counts = NULL,
   grouping.var,
   output = "plot",
   plotgrid.args = list(),
@@ -20,20 +17,6 @@ grouped_ggpiestats(
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
-
-\item{x}{The variable to use as the \strong{rows} in the contingency table. Please
-note that if there are empty factor levels in your variable, they will be
-dropped.}
-
-\item{y}{The variable to use as the \strong{columns} in the contingency table.
-Please note that if there are empty factor levels in your variable, they
-will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
-(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{ggbarstats} function.}
-
-\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
-if each row represents a single observation.}
 
 \item{grouping.var}{A single grouping variable.}
 
@@ -55,6 +38,15 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
   \describe{
+    \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Please
+note that if there are empty factor levels in your variable, they will be
+dropped.}
+    \item{\code{y}}{The variable to use as the \strong{columns} in the contingency table.
+Please note that if there are empty factor levels in your variable, they
+will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
+(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
+appropriate association test will be run. This argument can not be \code{NULL}
+for \code{ggbarstats} function.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y} (Default: \code{TRUE}). In \code{ggbarstats},
 only \emph{p}-values from this test will be displayed.}
@@ -105,6 +97,8 @@ be extracted. The available palettes and packages can be checked by running
 by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
+    \item{\code{counts}}{A string naming a variable in data containing counts, or \code{NULL}
+if each row represents a single observation.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
 test expression will be returned. If \code{FALSE}, Pearson's chi-square test will

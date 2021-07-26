@@ -43,27 +43,19 @@
 
 # defining the function
 grouped_ggdotplotstats <- function(data,
-                                   x,
-                                   y,
                                    grouping.var,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list(),
                                    ...) {
 
-  # dataframe ------------------------------------------
+  # dataframe
+  data %<>% grouped_list(grouping.var = {{ grouping.var }})
 
-  df <- dplyr::select(data, {{ grouping.var }}, {{ x }}, {{ y }}) %>%
-    grouped_list(grouping.var = {{ grouping.var }})
-
-  # creating a list of return objects ----------------------------
-
-  # creating a list of plots
+  # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = df, title = names(df)),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggdotplotstats,
-    x = {{ x }},
-    y = {{ y }},
     output = output,
     ...
   )

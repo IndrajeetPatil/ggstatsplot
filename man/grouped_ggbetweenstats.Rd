@@ -7,10 +7,7 @@ designs repeated across all levels of a grouping variable.}
 \usage{
 grouped_ggbetweenstats(
   data,
-  x,
-  y,
   grouping.var,
-  outlier.label = NULL,
   output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
@@ -22,22 +19,7 @@ grouped_ggbetweenstats(
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
 
-\item{x}{The grouping (or independent) variable from the dataframe \code{data}. In
-case of a repeated measures or within-subjects design, if \code{subject.id}
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is \strong{not} sorted, the results
-\emph{can} be inaccurate when there are more than two levels in \code{x} and there
-are \code{NA}s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.}
-
-\item{y}{The response (or outcome or dependent) variable from the
-dataframe \code{data}.}
-
 \item{grouping.var}{A single grouping variable.}
-
-\item{outlier.label}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -99,6 +81,8 @@ the plot will be returned.}
     \item{\code{outlier.color}}{Default aesthetics for outliers (Default: \code{"black"}).}
     \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
+    \item{\code{outlier.label}}{Label to put on the outliers that have been tagged. This
+\strong{can't} be the same as \code{x} argument.}
     \item{\code{outlier.shape}}{Hiding the outliers can be achieved by setting
 \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the \code{y}-axis will be
@@ -160,6 +144,16 @@ arguments to be passed to \code{ggsignif::geom_signif}.}
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
+    \item{\code{x}}{The grouping (or independent) variable from the dataframe \code{data}. In
+case of a repeated measures or within-subjects design, if \code{subject.id}
+argument is not available or not explicitly specified, the function assumes
+that the data has already been sorted by such an id by the user and creates
+an internal identifier. So if your data is \strong{not} sorted, the results
+\emph{can} be inaccurate when there are more than two levels in \code{x} and there
+are \code{NA}s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.}
+    \item{\code{y}}{The response (or outcome or dependent) variable from the
+dataframe \code{data}.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}

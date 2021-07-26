@@ -300,6 +300,7 @@ set.seed(123)
 # let's obtain correlation coefficients with their CIs
 ggstatsplot::grouped_ggcorrmat(
   data = ggplot2::msleep,
+  cor.vars = sleep_total:awake,
   grouping.var = vore,
   output = "dataframe"
 )

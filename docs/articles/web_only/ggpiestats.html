@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggpiestats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-22</h4>
+            <h4 data-toc-skip class="date">2021-07-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="hidden name"><code>ggpiestats.Rmd</code></div>
@@ -275,12 +275,9 @@ A BibTeX entry for LaTeX users is
 <span class="co"># set seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># to speed up the process, let's use only half of the dataset</span>
-<span class="va">Titanic_full_50</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="va"><a href="../../reference/Titanic_full.html">Titanic_full</a></span>, size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-
 <span class="co"># plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">Titanic_full_50</span>,
+  data <span class="op">=</span> <span class="va">Titanic_full</span>,
   x <span class="op">=</span> <span class="va">Survived</span>,
   y <span class="op">=</span> <span class="va">Sex</span>,
   title <span class="op">=</span> <span class="st">"Passenger survival on the Titanic by gender"</span>, <span class="co"># title for the entire plot</span>
@@ -375,7 +372,7 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># converting to a tibble dataframe</span>
     <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/deprecated.html" class="external-link">as_data_frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 16 x 4</span>
+<span class="co">#&gt; # A tibble: 16 × 4</span>
 <span class="co">#&gt;    Boat  Month    Fish    SumOfCaught</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;         &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 B     February Bass             25</span>
@@ -620,7 +617,6 @@ A BibTeX entry for LaTeX users is
 <li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<p>The <code>ggstatsplot</code> reporting -</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/reporting-1.png" width="100%"></p>

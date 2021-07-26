@@ -190,69 +190,65 @@ library(gapminder)
 df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
 
 # parametric t-test and box plot
-p1 <-
-  ggstatsplot::ggbetweenstats(
-    data = df_year,
-    x = year,
-    y = lifeExp,
-    xlab = "Year",
-    ylab = "Life expectancy",
-    plot.type = "box",
-    type = "p",
-    conf.level = 0.99,
-    title = "Parametric test",
-    package = "ggsci",
-    palette = "nrc_npg"
-  )
+p1 <- ggstatsplot::ggbetweenstats(
+  data = df_year,
+  x = year,
+  y = lifeExp,
+  xlab = "Year",
+  ylab = "Life expectancy",
+  plot.type = "box",
+  type = "p",
+  conf.level = 0.99,
+  title = "Parametric test",
+  package = "ggsci",
+  palette = "nrc_npg"
+)
 
 # Mann-Whitney U test (nonparametric t) and violin plot
-p2 <-
-  ggstatsplot::ggbetweenstats(
-    data = df_year,
-    x = year,
-    y = lifeExp,
-    xlab = "Year",
-    ylab = "Life expectancy",
-    plot.type = "violin",
-    type = "np",
-    conf.level = 0.99,
-    title = "Non-parametric Test (violin plot)",
-    package = "ggsci",
-    palette = "uniform_startrek"
-  )
+p2 <- ggstatsplot::ggbetweenstats(
+  data = df_year,
+  x = year,
+  y = lifeExp,
+  xlab = "Year",
+  ylab = "Life expectancy",
+  plot.type = "violin",
+  type = "np",
+  conf.level = 0.99,
+  title = "Non-parametric Test (violin plot)",
+  package = "ggsci",
+  palette = "uniform_startrek"
+)
 
 # robust t-test and boxviolin plot
-p3 <-
-  ggstatsplot::ggbetweenstats(
-    data = df_year,
-    x = year,
-    y = lifeExp,
-    xlab = "Year",
-    ylab = "Life expectancy",
-    plot.type = "boxviolin",
-    type = "r",
-    conf.level = 0.99,
-    title = "Robust Test (box & violin plot)",
-    tr = 0.005,
-    package = "wesanderson",
-    palette = "Royal2",
-    k = 3
-  )
+p3 <- ggstatsplot::ggbetweenstats(
+  data = df_year,
+  x = year,
+  y = lifeExp,
+  xlab = "Year",
+  ylab = "Life expectancy",
+  plot.type = "boxviolin",
+  type = "r",
+  conf.level = 0.99,
+  title = "Robust Test (box & violin plot)",
+  tr = 0.005,
+  package = "wesanderson",
+  palette = "Royal2",
+  k = 3
+)
 
 # Bayes Factor for parametric t-test and boxviolin plot
-p4 <-
-  ggstatsplot::ggbetweenstats(
-    data = df_year,
-    x = year,
-    y = lifeExp,
-    xlab = "Year",
-    ylab = "Life expectancy",
-    type = "bayes",
-    plot.type = "box",
-    title = "Bayesian Test (box plot)",
-    package = "ggsci",
-    palette = "nrc_npg"
-  )
+p4 <- ggstatsplot::ggbetweenstats(
+  data = df_year,
+  x = year,
+  y = lifeExp,
+  xlab = "Year",
+  ylab = "Life expectancy",
+  type = "bayes",
+  plot.type = "box",
+  title = "Bayesian Test (box plot)",
+  package = "ggsci",
+  palette = "nrc_npg"
+)
 
 # combining the individual plots into a single plot
 ggstatsplot::combine_plots(
@@ -281,7 +277,7 @@ Let's focus on the same 4 continents for the following years: 1967, 1987, 2007.
 Also, let's carry out pairwise comparisons to see if there differences between
 every pair of continents.
 
-```{r grouped1, warning = FALSE, message = FALSE, fig.height = 18, fig.width = 8}
+```{r grouped1, fig.height = 18, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -290,7 +286,6 @@ gapminder::gapminder %>%
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   ggstatsplot::grouped_ggbetweenstats(
     # arguments relevant for ggstatsplot::ggbetweenstats
-    data = .,
     x = continent,
     y = lifeExp,
     grouping.var = year,
@@ -302,7 +297,6 @@ gapminder::gapminder %>%
     package = "ggsci",
     palette = "default_jco",
     outlier.tagging = TRUE,
-    
     outlier.label = country,
     # arguments relevant for ggstatsplot::combine_plots
     annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
@@ -408,7 +402,7 @@ reported statistics.
 
 For example, let's see the following example:
 
-The `ggstatsplot` reporting -
+
 
 ```{r reporting}
 ggbetweenstats(ToothGrowth, supp, len)

@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggdotplotstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-20</h4>
+            <h4 data-toc-skip class="date">2021-07-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggdotplotstats.Rmd" class="external-link"><code>vignettes/web_only/ggdotplotstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggdotplotstats.Rmd</code></div>
@@ -207,17 +207,17 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 234</span>
 <span class="co">#&gt; Columns: 11</span>
-<span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi", "~</span>
-<span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "~</span>
-<span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~</span>
-<span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~</span>
-<span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~</span>
-<span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto~</span>
-<span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4~</span>
-<span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~</span>
-<span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~</span>
-<span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p~</span>
-<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact", "c~</span></code></pre></div>
+<span class="co">#&gt; $ manufacturer &lt;chr&gt; "audi", "audi", "audi", "audi", "audi", "audi", "audi", "…</span>
+<span class="co">#&gt; $ model        &lt;chr&gt; "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "…</span>
+<span class="co">#&gt; $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…</span>
+<span class="co">#&gt; $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…</span>
+<span class="co">#&gt; $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …</span>
+<span class="co">#&gt; $ trans        &lt;chr&gt; "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto…</span>
+<span class="co">#&gt; $ drv          &lt;chr&gt; "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4…</span>
+<span class="co">#&gt; $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…</span>
+<span class="co">#&gt; $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…</span>
+<span class="co">#&gt; $ fl           &lt;chr&gt; "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p…</span>
+<span class="co">#&gt; $ class        &lt;chr&gt; "compact", "compact", "compact", "compact", "compact", "c…</span></code></pre></div>
 <p>Let’s say we want to visualize the distribution of mileage by car manufacturer.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -271,11 +271,11 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for ggstatsplot::ggdotplotstats</span>
   data <span class="op">=</span> <span class="va">df</span>,
+  grouping.var <span class="op">=</span> <span class="va">cyl</span>, <span class="co"># grouping variable</span>
   x <span class="op">=</span> <span class="va">cty</span>,
   y <span class="op">=</span> <span class="va">manufacturer</span>,
   xlab <span class="op">=</span> <span class="st">"city miles per gallon"</span>,
   ylab <span class="op">=</span> <span class="st">"car manufacturer"</span>,
-  grouping.var <span class="op">=</span> <span class="va">cyl</span>, <span class="co"># grouping variable</span>
   type <span class="op">=</span> <span class="st">"bayes"</span>, <span class="co"># Bayesian test</span>
   test.value <span class="op">=</span> <span class="fl">15.5</span>,
   ggtheme <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html" class="external-link">theme_fivethirtyeight</a></span><span class="op">(</span><span class="op">)</span>,
@@ -415,7 +415,6 @@ A BibTeX entry for LaTeX users is
 <li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<p>The <code>ggstatsplot</code> reporting -</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span><span class="va">morley</span>, <span class="va">Speed</span>, <span class="va">Expt</span>, test.value <span class="op">=</span> <span class="fl">800</span><span class="op">)</span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/reporting-1.png" width="100%"></p>

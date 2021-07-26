@@ -7,11 +7,7 @@ variable}
 \usage{
 grouped_ggscatterstats(
   data,
-  x,
-  y,
   grouping.var,
-  label.var = NULL,
-  label.expression = NULL,
   output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
@@ -23,21 +19,7 @@ grouped_ggscatterstats(
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
 
-\item{x}{The column in \code{data} containing the explanatory variable to be
-plotted on the \code{x}-axis.}
-
-\item{y}{The column in \code{data} containing the response (outcome) variable to
-be plotted on the \code{y}-axis.}
-
 \item{grouping.var}{A single grouping variable.}
-
-\item{label.var}{Variable to use for points labels entered as a symbol (e.g.
-\code{var1}).}
-
-\item{label.expression}{An expression evaluating to a logical vector that
-determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
-While using this argument with \code{purrr::pmap}, you will have to provide a
-quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -57,6 +39,12 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link[=ggscatterstats]{ggscatterstats}}
   \describe{
+    \item{\code{label.var}}{Variable to use for points labels entered as a symbol (e.g.
+\code{var1}).}
+    \item{\code{label.expression}}{An expression evaluating to a logical vector that
+determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
+While using this argument with \code{purrr::pmap}, you will have to provide a
+quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
     \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
@@ -92,6 +80,10 @@ change the marginal distribution histograms and density plots.}
 change the marginal distribution histograms and density plots.}
     \item{\code{ysidedensity.args}}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
 change the marginal distribution histograms and density plots.}
+    \item{\code{x}}{The column in \code{data} containing the explanatory variable to be
+plotted on the \code{x}-axis.}
+    \item{\code{y}}{The column in \code{data} containing the response (outcome) variable to
+be plotted on the \code{y}-axis.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}

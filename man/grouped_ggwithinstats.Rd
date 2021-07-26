@@ -7,10 +7,7 @@ designs repeated across all levels of a grouping variable.}
 \usage{
 grouped_ggwithinstats(
   data,
-  x,
-  y,
   grouping.var,
-  outlier.label = NULL,
   output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
@@ -22,22 +19,7 @@ grouped_ggwithinstats(
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
 
-\item{x}{The grouping (or independent) variable from the dataframe \code{data}. In
-case of a repeated measures or within-subjects design, if \code{subject.id}
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is \strong{not} sorted, the results
-\emph{can} be inaccurate when there are more than two levels in \code{x} and there
-are \code{NA}s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.}
-
-\item{y}{The response (or outcome or dependent) variable from the
-dataframe \code{data}.}
-
 \item{grouping.var}{A single grouping variable.}
-
-\item{outlier.label}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -77,6 +59,16 @@ arguments passed on to \code{geom_path} connecting raw data points and mean
 points.}
     \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
 \code{geom_boxplot}.}
+    \item{\code{x}}{The grouping (or independent) variable from the dataframe \code{data}. In
+case of a repeated measures or within-subjects design, if \code{subject.id}
+argument is not available or not explicitly specified, the function assumes
+that the data has already been sorted by such an id by the user and creates
+an internal identifier. So if your data is \strong{not} sorted, the results
+\emph{can} be inaccurate when there are more than two levels in \code{x} and there
+are \code{NA}s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.}
+    \item{\code{y}}{The response (or outcome or dependent) variable from the
+dataframe \code{data}.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}
@@ -168,6 +160,8 @@ arguments to be passed to \code{ggplot2::geom_point} and
 the \code{geom_point} displaying the raw data.}
     \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
 \code{FALSE}).}
+    \item{\code{outlier.label}}{Label to put on the outliers that have been tagged. This
+\strong{can't} be the same as \code{x} argument.}
     \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:

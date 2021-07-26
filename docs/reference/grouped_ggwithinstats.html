@@ -240,10 +240,7 @@ grouping variable.</p>
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggwithinstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>x</span>,
-  <span class='va'>y</span>,
   <span class='va'>grouping.var</span>,
-  outlier.label <span class='op'>=</span> <span class='cn'>NULL</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
   annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -260,29 +257,8 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</s
 be accepted.</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
-case of a repeated measures or within-subjects design, if <code>subject.id</code>
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is <strong>not</strong> sorted, the results
-<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
-are <code>NA</code>s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The response (or outcome or dependent) variable from the
-dataframe <code>data</code>.</p></td>
-    </tr>
-    <tr>
       <th>grouping.var</th>
       <td><p>A single grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>outlier.label</th>
-      <td><p>Label to put on the outliers that have been tagged. This
-<strong>can't</strong> be the same as <code>x</code> argument.</p></td>
     </tr>
     <tr>
       <th>output</th>
@@ -328,6 +304,16 @@ arguments passed on to <code>geom_path</code> connecting raw data points and mea
 points.</p></dd>
     <dt><code>boxplot.args</code></dt><dd><p>A list of additional aesthetic arguments passed on to
 <code>geom_boxplot</code>.</p></dd>
+    <dt><code>x</code></dt><dd><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
+case of a repeated measures or within-subjects design, if <code>subject.id</code>
+argument is not available or not explicitly specified, the function assumes
+that the data has already been sorted by such an id by the user and creates
+an internal identifier. So if your data is <strong>not</strong> sorted, the results
+<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
+are <code>NA</code>s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.</p></dd>
+    <dt><code>y</code></dt><dd><p>The response (or outcome or dependent) variable from the
+dataframe <code>data</code>.</p></dd>
     <dt><code>type</code></dt><dd><p>A character specifying the type of statistical approach:
 <ul>
 <li><p><code>"parametric"</code></p></li>
@@ -411,6 +397,8 @@ arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference
 the <code>geom_point</code> displaying the raw data.</p></dd>
     <dt><code>outlier.tagging</code></dt><dd><p>Decides whether outliers should be tagged (Default:
 <code>FALSE</code>).</p></dd>
+    <dt><code>outlier.label</code></dt><dd><p>Label to put on the outliers that have been tagged. This
+<strong>can't</strong> be the same as <code>x</code> argument.</p></dd>
     <dt><code>outlier.coef</code></dt><dd><p>Coefficient for outlier detection using Tukey's method.
 With Tukey's method, outliers are below (1st Quartile) or above (3rd
 Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:

@@ -239,9 +239,6 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggpiestats</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>x</span>,
-  y <span class='op'>=</span> <span class='cn'>NULL</span>,
-  counts <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>grouping.var</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -257,26 +254,6 @@ resulting plots using <code><a href='combine_plots.html'>ggstatsplot::combine_pl
       <td><p>A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted.</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>The variable to use as the <strong>rows</strong> in the contingency table. Please
-note that if there are empty factor levels in your variable, they will be
-dropped.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>The variable to use as the <strong>columns</strong> in the contingency table.
-Please note that if there are empty factor levels in your variable, they
-will be dropped. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test
-(a goodness of fit test) will be run for the <code>x</code> variable. Otherwise an
-appropriate association test will be run. This argument can not be <code>NULL</code>
-for <code>ggbarstats</code> function.</p></td>
-    </tr>
-    <tr>
-      <th>counts</th>
-      <td><p>A string naming a variable in data containing counts, or <code>NULL</code>
-if each row represents a single observation.</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
@@ -306,6 +283,15 @@ separately specified here.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggpiestats.html'>ggpiestats</a></code></p><dl>
+    <dt><code>x</code></dt><dd><p>The variable to use as the <strong>rows</strong> in the contingency table. Please
+note that if there are empty factor levels in your variable, they will be
+dropped.</p></dd>
+    <dt><code>y</code></dt><dd><p>The variable to use as the <strong>columns</strong> in the contingency table.
+Please note that if there are empty factor levels in your variable, they
+will be dropped. Default is <code>NULL</code>. If <code>NULL</code>, one-sample proportion test
+(a goodness of fit test) will be run for the <code>x</code> variable. Otherwise an
+appropriate association test will be run. This argument can not be <code>NULL</code>
+for <code>ggbarstats</code> function.</p></dd>
     <dt><code>proportion.test</code></dt><dd><p>Decides whether proportion test for <code>x</code> variable is to
 be carried out for each level of <code>y</code> (Default: <code>TRUE</code>). In <code>ggbarstats</code>,
 only <em>p</em>-values from this test will be displayed.</p></dd>
@@ -354,6 +340,8 @@ be extracted. The available palettes and packages can be checked by running
 by <code>ggstatsplot</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> functions.</p></dd>
+    <dt><code>counts</code></dt><dd><p>A string naming a variable in data containing counts, or <code>NULL</code>
+if each row represents a single observation.</p></dd>
     <dt><code>paired</code></dt><dd><p>Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
 test expression will be returned. If <code>FALSE</code>, Pearson's chi-square test will

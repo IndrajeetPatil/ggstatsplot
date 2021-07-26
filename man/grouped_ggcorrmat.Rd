@@ -7,7 +7,6 @@ levels of a grouping variable}
 \usage{
 grouped_ggcorrmat(
   data,
-  cor.vars = NULL,
   grouping.var,
   output = "plot",
   plotgrid.args = list(),
@@ -18,10 +17,6 @@ grouped_ggcorrmat(
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
-
-\item{cor.vars}{List of variables for which the correlation matrix is to be
-computed and visualized. If \code{NULL} (default), all numeric variables from
-\code{data} will be used.}
 
 \item{grouping.var}{A single grouping variable.}
 
@@ -41,6 +36,9 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
   \describe{
+    \item{\code{cor.vars}}{List of variables for which the correlation matrix is to be
+computed and visualized. If \code{NULL} (default), all numeric variables from
+\code{data} will be used.}
     \item{\code{cor.vars.names}}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
     \item{\code{partial}}{Can be \code{TRUE} for partial correlations. For Bayesian partial

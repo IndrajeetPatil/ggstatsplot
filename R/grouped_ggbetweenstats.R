@@ -57,10 +57,7 @@
 
 # defining the function
 grouped_ggbetweenstats <- function(data,
-                                   x,
-                                   y,
                                    grouping.var,
-                                   outlier.label = NULL,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list(),
@@ -73,10 +70,6 @@ grouped_ggbetweenstats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbetweenstats,
-    # common parameters
-    x = {{ x }},
-    y = {{ y }},
-    outlier.label = {{ outlier.label }},
     output = output,
     ...
   )

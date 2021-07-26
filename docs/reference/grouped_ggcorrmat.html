@@ -242,7 +242,6 @@ multiple levels of a given factor and combining the resulting plots using
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggcorrmat</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  cor.vars <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>grouping.var</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -257,12 +256,6 @@ multiple levels of a given factor and combining the resulting plots using
       <th>data</th>
       <td><p>Dataframe from which variables specified are preferentially to be
 taken.</p></td>
-    </tr>
-    <tr>
-      <th>cor.vars</th>
-      <td><p>List of variables for which the correlation matrix is to be
-computed and visualized. If <code>NULL</code> (default), all numeric variables from
-<code>data</code> will be used.</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
@@ -290,6 +283,9 @@ separately specified here.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggcorrmat.html'>ggcorrmat</a></code></p><dl>
+    <dt><code>cor.vars</code></dt><dd><p>List of variables for which the correlation matrix is to be
+computed and visualized. If <code>NULL</code> (default), all numeric variables from
+<code>data</code> will be used.</p></dd>
     <dt><code>cor.vars.names</code></dt><dd><p>Optional list of names to be used for <code>cor.vars</code>. The
 names should be entered in the same order.</p></dd>
     <dt><code>partial</code></dt><dd><p>Can be <code>TRUE</code> for partial correlations. For Bayesian partial
@@ -384,6 +380,7 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-in'>  <span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggcorrplot</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggplot2</span>
 <span class='r-plt'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># for dataframe</span></span>
@@ -397,7 +394,7 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Series not converged.</span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Series not converged.</span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Series not converged.</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 60 x 15</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 60 × 15</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>    vore  parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> carni sleep_total sleep_rem     0.845        0.95    0.641    0.961  1    </span>

@@ -33,9 +33,6 @@
 
 # defining the function
 grouped_ggpiestats <- function(data,
-                               x,
-                               y = NULL,
-                               counts = NULL,
                                grouping.var,
                                output = "plot",
                                plotgrid.args = list(),
@@ -49,10 +46,6 @@ grouped_ggpiestats <- function(data,
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggpiestats,
-    # common parameters
-    x = {{ x }},
-    y = {{ y }},
-    counts = {{ counts }},
     output = output,
     ...
   )

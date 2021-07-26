@@ -239,8 +239,6 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggdotplotstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
-  <span class='va'>x</span>,
-  <span class='va'>y</span>,
   <span class='va'>grouping.var</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -256,14 +254,6 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
       <td><p>A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted.</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>A numeric variable from the dataframe <code>data</code>.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>Label or grouping variable.</p></td>
     </tr>
     <tr>
       <th>grouping.var</th>
@@ -293,8 +283,10 @@ separately specified here.</p></td>
     <tr>
       <th>...</th>
       <td><p>Arguments passed on to <code><a href='ggdotplotstats.html'>ggdotplotstats</a></code></p><dl>
+    <dt><code>y</code></dt><dd><p>Label or grouping variable.</p></dd>
     <dt><code>point.args</code></dt><dd><p>A list of additional aesthetic arguments passed to
 <code>geom_point</code>.</p></dd>
+    <dt><code>x</code></dt><dd><p>A numeric variable from the dataframe <code>data</code>.</p></dd>
     <dt><code>xlab</code></dt><dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
 variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>subtitle</code></dt><dd><p>The text for the plot subtitle. Will work only if

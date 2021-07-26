@@ -163,7 +163,7 @@
       <h1 data-toc-skip>ggbetweenstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-20</h4>
+            <h4 data-toc-skip class="date">2021-07-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggbetweenstats.Rmd" class="external-link"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggbetweenstats.Rmd</code></div>
@@ -213,12 +213,12 @@ A BibTeX entry for LaTeX users is
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span></code></pre></div>
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span></code></pre></div>
 <p><strong>Note</strong>: For the remainder of the vignette, we’re going to exclude <em>Oceania</em> from the analysis simply because there are so few observations (countries).</p>
 <p>Suppose the first thing we want to inspect is the distribution of life expectancy for the countries of a continent in 2007. We also want to know if the mean differences in life expectancy between the continents is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
@@ -292,69 +292,65 @@ A BibTeX entry for LaTeX users is
 <span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span>
 
 <span class="co"># parametric t-test and box plot</span>
-<span class="va">p1</span> <span class="op">&lt;-</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">df_year</span>,
-    x <span class="op">=</span> <span class="va">year</span>,
-    y <span class="op">=</span> <span class="va">lifeExp</span>,
-    xlab <span class="op">=</span> <span class="st">"Year"</span>,
-    ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
-    plot.type <span class="op">=</span> <span class="st">"box"</span>,
-    type <span class="op">=</span> <span class="st">"p"</span>,
-    conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-    title <span class="op">=</span> <span class="st">"Parametric test"</span>,
-    package <span class="op">=</span> <span class="st">"ggsci"</span>,
-    palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
-  <span class="op">)</span>
+<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">df_year</span>,
+  x <span class="op">=</span> <span class="va">year</span>,
+  y <span class="op">=</span> <span class="va">lifeExp</span>,
+  xlab <span class="op">=</span> <span class="st">"Year"</span>,
+  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
+  plot.type <span class="op">=</span> <span class="st">"box"</span>,
+  type <span class="op">=</span> <span class="st">"p"</span>,
+  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
+  title <span class="op">=</span> <span class="st">"Parametric test"</span>,
+  package <span class="op">=</span> <span class="st">"ggsci"</span>,
+  palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
+<span class="op">)</span>
 
 <span class="co"># Mann-Whitney U test (nonparametric t) and violin plot</span>
-<span class="va">p2</span> <span class="op">&lt;-</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">df_year</span>,
-    x <span class="op">=</span> <span class="va">year</span>,
-    y <span class="op">=</span> <span class="va">lifeExp</span>,
-    xlab <span class="op">=</span> <span class="st">"Year"</span>,
-    ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
-    plot.type <span class="op">=</span> <span class="st">"violin"</span>,
-    type <span class="op">=</span> <span class="st">"np"</span>,
-    conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-    title <span class="op">=</span> <span class="st">"Non-parametric Test (violin plot)"</span>,
-    package <span class="op">=</span> <span class="st">"ggsci"</span>,
-    palette <span class="op">=</span> <span class="st">"uniform_startrek"</span>
-  <span class="op">)</span>
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">df_year</span>,
+  x <span class="op">=</span> <span class="va">year</span>,
+  y <span class="op">=</span> <span class="va">lifeExp</span>,
+  xlab <span class="op">=</span> <span class="st">"Year"</span>,
+  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
+  plot.type <span class="op">=</span> <span class="st">"violin"</span>,
+  type <span class="op">=</span> <span class="st">"np"</span>,
+  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
+  title <span class="op">=</span> <span class="st">"Non-parametric Test (violin plot)"</span>,
+  package <span class="op">=</span> <span class="st">"ggsci"</span>,
+  palette <span class="op">=</span> <span class="st">"uniform_startrek"</span>
+<span class="op">)</span>
 
 <span class="co"># robust t-test and boxviolin plot</span>
-<span class="va">p3</span> <span class="op">&lt;-</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">df_year</span>,
-    x <span class="op">=</span> <span class="va">year</span>,
-    y <span class="op">=</span> <span class="va">lifeExp</span>,
-    xlab <span class="op">=</span> <span class="st">"Year"</span>,
-    ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
-    plot.type <span class="op">=</span> <span class="st">"boxviolin"</span>,
-    type <span class="op">=</span> <span class="st">"r"</span>,
-    conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-    title <span class="op">=</span> <span class="st">"Robust Test (box &amp; violin plot)"</span>,
-    tr <span class="op">=</span> <span class="fl">0.005</span>,
-    package <span class="op">=</span> <span class="st">"wesanderson"</span>,
-    palette <span class="op">=</span> <span class="st">"Royal2"</span>,
-    k <span class="op">=</span> <span class="fl">3</span>
-  <span class="op">)</span>
+<span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">df_year</span>,
+  x <span class="op">=</span> <span class="va">year</span>,
+  y <span class="op">=</span> <span class="va">lifeExp</span>,
+  xlab <span class="op">=</span> <span class="st">"Year"</span>,
+  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
+  plot.type <span class="op">=</span> <span class="st">"boxviolin"</span>,
+  type <span class="op">=</span> <span class="st">"r"</span>,
+  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
+  title <span class="op">=</span> <span class="st">"Robust Test (box &amp; violin plot)"</span>,
+  tr <span class="op">=</span> <span class="fl">0.005</span>,
+  package <span class="op">=</span> <span class="st">"wesanderson"</span>,
+  palette <span class="op">=</span> <span class="st">"Royal2"</span>,
+  k <span class="op">=</span> <span class="fl">3</span>
+<span class="op">)</span>
 
 <span class="co"># Bayes Factor for parametric t-test and boxviolin plot</span>
-<span class="va">p4</span> <span class="op">&lt;-</span>
-  <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">df_year</span>,
-    x <span class="op">=</span> <span class="va">year</span>,
-    y <span class="op">=</span> <span class="va">lifeExp</span>,
-    xlab <span class="op">=</span> <span class="st">"Year"</span>,
-    ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
-    type <span class="op">=</span> <span class="st">"bayes"</span>,
-    plot.type <span class="op">=</span> <span class="st">"box"</span>,
-    title <span class="op">=</span> <span class="st">"Bayesian Test (box plot)"</span>,
-    package <span class="op">=</span> <span class="st">"ggsci"</span>,
-    palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
-  <span class="op">)</span>
+<span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">df_year</span>,
+  x <span class="op">=</span> <span class="va">year</span>,
+  y <span class="op">=</span> <span class="va">lifeExp</span>,
+  xlab <span class="op">=</span> <span class="st">"Year"</span>,
+  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
+  type <span class="op">=</span> <span class="st">"bayes"</span>,
+  plot.type <span class="op">=</span> <span class="st">"box"</span>,
+  title <span class="op">=</span> <span class="st">"Bayesian Test (box plot)"</span>,
+  package <span class="op">=</span> <span class="st">"ggsci"</span>,
+  palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
+<span class="op">)</span>
 
 <span class="co"># combining the individual plots into a single plot</span>
 <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -383,7 +379,6 @@ A BibTeX entry for LaTeX users is
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span><span class="op">)</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span>
     <span class="co"># arguments relevant for ggstatsplot::ggbetweenstats</span>
-    data <span class="op">=</span> <span class="va">.</span>,
     x <span class="op">=</span> <span class="va">continent</span>,
     y <span class="op">=</span> <span class="va">lifeExp</span>,
     grouping.var <span class="op">=</span> <span class="va">year</span>,
@@ -395,7 +390,6 @@ A BibTeX entry for LaTeX users is
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
     palette <span class="op">=</span> <span class="st">"default_jco"</span>,
     outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
-    
     outlier.label <span class="op">=</span> <span class="va">country</span>,
     <span class="co"># arguments relevant for ggstatsplot::combine_plots</span>
     annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,
@@ -710,7 +704,6 @@ A BibTeX entry for LaTeX users is
 <li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<p>The <code>ggstatsplot</code> reporting -</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="va">supp</span>, <span class="va">len</span><span class="op">)</span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/reporting-1.png" width="100%"></p>

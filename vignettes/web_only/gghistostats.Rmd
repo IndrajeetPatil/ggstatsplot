@@ -206,7 +206,7 @@ reported statistics.
 
 For example, let's see the following example:
 
-The `ggstatsplot` reporting -
+
 
 ```{r reporting}
 gghistostats(trees, Height, test.value = 75)
