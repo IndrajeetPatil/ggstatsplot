@@ -177,9 +177,9 @@ ggpiestats <- function(data,
   palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
-  p <- ggplot2::ggplot(descriptive_df, mapping = ggplot2::aes(x = "", y = perc)) +
+  p <- ggplot2::ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
     ggplot2::geom_col(
-      mapping = ggplot2::aes(fill = {{ x }}),
+      mapping = aes(fill = {{ x }}),
       position = "fill",
       color = "black",
       width = 1
@@ -191,9 +191,9 @@ ggpiestats <- function(data,
 
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +
-    rlang::exec(
+    exec(
       .fn,
-      mapping = ggplot2::aes(label = .label, group = {{ x }}),
+      mapping = aes(label = .label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
       min.segment.length = 0,
       fill = "white",
@@ -222,10 +222,10 @@ ggpiestats <- function(data,
   # adding labels with proportion tests
   if (facet && proportion.test) {
     p <- p +
-      rlang::exec(
+      exec(
         ggplot2::geom_text,
         data = onesample_df,
-        mapping = ggplot2::aes(label = .label, x = 1.65, y = 0.5),
+        mapping = aes(label = .label, x = 1.65, y = 0.5),
         position = ggplot2::position_fill(vjust = 1),
         size = 2.8,
         parse = TRUE

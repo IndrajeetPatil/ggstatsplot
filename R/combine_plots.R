@@ -61,6 +61,6 @@ combine_plots <- function(plotlist,
                           annotation.args = list(),
                           guides = "collect",
                           ...) {
-  rlang::exec(patchwork::wrap_plots, !!!plotlist, guides = guides, !!!plotgrid.args) +
-    rlang::exec(patchwork::plot_annotation, !!!annotation.args)
+  exec(patchwork::wrap_plots, !!!plotlist, guides = guides, !!!plotgrid.args) +
+    exec(patchwork::plot_annotation, !!!annotation.args)
 }

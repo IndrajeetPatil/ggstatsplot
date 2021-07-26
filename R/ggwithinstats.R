@@ -24,6 +24,8 @@
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
 #'   arguments passed on to `geom_path` connecting raw data points and mean
 #'   points.
+#' @param boxplot.args A list of additional aesthetic arguments passed on to
+#'   `geom_boxplot`.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
@@ -32,6 +34,7 @@
 #' @importFrom rlang exec !! enquo := !!! exec
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
+#' @importFrom ggplot2 ggplot aes geom_point geom_boxplot geom_violin geom_path
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
@@ -88,19 +91,46 @@ ggwithinstats <- function(data,
                           tr = 0.2,
                           centrality.plotting = TRUE,
                           centrality.type = type,
-                          centrality.point.args = list(size = 5, color = "darkred"),
-                          centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+                          centrality.point.args = list(
+                            size = 5,
+                            color = "darkred"
+                          ),
+                          centrality.label.args = list(
+                            size = 3,
+                            nudge_x = 0.4,
+                            segment.linetype = 4
+                          ),
                           centrality.path = TRUE,
-                          centrality.path.args = list(size = 1, color = "red", alpha = 0.5),
-                          point.args = list(size = 3, alpha = 0.5),
+                          centrality.path.args = list(
+                            size = 1,
+                            color = "red",
+                            alpha = 0.5
+                          ),
+                          point.args = list(
+                            size = 3,
+                            alpha = 0.5
+                          ),
                           point.path = TRUE,
-                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
+                          point.path.args = list(
+                            alpha = 0.5,
+                            linetype = "dashed"
+                          ),
                           outlier.tagging = FALSE,
                           outlier.label = NULL,
                           outlier.coef = 1.5,
                           outlier.label.args = list(size = 3),
-                          violin.args = list(width = 0.5, alpha = 0.2),
-                          ggsignif.args = list(textsize = 3, tip_length = 0.01),
+                          boxplot.args = list(
+                            width = 0.2,
+                            alpha = 0.5
+                          ),
+                          violin.args = list(
+                            width = 0.5,
+                            alpha = 0.2
+                          ),
+                          ggsignif.args = list(
+                            textsize = 3,
+                            tip_length = 0.01
+                          ),
                           ggtheme = ggstatsplot::theme_ggstatsplot(),
                           package = "RColorBrewer",
                           palette = "Dark2",
@@ -141,7 +171,7 @@ ggwithinstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }}))[[1]] < 3, "t", "anova")
+  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
 
   if (isTRUE(results.subtitle)) {
     # relevant arguments for statistical tests
@@ -181,25 +211,13 @@ ggwithinstats <- function(data,
   # plot -------------------------------------------
 
   # plot
-  plot <- ggplot2::ggplot(data, ggplot2::aes(x = {{ x }}, y = {{ y }}, group = .rowid)) +
-    rlang::exec(ggplot2::geom_point, ggplot2::aes(color = {{ x }}), !!!point.args) +
-    ggplot2::geom_boxplot(
-      mapping = ggplot2::aes({{ x }}, {{ y }}),
-      inherit.aes = FALSE,
-      width = 0.2,
-      alpha = 0.5
-    ) +
-    rlang::exec(
-      ggplot2::geom_violin,
-      mapping = ggplot2::aes({{ x }}, {{ y }}),
-      inherit.aes = FALSE,
-      !!!violin.args
-    )
+  plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
+    exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args) +
+    exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
 
   # add a connecting path only if there are only two groups
-  if (test != "anova" && point.path) {
-    plot <- plot + rlang::exec(ggplot2::geom_path, !!!point.path.args)
-  }
+  if (test == "t" && point.path) plot <- plot + exec(geom_path, !!!point.path.args)
 
   # outlier labeling -----------------------------
 
@@ -210,10 +228,10 @@ ggwithinstats <- function(data,
   if (isTRUE(outlier.tagging)) {
     # applying the labels to tagged outliers with `ggrepel`
     plot <- plot +
-      rlang::exec(
+      exec(
         .fn = ggrepel::geom_label_repel,
         data = ~ dplyr::filter(.x, isanoutlier),
-        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
+        mapping = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         min.segment.length = 0,
         inherit.aes = FALSE,
         !!!outlier.label.args

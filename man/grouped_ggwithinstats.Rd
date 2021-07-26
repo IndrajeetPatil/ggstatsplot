@@ -75,6 +75,8 @@ points.}
     \item{\code{point.path.args}}{A list of additional aesthetic
 arguments passed on to \code{geom_path} connecting raw data points and mean
 points.}
+    \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
+\code{geom_boxplot}.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}

@@ -137,8 +137,8 @@ ggdotplotstats <- function(data,
   # plot -----------------------------------
 
   # creating the basic plot
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, y = rank)) +
-    rlang::exec(ggplot2::geom_point, !!!point.args) +
+  plot <- ggplot2::ggplot(data, mapping = aes({{ x }}, y = rank)) +
+    exec(ggplot2::geom_point, !!!point.args) +
     ggplot2::scale_y_continuous(
       name = ylab,
       labels = data %>% dplyr::pull({{ y }}),

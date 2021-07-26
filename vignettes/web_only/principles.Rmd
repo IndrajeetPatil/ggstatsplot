@@ -39,6 +39,7 @@ knitr::opts_chunk$set(
 )
 
 library(ggstatsplot)
+library(ggplot2)
 ```
 
 ---
@@ -162,7 +163,7 @@ df <- dplyr::filter(movies_long, genre %in% c("Comedy", "Drama"))
 combine_plots(
   plotlist = list(
     # plot 1: superposition
-    ggplot(data = df, mapping = ggplot2::aes(x = length, y = rating, color = genre)) +
+    ggplot(data = df, mapping = aes(x = length, y = rating, color = genre)) +
       geom_jitter(size = 3, alpha = 0.5) +
       geom_smooth(method = "lm") +
       labs(title = "superposition (recommended in Cleveland's paradigm)") +

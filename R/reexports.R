@@ -27,3 +27,7 @@ statsExpressions::enframe
 #' @export
 #' @importFrom statsExpressions as_tibble
 statsExpressions::as_tibble
+
+#' @export
+#' @importFrom rlang exec
+rlang::exec

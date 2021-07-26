@@ -85,7 +85,7 @@ ggbarstats <- function(data,
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% dplyr::mutate(dplyr::across(dplyr::everything(), ~ droplevels(as.factor(.x))))
+  data %<>% dplyr::mutate(dplyr::across(.fns = ~ droplevels(as.factor(.x))))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
@@ -137,23 +137,19 @@ ggbarstats <- function(data,
   onesample_df <- onesample_df(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(package, palette, nlevels(data %>% dplyr::pull({{ x }}))[[1]])
+  palette_message(package, palette, nlevels(data %>% dplyr::pull({{ x }})))
 
   # plot
-  p <- ggplot2::ggplot(descriptive_df, ggplot2::aes({{ y }}, perc, fill = {{ x }})) +
-    ggplot2::geom_bar(
-      stat = "identity",
-      position = "fill",
-      color = "black"
-    ) +
+  p <- ggplot2::ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
+    ggplot2::geom_bar(stat = "identity", position = "fill", color = "black") +
     ggplot2::scale_y_continuous(
       labels = function(x) paste0(x * 100, "%"),
       breaks = seq(from = 0, to = 1, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
-    rlang::exec(
+    exec(
       ggplot2::geom_label,
-      mapping = ggplot2::aes(label = .label, group = {{ x }}),
+      mapping = aes(label = .label, group = {{ x }}),
       position = ggplot2::position_fill(vjust = 0.5),
       !!!label.args
     ) +
@@ -170,7 +166,7 @@ ggbarstats <- function(data,
     p <- p +
       ggplot2::geom_text(
         data = onesample_df,
-        mapping = ggplot2::aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
+        mapping = aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
         size = 2.8,
         parse = TRUE
       )
@@ -180,7 +176,7 @@ ggbarstats <- function(data,
   p <- p +
     ggplot2::geom_text(
       data = onesample_df,
-      mapping = ggplot2::aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
+      mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
       size = 4
     )
 

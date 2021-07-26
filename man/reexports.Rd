@@ -10,6 +10,7 @@
 \alias{tibble}
 \alias{enframe}
 \alias{as_tibble}
+\alias{exec}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -17,6 +18,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{rlang}{\code{\link[rlang]{exec}}}
+
   \item{statsExpressions}{\code{\link[statsExpressions:reexports]{\%$\%}}, \code{\link[statsExpressions:reexports]{\%<-\%}}, \code{\link[statsExpressions:reexports]{\%<>\%}}, \code{\link[statsExpressions:reexports]{\%>\%}}, \code{\link[statsExpressions:reexports]{as_tibble}}, \code{\link[statsExpressions:reexports]{enframe}}, \code{\link[statsExpressions:reexports]{tibble}}}
 }}
 

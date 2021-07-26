@@ -274,6 +274,7 @@ a subtitle.</p>
   outlier.label <span class='op'>=</span> <span class='cn'>NULL</span>,
   outlier.coef <span class='op'>=</span> <span class='fl'>1.5</span>,
   outlier.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  boxplot.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.2</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
   violin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.5</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>,
   ggsignif.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>textsize <span class='op'>=</span> <span class='fl'>3</span>, tip_length <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span>,
   ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -497,6 +498,11 @@ Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Defaul
       <th>outlier.label.args</th>
       <td><p>A list of additional aesthetic arguments to be
 passed to <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> for outlier label plotting.</p></td>
+    </tr>
+    <tr>
+      <th>boxplot.args</th>
+      <td><p>A list of additional aesthetic arguments passed on to
+<code>geom_boxplot</code>.</p></td>
     </tr>
     <tr>
       <th>violin.args</th>

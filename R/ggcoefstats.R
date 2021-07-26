@@ -334,22 +334,22 @@ ggcoefstats <- function(x,
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
-    plot <- ggplot2::ggplot(tidy_df, mapping = ggplot2::aes(estimate, term)) +
-      rlang::exec(ggplot2::geom_point, !!!point.args)
+    plot <- ggplot2::ggplot(tidy_df, mapping = aes(estimate, term)) +
+      exec(ggplot2::geom_point, !!!point.args)
 
     # if the confidence intervals are to be displayed on the plot
     if (conf.int) {
       plot <- plot +
-        rlang::exec(
+        exec(
           ggplot2::geom_errorbarh,
           data = tidy_df,
-          mapping = ggplot2::aes(xmin = conf.low, xmax = conf.high),
+          mapping = aes(xmin = conf.low, xmax = conf.high),
           !!!errorbar.args
         )
     }
 
     # if needed, adding the vertical line
-    if (vline) plot <- plot + rlang::exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
+    if (vline) plot <- plot + exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
 
     # ggrepel labels -------------------------
 
@@ -364,10 +364,10 @@ ggcoefstats <- function(x,
 
       # adding labels
       plot <- plot +
-        rlang::exec(
+        exec(
           ggrepel::geom_label_repel,
           data = tidy_df,
-          mapping = ggplot2::aes(x = estimate, y = term, label = label),
+          mapping = aes(x = estimate, y = term, label = label),
           parse = TRUE,
           color = stats.label.color,
           !!!stats.label.args

@@ -2,7 +2,7 @@
 % Please edit documentation in R/grouped_ggbarstats.R
 \name{grouped_ggbarstats}
 \alias{grouped_ggbarstats}
-\title{Grouped bar (column) charts with statistical tests}
+\title{Grouped bar charts with statistical tests}
 \usage{
 grouped_ggbarstats(
   data,
@@ -149,7 +149,6 @@ diamonds_short <- ggplot2::diamonds \%>\%
   dplyr::sample_frac(size = 0.05)
 
 # plot
-# let's skip statistical analysis
 grouped_ggbarstats(
   data = diamonds_short,
   x = color,

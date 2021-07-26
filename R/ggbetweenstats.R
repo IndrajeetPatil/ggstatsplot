@@ -279,21 +279,21 @@ ggbetweenstats <- function(data,
   # plot -----------------------------------
 
   # first add only the points which are *not* outliers
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
-    rlang::exec(
+  plot <- ggplot2::ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+    exec(
       ggplot2::geom_point,
       data = ~ dplyr::filter(.x, !isanoutlier),
-      ggplot2::aes(color = {{ x }}),
+      aes(color = {{ x }}),
       !!!point.args
     )
 
   # if outliers are not being tagged, then add the points that were previously left out
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
-      rlang::exec(
+      exec(
         ggplot2::geom_point,
         data = ~ dplyr::filter(.x, isanoutlier),
-        ggplot2::aes(color = {{ x }}),
+        aes(color = {{ x }}),
         !!!point.args
       )
   }
@@ -329,7 +329,7 @@ ggbetweenstats <- function(data,
 
     # add a boxplot
     suppressWarnings(plot <- plot +
-      rlang::exec(
+      exec(
         .fn = .f,
         width = 0.3,
         alpha = 0.2,
@@ -341,7 +341,7 @@ ggbetweenstats <- function(data,
 
   # add violin geom
   if (plot.type %in% c("violin", "boxviolin")) {
-    plot <- plot + rlang::exec(ggplot2::geom_violin, !!!violin.args)
+    plot <- plot + exec(ggplot2::geom_violin, !!!violin.args)
   }
 
   # outlier labeling -----------------------------
@@ -353,10 +353,10 @@ ggbetweenstats <- function(data,
   # applying the labels to tagged outliers with `ggrepel`
   if (isTRUE(outlier.tagging)) {
     plot <- plot +
-      rlang::exec(
+      exec(
         .fn = ggrepel::geom_label_repel,
         data = ~ dplyr::filter(.x, isanoutlier),
-        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
+        mapping = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         min.segment.length = 0,
         inherit.aes = FALSE,
         !!!outlier.label.args

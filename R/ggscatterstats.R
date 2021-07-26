@@ -185,9 +185,9 @@ ggscatterstats <- function(data,
   pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # preparing the scatterplot
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes({{ x }}, {{ y }})) +
-    rlang::exec(ggplot2::geom_point, position = pos, !!!point.args) +
-    rlang::exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
+  plot <- ggplot2::ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+    exec(ggplot2::geom_point, position = pos, !!!point.args) +
+    exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
 
   # point labels --------------------------------
 
@@ -203,10 +203,10 @@ ggscatterstats <- function(data,
 
     # display points labels using `geom_repel_label`
     plot <- plot +
-      rlang::exec(
+      exec(
         .fn = ggrepel::geom_label_repel,
         data = label_data,
-        mapping = ggplot2::aes(label = {{ label.var }}),
+        mapping = aes(label = {{ label.var }}),
         min.segment.length = 0,
         position = pos,
         !!!point.label.args
@@ -234,10 +234,10 @@ ggscatterstats <- function(data,
 
     # adding marginal distributions
     plot <- plot +
-      rlang::exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
-      rlang::exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
-      rlang::exec(ggside::geom_xsidedensity, mapping = aes(y = after_stat(count)), !!!xsidedensity.args) +
-      rlang::exec(ggside::geom_ysidedensity, mapping = aes(x = after_stat(count)), !!!ysidedensity.args) +
+      exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
+      exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
+      exec(ggside::geom_xsidedensity, mapping = aes(y = after_stat(count)), !!!xsidedensity.args) +
+      exec(ggside::geom_ysidedensity, mapping = aes(x = after_stat(count)), !!!ysidedensity.args) +
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }

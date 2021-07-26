@@ -54,7 +54,7 @@ extract_stats <- function(p, ...) {
 
 eval_f <- function(.f, ...) {
   tryCatch(
-    suppressWarnings(suppressMessages(rlang::exec(.f, ...))),
+    suppressWarnings(suppressMessages(exec(.f, ...))),
     error = function(e) NULL
   )
 }

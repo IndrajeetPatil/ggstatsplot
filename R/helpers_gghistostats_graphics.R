@@ -41,7 +41,7 @@ histo_labeller <- function(plot,
 
   # adding a vertical line corresponding to centrality parameter
   plot +
-    rlang::exec(
+    exec(
       ggplot2::geom_vline,
       xintercept = df_central$var[[1]],
       !!!centrality.line.args

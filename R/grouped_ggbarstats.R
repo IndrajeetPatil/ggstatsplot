@@ -1,9 +1,7 @@
-#' @title Grouped bar (column) charts with statistical tests
+#' @title Grouped bar charts with statistical tests
 #' @name grouped_ggbarstats
 #'
 #' @description
-#'
-#'
 #'
 #' Helper function for `ggstatsplot::ggbarstats` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
@@ -37,7 +35,6 @@
 #'   dplyr::sample_frac(size = 0.05)
 #'
 #' # plot
-#' # let's skip statistical analysis
 #' grouped_ggbarstats(
 #'   data = diamonds_short,
 #'   x = color,
@@ -58,7 +55,6 @@ grouped_ggbarstats <- function(data,
                                plotgrid.args = list(),
                                annotation.args = list(),
                                ...) {
-
   # creating a dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 

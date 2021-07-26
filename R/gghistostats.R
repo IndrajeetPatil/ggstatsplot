@@ -142,10 +142,10 @@ gghistostats <- function(data,
   # plot -----------------------------------
 
   # adding axes info
-  plot <- ggplot2::ggplot(data, mapping = ggplot2::aes(x = {{ x }})) +
-    rlang::exec(
+  plot <- ggplot2::ggplot(data, mapping = aes(x = {{ x }})) +
+    exec(
       ggplot2::stat_bin,
-      mapping = ggplot2::aes(y = ..count.., fill = ..count..),
+      mapping = aes(y = ..count.., fill = ..count..),
       binwidth = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
@@ -159,10 +159,10 @@ gghistostats <- function(data,
     ggplot2::guides(fill = "none")
 
   # if normal curve overlay  needs to be displayed
-  if (isTRUE(normal.curve)) {
+  if (normal.curve) {
     plot <- plot +
-      rlang::exec(
-        .f = ggplot2::stat_function,
+      exec(
+        ggplot2::stat_function,
         fun = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
         args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
         !!!normal.curve.args

@@ -179,7 +179,7 @@ ggcorrmat <- function(data,
   insight::check_if_installed("ggcorrplot")
 
   # plotting the correlalogram
-  plot <- rlang::exec(
+  plot <- exec(
     ggcorrplot::ggcorrplot,
     corr = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^r"))),
     p.mat = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^p"))),

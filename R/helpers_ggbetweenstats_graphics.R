@@ -58,10 +58,10 @@ centrality_ggrepel <- function(plot,
   # if there should be lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
     plot <- plot +
-      rlang::exec(
+      exec(
         ggplot2::geom_path,
         data = centrality_df,
-        mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, group = 1),
+        mapping = aes(x = {{ x }}, y = {{ y }}, group = 1),
         inherit.aes = FALSE,
         !!!centrality.path.args
       )
@@ -69,17 +69,17 @@ centrality_ggrepel <- function(plot,
 
   # highlight the mean of each group
   plot +
-    rlang::exec(
+    exec(
       ggplot2::geom_point,
-      mapping = ggplot2::aes({{ x }}, {{ y }}),
+      mapping = aes({{ x }}, {{ y }}),
       data = centrality_df,
       inherit.aes = FALSE,
       !!!centrality.point.args
     ) + # attach the labels with means to the plot
-    rlang::exec(
+    exec(
       ggrepel::geom_label_repel,
       data = centrality_df,
-      mapping = ggplot2::aes(x = {{ x }}, y = {{ y }}, label = expression),
+      mapping = aes(x = {{ x }}, y = {{ y }}, label = expression),
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args
@@ -153,7 +153,7 @@ ggsignif_adder <- function(plot,
 
   # adding ggsignif comparisons to the plot
   plot +
-    rlang::exec(
+    exec(
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
