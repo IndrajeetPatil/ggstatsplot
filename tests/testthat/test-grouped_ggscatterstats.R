@@ -20,8 +20,8 @@ test_that(
       title = "without any labelling",
       fig = grouped_ggscatterstats(
         data = iris,
-        x = Sepal.Length,
-        y = Petal.Width,
+        Sepal.Length,
+        Petal.Width,
         grouping.var = Species
       )
     )

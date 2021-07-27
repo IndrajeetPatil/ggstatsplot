@@ -243,11 +243,11 @@ ggbarstats <- function(data,
 
 # defining the function
 grouped_ggbarstats <- function(data,
+                               ...,
                                grouping.var,
                                output = "plot",
                                plotgrid.args = list(),
-                               annotation.args = list(),
-                               ...) {
+                               annotation.args = list()) {
   # creating a dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 

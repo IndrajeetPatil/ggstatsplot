@@ -7,34 +7,17 @@ designs repeated across all levels of a grouping variable.}
 \usage{
 grouped_ggbetweenstats(
   data,
+  ...,
   grouping.var,
   output = "plot",
   plotgrid.args = list(),
-  annotation.args = list(),
-  ...
+  annotation.args = list()
 )
 }
 \arguments{
 \item{data}{A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted.}
-
-\item{grouping.var}{A single grouping variable.}
-
-\item{output}{Character that describes what is to be returned: can be
-\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results. If
-you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
-Setting this to \code{"caption"} will return the expression containing details
-about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
-
-\item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
-separately specified here.}
-
-\item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggbetweenstats]{ggbetweenstats}}
@@ -180,6 +163,23 @@ for the effect size (Default: \code{100L}).}
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
   }}
+
+\item{grouping.var}{A single grouping variable.}
+
+\item{output}{Character that describes what is to be returned: can be
+\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
+\code{"subtitle"} will return the expression containing statistical results. If
+you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
+Setting this to \code{"caption"} will return the expression containing details
+about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
+\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
+
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
+
+\item{annotation.args}{A \code{list} of additional arguments passed to
+\code{patchwork::plot_annotation}.}
 }
 \description{
 Helper function for \code{ggstatsplot::ggbetweenstats} to apply this function

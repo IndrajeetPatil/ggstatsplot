@@ -7,31 +7,16 @@ levels of a grouping variable}
 \usage{
 grouped_ggcorrmat(
   data,
+  ...,
   grouping.var,
   output = "plot",
   plotgrid.args = list(),
-  annotation.args = list(),
-  ...
+  annotation.args = list()
 )
 }
 \arguments{
 \item{data}{Dataframe from which variables specified are preferentially to be
 taken.}
-
-\item{grouping.var}{A single grouping variable.}
-
-\item{output}{Character that decides expected output from this function. If
-\code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or
-literally anything other than \code{"plot"}), a dataframe containing all details
-from statistical analyses (e.g., correlation coefficients, statistic
-values, \emph{p}-values, no. of observations, etc.) will be returned.}
-
-\item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
-separately specified here.}
-
-\item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
@@ -104,6 +89,21 @@ be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}
   }}
+
+\item{grouping.var}{A single grouping variable.}
+
+\item{output}{Character that decides expected output from this function. If
+\code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or
+literally anything other than \code{"plot"}), a dataframe containing all details
+from statistical analyses (e.g., correlation coefficients, statistic
+values, \emph{p}-values, no. of observations, etc.) will be returned.}
+
+\item{plotgrid.args}{A \code{list} of additional arguments passed to
+\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+separately specified here.}
+
+\item{annotation.args}{A \code{list} of additional arguments passed to
+\code{patchwork::plot_annotation}.}
 }
 \description{
 Helper function for \code{ggstatsplot::ggcorrmat} to apply this function across

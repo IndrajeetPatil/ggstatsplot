@@ -5,12 +5,6 @@ N.B. All statistical analysis in `ggstatsplot` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
-BREAKING CHANGES
-
-  - All `grouped_*` functions expect arguments to be named. So, e.g., calling
-    `grouped_ggpiestats(mtcars, am, grouping.var = cyl)` will not work, but
-    `grouped_ggpiestats(mtcars, x = am, grouping.var = cyl)` will.
-
 MAJOR CHANGES
 
   - For plotting marginal distributions in `ggscatterstats`, `ggstatsplot` now

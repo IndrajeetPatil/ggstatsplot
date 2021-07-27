@@ -321,11 +321,11 @@ ggscatterstats <- function(data,
 
 # defining the function
 grouped_ggscatterstats <- function(data,
+                                   ...,
                                    grouping.var,
                                    output = "plot",
                                    plotgrid.args = list(),
-                                   annotation.args = list(),
-                                   ...) {
+                                   annotation.args = list()) {
   # getting the dataframe ready
   data %<>% grouped_list({{ grouping.var }})
 

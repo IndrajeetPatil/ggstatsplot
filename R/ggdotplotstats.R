@@ -224,11 +224,11 @@ ggdotplotstats <- function(data,
 
 # defining the function
 grouped_ggdotplotstats <- function(data,
+                                   ...,
                                    grouping.var,
                                    output = "plot",
                                    plotgrid.args = list(),
-                                   annotation.args = list(),
-                                   ...) {
+                                   annotation.args = list()) {
 
   # dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})

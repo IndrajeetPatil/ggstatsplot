@@ -286,11 +286,11 @@ ggcorrmat <- function(data,
 
 # defining the function
 grouped_ggcorrmat <- function(data,
+                              ...,
                               grouping.var,
                               output = "plot",
                               plotgrid.args = list(),
-                              annotation.args = list(),
-                              ...) {
+                              annotation.args = list()) {
 
   # dataframe
   data %<>%
