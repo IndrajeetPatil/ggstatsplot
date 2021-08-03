@@ -242,11 +242,11 @@ multiple levels of a given factor and combining the resulting plots using
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggcorrmat</span><span class='op'>(</span>
   <span class='va'>data</span>,
+  <span class='va'>...</span>,
   <span class='va'>grouping.var</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  <span class='va'>...</span>
+  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -256,29 +256,6 @@ multiple levels of a given factor and combining the resulting plots using
       <th>data</th>
       <td><p>Dataframe from which variables specified are preferentially to be
 taken.</p></td>
-    </tr>
-    <tr>
-      <th>grouping.var</th>
-      <td><p>A single grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>Character that decides expected output from this function. If
-<code>"plot"</code>, the visualization matrix will be returned. If <code>"dataframe"</code> (or
-literally anything other than <code>"plot"</code>), a dataframe containing all details
-from statistical analyses (e.g., correlation coefficients, statistic
-values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
-    </tr>
-    <tr>
-      <th>plotgrid.args</th>
-      <td><p>A <code>list</code> of additional arguments passed to
-<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>, except for <code>guides</code> argument which is already
-separately specified here.</p></td>
-    </tr>
-    <tr>
-      <th>annotation.args</th>
-      <td><p>A <code>list</code> of additional arguments passed to
-<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -351,6 +328,29 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
   
 </dl></td>
     </tr>
+    <tr>
+      <th>grouping.var</th>
+      <td><p>A single grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Character that decides expected output from this function. If
+<code>"plot"</code>, the visualization matrix will be returned. If <code>"dataframe"</code> (or
+literally anything other than <code>"plot"</code>), a dataframe containing all details
+from statistical analyses (e.g., correlation coefficients, statistic
+values, <em>p</em>-values, no. of observations, etc.) will be returned.</p></td>
+    </tr>
+    <tr>
+      <th>plotgrid.args</th>
+      <td><p>A <code>list</code> of additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>, except for <code>guides</code> argument which is already
+separately specified here.</p></td>
+    </tr>
+    <tr>
+      <th>annotation.args</th>
+      <td><p>A <code>list</code> of additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -379,6 +379,8 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-in'>    annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>tag_levels <span class='op'>=</span> <span class='st'>"i"</span><span class='op'>)</span></span>
 <span class='r-in'>  <span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggcorrplot</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: ggplot2</span>
 <span class='r-plt'><img src='grouped_ggcorrmat-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># for dataframe</span></span>
@@ -393,43 +395,21 @@ be entered as a <code>ggplot2</code> function or a list of <code>ggplot2</code> 
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Series not converged.</span>
 <span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Series not converged.</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 60 × 15</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>vore</span>  <span style='font-weight: bold;'>parameter1</span>  <span style='font-weight: bold;'>parameter2</span>  <span style='font-weight: bold;'>estimate</span> <span style='font-weight: bold;'>conf.level</span> <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span>    <span style='font-weight: bold;'>pd</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    vore  parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> carni sleep_total sleep_rem     <span style='color: #949494;'>0.</span>845        <span style='color: #949494;'>0.</span>95    <span style='color: #949494;'>0.</span>641    <span style='color: #949494;'>0.</span>961  1    </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> carni sleep_total sleep_cycle   <span style='color: #949494;'>0.</span>204        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>351</span>    <span style='color: #949494;'>0.</span>764  <span style='color: #949494;'>0.</span>698</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> carni sleep_total awake        -<span style='color: #BB0000;'>1.00</span>         <span style='color: #949494;'>0.</span>95   -<span style='color: #BB0000;'>1.00</span>    -<span style='color: #BB0000;'>1.00</span>   1    </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> carni sleep_total brainwt      -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>382</span>        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>759</span>    <span style='color: #949494;'>0.0</span>54<span style='text-decoration: underline;'>9</span> <span style='color: #949494;'>0.</span>895</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> carni sleep_total bodywt       -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>379</span>        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>662</span>   -<span style='color: #949494;'>0.0</span><span style='color: #BB0000;'>65</span><span style='color: #BB0000; text-decoration: underline;'>4</span> <span style='color: #949494;'>0.</span>960</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> carni sleep_rem   sleep_cycle   <span style='color: #949494;'>0.0</span>54<span style='text-decoration: underline;'>8</span>       <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>534</span>    <span style='color: #949494;'>0.</span>587  <span style='color: #949494;'>0.</span>562</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> carni sleep_rem   awake        -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>848</span>        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>962</span>   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>678</span>  1    </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> carni sleep_rem   brainwt      -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>308</span>        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>760</span>    <span style='color: #949494;'>0.</span>252  <span style='color: #949494;'>0.</span>804</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> carni sleep_rem   bodywt       -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>371</span>        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>716</span>    <span style='color: #949494;'>0.0</span>69<span style='text-decoration: underline;'>4</span> <span style='color: #949494;'>0.</span>899</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> carni sleep_cycle awake        -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>205</span>        <span style='color: #949494;'>0.</span>95   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>754</span>    <span style='color: #949494;'>0.</span>373  <span style='color: #949494;'>0.</span>690</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>rope.percentage</span> <span style='font-weight: bold;'>prior.distribution</span> <span style='font-weight: bold;'>prior.location</span> <span style='font-weight: bold;'>prior.scale</span> <span style='font-weight: bold;'>bayes.factor</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span>          <span style='color: #949494;'>0</span>      beta                         1.41        1.41      112.   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span>          <span style='color: #949494;'>0.</span>168  beta                         1.41        1.41        <span style='color: #949494;'>0.</span>714</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span>          <span style='color: #949494;'>0</span>      beta                         1.41        1.41       <span style='color: #BB0000;'>NA</span>    </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span>          <span style='color: #949494;'>0.</span>116  beta                         1.41        1.41        1.13 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span>          <span style='color: #949494;'>0.0</span>78  beta                         1.41        1.41        1.72 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span>          <span style='color: #949494;'>0.</span>206  beta                         1.41        1.41        <span style='color: #949494;'>0.</span>621</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span>          <span style='color: #949494;'>0.0</span>11<span style='text-decoration: underline;'>8</span> beta                         1.41        1.41      112.   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span>          <span style='color: #949494;'>0.</span>136  beta                         1.41        1.41        <span style='color: #949494;'>0.</span>848</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span>          <span style='color: #949494;'>0.</span>124  beta                         1.41        1.41        1.03 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span>          <span style='color: #949494;'>0.</span>165  beta                         1.41        1.41        <span style='color: #949494;'>0.</span>714</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>method</span>                       <span style='font-weight: bold;'>n.obs</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Bayesian Pearson correlation    10</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Bayesian Pearson correlation     5</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Bayesian Pearson correlation    19</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Bayesian Pearson correlation     9</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Bayesian Pearson correlation    19</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Bayesian Pearson correlation     5</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Bayesian Pearson correlation    10</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Bayesian Pearson correlation     6</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Bayesian Pearson correlation    10</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Bayesian Pearson correlation     5</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 50 more rows</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> carni sleep_total sleep_rem     0.845        0.95    0.641    0.961  1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> carni sleep_total sleep_cycle   0.204        0.95   -<span style='color: #BB0000;'>0.351</span>    0.764  0.698</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> carni sleep_total awake        -<span style='color: #BB0000;'>1.00</span>         0.95   -<span style='color: #BB0000;'>1.00</span>    -<span style='color: #BB0000;'>1.00</span>   1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> carni sleep_total brainwt      -<span style='color: #BB0000;'>0.382</span>        0.95   -<span style='color: #BB0000;'>0.759</span>    0.054<span style='text-decoration: underline;'>9</span> 0.895</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> carni sleep_total bodywt       -<span style='color: #BB0000;'>0.379</span>        0.95   -<span style='color: #BB0000;'>0.662</span>   -<span style='color: #BB0000;'>0.065</span><span style='color: #BB0000; text-decoration: underline;'>4</span> 0.960</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> carni sleep_rem   sleep_cycle   0.054<span style='text-decoration: underline;'>8</span>       0.95   -<span style='color: #BB0000;'>0.534</span>    0.587  0.562</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> carni sleep_rem   awake        -<span style='color: #BB0000;'>0.848</span>        0.95   -<span style='color: #BB0000;'>0.962</span>   -<span style='color: #BB0000;'>0.678</span>  1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> carni sleep_rem   brainwt      -<span style='color: #BB0000;'>0.308</span>        0.95   -<span style='color: #BB0000;'>0.760</span>    0.252  0.804</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> carni sleep_rem   bodywt       -<span style='color: #BB0000;'>0.371</span>        0.95   -<span style='color: #BB0000;'>0.716</span>    0.069<span style='text-decoration: underline;'>4</span> 0.899</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> carni sleep_cycle awake        -<span style='color: #BB0000;'>0.205</span>        0.95   -<span style='color: #BB0000;'>0.754</span>    0.373  0.690</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 50 more rows, and 7 more variables: rope.percentage &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   prior.distribution &lt;chr&gt;, prior.location &lt;dbl&gt;, prior.scale &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   bayes.factor &lt;dbl&gt;, method &lt;chr&gt;, n.obs &lt;int&gt;</span></span>
 <span class='r-in'><span class='co'># }</span></span>
 </code></pre></div>
   </div>

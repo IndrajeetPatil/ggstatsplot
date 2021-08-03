@@ -116,10 +116,10 @@ also supported by `ggcoefstats`. For example-
 `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `mvord`, `negbin`, `negbinmfx`,
 `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
 `poissonmfx`, `poissonirr`, `polr`, `probitmfx`, `ridgelm`, `riskRegression`,
-`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`,
-`selection`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
-`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `Sarlm`,
+`scam`, `selection`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
+`stanreg`, `summary.lm`, `survreg`, `systemfit`, `svyglm`, `svy_vglm`, `svyolr`,
+`tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 # Summary of graphics
 
@@ -3648,7 +3648,7 @@ ggcoefstats(
   point.args = list(color = "red", shape = 15),
   vline.args = list(size = 1, color = "#CC79A7", linetype = "dotdash"),
   title = "robust regression using an M estimator",
-  ggtheme = ggthemes::theme_stata() 
+  ggtheme = ggthemes::theme_stata()
 )
 ```
 
@@ -4011,6 +4011,36 @@ ggcoefstats(
 )
 ```
 
+## Linear Equation System Estimation (`systemfit`)
+
+```{r systemfit, fig.height=7, fig.width=8}
+library(systemfit)
+
+# data
+data("Kmenta")
+eqDemand <- consump ~ price + income
+eqSupply <- consump ~ price + farmPrice + trend
+system <- list(demand = eqDemand, supply = eqSupply)
+inst1 <- ~ income + farmPrice
+inst2 <- ~ income + farmPrice + trend
+instlist <- list(inst1, inst2)
+
+# model
+m_systemfit <- systemfit(
+  system,
+  "2SLS",
+  inst = instlist,
+  data = Kmenta
+)
+
+# plot
+ggcoefstats(
+  x = m_systemfit,
+  title = "Linear Equation System Estimation"
+)
+```
+
+
 ## generalized method of moment estimation (`gmm`)
 
 ```{r gmm, fig.height=8, fig.width=5}
@@ -4038,6 +4068,36 @@ ggcoefstats(
   title = "generalized method of moment estimation"
 )
 ```
+
+## Spatial simultaneous autoregressive model estimation\n by maximum likelihood (`Sarlm`)
+
+```{r Sarlm}
+library(spatialreg)
+
+# data
+data(oldcol, package = "spdep")
+listw <- spdep::nb2listw(COL.nb, style = "W")
+ev <- eigenw(listw)
+W <- as(listw, "CsparseMatrix")
+trMatc <- trW(W, type = "mult")
+
+# model
+COL.lag.eig <- lagsarlm(
+  CRIME ~ INC + HOVAL,
+  data = COL.OLD,
+  listw = listw,
+  method = "eigen",
+  quiet = FALSE,
+  control = list(pre_eig = ev, OrdVsign = 1)
+)
+
+# plot
+ggcoefstats(
+  x = COL.lag.eig,
+  title = "Spatial simultaneous autoregressive model estimation\n by maximum likelihood"
+)
+```
+
 
 ## fit a GLM with lasso or elasticnet regularization (`glmnet`)
 
@@ -5339,4 +5399,3 @@ not supported.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-

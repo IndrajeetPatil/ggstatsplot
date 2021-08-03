@@ -242,11 +242,11 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
 
     <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_ggbetweenstats</span><span class='op'>(</span>
   <span class='va'>data</span>,
+  <span class='va'>...</span>,
   <span class='va'>grouping.var</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   plotgrid.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
-  <span class='va'>...</span>
+  annotation.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></code></pre></div>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -257,31 +257,6 @@ using <code><a href='combine_plots.html'>ggstatsplot::combine_plots</a></code>.<
       <td><p>A dataframe (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted.</p></td>
-    </tr>
-    <tr>
-      <th>grouping.var</th>
-      <td><p>A single grouping variable.</p></td>
-    </tr>
-    <tr>
-      <th>output</th>
-      <td><p>Character that describes what is to be returned: can be
-<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
-<code>"subtitle"</code> will return the expression containing statistical results. If
-you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
-Setting this to <code>"caption"</code> will return the expression containing details
-about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
-    </tr>
-    <tr>
-      <th>plotgrid.args</th>
-      <td><p>A <code>list</code> of additional arguments passed to
-<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>, except for <code>guides</code> argument which is already
-separately specified here.</p></td>
-    </tr>
-    <tr>
-      <th>annotation.args</th>
-      <td><p>A <code>list</code> of additional arguments passed to
-<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -420,6 +395,31 @@ of an error, try reducing the value of <code>tr</code>, which is by default set 
 <code>0.2</code>. Lowering the value might help.</p></dd>
   
 </dl></td>
+    </tr>
+    <tr>
+      <th>grouping.var</th>
+      <td><p>A single grouping variable.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>Character that describes what is to be returned: can be
+<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
+<code>"subtitle"</code> will return the expression containing statistical results. If
+you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
+Setting this to <code>"caption"</code> will return the expression containing details
+about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
+<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>plotgrid.args</th>
+      <td><p>A <code>list</code> of additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/wrap_plots.html'>patchwork::wrap_plots</a></code>, except for <code>guides</code> argument which is already
+separately specified here.</p></td>
+    </tr>
+    <tr>
+      <th>annotation.args</th>
+      <td><p>A <code>list</code> of additional arguments passed to
+<code><a href='https://patchwork.data-imaginist.com/reference/plot_annotation.html'>patchwork::plot_annotation</a></code>.</p></td>
     </tr>
     </table>
 

@@ -2,8 +2,7 @@
 % Please edit documentation in R/ggwithinstats.R
 \name{ggwithinstats}
 \alias{ggwithinstats}
-\title{Box/Violin plots for group or condition comparisons in
-within-subjects (or repeated measures) designs.}
+\title{Box/Violin plots for within-subjects (or repeated measures) comparisons}
 \usage{
 ggwithinstats(
   data,

@@ -1,5 +1,4 @@
-#' @title Box/Violin plots for group or condition comparisons in
-#'   within-subjects (or repeated measures) designs.
+#' @title Box/Violin plots for within-subjects (or repeated measures) comparisons
 #' @name ggwithinstats
 #'
 #' @description
@@ -9,6 +8,7 @@
 #' a subtitle.
 #'
 #' @note
+#'
 #' To carry out Bayesian analysis for ANOVA designs, you will need to install
 #' the development version of `BayesFactor` (`0.9.12-4.3`). You can download it
 #' by running:
