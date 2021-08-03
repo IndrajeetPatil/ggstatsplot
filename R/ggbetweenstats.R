@@ -1,5 +1,4 @@
-#' @title Box/Violin plots for group or condition comparisons in
-#'   between-subjects designs.
+#' @title Box/Violin plots for between-subjects comparisons
 #' @name ggbetweenstats
 #'
 #' @description

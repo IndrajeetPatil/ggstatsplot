@@ -1098,10 +1098,10 @@ also supported by `ggcoefstats`. For example-
 `mixor`, `mjoint`, `mle2`, `mlm`, `multinom`, `mvord`, `negbin`, `negbinmfx`,
 `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
 `poissonmfx`, `poissonirr`, `polr`, `probitmfx`, `ridgelm`, `riskRegression`,
-`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `scam`,
-`selection`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
-`stanreg`, `summary.lm`, `survreg`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
-`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`, `rqss`, `rrvglm`, `Sarlm`,
+`scam`, `selection`, `semLm`, `semLme`, `slm`, `speedglm`, `speedlm`, `stanfit`,
+`stanreg`, `summary.lm`, `survreg`, `systemfit`, `svyglm`, `svy_vglm`, `svyolr`,
+`tobit`, `truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out parametric,
 robust, and Bayesian random-effects meta-analysis.

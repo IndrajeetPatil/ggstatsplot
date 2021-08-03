@@ -2,8 +2,7 @@
 % Please edit documentation in R/ggbetweenstats.R
 \name{ggbetweenstats}
 \alias{ggbetweenstats}
-\title{Box/Violin plots for group or condition comparisons in
-between-subjects designs.}
+\title{Box/Violin plots for between-subjects comparisons}
 \usage{
 ggbetweenstats(
   data,
