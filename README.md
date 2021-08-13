@@ -770,12 +770,12 @@ ggcorrmat(
 #> # A tibble: 6 × 14
 #>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
 #>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-#> 1 sleep_total sleep_rem      0.731       0.95    0.617    0.810  1    
-#> 2 sleep_total sleep_cycle   -0.432       0.95   -0.678   -0.223  0.995
+#> 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    
+#> 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995
 #> 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    
-#> 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.534   -0.0465 0.963
-#> 5 sleep_rem   awake         -0.733       0.95   -0.826   -0.639  1    
-#> 6 sleep_cycle awake          0.439       0.95    0.220    0.653  0.998
+#> 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963
+#> 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    
+#> 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998
 #>   rope.percentage prior.distribution prior.location prior.scale  bayes.factor
 #>             <dbl> <chr>                       <dbl>       <dbl>         <dbl>
 #> 1          0      beta                         1.41        1.41 3000790806.  
@@ -810,12 +810,12 @@ ggcorrmat(
 #> # A tibble: 6 × 14
 #>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
 #>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-#> 1 sleep_total sleep_rem    0.0938        0.95   -0.165     0.385 0.704
-#> 2 sleep_total sleep_cycle  0.00194       0.95   -0.263     0.279 0.505
+#> 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704
+#> 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505
 #> 3 sleep_total awake       -1             0.95   -1        -1     1    
-#> 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.283     0.248 0.558
-#> 5 sleep_rem   awake        0.0889        0.95   -0.191     0.356 0.698
-#> 6 sleep_cycle awake        0.00381       0.95   -0.259     0.283 0.508
+#> 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558
+#> 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698
+#> 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508
 #>   rope.percentage prior.distribution prior.location prior.scale bayes.factor
 #>             <dbl> <chr>                       <dbl>       <dbl>        <dbl>
 #> 1           0.378 beta                         1.41        1.41        0.311
@@ -1167,10 +1167,10 @@ packages are also supported by `ggcoefstats`. For example-
 `negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
 `poissonmfx`, `poissonirr`, `polr`, `probitmfx`, `ridgelm`,
 `riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`,
-`rqss`, `rrvglm`, `scam`, `selection`, `semLm`, `semLme`, `slm`,
-`speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`, `survreg`,
-`svyglm`, `svy_vglm`, `svyolr`, `tobit`, `truncreg`, `varest`, `vgam`,
-`vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+`rqss`, `rrvglm`, `Sarlm`, `scam`, `selection`, `semLm`, `semLme`,
+`slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`,
+`survreg`, `systemfit`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
+`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
 
 Although not shown here, this function can also be used to carry out
 parametric, robust, and Bayesian random-effects meta-analysis.
@@ -1228,10 +1228,10 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #>   <chr>    <dbl>      <dbl>    <dbl>     <dbl> <dbl>           <dbl>
 #> 1 mu      20.5         0.95  19.3        21.9  1              0     
 #> 2 cyl-4    5.90        0.95   4.11        7.52 1              0     
-#> 3 cyl-6   -0.704       0.95  -2.64        1.06 0.780          0.416 
+#> 3 cyl-6   -0.704       0.95  -2.64        1.06 0.780          0.390 
 #> 4 cyl-8   -5.18        0.95  -6.76       -3.55 1              0     
 #> 5 sig2    11.0         0.95   6.24       18.3  1              0     
-#> 6 g_cyl    2.69        0.95   0.0911     18.7  1              0.0438
+#> 6 g_cyl    2.69        0.95   0.0911     18.7  1              0.0418
 #>   prior.distribution prior.location prior.scale component       bf10
 #>   <chr>                       <dbl>       <dbl> <chr>          <dbl>
 #> 1 cauchy                          0       0.707 extra       3008850.

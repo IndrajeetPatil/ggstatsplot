@@ -50,44 +50,44 @@
       16 3    3 7.796832 7.853951 list(~italic(p)[uncorrected]==0.433)
       17 3    4 7.853951 7.853951 list(~italic(p)[uncorrected]==0.433)
       18 4    4 7.853951 7.796832 list(~italic(p)[uncorrected]==0.433)
-                   group PANEL shape colour textsize angle hjust vjust alpha family
-      1    carni-herbi-1     1    19  black        3     0   0.5     0    NA       
-      2    carni-herbi-1     1    19  black        3     0   0.5     0    NA       
-      3    carni-herbi-1     1    19  black        3     0   0.5     0    NA       
-      4  carni-insecti-2     1    19  black        3     0   0.5     0    NA       
-      5  carni-insecti-2     1    19  black        3     0   0.5     0    NA       
-      6  carni-insecti-2     1    19  black        3     0   0.5     0    NA       
-      7     carni-omni-3     1    19  black        3     0   0.5     0    NA       
-      8     carni-omni-3     1    19  black        3     0   0.5     0    NA       
-      9     carni-omni-3     1    19  black        3     0   0.5     0    NA       
-      10 herbi-insecti-4     1    19  black        3     0   0.5     0    NA       
-      11 herbi-insecti-4     1    19  black        3     0   0.5     0    NA       
-      12 herbi-insecti-4     1    19  black        3     0   0.5     0    NA       
-      13    herbi-omni-5     1    19  black        3     0   0.5     0    NA       
-      14    herbi-omni-5     1    19  black        3     0   0.5     0    NA       
-      15    herbi-omni-5     1    19  black        3     0   0.5     0    NA       
-      16  insecti-omni-6     1    19  black        3     0   0.5     0    NA       
-      17  insecti-omni-6     1    19  black        3     0   0.5     0    NA       
-      18  insecti-omni-6     1    19  black        3     0   0.5     0    NA       
-         fontface lineheight linetype size
-      1         1        1.2        1  0.5
-      2         1        1.2        1  0.5
-      3         1        1.2        1  0.5
-      4         1        1.2        1  0.5
-      5         1        1.2        1  0.5
-      6         1        1.2        1  0.5
-      7         1        1.2        1  0.5
-      8         1        1.2        1  0.5
-      9         1        1.2        1  0.5
-      10        1        1.2        1  0.5
-      11        1        1.2        1  0.5
-      12        1        1.2        1  0.5
-      13        1        1.2        1  0.5
-      14        1        1.2        1  0.5
-      15        1        1.2        1  0.5
-      16        1        1.2        1  0.5
-      17        1        1.2        1  0.5
-      18        1        1.2        1  0.5
+                   group flipped_aes PANEL shape colour textsize angle hjust vjust
+      1    carni-herbi-1       FALSE     1    19  black        3     0   0.5     0
+      2    carni-herbi-1       FALSE     1    19  black        3     0   0.5     0
+      3    carni-herbi-1       FALSE     1    19  black        3     0   0.5     0
+      4  carni-insecti-2       FALSE     1    19  black        3     0   0.5     0
+      5  carni-insecti-2       FALSE     1    19  black        3     0   0.5     0
+      6  carni-insecti-2       FALSE     1    19  black        3     0   0.5     0
+      7     carni-omni-3       FALSE     1    19  black        3     0   0.5     0
+      8     carni-omni-3       FALSE     1    19  black        3     0   0.5     0
+      9     carni-omni-3       FALSE     1    19  black        3     0   0.5     0
+      10 herbi-insecti-4       FALSE     1    19  black        3     0   0.5     0
+      11 herbi-insecti-4       FALSE     1    19  black        3     0   0.5     0
+      12 herbi-insecti-4       FALSE     1    19  black        3     0   0.5     0
+      13    herbi-omni-5       FALSE     1    19  black        3     0   0.5     0
+      14    herbi-omni-5       FALSE     1    19  black        3     0   0.5     0
+      15    herbi-omni-5       FALSE     1    19  black        3     0   0.5     0
+      16  insecti-omni-6       FALSE     1    19  black        3     0   0.5     0
+      17  insecti-omni-6       FALSE     1    19  black        3     0   0.5     0
+      18  insecti-omni-6       FALSE     1    19  black        3     0   0.5     0
+         alpha family fontface lineheight linetype size
+      1     NA               1        1.2        1  0.5
+      2     NA               1        1.2        1  0.5
+      3     NA               1        1.2        1  0.5
+      4     NA               1        1.2        1  0.5
+      5     NA               1        1.2        1  0.5
+      6     NA               1        1.2        1  0.5
+      7     NA               1        1.2        1  0.5
+      8     NA               1        1.2        1  0.5
+      9     NA               1        1.2        1  0.5
+      10    NA               1        1.2        1  0.5
+      11    NA               1        1.2        1  0.5
+      12    NA               1        1.2        1  0.5
+      13    NA               1        1.2        1  0.5
+      14    NA               1        1.2        1  0.5
+      15    NA               1        1.2        1  0.5
+      16    NA               1        1.2        1  0.5
+      17    NA               1        1.2        1  0.5
+      18    NA               1        1.2        1  0.5
       
 
 ---
@@ -159,26 +159,26 @@
       7 2    2 191492.2 193068.2 list(~italic(p)[uncorrected]==0.079)  PG-13-R-3
       8 2    3 193068.2 193068.2 list(~italic(p)[uncorrected]==0.079)  PG-13-R-3
       9 3    3 193068.2 191492.2 list(~italic(p)[uncorrected]==0.079)  PG-13-R-3
-        PANEL shape colour textsize angle hjust vjust alpha family fontface
-      1     1    19  black        3     0   0.5     0    NA               1
-      2     1    19  black        3     0   0.5     0    NA               1
-      3     1    19  black        3     0   0.5     0    NA               1
-      4     1    19  black        3     0   0.5     0    NA               1
-      5     1    19  black        3     0   0.5     0    NA               1
-      6     1    19  black        3     0   0.5     0    NA               1
-      7     1    19  black        3     0   0.5     0    NA               1
-      8     1    19  black        3     0   0.5     0    NA               1
-      9     1    19  black        3     0   0.5     0    NA               1
-        lineheight linetype size
-      1        1.2        1  0.5
-      2        1.2        1  0.5
-      3        1.2        1  0.5
-      4        1.2        1  0.5
-      5        1.2        1  0.5
-      6        1.2        1  0.5
-      7        1.2        1  0.5
-      8        1.2        1  0.5
-      9        1.2        1  0.5
+        flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
+      1       FALSE     1    19  black        3     0   0.5     0    NA       
+      2       FALSE     1    19  black        3     0   0.5     0    NA       
+      3       FALSE     1    19  black        3     0   0.5     0    NA       
+      4       FALSE     1    19  black        3     0   0.5     0    NA       
+      5       FALSE     1    19  black        3     0   0.5     0    NA       
+      6       FALSE     1    19  black        3     0   0.5     0    NA       
+      7       FALSE     1    19  black        3     0   0.5     0    NA       
+      8       FALSE     1    19  black        3     0   0.5     0    NA       
+      9       FALSE     1    19  black        3     0   0.5     0    NA       
+        fontface lineheight linetype size
+      1        1        1.2        1  0.5
+      2        1        1.2        1  0.5
+      3        1        1.2        1  0.5
+      4        1        1.2        1  0.5
+      5        1        1.2        1  0.5
+      6        1        1.2        1  0.5
+      7        1        1.2        1  0.5
+      8        1        1.2        1  0.5
+      9        1        1.2        1  0.5
       
       [[3]]
         x         y                                  label PANEL group nudge_x
@@ -210,20 +210,20 @@
       4 2    2 179672.2 181248.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
       5 2    3 181248.2 181248.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
       6 3    3 181248.2 179672.2 list(~italic(p)[uncorrected]==0.0354)  PG-13-R-2
-        PANEL shape colour textsize angle hjust vjust alpha family fontface
-      1     1    19  black        3     0   0.5     0    NA               1
-      2     1    19  black        3     0   0.5     0    NA               1
-      3     1    19  black        3     0   0.5     0    NA               1
-      4     1    19  black        3     0   0.5     0    NA               1
-      5     1    19  black        3     0   0.5     0    NA               1
-      6     1    19  black        3     0   0.5     0    NA               1
-        lineheight linetype size
-      1        1.2        1  0.5
-      2        1.2        1  0.5
-      3        1.2        1  0.5
-      4        1.2        1  0.5
-      5        1.2        1  0.5
-      6        1.2        1  0.5
+        flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
+      1       FALSE     1    19  black        3     0   0.5     0    NA       
+      2       FALSE     1    19  black        3     0   0.5     0    NA       
+      3       FALSE     1    19  black        3     0   0.5     0    NA       
+      4       FALSE     1    19  black        3     0   0.5     0    NA       
+      5       FALSE     1    19  black        3     0   0.5     0    NA       
+      6       FALSE     1    19  black        3     0   0.5     0    NA       
+        fontface lineheight linetype size
+      1        1        1.2        1  0.5
+      2        1        1.2        1  0.5
+      3        1        1.2        1  0.5
+      4        1        1.2        1  0.5
+      5        1        1.2        1  0.5
+      6        1        1.2        1  0.5
       
 
 ---
@@ -324,26 +324,26 @@
       7 2    2 10.6120 10.6850 list(~italic(p)[FDR-corrected]==4.18e-04)
       8 2    3 10.6850 10.6850 list(~italic(p)[FDR-corrected]==4.18e-04)
       9 3    3 10.6850 10.6120 list(~italic(p)[FDR-corrected]==4.18e-04)
-                  group PANEL shape colour textsize angle hjust vjust alpha family
-      1 Action-Comedy-1     1    19  black        3     0   0.5     0    NA       
-      2 Action-Comedy-1     1    19  black        3     0   0.5     0    NA       
-      3 Action-Comedy-1     1    19  black        3     0   0.5     0    NA       
-      4 Action-RomCom-2     1    19  black        3     0   0.5     0    NA       
-      5 Action-RomCom-2     1    19  black        3     0   0.5     0    NA       
-      6 Action-RomCom-2     1    19  black        3     0   0.5     0    NA       
-      7 Comedy-RomCom-3     1    19  black        3     0   0.5     0    NA       
-      8 Comedy-RomCom-3     1    19  black        3     0   0.5     0    NA       
-      9 Comedy-RomCom-3     1    19  black        3     0   0.5     0    NA       
-        fontface lineheight linetype size
-      1        1        1.2        1  0.5
-      2        1        1.2        1  0.5
-      3        1        1.2        1  0.5
-      4        1        1.2        1  0.5
-      5        1        1.2        1  0.5
-      6        1        1.2        1  0.5
-      7        1        1.2        1  0.5
-      8        1        1.2        1  0.5
-      9        1        1.2        1  0.5
+                  group flipped_aes PANEL shape colour textsize angle hjust vjust
+      1 Action-Comedy-1       FALSE     1    19  black        3     0   0.5     0
+      2 Action-Comedy-1       FALSE     1    19  black        3     0   0.5     0
+      3 Action-Comedy-1       FALSE     1    19  black        3     0   0.5     0
+      4 Action-RomCom-2       FALSE     1    19  black        3     0   0.5     0
+      5 Action-RomCom-2       FALSE     1    19  black        3     0   0.5     0
+      6 Action-RomCom-2       FALSE     1    19  black        3     0   0.5     0
+      7 Comedy-RomCom-3       FALSE     1    19  black        3     0   0.5     0
+      8 Comedy-RomCom-3       FALSE     1    19  black        3     0   0.5     0
+      9 Comedy-RomCom-3       FALSE     1    19  black        3     0   0.5     0
+        alpha family fontface lineheight linetype size
+      1    NA               1        1.2        1  0.5
+      2    NA               1        1.2        1  0.5
+      3    NA               1        1.2        1  0.5
+      4    NA               1        1.2        1  0.5
+      5    NA               1        1.2        1  0.5
+      6    NA               1        1.2        1  0.5
+      7    NA               1        1.2        1  0.5
+      8    NA               1        1.2        1  0.5
+      9    NA               1        1.2        1  0.5
       
 
 ---
@@ -405,27 +405,27 @@
       3         FALSE
       
       [[2]]
-        x xend      y   yend                                 annotation group PANEL
-      1 1    1 36.915 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
-      2 1    2 37.175 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
-      3 2    2 37.175 36.915    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1     1
-      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2     1
-      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2     1
-      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2     1
-        shape colour textsize angle hjust vjust alpha family fontface lineheight
-      1    19  black        3     0   0.5     0    NA               1        1.2
-      2    19  black        3     0   0.5     0    NA               1        1.2
-      3    19  black        3     0   0.5     0    NA               1        1.2
-      4    19  black        3     0   0.5     0    NA               1        1.2
-      5    19  black        3     0   0.5     0    NA               1        1.2
-      6    19  black        3     0   0.5     0    NA               1        1.2
-        linetype size
-      1        1  0.5
-      2        1  0.5
-      3        1  0.5
-      4        1  0.5
-      5        1  0.5
-      6        1  0.5
+        x xend      y   yend                                 annotation group
+      1 1    1 36.915 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1
+      2 1    2 37.175 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1
+      3 2    2 37.175 36.915    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1
+      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2
+      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2
+      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2
+        flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
+      1       FALSE     1    19  black        3     0   0.5     0    NA       
+      2       FALSE     1    19  black        3     0   0.5     0    NA       
+      3       FALSE     1    19  black        3     0   0.5     0    NA       
+      4       FALSE     1    19  black        3     0   0.5     0    NA       
+      5       FALSE     1    19  black        3     0   0.5     0    NA       
+      6       FALSE     1    19  black        3     0   0.5     0    NA       
+        fontface lineheight linetype size
+      1        1        1.2        1  0.5
+      2        1        1.2        1  0.5
+      3        1        1.2        1  0.5
+      4        1        1.2        1  0.5
+      5        1        1.2        1  0.5
+      6        1        1.2        1  0.5
       
 
 ---
@@ -497,26 +497,26 @@
       7 2    2 8.7815 8.8175 list(~log[e](BF['01'])==-11.162) versicolor-virginica-3
       8 2    3 8.8175 8.8175 list(~log[e](BF['01'])==-11.162) versicolor-virginica-3
       9 3    3 8.8175 8.7815 list(~log[e](BF['01'])==-11.162) versicolor-virginica-3
-        PANEL shape colour textsize angle hjust vjust alpha family fontface
-      1     1    19  black        3     0   0.5     0    NA               1
-      2     1    19  black        3     0   0.5     0    NA               1
-      3     1    19  black        3     0   0.5     0    NA               1
-      4     1    19  black        3     0   0.5     0    NA               1
-      5     1    19  black        3     0   0.5     0    NA               1
-      6     1    19  black        3     0   0.5     0    NA               1
-      7     1    19  black        3     0   0.5     0    NA               1
-      8     1    19  black        3     0   0.5     0    NA               1
-      9     1    19  black        3     0   0.5     0    NA               1
-        lineheight linetype size
-      1        1.2        1  0.5
-      2        1.2        1  0.5
-      3        1.2        1  0.5
-      4        1.2        1  0.5
-      5        1.2        1  0.5
-      6        1.2        1  0.5
-      7        1.2        1  0.5
-      8        1.2        1  0.5
-      9        1.2        1  0.5
+        flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
+      1       FALSE     1    19  black        3     0   0.5     0    NA       
+      2       FALSE     1    19  black        3     0   0.5     0    NA       
+      3       FALSE     1    19  black        3     0   0.5     0    NA       
+      4       FALSE     1    19  black        3     0   0.5     0    NA       
+      5       FALSE     1    19  black        3     0   0.5     0    NA       
+      6       FALSE     1    19  black        3     0   0.5     0    NA       
+      7       FALSE     1    19  black        3     0   0.5     0    NA       
+      8       FALSE     1    19  black        3     0   0.5     0    NA       
+      9       FALSE     1    19  black        3     0   0.5     0    NA       
+        fontface lineheight linetype size
+      1        1        1.2        1  0.5
+      2        1        1.2        1  0.5
+      3        1        1.2        1  0.5
+      4        1        1.2        1  0.5
+      5        1        1.2        1  0.5
+      6        1        1.2        1  0.5
+      7        1        1.2        1  0.5
+      8        1        1.2        1  0.5
+      9        1        1.2        1  0.5
       
 
 ---
@@ -589,14 +589,14 @@
       1 2    2 264.115 265.825 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
       2 2    3 265.825 265.825 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
       3 3    3 265.825 264.115 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
-        PANEL shape colour textsize angle hjust vjust alpha family fontface
-      1     1    19  black        3     0   0.5     0    NA               1
-      2     1    19  black        3     0   0.5     0    NA               1
-      3     1    19  black        3     0   0.5     0    NA               1
-        lineheight linetype size
-      1        1.2        1  0.5
-      2        1.2        1  0.5
-      3        1.2        1  0.5
+        flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
+      1       FALSE     1    19  black        3     0   0.5     0    NA       
+      2       FALSE     1    19  black        3     0   0.5     0    NA       
+      3       FALSE     1    19  black        3     0   0.5     0    NA       
+        fontface lineheight linetype size
+      1        1        1.2        1  0.5
+      2        1        1.2        1  0.5
+      3        1        1.2        1  0.5
       
 
 ---

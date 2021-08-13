@@ -28,7 +28,7 @@ Imports:
     dplyr,
     ggplot2 (>= 3.3.5),
     ggrepel,
-    ggsignif,
+    ggsignif (>= 0.6.3),
     insight (>= 0.14.2.1),
     pairwiseComparisons (>= 3.2.0),
     paletteer,
@@ -62,6 +62,7 @@ Remotes:
     easystats/parameters,
     easystats/performance,
     IndrajeetPatil/statsExpressions,
+    const-ae/ggsignif,
     IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 
     knitr
