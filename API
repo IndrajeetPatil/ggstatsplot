@@ -33,3 +33,4 @@ tibble::as_tibble
 tibble::enframe
 rlang::exec
 tibble::tibble
+datawizard::winsorize
