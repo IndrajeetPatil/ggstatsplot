@@ -93,6 +93,9 @@ ggscatterstats <- function(data,
                            results.subtitle = TRUE,
                            label.var = NULL,
                            label.expression = NULL,
+                           marginal = TRUE,
+                           xfill = "#009E73",
+                           yfill = "#D55E00",
                            point.args = list(
                              size = 3,
                              alpha = 0.4,
@@ -109,9 +112,6 @@ ggscatterstats <- function(data,
                              formula = y ~ x,
                              na.rm = TRUE
                            ),
-                           marginal = TRUE,
-                           xfill = "#009E73",
-                           yfill = "#D55E00",
                            xsidehistogram.args = list(
                              fill = xfill,
                              color = "black",
@@ -145,7 +145,7 @@ ggscatterstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # adding a subtitle with statistical results
-  if (isTRUE(results.subtitle)) {
+  if (results.subtitle) {
     # convert entered stats type to a standard notation
     type <- statsExpressions::stats_type_switch(type)
 
@@ -165,7 +165,7 @@ ggscatterstats <- function(data,
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message for null hypothesis support
-    if (type == "parametric" && isTRUE(bf.message)) {
+    if (type == "parametric" && bf.message) {
       caption_df <- eval_f(corr_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
@@ -204,7 +204,7 @@ ggscatterstats <- function(data,
     # display points labels using `geom_repel_label`
     plot <- plot +
       exec(
-        .fn = ggrepel::geom_label_repel,
+        ggrepel::geom_label_repel,
         data = label_data,
         mapping = aes(label = {{ label.var }}),
         min.segment.length = 0,

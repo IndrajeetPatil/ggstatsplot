@@ -31,7 +31,6 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @importFrom rlang exec !! enquo := !!! exec
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #' @importFrom ggplot2 ggplot aes geom_point geom_boxplot geom_violin geom_path
@@ -194,7 +193,7 @@ ggwithinstats <- function(data,
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the Bayes factor message
-    if (type == "parametric" && isTRUE(bf.message)) {
+    if (type == "parametric" && bf.message) {
       caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
@@ -323,7 +322,7 @@ ggwithinstats <- function(data,
 #' @import ggplot2
 #'
 #' @importFrom dplyr select
-#' @importFrom rlang !! enquo quo_name ensym !!!
+#' @importFrom rlang enquo quo_name ensym
 #' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},

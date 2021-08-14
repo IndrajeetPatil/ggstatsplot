@@ -32,7 +32,7 @@
 #'
 #' @importFrom dplyr select summarize mutate
 #' @importFrom dplyr group_by n arrange
-#' @importFrom rlang enquo as_name !! %||%
+#' @importFrom rlang enquo as_name
 #' @importFrom stats dnorm
 #' @importFrom statsExpressions one_sample_test
 #'
@@ -103,7 +103,7 @@ gghistostats <- function(data,
 
   # statistical analysis ------------------------------------------
 
-  if (isTRUE(results.subtitle)) {
+  if (results.subtitle) {
     # convert entered stats type to a standard notation
     type <- statsExpressions::stats_type_switch(type)
 
@@ -125,7 +125,7 @@ gghistostats <- function(data,
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message
-    if (type == "parametric" && isTRUE(bf.message)) {
+    if (type == "parametric" && bf.message) {
       caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }

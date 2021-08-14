@@ -1,8 +1,5 @@
 #' @title A dataframe with descriptive labels
-#'
-#' @importFrom dplyr mutate case_when
-#' @importFrom rlang !! :=
-#'
+#' @importFrom dplyr case_when
 #' @noRd
 
 # function body

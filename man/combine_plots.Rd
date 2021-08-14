@@ -39,8 +39,9 @@ Combined plot with annotation labels
 \description{
 Wrapper around \code{patchwork::wrap_plots} that will return a combined grid of
 plots with annotations. In case you want to create a grid of plots, it is
-highly recommended that you use \code{patchwork} package directly and not this
-wrapper around it which is mostly useful with \code{ggstatsplot} plots.
+\strong{highly recommended} that you use \code{{patchwork}} package directly and not
+this wrapper around it which is mostly useful with \code{{ggstatsplot}} plots. It
+is exported only for backward compatibility.
 }
 \examples{
 # loading the necessary libraries

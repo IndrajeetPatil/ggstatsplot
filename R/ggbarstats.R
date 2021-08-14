@@ -19,7 +19,7 @@
 #' @import ggplot2
 #'
 #' @importFrom dplyr select mutate
-#' @importFrom rlang !!! as_name ensym exec
+#' @importFrom rlang as_name ensym
 #' @importFrom tidyr uncount drop_na
 #' @importFrom statsExpressions contingency_table
 #'
@@ -94,7 +94,7 @@ ggbarstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # if subtitle with results is to be displayed
-  if (isTRUE(results.subtitle)) {
+  if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
@@ -114,7 +114,7 @@ ggbarstats <- function(data,
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
 
     # preparing Bayes Factor caption
-    if (type != "bayes" && isTRUE(bf.message) && isFALSE(paired)) {
+    if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }

@@ -78,7 +78,7 @@ ggridgestats <- function(data,
   # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
 
-  if (isTRUE(results.subtitle)) {
+  if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
@@ -100,7 +100,7 @@ ggridgestats <- function(data,
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the Bayes factor message
-    if (type == "parametric" && isTRUE(bf.message)) {
+    if (type == "parametric" && bf.message) {
       caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }

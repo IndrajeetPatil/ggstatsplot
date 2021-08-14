@@ -69,10 +69,6 @@ grouped_list <- function(data, grouping.var = NULL) {
 #'   when the number of factor levels is greater than 8, the maximum number of
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
 #'
-#' @importFrom dplyr filter select
-#' @importFrom rlang !!
-#' @importFrom statsExpressions %$%
-#'
 #' @noRd
 
 # function body

@@ -5,8 +5,9 @@
 #'
 #' Wrapper around `patchwork::wrap_plots` that will return a combined grid of
 #' plots with annotations. In case you want to create a grid of plots, it is
-#' highly recommended that you use `patchwork` package directly and not this
-#' wrapper around it which is mostly useful with `ggstatsplot` plots.
+#' **highly recommended** that you use `{patchwork}` package directly and not
+#' this wrapper around it which is mostly useful with `{ggstatsplot}` plots. It
+#' is exported only for backward compatibility.
 #'
 #' @return Combined plot with annotation labels
 #'

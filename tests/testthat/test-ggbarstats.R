@@ -104,7 +104,7 @@ test_that(
       data = mtcars_small,
       x = cyl,
       y = am,
-      results.subtitle = NULL
+      results.subtitle = FALSE
     )
 
     pb <- ggplot2::ggplot_build(p)

@@ -92,7 +92,6 @@
 #'   `performance` in order to make most of this function.
 #'
 #' @import ggplot2
-#' @importFrom rlang exec !!! !!
 #' @importFrom dplyr select mutate matches across row_number
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom tidyr unite
@@ -317,7 +316,7 @@ ggcoefstats <- function(x,
     subtitle <- subtitle_df$expression[[1]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
-    if (meta.type == "parametric" && isTRUE(bf.message)) {
+    if (meta.type == "parametric" && bf.message) {
       caption_df <- statsExpressions::meta_analysis(
         tidy_df,
         type = "bayes",

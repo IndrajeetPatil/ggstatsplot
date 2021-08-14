@@ -157,13 +157,13 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="ggcorrmat_files/header-attrs-2.10.1/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-07-26</h4>
+            <h4 data-toc-skip class="date">2021-08-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd" class="external-link"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
@@ -195,7 +195,7 @@ A BibTeX entry for LaTeX users is
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
-<p>The function <code>ggcorrmat</code> provides a quick way to produce <strong>publication-ready correlation matrix</strong> (aka <em>correlalogram</em>) plot. The function can also be used for quick <strong>data exploration</strong>. In addition to the plot, it can also be used to get a correlation coefficient matrix or the associated <em>p</em>-value matrix. Currently, the plot can display Pearson’s <em>r</em>, Spearman’s <em>rho</em>, and Kendall’s <em>tau</em>, and <em>robust</em> correlation coefficient (percentage bend correlation; see <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html" class="external-link">?WRS2::pbcor</a></code>). This function is a convenient wrapper around <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code> function with some additional functionality.</p>
+<p>The function <code>ggcorrmat</code> provides a quick way to produce <strong>publication-ready correlation matrix</strong> (aka <em>correlalogram</em>) plot. The function can also be used for quick <strong>data exploration</strong>. In addition to the plot, it can also be used to get a correlation coefficient matrix or the associated <em>p</em>-value matrix. Currently, the plot can display Pearson’s <em>r</em> (and its Bayesian version), Spearman’s <em>rho</em>, and <em>robust</em> correlation coefficient (Winsorized Pearson’s <em>r</em>). This function is a convenient wrapper around <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code> function with some additional functionality.</p>
 <p>We will see examples of how to use this function in this vignette with the <code>gapminder</code> and <code>diamonds</code> dataset.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggcorrmat</code>-</p>
 <ul>
@@ -203,7 +203,6 @@ A BibTeX entry for LaTeX users is
 </li>
 <li>to quickly explore correlation between (all) numeric variables in the dataset</li>
 </ul>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code>%&gt;%</code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div id="correlation-matrix-plot-with-ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
 <a href="#correlation-matrix-plot-with-ggcorrmat" class="anchor" aria-hidden="true"></a>Correlation matrix plot with <code>ggcorrmat</code>
@@ -233,14 +232,14 @@ A BibTeX entry for LaTeX users is
 <span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
 
 <span class="co"># producing the correlation matrix</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
   cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span> <span class="co"># specifying correlation matrix variables</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" width="100%"></p>
 <p>This plot can be further modified with additional arguments-</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
   cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span>, <span class="co"># specifying correlation matrix variables</span>
   cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
@@ -251,7 +250,7 @@ A BibTeX entry for LaTeX users is
   type <span class="op">=</span> <span class="st">"spearman"</span>, <span class="co"># which correlation coefficient is to be computed</span>
   lab.col <span class="op">=</span> <span class="st">"red"</span>, <span class="co"># label color</span>
   ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_light</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># selected ggplot2 theme</span>
-   <span class="co"># turn off default ggestatsplot theme overlay</span>
+  <span class="co"># turn off default ggestatsplot theme overlay</span>
   matrix.type <span class="op">=</span> <span class="st">"lower"</span>, <span class="co"># correlation matrix structure</span>
   colors <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># turning off manual specification of colors</span>
   palette <span class="op">=</span> <span class="st">"category10_d3"</span>, <span class="co"># choosing a color palette</span>
@@ -285,7 +284,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
   cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>, <span class="co"># note how the variables are getting selected</span>
   cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
@@ -306,7 +305,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
   cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">table</span>, <span class="va">x</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>, <span class="co"># note how the variables are getting selected</span>
   cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
@@ -350,7 +349,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to get correlations</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/txhousing.html" class="external-link">txhousing</a></span>, size <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span>,
   cor.vars <span class="op">=</span> <span class="va">sales</span><span class="op">:</span><span class="va">inventory</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>,
@@ -389,7 +388,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>pillar.sigfig <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
 <span class="co"># getting the correlation coefficient matrix</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">iris</span>, <span class="co"># all numeric variables from data will be used</span>
   type <span class="op">=</span> <span class="st">"np"</span>, <span class="co"># non-parametric</span>
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
@@ -418,18 +417,18 @@ A BibTeX entry for LaTeX users is
 <a href="#grouped-analysis-with-grouped_ggcorrmat" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_ggcorrmat</code>
 </h1>
 <p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)?</p>
-<p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code><a href="../../reference/combine_plots.html">ggstatsplot::combine_plots</a></code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
+<p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code>combine_plots</code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
-  <span class="co"># arguments relevant for `ggstatsplot::ggcorrmat`</span>
+<span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
+  <span class="co"># arguments relevant for `ggcorrmat`</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>,
   type <span class="op">=</span> <span class="st">"bayes"</span>, <span class="co"># Bayesian test</span>
   grouping.var <span class="op">=</span> <span class="va">cut</span>,
-  <span class="co"># arguments relevant for `ggstatsplot::combine_plots`</span>
+  <span class="co"># arguments relevant for `combine_plots`</span>
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
     tag_levels <span class="op">=</span> <span class="st">"a"</span>,
@@ -444,7 +443,7 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's obtain correlation coefficients with their CIs</span>
-<span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
   cor.vars <span class="op">=</span> <span class="va">sleep_total</span><span class="op">:</span><span class="va">awake</span>,
   grouping.var <span class="op">=</span> <span class="va">vore</span>,

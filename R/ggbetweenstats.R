@@ -116,7 +116,7 @@
 #'
 #' @importFrom dplyr select group_by arrange mutate
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang enquo as_name !! as_string
+#' @importFrom rlang enquo as_name as_string
 #' @importFrom ggrepel geom_label_repel
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #' @importFrom ggsignif geom_signif
@@ -248,7 +248,7 @@ ggbetweenstats <- function(data,
   # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
 
-  if (isTRUE(results.subtitle)) {
+  if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
@@ -270,7 +270,7 @@ ggbetweenstats <- function(data,
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the Bayes factor message
-    if (type == "parametric" && isTRUE(bf.message)) {
+    if (type == "parametric" && bf.message) {
       caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }

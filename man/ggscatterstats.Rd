@@ -17,15 +17,15 @@ ggscatterstats(
   results.subtitle = TRUE,
   label.var = NULL,
   label.expression = NULL,
+  marginal = TRUE,
+  xfill = "#009E73",
+  yfill = "#D55E00",
   point.args = list(size = 3, alpha = 0.4, stroke = 0, na.rm = TRUE),
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e+06),
   smooth.line.args = list(size = 1.5, color = "blue", method = "lm", formula = y ~ x,
     na.rm = TRUE),
-  marginal = TRUE,
-  xfill = "#009E73",
-  yfill = "#D55E00",
   xsidehistogram.args = list(fill = xfill, color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = yfill, color = "black", na.rm = TRUE),
   xsidedensity.args = list(na.rm = TRUE),
@@ -95,6 +95,14 @@ determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
 While using this argument with \code{purrr::pmap}, you will have to provide a
 quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 
+\item{marginal}{Decides whether marginal distributions will be plotted on
+axes using \code{ggside} functions. The default is \code{TRUE}. The package
+\code{ggside} must already be installed by the user.}
+
+\item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
+marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
+\code{y})). Note that the defaults are colorblind-friendly.}
+
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_point} geom used to display the raw data points.}
 
@@ -110,14 +118,6 @@ to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_smooth} geom used to display the regression line.}
-
-\item{marginal}{Decides whether marginal distributions will be plotted on
-axes using \code{ggside} functions. The default is \code{TRUE}. The package
-\code{ggside} must already be installed by the user.}
-
-\item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
-marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). Note that the defaults are colorblind-friendly.}
 
 \item{xsidehistogram.args, ysidehistogram.args, xsidedensity.args, ysidedensity.args}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
 change the marginal distribution histograms and density plots.}

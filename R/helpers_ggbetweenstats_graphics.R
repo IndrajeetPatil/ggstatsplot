@@ -8,7 +8,7 @@
 #' @inheritParams ggrepel::geom_label_repel
 #'
 #' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang !! enquo ensym exec
+#' @importFrom rlang enquo ensym exec
 #' @importFrom insight standardize_names format_value
 #' @importFrom statsExpressions format_num centrality_description
 #'
