@@ -89,8 +89,8 @@ be invariant across models:
     Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**) values,
     the "better" the model is.
 
-  - The output of this function will be a `ggplot2` object and, thus, it can be
-    further modified (e.g., change themes, etc.) with `ggplot2` functions.
+  - The output of this function will be a `{ggplot2}` object and, thus, it can be
+    further modified (e.g., change themes, etc.) with `{ggplot2}` functions.
 
 # Supported models
 

@@ -7,7 +7,7 @@
 \alias{ggstatsplot}
 \title{ggstatsplot: 'ggplot2' Based Plots with Statistical Details}
 \description{
-\code{ggstatsplot} is an extension of \code{ggplot2} package. It creates
+\code{{ggstatsplot}} is an extension of \code{{ggplot2}} package. It creates
 graphics with details from statistical tests included in the plots
 themselves. It provides an easier \code{API} to generate information-rich plots
 for statistical analysis of continuous (violin plots, scatterplots,
@@ -23,12 +23,12 @@ meta-analysis, and regression analyses.
 The main functions are-
 \itemize{
 \item \code{ggbetweenstats} function to produce information-rich comparison plot
-\emph{between} different groups or conditions with \code{ggplot2} and details from
+\emph{between} different groups or conditions with \code{{ggplot2}} and details from
 the statistical tests in the subtitle.
 \item \code{ggwithinstats} function to produce information-rich comparison plot
-\emph{within} different groups or conditions with \code{ggplot2} and details from the
+\emph{within} different groups or conditions with \code{{ggplot2}} and details from the
 statistical tests in the subtitle.
-\item \code{ggscatterstats} function to produce \code{ggplot2} scatterplots along with a
+\item \code{ggscatterstats} function to produce \code{{ggplot2}} scatterplots along with a
 marginal distribution plots from \code{ggside} package and details from the
 statistical tests in the subtitle.
 \item \code{ggpiestats} function to produce pie chart with details from the
@@ -42,7 +42,7 @@ a single variable with labels and results from one sample test displayed in
 the subtitle.
 \item \code{ggcorrmat} function to visualize the correlation matrix.
 \item \code{ggcoefstats} function to visualize results from regression analyses.
-\item \code{combine_plots} helper function to combine multiple \code{ggstatsplot} plots
+\item \code{combine_plots} helper function to combine multiple \code{{ggstatsplot}} plots
 using \code{patchwork::wrap_plots()}.
 }
 

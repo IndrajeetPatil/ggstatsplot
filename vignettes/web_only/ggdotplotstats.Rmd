@@ -53,7 +53,7 @@ it expects a labeled numeric variable.
 
 # Distribution of a sample with `ggdotplotstats`
 
-Let's begin with a very simple example from the `ggplot2` package
+Let's begin with a very simple example from the `{ggplot2}` package
 (`ggplot2::mpg`), a subset of the fuel economy data that the EPA makes available
 on <http://fueleconomy.gov>.
 
@@ -103,7 +103,7 @@ ggdotplotstats(
 What if we want to do the same analysis separately for different engines with
 different numbers of cylinders?
 
-`ggstatsplot` provides a special helper function for such instances:
+`{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggdotplotstats`. This is merely a wrapper function around
 `ggstatsplot::combine_plots`. It applies `ggdotplotstats` across all **levels** of
 a specified **grouping variable** and then combines the individual plots into a
@@ -184,7 +184,7 @@ Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
 
-- the `ggstatsplot` approach, where the plot contains both the visual and
+- the `{ggstatsplot}` approach, where the plot contains both the visual and
 numerical summaries about a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context for the

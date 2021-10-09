@@ -2,12 +2,12 @@
 % Please edit documentation in R/extract_stats.R
 \name{extract_stats}
 \alias{extract_stats}
-\title{Extracting dataframes with statistical details from \code{ggstatsplot}}
+\title{Extracting dataframes with statistical details from \code{{ggstatsplot}}}
 \usage{
 extract_stats(p, ...)
 }
 \arguments{
-\item{p}{A plot from \code{ggstatsplot} package}
+\item{p}{A plot from \code{{ggstatsplot}} package}
 
 \item{...}{Ignored}
 }
@@ -15,11 +15,11 @@ extract_stats(p, ...)
 A list of tibbles containing statistical analysis summaries.
 }
 \description{
-Extracting dataframes with statistical details from \code{ggstatsplot}
+Extracting dataframes with statistical details from \code{{ggstatsplot}}
 }
 \details{
 This is a convenience function to extract dataframes with statistical details
-that are used to create expressions displayed in \code{ggstatsplot} plots as
+that are used to create expressions displayed in \code{{ggstatsplot}} plots as
 subtitle and/or as caption. Note that all of this analysis is carried out by
 the \code{statsExpressions} package.
 

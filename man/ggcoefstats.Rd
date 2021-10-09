@@ -141,8 +141,8 @@ be extracted. The available palettes and packages can be checked by running
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 
-\item{ggtheme}{A \code{ggplot2} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{ggplot2} themes (e.g.,
+\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}

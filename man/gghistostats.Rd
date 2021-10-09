@@ -93,8 +93,8 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
 
-\item{ggtheme}{A \code{ggplot2} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{ggplot2} themes (e.g.,
+\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
@@ -144,9 +144,9 @@ normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.
 passed to the normal curve.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to

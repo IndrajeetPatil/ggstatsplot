@@ -685,9 +685,9 @@
       # A tibble: 3 x 14
         parameter1 parameter2 estimate conf.level conf.low conf.high    pd
         <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-      1 brainwt    sleep_rem   -0.0911       0.95   -0.306     0.147 0.740
-      2 brainwt    bodywt       0.461        0.95    0.267     0.623 1    
-      3 sleep_rem  bodywt      -0.0959       0.95   -0.322     0.116 0.756
+      1 brainwt    sleep_rem   -0.0911       0.95   -0.373     0.171 0.740
+      2 brainwt    bodywt       0.461        0.95    0.228     0.663 1    
+      3 sleep_rem  bodywt      -0.0959       0.95   -0.368     0.172 0.756
         rope.percentage prior.distribution prior.location prior.scale bayes.factor
                   <dbl> <chr>                       <dbl>       <dbl>        <dbl>
       1         0.430   beta                         1.41        1.41        0.269
@@ -703,9 +703,9 @@
       # A tibble: 3 x 14
         parameter1 parameter2 estimate conf.level conf.low conf.high    pd
         <chr>      <chr>         <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-      1 brainwt    sleep_rem    -0.205       0.95   -0.402    0.0248 0.928
-      2 brainwt    bodywt        0.926       0.95    0.894    0.955  1    
-      3 sleep_rem  bodywt       -0.310       0.95   -0.481   -0.129  0.990
+      1 brainwt    sleep_rem    -0.205       0.95   -0.458    0.0639 0.928
+      2 brainwt    bodywt        0.926       0.95    0.883    0.960  1    
+      3 sleep_rem  bodywt       -0.310       0.95   -0.537   -0.0972 0.990
         rope.percentage prior.distribution prior.location prior.scale bayes.factor
                   <dbl> <chr>                       <dbl>       <dbl>        <dbl>
       1          0.212  beta                         1.41        1.41     6.54e- 1

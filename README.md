@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# `ggstatsplot`: `ggplot2` Based Plots with Statistical Details
+# `{ggstatsplot}`: `ggplot2` Based Plots with Statistical Details
 
 | Package                                                                                                                                    | Status                                                                                                                                                       | Usage                                                                                                                                             | GitHub                                                                                                                                                         | Miscellaneous                                                                                                                                                         |
 |--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![CRAN\_Release\_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)            | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)            | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)        | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                      |
+| [![CRAN_Release_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)              | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)            | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)     | [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues)        | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)                                                      |
 | [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html) | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                            | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)   | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                   | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-6666ff.svg)](https://cran.r-project.org/)                                                            |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                 | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master) | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![CoC](https://img.shields.io/badge/CoC-v2.0%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html)                    | [![CodeFactor](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot/badge)](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot) |
 | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)                               | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                  | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)  | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![code size](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                       |
@@ -17,14 +17,14 @@
 > rather … the revelation of the complex.”  
 > - Edward R. Tufte
 
-[`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an
+[`{ggstatsplot}`](https://indrajeetpatil.github.io/ggstatsplot/) is an
 extension of [`ggplot2`](https://github.com/tidyverse/ggplot2) package
 for creating graphics with details from statistical tests included in
 the information-rich plots themselves. In a typical exploratory data
 analysis workflow, data visualization and statistical modeling are two
 different phases: visualization informs modeling, and modeling in its
 turn can suggest a different visualization method, and so on and so
-forth. The central idea of `ggstatsplot` is simple: combine these two
+forth. The central idea of `{ggstatsplot}` is simple: combine these two
 phases into one in the form of graphics with statistical details, which
 makes data exploration simpler and faster.
 
@@ -36,7 +36,7 @@ makes data exploration simpler and faster.
 | Development | GitHub | `remotes::install_github("IndrajeetPatil/ggstatsplot")` |
 
 Linux users may encounter some installation problems. In particular, the
-`ggstatsplot` package depends on the `PMCMRplus` package.
+`{ggstatsplot}` package depends on the `PMCMRplus` package.
 
     ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
     ERROR: dependency ‘pairwiseComparisons’ is not available for package ‘ggstatsplot’
@@ -112,7 +112,7 @@ analyses:
 | `ggbarstats`     | **bar charts**            | for categorical data                            | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) |
 | `ggcoefstats`    | **dot-and-whisker plots** | for regression models and meta-analysis         | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) |
 
-In addition to these basic plots, `ggstatsplot` also provides
+In addition to these basic plots, `{ggstatsplot}` also provides
 **`grouped_`** versions (see below) that makes it easy to repeat the
 same analysis for any grouping variable.
 
@@ -161,7 +161,7 @@ across various functions:
 # Primary functions
 
 Here are examples of the main functions currently supported in
-`ggstatsplot`.
+`{ggstatsplot}`.
 
 **Note**: If you are reading this on `GitHub` repository, the
 documentation below is for the **development** version of the package.
@@ -220,7 +220,7 @@ grouped_ggbetweenstats(
   outlier.coef = 2,
   ggsignif.args = list(textsize = 4, tip_length = 0.01),
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
-  # adding new components to `ggstatsplot` default
+  # adding new components to `{ggstatsplot}` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
   palette = "default_jama",
@@ -262,10 +262,10 @@ Note here that the function can be used to tag outliers!
 
 | Type           | No. of groups | Test                                            | Function used          |
 |----------------|---------------|-------------------------------------------------|------------------------|
-| Parametric     | &gt; 2        | Fisher’s or Welch’s one-way ANOVA               | `stats::oneway.test`   |
-| Non-parametric | &gt; 2        | Kruskal–Wallis one-way ANOVA                    | `stats::kruskal.test`  |
-| Robust         | &gt; 2        | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`          |
-| Bayes Factor   | &gt; 2        | Fisher’s ANOVA                                  | `BayesFactor::anovaBF` |
+| Parametric     | \> 2          | Fisher’s or Welch’s one-way ANOVA               | `stats::oneway.test`   |
+| Non-parametric | \> 2          | Kruskal–Wallis one-way ANOVA                    | `stats::kruskal.test`  |
+| Robust         | \> 2          | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`          |
+| Bayes Factor   | \> 2          | Fisher’s ANOVA                                  | `BayesFactor::anovaBF` |
 | Parametric     | 2             | Student’s or Welch’s *t*-test                   | `stats::t.test`        |
 | Non-parametric | 2             | Mann–Whitney *U* test                           | `stats::wilcox.test`   |
 | Robust         | 2             | Yuen’s test for trimmed means                   | `WRS2::yuen`           |
@@ -275,10 +275,10 @@ Note here that the function can be used to tag outliers!
 
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | &gt; 2        | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | &gt; 2        | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | ✅   | `effectsize::rank_epsilon_squared`                     |
-| Robust         | &gt; 2        | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::t1way`                                          |
-| Bayes Factor   | &gt; 2        | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | ✅   | `performance::r2_bayes`                                |
+| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | ✅   | `effectsize::rank_epsilon_squared`                     |
+| Robust         | \> 2          | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::t1way`                                          |
+| Bayes Factor   | \> 2          | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | ✅   | `performance::r2_bayes`                                |
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
 | Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅   | `effectsize::rank_biserial`                            |
 | Robust         | 2             | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::yuen.effect.ci`                                 |
@@ -400,10 +400,10 @@ grouped_ggwithinstats(
 
 | Type           | No. of groups | Test                                                              | Function used          |
 |----------------|---------------|-------------------------------------------------------------------|------------------------|
-| Parametric     | &gt; 2        | One-way repeated measures ANOVA                                   | `afex::aov_ez`         |
-| Non-parametric | &gt; 2        | Friedman rank sum test                                            | `stats::friedman.test` |
-| Robust         | &gt; 2        | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`        |
-| Bayes Factor   | &gt; 2        | One-way repeated measures ANOVA                                   | `BayesFactor::anovaBF` |
+| Parametric     | \> 2          | One-way repeated measures ANOVA                                   | `afex::aov_ez`         |
+| Non-parametric | \> 2          | Friedman rank sum test                                            | `stats::friedman.test` |
+| Robust         | \> 2          | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`        |
+| Bayes Factor   | \> 2          | One-way repeated measures ANOVA                                   | `BayesFactor::anovaBF` |
 | Parametric     | 2             | Student’s *t*-test                                                | `stats::t.test`        |
 | Non-parametric | 2             | Wilcoxon signed-rank test                                         | `stats::wilcox.test`   |
 | Robust         | 2             | Yuen’s test on trimmed means for dependent samples                | `WRS2::yuend`          |
@@ -413,10 +413,10 @@ grouped_ggwithinstats(
 
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | &gt; 2        | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | &gt; 2        | ![W\_{Kendall}](https://chart.apis.google.com/chart?cht=tx&chl=W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                   | ✅   | `effectsize::kendalls_w`                               |
-| Robust         | &gt; 2        | ![\\delta\_{R-avg}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)    | ✅   | `WRS2::wmcpAKP`                                        |
-| Bayes Factor   | &gt; 2        | ![R\_{Bayesian}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                               | ✅   | `performance::r2_bayes`                                |
+| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![W\_{Kendall}](https://chart.apis.google.com/chart?cht=tx&chl=W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                   | ✅   | `effectsize::kendalls_w`                               |
+| Robust         | \> 2          | ![\\delta\_{R-avg}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)    | ✅   | `WRS2::wmcpAKP`                                        |
+| Bayes Factor   | \> 2          | ![R\_{Bayesian}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                               | ✅   | `performance::r2_bayes`                                |
 | Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
 | Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅   | `effectsize::rank_biserial`                            |
 | Robust         | 2             | ![\\delta\_{R}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR%7D%5E%7BAKP%7D "\delta_{R}^{AKP}") (Algina-Keselman-Penfield robust standardized difference)                        | ✅   | `WRS2::wmcpAKP`                                        |
@@ -482,7 +482,7 @@ grouped_gghistostats(
   normal.curve = TRUE, # superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
   ggtheme = ggthemes::theme_tufte(),
-  # modify the defaults from `ggstatsplot` for each plot
+  # modify the defaults from `{ggstatsplot}` for each plot
   ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
   plotgrid.args = list(nrow = 1),
   annotation.args = list(title = "Movies budgets for different genres")
@@ -767,31 +767,31 @@ ggcorrmat(
   type = "bayes",
   output = "dataframe"
 )
-#> # A tibble: 6 × 14
-#>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
-#>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-#> 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    
-#> 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995
-#> 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    
-#> 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963
-#> 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    
-#> 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998
-#>   rope.percentage prior.distribution prior.location prior.scale  bayes.factor
-#>             <dbl> <chr>                       <dbl>       <dbl>         <dbl>
-#> 1          0      beta                         1.41        1.41 3000790806.  
-#> 2          0.0173 beta                         1.41        1.41          8.85
-#> 3          0      beta                         1.41        1.41         NA   
-#> 4          0.100  beta                         1.41        1.41          1.42
-#> 5          0      beta                         1.41        1.41 3005546544.  
-#> 6          0.015  beta                         1.41        1.41          8.85
-#>   method                       n.obs
-#>   <chr>                        <int>
-#> 1 Bayesian Pearson correlation    61
-#> 2 Bayesian Pearson correlation    32
-#> 3 Bayesian Pearson correlation    83
-#> 4 Bayesian Pearson correlation    32
-#> 5 Bayesian Pearson correlation    61
-#> 6 Bayesian Pearson correlation    32
+#> [38;5;246m# A tibble: 6 x 14[39m
+#>   [1mparameter1[22m  [1mparameter2[22m  [1mestimate[22m [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m    [1mpd[22m
+#>   [3m[38;5;246m<chr>[39m[23m       [3m[38;5;246m<chr>[39m[23m          [3m[38;5;246m<dbl>[39m[23m      [3m[38;5;246m<dbl>[39m[23m    [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m sleep_total sleep_rem      [38;5;246m0[39m[38;5;246m.[39m731       [38;5;246m0[39m[38;5;246m.[39m95    [38;5;246m0[39m[38;5;246m.[39m606    [38;5;246m0[39m[38;5;246m.[39m838  1    
+#> [38;5;250m2[39m sleep_total sleep_cycle   -[38;5;246m0[39m[38;5;246m.[39m[31m432[39m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m681[39m   -[38;5;246m0[39m[38;5;246m.[39m[31m131[39m  [38;5;246m0[39m[38;5;246m.[39m995
+#> [38;5;250m3[39m sleep_total awake         -[31m1[39m[31m.[39m[31m00[39m        [38;5;246m0[39m[38;5;246m.[39m95   -[31m1[39m[31m.[39m[31m00[39m    -[31m1[39m[31m.[39m[31m00[39m   1    
+#> [38;5;250m4[39m sleep_rem   sleep_cycle   -[38;5;246m0[39m[38;5;246m.[39m[31m304[39m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m576[39m    [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m24[4m1[24m [38;5;246m0[39m[38;5;246m.[39m963
+#> [38;5;250m5[39m sleep_rem   awake         -[38;5;246m0[39m[38;5;246m.[39m[31m733[39m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m832[39m   -[38;5;246m0[39m[38;5;246m.[39m[31m599[39m  1    
+#> [38;5;250m6[39m sleep_cycle awake          [38;5;246m0[39m[38;5;246m.[39m439       [38;5;246m0[39m[38;5;246m.[39m95    [38;5;246m0[39m[38;5;246m.[39m151    [38;5;246m0[39m[38;5;246m.[39m672  [38;5;246m0[39m[38;5;246m.[39m998
+#>   [1mrope.percentage[22m [1mprior.distribution[22m [1mprior.location[22m [1mprior.scale[22m  [1mbayes.factor[22m
+#>             [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<chr>[39m[23m                       [3m[38;5;246m<dbl>[39m[23m       [3m[38;5;246m<dbl>[39m[23m         [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m          [38;5;246m0[39m      beta                         1.41        1.41 [4m3[24m00[38;5;246m0[4m7[24m[4m9[24m[4m0[24m806[39m.  
+#> [38;5;250m2[39m          [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m17[4m3[24m beta                         1.41        1.41          8.85
+#> [38;5;250m3[39m          [38;5;246m0[39m      beta                         1.41        1.41         [31mNA[39m   
+#> [38;5;250m4[39m          [38;5;246m0[39m[38;5;246m.[39m100  beta                         1.41        1.41          1.42
+#> [38;5;250m5[39m          [38;5;246m0[39m      beta                         1.41        1.41 [4m3[24m00[38;5;246m5[4m5[24m[4m4[24m[4m6[24m544[39m.  
+#> [38;5;250m6[39m          [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m15  beta                         1.41        1.41          8.85
+#>   [1mmethod[22m                       [1mn.obs[22m
+#>   [3m[38;5;246m<chr>[39m[23m                        [3m[38;5;246m<int>[39m[23m
+#> [38;5;250m1[39m Bayesian Pearson correlation    61
+#> [38;5;250m2[39m Bayesian Pearson correlation    32
+#> [38;5;250m3[39m Bayesian Pearson correlation    83
+#> [38;5;250m4[39m Bayesian Pearson correlation    32
+#> [38;5;250m5[39m Bayesian Pearson correlation    61
+#> [38;5;250m6[39m Bayesian Pearson correlation    32
 ```
 
 Additionally, **partial** correlation are also supported:
@@ -807,31 +807,31 @@ ggcorrmat(
   partial = TRUE,
   output = "dataframe"
 )
-#> # A tibble: 6 × 14
-#>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
-#>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-#> 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704
-#> 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505
-#> 3 sleep_total awake       -1             0.95   -1        -1     1    
-#> 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558
-#> 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698
-#> 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508
-#>   rope.percentage prior.distribution prior.location prior.scale bayes.factor
-#>             <dbl> <chr>                       <dbl>       <dbl>        <dbl>
-#> 1           0.378 beta                         1.41        1.41        0.311
-#> 2           0.434 beta                         1.41        1.41        0.267
-#> 3           0     beta                         1.41        1.41       NA    
-#> 4           0.429 beta                         1.41        1.41        0.272
-#> 5           0.386 beta                         1.41        1.41        0.309
-#> 6           0.444 beta                         1.41        1.41        0.267
-#>   method                       n.obs
-#>   <chr>                        <int>
-#> 1 Bayesian Pearson correlation    32
-#> 2 Bayesian Pearson correlation    32
-#> 3 Bayesian Pearson correlation    32
-#> 4 Bayesian Pearson correlation    32
-#> 5 Bayesian Pearson correlation    32
-#> 6 Bayesian Pearson correlation    32
+#> [38;5;246m# A tibble: 6 x 14[39m
+#>   [1mparameter1[22m  [1mparameter2[22m  [1mestimate[22m [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m    [1mpd[22m
+#>   [3m[38;5;246m<chr>[39m[23m       [3m[38;5;246m<chr>[39m[23m          [3m[38;5;246m<dbl>[39m[23m      [3m[38;5;246m<dbl>[39m[23m    [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m sleep_total sleep_rem    [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m93[4m8[24m        [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m249[39m     [38;5;246m0[39m[38;5;246m.[39m411 [38;5;246m0[39m[38;5;246m.[39m704
+#> [38;5;250m2[39m sleep_total sleep_cycle  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m00[39m1[4m9[24m[4m4[24m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m333[39m     [38;5;246m0[39m[38;5;246m.[39m328 [38;5;246m0[39m[38;5;246m.[39m505
+#> [38;5;250m3[39m sleep_total awake       -[31m1[39m             [38;5;246m0[39m[38;5;246m.[39m95   -[31m1[39m        -[31m1[39m     1    
+#> [38;5;250m4[39m sleep_rem   sleep_cycle -[38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m[31m27[4m4[24m[39m        [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m357[39m     [38;5;246m0[39m[38;5;246m.[39m300 [38;5;246m0[39m[38;5;246m.[39m558
+#> [38;5;250m5[39m sleep_rem   awake        [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m88[4m9[24m        [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m231[39m     [38;5;246m0[39m[38;5;246m.[39m433 [38;5;246m0[39m[38;5;246m.[39m698
+#> [38;5;250m6[39m sleep_cycle awake        [38;5;246m0[39m[38;5;246m.[39m[38;5;246m00[39m3[4m8[24m[4m1[24m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m335[39m     [38;5;246m0[39m[38;5;246m.[39m324 [38;5;246m0[39m[38;5;246m.[39m508
+#>   [1mrope.percentage[22m [1mprior.distribution[22m [1mprior.location[22m [1mprior.scale[22m [1mbayes.factor[22m
+#>             [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<chr>[39m[23m                       [3m[38;5;246m<dbl>[39m[23m       [3m[38;5;246m<dbl>[39m[23m        [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m           [38;5;246m0[39m[38;5;246m.[39m378 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m311
+#> [38;5;250m2[39m           [38;5;246m0[39m[38;5;246m.[39m434 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m267
+#> [38;5;250m3[39m           [38;5;246m0[39m     beta                         1.41        1.41       [31mNA[39m    
+#> [38;5;250m4[39m           [38;5;246m0[39m[38;5;246m.[39m429 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m272
+#> [38;5;250m5[39m           [38;5;246m0[39m[38;5;246m.[39m386 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m309
+#> [38;5;250m6[39m           [38;5;246m0[39m[38;5;246m.[39m444 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m267
+#>   [1mmethod[22m                       [1mn.obs[22m
+#>   [3m[38;5;246m<chr>[39m[23m                        [3m[38;5;246m<int>[39m[23m
+#> [38;5;250m1[39m Bayesian Pearson correlation    32
+#> [38;5;250m2[39m Bayesian Pearson correlation    32
+#> [38;5;250m3[39m Bayesian Pearson correlation    32
+#> [38;5;250m4[39m Bayesian Pearson correlation    32
+#> [38;5;250m5[39m Bayesian Pearson correlation    32
+#> [38;5;250m6[39m Bayesian Pearson correlation    32
 ```
 
 ### Summary of graphics
@@ -953,10 +953,10 @@ grouped_ggpiestats(
 
 **Effect size estimation**
 
-| Type                      | Effect size                                                         | CI? | Function used                    |
-|---------------------------|---------------------------------------------------------------------|-----|----------------------------------|
-| Parametric/Non-parametric | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅   | `bayestestR::describe_posterior` |
-| Bayesian                  | ❌                                                                   | ❌   | ❌                                |
+| Type                      | Effect size                                                          | CI? | Function used            |
+|---------------------------|----------------------------------------------------------------------|-----|--------------------------|
+| Parametric/Non-parametric | Pearson’s ![C](https://chart.apis.google.com/chart?cht=tx&chl=C "C") | ✅   | `effectsize::pearsons_c` |
+| Bayesian                  | ❌                                                                    | ❌   | ❌                        |
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -1057,10 +1057,10 @@ grouped_ggbarstats(
 
 **Effect size estimation**
 
-| Type                      | Effect size                                                         | CI? | Function used                    |
-|---------------------------|---------------------------------------------------------------------|-----|----------------------------------|
-| Parametric/Non-parametric | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅   | `bayestestR::describe_posterior` |
-| Bayesian                  | ❌                                                                   | ❌   | ❌                                |
+| Type                      | Effect size                                                          | CI? | Function used            |
+|---------------------------|----------------------------------------------------------------------|-----|--------------------------|
+| Parametric/Non-parametric | Pearson’s ![C](https://chart.apis.google.com/chart?cht=tx&chl=C "C") | ✅   | `effectsize::pearsons_c` |
+| Bayesian                  | ❌                                                                    | ❌   | ❌                        |
 
 ## `ggcoefstats`
 
@@ -1200,9 +1200,9 @@ vignette-
 
 ## Extracting dataframes with statistical details
 
-`ggstatsplot` also offers a convenience function to extract dataframes
+`{ggstatsplot}` also offers a convenience function to extract dataframes
 with statistical details that are used to create expressions displayed
-in `ggstatsplot` plots.
+in `{ggstatsplot}` plots.
 
 ``` r
 set.seed(123)
@@ -1211,69 +1211,69 @@ set.seed(123)
 ggbetweenstats(mtcars, cyl, mpg) %>%
   extract_stats()
 #> $subtitle_data
-#> # A tibble: 1 × 13
-#>   statistic    df df.error    p.value
-#>       <dbl> <dbl>    <dbl>      <dbl>
-#> 1      31.6     2     18.0 0.00000127
-#>   method                                                   estimate conf.level
-#>   <chr>                                                       <dbl>      <dbl>
-#> 1 One-way analysis of means (not assuming equal variances)    0.744       0.95
-#>   conf.low conf.high effectsize conf.method conf.distribution expression
-#>      <dbl>     <dbl> <chr>      <chr>       <chr>             <list>    
-#> 1    0.475     0.853 Omega2     ncp         F                 <language>
+#> [38;5;246m# A tibble: 1 x 13[39m
+#>   [1mstatistic[22m    [1mdf[22m [1mdf.error[22m    [1mp.value[22m
+#>       [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<dbl>[39m[23m    [3m[38;5;246m<dbl>[39m[23m      [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m      31.6     2     18.0 [38;5;246m0[39m[38;5;246m.[39m[38;5;246m000[4m0[24m[4m0[24m[39m[4m1[24m27
+#>   [1mmethod[22m                                                   [1meffectsize[22m [1mestimate[22m
+#>   [3m[38;5;246m<chr>[39m[23m                                                    [3m[38;5;246m<chr>[39m[23m         [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m One-way analysis of means (not assuming equal variances) Omega2        [38;5;246m0[39m[38;5;246m.[39m744
+#>   [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m [1mconf.method[22m [1mconf.distribution[22m [1mexpression[22m
+#>        [3m[38;5;246m<dbl>[39m[23m    [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<chr>[39m[23m       [3m[38;5;246m<chr>[39m[23m             [3m[38;5;246m<list>[39m[23m    
+#> [38;5;250m1[39m       [38;5;246m0[39m[38;5;246m.[39m95    [38;5;246m0[39m[38;5;246m.[39m531         1 ncp         F                 [38;5;246m<language>[39m
 #> 
 #> $caption_data
-#> # A tibble: 6 × 20
-#>   term  estimate conf.level conf.low conf.high    pd rope.percentage
-#>   <chr>    <dbl>      <dbl>    <dbl>     <dbl> <dbl>           <dbl>
-#> 1 mu      20.5         0.95  19.3        21.9  1              0     
-#> 2 cyl-4    5.90        0.95   4.11        7.52 1              0     
-#> 3 cyl-6   -0.704       0.95  -2.64        1.06 0.780          0.390 
-#> 4 cyl-8   -5.18        0.95  -6.76       -3.55 1              0     
-#> 5 sig2    11.0         0.95   6.24       18.3  1              0     
-#> 6 g_cyl    2.69        0.95   0.0911     18.7  1              0.0418
-#>   prior.distribution prior.location prior.scale component       bf10
-#>   <chr>                       <dbl>       <dbl> <chr>          <dbl>
-#> 1 cauchy                          0       0.707 extra       3008850.
-#> 2 cauchy                          0       0.707 conditional 3008850.
-#> 3 cauchy                          0       0.707 conditional 3008850.
-#> 4 cauchy                          0       0.707 conditional 3008850.
-#> 5 cauchy                          0       0.707 extra       3008850.
-#> 6 cauchy                          0       0.707 extra       3008850.
-#>   method                          log_e_bf10    r2 std.dev r2.conf.level
-#>   <chr>                                <dbl> <dbl>   <dbl>         <dbl>
-#> 1 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-#> 2 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-#> 3 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-#> 4 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-#> 5 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-#> 6 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-#>   r2.conf.low r2.conf.high expression
-#>         <dbl>        <dbl> <list>    
-#> 1       0.574        0.788 <language>
-#> 2       0.574        0.788 <language>
-#> 3       0.574        0.788 <language>
-#> 4       0.574        0.788 <language>
-#> 5       0.574        0.788 <language>
-#> 6       0.574        0.788 <language>
+#> [38;5;246m# A tibble: 6 x 20[39m
+#>   [1mterm[22m  [1mestimate[22m [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m    [1mpd[22m [1mrope.percentage[22m
+#>   [3m[38;5;246m<chr>[39m[23m    [3m[38;5;246m<dbl>[39m[23m      [3m[38;5;246m<dbl>[39m[23m    [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<dbl>[39m[23m           [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m mu      20.5         [38;5;246m0[39m[38;5;246m.[39m95  19.3        21.9  1              [38;5;246m0[39m     
+#> [38;5;250m2[39m cyl-4    5.90        [38;5;246m0[39m[38;5;246m.[39m95   4.11        7.52 1              [38;5;246m0[39m     
+#> [38;5;250m3[39m cyl-6   -[38;5;246m0[39m[38;5;246m.[39m[31m704[39m       [38;5;246m0[39m[38;5;246m.[39m95  -[31m2[39m[31m.[39m[31m64[39m        1.06 [38;5;246m0[39m[38;5;246m.[39m780          [38;5;246m0[39m[38;5;246m.[39m390 
+#> [38;5;250m4[39m cyl-8   -[31m5[39m[31m.[39m[31m18[39m        [38;5;246m0[39m[38;5;246m.[39m95  -[31m6[39m[31m.[39m[31m76[39m       -[31m3[39m[31m.[39m[31m55[39m 1              [38;5;246m0[39m     
+#> [38;5;250m5[39m sig2    11.0         [38;5;246m0[39m[38;5;246m.[39m95   6.24       18.3  1              [38;5;246m0[39m     
+#> [38;5;250m6[39m g_cyl    2.69        [38;5;246m0[39m[38;5;246m.[39m95   [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m91[4m1[24m     18.7  1              [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m41[4m8[24m
+#>   [1mprior.distribution[22m [1mprior.location[22m [1mprior.scale[22m [1mcomponent[22m       [1mbf10[22m
+#>   [3m[38;5;246m<chr>[39m[23m                       [3m[38;5;246m<dbl>[39m[23m       [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<chr>[39m[23m          [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 extra       3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.
+#> [38;5;250m2[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 conditional 3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.
+#> [38;5;250m3[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 conditional 3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.
+#> [38;5;250m4[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 conditional 3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.
+#> [38;5;250m5[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 extra       3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.
+#> [38;5;250m6[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 extra       3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.
+#>   [1mmethod[22m                          [1mlog_e_bf10[22m    [1mr2[22m [1mstd.dev[22m [1mr2.conf.level[22m
+#>   [3m[38;5;246m<chr>[39m[23m                                [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<dbl>[39m[23m   [3m[38;5;246m<dbl>[39m[23m         [3m[38;5;246m<dbl>[39m[23m
+#> [38;5;250m1[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95
+#> [38;5;250m2[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95
+#> [38;5;250m3[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95
+#> [38;5;250m4[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95
+#> [38;5;250m5[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95
+#> [38;5;250m6[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95
+#>   [1mr2.conf.low[22m [1mr2.conf.high[22m [1mexpression[22m
+#>         [3m[38;5;246m<dbl>[39m[23m        [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<list>[39m[23m    
+#> [38;5;250m1[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m<language>[39m
+#> [38;5;250m2[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m<language>[39m
+#> [38;5;250m3[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m<language>[39m
+#> [38;5;250m4[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m<language>[39m
+#> [38;5;250m5[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m<language>[39m
+#> [38;5;250m6[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m<language>[39m
 #> 
 #> $pairwise_comparisons_data
-#> # A tibble: 3 × 11
-#>   group1 group2 statistic   p.value alternative method            distribution
-#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>             <chr>       
-#> 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           
-#> 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           
-#> 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           
-#>   p.adjustment test.details      p.value.adjustment
-#>   <chr>        <chr>             <chr>             
-#> 1 none         Games-Howell test Holm              
-#> 2 none         Games-Howell test Holm              
-#> 3 none         Games-Howell test Holm              
-#>   label                                     
-#>   <chr>                                     
-#> 1 list(~italic(p)[Holm-corrected]==0.001)   
-#> 2 list(~italic(p)[Holm-corrected]==1.4e-05) 
-#> 3 list(~italic(p)[Holm-corrected]==2.57e-04)
+#> [38;5;246m# A tibble: 3 x 11[39m
+#>   [1mgroup1[22m [1mgroup2[22m [1mstatistic[22m   [1mp.value[22m [1malternative[22m [1mmethod[22m            [1mdistribution[22m
+#>   [3m[38;5;246m<chr>[39m[23m  [3m[38;5;246m<chr>[39m[23m      [3m[38;5;246m<dbl>[39m[23m     [3m[38;5;246m<dbl>[39m[23m [3m[38;5;246m<chr>[39m[23m       [3m[38;5;246m<chr>[39m[23m             [3m[38;5;246m<chr>[39m[23m       
+#> [38;5;250m1[39m 4      6          -[31m6[39m[31m.[39m[31m67[39m [38;5;246m0[39m[38;5;246m.[39m[38;5;246m00[39m1[4m1[24m[4m0[24m   two.sided   Games-Howell test q           
+#> [38;5;250m2[39m 4      8         -[31m10[39m[31m.[39m[31m7[39m  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m000[4m0[24m[39m[4m1[24m[4m4[24m0 two.sided   Games-Howell test q           
+#> [38;5;250m3[39m 6      8          -[31m7[39m[31m.[39m[31m48[39m [38;5;246m0[39m[38;5;246m.[39m[38;5;246m000[39m[4m2[24m[4m5[24m[4m7[24m  two.sided   Games-Howell test q           
+#>   [1mp.adjustment[22m [1mtest.details[22m      [1mp.value.adjustment[22m
+#>   [3m[38;5;246m<chr>[39m[23m        [3m[38;5;246m<chr>[39m[23m             [3m[38;5;246m<chr>[39m[23m             
+#> [38;5;250m1[39m none         Games-Howell test Holm              
+#> [38;5;250m2[39m none         Games-Howell test Holm              
+#> [38;5;250m3[39m none         Games-Howell test Holm              
+#>   [1mlabel[22m                                     
+#>   [3m[38;5;246m<chr>[39m[23m                                     
+#> [38;5;250m1[39m list(~italic(p)[Holm-corrected]==0.001)   
+#> [38;5;250m2[39m list(~italic(p)[Holm-corrected]==1.4e-05) 
+#> [38;5;250m3[39m list(~italic(p)[Holm-corrected]==2.57e-04)
 #> 
 #> $descriptive_data
 #> NULL
@@ -1285,15 +1285,15 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 Note that all of this analysis is carried out by `statsExpressions`
 package: <https://indrajeetpatil.github.io/statsExpressions/>
 
-## Using `ggstatsplot` statistical details with custom plots
+## Using `{ggstatsplot}` statistical details with custom plots
 
-Sometimes you may not like the default plots produced by `ggstatsplot`.
-In such cases, you can use other **custom** plots (from `ggplot2` or
-other plotting packages) and still use `ggstatsplot` functions to
-display results from relevant statistical test.
+Sometimes you may not like the default plots produced by
+`{ggstatsplot}`. In such cases, you can use other **custom** plots (from
+`ggplot2` or other plotting packages) and still use `{ggstatsplot}`
+functions to display results from relevant statistical test.
 
 For example, in the following chunk, we will create plot (*ridgeplot*)
-using `ggridges` package and use `ggstatsplot` function for extracting
+using `ggridges` package and use `{ggstatsplot}` function for extracting
 results.
 
 ``` r
@@ -1303,7 +1303,7 @@ library(ggridges)
 library(ggplot2)
 library(ggstatsplot)
 
-# using `ggstatsplot` to get call with statistical results
+# using `{ggstatsplot}` to get call with statistical results
 stats_results <-
   ggbetweenstats(
     data = morley,
@@ -1382,9 +1382,9 @@ time-constrained presentation settings, e.g. conference talks.)
 ❌ the only game in town<br> ✅ (GUI software alternatives:
 [JASP](https://jasp-stats.org/) and [jamovi](https://www.jamovi.org/)).
 
-# `ggstatsverse`: Components of `ggstatsplot`
+# `ggstatsverse`: Components of `{ggstatsplot}`
 
-To make the maintenance and development of `ggstatsplot`, the package
+To make the maintenance and development of `{ggstatsplot}`, the package
 internally relies on the following packages that manage different
 aspects of statistical analyses:
 
@@ -1411,16 +1411,16 @@ For more exhaustive documentation for this package, see:
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/),
 you can install a module called
 [`jjstatsplot`](https://github.com/sbalci/jjstatsplot), which is a
-wrapper around `ggstatsplot`.
+wrapper around `{ggstatsplot}`.
 
 # Acknowledgments
 
-I would like to thank all the contributors to `ggstatsplot` who pointed
-out bugs or requested features I hadn’t considered. I would especially
-like to thank other package developers (especially Daniel Lüdecke,
-Dominique Makowski, Mattan S. Ben-Shachar, Patrick Mair, Salvatore
-Mangiafico, etc.) who have patiently and diligently answered my
-relentless number of questions and added feature requests I wanted. I
+I would like to thank all the contributors to `{ggstatsplot}` who
+pointed out bugs or requested features I hadn’t considered. I would
+especially like to thank other package developers (especially Daniel
+Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Patrick Mair,
+Salvatore Mangiafico, etc.) who have patiently and diligently answered
+my relentless number of questions and added feature requests I wanted. I
 also want to thank Chuck Powell for his initial contributions to the
 package.
 

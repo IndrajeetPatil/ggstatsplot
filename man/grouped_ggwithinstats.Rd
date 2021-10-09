@@ -155,8 +155,8 @@ passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
 the \code{geom_violin}.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}
-    \item{\code{ggtheme}}{A \code{ggplot2} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{ggplot2} themes (e.g.,
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
@@ -167,9 +167,9 @@ be extracted. The available palettes and packages can be checked by running
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
   }}
 
 \item{grouping.var}{A single grouping variable.}
@@ -206,7 +206,7 @@ grouped_ggwithinstats(
   y = score,
   grouping.var = order,
   type = "np", # non-parametric test
-  # additional modifications for **each** plot using `ggplot2` functions
+  # additional modifications for **each** plot using `{ggplot2}` functions
   ggplot.component = ggplot2::scale_y_continuous(
     breaks = seq(0, 1, 0.1),
     limits = c(0, 1)

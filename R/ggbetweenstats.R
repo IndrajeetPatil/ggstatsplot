@@ -83,9 +83,9 @@
 #' @param violin.args A list of additional aesthetic arguments to be passed to
 #'   the `geom_violin`.
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
-#'   by `ggstatsplot`. This argument is primarily helpful for `grouped_`
+#'   by `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
 #'   variants of all primary functions. Default is `NULL`. The argument should
-#'   be entered as a `ggplot2` function or a list of `ggplot2` functions.
+#'   be entered as a `{ggplot2}` function or a list of `{ggplot2}` functions.
 #' @param package,palette Name of the package from which the given palette is to
 #'   be extracted. The available palettes and packages can be checked by running
 #'   `View(paletteer::palettes_d_names)`.
@@ -103,8 +103,8 @@
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
-#' @param ggtheme A `ggplot2` theme. Default value is
-#'   `ggstatsplot::theme_ggstatsplot()`. Any of the `ggplot2` themes (e.g.,
+#' @param ggtheme A `{ggplot2}` theme. Default value is
+#'   `ggstatsplot::theme_ggstatsplot()`. Any of the `{ggplot2}` themes (e.g.,
 #'   `ggplot2::theme_bw()`), or themes from extension packages are allowed
 #'   (e.g., `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
 #'   etc.).

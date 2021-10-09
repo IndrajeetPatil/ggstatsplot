@@ -1,8 +1,8 @@
-#' @title Default theme used in `ggstatsplot`
+#' @title Default theme used in `{ggstatsplot}`
 #'
 #' @description
 #'
-#' Common theme used across all plots generated in `ggstatsplot` and *assumed*
+#' Common theme used across all plots generated in `{ggstatsplot}` and *assumed*
 #' by the author to be aesthetically pleasing to the user/reader. The theme is a
 #' wrapper around `ggplot2::theme_bw()`.
 #'

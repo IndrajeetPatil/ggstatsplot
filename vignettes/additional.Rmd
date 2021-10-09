@@ -59,12 +59,12 @@ website for this package: <br>
   - Frequently Asked Questions (FAQ)-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
 
-  - Graphic design and statistical reporting principles guiding `ggstatsplot`
+  - Graphic design and statistical reporting principles guiding `{ggstatsplot}`
     development:
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>)
 
   - Examples illustrating how to use functional programming package like `purrr`
-    to extend `ggstatsplot` functionality-
+    to extend `{ggstatsplot}` functionality-
     (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
 
 # Publication
@@ -78,9 +78,9 @@ In addition to these vignettes, another quick way to get an overview of this
 package is to go through the following slides:
 <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
-# Components of `ggstatsplot`
+# Components of `{ggstatsplot}`
 
-To make the maintenance and development of `ggstatsplot` more manageable, it is
+To make the maintenance and development of `{ggstatsplot}` more manageable, it is
 being broken into smaller pieces. Currently, the package internally relies on
 the following packages that manage different aspects of statistical analyses:
 

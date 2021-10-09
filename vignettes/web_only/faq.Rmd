@@ -48,7 +48,7 @@ media platforms.
 
 # 1. I just want the plot, not the statistical details. How can I turn them off?
 
-All functions in `ggstatsplot` that display results from statistical analysis in
+All functions in `{ggstatsplot}` that display results from statistical analysis in
 a subtitle have argument `results.subtitle`. Setting it to `FALSE` will return
 only the plot.
 
@@ -92,7 +92,7 @@ This can possibly be solved by increasing the size of RStudio viewer pane.
 # 4. Why do I get only plot in return but not the subtitle/caption?
 
 In order to prevent the function from failing when statistical analysis fails,
-functions in `ggstatsplot` default to first attempting to run the analysis and
+functions in `{ggstatsplot}` default to first attempting to run the analysis and
 if they fail, then return empty (`NULL`) subtitle/caption. In such cases, if you
 wish to diagnose why the analysis is failing, you will have to do so using the
 underlying function used to carry out statistical analysis.
@@ -127,9 +127,9 @@ associated vignette.
 Summary of all analysis is handily available in `README`: 
 <https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
 
-# 6. How can I use `ggstatsplot` functions in a `for` loop?
+# 6. How can I use `{ggstatsplot}` functions in a `for` loop?
 
-Given that all functions in `ggstatsplot` use tidy evaluation, running these
+Given that all functions in `{ggstatsplot}` use tidy evaluation, running these
 functions in a `for` loop requires minor adjustment to how inputs are entered:
 
 ```{r loop, eval=FALSE}
@@ -165,7 +165,7 @@ the same scale across the individual plots:
 set.seed(123)
 library(ggstatsplot)
 
-# provide a list of further `ggplot2` modifications using `ggplot.component`
+# provide a list of further `{ggplot2}` modifications using `ggplot.component`
 grouped_ggscatterstats(
   mtcars,
   disp,
@@ -179,12 +179,12 @@ grouped_ggscatterstats(
 )
 ```
 
-# 8. Does `ggstatsplot` work with `plotly`?
+# 8. Does `{ggstatsplot}` work with `plotly`?
 
 The `plotly` R graphing library makes it easy to produce interactive web
 graphics via `plotly.js`. 
 
-The `ggstatsplot` functions are compatible with `plotly`.
+The `{ggstatsplot}` functions are compatible with `plotly`.
  
 ```{r plotly, fig.width=4, fig.height=4}
 # for reproducibility
@@ -192,7 +192,7 @@ set.seed(123)
 library(ggstatsplot)
 library(plotly)
 
-# creating ggplot object with `ggstatsplot`
+# creating ggplot object with `{ggstatsplot}`
 p <-
   ggstatsplot::ggbetweenstats(
     data = mtcars,
@@ -300,8 +300,8 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
 
 # 12. How to access dataframe with results from pairwise comparisons?
 
-Behind the scenes, `ggstatsplot` uses `pairwiseComparisons` package. Thus, you
-can use it to extract actual dataframes used in `ggstatsplot` functions.
+Behind the scenes, `{ggstatsplot}` uses `pairwiseComparisons` package. Thus, you
+can use it to extract actual dataframes used in `{ggstatsplot}` functions.
 
 ```{r}
 library(ggstatsplot)
@@ -313,7 +313,7 @@ pairwise_comparisons(mtcars, cyl, wt)
 
 # 13. How can I change annotation in pairwise comparisons?
 
-`ggstatsplot` defaults to displaying exact p-values or logged Bayes Factor
+`{ggstatsplot}` defaults to displaying exact p-values or logged Bayes Factor
 values for pairwise comparisons. But what if you wish to adopt a different
 annotation labels?
 
@@ -444,9 +444,9 @@ ggstatsplot::grouped_ggpiestats(
 )
 ```
 
-# 17. How can I modify `grouped_` outputs using `ggplot2` functions?
+# 17. How can I modify `grouped_` outputs using `{ggplot2}` functions?
 
-All `ggstatsplot` are `ggplot` objects, which can be further modified, just like
+All `{ggstatsplot}` are `ggplot` objects, which can be further modified, just like
 any other `ggplot` object. But exception to these are all plots returned by
 `grouped_` functions, but there is a way to tackle this.
 
@@ -466,7 +466,7 @@ grouped_ggbetweenstats(
   grouping.var = sex,
   type = "np",
   ggplot.component =
-    # modify further with `ggplot2` functions
+    # modify further with `{ggplot2}` functions
   list(
     scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
     theme(axis.text.x = element_text(angle = 90))
@@ -474,9 +474,9 @@ grouped_ggbetweenstats(
 )
 ```
 
-# 18. How can I extract dataframe containing results from `ggstatsplot`?
+# 18. How can I extract dataframe containing results from `{ggstatsplot}`?
 
-`ggstatsplot` can return expressions in the subtitle and caption, but what if
+`{ggstatsplot}` can return expressions in the subtitle and caption, but what if
 you want to actually get back dataframe containing the results?
 
 This is possible via `statsExpressions`:
@@ -497,9 +497,9 @@ delete_layers(p, "GeomText")
 
 # 20. Test I need is not available. What can I do?
 
-By default, since `ggstatsplot` always allows just **one** type of test per
+By default, since `{ggstatsplot}` always allows just **one** type of test per
 statistical approach, sometimes your favorite test might not be available. For
-example, `ggstatsplot` provides only Spearman's $\rho$, but not Kendall's
+example, `{ggstatsplot}` provides only Spearman's $\rho$, but not Kendall's
 $\tau$ as a non-parametric correlation test. 
 
 In such cases, you can override the defaults and use `statsExpressions` to
@@ -551,7 +551,7 @@ So, for example, iif 2 tests are being carried out, the alpha is going to be
 that only those tests should be considered significant where `p < 0.025`. Or you
 can even mention this in the caption.
 
-22. How can I build a `Shiny` app using `ggstatsplot` functions?
+22. How can I build a `Shiny` app using `{ggstatsplot}` functions?
 
 Below is an example using `ggbetweenstats` function.
 
@@ -578,6 +578,41 @@ server <- function(input, output) {
 
 shinyApp(ui, server)
 ```
+
+23. How to change size of annotations for combined plot in `grouped_*` functions?
+
+```{r}
+library(ggplot2)
+
+grouped_ggbetweenstats(
+  data = dplyr::filter(ggplot2::mpg, drv != "4"),
+  x = year,
+  y = hwy,
+  grouping.var = drv,
+  results.subtitle = FALSE,
+  # arguments given to {patchwork} for combining plots
+  annotation.args = list(
+    title = "this is my title",
+    subtitle = "this is my subtitle",
+    theme = ggplot2::theme(
+      plot.subtitle = element_text(size = 20),
+      plot.title = element_text(size = 30)
+    )
+  )
+)
+```
+
+24. How to change size of text in the subtitle?
+
+```{r}
+ggbetweenstats(
+  data = iris,
+  x = Species,
+  y = Sepal.Length,
+  ggplot.component = list(theme(plot.subtitle = element_text(size = 20, face = "bold")))
+) 
+```
+
 
 # Suggestions
 

@@ -167,18 +167,6 @@
       [11] "group"       "xmin"        "xmax"        "colour"      "ycolour"    
       [16] "fill"        "yfill"       "size"        "linetype"    "alpha"      
       
-      [[5]]
-       [1] "y"           "x"           "density"     "scaled"      "ndensity"   
-       [6] "count"       "n"           "flipped_aes" "PANEL"       "group"      
-      [11] "ymin"        "ymax"        "fill"        "xfill"       "weight"     
-      [16] "colour"      "xcolour"     "alpha"       "size"        "linetype"   
-      
-      [[6]]
-       [1] "x"           "y"           "density"     "scaled"      "ndensity"   
-       [6] "count"       "n"           "flipped_aes" "PANEL"       "group"      
-      [11] "xmin"        "xmax"        "fill"        "yfill"       "weight"     
-      [16] "colour"      "ycolour"     "alpha"       "size"        "linetype"   
-      
 
 ---
 
@@ -196,12 +184,6 @@
       
       [[4]]
       [1] 30 20
-      
-      [[5]]
-      [1] 512  20
-      
-      [[6]]
-      [1] 512  20
       
 
 # aesthetic modifications work
@@ -278,11 +260,6 @@
       
       $label
       [1] "order"
-      
-      $fill
-      [1] "fill"
-      attr(,"fallback")
-      [1] TRUE
       
       $weight
       [1] "weight"

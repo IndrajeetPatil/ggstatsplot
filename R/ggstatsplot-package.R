@@ -6,7 +6,7 @@
 #'
 #'
 #'
-#' `ggstatsplot` is an extension of `ggplot2` package. It creates
+#' `{ggstatsplot}` is an extension of `{ggplot2}` package. It creates
 #'   graphics with details from statistical tests included in the plots
 #'   themselves. It provides an easier `API` to generate information-rich plots
 #'   for statistical analysis of continuous (violin plots, scatterplots,
@@ -18,14 +18,14 @@
 #'
 #' @details The main functions are-
 #'   - `ggbetweenstats` function to produce information-rich comparison plot
-#'   *between* different groups or conditions with `ggplot2` and details from
+#'   *between* different groups or conditions with `{ggplot2}` and details from
 #'   the statistical tests in the subtitle.
 #'
 #'   - `ggwithinstats` function to produce information-rich comparison plot
-#'   *within* different groups or conditions with `ggplot2` and details from the
+#'   *within* different groups or conditions with `{ggplot2}` and details from the
 #'   statistical tests in the subtitle.
 #'
-#'   - `ggscatterstats` function to produce `ggplot2` scatterplots along with a
+#'   - `ggscatterstats` function to produce `{ggplot2}` scatterplots along with a
 #'   marginal distribution plots from `ggside` package and details from the
 #'   statistical tests in the subtitle.
 #'
@@ -46,7 +46,7 @@
 #'
 #'   - `ggcoefstats` function to visualize results from regression analyses.
 #'
-#'   - `combine_plots` helper function to combine multiple `ggstatsplot` plots
+#'   - `combine_plots` helper function to combine multiple `{ggstatsplot}` plots
 #'   using `patchwork::wrap_plots()`.
 #'
 #' For more documentation, see the dedicated

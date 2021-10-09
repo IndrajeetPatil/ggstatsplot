@@ -103,15 +103,9 @@ element of the list will be a tibble." />
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -125,13 +119,19 @@ element of the list will be a tibble." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -237,7 +237,7 @@ of the list equal to the factor levels of the grouping variable. Each
 element of the list will be a tibble.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>grouped_list</span><span class='op'>(</span><span class='va'>data</span>, grouping.var <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></code></pre></div>
+    <pre class="usage"><span class='fu'>grouped_list</span><span class='op'>(</span><span class='va'>data</span>, grouping.var <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -256,87 +256,147 @@ be accepted.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='fu'>ggstatsplot</span><span class='fu'>:::</span><span class='fu'>grouped_list</span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/msleep.html'>msleep</a></span>, grouping.var <span class='op'>=</span> <span class='va'>vore</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $carni</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 19 × 11</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    name      genus  vore  order  conservation sleep_total sleep_rem sleep_cycle awake brainwt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Cheetah   Acino… carni Carni… lc                  12.1      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      11.9 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Northern… Callo… carni Carni… vu                   8.7       1.4       0.383  15.3 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Dog       Canis  carni Carni… domesticated        10.1       2.9       0.333  13.9  0.07  </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Long-nos… Dasyp… carni Cingu… lc                  17.4       3.1       0.383   6.6  0.010<span style='text-decoration: underline;'>8</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Domestic… Felis  carni Carni… domesticated        12.5       3.2       0.417  11.5  0.025<span style='text-decoration: underline;'>6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Pilot wh… Globi… carni Cetac… cd                   2.7       0.1      <span style='color: #BB0000;'>NA</span>      21.4 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Gray seal Halio… carni Carni… lc                   6.2       1.5      <span style='color: #BB0000;'>NA</span>      17.8  0.325 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Thick-ta… Lutre… carni Didel… lc                  19.4       6.6      <span style='color: #BB0000;'>NA</span>       4.6 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Slow lor… Nycti… carni Prima… <span style='color: #BB0000;'>NA</span>                  11        <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      13    0.012<span style='text-decoration: underline;'>5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Northern… Onych… carni Roden… lc                  14.5      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>       9.5 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> Tiger     Panth… carni Carni… en                  15.8      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>       8.2 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> Jaguar    Panth… carni Carni… nt                  10.4      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      13.6  0.157 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> Lion      Panth… carni Carni… vu                  13.5      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      10.5 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> Caspian … Phoca  carni Carni… vu                   3.5       0.4      <span style='color: #BB0000;'>NA</span>      20.5 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> Common p… Phoco… carni Cetac… vu                   5.6      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      18.4 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> Bottle-n… Tursi… carni Cetac… <span style='color: #BB0000;'>NA</span>                   5.2      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      18.8 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> Genet     Genet… carni Carni… <span style='color: #BB0000;'>NA</span>                   6.3       1.3      <span style='color: #BB0000;'>NA</span>      17.7  0.017<span style='text-decoration: underline;'>5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> Arctic f… Vulpes carni Carni… <span style='color: #BB0000;'>NA</span>                  12.5      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      11.5  0.044<span style='text-decoration: underline;'>5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> Red fox   Vulpes carni Carni… <span style='color: #BB0000;'>NA</span>                   9.8       2.4       0.35   14.2  0.050<span style='text-decoration: underline;'>4</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 1 more variable: bodywt &lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 19 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>name</span>                       <span style='font-weight: bold;'>genus</span>         <span style='font-weight: bold;'>vore</span>  <span style='font-weight: bold;'>order</span>           <span style='font-weight: bold;'>conservation</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Cheetah                    Acinonyx      carni Carnivora       lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Northern fur seal          Callorhinus   carni Carnivora       vu          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Dog                        Canis         carni Carnivora       domesticated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Long-nosed armadillo       Dasypus       carni Cingulata       lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Domestic cat               Felis         carni Carnivora       domesticated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Pilot whale                Globicephalus carni Cetacea         cd          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Gray seal                  Haliochoerus  carni Carnivora       lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Thick-tailed opposum       Lutreolina    carni Didelphimorphia lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Slow loris                 Nyctibeus     carni Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Northern grasshopper mouse Onychomys     carni Rodentia        lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> Tiger                      Panthera      carni Carnivora       en          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> Jaguar                     Panthera      carni Carnivora       nt          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> Lion                       Panthera      carni Carnivora       vu          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> Caspian seal               Phoca         carni Carnivora       vu          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> Common porpoise            Phocoena      carni Cetacea         vu          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> Bottle-nosed dolphin       Tursiops      carni Cetacea         <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> Genet                      Genetta       carni Carnivora       <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> Arctic fox                 Vulpes        carni Carnivora       <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> Red fox                    Vulpes        carni Carnivora       <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>sleep_total</span> <span style='font-weight: bold;'>sleep_rem</span> <span style='font-weight: bold;'>sleep_cycle</span> <span style='font-weight: bold;'>awake</span> <span style='font-weight: bold;'>brainwt</span>  <span style='font-weight: bold;'>bodywt</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span>        12.1      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      11.9 <span style='color: #BB0000;'>NA</span>       50    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span>         8.7       1.4       <span style='color: #949494;'>0.</span>383  15.3 <span style='color: #BB0000;'>NA</span>       20.5  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span>        10.1       2.9       <span style='color: #949494;'>0.</span>333  13.9  <span style='color: #949494;'>0.0</span>7    14    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span>        17.4       3.1       <span style='color: #949494;'>0.</span>383   6.6  <span style='color: #949494;'>0.0</span>10<span style='text-decoration: underline;'>8</span>   3.5  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span>        12.5       3.2       <span style='color: #949494;'>0.</span>417  11.5  <span style='color: #949494;'>0.0</span>25<span style='text-decoration: underline;'>6</span>   3.3  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span>         2.7       <span style='color: #949494;'>0.</span>1      <span style='color: #BB0000;'>NA</span>      21.4 <span style='color: #BB0000;'>NA</span>      800    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span>         6.2       1.5      <span style='color: #BB0000;'>NA</span>      17.8  <span style='color: #949494;'>0.</span>325   85    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span>        19.4       6.6      <span style='color: #BB0000;'>NA</span>       4.6 <span style='color: #BB0000;'>NA</span>        <span style='color: #949494;'>0.</span>37 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span>        11        <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      13    <span style='color: #949494;'>0.0</span>12<span style='text-decoration: underline;'>5</span>   1.4  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span>        14.5      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>       9.5 <span style='color: #BB0000;'>NA</span>        <span style='color: #949494;'>0.0</span>28</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span>        15.8      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>       8.2 <span style='color: #BB0000;'>NA</span>      163.   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span>        10.4      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      13.6  <span style='color: #949494;'>0.</span>157  100    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span>        13.5      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      10.5 <span style='color: #BB0000;'>NA</span>      161.   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span>         3.5       <span style='color: #949494;'>0.</span>4      <span style='color: #BB0000;'>NA</span>      20.5 <span style='color: #BB0000;'>NA</span>       86    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span>         5.6      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      18.4 <span style='color: #BB0000;'>NA</span>       53.2  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span>         5.2      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      18.8 <span style='color: #BB0000;'>NA</span>      173.   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span>         6.3       1.3      <span style='color: #BB0000;'>NA</span>      17.7  <span style='color: #949494;'>0.0</span>17<span style='text-decoration: underline;'>5</span>   2    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span>        12.5      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      11.5  <span style='color: #949494;'>0.0</span>44<span style='text-decoration: underline;'>5</span>   3.38 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span>         9.8       2.4       <span style='color: #949494;'>0.</span>35   14.2  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>4</span>   4.23 </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $herbi</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 32 × 11</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    name     genus  vore  order   conservation sleep_total sleep_rem sleep_cycle awake brainwt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Mountai… Aplod… herbi Rodent… nt                  14.4       2.4      <span style='color: #BB0000;'>NA</span>       9.6 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Cow      Bos    herbi Artiod… domesticated         4         0.7       0.667  20    0.423 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Three-t… Brady… herbi Pilosa  <span style='color: #BB0000;'>NA</span>                  14.4       2.2       0.767   9.6 <span style='color: #BB0000;'>NA</span>     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Roe deer Capre… herbi Artiod… lc                   3        <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      21    0.098<span style='text-decoration: underline;'>2</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Goat     Capri  herbi Artiod… lc                   5.3       0.6      <span style='color: #BB0000;'>NA</span>      18.7  0.115 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Guinea … Cavis  herbi Rodent… domesticated         9.4       0.8       0.217  14.6  0.005<span style='text-decoration: underline;'>5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Chinchi… Chinc… herbi Rodent… domesticated        12.5       1.5       0.117  11.5  0.006<span style='text-decoration: underline;'>4</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Tree hy… Dendr… herbi Hyraco… lc                   5.3       0.5      <span style='color: #BB0000;'>NA</span>      18.7  0.012<span style='text-decoration: underline;'>3</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Asian e… Eleph… herbi Probos… en                   3.9      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      20.1  4.60  </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Horse    Equus  herbi Periss… domesticated         2.9       0.6       1      21.1  0.655 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 22 more rows, and 1 more variable: bodywt &lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 32 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>name</span>             <span style='font-weight: bold;'>genus</span>       <span style='font-weight: bold;'>vore</span>  <span style='font-weight: bold;'>order</span>          <span style='font-weight: bold;'>conservation</span> <span style='font-weight: bold;'>sleep_total</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Mountain beaver  Aplodontia  herbi Rodentia       nt                  14.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Cow              Bos         herbi Artiodactyla   domesticated         4  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Three-toed sloth Bradypus    herbi Pilosa         <span style='color: #BB0000;'>NA</span>                  14.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Roe deer         Capreolus   herbi Artiodactyla   lc                   3  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> Goat             Capri       herbi Artiodactyla   lc                   5.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Guinea pig       Cavis       herbi Rodentia       domesticated         9.4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> Chinchilla       Chinchilla  herbi Rodentia       domesticated        12.5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Tree hyrax       Dendrohyrax herbi Hyracoidea     lc                   5.3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Asian elephant   Elephas     herbi Proboscidea    en                   3.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Horse            Equus       herbi Perissodactyla domesticated         2.9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>sleep_rem</span> <span style='font-weight: bold;'>sleep_cycle</span> <span style='font-weight: bold;'>awake</span> <span style='font-weight: bold;'>brainwt</span>   <span style='font-weight: bold;'>bodywt</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span>       2.4      <span style='color: #BB0000;'>NA</span>       9.6 <span style='color: #BB0000;'>NA</span>         1.35 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span>       <span style='color: #949494;'>0.</span>7       <span style='color: #949494;'>0.</span>667  20    <span style='color: #949494;'>0.</span>423   600    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span>       2.2       <span style='color: #949494;'>0.</span>767   9.6 <span style='color: #BB0000;'>NA</span>         3.85 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span>      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      21    <span style='color: #949494;'>0.0</span>98<span style='text-decoration: underline;'>2</span>   14.8  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span>       <span style='color: #949494;'>0.</span>6      <span style='color: #BB0000;'>NA</span>      18.7  <span style='color: #949494;'>0.</span>115    33.5  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span>       <span style='color: #949494;'>0.</span>8       <span style='color: #949494;'>0.</span>217  14.6  <span style='color: #949494;'>0.00</span>5<span style='text-decoration: underline;'>5</span>    <span style='color: #949494;'>0.</span>728</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span>       1.5       <span style='color: #949494;'>0.</span>117  11.5  <span style='color: #949494;'>0.00</span>6<span style='text-decoration: underline;'>4</span>    <span style='color: #949494;'>0.</span>42 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span>       <span style='color: #949494;'>0.</span>5      <span style='color: #BB0000;'>NA</span>      18.7  <span style='color: #949494;'>0.0</span>12<span style='text-decoration: underline;'>3</span>    2.95 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span>      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      20.1  4.60   <span style='text-decoration: underline;'>2</span>54<span style='color: #949494;'>7</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span>       <span style='color: #949494;'>0.</span>6       1      21.1  <span style='color: #949494;'>0.</span>655   521    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 22 more rows</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $insecti</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 5 × 11</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake brainwt bodywt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Big … Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3 0.000<span style='text-decoration: underline;'>3</span>   0.023</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Litt… Myot… inse… Chir… <span style='color: #BB0000;'>NA</span>                  19.9       2         0.2     4.1 0.000<span style='text-decoration: underline;'>25</span>  0.01 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> Gian… Prio… inse… Cing… en                  18.1       6.1      <span style='color: #BB0000;'>NA</span>       5.9 0.081   60    </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> East… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6 0.001<span style='text-decoration: underline;'>2</span>   0.075</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Shor… Tach… inse… Mono… <span style='color: #BB0000;'>NA</span>                   8.6      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      15.4 0.025    4.5  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 5 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>name</span>                  <span style='font-weight: bold;'>genus</span>        <span style='font-weight: bold;'>vore</span>    <span style='font-weight: bold;'>order</span>        <span style='font-weight: bold;'>conservation</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Big brown bat         Eptesicus    insecti Chiroptera   lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Little brown bat      Myotis       insecti Chiroptera   <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> Giant armadillo       Priodontes   insecti Cingulata    en          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> Eastern american mole Scalopus     insecti Soricomorpha lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Short-nosed echidna   Tachyglossus insecti Monotremata  <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>sleep_total</span> <span style='font-weight: bold;'>sleep_rem</span> <span style='font-weight: bold;'>sleep_cycle</span> <span style='font-weight: bold;'>awake</span> <span style='font-weight: bold;'>brainwt</span> <span style='font-weight: bold;'>bodywt</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>        19.7       3.9       <span style='color: #949494;'>0.</span>117   4.3 <span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>3</span>   <span style='color: #949494;'>0.0</span>23</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>        19.9       2         <span style='color: #949494;'>0.</span>2     4.1 <span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>25</span>  <span style='color: #949494;'>0.0</span>1 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span>        18.1       6.1      <span style='color: #BB0000;'>NA</span>       5.9 <span style='color: #949494;'>0.0</span>81   60    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span>         8.4       2.1       <span style='color: #949494;'>0.</span>167  15.6 <span style='color: #949494;'>0.00</span>1<span style='text-decoration: underline;'>2</span>   <span style='color: #949494;'>0.0</span>75</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span>         8.6      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      15.4 <span style='color: #949494;'>0.0</span>25    4.5  </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $omni</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 20 × 11</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    name     genus  vore  order  conservation sleep_total sleep_rem sleep_cycle awake  brainwt</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Owl mon… Aotus  omni  Prima… <span style='color: #BB0000;'>NA</span>                  17         1.8      <span style='color: #BB0000;'>NA</span>       7    0.015<span style='text-decoration: underline;'>5</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Greater… Blari… omni  Soric… lc                  14.9       2.3       0.133   9.1  0.000<span style='text-decoration: underline;'>29</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Grivet   Cerco… omni  Prima… lc                  10         0.7      <span style='color: #BB0000;'>NA</span>      14   <span style='color: #BB0000;'>NA</span>      </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Star-no… Condy… omni  Soric… lc                  10.3       2.2      <span style='color: #BB0000;'>NA</span>      13.7  0.001  </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> African… Crice… omni  Roden… <span style='color: #BB0000;'>NA</span>                   8.3       2        <span style='color: #BB0000;'>NA</span>      15.7  0.006<span style='text-decoration: underline;'>6</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Lesser … Crypt… omni  Soric… lc                   9.1       1.4       0.15   14.9  0.000<span style='text-decoration: underline;'>14</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> North A… Didel… omni  Didel… lc                  18         4.9       0.333   6    0.006<span style='text-decoration: underline;'>3</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> Europea… Erina… omni  Erina… lc                  10.1       3.5       0.283  13.9  0.003<span style='text-decoration: underline;'>5</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Patas m… Eryth… omni  Prima… lc                  10.9       1.1      <span style='color: #BB0000;'>NA</span>      13.1  0.115  </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Galago   Galago omni  Prima… <span style='color: #BB0000;'>NA</span>                   9.8       1.1       0.55   14.2  0.005  </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> Human    Homo   omni  Prima… <span style='color: #BB0000;'>NA</span>                   8         1.9       1.5    16    1.32   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> Macaque  Macaca omni  Prima… <span style='color: #BB0000;'>NA</span>                  10.1       1.2       0.75   13.9  0.179  </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> Chimpan… Pan    omni  Prima… <span style='color: #BB0000;'>NA</span>                   9.7       1.4       1.42   14.3  0.44   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> Baboon   Papio  omni  Prima… <span style='color: #BB0000;'>NA</span>                   9.4       1         0.667  14.6  0.18   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> Potto    Perod… omni  Prima… lc                  11        <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      13   <span style='color: #BB0000;'>NA</span>      </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> African… Rhabd… omni  Roden… <span style='color: #BB0000;'>NA</span>                   8.7      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      15.3 <span style='color: #BB0000;'>NA</span>      </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> Squirre… Saimi… omni  Prima… <span style='color: #BB0000;'>NA</span>                   9.6       1.4      <span style='color: #BB0000;'>NA</span>      14.4  0.02   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> Pig      Sus    omni  Artio… domesticated         9.1       2.4       0.5    14.9  0.18   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> Tenrec   Tenrec omni  Afros… <span style='color: #BB0000;'>NA</span>                  15.6       2.3      <span style='color: #BB0000;'>NA</span>       8.4  0.002<span style='text-decoration: underline;'>6</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>20</span> Tree sh… Tupaia omni  Scand… <span style='color: #BB0000;'>NA</span>                   8.9       2.6       0.233  15.1  0.002<span style='text-decoration: underline;'>5</span> </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 1 more variable: bodywt &lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 20 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>name</span>                       <span style='font-weight: bold;'>genus</span>         <span style='font-weight: bold;'>vore</span>  <span style='font-weight: bold;'>order</span>           <span style='font-weight: bold;'>conservation</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span> Owl monkey                 Aotus         omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span> Greater short-tailed shrew Blarina       omni  Soricomorpha    lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span> Grivet                     Cercopithecus omni  Primates        lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span> Star-nosed mole            Condylura     omni  Soricomorpha    lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span> African giant pouched rat  Cricetomys    omni  Rodentia        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span> Lesser short-tailed shrew  Cryptotis     omni  Soricomorpha    lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span> North American Opossum     Didelphis     omni  Didelphimorphia lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span> European hedgehog          Erinaceus     omni  Erinaceomorpha  lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span> Patas monkey               Erythrocebus  omni  Primates        lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span> Galago                     Galago        omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span> Human                      Homo          omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span> Macaque                    Macaca        omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span> Chimpanzee                 Pan           omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span> Baboon                     Papio         omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span> Potto                      Perodicticus  omni  Primates        lc          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span> African striped mouse      Rhabdomys     omni  Rodentia        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span> Squirrel monkey            Saimiri       omni  Primates        <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span> Pig                        Sus           omni  Artiodactyla    domesticated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span> Tenrec                     Tenrec        omni  Afrosoricida    <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>20</span> Tree shrew                 Tupaia        omni  Scandentia      <span style='color: #BB0000;'>NA</span>          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    <span style='font-weight: bold;'>sleep_total</span> <span style='font-weight: bold;'>sleep_rem</span> <span style='font-weight: bold;'>sleep_cycle</span> <span style='font-weight: bold;'>awake</span>  <span style='font-weight: bold;'>brainwt</span> <span style='font-weight: bold;'>bodywt</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 1</span>        17         1.8      <span style='color: #BB0000;'>NA</span>       7    <span style='color: #949494;'>0.0</span>15<span style='text-decoration: underline;'>5</span>   <span style='color: #949494;'>0.</span>48 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 2</span>        14.9       2.3       <span style='color: #949494;'>0.</span>133   9.1  <span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>29</span>  <span style='color: #949494;'>0.0</span>19</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 3</span>        10         <span style='color: #949494;'>0.</span>7      <span style='color: #BB0000;'>NA</span>      14   <span style='color: #BB0000;'>NA</span>        4.75 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 4</span>        10.3       2.2      <span style='color: #BB0000;'>NA</span>      13.7  <span style='color: #949494;'>0.00</span>1    <span style='color: #949494;'>0.0</span>6 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 5</span>         8.3       2        <span style='color: #BB0000;'>NA</span>      15.7  <span style='color: #949494;'>0.00</span>6<span style='text-decoration: underline;'>6</span>   1    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 6</span>         9.1       1.4       <span style='color: #949494;'>0.</span>15   14.9  <span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>14</span>  <span style='color: #949494;'>0.00</span>5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 7</span>        18         4.9       <span style='color: #949494;'>0.</span>333   6    <span style='color: #949494;'>0.00</span>6<span style='text-decoration: underline;'>3</span>   1.7  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 8</span>        10.1       3.5       <span style='color: #949494;'>0.</span>283  13.9  <span style='color: #949494;'>0.00</span>3<span style='text-decoration: underline;'>5</span>   <span style='color: #949494;'>0.</span>77 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'> 9</span>        10.9       1.1      <span style='color: #BB0000;'>NA</span>      13.1  <span style='color: #949494;'>0.</span>115   10    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>10</span>         9.8       1.1       <span style='color: #949494;'>0.</span>55   14.2  <span style='color: #949494;'>0.00</span>5    <span style='color: #949494;'>0.</span>2  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>11</span>         8         1.9       1.5    16    1.32    62    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>12</span>        10.1       1.2       <span style='color: #949494;'>0.</span>75   13.9  <span style='color: #949494;'>0.</span>179    6.8  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>13</span>         9.7       1.4       1.42   14.3  <span style='color: #949494;'>0.</span>44    52.2  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>14</span>         9.4       1         <span style='color: #949494;'>0.</span>667  14.6  <span style='color: #949494;'>0.</span>18    25.2  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>15</span>        11        <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      13   <span style='color: #BB0000;'>NA</span>        1.1  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>16</span>         8.7      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>      15.3 <span style='color: #BB0000;'>NA</span>        <span style='color: #949494;'>0.0</span>44</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>17</span>         9.6       1.4      <span style='color: #BB0000;'>NA</span>      14.4  <span style='color: #949494;'>0.0</span>2     <span style='color: #949494;'>0.</span>743</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>18</span>         9.1       2.4       <span style='color: #949494;'>0.</span>5    14.9  <span style='color: #949494;'>0.</span>18    86.2  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>19</span>        15.6       2.3      <span style='color: #BB0000;'>NA</span>       8.4  <span style='color: #949494;'>0.00</span>2<span style='text-decoration: underline;'>6</span>   <span style='color: #949494;'>0.</span>9  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>20</span>         8.9       2.6       <span style='color: #949494;'>0.</span>233  15.1  <span style='color: #949494;'>0.00</span>2<span style='text-decoration: underline;'>5</span>   <span style='color: #949494;'>0.</span>104</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-in'><span class='co'># }</span></span>
-</code></pre></div>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -352,7 +412,7 @@ be accepted.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -377,8 +437,6 @@ be accepted.</p></td>
 </script>
 
 
-
-  
 
   </body>
 </html>

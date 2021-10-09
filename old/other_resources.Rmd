@@ -1,5 +1,5 @@
 ---
-title: "other resources to learn about `ggstatsplot`"
+title: "other resources to learn about `{ggstatsplot}`"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -12,7 +12,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{other resources to learn about `ggstatsplot`}
+  %\VignetteIndexEntry{other resources to learn about `{ggstatsplot}`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-One of the best resources to learn about functionality afforded by `ggstatsplot`
+One of the best resources to learn about functionality afforded by `{ggstatsplot}`
 package is to read the dedicated
 [website](https://indrajeetpatil.github.io/ggstatsplot/). A lot of love and work
 has gone into writing detailed function documentation and vignettes, and I will
@@ -36,7 +36,7 @@ highly recommend you check them out.
 
 But, the website is certainly not the only resource available to learn about
 this package, and below are some other resources that might be helpful for you
-to learn about `ggstatsplot` package.
+to learn about `{ggstatsplot}` package.
 
 # Presentations
 
@@ -62,10 +62,10 @@ to learn about `ggstatsplot` package.
   - <https://www.youtube.com/watch?v=aw6HDz9zA1Q>
 
   - [Serdar Belci's demo](https://www.youtube.com/watch?v=m3uInetiC8w) on how to
-    use `ggstatsplot` in `jamovi` GUI software
+    use `{ggstatsplot}` in `jamovi` GUI software
 
   - Data pre-processing and analysis in
-    [RStudio](https://www.youtube.com/watch?v=IMgv5pc7N7U) and `ggstatsplot`
+    [RStudio](https://www.youtube.com/watch?v=IMgv5pc7N7U) and `{ggstatsplot}`
 
 ### Other languages
 
@@ -81,7 +81,7 @@ This is a bit difficult to keep track of. I would recommend just googling it.
 
 # Publications
 
-A list of publications that use `ggstatsplot` can be found in Google Scholar:
+A list of publications that use `{ggstatsplot}` can be found in Google Scholar:
 
 <https://scholar.google.com/scholar?hl=en&scisbd=2&as_sdt=0%2C22&q=ggstatsplot&btnG=>
 

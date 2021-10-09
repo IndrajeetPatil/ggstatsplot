@@ -103,15 +103,9 @@ labels." />
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -125,13 +119,19 @@ labels." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -237,7 +237,7 @@ confidence interval whiskers and other statistical details included as
 labels.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>ggcoefstats</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>ggcoefstats</span><span class='op'>(</span>
   <span class='va'>x</span>,
   output <span class='op'>=</span> <span class='st'>"plot"</span>,
   statistic <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -267,7 +267,7 @@ labels.</p>
   palette <span class='op'>=</span> <span class='st'>"Dark2"</span>,
   ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
   <span class='va'>...</span>
-<span class='op'>)</span></code></pre></div>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -432,8 +432,8 @@ be extracted. The available palettes and packages can be checked by running
     </tr>
     <tr>
       <th>ggtheme</th>
-      <td><p>A <code>ggplot2</code> theme. Default value is
-<code><a href='theme_ggstatsplot.html'>ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>ggplot2</code> themes (e.g.,
+      <td><p>A <code>{ggplot2}</code> theme. Default value is
+<code><a href='theme_ggstatsplot.html'>ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
 <code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
 (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>, <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>,
 etc.).</p></td>
@@ -466,7 +466,7 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='co'># for reproducibility</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
@@ -480,23 +480,29 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># to get a tidy dataframe</span></span>
 <span class='r-in'><span class='fu'>ggcoefstats</span><span class='op'>(</span><span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"tidy"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 × 10</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   term        estimate std.error conf.level conf.low conf.high statistic df.error</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> (Intercept)    30.9      3.19        0.95    24.3     37.4        9.68       28</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cyl            -<span style='color: #BB0000;'>1.98</span>     0.449       0.95    -<span style='color: #BB0000;'>2.89</span>    -<span style='color: #BB0000;'>1.06</span>      -<span style='color: #BB0000;'>4.40</span>       28</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> am             10.2      4.30        0.95     1.36    19.0        2.36       28</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cyl:am         -<span style='color: #BB0000;'>1.31</span>     0.707       0.95    -<span style='color: #BB0000;'>2.75</span>     0.143     -<span style='color: #BB0000;'>1.85</span>       28</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 2 more variables: p.value &lt;dbl&gt;, label &lt;chr&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 4 x 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>term</span>        <span style='font-weight: bold;'>estimate</span> <span style='font-weight: bold;'>std.error</span> <span style='font-weight: bold;'>conf.level</span> <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span> <span style='font-weight: bold;'>statistic</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> (Intercept)    30.9      3.19        <span style='color: #949494;'>0.</span>95    24.3     37.4        9.68</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cyl            -<span style='color: #BB0000;'>1.98</span>     <span style='color: #949494;'>0.</span>449       <span style='color: #949494;'>0.</span>95    -<span style='color: #BB0000;'>2.89</span>    -<span style='color: #BB0000;'>1.06</span>      -<span style='color: #BB0000;'>4.40</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> am             10.2      4.30        <span style='color: #949494;'>0.</span>95     1.36    19.0        2.36</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cyl:am         -<span style='color: #BB0000;'>1.31</span>     <span style='color: #949494;'>0.</span>707       <span style='color: #949494;'>0.</span>95    -<span style='color: #BB0000;'>2.75</span>     <span style='color: #949494;'>0.</span>143     -<span style='color: #BB0000;'>1.85</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>df.error</span>  <span style='font-weight: bold;'>p.value</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>       28 1.95<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>       28 1.41<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span>       28 2.53<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span>       28 7.55<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 2</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># ... with 1 more variable: </span><span style='color: #949494; font-weight: bold;'>label</span><span style='color: #949494;'> &lt;chr&gt;</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># to get a glance summary</span></span>
 <span class='r-in'><span class='fu'>ggcoefstats</span><span class='op'>(</span><span class='va'>mod</span>, output <span class='op'>=</span> <span class='st'>"glance"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 × 6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>     AIC   BIC    R2 R2_adjusted  RMSE Sigma</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 x 6</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     <span style='font-weight: bold;'>AIC</span>   <span style='font-weight: bold;'>BIC</span>    <span style='font-weight: bold;'>R2</span> <span style='font-weight: bold;'>R2_adjusted</span>  <span style='font-weight: bold;'>RMSE</span> <span style='font-weight: bold;'>Sigma</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>  166.  173. 0.785       0.762  2.75  2.94</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>  166.  173. <span style='color: #949494;'>0.</span>785       <span style='color: #949494;'>0.</span>762  2.75  2.94</span>
 <span class='r-in'><span class='co'># }</span></span>
-</code></pre></div>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -512,7 +518,7 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -537,8 +543,6 @@ is recommended that you install the GitHub versions of <code>parameters</code> a
 </script>
 
 
-
-  
 
   </body>
 </html>

@@ -14,7 +14,7 @@
   ],
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.8.0.9000",
+  "version": "0.9.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -51,7 +51,7 @@
       "@type": "SoftwareApplication",
       "identifier": "afex",
       "name": "afex",
-      "version": ">= 1.0-0",
+      "version": ">= 1.0-1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -185,6 +185,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
+      "version": ">= 3.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -242,27 +243,27 @@
       "@type": "SoftwareApplication",
       "identifier": "correlation",
       "name": "correlation",
-      "version": ">= 0.7.0",
+      "version": ">= 0.7.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/correlation"
+      "sameAs": "https://CRAN.R-project.org/package=correlation"
     },
     {
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.2.0",
+      "version": ">= 0.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/datawizard"
+      "sameAs": "https://CRAN.R-project.org/package=datawizard"
     },
     {
       "@type": "SoftwareApplication",
@@ -312,7 +313,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/const-ae/ggsignif"
+      "sameAs": "https://CRAN.R-project.org/package=ggsignif"
     },
     {
       "@type": "SoftwareApplication",
@@ -325,7 +326,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/insight"
+      "sameAs": "https://CRAN.R-project.org/package=insight"
     },
     {
       "@type": "SoftwareApplication",
@@ -381,14 +382,14 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.7.3.1",
+      "version": ">= 0.8.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/performance"
+      "sameAs": "https://CRAN.R-project.org/package=performance"
     },
     {
       "@type": "SoftwareApplication",
@@ -518,6 +519,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "12450.778KB",
+  "fileSize": "6739.668KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

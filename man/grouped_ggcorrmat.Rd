@@ -76,15 +76,15 @@ be extracted. The available palettes and packages can be checked by running
     \item{\code{palette}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
-    \item{\code{ggtheme}}{A \code{ggplot2} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{ggplot2} themes (e.g.,
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption.}

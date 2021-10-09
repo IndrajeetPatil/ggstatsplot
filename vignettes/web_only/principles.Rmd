@@ -57,7 +57,7 @@ citation("ggstatsplot")
 ## Graphical perception
    
 Graphical perception involves visual decoding of the encoded information in
-graphs. `ggstatsplot` incorporates the paradigm proposed in ([@cleveland1985],
+graphs. `{ggstatsplot}` incorporates the paradigm proposed in ([@cleveland1985],
 Chapter 4) to facilitate making visual judgments about quantitative information
 effortless and almost instantaneous. Based on experiments, Cleveland proposes
 that there are ten elementary graphical-perception tasks that we perform to
@@ -106,10 +106,10 @@ ggbetweenstats(
 )
 ```
 
-There are few instances where `ggstatsplot` diverges from recommendations made
+There are few instances where `{ggstatsplot}` diverges from recommendations made
 in Cleveland's paradigm:
 
-  - For the categorical/nominal data, `ggstatsplot` uses pie charts which rely
+  - For the categorical/nominal data, `{ggstatsplot}` uses pie charts which rely
     on *angle* judgments, which are less accurate (as compared to bar graphs,
     e.g., which require *position* judgments). This shortcoming is assuaged to
     some degree by using plenty of labels that describe percentages for all
@@ -118,7 +118,7 @@ in Cleveland's paradigm:
     alternative function to `ggpiestats` for working with categorical variables:
     `ggbarstats`.
 
-```{r fig2, fig.height = 4, fig.width = 10, fig.cap = "Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `ggstatsplot` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary."}
+```{r fig2, fig.height = 4, fig.width = 10, fig.cap = "Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary."}
 # for reproducibility
 set.seed(123)
 
@@ -147,10 +147,10 @@ ggpiestats(
     of functions is to not only show different aspects of the data but also to
     run statistical tests and showing detailed results for all aspects of the
     data in a superposed plot is difficult. Therefore, this is a compromise
-    `ggstatsplot` is comfortable with, at least to produce plots for quick
+    `{ggstatsplot}` is comfortable with, at least to produce plots for quick
     exploration of different aspects of the data.
 
-```{r fig3, fig.height = 12, fig.width = 10, fig.cap = "Comparing different aspects of data is much more accurate in (\\textit{a}) a \\textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\\textit{b}) a \\textit{juxtaposed} plot, which is how it is implemented in `ggstatsplot` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot."}
+```{r fig3, fig.height = 12, fig.width = 10, fig.cap = "Comparing different aspects of data is much more accurate in (\\textit{a}) a \\textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\\textit{b}) a \\textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot."}
 # for reproducibility
 set.seed(123)
 library(ggplot2)
@@ -175,7 +175,7 @@ combine_plots(
       y = rating,
       grouping.var = genre,
       marginal = FALSE,
-      annotation.args = list(title = "juxtaposition (`ggstatsplot` implementation in `grouped_` functions)")
+      annotation.args = list(title = "juxtaposition (`{ggstatsplot}` implementation in `grouped_` functions)")
     )
   ),
   # combine for comparison
@@ -223,7 +223,7 @@ that reduces their visual prominence.
   - All plots are designed to have no **chartjunk** (like moiré vibrations, fake
     perspective, dark grid lines, etc.) ([@tufte2001], Chapter 5).
 
-There are some instances where `ggstatsplot` graphs don't follow principles of
+There are some instances where `{ggstatsplot}` graphs don't follow principles of
 clean graphics, as formulated in the Tufte theory of data graphics
 ([@tufte2001], Chapter 4). The theory has four key principles:
 
@@ -235,7 +235,7 @@ clean graphics, as formulated in the Tufte theory of data graphics
 
   4. Erase redundant data-ink, within reason.
 
-In particular, default plots in `ggstatsplot` can sometimes violate one of the
+In particular, default plots in `{ggstatsplot}` can sometimes violate one of the
 principles from 2-4. According to these principles, every bit of ink should have
 reason for its inclusion in the graphic and should convey some new information
 to the viewer. If not, such ink should be removed. One instance of this is
@@ -256,7 +256,7 @@ p. 137). Additionally, these principles were formulated in an era in which
 One of the important functions of a plot is to show the variation in the data,
 which comes in two forms:
 
-  - **Measurement noise**: In `ggstatsplot`, the actual variation in
+  - **Measurement noise**: In `{ggstatsplot}`, the actual variation in
     measurements is shown by plotting a combination of (jittered) raw data
     points with a boxplot laid on top or a histogram. None of the plots, where
     empirical distribution of the data is concerned, show the sample standard
@@ -280,7 +280,7 @@ gghistostats(
 
   - **Sample-to-sample statistic variation**: Although, traditionally, this
     variation has been shown using the standard error of the mean (SEM) of the
-    statistic, `ggstatsplot` plots instead use 95% confidence intervals. This is
+    statistic, `{ggstatsplot}` plots instead use 95% confidence intervals. This is
     because the interval formed by error bars correspond to a 68% confidence
     interval, which is not a particularly interesting interval
     ([@cleveland1985], p.222-225).
@@ -303,7 +303,7 @@ ggcoefstats(x = mod)
 
 ## Data requirements
 
-As an extension of `ggplot2`, `ggstatsplot` has the same expectations about the
+As an extension of `{ggplot2}`, `ggstatsplot` has the same expectations about the
 structure of the data. More specifically,
 
   - The data should be organized following the principles of *tidy data*, which
@@ -313,7 +313,7 @@ structure of the data. More specifically,
     each row corresponds to a unique observation ([@wickhamTidyData2014]).
 
   - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
-    to `ggplot2`; [@wickham2016], p.207) in the data and display total sample
+    to `{ggplot2}`; [@wickham2016], p.207) in the data and display total sample
     size (*n*, either observations for between-subjects or pairs for
     within-subjects designs) in the subtitle to inform the user/reader about the
     number of observations included for both the statistical analysis and the

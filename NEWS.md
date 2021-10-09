@@ -1,9 +1,19 @@
-# ggstatsplot 0.8.0.9000
+# ggstatsplot 0.9.0
 
 N.B. All statistical analysis in `ggstatsplot` is carried out in
 `statsExpressions`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+BREAKING CHANGES
+
+  - A number of effect size estimates and their confidence intervals have
+    changed due to respective changes made in `{effectsize}` package version
+    `0.5` release. For full details of these changes, see:
+    <https://easystats.github.io/effectsize/news/index.html>
+
+  - For the same reason, the effect size for one-way contingency table has
+    changed from Cramer's *V* to Pearson's *C*.
 
 MAJOR CHANGES
 
@@ -14,14 +24,10 @@ MAJOR CHANGES
     except `ggscatterstats`, which led to a lot of confusion among users (e.g.
     #28). This change gets rid of this inconsistency. But it comes at a cost:
     there is no more `marginal.type` argument that lets you change the type of
-    marginal distribution graphic and the densigram (density plus histogram,
-
-i.e.) is the only possible option. Note that this is **not** a breaking change.
-Your past code will continue to work but it will now always produce a densigram
-instead of other marginal graphic you might have chosen. Additionally, the
-densigrams will look slightly different due to differences in how these packages
-compute density plots for marginal distributions (for more, see:
-<https://github.com/jtlandis/ggside/issues/18>).
+    marginal distribution graphic and histogram is the only possible option.
+    Note that this is **not** a breaking change. Your past code will continue to
+    work but it will now always produce a histogram instead of other marginal
+    graphic you might have chosen.
 
 MINOR CHANGES
 
