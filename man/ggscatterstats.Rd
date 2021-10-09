@@ -28,8 +28,6 @@ ggscatterstats(
     na.rm = TRUE),
   xsidehistogram.args = list(fill = xfill, color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = yfill, color = "black", na.rm = TRUE),
-  xsidedensity.args = list(na.rm = TRUE),
-  ysidedensity.args = list(na.rm = TRUE),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -119,8 +117,9 @@ to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
 to \code{ggplot2::geom_smooth} geom used to display the regression line.}
 
-\item{xsidehistogram.args, ysidehistogram.args, xsidedensity.args, ysidedensity.args}{A list of arguments passed to respective \code{geom_}s from \code{ggside} package to
-change the marginal distribution histograms and density plots.}
+\item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
+respective \code{geom_}s from \code{ggside} package to change the marginal
+distribution histograms plots.}
 
 \item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
@@ -135,16 +134,16 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{caption}{The text for the plot caption.}
 
-\item{ggtheme}{A \code{ggplot2} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{ggplot2} themes (e.g.,
+\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{ggplot2::theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{ggstatsplot}. This argument is primarily helpful for \code{grouped_}
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{ggplot2} function or a list of \code{ggplot2} functions.}
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
 
 \item{output}{Character that describes what is to be returned: can be
 \code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
@@ -157,7 +156,7 @@ about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
 \item{...}{Currently ignored.}
 }
 \description{
-Scatterplots from \code{ggplot2} combined with marginal densigram (density +
+Scatterplots from \code{{ggplot2}} combined with marginal densigram (density +
 histogram) plots with statistical details.
 }
 \details{
@@ -186,7 +185,7 @@ if (require("ggside")) {
     y = mpg,
     label.var = car,
     label.expression = wt < 4 & mpg < 20
-  ) + # making further customization with `ggplot2` functions
+  ) + # making further customization with `{ggplot2}` functions
     ggplot2::geom_rug(sides = "b")
 }
 }

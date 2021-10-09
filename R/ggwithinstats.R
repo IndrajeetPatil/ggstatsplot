@@ -343,7 +343,7 @@ ggwithinstats <- function(data,
 #'   y = score,
 #'   grouping.var = order,
 #'   type = "np", # non-parametric test
-#'   # additional modifications for **each** plot using `ggplot2` functions
+#'   # additional modifications for **each** plot using `{ggplot2}` functions
 #'   ggplot.component = ggplot2::scale_y_continuous(
 #'     breaks = seq(0, 1, 0.1),
 #'     limits = c(0, 1)

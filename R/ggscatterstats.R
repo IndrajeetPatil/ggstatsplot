@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' Scatterplots from `ggplot2` combined with marginal densigram (density +
+#' Scatterplots from `{ggplot2}` combined with marginal densigram (density +
 #' histogram) plots with statistical details.
 #'
 #' @param ... Currently ignored.
@@ -31,9 +31,9 @@
 #' @param xfill,yfill Character describing color fill for `x` and `y` axes
 #'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
 #'  `y`)). Note that the defaults are colorblind-friendly.
-#' @param xsidehistogram.args,ysidehistogram.args,xsidedensity.args,ysidedensity.args
-#'   A list of arguments passed to respective `geom_`s from `ggside` package to
-#'   change the marginal distribution histograms and density plots.
+#' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
+#'   respective `geom_`s from `ggside` package to change the marginal
+#'   distribution histograms plots.
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
@@ -75,7 +75,7 @@
 #'     y = mpg,
 #'     label.var = car,
 #'     label.expression = wt < 4 & mpg < 20
-#'   ) + # making further customization with `ggplot2` functions
+#'   ) + # making further customization with `{ggplot2}` functions
 #'     ggplot2::geom_rug(sides = "b")
 #' }
 #' @export
@@ -122,8 +122,6 @@ ggscatterstats <- function(data,
                              color = "black",
                              na.rm = TRUE
                            ),
-                           xsidedensity.args = list(na.rm = TRUE),
-                           ysidedensity.args = list(na.rm = TRUE),
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -236,8 +234,6 @@ ggscatterstats <- function(data,
     plot <- plot +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
-      exec(ggside::geom_xsidedensity, mapping = aes(y = after_stat(count)), !!!xsidedensity.args) +
-      exec(ggside::geom_ysidedensity, mapping = aes(x = after_stat(count)), !!!ysidedensity.args) +
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }
@@ -253,7 +249,7 @@ ggscatterstats <- function(data,
 #'
 #' @description
 #'
-#' Grouped scatterplots from `ggplot2` combined with marginal distribution plots
+#' Grouped scatterplots from `{ggplot2}` combined with marginal distribution plots
 #' with statistical details added as a subtitle.
 #'
 #' @inheritParams ggscatterstats

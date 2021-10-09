@@ -22,7 +22,7 @@
   }
 </script>
 
-<title>Extracting dataframes with statistical details from ggstatsplot — extract_stats • ggstatsplot</title>
+<title>Extracting dataframes with statistical details from {ggstatsplot} — extract_stats • ggstatsplot</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -80,8 +80,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Extracting dataframes with statistical details from ggstatsplot — extract_stats" />
-<meta property="og:description" content="Extracting dataframes with statistical details from ggstatsplot" />
+<meta property="og:title" content="Extracting dataframes with statistical details from {ggstatsplot} — extract_stats" />
+<meta property="og:description" content="Extracting dataframes with statistical details from {ggstatsplot}" />
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png" />
 
 
@@ -101,15 +101,9 @@
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -123,13 +117,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -224,23 +224,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extracting dataframes with statistical details from <code>ggstatsplot</code></h1>
+    <h1>Extracting dataframes with statistical details from <code>{ggstatsplot}</code></h1>
     <small class="dont-index">Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/R/extract_stats.R'><code>R/extract_stats.R</code></a></small>
     <div class="hidden name"><code>extract_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extracting dataframes with statistical details from <code>ggstatsplot</code></p>
+    <p>Extracting dataframes with statistical details from <code>{ggstatsplot}</code></p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='fu'>extract_stats</span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>...</span><span class='op'>)</span></code></pre></div>
+    <pre class="usage"><span class='fu'>extract_stats</span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>p</th>
-      <td><p>A plot from <code>ggstatsplot</code> package</p></td>
+      <td><p>A plot from <code>{ggstatsplot}</code> package</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -254,7 +254,7 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This is a convenience function to extract dataframes with statistical details
-that are used to create expressions displayed in <code>ggstatsplot</code> plots as
+that are used to create expressions displayed in <code>{ggstatsplot}</code> plots as
 subtitle and/or as caption. Note that all of this analysis is carried out by
 the <code>statsExpressions</code> package.</p>
 <p>For more details about underlying tests and effect size estimates, see the
@@ -266,7 +266,7 @@ https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html</p
 have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</code> type.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='co'># \donttest{</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>123</span><span class='op'>)</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://indrajeetpatil.github.io/ggstatsplot/'>ggstatsplot</a></span><span class='op'>)</span></span>
 <span class='r-in'></span>
@@ -274,37 +274,69 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 <span class='r-in'><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='ggbetweenstats.html'>ggbetweenstats</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='va'>cyl</span>, <span class='va'>mpg</span><span class='op'>)</span></span>
 <span class='r-in'><span class='fu'>extract_stats</span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $subtitle_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 × 13</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   statistic    df df.error p.value method estimate conf.level conf.low conf.high</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>      31.6     2     18.0 1.27<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-6</span> One-w…    0.744       0.95    0.475     0.853</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 4 more variables: effectsize &lt;chr&gt;, conf.method &lt;chr&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   conf.distribution &lt;chr&gt;, expression &lt;list&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 x 13</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>statistic</span>    <span style='font-weight: bold;'>df</span> <span style='font-weight: bold;'>df.error</span>    <span style='font-weight: bold;'>p.value</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>      31.6     2     18.0 <span style='color: #949494;'>0.000</span><span style='color: #949494; text-decoration: underline;'>00</span><span style='text-decoration: underline;'>1</span>27</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>method</span>                                                   <span style='font-weight: bold;'>effectsize</span> <span style='font-weight: bold;'>estimate</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                                    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> One-way analysis of means (not assuming equal variances) Omega2        <span style='color: #949494;'>0.</span>744</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>conf.level</span> <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span> <span style='font-weight: bold;'>conf.method</span> <span style='font-weight: bold;'>conf.distribution</span> <span style='font-weight: bold;'>expression</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>       <span style='color: #949494;'>0.</span>95    <span style='color: #949494;'>0.</span>531         1 ncp         F                 <span style='color: #949494;'>&lt;language&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $caption_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 20</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   term  estimate conf.level conf.low conf.high    pd rope.percentage</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 20</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>term</span>  <span style='font-weight: bold;'>estimate</span> <span style='font-weight: bold;'>conf.level</span> <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span>    <span style='font-weight: bold;'>pd</span> <span style='font-weight: bold;'>rope.percentage</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> mu      20.5         0.95  19.3        21.9  1              0     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cyl-4    5.90        0.95   4.11        7.52 1              0     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> cyl-6   -<span style='color: #BB0000;'>0.704</span>       0.95  -<span style='color: #BB0000;'>2.64</span>        1.06 0.780          0.390 </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cyl-8   -<span style='color: #BB0000;'>5.18</span>        0.95  -<span style='color: #BB0000;'>6.76</span>       -<span style='color: #BB0000;'>3.55</span> 1              0     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> sig2    11.0         0.95   6.24       18.3  1              0     </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> g_cyl    2.69        0.95   0.091<span style='text-decoration: underline;'>1</span>     18.7  1              0.041<span style='text-decoration: underline;'>8</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 13 more variables: prior.distribution &lt;chr&gt;, prior.location &lt;dbl&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   prior.scale &lt;dbl&gt;, component &lt;chr&gt;, bf10 &lt;dbl&gt;, method &lt;chr&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   log_e_bf10 &lt;dbl&gt;, r2 &lt;dbl&gt;, std.dev &lt;dbl&gt;, r2.conf.level &lt;dbl&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   r2.conf.low &lt;dbl&gt;, r2.conf.high &lt;dbl&gt;, expression &lt;list&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> mu      20.5         <span style='color: #949494;'>0.</span>95  19.3        21.9  1              <span style='color: #949494;'>0</span>     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cyl-4    5.90        <span style='color: #949494;'>0.</span>95   4.11        7.52 1              <span style='color: #949494;'>0</span>     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> cyl-6   -<span style='color: #949494;'>0.</span><span style='color: #BB0000;'>704</span>       <span style='color: #949494;'>0.</span>95  -<span style='color: #BB0000;'>2.64</span>        1.06 <span style='color: #949494;'>0.</span>780          <span style='color: #949494;'>0.</span>390 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cyl-8   -<span style='color: #BB0000;'>5.18</span>        <span style='color: #949494;'>0.</span>95  -<span style='color: #BB0000;'>6.76</span>       -<span style='color: #BB0000;'>3.55</span> 1              <span style='color: #949494;'>0</span>     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> sig2    11.0         <span style='color: #949494;'>0.</span>95   6.24       18.3  1              <span style='color: #949494;'>0</span>     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> g_cyl    2.69        <span style='color: #949494;'>0.</span>95   <span style='color: #949494;'>0.0</span>91<span style='text-decoration: underline;'>1</span>     18.7  1              <span style='color: #949494;'>0.0</span>41<span style='text-decoration: underline;'>8</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>prior.distribution</span> <span style='font-weight: bold;'>prior.location</span> <span style='font-weight: bold;'>prior.scale</span> <span style='font-weight: bold;'>component</span>       <span style='font-weight: bold;'>bf10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> cauchy                          <span style='color: #949494;'>0</span>       <span style='color: #949494;'>0.</span>707 extra       3<span style='text-decoration: underline;'>00</span><span style='color: #949494; text-decoration: underline;'>8</span><span style='color: #949494;'>850</span>.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cauchy                          <span style='color: #949494;'>0</span>       <span style='color: #949494;'>0.</span>707 conditional 3<span style='text-decoration: underline;'>00</span><span style='color: #949494; text-decoration: underline;'>8</span><span style='color: #949494;'>850</span>.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> cauchy                          <span style='color: #949494;'>0</span>       <span style='color: #949494;'>0.</span>707 conditional 3<span style='text-decoration: underline;'>00</span><span style='color: #949494; text-decoration: underline;'>8</span><span style='color: #949494;'>850</span>.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cauchy                          <span style='color: #949494;'>0</span>       <span style='color: #949494;'>0.</span>707 conditional 3<span style='text-decoration: underline;'>00</span><span style='color: #949494; text-decoration: underline;'>8</span><span style='color: #949494;'>850</span>.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> cauchy                          <span style='color: #949494;'>0</span>       <span style='color: #949494;'>0.</span>707 extra       3<span style='text-decoration: underline;'>00</span><span style='color: #949494; text-decoration: underline;'>8</span><span style='color: #949494;'>850</span>.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> cauchy                          <span style='color: #949494;'>0</span>       <span style='color: #949494;'>0.</span>707 extra       3<span style='text-decoration: underline;'>00</span><span style='color: #949494; text-decoration: underline;'>8</span><span style='color: #949494;'>850</span>.</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>method</span>                          <span style='font-weight: bold;'>log_e_bf10</span>    <span style='font-weight: bold;'>r2</span> <span style='font-weight: bold;'>std.dev</span> <span style='font-weight: bold;'>r2.conf.level</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Bayes factors for linear models       14.9 <span style='color: #949494;'>0.</span>714  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>3</span>          <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Bayes factors for linear models       14.9 <span style='color: #949494;'>0.</span>714  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>3</span>          <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> Bayes factors for linear models       14.9 <span style='color: #949494;'>0.</span>714  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>3</span>          <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> Bayes factors for linear models       14.9 <span style='color: #949494;'>0.</span>714  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>3</span>          <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Bayes factors for linear models       14.9 <span style='color: #949494;'>0.</span>714  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>3</span>          <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> Bayes factors for linear models       14.9 <span style='color: #949494;'>0.</span>714  <span style='color: #949494;'>0.0</span>50<span style='text-decoration: underline;'>3</span>          <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>r2.conf.low</span> <span style='font-weight: bold;'>r2.conf.high</span> <span style='font-weight: bold;'>expression</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>       <span style='color: #949494;'>0.</span>574        <span style='color: #949494;'>0.</span>788 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>       <span style='color: #949494;'>0.</span>574        <span style='color: #949494;'>0.</span>788 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span>       <span style='color: #949494;'>0.</span>574        <span style='color: #949494;'>0.</span>788 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span>       <span style='color: #949494;'>0.</span>574        <span style='color: #949494;'>0.</span>788 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span>       <span style='color: #949494;'>0.</span>574        <span style='color: #949494;'>0.</span>788 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span>       <span style='color: #949494;'>0.</span>574        <span style='color: #949494;'>0.</span>788 <span style='color: #949494;'>&lt;language&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $pairwise_comparisons_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 3 × 11</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   group1 group2 statistic   p.value alternative method distribution p.adjustment</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 4      6          -<span style='color: #BB0000;'>6.67</span> 0.001<span style='text-decoration: underline;'>10</span>   two.sided   Games… q            none        </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 4      8         -<span style='color: #BB0000;'>10.7</span>  0.000<span style='text-decoration: underline;'>014</span>0 two.sided   Games… q            none        </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> 6      8          -<span style='color: #BB0000;'>7.48</span> 0.000<span style='text-decoration: underline;'>257</span>  two.sided   Games… q            none        </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 3 more variables: test.details &lt;chr&gt;, p.value.adjustment &lt;chr&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   label &lt;chr&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 3 x 11</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>group1</span> <span style='font-weight: bold;'>group2</span> <span style='font-weight: bold;'>statistic</span>   <span style='font-weight: bold;'>p.value</span> <span style='font-weight: bold;'>alternative</span> <span style='font-weight: bold;'>method</span>            <span style='font-weight: bold;'>distribution</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 4      6          -<span style='color: #BB0000;'>6.67</span> <span style='color: #949494;'>0.00</span>1<span style='text-decoration: underline;'>10</span>   two.sided   Games-Howell test q           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 4      8         -<span style='color: #BB0000;'>10.7</span>  <span style='color: #949494;'>0.000</span><span style='color: #949494; text-decoration: underline;'>0</span><span style='text-decoration: underline;'>14</span>0 two.sided   Games-Howell test q           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> 6      8          -<span style='color: #BB0000;'>7.48</span> <span style='color: #949494;'>0.000</span><span style='text-decoration: underline;'>257</span>  two.sided   Games-Howell test q           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>p.adjustment</span> <span style='font-weight: bold;'>test.details</span>      <span style='font-weight: bold;'>p.value.adjustment</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> none         Games-Howell test Holm              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> none         Games-Howell test Holm              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> none         Games-Howell test Holm              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>label</span>                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> list(~italic(p)[Holm-corrected]==0.001)   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> list(~italic(p)[Holm-corrected]==1.4e-05) </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> list(~italic(p)[Holm-corrected]==2.57e-04)</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $descriptive_data</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
@@ -316,35 +348,53 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 <span class='r-in'><span class='co'># the exact details depend on the function</span></span>
 <span class='r-in'><span class='fu'>extract_stats</span><span class='op'>(</span><span class='fu'><a href='ggbarstats.html'>ggbarstats</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='va'>cyl</span>, <span class='va'>am</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $subtitle_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 × 12</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   statistic    df p.value method          estimate conf.level conf.low conf.high</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>      8.74     2  0.012<span style='text-decoration: underline;'>6</span> Pearson's Chi-…    0.464       0.95        0     0.777</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 4 more variables: effectsize &lt;chr&gt;, conf.method &lt;chr&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   conf.distribution &lt;chr&gt;, expression &lt;list&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 1 x 12</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>statistic</span>    <span style='font-weight: bold;'>df</span> <span style='font-weight: bold;'>p.value</span> <span style='font-weight: bold;'>method</span>                     <span style='font-weight: bold;'>estimate</span> <span style='font-weight: bold;'>conf.level</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                         <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>      8.74     2  <span style='color: #949494;'>0.0</span>12<span style='text-decoration: underline;'>6</span> Pearson's Chi-squared test    <span style='color: #949494;'>0.</span>464       <span style='color: #949494;'>0.</span>95</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span> <span style='font-weight: bold;'>effectsize</span>        <span style='font-weight: bold;'>conf.method</span> <span style='font-weight: bold;'>conf.distribution</span> <span style='font-weight: bold;'>expression</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>             <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>        <span style='color: #949494;'>0</span>         1 Cramer's V (adj.) ncp         chisq             <span style='color: #949494;'>&lt;language&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $caption_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 8 × 14</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   term      estimate conf.level conf.low conf.high    pd rope.percentage</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 8 x 14</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>term</span>      <span style='font-weight: bold;'>estimate</span> <span style='font-weight: bold;'>conf.level</span> <span style='font-weight: bold;'>conf.low</span> <span style='font-weight: bold;'>conf.high</span>    <span style='font-weight: bold;'>pd</span> <span style='font-weight: bold;'>rope.percentage</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> cell[1,1]    3.16        0.95    0.617     6.41      1               0</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cell[2,1]    3.97        0.95    1.04      7.65      1               0</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> cell[3,1]   10.8         0.95    6.56     15.9       1               0</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cell[1,2]    7.44        0.95    3.50     11.8       1               0</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> cell[2,2]    3.15        0.95    0.698     6.52      1               0</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> cell[3,2]    2.29        0.95    0.409     5.38      1               0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> cell[1,1]    3.16        <span style='color: #949494;'>0.</span>95    <span style='color: #949494;'>0.</span>617     6.41      1               <span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> cell[2,1]    3.97        <span style='color: #949494;'>0.</span>95    1.04      7.65      1               <span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> cell[3,1]   10.8         <span style='color: #949494;'>0.</span>95    6.56     15.9       1               <span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> cell[1,2]    7.44        <span style='color: #949494;'>0.</span>95    3.50     11.8       1               <span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> cell[2,2]    3.15        <span style='color: #949494;'>0.</span>95    <span style='color: #949494;'>0.</span>698     6.52      1               <span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> cell[3,2]    2.29        <span style='color: #949494;'>0.</span>95    <span style='color: #949494;'>0.</span>409     5.38      1               <span style='color: #949494;'>0</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> Ratio       <span style='color: #BB0000;'>NA</span>          <span style='color: #BB0000;'>NA</span>      <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>        <span style='color: #BB0000;'>NA</span>              <span style='color: #BB0000;'>NA</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> Cramers_v    0.476       0.95    0.205     0.703     1               0</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 7 more variables: prior.distribution &lt;chr&gt;, prior.location &lt;dbl&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   prior.scale &lt;dbl&gt;, bf10 &lt;dbl&gt;, method &lt;chr&gt;, log_e_bf10 &lt;dbl&gt;,</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   expression &lt;list&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> Cramers_v    <span style='color: #949494;'>0.</span>476       <span style='color: #949494;'>0.</span>95    <span style='color: #949494;'>0.</span>205     <span style='color: #949494;'>0.</span>703     1               <span style='color: #949494;'>0</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>prior.distribution</span>      <span style='font-weight: bold;'>prior.location</span> <span style='font-weight: bold;'>prior.scale</span>  <span style='font-weight: bold;'>bf10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                            <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> independent multinomial              <span style='color: #949494;'>0</span>           1  15.1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>method</span>                              <span style='font-weight: bold;'>log_e_bf10</span> <span style='font-weight: bold;'>expression</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> Bayesian contingency table analysis       2.72 <span style='color: #949494;'>&lt;language&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $pairwise_comparisons_data</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $descriptive_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   am    cyl   counts  perc .label</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>am</span>    <span style='font-weight: bold;'>cyl</span>   <span style='font-weight: bold;'>counts</span>  <span style='font-weight: bold;'>perc</span> <span style='font-weight: bold;'>.label</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 0     8         12  63.2 63%   </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 1     8          2  15.4 15%   </span>
@@ -354,14 +404,26 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> 1     4          8  61.5 62%   </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> $one_sample_data</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 × 10</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   am    counts  perc N        statistic    df p.value method   .label   .p.label</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   </span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 1         13  40.6 (n = 13)      4.77     2  0.092<span style='text-decoration: underline;'>1</span> Chi-squ… list(~c… list(~i…</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 0         19  59.4 (n = 19)      7.68     2  0.021<span style='text-decoration: underline;'>4</span> Chi-squ… list(~c… list(~i…</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 2 x 10</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>am</span>    <span style='font-weight: bold;'>counts</span>  <span style='font-weight: bold;'>perc</span> <span style='font-weight: bold;'>N</span>        <span style='font-weight: bold;'>statistic</span>    <span style='font-weight: bold;'>df</span> <span style='font-weight: bold;'>p.value</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> 1         13  40.6 (n = 13)      4.77     2  <span style='color: #949494;'>0.0</span>92<span style='text-decoration: underline;'>1</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> 0         19  59.4 (n = 19)      7.68     2  <span style='color: #949494;'>0.0</span>21<span style='text-decoration: underline;'>4</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>method</span>                                  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> Chi-squared test for given probabilities</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> Chi-squared test for given probabilities</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>.label</span>                                                            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                                             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> list(~chi['gof']^2~(2)==4.77, ~italic(p)=='0.092', ~italic(n)==13)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> list(~chi['gof']^2~(2)==7.68, ~italic(p)=='0.021', ~italic(n)==19)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>.p.label</span>                 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> list(~italic(p)=='0.092')</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> list(~italic(p)=='0.021')</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-in'><span class='co'># }</span></span>
-</code></pre></div>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -377,7 +439,7 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -402,8 +464,6 @@ have to set <code>marginal = FALSE</code> to return an object of <code>ggplot</c
 </script>
 
 
-
-  
 
   </body>
 </html>

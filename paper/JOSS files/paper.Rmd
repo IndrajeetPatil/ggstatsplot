@@ -47,9 +47,9 @@ apparent from purely numerical summaries. Such visualizations can also be
 helpful for the reader to evaluate the validity of a model if it is reported in
 a scholarly publication or report. But, given the onerous costs involved,
 researchers often avoid preparing information-rich graphics and exploring
-several statistical approaches or tests available. The `ggstatsplot` package in
+several statistical approaches or tests available. The `{ggstatsplot}` package in
 the R programming language [@base2021] provides a one-line syntax to enrich
-`ggplot2`-based visualizations with the results from statistical analysis
+`{ggplot2}`-based visualizations with the results from statistical analysis
 embedded in the visualization itself. In doing so, the package helps researchers
 adopt a rigorous, reliable, and robust data exploratory and reporting workflow.
 
@@ -58,13 +58,13 @@ adopt a rigorous, reliable, and robust data exploratory and reporting workflow.
 In a typical data analysis workflow, data visualization and statistical modeling
 are two different phases: visualization informs modeling, and in turn, modeling
 can suggest a different visualization method, and so on and so forth
-[@wickham2016r]. The central idea of `ggstatsplot` is simple: combine these two
+[@wickham2016r]. The central idea of `{ggstatsplot}` is simple: combine these two
 phases into one in the form of an informative graphic with statistical details.
 
 Before discussing benefits of this approach, we will show an example (Figure
 1).
 
-```{r penguins, fig.width=8, fig.height=5, fig.cap="Example plot from the `ggstatsplot` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \\url{https://indrajeetpatil.github.io/ggstatsplot/}"}
+```{r penguins, fig.width=8, fig.height=5, fig.cap="Example plot from the `{ggstatsplot}` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \\url{https://indrajeetpatil.github.io/ggstatsplot/}"}
 library(palmerpenguins) # for 'penguins' dataset
 library(ggstatsplot)
 
@@ -79,7 +79,7 @@ with informative and well-labeled visualizations. The defaults are designed to
 follow best practices in both data visualization [@cleveland1985;
 @grant2018data; @healy2018data; @tufte2001; @wilke2019fundamentals] and
 (frequentist/Bayesian) statistical reporting [@apa2019; @van2020jasp]. Without
-`ggstatsplot`, getting these statistical details and customizing a plot would
+`{ggstatsplot}`, getting these statistical details and customizing a plot would
 require significant amount of time and effort. In other words, this package
 removes the trade-off often faced by researchers between ease and thoroughness
 of data exploration and further cements good data exploration habits.
@@ -90,11 +90,11 @@ while statistical analysis is carried out via the `statsExpressions`
 @Lüdecke2020performance;
 @Lüdecke2019; @Makowski2019; @Makowski2020] packages. All visualizations are
 constructed using the grammar of graphics framework [@Wilkinson2012], as
-implemented in the `ggplot2` package [@Wickham2016].
+implemented in the `{ggplot2}` package [@Wickham2016].
 
 # Benefits
 
-In summary, the benefits of `ggstatsplot`'s approach are the following. It:
+In summary, the benefits of `{ggstatsplot}`'s approach are the following. It:
 
 a. produces charts displaying both raw data, and numerical plus graphical
    summary indices,
@@ -129,7 +129,7 @@ collection of statistical analyses and visualizations.
 
 # Licensing and Availability
 
-`ggstatsplot` is licensed under the GNU General Public License (v3.0), with all
+`{ggstatsplot}` is licensed under the GNU General Public License (v3.0), with all
 source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/).
 In the spirit of honest and open science, requests and suggestions for fixes,
 feature updates, as well as general questions and concerns are encouraged via
@@ -141,12 +141,12 @@ Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
 # Acknowledgements
 
 I would like to acknowledge the support of Mina Cikara, Fiery Cushman, and Iyad
-Rahwan during the development of this project. `ggstatsplot` relies heavily on
+Rahwan during the development of this project. `{ggstatsplot}` relies heavily on
 the [`easystats`](https://github.com/easystats/easystats) ecosystem, a
 collaborative project created to facilitate the usage of `R` for statistical
 analyses. Thus, I would like to thank the
 [members](https://github.com/orgs/easystats/people) of `easystats` as well as
-the users. I would additionally like to thank the contributors to `ggstatsplot`
+the users. I would additionally like to thank the contributors to `{ggstatsplot}`
 for reporting bugs, providing helpful feedback, or helping with enhancements.
 
 # References

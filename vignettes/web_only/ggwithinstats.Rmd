@@ -98,7 +98,7 @@ ggstatsplot::ggwithinstats(
     of levels in the grouping variable.
     
   - The output of the function is a `ggplot` object which means that it can be
-    further modified with `ggplot2` functions.
+    further modified with `{ggplot2}` functions.
 
 As can be seen from the plot, the function by default returns Bayes Factor for
 the test. If the null hypothesis can't be rejected with the null hypothesis
@@ -250,7 +250,7 @@ ggstatsplot::combine_plots(
 
 What if we want to carry out this same analysis but for each region (or gender)?
 
-`ggstatsplot` provides a special helper function for such instances:
+`{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggwithinstats`. This is merely a wrapper function around
 `ggstatsplot::combine_plots`. It applies `ggwithinstats` across all **levels**
 of a specified **grouping variable** and then combines list of individual plots
@@ -373,7 +373,7 @@ Bayesian | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
 
-- the `ggstatsplot` approach, where the plot contains both the visual and
+- the `{ggstatsplot}` approach, where the plot contains both the visual and
 numerical summaries about a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context for the

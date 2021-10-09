@@ -101,15 +101,9 @@
 
 
 
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -123,13 +117,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -233,7 +233,7 @@
     <p>Titanic dataset.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>Titanic_full</span></code></pre></div>
+    <pre class="usage"><span class='va'>Titanic_full</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -254,11 +254,11 @@ economic status (class), sex, age and survival.</p>
 <p>This is a modified dataset from <code>datasets</code> package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 2201    5</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 × 5</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>      id Class Sex   Age   Survived</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 5</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='font-weight: bold;'>id</span> <span style='font-weight: bold;'>Class</span> <span style='font-weight: bold;'>Sex</span>   <span style='font-weight: bold;'>Age</span>   <span style='font-weight: bold;'>Survived</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>   </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>     1 3rd   Male  Child No      </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>     2 3rd   Male  Child No      </span>
@@ -269,12 +269,12 @@ economic status (class), sex, age and survival.</p>
 <span class='r-in'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>Titanic_full</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Rows: 2,201</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Columns: 5</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ id       <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ Class    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3…</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ Sex      <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ Age      <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Child, Child, Child, Child, Child, Child, Child, Child, Child…</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ Survived <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…</span>
-</code></pre></div>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>id      </span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Class   </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Sex     </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Age     </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Child, Child, Child, Child, Child, Child, Child, Child, Child~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Survived</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N~</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -290,7 +290,7 @@ economic status (class), sex, age and survival.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>
@@ -315,8 +315,6 @@ economic status (class), sex, age and survival.</p>
 </script>
 
 
-
-  
 
   </body>
 </html>

@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.8.0.9000
+Version: 0.9.0
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -25,8 +25,8 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 3.6.0)
 Imports:
-    correlation (>= 0.7.0),
-    datawizard (>= 0.2.0),
+    correlation (>= 0.7.1),
+    datawizard (>= 0.2.1),
     dplyr,
     ggplot2 (>= 3.3.5),
     ggrepel,
@@ -36,7 +36,7 @@ Imports:
     paletteer,
     parameters (>= 0.14.0.1),
     patchwork,
-    performance (>= 0.7.3.1),
+    performance (>= 0.8.0),
     purrr,
     rlang,
     stats,
@@ -44,7 +44,7 @@ Imports:
     tidyr,
     utils
 Suggests:
-    afex (>= 1.0-0),
+    afex (>= 1.0-1),
     forcats,
     ggcorrplot,
     ggside (>= 0.1.2),
@@ -55,18 +55,13 @@ Suggests:
     rmarkdown,
     spelling,
     survival,
-    testthat,
+    testthat (>= 3.1.0),
     tibble,
     vdiffr,
     WRS2 (>= 1.1-3)
 Remotes:
-    easystats/insight,
-    easystats/datawizard,
-    easystats/correlation,
     easystats/parameters,
-    easystats/performance,
     IndrajeetPatil/statsExpressions,
-    const-ae/ggsignif,
     IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 
     knitr
@@ -75,6 +70,6 @@ Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate",
     "pkgapi::api_roclet"))
-RoxygenNote: 7.1.1.9001
+RoxygenNote: 7.1.2
 Config/testthat/edition: 3
 Config/testthat/parallel: true

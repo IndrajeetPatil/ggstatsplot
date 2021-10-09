@@ -73,7 +73,7 @@ examples of both (see examples below).
 
 To help demonstrate how `ggpiestats` can be used with categorical (also known as
 nominal) data, a modified version of the original `Titanic` dataset (from the
-`datasets` library) has been provided in the `ggstatsplot` package with the name
+`datasets` library) has been provided in the `{ggstatsplot}` package with the name
 `Titanic_full`. The Titanic Passenger Survival Dataset provides information "on
 the fate of passengers on the fatal maiden voyage of the ocean liner *Titanic*,
 including economic status (class), sex, age, and survival."
@@ -142,7 +142,7 @@ showcase the flexibility of `ggpiestats`. We will:
 3.  We'll customize the subtitle by being more precise about which chi squared
     test this is `stat.title = "chi squared test of independence: "`
 
-4.  Finally, we'll make a call to `ggplot2` to modify the size of our plot title
+4.  Finally, we'll make a call to `{ggplot2}` to modify the size of our plot title
     and to make it right justified
 
 ```{r ggpiestats1, fig.height = 5, fig.width = 8}
@@ -163,7 +163,7 @@ ggstatsplot::ggpiestats(
   package = "ggsci", # package to which color palette belongs
   k = 3, # decimal places in result
   perc.k = 1 # decimal places in percentage labels
-) + # further modification with `ggplot2` commands
+) + # further modification with `{ggplot2}` commands
   ggplot2::theme(
     plot.title = ggplot2::element_text(
       color = "black",
@@ -185,7 +185,7 @@ What if we want to do the same analysis of gender but also factor in the
 passenger's age (Age)? We have information that classifies the passengers as
 Child or Adult, perhaps that makes a difference to their survival rate? 
 
-`ggstatsplot` provides a special helper function for such instances:
+`{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggpiestats`. It is a convenient wrapper function around
 `ggstatsplot::combine_plots`. It applies `ggpiestats` across all **levels** of a
 specified **grouping variable** and then combines the list of individual plots
@@ -388,7 +388,7 @@ Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
 
 Type | Effect size | CI? | Function used
 ----------- | ------------------------- | --- | -----
-Parametric/Non-parametric | Cramer's $V$ | ✅ | `bayestestR::describe_posterior`
+Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
 # Reporting
@@ -396,7 +396,7 @@ Bayesian | ❌ | ❌ | ❌
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
 
-- the `ggstatsplot` approach, where the plot contains both the visual and
+- the `{ggstatsplot}` approach, where the plot contains both the visual and
 numerical summaries about a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context for the

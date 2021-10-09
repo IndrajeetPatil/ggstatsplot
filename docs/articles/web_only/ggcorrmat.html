@@ -46,8 +46,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -60,12 +58,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -132,7 +136,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -157,15 +161,15 @@
 
       
 
-      </header><script src="ggcorrmat_files/header-attrs-2.10.1/header-attrs.js"></script><div class="row">
+      </header><script src="ggcorrmat_files/header-attrs-2.11.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>ggcorrmat</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-08-14</h4>
+            <h4 class="date">2021-10-09</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd" class="external-link"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcorrmat.Rmd"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="hidden name"><code>ggcorrmat.Rmd</code></div>
 
     </div>
@@ -194,42 +198,42 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
-<p>The function <code>ggcorrmat</code> provides a quick way to produce <strong>publication-ready correlation matrix</strong> (aka <em>correlalogram</em>) plot. The function can also be used for quick <strong>data exploration</strong>. In addition to the plot, it can also be used to get a correlation coefficient matrix or the associated <em>p</em>-value matrix. Currently, the plot can display Pearson’s <em>r</em> (and its Bayesian version), Spearman’s <em>rho</em>, and <em>robust</em> correlation coefficient (Winsorized Pearson’s <em>r</em>). This function is a convenient wrapper around <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code> function with some additional functionality.</p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>The function <code>ggcorrmat</code> provides a quick way to produce <strong>publication-ready correlation matrix</strong> (aka <em>correlalogram</em>) plot. The function can also be used for quick <strong>data exploration</strong>. In addition to the plot, it can also be used to get a correlation coefficient matrix or the associated <em>p</em>-value matrix. Currently, the plot can display Pearson’s <em>r</em> (and its Bayesian version), Spearman’s <em>rho</em>, and <em>robust</em> correlation coefficient (Winsorized Pearson’s <em>r</em>). This function is a convenient wrapper around <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code> function with some additional functionality.</p>
 <p>We will see examples of how to use this function in this vignette with the <code>gapminder</code> and <code>diamonds</code> dataset.</p>
 <p>To begin with, here are some instances where you would want to use <code>ggcorrmat</code>-</p>
 <ul>
-<li>to easily visualize a correlation matrix using <code>ggplot2</code>
+<li>to easily visualize a correlation matrix using <a href="https://ggplot2.tidyverse.org">ggplot2</a>
 </li>
 <li>to quickly explore correlation between (all) numeric variables in the dataset</li>
 </ul>
 <div id="correlation-matrix-plot-with-ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#correlation-matrix-plot-with-ggcorrmat" class="anchor" aria-hidden="true"></a>Correlation matrix plot with <code>ggcorrmat</code>
+<a href="#correlation-matrix-plot-with-ggcorrmat" class="anchor"></a>Correlation matrix plot with <code>ggcorrmat</code>
 </h1>
-<p>For the first example, we will use the <code>gapminder</code> dataset (available in eponymous <a href="https://CRAN.R-project.org/package=gapminder" class="external-link">package</a> on CRAN) provides values for life expectancy, Gross Domestic Product (GDP) per capita, and population, every five years, from 1952 to 2007, for each of 142 countries and was collected by the Gapminder Foundation. Let’s have a look at the data-</p>
+<p>For the first example, we will use the <code>gapminder</code> dataset (available in eponymous <a href="https://CRAN.R-project.org/package=gapminder">package</a> on CRAN) provides values for life expectancy, Gross Domestic Product (GDP) per capita, and population, every five years, from 1952 to 2007, for each of 142 countries and was collected by the Gapminder Foundation. Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">gapminder</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
-<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
-<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span>
-<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span>
-<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
-<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
-<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span></code></pre></div>
+<span class="co">#&gt; $ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", ~</span>
+<span class="co">#&gt; $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, ~</span>
+<span class="co">#&gt; $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, ~</span>
+<span class="co">#&gt; $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8~</span>
+<span class="co">#&gt; $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12~</span>
+<span class="co">#&gt; $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, ~</span></code></pre></div>
 <p>Let’s say we are interested in studying correlation between population of a country, average life expectancy, and GDP per capita across countries only for the year 2007.</p>
 <p>The simplest way to get a correlation matrix is to stick to the defaults-</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co"># select data only from the year 2007</span>
-<span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
+<span class="va">gapminder_2007</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span><span class="op">)</span>
 
 <span class="co"># producing the correlation matrix</span>
 <span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
@@ -242,14 +246,14 @@ A BibTeX entry for LaTeX users is
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co"># data from which variable is to be taken</span>
   cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span>, <span class="co"># specifying correlation matrix variables</span>
-  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"Life Expectancy"</span>,
     <span class="st">"population"</span>,
     <span class="st">"GDP (per capita)"</span>
   <span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"spearman"</span>, <span class="co"># which correlation coefficient is to be computed</span>
   lab.col <span class="op">=</span> <span class="st">"red"</span>, <span class="co"># label color</span>
-  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_light</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># selected ggplot2 theme</span>
+  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span>, <span class="co"># selected ggplot2 theme</span>
   <span class="co"># turn off default ggestatsplot theme overlay</span>
   matrix.type <span class="op">=</span> <span class="st">"lower"</span>, <span class="co"># correlation matrix structure</span>
   colors <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># turning off manual specification of colors</span>
@@ -260,34 +264,34 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="100%"></p>
 <p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
-<p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <code>ggplot2</code> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
+<p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <a href="https://ggplot2.tidyverse.org">ggplot2</a> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
 <p>Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 53,940</span>
 <span class="co">#&gt; Columns: 10</span>
-<span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23, 0.…</span>
-<span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, Ver…</span>
-<span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J, I,…</span>
-<span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS1, …</span>
-<span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4, 64…</span>
-<span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62, 58…</span>
-<span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340, 34…</span>
-<span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, 4.…</span>
-<span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, 4.…</span>
-<span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2.…</span></code></pre></div>
+<span class="co">#&gt; $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23, 0.~</span>
+<span class="co">#&gt; $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, Ver~</span>
+<span class="co">#&gt; $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J, I,~</span>
+<span class="co">#&gt; $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS1, ~</span>
+<span class="co">#&gt; $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4, 64~</span>
+<span class="co">#&gt; $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62, 58~</span>
+<span class="co">#&gt; $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340, 34~</span>
+<span class="co">#&gt; $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, 4.~</span>
+<span class="co">#&gt; $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, 4.~</span>
+<span class="co">#&gt; $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2.~</span></code></pre></div>
 <p>Let’s see the correlation matrix between different attributes of the diamond and the price.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
 <span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
-  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>, <span class="co"># note how the variables are getting selected</span>
-  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
+  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>, <span class="co"># note how the variables are getting selected</span>
+  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"carat"</span>,
     <span class="st">"total depth"</span>,
     <span class="st">"table"</span>,
@@ -296,19 +300,19 @@ A BibTeX entry for LaTeX users is
     <span class="st">"width (in mm)"</span>,
     <span class="st">"depth (in mm)"</span>
   <span class="op">)</span>,
-  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outline.color <span class="op">=</span> <span class="st">"black"</span>, hc.order <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>outline.color <span class="op">=</span> <span class="st">"black"</span>, hc.order <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="100%"></p>
 <p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's use just 5% of the data to speed it up</span>
 <span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
-  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">table</span>, <span class="va">x</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>, <span class="co"># note how the variables are getting selected</span>
-  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>,
+  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">price</span>, <span class="va">carat</span>, <span class="va">depth</span><span class="op">:</span><span class="va">table</span>, <span class="va">x</span><span class="op">:</span><span class="va">z</span><span class="op">)</span>, <span class="co"># note how the variables are getting selected</span>
+  cor.vars.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
     <span class="st">"price"</span>,
     <span class="st">"carat"</span>,
     <span class="st">"total depth"</span>,
@@ -320,20 +324,20 @@ A BibTeX entry for LaTeX users is
   type <span class="op">=</span> <span class="st">"spearman"</span>,
   title <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price"</span>,
   subtitle <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,
-  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span><span class="op">)</span>,
+  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span><span class="op">)</span>,
   pch <span class="op">=</span> <span class="st">"square cross"</span>,
   <span class="co"># additional aesthetic arguments passed to `ggcorrmat`</span>
-  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     lab_col <span class="op">=</span> <span class="st">"yellow"</span>,
     lab_size <span class="op">=</span> <span class="fl">6</span>,
     tl.srt <span class="op">=</span> <span class="fl">90</span>,
     pch.col <span class="op">=</span> <span class="st">"white"</span>,
     pch.cex <span class="op">=</span> <span class="fl">14</span>
   <span class="op">)</span>
-<span class="op">)</span> <span class="op">+</span> <span class="co"># modification outside `ggstatsplot` using `ggplot2` functions</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
-    axis.text.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>
-      margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.15</span>, r <span class="op">=</span> <span class="fl">0.15</span>, b <span class="op">=</span> <span class="fl">0.15</span>, l <span class="op">=</span> <span class="fl">0.15</span>, unit <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">+</span> <span class="co"># modification outside `{ggstatsplot}` using `{ggplot2}` functions</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+    axis.text.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>
+      margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.15</span>, r <span class="op">=</span> <span class="fl">0.15</span>, b <span class="op">=</span> <span class="fl">0.15</span>, l <span class="op">=</span> <span class="fl">0.15</span>, unit <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="100%"></p>
@@ -341,22 +345,22 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="dataframe-containing-statistics-with-ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#dataframe-containing-statistics-with-ggcorrmat" class="anchor" aria-hidden="true"></a>Dataframe containing statistics with <code>ggcorrmat</code>
+<a href="#dataframe-containing-statistics-with-ggcorrmat" class="anchor"></a>Dataframe containing statistics with <code>ggcorrmat</code>
 </h1>
 <p>Another utility of <code>ggcorrmat</code> is in obtaining a dataframe containing all details from statistical analyses. Such dataframes can be easily embedded in manuscripts as tables.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># to get correlations</span>
 <span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/txhousing.html" class="external-link">txhousing</a></span>, size <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html">sample_frac</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/txhousing.html">txhousing</a></span>, size <span class="op">=</span> <span class="fl">0.15</span><span class="op">)</span>,
   cor.vars <span class="op">=</span> <span class="va">sales</span><span class="op">:</span><span class="va">inventory</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>,
   type <span class="op">=</span> <span class="st">"robust"</span>,
   digits <span class="op">=</span> <span class="fl">3</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 × 11</span>
+<span class="co">#&gt; # A tibble: 10 x 11</span>
 <span class="co">#&gt;    parameter1 parameter2 estimate conf.level conf.low conf.high statistic</span>
 <span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 sales      volume        0.983       0.95    0.981     0.985    185.  </span>
@@ -384,8 +388,8 @@ A BibTeX entry for LaTeX users is
 <p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return. Additionally, one can also carry out <strong>partial</strong> correlation analysis:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>pillar.sigfig <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>pillar.sigfig <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 
 <span class="co"># getting the correlation coefficient matrix</span>
 <span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span>
@@ -394,7 +398,7 @@ A BibTeX entry for LaTeX users is
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 10</span>
+<span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   parameter1   parameter2   estimate conf.level conf.low conf.high statistic</span>
 <span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 Sepal.Length Sepal.Width    0.6157       0.95   0.5017    0.7087   216164.</span>
@@ -414,23 +418,23 @@ A BibTeX entry for LaTeX users is
 </div>
 <div id="grouped-analysis-with-grouped_ggcorrmat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-grouped_ggcorrmat" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>grouped_ggcorrmat</code>
+<a href="#grouped-analysis-with-grouped_ggcorrmat" class="anchor"></a>Grouped analysis with <code>grouped_ggcorrmat</code>
 </h1>
 <p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)?</p>
-<p><code>ggstatsplot</code> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code>combine_plots</code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code>combine_plots</code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
   <span class="co"># arguments relevant for `ggcorrmat`</span>
-  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>,
+  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html">diamonds</a></span>,
   type <span class="op">=</span> <span class="st">"bayes"</span>, <span class="co"># Bayesian test</span>
   grouping.var <span class="op">=</span> <span class="va">cut</span>,
   <span class="co"># arguments relevant for `combine_plots`</span>
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     tag_levels <span class="op">=</span> <span class="st">"a"</span>,
     title <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price across cut"</span>,
     caption <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>
@@ -440,16 +444,16 @@ A BibTeX entry for LaTeX users is
 <p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># let's obtain correlation coefficients with their CIs</span>
 <span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
+  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
   cor.vars <span class="op">=</span> <span class="va">sleep_total</span><span class="op">:</span><span class="va">awake</span>,
   grouping.var <span class="op">=</span> <span class="va">vore</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 24 × 12</span>
+<span class="co">#&gt; # A tibble: 24 x 12</span>
 <span class="co">#&gt;    vore  parameter1  parameter2  estimate conf.level conf.low conf.high</span>
 <span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span>
 <span class="co">#&gt;  1 carni sleep_total sleep_rem     0.9189       0.95   0.6864    0.9810</span>
@@ -474,18 +478,18 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt;  8 -3.232e+0       10 2.697e-  2 Pearson correlation    12</span>
 <span class="co">#&gt;  9 -3.676e+8       30 1.363e-235 Pearson correlation    32</span>
 <span class="co">#&gt; 10 -1.409e+0       10 1.891e-  1 Pearson correlation    12</span>
-<span class="co">#&gt; # … with 14 more rows</span></code></pre></div>
+<span class="co">#&gt; # ... with 14 more rows</span></code></pre></div>
 </div>
 <div id="grouped-analysis-with-ggcorrmat-purrr" class="section level1">
 <h1 class="hasAnchor">
-<a href="#grouped-analysis-with-ggcorrmat-purrr" class="anchor" aria-hidden="true"></a>Grouped analysis with <code>ggcorrmat</code> + <code>purrr</code>
+<a href="#grouped-analysis-with-ggcorrmat-purrr" class="anchor"></a>Grouped analysis with <code>ggcorrmat</code> + <code>purrr</code>
 </h1>
 <p>Although <code>grouped_</code> function is good for quickly exploring the data, it reduces the flexibility with which this function can be used. This is the because the common parameters used are applied to plots corresponding to all levels of the grouping variable and there is no way to customize the arguments for different levels of the grouping variable. We will see how this can be done using the <code>purrr</code> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div id="summary-of-graphics" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-graphics" class="anchor" aria-hidden="true"></a>Summary of graphics</h1>
+<a href="#summary-of-graphics" class="anchor"></a>Summary of graphics</h1>
 <table class="table">
 <thead><tr class="header">
 <th>graphical element</th>
@@ -495,14 +499,14 @@ A BibTeX entry for LaTeX users is
 </tr></thead>
 <tbody><tr class="odd">
 <td>correlation matrix</td>
-<td><code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code></td>
+<td><code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html">ggcorrplot::ggcorrplot</a></code></td>
 <td><code>ggcorrplot.args</code></td>
 </tr></tbody>
 </table>
 </div>
 <div id="summary-of-tests" class="section level1">
 <h1 class="hasAnchor">
-<a href="#summary-of-tests" class="anchor" aria-hidden="true"></a>Summary of tests</h1>
+<a href="#summary-of-tests" class="anchor"></a>Summary of tests</h1>
 <p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
@@ -522,33 +526,33 @@ A BibTeX entry for LaTeX users is
 <td>Parametric</td>
 <td>Pearson’s correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Non-parametric</td>
 <td>Spearman’s rank correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
 <td>Winsorized Pearson correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Pearson’s correlation coefficient</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation</a></code></td>
+<td><code><a href="https://easystats.github.io/correlation/reference/correlation.html">correlation::correlation</a></code></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="suggestions" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions" class="anchor" aria-hidden="true"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<a href="#suggestions" class="anchor"></a>Suggestions</h1>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </div>
 
@@ -563,11 +567,11 @@ A BibTeX entry for LaTeX users is
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001, using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
+  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
 </div>
 
       </footer>

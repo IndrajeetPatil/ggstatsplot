@@ -154,14 +154,14 @@
       # A tibble: 3 x 14
         term   statistic    df df.error  p.value  sumsq meansq estimate conf.low
         <fct>      <dbl> <dbl>    <dbl>    <dbl>  <dbl>  <dbl>    <dbl>    <dbl>
-      1 mpg       119.       1       28 1.38e-11 22.3   22.3      0.809   0.663 
-      2 am          7.30     1       28 1.16e- 2  1.37   1.37     0.207   0.0118
+      1 mpg       119.       1       28 1.38e-11 22.3   22.3      0.809   0.693 
+      2 am          7.30     1       28 1.16e- 2  1.37   1.37     0.207   0.0299
       3 mpg:am      3.73     1       28 6.36e- 2  0.701  0.701    0.118   0     
         conf.high sum.squares.error mean.square.error effectsize         
             <dbl>             <dbl>             <dbl> <chr>              
-      1     0.880              5.26              5.26 partial eta-squared
-      2     0.448              5.26              5.26 partial eta-squared
-      3     0.357              5.26              5.26 partial eta-squared
+      1         1              5.26              5.26 partial eta-squared
+      2         1              5.26              5.26 partial eta-squared
+      3         1              5.26              5.26 partial eta-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('1'*\",\"*'28')=='118.89', ~italic(p)=='1.38e-11', ~widehat(~
@@ -208,14 +208,14 @@
       # A tibble: 3 x 14
         term         statistic    df df.error  p.value sumsq meansq estimate conf.low
         <fct>            <dbl> <dbl>    <dbl>    <dbl> <dbl>  <dbl>    <dbl>    <dbl>
-      1 vore              7.39     3       35 0.000584 19.6    6.54   0.308    0.0458
+      1 vore              7.39     3       35 0.000584 19.6    6.54   0.308    0.0763
       2 brainwt           2.03     1       35 0.163     1.80   1.80   0.0235   0     
       3 vore:brainwt      4.01     3       35 0.0148   10.7    3.55   0.174    0     
         conf.high sum.squares.error mean.square.error effectsize           
             <dbl>             <dbl>             <dbl> <chr>                
-      1     0.498              31.0              31.0 partial omega-squared
-      2     0.192              31.0              31.0 partial omega-squared
-      3     0.364              31.0              31.0 partial omega-squared
+      1         1              31.0              31.0 partial omega-squared
+      2         1              31.0              31.0 partial omega-squared
+      3         1              31.0              31.0 partial omega-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('3'*\",\"*'35')=='7.388', ~italic(p)=='5.84e-04', ~widehat(i~
@@ -233,7 +233,7 @@
       [1] "mammalian sleep"
       
       [[2]]$subtitle
-      [1] "Source: `ggplot2` package"
+      [1] "Source: `{ggplot2}` package"
       
       [[2]]$caption
       atop(displaystyle(paste(italic("Note"), ": From `tidyverse`")), 
@@ -271,13 +271,13 @@
       7 N:P:K    0.483      1        4 0.525   block   37.0    37.0    0.108  
         conf.low conf.high sum.squares.error mean.square.error effectsize         
            <dbl>     <dbl>             <dbl>             <dbl> <chr>              
-      1   0.0844     0.741              185.              185. partial eta-squared
-      2   0          0.378              185.              185. partial eta-squared
-      3   0          0.642              185.              185. partial eta-squared
-      4   0          0.455              185.              185. partial eta-squared
-      5   0          0.502              185.              185. partial eta-squared
-      6   0          0.223              185.              185. partial eta-squared
-      7   0          0.639              306.              306. partial eta-squared
+      1   0.145          1              185.              185. partial eta-squared
+      2   0              1              185.              185. partial eta-squared
+      3   0.0254         1              185.              185. partial eta-squared
+      4   0              1              185.              185. partial eta-squared
+      5   0              1              185.              185. partial eta-squared
+      6   0              1              185.              185. partial eta-squared
+      7   0              1              306.              306. partial eta-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('1'*\",\"*'12')=='12.26', ~italic(p)=='0.004', ~widehat(ital~
@@ -292,22 +292,22 @@
       # A tibble: 7 x 14
         term  statistic    df df.error p.value   sumsq  meansq estimate conf.low
         <fct>     <dbl> <dbl>    <dbl>   <dbl>   <dbl>   <dbl>    <dbl>    <dbl>
-      1 N        6.16       1       16  0.0245 189.    189.    0.278    0.000467
-      2 P        0.273      1       16  0.608    8.40    8.40  0.0168   0       
-      3 K        3.10       1       16  0.0975  95.2    95.2   0.162    0       
-      4 N:P      0.693      1       16  0.418   21.3    21.3   0.0415   0       
-      5 N:K      1.08       1       16  0.314   33.1    33.1   0.0631   0       
-      6 P:K      0.0157     1       16  0.902    0.482   0.482 0.000979 0       
-      7 N:P:K    1.20       1       16  0.289   37.0    37.0   0.0700   0       
+      1 N        6.16       1       16  0.0245 189.    189.    0.278      0.0241
+      2 P        0.273      1       16  0.608    8.40    8.40  0.0168     0     
+      3 K        3.10       1       16  0.0975  95.2    95.2   0.162      0     
+      4 N:P      0.693      1       16  0.418   21.3    21.3   0.0415     0     
+      5 N:K      1.08       1       16  0.314   33.1    33.1   0.0631     0     
+      6 P:K      0.0157     1       16  0.902    0.482   0.482 0.000979   0     
+      7 N:P:K    1.20       1       16  0.289   37.0    37.0   0.0700     0     
         conf.high sum.squares.error mean.square.error effectsize         
             <dbl>             <dbl>             <dbl> <chr>              
-      1     0.568              492.              492. partial eta-squared
-      2     0.274              492.              492. partial eta-squared
-      3     0.473              492.              492. partial eta-squared
-      4     0.328              492.              492. partial eta-squared
-      5     0.362              492.              492. partial eta-squared
-      6     0.147              492.              492. partial eta-squared
-      7     0.372              492.              492. partial eta-squared
+      1         1              492.              492. partial eta-squared
+      2         1              492.              492. partial eta-squared
+      3         1              492.              492. partial eta-squared
+      4         1              492.              492. partial eta-squared
+      5         1              492.              492. partial eta-squared
+      6         1              492.              492. partial eta-squared
+      7         1              492.              492. partial eta-squared
         label                                                                         
         <chr>                                                                         
       1 "list(~italic(F)('1'*\",\"*'16')=='6.16', ~italic(p)=='0.025', ~widehat(itali~

@@ -1,9 +1,9 @@
-#' @title Extracting dataframes with statistical details from `ggstatsplot`
+#' @title Extracting dataframes with statistical details from `{ggstatsplot}`
 #'
 #' @details
 #'
 #' This is a convenience function to extract dataframes with statistical details
-#' that are used to create expressions displayed in `ggstatsplot` plots as
+#' that are used to create expressions displayed in `{ggstatsplot}` plots as
 #' subtitle and/or as caption. Note that all of this analysis is carried out by
 #' the `statsExpressions` package.
 #'
@@ -19,7 +19,7 @@
 #' Note that if you want to use this function with `ggscatterstats`, you will
 #' have to set `marginal = FALSE` to return an object of `ggplot` type.
 #'
-#' @param p A plot from `ggstatsplot` package
+#' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
 #'
 #' @examples

@@ -159,7 +159,7 @@ test_that(
         sort = "ascending",
         effsize = "omega",
         title = "mammalian sleep",
-        subtitle = "Source: `ggplot2` package",
+        subtitle = "Source: `{ggplot2}` package",
         caption = substitute(paste(italic("Note"), ": From `tidyverse`")),
         package = "wesanderson",
         palette = "BottleRocket2",

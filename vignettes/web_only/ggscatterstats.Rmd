@@ -59,7 +59,7 @@ you are not familiar with this operator, here is a good explanation:
 To illustrate how this function can be used, we will rely on the `ggplot2movies`
 dataset. This dataset provides information about movies scraped from
 [IMDB](https://www.imdb.com/). Specifically, we will be using cleaned version of
-this dataset included in the `ggstatsplot` package itself.
+this dataset included in the `{ggstatsplot}` package itself.
 
 ```{r ggplot2movies1}
 library(ggstatsplot)
@@ -106,9 +106,9 @@ What if we want to do the same analysis do the same analysis for movies with
 different MPAA (Motion Picture Association of America) film ratings (NC-17, PG,
 PG-13, R)? 
 
-`ggstatsplot` provides a special helper function for such instances:
+`{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggstatsplot`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `ggstatsplot` across all **levels** of
+`ggstatsplot::combine_plots`. It applies `{ggstatsplot}` across all **levels** of
 a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
@@ -183,7 +183,7 @@ Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
 
-- the `ggstatsplot` approach, where the plot contains both the visual and
+- the `{ggstatsplot}` approach, where the plot contains both the visual and
 numerical summaries about a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context for the

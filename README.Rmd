@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# `ggstatsplot`: `ggplot2` Based Plots with Statistical Details 
+# `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details 
 
 Package | Status | Usage | GitHub | Miscellaneous
 ----------------- | ----------------- | ----------------- | ----------------- | -----------------
@@ -43,13 +43,13 @@ portrayal of complexity. Not the complication of the simple; rather ... the
 revelation of the complex."   
 - Edward R. Tufte
 
-[`ggstatsplot`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
-of [`ggplot2`](https://github.com/tidyverse/ggplot2) package for creating
+[`{ggstatsplot}`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
+of [`{ggplot2}`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the information-rich
 plots themselves. In a typical exploratory data analysis workflow, data
 visualization and statistical modeling are two different phases: visualization
 informs modeling, and modeling in its turn can suggest a different visualization
-method, and so on and so forth. The central idea of `ggstatsplot` is simple:
+method, and so on and so forth. The central idea of `{ggstatsplot}` is simple:
 combine these two phases into one in the form of graphics with statistical
 details, which makes data exploration simpler and faster.
 
@@ -61,7 +61,7 @@ Release | CRAN | `install.packages("ggstatsplot")`
 Development | GitHub | `remotes::install_github("IndrajeetPatil/ggstatsplot")`
 
 Linux users may encounter some installation problems. In particular, the
-`ggstatsplot` package depends on the `PMCMRplus` package.
+`{ggstatsplot}` package depends on the `PMCMRplus` package.
 
 ```
 ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
@@ -120,7 +120,7 @@ Function | Plot | Description | Lifecycle
 `ggbarstats` | **bar charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 `ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-In addition to these basic plots, `ggstatsplot` also provides **`grouped_`**
+In addition to these basic plots, `{ggstatsplot}` also provides **`grouped_`**
 versions (see below) that makes it easy to repeat the same analysis for
 any grouping variable.
 
@@ -168,7 +168,7 @@ various functions:
 
 # Primary functions
 
-Here are examples of the main functions currently supported in `ggstatsplot`.
+Here are examples of the main functions currently supported in `{ggstatsplot}`.
 
 **Note**: If you are reading this on `GitHub` repository, the documentation below
 is for the **development** version of the package. So you may see some features
@@ -226,7 +226,7 @@ grouped_ggbetweenstats(
   outlier.coef = 2,
   ggsignif.args = list(textsize = 4, tip_length = 0.01),
   p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
-  # adding new components to `ggstatsplot` default
+  # adding new components to `{ggstatsplot}` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
   palette = "default_jama",
@@ -485,7 +485,7 @@ grouped_gghistostats(
   normal.curve = TRUE, # superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
   ggtheme = ggthemes::theme_tufte(),
-  # modify the defaults from `ggstatsplot` for each plot
+  # modify the defaults from `{ggstatsplot}` for each plot
   ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
   plotgrid.args = list(nrow = 1),
   annotation.args = list(title = "Movies budgets for different genres")
@@ -897,7 +897,7 @@ Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
 
 Type | Effect size | CI? | Function used
 ----------- | ------------------------- | --- | -----
-Parametric/Non-parametric | Cramer's $V$ | ✅ | `bayestestR::describe_posterior`
+Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
 For more, see the `ggpiestats` vignette:
@@ -1000,7 +1000,7 @@ Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
 
 Type | Effect size | CI? | Function used
 ----------- | ------------------------- | --- | -----
-Parametric/Non-parametric | Cramer's $V$ | ✅ | `bayestestR::describe_posterior`
+Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
 ## `ggcoefstats`
@@ -1031,8 +1031,8 @@ be invariant across models:
     Information Criterion (**AIC**) and the Bayesian Information Criterion
     (**BIC**) values, the "better" the model is.
 
-  - The output of this function will be a `ggplot2` object and, thus, it can be
-    further modified (e.g., change themes, etc.) with `ggplot2` functions.
+  - The output of this function will be a `{ggplot2}` object and, thus, it can be
+    further modified (e.g., change themes, etc.) with `{ggplot2}` functions.
 
 ```{r ggcoefstats1, fig.height=5, fig.width=6}
 # for reproducibility
@@ -1130,9 +1130,9 @@ For a more exhaustive account of this function, see the associated vignette-
 
 ## Extracting dataframes with statistical details
 
-`ggstatsplot` also offers a convenience function to extract dataframes with
+`{ggstatsplot}` also offers a convenience function to extract dataframes with
 statistical details that are used to create expressions displayed in
-`ggstatsplot` plots.
+`{ggstatsplot}` plots.
 
 ```{r extract_stats}
 set.seed(123)
@@ -1145,15 +1145,15 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 Note that all of this analysis is carried out by `statsExpressions`
 package: <https://indrajeetpatil.github.io/statsExpressions/>
 
-## Using `ggstatsplot` statistical details with custom plots
+## Using `{ggstatsplot}` statistical details with custom plots
 
-Sometimes you may not like the default plots produced by `ggstatsplot`. In such
-cases, you can use other **custom** plots (from `ggplot2` or other plotting
-packages) and still use `ggstatsplot` functions to display results from relevant
+Sometimes you may not like the default plots produced by `{ggstatsplot}`. In such
+cases, you can use other **custom** plots (from `{ggplot2}` or other plotting
+packages) and still use `{ggstatsplot}` functions to display results from relevant
 statistical test.
 
 For example, in the following chunk, we will create plot (*ridgeplot*) using
-`ggridges` package and use `ggstatsplot` function for extracting results.
+`ggridges` package and use `{ggstatsplot}` function for extracting results.
 
 ```{r ridgeplot, fig.height=10, fig.width=7}
 # loading the needed libraries
@@ -1162,7 +1162,7 @@ library(ggridges)
 library(ggplot2)
 library(ggstatsplot)
 
-# using `ggstatsplot` to get call with statistical results
+# using `{ggstatsplot}` to get call with statistical results
 stats_results <-
   ggbetweenstats(
     data = morley,
@@ -1226,8 +1226,8 @@ less cognitively demanding and easy to remember.
 
 This package is... 
 
-❌ an alternative to learning `ggplot2`<br>
-✅ (The better you know `ggplot2`, the more you can modify the defaults to your
+❌ an alternative to learning `{ggplot2}`<br>
+✅ (The better you know `{ggplot2}`, the more you can modify the defaults to your
 liking.)
 
 ❌ meant to be used in talks/presentations<br>
@@ -1237,9 +1237,9 @@ time-constrained presentation settings, e.g. conference talks.)
 ❌ the only game in town<br>
 ✅ (GUI software alternatives: [JASP](https://jasp-stats.org/) and [jamovi](https://www.jamovi.org/)).
 
-# `ggstatsverse`: Components of `ggstatsplot`
+# `ggstatsverse`: Components of `{ggstatsplot}`
 
-To make the maintenance and development of `ggstatsplot`, the package internally
+To make the maintenance and development of `{ggstatsplot}`, the package internally
 relies on the following packages that manage different aspects of statistical
 analyses:
 
@@ -1264,11 +1264,11 @@ For more exhaustive documentation for this package, see:
 
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/), you can
 install a module called [`jjstatsplot`](https://github.com/sbalci/jjstatsplot),
-which is a wrapper around `ggstatsplot`.
+which is a wrapper around `{ggstatsplot}`.
 
 # Acknowledgments
 
-I would like to thank all the contributors to `ggstatsplot` who pointed out bugs
+I would like to thank all the contributors to `{ggstatsplot}` who pointed out bugs
 or requested features I hadn't considered. I would especially like to thank
 other package developers (especially Daniel Lüdecke, Dominique Makowski, Mattan
 S. Ben-Shachar, Patrick Mair, Salvatore Mangiafico, etc.) who have patiently and

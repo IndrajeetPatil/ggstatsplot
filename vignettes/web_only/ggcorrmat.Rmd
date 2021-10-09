@@ -63,7 +63,7 @@ We will see examples of how to use this function in this vignette with the
 To begin with, here are some instances where you would want to use
 `ggcorrmat`-
 
-  - to easily visualize a correlation matrix using `ggplot2`
+  - to easily visualize a correlation matrix using `{ggplot2}`
   - to quickly explore correlation between (all) numeric variables in the
   dataset
 
@@ -133,7 +133,7 @@ positive relationship between GDP, a well-established indicator of a country's
 economic performance.
 
 Given that there were only three variables, this doesn't look that impressive.
-So let's work with another example from `ggplot2` package: the `diamonds`
+So let's work with another example from `{ggplot2}` package: the `diamonds`
 [dataset](http://ggplot2.tidyverse.org/reference/diamonds.html). This dataset
 contains the prices and other attributes of almost 54,000 diamonds.
 
@@ -203,7 +203,7 @@ ggcorrmat(
     pch.col = "white",
     pch.cex = 14
   )
-) + # modification outside `ggstatsplot` using `ggplot2` functions
+) + # modification outside `{ggstatsplot}` using `{ggplot2}` functions
   ggplot2::theme(
     axis.text.x = ggplot2::element_text(
       margin = ggplot2::margin(t = 0.15, r = 0.15, b = 0.15, l = 0.15, unit = "cm")
@@ -258,7 +258,7 @@ ggcorrmat(
 What if we want to do the same analysis separately for each quality of the
 diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? 
 
-`ggstatsplot` provides a special helper function for such instances:
+`{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggcorrmat`. This is merely a wrapper function around
 `combine_plots`. It applies `ggcorrmat` across all **levels** of
 a specified **grouping variable** and then combines list of individual plots
