@@ -174,7 +174,7 @@
 
 <div id="ggstatsplot-ggplot2-based-plots-with-statistical-details" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#ggstatsplot-ggplot2-based-plots-with-statistical-details" class="anchor"></a><code>{ggstatsplot}</code>: <code>ggplot2</code> Based Plots with Statistical Details</h1></div>
+<a href="#ggstatsplot-ggplot2-based-plots-with-statistical-details" class="anchor"></a><code>{ggstatsplot}</code>: <code>{ggplot2}</code> Based Plots with Statistical Details</h1></div>
 <table class="table">
 <colgroup>
 <col width="18%">
@@ -232,7 +232,7 @@
 <li>Edward R. Tufte</li>
 </ul>
 </blockquote>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>{ggstatsplot}</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> package for creating graphics with details from statistical tests included in the information-rich plots themselves. In a typical exploratory data analysis workflow, data visualization and statistical modeling are two different phases: visualization informs modeling, and modeling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/"><code>{ggstatsplot}</code></a> is an extension of <a href="https://github.com/tidyverse/ggplot2"><code>{ggplot2}</code></a> package for creating graphics with details from statistical tests included in the information-rich plots themselves. In a typical exploratory data analysis workflow, data visualization and statistical modeling are two different phases: visualization informs modeling, and modeling in its turn can suggest a different visualization method, and so on and so forth. The central idea of <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is simple: combine these two phases into one in the form of graphics with statistical details, which makes data exploration simpler and faster.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -625,7 +625,7 @@
 </tr>
 <tr class="even">
 <td>pairwise comparisons</td>
-<td><code>ggsignif::geom_ggsignif</code></td>
+<td><code><a href="https://const-ae.github.io/ggsignif//reference/stat_signif.html">ggsignif::geom_signif</a></code></td>
 <td><code>ggsignif.args</code></td>
 </tr>
 </tbody>
@@ -997,7 +997,7 @@
 </tr>
 <tr class="even">
 <td>pairwise comparisons</td>
-<td><code>ggsignif::geom_ggsignif</code></td>
+<td><code><a href="https://const-ae.github.io/ggsignif//reference/stat_signif.html">ggsignif::geom_signif</a></code></td>
 <td><code>ggsignif.args</code></td>
 </tr>
 </tbody>
@@ -1789,31 +1789,31 @@
   type <span class="op">=</span> <span class="st">"bayes"</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; [38;5;246m# A tibble: 6 x 14[39m</span>
-<span class="co">#&gt;   [1mparameter1[22m  [1mparameter2[22m  [1mestimate[22m [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m    [1mpd[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m       [3m[38;5;246m&lt;chr&gt;[39m[23m          [3m[38;5;246m&lt;dbl&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m sleep_total sleep_rem      [38;5;246m0[39m[38;5;246m.[39m731       [38;5;246m0[39m[38;5;246m.[39m95    [38;5;246m0[39m[38;5;246m.[39m606    [38;5;246m0[39m[38;5;246m.[39m838  1    </span>
-<span class="co">#&gt; [38;5;250m2[39m sleep_total sleep_cycle   -[38;5;246m0[39m[38;5;246m.[39m[31m432[39m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m681[39m   -[38;5;246m0[39m[38;5;246m.[39m[31m131[39m  [38;5;246m0[39m[38;5;246m.[39m995</span>
-<span class="co">#&gt; [38;5;250m3[39m sleep_total awake         -[31m1[39m[31m.[39m[31m00[39m        [38;5;246m0[39m[38;5;246m.[39m95   -[31m1[39m[31m.[39m[31m00[39m    -[31m1[39m[31m.[39m[31m00[39m   1    </span>
-<span class="co">#&gt; [38;5;250m4[39m sleep_rem   sleep_cycle   -[38;5;246m0[39m[38;5;246m.[39m[31m304[39m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m576[39m    [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m24[4m1[24m [38;5;246m0[39m[38;5;246m.[39m963</span>
-<span class="co">#&gt; [38;5;250m5[39m sleep_rem   awake         -[38;5;246m0[39m[38;5;246m.[39m[31m733[39m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m832[39m   -[38;5;246m0[39m[38;5;246m.[39m[31m599[39m  1    </span>
-<span class="co">#&gt; [38;5;250m6[39m sleep_cycle awake          [38;5;246m0[39m[38;5;246m.[39m439       [38;5;246m0[39m[38;5;246m.[39m95    [38;5;246m0[39m[38;5;246m.[39m151    [38;5;246m0[39m[38;5;246m.[39m672  [38;5;246m0[39m[38;5;246m.[39m998</span>
-<span class="co">#&gt;   [1mrope.percentage[22m [1mprior.distribution[22m [1mprior.location[22m [1mprior.scale[22m  [1mbayes.factor[22m</span>
-<span class="co">#&gt;             [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m                       [3m[38;5;246m&lt;dbl&gt;[39m[23m       [3m[38;5;246m&lt;dbl&gt;[39m[23m         [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m          [38;5;246m0[39m      beta                         1.41        1.41 [4m3[24m00[38;5;246m0[4m7[24m[4m9[24m[4m0[24m806[39m.  </span>
-<span class="co">#&gt; [38;5;250m2[39m          [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m17[4m3[24m beta                         1.41        1.41          8.85</span>
-<span class="co">#&gt; [38;5;250m3[39m          [38;5;246m0[39m      beta                         1.41        1.41         [31mNA[39m   </span>
-<span class="co">#&gt; [38;5;250m4[39m          [38;5;246m0[39m[38;5;246m.[39m100  beta                         1.41        1.41          1.42</span>
-<span class="co">#&gt; [38;5;250m5[39m          [38;5;246m0[39m      beta                         1.41        1.41 [4m3[24m00[38;5;246m5[4m5[24m[4m4[24m[4m6[24m544[39m.  </span>
-<span class="co">#&gt; [38;5;250m6[39m          [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m15  beta                         1.41        1.41          8.85</span>
-<span class="co">#&gt;   [1mmethod[22m                       [1mn.obs[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m                        [3m[38;5;246m&lt;int&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m Bayesian Pearson correlation    61</span>
-<span class="co">#&gt; [38;5;250m2[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m3[39m Bayesian Pearson correlation    83</span>
-<span class="co">#&gt; [38;5;250m4[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m5[39m Bayesian Pearson correlation    61</span>
-<span class="co">#&gt; [38;5;250m6[39m Bayesian Pearson correlation    32</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    </span>
+<span class="co">#&gt; 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995</span>
+<span class="co">#&gt; 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
+<span class="co">#&gt; 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963</span>
+<span class="co">#&gt; 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    </span>
+<span class="co">#&gt; 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998</span>
+<span class="co">#&gt;   rope.percentage prior.distribution prior.location prior.scale  bayes.factor</span>
+<span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1          0      beta                         1.41        1.41 3000790806.  </span>
+<span class="co">#&gt; 2          0.0173 beta                         1.41        1.41          8.85</span>
+<span class="co">#&gt; 3          0      beta                         1.41        1.41         NA   </span>
+<span class="co">#&gt; 4          0.100  beta                         1.41        1.41          1.42</span>
+<span class="co">#&gt; 5          0      beta                         1.41        1.41 3005546544.  </span>
+<span class="co">#&gt; 6          0.015  beta                         1.41        1.41          8.85</span>
+<span class="co">#&gt;   method                       n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt; 1 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 3 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt; 4 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 5 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
 <p>Additionally, <strong>partial</strong> correlation are also supported:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
@@ -1826,31 +1826,31 @@
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">#&gt; [38;5;246m# A tibble: 6 x 14[39m</span>
-<span class="co">#&gt;   [1mparameter1[22m  [1mparameter2[22m  [1mestimate[22m [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m    [1mpd[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m       [3m[38;5;246m&lt;chr&gt;[39m[23m          [3m[38;5;246m&lt;dbl&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m sleep_total sleep_rem    [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m93[4m8[24m        [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m249[39m     [38;5;246m0[39m[38;5;246m.[39m411 [38;5;246m0[39m[38;5;246m.[39m704</span>
-<span class="co">#&gt; [38;5;250m2[39m sleep_total sleep_cycle  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m00[39m1[4m9[24m[4m4[24m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m333[39m     [38;5;246m0[39m[38;5;246m.[39m328 [38;5;246m0[39m[38;5;246m.[39m505</span>
-<span class="co">#&gt; [38;5;250m3[39m sleep_total awake       -[31m1[39m             [38;5;246m0[39m[38;5;246m.[39m95   -[31m1[39m        -[31m1[39m     1    </span>
-<span class="co">#&gt; [38;5;250m4[39m sleep_rem   sleep_cycle -[38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m[31m27[4m4[24m[39m        [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m357[39m     [38;5;246m0[39m[38;5;246m.[39m300 [38;5;246m0[39m[38;5;246m.[39m558</span>
-<span class="co">#&gt; [38;5;250m5[39m sleep_rem   awake        [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m88[4m9[24m        [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m231[39m     [38;5;246m0[39m[38;5;246m.[39m433 [38;5;246m0[39m[38;5;246m.[39m698</span>
-<span class="co">#&gt; [38;5;250m6[39m sleep_cycle awake        [38;5;246m0[39m[38;5;246m.[39m[38;5;246m00[39m3[4m8[24m[4m1[24m       [38;5;246m0[39m[38;5;246m.[39m95   -[38;5;246m0[39m[38;5;246m.[39m[31m335[39m     [38;5;246m0[39m[38;5;246m.[39m324 [38;5;246m0[39m[38;5;246m.[39m508</span>
-<span class="co">#&gt;   [1mrope.percentage[22m [1mprior.distribution[22m [1mprior.location[22m [1mprior.scale[22m [1mbayes.factor[22m</span>
-<span class="co">#&gt;             [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m                       [3m[38;5;246m&lt;dbl&gt;[39m[23m       [3m[38;5;246m&lt;dbl&gt;[39m[23m        [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m           [38;5;246m0[39m[38;5;246m.[39m378 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m311</span>
-<span class="co">#&gt; [38;5;250m2[39m           [38;5;246m0[39m[38;5;246m.[39m434 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m267</span>
-<span class="co">#&gt; [38;5;250m3[39m           [38;5;246m0[39m     beta                         1.41        1.41       [31mNA[39m    </span>
-<span class="co">#&gt; [38;5;250m4[39m           [38;5;246m0[39m[38;5;246m.[39m429 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m272</span>
-<span class="co">#&gt; [38;5;250m5[39m           [38;5;246m0[39m[38;5;246m.[39m386 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m309</span>
-<span class="co">#&gt; [38;5;250m6[39m           [38;5;246m0[39m[38;5;246m.[39m444 beta                         1.41        1.41        [38;5;246m0[39m[38;5;246m.[39m267</span>
-<span class="co">#&gt;   [1mmethod[22m                       [1mn.obs[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m                        [3m[38;5;246m&lt;int&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m2[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m3[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m4[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m5[39m Bayesian Pearson correlation    32</span>
-<span class="co">#&gt; [38;5;250m6[39m Bayesian Pearson correlation    32</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704</span>
+<span class="co">#&gt; 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505</span>
+<span class="co">#&gt; 3 sleep_total awake       -1             0.95   -1        -1     1    </span>
+<span class="co">#&gt; 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558</span>
+<span class="co">#&gt; 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698</span>
+<span class="co">#&gt; 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508</span>
+<span class="co">#&gt;   rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
+<span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
+<span class="co">#&gt; 1           0.378 beta                         1.41        1.41        0.311</span>
+<span class="co">#&gt; 2           0.434 beta                         1.41        1.41        0.267</span>
+<span class="co">#&gt; 3           0     beta                         1.41        1.41       NA    </span>
+<span class="co">#&gt; 4           0.429 beta                         1.41        1.41        0.272</span>
+<span class="co">#&gt; 5           0.386 beta                         1.41        1.41        0.309</span>
+<span class="co">#&gt; 6           0.444 beta                         1.41        1.41        0.267</span>
+<span class="co">#&gt;   method                       n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt; 1 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 3 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 4 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 5 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
 <div id="summary-of-graphics-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#summary-of-graphics-5" class="anchor"></a>Summary of graphics</h3>
@@ -2332,7 +2332,7 @@
 <li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <img src="https://chart.apis.google.com/chart?cht=tx&amp;chl=%5Cchi%5E%7B2%7D" title="\chi^{2}" alt="\chi^{2}">-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
 <li><p>The label attached to dot will provide more details from the statistical test carried out and it will typically contain estimate, statistic, and <em>p</em>-value.</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
-<li><p>The output of this function will be a <code>ggplot2</code> object and, thus, it can be further modified (e.g., change themes, etc.) with <code>ggplot2</code> functions.</p></li>
+<li><p>The output of this function will be a <a href="https://ggplot2.tidyverse.org">ggplot2</a> object and, thus, it can be further modified (e.g., change themes, etc.) with <a href="https://ggplot2.tidyverse.org">ggplot2</a> functions.</p></li>
 </ul>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -2464,69 +2464,69 @@
 <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; $subtitle_data</span>
-<span class="co">#&gt; [38;5;246m# A tibble: 1 x 13[39m</span>
-<span class="co">#&gt;   [1mstatistic[22m    [1mdf[22m [1mdf.error[22m    [1mp.value[22m</span>
-<span class="co">#&gt;       [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m      31.6     2     18.0 [38;5;246m0[39m[38;5;246m.[39m[38;5;246m000[4m0[24m[4m0[24m[39m[4m1[24m27</span>
-<span class="co">#&gt;   [1mmethod[22m                                                   [1meffectsize[22m [1mestimate[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m                                                    [3m[38;5;246m&lt;chr&gt;[39m[23m         [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m One-way analysis of means (not assuming equal variances) Omega2        [38;5;246m0[39m[38;5;246m.[39m744</span>
-<span class="co">#&gt;   [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m [1mconf.method[22m [1mconf.distribution[22m [1mexpression[22m</span>
-<span class="co">#&gt;        [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m       [3m[38;5;246m&lt;chr&gt;[39m[23m             [3m[38;5;246m&lt;list&gt;[39m[23m    </span>
-<span class="co">#&gt; [38;5;250m1[39m       [38;5;246m0[39m[38;5;246m.[39m95    [38;5;246m0[39m[38;5;246m.[39m531         1 ncp         F                 [38;5;246m&lt;language&gt;[39m</span>
+<span class="co">#&gt; # A tibble: 1 x 13</span>
+<span class="co">#&gt;   statistic    df df.error    p.value</span>
+<span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1      31.6     2     18.0 0.00000127</span>
+<span class="co">#&gt;   method                                                   effectsize estimate</span>
+<span class="co">#&gt;   &lt;chr&gt;                                                    &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 One-way analysis of means (not assuming equal variances) Omega2        0.744</span>
+<span class="co">#&gt;   conf.level conf.low conf.high conf.method conf.distribution expression</span>
+<span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;list&gt;    </span>
+<span class="co">#&gt; 1       0.95    0.531         1 ncp         F                 &lt;language&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $caption_data</span>
-<span class="co">#&gt; [38;5;246m# A tibble: 6 x 20[39m</span>
-<span class="co">#&gt;   [1mterm[22m  [1mestimate[22m [1mconf.level[22m [1mconf.low[22m [1mconf.high[22m    [1mpd[22m [1mrope.percentage[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m    [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m           [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m mu      20.5         [38;5;246m0[39m[38;5;246m.[39m95  19.3        21.9  1              [38;5;246m0[39m     </span>
-<span class="co">#&gt; [38;5;250m2[39m cyl-4    5.90        [38;5;246m0[39m[38;5;246m.[39m95   4.11        7.52 1              [38;5;246m0[39m     </span>
-<span class="co">#&gt; [38;5;250m3[39m cyl-6   -[38;5;246m0[39m[38;5;246m.[39m[31m704[39m       [38;5;246m0[39m[38;5;246m.[39m95  -[31m2[39m[31m.[39m[31m64[39m        1.06 [38;5;246m0[39m[38;5;246m.[39m780          [38;5;246m0[39m[38;5;246m.[39m390 </span>
-<span class="co">#&gt; [38;5;250m4[39m cyl-8   -[31m5[39m[31m.[39m[31m18[39m        [38;5;246m0[39m[38;5;246m.[39m95  -[31m6[39m[31m.[39m[31m76[39m       -[31m3[39m[31m.[39m[31m55[39m 1              [38;5;246m0[39m     </span>
-<span class="co">#&gt; [38;5;250m5[39m sig2    11.0         [38;5;246m0[39m[38;5;246m.[39m95   6.24       18.3  1              [38;5;246m0[39m     </span>
-<span class="co">#&gt; [38;5;250m6[39m g_cyl    2.69        [38;5;246m0[39m[38;5;246m.[39m95   [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m91[4m1[24m     18.7  1              [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m41[4m8[24m</span>
-<span class="co">#&gt;   [1mprior.distribution[22m [1mprior.location[22m [1mprior.scale[22m [1mcomponent[22m       [1mbf10[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m                       [3m[38;5;246m&lt;dbl&gt;[39m[23m       [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m          [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 extra       3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.</span>
-<span class="co">#&gt; [38;5;250m2[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 conditional 3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.</span>
-<span class="co">#&gt; [38;5;250m3[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 conditional 3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.</span>
-<span class="co">#&gt; [38;5;250m4[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 conditional 3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.</span>
-<span class="co">#&gt; [38;5;250m5[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 extra       3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.</span>
-<span class="co">#&gt; [38;5;250m6[39m cauchy                          [38;5;246m0[39m       [38;5;246m0[39m[38;5;246m.[39m707 extra       3[4m0[24m[4m0[24m[38;5;246m[4m8[24m850[39m.</span>
-<span class="co">#&gt;   [1mmethod[22m                          [1mlog_e_bf10[22m    [1mr2[22m [1mstd.dev[22m [1mr2.conf.level[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m                                [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;dbl&gt;[39m[23m   [3m[38;5;246m&lt;dbl&gt;[39m[23m         [3m[38;5;246m&lt;dbl&gt;[39m[23m</span>
-<span class="co">#&gt; [38;5;250m1[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95</span>
-<span class="co">#&gt; [38;5;250m2[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95</span>
-<span class="co">#&gt; [38;5;250m3[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95</span>
-<span class="co">#&gt; [38;5;250m4[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95</span>
-<span class="co">#&gt; [38;5;250m5[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95</span>
-<span class="co">#&gt; [38;5;250m6[39m Bayes factors for linear models       14.9 [38;5;246m0[39m[38;5;246m.[39m714  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m0[39m50[4m3[24m          [38;5;246m0[39m[38;5;246m.[39m95</span>
-<span class="co">#&gt;   [1mr2.conf.low[22m [1mr2.conf.high[22m [1mexpression[22m</span>
-<span class="co">#&gt;         [3m[38;5;246m&lt;dbl&gt;[39m[23m        [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;list&gt;[39m[23m    </span>
-<span class="co">#&gt; [38;5;250m1[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m&lt;language&gt;[39m</span>
-<span class="co">#&gt; [38;5;250m2[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m&lt;language&gt;[39m</span>
-<span class="co">#&gt; [38;5;250m3[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m&lt;language&gt;[39m</span>
-<span class="co">#&gt; [38;5;250m4[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m&lt;language&gt;[39m</span>
-<span class="co">#&gt; [38;5;250m5[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m&lt;language&gt;[39m</span>
-<span class="co">#&gt; [38;5;250m6[39m       [38;5;246m0[39m[38;5;246m.[39m574        [38;5;246m0[39m[38;5;246m.[39m788 [38;5;246m&lt;language&gt;[39m</span>
+<span class="co">#&gt; # A tibble: 6 x 20</span>
+<span class="co">#&gt;   term  estimate conf.level conf.low conf.high    pd rope.percentage</span>
+<span class="co">#&gt;   &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 mu      20.5         0.95  19.3        21.9  1              0     </span>
+<span class="co">#&gt; 2 cyl-4    5.90        0.95   4.11        7.52 1              0     </span>
+<span class="co">#&gt; 3 cyl-6   -0.704       0.95  -2.64        1.06 0.780          0.390 </span>
+<span class="co">#&gt; 4 cyl-8   -5.18        0.95  -6.76       -3.55 1              0     </span>
+<span class="co">#&gt; 5 sig2    11.0         0.95   6.24       18.3  1              0     </span>
+<span class="co">#&gt; 6 g_cyl    2.69        0.95   0.0911     18.7  1              0.0418</span>
+<span class="co">#&gt;   prior.distribution prior.location prior.scale component       bf10</span>
+<span class="co">#&gt;   &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 cauchy                          0       0.707 extra       3008850.</span>
+<span class="co">#&gt; 2 cauchy                          0       0.707 conditional 3008850.</span>
+<span class="co">#&gt; 3 cauchy                          0       0.707 conditional 3008850.</span>
+<span class="co">#&gt; 4 cauchy                          0       0.707 conditional 3008850.</span>
+<span class="co">#&gt; 5 cauchy                          0       0.707 extra       3008850.</span>
+<span class="co">#&gt; 6 cauchy                          0       0.707 extra       3008850.</span>
+<span class="co">#&gt;   method                          log_e_bf10    r2 std.dev r2.conf.level</span>
+<span class="co">#&gt;   &lt;chr&gt;                                &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Bayes factors for linear models       14.9 0.714  0.0503          0.95</span>
+<span class="co">#&gt; 2 Bayes factors for linear models       14.9 0.714  0.0503          0.95</span>
+<span class="co">#&gt; 3 Bayes factors for linear models       14.9 0.714  0.0503          0.95</span>
+<span class="co">#&gt; 4 Bayes factors for linear models       14.9 0.714  0.0503          0.95</span>
+<span class="co">#&gt; 5 Bayes factors for linear models       14.9 0.714  0.0503          0.95</span>
+<span class="co">#&gt; 6 Bayes factors for linear models       14.9 0.714  0.0503          0.95</span>
+<span class="co">#&gt;   r2.conf.low r2.conf.high expression</span>
+<span class="co">#&gt;         &lt;dbl&gt;        &lt;dbl&gt; &lt;list&gt;    </span>
+<span class="co">#&gt; 1       0.574        0.788 &lt;language&gt;</span>
+<span class="co">#&gt; 2       0.574        0.788 &lt;language&gt;</span>
+<span class="co">#&gt; 3       0.574        0.788 &lt;language&gt;</span>
+<span class="co">#&gt; 4       0.574        0.788 &lt;language&gt;</span>
+<span class="co">#&gt; 5       0.574        0.788 &lt;language&gt;</span>
+<span class="co">#&gt; 6       0.574        0.788 &lt;language&gt;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $pairwise_comparisons_data</span>
-<span class="co">#&gt; [38;5;246m# A tibble: 3 x 11[39m</span>
-<span class="co">#&gt;   [1mgroup1[22m [1mgroup2[22m [1mstatistic[22m   [1mp.value[22m [1malternative[22m [1mmethod[22m            [1mdistribution[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m  [3m[38;5;246m&lt;chr&gt;[39m[23m      [3m[38;5;246m&lt;dbl&gt;[39m[23m     [3m[38;5;246m&lt;dbl&gt;[39m[23m [3m[38;5;246m&lt;chr&gt;[39m[23m       [3m[38;5;246m&lt;chr&gt;[39m[23m             [3m[38;5;246m&lt;chr&gt;[39m[23m       </span>
-<span class="co">#&gt; [38;5;250m1[39m 4      6          -[31m6[39m[31m.[39m[31m67[39m [38;5;246m0[39m[38;5;246m.[39m[38;5;246m00[39m1[4m1[24m[4m0[24m   two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; [38;5;250m2[39m 4      8         -[31m10[39m[31m.[39m[31m7[39m  [38;5;246m0[39m[38;5;246m.[39m[38;5;246m000[4m0[24m[39m[4m1[24m[4m4[24m0 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; [38;5;250m3[39m 6      8          -[31m7[39m[31m.[39m[31m48[39m [38;5;246m0[39m[38;5;246m.[39m[38;5;246m000[39m[4m2[24m[4m5[24m[4m7[24m  two.sided   Games-Howell test q           </span>
-<span class="co">#&gt;   [1mp.adjustment[22m [1mtest.details[22m      [1mp.value.adjustment[22m</span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m        [3m[38;5;246m&lt;chr&gt;[39m[23m             [3m[38;5;246m&lt;chr&gt;[39m[23m             </span>
-<span class="co">#&gt; [38;5;250m1[39m none         Games-Howell test Holm              </span>
-<span class="co">#&gt; [38;5;250m2[39m none         Games-Howell test Holm              </span>
-<span class="co">#&gt; [38;5;250m3[39m none         Games-Howell test Holm              </span>
-<span class="co">#&gt;   [1mlabel[22m                                     </span>
-<span class="co">#&gt;   [3m[38;5;246m&lt;chr&gt;[39m[23m                                     </span>
-<span class="co">#&gt; [38;5;250m1[39m list(~italic(p)[Holm-corrected]==0.001)   </span>
-<span class="co">#&gt; [38;5;250m2[39m list(~italic(p)[Holm-corrected]==1.4e-05) </span>
-<span class="co">#&gt; [38;5;250m3[39m list(~italic(p)[Holm-corrected]==2.57e-04)</span>
+<span class="co">#&gt; # A tibble: 3 x 11</span>
+<span class="co">#&gt;   group1 group2 statistic   p.value alternative method            distribution</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;chr&gt;       </span>
+<span class="co">#&gt; 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           </span>
+<span class="co">#&gt; 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           </span>
+<span class="co">#&gt; 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           </span>
+<span class="co">#&gt;   p.adjustment test.details      p.value.adjustment</span>
+<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;             &lt;chr&gt;             </span>
+<span class="co">#&gt; 1 none         Games-Howell test Holm              </span>
+<span class="co">#&gt; 2 none         Games-Howell test Holm              </span>
+<span class="co">#&gt; 3 none         Games-Howell test Holm              </span>
+<span class="co">#&gt;   label                                     </span>
+<span class="co">#&gt;   &lt;chr&gt;                                     </span>
+<span class="co">#&gt; 1 list(~italic(p)[Holm-corrected]==0.001)   </span>
+<span class="co">#&gt; 2 list(~italic(p)[Holm-corrected]==1.4e-05) </span>
+<span class="co">#&gt; 3 list(~italic(p)[Holm-corrected]==2.57e-04)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $descriptive_data</span>
 <span class="co">#&gt; NULL</span>
@@ -2538,7 +2538,7 @@
 <div id="using-ggstatsplot-statistical-details-with-custom-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-ggstatsplot-statistical-details-with-custom-plots" class="anchor"></a>Using <code>{ggstatsplot}</code> statistical details with custom plots</h2>
-<p>Sometimes you may not like the default plots produced by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <code>ggplot2</code> or other plotting packages) and still use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical test.</p>
+<p>Sometimes you may not like the default plots produced by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org">ggplot2</a> or other plotting packages) and still use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create plot (<em>ridgeplot</em>) using <code>ggridges</code> package and use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function for extracting results.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loading the needed libraries</span>
@@ -2604,7 +2604,7 @@
 <a href="#misconceptions-about-ggstatsplot" class="anchor"></a>Misconceptions about <em>ggstatsplot</em>
 </h1>
 <p>This package is…</p>
-<p>❌ an alternative to learning <code>ggplot2</code><br> ✅ (The better you know <code>ggplot2</code>, the more you can modify the defaults to your liking.)</p>
+<p>❌ an alternative to learning <a href="https://ggplot2.tidyverse.org">ggplot2</a><br> ✅ (The better you know <a href="https://ggplot2.tidyverse.org">ggplot2</a>, the more you can modify the defaults to your liking.)</p>
 <p>❌ meant to be used in talks/presentations<br> ✅ (Default plots can be too complicated for effectively communicating results in time-constrained presentation settings, e.g. conference talks.)</p>
 <p>❌ the only game in town<br> ✅ (GUI software alternatives: <a href="https://jasp-stats.org/">JASP</a> and <a href="https://www.jamovi.org/">jamovi</a>).</p>
 </div>
