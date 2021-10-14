@@ -119,8 +119,7 @@ library(ggstatsplot)
 set.seed(123)
 
 # let's split the dataframe and create a list by years of interest
-year_list <-
-  gapminder::gapminder %>%
+year_list <- gapminder::gapminder %>%
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   split(f = .$year, drop = TRUE)
 
@@ -151,47 +150,46 @@ set.seed(123)
 library(ggstatsplot)
 
 # creating a list of plots
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = year_list,
-      x = "continent",
-      y = "lifeExp",
-      outlier.tagging = TRUE,
-      outlier.label = "country",
-      outlier.label.args = list(
-        list(size = 3, color = "#56B4E9"),
-        list(size = 2.5, color = "#009E73"),
-        list(size = 3.5, color = "#F0E442")
-      ),
-      xlab = "Continent",
-      ylab = "Life expectancy",
-      title = list(
-        "Year: 1967",
-        "Year: 1987",
-        "Year: 2007"
-      ),
-      type = list("r", "bf", "np"),
-      pairwise.display = list("s", "ns", "all"),
-      p.adjust.method = list("hommel", "bonferroni", "BH"),
-      conf.level = list(0.99, 0.95, 0.90),
-      k = list(1, 2, 3),
-      effsize.type = list(
-        NULL,
-        "partial_omega",
-        "partial_eta"
-      ),
-      plot.type = list("box", "boxviolin", "violin"),
-      package = list("nord", "ochRe", "awtools"),
-      palette = list("aurora", "parliament", "bpalette"),
-      ggtheme = list(
-        ggthemes::theme_stata(),
-        ggplot2::theme_classic(),
-        ggthemes::theme_fivethirtyeight()
-      )
+plot_list <- purrr::pmap(
+  .l = list(
+    data = year_list,
+    x = "continent",
+    y = "lifeExp",
+    outlier.tagging = TRUE,
+    outlier.label = "country",
+    outlier.label.args = list(
+      list(size = 3, color = "#56B4E9"),
+      list(size = 2.5, color = "#009E73"),
+      list(size = 3.5, color = "#F0E442")
     ),
-    .f = ggstatsplot::ggbetweenstats
-  )
+    xlab = "Continent",
+    ylab = "Life expectancy",
+    title = list(
+      "Year: 1967",
+      "Year: 1987",
+      "Year: 2007"
+    ),
+    type = list("r", "bf", "np"),
+    pairwise.display = list("s", "ns", "all"),
+    p.adjust.method = list("hommel", "bonferroni", "BH"),
+    conf.level = list(0.99, 0.95, 0.90),
+    k = list(1, 2, 3),
+    effsize.type = list(
+      NULL,
+      "partial_omega",
+      "partial_eta"
+    ),
+    plot.type = list("box", "boxviolin", "violin"),
+    package = list("nord", "ochRe", "awtools"),
+    palette = list("aurora", "parliament", "bpalette"),
+    ggtheme = list(
+      ggthemes::theme_stata(),
+      ggplot2::theme_classic(),
+      ggthemes::theme_fivethirtyeight()
+    )
+  ),
+  .f = ggstatsplot::ggbetweenstats
+)
 ```
 
 The final step is to pass the `plot_list` object we just created to the
@@ -201,7 +199,7 @@ the merged plots and specify the layout in rows and columns.
 
 ```{r purrr_ggbetweenstats3, fig.height = 18, fig.width = 7}
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
   plotgrid.args = list(ncol = 1)
@@ -227,54 +225,53 @@ cue_list <- ANT %>% split(f = .$cue, drop = TRUE)
 length(cue_list)
 
 # creating a list of plots by applying the same function for elements of the list
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = cue_list,
-      x = "flank",
-      y = "rt",
-      outlier.tagging = TRUE,
-      outlier.label = "group",
-      outlier.coef = list(2, 2, 2.5, 3),
-      outlier.label.args = list(
-        list(size = 3, color = "#56B4E9"),
-        list(size = 2.5, color = "#009E73"),
-        list(size = 4, color = "#F0E442"),
-        list(size = 2, color = "red")
-      ),
-      xlab = "Flank",
-      ylab = "Response time",
-      title = list(
-        "Cue: None",
-        "Cue: Center",
-        "Cue: Double",
-        "Cue: Spatial"
-      ),
-      type = list("p", "r", "bf", "np"),
-      pairwise.display = list("ns", "s", "ns", "all"),
-      p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
-      conf.level = list(0.99, 0.99, 0.95, 0.90),
-      k = list(3, 2, 2, 3),
-      effsize.type = list(
-        "omega",
-        "eta",
-        "partial_omega",
-        "partial_eta"
-      ),
-      package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
-      palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
-      ggtheme = list(
-        ggplot2::theme_linedraw(),
-        hrbrthemes::theme_ft_rc(),
-        ggthemes::theme_solarized(),
-        ggthemes::theme_gdocs()
-      )
+plot_list <- purrr::pmap(
+  .l = list(
+    data = cue_list,
+    x = "flank",
+    y = "rt",
+    outlier.tagging = TRUE,
+    outlier.label = "group",
+    outlier.coef = list(2, 2, 2.5, 3),
+    outlier.label.args = list(
+      list(size = 3, color = "#56B4E9"),
+      list(size = 2.5, color = "#009E73"),
+      list(size = 4, color = "#F0E442"),
+      list(size = 2, color = "red")
     ),
-    .f = ggstatsplot::ggwithinstats
-  )
+    xlab = "Flank",
+    ylab = "Response time",
+    title = list(
+      "Cue: None",
+      "Cue: Center",
+      "Cue: Double",
+      "Cue: Spatial"
+    ),
+    type = list("p", "r", "bf", "np"),
+    pairwise.display = list("ns", "s", "ns", "all"),
+    p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
+    conf.level = list(0.99, 0.99, 0.95, 0.90),
+    k = list(3, 2, 2, 3),
+    effsize.type = list(
+      "omega",
+      "eta",
+      "partial_omega",
+      "partial_eta"
+    ),
+    package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
+    palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
+    ggtheme = list(
+      ggplot2::theme_linedraw(),
+      hrbrthemes::theme_ft_rc(),
+      ggthemes::theme_solarized(),
+      ggthemes::theme_gdocs()
+    )
+  ),
+  .f = ggstatsplot::ggwithinstats
+)
 
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Response times across flank conditions for each type of cue"),
   plotgrid.args = list(ncol = 1)
@@ -303,40 +300,39 @@ mpaa_list <- ggstatsplot::movies_long %>%
   split(f = .$mpaa, drop = TRUE)
 
 # creating a list of plots
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = mpaa_list,
-      x = "budget",
-      y = "rating",
-      xlab = "Budget (in millions of US dollars)",
-      ylab = "Rating on IMDB",
-      title = list(
-        "MPAA Rating: PG",
-        "MPAA Rating: PG-13",
-        "MPAA Rating: R"
-      ),
-      label.var = list("title"),
-      # note that you need to quote the expressions
-      label.expression = list(
-        quote(rating > 7.5 & budget < 100),
-        quote(rating > 8 & budget < 50),
-        quote(rating > 8 & budget < 10)
-      ),
-      type = list("r", "np", "bf"),
-      xfill = list("#009E73", "#999999", "#0072B2"),
-      yfill = list("#CC79A7", "#F0E442", "#D55E00"),
-      ggtheme = list(
-        ggthemes::theme_tufte(),
-        ggplot2::theme_classic(),
-        ggplot2::theme_light()
-      )
+plot_list <- purrr::pmap(
+  .l = list(
+    data = mpaa_list,
+    x = "budget",
+    y = "rating",
+    xlab = "Budget (in millions of US dollars)",
+    ylab = "Rating on IMDB",
+    title = list(
+      "MPAA Rating: PG",
+      "MPAA Rating: PG-13",
+      "MPAA Rating: R"
     ),
-    .f = ggstatsplot::ggscatterstats
-  )
+    label.var = list("title"),
+    # note that you need to quote the expressions
+    label.expression = list(
+      quote(rating > 7.5 & budget < 100),
+      quote(rating > 8 & budget < 50),
+      quote(rating > 8 & budget < 10)
+    ),
+    type = list("r", "np", "bf"),
+    xfill = list("#009E73", "#999999", "#0072B2"),
+    yfill = list("#CC79A7", "#F0E442", "#D55E00"),
+    ggtheme = list(
+      ggthemes::theme_tufte(),
+      ggplot2::theme_classic(),
+      ggplot2::theme_light()
+    )
+  ),
+  .f = ggstatsplot::ggscatterstats
+)
 
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(
     title = "Relationship between movie budget and IMDB rating",
@@ -358,8 +354,7 @@ set.seed(123)
 # splitting the dataframe by cut and creating a list
 # let's leave out "fair" cut
 # also, to make this fast, let's only use 5% of the sample
-cut_list <-
-  ggplot2::diamonds %>%
+cut_list <- ggplot2::diamonds %>%
   dplyr::sample_frac(size = 0.05) %>%
   dplyr::filter(cut != "Fair") %>%
   split(f = .$cut, drop = TRUE)
@@ -371,35 +366,34 @@ names(cut_list)
 # running function on every element of this list note that if you want the same
 # value for a given argument across all elements of the list, you need to
 # specify it just once
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = cut_list,
-      cor.vars = list(c("carat", "depth", "table", "price")),
-      type = list("pearson", "np", "robust", "bf"),
-      partial = list(TRUE, FALSE, TRUE, FALSE),
-      title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
-      p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
-      lab.size = 3.5,
-      colors = list(
-        c("#56B4E9", "white", "#999999"),
-        c("#CC79A7", "white", "#F0E442"),
-        c("#56B4E9", "white", "#D55E00"),
-        c("#999999", "white", "#0072B2")
-      ),
-      ggtheme = list(
-        ggplot2::theme_linedraw(),
-        ggplot2::theme_classic(),
-        ggthemes::theme_fivethirtyeight(),
-        ggthemes::theme_tufte()
-      )
+plot_list <- purrr::pmap(
+  .l = list(
+    data = cut_list,
+    cor.vars = list(c("carat", "depth", "table", "price")),
+    type = list("pearson", "np", "robust", "bf"),
+    partial = list(TRUE, FALSE, TRUE, FALSE),
+    title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
+    p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
+    lab.size = 3.5,
+    colors = list(
+      c("#56B4E9", "white", "#999999"),
+      c("#CC79A7", "white", "#F0E442"),
+      c("#56B4E9", "white", "#D55E00"),
+      c("#999999", "white", "#0072B2")
     ),
-    .f = ggstatsplot::ggcorrmat
-  )
+    ggtheme = list(
+      ggplot2::theme_linedraw(),
+      ggplot2::theme_classic(),
+      ggthemes::theme_fivethirtyeight(),
+      ggthemes::theme_tufte()
+    )
+  ),
+  .f = ggstatsplot::ggcorrmat
+)
 
 # combining all individual plots from the list into a single plot using
 # `combine_plots` function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   guides = "keep",
   annotation.args = list(
@@ -458,7 +452,7 @@ plot_list <-
   )
 
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(
     title = "Improvement in life expectancy worldwide since 1950",
@@ -523,7 +517,7 @@ plot_list <-
   )
 
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Improvement in GDP per capita from 1952-2007"),
   plotgrid.args = list(nrow = 4),
@@ -581,7 +575,7 @@ plot_list <-
   )
 
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Survival in Titanic disaster by gender for all passenger classes"),
   plotgrid.args = list(ncol = 1),
@@ -638,7 +632,7 @@ plot_list <-
   )
 
 # combining all individual plots from the list into a single plot using combine_plots function
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = plot_list,
   annotation.args = list(
     title = "Survival in Titanic disaster by gender for all passenger classes",

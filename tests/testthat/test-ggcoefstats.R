@@ -428,61 +428,60 @@ test_that(
 )
 
 
-if (getRversion() >= "4.1") {
-  test_that("plots are rendered correctly - ggcoefstats", {
-    skip_on_cran()
-    skip_if_not_installed("vdiffr")
-    skip_if_not_installed("survival")
-    skip_on_os("linux")
+test_that("plots are rendered correctly - ggcoefstats", {
+  skip_on_cran()
+  skip_if_not_installed("vdiffr")
+  skip_if_not_installed("survival")
+  skip_on_os("linux")
+  skip_if(getRversion() < "4.1")
 
-    # vdiffr tests --------------------------------
+  # vdiffr tests --------------------------------
 
-    ## t-statistic --------------------------------
-    # already tested in vdiffr test main file
+  ## t-statistic --------------------------------
+  # already tested in vdiffr test main file
 
-    ## F-statistic --------------------------------
+  ## F-statistic --------------------------------
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "F-statistic - vdiffr",
-      fig = ggcoefstats(aov(yield ~ N * P * K + Error(block), npk))
-    )
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "F-statistic - vdiffr",
+    fig = ggcoefstats(aov(yield ~ N * P * K + Error(block), npk))
+  )
 
-    ## chi2-statistic --------------------------------
+  ## chi2-statistic --------------------------------
 
-    # setup
-    set.seed(123)
-    library(survival)
+  # setup
+  set.seed(123)
+  library(survival)
 
-    # model
-    mod_coxph <- survival::coxph(
-      formula = Surv(time, status) ~ age + sex + frailty(inst),
-      data = lung
-    )
+  # model
+  mod_coxph <- survival::coxph(
+    formula = Surv(time, status) ~ age + sex + frailty(inst),
+    data = lung
+  )
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "chi2-statistic - vdiffr",
-      fig = ggcoefstats(mod_coxph)
-    )
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "chi2-statistic - vdiffr",
+    fig = ggcoefstats(mod_coxph)
+  )
 
-    ## z-statistic --------------------------------
+  ## z-statistic --------------------------------
 
-    # having a look at the Titanic dataset
-    df <- as.data.frame(Titanic)
+  # having a look at the Titanic dataset
+  df <- as.data.frame(Titanic)
 
-    # model
-    mod_glm <- stats::glm(
-      formula = Survived ~ Sex + Age,
-      data = df,
-      weights = df$Freq,
-      family = stats::binomial(link = "logit")
-    )
+  # model
+  mod_glm <- stats::glm(
+    formula = Survived ~ Sex + Age,
+    data = df,
+    weights = df$Freq,
+    family = stats::binomial(link = "logit")
+  )
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "z-statistic - vdiffr",
-      fig = ggcoefstats(mod_glm, conf.level = 0.90)
-    )
-  })
-}
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "z-statistic - vdiffr",
+    fig = ggcoefstats(mod_glm, conf.level = 0.90)
+  )
+})

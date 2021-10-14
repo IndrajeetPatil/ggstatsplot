@@ -6,35 +6,28 @@ test_that(
     #--------------------- only x variable -------------------------------
 
     ## expecting error
-    expect_error(
-      grouped_ggpiestats(
-        data = mtcars,
-        x = cyl
-      )
-    )
+    expect_error(grouped_ggpiestats(mtcars, x = cyl))
 
     ## without counts
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggpiestats(
+    vdiffr::expect_doppelganger(
+      title = "no analysis",
+      fig = grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
         x = cyl,
         results.subtitle = FALSE
       )
-    ),
-    what = "gg"
-    ))
+    )
 
     #------------------ both x and y variables ------------------
 
     ## without counts
 
     # creating a smaller dataframe
-    mpg_short <-
-      ggplot2::mpg %>%
+    mpg_short <- ggplot2::mpg %>%
       dplyr::filter(
         drv %in% c("4", "f"),
         class %in% c("suv", "midsize"),
@@ -43,8 +36,9 @@ test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggpiestats(
+    vdiffr::expect_doppelganger(
+      title = "no analysis and label repel",
+      fig = grouped_ggpiestats(
         data = mpg_short,
         x = cyl,
         y = class,
@@ -52,16 +46,15 @@ test_that(
         grouping.var = drv,
         label.repel = TRUE
       )
-    ),
-    what = "gg"
-    ))
+    )
 
     ## with counts
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggpiestats(
+    vdiffr::expect_doppelganger(
+      title = "with counts",
+      fig = grouped_ggpiestats(
         data = as.data.frame(Titanic),
         grouping.var = Class,
         x = Sex,
@@ -69,9 +62,7 @@ test_that(
         y = Survived,
         counts = Freq
       )
-    ),
-    what = "gg"
-    ))
+    )
   }
 )
 
@@ -84,7 +75,7 @@ test_that(
 
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(., is.factor, droplevels)
+      dplyr::mutate_if(is.factor, droplevels)
 
 
     # should output a list of length 3

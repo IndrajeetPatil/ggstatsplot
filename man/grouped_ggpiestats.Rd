@@ -31,10 +31,10 @@ will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion t
 appropriate association test will be run. This argument can not be \code{NULL}
 for \code{ggbarstats} function.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
-be carried out for each level of \code{y} (Default: \code{TRUE}). In \code{ggbarstats},
-only \emph{p}-values from this test will be displayed.}
+be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
+\code{ggbarstats}, only \emph{p}-values from this test will be displayed.}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{0}).}
+labels (Default: \code{0L}).}
     \item{\code{label}}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}

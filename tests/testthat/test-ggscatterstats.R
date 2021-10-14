@@ -253,71 +253,68 @@ test_that(
   }
 )
 
-if (getRversion() >= "4.1") {
-  test_that("plots are rendered correctly - ggscatterstats", {
-    skip_on_cran()
-    skip_if_not_installed("vdiffr")
+test_that("plots are rendered correctly - ggscatterstats", {
+  skip_on_cran()
+  skip_if_not_installed("vdiffr")
+  skip_if(getRversion() < "4.1")
 
-    # vdiffr tests --------------------------------
+  # vdiffr tests --------------------------------
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "label symbol args - vdiffr",
-      fig = ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = sleep_total > 17,
-        label.var = order,
-        results.subtitle = FALSE
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "label symbol args - vdiffr",
+    fig = ggscatterstats(
+      data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+      x = sleep_total,
+      y = sleep_cycle,
+      label.expression = sleep_total > 17,
+      label.var = order,
+      results.subtitle = FALSE
+    )
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "label var NULL - vdiffr",
+    fig = ggscatterstats(
+      data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+      x = sleep_total,
+      y = sleep_cycle,
+      label.expression = sleep_total > 17,
+      label.var = NULL,
+      results.subtitle = FALSE
+    )
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "label expr NULL - vdiffr",
+    fig = ggscatterstats(
+      data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
+      x = sleep_total,
+      y = sleep_cycle,
+      label.expression = NULL,
+      label.var = order,
+      results.subtitle = FALSE
+    )
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "changing scales and aesthetics - vdiffr",
+    fig = ggscatterstats(mtcars, wt, mpg,
+      xsidehistogram.args = list(
+        fill = "red",
+        color = "blue",
+        na.rm = TRUE
+      ),
+      ysidehistogram.args = list(
+        fill = "yellow",
+        color = "blue",
+        na.rm = TRUE
       )
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "label var NULL - vdiffr",
-      fig = ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = sleep_total > 17,
-        label.var = NULL,
-        results.subtitle = FALSE
-      )
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "label expr NULL - vdiffr",
-      fig = ggscatterstats(
-        data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
-        x = sleep_total,
-        y = sleep_cycle,
-        label.expression = NULL,
-        label.var = order,
-        results.subtitle = FALSE
-      )
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "changing scales and aesthetics - vdiffr",
-      fig = ggscatterstats(mtcars, wt, mpg,
-        xsidehistogram.args = list(
-          fill = "red",
-          color = "blue",
-          na.rm = TRUE
-        ),
-        ysidehistogram.args = list(
-          fill = "yellow",
-          color = "blue",
-          na.rm = TRUE
-        ),
-        xsidedensity.args = list(color = "green", na.rm = TRUE),
-        ysidedensity.args = list(color = "orange", na.rm = TRUE),
-      ) +
-        scale_x_continuous(breaks = seq(1, 6, 1), limits = (c(1, 6))) +
-        scale_y_continuous(breaks = seq(10, 40, 10), limits = (c(10, 40)))
-    )
-  })
-}
+    ) +
+      scale_x_continuous(breaks = seq(1, 6, 1), limits = (c(1, 6))) +
+      scale_y_continuous(breaks = seq(10, 40, 10), limits = (c(10, 40)))
+  )
+})

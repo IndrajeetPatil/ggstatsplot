@@ -78,7 +78,7 @@ In addition to these vignettes, another quick way to get an overview of this
 package is to go through the following slides:
 <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
-# Backened of `{ggstatsplot}`
+# Backend of `{ggstatsplot}`
 
 The `statsExpressions` package forms the statistical backend that processes data
 and creates dataframes and expressions containing results from statistical

@@ -76,9 +76,9 @@
                   x y
       1  0.01703351 1
       2 -0.51166834 2
-                                                                                             label
-      1  list(~widehat(italic(beta))=='0.02', ~italic(chi)^2~('225')=='3.40', ~italic(p)=='0.065')
-      2 list(~widehat(italic(beta))=='-0.51', ~italic(chi)^2~('225')=='9.31', ~italic(p)=='0.002')
+                                                                                           label
+      1  list(~widehat(italic(beta))=='0.02', ~italic(chi)^2~('1')=='3.40', ~italic(p)=='0.065')
+      2 list(~widehat(italic(beta))=='-0.51', ~italic(chi)^2~('1')=='9.31', ~italic(p)=='0.002')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #3182BDFF white    3     0    NA               1        1.2   0.5
       2     1     2 #E6550DFF white    3     0    NA               1        1.2   0.5

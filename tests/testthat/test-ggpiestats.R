@@ -13,7 +13,7 @@ test_that(
       title = "mammalian sleep",
       legend.title = "vore",
       caption = "From ggplot2 package",
-      perc.k = 2,
+      perc.k = 2L,
       label = "both"
     )
 
@@ -265,8 +265,7 @@ test_that(
       epoch,
       counts = counts,
       label.repel = TRUE,
-      results.subtitle = FALSE,
-      proportion.test = FALSE
+      results.subtitle = FALSE
     )
 
     # build plot

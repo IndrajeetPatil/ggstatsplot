@@ -31,7 +31,7 @@ Imports:
     ggplot2 (>= 3.3.5),
     ggrepel,
     ggsignif (>= 0.6.3),
-    insight (>= 0.14.2.1),
+    insight (>= 0.14.4),
     pairwiseComparisons (>= 3.2.0),
     paletteer,
     parameters (>= 0.14.0.1),

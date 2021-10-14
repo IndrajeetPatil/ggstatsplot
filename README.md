@@ -681,13 +681,12 @@ grouped_ggscatterstats(
 
 ### Summary of graphics
 
-| graphical element      | `geom_` used                                                 | argument for further modification            |
-|------------------------|--------------------------------------------------------------|----------------------------------------------|
-| raw data               | `ggplot2::geom_point`                                        | `point.args`                                 |
-| labels for raw data    | `ggrepel::geom_label_repel`                                  | `point.label.args`                           |
-| smooth line            | `ggplot2::geom_smooth`                                       | `smooth.line.args`                           |
-| marginal histograms    | `ggside::geom_xsidehistogram`, `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args` |
-| marginal density plots | `ggside::geom_xsidedensity`, `ggside::geom_ysidedensity`     | `xsidedensity.args`, `ysidedensity.args`     |
+| graphical element   | `geom_` used                                                 | argument for further modification            |
+|---------------------|--------------------------------------------------------------|----------------------------------------------|
+| raw data            | `ggplot2::geom_point`                                        | `point.args`                                 |
+| labels for raw data | `ggrepel::geom_label_repel`                                  | `point.label.args`                           |
+| smooth line         | `ggplot2::geom_smooth`                                       | `smooth.line.args`                           |
+| marginal histograms | `ggside::geom_xsidehistogram`, `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args` |
 
 ### Summary of tests
 
@@ -1105,7 +1104,7 @@ set.seed(123)
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 # plot
-ggcoefstats(mod)
+ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
@@ -1114,31 +1113,6 @@ ggcoefstats(mod)
 
 ✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC
 and BIC) <br>
-
-This default plot can be further modified to one’s liking with
-additional arguments (also, let’s use a different model now):
-
-``` r
-# for reproducibility
-set.seed(123)
-
-# model
-mod <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
-
-# plot
-ggcoefstats(
-  x = mod,
-  point.args = list(color = "red", size = 3, shape = 15),
-  title = "Car performance predicted by transmission & cylinder count",
-  subtitle = "Source: 1974 Motor Trend US magazine",
-  exclude.intercept = TRUE,
-  ggtheme = hrbrthemes::theme_ipsum_ps()
-) + # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("transmission", "cylinders", "interaction")) +
-  ggplot2::labs(x = "regression coefficient", y = NULL)
-```
-
-<img src="man/figures/README-ggcoefstats2-1.png" width="100%" />
 
 ### Supported models
 
