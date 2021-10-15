@@ -27,10 +27,6 @@ For more details about underlying tests and effect size estimates, see the
 following vignette:
 https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html
 }
-\note{
-Note that if you want to use this function with \code{ggscatterstats}, you will
-have to set \code{marginal = FALSE} to return an object of \code{ggplot} type.
-}
 \examples{
 \donttest{
 set.seed(123)

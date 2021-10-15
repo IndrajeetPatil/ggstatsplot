@@ -102,7 +102,7 @@ marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55
 \code{y})). Note that the defaults are colorblind-friendly.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed
-to \code{ggplot2::geom_point} geom used to display the raw data points.}
+to \code{geom_point} geom used to display the raw data points.}
 
 \item{point.width.jitter, point.height.jitter}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
@@ -115,7 +115,7 @@ these points.}
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
-to \code{ggplot2::geom_smooth} geom used to display the regression line.}
+to \code{geom_smooth} geom used to display the regression line.}
 
 \item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
 respective \code{geom_}s from \code{ggside} package to change the marginal
@@ -136,7 +136,7 @@ variable names for \code{x} and \code{y} will be used.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
 
@@ -173,6 +173,7 @@ have a lot of labels that overlap.
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
+library(dplyr, warn.conflicts = FALSE)
 
 # creating dataframe with rownames converted to a new column
 mtcars_new <- as_tibble(mtcars, rownames = "car")
@@ -186,7 +187,7 @@ if (require("ggside")) {
     label.var = car,
     label.expression = wt < 4 & mpg < 20
   ) + # making further customization with `{ggplot2}` functions
-    ggplot2::geom_rug(sides = "b")
+    geom_rug(sides = "b")
 }
 }
 \seealso{

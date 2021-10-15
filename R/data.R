@@ -79,37 +79,6 @@
 "iris_long"
 
 
-#' @title Virtual reality moral dilemmas.
-#' @name VR_dilemma
-#' @details Dataset from a study where participants completed identical moral
-#'   dilemmas in two different sessions held on separate days: in one session,
-#'   they read text description of the scenario, while in another session they
-#'   completed the same scenarios in Virtual Reality (videos:
-#'   <https://www.youtube.com/watch?v=ebdU3HhhYs8>). The study investigated
-#'   if there was a discrepancy between how people judged the same scenarios
-#'   while reading them in text versus experiencing them in virtual reality.
-#'
-#' @format A data frame with 68 rows and 4 variables
-#'
-#'   - id. Dummy identity number for each participant.
-#'   - order. The order in which the participants completed the two
-#'   sessions: `"text_first"` (`0`) or `"text_second"` (`1`).
-#'   - modality. Describes how the moral dilemmas were presented to the
-#'   participants: either in text format (`"text"`) or in Virtual Reality
-#'   (`"vr"`).
-#'   - score. Proportion of "utilitarian" decisions. In other words, of the
-#'   4 decisions, how many affirmative were responses. Range: 0 (all
-#'   utilitarian) - 1 (none utilitarian).
-#'
-#' @source <https://psyarxiv.com/ry3ap/>
-#'
-#' @examples
-#' dim(VR_dilemma)
-#' head(VR_dilemma)
-#' dplyr::glimpse(VR_dilemma)
-"VR_dilemma"
-
-
 #' @title Tidy version of the "Bugs" dataset.
 #' @name bugs_long
 #' @details This data set, "Bugs", provides the extent to which men and women

@@ -7,11 +7,6 @@
 #' @inheritParams ggwithinstats
 #' @inheritParams ggrepel::geom_label_repel
 #'
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang enquo ensym exec
-#' @importFrom insight standardize_names format_value
-#' @importFrom statsExpressions format_num centrality_description
-#'
 #' @examples
 #' # this internal function may not have much utility outside of the package
 #' set.seed(123)
@@ -59,7 +54,7 @@ centrality_ggrepel <- function(plot,
   if (isTRUE(centrality.path)) {
     plot <- plot +
       exec(
-        ggplot2::geom_path,
+        geom_path,
         data = centrality_df,
         mapping = aes(x = {{ x }}, y = {{ y }}, group = 1),
         inherit.aes = FALSE,
@@ -70,7 +65,7 @@ centrality_ggrepel <- function(plot,
   # highlight the mean of each group
   plot +
     exec(
-      ggplot2::geom_point,
+      geom_point,
       mapping = aes({{ x }}, {{ y }}),
       data = centrality_df,
       inherit.aes = FALSE,
@@ -84,7 +79,7 @@ centrality_ggrepel <- function(plot,
       parse = TRUE,
       !!!centrality.label.args
     ) + # adding sample size labels to the x axes
-    ggplot2::scale_x_discrete(labels = c(unique(centrality_df$n_label)))
+    scale_x_discrete(labels = c(unique(centrality_df$n_label)))
 }
 
 #' @title Adding `geom_signif` to `ggplot`
@@ -95,10 +90,6 @@ centrality_ggrepel <- function(plot,
 #' @param mpc_df A dataframe containing results from pairwise comparisons
 #'   (produced by `pairwiseComparisons::pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
-#'
-#' @importFrom purrr pmap
-#' @importFrom dplyr mutate filter arrange pull
-#' @importFrom ggsignif geom_signif
 #'
 #' @examples
 #' set.seed(123)
@@ -134,13 +125,13 @@ ggsignif_adder <- function(plot,
                            ggsignif.args = list(textsize = 3, tip_length = 0.01),
                            ...) {
   # creating a column for group combinations
-  mpc_df %<>% dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
+  mpc_df %<>% mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
     # decide what needs to be displayed
-    if (grepl("^s", pairwise.display)) mpc_df %<>% dplyr::filter(p.value < 0.05)
-    if (grepl("^n", pairwise.display)) mpc_df %<>% dplyr::filter(p.value >= 0.05)
+    if (grepl("^s", pairwise.display)) mpc_df %<>% filter(p.value < 0.05)
+    if (grepl("^n", pairwise.display)) mpc_df %<>% filter(p.value >= 0.05)
 
     # proceed only if there are any significant comparisons to display
     if (dim(mpc_df)[[1]] == 0L) {
@@ -149,7 +140,7 @@ ggsignif_adder <- function(plot,
   }
 
   # arrange the dataframe so that annotations are properly aligned
-  mpc_df %<>% dplyr::arrange(group1, group2)
+  mpc_df %<>% arrange(group1, group2)
 
   # adding ggsignif comparisons to the plot
   plot +
@@ -158,8 +149,8 @@ ggsignif_adder <- function(plot,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
       y_position = ggsignif_xy(
-        data %>% dplyr::pull({{ x }}),
-        data %>% dplyr::pull({{ y }})
+        data %>% pull({{ x }}),
+        data %>% pull({{ y }})
       ),
       annotations = mpc_df$label,
       test = NULL,
@@ -169,7 +160,6 @@ ggsignif_adder <- function(plot,
 }
 
 #' @name ggsignif_xy
-#' @importFrom utils combn
 #'
 #' @inheritParams ggbetweenstats
 #'
@@ -221,7 +211,7 @@ aesthetic_addon <- function(plot,
 
   # modifying the plot
   plot +
-    ggplot2::labs(
+    labs(
       x = xlab,
       y = ylab,
       title = title,
@@ -230,7 +220,7 @@ aesthetic_addon <- function(plot,
       color = xlab
     ) +
     ggtheme +
-    ggplot2::theme(legend.position = "none") +
+    theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
     ggplot.component
 }
@@ -259,19 +249,19 @@ aesthetic_addon <- function(plot,
 #'   outlier.label = Run,
 #'   outlier.coef = 2
 #' ) %>%
-#'   dplyr::arrange(outlier)
+#'   arrange(outlier)
 #' @noRd
 
 # add a logical column indicating whether a point is or isn't an outlier
 outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
-  dplyr::group_by(data, {{ x }}) %>%
-    dplyr::mutate(
+  group_by(data, {{ x }}) %>%
+    mutate(
       isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{ y }},
         method = "iqr", threshold = list("iqr" = outlier.coef)
       )), TRUE, FALSE),
       outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
     ) %>%
-    dplyr::ungroup(.)
+    ungroup(.)
 }
 
 
@@ -282,9 +272,6 @@ outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
 #'   `"anova"`).
 #' @param element Which expression is needed (`"subtitle"` or `"caption"`)
 #' @param ... Arguments passed to respective subtitle helper functions.
-#'
-#' @importFrom statsExpressions two_sample_test oneway_anova
-#' @importFrom rlang exec
 #'
 #' @noRd
 

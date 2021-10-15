@@ -115,16 +115,16 @@ be extracted. The available palettes and packages can be checked by running
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
     \item{\code{centrality.point.args}}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point} and
+arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{centrality.label.args}}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point} and
+arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{x}}{The grouping (or independent) variable from the dataframe \code{data}. In
@@ -191,10 +191,12 @@ using \code{ggstatsplot::combine_plots}.
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
 
 # the most basic function call
 grouped_ggbetweenstats(
-  data = dplyr::filter(ggplot2::mpg, drv != "4"),
+  data = filter(ggplot2::mpg, drv != "4"),
   x = year,
   y = hwy,
   grouping.var = drv
@@ -202,7 +204,7 @@ grouped_ggbetweenstats(
 
 # modifying individual plots using `ggplot.component` argument
 grouped_ggbetweenstats(
-  data = dplyr::filter(
+  data = filter(
     movies_long,
     genre \%in\% c("Action", "Comedy"),
     mpaa \%in\% c("R", "PG")
@@ -210,8 +212,7 @@ grouped_ggbetweenstats(
   x = genre,
   y = rating,
   grouping.var = mpaa,
-  results.subtitle = FALSE,
-  ggplot.component = ggplot2::scale_y_continuous(
+  ggplot.component = scale_y_continuous(
     breaks = seq(1, 9, 1),
     limits = (c(1, 9))
   )

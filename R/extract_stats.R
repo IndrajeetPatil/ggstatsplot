@@ -15,10 +15,6 @@
 #'
 #' A list of tibbles containing statistical analysis summaries.
 #'
-#' @note
-#' Note that if you want to use this function with `ggscatterstats`, you will
-#' have to set `marginal = FALSE` to return an object of `ggplot` type.
-#'
 #' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
 #'

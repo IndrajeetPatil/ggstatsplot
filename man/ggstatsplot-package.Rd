@@ -20,7 +20,7 @@ meta-analysis, and regression analyses.
 \details{
 \code{ggstatsplot}
 
-The main functions are-
+The main functions are:
 \itemize{
 \item \code{ggbetweenstats} function to produce information-rich comparison plot
 \emph{between} different groups or conditions with \code{{ggplot2}} and details from

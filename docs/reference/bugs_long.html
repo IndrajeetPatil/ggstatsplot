@@ -267,7 +267,7 @@ all anthropods. Subset of the data reported by Ryan et al. (2013).</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 372   6</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>bugs_long</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='font-weight: bold;'>subject</span> <span style='font-weight: bold;'>gender</span> <span style='font-weight: bold;'>region</span>        <span style='font-weight: bold;'>education</span> <span style='font-weight: bold;'>condition</span> <span style='font-weight: bold;'>desire</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   subject gender region        education condition desire</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>         <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>       1 Female North America some      LDLF           6</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>       2 Female North America advance   LDLF          10</span>
@@ -278,12 +278,12 @@ all anthropods. Subset of the data reported by Ryan et al. (2013).</p>
 <span class='r-in'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>bugs_long</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Rows: 372</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Columns: 6</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>subject  </span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>gender   </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Female, Female, Female, Female, Female, Female, Female, Fema~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>region   </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> North America, North America, Europe, North America, North A~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>education</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> some, advance, college, college, some, some, some, high, hig~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>condition</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDL~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>desire   </span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 6.0, 10.0, 5.0, 6.0, 3.0, 2.0, 10.0, 10.0, 9.5, 8.5, 0.0, 9.~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ subject   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ gender    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Female, Female, Female, Female, Female, Female, Female, Fema~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ region    <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> North America, North America, Europe, North America, North A~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ education <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> some, advance, college, college, some, some, some, high, hig~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ condition <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDLF", "LDL~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ desire    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 6.0, 10.0, 5.0, 6.0, 3.0, 2.0, 10.0, 10.0, 9.5, 8.5, 0.0, 9.~</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

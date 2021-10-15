@@ -4,11 +4,9 @@
 #'
 #' Common theme used across all plots generated in `{ggstatsplot}` and *assumed*
 #' by the author to be aesthetically pleasing to the user/reader. The theme is a
-#' wrapper around `ggplot2::theme_bw()`.
+#' wrapper around `theme_bw()`.
 #'
 #' @return A `ggplot` object with the `theme_ggstatsplot` theme overlaid.
-#'
-#' @import ggplot2
 #'
 #' @examples
 #' library(ggplot2)
@@ -21,15 +19,15 @@
 
 # function body
 theme_ggstatsplot <- function() {
-  ggplot2::theme_bw() +
-    ggplot2::theme(
-      axis.title = ggplot2::element_text(face = "bold"),
-      legend.text = ggplot2::element_text(size = 10),
-      legend.title = ggplot2::element_text(size = 10, face = "bold"),
-      plot.title = ggplot2::element_text(size = 12, face = "bold"),
-      plot.subtitle = ggplot2::element_text(size = 10),
-      panel.border = ggplot2::element_blank(),
-      strip.text = ggplot2::element_text(face = "bold")
+  theme_bw() +
+    theme(
+      axis.title = element_text(face = "bold"),
+      legend.text = element_text(size = 10),
+      legend.title = element_text(size = 10, face = "bold"),
+      plot.title = element_text(size = 12, face = "bold"),
+      plot.subtitle = element_text(size = 10),
+      panel.border = element_blank(),
+      strip.text = element_text(face = "bold")
     )
 }
 
@@ -42,8 +40,6 @@ theme_ggstatsplot <- function() {
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable.
 #'
-#' @importFrom rlang enquo quo_text ensym quo_is_null
-#'
 #' @examples
 #' \donttest{
 #' ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
@@ -53,13 +49,13 @@ theme_ggstatsplot <- function() {
 # function body
 grouped_list <- function(data, grouping.var = NULL) {
   # ensure the grouping variable works quoted or unquoted
-  if (rlang::quo_is_null(rlang::enquo(grouping.var))) {
+  if (quo_is_null(enquo(grouping.var))) {
     return(as_tibble(data))
   }
 
-  # creating a list; don't use `dplyr::group_list` because it removes names
+  # creating a list; don't use `group_list` because it removes names
   as_tibble(data) %>%
-    split(f = .[[rlang::quo_text(rlang::ensym(grouping.var))]], drop = TRUE)
+    split(f = .[[quo_text(ensym(grouping.var))]], drop = TRUE)
 }
 
 
@@ -74,7 +70,7 @@ grouped_list <- function(data, grouping.var = NULL) {
 # function body
 palette_message <- function(package, palette, min_length) {
   # computing the palette length
-  dplyr::filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
+  filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
     length[[1]] -> pl
 
   # check if insufficient number of colors are available in a given palette

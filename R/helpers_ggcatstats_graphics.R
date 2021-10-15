@@ -1,5 +1,4 @@
 #' @title A dataframe with descriptive labels
-#' @importFrom dplyr case_when
 #' @noRd
 
 # function body
@@ -11,58 +10,49 @@ descriptive_df <- function(data,
                            ...) {
   # creating a dataframe with counts
   cat_counter(data, {{ x }}, {{ y }}) %>%
-    dplyr::mutate(
-      .label = dplyr::case_when(
+    mutate(
+      .label = case_when(
         grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
         grepl("count|n|N", label.content) ~ .prettyNum(counts),
         TRUE ~ paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
       )
     ) %>%
     # reorder the category factor levels to order the legend
-    dplyr::mutate({{ x }} := factor({{ x }}, unique({{ x }})))
+    mutate({{ x }} := factor({{ x }}, unique({{ x }})))
 }
 
 
 #' @title Counts and percentages across grouping variables
-#'
-#' @importFrom dplyr select group_by ungroup tally n arrange desc mutate
-#'
 #' @noRd
 
 # creating a dataframe with counts
 cat_counter <- function(data, x, y = NULL, ...) {
   data %>%
-    dplyr::group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
-    dplyr::tally(name = "counts") %>%
-    dplyr::mutate(perc = (counts / sum(counts)) * 100) %>%
-    dplyr::ungroup(.) %>%
-    dplyr::arrange(dplyr::desc({{ x }})) %>%
-    dplyr::filter(counts != 0L)
+    group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
+    tally(name = "counts") %>%
+    mutate(perc = (counts / sum(counts)) * 100) %>%
+    ungroup(.) %>%
+    arrange(desc({{ x }})) %>%
+    filter(counts != 0L)
 }
 
 #' @title A dataframe with chi-squared test results
-#'
-#' @importFrom dplyr group_modify rowwise ungroup
-#' @importFrom rlang as_name ensym
-#' @importFrom statsExpressions format_num
-#' @importFrom insight format_value
-#'
 #' @noRd
 
 # combine info about sample size plus proportion test
 onesample_df <- function(data, x, y, k = 2L, ...) {
-  dplyr::full_join(
+  full_join(
     # descriptives
     x = cat_counter(data, {{ y }}) %>%
-      dplyr::mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
+      mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
     # proportion tests
-    y = dplyr::group_by(data, {{ y }}) %>%
-      dplyr::group_modify(.f = ~ chisq_test_safe(., {{ x }})) %>%
-      dplyr::ungroup(.),
-    by = rlang::as_name(rlang::ensym(y))
+    y = group_by(data, {{ y }}) %>%
+      group_modify(.f = ~ chisq_test_safe(., {{ x }})) %>%
+      ungroup(.),
+    by = as_name(ensym(y))
   ) %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
+    rowwise() %>%
+    mutate(
       .label = paste0(
         "list(~chi['gof']^2~", "(", df, ")==", format_value(statistic, k),
         ", ~italic(p)=='", format_num(p.value, k, p.value = TRUE),
@@ -70,21 +60,17 @@ onesample_df <- function(data, x, y, k = 2L, ...) {
       ),
       .p.label = paste0("list(~italic(p)=='", format_num(p.value, k, TRUE), "')")
     ) %>%
-    dplyr::ungroup()
+    ungroup()
 }
 
 
 # safer version of chi-squared test that returns NAs
 # needed to work with `group_modify` since it will not work when NULL is returned
-#
-#' @importFrom stats chisq.test
-#' @importFrom dplyr pull
-#' @importFrom parameters model_parameters standardize_names
 #'
 #' @noRd
 
 chisq_test_safe <- function(data, x, ...) {
-  xtab <- table(data %>% dplyr::pull({{ x }}))
+  xtab <- table(data %>% pull({{ x }}))
 
   # run chi-square test
   result <- tryCatch(

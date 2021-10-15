@@ -27,7 +27,7 @@
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
 #' @param point.args Additional arguments that will be passed to
-#'   `ggplot2::geom_point` geom. Please see documentation for that function to
+#'   `geom_point` geom. Please see documentation for that function to
 #'   know more about these arguments.
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
@@ -48,11 +48,11 @@
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `FALSE`).
 #' @param errorbar.args Additional arguments that will be passed to
-#'   `ggplot2::geom_errorbarh` geom. Please see documentation for that function
+#'   `geom_errorbarh` geom. Please see documentation for that function
 #'   to know more about these arguments.
 #' @param vline Decides whether to display a vertical line (Default: `"TRUE"`).
 #' @param vline.args Additional arguments that will be passed to
-#'   `ggplot2::geom_vline` geom. Please see documentation for that function to
+#'   `geom_vline` geom. Please see documentation for that function to
 #'   know more about these arguments.
 #' @param sort If `"none"` (default) do not sort, `"ascending"` sort by
 #'   increasing coefficient value, or `"descending"` sort by decreasing
@@ -91,14 +91,6 @@
 #'   is recommended that you install the GitHub versions of `parameters` and
 #'   `performance` in order to make most of this function.
 #'
-#' @import ggplot2
-#' @importFrom dplyr select mutate matches across row_number
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom tidyr unite
-#' @importFrom insight is_model find_statistic format_value
-#' @importFrom statsExpressions meta_analysis tidy_model_expressions
-#' @importFrom parameters model_parameters standardize_names
-#' @importFrom performance model_performance
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
@@ -189,7 +181,7 @@ ggcoefstats <- function(x,
       ...
     ) %>%
       parameters::standardize_names(style = "broom") %>%
-      dplyr::rename_all(~ gsub("omega2.|eta2.", "", .x))
+      rename_all(~ gsub("omega2.|eta2.", "", .x))
 
     # anova objects need further cleaning
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
@@ -205,18 +197,18 @@ ggcoefstats <- function(x,
 
   # create a new term column if it's not present
   if (!"term" %in% names(tidy_df)) {
-    tidy_df %<>% dplyr::mutate(term = paste("term", dplyr::row_number(), sep = "_"))
+    tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
   }
 
   # check for duplicate terms and columns -------------------------
 
   # a check if there are repeated terms
   # needed for maov, lqm, lqmm, etc. kind of objects
-  if (any(duplicated(dplyr::select(tidy_df, term)))) {
+  if (any(duplicated(select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
         col = "term",
-        dplyr::matches("term|variable|parameter|method|curve|response|component|contrast|group"),
+        matches("term|variable|parameter|method|curve|response|component|contrast|group"),
         remove = TRUE,
         sep = "_"
       )
@@ -233,7 +225,7 @@ ggcoefstats <- function(x,
   # if `parameters` output doesn't contain CI
   if (!"conf.low" %in% names(tidy_df)) {
     # add NAs so that only dots will be shown
-    tidy_df %<>% dplyr::mutate(conf.low = NA, conf.high = NA)
+    tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
 
     # stop displaying whiskers
     conf.int <- FALSE
@@ -251,22 +243,22 @@ ggcoefstats <- function(x,
 
     # remove NAs
     tidy_df %<>%
-      dplyr::filter(dplyr::across(
-        .cols = c(dplyr::matches("estimate|statistic|std.error|p.value")),
+      filter(across(
+        .cols = c(matches("estimate|statistic|std.error|p.value")),
         .fns = ~ !is.na(.)
       )) %>%
       statsExpressions::tidy_model_expressions(statistic, k, effsize)
 
     # only significant p-value labels are shown
     if (only.significant && "p.value" %in% names(tidy_df)) {
-      tidy_df %<>% dplyr::mutate(label = ifelse(p.value >= 0.05, NA, label))
+      tidy_df %<>% mutate(label = ifelse(p.value >= 0.05, NA, label))
     }
   }
 
   # sorting -------------------------
 
   # whether the term need to be arranged in any specified order
-  tidy_df %<>% dplyr::mutate(term = as.factor(term), .rowid = dplyr::row_number())
+  tidy_df %<>% mutate(term = as.factor(term), .rowid = row_number())
 
   # sorting factor levels
   new_order <- switch(sort,
@@ -277,9 +269,9 @@ ggcoefstats <- function(x,
 
   # sorting `term` factor levels according to new sorting order
   tidy_df %<>%
-    dplyr::mutate(term = as.character(term)) %>%
-    dplyr::mutate(term = factor(x = term, levels = term[new_order])) %>%
-    dplyr::select(-.rowid)
+    mutate(term = as.character(term)) %>%
+    mutate(term = factor(x = term, levels = term[new_order])) %>%
+    select(-.rowid)
 
   # summary caption -------------------------
 
@@ -333,14 +325,14 @@ ggcoefstats <- function(x,
   # palette check is necessary only if output is a plot
   if (output == "plot") {
     # setting up the basic architecture
-    plot <- ggplot2::ggplot(tidy_df, mapping = aes(estimate, term)) +
-      exec(ggplot2::geom_point, !!!point.args)
+    plot <- ggplot(tidy_df, mapping = aes(estimate, term)) +
+      exec(geom_point, !!!point.args)
 
     # if the confidence intervals are to be displayed on the plot
     if (conf.int) {
       plot <- plot +
         exec(
-          ggplot2::geom_errorbarh,
+          geom_errorbarh,
           data = tidy_df,
           mapping = aes(xmin = conf.low, xmax = conf.high),
           !!!errorbar.args
@@ -348,7 +340,7 @@ ggcoefstats <- function(x,
     }
 
     # if needed, adding the vertical line
-    if (vline) plot <- plot + exec(ggplot2::geom_vline, xintercept = 0, !!!vline.args)
+    if (vline) plot <- plot + exec(geom_vline, xintercept = 0, !!!vline.args)
 
     # ggrepel labels -------------------------
 
@@ -377,7 +369,7 @@ ggcoefstats <- function(x,
 
     # adding other labels to the plot
     plot <- plot +
-      ggplot2::labs(
+      labs(
         x = xlab %||% "estimate",
         y = ylab %||% "term",
         caption = caption,
@@ -385,7 +377,7 @@ ggcoefstats <- function(x,
         title = title
       ) +
       ggtheme +
-      ggplot2::theme(plot.caption = ggplot2::element_text(size = 10))
+      theme(plot.caption = element_text(size = 10))
   }
 
   # output -------------------------

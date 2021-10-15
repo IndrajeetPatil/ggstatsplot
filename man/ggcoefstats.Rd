@@ -108,17 +108,17 @@ regression coefficients are to be displayed in a single plot. Relevant only
 when the \code{output} is a plot.}
 
 \item{point.args}{Additional arguments that will be passed to
-\code{ggplot2::geom_point} geom. Please see documentation for that function to
+\code{geom_point} geom. Please see documentation for that function to
 know more about these arguments.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
-\code{ggplot2::geom_errorbarh} geom. Please see documentation for that function
+\code{geom_errorbarh} geom. Please see documentation for that function
 to know more about these arguments.}
 
 \item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
 
 \item{vline.args}{Additional arguments that will be passed to
-\code{ggplot2::geom_vline} geom. Please see documentation for that function to
+\code{geom_vline} geom. Please see documentation for that function to
 know more about these arguments.}
 
 \item{stats.labels}{Logical. Decides whether the statistic and \emph{p}-values for
@@ -143,7 +143,7 @@ be extracted. The available palettes and packages can be checked by running
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
 

@@ -94,7 +94,7 @@ favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are

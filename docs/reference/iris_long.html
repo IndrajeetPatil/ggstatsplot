@@ -264,7 +264,7 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 600   6</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 6 x 6</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>      <span style='font-weight: bold;'>id</span> <span style='font-weight: bold;'>Species</span> <span style='font-weight: bold;'>condition</span>    <span style='font-weight: bold;'>attribute</span> <span style='font-weight: bold;'>measure</span> <span style='font-weight: bold;'>value</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      id Species condition    attribute measure value</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span>     1 setosa  Sepal.Length Sepal     Length    5.1</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span>     2 setosa  Sepal.Length Sepal     Length    4.9</span>
@@ -275,12 +275,12 @@ of iris. The species are Iris setosa, versicolor, and virginica.</p>
 <span class='r-in'><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>iris_long</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Rows: 600</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Columns: 6</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>id       </span> <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>Species  </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, seto~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>condition</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepa~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>attribute</span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepa~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>measure  </span> <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Length, Length, Length, Length, Length, Length, Length, Leng~</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> $ <span style='font-weight: bold;'>value    </span> <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, ~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ id        <span style='color: #949494; font-style: italic;'>&lt;int&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ Species   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> setosa, setosa, setosa, setosa, setosa, setosa, setosa, seto~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ condition <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Sepal.Length, Sepal.Length, Sepal.Length, Sepal.Length, Sepa~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ attribute <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepal, Sepa~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ measure   <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> Length, Length, Length, Length, Length, Length, Length, Leng~</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $ value     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.8, ~</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

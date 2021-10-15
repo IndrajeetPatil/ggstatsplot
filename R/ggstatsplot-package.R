@@ -4,8 +4,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' `{ggstatsplot}` is an extension of `{ggplot2}` package. It creates
 #'   graphics with details from statistical tests included in the plots
 #'   themselves. It provides an easier `API` to generate information-rich plots
@@ -16,7 +14,10 @@
 #'   *t*-test/ANOVA, correlation analyses, contingency table analysis,
 #'   meta-analysis, and regression analyses.
 #'
-#' @details The main functions are-
+#' @details
+#'
+#' The main functions are:
+#'
 #'   - `ggbetweenstats` function to produce information-rich comparison plot
 #'   *between* different groups or conditions with `{ggplot2}` and details from
 #'   the statistical tests in the subtitle.
@@ -56,3 +57,18 @@
 #' @aliases ggstatsplot ggstatsplot-package
 #' @name ggstatsplot-package
 "_PACKAGE"
+
+## ggstatsplot namespace: start
+#'
+#' @import rlang
+#' @import dplyr
+#' @import ggplot2
+#' @import statsExpressions
+#'
+#' @importFrom insight is_model find_statistic format_value
+#' @importFrom parameters model_parameters standardize_names
+#' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
+#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
+#'
+## ggstatsplot namespace: end
+NULL

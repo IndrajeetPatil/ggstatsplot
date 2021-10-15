@@ -195,9 +195,9 @@ if (require("afex")) {
 
         set.seed(123)
         p3 <- suppressWarnings(ggwithinstats(
-          data = VR_dilemma,
-          x = modality,
-          y = score,
+          data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+          x = condition,
+          y = desire,
           type = "r",
           k = 3,
           nboot = 25,
@@ -208,9 +208,9 @@ if (require("afex")) {
 
         set.seed(123)
         p3_subtitle <- suppressWarnings(statsExpressions::two_sample_test(
-          data = VR_dilemma,
-          x = modality,
-          y = score,
+          data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+          x = condition,
+          y = desire,
           paired = TRUE,
           type = "r",
           k = 3,
@@ -219,9 +219,9 @@ if (require("afex")) {
 
         set.seed(123)
         p4 <- ggwithinstats(
-          data = VR_dilemma,
-          x = modality,
-          y = score,
+          data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+          x = condition,
+          y = desire,
           type = "np",
           k = 4,
           nboot = 15,
@@ -232,9 +232,9 @@ if (require("afex")) {
 
         set.seed(123)
         p4_subtitle <- suppressWarnings(statsExpressions::two_sample_test(
-          data = VR_dilemma,
-          x = modality,
-          y = score,
+          data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+          x = condition,
+          y = desire,
           type = "np",
           conf.level = 0.50,
           paired = TRUE,

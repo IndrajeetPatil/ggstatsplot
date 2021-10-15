@@ -287,7 +287,7 @@ test_that(
 
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(., is.factor, droplevels)
+      dplyr::mutate_if(is.factor, droplevels)
 
     # subtitle output
     set.seed(123)

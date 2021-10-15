@@ -11,9 +11,9 @@ test_that(
     # expect error when no grouping.var is specified
     expect_error(
       grouped_ggwithinstats(
-        VR_dilemma,
-        x = modality,
-        y = score
+        data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+        x = condition,
+        y = desire,
       )
     )
 
@@ -22,10 +22,10 @@ test_that(
     vdiffr::expect_doppelganger(
       title = "no outlier tagging",
       fig = grouped_ggwithinstats(
-        VR_dilemma,
-        x = modality,
-        y = score,
-        grouping.var = order,
+        data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+        x = condition,
+        y = desire,
+        grouping.var = gender,
         results.subtitle = FALSE
       )
     )
@@ -35,10 +35,10 @@ test_that(
     vdiffr::expect_doppelganger(
       title = "outlier.label not specified",
       fig = grouped_ggwithinstats(
-        VR_dilemma,
-        x = modality,
-        y = score,
-        grouping.var = order,
+        data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+        x = condition,
+        y = desire,
+        grouping.var = gender,
         ggtheme = ggplot2::theme_linedraw(),
         results.subtitle = FALSE,
         outlier.tagging = TRUE
@@ -78,8 +78,7 @@ test_that(
     skip_on_cran()
 
     # data
-    df <- bugs_long %>%
-      dplyr::filter(., region %in% c("North America"))
+    df <- dplyr::filter(bugs_long, region %in% c("North America"))
 
     # should output a list of length 2
     set.seed(123)

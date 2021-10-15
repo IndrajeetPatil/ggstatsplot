@@ -35,14 +35,6 @@
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}
 #'
-#' @import ggplot2
-#'
-#' @importFrom dplyr select mutate vars pull across everything
-#' @importFrom rlang !! enquo as_name ensym !!! exec
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom tidyr uncount drop_na
-#' @importFrom statsExpressions contingency_table
-#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
@@ -53,10 +45,10 @@
 #' library(ggstatsplot)
 #'
 #' # one sample goodness of fit proportion test
-#' ggpiestats(mtcars, vs)
+#' ggpiestats(mtcars, x = vs)
 #'
 #' # association test (or contingency table analysis)
-#' ggpiestats(mtcars, vs, cyl)
+#' ggpiestats(mtcars, x = vs, y = cyl)
 #' }
 #' @export
 
@@ -96,30 +88,30 @@ ggpiestats <- function(data,
   type <- statsExpressions::stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
-  x <- rlang::ensym(x)
-  y <- if (!rlang::quo_is_null(rlang::enquo(y))) rlang::ensym(y)
+  x <- ensym(x)
+  y <- if (!quo_is_null(enquo(y))) ensym(y)
 
   # one-way or two-way table?
-  test <- ifelse(!rlang::quo_is_null(rlang::enquo(y)), "two.way", "one.way")
+  test <- ifelse(!quo_is_null(enquo(y)), "two.way", "one.way")
 
   # creating a dataframe
   data %<>%
-    dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
+    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(.)
 
   # untable the dataframe based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% dplyr::mutate(dplyr::across(.fns = ~ droplevels(as.factor(.x))))
+  data %<>% mutate(across(.fns = ~ droplevels(as.factor(.x))))
 
   # x
-  x_levels <- nlevels(data %>% dplyr::pull({{ x }}))
+  x_levels <- nlevels(data %>% pull({{ x }}))
 
   # y
   if (test == "one.way") y_levels <- 0L
   if (test == "two.way") {
-    y_levels <- nlevels(data %>% dplyr::pull({{ y }}))
+    y_levels <- nlevels(data %>% pull({{ y }}))
     if (y_levels == 1L) bf.message <- FALSE # TODO: one-way table in `BayesFactor`
   }
 
@@ -177,8 +169,8 @@ ggpiestats <- function(data,
   palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
-  p <- ggplot2::ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
-    ggplot2::geom_col(
+  p <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
+    geom_col(
       mapping = aes(fill = {{ x }}),
       position = "fill",
       color = "black",
@@ -187,14 +179,14 @@ ggpiestats <- function(data,
 
   # whether labels need to be repelled
   if (label.repel) .fn <- ggrepel::geom_label_repel
-  if (!label.repel) .fn <- ggplot2::geom_label
+  if (!label.repel) .fn <- geom_label
 
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +
     exec(
       .fn,
       mapping = aes(label = .label, group = {{ x }}),
-      position = ggplot2::position_fill(vjust = 0.5),
+      position = position_fill(vjust = 0.5),
       min.segment.length = 0,
       fill = "white",
       alpha = 1,
@@ -202,20 +194,20 @@ ggpiestats <- function(data,
     )))
 
   # if facet_wrap *is* happening
-  if (facet) p <- p + ggplot2::facet_wrap(facets = dplyr::vars({{ y }}))
+  if (facet) p <- p + facet_wrap(facets = vars({{ y }}))
 
   # polar coordinates plus formatting
   p <- p +
-    ggplot2::coord_polar(theta = "y") +
-    ggplot2::scale_y_continuous(breaks = NULL) +
+    coord_polar(theta = "y") +
+    scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
     ggtheme +
-    ggplot2::theme(
-      panel.grid = ggplot2::element_blank(),
-      axis.ticks = ggplot2::element_blank(),
-      axis.title = ggplot2::element_blank()
+    theme(
+      panel.grid = element_blank(),
+      axis.ticks = element_blank(),
+      axis.title = element_blank()
     ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(override.aes = list(color = NA)))
+    guides(fill = guide_legend(override.aes = list(color = NA)))
 
   # sample size + proportion test ------------------------------------------
 
@@ -223,10 +215,10 @@ ggpiestats <- function(data,
   if (facet && proportion.test) {
     p <- p +
       exec(
-        ggplot2::geom_text,
+        geom_text,
         data = onesample_df,
         mapping = aes(label = .label, x = 1.65, y = 0.5),
-        position = ggplot2::position_fill(vjust = 1),
+        position = position_fill(vjust = 1),
         size = 2.8,
         parse = TRUE
       )
@@ -235,14 +227,14 @@ ggpiestats <- function(data,
   # annotations ------------------------------------------
 
   p +
-    ggplot2::labs(
+    labs(
       x = NULL,
       y = NULL,
       subtitle = subtitle,
       title = title,
       caption = caption
     ) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
+    guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
     ggplot.component
 }
 
@@ -256,8 +248,6 @@ ggpiestats <- function(data,
 #' @inheritParams ggpiestats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggpiestats -title
-#'
-#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggbarstats}}
@@ -274,8 +264,8 @@ ggpiestats <- function(data,
 #' # grouped one-sample proportion test
 #' grouped_ggpiestats(
 #'   data = mtcars,
-#'   grouping.var = am,
-#'   x = cyl
+#'   x = cyl,
+#'   grouping.var = am
 #' )
 #' }
 #' @export

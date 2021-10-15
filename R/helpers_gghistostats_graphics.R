@@ -3,8 +3,6 @@
 #' @description Helper function for adding centrality parameter value and/or a
 #'   test value for the continuous, numeric `x`-axis variable.
 #'
-#' @import ggplot2
-#'
 #' @param plot A `ggplot` object for which the labeled lines need to be added
 #'   for a test value and/or a centrality parameter (mean/median) value.
 #' @param ... Currently ignored.
@@ -24,6 +22,7 @@
 #'   x = mtcars$wt
 #' )
 #' }
+#'
 #' @keywords internal
 #' @noRd
 
@@ -42,12 +41,12 @@ histo_labeller <- function(plot,
   # adding a vertical line corresponding to centrality parameter
   plot +
     exec(
-      ggplot2::geom_vline,
+      geom_vline,
       xintercept = df_central$var[[1]],
       !!!centrality.line.args
     ) +
-    ggplot2::scale_x_continuous(
-      sec.axis = ggplot2::sec_axis(
+    scale_x_continuous(
+      sec.axis = sec_axis(
         trans = ~.,
         name = NULL,
         labels = parse(text = df_central$expression[[1]]),

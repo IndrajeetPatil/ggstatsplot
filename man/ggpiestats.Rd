@@ -131,7 +131,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
 
@@ -173,10 +173,10 @@ set.seed(123)
 library(ggstatsplot)
 
 # one sample goodness of fit proportion test
-ggpiestats(mtcars, vs)
+ggpiestats(mtcars, x = vs)
 
 # association test (or contingency table analysis)
-ggpiestats(mtcars, vs, cyl)
+ggpiestats(mtcars, x = vs, y = cyl)
 }
 }
 \seealso{

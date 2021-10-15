@@ -3,8 +3,6 @@
 #'
 #' @description
 #'
-#'
-#'
 #' Bar charts for categorical data with statistical details included in the plot
 #' as a subtitle.
 #'
@@ -16,13 +14,6 @@
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
-#' @import ggplot2
-#'
-#' @importFrom dplyr select mutate
-#' @importFrom rlang as_name ensym
-#' @importFrom tidyr uncount drop_na
-#' @importFrom statsExpressions contingency_table
-#'
 #' @inherit ggpiestats return details
 #'
 #' @examples
@@ -32,7 +23,7 @@
 #' library(ggstatsplot)
 #'
 #' # association test (or contingency table analysis)
-#' ggbarstats(mtcars, vs, cyl)
+#' ggbarstats(mtcars, x = vs, y = cyl)
 #' }
 #' @export
 
@@ -74,21 +65,21 @@ ggbarstats <- function(data,
   type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
+  c(x, y) %<-% c(ensym(x), ensym(y))
 
   # creating a dataframe
   data %<>%
-    dplyr::select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
+    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(.)
 
   # untable the dataframe based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% dplyr::mutate(dplyr::across(.fns = ~ droplevels(as.factor(.x))))
+  data %<>% mutate(across(.fns = ~ droplevels(as.factor(.x))))
 
   # TO DO: until one-way table is supported by `BayesFactor`
-  if (nlevels(data %>% dplyr::pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
+  if (nlevels(data %>% pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
   if (type == "bayes") proportion.test <- FALSE
 
   # statistical analysis ------------------------------------------
@@ -137,25 +128,25 @@ ggbarstats <- function(data,
   onesample_df <- onesample_df(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(package, palette, nlevels(data %>% dplyr::pull({{ x }})))
+  palette_message(package, palette, nlevels(data %>% pull({{ x }})))
 
   # plot
-  p <- ggplot2::ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
-    ggplot2::geom_bar(stat = "identity", position = "fill", color = "black") +
-    ggplot2::scale_y_continuous(
+  p <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
+    geom_bar(stat = "identity", position = "fill", color = "black") +
+    scale_y_continuous(
       labels = function(x) paste0(x * 100, "%"),
       breaks = seq(from = 0, to = 1, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     exec(
-      ggplot2::geom_label,
+      geom_label,
       mapping = aes(label = .label, group = {{ x }}),
-      position = ggplot2::position_fill(vjust = 0.5),
+      position = position_fill(vjust = 0.5),
       !!!label.args
     ) +
     ggtheme +
-    ggplot2::theme(panel.grid.major.x = ggplot2::element_blank()) +
-    ggplot2::guides(fill = ggplot2::guide_legend(title = legend.title %||% rlang::as_name(x))) +
+    theme(panel.grid.major.x = element_blank()) +
+    guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
 
   # sample size + proportion test ------------------------------------------
@@ -164,7 +155,7 @@ ggbarstats <- function(data,
   if (isTRUE(proportion.test)) {
     # modify plot
     p <- p +
-      ggplot2::geom_text(
+      geom_text(
         data = onesample_df,
         mapping = aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
         size = 2.8,
@@ -174,7 +165,7 @@ ggbarstats <- function(data,
 
   # adding sample size info
   p <- p +
-    ggplot2::geom_text(
+    geom_text(
       data = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
       size = 4
@@ -184,8 +175,8 @@ ggbarstats <- function(data,
 
   # preparing the plot
   p +
-    ggplot2::labs(
-      x = xlab %||% rlang::as_name(y),
+    labs(
+      x = xlab %||% as_name(y),
       y = ylab,
       subtitle = subtitle,
       title = title,
@@ -207,10 +198,6 @@ ggbarstats <- function(data,
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggbarstats -title
 #'
-#' @import ggplot2
-#'
-#' @importFrom purrr pmap
-#'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
@@ -223,12 +210,13 @@ ggbarstats <- function(data,
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # let's create a smaller dataframe
 #' diamonds_short <- ggplot2::diamonds %>%
-#'   dplyr::filter(cut %in% c("Very Good", "Ideal")) %>%
-#'   dplyr::filter(clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
-#'   dplyr::sample_frac(size = 0.05)
+#'   filter(cut %in% c("Very Good", "Ideal")) %>%
+#'   filter(clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
+#'   sample_frac(size = 0.05)
 #'
 #' # plot
 #' grouped_ggbarstats(

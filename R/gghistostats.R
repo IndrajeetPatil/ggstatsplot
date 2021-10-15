@@ -28,22 +28,15 @@
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{grouped_ggdotplotstats}}
 #'
-#' @import ggplot2
-#'
-#' @importFrom dplyr select summarize mutate
-#' @importFrom dplyr group_by n arrange
-#' @importFrom rlang enquo as_name
-#' @importFrom stats dnorm
-#' @importFrom statsExpressions one_sample_test
-#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 #'
 #' @examples
+#' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
-#' \donttest{
+#'
 #' # using defaults, but modifying which centrality parameter is to be shown
 #' gghistostats(
 #'   data = ToothGrowth,
@@ -93,13 +86,13 @@ gghistostats <- function(data,
   # data -----------------------------------
 
   # cover both quoted or unquoted arguments
-  x <- rlang::ensym(x)
+  x <- ensym(x)
 
   # if dataframe is provided
-  data <- tidyr::drop_na(dplyr::select(data, {{ x }}))
+  data <- tidyr::drop_na(select(data, {{ x }}))
 
   # a vector for convenience
-  x_vec <- data %>% dplyr::pull({{ x }})
+  x_vec <- data %>% pull({{ x }})
 
   # statistical analysis ------------------------------------------
 
@@ -142,27 +135,27 @@ gghistostats <- function(data,
   # plot -----------------------------------
 
   # adding axes info
-  plot <- ggplot2::ggplot(data, mapping = aes(x = {{ x }})) +
+  plot <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
-      ggplot2::stat_bin,
+      stat_bin,
       mapping = aes(y = ..count.., fill = ..count..),
       binwidth = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
-    ggplot2::scale_y_continuous(
-      sec.axis = ggplot2::sec_axis(
+    scale_y_continuous(
+      sec.axis = sec_axis(
         trans = ~ . / nrow(data),
         labels = function(x) paste0(x * 100, "%"),
         name = "proportion"
       )
     ) +
-    ggplot2::guides(fill = "none")
+    guides(fill = "none")
 
   # if normal curve overlay  needs to be displayed
   if (normal.curve) {
     plot <- plot +
       exec(
-        ggplot2::stat_function,
+        stat_function,
         fun = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
         args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
         !!!normal.curve.args
@@ -185,8 +178,8 @@ gghistostats <- function(data,
 
   # adding the theme and labels
   plot +
-    ggplot2::labs(
-      x = xlab %||% rlang::as_name(x),
+    labs(
+      x = xlab %||% as_name(x),
       y = "count",
       title = title,
       subtitle = subtitle,
@@ -205,7 +198,6 @@ gghistostats <- function(data,
 #' @title Grouped histograms for distribution of a numeric variable
 #' @name grouped_gghistostats
 #'
-#'
 #' @description
 #'
 #' Helper function for `ggstatsplot::gghistostats` to apply this function
@@ -215,10 +207,6 @@ gghistostats <- function(data,
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams gghistostats -title
-#'
-#' @importFrom dplyr select
-#' @importFrom rlang ensym as_name
-#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{grouped_ggdotplotstats}}
@@ -258,19 +246,19 @@ grouped_gghistostats <- function(data,
   # binwidth ------------------------------------------
 
   # maximum value for x
-  binmax <- max(dplyr::select(data, {{ x }}), na.rm = TRUE)
+  binmax <- max(select(data, {{ x }}), na.rm = TRUE)
 
   # minimum value for x
-  binmin <- min(dplyr::select(data, {{ x }}), na.rm = TRUE)
+  binmin <- min(select(data, {{ x }}), na.rm = TRUE)
 
   # number of datapoints
-  bincount <- as.integer(data %>% dplyr::count(.))
+  bincount <- as.integer(data %>% count(.))
 
   # dataframe ------------------------------------------
 
   # getting the dataframe ready
   data %<>%
-    dplyr::select({{ grouping.var }}, {{ x }}) %>%
+    select({{ grouping.var }}, {{ x }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of plots

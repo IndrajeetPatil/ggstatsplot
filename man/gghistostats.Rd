@@ -95,7 +95,7 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
 
@@ -167,10 +167,11 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \examples{
+\donttest{
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
-\donttest{
+
 # using defaults, but modifying which centrality parameter is to be shown
 gghistostats(
   data = ToothGrowth,

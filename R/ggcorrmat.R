@@ -46,7 +46,7 @@
 #' @inheritParams ggcorrplot::ggcorrplot
 #' @inheritParams ggscatterstats
 #'
-#' @import ggplot2
+#'
 #'
 #' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
@@ -114,7 +114,7 @@ ggcorrmat <- function(data,
   if (missing(cor.vars)) {
     df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
-    df <- dplyr::select(data, {{ cor.vars }})
+    df <- select(data, {{ cor.vars }})
   }
 
   # statistical analysis ------------------------------------------
@@ -181,8 +181,8 @@ ggcorrmat <- function(data,
   # plotting the correlalogram
   plot <- exec(
     ggcorrplot::ggcorrplot,
-    corr = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^r"))),
-    p.mat = as.matrix(dplyr::select(stats_df, dplyr::matches("^parameter|^p"))),
+    corr = as.matrix(select(stats_df, matches("^parameter|^r"))),
+    p.mat = as.matrix(select(stats_df, matches("^parameter|^p"))),
     sig.level = ifelse(type == "bayes", Inf, sig.level),
     ggtheme = ggtheme,
     colors = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
@@ -216,12 +216,12 @@ ggcorrmat <- function(data,
 
   # adding text details to the plot
   plot +
-    ggplot2::theme(
-      panel.grid.major = ggplot2::element_blank(),
-      panel.grid.minor = ggplot2::element_blank(),
-      legend.title = ggplot2::element_text(size = 15)
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      legend.title = element_text(size = 15)
     ) +
-    ggplot2::labs(
+    labs(
       title = title,
       subtitle = subtitle,
       caption = caption,
@@ -245,10 +245,6 @@ ggcorrmat <- function(data,
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggcorrmat -title
-#'
-#' @importFrom dplyr select bind_rows
-#' @importFrom rlang as_name ensym
-#' @importFrom purrr map pmap
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
@@ -295,7 +291,7 @@ grouped_ggcorrmat <- function(data,
   # dataframe
   data %<>%
     grouped_list({{ grouping.var }}) %>%
-    purrr::map(.f = ~ dplyr::select(.x, -{{ grouping.var }}))
+    purrr::map(.f = ~ select(.x, -{{ grouping.var }}))
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
@@ -313,6 +309,6 @@ grouped_ggcorrmat <- function(data,
       annotation.args = annotation.args
     ))
   } else {
-    return(dplyr::bind_rows(p_ls, .id = rlang::as_name(rlang::ensym(grouping.var))))
+    return(bind_rows(p_ls, .id = as_name(ensym(grouping.var))))
   }
 }

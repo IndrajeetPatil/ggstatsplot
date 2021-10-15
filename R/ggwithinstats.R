@@ -32,7 +32,6 @@
 #'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
-#' @importFrom dplyr select mutate row_number group_by ungroup anti_join
 #' @importFrom ggplot2 ggplot aes geom_point geom_boxplot geom_violin geom_path
 #'
 #' @details For details, see:
@@ -43,14 +42,13 @@
 #' # setup
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # two groups (*t*-test)
 #' ggwithinstats(
-#'   data = VR_dilemma,
-#'   x = modality,
-#'   y = score,
-#'   xlab = "Presentation modality",
-#'   ylab = "Proportion of utilitarian decisions"
+#'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x = condition,
+#'   y = desire
 #' )
 #'
 #' # more than two groups (anova)
@@ -140,23 +138,23 @@ ggwithinstats <- function(data,
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
-  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-  if (!quo_is_null(enquo(outlier.label))) rlang::ensym(outlier.label)
+  c(x, y) %<-% c(ensym(x), ensym(y))
+  if (!quo_is_null(enquo(outlier.label))) ensym(outlier.label)
 
   # convert entered stats type to a standard notation
   type <- statsExpressions::stats_type_switch(type)
 
   # creating a dataframe
   data %<>%
-    dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
-    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    dplyr::group_by({{ x }}) %>%
-    dplyr::mutate(.rowid = dplyr::row_number()) %>%
-    dplyr::ungroup(.) %>%
-    dplyr::anti_join(x = ., y = dplyr::filter(., is.na({{ y }})), by = ".rowid")
+    select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
+    group_by({{ x }}) %>%
+    mutate(.rowid = row_number()) %>%
+    ungroup(.) %>%
+    anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(data)) data %<>% dplyr::mutate(outlier.label = {{ y }})
+  if (!"outlier.label" %in% names(data)) data %<>% mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
@@ -170,14 +168,14 @@ ggwithinstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
+  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3, "t", "anova")
 
   if (results.subtitle && insight::check_if_installed("afex")) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
-      x = rlang::as_string(x),
-      y = rlang::as_string(y),
+      x = as_string(x),
+      y = as_string(y),
       effsize.type = effsize.type,
       conf.level = conf.level,
       k = k,
@@ -229,7 +227,7 @@ ggwithinstats <- function(data,
     plot <- plot +
       exec(
         .fn = ggrepel::geom_label_repel,
-        data = ~ dplyr::filter(.x, isanoutlier),
+        data = ~ filter(.x, isanoutlier),
         mapping = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         min.segment.length = 0,
         inherit.aes = FALSE,
@@ -295,9 +293,9 @@ ggwithinstats <- function(data,
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(
     plot = plot,
-    x = data %>% dplyr::pull({{ x }}),
-    xlab = xlab %||% rlang::as_name(x),
-    ylab = ylab %||% rlang::as_name(y),
+    x = data %>% pull({{ x }}),
+    xlab = xlab %||% as_name(x),
+    ylab = ylab %||% as_name(y),
     title = title,
     subtitle = subtitle,
     caption = caption,
@@ -312,18 +310,14 @@ ggwithinstats <- function(data,
 #' @title Violin plots for group or condition comparisons in within-subjects
 #'   designs repeated across all levels of a grouping variable.
 #' @name grouped_ggwithinstats
-#' @description A combined plot of comparison plot created for levels of a
-#'   grouping variable.
+#'
+#' @description
+#'
+#' A combined plot of comparison plot created for levels of a grouping variable.
 #'
 #' @inheritParams ggwithinstats
 #' @inheritDotParams ggwithinstats -title
 #' @inheritParams grouped_ggbetweenstats
-#'
-#' @import ggplot2
-#'
-#' @importFrom dplyr select
-#' @importFrom rlang enquo quo_name ensym
-#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},
 #' \code{\link{grouped_ggbetweenstats}}
@@ -335,18 +329,20 @@ ggwithinstats <- function(data,
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
+#' library(ggplot2)
 #'
 #' # the most basic function call
 #' grouped_ggwithinstats(
-#'   data = VR_dilemma,
-#'   x = modality,
-#'   y = score,
-#'   grouping.var = order,
+#'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x = condition,
+#'   y = desire,
+#'   grouping.var = gender,
 #'   type = "np", # non-parametric test
 #'   # additional modifications for **each** plot using `{ggplot2}` functions
-#'   ggplot.component = ggplot2::scale_y_continuous(
-#'     breaks = seq(0, 1, 0.1),
-#'     limits = c(0, 1)
+#'   ggplot.component = scale_y_continuous(
+#'     breaks = seq(0, 10, 1),
+#'     limits = c(0, 10)
 #'   )
 #' )
 #' }

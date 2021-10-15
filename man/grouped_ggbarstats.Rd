@@ -89,7 +89,7 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
     \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{package}}{Name of the package from which the given palette is to
@@ -135,12 +135,13 @@ For details, see:
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
+library(dplyr, warn.conflicts = FALSE)
 
 # let's create a smaller dataframe
 diamonds_short <- ggplot2::diamonds \%>\%
-  dplyr::filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
-  dplyr::filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
-  dplyr::sample_frac(size = 0.05)
+  filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
+  filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
+  sample_frac(size = 0.05)
 
 # plot
 grouped_ggbarstats(

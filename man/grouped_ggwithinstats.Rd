@@ -134,10 +134,10 @@ to be:
 
 Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{centrality.point.args}}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point} and
+arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{centrality.label.args}}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point} and
+arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
@@ -157,7 +157,7 @@ the \code{geom_violin}.}
 arguments to be passed to \code{ggsignif::geom_signif}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{package}}{Name of the package from which the given palette is to
@@ -190,26 +190,27 @@ separately specified here.}
 \code{patchwork::plot_annotation}.}
 }
 \description{
-A combined plot of comparison plot created for levels of a
-grouping variable.
+A combined plot of comparison plot created for levels of a grouping variable.
 }
 \examples{
 \donttest{
 # to get reproducible results from bootstrapping
 set.seed(123)
 library(ggstatsplot)
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
 
 # the most basic function call
 grouped_ggwithinstats(
-  data = VR_dilemma,
-  x = modality,
-  y = score,
-  grouping.var = order,
+  data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x = condition,
+  y = desire,
+  grouping.var = gender,
   type = "np", # non-parametric test
   # additional modifications for **each** plot using `{ggplot2}` functions
-  ggplot.component = ggplot2::scale_y_continuous(
-    breaks = seq(0, 1, 0.1),
-    limits = c(0, 1)
+  ggplot.component = scale_y_continuous(
+    breaks = seq(0, 10, 1),
+    limits = c(0, 10)
   )
 )
 }

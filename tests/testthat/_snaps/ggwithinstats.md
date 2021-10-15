@@ -430,13 +430,13 @@
       within(pb3$plot$labels, rm(subtitle))
     Output
       $x
-      [1] "modality"
+      [1] "condition"
       
       $y
-      [1] "score"
+      [1] "desire"
       
       $colour
-      [1] "modality"
+      [1] "condition"
       
       $title
       NULL
@@ -460,13 +460,13 @@
       within(pb4$plot$labels, rm(subtitle))
     Output
       $x
-      [1] "modality"
+      [1] "condition"
       
       $y
-      [1] "score"
+      [1] "desire"
       
       $colour
-      [1] "modality"
+      [1] "condition"
       
       $title
       NULL

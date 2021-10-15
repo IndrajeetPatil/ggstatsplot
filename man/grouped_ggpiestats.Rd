@@ -67,7 +67,7 @@ return \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{caption}}{The text for the plot caption.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{package}}{Name of the package from which the given palette is to
@@ -137,8 +137,8 @@ library(ggstatsplot)
 # grouped one-sample proportion test
 grouped_ggpiestats(
   data = mtcars,
-  grouping.var = am,
-  x = cyl
+  x = cyl,
+  grouping.var = am
 )
 }
 }

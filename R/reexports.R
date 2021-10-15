@@ -51,7 +51,3 @@ rlang::`%||%`
 #' @export
 #' @importFrom rlang ":="
 rlang::`:=`
-
-#' @export
-#' @importFrom datawizard winsorize
-datawizard::winsorize

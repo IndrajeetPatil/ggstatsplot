@@ -38,8 +38,8 @@ ggbetweenstats(
   outlier.shape = 19,
   outlier.color = "black",
   outlier.label.args = list(size = 3),
-  point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha
-    = 0.4, size = 3, stroke = 0),
+  point.args = list(position = position_jitterdodge(dodge.width = 0.6), alpha = 0.4,
+    size = 3, stroke = 0),
   violin.args = list(width = 0.5, alpha = 0.2),
   ggsignif.args = list(textsize = 3, tip_length = 0.01),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -175,7 +175,7 @@ to be:
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point} and
+arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
 \item{outlier.tagging}{Decides whether outliers should be tagged (Default:
@@ -210,7 +210,7 @@ arguments to be passed to \code{ggsignif::geom_signif}.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
 
@@ -257,7 +257,6 @@ ggbetweenstats(
   x = Expt,
   y = Speed,
   type = "robust",
-  plot.type = "box",
   xlab = "The experiment number",
   ylab = "Speed-of-light measurement",
   pairwise.comparisons = TRUE,

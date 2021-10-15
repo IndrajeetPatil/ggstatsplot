@@ -13,9 +13,6 @@
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #'
-#' @importFrom dplyr row_number percent_rank pull
-#' @importFrom statsExpressions one_sample_test
-#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
@@ -79,21 +76,21 @@ ggdotplotstats <- function(data,
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
-  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
+  c(x, y) %<-% c(ensym(x), ensym(y))
 
   # creating a dataframe
   data %<>%
-    dplyr::select({{ x }}, {{ y }}) %>%
+    select({{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
-    dplyr::mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
-    dplyr::group_by({{ y }}) %>%
-    dplyr::summarise({{ x }} := mean({{ x }})) %>%
-    dplyr::ungroup(.) %>%
+    mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
+    group_by({{ y }}) %>%
+    summarise({{ x }} := mean({{ x }})) %>%
+    ungroup(.) %>%
     # rank ordering the data
-    dplyr::arrange({{ x }}) %>%
-    dplyr::mutate(
-      percent_rank = dplyr::percent_rank({{ x }}),
-      rank = dplyr::row_number()
+    arrange({{ x }}) %>%
+    mutate(
+      percent_rank = percent_rank({{ x }}),
+      rank = row_number()
     )
 
   # statistical analysis ------------------------------------------
@@ -137,13 +134,13 @@ ggdotplotstats <- function(data,
   # plot -----------------------------------
 
   # creating the basic plot
-  plot <- ggplot2::ggplot(data, mapping = aes({{ x }}, y = rank)) +
-    exec(ggplot2::geom_point, !!!point.args) +
-    ggplot2::scale_y_continuous(
+  plot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
+    exec(geom_point, !!!point.args) +
+    scale_y_continuous(
       name = ylab,
-      labels = data %>% dplyr::pull({{ y }}),
+      labels = data %>% pull({{ y }}),
       breaks = data$rank,
-      sec.axis = ggplot2::dup_axis(
+      sec.axis = dup_axis(
         name = "percentile",
         breaks = seq(1, nrow(data), (nrow(data) - 1) / 4),
         labels = 25 * 0:4
@@ -155,7 +152,7 @@ ggdotplotstats <- function(data,
   if (isTRUE(centrality.plotting)) {
     plot <- histo_labeller(
       plot,
-      x = data %>% dplyr::pull({{ x }}),
+      x = data %>% pull({{ x }}),
       type = statsExpressions::stats_type_switch(centrality.type),
       tr = tr,
       k = k,
@@ -167,9 +164,9 @@ ggdotplotstats <- function(data,
 
   # specifying theme and labels for the final plot
   plot +
-    ggplot2::labs(
-      x = xlab %||% rlang::as_name(x),
-      y = ylab %||% rlang::as_name(y),
+    labs(
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
       title = title,
       subtitle = subtitle,
       caption = caption
@@ -192,10 +189,6 @@ ggdotplotstats <- function(data,
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggdotplotstats -title
 #'
-#' @importFrom dplyr select
-#' @importFrom rlang as_name ensym
-#' @importFrom purrr pmap
-#'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{gghistostats}}
 #'
@@ -207,9 +200,10 @@ ggdotplotstats <- function(data,
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # removing factor level with very few no. of observations
-#' df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
+#' df <- filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 #'
 #' # plot
 #' grouped_ggdotplotstats(

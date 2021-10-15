@@ -16,9 +16,9 @@
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed
-#'   to `ggplot2::geom_smooth` geom used to display the regression line.
+#'   to `geom_smooth` geom used to display the regression line.
 #' @param point.args A list of additional aesthetic arguments to be passed
-#'   to `ggplot2::geom_point` geom used to display the raw data points.
+#'   to `geom_point` geom used to display the raw data points.
 #' @param marginal Decides whether marginal distributions will be plotted on
 #'   axes using `ggside` functions. The default is `TRUE`. The package
 #'   `ggside` must already be installed by the user.
@@ -39,13 +39,6 @@
 #' @inheritParams ggbetweenstats
 #' @inheritParams gghistostats
 #'
-#' @import ggplot2
-#'
-#' @importFrom dplyr filter pull
-#' @importFrom stats lm
-#' @importFrom rlang !! enquo quo_name ensym as_name enexpr exec !!!
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom statsExpressions corr_test
 #'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -63,6 +56,7 @@
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # creating dataframe with rownames converted to a new column
 #' mtcars_new <- as_tibble(mtcars, rownames = "car")
@@ -76,7 +70,7 @@
 #'     label.var = car,
 #'     label.expression = wt < 4 & mpg < 20
 #'   ) + # making further customization with `{ggplot2}` functions
-#'     ggplot2::geom_rug(sides = "b")
+#'     geom_rug(sides = "b")
 #' }
 #' @export
 
@@ -135,10 +129,10 @@ ggscatterstats <- function(data,
   # data ---------------------------------------
 
   # ensure the arguments work quoted or unquoted
-  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
+  c(x, y) %<-% c(ensym(x), ensym(y))
 
   # preparing the dataframe
-  data %<>% dplyr::filter(!is.na({{ x }}), !is.na({{ y }}))
+  data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
 
@@ -180,21 +174,21 @@ ggscatterstats <- function(data,
   # plot ------------------------------------------
 
   # creating jittered positions
-  pos <- ggplot2::position_jitter(width = point.width.jitter, height = point.height.jitter)
+  pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # preparing the scatterplot
-  plot <- ggplot2::ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(ggplot2::geom_point, position = pos, !!!point.args) +
-    exec(ggplot2::geom_smooth, level = conf.level, !!!smooth.line.args)
+  plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+    exec(geom_point, position = pos, !!!point.args) +
+    exec(geom_smooth, level = conf.level, !!!smooth.line.args)
 
   # point labels --------------------------------
 
-  if (!rlang::quo_is_null(rlang::enquo(label.var))) {
-    label.var <- rlang::ensym(label.var)
+  if (!quo_is_null(enquo(label.var))) {
+    label.var <- ensym(label.var)
 
     # select data based on expression
-    if (!rlang::quo_is_null(rlang::enquo(label.expression))) {
-      label_data <- dplyr::filter(data, !!rlang::enexpr(label.expression))
+    if (!quo_is_null(enquo(label.expression))) {
+      label_data <- filter(data, !!enexpr(label.expression))
     } else {
       label_data <- data
     }
@@ -214,9 +208,9 @@ ggscatterstats <- function(data,
   # annotations -------------------------------------
 
   plot <- plot +
-    ggplot2::labs(
-      x = xlab %||% rlang::as_name(x),
-      y = ylab %||% rlang::as_name(y),
+    labs(
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
       title = title,
       subtitle = subtitle,
       caption = caption
@@ -249,18 +243,12 @@ ggscatterstats <- function(data,
 #'
 #' @description
 #'
-#' Grouped scatterplots from `{ggplot2}` combined with marginal distribution plots
-#' with statistical details added as a subtitle.
+#' Grouped scatterplots from `{ggplot2}` combined with marginal distribution
+#' plots with statistical details added as a subtitle.
 #'
 #' @inheritParams ggscatterstats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggscatterstats -title
-#'
-#' @import ggplot2
-#'
-#' @importFrom dplyr select
-#' @importFrom rlang as_name enexpr ensym
-#' @importFrom purrr pmap
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
@@ -272,36 +260,36 @@ ggscatterstats <- function(data,
 #' # to ensure reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
-#'
-#' # skipping marginal distributions so that the examples run fast
+#' library(dplyr, warn.conflicts = FALSE)
+#' library(ggplot2)
 #'
 #' # basic function call
 #' grouped_ggscatterstats(
-#'   data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
+#'   data = filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x = length,
 #'   y = rating,
 #'   type = "robust",
 #'   grouping.var = genre,
-#'   ggplot.component = list(ggplot2::geom_rug(sides = "b"))
+#'   ggplot.component = list(geom_rug(sides = "b"))
 #' )
 #'
 #' # using labeling
 #' # (also show how to modify basic plot from within function call)
 #' grouped_ggscatterstats(
-#'   data = dplyr::filter(ggplot2::mpg, cyl != 5),
+#'   data = filter(ggplot2::mpg, cyl != 5),
 #'   x = displ,
 #'   y = hwy,
 #'   grouping.var = cyl,
 #'   type = "robust",
 #'   label.var = manufacturer,
 #'   label.expression = hwy > 25 & displ > 2.5,
-#'   ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
+#'   ggplot.component = scale_y_continuous(sec.axis = dup_axis())
 #' )
 #'
 #' # labeling without expression
 #'
 #' grouped_ggscatterstats(
-#'   data = dplyr::filter(
+#'   data = filter(
 #'     movies_long,
 #'     rating == 7,
 #'     genre %in% c("Drama", "Comedy")

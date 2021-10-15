@@ -45,7 +45,8 @@ MINOR CHANGES
   - Gets rid of `ipmisc` dependency.
 
   - Removes `movies_wide` dataset, which was virtually identical to
-    `movies_long` dataset and was not used anywhere in the package.
+    `movies_long` dataset and was not used anywhere in the package. Also removes
+    the unused `VR_dilemma` dataset.
 
 # ggstatsplot 0.8.0
 

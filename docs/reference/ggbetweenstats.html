@@ -271,8 +271,8 @@ subtitle.</p>
   outlier.shape <span class='op'>=</span> <span class='fl'>19</span>,
   outlier.color <span class='op'>=</span> <span class='st'>"black"</span>,
   outlier.label.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
-  point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span><span class='op'>(</span>dodge.width <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>, alpha
-    <span class='op'>=</span> <span class='fl'>0.4</span>, size <span class='op'>=</span> <span class='fl'>3</span>, stroke <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
+  point.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/position_jitterdodge.html'>position_jitterdodge</a></span><span class='op'>(</span>dodge.width <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span>,
+    size <span class='op'>=</span> <span class='fl'>3</span>, stroke <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
   violin.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.5</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>,
   ggsignif.args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>textsize <span class='op'>=</span> <span class='fl'>3</span>, tip_length <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span>,
   ggtheme <span class='op'>=</span> <span class='fu'>ggstatsplot</span><span class='fu'>::</span><span class='fu'><a href='theme_ggstatsplot.html'>theme_ggstatsplot</a></span><span class='op'>(</span><span class='op'>)</span>,
@@ -454,7 +454,7 @@ to be:</p><ul>
     <tr>
       <th>centrality.point.args, centrality.label.args</th>
       <td><p>A list of additional aesthetic
-arguments to be passed to <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>ggplot2::geom_point</a></code> and
+arguments to be passed to <code>geom_point</code> and
 <code><a href='https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html'>ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></td>
     </tr>
     <tr>
@@ -509,7 +509,7 @@ arguments to be passed to <code><a href='https://const-ae.github.io/ggsignif//re
       <th>ggtheme</th>
       <td><p>A <code>{ggplot2}</code> theme. Default value is
 <code><a href='theme_ggstatsplot.html'>ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
+<code><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw()</a></code>), or themes from extension packages are allowed
 (e.g., <code><a href='https://rdrr.io/pkg/ggthemes/man/theme_fivethirtyeight.html'>ggthemes::theme_fivethirtyeight()</a></code>, <code><a href='https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_ps.html'>hrbrthemes::theme_ipsum_ps()</a></code>,
 etc.).</p></td>
     </tr>
@@ -567,7 +567,6 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <span class='r-in'>  x <span class='op'>=</span> <span class='va'>Expt</span>,</span>
 <span class='r-in'>  y <span class='op'>=</span> <span class='va'>Speed</span>,</span>
 <span class='r-in'>  type <span class='op'>=</span> <span class='st'>"robust"</span>,</span>
-<span class='r-in'>  plot.type <span class='op'>=</span> <span class='st'>"box"</span>,</span>
 <span class='r-in'>  xlab <span class='op'>=</span> <span class='st'>"The experiment number"</span>,</span>
 <span class='r-in'>  ylab <span class='op'>=</span> <span class='st'>"Speed-of-light measurement"</span>,</span>
 <span class='r-in'>  pairwise.comparisons <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>

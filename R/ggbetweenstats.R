@@ -99,28 +99,18 @@
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
-#'   arguments to be passed to `ggplot2::geom_point` and
+#'   arguments to be passed to `geom_point` and
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
 #' @param ggtheme A `{ggplot2}` theme. Default value is
 #'   `ggstatsplot::theme_ggstatsplot()`. Any of the `{ggplot2}` themes (e.g.,
-#'   `ggplot2::theme_bw()`), or themes from extension packages are allowed
+#'   `theme_bw()`), or themes from extension packages are allowed
 #'   (e.g., `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
 #'   etc.).
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
 #' @inheritParams statsExpressions::one_sample_test
-#'
-#' @import ggplot2
-#'
-#' @importFrom dplyr select group_by arrange mutate
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom rlang enquo as_name as_string
-#' @importFrom ggrepel geom_label_repel
-#' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
-#' @importFrom ggsignif geom_signif
-#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
@@ -143,7 +133,6 @@
 #'   x = Expt,
 #'   y = Speed,
 #'   type = "robust",
-#'   plot.type = "box",
 #'   xlab = "The experiment number",
 #'   ylab = "Speed-of-light measurement",
 #'   pairwise.comparisons = TRUE,
@@ -196,7 +185,7 @@ ggbetweenstats <- function(data,
                            outlier.color = "black",
                            outlier.label.args = list(size = 3),
                            point.args = list(
-                             position = ggplot2::position_jitterdodge(dodge.width = 0.60),
+                             position = position_jitterdodge(dodge.width = 0.60),
                              alpha = 0.4,
                              size = 3,
                              stroke = 0
@@ -222,17 +211,17 @@ ggbetweenstats <- function(data,
   type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
-  outlier.label <- if (!quo_is_null(enquo(outlier.label))) rlang::ensym(outlier.label)
+  c(x, y) %<-% c(ensym(x), ensym(y))
+  outlier.label <- if (!quo_is_null(enquo(outlier.label))) ensym(outlier.label)
 
   # creating a dataframe
   data %<>%
-    dplyr::select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     tidyr::drop_na(.) %>%
-    dplyr::mutate({{ x }} := droplevels(as.factor({{ x }})))
+    mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   # if outlier.label column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(data)) data %<>% dplyr::mutate(outlier.label = {{ y }})
+  if (!"outlier.label" %in% names(data)) data %<>% mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
@@ -246,14 +235,14 @@ ggbetweenstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
+  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3, "t", "anova")
 
   if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data = data,
-      x = rlang::as_string(x),
-      y = rlang::as_string(y),
+      x = as_string(x),
+      y = as_string(y),
       effsize.type = effsize.type,
       conf.level = conf.level,
       var.equal = var.equal,
@@ -287,10 +276,10 @@ ggbetweenstats <- function(data,
   # plot -----------------------------------
 
   # first add only the points which are *not* outliers
-  plot <- ggplot2::ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+  plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(
-      ggplot2::geom_point,
-      data = ~ dplyr::filter(.x, !isanoutlier),
+      geom_point,
+      data = ~ filter(.x, !isanoutlier),
       aes(color = {{ x }}),
       !!!point.args
     )
@@ -299,8 +288,8 @@ ggbetweenstats <- function(data,
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
       exec(
-        ggplot2::geom_point,
-        data = ~ dplyr::filter(.x, isanoutlier),
+        geom_point,
+        data = ~ filter(.x, isanoutlier),
         aes(color = {{ x }}),
         !!!point.args
       )
@@ -310,8 +299,8 @@ ggbetweenstats <- function(data,
   if (plot.type == "violin" && isTRUE(outlier.tagging)) {
     plot <- plot +
       # add all outliers in
-      ggplot2::geom_point(
-        data = ~ dplyr::filter(.x, isanoutlier),
+      geom_point(
+        data = ~ filter(.x, isanoutlier),
         size = 3,
         stroke = 0,
         alpha = 0.7,
@@ -323,7 +312,7 @@ ggbetweenstats <- function(data,
   # adding a boxplot
   if (plot.type %in% c("box", "boxviolin")) {
     if (isTRUE(outlier.tagging)) {
-      .f <- ggplot2::stat_boxplot
+      .f <- stat_boxplot
       outlier_list <- list(
         outlier.shape = outlier.shape,
         outlier.size = 3,
@@ -331,8 +320,8 @@ ggbetweenstats <- function(data,
         outlier.color = outlier.color
       )
     } else {
-      .f <- ggplot2::geom_boxplot
-      outlier_list <- list(outlier.shape = NA, position = ggplot2::position_dodge(width = NULL))
+      .f <- geom_boxplot
+      outlier_list <- list(outlier.shape = NA, position = position_dodge(width = NULL))
     }
 
     # add a boxplot
@@ -349,7 +338,7 @@ ggbetweenstats <- function(data,
 
   # add violin geom
   if (plot.type %in% c("violin", "boxviolin")) {
-    plot <- plot + exec(ggplot2::geom_violin, !!!violin.args)
+    plot <- plot + exec(geom_violin, !!!violin.args)
   }
 
   # outlier labeling -----------------------------
@@ -363,7 +352,7 @@ ggbetweenstats <- function(data,
     plot <- plot +
       exec(
         .fn = ggrepel::geom_label_repel,
-        data = ~ dplyr::filter(.x, isanoutlier),
+        data = ~ filter(.x, isanoutlier),
         mapping = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         min.segment.length = 0,
         inherit.aes = FALSE,
@@ -428,9 +417,9 @@ ggbetweenstats <- function(data,
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(
     plot = plot,
-    x = data %>% dplyr::pull({{ x }}),
-    xlab = xlab %||% rlang::as_name(x),
-    ylab = ylab %||% rlang::as_name(y),
+    x = data %>% pull({{ x }}),
+    xlab = xlab %||% as_name(x),
+    ylab = ylab %||% as_name(y),
     title = title,
     subtitle = subtitle,
     caption = caption,
@@ -457,10 +446,6 @@ ggbetweenstats <- function(data,
 #' @inheritParams combine_plots
 #' @inheritDotParams ggbetweenstats -title
 #'
-#' @import ggplot2
-#'
-#' @importFrom purrr pmap
-#'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
@@ -471,10 +456,12 @@ ggbetweenstats <- function(data,
 #' # to get reproducible results from bootstrapping
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
+#' library(ggplot2)
 #'
 #' # the most basic function call
 #' grouped_ggbetweenstats(
-#'   data = dplyr::filter(ggplot2::mpg, drv != "4"),
+#'   data = filter(ggplot2::mpg, drv != "4"),
 #'   x = year,
 #'   y = hwy,
 #'   grouping.var = drv
@@ -482,7 +469,7 @@ ggbetweenstats <- function(data,
 #'
 #' # modifying individual plots using `ggplot.component` argument
 #' grouped_ggbetweenstats(
-#'   data = dplyr::filter(
+#'   data = filter(
 #'     movies_long,
 #'     genre %in% c("Action", "Comedy"),
 #'     mpaa %in% c("R", "PG")
@@ -490,8 +477,7 @@ ggbetweenstats <- function(data,
 #'   x = genre,
 #'   y = rating,
 #'   grouping.var = mpaa,
-#'   results.subtitle = FALSE,
-#'   ggplot.component = ggplot2::scale_y_continuous(
+#'   ggplot.component = scale_y_continuous(
 #'     breaks = seq(1, 9, 1),
 #'     limits = (c(1, 9))
 #'   )

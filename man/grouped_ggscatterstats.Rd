@@ -31,9 +31,9 @@ quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
     \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
-to \code{ggplot2::geom_smooth} geom used to display the regression line.}
+to \code{geom_smooth} geom used to display the regression line.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed
-to \code{ggplot2::geom_point} geom used to display the raw data points.}
+to \code{geom_point} geom used to display the raw data points.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
 axes using \code{ggside} functions. The default is \code{TRUE}. The package
 \code{ggside} must already be installed by the user.}
@@ -102,7 +102,7 @@ variable names for \code{x} and \code{y} will be used.}
     \item{\code{caption}}{The text for the plot caption.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{ggplot2::theme_bw()}), or themes from extension packages are allowed
+\code{theme_bw()}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.).}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
@@ -129,8 +129,8 @@ separately specified here.}
 \code{patchwork::plot_annotation}.}
 }
 \description{
-Grouped scatterplots from \code{{ggplot2}} combined with marginal distribution plots
-with statistical details added as a subtitle.
+Grouped scatterplots from \code{{ggplot2}} combined with marginal distribution
+plots with statistical details added as a subtitle.
 }
 \details{
 For details, see:
@@ -140,36 +140,36 @@ For details, see:
 # to ensure reproducibility
 set.seed(123)
 library(ggstatsplot)
-
-# skipping marginal distributions so that the examples run fast
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
 
 # basic function call
 grouped_ggscatterstats(
-  data = dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama"),
+  data = filter(movies_long, genre == "Comedy" | genre == "Drama"),
   x = length,
   y = rating,
   type = "robust",
   grouping.var = genre,
-  ggplot.component = list(ggplot2::geom_rug(sides = "b"))
+  ggplot.component = list(geom_rug(sides = "b"))
 )
 
 # using labeling
 # (also show how to modify basic plot from within function call)
 grouped_ggscatterstats(
-  data = dplyr::filter(ggplot2::mpg, cyl != 5),
+  data = filter(ggplot2::mpg, cyl != 5),
   x = displ,
   y = hwy,
   grouping.var = cyl,
   type = "robust",
   label.var = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
-  ggplot.component = ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())
+  ggplot.component = scale_y_continuous(sec.axis = dup_axis())
 )
 
 # labeling without expression
 
 grouped_ggscatterstats(
-  data = dplyr::filter(
+  data = filter(
     movies_long,
     rating == 7,
     genre \%in\% c("Drama", "Comedy")
