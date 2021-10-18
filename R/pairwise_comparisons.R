@@ -41,6 +41,9 @@
 #' @importFrom WRS2 lincon rmmcp
 #' @importFrom PMCMRplus durbinAllPairsTest kwAllPairsDunnTest gamesHowellTest
 #'
+#' @references For more, see:
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html>
+#'
 #' @examples
 #' \donttest{
 #' # for reproducibility

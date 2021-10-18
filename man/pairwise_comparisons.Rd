@@ -223,3 +223,7 @@ pairwise_comparisons(
 )
 }
 }
+\references{
+For more, see:
+\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html}
+}

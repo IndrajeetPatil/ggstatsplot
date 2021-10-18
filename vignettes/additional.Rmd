@@ -31,46 +31,48 @@ website for this package: <br>
 ## Vignettes for individual functions
 
   - `ggbetweenstats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
   - `ggwithinstats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
   - `ggcorrmat`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 
   - `gghistostats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 
   - `ggdotplotstats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 
   - `ggpiestats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
   - `ggscatterstats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 
   - `ggcoefstats`:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ## General vignettes
 
-  - Frequently Asked Questions (FAQ)-
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>)
+  - Frequently Asked Questions (FAQ):
+  <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>
 
   - Graphic design and statistical reporting principles guiding `{ggstatsplot}`
     development:
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>)
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>
 
-  - Examples illustrating how to use functional programming package like `purrr`
-    to extend `{ggstatsplot}` functionality-
-    (<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>)
+  - Examples illustrating how to use `purrr` to extend `{ggstatsplot}` functionality:
+    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+
+- Pairwise comparisons with `{ggstatsplot}`:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html>
 
 # Publication
 
 A journal articles describing philosophy and principles behind this package:
-(<https://joss.theoj.org/papers/10.21105/joss.03167>)
+<https://joss.theoj.org/papers/10.21105/joss.03167>
 
 # Presentation
 
@@ -78,7 +80,7 @@ In addition to these vignettes, another quick way to get an overview of this
 package is to go through the following slides:
 <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
-# Backend of `{ggstatsplot}`
+# Statistical backend of `{ggstatsplot}`
 
 The `{statsExpressions}` package forms the statistical backend that processes data
 and creates dataframes and expressions containing results from statistical
