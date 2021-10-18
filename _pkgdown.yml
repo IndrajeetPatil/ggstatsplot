@@ -90,6 +90,7 @@ articles:
     desc: Salad of various things
     contents:
     - additional
+    - web_only/pairwise
     - web_only/faq
     - web_only/purrr_examples
     - web_only/principles

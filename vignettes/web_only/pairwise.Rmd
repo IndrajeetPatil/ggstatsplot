@@ -1,0 +1,277 @@
+---
+title: "Pairwise comparisons with `{ggstatsplot}`"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    toc: true
+    eval: FALSE
+    warning: FALSE
+    message: FALSE
+vignette: >
+  %\VignetteIndexEntry{Pairwise comparisons with `{ggstatsplot}`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+# pretty tibble printing
+options(
+  tibble.width = Inf,
+  pillar.bold = TRUE,
+  pillar.neg = TRUE,
+  pillar.subtle_num = TRUE,
+  pillar.min_chars = Inf
+)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  dpi = 300,
+  warning = FALSE,
+  message = FALSE,
+  out.width = "100%",
+  comment = "#>",
+  package.startup.message = FALSE
+)
+```
+
+---
+
+You can cite this package/vignette as:
+
+```{r citation, echo=FALSE, comment = ""}
+citation("ggstatsplot")
+```
+
+---
+
+# Introduction
+
+Pairwise comparisons with `{ggstatsplot}`.
+
+# Summary of types of statistical analyses
+
+Following table contains a brief summary of the currently supported pairwise
+comparison tests-
+
+## Between-subjects design
+
+Type | Equal variance? | Test | *p*-value adjustment? | Function used
+----------- | --- | ------------------------- | --- | -----
+Parametric | No | Games-Howell test | ✅ | `stats::pairwise.t.test`
+Parametric | Yes | Student's *t*-test | ✅ | `PMCMRplus::gamesHowellTest`
+Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
+Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
+Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
+
+## Within-subjects design
+
+Type | Test | *p*-value adjustment? | Function used
+----------- | ---------------------------- | --- | -----
+Parametric | Student's *t*-test | ✅ | `stats::pairwise.t.test`
+Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest` 
+Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
+Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
+
+# Examples
+
+Here we will see specific examples of how to use this function for different
+types of
+
+  - designs (between or within subjects)
+  - statistics (parametric, non-parametric, robust, Bayesian)
+  - *p*-value adjustment methods
+
+## Between-subjects design
+
+```{r}
+# for reproducibility
+set.seed(123)
+library(ggstatsplot)
+library(statsExpressions) # for data
+
+# parametric
+# if `var.equal = TRUE`, then Student's *t*-test will be run
+pairwise_comparisons(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "parametric",
+  var.equal = TRUE,
+  paired = FALSE,
+  p.adjust.method = "bonferroni"
+)
+
+# if `var.equal = FALSE`, then Games-Howell test will be run
+pairwise_comparisons(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "parametric",
+  var.equal = FALSE,
+  paired = FALSE,
+  p.adjust.method = "bonferroni"
+)
+
+# non-parametric
+pairwise_comparisons(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "nonparametric",
+  paired = FALSE,
+  p.adjust.method = "none"
+)
+
+# robust
+pairwise_comparisons(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "robust",
+  paired = FALSE,
+  p.adjust.method = "fdr"
+)
+
+# Bayesian
+pairwise_comparisons(
+  data = ggplot2::msleep,
+  x = vore,
+  y = brainwt,
+  type = "bayes",
+  paired = FALSE
+)
+```
+
+
+## Within-subjects design
+
+```{r}
+# for reproducibility
+set.seed(123)
+
+# parametric
+pairwise_comparisons(
+  data = bugs_long,
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  type = "parametric",
+  paired = TRUE,
+  p.adjust.method = "BH"
+)
+
+# non-parametric
+pairwise_comparisons(
+  data = bugs_long,
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  type = "nonparametric",
+  paired = TRUE,
+  p.adjust.method = "BY"
+)
+
+# robust
+pairwise_comparisons(
+  data = bugs_long,
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  type = "robust",
+  paired = TRUE,
+  p.adjust.method = "hommel"
+)
+
+# Bayesian
+pairwise_comparisons(
+  data = bugs_long,
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  type = "bayes",
+  paired = TRUE,
+  bf.prior = 0.77
+)
+```
+
+# Using `pairwise_comparisons()` with `ggsignif`
+
+## Example-1: between-subjects
+
+```{r ggsignif, fig.height=5}
+# needed libraries
+set.seed(123)
+library(ggplot2)
+library(ggsignif)
+
+# converting to factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+# creating a basic plot
+p <- ggplot(mtcars, aes(cyl, wt)) +
+  geom_boxplot()
+
+# using `pairwise_comparisons()` package to create a dataframe with results
+set.seed(123)
+(df <-
+  pairwise_comparisons(mtcars, cyl, wt) %>%
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
+  dplyr::arrange(group1))
+
+# using `geom_signif` to display results
+# (note that you can choose not to display all comparisons)
+p +
+  ggsignif::geom_signif(
+    comparisons = list(df$groups[[1]]),
+    annotations = df$label[[1]],
+    test = NULL,
+    na.rm = TRUE,
+    parse = TRUE
+  )
+```
+
+## Example-2: within-subjects
+
+```{r ggsignif2}
+# needed libraries
+library(ggplot2)
+library(ggstatsplot)
+library(ggsignif)
+
+# creating a basic plot
+p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
+  geom_boxplot()
+
+# using `pairwise_comparisons()` package to create a dataframe with results
+set.seed(123)
+(df <-
+  pairwise_comparisons(
+    WRS2::WineTasting,
+    Wine,
+    Taste,
+    subject.id = Taster,
+    type = "bayes",
+    paired = TRUE
+  ) %>%
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
+  dplyr::arrange(group1))
+
+# using `geom_signif` to display results
+p +
+  ggsignif::geom_signif(
+    comparisons = df$groups,
+    map_signif_level = TRUE,
+    tip_length = 0.01,
+    y_position = c(6.5, 6.65, 6.8),
+    annotations = df$label,
+    test = NULL,
+    na.rm = TRUE,
+    parse = TRUE
+  )
+```
+

@@ -18,7 +18,7 @@
       "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
     );
   }
-</script><title>using `ggstatsplot` with the `purrr` package • ggstatsplot</title>
+</script><title>using `{ggstatsplot}` with the `purrr` package • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
@@ -37,7 +37,7 @@
 <script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../../extra.css" rel="stylesheet">
-<meta property="og:title" content="using `ggstatsplot` with the `purrr` package">
+<meta property="og:title" content="using `{ggstatsplot}` with the `purrr` package">
 <meta property="og:description" content="ggstatsplot">
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -112,10 +112,13 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
     </li>
     <li>
-      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
     </li>
     <li>
       <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
@@ -164,7 +167,7 @@
       </header><script src="purrr_examples_files/header-attrs-2.11.3/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>using <code>ggstatsplot</code> with the <code>purrr</code> package</h1>
+      <h1 data-toc-skip>using <code>{ggstatsplot}</code> with the <code>purrr</code> package</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
             <h4 class="date">2021-10-18</h4>
@@ -201,12 +204,12 @@ A BibTeX entry for LaTeX users is
 <div id="why-use-purrr" class="section level1">
 <h1 class="hasAnchor">
 <a href="#why-use-purrr" class="anchor"></a>Why use <code>purrr</code>?</h1>
-<p>Most of the <code>ggstatsplot</code> functions have <code>grouped_</code> variants, which are designed to quickly run the same <code>ggstatsplot</code> function across multiple levels of a <strong>single</strong> grouping variable. Although this function is useful for data exploration, it has two strong weaknesses-</p>
+<p>Most of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions have <code>grouped_</code> variants, which are designed to quickly run the same <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function across multiple levels of a <strong>single</strong> grouping variable. Although this function is useful for data exploration, it has two strong weaknesses-</p>
 <ul>
 <li><p>The arguments applied to <code>grouped_</code> function call are applied uniformly to all levels of the grouping variable when we might want to customize them for different levels of the grouping variable.</p></li>
 <li><p>Only one grouping variable can be used to repeat the analysis when in reality there can be a combination of grouping variables and the operation needs to be repeated for all resulting combinations.</p></li>
 </ul>
-<p>We will see how to overcome this limitation by combining <code>ggstatsplot</code> with the <code>purrr</code> package.</p>
+<p>We will see how to overcome this limitation by combining <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> with the <code>purrr</code> package.</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><p>While using <code><a href="https://purrr.tidyverse.org/reference/map2.html">purrr::pmap</a></code>, we <strong>must</strong> input the arguments as strings.</p></li>
@@ -218,7 +221,7 @@ A BibTeX entry for LaTeX users is
 <h1 class="hasAnchor">
 <a href="#introduction-and-methodology" class="anchor"></a>Introduction and methodology</h1>
 <p>For all the examples in this vignette we are going to build <code>list</code>s of things that we will pass along to <code>purrr</code> which will in turn return a list of plots that will be passed to <code>combine_plots</code>. As the name implies <code>combine_plots</code> merges the individual plots into one bigger plot with common labeling and aesthetics.</p>
-<p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <code>ggstatsplot</code> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code> themes.</p>
+<p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code> themes.</p>
 <p>You can pass:</p>
 <ul>
 <li><p>A single character string such as <code>xlab = "Continent"</code> or numeric such as <code>nboot = 25</code> in which case it will be reused/recycled as many times as needed.</p></li>
@@ -382,7 +385,7 @@ A BibTeX entry for LaTeX users is
 <h1 class="hasAnchor">
 <a href="#ggscatterstats" class="anchor"></a><code>ggscatterstats</code>
 </h1>
-<p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_long</code> which is from IMDB and part of the <code>ggstatsplot</code> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>.</p>
+<p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_long</code> which is from IMDB and part of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>

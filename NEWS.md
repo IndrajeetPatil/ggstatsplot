@@ -7,7 +7,9 @@ read the `NEWS` for that package:
 
 NEW FEATURES
 
-  - The `pairwise_comparisons()` function for carrying out one-way pairwise comparisons has now moved in `{ggstatsplot}` from `{pairwiseComparisons}` package.
+  - The `pairwise_comparisons()` function for carrying out one-way pairwise
+    comparisons has now moved in `{ggstatsplot}` from `{pairwiseComparisons}`
+    package.
 
 BREAKING CHANGES
 
@@ -611,10 +613,10 @@ BREAKING CHANGES
 
   - `{ggstatsplot}` continues with its conscious uncoupling that started in
     `0.1.0` release: The following functions have now been moved to
-    `{statsExpressions}` package: `subtitle_meta_parametric` and `bf_meta_message`
-    and follow a more logical nomenclature. For the same reason, `lm_effsize_ci`
-    function is also no longer exported and lives in the `groupedstats`
-    package.
+    `{statsExpressions}` package: `subtitle_meta_parametric` and
+    `bf_meta_message` and follow a more logical nomenclature. For the same
+    reason, `lm_effsize_ci` function is also no longer exported and lives in the
+    `groupedstats` package.
 
 MAJOR CHANGES
 
@@ -717,13 +719,13 @@ independent package called `pairwiseComparisons`.
 
 This uncoupling is designed to achieve two things:
 
-  - Make the code base of more manageable size in `{ggstatsplot}`, which will make
-    package development a bit easier.
+  - Make the code base of more manageable size in `{ggstatsplot}`, which will
+    make package development a bit easier.
 
   - Make the workflow more customizable since now you can prepare your own plots
     and then use `{statsExpressions}` to display results in the plot rather than
-    relying on `{ggstatsplot}` default plots which are heavily opinionated and not
-    appealing to everyone.
+    relying on `{ggstatsplot}` default plots which are heavily opinionated and
+    not appealing to everyone.
 
 BREAKING CHANGES
 
@@ -1131,8 +1133,8 @@ MAJOR CHANGES
   - `subtitle_t_robust` function can now handle dependent samples and gains
     `paired` argument.
 
-  - A number of tidyverse operators are now reexported by `{ggstatsplot}`: `%>%`,
-    `%<>%`, `%$%`.
+  - A number of tidyverse operators are now reexported by `{ggstatsplot}`:
+    `%>%`, `%<>%`, `%$%`.
 
 MINOR CHANGES
 
@@ -1386,8 +1388,9 @@ NEW FEATURES
 
 MAJOR CHANGES
 
-  - To be internally consistent, all functions in `{ggstatsplot}` use the spelling
-    `color`, rather than `colour` in some functions, while `color` in others.
+  - To be internally consistent, all functions in `{ggstatsplot}` use the
+    spelling `color`, rather than `colour` in some functions, while `color` in
+    others.
 
   - Removed the redundant argument `binwidth.adjust` from `gghistostats`
     function. This argument was relevant for the first avatar of this function,

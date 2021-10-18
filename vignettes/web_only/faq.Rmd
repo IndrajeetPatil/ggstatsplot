@@ -18,7 +18,13 @@ vignette: >
 
 ```{r setup, include=FALSE}
 # show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+options(
+  tibble.width = Inf,
+  pillar.bold = TRUE,
+  pillar.neg = TRUE,
+  pillar.subtle_num = TRUE,
+  pillar.min_chars = Inf
+)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -28,6 +34,8 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -307,7 +315,6 @@ can use it to extract actual dataframes used in `{ggstatsplot}` functions.
 library(ggstatsplot)
 library(ggplot2)
 
-
 pairwise_comparisons(mtcars, cyl, wt)
 ```
 
@@ -323,7 +330,6 @@ You will have to customize them using `pairwiseComparisons` and `ggsignif:`
 # needed libraries
 set.seed(123)
 library(ggplot2)
-
 library(ggsignif)
 library(ggstatsplot)
 

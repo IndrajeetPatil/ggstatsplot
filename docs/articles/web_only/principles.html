@@ -112,10 +112,13 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
     </li>
     <li>
-      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
     </li>
     <li>
       <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
@@ -389,10 +392,10 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 <div id="data-requirements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-requirements" class="anchor"></a>Data requirements</h2>
-<p>As an extension of <a href="https://ggplot2.tidyverse.org">ggplot2</a>, <code>ggstatsplot</code> has the same expectations about the structure of the data. More specifically,</p>
+<p>As an extension of <a href="https://ggplot2.tidyverse.org">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> has the same expectations about the structure of the data. More specifically,</p>
 <ul>
 <li><p>The data should be organized following the principles of <em>tidy data</em>, which specify how statistical structure of a data frame (variables and observations) should be mapped to physical structure (columns and rows). More specifically, tidy data means all variables have their own columns and each row corresponds to a unique observation (<span class="citation">(Wickham, 2014)</span>).</p></li>
-<li><p>All <code>ggstatsplot</code> functions remove <code>NA</code>s from variables of interest (similar to <a href="https://ggplot2.tidyverse.org">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display total sample size (<em>n</em>, either observations for between-subjects or pairs for within-subjects designs) in the subtitle to inform the user/reader about the number of observations included for both the statistical analysis and the visualization. But, when sample sizes differ <em>across</em> tests in the same function, <code>ggstatsplot</code> makes an effort to inform the user of this aspect. For example, <code>ggcorrmat</code> features several correlation test pairs and, depending on variables in a given pair, the sample sizes may vary.</p></li>
+<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from variables of interest (similar to <a href="https://ggplot2.tidyverse.org">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display total sample size (<em>n</em>, either observations for between-subjects or pairs for within-subjects designs) in the subtitle to inform the user/reader about the number of observations included for both the statistical analysis and the visualization. But, when sample sizes differ <em>across</em> tests in the same function, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this aspect. For example, <code>ggcorrmat</code> features several correlation test pairs and, depending on variables in a given pair, the sample sizes may vary.</p></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
@@ -408,7 +411,7 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 <span class="co"># variable names vector</span>
 <span class="va">var_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"REM sleep"</span>, <span class="st">"time awake"</span>, <span class="st">"brain weight"</span>, <span class="st">"body weight"</span><span class="op">)</span>
 
-<span class="co"># combining two plots using helper function in `ggstatsplot`</span>
+<span class="co"># combining two plots using helper function in `{ggstatsplot}`</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
   plotlist <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span>
     .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">msleep_no_na</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span><span class="op">)</span><span class="op">)</span>,
@@ -422,8 +425,8 @@ Sample-to-sample variation in regression estimates is displayed using confidence
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig4-1.png" alt="`ggstatsplot` functions remove `NA`s from variables of interest and display total sample size \textit{n}, but they can give more nuanced information about sample sizes when \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables." width="100%"><p class="caption">
-<code>ggstatsplot</code> functions remove <code>NA</code>s from variables of interest and display total sample size , but they can give more nuanced information about sample sizes when  differs across tests. For example, <code>ggcorrmat</code> will display () only one total sample size once when no <code>NA</code>s present, but () will instead show minimum, median, and maximum sample sizes across all correlation tests when <code>NA</code>s are present across correlation variables.
+<img src="principles_files/figure-html/fig4-1.png" alt="`{ggstatsplot}` functions remove `NA`s from variables of interest and display total sample size \textit{n}, but they can give more nuanced information about sample sizes when \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables." width="100%"><p class="caption">
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from variables of interest and display total sample size , but they can give more nuanced information about sample sizes when  differs across tests. For example, <code>ggcorrmat</code> will display () only one total sample size once when no <code>NA</code>s present, but () will instead show minimum, median, and maximum sample sizes across all correlation tests when <code>NA</code>s are present across correlation variables.
 </p>
 </div>
 </div>
@@ -432,9 +435,9 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 <a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h2>
 <p>But why would combining statistical analysis with data visualization be helpful? We list few reasons below-</p>
 <ul>
-<li>A recent survey <span class="citation">(Nuijten, Hartgerink, van Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight papers in major psychology journals contained a grossly inconsistent <em>p</em>-value that may have affected the statistical conclusion. <code>ggstatsplot</code> helps avoid such reporting errors: Since the plot and the statistical analysis are yoked together, the chances of making an error in reporting the results are minimized. One need not write the results manually or copy-paste them from a different statistics software program (like SPSS, SAS, and so on).</li>
+<li>A recent survey <span class="citation">(Nuijten, Hartgerink, van Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight papers in major psychology journals contained a grossly inconsistent <em>p</em>-value that may have affected the statistical conclusion. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the plot and the statistical analysis are yoked together, the chances of making an error in reporting the results are minimized. One need not write the results manually or copy-paste them from a different statistics software program (like SPSS, SAS, and so on).</li>
 </ul>
-<p>The default setting in <code>ggstatsplot</code> is to produce plots with statistical details included. Most often than not, these results are displayed as a <code>subtitle</code> in the plot. Great care has been taken into which details are included in statistical reporting and why.</p>
+<p>The default setting in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is to produce plots with statistical details included. Most often than not, these results are displayed as a <code>subtitle</code> in the plot. Great care has been taken into which details are included in statistical reporting and why.</p>
 <div class="figure">
 <img src="stats_reporting_format.png" alt=""><p class="caption">Template for reporting statistical details</p>
 </div>
@@ -455,7 +458,7 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 <div id="avoiding-the-p-value-error" class="section level2">
 <h2 class="hasAnchor">
 <a href="#avoiding-the-p-value-error" class="anchor"></a>Avoiding the <strong>“p-value error”</strong>:</h2>
-<p>The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p =0.000</code>, putatively due to relying on default computer software outputs <span class="citation">(Lilienfeld et al., 2015)</span>. All <em>p</em>-values displayed in <code>ggstatsplot</code> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p>
+<p>The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p =0.000</code>, putatively due to relying on default computer software outputs <span class="citation">(Lilienfeld et al., 2015)</span>. All <em>p</em>-values displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p>
 </div>
 </div>
 <div id="suggestions" class="section level1">
