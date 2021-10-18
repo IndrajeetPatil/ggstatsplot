@@ -300,13 +300,13 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
 
 # 12. How to access dataframe with results from pairwise comparisons?
 
-Behind the scenes, `{ggstatsplot}` uses `pairwiseComparisons` package. Thus, you
+Behind the scenes, `{ggstatsplot}` uses `pairwise_comparisons` function. You
 can use it to extract actual dataframes used in `{ggstatsplot}` functions.
 
 ```{r}
 library(ggstatsplot)
 library(ggplot2)
-library(pairwiseComparisons)
+
 
 pairwise_comparisons(mtcars, cyl, wt)
 ```
@@ -323,7 +323,7 @@ You will have to customize them using `pairwiseComparisons` and `ggsignif:`
 # needed libraries
 set.seed(123)
 library(ggplot2)
-library(pairwiseComparisons)
+
 library(ggsignif)
 library(ggstatsplot)
 

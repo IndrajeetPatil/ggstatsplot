@@ -52,6 +52,7 @@ reference:
   - title: Helper functions
     desc: Statistics and graphics-related helpers in `ggstatsplot`
     contents:
+      - pairwise_comparisons
       - extract_stats
       - starts_with("theme_")
       - starts_with("combine")

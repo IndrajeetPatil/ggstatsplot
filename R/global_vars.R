@@ -36,7 +36,11 @@ utils::globalVariables(
     "r.method.text",
     ".x",
     "var",
-    "renderPlot"
+    "renderPlot",
+    ".f",
+    ".fn",
+    ".ns",
+    "log_e_bf10"
   ),
   package = "ggstatsplot",
   add = FALSE

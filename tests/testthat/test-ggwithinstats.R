@@ -10,7 +10,7 @@ if (require("afex")) {
     desc = "basic plotting works - two groups",
     code = {
       skip_on_cran()
-      skip_if(getRversion() < "3.6")
+
 
       # plot
       set.seed(123)
@@ -75,7 +75,7 @@ if (require("afex")) {
     desc = "basic plotting works - more than two groups",
     code = {
       skip_on_cran()
-      skip_if(getRversion() < "3.6")
+
 
       if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
         library(WRS2)
@@ -146,7 +146,7 @@ if (require("afex")) {
     desc = "checking subtitle outputs - without NAs",
     code = {
       skip_on_cran()
-      skip_if(getRversion() < "3.6")
+
 
       if (utils::packageVersion("BayesFactor") >= package_version("0.9.12-4.3")) {
         set.seed(123)

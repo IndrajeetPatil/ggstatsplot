@@ -46,14 +46,9 @@
 #' @inheritParams ggcorrplot::ggcorrplot
 #' @inheritParams ggscatterstats
 #'
-#'
-#'
 #' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
-#' @importFrom rlang exec !!!
-#' @importFrom pairwiseComparisons p_adjust_text
 #' @importFrom correlation correlation
-#' @importFrom parameters standardize_names
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
@@ -208,7 +203,7 @@ ggcorrmat <- function(data,
       ),
       env = list(
         sig.level = sig.level,
-        adj.text = pairwiseComparisons::p_adjust_text(p.adjust.method),
+        adj.text = p_adjust_text(p.adjust.method),
         top.text = caption
       )
     )

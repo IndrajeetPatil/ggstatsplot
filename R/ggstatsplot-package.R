@@ -68,7 +68,6 @@
 #' @importFrom insight is_model find_statistic format_value
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
-#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
 #'
 ## ggstatsplot namespace: end
 NULL

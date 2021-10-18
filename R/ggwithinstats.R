@@ -31,9 +31,6 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @importFrom pairwiseComparisons pairwise_comparisons pairwise_caption
-#' @importFrom ggplot2 ggplot aes geom_point geom_boxplot geom_violin geom_path
-#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
@@ -258,7 +255,7 @@ ggwithinstats <- function(data,
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
-    mpc_df <- pairwiseComparisons::pairwise_comparisons(
+    mpc_df <- pairwise_comparisons(
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -281,7 +278,7 @@ ggwithinstats <- function(data,
     )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwiseComparisons::pairwise_caption(
+    caption <- pairwise_caption(
       caption,
       unique(mpc_df$test.details),
       ifelse(type == "bayes", "all", pairwise.display)

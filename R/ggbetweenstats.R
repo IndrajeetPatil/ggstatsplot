@@ -17,7 +17,7 @@
 #'   **significant** comparisons will be shown by default. To change this
 #'   behavior, select appropriate option with `pairwise.display` argument. The
 #'   pairwise comparison dataframes are prepared using the
-#'   `pairwiseComparisons::pairwise_comparisons` function. For more details
+#'   `pairwise_comparisons` function. For more details
 #'   about pairwise comparisons, see the documentation for that function.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
@@ -381,7 +381,7 @@ ggbetweenstats <- function(data,
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
-    mpc_df <- pairwiseComparisons::pairwise_comparisons(
+    mpc_df <- pairwise_comparisons(
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -405,7 +405,7 @@ ggbetweenstats <- function(data,
     )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwiseComparisons::pairwise_caption(
+    caption <- pairwise_caption(
       caption,
       unique(mpc_df$test.details),
       ifelse(type == "bayes", "all", pairwise.display)

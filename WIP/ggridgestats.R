@@ -176,7 +176,7 @@ ggridgestats <- function(data,
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
-    mpc_df <- pairwiseComparisons::pairwise_comparisons(
+    mpc_df <- pairwise_comparisons(
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -201,7 +201,7 @@ ggridgestats <- function(data,
     )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwiseComparisons::pairwise_caption(
+    caption <- pairwise_caption(
       caption,
       unique(mpc_df$test.details),
       ifelse(type == "bayes", "all", pairwise.display)

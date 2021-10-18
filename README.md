@@ -39,7 +39,6 @@ Linux users may encounter some installation problems. In particular, the
 `{ggstatsplot}` package depends on the `PMCMRplus` package.
 
     ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
-    ERROR: dependency ‘pairwiseComparisons’ is not available for package ‘ggstatsplot’
 
 This means that your operating system lacks `gmp` and `Rmpfr` libraries.
 

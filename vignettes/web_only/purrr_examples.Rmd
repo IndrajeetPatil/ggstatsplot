@@ -1,5 +1,5 @@
 ---
-title: "using `ggstatsplot` with the `purrr` package"
+title: "using `{ggstatsplot}` with the `purrr` package"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -13,7 +13,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{using `ggstatsplot` with the `purrr` package}
+  %\VignetteIndexEntry{using `{ggstatsplot}` with the `purrr` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -53,8 +53,8 @@ citation("ggstatsplot")
 
 # Why use `purrr`?
 
-Most of the `ggstatsplot` functions have `grouped_` variants, which are designed
-to quickly run the same `ggstatsplot` function across multiple levels of a
+Most of the `{ggstatsplot}` functions have `grouped_` variants, which are designed
+to quickly run the same `{ggstatsplot}` function across multiple levels of a
 **single** grouping variable. Although this function is useful for data
 exploration, it has two strong weaknesses-
 
@@ -66,7 +66,7 @@ exploration, it has two strong weaknesses-
    there can be a combination of grouping variables and the operation needs to
    be repeated for all resulting combinations.
 
-We will see how to overcome this limitation by combining `ggstatsplot` with the
+We will see how to overcome this limitation by combining `{ggstatsplot}` with the
 `purrr` package.
 
 **Note:**
@@ -87,7 +87,7 @@ merges the individual plots into one bigger plot with common labeling and
 aesthetics.
 
 What are these `lists` that we are building? The lists correspond to the
-parameters in our `ggstatsplot` function like `ggbetweenstats`. If you look at
+parameters in our `{ggstatsplot}` function like `ggbetweenstats`. If you look at
 the help file for `?ggbetweenstats` for example the very first parameter it
 wants is the `data` file we'll be using. We can also pass it different `titles`
 of even `ggtheme` themes.
@@ -284,7 +284,7 @@ For the next example lets use the same methodology on different data and using
 `ggscatterstats` to produce scatterplots combined with marginal
 histograms/boxplots/density plots with statistical details added as a subtitle.
 For data we'll use `movies_long` which is from IMDB and part of the
-`ggstatsplot` package. Since it's a large dataset with some relatively small
+`{ggstatsplot}` package. Since it's a large dataset with some relatively small
 categories like **NC-17** we'll sample only one quarter of the data and
 completely drop NC-17 using `dplyr`. 
 

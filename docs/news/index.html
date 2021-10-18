@@ -173,7 +173,7 @@
       <a href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
     </li>
     <li>
-      <a href="../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
     </li>
     <li>
       <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
@@ -231,7 +231,11 @@
 <h1 class="page-header" data-toc-text="0.9.0">
 <a href="#ggstatsplot-090" class="anchor"></a>ggstatsplot 0.9.0<small> Unreleased </small>
 </h1>
-<p>N.B. All statistical analysis in <code>ggstatsplot</code> is carried out in <code>statsExpressions</code>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
+<p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
+<p>NEW FEATURES</p>
+<ul>
+<li>The <code><a href="../reference/pairwise_comparisons.html">pairwise_comparisons()</a></code> function for carrying out one-way pairwise comparisons has now moved in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> from <a href="https://indrajeetpatil.github.io/pairwiseComparisons/">pairwiseComparisons</a> package.</li>
+</ul>
 <p>BREAKING CHANGES</p>
 <ul>
 <li><p>A number of effect size estimates and their confidence intervals have changed due to respective changes made in <a href="https://easystats.github.io/effectsize/">effectsize</a> package version <code>0.5</code> release. For full details of these changes, see: <a href="https://easystats.github.io/effectsize/news/index.html" class="uri">https://easystats.github.io/effectsize/news/index.html</a></p></li>
@@ -240,15 +244,15 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li>
-<p>For plotting marginal distributions in <code>ggscatterstats</code>, <code>ggstatsplot</code> now relies on <code>ggside</code> package instead of <code>ggExtra</code>. This was done to remove a glaring inconsistency in the API. All functions in <code>ggstatsplot</code> produced <code>ggplot</code> objects and could be further modified with <code>ggplot2</code> functions, except <code>ggscatterstats</code>, which led to a lot of confusion among users (e.g.</p>
+<p>For plotting marginal distributions in <code>ggscatterstats</code>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> now relies on <code>ggside</code> package instead of <code>ggExtra</code>. This was done to remove a glaring inconsistency in the API. All functions in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> produced <code>ggplot</code> objects and could be further modified with <code>ggplot2</code> functions, except <code>ggscatterstats</code>, which led to a lot of confusion among users (e.g.</p>
 <p><a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/28'>#28</a>). This change gets rid of this inconsistency. But it comes at a cost: there is no more <code>marginal.type</code> argument that lets you change the type of marginal distribution graphic and histogram is the only possible option. Note that this is <strong>not</strong> a breaking change. Your past code will continue to work but it will now always produce a histogram instead of other marginal graphic you might have chosen.</p>
 </li>
 <li><p>Minimum needed R version is now <code>4.0</code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
-<li><p>Online vignette about <code>combine_plots</code> has been removed. In case you want to create a grid of plots, it is highly recommended that you use <code>patchwork</code> package directly and not this wrapper around it which is mostly useful with <code>ggstatsplot</code> plots.</p></li>
-<li><p><code>ggscatterstats</code> labeling arguments accept only unquoted inputs now, and not quoted or string inputs. Allowing this was a bad design choice in the past since most functions in <code>ggstatsplot</code>, inspired by <code>tidyverse</code>, expect unquoted (<code>x</code>) - and not quoted (<code>"x"</code>) - arguments. So this function was the odd one out.</p></li>
+<li><p>Online vignette about <code>combine_plots</code> has been removed. In case you want to create a grid of plots, it is highly recommended that you use <code>patchwork</code> package directly and not this wrapper around it which is mostly useful with <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots.</p></li>
+<li><p><code>ggscatterstats</code> labeling arguments accept only unquoted inputs now, and not quoted or string inputs. Allowing this was a bad design choice in the past since most functions in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>, inspired by <code>tidyverse</code>, expect unquoted (<code>x</code>) - and not quoted (<code>"x"</code>) - arguments. So this function was the odd one out.</p></li>
 <li><p>Gets rid of <code>ipmisc</code> dependency.</p></li>
 <li><p>Removes <code>movies_wide</code> dataset, which was virtually identical to <code>movies_long</code> dataset and was not used anywhere in the package. Also removes the unused <code>VR_dilemma</code> dataset.</p></li>
 </ul>
@@ -263,11 +267,11 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li><p>There is finally a publication for <code>ggstatsplot</code> package! <a href="https://joss.theoj.org/papers/10.21105/joss.03167" class="uri">https://joss.theoj.org/papers/10.21105/joss.03167</a></p></li>
+<li><p>There is finally a publication for <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package! <a href="https://joss.theoj.org/papers/10.21105/joss.03167" class="uri">https://joss.theoj.org/papers/10.21105/joss.03167</a></p></li>
 <li><p>The <code>ggcoefstats</code> function defaults to <code>NULL</code> for <code>xlab</code> and <code>ylab</code> arguments, which lets users change these labels if they wish to do so. Additionally, the x-axis label, if not specified, now defaults to <code>"estimate"</code>. Whether this estimate corresponds to regression coefficient or effect size like partial eta-squared should be clear from the label itself.</p></li>
 <li><p>To reduce the dependency load, <code>ggcorrplot</code> moves from <code>Imports</code> to <code>Suggests</code>.</p></li>
 <li><p>The <code>bar.fill</code> argument in <code>gghistostats</code> is retired in favor of the new <code>bin.args</code> argument that can be used to pass aesthetic arguments to <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">ggplot2::stat_bin</a></code>.</p></li>
-<li><p><code>ggstatsplot.layer</code> argument has been retired. If the user <em>chooses</em> a certain <code>ggplot2</code> theme, it means they <em>want</em> that theme, and not <code>ggstatsplot</code>’s varnish on it. So the previous behavior was undesirable. This is a backward compatible change, so the plots should not look different.</p></li>
+<li><p><code>ggstatsplot.layer</code> argument has been retired. If the user <em>chooses</em> a certain <code>ggplot2</code> theme, it means they <em>want</em> that theme, and not <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>’s varnish on it. So the previous behavior was undesirable. This is a backward compatible change, so the plots should not look different.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -346,13 +350,13 @@
 <li><p><code>gghistostats</code> and <code>ggdotplotstats</code> functions remove the functionality to display a vertical line corresponding to <code>test.value</code>. This feature was turned off by default in prior releases. Accordingly, all related arguments from these two functions have been removed.</p></li>
 <li><p><code>ggscatterstats</code> defaults to <code>densigram</code> as the marginal distribution visualization.</p></li>
 <li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> now display the centrality tendency measure in such a way that the label doesn’t occlude any of the raw data points (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/429'>#429</a>).</p></li>
-<li><p><code>mean.ci</code> argument is retired for <code>ggbetweenstats</code> and <code>ggwithinstats</code>. Future <code>ggstatsplot</code> releases will be providing different centrality measures depending on the <code>type</code> argument and it is not guaranteed that all of them will have CIs available. So, for the sake of consistency, this argument is just going to be retired.</p></li>
+<li><p><code>mean.ci</code> argument is retired for <code>ggbetweenstats</code> and <code>ggwithinstats</code>. Future <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> releases will be providing different centrality measures depending on the <code>type</code> argument and it is not guaranteed that all of them will have CIs available. So, for the sake of consistency, this argument is just going to be retired.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
 <li><p><code>ggcorrmat</code> uses pretty formatting to display sample size information.</p></li>
 <li><p><code>ggcoefstats</code> now also displays degrees of freedom for chi-squared tests.</p></li>
-<li><p>Expects minor changes in some of the effect sizes and their confidence intervals due to changes in <code>statsExpressions</code>.</p></li>
+<li><p>Expects minor changes in some of the effect sizes and their confidence intervals due to changes in <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a>.</p></li>
 </ul>
 <p>NEW FEATURES</p>
 <ul>
@@ -472,7 +476,7 @@
 <ul>
 <li><p><code>ggcoefstats</code> has been refactored to reflect that <code>broomExtra::tidy_parameters</code> now defaults to <code>parameters</code> package instead of <code>broom</code>. It also loses the following vestigial arguments: <code>p.adjust.method</code> and <code>coefficient.type</code>.</p></li>
 <li><p>Reverts aligning title and subtitle with the plot and not the axes, since it looked pretty ugly (esp., <code>ggcoefstats</code>) and was causing problems for labels.</p></li>
-<li><p><code>factor.levels</code> (for <code>ggpiestats</code>) and <code>labels.legend</code> (for <code>ggbarstats</code>) are deprecated. If users would like to changes the names for factor levels, this should be done outside of <code>ggstatsplot</code>.</p></li>
+<li><p><code>factor.levels</code> (for <code>ggpiestats</code>) and <code>labels.legend</code> (for <code>ggbarstats</code>) are deprecated. If users would like to changes the names for factor levels, this should be done outside of <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>.</p></li>
 <li><p>The non-parametric post hoc test for between-subjects design has been changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.</p></li>
 </ul>
 <p>NEW FEATURES</p>
@@ -500,8 +504,8 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>For changes related to subtitle details, see changes made in new version of <code>statsExpressions 4.0.0</code>: <a href="https://CRAN.R-project.org/package=statsExpressions/news/news.html" class="uri">https://CRAN.R-project.org/package=statsExpressions/news/news.html</a></p></li>
-<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <code>ggstatsplot</code> to carry out this analysis.</p></li>
-<li><p>Due to changes in one of the downstream dependencies, <code>ggstatsplot</code> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
+<li><p><code>ggbetweenstats</code> and <code>ggwithinstats</code> no longer print dataframes containing results from pairwise comparisons tests because this is too cluttering for the user’s console. The users are now instead advised to either extract this dataframe using <code><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html">ggplot2::ggplot_build()</a></code> function or use the <code><a href="https://indrajeetpatil.github.io/pairwiseComparisons//reference/pairwise_comparisons.html">pairwiseComparisons::pairwise_comparisons()</a></code> function used in the background by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> to carry out this analysis.</p></li>
+<li><p>Due to changes in one of the downstream dependencies, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> now expects the minimum R version to be <code>3.6.0</code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -535,7 +539,7 @@
 <a href="#ggstatsplot-030" class="anchor"></a>ggstatsplot 0.3.0<small> 2020-03-01 </small>
 </h1>
 <p>BREAKING CHANGES</p>
-<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <code>ggstatsplot</code> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get arguments like <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <code>ggstatsplot</code> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code>list(size = 5, color = "darkgreen", alpha = 0.8)</code> can be supplied).</p>
+<p>To give users more flexibility in terms of modifying the aesthetic defaults for <strong>all</strong> <code>geoms</code> included in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots (each plot typically has multiple geoms), the package now uses a new form of syntax. Previously, each <code>geom</code> had a separate argument to specify each aesthetic (e.g., <code>geom_point</code> would get arguments like <code>point.size</code>, <code>point.color</code>, etc.), which resulted in functions with a massive number of arguments and was unsustainable in the long run. Instead, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions now expect a list of such arguments for the respective geom (e.g., <code>geom_point</code> will have <code>point.args</code> argument where a list of arguments <code>list(size = 5, color = "darkgreen", alpha = 0.8)</code> can be supplied).</p>
 <ul>
 <li><p>All <code>grouped_</code> functions have been refactored to reduce the number of arguments. These functions now internally use the new <code>combine_plots</code> instead of <code>combine_plots</code>. The additional arguments to primary functions can be provided through <code>...</code>. These changes will not necessarily break the existing code but will lead to some minor graphical changes (e.g., if you were providing <code>labels</code> argument explicitly, it will be ignored).</p></li>
 <li><p>All functions lose the <code>return</code> argument, which was supposed to be alternative to enter <code>output</code>. But this was just leading to more confusion on the user’s part. The biggest user-visible impact this is going to have is that <code>ggcorrmat</code> will no longer be backward-compatible. The older scripts will still work but if the <code>return</code> argument was anything except <code>"plot"</code>, it will just be ignored.</p></li>
@@ -550,7 +554,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p><code>ggcorrmat</code> was never supposed to work with Kendall’s correlation coefficient but it accidentally did. This is no longer the case.</p></li>
-<li><p><code>ggstatsplot</code> now has a logo, thanks to Sarah! :)</p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> now has a logo, thanks to Sarah! :)</p></li>
 <li><p>The default <code>theme_ggstatsplot</code> changes slightly. The biggest change is that the title and the subtitle for plots are now aligned to the left of the plot. This change also forced the legend for <code>ggpiestats</code> to be displayed on the right side of the plot rather than at the bottom.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
@@ -566,7 +570,7 @@
 <p>BREAKING CHANGES</p>
 <ul>
 <li><p>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</p></li>
-<li><p><code>ggstatsplot</code> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <code>statsExpressions</code> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code> and follow a more logical nomenclature. For the same reason, <code>lm_effsize_ci</code> function is also no longer exported and lives in the <code>groupedstats</code> package.</p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code> and follow a more logical nomenclature. For the same reason, <code>lm_effsize_ci</code> function is also no longer exported and lives in the <code>groupedstats</code> package.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
@@ -592,7 +596,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li>
-<code>pairwise_p</code> has been reintroduced as a number of users found it useful to call the function from <code>ggstatsplot</code> itself rather than using <code>pairwiseComparisons</code> package.</li>
+<code>pairwise_p</code> has been reintroduced as a number of users found it useful to call the function from <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> itself rather than using <code>pairwiseComparisons</code> package.</li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -639,16 +643,16 @@
 <a href="#ggstatsplot-011" class="anchor"></a>ggstatsplot 0.1.1<small> 2019-08-30 </small>
 </h1>
 <p>ANNOUNCEMENTS</p>
-<p><code>ggstatsplot</code> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions that make stats subtitles are being moved to a new package called <code>statsExpressions</code>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <code>ggstatsplot</code> unless you have been using the helper functions.</p>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions that make stats subtitles are being moved to a new package called <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> unless you have been using the helper functions.</p>
 <p>Additionally, multiple pairwise comparison tests are being moved to an independent package called <code>pairwiseComparisons</code>.</p>
 <p>This uncoupling is designed to achieve two things:</p>
 <ul>
-<li><p>Make the code base of more manageable size in <code>ggstatsplot</code>, which will make package development a bit easier.</p></li>
-<li><p>Make the workflow more customizable since now you can prepare your own plots and then use <code>statsExpressions</code> to display results in the plot rather than relying on <code>ggstatsplot</code> default plots which are heavily opinionated and not appealing to everyone.</p></li>
+<li><p>Make the code base of more manageable size in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>, which will make package development a bit easier.</p></li>
+<li><p>Make the workflow more customizable since now you can prepare your own plots and then use <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a> to display results in the plot rather than relying on <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> default plots which are heavily opinionated and not appealing to everyone.</p></li>
 </ul>
 <p>BREAKING CHANGES</p>
 <ul>
-<li><p>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <code>statsExpressions</code> package.</p></li>
+<li><p>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a> package.</p></li>
 <li><p>To be consistent with all the other <code>subtitle_</code> and <code>bf_</code> functions, <code>subtitle_contingency_tab</code> and <code>bf_contingency_tab</code> now use the arguments <code>x</code> and <code>y</code> instead of <code>main</code> and <code>condition</code>.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
@@ -662,7 +666,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li><p>New dataset included: <code>bugs_long</code>, for repeated measures designs with <code>NA</code>s present in the data.</p></li>
-<li><p><code>ggstatsplot</code> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> now uses <code>rcompanion</code> to compute Spearman’s <em>rho</em> and Kendall’s <em>W</em>. Therefore, <code>DescTools</code> is removed from dependencies.</p></li>
 <li><p><code>ggcoefstats</code> supports following objects: <code>bglmerMod</code>, <code>blmerMod</code>, <code>lme</code>, <code>mclogit</code>, <code>mmclogit</code>, <code>tobit</code>, <code>wblm</code>.</p></li>
 <li><p><code>ggcoefstats</code> now respects <code>conf.int</code>. It internally always defaulted to <code>conf.int = TRUE</code> in <code><a href="https://generics.r-lib.org/reference/tidy.html">broom::tidy</a></code> irrespective of what was specified by the user.</p></li>
 <li><p>It was painfully confusing for a lot of users what exactly the asterisks in each facet of <code>ggpiestats</code> signified. So instead now <code>ggpiestats</code> displays more detailed results from a goodness of fit (gof) test. No such change is made for <code>ggbarstats</code> because there is no space to include more details above the bar.</p></li>
@@ -724,7 +728,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li><p><code>pairwise_p()</code> function no longer outputs <code>conf.low</code> and <code>conf.high</code> columns when parametric <em>post hoc</em> tests are run. This is because these values were accurate only when no <em>p</em>-value adjustment was carried out.</p></li>
-<li><p>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <code>ggstatsplot</code> therefore gains <code>DescTools</code> as a dependency.</p></li>
+<li><p>Instead of using the internal function <code>cor_test_ci</code>, <code>ggscatterstats</code> instead used <code>SpearmanRho</code> function from <code>DescTools</code> package. This was done to reduce number of custom internal functions used to compute CIs for various effect sizes. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> therefore gains <code>DescTools</code> as a dependency.</p></li>
 <li><p>The <code>sampling.plan</code> argument default for <code>ggbarstats</code> function has been changed from <code>"indepMulti"</code> to <code>"jointMulti"</code> to be consistent with its sister function <code>ggpiestats</code>.</p></li>
 </ul>
 </div>
@@ -742,7 +746,7 @@
 <p>MINOR CHANGES</p>
 <ul>
 <li><p>The internal function <code>outlier_df</code> to add a column specifying outlier status of any given data point is now exported.</p></li>
-<li><p><code>ggstatsplot</code> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <code>ggstatsplot</code>, therefore, gains a new dependency.</p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> previously relied on an internal function <code>chisq_v_ci</code> to compute confidence intervals for Cramer’s <em>V</em> using bootstrapping but it was pretty slow. It now instead relies on <code>rcompanion</code> package to compute confidence intervals for <em>V</em>. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>, therefore, gains a new dependency.</p></li>
 <li><p><code>subtitle_mann_nonparametric</code> and <code>subtitle_t_onesample</code> now computes effect size <em>r</em> and its confidence intervals as <span class="math display">$$Z/\sqrt{N}$$</span> (with the help of <code>rcompanion</code> package), instead of using Spearman correlation.</p></li>
 </ul>
 </div>
@@ -762,7 +766,7 @@
 <li><p><code>gghistostats</code> and its <code>grouped_</code> variant has a new argument <code>normal.curve</code> to superpose a normal distribution curve on top of the histogram (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/138'>#138</a>).</p></li>
 <li><p><code>ggcoefstats</code> can support following new regression model objects: <code>brmsfit</code>, <code>gam</code>, <code>Gam</code>, <code>gamlss</code>, <code>mcmc</code>, <code>mjoint</code>, <code>stanreg</code>.</p></li>
 <li><p>New function to convert plots which are not of <code>gg</code>/<code>ggplot</code> class to <code>ggplot</code> class objects.</p></li>
-<li><p>Instead of using <code>effsize</code> to compute Cohen’s <em>d</em> and Hedge’s <em>g</em>, <code>ggstatsplot</code> now relies on a new (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/159'>#159</a>) internal function <code>effect_t_parametric</code> to compute them. This removes <code>effsize</code> from dependencies.</p></li>
+<li><p>Instead of using <code>effsize</code> to compute Cohen’s <em>d</em> and Hedge’s <em>g</em>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> now relies on a new (<a href='https://github.com/IndrajeetPatil/ggstatsplot/issues/159'>#159</a>) internal function <code>effect_t_parametric</code> to compute them. This removes <code>effsize</code> from dependencies.</p></li>
 <li><p>To be consistent with other functions in this package, both <code>ggbarstats</code> and <code>ggpiestats</code> gain <code>results.subtitle</code> which can be set to <code>FALSE</code> if statistical analysis is not required, in which case <code>subtitle</code> argument can be used to provide alternative subtitle.</p></li>
 </ul>
 <p>MAJOR CHANGES</p>
@@ -829,7 +833,7 @@
 <li><p>All primary functions gain <code>conf.level</code> argument to control confidence level for effect size measures.</p></li>
 <li><p>As per APA guidelines, all results show results with two decimal places. That is, the default value for <code>k</code> argument for all functions has been changed from <code>3</code> to <code>2</code>.</p></li>
 <li><p>All helper functions for the <code>ggbetweenstats</code> subtitles have been renamed to remove <code>_ggbetween_</code> from their names as this was becoming confusing for the user. Some of these functions work both with the between- and within-subjects designs, so having <code>_ggbetween_</code> in their names made users suspect if they could use these functions for within-subjects designs.</p></li>
-<li><p><code>ggstatsplot</code> now depends on <code>R 3.5.0</code>. This is because some of its dependencies require 3.5.0 to work (e.g., <code>broom.mixed</code>).</p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> now depends on <code>R 3.5.0</code>. This is because some of its dependencies require 3.5.0 to work (e.g., <code>broom.mixed</code>).</p></li>
 <li><p>All <code>theme_</code> functions are now exported (<code>theme_pie()</code>, <code>theme_corrmat()</code>).</p></li>
 <li><p><code>ggbetweenstats</code> now supports multiple pairwise comparison tests (parametric, nonparametric, and robust variants). It gains a new dependency <code>ggsignif</code>.</p></li>
 <li><p><code>ggbetweenstats</code> now supports eta-squared and omega-squared effect sizes for anova models. This function gains a new argument <code>partial</code>.</p></li>
@@ -839,7 +843,7 @@
 <li><p>The helper function <code>untable</code> has been deprecated in light of <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount</a></code>, which does exactly what <code>untable</code> was doing. The author wasn’t aware of this function when <code>untable</code> was written.</p></li>
 <li><p>All vignettes have been removed from <code>CRAN</code> to reduce the size of the package. They are now available on the package website: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a>.</p></li>
 <li><p><code>subtitle_t_robust</code> function can now handle dependent samples and gains <code>paired</code> argument.</p></li>
-<li><p>A number of tidyverse operators are now reexported by <code>ggstatsplot</code>: <code>%&gt;%</code>, <code>%&lt;&gt;%</code>, <code>%$%</code>.</p></li>
+<li><p>A number of tidyverse operators are now reexported by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>: <code>%&gt;%</code>, <code>%&lt;&gt;%</code>, <code>%$%</code>.</p></li>
 </ul>
 <p>MINOR CHANGES</p>
 <ul>
@@ -863,7 +867,7 @@
 </h1>
 <p>MAJOR CHANGES</p>
 <ul>
-<li><p>The package now exports all functions used to create text expressions with results. This makes it easy for people to use these results in their own plots at any location they want (and not just in <code>subtitle</code>, the current default for <code>ggstatsplot</code>).</p></li>
+<li><p>The package now exports all functions used to create text expressions with results. This makes it easy for people to use these results in their own plots at any location they want (and not just in <code>subtitle</code>, the current default for <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>).</p></li>
 <li><p><code>ggcorrmat</code> gains <code>p.adjust.method</code> argument which allows <em>p</em>-values for correlations to be corrected for multiple comparisons.</p></li>
 <li><p><code>ggscatterstats</code> gains <code>label.var</code> and <code>label.expression</code> arguments to attach labels to points.</p></li>
 <li><p><code>gghistostats</code> now defaults to not showing (redundant) color gradient (<code>fill.gradient = FALSE</code>) and shows both <code>"count"</code> and <code>"proportion"</code> data. It also gains a new argument <code>bar.fill</code> that can be used to fill bars with a uniform color.</p></li>
@@ -927,7 +931,7 @@
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
 <li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
-<li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <code>ggstatsplot</code> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
+<li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>
 </ul>
@@ -959,7 +963,7 @@
 </ul>
 <p>MAJOR CHANGES</p>
 <ul>
-<li><p>To be internally consistent, all functions in <code>ggstatsplot</code> use the spelling <code>color</code>, rather than <code>colour</code> in some functions, while <code>color</code> in others.</p></li>
+<li><p>To be internally consistent, all functions in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> use the spelling <code>color</code>, rather than <code>colour</code> in some functions, while <code>color</code> in others.</p></li>
 <li><p>Removed the redundant argument <code>binwidth.adjust</code> from <code>gghistostats</code> function. This argument was relevant for the first avatar of this function, but is no longer playing any role.</p></li>
 <li><p>To be internally consistent, the argument <code>lab_col</code> and <code>lab_size</code> in <code>ggcorrmat</code> have been changed to <code>lab.col</code> and <code>lab.size</code>, respectively.</p></li>
 </ul>

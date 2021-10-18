@@ -88,7 +88,7 @@ centrality_ggrepel <- function(plot,
 #' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param mpc_df A dataframe containing results from pairwise comparisons
-#'   (produced by `pairwiseComparisons::pairwise_comparisons()` function).
+#'   (produced by `pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
 #'
 #' @examples
@@ -100,7 +100,7 @@ centrality_ggrepel <- function(plot,
 #'   geom_boxplot()
 #'
 #' # dataframe with pairwise comparison test results
-#' df_pair <- pairwiseComparisons::pairwise_comparisons(
+#' df_pair <- pairwise_comparisons(
 #'   data = iris,
 #'   x = Species,
 #'   y = Sepal.Length

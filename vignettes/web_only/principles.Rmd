@@ -303,7 +303,7 @@ ggcoefstats(x = mod)
 
 ## Data requirements
 
-As an extension of `{ggplot2}`, `ggstatsplot` has the same expectations about the
+As an extension of `{ggplot2}`, `{ggstatsplot}` has the same expectations about the
 structure of the data. More specifically,
 
   - The data should be organized following the principles of *tidy data*, which
@@ -312,17 +312,17 @@ structure of the data. More specifically,
     More specifically, tidy data means all variables have their own columns and
     each row corresponds to a unique observation ([@wickhamTidyData2014]).
 
-  - All `ggstatsplot` functions remove `NA`s from variables of interest (similar
+  - All `{ggstatsplot}` functions remove `NA`s from variables of interest (similar
     to `{ggplot2}`; [@wickham2016], p.207) in the data and display total sample
     size (*n*, either observations for between-subjects or pairs for
     within-subjects designs) in the subtitle to inform the user/reader about the
     number of observations included for both the statistical analysis and the
     visualization. But, when sample sizes differ *across* tests in the same
-    function, `ggstatsplot` makes an effort to inform the user of this aspect.
+    function, `{ggstatsplot}` makes an effort to inform the user of this aspect.
     For example, `ggcorrmat` features several correlation test pairs and,
     depending on variables in a given pair, the sample sizes may vary.
 
-```{r fig4, fig.height = 5, fig.width = 10, fig.cap = "`ggstatsplot` functions remove `NA`s from variables of interest and display total sample size \\textit{n}, but they can give more nuanced information about sample sizes when \\textit{n} differs across tests. For example, `ggcorrmat` will display (\\textit{a}) only one total sample size once when no `NA`s present, but (\\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
+```{r fig4, fig.height = 5, fig.width = 10, fig.cap = "`{ggstatsplot}` functions remove `NA`s from variables of interest and display total sample size \\textit{n}, but they can give more nuanced information about sample sizes when \\textit{n} differs across tests. For example, `ggcorrmat` will display (\\textit{a}) only one total sample size once when no `NA`s present, but (\\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
 # for reproducibility
 set.seed(123)
 
@@ -336,7 +336,7 @@ msleep_no_na <-
 # variable names vector
 var_names <- c("REM sleep", "time awake", "brain weight", "body weight")
 
-# combining two plots using helper function in `ggstatsplot`
+# combining two plots using helper function in `{ggstatsplot}`
 combine_plots(
   plotlist = purrr::pmap(
     .l = list(data = list(msleep_no_na, ggplot2::msleep)),
@@ -358,13 +358,13 @@ We list few reasons below-
 
   - A recent survey [@nuijten2016] revealed that one in eight papers in major
     psychology journals contained a grossly inconsistent *p*-value that may have
-    affected the statistical conclusion. `ggstatsplot` helps avoid such
+    affected the statistical conclusion. `{ggstatsplot}` helps avoid such
     reporting errors: Since the plot and the statistical analysis are yoked
     together, the chances of making an error in reporting the results are
     minimized. One need not write the results manually or copy-paste them from a
     different statistics software program (like SPSS, SAS, and so on).
 
-The default setting in `ggstatsplot` is to produce plots with statistical
+The default setting in `{ggstatsplot}` is to produce plots with statistical
 details included. Most often than not, these results are displayed as a
 `subtitle` in the plot. Great care has been taken into which details are
 included in statistical reporting and why.
@@ -406,7 +406,7 @@ The *p*-value indexes the probability that the researchers have falsely rejected
 a true null hypothesis (Type I error, i.e.) and can rarely be *exactly* 0. And
 yet over 97,000 manuscripts on Google Scholar report the *p*-value to be `p
 =0.000`, putatively due to relying on default computer software outputs
-[@lilienfeld2015]. All *p*-values displayed in `ggstatsplot` plots avoid this
+[@lilienfeld2015]. All *p*-values displayed in `{ggstatsplot}` plots avoid this
 mistake. Anything less than `p < 0.001` is displayed as such. The package deems
 it unimportant how infinitesimally small the *p*-values are and, instead, puts
 emphasis on the effect size magnitudes and their 95% CIs.

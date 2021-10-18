@@ -66,7 +66,7 @@ are to be displayed (default: \code{TRUE}). Please note that only
 \strong{significant} comparisons will be shown by default. To change this
 behavior, select appropriate option with \code{pairwise.display} argument. The
 pairwise comparison dataframes are prepared using the
-\code{pairwiseComparisons::pairwise_comparisons} function. For more details
+\code{pairwise_comparisons} function. For more details
 about pairwise comparisons, see the documentation for that function.}
     \item{\code{pairwise.display}}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
