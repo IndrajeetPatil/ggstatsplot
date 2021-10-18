@@ -185,7 +185,7 @@ ggbetweenstats <- function(data,
                            outlier.color = "black",
                            outlier.label.args = list(size = 3),
                            point.args = list(
-                             position = position_jitterdodge(dodge.width = 0.60),
+                             position = ggplot2::position_jitterdodge(dodge.width = 0.60),
                              alpha = 0.4,
                              size = 3,
                              stroke = 0

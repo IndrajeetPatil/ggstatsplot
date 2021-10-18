@@ -85,7 +85,7 @@ removes the trade-off often faced by researchers between ease and thoroughness
 of data exploration and further cements good data exploration habits.
 
 Internally, data cleaning is carried out using the `tidyverse` [@Wickham2019],
-while statistical analysis is carried out via the `statsExpressions`
+while statistical analysis is carried out via the `{statsExpressions}`
 [@Patil2021] and `easystats` [@Ben-Shachar2020; @Lüdecke2020parameters;
 @Lüdecke2020performance;
 @Lüdecke2019; @Makowski2019; @Makowski2020] packages. All visualizations are

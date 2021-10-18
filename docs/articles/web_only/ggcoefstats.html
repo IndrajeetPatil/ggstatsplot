@@ -167,7 +167,7 @@
       <h1 data-toc-skip>ggcoefstats</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-10-09</h4>
+            <h4 class="date">2021-10-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/ggcoefstats.Rmd"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="hidden name"><code>ggcoefstats.Rmd</code></div>
@@ -347,10 +347,66 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/emmGrid2-1.png" width="480"></p>
 </div>
+<div id="bayesian-additive-models-for-location-scale-and-shape-bamlss" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bayesian-additive-models-for-location-scale-and-shape-bamlss" class="anchor"></a>Bayesian additive models for location scale and shape (<code>bamlss</code>)</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># setup</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.bamlss.org/">bamlss</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"SwissLabor"</span>, package <span class="op">=</span> <span class="st">"AER"</span><span class="op">)</span>
+
+<span class="co"># formula</span>
+<span class="va">f</span> <span class="op">&lt;-</span> <span class="va">participation</span> <span class="op">~</span> <span class="va">income</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">education</span> <span class="op">+</span> <span class="va">youngkids</span> <span class="op">+</span> <span class="va">oldkids</span> <span class="op">+</span> <span class="va">foreign</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># model</span>
+<span class="va">b_bamlss</span> <span class="op">&lt;-</span>
+  <span class="fu">bamlss</span><span class="fu">::</span><span class="fu"><a href="http://www.bamlss.org/reference/bamlss.html">bamlss</a></span><span class="op">(</span>
+    formula <span class="op">=</span> <span class="va">f</span>,
+    family <span class="op">=</span> <span class="st">"binomial"</span>,
+    data <span class="op">=</span> <span class="va">SwissLabor</span>
+  <span class="op">)</span>
+<span class="co">#&gt; AICc 1033.934 logPost -571.497 logLik -508.883 edf 8.0000 eps 6.6608 iteration   1</span>
+<span class="co">#&gt; AICc 1033.737 logPost -571.398 logLik -508.785 edf 8.0000 eps 0.0978 iteration   2</span>
+<span class="co">#&gt; AICc 1033.737 logPost -571.398 logLik -508.785 edf 8.0000 eps 0.0009 iteration   3</span>
+<span class="co">#&gt; AICc 1033.737 logPost -571.398 logLik -508.785 edf 8.0000 eps 0.0000 iteration   4</span>
+<span class="co">#&gt; AICc 1033.737 logPost -571.398 logLik -508.785 edf 8.0000 eps 0.0000 iteration   4</span>
+<span class="co">#&gt; elapsed time:  0.02sec</span>
+<span class="co">#&gt; Starting the sampler...</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; |                    |   0%  1.19sec</span>
+<span class="co">#&gt; |*                   |   5%  1.33sec  0.07sec</span>
+<span class="co">#&gt; |**                  |  10%  1.35sec  0.15sec</span>
+<span class="co">#&gt; |***                 |  15%  1.19sec  0.21sec</span>
+<span class="co">#&gt; |****                |  20%  1.16sec  0.29sec</span>
+<span class="co">#&gt; |*****               |  25%  1.11sec  0.37sec</span>
+<span class="co">#&gt; |******              |  30%  1.07sec  0.46sec</span>
+<span class="co">#&gt; |*******             |  35%  1.00sec  0.54sec</span>
+<span class="co">#&gt; |********            |  40%  0.96sec  0.64sec</span>
+<span class="co">#&gt; |*********           |  45%  0.87sec  0.71sec</span>
+<span class="co">#&gt; |**********          |  50%  0.79sec  0.79sec</span>
+<span class="co">#&gt; |***********         |  55%  0.71sec  0.87sec</span>
+<span class="co">#&gt; |************        |  60%  0.64sec  0.96sec</span>
+<span class="co">#&gt; |*************       |  65%  0.56sec  1.04sec</span>
+<span class="co">#&gt; |**************      |  70%  0.48sec  1.12sec</span>
+<span class="co">#&gt; |***************     |  75%  0.39sec  1.18sec</span>
+<span class="co">#&gt; |****************    |  80%  0.32sec  1.28sec</span>
+<span class="co">#&gt; |*****************   |  85%  0.24sec  1.36sec</span>
+<span class="co">#&gt; |******************  |  90%  0.16sec  1.43sec</span>
+<span class="co">#&gt; |******************* |  95%  0.08sec  1.51sec</span>
+<span class="co">#&gt; |********************| 100%  0.00sec  1.61sec</span>
+
+<span class="co"># plot</span>
+<span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
+  x <span class="op">=</span> <span class="va">b_bamlss</span>,
+  title <span class="op">=</span> <span class="st">"Bayesian additive models \nfor location scale and shape"</span>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/bamlss-1.png" width="576"></p>
+</div>
 <div id="bayes-factor-bfbayesfactor" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayes-factor-bfbayesfactor" class="anchor"></a>Bayes Factor (<code>BFBayesFactor</code>)</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://richarddmorey.github.io/BayesFactor/">BayesFactor</a></span><span class="op">)</span>
@@ -370,23 +426,21 @@ A BibTeX entry for LaTeX users is
 
 <span class="co"># contingency tabs (not supported)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"raceDolls"</span><span class="op">)</span>
-<span class="va">mod5</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html">contingencyTableBF</a></span><span class="op">(</span>
-    <span class="va">raceDolls</span>,
-    sampleType <span class="op">=</span> <span class="st">"indepMulti"</span>,
-    fixedMargin <span class="op">=</span> <span class="st">"cols"</span>
-  <span class="op">)</span>
+<span class="va">mod5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html">contingencyTableBF</a></span><span class="op">(</span>
+  <span class="va">raceDolls</span>,
+  sampleType <span class="op">=</span> <span class="st">"indepMulti"</span>,
+  fixedMargin <span class="op">=</span> <span class="st">"cols"</span>
+<span class="op">)</span>
 
 <span class="co"># anova</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"puzzles"</span><span class="op">)</span>
-<span class="va">mod6</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html">anovaBF</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="va">RT</span> <span class="op">~</span> <span class="va">shape</span> <span class="op">*</span> <span class="va">color</span> <span class="op">+</span> <span class="va">ID</span>,
-    data <span class="op">=</span> <span class="va">puzzles</span>,
-    whichRandom <span class="op">=</span> <span class="st">"ID"</span>,
-    whichModels <span class="op">=</span> <span class="st">"top"</span>,
-    progress <span class="op">=</span> <span class="cn">FALSE</span>
-  <span class="op">)</span>
+<span class="va">mod6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html">anovaBF</a></span><span class="op">(</span>
+  formula <span class="op">=</span> <span class="va">RT</span> <span class="op">~</span> <span class="va">shape</span> <span class="op">*</span> <span class="va">color</span> <span class="op">+</span> <span class="va">ID</span>,
+  data <span class="op">=</span> <span class="va">puzzles</span>,
+  whichRandom <span class="op">=</span> <span class="st">"ID"</span>,
+  whichModels <span class="op">=</span> <span class="st">"top"</span>,
+  progress <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span>
 
 <span class="co"># regression-1</span>
 <span class="va">mod7</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/regressionBF.html">regressionBF</a></span><span class="op">(</span><span class="va">rating</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">attitude</span>, progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -395,7 +449,6 @@ A BibTeX entry for LaTeX users is
 <span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">.15</span>, <span class="fl">2.39</span>, <span class="fl">2.42</span>, <span class="fl">2.43</span>, <span class="op">-</span><span class="fl">.15</span>, <span class="fl">2.39</span>, <span class="fl">2.42</span>, <span class="fl">2.43</span><span class="op">)</span>
 <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">150</span>, <span class="fl">97</span>, <span class="fl">99</span>, <span class="fl">99</span>, <span class="fl">97</span>, <span class="fl">100</span>, <span class="fl">150</span><span class="op">)</span>
 <span class="va">mod8</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/meta.ttestBF.html">meta.ttestBF</a></span><span class="op">(</span><span class="va">t</span>, <span class="va">N</span>, rscale <span class="op">=</span> <span class="fl">1</span>, nullInterval <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in integrate(meta.t.like, lower = (lower - mean.delta)/scale.delta, : length(lower) == 1 is not TRUE</span>
 
 <span class="co"># proportion test</span>
 <span class="va">mod9</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/proportionBF.html">proportionBF</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fl">15</span>, N <span class="op">=</span> <span class="fl">25</span>, p <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>
@@ -414,13 +467,13 @@ A BibTeX entry for LaTeX users is
     <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod9</span>, title <span class="op">=</span> <span class="st">"proportion test"</span><span class="op">)</span>
   <span class="op">)</span>,
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Example from `BayesFactor` package"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'mod8' not found</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/BFBayesFactor-1.png" width="960"></p>
 </div>
 <div id="fixed-effects-individual-slope-estimator-feis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fixed-effects-individual-slope-estimator-feis" class="anchor"></a>Fixed Effects Individual Slope Estimator (<code>feis</code>)</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruettenauer/feisr">feisr</a></span><span class="op">)</span>
@@ -445,7 +498,7 @@ A BibTeX entry for LaTeX users is
 <div id="omnibus-anova-aov" class="section level2">
 <h2 class="hasAnchor">
 <a href="#omnibus-anova-aov" class="anchor"></a>omnibus ANOVA (<code>aov</code>)</h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -470,7 +523,7 @@ A BibTeX entry for LaTeX users is
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aov1-1.png" width="768"></p>
 <p>Note that we can also use this function for model selection. You can try out different models with the code below and see how the AIC and BIC values change.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -506,7 +559,7 @@ A BibTeX entry for LaTeX users is
 <div id="conditional-logit-models-mclogit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conditional-logit-models-mclogit" class="anchor"></a>conditional logit models (<code>mclogit</code>)</h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://mclogit.elff.eu">mclogit</a></span><span class="op">)</span>
@@ -530,7 +583,7 @@ A BibTeX entry for LaTeX users is
 <div id="mixed-conditional-logit-models-mmclogit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mixed-conditional-logit-models-mmclogit" class="anchor"></a>mixed conditional logit models (<code>mmclogit</code>)</h2>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://mclogit.elff.eu">mclogit</a></span><span class="op">)</span>
@@ -565,7 +618,7 @@ A BibTeX entry for LaTeX users is
 <div id="anova-with-car-package-anova" class="section level2">
 <h2 class="hasAnchor">
 <a href="#anova-with-car-package-anova" class="anchor"></a>anova with <code>car</code> package (<code>Anova</code>)</h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span>
@@ -589,7 +642,7 @@ A BibTeX entry for LaTeX users is
 <div id="anova-with-car-package-on-multiple-linear-models-anova-mlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#anova-with-car-package-on-multiple-linear-models-anova-mlm" class="anchor"></a>ANOVA with <code>car</code> package on multiple linear models (<code>Anova.mlm</code>)</h2>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span>
@@ -633,7 +686,7 @@ A BibTeX entry for LaTeX users is
 <div id="anova-with-ez-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#anova-with-ez-package" class="anchor"></a>Anova with <code>ez</code> package</h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mike-lawrence/ez">ez</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ANT</span><span class="op">)</span>
@@ -659,7 +712,7 @@ A BibTeX entry for LaTeX users is
 <div id="linear-model-lm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-model-lm" class="anchor"></a>linear model (<code>lm</code>)</h2>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -691,7 +744,7 @@ A BibTeX entry for LaTeX users is
 <div id="standardized-regression-coefficients-with-lm-lm-beta" class="section level2">
 <h2 class="hasAnchor">
 <a href="#standardized-regression-coefficients-with-lm-lm-beta" class="anchor"></a>standardized regression coefficients with <code>lm</code> (<code>lm.beta</code>)</h2>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
@@ -716,7 +769,7 @@ A BibTeX entry for LaTeX users is
 <div id="bounded-memory-linear-regression-biglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bounded-memory-linear-regression-biglm" class="anchor"></a>bounded memory linear regression (<code>biglm</code>)</h2>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">biglm</span><span class="op">)</span>
@@ -738,7 +791,7 @@ A BibTeX entry for LaTeX users is
 <div id="bounded-memory-general-linear-regression-bigglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bounded-memory-general-linear-regression-bigglm" class="anchor"></a>bounded memory general linear regression (<code>bigglm</code>)</h2>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">biglm</span><span class="op">)</span>
@@ -763,7 +816,7 @@ A BibTeX entry for LaTeX users is
 <div id="efficient-general-linear-model-elmeglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#efficient-general-linear-model-elmeglm" class="anchor"></a>efficient (general) linear model (<code>elm</code>/<code>eglm</code>)</h2>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pachadotdev/eflm/">eflm</a></span><span class="op">)</span>
@@ -792,7 +845,7 @@ A BibTeX entry for LaTeX users is
 <div id="linear-mixed-effects-model-lmerlmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-mixed-effects-model-lmerlmermod" class="anchor"></a>linear mixed-effects model (<code>lmer</code>/<code>lmerMod</code>)</h2>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -802,12 +855,11 @@ A BibTeX entry for LaTeX users is
 <span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">rating</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">budget</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">movies_long</span><span class="op">)</span>
 
 <span class="co"># merMod model</span>
-<span class="va">mod2</span> <span class="op">&lt;-</span>
-  <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">rating</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">budget</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">budget</span> <span class="op">|</span> <span class="va">genre</span><span class="op">)</span>,
-    data <span class="op">=</span> <span class="va">movies_long</span>,
-    control <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html">lmerControl</a></span><span class="op">(</span>calc.derivs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-  <span class="op">)</span>
+<span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span>
+  formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">rating</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">budget</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">budget</span> <span class="op">|</span> <span class="va">genre</span><span class="op">)</span>,
+  data <span class="op">=</span> <span class="va">movies_long</span>,
+  control <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html">lmerControl</a></span><span class="op">(</span>calc.derivs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="op">)</span>
 
 <span class="co"># combining the two different plots</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -835,9 +887,9 @@ A BibTeX entry for LaTeX users is
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie budget and its IMDB rating"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="672"></p>
+<p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="576"></p>
 <p>Note that for mixed-effects models, only the <em>fixed</em> effects are shown because there are no confidence intervals for <em>random</em> effects terms. In case, you would like to see these terms, you can enter the same object you entered as <code>x</code> argument to <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html">parameters::model_parameters</a></code>:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -870,7 +922,7 @@ A BibTeX entry for LaTeX users is
 <div id="nonlinear-model-using-generalized-least-squares-gnls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#nonlinear-model-using-generalized-least-squares-gnls" class="anchor"></a>nonlinear model using generalized least squares (<code>gnls</code>)</h2>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://svn.r-project.org/R-packages/trunk/nlme/">nlme</a></span><span class="op">)</span>
 
@@ -890,7 +942,7 @@ A BibTeX entry for LaTeX users is
 <div id="analysis-of-factorial-experiments-mixed" class="section level2">
 <h2 class="hasAnchor">
 <a href="#analysis-of-factorial-experiments-mixed" class="anchor"></a>analysis of factorial experiments (<code>mixed</code>)</h2>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://afex.singmann.science/">afex</a></span><span class="op">)</span>
@@ -929,7 +981,7 @@ A BibTeX entry for LaTeX users is
 <div id="anova-using-afex-afex_aov" class="section level2">
 <h2 class="hasAnchor">
 <a href="#anova-using-afex-afex_aov" class="anchor"></a>anova using <code>afex</code> (<code>afex_aov</code>)</h2>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://afex.singmann.science/">afex</a></span><span class="op">)</span>
@@ -949,29 +1001,29 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_all</span>,
   title <span class="op">=</span> <span class="st">"anova using `afex`"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .effectsizes_for_aov(model, parameters = out, omega_squared = omega_squared, : unused argument (table_wide = TRUE)</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/afex_aov-1.png" width="576"></p>
 </div>
 <div id="joint-model-for-survival-and-longitudinal-data-measured-with-error-joint" class="section level2">
 <h2 class="hasAnchor">
 <a href="#joint-model-for-survival-and-longitudinal-data-measured-with-error-joint" class="anchor"></a>joint model for survival and longitudinal data measured with error (<code>joint</code>)</h2>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">joineR</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/graemeleehickey/joineR/">joineR</a></span><span class="op">)</span>
 
 <span class="co"># data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">heart.valve</span><span class="op">)</span>
-<span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu">UniqueVariables</span><span class="op">(</span><span class="va">heart.valve</span>,
+<span class="va">heart.surv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,
   var.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"fuyrs"</span>, <span class="st">"status"</span><span class="op">)</span>,
   id.col <span class="op">=</span> <span class="st">"num"</span>
 <span class="op">)</span>
 <span class="va">heart.long</span> <span class="op">&lt;-</span> <span class="va">heart.valve</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"num"</span>, <span class="st">"time"</span>, <span class="st">"log.lvmi"</span><span class="op">)</span><span class="op">]</span>
-<span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu">UniqueVariables</span><span class="op">(</span><span class="va">heart.valve</span>,
+<span class="va">heart.cov</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/UniqueVariables.html">UniqueVariables</a></span><span class="op">(</span><span class="va">heart.valve</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"age"</span>, <span class="st">"hs"</span>, <span class="st">"sex"</span><span class="op">)</span>,
   id.col <span class="op">=</span> <span class="st">"num"</span>
 <span class="op">)</span>
-<span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu">jointdata</span><span class="op">(</span>
+<span class="va">heart.valve.jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/jointdata.html">jointdata</a></span><span class="op">(</span>
   longitudinal <span class="op">=</span> <span class="va">heart.long</span>,
   baseline <span class="op">=</span> <span class="va">heart.cov</span>,
   survival <span class="op">=</span> <span class="va">heart.surv</span>,
@@ -980,10 +1032,10 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span>
 
 <span class="co"># model</span>
-<span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu">joint</span><span class="op">(</span>
+<span class="va">mod_joint</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/joineR/man/joint.html">joint</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">heart.valve.jd</span>,
   long.formula <span class="op">=</span> <span class="va">log.lvmi</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">+</span> <span class="va">time</span> <span class="op">+</span> <span class="va">hs</span>,
-  surv.formula <span class="op">=</span> <span class="fu">Surv</span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
+  surv.formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">hs</span>,
   model <span class="op">=</span> <span class="st">"intslope"</span>
 <span class="op">)</span>
 
@@ -996,7 +1048,7 @@ A BibTeX entry for LaTeX users is
 <div id="risk-regression-riskregression" class="section level2">
 <h2 class="hasAnchor">
 <a href="#risk-regression-riskregression" class="anchor"></a>risk regression (<code>riskRegression</code>)</h2>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tagteam/riskRegression">riskRegression</a></span><span class="op">)</span>
@@ -1024,7 +1076,7 @@ A BibTeX entry for LaTeX users is
 <div id="aalens-additive-regression-model-for-censored-data-aareg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#aalens-additive-regression-model-for-censored-data-aareg" class="anchor"></a>Aalen’s additive regression model for censored data (<code>aareg</code>)</h2>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -1049,7 +1101,7 @@ A BibTeX entry for LaTeX users is
 <div id="multivariate-generalized-linear-mixed-models-mcmcglmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multivariate-generalized-linear-mixed-models-mcmcglmm" class="anchor"></a>multivariate generalized linear mixed models (<code>MCMCglmm</code>)</h2>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -1079,7 +1131,7 @@ A BibTeX entry for LaTeX users is
 <div id="star-models-with-bayesx-bayesx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#star-models-with-bayesx-bayesx" class="anchor"></a>STAR Models with BayesX (<code>bayesx</code>)</h2>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">111</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">R2BayesX</span><span class="op">)</span>
@@ -1106,7 +1158,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalised-joint-regression-models-with-binarycontinuousdiscretesurvival-margins-gjrm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalised-joint-regression-models-with-binarycontinuousdiscretesurvival-margins-gjrm" class="anchor"></a>Generalised Joint Regression Models with Binary/Continuous/Discrete/Survival Margins (<code>gjrm</code>)</h2>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.ucl.ac.uk/statistics/people/giampieromarra">GJRM</a></span><span class="op">)</span>
 
 <span class="co"># data</span>
@@ -1138,7 +1190,7 @@ A BibTeX entry for LaTeX users is
 <div id="heckman-style-selection-and-treatment-effect-models-selection" class="section level2">
 <h2 class="hasAnchor">
 <a href="#heckman-style-selection-and-treatment-effect-models-selection" class="anchor"></a>Heckman-style selection and treatment effect models (<code>selection</code>)</h2>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.sampleSelection.org">sampleSelection</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://justinmshea.github.io/wooldridge/">wooldridge</a></span><span class="op">)</span> <span class="co"># for data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mroz</span><span class="op">)</span>
@@ -1163,7 +1215,7 @@ A BibTeX entry for LaTeX users is
 <div id="inference-in-spatial-glmms-hlfit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#inference-in-spatial-glmms-hlfit" class="anchor"></a>inference in spatial GLMMs (<code>HLfit</code>)</h2>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org">spaMM</a></span><span class="op">)</span>
@@ -1186,12 +1238,12 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; Error: Sorry, `model_parameters()` failed with the following error (possible class</span>
 <span class="co">#&gt;   'HLfit' not supported):</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   no such index at level 1</span></code></pre></div>
+<span class="co">#&gt;   Cannot find n_obs for this object. Please an open an issue!</span></code></pre></div>
 </div>
 <div id="robust-linear-mixed-effects-models-rlmer" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-linear-mixed-effects-models-rlmer" class="anchor"></a>robust linear mixed-effects models (<code>rlmer</code>)</h2>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setups</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/kollerma/robustlmm">robustlmm</a></span><span class="op">)</span>
@@ -1216,7 +1268,7 @@ A BibTeX entry for LaTeX users is
 <div id="linear-mixed-effects-models-with-lmertest-lmermodlmertest" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-mixed-effects-models-with-lmertest-lmermodlmertest" class="anchor"></a>linear mixed-effects models with <code>lmerTest</code> (<code>lmerModLmerTest</code>)</h2>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/lmerTestR">lmerTest</a></span><span class="op">)</span>
@@ -1241,7 +1293,7 @@ A BibTeX entry for LaTeX users is
 <div id="non-linear-mixed-effects-model-nlmernlmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-linear-mixed-effects-model-nlmernlmermod" class="anchor"></a>non-linear mixed-effects model (<code>nlmer</code>/<code>nlmerMod</code>)</h2>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># data</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -1265,7 +1317,7 @@ A BibTeX entry for LaTeX users is
 <div id="non-linear-least-squares-model-nls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#non-linear-least-squares-model-nls" class="anchor"></a>non-linear least-squares model (<code>nls</code>)</h2>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -1289,7 +1341,7 @@ A BibTeX entry for LaTeX users is
 <div id="conditional-generalized-linear-models-for-clustered-data-cglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conditional-generalized-linear-models-for-clustered-data-cglm" class="anchor"></a>conditional generalized linear models for clustered data (<code>cglm</code>)</h2>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">cglm</span><span class="op">)</span>
@@ -1315,7 +1367,7 @@ A BibTeX entry for LaTeX users is
 <div id="joint-model-to-time-to-event-data-and-multivariate-longitudinal-data-mjoint" class="section level2">
 <h2 class="hasAnchor">
 <a href="#joint-model-to-time-to-event-data-and-multivariate-longitudinal-data-mjoint" class="anchor"></a>joint model to time-to-event data and multivariate longitudinal data (<code>mjoint</code>)</h2>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/graemeleehickey/joineRML">joineRML</a></span><span class="op">)</span>
@@ -1327,37 +1379,35 @@ A BibTeX entry for LaTeX users is
   <span class="va">heart.valve</span><span class="op">$</span><span class="va">num</span> <span class="op">&lt;=</span> <span class="fl">50</span>, <span class="op">]</span>
 
 <span class="co"># model</span>
-<span class="va">fit_mjoint</span> <span class="op">&lt;-</span>
-  <span class="fu">joineRML</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/joineRML/man/mjoint.html">mjoint</a></span><span class="op">(</span>
-    formLongFixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      <span class="st">"grad"</span> <span class="op">=</span> <span class="va">log.grad</span> <span class="op">~</span> <span class="va">time</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">hs</span>,
-      <span class="st">"lvmi"</span> <span class="op">=</span> <span class="va">log.lvmi</span> <span class="op">~</span> <span class="va">time</span> <span class="op">+</span> <span class="va">sex</span>
-    <span class="op">)</span>,
-    formLongRandom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-      <span class="st">"grad"</span> <span class="op">=</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">num</span>,
-      <span class="st">"lvmi"</span> <span class="op">=</span> <span class="op">~</span> <span class="va">time</span> <span class="op">|</span> <span class="va">num</span>
-    <span class="op">)</span>,
-    formSurv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span>,
-    data <span class="op">=</span> <span class="va">hvd</span>,
-    inits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"gamma"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.11</span>, <span class="fl">1.51</span>, <span class="fl">0.80</span><span class="op">)</span><span class="op">)</span>,
-    timeVar <span class="op">=</span> <span class="st">"time"</span>
-  <span class="op">)</span>
+<span class="va">fit_mjoint</span> <span class="op">&lt;-</span> <span class="fu">joineRML</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/joineRML/man/mjoint.html">mjoint</a></span><span class="op">(</span>
+  formLongFixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    <span class="st">"grad"</span> <span class="op">=</span> <span class="va">log.grad</span> <span class="op">~</span> <span class="va">time</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">hs</span>,
+    <span class="st">"lvmi"</span> <span class="op">=</span> <span class="va">log.lvmi</span> <span class="op">~</span> <span class="va">time</span> <span class="op">+</span> <span class="va">sex</span>
+  <span class="op">)</span>,
+  formLongRandom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    <span class="st">"grad"</span> <span class="op">=</span> <span class="op">~</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">num</span>,
+    <span class="st">"lvmi"</span> <span class="op">=</span> <span class="op">~</span> <span class="va">time</span> <span class="op">|</span> <span class="va">num</span>
+  <span class="op">)</span>,
+  formSurv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html">Surv</a></span><span class="op">(</span><span class="va">fuyrs</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span>,
+  data <span class="op">=</span> <span class="va">hvd</span>,
+  inits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"gamma"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.11</span>, <span class="fl">1.51</span>, <span class="fl">0.80</span><span class="op">)</span><span class="op">)</span>,
+  timeVar <span class="op">=</span> <span class="st">"time"</span>
+<span class="op">)</span>
 
 <span class="co"># extract the survival fixed effects and plot them</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fit_mjoint</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-  component <span class="op">=</span> <span class="st">"survival"</span>,
+  component <span class="op">=</span> <span class="st">"conditional"</span>,
   package <span class="op">=</span> <span class="st">"yarrr"</span>,
   palette <span class="op">=</span> <span class="st">"basel"</span>,
   title <span class="op">=</span> <span class="st">"joint model to time-to-event data and multivariate longitudinal data"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in match.arg(component): 'arg' should be one of "all", "conditional", "zi", "zero_inflated", "dispersion", "precision", "scale", "smooth_terms", "full", "marginal"</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/mjoint-1.png" width="768"></p>
 </div>
 <div id="stationary-linear-model-slm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#stationary-linear-model-slm" class="anchor"></a>stationary linear model (<code>slm</code>)</h2>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">slm</span><span class="op">)</span>
@@ -1385,7 +1435,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-linear-model-glm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-model-glm" class="anchor"></a>generalized linear model (<code>glm</code>)</h2>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -1411,7 +1461,7 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glm1-1.png" width="576"></p>
 <p><strong>Note</strong>: The exact statistic will depend on the family used for <code>glm</code> models: Some families will have a <code>t</code> statistic associated with them, while others a <code>z</code> statistic. The function will figure this out for you.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># creating dataframes to use for regression analyses</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -1520,7 +1570,7 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glm_full-1.png" width="960"></p>
 <p>The version of <code>glm</code> implemented in <code>rms</code> is also supported.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -1542,7 +1592,7 @@ A BibTeX entry for LaTeX users is
 <div id="modified-fitting-for-generalized-linear-models-glm2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#modified-fitting-for-generalized-linear-models-glm2" class="anchor"></a>modified fitting for generalized linear models (<code>glm2</code>)</h2>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">glm2</span><span class="op">)</span>
@@ -1566,7 +1616,7 @@ A BibTeX entry for LaTeX users is
 <div id="fit-generalized-estimating-equations-with-geepack-geeglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fit-generalized-estimating-equations-with-geepack-geeglm" class="anchor"></a>Fit Generalized Estimating Equations with <code>geepack</code> (<code>geeglm</code>)</h2>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">geepack</span><span class="op">)</span>
@@ -1596,7 +1646,7 @@ A BibTeX entry for LaTeX users is
 <div id="ordinal-regression-model-orm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ordinal-regression-model-orm" class="anchor"></a>ordinal regression model (<code>orm</code>)</h2>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/">rms</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -1620,7 +1670,7 @@ A BibTeX entry for LaTeX users is
 <div id="logistic-regression-model-lrm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#logistic-regression-model-lrm" class="anchor"></a>logistic regression model (<code>lrm</code>)</h2>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rms/">rms</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -1650,7 +1700,7 @@ A BibTeX entry for LaTeX users is
 <div id="two-stage-least-squares-instrumental-variables-regression-iv_robust" class="section level2">
 <h2 class="hasAnchor">
 <a href="#two-stage-least-squares-instrumental-variables-regression-iv_robust" class="anchor"></a>Two-Stage Least Squares Instrumental Variables Regression (<code>iv_robust</code>)</h2>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://declaredesign.org/r/fabricatr">fabricatr</a></span><span class="op">)</span>
@@ -1680,7 +1730,7 @@ A BibTeX entry for LaTeX users is
 <div id="ordinary-least-squares-with-robust-standard-errors-lm_robust" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ordinary-least-squares-with-robust-standard-errors-lm_robust" class="anchor"></a>ordinary least squares with robust standard errors (<code>lm_robust</code>)</h2>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://declaredesign.org/r/estimatr/">estimatr</a></span><span class="op">)</span>
@@ -1703,7 +1753,7 @@ A BibTeX entry for LaTeX users is
 <h2 class="hasAnchor">
 <a href="#fitting-negative-binomial-glm-negbin" class="anchor"></a>fitting negative binomial GLM (<code>negbin</code>)</h2>
 <p>Just to demonstrate that this can be done, let’s also flip the axes:</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -1737,7 +1787,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-linear-mixed-effects-model-glmerglmermod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-effects-model-glmerglmermod" class="anchor"></a>generalized linear mixed-effects model (<code>glmer</code>/<code>glmerMod</code>)</h2>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -1765,7 +1815,7 @@ A BibTeX entry for LaTeX users is
 <div id="fitting-generalized-linear-mixed-models-using-mcml-glmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-generalized-linear-mixed-models-using-mcml-glmm" class="anchor"></a>Fitting Generalized Linear Mixed Models using MCML (<code>glmm</code>)</h2>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">glmm</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">BoothHobert</span><span class="op">)</span>
@@ -1793,7 +1843,7 @@ A BibTeX entry for LaTeX users is
 <div id="fitting-negative-binomial-glmm-glmer-nb" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fitting-negative-binomial-glmm-glmer-nb" class="anchor"></a>fitting negative binomial GLMM (<code>glmer.nb</code>)</h2>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -1825,7 +1875,7 @@ A BibTeX entry for LaTeX users is
 <div id="zero-inflated-count-data-regression-zeroinfl" class="section level2">
 <h2 class="hasAnchor">
 <a href="#zero-inflated-count-data-regression-zeroinfl" class="anchor"></a>Zero-Inflated Count Data Regression (<code>zeroinfl</code>)</h2>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/atahk/pscl">pscl</a></span><span class="op">)</span>
@@ -1851,7 +1901,7 @@ A BibTeX entry for LaTeX users is
 <div id="vector-generalized-additive-models-vgam" class="section level2">
 <h2 class="hasAnchor">
 <a href="#vector-generalized-additive-models-vgam" class="anchor"></a>Vector Generalized Additive Models (<code>vgam</code>)</h2>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.stat.auckland.ac.nz/~yee/VGAM/">VGAM</a></span><span class="op">)</span>
@@ -1876,7 +1926,7 @@ A BibTeX entry for LaTeX users is
 <div id="vector-generalized-linear-models-vglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#vector-generalized-linear-models-vglm" class="anchor"></a>Vector Generalized Linear Models (<code>vglm</code>)</h2>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.stat.auckland.ac.nz/~yee/VGAM/">VGAM</a></span><span class="op">)</span>
@@ -1900,7 +1950,7 @@ A BibTeX entry for LaTeX users is
 <div id="reduced-rank-vector-generalized-linear-models-rrvglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reduced-rank-vector-generalized-linear-models-rrvglm" class="anchor"></a>Reduced-Rank Vector Generalized Linear Models (<code>rrvglm</code>)</h2>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.stat.auckland.ac.nz/~yee/VGAM/">VGAM</a></span><span class="op">)</span>
@@ -1935,7 +1985,7 @@ A BibTeX entry for LaTeX users is
 <div id="vector-autoregression-models-varest" class="section level2">
 <h2 class="hasAnchor">
 <a href="#vector-autoregression-models-varest" class="anchor"></a>Vector autoregression models (<code>varest</code>)</h2>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://www.pfaffikus.de">vars</a></span><span class="op">)</span>
@@ -1956,7 +2006,7 @@ A BibTeX entry for LaTeX users is
 <div id="constrained-generalized-additive-model-fitting-cgam" class="section level2">
 <h2 class="hasAnchor">
 <a href="#constrained-generalized-additive-model-fitting-cgam" class="anchor"></a>Constrained Generalized Additive Model Fitting (<code>cgam</code>)</h2>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">cgam</span><span class="op">)</span>
@@ -1975,7 +2025,7 @@ A BibTeX entry for LaTeX users is
 <div id="constrained-generalized-additive-mixed-effects-model-fitting-cgamm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#constrained-generalized-additive-mixed-effects-model-fitting-cgamm" class="anchor"></a>Constrained Generalized Additive Mixed-Effects Model Fitting (<code>cgamm</code>)</h2>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">cgam</span><span class="op">)</span>
@@ -2023,7 +2073,7 @@ A BibTeX entry for LaTeX users is
 <div id="shape-constrained-additive-models-scam" class="section level2">
 <h2 class="hasAnchor">
 <a href="#shape-constrained-additive-models-scam" class="anchor"></a>shape constrained additive models (<code>scam</code>)</h2>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scam</span><span class="op">)</span>
@@ -2059,7 +2109,7 @@ A BibTeX entry for LaTeX users is
 <div id="hurdle-models-for-count-data-regression-hurdle" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hurdle-models-for-count-data-regression-hurdle" class="anchor"></a>Hurdle Models for Count Data Regression (<code>hurdle</code>)</h2>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/atahk/pscl">pscl</a></span><span class="op">)</span>
@@ -2087,7 +2137,7 @@ A BibTeX entry for LaTeX users is
 <div id="beta-binomial-mixed-effects-model-bbmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#beta-binomial-mixed-effects-model-bbmm" class="anchor"></a>beta-binomial mixed-effects model (<code>BBmm</code>)</h2>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span><span class="op">(</span><span class="st">"PROreg"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz"</span>,
@@ -2143,7 +2193,7 @@ A BibTeX entry for LaTeX users is
 <div id="beta-binomial-logistic-regression-model-bbreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#beta-binomial-logistic-regression-model-bbreg" class="anchor"></a>beta-binomial logistic regression model (<code>BBreg</code>)</h2>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">18</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">PROreg</span><span class="op">)</span>
@@ -2172,7 +2222,7 @@ A BibTeX entry for LaTeX users is
 <div id="binary-choice-models-with-fixed-effects-bife" class="section level2">
 <h2 class="hasAnchor">
 <a href="#binary-choice-models-with-fixed-effects-bife" class="anchor"></a>binary choice models with fixed effects (<code>bife</code>)</h2>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/amrei-stammann/bife">bife</a></span><span class="op">)</span>
@@ -2196,7 +2246,7 @@ A BibTeX entry for LaTeX users is
 <div id="dirichlet-regression-model-dirichreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dirichlet-regression-model-dirichreg" class="anchor"></a>Dirichlet regression model (<code>DirichReg</code>)</h2>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/maiermarco/DirichletReg">DirichletReg</a></span><span class="op">)</span>
@@ -2220,7 +2270,7 @@ A BibTeX entry for LaTeX users is
 <div id="robust-generalized-linear-models-robmixglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#robust-generalized-linear-models-robmixglm" class="anchor"></a>robust generalized linear models (<code>robmixglm</code>)</h2>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">robmixglm</span><span class="op">)</span>
@@ -2240,7 +2290,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-linear-models-with-extra-parameters-glmx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-models-with-extra-parameters-glmx" class="anchor"></a>generalized linear models with extra parameters (<code>glmx</code>)</h2>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">glmx</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
@@ -2267,7 +2317,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-linear-mixed-model-trees-glmertree" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-model-trees-glmertree" class="anchor"></a>generalized linear mixed model trees (<code>glmertree</code>)</h2>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">glmertree</span><span class="op">)</span>
@@ -2303,7 +2353,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-linear-mixed-models-using-penalized-quasi-likelihood-glmmpql" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-models-using-penalized-quasi-likelihood-glmmpql" class="anchor"></a>generalized linear mixed models using Penalized Quasi-Likelihood (<code>glmmPQL</code>)</h2>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
@@ -2330,7 +2380,7 @@ A BibTeX entry for LaTeX users is
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-models-using-template-model-builder-glmmtmb" class="anchor"></a>generalized linear mixed models using Template Model Builder (<code>glmmTMB</code>)</h2>
 <p><code>glmmTMB</code> package allows for flexibly fitting generalized linear mixed models (GLMMs) and extensions. Model objects from this package are also supported.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/glmmTMB/glmmTMB">glmmTMB</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -2351,7 +2401,7 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/glmmTMB-1.png" width="576"></p>
 <p>Another example (given the number of terms, let’s only display labels for significant effects):</p>
-<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/glmmTMB/glmmTMB">glmmTMB</a></span><span class="op">)</span>
@@ -2377,7 +2427,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-linear-mixed-models-using-ad-model-builder-glmmadmb" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-linear-mixed-models-using-ad-model-builder-glmmadmb" class="anchor"></a>generalized linear mixed models using AD Model Builder (<code>glmmadmb</code>)</h2>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html">isFALSE</a></span><span class="op">(</span><span class="st">"glmmADMB"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"glmmADMB"</span>,
@@ -2413,12 +2463,12 @@ A BibTeX entry for LaTeX users is
   x <span class="op">=</span> <span class="va">zipmodel</span>,
   title <span class="op">=</span> <span class="st">"generalized linear mixed models using AD Model Builder"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/glmmadmb-1.png" width="480"></p>
+<p><img src="ggcoefstats_files/figure-html/glmmadmb-1.png" width="672"></p>
 </div>
 <div id="multilevel-model-to-a-list-of-data-frames-mermodlist" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multilevel-model-to-a-list-of-data-frames-mermodlist" class="anchor"></a>multilevel model to a list of data frames (<code>merModList</code>)</h2>
-<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/">lme4</a></span><span class="op">)</span>
@@ -2441,12 +2491,12 @@ A BibTeX entry for LaTeX users is
   x <span class="op">=</span> <span class="va">mod_lmerModList</span>,
   title <span class="op">=</span> <span class="st">"a multilevel model to a list of data frames"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/merModList-1.png" width="384"></p>
+<p><img src="ggcoefstats_files/figure-html/merModList-1.png" width="576"></p>
 </div>
 <div id="cumulative-link-models-clm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-models-clm" class="anchor"></a>cumulative link models (<code>clm</code>)</h2>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/ordinal">ordinal</a></span><span class="op">)</span>
@@ -2467,7 +2517,7 @@ A BibTeX entry for LaTeX users is
 <div id="cumulative-link-models---older-version-clm2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-models---older-version-clm2" class="anchor"></a>cumulative link models - older version (<code>clm2</code>)</h2>
-<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/ordinal">ordinal</a></span><span class="op">)</span>
@@ -2500,7 +2550,7 @@ A BibTeX entry for LaTeX users is
 <div id="cumulative-link-mixed-models-clmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-mixed-models-clmm" class="anchor"></a>cumulative link mixed models (<code>clmm</code>)</h2>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/ordinal">ordinal</a></span><span class="op">)</span>
@@ -2526,7 +2576,7 @@ A BibTeX entry for LaTeX users is
 <div id="cumulative-link-mixed-models---older-version-clmm2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cumulative-link-mixed-models---older-version-clmm2" class="anchor"></a>cumulative link mixed models - older version (<code>clmm2</code>)</h2>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/runehaubo/ordinal">ordinal</a></span><span class="op">)</span>
@@ -2557,7 +2607,7 @@ A BibTeX entry for LaTeX users is
 <div id="marginal-effects-estimation-margins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#marginal-effects-estimation-margins" class="anchor"></a>marginal effects estimation (<code>margins</code>)</h2>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leeper/margins">margins</a></span><span class="op">)</span>
@@ -2576,13 +2626,13 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">marg_log</span>,
   title <span class="op">=</span> <span class="st">"marginal effects estimation"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/margins-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: A data frame is no valid object for this function.</span></code></pre></div>
 </div>
 <div id="linear-regression-with-interval-censored-dependent-variable-semlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-regression-with-interval-censored-dependent-variable-semlm" class="anchor"></a>Linear Regression with Interval-Censored Dependent Variable (<code>semLm</code>)</h2>
-<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">smicd</span><span class="op">)</span>
@@ -2610,7 +2660,7 @@ A BibTeX entry for LaTeX users is
 <div id="linear-mixed-regression-with-interval-censored-dependent-variable-semlme" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-mixed-regression-with-interval-censored-dependent-variable-semlme" class="anchor"></a>Linear Mixed Regression with Interval-Censored Dependent Variable (<code>semLme</code>)</h2>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">smicd</span><span class="op">)</span>
@@ -2632,39 +2682,34 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">model1</span>,
   title <span class="op">=</span> <span class="st">"Linear Mixed Regression with \nInterval-Censored Dependent Variable"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/semLme-1.png" width="576"></p>
-</div>
-<div id="mixed-effects-ordinal-regression-analysis-mixor" class="section level2">
-<h2 class="hasAnchor">
-<a href="#mixed-effects-ordinal-regression-analysis-mixor" class="anchor"></a>Mixed-Effects Ordinal Regression Analysis (<code>mixor</code>)</h2>
-<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mixor</span><span class="op">)</span>
-<span class="co">#&gt; Error in library(mixor): there is no package called 'mixor'</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"SmokingPrevention"</span><span class="op">)</span>
-
-<span class="co"># data frame must be sorted by id variable</span>
-<span class="va">SmokingPrevention</span> <span class="op">&lt;-</span> <span class="va">SmokingPrevention</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">SmokingPrevention</span><span class="op">$</span><span class="va">class</span><span class="op">)</span>, <span class="op">]</span>
-<span class="co">#&gt; Error in eval(expr, envir, enclos): object 'SmokingPrevention' not found</span>
-
-<span class="co"># school model</span>
-<span class="va">mod_mixor</span> <span class="op">&lt;-</span>
-  <span class="fu">mixor</span><span class="fu">::</span><span class="fu">mixor</span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="va">thksord</span> <span class="op">~</span> <span class="va">thkspre</span> <span class="op">+</span> <span class="va">cc</span> <span class="op">+</span> <span class="va">tv</span> <span class="op">+</span> <span class="va">cctv</span>,
-    data <span class="op">=</span> <span class="va">SmokingPrevention</span>,
-    id <span class="op">=</span> <span class="va">school</span>,
-    link <span class="op">=</span> <span class="st">"logit"</span>
-  <span class="op">)</span>
-<span class="co">#&gt; Error in loadNamespace(x): there is no package called 'mixor'</span>
-
-<span class="co"># plot</span>
-<span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">mod_mixor</span>,
-  title <span class="op">=</span> <span class="st">"Mixed-Effects Ordinal Regression Analysis"</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'mod_mixor' not found</span></code></pre></div>
+<span class="co">#&gt; Error: Sorry, `model_parameters()` failed with the following error (possible class</span>
+<span class="co">#&gt;   'sem' not supported):</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Non-numeric argument to mathematical function</span></code></pre></div>
+<!-- mixor was removed from CRAN -->
+<!-- ## Mixed-Effects Ordinal Regression Analysis (`mixor`) -->
+<!-- ```{r mixor, fig.height=8, fig.width=6} -->
+<!-- # setup -->
+<!-- set.seed(123) -->
+<!-- library(mixor) -->
+<!-- data("SmokingPrevention") -->
+<!-- # data frame must be sorted by id variable -->
+<!-- SmokingPrevention <- SmokingPrevention[order(SmokingPrevention$class), ] -->
+<!-- # school model -->
+<!-- mod_mixor <- -->
+<!--   mixor::mixor( -->
+<!--     formula = thksord ~ thkspre + cc + tv + cctv, -->
+<!--     data = SmokingPrevention, -->
+<!--     id = school, -->
+<!--     link = "logit" -->
+<!--   ) -->
+<!-- # plot -->
+<!-- ggcoefstats( -->
+<!--   x = mod_mixor, -->
+<!--   title = "Mixed-Effects Ordinal Regression Analysis" -->
+<!-- ) -->
+<!-- ``` -->
 </div>
 <div id="bias-reduction-in-binomial-response-glms-brglm" class="section level2">
 <h2 class="hasAnchor">
@@ -3289,7 +3334,7 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; </span>
 <span class="co">#&gt; differentiating mean function -- may take a while</span>
 <span class="co">#&gt; differentiating variance function -- may take a while</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/nlreg-1.png" width="480"></p>
+<p><img src="ggcoefstats_files/figure-html/nlreg-1.png" width="672"></p>
 </div>
 <div id="fit-a-linear-model-with-multiple-group-fixed-effects-felm" class="section level2">
 <h2 class="hasAnchor">
@@ -3447,7 +3492,7 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span>
 <span class="co">#&gt; Warning: Number of labels is greater than default palette color count.</span>
 <span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/coxme-1.png" width="384"></p>
+<p><img src="ggcoefstats_files/figure-html/coxme-1.png" width="576"></p>
 </div>
 <div id="robust-cox-proportional-hazards-regression-model-coxr" class="section level2">
 <h2 class="hasAnchor">
@@ -3980,8 +4025,11 @@ A BibTeX entry for LaTeX users is
   x <span class="op">=</span> <span class="va">mod_rq</span>,
   se.type <span class="op">=</span> <span class="st">"iid"</span>,
   title <span class="op">=</span> <span class="st">"quantile regression"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/rq-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: Problem with `mutate()` column `label`.</span>
+<span class="co">#&gt; i `label = case_when(...)`.</span>
+<span class="co">#&gt; x object 'df.error' not found</span>
+<span class="co">#&gt; i The error occurred in row 1.</span></code></pre></div>
 </div>
 <div id="multiple-response-quantile-regression-rqs" class="section level2">
 <h2 class="hasAnchor">
@@ -4051,14 +4099,13 @@ A BibTeX entry for LaTeX users is
   formula <span class="op">=</span> <span class="va">z</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/quantreg/man/qss.html">qss</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, lambda <span class="op">=</span> <span class="fl">.08</span><span class="op">)</span>,
   data <span class="op">=</span> <span class="va">CobarOre</span>
 <span class="op">)</span>
-<span class="co">#&gt; Error in qss2(x, constraint = constraint, dummies = dummies, lambda = lambda, : requireNamespace("tripack") is not TRUE</span>
 
 <span class="co"># model info</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">fCO</span>,
   title <span class="op">=</span> <span class="st">"Additive Quantile Regression"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'fCO' not found</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/rqss-1.png" width="384"></p>
 </div>
 <div id="censored-quantile-regression-crq" class="section level2">
 <h2 class="hasAnchor">
@@ -4084,11 +4131,8 @@ A BibTeX entry for LaTeX users is
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">f_crq</span>,
   title <span class="op">=</span> <span class="st">"censored quantile regression models"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error: Problem with `mutate()` column `label`.</span>
-<span class="co">#&gt; i `label = case_when(...)`.</span>
-<span class="co">#&gt; x object 'df.error' not found</span>
-<span class="co">#&gt; i The error occurred in row 1.</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggcoefstats_files/figure-html/crq-1.png" width="480"></p>
 </div>
 <div id="instrumental-variable-regression-ivreg" class="section level2">
 <h2 class="hasAnchor">
@@ -4324,38 +4368,10 @@ A BibTeX entry for LaTeX users is
 <span id="cb140-27"><a href="#cb140-27" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%<span class="cn">NULL</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/BGGM-1.png" width="576"></p>
 </div>
-<div id="bayesian-additive-models-for-location-scale-and-shape-bamlss" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bayesian-additive-models-for-location-scale-and-shape-bamlss" class="anchor"></a>Bayesian additive models for location scale and shape (<code>bamlss</code>)</h2>
-<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># setup</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.bamlss.org/">bamlss</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"SwissLabor"</span>, package <span class="op">=</span> <span class="st">"AER"</span><span class="op">)</span>
-
-<span class="co"># formula</span>
-<span class="va">f</span> <span class="op">&lt;-</span> <span class="va">participation</span> <span class="op">~</span> <span class="va">income</span> <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">education</span> <span class="op">+</span> <span class="va">youngkids</span> <span class="op">+</span> <span class="va">oldkids</span> <span class="op">+</span> <span class="va">foreign</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">age</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-
-<span class="co"># model</span>
-<span class="va">b_bamlss</span> <span class="op">&lt;-</span>
-  <span class="fu">bamlss</span><span class="fu">::</span><span class="fu"><a href="http://www.bamlss.org/reference/bamlss.html">bamlss</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="va">f</span>,
-    family <span class="op">=</span> <span class="st">"binomial"</span>,
-    data <span class="op">=</span> <span class="va">SwissLabor</span>
-  <span class="op">)</span>
-<span class="co">#&gt; Error in terms.formula(formula(fF), data = data): invalid term in model formula</span>
-
-<span class="co"># plot</span>
-<span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>
-  x <span class="op">=</span> <span class="va">b_bamlss</span>,
-  title <span class="op">=</span> <span class="st">"Bayesian additive models \nfor location scale and shape"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Error in .get_class_list(x): object 'b_bamlss' not found</span></code></pre></div>
-</div>
 <div id="linear-equation-system-estimation-systemfit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#linear-equation-system-estimation-systemfit" class="anchor"></a>Linear Equation System Estimation (<code>systemfit</code>)</h2>
-<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.systemfit.org">systemfit</a></span><span class="op">)</span>
 
 <span class="co"># data</span>
@@ -4385,7 +4401,7 @@ A BibTeX entry for LaTeX users is
 <div id="generalized-method-of-moment-estimation-gmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-method-of-moment-estimation-gmm" class="anchor"></a>generalized method of moment estimation (<code>gmm</code>)</h2>
-<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gmm</span><span class="op">)</span>
@@ -4416,7 +4432,7 @@ A BibTeX entry for LaTeX users is
 <div id="spatial-simultaneous-autoregressive-model-estimationby-maximum-likelihood-sarlm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#spatial-simultaneous-autoregressive-model-estimationby-maximum-likelihood-sarlm" class="anchor"></a>Spatial simultaneous autoregressive model estimationby maximum likelihood (<code>Sarlm</code>)</h2>
-<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-spatial/spatialreg/">spatialreg</a></span><span class="op">)</span>
 
 <span class="co"># data</span>
@@ -4466,7 +4482,7 @@ A BibTeX entry for LaTeX users is
 <h2 class="hasAnchor">
 <a href="#fit-a-glm-with-lasso-or-elasticnet-regularization-glmnet" class="anchor"></a>fit a GLM with lasso or elasticnet regularization (<code>glmnet</code>)</h2>
 <p>Although these models are not directly supported in <code>ggcoefstats</code> because of the sheer number of terms that are typically present. But this function can still be used to selectively show few of the terms of interest:</p>
-<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://glmnet.stanford.edu">glmnet</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2014</span><span class="op">)</span>
@@ -4498,7 +4514,7 @@ A BibTeX entry for LaTeX users is
 <div id="exponential-family-random-graph-models-ergm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exponential-family-random-graph-models-ergm" class="anchor"></a>exponential-family random graph models (<code>ergm</code>)</h2>
-<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># load the Florentine marriage network data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://statnet.org">ergm</a></span><span class="op">)</span><span class="op">)</span>
@@ -4519,7 +4535,7 @@ A BibTeX entry for LaTeX users is
 <div id="tergm-by-bootstrapped-pseudolikelihood-or-mcmc-mle-btergm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tergm-by-bootstrapped-pseudolikelihood-or-mcmc-mle-btergm" class="anchor"></a>TERGM by bootstrapped pseudolikelihood or MCMC MLE (<code>btergm</code>)</h2>
-<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://statnet.org/">network</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leifeld/btergm">btergm</a></span><span class="op">)</span>
@@ -4556,13 +4572,18 @@ A BibTeX entry for LaTeX users is
   x <span class="op">=</span> <span class="va">fit_btergm</span>,
   title <span class="op">=</span> <span class="st">"Terms used in Exponential Family Random Graph Models"</span>,
   subtitle <span class="op">=</span> <span class="st">"by bootstrapped pseudolikelihood or MCMC MLE"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/btergm-1.png" width="576"></p>
+<span class="op">)</span>
+<span class="co">#&gt; Error: Sorry, `model_parameters()` failed with the following error (possible class</span>
+<span class="co">#&gt;   'btergm' not supported):</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   `method` should be 'ETI' (for equal-tailed interval),'HDI' (for highest density</span>
+<span class="co">#&gt;   interval), `BCI` (for bias corrected and accelerated bootstrap intervals) or</span>
+<span class="co">#&gt;   'SI' (for support interval).</span></code></pre></div>
 </div>
 <div id="generalized-autoregressive-conditional-heteroscedastic-regression-garch" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generalized-autoregressive-conditional-heteroscedastic-regression-garch" class="anchor"></a>generalized autoregressive conditional heteroscedastic regression (<code>garch</code>)</h2>
-<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tseries</span><span class="op">)</span>
@@ -4582,7 +4603,7 @@ A BibTeX entry for LaTeX users is
 <div id="bayesian-estimation-of-the-garch11-model-with-student-t-innovations-bayesgarch" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-estimation-of-the-garch11-model-with-student-t-innovations-bayesgarch" class="anchor"></a>Bayesian Estimation of the GARCH(1,1) Model with Student-t Innovations (<code>bayesGARCH</code>)</h2>
-<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ArdiaD/bayesGARCH">bayesGARCH</a></span><span class="op">)</span>
@@ -4606,7 +4627,7 @@ A BibTeX entry for LaTeX users is
 <div id="maximum-likelihood-fitting-of-univariate-distributions-fitdistr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#maximum-likelihood-fitting-of-univariate-distributions-fitdistr" class="anchor"></a>maximum-likelihood fitting of univariate distributions (<code>fitdistr</code>)</h2>
-<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
@@ -4626,7 +4647,7 @@ A BibTeX entry for LaTeX users is
 <div id="maximum-likelihood-estimation-mle2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#maximum-likelihood-estimation-mle2" class="anchor"></a>maximum likelihood estimation (<code>mle2</code>)</h2>
-<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bbolker/bbmle">bbmle</a></span><span class="op">)</span>
@@ -4655,7 +4676,7 @@ A BibTeX entry for LaTeX users is
 <div id="general-linear-hypotheses-glht" class="section level2">
 <h2 class="hasAnchor">
 <a href="#general-linear-hypotheses-glht" class="anchor"></a>General Linear Hypotheses (<code>glht</code>)</h2>
-<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://multcomp.R-forge.R-project.org">multcomp</a></span><span class="op">)</span>
@@ -4686,7 +4707,7 @@ A BibTeX entry for LaTeX users is
 <div id="cochrane-orcutt-estimation-orcutt" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cochrane-orcutt-estimation-orcutt" class="anchor"></a>Cochrane-Orcutt estimation (<code>orcutt</code>)</h2>
-<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">orcutt</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -4705,7 +4726,7 @@ A BibTeX entry for LaTeX users is
 <div id="confusion-matrix-confusionmatrix" class="section level2">
 <h2 class="hasAnchor">
 <a href="#confusion-matrix-confusionmatrix" class="anchor"></a>confusion matrix (<code>confusionMatrix</code>)</h2>
-<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/topepo/caret/">caret</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -4730,7 +4751,7 @@ A BibTeX entry for LaTeX users is
 <div id="dose-response-modelscurves-drc" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dose-response-modelscurves-drc" class="anchor"></a>dose-response models/curves (<code>drc</code>)</h2>
-<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.r-project.org">drc</a></span><span class="op">)</span>
@@ -4757,7 +4778,7 @@ A BibTeX entry for LaTeX users is
 <div id="firths-bias-reduced-logistic-regression-logitsf" class="section level2">
 <h2 class="hasAnchor">
 <a href="#firths-bias-reduced-logistic-regression-logitsf" class="anchor"></a>Firth’s bias-reduced logistic regression (<code>logitsf</code>)</h2>
-<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://cemsiis.meduniwien.ac.at/en/kb/science-research/software/statistical-software/fllogistf/">logistf</a></span><span class="op">)</span>
@@ -4778,7 +4799,7 @@ A BibTeX entry for LaTeX users is
 <div id="flexible-parametric-regression-for-time-to-event-data-flexsurvreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#flexible-parametric-regression-for-time-to-event-data-flexsurvreg" class="anchor"></a>Flexible parametric regression for time-to-event data (<code>flexsurvreg</code>)</h2>
-<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/chjackson/flexsurv-dev">flexsurv</a></span><span class="op">)</span>
@@ -4801,7 +4822,7 @@ A BibTeX entry for LaTeX users is
 <div id="panel-regression-models-fit-via-multilevel-modeling-wblm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#panel-regression-models-fit-via-multilevel-modeling-wblm" class="anchor"></a>panel regression models fit via multilevel modeling (<code>wblm</code>)</h2>
-<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://panelr.jacob-long.com">panelr</a></span><span class="op">)</span>
@@ -4827,7 +4848,7 @@ A BibTeX entry for LaTeX users is
 <div id="panel-regression-models-fit-via-generalized-estimating-equations-wbgee" class="section level2">
 <h2 class="hasAnchor">
 <a href="#panel-regression-models-fit-via-generalized-estimating-equations-wbgee" class="anchor"></a>panel regression models fit via generalized estimating equations (<code>wbgee</code>)</h2>
-<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://panelr.jacob-long.com">panelr</a></span><span class="op">)</span>
@@ -4855,7 +4876,7 @@ A BibTeX entry for LaTeX users is
 <div id="censored-regression-with-conditional-heteroscedasticy-crch" class="section level2">
 <h2 class="hasAnchor">
 <a href="#censored-regression-with-conditional-heteroscedasticy-crch" class="anchor"></a>Censored Regression with Conditional Heteroscedasticy (<code>crch</code>)</h2>
-<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">crch</span><span class="op">)</span>
@@ -4883,7 +4904,7 @@ A BibTeX entry for LaTeX users is
 <div id="marginal-models-for-correlated-ordinal-multinomial-responses-lorgee" class="section level2">
 <h2 class="hasAnchor">
 <a href="#marginal-models-for-correlated-ordinal-multinomial-responses-lorgee" class="anchor"></a>Marginal Models For Correlated Ordinal Multinomial Responses (<code>LORgee</code>)</h2>
-<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/AnestisTouloumis/multgee">multgee</a></span><span class="op">)</span>
@@ -4912,7 +4933,7 @@ A BibTeX entry for LaTeX users is
 <div id="summary-measures-for-count-data-epi-2by2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary-measures-for-count-data-epi-2by2" class="anchor"></a>summary measures for count data (<code>epi.2by2</code>)</h2>
-<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fvas.unimelb.edu.au/research/groups/veterinary-epidemiology-melbourne">epiR</a></span><span class="op">)</span>
@@ -4942,7 +4963,7 @@ A BibTeX entry for LaTeX users is
 <div id="marginal-effects-for-a-probit-regression-probitmfx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-probit-regression-probitmfx" class="anchor"></a>marginal effects for a probit regression (<code>probitmfx</code>)</h2>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
@@ -4969,7 +4990,7 @@ A BibTeX entry for LaTeX users is
 <div id="marginal-effects-for-a-beta-regression-betamfx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-beta-regression-betamfx" class="anchor"></a>marginal effects for a beta regression (<code>betamfx</code>)</h2>
-<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
@@ -5001,7 +5022,7 @@ A BibTeX entry for LaTeX users is
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-logit-regression-logitmfx" class="anchor"></a>marginal effects for a logit regression (<code>logitmfx</code>)</h2>
 <p>Same example can also be used for <code>logitor</code> object.</p>
-<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">mfx</span><span class="op">)</span>
@@ -5030,7 +5051,7 @@ A BibTeX entry for LaTeX users is
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-negative-binomial-regression-negbinmfx" class="anchor"></a>marginal effects for a negative binomial regression (<code>negbinmfx</code>)</h2>
 <p>Same example can also be used for <code>negbinirr</code> object.</p>
-<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulate some data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
@@ -5054,7 +5075,7 @@ A BibTeX entry for LaTeX users is
 <h2 class="hasAnchor">
 <a href="#marginal-effects-for-a-poisson-regression-poissonmfx" class="anchor"></a>marginal effects for a Poisson regression (<code>poissonmfx</code>)</h2>
 <p>Same example can also be used for <code>poissonirr</code> object.</p>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simulate some data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
@@ -5075,7 +5096,7 @@ A BibTeX entry for LaTeX users is
 <div id="bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-generalized-non-linear-multivariate-multilevel-models-brmsfit" class="anchor"></a>Bayesian generalized (non-)linear multivariate multilevel models (<code>brmsfit</code>)</h2>
-<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms">brms</a></span><span class="op">)</span>
@@ -5103,7 +5124,7 @@ A BibTeX entry for LaTeX users is
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/brmsfit-1.png" width="672"></p>
 <p>Let’s see another example where we use <code>brms</code> to run the same model on multiple datasets-</p>
-<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paul-buerkner/brms">brms</a></span><span class="op">)</span>
@@ -5132,7 +5153,7 @@ A BibTeX entry for LaTeX users is
 <div id="bayesian-nonlinear-models-via-stan-nlstanreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-nonlinear-models-via-stan-nlstanreg" class="anchor"></a>Bayesian nonlinear models via Stan (<code>nlstanreg</code>)</h2>
-<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb169"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span>
@@ -5162,7 +5183,7 @@ A BibTeX entry for LaTeX users is
 <div id="markov-chain-monte-carlo-objects-mcmc" class="section level2">
 <h2 class="hasAnchor">
 <a href="#markov-chain-monte-carlo-objects-mcmc" class="anchor"></a>Markov Chain Monte Carlo objects (<code>mcmc</code>)</h2>
-<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># loading the data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">coda</span><span class="op">)</span>
@@ -5183,7 +5204,7 @@ A BibTeX entry for LaTeX users is
 <div id="mcmc-with-just-another-gibbs-sampler-rjags" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mcmc-with-just-another-gibbs-sampler-rjags" class="anchor"></a>MCMC with Just Another Gibbs Sampler (<code>rjags</code>)</h2>
-<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">R2jags</span><span class="op">)</span>
@@ -5231,7 +5252,7 @@ A BibTeX entry for LaTeX users is
 <div id="latent-variable-model-lavaan" class="section level2">
 <h2 class="hasAnchor">
 <a href="#latent-variable-model-lavaan" class="anchor"></a>latent variable model (<code>lavaan</code>)</h2>
-<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lavaan.ugent.be">lavaan</a></span><span class="op">)</span>
@@ -5265,7 +5286,7 @@ speed =~ x7 + x8 + x9 "</span>
 <h2 class="hasAnchor">
 <a href="#bayesian-latent-variable-model-blavaan" class="anchor"></a>Bayesian latent variable model (<code>blavaan</code>)</h2>
 <p>Too time-consuming to be run here, so currently skipped.</p>
-<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb173"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">blavaan</span><span class="op">)</span>
@@ -5294,7 +5315,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian-regression-models-via-stan-stanreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-regression-models-via-stan-stanreg" class="anchor"></a>Bayesian regression models via Stan (<code>stanreg</code>)</h2>
-<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span>
@@ -5318,7 +5339,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian-multivariate-generalized-linear-models-via-stan-stanmvreg" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-multivariate-generalized-linear-models-via-stan-stanmvreg" class="anchor"></a>Bayesian multivariate generalized linear models via Stan (<code>stanmvreg</code>)</h2>
-<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span>
@@ -5351,7 +5372,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian-quantile-regression-bayesqr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-quantile-regression-bayesqr" class="anchor"></a>Bayesian quantile regression (<code>bayesQR</code>)</h2>
-<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># needed library</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">bayesQR</span><span class="op">)</span>
 
@@ -5405,7 +5426,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian-binary-and-ordinal-logistic-regression-blrm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-binary-and-ordinal-logistic-regression-blrm" class="anchor"></a>Bayesian binary and ordinal logistic regression (<code>blrm</code>)</h2>
-<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://hbiostat.org/R/rmsb/">rmsb</a></span><span class="op">)</span>
@@ -5429,7 +5450,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="compound-poisson-generalized-linear-models-cpglm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#compound-poisson-generalized-linear-models-cpglm" class="anchor"></a>Compound Poisson Generalized Linear Models (<code>cpglm</code>)</h2>
-<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/actuaryzhang/cplm">cplm</a></span><span class="op">)</span>
@@ -5451,7 +5472,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="compound-poisson-generalized-linear-mixed-models-cpglmm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#compound-poisson-generalized-linear-mixed-models-cpglmm" class="anchor"></a>Compound Poisson Generalized Linear Mixed Models (<code>cpglmm</code>)</h2>
-<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/actuaryzhang/cplm">cplm</a></span><span class="op">)</span>
@@ -5473,7 +5494,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian-compound-poisson-linear-models-bcplm" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bayesian-compound-poisson-linear-models-bcplm" class="anchor"></a>Bayesian Compound Poisson Linear Models (<code>bcplm</code>)</h2>
-<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/actuaryzhang/cplm">cplm</a></span><span class="op">)</span>
@@ -5501,7 +5522,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="multivariate-imputation-by-chained-equations-mice" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multivariate-imputation-by-chained-equations-mice" class="anchor"></a>Multivariate Imputation by Chained Equations (<code>mice</code>)</h2>
-<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/amices/mice">mice</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">nhanes2</span><span class="op">)</span>
 <span class="va">imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://amices.org/mice/reference/mice.html">mice</a></span><span class="op">(</span><span class="va">nhanes2</span><span class="op">)</span>
@@ -5543,7 +5564,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="estimations-with-multiple-fixed-effects-fixest" class="section level2">
 <h2 class="hasAnchor">
 <a href="#estimations-with-multiple-fixed-effects-fixest" class="anchor"></a>estimations with multiple fixed-effects (<code>fixest</code>)</h2>
-<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lrberge.github.io/fixest/">fixest</a></span><span class="op">)</span>
 
@@ -5600,7 +5621,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="multivariate-analysis-of-variance-manova" class="section level2">
 <h2 class="hasAnchor">
 <a href="#multivariate-analysis-of-variance-manova" class="anchor"></a>multivariate analysis of variance (<code>manova</code>)</h2>
-<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -5622,7 +5643,7 @@ speed =~ x7 + x8 + x9 "</span>
 <h1 class="hasAnchor">
 <a href="#regression-models-with-list-outputs" class="anchor"></a>Regression models with <code>list</code> outputs</h1>
 <p>Note that a number of regression models will return an object of class <code>list</code>, in which case this function will fail. But often you can extract the object of interest from this list and use it to plot the regression coefficients.</p>
-<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">gamm4</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -5685,7 +5706,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="parametric" class="section level3">
 <h3 class="hasAnchor">
 <a href="#parametric" class="anchor"></a>parametric</h3>
-<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span>
@@ -5706,7 +5727,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="robust" class="section level3">
 <h3 class="hasAnchor">
 <a href="#robust" class="anchor"></a>robust</h3>
-<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span>
@@ -5726,7 +5747,7 @@ speed =~ x7 + x8 + x9 "</span>
 <div id="bayesian" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bayesian" class="anchor"></a>Bayesian</h3>
-<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span>
@@ -5743,7 +5764,7 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta3-1.png" width="768"></p>
 <p>You can also provide a dataframe containing all the other relevant information for additionally displaying labels with statistical information.</p>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># let's make up a dataframe (with all available details)</span>
 <span class="va">df_full</span> <span class="op">&lt;-</span>
   <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
@@ -5774,7 +5795,7 @@ speed =~ x7 + x8 + x9 "</span>
 <h1 class="hasAnchor">
 <a href="#dataframes" class="anchor"></a>Dataframes</h1>
 <p>Sometimes you don’t have a model object but a custom dataframe that you want display using this function. If a data frame is to be plotted, it <strong>must</strong> contain columns named <code>term</code> (names of predictors), and <code>estimate</code> (corresponding estimates of coefficients or other quantities of interest). Other optional columns are <code>conf.low</code> and <code>conf.high</code> (for confidence intervals), and <code>p.value</code>. You will also have to specify the type of statistic relevant for regression models (<code>"t"</code>, <code>"z"</code>, <code>"f"</code>, <code>"chi"</code>) in case you want to display statistical labels.</p>
-<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># set up</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -5847,7 +5868,7 @@ speed =~ x7 + x8 + x9 "</span>
 <h1 class="hasAnchor">
 <a href="#other-types-of-outputs" class="anchor"></a>Other types of outputs</h1>
 <p>This function can also be used to extract outputs other than a plot, although it is much more preferable to use the underlying functions instead (<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html">parameters::model_parameters</a></code>).</p>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -5863,9 +5884,9 @@ speed =~ x7 + x8 + x9 "</span>
 <span class="co">#&gt; # A tibble: 3 x 10</span>
 <span class="co">#&gt;   term  estimate std.error conf.level conf.low conf.high statistic df.error</span>
 <span class="co">#&gt;   &lt;fct&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;int&gt;</span>
-<span class="co">#&gt; 1 Asym      2.35    0.0782       0.95    2.19       2.50      30.0       13</span>
-<span class="co">#&gt; 2 xmid      1.48    0.0814       0.95    1.32       1.64      18.2       13</span>
-<span class="co">#&gt; 3 scal      1.04    0.0323       0.95    0.978      1.10      32.3       13</span>
+<span class="co">#&gt; 1 Asym      2.35    0.0782       0.95    2.18       2.51      30.0       13</span>
+<span class="co">#&gt; 2 xmid      1.48    0.0814       0.95    1.31       1.66      18.2       13</span>
+<span class="co">#&gt; 3 scal      1.04    0.0323       0.95    0.972      1.11      32.3       13</span>
 <span class="co">#&gt;    p.value</span>
 <span class="co">#&gt;      &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 2.17e-13</span>

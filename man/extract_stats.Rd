@@ -21,7 +21,7 @@ Extracting dataframes with statistical details from \code{{ggstatsplot}}
 This is a convenience function to extract dataframes with statistical details
 that are used to create expressions displayed in \code{{ggstatsplot}} plots as
 subtitle and/or as caption. Note that all of this analysis is carried out by
-the \code{statsExpressions} package.
+the \code{{statsExpressions}} package.
 
 For more details about underlying tests and effect size estimates, see the
 following vignette:

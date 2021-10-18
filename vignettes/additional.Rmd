@@ -80,7 +80,7 @@ package is to go through the following slides:
 
 # Backend of `{ggstatsplot}`
 
-The `statsExpressions` package forms the statistical backend that processes data
+The `{statsExpressions}` package forms the statistical backend that processes data
 and creates dataframes and expressions containing results from statistical
 tests.
 

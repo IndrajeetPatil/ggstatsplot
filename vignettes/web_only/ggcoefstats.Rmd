@@ -195,6 +195,32 @@ ggcoefstats(
 )
 ```
 
+## Bayesian additive models for location scale and shape (`bamlss`)
+
+```{r bamlss, fig.height=5, fig.width=6}
+# setup
+set.seed(123)
+library(bamlss)
+data("SwissLabor", package = "AER")
+
+# formula
+f <- participation ~ income + age + education + youngkids + oldkids + foreign + I(age^2)
+
+# model
+b_bamlss <-
+  bamlss::bamlss(
+    formula = f,
+    family = "binomial",
+    data = SwissLabor
+  )
+
+# plot
+ggcoefstats(
+  x = b_bamlss,
+  title = "Bayesian additive models \nfor location scale and shape"
+)
+```
+
 ## Bayes Factor (`BFBayesFactor`)
 
 ```{r BFBayesFactor, fig.width=10, fig.height=10}
@@ -217,23 +243,21 @@ mod4 <- correlationBF(y = iris$Sepal.Length, x = iris$Sepal.Width)
 
 # contingency tabs (not supported)
 data("raceDolls")
-mod5 <-
-  contingencyTableBF(
-    raceDolls,
-    sampleType = "indepMulti",
-    fixedMargin = "cols"
-  )
+mod5 <- contingencyTableBF(
+  raceDolls,
+  sampleType = "indepMulti",
+  fixedMargin = "cols"
+)
 
 # anova
 data("puzzles")
-mod6 <-
-  anovaBF(
-    formula = RT ~ shape * color + ID,
-    data = puzzles,
-    whichRandom = "ID",
-    whichModels = "top",
-    progress = FALSE
-  )
+mod6 <- anovaBF(
+  formula = RT ~ shape * color + ID,
+  data = puzzles,
+  whichRandom = "ID",
+  whichModels = "top",
+  progress = FALSE
+)
 
 # regression-1
 mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
@@ -620,7 +644,7 @@ combine_plots(
 
 ## linear mixed-effects model (`lmer`/`lmerMod`)
 
-```{r lmer1, fig.height=12, fig.width=7}
+```{r lmer1, fig.height=8, fig.width=6}
 # set up
 library(lme4)
 library(ggstatsplot)
@@ -630,12 +654,11 @@ set.seed(123)
 mod1 <- stats::lm(formula = scale(rating) ~ scale(budget), data = movies_long)
 
 # merMod model
-mod2 <-
-  lme4::lmer(
-    formula = scale(rating) ~ scale(budget) + (budget | genre),
-    data = movies_long,
-    control = lme4::lmerControl(calc.derivs = FALSE)
-  )
+mod2 <- lme4::lmer(
+  formula = scale(rating) ~ scale(budget) + (budget | genre),
+  data = movies_long,
+  control = lme4::lmerControl(calc.derivs = FALSE)
+)
 
 # combining the two different plots
 combine_plots(
@@ -1119,27 +1142,25 @@ hvd <- heart.valve[!is.na(heart.valve$log.grad) &
   heart.valve$num <= 50, ]
 
 # model
-fit_mjoint <-
-  joineRML::mjoint(
-    formLongFixed = list(
-      "grad" = log.grad ~ time + sex + hs,
-      "lvmi" = log.lvmi ~ time + sex
-    ),
-    formLongRandom = list(
-      "grad" = ~ 1 | num,
-      "lvmi" = ~ time | num
-    ),
-    formSurv = Surv(fuyrs, status) ~ age,
-    data = hvd,
-    inits = list("gamma" = c(0.11, 1.51, 0.80)),
-    timeVar = "time"
-  )
+fit_mjoint <- joineRML::mjoint(
+  formLongFixed = list(
+    "grad" = log.grad ~ time + sex + hs,
+    "lvmi" = log.lvmi ~ time + sex
+  ),
+  formLongRandom = list(
+    "grad" = ~ 1 | num,
+    "lvmi" = ~ time | num
+  ),
+  formSurv = Surv(fuyrs, status) ~ age,
+  data = hvd,
+  inits = list("gamma" = c(0.11, 1.51, 0.80)),
+  timeVar = "time"
+)
 
 # extract the survival fixed effects and plot them
 ggcoefstats(
   x = fit_mjoint,
-  conf.level = 0.99,
-  component = "survival",
+  component = "conditional",
   package = "yarrr",
   palette = "basel",
   title = "joint model to time-to-event data and multivariate longitudinal data"
@@ -2136,7 +2157,7 @@ ggcoefstats(
 
 ## generalized linear mixed models using AD Model Builder (`glmmadmb`)
 
-```{r glmmadmb, fig.height=5, fig.width=5}
+```{r glmmadmb, fig.height=5, fig.width=7}
 # setup
 if (isFALSE("glmmADMB" %in% installed.packages())) {
   install.packages("glmmADMB",
@@ -2176,7 +2197,7 @@ ggcoefstats(
 
 ## multilevel model to a list of data frames (`merModList`)
 
-```{r merModList, fig.height=4, fig.width=4}
+```{r merModList, fig.height=5, fig.width=6}
 # setup
 set.seed(123)
 library(lme4)
@@ -2386,32 +2407,34 @@ ggcoefstats(
 )
 ```
 
-## Mixed-Effects Ordinal Regression Analysis (`mixor`)
+<!-- mixor was removed from CRAN -->
 
-```{r mixor, fig.height=8, fig.width=6}
-# setup
-set.seed(123)
-library(mixor)
-data("SmokingPrevention")
+<!-- ## Mixed-Effects Ordinal Regression Analysis (`mixor`) -->
 
-# data frame must be sorted by id variable
-SmokingPrevention <- SmokingPrevention[order(SmokingPrevention$class), ]
+<!-- ```{r mixor, fig.height=8, fig.width=6} -->
+<!-- # setup -->
+<!-- set.seed(123) -->
+<!-- library(mixor) -->
+<!-- data("SmokingPrevention") -->
 
-# school model
-mod_mixor <-
-  mixor::mixor(
-    formula = thksord ~ thkspre + cc + tv + cctv,
-    data = SmokingPrevention,
-    id = school,
-    link = "logit"
-  )
+<!-- # data frame must be sorted by id variable -->
+<!-- SmokingPrevention <- SmokingPrevention[order(SmokingPrevention$class), ] -->
 
-# plot
-ggcoefstats(
-  x = mod_mixor,
-  title = "Mixed-Effects Ordinal Regression Analysis"
-)
-```
+<!-- # school model -->
+<!-- mod_mixor <- -->
+<!--   mixor::mixor( -->
+<!--     formula = thksord ~ thkspre + cc + tv + cctv, -->
+<!--     data = SmokingPrevention, -->
+<!--     id = school, -->
+<!--     link = "logit" -->
+<!--   ) -->
+
+<!-- # plot -->
+<!-- ggcoefstats( -->
+<!--   x = mod_mixor, -->
+<!--   title = "Mixed-Effects Ordinal Regression Analysis" -->
+<!-- ) -->
+<!-- ``` -->
 
 ## bias reduction in Binomial-response GLMs (`brglm`)
 
@@ -2980,7 +3003,7 @@ ggcoefstats(
 
 ## fit a nonlinear heteroscedastic model via maximum likelihood (`nlreg`)
 
-```{r nlreg, fig.height=5, fig.width=5}
+```{r nlreg, fig.height=5, fig.width=7}
 set.seed(123)
 library(nlreg)
 library(boot)
@@ -3135,7 +3158,7 @@ ggcoefstats(
 
 ## mixed effects Cox model (`coxme`)
 
-```{r coxme, fig.height=4, fig.width=4}
+```{r coxme, fig.height=8, fig.width=6}
 # setup
 set.seed(123)
 library(survival)
@@ -3779,7 +3802,7 @@ ggcoefstats(
 
 ## instrumental-variable regression (`ivreg`)
 
-```{r ivreg, fig.height=5, fig.width=5}
+```{r ivreg, fig.height=7, fig.width=5}
 # setup
 suppressPackageStartupMessages(library(AER))
 set.seed(123)
@@ -3982,32 +4005,6 @@ fit_ggm <- estimate(Y + 1, type = "ordinal", iter = 250)
 ggcoefstats(
   x = fit_ggm,
   title = "Bayesian Gaussian Graphical Model"
-)
-```
-
-## Bayesian additive models for location scale and shape (`bamlss`)
-
-```{r bamlss, fig.height=5, fig.width=6}
-# setup
-set.seed(123)
-library(bamlss)
-data("SwissLabor", package = "AER")
-
-# formula
-f <- participation ~ income + age + education + youngkids + oldkids + foreign + I(age^2)
-
-# model
-b_bamlss <-
-  bamlss::bamlss(
-    formula = f,
-    family = "binomial",
-    data = SwissLabor
-  )
-
-# plot
-ggcoefstats(
-  x = b_bamlss,
-  title = "Bayesian additive models \nfor location scale and shape"
 )
 ```
 

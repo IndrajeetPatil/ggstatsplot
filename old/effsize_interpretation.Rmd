@@ -24,6 +24,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-Since all of these details are calculated in `statsExpressions` package, this
+Since all of these details are calculated in `{statsExpressions}` package, this
 vignette has now moved to that package. You can read it here:
 <https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>

@@ -29,6 +29,8 @@ MAJOR CHANGES
     work but it will now always produce a histogram instead of other marginal
     graphic you might have chosen.
 
+  - Minimum needed R version is now `4.0`.
+
 MINOR CHANGES
 
   - Online vignette about `combine_plots` has been removed. In case you want to

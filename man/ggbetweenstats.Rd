@@ -38,8 +38,8 @@ ggbetweenstats(
   outlier.shape = 19,
   outlier.color = "black",
   outlier.label.args = list(size = 3),
-  point.args = list(position = position_jitterdodge(dodge.width = 0.6), alpha = 0.4,
-    size = 3, stroke = 0),
+  point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha
+    = 0.4, size = 3, stroke = 0),
   violin.args = list(width = 0.5, alpha = 0.2),
   ggsignif.args = list(textsize = 3, tip_length = 0.01),
   ggtheme = ggstatsplot::theme_ggstatsplot(),

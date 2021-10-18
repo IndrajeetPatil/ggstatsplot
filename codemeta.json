@@ -237,7 +237,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.6.0"
+      "version": ">= 4.0.0"
     },
     {
       "@type": "SoftwareApplication",
@@ -319,7 +319,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.14.4",
+      "version": ">= 0.14.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -519,6 +519,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "6349.974KB",
+  "fileSize": "6450.865KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

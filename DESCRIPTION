@@ -23,7 +23,7 @@ URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
-    R (>= 3.6.0)
+    R (>= 4.0.0)
 Imports:
     correlation (>= 0.7.1),
     datawizard (>= 0.2.1),
@@ -31,7 +31,7 @@ Imports:
     ggplot2 (>= 3.3.5),
     ggrepel,
     ggsignif (>= 0.6.3),
-    insight (>= 0.14.4),
+    insight (>= 0.14.5),
     pairwiseComparisons (>= 3.2.0),
     paletteer,
     parameters (>= 0.14.0.1),

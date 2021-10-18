@@ -5,7 +5,7 @@
 #' This is a convenience function to extract dataframes with statistical details
 #' that are used to create expressions displayed in `{ggstatsplot}` plots as
 #' subtitle and/or as caption. Note that all of this analysis is carried out by
-#' the `statsExpressions` package.
+#' the `{statsExpressions}` package.
 #'
 #' For more details about underlying tests and effect size estimates, see the
 #' following vignette:
