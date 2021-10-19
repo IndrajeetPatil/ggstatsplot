@@ -33,7 +33,7 @@ Imports:
     ggsignif (>= 0.6.3),
     insight (>= 0.14.5),
     paletteer,
-    parameters (>= 0.14.0.1),
+    parameters (>= 0.15.0),
     patchwork,
     performance (>= 0.8.0),
     PMCMRplus,
@@ -59,10 +59,6 @@ Suggests:
     testthat (>= 3.1.0),
     tibble,
     vdiffr
-Remotes:
-    easystats/parameters,
-    IndrajeetPatil/statsExpressions,
-    IndrajeetPatil/pairwiseComparisons
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

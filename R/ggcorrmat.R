@@ -118,7 +118,7 @@ ggcorrmat <- function(data,
   type <- statsExpressions::stats_type_switch(type)
 
   # creating a dataframe of results
-  stats_df <- statsExpressions::correlation(
+  stats_df <- correlation::correlation(
     data = df,
     rename = cor.vars.names,
     method = ifelse(type == "nonparametric", "spearman", "pearson"),
