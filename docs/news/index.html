@@ -116,7 +116,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0.9000</span>
       </span>
     </div>
 
@@ -230,11 +230,16 @@
       <small>Source: <a href='https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ggstatsplot-0909000" class="section level1">
+<h1 class="page-header" data-toc-text="0.9.0.9000">
+<a href="#ggstatsplot-0909000" class="anchor"></a>ggstatsplot 0.9.0.9000<small> Unreleased </small>
+</h1>
+<p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
+</div>
     <div id="ggstatsplot-090" class="section level1">
 <h1 class="page-header" data-toc-text="0.9.0">
 <a href="#ggstatsplot-090" class="anchor"></a>ggstatsplot 0.9.0<small> Unreleased </small>
 </h1>
-<p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
 <p>NEW FEATURES</p>
 <ul>
 <li>The <code><a href="../reference/pairwise_comparisons.html">pairwise_comparisons()</a></code> function for carrying out one-way pairwise comparisons has now moved in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> from <a href="https://indrajeetpatil.github.io/pairwiseComparisons/">pairwiseComparisons</a> package.</li>
@@ -933,7 +938,7 @@
 <p>MAJOR CHANGES</p>
 <ul>
 <li><p>New function: <code>ggcoefstats</code> for displaying model coefficients.</p></li>
-<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_grey()</a></code> to <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code>.</p></li>
+<li><p>All functions now have <code>ggtheme</code> argument that can be used to change the default theme, which has now been changed from <code>theme_grey()</code> to <code>theme_bw()</code>.</p></li>
 <li><p>The robust correlation is no longer <code><a href="https://rdrr.io/pkg/MASS/man/rlm.html">MASS::rlm</a></code>, but percentage bend correlation, as implemented in <code><a href="https://rdrr.io/pkg/WRS2/man/pbcor.html">WRS2::pbcor</a></code>. This was done to be consistent across different functions. <code>ggcorrmat</code> also uses percentage bend correlation as the robust correlation measure. This also means that <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> no longer imports <code>MASS</code> and <code>sfsmisc</code>.</p></li>
 <li><p>The <code>data</code> argument is no longer <code>NULL</code> for all functions, except <code>gghistostats</code>. In other words, the user <strong>must</strong> provide a dataframe from which variables or formulas should be selected.</p></li>
 <li><p>All subtitles containing results now also show sample size information (<em>n</em>). To adjust for the inflated length of the subtitle, the default subtitle text size has been changed from <code>12</code> to <code>11</code>.</p></li>

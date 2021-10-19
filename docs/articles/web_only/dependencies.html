@@ -58,7 +58,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0.9000</span>
       </span>
     </div>
 
@@ -112,10 +112,13 @@
       <a href="../../articles/additional.html">additional vignettes</a>
     </li>
     <li>
+      <a href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    </li>
+    <li>
       <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
     </li>
     <li>
-      <a href="../../articles/web_only/purrr_examples.html">using `ggstatsplot` with the `purrr` package</a>
+      <a href="../../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
     </li>
     <li>
       <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
@@ -167,7 +170,7 @@
       <h1 data-toc-skip>Dependencies</h1>
                         <h4 class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-10-18</h4>
+            <h4 class="date">2021-10-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/dependencies.Rmd"><code>vignettes/web_only/dependencies.Rmd</code></a></small>
       <div class="hidden name"><code>dependencies.Rmd</code></div>
@@ -176,47 +179,14 @@
 
     
     
-<div id="recursive-dependencies" class="section level1">
-<h1 class="hasAnchor">
-<a href="#recursive-dependencies" class="anchor"></a>Recursive dependencies</h1>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/package_dependencies.html">package_dependencies</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "BayesFactor"         "bayestestR"          "BWStest"            </span>
-<span class="co">#&gt;  [4] "cachem"              "cli"                 "coda"               </span>
-<span class="co">#&gt;  [7] "colorspace"          "contfrac"            "correlation"        </span>
-<span class="co">#&gt; [10] "cpp11"               "crayon"              "datasets"           </span>
-<span class="co">#&gt; [13] "datawizard"          "deSolve"             "digest"             </span>
-<span class="co">#&gt; [16] "dplyr"               "effectsize"          "ellipsis"           </span>
-<span class="co">#&gt; [19] "elliptic"            "fansi"               "farver"             </span>
-<span class="co">#&gt; [22] "fastmap"             "generics"            "ggplot2"            </span>
-<span class="co">#&gt; [25] "ggrepel"             "ggsignif"            "glue"               </span>
-<span class="co">#&gt; [28] "gmp"                 "graphics"            "grDevices"          </span>
-<span class="co">#&gt; [31] "grid"                "gtable"              "gtools"             </span>
-<span class="co">#&gt; [34] "hypergeo"            "insight"             "ipmisc"             </span>
-<span class="co">#&gt; [37] "isoband"             "kSamples"            "labeling"           </span>
-<span class="co">#&gt; [40] "lattice"             "lifecycle"           "magrittr"           </span>
-<span class="co">#&gt; [43] "MASS"                "Matrix"              "MatrixModels"       </span>
-<span class="co">#&gt; [46] "mc2d"                "memoise"             "methods"            </span>
-<span class="co">#&gt; [49] "mgcv"                "multcompView"        "munsell"            </span>
-<span class="co">#&gt; [52] "mvtnorm"             "nlme"                "pairwiseComparisons"</span>
-<span class="co">#&gt; [55] "paletteer"           "parallel"            "parameters"         </span>
-<span class="co">#&gt; [58] "patchwork"           "pbapply"             "performance"        </span>
-<span class="co">#&gt; [61] "pillar"              "pkgconfig"           "plyr"               </span>
-<span class="co">#&gt; [64] "PMCMRplus"           "prismatic"           "purrr"              </span>
-<span class="co">#&gt; [67] "R6"                  "RColorBrewer"        "Rcpp"               </span>
-<span class="co">#&gt; [70] "RcppEigen"           "rematch2"            "reshape"            </span>
-<span class="co">#&gt; [73] "rlang"               "Rmpfr"               "rstudioapi"         </span>
-<span class="co">#&gt; [76] "scales"              "splines"             "stats"              </span>
-<span class="co">#&gt; [79] "statsExpressions"    "stringi"             "stringr"            </span>
-<span class="co">#&gt; [82] "SuppDists"           "tibble"              "tidyr"              </span>
-<span class="co">#&gt; [85] "tidyselect"          "tools"               "utf8"               </span>
-<span class="co">#&gt; [88] "utils"               "vctrs"               "viridisLite"        </span>
-<span class="co">#&gt; [91] "withr"               "WRS2"                "zeallot"</span></code></pre></div>
-</div>
+<!-- # Recursive dependencies -->
+<!-- ```{r deplist} -->
+<!-- sort(tools::package_dependencies("ggstatsplot", recursive = TRUE)[[1]]) -->
+<!-- ``` -->
 <div id="dependency-graph" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dependency-graph" class="anchor"></a>Dependency graph</h1>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dominikrafacz.github.io/deepdep/">deepdep</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://dominikrafacz.github.io/deepdep/reference/plot_deepdep.html">plot_dependencies</a></span><span class="op">(</span><span class="st">"ggstatsplot"</span>, depth <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>

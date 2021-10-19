@@ -33,15 +33,16 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>",
   warning = FALSE,
-  message = FALSE
+  message = FALSE,
+  error = TRUE
 )
 ```
 
-# Recursive dependencies
+<!-- # Recursive dependencies -->
 
-```{r deplist}
-sort(tools::package_dependencies("ggstatsplot", recursive = TRUE)[[1]])
-```
+<!-- ```{r deplist} -->
+<!-- sort(tools::package_dependencies("ggstatsplot", recursive = TRUE)[[1]]) -->
+<!-- ``` -->
 
 # Dependency graph
 
