@@ -145,9 +145,9 @@ Summary of Bayesian analysis
 # Statistical reporting
 
 For **all** statistical tests reported in the plots, the default
-template abides by the [APA](https://my.ilstu.edu/~jhkahn/apastats.html)
-gold standard for statistical reporting. For example, here are results
-from Yuen’s test for trimmed means (robust *t*-test):
+template abides by the gold standard for statistical reporting. For
+example, here are results from Yuen’s test for trimmed means (robust
+*t*-test):
 
 <img src="man/figures/stats_reporting_format.png" align="center" />
 
