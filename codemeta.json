@@ -240,18 +240,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "datawizard",
-      "name": "datawizard",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=datawizard"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -513,6 +501,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "6453.337KB",
+  "fileSize": "6453.32KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }
