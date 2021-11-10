@@ -39,7 +39,7 @@ ggcoefstats(
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame containing results
 from a regression model. Function internally uses
-\code{parameters::model_parameters} to get a tidy dataframe. If a dataframe is
+\code{parameters::model_parameters()} to get a tidy dataframe. If a dataframe is
 entered, it \emph{must} contain at the minimum two columns named \code{term} (names
 of predictors) and \code{estimate} (corresponding estimates of coefficients or
 other quantities of interest).}
@@ -162,14 +162,14 @@ For details, see:
 \note{
 \enumerate{
 \item In case you want to carry out meta-analysis, you will be asked to install
-the needed packages (\code{metafor}, \code{metaplus}, or \code{metaBMA}) for meta-analysis
-(if unavailable).
+the needed packages (\code{{metafor}}, \code{{metaplus}}, or \code{{metaBMA}}) for
+meta-analysis (if unavailable).
 \item All rows of regression estimates where either of the following
 quantities is \code{NA} will be removed if labels are requested: \code{estimate},
 \code{statistic}, \code{p.value}.
 \item Given the rapid pace at which new methods are added to these packages, it
-is recommended that you install the GitHub versions of \code{parameters} and
-\code{performance} in order to make most of this function.
+is recommended that you install the GitHub versions of \code{{parameters}} and
+\code{{performance}} in order to make most of this function.
 }
 }
 \examples{

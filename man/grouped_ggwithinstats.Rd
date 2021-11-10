@@ -202,16 +202,13 @@ library(ggplot2)
 
 # the most basic function call
 grouped_ggwithinstats(
-  data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-  x = condition,
-  y = desire,
-  grouping.var = gender,
-  type = "np", # non-parametric test
+  data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x                = condition,
+  y                = desire,
+  grouping.var     = gender,
+  type             = "np", # non-parametric test
   # additional modifications for **each** plot using `{ggplot2}` functions
-  ggplot.component = scale_y_continuous(
-    breaks         = seq(0, 10, 1),
-    limits         = c(0, 10)
-  )
+  ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
 )
 }
 }

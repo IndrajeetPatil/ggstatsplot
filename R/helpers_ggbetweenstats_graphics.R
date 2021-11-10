@@ -239,11 +239,11 @@ aesthetic_addon <- function(plot,
 #' @examples
 #' # adding column for outlier and a label for that outlier
 #' ggstatsplot:::outlier_df(
-#'   data = morley,
-#'   x = Expt,
-#'   y = Speed,
+#'   data          = morley,
+#'   x             = Expt,
+#'   y             = Speed,
 #'   outlier.label = Run,
-#'   outlier.coef = 2
+#'   outlier.coef  = 2
 #' ) %>%
 #'   arrange(outlier)
 #' @noRd

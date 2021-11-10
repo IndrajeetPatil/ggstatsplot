@@ -9,7 +9,7 @@
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
-#'   `parameters::model_parameters` to get a tidy dataframe. If a dataframe is
+#'   `parameters::model_parameters()` to get a tidy dataframe. If a dataframe is
 #'   entered, it *must* contain at the minimum two columns named `term` (names
 #'   of predictors) and `estimate` (corresponding estimates of coefficients or
 #'   other quantities of interest).
@@ -80,17 +80,16 @@
 #' @note
 #'
 #' 1. In case you want to carry out meta-analysis, you will be asked to install
-#'    the needed packages (`metafor`, `metaplus`, or `metaBMA`) for meta-analysis
-#'    (if unavailable).
+#'   the needed packages (`{metafor}`, `{metaplus}`, or `{metaBMA}`) for
+#'   meta-analysis (if unavailable).
 #'
 #' 2. All rows of regression estimates where either of the following
 #'   quantities is `NA` will be removed if labels are requested: `estimate`,
 #'   `statistic`, `p.value`.
 #'
 #' 3. Given the rapid pace at which new methods are added to these packages, it
-#'   is recommended that you install the GitHub versions of `parameters` and
-#'   `performance` in order to make most of this function.
-#'
+#'   is recommended that you install the GitHub versions of `{parameters}` and
+#'   `{performance}` in order to make most of this function.
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
