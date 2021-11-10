@@ -122,25 +122,25 @@ supported in this package-
 
 | Functions                        | Description                                       | Parametric | Non-parametric | Robust | Bayesian |
 |----------------------------------|---------------------------------------------------|------------|----------------|--------|----------|
-| `ggbetweenstats`                 | Between group/condition comparisons               | ✅          | ✅              | ✅      | ✅        |
-| `ggwithinstats`                  | Within group/condition comparisons                | ✅          | ✅              | ✅      | ✅        |
-| `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable                | ✅          | ✅              | ✅      | ✅        |
-| `ggcorrmat`                      | Correlation matrix                                | ✅          | ✅              | ✅      | ✅        |
-| `ggscatterstats`                 | Correlation between two variables                 | ✅          | ✅              | ✅      | ✅        |
-| `ggpiestats`, `ggbarstats`       | Association between categorical variables         | ✅          | ✅              | ❌      | ✅        |
-| `ggpiestats`, `ggbarstats`       | Equal proportions for categorical variable levels | ✅          | ✅              | ❌      | ✅        |
-| `ggcoefstats`                    | Regression model coefficients                     | ✅          | ✅              | ✅      | ✅        |
-| `ggcoefstats`                    | Random-effects meta-analysis                      | ✅          | ❌              | ✅      | ✅        |
+| `ggbetweenstats`                 | Between group/condition comparisons               | ✅         | ✅             | ✅     | ✅       |
+| `ggwithinstats`                  | Within group/condition comparisons                | ✅         | ✅             | ✅     | ✅       |
+| `gghistostats`, `ggdotplotstats` | Distribution of a numeric variable                | ✅         | ✅             | ✅     | ✅       |
+| `ggcorrmat`                      | Correlation matrix                                | ✅         | ✅             | ✅     | ✅       |
+| `ggscatterstats`                 | Correlation between two variables                 | ✅         | ✅             | ✅     | ✅       |
+| `ggpiestats`, `ggbarstats`       | Association between categorical variables         | ✅         | ✅             | ❌     | ✅       |
+| `ggpiestats`, `ggbarstats`       | Equal proportions for categorical variable levels | ✅         | ✅             | ❌     | ✅       |
+| `ggcoefstats`                    | Regression model coefficients                     | ✅         | ✅             | ✅     | ✅       |
+| `ggcoefstats`                    | Random-effects meta-analysis                      | ✅         | ❌             | ✅     | ✅       |
 
 Summary of Bayesian analysis
 
 | Analysis                        | Hypothesis testing | Estimation |
 |---------------------------------|--------------------|------------|
-| (one/two-sample) t-test         | ✅                  | ✅          |
-| one-way ANOVA                   | ✅                  | ✅          |
-| correlation                     | ✅                  | ✅          |
-| (one/two-way) contingency table | ✅                  | ✅          |
-| random-effects meta-analysis    | ✅                  | ✅          |
+| (one/two-sample) t-test         | ✅                 | ✅         |
+| one-way ANOVA                   | ✅                 | ✅         |
+| correlation                     | ✅                 | ✅         |
+| (one/two-way) contingency table | ✅                 | ✅         |
+| random-effects meta-analysis    | ✅                 | ✅         |
 
 # Statistical reporting
 
@@ -238,11 +238,11 @@ Note here that the function can be used to tag outliers!
 | graphical element        | `geom_` used                | argument for further modification |
 |--------------------------|-----------------------------|-----------------------------------|
 | raw data                 | `ggplot2::geom_point`       | `point.args`                      |
-| box plot                 | `ggplot2::geom_boxplot`     | ❌                                 |
+| box plot                 | `ggplot2::geom_boxplot`     | ❌                                |
 | density plot             | `ggplot2::geom_violin`      | `violin.args`                     |
 | centrality measure point | `ggplot2::geom_point`       | `centrality.point.args`           |
 | centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`           |
-| outlier point            | `ggplot2::stat_boxplot`     | ❌                                 |
+| outlier point            | `ggplot2::stat_boxplot`     | ❌                                |
 | outlier label            | `ggrepel::geom_label_repel` | `outlier.label.args`              |
 | pairwise comparisons     | `ggsignif::geom_signif`     | `ggsignif.args`                   |
 
@@ -274,24 +274,24 @@ Note here that the function can be used to tag outliers!
 
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | \> 2          | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | ✅   | `effectsize::rank_epsilon_squared`                     |
-| Robust         | \> 2          | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::t1way`                                          |
-| Bayes Factor   | \> 2          | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | ✅   | `performance::r2_bayes`                                |
-| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
-| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅   | `effectsize::rank_biserial`                            |
-| Robust         | 2             | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅   | `WRS2::yuen.effect.ci`                                 |
-| Bayesian       | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | ✅   | `bayestestR::describe_posterior`                       |
+| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅  | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![\\epsilon\_{ordinal}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                          | ✅  | `effectsize::rank_epsilon_squared`                     |
+| Robust         | \> 2          | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅  | `WRS2::t1way`                                          |
+| Bayes Factor   | \> 2          | ![R\_{posterior}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                            | ✅  | `performance::r2_bayes`                                |
+| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g`         |
+| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅  | `effectsize::rank_biserial`                            |
+| Robust         | 2             | ![\\xi](https://chart.apis.google.com/chart?cht=tx&chl=%5Cxi "\xi") (Explanatory measure of effect size)                                                                                               | ✅  | `WRS2::yuen.effect.ci`                                 |
+| Bayesian       | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | ✅  | `bayestestR::describe_posterior`                       |
 
 **Pairwise comparison tests**
 
 | Type           | Equal variance? | Test                      | *p*-value adjustment? | Function used                   |
 |----------------|-----------------|---------------------------|-----------------------|---------------------------------|
-| Parametric     | No              | Games-Howell test         | ✅                     | `stats::pairwise.t.test`        |
-| Parametric     | Yes             | Student’s *t*-test        | ✅                     | `PMCMRplus::gamesHowellTest`    |
-| Non-parametric | No              | Dunn test                 | ✅                     | `PMCMRplus::kwAllPairsDunnTest` |
-| Robust         | No              | Yuen’s trimmed means test | ✅                     | `WRS2::lincon`                  |
-| Bayes Factor   | ❌               | Student’s *t*-test        | ❌                     | `BayesFactor::ttestBF`          |
+| Parametric     | No              | Games-Howell test         | ✅                    | `stats::pairwise.t.test`        |
+| Parametric     | Yes             | Student’s *t*-test        | ✅                    | `PMCMRplus::gamesHowellTest`    |
+| Non-parametric | No              | Dunn test                 | ✅                    | `PMCMRplus::kwAllPairsDunnTest` |
+| Robust         | No              | Yuen’s trimmed means test | ✅                    | `WRS2::lincon`                  |
+| Bayes Factor   | ❌              | Student’s *t*-test        | ❌                    | `BayesFactor::ttestBF`          |
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
@@ -380,7 +380,7 @@ grouped_ggwithinstats(
 | centrality measure point      | `ggplot2::geom_point`       | `centrality.point.args`           |
 | centrality measure point path | `ggplot2::geom_path`        | `centrality.path.args`            |
 | centrality measure label      | `ggrepel::geom_label_repel` | `centrality.label.args`           |
-| outlier point                 | `ggplot2::stat_boxplot`     | ❌                                 |
+| outlier point                 | `ggplot2::stat_boxplot`     | ❌                                |
 | outlier label                 | `ggrepel::geom_label_repel` | `outlier.label.args`              |
 | pairwise comparisons          | `ggsignif::geom_signif`     | `ggsignif.args`                   |
 
@@ -412,23 +412,23 @@ grouped_ggwithinstats(
 
 | Type           | No. of groups | Effect size                                                                                                                                                                                            | CI? | Function used                                          |
 |----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅   | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | \> 2          | ![W\_{Kendall}](https://chart.apis.google.com/chart?cht=tx&chl=W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                   | ✅   | `effectsize::kendalls_w`                               |
-| Robust         | \> 2          | ![\\delta\_{R-avg}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)    | ✅   | `WRS2::wmcpAKP`                                        |
-| Bayes Factor   | \> 2          | ![R\_{Bayesian}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                               | ✅   | `performance::r2_bayes`                                |
-| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g`         |
-| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅   | `effectsize::rank_biserial`                            |
-| Robust         | 2             | ![\\delta\_{R}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR%7D%5E%7BAKP%7D "\delta_{R}^{AKP}") (Algina-Keselman-Penfield robust standardized difference)                        | ✅   | `WRS2::wmcpAKP`                                        |
-| Bayesian       | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | ✅   | `bayestestR::describe_posterior`                       |
+| Parametric     | \> 2          | ![\\eta\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅  | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![W\_{Kendall}](https://chart.apis.google.com/chart?cht=tx&chl=W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                   | ✅  | `effectsize::kendalls_w`                               |
+| Robust         | \> 2          | ![\\delta\_{R-avg}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)    | ✅  | `WRS2::wmcpAKP`                                        |
+| Bayes Factor   | \> 2          | ![R\_{Bayesian}^2](https://chart.apis.google.com/chart?cht=tx&chl=R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                               | ✅  | `performance::r2_bayes`                                |
+| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                               | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g`         |
+| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                        | ✅  | `effectsize::rank_biserial`                            |
+| Robust         | 2             | ![\\delta\_{R}^{AKP}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7BR%7D%5E%7BAKP%7D "\delta_{R}^{AKP}") (Algina-Keselman-Penfield robust standardized difference)                        | ✅  | `WRS2::wmcpAKP`                                        |
+| Bayesian       | 2             | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                  | ✅  | `bayestestR::describe_posterior`                       |
 
 **Pairwise comparison tests**
 
 | Type           | Test                      | *p*-value adjustment? | Function used                   |
 |----------------|---------------------------|-----------------------|---------------------------------|
-| Parametric     | Student’s *t*-test        | ✅                     | `stats::pairwise.t.test`        |
-| Non-parametric | Durbin-Conover test       | ✅                     | `PMCMRplus::durbinAllPairsTest` |
-| Robust         | Yuen’s trimmed means test | ✅                     | `WRS2::rmmcp`                   |
-| Bayesian       | Student’s *t*-test        | ❌                     | `BayesFactor::ttestBF`          |
+| Parametric     | Student’s *t*-test        | ✅                    | `stats::pairwise.t.test`        |
+| Non-parametric | Durbin-Conover test       | ✅                    | `PMCMRplus::durbinAllPairsTest` |
+| Robust         | Yuen’s trimmed means test | ✅                    | `WRS2::rmmcp`                   |
+| Bayesian       | Student’s *t*-test        | ❌                    | `BayesFactor::ttestBF`          |
 
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
@@ -522,10 +522,10 @@ grouped_gghistostats(
 
 | Type           | Effect size                                                                                                           | CI? | Function used                                  |
 |----------------|-----------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r* (rank-biserial correlation)                                                                                       | ✅   | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                                                                                                          | ✅   | `WRS2::trimcibt`                               |
-| Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅   | `bayestestR::describe_posterior`               |
+| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
+| Non-parametric | *r* (rank-biserial correlation)                                                                                       | ✅  | `effectsize::rank_biserial`                    |
+| Robust         | trimmed mean                                                                                                          | ✅  | `WRS2::trimcibt`                               |
+| Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅  | `bayestestR::describe_posterior`               |
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
@@ -562,9 +562,9 @@ ggdotplotstats(
 
 **Defaults** return<br>
 
-✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br> ✅
-effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
-estimation <br>
+✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br>
+✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅
+Bayesian estimation <br>
 
 As with the rest of the functions in this package, there is also a
 `grouped_` variant of this function to facilitate looping the same
@@ -622,10 +622,10 @@ grouped_ggdotplotstats(
 
 | Type           | Effect size                                                                                                           | CI? | Function used                                  |
 |----------------|-----------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | ✅   | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r* (rank-biserial correlation)                                                                                       | ✅   | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                                                                                                          | ✅   | `WRS2::trimcibt`                               |
-| Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅   | `bayestestR::describe_posterior`               |
+| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                              | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
+| Non-parametric | *r* (rank-biserial correlation)                                                                                       | ✅  | `effectsize::rank_biserial`                    |
+| Robust         | trimmed mean                                                                                                          | ✅  | `WRS2::trimcibt`                               |
+| Bayes Factor   | ![\\delta\_{posterior}](https://chart.apis.google.com/chart?cht=tx&chl=%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅  | `bayestestR::describe_posterior`               |
 
 ## `ggscatterstats`
 
@@ -693,10 +693,10 @@ grouped_ggscatterstats(
 
 | Type           | Test                                       | CI? | Function used              |
 |----------------|--------------------------------------------|-----|----------------------------|
-| Parametric     | Pearson’s correlation coefficient          | ✅   | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient    | ✅   | `correlation::correlation` |
-| Robust         | Winsorized Pearson correlation coefficient | ✅   | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient          | ✅   | `correlation::correlation` |
+| Parametric     | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
+| Non-parametric | Spearman’s rank correlation coefficient    | ✅  | `correlation::correlation` |
+| Robust         | Winsorized Pearson correlation coefficient | ✅  | `correlation::correlation` |
+| Bayesian       | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
 
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
@@ -844,10 +844,10 @@ ggcorrmat(
 
 | Type           | Test                                       | CI? | Function used              |
 |----------------|--------------------------------------------|-----|----------------------------|
-| Parametric     | Pearson’s correlation coefficient          | ✅   | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient    | ✅   | `correlation::correlation` |
-| Robust         | Winsorized Pearson correlation coefficient | ✅   | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient          | ✅   | `correlation::correlation` |
+| Parametric     | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
+| Non-parametric | Spearman’s rank correlation coefficient    | ✅  | `correlation::correlation` |
+| Robust         | Winsorized Pearson correlation coefficient | ✅  | `correlation::correlation` |
+| Bayesian       | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
 
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
@@ -915,7 +915,7 @@ grouped_ggpiestats(
 
 | graphical element  | `geom_` used                                      | argument for further modification |
 |--------------------|---------------------------------------------------|-----------------------------------|
-| pie slices         | `ggplot2::geom_col`                               | ❌                                 |
+| pie slices         | `ggplot2::geom_col`                               | ❌                                |
 | descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`                      |
 
 ### Summary of tests
@@ -929,16 +929,16 @@ grouped_ggpiestats(
 | Parametric/Non-parametric | Unpaired | Pearson’s ![\\chi^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test`               |
 | Bayesian                  | Unpaired | Bayesian Pearson’s ![\\chi^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E2 "\chi^2") test | `BayesFactor::contingencyTableBF` |
 | Parametric/Non-parametric | Paired   | McNemar’s ![\\chi^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E2 "\chi^2") test          | `stats::mcnemar.test`             |
-| Bayesian                  | Paired   | ❌                                                                                                      | ❌                                 |
+| Bayesian                  | Paired   | ❌                                                                                                     | ❌                                |
 
 **Effect size estimation**
 
 | Type                      | Design   | Effect size                                                         | CI? | Function used           |
 |---------------------------|----------|---------------------------------------------------------------------|-----|-------------------------|
-| Parametric/Non-parametric | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅   | `effectsize::cramers_v` |
-| Bayesian                  | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅   | `effectsize::cramers_v` |
-| Parametric/Non-parametric | Paired   | Cohen’s ![g](https://chart.apis.google.com/chart?cht=tx&chl=g "g")  | ✅   | `effectsize::cohens_g`  |
-| Bayesian                  | Paired   | ❌                                                                   | ❌   | ❌                       |
+| Parametric/Non-parametric | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅  | `effectsize::cramers_v` |
+| Bayesian                  | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅  | `effectsize::cramers_v` |
+| Parametric/Non-parametric | Paired   | Cohen’s ![g](https://chart.apis.google.com/chart?cht=tx&chl=g "g")  | ✅  | `effectsize::cohens_g`  |
+| Bayesian                  | Paired   | ❌                                                                  | ❌  | ❌                      |
 
 **one-way table**
 
@@ -953,8 +953,8 @@ grouped_ggpiestats(
 
 | Type                      | Effect size                                                          | CI? | Function used            |
 |---------------------------|----------------------------------------------------------------------|-----|--------------------------|
-| Parametric/Non-parametric | Pearson’s ![C](https://chart.apis.google.com/chart?cht=tx&chl=C "C") | ✅   | `effectsize::pearsons_c` |
-| Bayesian                  | ❌                                                                    | ❌   | ❌                        |
+| Parametric/Non-parametric | Pearson’s ![C](https://chart.apis.google.com/chart?cht=tx&chl=C "C") | ✅  | `effectsize::pearsons_c` |
+| Bayesian                  | ❌                                                                   | ❌  | ❌                       |
 
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
@@ -1019,7 +1019,7 @@ grouped_ggbarstats(
 
 | graphical element  | `geom_` used          | argument for further modification |
 |--------------------|-----------------------|-----------------------------------|
-| bars               | `ggplot2::geom_bar`   | ❌                                 |
+| bars               | `ggplot2::geom_bar`   | ❌                                |
 | descriptive labels | `ggplot2::geom_label` | `label.args`                      |
 
 ### Summary of tests
@@ -1033,16 +1033,16 @@ grouped_ggbarstats(
 | Parametric/Non-parametric | Unpaired | Pearson’s ![\\chi^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test`               |
 | Bayesian                  | Unpaired | Bayesian Pearson’s ![\\chi^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E2 "\chi^2") test | `BayesFactor::contingencyTableBF` |
 | Parametric/Non-parametric | Paired   | McNemar’s ![\\chi^2](https://chart.apis.google.com/chart?cht=tx&chl=%5Cchi%5E2 "\chi^2") test          | `stats::mcnemar.test`             |
-| Bayesian                  | Paired   | ❌                                                                                                      | ❌                                 |
+| Bayesian                  | Paired   | ❌                                                                                                     | ❌                                |
 
 **Effect size estimation**
 
 | Type                      | Design   | Effect size                                                         | CI? | Function used           |
 |---------------------------|----------|---------------------------------------------------------------------|-----|-------------------------|
-| Parametric/Non-parametric | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅   | `effectsize::cramers_v` |
-| Bayesian                  | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅   | `effectsize::cramers_v` |
-| Parametric/Non-parametric | Paired   | Cohen’s ![g](https://chart.apis.google.com/chart?cht=tx&chl=g "g")  | ✅   | `effectsize::cohens_g`  |
-| Bayesian                  | Paired   | ❌                                                                   | ❌   | ❌                       |
+| Parametric/Non-parametric | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅  | `effectsize::cramers_v` |
+| Bayesian                  | Unpaired | Cramer’s ![V](https://chart.apis.google.com/chart?cht=tx&chl=V "V") | ✅  | `effectsize::cramers_v` |
+| Parametric/Non-parametric | Paired   | Cohen’s ![g](https://chart.apis.google.com/chart?cht=tx&chl=g "g")  | ✅  | `effectsize::cohens_g`  |
+| Bayesian                  | Paired   | ❌                                                                  | ❌  | ❌                      |
 
 **one-way table**
 
@@ -1057,8 +1057,8 @@ grouped_ggbarstats(
 
 | Type                      | Effect size                                                          | CI? | Function used            |
 |---------------------------|----------------------------------------------------------------------|-----|--------------------------|
-| Parametric/Non-parametric | Pearson’s ![C](https://chart.apis.google.com/chart?cht=tx&chl=C "C") | ✅   | `effectsize::pearsons_c` |
-| Bayesian                  | ❌                                                                    | ❌   | ❌                        |
+| Parametric/Non-parametric | Pearson’s ![C](https://chart.apis.google.com/chart?cht=tx&chl=C "C") | ✅  | `effectsize::pearsons_c` |
+| Bayesian                  | ❌                                                                   | ❌  | ❌                       |
 
 ## `ggcoefstats`
 
@@ -1110,40 +1110,86 @@ ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 
 **Defaults** return<br>
 
-✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC
-and BIC) <br>
+✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary
+(AIC and BIC) <br>
 
 ### Supported models
 
 Most of the regression models that are supported in the underlying
-packages are also supported by `ggcoefstats`. For example-
+packages are also supported by `ggcoefstats`.
 
-`aareg`, `afex_aov`, `anova`, `anova.mlm`, `anova`, `aov`, `aovlist`,
-`Arima`, `bam`, `bayesx`, `bayesGARCH`, `bayesQR`, `BBmm`, `BBreg`,
-`bcplm`, `betamfx`, `betaor`, `BFBayesFactor`, `BGGM`, `bglmerMod`,
-`bife`, `bigglm`, `biglm`, `blavaan`, `bmlm`, `blmerMod`, `blrm`,
-`bracl`, `brglm`, `brglm2`, `brmsfit`, `brmultinom`, `btergm`, `cch`,
-`censReg`, `cgam`, `cgamm`, `cglm`, `clm`, `clm2`, `clmm`, `clmm2`,
-`coeftest`, `complmrob`, `confusionMatrix`, `coxme`, `coxph`, `coxr`,
-`coxph.penal`, `cpglm`, `cpglmm`, `crch`, `crq`, `crr`, `DirichReg`,
-`drc`, `eglm`, `elm`, `emmGrid`, `epi.2by2`, `ergm`, `feis`, `felm`,
-`fitdistr`, `fixest`, `flexsurvreg`, `gam`, `Gam`, `gamlss`, `garch`,
-`geeglm`, `gjrm`, `glmc`, `glmerMod`, `glmmTMB`, `gls`, `glht`, `glm`,
-`glmm`, `glmmadmb`, `glmmPQL`, `glmRob`, `glmrob`, `glmx`, `gmm`,
-`HLfit`, `hurdle`, `ivFixed`, `ivprobit`, `ivreg`, `iv_robust`,
-`lavaan`, `lm`, `lm.beta`, `lmerMod`, `lmerModLmerTest`, `lmodel2`,
-`lmRob`, `lmrob`, `lm_robust`, `logitmfx`, `logitor`, `logitsf`,
-`LORgee`, `lqm`, `lqmm`, `lrm`, `manova`, `maov`, `margins`, `mcmc`,
-`mcmc.list`, `MCMCglmm`, `mclogit`, `mice`, `mmclogit`, `mediate`,
-`metafor`, `merMod`, `merModList`, `metaplus`, `mhurdle`, `mixor`,
-`mjoint`, `mle2`, `mlm`, `multinom`, `mvord`, `negbin`, `negbinmfx`,
-`negbinirr`, `nlmerMod`, `nlrq`, `nlreg`, `nls`, `orcutt`, `orm`, `plm`,
-`poissonmfx`, `poissonirr`, `polr`, `probitmfx`, `ridgelm`,
-`riskRegression`, `rjags`, `rlm`, `rlmerMod`, `robmixglm`, `rq`, `rqs`,
-`rqss`, `rrvglm`, `Sarlm`, `scam`, `selection`, `semLm`, `semLme`,
-`slm`, `speedglm`, `speedlm`, `stanfit`, `stanreg`, `summary.lm`,
-`survreg`, `systemfit`, `svyglm`, `svy_vglm`, `svyolr`, `tobit`,
-`truncreg`, `varest`, `vgam`, `vglm`, `wbgee`, `wblm`, `zeroinfl`, etc.
+``` r
+insight::supported_models()
+#>   [1] "aareg"             "afex_aov"          "AKP"              
+#>   [4] "Anova.mlm"         "aov"               "aovlist"          
+#>   [7] "Arima"             "averaging"         "bamlss"           
+#>  [10] "bamlss.frame"      "bayesQR"           "bayesx"           
+#>  [13] "BBmm"              "BBreg"             "bcplm"            
+#>  [16] "betamfx"           "betaor"            "betareg"          
+#>  [19] "BFBayesFactor"     "bfsl"              "BGGM"             
+#>  [22] "bife"              "bifeAPEs"          "bigglm"           
+#>  [25] "biglm"             "blavaan"           "blrm"             
+#>  [28] "bracl"             "brglm"             "brmsfit"          
+#>  [31] "brmultinom"        "btergm"            "censReg"          
+#>  [34] "cgam"              "cgamm"             "cglm"             
+#>  [37] "clm"               "clm2"              "clmm"             
+#>  [40] "clmm2"             "clogit"            "coeftest"         
+#>  [43] "complmrob"         "confusionMatrix"   "coxme"            
+#>  [46] "coxph"             "coxph.penal"       "coxr"             
+#>  [49] "cpglm"             "cpglmm"            "crch"             
+#>  [52] "crq"               "crqs"              "crr"              
+#>  [55] "dep.effect"        "DirichletRegModel" "drc"              
+#>  [58] "eglm"              "elm"               "epi.2by2"         
+#>  [61] "ergm"              "feglm"             "feis"             
+#>  [64] "felm"              "fitdistr"          "fixest"           
+#>  [67] "flexsurvreg"       "gam"               "Gam"              
+#>  [70] "gamlss"            "gamm"              "gamm4"            
+#>  [73] "garch"             "gbm"               "gee"              
+#>  [76] "geeglm"            "glht"              "glimML"           
+#>  [79] "glm"               "Glm"               "glmm"             
+#>  [82] "glmmadmb"          "glmmPQL"           "glmmTMB"          
+#>  [85] "glmrob"            "glmRob"            "glmx"             
+#>  [88] "gls"               "gmnl"              "HLfit"            
+#>  [91] "htest"             "hurdle"            "iv_robust"        
+#>  [94] "ivFixed"           "ivprobit"          "ivreg"            
+#>  [97] "lavaan"            "lm"                "lm_robust"        
+#> [100] "lme"               "lmerMod"           "lmerModLmerTest"  
+#> [103] "lmodel2"           "lmrob"             "lmRob"            
+#> [106] "logistf"           "logitmfx"          "logitor"          
+#> [109] "LORgee"            "lqm"               "lqmm"             
+#> [112] "lrm"               "manova"            "MANOVA"           
+#> [115] "margins"           "maxLik"            "mclogit"          
+#> [118] "mcmc"              "mcmc.list"         "MCMCglmm"         
+#> [121] "mcp1"              "mcp12"             "mcp2"             
+#> [124] "med1way"           "mediate"           "merMod"           
+#> [127] "merModList"        "meta_bma"          "meta_fixed"       
+#> [130] "meta_random"       "metaplus"          "mhurdle"          
+#> [133] "mipo"              "mira"              "mixed"            
+#> [136] "MixMod"            "mixor"             "mjoint"           
+#> [139] "mle"               "mle2"              "mlm"              
+#> [142] "mlogit"            "mmlogit"           "model_fit"        
+#> [145] "multinom"          "mvord"             "negbinirr"        
+#> [148] "negbinmfx"         "ols"               "onesampb"         
+#> [151] "orm"               "pgmm"              "plm"              
+#> [154] "PMCMR"             "poissonirr"        "poissonmfx"       
+#> [157] "polr"              "probitmfx"         "psm"              
+#> [160] "Rchoice"           "ridgelm"           "riskRegression"   
+#> [163] "rjags"             "rlm"               "rlmerMod"         
+#> [166] "RM"                "rma"               "rma.uni"          
+#> [169] "robmixglm"         "robtab"            "rq"               
+#> [172] "rqs"               "rqss"              "Sarlm"            
+#> [175] "scam"              "selection"         "sem"              
+#> [178] "SemiParBIV"        "semLm"             "semLme"           
+#> [181] "slm"               "speedglm"          "speedlm"          
+#> [184] "stanfit"           "stanmvreg"         "stanreg"          
+#> [187] "summary.lm"        "survfit"           "survreg"          
+#> [190] "svy_vglm"          "svyglm"            "svyolr"           
+#> [193] "t1way"             "tobit"             "trimcibt"         
+#> [196] "truncreg"          "vgam"              "vglm"             
+#> [199] "wbgee"             "wblm"              "wbm"              
+#> [202] "wmcpAKP"           "yuen"              "yuend"            
+#> [205] "zcpglm"            "zeroinfl"          "zerotrunc"
+```
 
 Although not shown here, this function can also be used to carry out
 parametric, robust, and Bayesian random-effects meta-analysis.
@@ -1163,9 +1209,9 @@ parametric, robust, and Bayesian random-effects meta-analysis.
 
 | Type       | Test                                             | Effect size                                                               | CI? | Function used          |
 |------------|--------------------------------------------------|---------------------------------------------------------------------------|-----|------------------------|
-| Parametric | Meta-analysis via random-effects models          | ![\\beta](https://chart.apis.google.com/chart?cht=tx&chl=%5Cbeta "\beta") | ✅   | `metafor::metafor`     |
-| Robust     | Meta-analysis via robust random-effects models   | ![\\beta](https://chart.apis.google.com/chart?cht=tx&chl=%5Cbeta "\beta") | ✅   | `metaplus::metaplus`   |
-| Bayes      | Meta-analysis via Bayesian random-effects models | ![\\beta](https://chart.apis.google.com/chart?cht=tx&chl=%5Cbeta "\beta") | ✅   | `metaBMA::meta_random` |
+| Parametric | Meta-analysis via random-effects models          | ![\\beta](https://chart.apis.google.com/chart?cht=tx&chl=%5Cbeta "\beta") | ✅  | `metafor::metafor`     |
+| Robust     | Meta-analysis via robust random-effects models   | ![\\beta](https://chart.apis.google.com/chart?cht=tx&chl=%5Cbeta "\beta") | ✅  | `metaplus::metaplus`   |
+| Bayes      | Meta-analysis via Bayesian random-effects models | ![\\beta](https://chart.apis.google.com/chart?cht=tx&chl=%5Cbeta "\beta") | ✅  | `metaBMA::meta_random` |
 
 For a more exhaustive account of this function, see the associated
 vignette-
