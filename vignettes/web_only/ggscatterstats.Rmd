@@ -54,7 +54,7 @@ To begin with, here are some instances where you would want to use
 you are not familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-# Correlation plot with `ggscatterstats`
+## Correlation plot with `ggscatterstats`
 
 To illustrate how this function can be used, we will rely on the `ggplot2movies`
 dataset. This dataset provides information about movies scraped from
@@ -64,7 +64,7 @@ this dataset included in the `{ggstatsplot}` package itself.
 ```{r ggplot2movies1}
 library(ggstatsplot)
 
-# see the selected data (we have data from 1813 movies)
+## see the selected data (we have data from 1813 movies)
 dplyr::glimpse(movies_long)
 ```
 
@@ -76,21 +76,21 @@ budget but low IMDB rating by labeling those data points.
 To reduce the processing time, let's only work with 30% of the dataset.
 
 ```{r ggscatterstats1, fig.height=6, fig.width=8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggscatterstats(
-  data = movies_long, # dataframe from which variables are taken
-  x = budget, # predictor/independent variable
-  y = rating, # dependent variable
-  xlab = "Budget (in millions of US dollars)", # label for the x-axis
-  ylab = "Rating on IMDB", # label for the y-axis
-  label.var = title, # variable to use for labeling data points
-  label.expression = rating < 5 & budget > 100, # expression for deciding which points to label
+  data = movies_long, ## dataframe from which variables are taken
+  x = budget, ## predictor/independent variable
+  y = rating, ## dependent variable
+  xlab = "Budget (in millions of US dollars)", ## label for the x-axis
+  ylab = "Rating on IMDB", ## label for the y-axis
+  label.var = title, ## variable to use for labeling data points
+  label.expression = rating < 5 & budget > 100, ## expression for deciding which points to label
   point.label.args = list(alpha = 0.7, size = 4, color = "grey50"),
-  xfill = "#CC79A7", # fill for marginals on the x-axis
-  yfill = "#009E73", # fill for marginals on the y-axis
+  xfill = "#CC79A7", ## fill for marginals on the x-axis
+  yfill = "#009E73", ## fill for marginals on the y-axis
   title = "Relationship between movie budget and IMDB rating",
   caption = "Source: www.imdb.com"
 )
@@ -100,7 +100,7 @@ There is indeed a small, but significant, positive correlation between the
 amount of money studio invests in a movie and the ratings given by the
 audiences.
 
-# Grouped analysis with `grouped_ggscatterstats`
+## Grouped analysis with `grouped_ggscatterstats`
 
 What if we want to do the same analysis do the same analysis for movies with
 different MPAA (Motion Picture Association of America) film ratings (NC-17, PG,
@@ -117,12 +117,12 @@ Let's see how we can use this function to apply `ggscatterstats` for all MPAA
 ratings. Also, let's run a robust test this time.
 
 ```{r grouped1, fig.height=12, fig.width=7}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_ggscatterstats(
-  # arguments relevant for ggstatsplot::ggscatterstats
+  ## arguments relevant for ggstatsplot::ggscatterstats
   data = movies_long,
   x = budget,
   y = rating,
@@ -131,7 +131,7 @@ grouped_ggscatterstats(
   label.expression = rating < 5 & budget > 80,
   type = "r",
   ggtheme = ggthemes::theme_tufte(),
-  # arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(
     title = "Relationship between movie budget and IMDB rating",
     caption = "Source: www.imdb.com"
@@ -144,7 +144,7 @@ As seen from the plot, this analysis has revealed something interesting: The
 relationship we found between budget and IMDB rating holds only for PG-13 and
 R-rated movies. 
 
-# Grouped analysis with `ggscatterstats` + `purrr`
+## Grouped analysis with `ggscatterstats` + `purrr`
 
 Although this is a quick and dirty way to explore large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -157,7 +157,7 @@ can be easily done using `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-# Summary of graphics
+## Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -166,7 +166,7 @@ labels for raw data | `ggrepel::geom_label_repel` | `point.label.args`
 smooth line | `ggplot2::geom_smooth` | `smooth.line.args`
 marginal histograms | `ggside::geom_xsidehistogram`,  `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args`
 
-# Summary of tests
+## Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**
 
@@ -177,7 +177,7 @@ Non-parametric | Spearman's rank correlation coefficient | ✅ | `correlation::c
 Robust | Winsorized Pearson correlation coefficient | ✅ | `correlation::correlation`
 Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 
-# Reporting
+## Reporting
 
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
@@ -207,7 +207,7 @@ hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor
 of the null hypothesis (of absence of any correlation between these two
 variables).
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>

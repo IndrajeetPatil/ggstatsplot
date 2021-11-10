@@ -7,7 +7,7 @@ output:
   <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, echo=FALSE}
-# show me all columns
+## show me all columns
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -18,25 +18,25 @@ options(
 
 knitr::opts_chunk$set(
   collapse = TRUE,
-  dpi = 300, # change to 300 once on CRAN
+  dpi = 300, ## change to 300 once on CRAN
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
-  comment = "#>",
+  comment = "##>",
   fig.path = "man/figures/README-"
 )
 ```
 
-# `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details 
+## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details 
 
 Package | Status | Usage | GitHub | Miscellaneous
 ----------------- | ----------------- | ----------------- | ----------------- | -----------------
 [![CRAN_Release_Badge](https://www.r-pkg.org/badges/version-ago/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot) | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/IndrajeetPatil/ggstatsplot/issues) | [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) 
 [![CRAN Checks](https://cranchecks.info/badges/summary/ggstatsplot)](https://cran.r-project.org/web/checks/check_results_ggstatsplot.html) | [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Weekly downloads badge](https://cranlogs.r-pkg.org/badges/last-week/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot) | [![minimal R version](https://img.shields.io/badge/R%3E%3D-4.0-6666ff.svg)](https://cran.r-project.org/)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master) | [![Monthly downloads badge](https://cranlogs.r-pkg.org/badges/last-month/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![CoC](https://img.shields.io/badge/CoC-v2.0%20adopted-ff69b4.svg)](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html) | [![CodeFactor](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot/badge)](https://www.codefactor.io/repository/github/indrajeetpatil/ggstatsplot)
-[![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![code size](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot)
+[![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Github Stars](https://img.shields.io/github/stars/IndrajeetPatil/ggstatsplot.svg?style=social&label=Github)](https://github.com/IndrajeetPatil/ggstatsplot) | [![code size](https://img.shields.io/github/languages/code-size/IndrajeetPatil/ggstatsplot.svg)](https://github.com/IndrajeetPatil/ggstatsplot)
 
-# Raison d'être <img src="man/figures/logo.png" align="right" width="360" />
+## Raison d'être <img src="man/figures/logo.png" align="right" width="360" />
 
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
@@ -53,7 +53,7 @@ method, and so on and so forth. The central idea of `{ggstatsplot}` is simple:
 combine these two phases into one in the form of graphics with statistical
 details, which makes data exploration simpler and faster.
 
-# Installation
+## Installation
 
 Type | Source | Command
 ---|---|---
@@ -79,7 +79,7 @@ sudo apt-get install libmpfr-dev
 The following `README` file briefly describes the installation procedure:
 <https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
 
-# Citation
+## Citation
 
 If you want to cite this package in a scientific journal or in any other
 context, run the following code in your `R` console:
@@ -91,7 +91,7 @@ citation("ggstatsplot")
 There is currently a publication in preparation corresponding to this package
 and the citation will be updated once it's published.
 
-# Documentation and Examples
+## Documentation and Examples
 
 To see the detailed documentation for each function in the stable **CRAN**
 version of the package, see:
@@ -99,11 +99,11 @@ version of the package, see:
   - Website: <https://indrajeetpatil.github.io/ggstatsplot/>
     
   - Presentation:
-    <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
+    <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1>
     
   - Vignettes: <https://indrajeetpatil.github.io/ggstatsplot/articles/>
 
-# Summary of available plots
+## Summary of available plots
 
 It, therefore, produces a limited kinds of plots for the supported analyses:
 
@@ -123,7 +123,7 @@ In addition to these basic plots, `{ggstatsplot}` also provides **`grouped_`**
 versions (see below) that makes it easy to repeat the same analysis for
 any grouping variable.
 
-# Summary of types of statistical analyses
+## Summary of types of statistical analyses
 
 The table below summarizes all the different types of analyses currently
 supported in this package-
@@ -150,7 +150,7 @@ correlation | ✅ | ✅
 (one/two-way) contingency table | ✅ | ✅
 random-effects meta-analysis | ✅ | ✅
 
-# Statistical reporting
+## Statistical reporting
 
 For **all** statistical tests reported in the plots, the default template abides
 by the gold standard for statistical reporting. For example, here are results
@@ -158,13 +158,14 @@ from Yuen's test for trimmed means (robust *t*-test):
 
 <img src="man/figures/stats_reporting_format.png" align="center" />
 
-# Summary of statistical tests and effect sizes
+## Summary of statistical tests and effect sizes
 
-Here is a summary table of all the statistical tests currently supported across
-various functions:
+Statistical analysis is carried out by `{statsExpressions}` package, and thus
+a summary table of all the statistical tests currently supported across
+various functions can be found in article for that package:
 <https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
 
-# Primary functions
+## Primary functions
 
 Here are examples of the main functions currently supported in `{ggstatsplot}`.
 
@@ -174,18 +175,18 @@ available here that are not currently present in the stable version of this
 package on **CRAN**. For documentation relevant for the `CRAN` version, see:
 <https://CRAN.R-project.org/package=ggstatsplot/readme/README.html>
 
-## `ggbetweenstats`
+### `ggbetweenstats`
 
 This function creates either a violin plot, a box plot, or a mix of two for
 **between**-group or **between**-condition comparisons with results from
 statistical tests in the subtitle. The simplest function call looks like this-
 
 ```{r ggbetweenstats1}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
-# plot
+## plot
 ggbetweenstats(
   data = iris,
   x = Species,
@@ -210,21 +211,21 @@ informative or change some of the default options. Additionally, there is also a
 operation across a **single** grouping variable:
 
 ```{r ggbetweenstats2, fig.height=8, fig.width=12}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_ggbetweenstats(
   data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x = mpaa,
   y = length,
-  grouping.var = genre, # grouping variable
-  outlier.tagging = TRUE, # whether outliers need to be tagged
-  outlier.label = title, # variable to be used for tagging outliers
+  grouping.var = genre, ## grouping variable
+  outlier.tagging = TRUE, ## whether outliers need to be tagged
+  outlier.label = title, ## variable to be used for tagging outliers
   outlier.coef = 2,
   ggsignif.args = list(textsize = 4, tip_length = 0.01),
-  p.adjust.method = "bonferroni", # method for adjusting p-values for multiple comparisons
-  # adding new components to `{ggstatsplot}` default
+  p.adjust.method = "bonferroni", ## method for adjusting p-values for multiple comparisons
+  ## adding new components to `{ggstatsplot}` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
   caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
   palette = "default_jama",
@@ -236,7 +237,7 @@ grouped_ggbetweenstats(
 
 Note here that the function can be used to tag outliers!
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -249,7 +250,7 @@ outlier point | `ggplot2::stat_boxplot` | ❌
 outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
 pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
 
-### Summary of tests
+##### Summary of tests
 
 **Central tendency measure**
 
@@ -299,7 +300,7 @@ Bayes Factor | ❌ | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
-## `ggwithinstats`
+### `ggwithinstats`
 
 `ggbetweenstats` function has an identical twin function `ggwithinstats` for
 repeated measures designs that behaves in the same fashion with a few minor
@@ -309,12 +310,12 @@ that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
 ```{r ggwithinstats1, fig.width=8, fig.height=6}
-# for reproducibility and data
+## for reproducibility and data
 set.seed(123)
-library(WRS2) # for data
-library(afex) # to run anova
+library(WRS2) ## for data
+library(afex) ## to run anova
 
-# plot
+## plot
 ggwithinstats(
   data = WineTasting,
   x = Wine,
@@ -349,10 +350,10 @@ makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
 ```{r ggwithinstats2, fig.height=6, fig.width=14}
-# common setup
+## common setup
 set.seed(123)
 
-# plot
+## plot
 grouped_ggwithinstats(
   data = dplyr::filter(
     bugs_long,
@@ -361,7 +362,7 @@ grouped_ggwithinstats(
   ),
   x = condition,
   y = desire,
-  type = "np", # non-parametric statistics
+  type = "np", ## non-parametric statistics
   xlab = "Condition",
   ylab = "Desire to kill an artrhopod",
   grouping.var = region,
@@ -370,7 +371,7 @@ grouped_ggwithinstats(
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -385,7 +386,7 @@ outlier point | `ggplot2::stat_boxplot` | ❌
 outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
 pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
 
-### Summary of tests
+##### Summary of tests
 
 **Central tendency measure**
 
@@ -434,24 +435,24 @@ Bayesian | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 For more, see the `ggwithinstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-## `gghistostats`
+### `gghistostats`
 
 To visualize the distribution of a single variable and check if its mean is
 significantly different from a specified value with a one-sample test,
 `gghistostats` can be used.
 
 ```{r gghistostats1, fig.width=8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 gghistostats(
-  data = ggplot2::msleep, # dataframe from which variable is to be taken
-  x = awake, # numeric variable whose distribution is of interest
-  title = "Amount of time spent awake", # title for the plot
+  data = ggplot2::msleep, ## dataframe from which variable is to be taken
+  x = awake, ## numeric variable whose distribution is of interest
+  title = "Amount of time spent awake", ## title for the plot
   caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
-  test.value = 12, # default value is 0
-  binwidth = 1, # binwidth value (experiment)
+  test.value = 12, ## default value is 0
+  binwidth = 1, ## binwidth value (experiment)
   ggtheme = hrbrthemes::theme_ipsum_tw()
 )
 ```
@@ -469,28 +470,28 @@ There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
 ```{r gghistostats2, fig.height=6, fig.width=10}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_gghistostats(
   data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x = budget,
   test.value = 50,
   type = "nonparametric",
   xlab = "Movies budget (in million US$)",
-  grouping.var = genre, # grouping variable
-  normal.curve = TRUE, # superimpose a normal distribution curve
+  grouping.var = genre, ## grouping variable
+  normal.curve = TRUE, ## superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
   ggtheme = ggthemes::theme_tufte(),
-  # modify the defaults from `{ggstatsplot}` for each plot
+  ## modify the defaults from `{ggstatsplot}` for each plot
   ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
   plotgrid.args = list(nrow = 1),
   annotation.args = list(title = "Movies budgets for different genres")
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -498,7 +499,7 @@ histogram bin | `ggplot2::stat_bin` | `bin.args`
 centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
 normality curve | `ggplot2::stat_function` | `normal.curve.args`
 
-### Summary of tests
+##### Summary of tests
 
 **Central tendency measure**
 
@@ -531,16 +532,16 @@ For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 
-## `ggdotplotstats`
+### `ggdotplotstats`
 
 This function is similar to `gghistostats`, but is intended to be used when the
 numeric variable also has a label.
 
 ```{r ggdotplotstats1, fig.height=10, fig.width=8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggdotplotstats(
   data = dplyr::filter(gapminder::gapminder, continent == "Asia"),
   y = country,
@@ -571,32 +572,32 @@ variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
 
 ```{r ggdotplotstats2, fig.height=6, fig.width=12}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_ggdotplotstats(
   data = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x = cty,
   y = manufacturer,
-  type = "bayes", # Bayesian test
+  type = "bayes", ## Bayesian test
   xlab = "city miles per gallon",
   ylab = "car manufacturer",
-  grouping.var = cyl, # grouping variable
+  grouping.var = cyl, ## grouping variable
   test.value = 15.5,
   point.args = list(color = "red", size = 5, shape = 13),
   annotation.args = list(title = "Fuel economy data")
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
 raw data | `ggplot2::geom_point` | `point.args`
 centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
 
-### Summary of tests
+##### Summary of tests
 
 **Central tendency measure**
 
@@ -625,7 +626,7 @@ Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biser
 Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
-## `ggscatterstats`
+### `ggscatterstats`
 
 This function creates a scatterplot with marginal distributions overlaid on the
 axes and results from statistical tests in the subtitle:
@@ -654,15 +655,15 @@ There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
 
 ```{r ggscatterstats2, fig.height=6, fig.width=14}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_ggscatterstats(
   data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x = rating,
   y = length,
-  grouping.var = genre, # grouping variable
+  grouping.var = genre, ## grouping variable
   label.var = title,
   label.expression = length > 200,
   xlab = "IMDB rating",
@@ -675,7 +676,7 @@ grouped_ggscatterstats(
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -684,7 +685,7 @@ labels for raw data | `ggrepel::geom_label_repel` | `point.label.args`
 smooth line | `ggplot2::geom_smooth` | `smooth.line.args`
 marginal histograms | `ggside::geom_xsidehistogram`,  `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args`
 
-### Summary of tests
+##### Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**
 
@@ -698,7 +699,7 @@ Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 For more, see the `ggscatterstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 
-## `ggcorrmat`
+### `ggcorrmat`
 
 `ggcorrmat` makes a correlalogram (a matrix of correlation coefficients) with
 minimal amount of code. Just sticking to the defaults itself produces
@@ -708,10 +709,10 @@ aesthetics-related arguments can be modified to change the appearance of the
 correlation matrix.
 
 ```{r ggcorrmat1}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# as a default this function outputs a correlation matrix plot
+## as a default this function outputs a correlation matrix plot
 ggcorrmat(
   data = ggplot2::msleep,
   colors = c("#B2182B", "white", "#4D4D4D"),
@@ -732,16 +733,16 @@ There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
 ```{r ggcorrmat2, fig.height=6, fig.width=10}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_ggcorrmat(
   data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type = "robust", # correlation method
+  type = "robust", ## correlation method
   colors = c("#cbac43", "white", "#550000"),
-  grouping.var = genre, # grouping variable
-  matrix.type = "lower" # type of matrix
+  grouping.var = genre, ## grouping variable
+  matrix.type = "lower" ## type of matrix
 )
 ```
 
@@ -749,10 +750,10 @@ You can also get a dataframe containing all relevant details from the
 statistical tests:
 
 ```{r ggcorrmat3}
-# setup
+## setup
 set.seed(123)
 
-# tidy data as output
+## tidy data as output
 ggcorrmat(
   data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
   type = "bayes",
@@ -763,10 +764,10 @@ ggcorrmat(
 Additionally, **partial** correlation are also supported:
 
 ```{r ggcorrmat4}
-# setup
+## setup
 set.seed(123)
 
-# tidy data as output
+## tidy data as output
 ggcorrmat(
   data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
   type = "bayes",
@@ -775,13 +776,13 @@ ggcorrmat(
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
 correlation matrix | `ggcorrplot::ggcorrplot` | `ggcorrplot.args`
 
-### Summary of tests
+##### Summary of tests
 
 **Hypothesis testing** and **Effect size estimation**
 
@@ -795,7 +796,7 @@ Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 
-## `ggpiestats`
+### `ggpiestats`
 
 This function creates a pie chart for categorical or nominal variables with
 results from contingency table analysis (Pearson's chi-squared test for
@@ -807,18 +808,18 @@ goodness of fit test) will be displayed as a subtitle.
 To study an interaction between two categorical variables:
 
 ```{r ggpiestats1, fig.height=4, fig.width=8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggpiestats(
   data = mtcars,
   x = am,
   y = cyl,
   package = "wesanderson",
   palette = "Royal1",
-  title = "Dataset: Motor Trend Car Road Tests", # title for the plot
-  legend.title = "Transmission", # title for the legend
+  title = "Dataset: Motor Trend Car Road Tests", ## title for the plot
+  legend.title = "Transmission", ## title for the legend
   caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine"))
 )
 ```
@@ -838,28 +839,28 @@ Following example is a case where the theoretical question is about proportions
 for different levels of a single nominal variable:
 
 ```{r ggpiestats2, fig.height=6, fig.width=10}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 grouped_ggpiestats(
   data = mtcars,
   x = cyl,
-  grouping.var = am, # grouping variable
-  label.repel = TRUE, # repel labels (helpful for overlapping labels)
-  package = "ggsci", # package from which color palette is to be taken
-  palette = "default_ucscgb" # choosing a different color palette
+  grouping.var = am, ## grouping variable
+  label.repel = TRUE, ## repel labels (helpful for overlapping labels)
+  package = "ggsci", ## package from which color palette is to be taken
+  palette = "default_ucscgb" ## choosing a different color palette
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
 pie slices | `ggplot2::geom_col` | ❌
 descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`
 
-### Summary of tests
+##### Summary of tests
 
 **two-way table**
 
@@ -900,7 +901,7 @@ Bayesian | ❌ | ❌ | ❌
 For more, see the `ggpiestats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
-## `ggbarstats`
+### `ggbarstats`
 
 In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use `ggbarstats` function which has a similar syntax.
@@ -909,11 +910,11 @@ N.B. The *p*-values from one-sample proportion test are displayed on top of each
 bar.
 
 ```{r ggbarstats1, fig.height=8, fig.width=10}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggplot2)
 
-# plot
+## plot
 ggbarstats(
   data = movies_long,
   x = mpaa,
@@ -940,10 +941,10 @@ ggbarstats(
 And, needless to say, there is also a `grouped_` variant of this function-
 
 ```{r ggbarstats2, fig.height=6, fig.width=12}
-# setup
+## setup
 set.seed(123)
 
-# plot
+## plot
 grouped_ggbarstats(
   data = mtcars,
   x = am,
@@ -955,14 +956,14 @@ grouped_ggbarstats(
 )
 ```
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
 bars | `ggplot2::geom_bar` | ❌
 descriptive labels | `ggplot2::geom_label` | `label.args`
 
-### Summary of tests
+##### Summary of tests
 
 **two-way table**
 
@@ -1000,7 +1001,7 @@ Type | Effect size | CI? | Function used
 Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
-## `ggcoefstats`
+### `ggcoefstats`
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
@@ -1032,13 +1033,13 @@ be invariant across models:
     further modified (e.g., change themes, etc.) with `{ggplot2}` functions.
 
 ```{r ggcoefstats1, fig.height=5, fig.width=6}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# model
+## model
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
-# plot
+## plot
 ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 ```
 
@@ -1048,7 +1049,7 @@ ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 ✅ estimate + CIs <br>
 ✅ model summary (AIC and BIC) <br>
 
-### Supported models
+##### Supported models
 
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. 
@@ -1060,7 +1061,7 @@ insight::supported_models()
 Although not shown here, this function can also be used to carry out parametric,
 robust, and Bayesian random-effects meta-analysis.
 
-### Summary of graphics
+##### Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -1069,7 +1070,7 @@ error bars | `ggplot2::geom_errorbarh` | `errorbar.args`
 vertical line | `ggplot2::geom_vline` | `vline.args`
 label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
 
-### Summary of meta-analysis tests
+##### Summary of meta-analysis tests
 
 **Hypothesis testing** and **Effect size estimation**
 
@@ -1082,7 +1083,7 @@ Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `meta
 For a more exhaustive account of this function, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-## Extracting dataframes with statistical details
+### Extracting dataframes with statistical details
 
 `{ggstatsplot}` also offers a convenience function to extract dataframes with
 statistical details that are used to create expressions displayed in
@@ -1091,7 +1092,7 @@ statistical details that are used to create expressions displayed in
 ```{r extract_stats}
 set.seed(123)
 
-# a list of tibbles containing statistical analysis summaries
+## a list of tibbles containing statistical analysis summaries
 ggbetweenstats(mtcars, cyl, mpg) %>%
   extract_stats()
 ```
@@ -1099,7 +1100,7 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 Note that all of this analysis is carried out by `{statsExpressions}`
 package: <https://indrajeetpatil.github.io/statsExpressions/>
 
-## Using `{ggstatsplot}` statistical details with custom plots
+### Using `{ggstatsplot}` statistical details with custom plots
 
 Sometimes you may not like the default plots produced by `{ggstatsplot}`. In such
 cases, you can use other **custom** plots (from `{ggplot2}` or other plotting
@@ -1110,13 +1111,13 @@ For example, in the following chunk, we will create plot (*ridgeplot*) using
 `ggridges` package and use `{ggstatsplot}` function for extracting results.
 
 ```{r ridgeplot, fig.height=10, fig.width=7}
-# loading the needed libraries
+## loading the needed libraries
 set.seed(123)
 library(ggridges)
 library(ggplot2)
 library(ggstatsplot)
 
-# using `{ggstatsplot}` to get call with statistical results
+## using `{ggstatsplot}` to get call with statistical results
 stats_results <-
   ggbetweenstats(
     data = morley,
@@ -1125,7 +1126,7 @@ stats_results <-
     output = "subtitle"
   )
 
-# using `ggridges` to create plot
+## using `ggridges` to create plot
 ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
   geom_density_ridges(
     jittered_points = TRUE,
@@ -1137,17 +1138,17 @@ ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
     point_size = 0.4,
     point_alpha = 1,
     position = position_raincloud(adjust_vlines = TRUE)
-  ) + # adding annotations
+  ) + ## adding annotations
   labs(
     title = "Michelson-Morley experiments",
     subtitle = stats_results,
     x = "Speed of light",
     y = "Experiment number"
-  ) + # remove the legend
+  ) + ## remove the legend
   theme(legend.position = "none")
 ```
 
-# Summary of benefits of using `{ggstatsplot}`
+## Summary of benefits of using `{ggstatsplot}`
 
 - No need to use scores of packages for statistical analysis
   (e.g., one to get stats, one to get effect sizes, another to get Bayes
@@ -1168,7 +1169,7 @@ ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
 
 - No need to worry about updating figures and statistical details separately.
 
-# Misconceptions about `{ggstatsplot}`
+## Misconceptions about `{ggstatsplot}`
 
 This package is... 
 
@@ -1183,13 +1184,13 @@ time-constrained presentation settings, e.g. conference talks.)
 ❌ the only game in town<br>
 ✅ (GUI software alternatives: [JASP](https://jasp-stats.org/) and [jamovi](https://www.jamovi.org/)).
 
-# Extensions
+## Extensions
 
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/), you can
 install a module called [`jjstatsplot`](https://github.com/sbalci/jjstatsplot),
 which is a wrapper around `{ggstatsplot}`.
 
-# Acknowledgments
+## Acknowledgments
 
 I would like to thank all the contributors to `{ggstatsplot}` who pointed out bugs
 or requested features I hadn't considered. I would especially like to thank
@@ -1208,7 +1209,7 @@ Harvard University; Iyad Rahwan at Max Planck Institute for Human Development)
 who patiently supported me spending hundreds (?) of hours working on this
 package rather than what I was paid to do. 😁
 
-# Contributing
+## Contributing
 
 I'm happy to receive bug reports, suggestions, questions, and (most of all)
 contributions to fix problems and add features. I personally prefer using the

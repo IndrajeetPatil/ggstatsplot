@@ -18,7 +18,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-# show me all columns
+## show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
@@ -54,7 +54,7 @@ Some instances where you would want to use `gghistostats`-
   - to test if the mean of a sample variable is different from a specified value
   (population parameter)
 
-# Statistical analysis with `gghistostats`
+## Statistical analysis with `gghistostats`
 
 Let's begin with a very simple example from the `psych` package
 (`psych::sat.act`), a sample of 700 self-reported scores on the SAT Verbal, SAT
@@ -62,12 +62,12 @@ Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National
 norms have a mean of 20.
 
 ```{r psychact}
-# loading needed libraries
+## loading needed libraries
 library(ggstatsplot)
 library(psych)
 library(dplyr)
 
-# looking at the structure of the data using glimpse
+## looking at the structure of the data using glimpse
 dplyr::glimpse(psych::sat.act)
 ```
 
@@ -85,12 +85,12 @@ parametric one sample *t*-test (`type = "p"`).
 set.seed(123)
 
 ggstatsplot::gghistostats(
-  data = psych::sat.act, # data from which variable is to be taken
-  x = ACT, # numeric variable
-  xlab = "ACT Score", # x-axis label
-  title = "Distribution of ACT Scores", # title for the plot
-  ggtheme = ggthemes::theme_tufte(), # changing default theme
-  test.value = 20, # test value
+  data = psych::sat.act, ## data from which variable is to be taken
+  x = ACT, ## numeric variable
+  xlab = "ACT Score", ## x-axis label
+  title = "Distribution of ACT Scores", ## title for the plot
+  ggtheme = ggthemes::theme_tufte(), ## changing default theme
+  test.value = 20, ## test value
   caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
 ```
@@ -102,7 +102,7 @@ in favor of the research hypothesis: these ACT scores are much higher than the
 national average.  The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1
 that this sample is different.
 
-# Grouped analysis with `grouped_gghistostats`
+## Grouped analysis with `grouped_gghistostats`
 
 What if we want to do the same analysis separately for each gender? 
 `{ggstatsplot}` provides a special helper function for such instances:
@@ -119,17 +119,17 @@ task.
 set.seed(123)
 
 ggstatsplot::grouped_gghistostats(
-  # arguments relevant for ggstatsplot::gghistostats
+  ## arguments relevant for ggstatsplot::gghistostats
   data = psych::sat.act,
-  x = ACT, # same outcome variable
+  x = ACT, ## same outcome variable
   xlab = "ACT Score",
-  grouping.var = gender, # grouping variable males = 1, females = 2
-  type = "robust", # robust test: one-sample percentile bootstrap
-  test.value = 20, # test value against which sample mean is to be compared
+  grouping.var = gender, ## grouping variable males = 1, females = 2
+  type = "robust", ## robust test: one-sample percentile bootstrap
+  test.value = 20, ## test value against which sample mean is to be compared
   centrality.line.args = list(color = "#D55E00", linetype = "dashed"),
-  ggtheme = ggthemes::theme_stata(), # changing default theme
-   # turn off ggstatsplot theme layer
-  # arguments relevant for ggstatsplot::combine_plots
+  ggtheme = ggthemes::theme_stata(), ## changing default theme
+   ## turn off ggstatsplot theme layer
+  ## arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(
     title = "Distribution of ACT scores across genders",
     caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
@@ -142,7 +142,7 @@ As can be seen from these plots, the mean value is much higher than the national
 norm. Additionally, we see the benefits of plotting this data separately for
 each gender. We can *see* the differences in distributions.
 
-# Grouped analysis with `purrr`
+## Grouped analysis with `purrr`
 
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -156,7 +156,7 @@ would be better to use `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-# Summary of graphics
+## Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -164,7 +164,7 @@ histogram bin | `ggplot2::stat_bin` | `bin.args`
 centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
 normality curve | `ggplot2::stat_function` | `normal.curve.args`
 
-# Summary of tests
+## Summary of tests
 
 **Central tendency measure**
 
@@ -193,7 +193,7 @@ Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biser
 Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
-# Reporting
+## Reporting
 
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
@@ -223,7 +223,7 @@ the data were `r round(exp(1.3), 2)` times more probable under the null
 hypothesis as compared to the alternative hypothesis. This can be considered
 moderate evidence (Jeffreys, 1961) in favor of the null hypothesis.
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>

@@ -19,7 +19,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-# pretty tibble printing
+## pretty tibble printing
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -49,16 +49,16 @@ citation("ggstatsplot")
 
 ---
 
-# Introduction
+## Introduction
 
 Pairwise comparisons with `{ggstatsplot}`.
 
-# Summary of types of statistical analyses
+## Summary of types of statistical analyses
 
 Following table contains a brief summary of the currently supported pairwise
 comparison tests-
 
-## Between-subjects design
+### Between-subjects design
 
 Type | Equal variance? | Test | *p*-value adjustment? | Function used
 ----------- | --- | ------------------------- | --- | -----
@@ -68,7 +68,7 @@ Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
 Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
 Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
-## Within-subjects design
+### Within-subjects design
 
 Type | Test | *p*-value adjustment? | Function used
 ----------- | ---------------------------- | --- | -----
@@ -77,7 +77,7 @@ Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
 Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
-# Examples
+## Examples
 
 Here we will see specific examples of how to use this function for different
 types of
@@ -86,16 +86,16 @@ types of
   - statistics (parametric, non-parametric, robust, Bayesian)
   - *p*-value adjustment methods
 
-## Between-subjects design
+### Between-subjects design
 
 ```{r}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
-library(statsExpressions) # for data
+library(statsExpressions) ## for data
 
-# parametric
-# if `var.equal = TRUE`, then Student's *t*-test will be run
+## parametric
+## if `var.equal = TRUE`, then Student's *t*-test will be run
 pairwise_comparisons(
   data = ggplot2::msleep,
   x = vore,
@@ -106,7 +106,7 @@ pairwise_comparisons(
   p.adjust.method = "bonferroni"
 )
 
-# if `var.equal = FALSE`, then Games-Howell test will be run
+## if `var.equal = FALSE`, then Games-Howell test will be run
 pairwise_comparisons(
   data = ggplot2::msleep,
   x = vore,
@@ -117,7 +117,7 @@ pairwise_comparisons(
   p.adjust.method = "bonferroni"
 )
 
-# non-parametric
+## non-parametric
 pairwise_comparisons(
   data = ggplot2::msleep,
   x = vore,
@@ -127,7 +127,7 @@ pairwise_comparisons(
   p.adjust.method = "none"
 )
 
-# robust
+## robust
 pairwise_comparisons(
   data = ggplot2::msleep,
   x = vore,
@@ -137,7 +137,7 @@ pairwise_comparisons(
   p.adjust.method = "fdr"
 )
 
-# Bayesian
+## Bayesian
 pairwise_comparisons(
   data = ggplot2::msleep,
   x = vore,
@@ -148,13 +148,13 @@ pairwise_comparisons(
 ```
 
 
-## Within-subjects design
+### Within-subjects design
 
 ```{r}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# parametric
+## parametric
 pairwise_comparisons(
   data = bugs_long,
   x = condition,
@@ -165,7 +165,7 @@ pairwise_comparisons(
   p.adjust.method = "BH"
 )
 
-# non-parametric
+## non-parametric
 pairwise_comparisons(
   data = bugs_long,
   x = condition,
@@ -176,7 +176,7 @@ pairwise_comparisons(
   p.adjust.method = "BY"
 )
 
-# robust
+## robust
 pairwise_comparisons(
   data = bugs_long,
   x = condition,
@@ -187,7 +187,7 @@ pairwise_comparisons(
   p.adjust.method = "hommel"
 )
 
-# Bayesian
+## Bayesian
 pairwise_comparisons(
   data = bugs_long,
   x = condition,
@@ -199,32 +199,32 @@ pairwise_comparisons(
 )
 ```
 
-# Using `pairwise_comparisons()` with `ggsignif`
+## Using `pairwise_comparisons()` with `ggsignif`
 
-## Example-1: between-subjects
+### Example-1: between-subjects
 
 ```{r ggsignif, fig.height=5}
-# needed libraries
+## needed libraries
 set.seed(123)
 library(ggplot2)
 library(ggsignif)
 
-# converting to factor
+## converting to factor
 mtcars$cyl <- as.factor(mtcars$cyl)
 
-# creating a basic plot
+## creating a basic plot
 p <- ggplot(mtcars, aes(cyl, wt)) +
   geom_boxplot()
 
-# using `pairwise_comparisons()` package to create a dataframe with results
+## using `pairwise_comparisons()` package to create a dataframe with results
 set.seed(123)
 (df <-
   pairwise_comparisons(mtcars, cyl, wt) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
   dplyr::arrange(group1))
 
-# using `geom_signif` to display results
-# (note that you can choose not to display all comparisons)
+## using `geom_signif` to display results
+## (note that you can choose not to display all comparisons)
 p +
   ggsignif::geom_signif(
     comparisons = list(df$groups[[1]]),
@@ -235,19 +235,19 @@ p +
   )
 ```
 
-## Example-2: within-subjects
+### Example-2: within-subjects
 
 ```{r ggsignif2}
-# needed libraries
+## needed libraries
 library(ggplot2)
 library(ggstatsplot)
 library(ggsignif)
 
-# creating a basic plot
+## creating a basic plot
 p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
   geom_boxplot()
 
-# using `pairwise_comparisons()` package to create a dataframe with results
+## using `pairwise_comparisons()` package to create a dataframe with results
 set.seed(123)
 (df <-
   pairwise_comparisons(
@@ -261,7 +261,7 @@ set.seed(123)
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
   dplyr::arrange(group1))
 
-# using `geom_signif` to display results
+## using `geom_signif` to display results
 p +
   ggsignif::geom_signif(
     comparisons = df$groups,
