@@ -9,7 +9,7 @@
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
-#'   `parameters::model_parameters` to get a tidy dataframe. If a dataframe is
+#'   `parameters::model_parameters()` to get a tidy dataframe. If a dataframe is
 #'   entered, it *must* contain at the minimum two columns named `term` (names
 #'   of predictors) and `estimate` (corresponding estimates of coefficients or
 #'   other quantities of interest).
@@ -80,17 +80,16 @@
 #' @note
 #'
 #' 1. In case you want to carry out meta-analysis, you will be asked to install
-#'    the needed packages (`metafor`, `metaplus`, or `metaBMA`) for meta-analysis
-#'    (if unavailable).
+#'   the needed packages (`{metafor}`, `{metaplus}`, or `{metaBMA}`) for
+#'   meta-analysis (if unavailable).
 #'
 #' 2. All rows of regression estimates where either of the following
 #'   quantities is `NA` will be removed if labels are requested: `estimate`,
 #'   `statistic`, `p.value`.
 #'
 #' 3. Given the rapid pace at which new methods are added to these packages, it
-#'   is recommended that you install the GitHub versions of `parameters` and
-#'   `performance` in order to make most of this function.
-#'
+#'   is recommended that you install the GitHub versions of `{parameters}` and
+#'   `{performance}` in order to make most of this function.
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
@@ -172,12 +171,12 @@ ggcoefstats <- function(x,
 
     # converting model object to a tidy dataframe
     tidy_df <- parameters::model_parameters(
-      model = x,
-      eta_squared = eta_squared,
+      model         = x,
+      eta_squared   = eta_squared,
       omega_squared = omega_squared,
-      ci = conf.level,
-      verbose = FALSE,
-      table_wide = TRUE,
+      ci            = conf.level,
+      verbose       = FALSE,
+      table_wide    = TRUE,
       ...
     ) %>%
       parameters::standardize_names(style = "broom") %>%
@@ -207,10 +206,10 @@ ggcoefstats <- function(x,
   if (any(duplicated(select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
-        col = "term",
+        col    = "term",
         matches("term|variable|parameter|method|curve|response|component|contrast|group"),
         remove = TRUE,
-        sep = "_"
+        sep    = "_"
       )
   }
 
@@ -300,7 +299,7 @@ ggcoefstats <- function(x,
   # running meta-analysis
   if (meta.analytic.effect) {
     # standardizing type of statistics name
-    meta.type <- statsExpressions::stats_type_switch(meta.type)
+    meta.type <- stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
     subtitle_df <- statsExpressions::meta_analysis(tidy_df, type = meta.type, k = k)
@@ -311,8 +310,8 @@ ggcoefstats <- function(x,
     if (meta.type == "parametric" && bf.message) {
       caption_df <- statsExpressions::meta_analysis(
         tidy_df,
-        type = "bayes",
-        k = k,
+        type     = "bayes",
+        k        = k,
         top.text = caption
       )
 
@@ -333,7 +332,7 @@ ggcoefstats <- function(x,
       plot <- plot +
         exec(
           geom_errorbarh,
-          data = tidy_df,
+          data    = tidy_df,
           mapping = aes(xmin = conf.low, xmax = conf.high),
           !!!errorbar.args
         )
@@ -357,10 +356,10 @@ ggcoefstats <- function(x,
       plot <- plot +
         exec(
           ggrepel::geom_label_repel,
-          data = tidy_df,
+          data    = tidy_df,
           mapping = aes(x = estimate, y = term, label = label),
-          parse = TRUE,
-          color = stats.label.color,
+          parse   = TRUE,
+          color   = stats.label.color,
           !!!stats.label.args
         )
     }
@@ -370,11 +369,11 @@ ggcoefstats <- function(x,
     # adding other labels to the plot
     plot <- plot +
       labs(
-        x = xlab %||% "estimate",
-        y = ylab %||% "term",
-        caption = caption,
+        x        = xlab %||% "estimate",
+        y        = ylab %||% "term",
+        caption  = caption,
         subtitle = subtitle,
-        title = title
+        title    = title
       ) +
       ggtheme +
       theme(plot.caption = element_text(size = 10))
@@ -385,9 +384,9 @@ ggcoefstats <- function(x,
   # what needs to be returned?
   switch(output,
     "subtitle" = subtitle,
-    "caption" = caption,
-    "tidy" = as_tibble(tidy_df),
-    "glance" = as_tibble(glance_df),
+    "caption"  = caption,
+    "tidy"     = as_tibble(tidy_df),
+    "glance"   = as_tibble(glance_df),
     plot
   )
 }

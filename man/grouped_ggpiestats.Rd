@@ -135,11 +135,7 @@ set.seed(123)
 library(ggstatsplot)
 
 # grouped one-sample proportion test
-grouped_ggpiestats(
-  data = mtcars,
-  x = cyl,
-  grouping.var = am
-)
+grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
 }
 }
 \seealso{

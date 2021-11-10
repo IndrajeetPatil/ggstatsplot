@@ -18,7 +18,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-# show me all columns
+## show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
@@ -59,7 +59,7 @@ To begin with, here are some instances where you would want to use
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-# Comparisons between groups with `ggwithinstats`
+## Comparisons between groups with `ggwithinstats`
 
 To illustrate how this function can be used, we will use the `bugs` dataset
 throughout this vignette. This data set, "Bugs", provides the extent to which
@@ -78,12 +78,12 @@ statistically significant.
 The simplest form of the function call is-
 
 ```{r ggwithinstats1, fig.height = 6, fig.width = 8}
-# since the confidence intervals for the effect sizes are computed using
-# bootstrapping, important to set a seed for reproducibility
+## since the confidence intervals for the effect sizes are computed using
+## bootstrapping, important to set a seed for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
-# function call
+## function call
 ggstatsplot::ggwithinstats(
   data = bugs_long,
   x = condition,
@@ -117,32 +117,32 @@ outliers in the data. We can and will change the overall theme as well as the
 color palette in use.
 
 ```{r ggwithinstats2, fig.height = 6, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
-# plot
+## plot
 ggstatsplot::ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire,
-  type = "nonparametric", # type of statistical test
-  xlab = "Condition", # label for the x-axis
-  ylab = "Desire to kill an artrhopod", # label for the y-axis
-  effsize.type = "biased", # type of effect size
-  sphericity.correction = FALSE, # don't display sphericity corrected dfs and p-values
-  pairwise.comparisons = TRUE, # display pairwise comparisons
-  outlier.tagging = TRUE, # whether outliers should be flagged
-  outlier.coef = 1.5, # coefficient for Tukey's rule
-  outlier.label = region, # label to attach to outlier values
-  outlier.label.color = "red", # outlier point label color
-  mean.plotting = TRUE, # whether the mean is to be displayed
-  mean.color = "darkblue", # color for mean
-  package = "yarrr", # package from which color palette is to be taken
-  palette = "info2", # choosing a different color palette
+  type = "nonparametric", ## type of statistical test
+  xlab = "Condition", ## label for the x-axis
+  ylab = "Desire to kill an artrhopod", ## label for the y-axis
+  effsize.type = "biased", ## type of effect size
+  sphericity.correction = FALSE, ## don't display sphericity corrected dfs and p-values
+  pairwise.comparisons = TRUE, ## display pairwise comparisons
+  outlier.tagging = TRUE, ## whether outliers should be flagged
+  outlier.coef = 1.5, ## coefficient for Tukey's rule
+  outlier.label = region, ## label to attach to outlier values
+  outlier.label.color = "red", ## outlier point label color
+  mean.plotting = TRUE, ## whether the mean is to be displayed
+  mean.color = "darkblue", ## color for mean
+  package = "yarrr", ## package from which color palette is to be taken
+  palette = "info2", ## choosing a different color palette
   title = "Comparison of desire to kill bugs",
   caption = "Source: Ryan et al., 2013"
-) + # modifying the plot further
+) + ## modifying the plot further
   ggplot2::scale_y_continuous(
     limits = c(0, 10),
     breaks = seq(from = 0, to = 10, by = 1)
@@ -170,14 +170,14 @@ recommended, to make each plot have different colors or themes.
 For example,
 
 ```{r ggwithinstats3, fig.height = 14, fig.width = 14}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
-# selecting subset of the data
+## selecting subset of the data
 df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
 
-# parametric t-test
+## parametric t-test
 p1 <- ggstatsplot::ggwithinstats(
   data = df_disgust,
   x = condition,
@@ -191,7 +191,7 @@ p1 <- ggstatsplot::ggwithinstats(
   ggtheme = hrbrthemes::theme_ipsum_pub()
 )
 
-# Mann-Whitney U test (nonparametric test)
+## Mann-Whitney U test (nonparametric test)
 p2 <- ggstatsplot::ggwithinstats(
   data = df_disgust,
   x = condition,
@@ -206,7 +206,7 @@ p2 <- ggstatsplot::ggwithinstats(
   ggtheme = ggthemes::theme_map()
 )
 
-# robust t-test
+## robust t-test
 p3 <- ggstatsplot::ggwithinstats(
   data = df_disgust,
   x = condition,
@@ -221,7 +221,7 @@ p3 <- ggstatsplot::ggwithinstats(
   ggtheme = hrbrthemes::theme_ipsum_tw()
 )
 
-# Bayes Factor for parametric t-test
+## Bayes Factor for parametric t-test
 p4 <- ggstatsplot::ggwithinstats(
   data = df_disgust,
   x = condition,
@@ -235,7 +235,7 @@ p4 <- ggstatsplot::ggwithinstats(
   ggtheme = ggthemes::theme_fivethirtyeight()
 )
 
-# combining the individual plots into a single plot
+## combining the individual plots into a single plot
 ggstatsplot::combine_plots(
   plotlist = list(p1, p2, p3, p4),
   plotgrid.args = list(nrow = 2),
@@ -246,7 +246,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-# Grouped analysis with `grouped_ggwithinstats`
+## Grouped analysis with `grouped_ggwithinstats`
 
 What if we want to carry out this same analysis but for each region (or gender)?
 
@@ -262,34 +262,34 @@ let's carry out pairwise comparisons to see if there differences between every
 pair of continents. 
 
 ```{r grouped1, fig.height = 14, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
 ggstatsplot::grouped_ggwithinstats(
-  # arguments relevant for ggstatsplot::ggwithinstats
+  ## arguments relevant for ggstatsplot::ggwithinstats
   data = bugs_long,
   x = condition,
   y = desire,
   grouping.var = gender,
   xlab = "Continent",
   ylab = "Desire to kill bugs",
-  type = "nonparametric", # type of test
-  pairwise.display = "significant", # display only significant pairwise comparisons
-  p.adjust.method = "BH", # adjust p-values for multiple tests using this method
+  type = "nonparametric", ## type of test
+  pairwise.display = "significant", ## display only significant pairwise comparisons
+  p.adjust.method = "BH", ## adjust p-values for multiple tests using this method
   ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
   outlier.tagging = TRUE,
   outlier.label = education,
   k = 3,
-  # arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for ggstatsplot::combine_plots
   annotation.args = list(title = "Desire to kill bugs across genders"),
   plotgrid.args = list(ncol = 1)
 )
 ```
 
-# Grouped analysis with `ggwithinstats` + `purrr` 
+## Grouped analysis with `ggwithinstats` + `purrr` 
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of test and theme is
@@ -302,12 +302,12 @@ package.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-# Between-subjects designs
+## Between-subjects designs
 
 For independent measures designs, `ggbetweenstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
-# Summary of graphics
+## Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -322,7 +322,7 @@ outlier point | `ggplot2::stat_boxplot` | ❌
 outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
 pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
 
-# Summary of tests
+## Summary of tests
 
 **Central tendency measure**
 
@@ -368,7 +368,7 @@ Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
 Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 
-# Reporting
+## Reporting
 
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
@@ -384,7 +384,7 @@ For example, let's see the following example:
 
 
 ```{r reporting}
-library(WRS2) # for data
+library(WRS2) ## for data
 ggwithinstats(WineTasting, Wine, Taste)
 ```
 
@@ -405,7 +405,7 @@ desirable compared to Wines A and B.
 Similar reporting style can be followed when the function performs *t*-test
 instead of a one-way ANOVA.
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

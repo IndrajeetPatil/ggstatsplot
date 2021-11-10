@@ -18,7 +18,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-# show me all columns
+## show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
@@ -59,7 +59,7 @@ To begin with, here are some instances where you would want to use
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-# Comparisons between groups with `ggbetweenstats`
+## Comparisons between groups with `ggbetweenstats`
 
 To illustrate how this function can be used, we will use the `gapminder` dataset
 throughout this vignette. This dataset provides values for life expectancy, GDP
@@ -84,11 +84,11 @@ significant.
 The simplest form of the function call is-
 
 ```{r ggbetweenstats1, fig.height = 6, fig.width = 8}
-# since the confidence intervals for the effect sizes are computed using
-# bootstrapping, important to set a seed for reproducibility
+## since the confidence intervals for the effect sizes are computed using
+## bootstrapping, important to set a seed for reproducibility
 set.seed(123)
 
-# function call
+## function call
 ggstatsplot::ggbetweenstats(
   data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
@@ -122,31 +122,31 @@ outliers in the data. We can and will change the overall theme as well as the
 color palette in use.
 
 ```{r ggbetweenstats2, fig.height = 6, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 library(gapminder)
 
-# plot
+## plot
 ggstatsplot::ggbetweenstats(
   data = dplyr::filter(gapminder, year == 2007, continent != "Oceania"),
-  x = continent, # grouping/independent variable
-  y = lifeExp, # dependent variables
-  type = "robust", # type of statistics
-  xlab = "Continent", # label for the x-axis
-  ylab = "Life expectancy", # label for the y-axis
-  plot.type = "boxviolin", # type of plot
-  outlier.tagging = TRUE, # whether outliers should be flagged
-  outlier.coef = 1.5, # coefficient for Tukey's rule
-  outlier.label = country, # label to attach to outlier values
-  outlier.label.args = list(color = "red"), # outlier point label color
-  # turn off messages
-  ggtheme = ggplot2::theme_gray(), # a different theme
-  package = "yarrr", # package from which color palette is to be taken
-  palette = "info2", # choosing a different color palette
+  x = continent, ## grouping/independent variable
+  y = lifeExp, ## dependent variables
+  type = "robust", ## type of statistics
+  xlab = "Continent", ## label for the x-axis
+  ylab = "Life expectancy", ## label for the y-axis
+  plot.type = "boxviolin", ## type of plot
+  outlier.tagging = TRUE, ## whether outliers should be flagged
+  outlier.coef = 1.5, ## coefficient for Tukey's rule
+  outlier.label = country, ## label to attach to outlier values
+  outlier.label.args = list(color = "red"), ## outlier point label color
+  ## turn off messages
+  ggtheme = ggplot2::theme_gray(), ## a different theme
+  package = "yarrr", ## package from which color palette is to be taken
+  palette = "info2", ## choosing a different color palette
   title = "Comparison of life expectancy across continents (Year: 2007)",
   caption = "Source: Gapminder Foundation"
-) + # modifying the plot further
+) + ## modifying the plot further
   ggplot2::scale_y_continuous(
     limits = c(35, 85),
     breaks = seq(from = 35, to = 85, by = 5)
@@ -181,15 +181,15 @@ recommended, to make each plot have different colors or themes.
 
 For example,
 ```{r ggbetweenstats3, fig.height = 10, fig.width = 12}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 library(gapminder)
 
-# selecting subset of the data
+## selecting subset of the data
 df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
 
-# parametric t-test and box plot
+## parametric t-test and box plot
 p1 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -204,7 +204,7 @@ p1 <- ggstatsplot::ggbetweenstats(
   palette = "nrc_npg"
 )
 
-# Mann-Whitney U test (nonparametric t) and violin plot
+## Mann-Whitney U test (nonparametric t) and violin plot
 p2 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -219,7 +219,7 @@ p2 <- ggstatsplot::ggbetweenstats(
   palette = "uniform_startrek"
 )
 
-# robust t-test and boxviolin plot
+## robust t-test and boxviolin plot
 p3 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -236,7 +236,7 @@ p3 <- ggstatsplot::ggbetweenstats(
   k = 3
 )
 
-# Bayes Factor for parametric t-test and boxviolin plot
+## Bayes Factor for parametric t-test and boxviolin plot
 p4 <- ggstatsplot::ggbetweenstats(
   data = df_year,
   x = year,
@@ -250,7 +250,7 @@ p4 <- ggstatsplot::ggbetweenstats(
   palette = "nrc_npg"
 )
 
-# combining the individual plots into a single plot
+## combining the individual plots into a single plot
 ggstatsplot::combine_plots(
   list(p1, p2, p3, p4),
   plotgrid.args = list(nrow = 2),
@@ -261,7 +261,7 @@ ggstatsplot::combine_plots(
 )
 ```
 
-# Grouped analysis with `grouped_ggbetweenstats`
+## Grouped analysis with `grouped_ggbetweenstats`
 
 What if we want to analyze both by continent and between 1957 and 2007? A
 combination of our two previous efforts. 
@@ -278,27 +278,27 @@ Also, let's carry out pairwise comparisons to see if there differences between
 every pair of continents.
 
 ```{r grouped1, fig.height = 18, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# select part of the dataset and use it for plotting
+## select part of the dataset and use it for plotting
 gapminder::gapminder %>%
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   ggstatsplot::grouped_ggbetweenstats(
-    # arguments relevant for ggstatsplot::ggbetweenstats
+    ## arguments relevant for ggstatsplot::ggbetweenstats
     x = continent,
     y = lifeExp,
     grouping.var = year,
     xlab = "Continent",
     ylab = "Life expectancy",
-    pairwise.display = "significant", # display only significant pairwise comparisons
-    p.adjust.method = "fdr", # adjust p-values for multiple tests using this method
+    pairwise.display = "significant", ## display only significant pairwise comparisons
+    p.adjust.method = "fdr", ## adjust p-values for multiple tests using this method
     ggtheme = ggthemes::theme_tufte(),
     package = "ggsci",
     palette = "default_jco",
     outlier.tagging = TRUE,
     outlier.label = country,
-    # arguments relevant for ggstatsplot::combine_plots
+    ## arguments relevant for ggstatsplot::combine_plots
     annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
     plotgrid.args = list(nrow = 3)
   )
@@ -311,7 +311,7 @@ which year we look at, we still find significant differences in life expectancy
 across continents which have been surprisingly consistent across five decades
 (based on the observed effect sizes).
 
-# Grouped analysis with `ggbetweenstats` + `purrr` 
+## Grouped analysis with `ggbetweenstats` + `purrr` 
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of plot and test is
@@ -324,12 +324,12 @@ package.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-# Within-subjects designs
+## Within-subjects designs
 
 For repeated measures designs, `ggwithinstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-# Summary of graphics
+## Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
@@ -342,7 +342,7 @@ outlier point | `ggplot2::stat_boxplot` | ❌
 outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
 pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
 
-# Summary of tests
+## Summary of tests
 
 **Central tendency measure**
 
@@ -389,7 +389,7 @@ Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
 Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
 Bayes Factor | ❌ | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 
-# Reporting
+## Reporting
 
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
@@ -422,7 +422,7 @@ compared to the null hypothesis. This can be considered weak evidence
 Similar reporting style can be followed when the function performs one-way ANOVA
 instead of a *t*-test.
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

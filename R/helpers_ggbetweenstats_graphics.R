@@ -167,20 +167,16 @@ ggsignif_adder <- function(plot,
 #' @noRd
 
 ggsignif_xy <- function(x, y) {
-  # number of comparisons
-  n_comparions <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
-
-  # start position on `y`-axis for the `ggsignif` lines
-  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
-
-  # steps in which the y values need to increase
+  # number of comparisons and size of each step
+  n_comps <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
   step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
 
-  # end position on `y`-axis for the `ggsignif` lines
-  y_end <- y_start + (step_length * n_comparions)
+  # start and end position on `y`-axis for the `ggsignif` lines
+  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
+  y_end <- y_start + (step_length * n_comps)
 
   # creating a vector of positions for the `ggsignif` lines
-  seq(y_start, y_end, length.out = n_comparions)
+  seq(y_start, y_end, length.out = n_comps)
 }
 
 
@@ -212,12 +208,12 @@ aesthetic_addon <- function(plot,
   # modifying the plot
   plot +
     labs(
-      x = xlab,
-      y = ylab,
-      title = title,
+      x        = xlab,
+      y        = ylab,
+      title    = title,
       subtitle = subtitle,
-      caption = caption,
-      color = xlab
+      caption  = caption,
+      color    = xlab
     ) +
     ggtheme +
     theme(legend.position = "none") +
@@ -243,11 +239,11 @@ aesthetic_addon <- function(plot,
 #' @examples
 #' # adding column for outlier and a label for that outlier
 #' ggstatsplot:::outlier_df(
-#'   data = morley,
-#'   x = Expt,
-#'   y = Speed,
+#'   data          = morley,
+#'   x             = Expt,
+#'   y             = Speed,
 #'   outlier.label = Run,
-#'   outlier.coef = 2
+#'   outlier.coef  = 2
 #' ) %>%
 #'   arrange(outlier)
 #' @noRd

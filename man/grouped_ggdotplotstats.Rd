@@ -140,11 +140,11 @@ df <- filter(ggplot2::mpg, cyl \%in\% c("4", "6", "8"))
 
 # plot
 grouped_ggdotplotstats(
-  data = df,
-  x = cty,
-  y = manufacturer,
+  data         = df,
+  x            = cty,
+  y            = manufacturer,
   grouping.var = cyl,
-  test.value = 15.5
+  test.value   = 15.5
 )
 }
 }

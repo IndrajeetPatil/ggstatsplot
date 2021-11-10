@@ -266,20 +266,20 @@ library(dplyr, warn.conflicts = FALSE)
 # two groups (*t*-test)
 ggwithinstats(
   data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-  x = condition,
-  y = desire
+  x    = condition,
+  y    = desire
 )
 
 # more than two groups (anova)
 library(WRS2)
 
 ggwithinstats(
-  data = WineTasting,
-  x = Wine,
-  y = Taste,
-  type = "r",
+  data            = WineTasting,
+  x               = Wine,
+  y               = Taste,
+  type            = "r",
   outlier.tagging = TRUE,
-  outlier.label = Taster
+  outlier.label   = Taster
 )
 }
 }

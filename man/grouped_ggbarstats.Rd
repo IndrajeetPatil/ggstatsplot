@@ -145,10 +145,10 @@ diamonds_short <- ggplot2::diamonds \%>\%
 
 # plot
 grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
+  data          = diamonds_short,
+  x             = color,
+  y             = clarity,
+  grouping.var  = cut,
   plotgrid.args = list(nrow = 2)
 )
 }

@@ -42,7 +42,7 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-# Introduction to `ggpiestats`
+## Introduction to `ggpiestats`
 
 The function `ggpiestats` can be used for quick **data
 exploration** and/or to prepare **publication-ready pie charts** to summarize
@@ -85,14 +85,14 @@ library(datasets)
 library(dplyr)
 library(ggstatsplot)
 
-# looking at the original data in tabular format
+## looking at the original data in tabular format
 dplyr::glimpse(x = Titanic)
 
-# looking at the dataset as a tibble or dataframe
+## looking at the dataset as a tibble or dataframe
 dplyr::glimpse(x = ggstatsplot::Titanic_full)
 ```
 
-# Goodness of Fit with `ggpiestats`
+## Goodness of Fit with `ggpiestats`
 
 The simplest use case for `ggpiestats` is that we want to display information
 about **one** categorical or nominal variable. As part of that display or plot,
@@ -104,19 +104,19 @@ or did not survive. Our initial hypothesis is that it was no different than
 flipping a coin. People had a 50/50 chance of surviving.
 
 ```{r ggpiestats3, fig.height = 5, fig.width = 6}
-# since effect size confidence intervals are computed using bootstrapping, let's
-# set seed for reproducibility
+## since effect size confidence intervals are computed using bootstrapping, let's
+## set seed for reproducibility
 set.seed(123)
 
-# to speed up the process, let's use only half of the dataset
+## to speed up the process, let's use only half of the dataset
 Titanic_full_50 <- dplyr::sample_frac(ggstatsplot::Titanic_full, size = 0.5)
 
-# plot
+## plot
 ggstatsplot::ggpiestats(
   data = Titanic_full_50,
   x = Survived,
-  title = "Passenger survival on the Titanic", # title for the entire plot
-  caption = "Source: Titanic survival dataset", # caption for the entire plot
+  title = "Passenger survival on the Titanic", ## title for the entire plot
+  caption = "Source: Titanic survival dataset", ## caption for the entire plot
   legend.title = "Survived?"
 )
 ```
@@ -126,7 +126,7 @@ can specify any hypothesized ratio you like with `ratio` so if our hypothesis
 was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we
 entered the code.
 
-# Independence (or association) with `ggpiestats`
+## Independence (or association) with `ggpiestats`
 
 Let's next investigate whether the passenger's gender was independent of, or
 associated with, gender. The test is whether the proportion of people who
@@ -146,24 +146,24 @@ showcase the flexibility of `ggpiestats`. We will:
     and to make it right justified
 
 ```{r ggpiestats1, fig.height = 5, fig.width = 8}
-# since effect size confidence intervals are computed using bootstrapping, let's
-# set seed for reproducibility
+## since effect size confidence intervals are computed using bootstrapping, let's
+## set seed for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggstatsplot::ggpiestats(
   data = Titanic_full,
   x = Survived,
   y = Sex,
-  title = "Passenger survival on the Titanic by gender", # title for the entire plot
-  caption = "Source: Titanic survival dataset", # caption for the entire plot
-  legend.title = "Survived?", # legend title
-  ggtheme = ggplot2::theme_grey(), # changing plot theme
-  palette = "category10_d3", # choosing a different color palette
-  package = "ggsci", # package to which color palette belongs
-  k = 3, # decimal places in result
-  perc.k = 1 # decimal places in percentage labels
-) + # further modification with `{ggplot2}` commands
+  title = "Passenger survival on the Titanic by gender", ## title for the entire plot
+  caption = "Source: Titanic survival dataset", ## caption for the entire plot
+  legend.title = "Survived?", ## legend title
+  ggtheme = ggplot2::theme_grey(), ## changing plot theme
+  palette = "category10_d3", ## choosing a different color palette
+  package = "ggsci", ## package to which color palette belongs
+  k = 3, ## decimal places in result
+  perc.k = 1 ## decimal places in percentage labels
+) + ## further modification with `{ggplot2}` commands
   ggplot2::theme(
     plot.title = ggplot2::element_text(
       color = "black",
@@ -179,7 +179,7 @@ large sample size. Additionally, for both females and males, the survival rates
 were significantly different than 50% as indicated by a goodness of fit test for
 each gender.
 
-# Grouped analysis with `grouped_ggpiestats`
+## Grouped analysis with `grouped_ggpiestats`
 
 What if we want to do the same analysis of gender but also factor in the
 passenger's age (Age)? We have information that classifies the passengers as
@@ -193,13 +193,13 @@ into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
 
 ```{r ggpiestats4, fig.height = 10, fig.width = 8}
-# since effect size confidence intervals are computed using bootstrapping, let's
-# set seed for reproducibility
+## since effect size confidence intervals are computed using bootstrapping, let's
+## set seed for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggstatsplot::grouped_ggpiestats(
-  # arguments relevant for ggstatsplot::gghistostats
+  ## arguments relevant for ggstatsplot::gghistostats
   data = ggstatsplot::Titanic_full,
   x = Survived,
   y = Sex,
@@ -207,7 +207,7 @@ ggstatsplot::grouped_ggpiestats(
   perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",
-  # arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for ggstatsplot::combine_plots
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
   plotgrid.args = list(nrow = 2)
@@ -219,7 +219,7 @@ very much matters. Women survived at much higher rates than men. For children
 gender is not significantly associated with survival and both male and female
 children have a survival rate that is not significantly different from 50/50.
 
-# Grouped analysis with `ggpiestats` + `purrr` 
+## Grouped analysis with `ggpiestats` + `purrr` 
 
 Although `grouped_ggpiestats` provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
@@ -229,7 +229,7 @@ cases like these, it would be better to use `purrr` package.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-# Working with data organized by `counts` 
+## Working with data organized by `counts` 
 
 `ggpiestats` can also work with dataframe containing counts (aka tabled data),
 i.e., when each row doesn't correspond to a unique observation. For example,
@@ -239,11 +239,11 @@ months of `February` and `March`. In this dataframe, each row corresponds to a
 unique combination of `Boat` and `Month`.
 
 ```{r ggpiestats7, message = FALSE, warning = FALSE, fig.height = 8, fig.width = 9}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# creating a dataframe
-# (this is completely fictional; I don't know first thing about fishing!)
+## creating a dataframe
+## (this is completely fictional; I don't know first thing about fishing!)
 (
   fishing <- data.frame(
     Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
@@ -267,7 +267,7 @@ set.seed(123)
       "Catfish"
     ),
     SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
-  ) %>% # converting to a tibble dataframe
+  ) %>% ## converting to a tibble dataframe
     tibble::as_data_frame(x = .)
 )
 ```
@@ -278,7 +278,7 @@ the relationship of type of fish by month (a test of independence), our command
 would be:
 
 ```{r ggpiestats8, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 8}
-# running `ggpiestats` with counts information
+## running `ggpiestats` with counts information
 ggstatsplot::ggpiestats(
   data = fishing,
   x = Fish,
@@ -299,7 +299,7 @@ the top of the plot. In February we catch significantly more Haddock than we
 would hypothesize for an equal distribution. Whereas in March our results
 indicate there's no strong evidence that the distribution isn't equal.
 
-# Within-subjects designs
+## Within-subjects designs
 
 For our final example let's imagine we're conducting clinical trials for some
 new imaginary wonder drug. We have 134 subjects entering the trial. Some of them
@@ -314,10 +314,10 @@ from **McNemar test** in the subtitle.
 inaccurate.)
 
 ```{r ggpiestats9, fig.height = 5, fig.width = 8}
-# seed for reproducibility
+## seed for reproducibility
 set.seed(123)
 
-# create our imaginary data
+## create our imaginary data
 clinical_trial <-
   tibble::tribble(
     ~SickBefore, ~SickAfter, ~Counts,
@@ -327,7 +327,7 @@ clinical_trial <-
     "No", "No", 92
   )
 
-# plot
+## plot
 ggstatsplot::ggpiestats(
   data = clinical_trial,
   x = SickAfter,
@@ -346,14 +346,14 @@ out healthy only 4% were sick after a month. Ideally, we would have hoped for
 zero but reality is seldom perfect. On the other side of the 38 who started out
 sick that number has reduced to just 13 or 34% which is a marked improvement.
 
-# Summary of graphics
+## Summary of graphics
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
 pie slices | `ggplot2::geom_col` | ❌
 descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`
 
-# Summary of tests
+## Summary of tests
 
 **two-way table**
 
@@ -391,7 +391,7 @@ Type | Effect size | CI? | Function used
 Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
-# Reporting
+## Reporting
 
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
@@ -423,7 +423,7 @@ goodness-of-fit test instead of a $\chi^2$-test.
 
 Same holds true for `ggbarstats`.
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

@@ -174,9 +174,9 @@ library(ggstatsplot)
 
 # using defaults, but modifying which centrality parameter is to be shown
 gghistostats(
-  data = ToothGrowth,
-  x = len,
-  xlab = "Tooth length",
+  data            = ToothGrowth,
+  x               = len,
+  xlab            = "Tooth length",
   centrality.type = "np"
 )
 }

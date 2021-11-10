@@ -1,8 +1,8 @@
 ## Test environments
 
-* local Windows install, R 4.1.1
+* local Windows install, R 4.1.2
 
-* ubuntu 14.04 (on gitub-actions-ci), R 4.1.1
+* ubuntu 14.04 (on gitub-actions-ci), R 4.1.2
 
 * win-builder (devel and release)
 

@@ -21,13 +21,13 @@
 theme_ggstatsplot <- function() {
   theme_bw() +
     theme(
-      axis.title = element_text(face = "bold"),
-      legend.text = element_text(size = 10),
-      legend.title = element_text(size = 10, face = "bold"),
-      plot.title = element_text(size = 12, face = "bold"),
+      axis.title    = element_text(face = "bold"),
+      legend.text   = element_text(size = 10),
+      legend.title  = element_text(size = 10, face = "bold"),
+      plot.title    = element_text(size = 12, face = "bold"),
       plot.subtitle = element_text(size = 10),
-      panel.border = element_blank(),
-      strip.text = element_text(face = "bold")
+      panel.border  = element_blank(),
+      strip.text    = element_text(face = "bold")
     )
 }
 

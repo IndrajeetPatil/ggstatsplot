@@ -1,12 +1,13 @@
 url: https://indrajeetpatil.github.io/ggstatsplot/
 
 template:
-  package: preferably
-  ganalytics: "UA-46037435-2"
-  params:
-    docsearch:
-      api_key: 44345fbe359c5496fbc3955c513333d1
-      index_name: ggstatsplot
+  bootstrap: 5
+  bootswatch: cyborg
+  theme: arrow-dark
+  bslib:
+    primary: "#0054AD"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
 
 authors:
   Indrajeet Patil:
@@ -94,10 +95,3 @@ articles:
     - web_only/faq
     - web_only/purrr_examples
     - web_only/principles
-
-  - title: Development-focused
-    navbar: Development-focused
-    desc: Documents useful mostly for development of the package
-    contents:
-    - web_only/benchmarking
-    - web_only/dependencies

@@ -145,40 +145,35 @@ library(ggplot2)
 
 # basic function call
 grouped_ggscatterstats(
-  data = filter(movies_long, genre == "Comedy" | genre == "Drama"),
-  x = length,
-  y = rating,
-  type = "robust",
-  grouping.var = genre,
+  data             = filter(movies_long, genre == "Comedy" | genre == "Drama"),
+  x                = length,
+  y                = rating,
+  type             = "robust",
+  grouping.var     = genre,
   ggplot.component = list(geom_rug(sides = "b"))
 )
 
 # using labeling
 # (also show how to modify basic plot from within function call)
 grouped_ggscatterstats(
-  data = filter(ggplot2::mpg, cyl != 5),
-  x = displ,
-  y = hwy,
-  grouping.var = cyl,
-  type = "robust",
-  label.var = manufacturer,
+  data             = filter(ggplot2::mpg, cyl != 5),
+  x                = displ,
+  y                = hwy,
+  grouping.var     = cyl,
+  type             = "robust",
+  label.var        = manufacturer,
   label.expression = hwy > 25 & displ > 2.5,
   ggplot.component = scale_y_continuous(sec.axis = dup_axis())
 )
 
 # labeling without expression
-
 grouped_ggscatterstats(
-  data = filter(
-    movies_long,
-    rating == 7,
-    genre \%in\% c("Drama", "Comedy")
-  ),
-  x = budget,
-  y = length,
-  grouping.var = genre,
-  bf.message = FALSE,
-  label.var = "title",
+  data            = filter(movies_long, rating == 7, genre \%in\% c("Drama", "Comedy")),
+  x               = budget,
+  y               = length,
+  grouping.var    = genre,
+  bf.message      = FALSE,
+  label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
 }

@@ -3,12 +3,8 @@ APA
 APA's
 Aalen's
 Algina
-Anova
-BayesX
-Benchmarking
 Cikara
 CoC
-Cochrane
 CodeFactor
 Codecov
 Conover
@@ -22,17 +18,12 @@ DOI
 Durbin
 Dwass
 Fligner
-GLMM
-GLMMs
 Gapminder
-Generalised
 Github
 Gunel
 HDHF
 HDLF
 HFHD
-Heckman
-Heteroscedasticy
 IMDB
 IndrajeetPatil
 Iyad
@@ -46,7 +37,6 @@ LFHD
 Licence
 Lifecycle
 Lüdecke
-MCML
 MPAA
 Mair
 Makowski
@@ -59,7 +49,6 @@ Mina
 NHST
 ORCID
 Oneway
-Orcutt
 Otterstetter
 PMCMRplus
 Penfield
@@ -71,7 +60,6 @@ Rahwan
 Raison
 Satterthwaite
 Shachar
-TERGM
 Tufte
 Welch
 Welch's
@@ -97,7 +85,6 @@ brainwt
 chartjunk
 codesize
 colorbar
-compositional
 correlalogram
 customizable
 d'être
@@ -109,13 +96,11 @@ ds
 d’être
 easystats
 effectsize
-elasticnet
 et
 exressions
 faq
 freighteningness
 fueleconomy
-generalised
 geoms
 ggbetweenstats
 ggcoefstats
@@ -165,7 +150,6 @@ plotlist
 pmap
 posteriori
 pre
-pseudolikelihood
 purrr
 readme
 reproducibility
@@ -178,7 +162,6 @@ tibble
 tibbles
 tidiers
 tidyverse
-tobit
 uber
 unjittered
 versicolor

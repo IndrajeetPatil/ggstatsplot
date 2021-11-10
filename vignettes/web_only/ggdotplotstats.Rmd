@@ -18,7 +18,7 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-# show me all columns
+## show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
@@ -51,28 +51,28 @@ this vignette, we will explore several examples of how to use it.
 This function is a sister function of `gghistostats` with the difference being
 it expects a labeled numeric variable.
 
-# Distribution of a sample with `ggdotplotstats`
+## Distribution of a sample with `ggdotplotstats`
 
 Let's begin with a very simple example from the `{ggplot2}` package
 (`ggplot2::mpg`), a subset of the fuel economy data that the EPA makes available
 on <http://fueleconomy.gov>.
 
 ```{r mpg}
-# looking at the structure of the data using glimpse
+## looking at the structure of the data using glimpse
 dplyr::glimpse(ggplot2::mpg)
 ```
 
 Let's say we want to visualize the distribution of mileage by car manufacturer. 
 
 ```{r mpg2, fig.height = 7, fig.width = 9}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
-# removing factor level with very few no. of observations
+## removing factor level with very few no. of observations
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
-# creating a vector of colors using `paletteer` package
+## creating a vector of colors using `paletteer` package
 paletter_vector <-
   paletteer::paletteer_d(
     palette = "palettetown::venusaur",
@@ -80,7 +80,7 @@ paletter_vector <-
     type = "discrete"
   )
 
-# plot
+## plot
 ggdotplotstats(
   data = df,
   x = cty,
@@ -98,7 +98,7 @@ ggdotplotstats(
 )
 ```
 
-# Grouped analysis with `grouped_ggdotplotstats`
+## Grouped analysis with `grouped_ggdotplotstats`
 
 What if we want to do the same analysis separately for different engines with
 different numbers of cylinders?
@@ -113,31 +113,31 @@ Let's see how we can use this function to apply `ggdotplotstats` to accomplish o
 task. 
 
 ```{r grouped1, fig.height = 12, fig.width = 7}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# removing factor level with very few no. of observations
+## removing factor level with very few no. of observations
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
-# plot
+## plot
 grouped_ggdotplotstats(
-  # arguments relevant for ggstatsplot::ggdotplotstats
+  ## arguments relevant for ggstatsplot::ggdotplotstats
   data = df,
-  grouping.var = cyl, # grouping variable
+  grouping.var = cyl, ## grouping variable
   x = cty,
   y = manufacturer,
   xlab = "city miles per gallon",
   ylab = "car manufacturer",
-  type = "bayes", # Bayesian test
+  type = "bayes", ## Bayesian test
   test.value = 15.5,
   ggtheme = ggthemes::theme_fivethirtyeight(),
-  # arguments relevant for `ggstatsplot::combine_plots`
+  ## arguments relevant for `ggstatsplot::combine_plots`
   annotation.args = list(title = "Fuel economy data"),
   plotgrid.args = list(nrow = 2)
 )
 ```
 
-# Grouped analysis with `purrr`
+## Grouped analysis with `purrr`
 
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -150,7 +150,7 @@ use `purrr`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-# Summary of tests
+## Summary of tests
 
 **Central tendency measure**
 
@@ -179,7 +179,7 @@ Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biser
 Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
-# Reporting
+## Reporting
 
 If you wish to include statistical analysis results in a publication/report, the
 ideal reporting practice will be a hybrid of two approaches:
@@ -208,7 +208,7 @@ considered moderate evidence (Jeffreys, 1961) in favor of the alternative
 hypothesis.
 
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>

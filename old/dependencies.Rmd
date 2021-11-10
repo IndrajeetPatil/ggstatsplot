@@ -1,0 +1,55 @@
+---
+title: "Dependencies"
+author: "Indrajeet Patil"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_document:
+    fig_width: 6
+    fig.align: 'center'
+    fig.asp: 0.618
+    dpi: 300
+    toc: true
+    toc_depth: 3
+    warning: FALSE
+    message: FALSE
+---
+
+```{r setup, include = FALSE}
+options(
+  tibble.width = Inf,
+  pillar.bold = TRUE,
+  pillar.neg = TRUE,
+  pillar.subtle_num = TRUE,
+  pillar.min_chars = Inf
+)
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  dpi = 300,
+  out.width = "100%",
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE
+)
+```
+
+<!-- # Recursive dependencies -->
+
+<!-- ```{r deplist} -->
+<!-- sort(tools::package_dependencies("ggstatsplot", recursive = TRUE)[[1]]) -->
+<!-- ``` -->
+
+# Dependency graph
+
+```{r deepdep, fig.height=12, fig.width=12}
+library(deepdep)
+
+plot_dependencies("ggstatsplot", depth = 3)
+```
+
+# Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an issue on
+`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+

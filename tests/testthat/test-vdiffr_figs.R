@@ -2,6 +2,7 @@ test_that("plots are rendered correctly", {
   skip_on_cran()
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
+  skip_if(getRversion() >= "4.2")
 
   ## ----ggbetweenstats-------------------------------
 
