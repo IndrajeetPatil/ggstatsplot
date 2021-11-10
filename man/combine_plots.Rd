@@ -71,7 +71,11 @@ combine_plots(
     tag_levels = "a",
     title = "Dataset: Iris Flower dataset",
     subtitle = "Edgar Anderson collected this data",
-    caption = "Note: Only two species of flower are displayed"
+    caption = "Note: Only two species of flower are displayed",
+    theme = theme(
+      plot.subtitle = element_text(size = 20),
+      plot.title = element_text(size = 30)
+    )
   )
 )
 }

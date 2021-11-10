@@ -4,39 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Inform modern browsers that this page supports both dark and light color schemes,
-  and the page author prefers light. --><meta name="color-scheme" content="dark light">
-<script>
-  // If `prefers-color-scheme` is not supported, fall back to light mode.
-  // i.e. In this case, inject the `light` CSS before the others, with
-  // no media filter so that it will be downloaded with highest priority.
-  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
-    document.documentElement.style.display = "none";
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
-    );
-  }
-</script><title>Graphic design and statistical reporting principles • ggstatsplot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="ggstatsplot">
+<title>Graphic design and statistical reporting principles • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
-<!-- preferably CSS --><link rel="stylesheet" href="../../preferably.css">
-<link id="css-code-light" rel="stylesheet" href="../../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<link id="css-code-dark" rel="stylesheet" href="../../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
-<!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
-<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><!-- docsearch --><script src="../../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
-<link href="../../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../../extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><link href="../../extra.css" rel="stylesheet">
 <meta property="og:title" content="Graphic design and statistical reporting principles">
 <meta property="og:description" content="ggstatsplot">
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png">
@@ -45,136 +26,75 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
-      </span>
-    </div>
+<body>
+    <a href="#container" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="../../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li class="divider">
-    <li class="dropdown-header">Primary functions</li>
-    <li>
-      <a href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li class="divider">
-    <li class="dropdown-header">Miscellaneous</li>
-    <li>
-      <a href="../../articles/additional.html">additional vignettes</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li class="divider">
-    <li class="dropdown-header">Development-focused</li>
-    <li>
-      <a href="../../articles/web_only/benchmarking.html">Benchmarking</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/dependencies.html">Dependencies</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-        
-        
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0.9000</small>
 
-      </ul>
-<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-        <div class="form-group">
-          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
-</div>
-      </form>
-      
-    </div>
-<!--/.nav-collapse -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../../reference/index.html">Reference</a>
+</li>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <h6 class="dropdown-header" data-toc-skip>Primary functions</h6>
+    <a class="dropdown-item" href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/gghistostats.html">gghistostats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
+    <a class="dropdown-item" href="../../articles/additional.html">additional vignettes</a>
+    <a class="dropdown-item" href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    <a class="dropdown-item" href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
+    <a class="dropdown-item" href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/IndrajeetPatil/ggstatsplot/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
+  </div>
+</nav><div class="container template-article" id="container">
 
-      
-
-      </header><script src="principles_files/header-attrs-2.11.3/header-attrs.js"></script><div class="row">
+<div class="row">
   <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Graphic design and statistical reporting principles</h1>
-                        <h4 class="author">Indrajeet Patil</h4>
+    <div class="page-header">
+      <img src="../../logo.png" class="logo" alt=""><h1>Graphic design and statistical reporting principles</h1>
+                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 class="date">2021-10-18</h4>
+            <h4 data-toc-skip class="date">2021-11-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/vignettes/web_only/principles.Rmd"><code>vignettes/web_only/principles.Rmd</code></a></small>
-      <div class="hidden name"><code>principles.Rmd</code></div>
-
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
+      <div class="d-none name"><code>principles.Rmd</code></div>
     </div>
 
     
@@ -201,12 +121,12 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<div id="graphic-design-principles" class="section level1">
-<h1 class="hasAnchor">
-<a href="#graphic-design-principles" class="anchor"></a>Graphic design principles</h1>
-<div id="graphical-perception" class="section level2">
-<h2 class="hasAnchor">
-<a href="#graphical-perception" class="anchor"></a>Graphical perception</h2>
+<div class="section level2">
+<h2 id="graphic-design-principles">Graphic design principles<a class="anchor" aria-label="anchor" href="#graphic-design-principles"></a>
+</h2>
+<div class="section level3">
+<h3 id="graphical-perception">Graphical perception<a class="anchor" aria-label="anchor" href="#graphical-perception"></a>
+</h3>
 <p>Graphical perception involves visual decoding of the encoded information in graphs. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> incorporates the paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous. Based on experiments, Cleveland proposes that there are ten elementary graphical-perception tasks that we perform to visually decode quantitative information in graphs (organized from most to least accurate; <span class="citation">(Cleveland, 1985)</span>, p.254)-</p>
 <ul>
 <li><p>Position along a common scale</p></li>
@@ -223,14 +143,14 @@ A BibTeX entry for LaTeX users is
 </blockquote>
 <p>For example, decoding the data point values in <code>ggbetweenstats</code> requires position judgments along a common scale:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># plot</span>
+<span class="co">## plot</span>
 <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
     <span class="va">movies_long</span>,
-    <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
+    <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Action Comedy"</span>, <span class="st">"Action Drama"</span>, <span class="st">"Comedy"</span><span class="op">)</span>
   <span class="op">)</span>,
   x <span class="op">=</span> <span class="va">genre</span>,
   y <span class="op">=</span> <span class="va">rating</span>,
@@ -250,18 +170,18 @@ Note that assessing differences in mean values between groups has been made easi
 <li>For the categorical/nominal data, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> uses pie charts which rely on <em>angle</em> judgments, which are less accurate (as compared to bar graphs, e.g., which require <em>position</em> judgments). This shortcoming is assuaged to some degree by using plenty of labels that describe percentages for all slices. This makes angle judgment unnecessary and pre-vacates any concerns about inaccurate judgments about percentages. Additionally, it also provides alternative function to <code>ggpiestats</code> for working with categorical variables: <code>ggbarstats</code>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># plot</span>
+<span class="co">## plot</span>
 <span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">movies_long</span>,
   x <span class="op">=</span> <span class="va">genre</span>,
   y <span class="op">=</span> <span class="va">mpaa</span>,
   title <span class="op">=</span> <span class="st">"Distribution of MPAA ratings by film genre"</span>,
   legend.title <span class="op">=</span> <span class="st">"layout"</span>,
-  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>
-    <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">italic</a></span><span class="op">(</span><span class="st">"MPAA"</span><span class="op">)</span>, <span class="st">": Motion Picture Association of America"</span>
+  caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"MPAA"</span><span class="op">)</span>, <span class="st">": Motion Picture Association of America"</span>
   <span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; Warning: Number of labels is greater than default palette color count.</span>
@@ -275,36 +195,36 @@ Pie charts don’t follow Cleveland’s paradigm to data display because they re
 <li>Cleveland’s paradigm also emphasizes that <em>superposition</em> of data is better than <em>juxtaposition</em> (<span class="citation">(Cleveland, 1985)</span>, p.201) because this allows for a more incisive comparison of the values from different parts of the dataset. This recommendation is violated in all <code>grouped_</code> variants of the function. Note that the range for Y-axes are no longer the same across juxtaposed subplots and so visually comparing the data becomes difficult. On the other hand, in the superposed plot, all data have the same range and coloring different parts makes the visual discrimination of different components of the data, and their comparison, easier. But the goal of <code>grouped_</code> variants of functions is to not only show different aspects of the data but also to run statistical tests and showing detailed results for all aspects of the data in a superposed plot is difficult. Therefore, this is a compromise <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is comfortable with, at least to produce plots for quick exploration of different aspects of the data.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="co"># creating a smaller dataframe</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Comedy"</span>, <span class="st">"Drama"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## creating a smaller dataframe</span>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Comedy"</span>, <span class="st">"Drama"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="co"># plot</span>
+<span class="co">## plot</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-    <span class="co"># plot 1: superposition</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">length</span>, y <span class="op">=</span> <span class="va">rating</span>, color <span class="op">=</span> <span class="va">genre</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span><span class="op">)</span> <span class="op">+</span>
+  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+    <span class="co">## plot 1: superposition</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">length</span>, y <span class="op">=</span> <span class="va">rating</span>, color <span class="op">=</span> <span class="va">genre</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"superposition (recommended in Cleveland's paradigm)"</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot</a></span><span class="op">(</span><span class="op">)</span>,
-    <span class="co"># plot 2: juxtaposition</span>
+    <span class="co">## plot 2: juxtaposition</span>
     <span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span>
       data <span class="op">=</span> <span class="va">df</span>,
       x <span class="op">=</span> <span class="va">length</span>,
       y <span class="op">=</span> <span class="va">rating</span>,
       grouping.var <span class="op">=</span> <span class="va">genre</span>,
       marginal <span class="op">=</span> <span class="cn">FALSE</span>,
-      annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"juxtaposition (`{ggstatsplot}` implementation in `grouped_` functions)"</span><span class="op">)</span>
+      annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"juxtaposition (`{ggstatsplot}` implementation in `grouped_` functions)"</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span>,
-  <span class="co"># combine for comparison</span>
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Two ways to compare different aspects of data"</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  <span class="co">## combine for comparison</span>
+  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Two ways to compare different aspects of data"</span><span class="op">)</span>,
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig3-1.png" alt="Comparing different aspects of data is much more accurate in (\textit{a}) a \textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\textit{b}) a \textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot." width="100%"><p class="caption">
@@ -313,9 +233,9 @@ Comparing different aspects of data is much more accurate in () a  plot, which i
 </div>
 <p>The <code>grouped_</code> plots follow the <em>Shrink Principle</em> (<span class="citation">(Tufte, 2001)</span>, p.166-7) for high-information graphics, which dictates that the data density and the size of the data matrix can be maximized to exploit maximum resolution of the available data-display technology. Given the large maximum resolution afforded by most computer monitors today, saving <code>grouped_</code> plots with appropriate resolution ensures no loss in legibility with reduced graphics area.</p>
 </div>
-<div id="graphical-excellence" class="section level2">
-<h2 class="hasAnchor">
-<a href="#graphical-excellence" class="anchor"></a>Graphical excellence</h2>
+<div class="section level3">
+<h3 id="graphical-excellence">Graphical excellence<a class="anchor" aria-label="anchor" href="#graphical-excellence"></a>
+</h3>
 <p>Graphical excellence consists of communicating complex ideas with clarity and in a way that the viewer understands the greatest number of ideas in a short amount of time all the while not quoting the data out of context. The package follows the principles for <em>graphical integrity</em> <span class="citation">(Tufte, 2001)</span>:</p>
 <ul>
 <li><p>The physical representation of numbers is proportional to the numerical quantities they represent. The plot show how means (in <code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>) are proportional to the vertical distance or the area, respectively).</p></li>
@@ -337,19 +257,19 @@ Comparing different aspects of data is much more accurate in () a  plot, which i
 <p>In particular, default plots in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> can sometimes violate one of the principles from 2-4. According to these principles, every bit of ink should have reason for its inclusion in the graphic and should convey some new information to the viewer. If not, such ink should be removed. One instance of this is bilateral symmetry of data measures. For example, in the figure below, we can see that both the box and violin plots are mirrored, which consumes twice the space in the graphic without adding any new information. But this redundancy is tolerated for the sake of beauty that such symmetrical shapes can bring to the graphic. Even Tufte admits that efficiency is but one consideration in the design of statistical graphics (<span class="citation">(Tufte, 2001)</span>,</p>
 <p>p. 137). Additionally, these principles were formulated in an era in which computer graphics had yet to revolutionize the ease with which graphics could be produced and thus some of the concerns about minimizing data-ink for easier production of graphics are not as relevant as they were.</p>
 </div>
-<div id="statistical-variation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#statistical-variation" class="anchor"></a>Statistical variation</h2>
+<div class="section level3">
+<h3 id="statistical-variation">Statistical variation<a class="anchor" aria-label="anchor" href="#statistical-variation"></a>
+</h3>
 <p>One of the important functions of a plot is to show the variation in the data, which comes in two forms:</p>
 <ul>
 <li>
 <strong>Measurement noise</strong>: In <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>, the actual variation in measurements is shown by plotting a combination of (jittered) raw data points with a boxplot laid on top or a histogram. None of the plots, where empirical distribution of the data is concerned, show the sample standard deviation because they are poor at conveying information about limits of the sample and presence of outliers (<span class="citation">(Cleveland, 1985)</span>, p.220).</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># plot</span>
+<span class="co">## plot</span>
 <span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">morley</span>,
   x <span class="op">=</span> <span class="va">Speed</span>,
@@ -368,16 +288,16 @@ Distribution of a variable shown using <code>gghistostats</code>.
 <strong>Sample-to-sample statistic variation</strong>: Although, traditionally, this variation has been shown using the standard error of the mean (SEM) of the statistic, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots instead use 95% confidence intervals. This is because the interval formed by error bars correspond to a 68% confidence interval, which is not a particularly interesting interval (<span class="citation">(Cleveland, 1985)</span>, p.222-225).</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># creating model object</span>
-<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html">lmer</a></span><span class="op">(</span>
+<span class="co">## creating model object</span>
+<span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span>
   formula <span class="op">=</span> <span class="va">total.fruits</span> <span class="op">~</span> <span class="va">nutrient</span> <span class="op">+</span> <span class="va">rack</span> <span class="op">+</span> <span class="op">(</span><span class="va">nutrient</span> <span class="op">|</span> <span class="va">gen</span><span class="op">)</span>,
-  data <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/lme4/man/Arabidopsis.html">Arabidopsis</a></span>
+  data <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/lme4/man/Arabidopsis.html" class="external-link">Arabidopsis</a></span>
 <span class="op">)</span>
 
-<span class="co"># plot</span>
+<span class="co">## plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mod</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig6-1.png" alt="Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`." width="100%"><p class="caption">
@@ -386,43 +306,43 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 </div>
 </div>
 </div>
-<div id="statistical-analysis" class="section level1">
-<h1 class="hasAnchor">
-<a href="#statistical-analysis" class="anchor"></a>Statistical analysis</h1>
-<div id="data-requirements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data-requirements" class="anchor"></a>Data requirements</h2>
-<p>As an extension of <a href="https://ggplot2.tidyverse.org">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> has the same expectations about the structure of the data. More specifically,</p>
+<div class="section level2">
+<h2 id="statistical-analysis">Statistical analysis<a class="anchor" aria-label="anchor" href="#statistical-analysis"></a>
+</h2>
+<div class="section level3">
+<h3 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a>
+</h3>
+<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> has the same expectations about the structure of the data. More specifically,</p>
 <ul>
 <li><p>The data should be organized following the principles of <em>tidy data</em>, which specify how statistical structure of a data frame (variables and observations) should be mapped to physical structure (columns and rows). More specifically, tidy data means all variables have their own columns and each row corresponds to a unique observation (<span class="citation">(Wickham, 2014)</span>).</p></li>
-<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from variables of interest (similar to <a href="https://ggplot2.tidyverse.org">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display total sample size (<em>n</em>, either observations for between-subjects or pairs for within-subjects designs) in the subtitle to inform the user/reader about the number of observations included for both the statistical analysis and the visualization. But, when sample sizes differ <em>across</em> tests in the same function, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this aspect. For example, <code>ggcorrmat</code> features several correlation test pairs and, depending on variables in a given pair, the sample sizes may vary.</p></li>
+<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from variables of interest (similar to <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display total sample size (<em>n</em>, either observations for between-subjects or pairs for within-subjects designs) in the subtitle to inform the user/reader about the number of observations included for both the statistical analysis and the visualization. But, when sample sizes differ <em>across</em> tests in the same function, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this aspect. For example, <code>ggcorrmat</code> features several correlation test pairs and, depending on variables in a given pair, the sample sizes may vary.</p></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
-<span class="co"># creating a new dataset without any NAs in variables of interest</span>
+<span class="co">## creating a new dataset without any NAs in variables of interest</span>
 <span class="va">msleep_no_na</span> <span class="op">&lt;-</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
-    <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span>,
-    <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">sleep_rem</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">awake</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">brainwt</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">bodywt</span><span class="op">)</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
+    <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
+    <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">sleep_rem</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">awake</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">brainwt</span><span class="op">)</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">bodywt</span><span class="op">)</span>
   <span class="op">)</span>
 
-<span class="co"># variable names vector</span>
-<span class="va">var_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"REM sleep"</span>, <span class="st">"time awake"</span>, <span class="st">"brain weight"</span>, <span class="st">"body weight"</span><span class="op">)</span>
+<span class="co">## variable names vector</span>
+<span class="va">var_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"REM sleep"</span>, <span class="st">"time awake"</span>, <span class="st">"brain weight"</span>, <span class="st">"body weight"</span><span class="op">)</span>
 
-<span class="co"># combining two plots using helper function in `{ggstatsplot}`</span>
+<span class="co">## combining two plots using helper function in `{ggstatsplot}`</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  plotlist <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">pmap</a></span><span class="op">(</span>
-    .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">msleep_no_na</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html">msleep</a></span><span class="op">)</span><span class="op">)</span>,
+  plotlist <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
+    .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">msleep_no_na</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span><span class="op">)</span><span class="op">)</span>,
     .f <span class="op">=</span> <span class="va">ggcorrmat</span>,
-    cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">sleep_rem</span>, <span class="va">awake</span><span class="op">:</span><span class="va">bodywt</span><span class="op">)</span>,
+    cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">sleep_rem</span>, <span class="va">awake</span><span class="op">:</span><span class="va">bodywt</span><span class="op">)</span>,
     cor.vars.names <span class="op">=</span> <span class="va">var_names</span>,
-    colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span><span class="op">)</span>,
+    colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span><span class="op">)</span>,
     title <span class="op">=</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,
     subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span>
   <span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig4-1.png" alt="`{ggstatsplot}` functions remove `NA`s from variables of interest and display total sample size \textit{n}, but they can give more nuanced information about sample sizes when \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables." width="100%"><p class="caption">
@@ -430,9 +350,9 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 </p>
 </div>
 </div>
-<div id="statistical-reporting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#statistical-reporting" class="anchor"></a>Statistical reporting</h2>
+<div class="section level3">
+<h3 id="statistical-reporting">Statistical reporting<a class="anchor" aria-label="anchor" href="#statistical-reporting"></a>
+</h3>
 <p>But why would combining statistical analysis with data visualization be helpful? We list few reasons below-</p>
 <ul>
 <li>A recent survey <span class="citation">(Nuijten, Hartgerink, van Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight papers in major psychology journals contained a grossly inconsistent <em>p</em>-value that may have affected the statistical conclusion. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the plot and the statistical analysis are yoked together, the chances of making an error in reporting the results are minimized. One need not write the results manually or copy-paste them from a different statistics software program (like SPSS, SAS, and so on).</li>
@@ -450,21 +370,21 @@ Sample-to-sample variation in regression estimates is displayed using confidence
 <li><p>With the exception of <em>p</em>-values, most statistics are rounded to two decimal places by default.</p></li>
 </ul>
 </div>
-<div id="dealing-with-null-results" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dealing-with-null-results" class="anchor"></a>Dealing with <strong>null results</strong>:</h2>
+<div class="section level3">
+<h3 id="dealing-with-null-results">Dealing with <strong>null results</strong>:<a class="anchor" aria-label="anchor" href="#dealing-with-null-results"></a>
+</h3>
 <p>All functions therefore by default return Bayesian in favor of the null hypothesis by default. If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>). By default, natural logarithms are shown because Bayesian values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
 </div>
-<div id="avoiding-the-p-value-error" class="section level2">
-<h2 class="hasAnchor">
-<a href="#avoiding-the-p-value-error" class="anchor"></a>Avoiding the <strong>“p-value error”</strong>:</h2>
+<div class="section level3">
+<h3 id="avoiding-the-p-value-error">Avoiding the <strong>“p-value error”</strong>:<a class="anchor" aria-label="anchor" href="#avoiding-the-p-value-error"></a>
+</h3>
 <p>The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p =0.000</code>, putatively due to relying on default computer software outputs <span class="citation">(Lilienfeld et al., 2015)</span>. All <em>p</em>-values displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p>
 </div>
 </div>
-<div id="suggestions" class="section level1">
-<h1 class="hasAnchor">
-<a href="#suggestions" class="anchor"></a>Suggestions</h1>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<div class="section level2">
+<h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
+</h2>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-apa2009" class="csl-entry">
 Association, A. P. (2009). <em>Publication <span>Manual</span> of the <span>American Psychological Association</span>, 6th <span>Edition</span></em>. <span>Washington, DC</span>: <span>American Psychological Association</span>.
@@ -473,16 +393,16 @@ Association, A. P. (2009). <em>Publication <span>Manual</span> of the <span>Amer
 Cleveland, W. S. (1985). <em>The <span>Elements</span> of <span>Graphing Data</span></em> (1st edition.). <span>Monterey, Cal</span>: <span>Wadsworth, Inc.</span>
 </div>
 <div id="ref-lilienfeld2015" class="csl-entry">
-Lilienfeld, S. O., Sauvign’e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., &amp; Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. <em>Frontiers in Psychology</em>, <em>6</em>. doi:<a href="https://doi.org/10.3389/fpsyg.2015.01100">10.3389/fpsyg.2015.01100</a>
+Lilienfeld, S. O., Sauvign’e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., &amp; Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. <em>Frontiers in Psychology</em>, <em>6</em>. doi:<a href="https://doi.org/10.3389/fpsyg.2015.01100" class="external-link">10.3389/fpsyg.2015.01100</a>
 </div>
 <div id="ref-nuijten2016" class="csl-entry">
-Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., &amp; Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (19852013). <em>Behavior Research Methods</em>, <em>48</em>(4), 1205–1226. doi:<a href="https://doi.org/10.3758/s13428-015-0664-2">10.3758/s13428-015-0664-2</a>
+Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., &amp; Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (19852013). <em>Behavior Research Methods</em>, <em>48</em>(4), 1205–1226. doi:<a href="https://doi.org/10.3758/s13428-015-0664-2" class="external-link">10.3758/s13428-015-0664-2</a>
 </div>
 <div id="ref-tufte2001" class="csl-entry">
 Tufte, E. R. (2001). <em>The <span>Visual Display</span> of <span>Quantitative Information</span></em> (2nd edition edition.). <span>Cheshire, Conn</span>: <span>Graphics Press</span>.
 </div>
 <div id="ref-wickhamTidyData2014" class="csl-entry">
-Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(1), 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10">10.18637/jss.v059.i10</a>
+Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(1), 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10" class="external-link">10.18637/jss.v059.i10</a>
 </div>
 <div id="ref-wickham2016" class="csl-entry">
 Wickham, H. (2016). <em>Ggplot2: <span>Elegant Graphics</span> for <span>Data Analysis</span></em> (2nd ed. 2016 edition.). <span>New York, NY</span>: <span>Springer</span>.
@@ -490,10 +410,8 @@ Wickham, H. (2016). <em>Ggplot2: <span>Elegant Graphics</span> for <span>Data An
 </div>
 </div>
   </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+ <div class="col-md-3" id="pkgdown-sidebar">
+        <nav id="toc"><h2>On this page</h2>
     </nav>
 </div>
 
@@ -501,32 +419,22 @@ Wickham, H. (2016). <em>Ggplot2: <span>Elegant Graphics</span> for <span>Data An
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/">Indrajeet Patil</a>.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Made with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1, using <a href="https://preferably.amirmasoudabdol.name/?source=footer">preferably</a> template.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
-  docsearch({
-    
-    
-    apiKey: '44345fbe359c5496fbc3955c513333d1',
-    indexName: 'ggstatsplot',
-    inputSelector: 'input#search-input.form-control',
-    transformData: function(hits) {
-      return hits.map(function (hit) {
-        hit.url = updateHitURL(hit);
-        return hit;
-      });
-    }
-  });
-</script>
-</body>
+
+  
+
+  </body>
 </html>

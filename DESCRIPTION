@@ -39,12 +39,13 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 1.2.0),
+    statsExpressions (>= 1.2.0.9000),
     tidyr,
     utils,
     WRS2
 Suggests:
     afex (>= 1.0-1),
+    BayesFactor,
     forcats,
     ggcorrplot,
     ggside (>= 0.1.2),
@@ -58,6 +59,10 @@ Suggests:
     testthat (>= 3.1.0),
     tibble,
     vdiffr
+Remotes:
+    easystats/insight,
+    easystats/parameters,
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

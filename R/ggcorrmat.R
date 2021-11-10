@@ -115,26 +115,28 @@ ggcorrmat <- function(data,
   # statistical analysis ------------------------------------------
 
   # if any of the abbreviations have been entered, change them
-  type <- statsExpressions::stats_type_switch(type)
+  type <- stats_type_switch(type)
 
   # creating a dataframe of results
+  # styler: off
   stats_df <- correlation::correlation(
-    data = df,
-    rename = cor.vars.names,
-    method = ifelse(type == "nonparametric", "spearman", "pearson"),
-    p_adjust = p.adjust.method,
-    ci = conf.level,
-    bayesian = ifelse(type == "bayes", TRUE, FALSE),
-    bayesian_prior = bf.prior,
-    tr = tr,
-    partial = partial,
-    partial_bayesian = ifelse(type == "bayes" && isTRUE(partial), TRUE, FALSE),
-    winsorize = ifelse(type == "robust", tr, FALSE)
+    data             = df,
+    rename           = cor.vars.names,
+    method           = ifelse(type == "nonparametric", "spearman", "pearson"),
+    p_adjust         = p.adjust.method,
+    ci               = conf.level,
+    bayesian         = ifelse(type == "bayes", TRUE, FALSE),
+    bayesian_prior   = bf.prior,
+    tr               = tr,
+    partial          = partial,
+    partial_bayesian = ifelse(type == "bayes" && partial, TRUE, FALSE),
+    winsorize        = ifelse(type == "robust", tr, FALSE)
   )
+  # styler: on
 
   # type of correlation and if it is a partial correlation
   r.method.text <- gsub(" correlation", "", unique(stats_df$Method))
-  r.type <- ifelse(isTRUE(partial), "correlation (partial):", "correlation:")
+  r.type <- ifelse(partial, "correlation (partial):", "correlation:")
 
   # early stats return
   if (output != "plot") {
@@ -151,7 +153,7 @@ ggcorrmat <- function(data,
   }
 
   # legend title with information about correlation type and sample
-  if (isFALSE(any(is.na(df))) || isTRUE(partial)) {
+  if (isFALSE(any(is.na(df))) || partial) {
     legend.title <- bquote(atop(
       atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
@@ -176,16 +178,16 @@ ggcorrmat <- function(data,
   # plotting the correlalogram
   plot <- exec(
     ggcorrplot::ggcorrplot,
-    corr = as.matrix(select(stats_df, matches("^parameter|^r"))),
-    p.mat = as.matrix(select(stats_df, matches("^parameter|^p"))),
-    sig.level = ifelse(type == "bayes", Inf, sig.level),
-    ggtheme = ggtheme,
-    colors = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
-    type = matrix.type,
-    lab = TRUE,
-    pch = pch,
+    corr         = as.matrix(select(stats_df, matches("^parameter|^r"))),
+    p.mat        = as.matrix(select(stats_df, matches("^parameter|^p"))),
+    sig.level    = ifelse(type == "bayes", Inf, sig.level),
+    ggtheme      = ggtheme,
+    colors       = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
+    type         = matrix.type,
+    lab          = TRUE,
+    pch          = pch,
     legend.title = legend.title,
-    digits = k,
+    digits       = k,
     !!!ggcorrplot.args
   )
 
@@ -214,14 +216,14 @@ ggcorrmat <- function(data,
     theme(
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.title = element_text(size = 15)
+      legend.title     = element_text(size = 15)
     ) +
     labs(
-      title = title,
-      subtitle = subtitle,
-      caption = caption,
-      xlab = NULL,
-      ylab = NULL
+      title            = title,
+      subtitle         = subtitle,
+      caption          = caption,
+      xlab             = NULL,
+      ylab             = NULL
     ) +
     ggplot.component
 }

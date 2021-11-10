@@ -85,7 +85,7 @@ ggpiestats <- function(data,
   # dataframe ------------------------------------------
 
   # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
+  type <- stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
   x <- ensym(x)
@@ -126,17 +126,17 @@ ggpiestats <- function(data,
   if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      conf.level = conf.level,
-      k = k,
-      paired = paired,
-      ratio = ratio,
-      sampling.plan = sampling.plan,
-      fixed.margin = fixed.margin,
+      data                = data,
+      x                   = {{ x }},
+      y                   = {{ y }},
+      conf.level          = conf.level,
+      k                   = k,
+      paired              = paired,
+      ratio               = ratio,
+      sampling.plan       = sampling.plan,
+      fixed.margin        = fixed.margin,
       prior.concentration = prior.concentration,
-      top.text = caption
+      top.text            = caption
     )
 
     subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)
@@ -171,10 +171,10 @@ ggpiestats <- function(data,
   # creating the basic plot
   p <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
     geom_col(
-      mapping = aes(fill = {{ x }}),
+      mapping  = aes(fill = {{ x }}),
       position = "fill",
-      color = "black",
-      width = 1
+      color    = "black",
+      width    = 1
     )
 
   # whether labels need to be repelled
@@ -185,11 +185,11 @@ ggpiestats <- function(data,
   suppressWarnings(suppressMessages(p <- p +
     exec(
       .fn,
-      mapping = aes(label = .label, group = {{ x }}),
-      position = position_fill(vjust = 0.5),
+      mapping            = aes(label = .label, group = {{ x }}),
+      position           = position_fill(vjust = 0.5),
       min.segment.length = 0,
-      fill = "white",
-      alpha = 1,
+      fill               = "white",
+      alpha              = 1,
       !!!label.args
     )))
 
@@ -216,11 +216,11 @@ ggpiestats <- function(data,
     p <- p +
       exec(
         geom_text,
-        data = onesample_df,
-        mapping = aes(label = .label, x = 1.65, y = 0.5),
+        data     = onesample_df,
+        mapping  = aes(label = .label, x = 1.65, y = 0.5),
         position = position_fill(vjust = 1),
-        size = 2.8,
-        parse = TRUE
+        size     = 2.8,
+        parse    = TRUE
       )
   }
 
@@ -228,11 +228,11 @@ ggpiestats <- function(data,
 
   p +
     labs(
-      x = NULL,
-      y = NULL,
+      x        = NULL,
+      y        = NULL,
       subtitle = subtitle,
-      title = title,
-      caption = caption
+      title    = title,
+      caption  = caption
     ) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
     ggplot.component
@@ -262,11 +262,7 @@ ggpiestats <- function(data,
 #' library(ggstatsplot)
 #'
 #' # grouped one-sample proportion test
-#' grouped_ggpiestats(
-#'   data = mtcars,
-#'   x = cyl,
-#'   grouping.var = am
-#' )
+#' grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
 #' }
 #' @export
 

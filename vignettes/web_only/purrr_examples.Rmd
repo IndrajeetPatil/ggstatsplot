@@ -1,5 +1,5 @@
 ---
-title: "using `{ggstatsplot}` with the `purrr` package"
+title: "using `{ggstatsplot}` with the `{purrr}` package"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -13,13 +13,13 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{using `{ggstatsplot}` with the `purrr` package}
+  %\VignetteIndexEntry{using `{ggstatsplot}` with the `{purrr}` package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
-# pretty tibble printing
+## pretty tibble printing
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -51,7 +51,7 @@ citation("ggstatsplot")
 
 ---
 
-# Why use `purrr`?
+## Why use `{purrr}`?
 
 Most of the `{ggstatsplot}` functions have `grouped_` variants, which are designed
 to quickly run the same `{ggstatsplot}` function across multiple levels of a
@@ -67,21 +67,21 @@ exploration, it has two strong weaknesses-
    be repeated for all resulting combinations.
 
 We will see how to overcome this limitation by combining `{ggstatsplot}` with the
-`purrr` package.
+`{purrr}` package.
 
 **Note:**
 
- * While using `purrr::pmap`, we **must** input the arguments as strings.
+ * While using `purrr::pmap()`, we **must** input the arguments as strings.
 
  * You can use `{ggplot2}` themes from extension packages (e.g. `ggthemes`).
 
  * If you'd like some more background or an introduction to the purrr package,
-   please see [this tutorial](https://jennybc.github.io/purrr-tutorial/).
+   please see [this chapter](https://adv-r.hadley.nz/functionals.html).
 
-# Introduction and methodology
+## Introduction and methodology
 
 For all the examples in this vignette we are going to build `list`s of things
-that we will pass along to `purrr` which will in turn return a list of plots
+that we will pass along to `{purrr}` which will in turn return a list of plots
 that will be passed to `combine_plots`. As the name implies `combine_plots`
 merges the individual plots into one bigger plot with common labeling and
 aesthetics.
@@ -108,22 +108,22 @@ You can pass:
    be checked for the right class (in this case character) and the right
    quantity of entries in the list.
 
-# `ggbetweenstats`
+## `ggbetweenstats`
 
 Let's start with `ggebtweenstats`. We'll use the `gapminder` dataset. We'll make
 a 3 item `list` called `year_list` using `dplyr::filter` and `split`.
 
 ```{r purrr_ggbetweenstats1, fig.height = 12, fig.width = 7}
-# for reproducibility
+## for reproducibility
 library(ggstatsplot)
 set.seed(123)
 
-# let's split the dataframe and create a list by years of interest
+## let's split the dataframe and create a list by years of interest
 year_list <- gapminder::gapminder %>%
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   split(f = .$year, drop = TRUE)
 
-# checking the length of the list and the names of each element
+## checking the length of the list and the names of each element
 length(year_list)
 names(year_list)
 ```
@@ -145,11 +145,11 @@ Not actually recommending it just demonstrating what's possible. The rest of the
 code shows you a wide variety of possibilities and we won't catalog them here.
 
 ```{r purrr_ggbetweenstats2, fig.height = 10, fig.width = 7}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 
-# creating a list of plots
+## creating a list of plots
 plot_list <- purrr::pmap(
   .l = list(
     data = year_list,
@@ -198,7 +198,7 @@ information `combine_plots` gives us an opportunity to add additional details to
 the merged plots and specify the layout in rows and columns.
 
 ```{r purrr_ggbetweenstats3, fig.height = 18, fig.width = 7}
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
@@ -206,25 +206,25 @@ combine_plots(
 )
 ```
 
-# `ggwithinstats`
+## `ggwithinstats`
 
 We will be using simulated data from then Attention Network Test provided in ANT
 dataset in `ez` package.
 
 ```{r purrr_ggwithinstats, fig.height = 20, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggstatsplot)
 library(ez)
-data("ANT") # loading data from `ez` package
+data("ANT") ## loading data from `ez` package
 
-# let's split the dataframe and create a list by years of interest
+## let's split the dataframe and create a list by years of interest
 cue_list <- ANT %>% split(f = .$cue, drop = TRUE)
 
-# checking the length of the list and the names of each element
+## checking the length of the list and the names of each element
 length(cue_list)
 
-# creating a list of plots by applying the same function for elements of the list
+## creating a list of plots by applying the same function for elements of the list
 plot_list <- purrr::pmap(
   .l = list(
     data = cue_list,
@@ -270,7 +270,7 @@ plot_list <- purrr::pmap(
   .f = ggstatsplot::ggwithinstats
 )
 
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Response times across flank conditions for each type of cue"),
@@ -278,7 +278,7 @@ combine_plots(
 )
 ```
 
-# `ggscatterstats`
+## `ggscatterstats`
 
 For the next example lets use the same methodology on different data and using
 `ggscatterstats` to produce scatterplots combined with marginal
@@ -291,7 +291,7 @@ completely drop NC-17 using `dplyr`.
 This time we'll put all the code in one block-
 
 ```{r purrr_ggscatterstats, fig.height = 14, fig.width = 7}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
 mpaa_list <- ggstatsplot::movies_long %>%
@@ -299,7 +299,7 @@ mpaa_list <- ggstatsplot::movies_long %>%
   dplyr::sample_frac(size = 0.25) %>%
   split(f = .$mpaa, drop = TRUE)
 
-# creating a list of plots
+## creating a list of plots
 plot_list <- purrr::pmap(
   .l = list(
     data = mpaa_list,
@@ -313,7 +313,7 @@ plot_list <- purrr::pmap(
       "MPAA Rating: R"
     ),
     label.var = list("title"),
-    # note that you need to quote the expressions
+    ## note that you need to quote the expressions
     label.expression = list(
       quote(rating > 7.5 & budget < 100),
       quote(rating > 8 & budget < 50),
@@ -331,7 +331,7 @@ plot_list <- purrr::pmap(
   .f = ggstatsplot::ggscatterstats
 )
 
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(
@@ -345,27 +345,27 @@ combine_plots(
 The remainder of the examples vary in content but follow the exact same
 methodology as the earlier examples.
 
-# `ggcorrmat`
+## `ggcorrmat`
 
 ```{r purrr_ggcorrmat, fig.height = 10, fig.width = 10}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# splitting the dataframe by cut and creating a list
-# let's leave out "fair" cut
-# also, to make this fast, let's only use 5% of the sample
+## splitting the dataframe by cut and creating a list
+## let's leave out "fair" cut
+## also, to make this fast, let's only use 5% of the sample
 cut_list <- ggplot2::diamonds %>%
   dplyr::sample_frac(size = 0.05) %>%
   dplyr::filter(cut != "Fair") %>%
   split(f = .$cut, drop = TRUE)
 
-# checking the length and names of each element
+## checking the length and names of each element
 length(cut_list)
 names(cut_list)
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
+## running function on every element of this list note that if you want the same
+## value for a given argument across all elements of the list, you need to
+## specify it just once
 plot_list <- purrr::pmap(
   .l = list(
     data = cut_list,
@@ -391,8 +391,8 @@ plot_list <- purrr::pmap(
   .f = ggstatsplot::ggcorrmat
 )
 
-# combining all individual plots from the list into a single plot using
-# `combine_plots` function
+## combining all individual plots from the list into a single plot using
+## `combine_plots` function
 combine_plots(
   plotlist = plot_list,
   guides = "keep",
@@ -404,26 +404,26 @@ combine_plots(
 )
 ```
 
-# `gghistostats`
+## `gghistostats`
 
 ```{r purrr_gghistostats, fig.height = 14, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# let's split the dataframe and create a list by continent
-# let's leave out Oceania because it has just two data points
+## let's split the dataframe and create a list by continent
+## let's leave out Oceania because it has just two data points
 continent_list <-
   gapminder::gapminder %>%
   dplyr::filter(year == 2007, continent != "Oceania") %>%
   split(f = .$continent, drop = TRUE)
 
-# checking the length and names of each element
+## checking the length and names of each element
 length(continent_list)
 names(continent_list)
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
+## running function on every element of this list note that if you want the same
+## value for a given argument across all elements of the list, you need to
+## specify it just once
 plot_list <-
   purrr::pmap(
     .l = list(
@@ -451,7 +451,7 @@ plot_list <-
     .f = ggstatsplot::gghistostats
   )
 
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(
@@ -462,28 +462,28 @@ combine_plots(
 )
 ```  
 
-# `ggdotplotstats`
+## `ggdotplotstats`
 
 ```{r purrr_ggdotplotstats, fig.height = 16, fig.width = 8}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggthemes)
 library(hrbrthemes)
 
-# let's split the dataframe and create a list by continent
-# let's leave out Oceania because it has just two data points
+## let's split the dataframe and create a list by continent
+## let's leave out Oceania because it has just two data points
 continent_list <-
   gapminder::gapminder %>%
   dplyr::filter(continent != "Oceania") %>%
   split(f = .$continent, drop = TRUE)
 
-# checking the length and names of each element
+## checking the length and names of each element
 length(continent_list)
 names(continent_list)
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
+## running function on every element of this list note that if you want the same
+## value for a given argument across all elements of the list, you need to
+## specify it just once
 plot_list <-
   purrr::pmap(
     .l = list(
@@ -516,7 +516,7 @@ plot_list <-
     .f = ggstatsplot::ggdotplotstats
   )
 
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Improvement in GDP per capita from 1952-2007"),
@@ -525,22 +525,22 @@ combine_plots(
 )
 ```  
 
-# `ggpiestats`
+## `ggpiestats`
 
 ```{r purrr_ggpiestats, fig.height = 22, fig.width = 9}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# let's split the dataframe and create a list by passenger class
+## let's split the dataframe and create a list by passenger class
 class_list <- ggstatsplot::Titanic_full %>% split(f = .$Class, drop = TRUE)
 
-# checking the length and names of each element
+## checking the length and names of each element
 length(class_list)
 names(class_list)
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
+## running function on every element of this list note that if you want the same
+## value for a given argument across all elements of the list, you need to
+## specify it just once
 plot_list <-
   purrr::pmap(
     .l = list(
@@ -574,7 +574,7 @@ plot_list <-
     .f = ggstatsplot::ggpiestats
   )
 
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(title = "Survival in Titanic disaster by gender for all passenger classes"),
@@ -583,22 +583,22 @@ combine_plots(
 )
 ``` 
 
-# `ggbarstats`
+## `ggbarstats`
 
 ```{r purrr_ggbarstats, fig.height = 24, fig.width = 6}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# let's split the dataframe and create a list by passenger class
+## let's split the dataframe and create a list by passenger class
 class_list <- ggstatsplot::Titanic_full %>% split(f = .$Class, drop = TRUE)
 
-# checking the length and names of each element
+## checking the length and names of each element
 length(class_list)
 names(class_list)
 
-# running function on every element of this list note that if you want the same
-# value for a given argument across all elements of the list, you need to
-# specify it just once
+## running function on every element of this list note that if you want the same
+## value for a given argument across all elements of the list, you need to
+## specify it just once
 plot_list <-
   purrr::pmap(
     .l = list(
@@ -631,7 +631,7 @@ plot_list <-
     .f = ggstatsplot::ggbarstats
   )
 
-# combining all individual plots from the list into a single plot using combine_plots function
+## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(
@@ -643,7 +643,7 @@ combine_plots(
 )
 ``` 
 
-# `grouped_` variants
+## `grouped_` variants
 
 Note that although all the above examples were written with the non-grouped
 variants of functions, the same rule holds true for the `grouped_` variants of
@@ -655,7 +655,7 @@ plots are not displayed here, but you can run the following code and check the
 individual `grouped_` plots (e.g., `plotlist[[1]]`).
 
 ```{r purrr_grouped}
-# create a list of plots
+## create a list of plots
 plotlist <-
   purrr::pmap(
     .l = list(
@@ -667,20 +667,20 @@ plotlist <-
     .f = ggstatsplot::grouped_gghistostats
   )
 
-# given that we had three different datasets, we expect a list of length 3
-# (each of which contains a `grouped_` plot)
+## given that we had three different datasets, we expect a list of length 3
+## (each of which contains a `grouped_` plot)
 length(plotlist)
 ```
 
-# Repeating function execution across multiple columns in a dataframe
+## Repeating function execution across multiple columns in a dataframe
 
 ```{r purrr_columns, fig.width=12}
-# setup
+## setup
 set.seed(123)
 library(ggstatsplot)
 library(patchwork)
 
-# running the same analysis on two different columns (creates a list of plots)
+## running the same analysis on two different columns (creates a list of plots)
 plotlist <-
   purrr::pmap(
     .l = list(
@@ -692,11 +692,11 @@ plotlist <-
     .f = ggstatsplot::ggbetweenstats
   )
 
-# combine plots using `patchwork`
+## combine plots using `patchwork`
 plotlist[[1]] + plotlist[[2]]
 ```
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

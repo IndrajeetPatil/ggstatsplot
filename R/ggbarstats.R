@@ -62,7 +62,7 @@ ggbarstats <- function(data,
   # dataframe ------------------------------------------
 
   # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
+  type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
@@ -88,17 +88,17 @@ ggbarstats <- function(data,
   if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      conf.level = conf.level,
-      k = k,
-      paired = paired,
-      ratio = ratio,
-      sampling.plan = sampling.plan,
-      fixed.margin = fixed.margin,
+      data                = data,
+      x                   = {{ x }},
+      y                   = {{ y }},
+      conf.level          = conf.level,
+      k                   = k,
+      paired              = paired,
+      ratio               = ratio,
+      sampling.plan       = sampling.plan,
+      fixed.margin        = fixed.margin,
       prior.concentration = prior.concentration,
-      top.text = caption
+      top.text            = caption
     )
 
     subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)
@@ -134,13 +134,13 @@ ggbarstats <- function(data,
   p <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
-      labels = function(x) paste0(x * 100, "%"),
-      breaks = seq(from = 0, to = 1, by = 0.10),
+      labels       = function(x) paste0(x * 100, "%"),
+      breaks       = seq(from = 0, to = 1, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     exec(
       geom_label,
-      mapping = aes(label = .label, group = {{ x }}),
+      mapping  = aes(label = .label, group = {{ x }}),
       position = position_fill(vjust = 0.5),
       !!!label.args
     ) +
@@ -156,19 +156,19 @@ ggbarstats <- function(data,
     # modify plot
     p <- p +
       geom_text(
-        data = onesample_df,
+        data    = onesample_df,
         mapping = aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
-        size = 2.8,
-        parse = TRUE
+        size    = 2.8,
+        parse   = TRUE
       )
   }
 
   # adding sample size info
   p <- p +
     geom_text(
-      data = onesample_df,
+      data    = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-      size = 4
+      size    = 4
     )
 
   # annotations ------------------------------------------
@@ -176,11 +176,11 @@ ggbarstats <- function(data,
   # preparing the plot
   p +
     labs(
-      x = xlab %||% as_name(y),
-      y = ylab,
+      x        = xlab %||% as_name(y),
+      y        = ylab,
       subtitle = subtitle,
-      title = title,
-      caption = caption
+      title    = title,
+      caption  = caption
     ) +
     ggplot.component
 }
@@ -220,10 +220,10 @@ ggbarstats <- function(data,
 #'
 #' # plot
 #' grouped_ggbarstats(
-#'   data = diamonds_short,
-#'   x = color,
-#'   y = clarity,
-#'   grouping.var = cut,
+#'   data          = diamonds_short,
+#'   x             = color,
+#'   y             = clarity,
+#'   grouping.var  = cut,
 #'   plotgrid.args = list(nrow = 2)
 #' )
 #' }

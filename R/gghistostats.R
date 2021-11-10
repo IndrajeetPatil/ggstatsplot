@@ -39,9 +39,9 @@
 #'
 #' # using defaults, but modifying which centrality parameter is to be shown
 #' gghistostats(
-#'   data = ToothGrowth,
-#'   x = len,
-#'   xlab = "Tooth length",
+#'   data            = ToothGrowth,
+#'   x               = len,
+#'   xlab            = "Tooth length",
 #'   centrality.type = "np"
 #' )
 #' }
@@ -98,19 +98,19 @@ gghistostats <- function(data,
 
   if (results.subtitle) {
     # convert entered stats type to a standard notation
-    type <- statsExpressions::stats_type_switch(type)
+    type <- stats_type_switch(type)
 
     # relevant arguments for statistical tests
     .f.args <- list(
-      data = data,
-      x = {{ x }},
-      test.value = test.value,
+      data         = data,
+      x            = {{ x }},
+      test.value   = test.value,
       effsize.type = effsize.type,
-      conf.level = conf.level,
-      k = k,
-      tr = tr,
-      bf.prior = bf.prior,
-      top.text = caption
+      conf.level   = conf.level,
+      k            = k,
+      tr           = tr,
+      bf.prior     = bf.prior,
+      top.text     = caption
     )
 
     # preparing the subtitle with statistical results
@@ -138,15 +138,15 @@ gghistostats <- function(data,
   plot <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
-      mapping = aes(y = ..count.., fill = ..count..),
-      binwidth = binwidth %||% .binwidth(x_vec),
+      mapping   = aes(y = ..count.., fill = ..count..),
+      binwidth  = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
     scale_y_continuous(
       sec.axis = sec_axis(
-        trans = ~ . / nrow(data),
-        labels = function(x) paste0(x * 100, "%"),
-        name = "proportion"
+        trans   = ~ . / nrow(data),
+        labels  = function(x) paste0(x * 100, "%"),
+        name    = "proportion"
       )
     ) +
     guides(fill = "none")
@@ -156,7 +156,7 @@ gghistostats <- function(data,
     plot <- plot +
       exec(
         stat_function,
-        fun = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
+        fun  = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
         args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
         !!!normal.curve.args
       )
@@ -168,10 +168,10 @@ gghistostats <- function(data,
   if (isTRUE(centrality.plotting)) {
     plot <- histo_labeller(
       plot,
-      x = x_vec,
-      type = statsExpressions::stats_type_switch(centrality.type),
-      tr = tr,
-      k = k,
+      x                    = x_vec,
+      type                 = stats_type_switch(centrality.type),
+      tr                   = tr,
+      k                    = k,
       centrality.line.args = centrality.line.args
     )
   }
@@ -179,11 +179,11 @@ gghistostats <- function(data,
   # adding the theme and labels
   plot +
     labs(
-      x = xlab %||% as_name(x),
-      y = "count",
-      title = title,
+      x        = xlab %||% as_name(x),
+      y        = "count",
+      title    = title,
       subtitle = subtitle,
-      caption = caption
+      caption  = caption
     ) +
     ggtheme +
     ggplot.component
@@ -222,11 +222,11 @@ gghistostats <- function(data,
 #'
 #' # plot
 #' grouped_gghistostats(
-#'   data = iris,
-#'   x = Sepal.Length,
-#'   test.value = 5,
-#'   grouping.var = Species,
-#'   plotgrid.args = list(nrow = 1),
+#'   data            = iris,
+#'   x               = Sepal.Length,
+#'   test.value      = 5,
+#'   grouping.var    = Species,
+#'   plotgrid.args   = list(nrow = 1),
 #'   annotation.args = list(tag_levels = "i"),
 #' )
 #' }
@@ -263,10 +263,10 @@ grouped_gghistostats <- function(data,
 
   # creating a list of plots
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
-    .f = ggstatsplot::gghistostats,
+    .l       = list(data = data, title = names(data), output = output),
+    .f       = ggstatsplot::gghistostats,
     # common parameters
-    x = {{ x }},
+    x        = {{ x }},
     binwidth = binwidth %||% ((binmax - binmin) / sqrt(bincount)),
     ...
   )

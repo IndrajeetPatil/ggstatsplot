@@ -20,7 +20,7 @@ csl: apa.csl
 ---
 
 ```{r setup, include = FALSE}
-# show me all columns
+## show me all columns
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -52,9 +52,9 @@ citation("ggstatsplot")
 
 ---
 
-# Graphic design principles
+## Graphic design principles
 
-## Graphical perception
+### Graphical perception
    
 Graphical perception involves visual decoding of the encoded information in
 graphs. `{ggstatsplot}` incorporates the paradigm proposed in ([@cleveland1985],
@@ -87,10 +87,10 @@ For example, decoding the data point values in `ggbetweenstats` requires
 position judgments along a common scale:
 
 ```{r fig1, fig.height = 9, fig.width = 10, fig.cap = "Note that assessing differences in mean values between groups has been made easier with the help of \\textit{position} of data points along a common scale (the Y-axis) and labels."}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggbetweenstats(
   data = dplyr::filter(
     movies_long,
@@ -119,10 +119,10 @@ in Cleveland's paradigm:
     `ggbarstats`.
 
 ```{r fig2, fig.height = 4, fig.width = 10, fig.cap = "Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary."}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 ggpiestats(
   data = movies_long,
   x = genre,
@@ -151,24 +151,24 @@ ggpiestats(
     exploration of different aspects of the data.
 
 ```{r fig3, fig.height = 12, fig.width = 10, fig.cap = "Comparing different aspects of data is much more accurate in (\\textit{a}) a \\textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\\textit{b}) a \\textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot."}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 library(ggplot2)
 library(ggstatsplot)
 
-# creating a smaller dataframe
+## creating a smaller dataframe
 df <- dplyr::filter(movies_long, genre %in% c("Comedy", "Drama"))
 
-# plot
+## plot
 combine_plots(
   plotlist = list(
-    # plot 1: superposition
+    ## plot 1: superposition
     ggplot(data = df, mapping = aes(x = length, y = rating, color = genre)) +
       geom_jitter(size = 3, alpha = 0.5) +
       geom_smooth(method = "lm") +
       labs(title = "superposition (recommended in Cleveland's paradigm)") +
       theme_ggstatsplot(),
-    # plot 2: juxtaposition
+    ## plot 2: juxtaposition
     grouped_ggscatterstats(
       data = df,
       x = length,
@@ -178,7 +178,7 @@ combine_plots(
       annotation.args = list(title = "juxtaposition (`{ggstatsplot}` implementation in `grouped_` functions)")
     )
   ),
-  # combine for comparison
+  ## combine for comparison
   annotation.args = list(title = "Two ways to compare different aspects of data"),
   plotgrid.args = list(nrow = 2)
 )
@@ -191,7 +191,7 @@ data-display technology. Given the large maximum resolution afforded by most
 computer monitors today, saving `grouped_` plots with appropriate resolution
 ensures no loss in legibility with reduced graphics area.
 
-## Graphical excellence
+### Graphical excellence
    
 Graphical excellence consists of communicating complex ideas with clarity and in
 a way that the viewer understands the greatest number of ideas in a short amount
@@ -251,7 +251,7 @@ p. 137). Additionally, these principles were formulated in an era in which
    be produced and thus some of the concerns about minimizing data-ink for
    easier production of graphics are not as relevant as they were.
 
-## Statistical variation
+### Statistical variation
 
 One of the important functions of a plot is to show the variation in the data,
 which comes in two forms:
@@ -264,10 +264,10 @@ which comes in two forms:
     sample and presence of outliers ([@cleveland1985], p.220).
 
 ```{r fig5, fig.height = 6, fig.width = 8, fig.cap = "Distribution of a variable shown using `gghistostats`."}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# plot
+## plot
 gghistostats(
   data = morley,
   x = Speed,
@@ -286,22 +286,22 @@ gghistostats(
     ([@cleveland1985], p.222-225).
 
 ```{r fig6, fig.height = 5, fig.width = 5, fig.cap = "Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`."}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# creating model object
+## creating model object
 mod <- lme4::lmer(
   formula = total.fruits ~ nutrient + rack + (nutrient | gen),
   data = lme4::Arabidopsis
 )
 
-# plot
+## plot
 ggcoefstats(x = mod)
 ```
 
-# Statistical analysis
+## Statistical analysis
 
-## Data requirements
+### Data requirements
 
 As an extension of `{ggplot2}`, `{ggstatsplot}` has the same expectations about the
 structure of the data. More specifically,
@@ -323,20 +323,20 @@ structure of the data. More specifically,
     depending on variables in a given pair, the sample sizes may vary.
 
 ```{r fig4, fig.height = 5, fig.width = 10, fig.cap = "`{ggstatsplot}` functions remove `NA`s from variables of interest and display total sample size \\textit{n}, but they can give more nuanced information about sample sizes when \\textit{n} differs across tests. For example, `ggcorrmat` will display (\\textit{a}) only one total sample size once when no `NA`s present, but (\\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables."}
-# for reproducibility
+## for reproducibility
 set.seed(123)
 
-# creating a new dataset without any NAs in variables of interest
+## creating a new dataset without any NAs in variables of interest
 msleep_no_na <-
   dplyr::filter(
     ggplot2::msleep,
     !is.na(sleep_rem), !is.na(awake), !is.na(brainwt), !is.na(bodywt)
   )
 
-# variable names vector
+## variable names vector
 var_names <- c("REM sleep", "time awake", "brain weight", "body weight")
 
-# combining two plots using helper function in `{ggstatsplot}`
+## combining two plots using helper function in `{ggstatsplot}`
 combine_plots(
   plotlist = purrr::pmap(
     .l = list(data = list(msleep_no_na, ggplot2::msleep)),
@@ -351,7 +351,7 @@ combine_plots(
 )
 ```
 
-## Statistical reporting
+### Statistical reporting
 
 But why would combining statistical analysis with data visualization be helpful?
 We list few reasons below-
@@ -389,7 +389,7 @@ details:
   - With the exception of *p*-values, most statistics are rounded to two decimal
     places by default.
 
-## Dealing with **null results**: 
+### Dealing with **null results**: 
 
 All functions therefore by default return Bayesian in favor of the null
 hypothesis by default. If the null hypothesis can't be rejected with the null
@@ -400,7 +400,7 @@ large. Having values on logarithmic scale also makes it easy to compare evidence
 in favor alternative ($BF_{10}$) versus null ($BF_{01}$) hypotheses (since
 $log_{e}(BF_{01}) = - log_{e}(BF_{01})$).
 
-##  Avoiding the **"p-value error"**:  
+###  Avoiding the **"p-value error"**:  
 
 The *p*-value indexes the probability that the researchers have falsely rejected
 a true null hypothesis (Type I error, i.e.) and can rarely be *exactly* 0. And
@@ -411,7 +411,7 @@ mistake. Anything less than `p < 0.001` is displayed as such. The package deems
 it unimportant how infinitesimally small the *p*-values are and, instead, puts
 emphasis on the effect size magnitudes and their 95% CIs.
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

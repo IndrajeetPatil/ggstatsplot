@@ -147,11 +147,11 @@ library(ggstatsplot)
 
 # plot
 grouped_gghistostats(
-  data = iris,
-  x = Sepal.Length,
-  test.value = 5,
-  grouping.var = Species,
-  plotgrid.args = list(nrow = 1),
+  data            = iris,
+  x               = Sepal.Length,
+  test.value      = 5,
+  grouping.var    = Species,
+  plotgrid.args   = list(nrow = 1),
   annotation.args = list(tag_levels = "i"),
 )
 }
