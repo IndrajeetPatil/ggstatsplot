@@ -172,12 +172,12 @@ ggcoefstats <- function(x,
 
     # converting model object to a tidy dataframe
     tidy_df <- parameters::model_parameters(
-      model = x,
-      eta_squared = eta_squared,
+      model         = x,
+      eta_squared   = eta_squared,
       omega_squared = omega_squared,
-      ci = conf.level,
-      verbose = FALSE,
-      table_wide = TRUE,
+      ci            = conf.level,
+      verbose       = FALSE,
+      table_wide    = TRUE,
       ...
     ) %>%
       parameters::standardize_names(style = "broom") %>%
@@ -207,10 +207,10 @@ ggcoefstats <- function(x,
   if (any(duplicated(select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
-        col = "term",
+        col    = "term",
         matches("term|variable|parameter|method|curve|response|component|contrast|group"),
         remove = TRUE,
-        sep = "_"
+        sep    = "_"
       )
   }
 
@@ -300,7 +300,7 @@ ggcoefstats <- function(x,
   # running meta-analysis
   if (meta.analytic.effect) {
     # standardizing type of statistics name
-    meta.type <- statsExpressions::stats_type_switch(meta.type)
+    meta.type <- stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
     subtitle_df <- statsExpressions::meta_analysis(tidy_df, type = meta.type, k = k)
@@ -311,8 +311,8 @@ ggcoefstats <- function(x,
     if (meta.type == "parametric" && bf.message) {
       caption_df <- statsExpressions::meta_analysis(
         tidy_df,
-        type = "bayes",
-        k = k,
+        type     = "bayes",
+        k        = k,
         top.text = caption
       )
 
@@ -333,7 +333,7 @@ ggcoefstats <- function(x,
       plot <- plot +
         exec(
           geom_errorbarh,
-          data = tidy_df,
+          data    = tidy_df,
           mapping = aes(xmin = conf.low, xmax = conf.high),
           !!!errorbar.args
         )
@@ -357,10 +357,10 @@ ggcoefstats <- function(x,
       plot <- plot +
         exec(
           ggrepel::geom_label_repel,
-          data = tidy_df,
+          data    = tidy_df,
           mapping = aes(x = estimate, y = term, label = label),
-          parse = TRUE,
-          color = stats.label.color,
+          parse   = TRUE,
+          color   = stats.label.color,
           !!!stats.label.args
         )
     }
@@ -370,11 +370,11 @@ ggcoefstats <- function(x,
     # adding other labels to the plot
     plot <- plot +
       labs(
-        x = xlab %||% "estimate",
-        y = ylab %||% "term",
-        caption = caption,
+        x        = xlab %||% "estimate",
+        y        = ylab %||% "term",
+        caption  = caption,
         subtitle = subtitle,
-        title = title
+        title    = title
       ) +
       ggtheme +
       theme(plot.caption = element_text(size = 10))
@@ -385,9 +385,9 @@ ggcoefstats <- function(x,
   # what needs to be returned?
   switch(output,
     "subtitle" = subtitle,
-    "caption" = caption,
-    "tidy" = as_tibble(tidy_df),
-    "glance" = as_tibble(glance_df),
+    "caption"  = caption,
+    "tidy"     = as_tibble(tidy_df),
+    "glance"   = as_tibble(glance_df),
     plot
   )
 }

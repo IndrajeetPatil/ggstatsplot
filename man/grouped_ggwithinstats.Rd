@@ -209,8 +209,8 @@ grouped_ggwithinstats(
   type = "np", # non-parametric test
   # additional modifications for **each** plot using `{ggplot2}` functions
   ggplot.component = scale_y_continuous(
-    breaks = seq(0, 10, 1),
-    limits = c(0, 10)
+    breaks         = seq(0, 10, 1),
+    limits         = c(0, 10)
   )
 )
 }

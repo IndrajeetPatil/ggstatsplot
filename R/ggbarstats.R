@@ -62,7 +62,7 @@ ggbarstats <- function(data,
   # dataframe ------------------------------------------
 
   # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
+  type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
@@ -88,17 +88,17 @@ ggbarstats <- function(data,
   if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      conf.level = conf.level,
-      k = k,
-      paired = paired,
-      ratio = ratio,
-      sampling.plan = sampling.plan,
-      fixed.margin = fixed.margin,
+      data                = data,
+      x                   = {{ x }},
+      y                   = {{ y }},
+      conf.level          = conf.level,
+      k                   = k,
+      paired              = paired,
+      ratio               = ratio,
+      sampling.plan       = sampling.plan,
+      fixed.margin        = fixed.margin,
       prior.concentration = prior.concentration,
-      top.text = caption
+      top.text            = caption
     )
 
     subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)

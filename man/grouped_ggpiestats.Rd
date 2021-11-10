@@ -136,8 +136,8 @@ library(ggstatsplot)
 
 # grouped one-sample proportion test
 grouped_ggpiestats(
-  data = mtcars,
-  x = cyl,
+  data         = mtcars,
+  x            = cyl,
   grouping.var = am
 )
 }

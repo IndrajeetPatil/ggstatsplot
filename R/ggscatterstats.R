@@ -139,7 +139,7 @@ ggscatterstats <- function(data,
   # adding a subtitle with statistical results
   if (results.subtitle) {
     # convert entered stats type to a standard notation
-    type <- statsExpressions::stats_type_switch(type)
+    type <- stats_type_switch(type)
 
     # relevant arguments for statistical tests
     .f.args <- list(
@@ -287,18 +287,13 @@ ggscatterstats <- function(data,
 #' )
 #'
 #' # labeling without expression
-#'
 #' grouped_ggscatterstats(
-#'   data = filter(
-#'     movies_long,
-#'     rating == 7,
-#'     genre %in% c("Drama", "Comedy")
-#'   ),
-#'   x = budget,
-#'   y = length,
-#'   grouping.var = genre,
-#'   bf.message = FALSE,
-#'   label.var = "title",
+#'   data            = filter(movies_long, rating == 7, genre %in% c("Drama", "Comedy")),
+#'   x               = budget,
+#'   y               = length,
+#'   grouping.var    = genre,
+#'   bf.message      = FALSE,
+#'   label.var       = "title",
 #'   annotation.args = list(tag_levels = "a")
 #' )
 #' @export

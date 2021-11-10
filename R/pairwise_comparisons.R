@@ -60,98 +60,98 @@
 #' # parametric
 #' # if `var.equal = TRUE`, then Student's t-test will be run
 #' pairwise_comparisons(
-#'   data = mtcars,
-#'   x = cyl,
-#'   y = wt,
-#'   type = "parametric",
-#'   var.equal = TRUE,
-#'   paired = FALSE,
+#'   data            = mtcars,
+#'   x               = cyl,
+#'   y               = wt,
+#'   type            = "parametric",
+#'   var.equal       = TRUE,
+#'   paired          = FALSE,
 #'   p.adjust.method = "none"
 #' )
 #'
 #' # if `var.equal = FALSE`, then Games-Howell test will be run
 #' pairwise_comparisons(
-#'   data = mtcars,
-#'   x = cyl,
-#'   y = wt,
-#'   type = "parametric",
-#'   var.equal = FALSE,
-#'   paired = FALSE,
+#'   data            = mtcars,
+#'   x               = cyl,
+#'   y               = wt,
+#'   type            = "parametric",
+#'   var.equal       = FALSE,
+#'   paired          = FALSE,
 #'   p.adjust.method = "bonferroni"
 #' )
 #'
 #' # non-parametric (Dunn test)
 #' pairwise_comparisons(
-#'   data = mtcars,
-#'   x = cyl,
-#'   y = wt,
-#'   type = "nonparametric",
-#'   paired = FALSE,
+#'   data            = mtcars,
+#'   x               = cyl,
+#'   y               = wt,
+#'   type            = "nonparametric",
+#'   paired          = FALSE,
 #'   p.adjust.method = "none"
 #' )
 #'
-#' # robust (Yuen's trimmed means t-test)
+#' # robust (Yuen's trimmed means *t*-test)
 #' pairwise_comparisons(
-#'   data = mtcars,
-#'   x = cyl,
-#'   y = wt,
-#'   type = "robust",
-#'   paired = FALSE,
+#'   data            = mtcars,
+#'   x               = cyl,
+#'   y               = wt,
+#'   type            = "robust",
+#'   paired          = FALSE,
 #'   p.adjust.method = "fdr"
 #' )
 #'
-#' # Bayes Factor (Student's t-test)
+#' # Bayes Factor (Student's *t*-test)
 #' pairwise_comparisons(
-#'   data = mtcars,
-#'   x = cyl,
-#'   y = wt,
-#'   type = "bayes",
+#'   data   = mtcars,
+#'   x      = cyl,
+#'   y      = wt,
+#'   type   = "bayes",
 #'   paired = FALSE
 #' )
 #'
 #' #------------------- within-subjects design ----------------------------
 #'
-#' # parametric (Student's t-test)
+#' # parametric (Student's *t*-test)
 #' pairwise_comparisons(
-#'   data = bugs_long,
-#'   x = condition,
-#'   y = desire,
-#'   subject.id = subject,
-#'   type = "parametric",
-#'   paired = TRUE,
+#'   data            = bugs_long,
+#'   x               = condition,
+#'   y               = desire,
+#'   subject.id      = subject,
+#'   type            = "parametric",
+#'   paired          = TRUE,
 #'   p.adjust.method = "BH"
 #' )
 #'
 #' # non-parametric (Durbin-Conover test)
 #' pairwise_comparisons(
-#'   data = bugs_long,
-#'   x = condition,
-#'   y = desire,
-#'   subject.id = subject,
-#'   type = "nonparametric",
-#'   paired = TRUE,
+#'   data            = bugs_long,
+#'   x               = condition,
+#'   y               = desire,
+#'   subject.id      = subject,
+#'   type            = "nonparametric",
+#'   paired          = TRUE,
 #'   p.adjust.method = "BY"
 #' )
 #'
 #' # robust (Yuen's trimmed means t-test)
 #' pairwise_comparisons(
-#'   data = bugs_long,
-#'   x = condition,
-#'   y = desire,
-#'   subject.id = subject,
-#'   type = "robust",
-#'   paired = TRUE,
+#'   data            = bugs_long,
+#'   x               = condition,
+#'   y               = desire,
+#'   subject.id      = subject,
+#'   type            = "robust",
+#'   paired          = TRUE,
 #'   p.adjust.method = "hommel"
 #' )
 #'
-#' # Bayes Factor (Student's t-test)
+#' # Bayes Factor (Student's *t*-test)
 #' pairwise_comparisons(
-#'   data = bugs_long,
-#'   x = condition,
-#'   y = desire,
+#'   data       = bugs_long,
+#'   x          = condition,
+#'   y          = desire,
 #'   subject.id = subject,
-#'   type = "bayes",
-#'   paired = TRUE
+#'   type       = "bayes",
+#'   paired     = TRUE
 #' )
 #' }
 #' @export
@@ -180,11 +180,11 @@ pairwise_comparisons <- function(data,
   # cleaning up dataframe
   data %<>%
     long_to_wide_converter(
-      x = {{ x }},
-      y = {{ y }},
+      x          = {{ x }},
+      y          = {{ y }},
       subject.id = {{ subject.id }},
-      paired = paired,
-      spread = FALSE
+      paired     = paired,
+      spread     = FALSE
     )
 
   # for some tests, it's better to have these as vectors
@@ -216,15 +216,15 @@ pairwise_comparisons <- function(data,
   # running the appropriate test
   if (type != "robust") {
     df <- suppressWarnings(exec(
-      .fn = .f,
+      .fn             = .f,
       # Dunn, Games-Howell, Student's t-test
-      x = y_vec,
-      g = x_vec,
+      x               = y_vec,
+      g               = x_vec,
       # Durbin-Conover test
-      groups = x_vec,
-      blocks = g_vec,
+      groups          = x_vec,
+      blocks          = g_vec,
       # Student
-      paired = paired,
+      paired          = paired,
       # common
       p.adjust.method = "none",
       # problematic for other methods
@@ -267,12 +267,12 @@ pairwise_comparisons <- function(data,
       ),
       # internal function to carry out BF t-test
       .f = ~ two_sample_test(
-        data = .x,
-        x = {{ x }},
-        y = {{ y }},
-        paired = paired,
+        data     = .x,
+        x        = {{ x }},
+        y        = {{ y }},
+        paired   = paired,
         bf.prior = bf.prior,
-        type = "bayes"
+        type     = "bayes"
       )
     ) %>%
       filter(term == "Difference") %>%
@@ -329,10 +329,7 @@ pairwise_comparisons <- function(data,
 #'
 #' @inheritParams pairwise_comparisons
 #'
-#' @importFrom dplyr case_when
-#'
 #' @examples
-#'
 #' p_adjust_text("none")
 #' p_adjust_text("BY")
 #' @keywords internal
@@ -373,10 +370,7 @@ p_adjust_text <- function(p.adjust.method) {
 #'   comparisons being displayed.
 #' @param ... Ignored.
 #'
-#' @importFrom dplyr case_when
-#'
 #' @examples
-#'
 #' pairwise_caption("my caption", "Student's t-test")
 #' @keywords internal
 #' @noRd

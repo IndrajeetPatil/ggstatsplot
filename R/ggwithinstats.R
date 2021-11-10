@@ -44,20 +44,20 @@
 #' # two groups (*t*-test)
 #' ggwithinstats(
 #'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-#'   x = condition,
-#'   y = desire
+#'   x    = condition,
+#'   y    = desire
 #' )
 #'
 #' # more than two groups (anova)
 #' library(WRS2)
 #'
 #' ggwithinstats(
-#'   data = WineTasting,
-#'   x = Wine,
-#'   y = Taste,
-#'   type = "r",
+#'   data            = WineTasting,
+#'   x               = Wine,
+#'   y               = Taste,
+#'   type            = "r",
 #'   outlier.tagging = TRUE,
-#'   outlier.label = Taster
+#'   outlier.label   = Taster
 #' )
 #' }
 #' @export
@@ -139,7 +139,7 @@ ggwithinstats <- function(data,
   if (!quo_is_null(enquo(outlier.label))) ensym(outlier.label)
 
   # convert entered stats type to a standard notation
-  type <- statsExpressions::stats_type_switch(type)
+  type <- stats_type_switch(type)
 
   # creating a dataframe
   data %<>%
@@ -156,9 +156,9 @@ ggwithinstats <- function(data,
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
     outlier_df(
-      x = {{ x }},
-      y = {{ y }},
-      outlier.coef = outlier.coef,
+      x             = {{ x }},
+      y             = {{ y }},
+      outlier.coef  = outlier.coef,
       outlier.label = outlier.label
     )
 
@@ -170,17 +170,17 @@ ggwithinstats <- function(data,
   if (results.subtitle && insight::check_if_installed("afex")) {
     # relevant arguments for statistical tests
     .f.args <- list(
-      data = data,
-      x = as_string(x),
-      y = as_string(y),
+      data         = data,
+      x            = as_string(x),
+      y            = as_string(y),
       effsize.type = effsize.type,
-      conf.level = conf.level,
-      k = k,
-      tr = tr,
-      paired = TRUE,
-      bf.prior = bf.prior,
-      nboot = nboot,
-      top.text = caption
+      conf.level   = conf.level,
+      k            = k,
+      tr           = tr,
+      paired       = TRUE,
+      bf.prior     = bf.prior,
+      nboot        = nboot,
+      top.text     = caption
     )
 
     .f <- function_switch(test)
@@ -223,11 +223,11 @@ ggwithinstats <- function(data,
     # applying the labels to tagged outliers with `ggrepel`
     plot <- plot +
       exec(
-        .fn = ggrepel::geom_label_repel,
-        data = ~ filter(.x, isanoutlier),
-        mapping = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
+        .fn                = ggrepel::geom_label_repel,
+        data               = ~ filter(.x, isanoutlier),
+        mapping            = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
         min.segment.length = 0,
-        inherit.aes = FALSE,
+        inherit.aes        = FALSE,
         !!!outlier.label.args
       )
   }
@@ -237,15 +237,15 @@ ggwithinstats <- function(data,
   # add labels for mean values
   if (isTRUE(centrality.plotting)) {
     plot <- centrality_ggrepel(
-      plot = plot,
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      k = k,
-      type = statsExpressions::stats_type_switch(centrality.type),
-      tr = tr,
-      centrality.path = centrality.path,
-      centrality.path.args = centrality.path.args,
+      plot                  = plot,
+      data                  = data,
+      x                     = {{ x }},
+      y                     = {{ y }},
+      k                     = k,
+      type                  = stats_type_switch(centrality.type),
+      tr                    = tr,
+      centrality.path       = centrality.path,
+      centrality.path.args  = centrality.path.args,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
     )
@@ -256,25 +256,25 @@ ggwithinstats <- function(data,
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     # creating dataframe with pairwise comparison results
     mpc_df <- pairwise_comparisons(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      type = type,
-      tr = tr,
-      paired = TRUE,
+      data            = data,
+      x               = {{ x }},
+      y               = {{ y }},
+      type            = type,
+      tr              = tr,
+      paired          = TRUE,
       p.adjust.method = p.adjust.method,
-      k = k
+      k               = k
     )
 
     # adding the layer for pairwise comparisons
     plot <- ggsignif_adder(
-      plot = plot,
-      mpc_df = mpc_df,
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
+      plot             = plot,
+      mpc_df           = mpc_df,
+      data             = data,
+      x                = {{ x }},
+      y                = {{ y }},
       pairwise.display = pairwise.display,
-      ggsignif.args = ggsignif.args
+      ggsignif.args    = ggsignif.args
     )
 
     # preparing the caption for pairwise comparisons test
@@ -289,16 +289,16 @@ ggwithinstats <- function(data,
 
   # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(
-    plot = plot,
-    x = data %>% pull({{ x }}),
-    xlab = xlab %||% as_name(x),
-    ylab = ylab %||% as_name(y),
-    title = title,
-    subtitle = subtitle,
-    caption = caption,
-    ggtheme = ggtheme,
-    package = package,
-    palette = palette,
+    plot             = plot,
+    x                = data %>% pull({{ x }}),
+    xlab             = xlab %||% as_name(x),
+    ylab             = ylab %||% as_name(y),
+    title            = title,
+    subtitle         = subtitle,
+    caption          = caption,
+    ggtheme          = ggtheme,
+    package          = package,
+    palette          = palette,
     ggplot.component = ggplot.component
   )
 }
@@ -338,8 +338,8 @@ ggwithinstats <- function(data,
 #'   type = "np", # non-parametric test
 #'   # additional modifications for **each** plot using `{ggplot2}` functions
 #'   ggplot.component = scale_y_continuous(
-#'     breaks = seq(0, 10, 1),
-#'     limits = c(0, 10)
+#'     breaks         = seq(0, 10, 1),
+#'     limits         = c(0, 10)
 #'   )
 #' )
 #' }

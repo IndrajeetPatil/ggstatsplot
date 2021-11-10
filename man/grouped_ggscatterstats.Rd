@@ -167,18 +167,13 @@ grouped_ggscatterstats(
 )
 
 # labeling without expression
-
 grouped_ggscatterstats(
-  data = filter(
-    movies_long,
-    rating == 7,
-    genre \%in\% c("Drama", "Comedy")
-  ),
-  x = budget,
-  y = length,
-  grouping.var = genre,
-  bf.message = FALSE,
-  label.var = "title",
+  data            = filter(movies_long, rating == 7, genre \%in\% c("Drama", "Comedy")),
+  x               = budget,
+  y               = length,
+  grouping.var    = genre,
+  bf.message      = FALSE,
+  label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
 }
