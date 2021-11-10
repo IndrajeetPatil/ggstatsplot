@@ -59,7 +59,7 @@ To begin with, here are some instances where you would want to use
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 
-## Comparisons between groups with `ggwithistats`
+## Comparisons between groups with `ggwithinstats`
 
 To illustrate how this function can be used, we will use the `bugs` dataset
 throughout this vignette. This data set, "Bugs", provides the extent to which
