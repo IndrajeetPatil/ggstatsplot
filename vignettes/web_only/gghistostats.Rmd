@@ -43,7 +43,7 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggstatsplot::gghistostats` can be used for **data exploration**
+The function `gghistostats` can be used for **data exploration**
 and to provide an easy way to make **publication-ready histograms** with
 appropriate and selected statistical details embedded in the plot itself. In
 this vignette we will explore several examples of how to use it.
@@ -84,12 +84,11 @@ parametric one sample *t*-test (`type = "p"`).
 ```{r psychact3, fig.height = 6, fig.width = 7}
 set.seed(123)
 
-ggstatsplot::gghistostats(
+gghistostats(
   data = psych::sat.act, ## data from which variable is to be taken
   x = ACT, ## numeric variable
   xlab = "ACT Score", ## x-axis label
   title = "Distribution of ACT Scores", ## title for the plot
-  ggtheme = ggthemes::theme_tufte(), ## changing default theme
   test.value = 20, ## test value
   caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
@@ -107,7 +106,7 @@ that this sample is different.
 What if we want to do the same analysis separately for each gender? 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_gghistostats`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `gghistostats` across all **levels** of
+`combine_plots`. It applies `gghistostats` across all **levels** of
 a specified **grouping variable** and then combines the individual plots into a
 single plot. Note that the grouping variable can be anything: conditions in a
 given study, groups in a study sample, different studies, etc.
@@ -118,8 +117,8 @@ task.
 ```{r grouped1, fig.height = 10, fig.width = 7}
 set.seed(123)
 
-ggstatsplot::grouped_gghistostats(
-  ## arguments relevant for ggstatsplot::gghistostats
+grouped_gghistostats(
+  ## arguments relevant for gghistostats
   data = psych::sat.act,
   x = ACT, ## same outcome variable
   xlab = "ACT Score",
@@ -127,9 +126,9 @@ ggstatsplot::grouped_gghistostats(
   type = "robust", ## robust test: one-sample percentile bootstrap
   test.value = 20, ## test value against which sample mean is to be compared
   centrality.line.args = list(color = "#D55E00", linetype = "dashed"),
-  ggtheme = ggthemes::theme_stata(), ## changing default theme
+  # ggtheme = ggthemes::theme_stata(), ## changing default theme
    ## turn off ggstatsplot theme layer
-  ## arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for combine_plots
   annotation.args = list(
     title = "Distribution of ACT scores across genders",
     caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
@@ -142,7 +141,7 @@ As can be seen from these plots, the mean value is much higher than the national
 norm. Additionally, we see the benefits of plotting this data separately for
 each gender. We can *see* the differences in distributions.
 
-## Grouped analysis with `purrr`
+## Grouped analysis with `{purrr}`
 
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -151,7 +150,7 @@ for each gender, this is not possible with `grouped_gghistostats`.
 
 For cases like these, or to run separate  kinds of tests (robust for some,
 parametric for other, while Bayesian for some other levels of the group) it
-would be better to use `purrr`.
+would be better to use `{purrr}`.
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
@@ -205,8 +204,6 @@ numerical summaries about a statistical model, and
 reported statistics.
 
 For example, let's see the following example:
-
-
 
 ```{r reporting}
 gghistostats(trees, Height, test.value = 75)

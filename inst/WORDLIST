@@ -4,8 +4,6 @@ APA's
 Aalen's
 Algina
 Cikara
-CoC
-CodeFactor
 Codecov
 Conover
 Correlalogram
@@ -19,7 +17,6 @@ Durbin
 Dwass
 Fligner
 Gapminder
-Github
 Gunel
 HDHF
 HDLF
@@ -34,7 +31,6 @@ Keselman
 LDHF
 LDLF
 LFHD
-Licence
 Lifecycle
 Lüdecke
 MPAA
@@ -145,6 +141,7 @@ nz
 partialization
 patilindrajeets
 piechart
+pkgdown
 plotgrid
 plotlist
 pmap

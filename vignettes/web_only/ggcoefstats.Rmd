@@ -195,8 +195,7 @@ library(survival)
 set.seed(123)
 
 # model
-afit <-
-  survival::aareg(
+afit <- survival::aareg(
     formula = Surv(time, status) ~ age + sex + ph.ecog,
     data = lung,
     dfbeta = TRUE
@@ -418,7 +417,7 @@ Note that a number of regression models will return an object of class `list`,
 in which case this function will fail. But often you can extract the object of
 interest from this list and use it to plot the regression coefficients.
 
-```{r list_gamm4, fig.height=6, fig.width=10}
+```r
 # setup
 library(gamm4)
 set.seed(123)
@@ -431,8 +430,7 @@ dat$fac <- fac <- as.factor(sample(1:20, 400, replace = TRUE))
 dat$y <- dat$y + model.matrix(~ fac - 1) %*% rnorm(20) * .5
 
 # model object
-br <-
-  gamm4::gamm4(
+br <- gamm4::gamm4(
     formula = y ~ s(x0) + x1 + s(x2),
     data = dat,
     random = ~ (1 | fac)

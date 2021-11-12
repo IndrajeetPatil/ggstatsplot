@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="ggstatsplot">
-<title>using `{ggstatsplot}` with the `purrr` package • ggstatsplot</title>
+<title>using {ggstatsplot} with the {purrr} package • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
@@ -18,7 +18,7 @@
 <script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><link href="../../extra.css" rel="stylesheet">
-<meta property="og:title" content="using `{ggstatsplot}` with the `purrr` package">
+<meta property="og:title" content="using {ggstatsplot} with the {purrr} package">
 <meta property="og:description" content="ggstatsplot">
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -61,7 +61,7 @@
     <a class="dropdown-item" href="../../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
     <a class="dropdown-item" href="../../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
-    <a class="dropdown-item" href="../../articles/web_only/purrr_examples.html">using `{ggstatsplot}` with the `purrr` package</a>
+    <a class="dropdown-item" href="../../articles/web_only/purrr_examples.html">using {ggstatsplot} with the {purrr} package</a>
     <a class="dropdown-item" href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
 </li>
@@ -88,10 +88,10 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <img src="../../logo.png" class="logo" alt=""><h1>using `{ggstatsplot}` with the `purrr` package</h1>
+      <img src="../../logo.png" class="logo" alt=""><h1>using {ggstatsplot} with the {purrr} package</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-11-10</h4>
+            <h4 data-toc-skip class="date">2021-11-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="d-none name"><code>purrr_examples.Rmd</code></div>
@@ -121,26 +121,29 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
+<hr>
+<p>This is an extremely time-consuming vignette, and so it is not evaluated here. You can still use the code as a reference for writing your own <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> code.</p>
+<hr>
 <div class="section level2">
-<h2 id="why-use-purrr">Why use <code>purrr</code>?<a class="anchor" aria-label="anchor" href="#why-use-purrr"></a>
+<h2 id="why-use-purrr">Why use <code>{purrr}</code>?<a class="anchor" aria-label="anchor" href="#why-use-purrr"></a>
 </h2>
 <p>Most of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions have <code>grouped_</code> variants, which are designed to quickly run the same <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function across multiple levels of a <strong>single</strong> grouping variable. Although this function is useful for data exploration, it has two strong weaknesses-</p>
 <ul>
 <li><p>The arguments applied to <code>grouped_</code> function call are applied uniformly to all levels of the grouping variable when we might want to customize them for different levels of the grouping variable.</p></li>
 <li><p>Only one grouping variable can be used to repeat the analysis when in reality there can be a combination of grouping variables and the operation needs to be repeated for all resulting combinations.</p></li>
 </ul>
-<p>We will see how to overcome this limitation by combining <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> with the <code>purrr</code> package.</p>
+<p>We will see how to overcome this limitation by combining <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> with the <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> package.</p>
 <p><strong>Note:</strong></p>
 <ul>
-<li><p>While using <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code>, we <strong>must</strong> input the arguments as strings.</p></li>
+<li><p>While using <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code>, we <strong>must</strong> input the arguments as strings.</p></li>
 <li><p>You can use <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> themes from extension packages (e.g. <code>ggthemes</code>).</p></li>
-<li><p>If you’d like some more background or an introduction to the purrr package, please see <a href="https://jennybc.github.io/purrr-tutorial/" class="external-link">this tutorial</a>.</p></li>
+<li><p>If you’d like some more background or an introduction to the purrr package, please see <a href="https://adv-r.hadley.nz/functionals.html" class="external-link">this chapter</a>.</p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="introduction-and-methodology">Introduction and methodology<a class="anchor" aria-label="anchor" href="#introduction-and-methodology"></a>
 </h2>
-<p>For all the examples in this vignette we are going to build <code>list</code>s of things that we will pass along to <code>purrr</code> which will in turn return a list of plots that will be passed to <code>combine_plots</code>. As the name implies <code>combine_plots</code> merges the individual plots into one bigger plot with common labeling and aesthetics.</p>
+<p>For all the examples in this vignette we are going to build <code>list</code>s of things that we will pass along to <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> which will in turn return a list of plots that will be passed to <code>combine_plots</code>. As the name implies <code>combine_plots</code> merges the individual plots into one bigger plot with common labeling and aesthetics.</p>
 <p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code> themes.</p>
 <p>You can pass:</p>
 <ul>
@@ -166,9 +169,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1967" "1987" "2007"</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span></code></pre></div>
 <p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggstatsplot::ggbetweenstats</code>).</p>
 <p>Let’s keep building the list of arguments, <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> and <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>.</p>
 <p>Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
@@ -226,7 +227,6 @@ A BibTeX entry for LaTeX users is
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggbetweenstats3-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="ggwithinstats">
@@ -245,7 +245,6 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cue_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
 
 <span class="co">## creating a list of plots by applying the same function for elements of the list</span>
 <span class="va">plot_list</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
@@ -299,7 +298,6 @@ A BibTeX entry for LaTeX users is
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Response times across flank conditions for each type of cue"</span><span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggwithinstats-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="ggscatterstats">
@@ -357,7 +355,6 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggscatterstats-1.png" width="100%"></p>
 <p>The remainder of the examples vary in content but follow the exact same methodology as the earlier examples.</p>
 </div>
 <div class="section level2">
@@ -378,9 +375,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">cut_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">cut_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Good"      "Very Good" "Premium"   "Ideal"</span>
 
 <span class="co">## running function on every element of this list note that if you want the same</span>
 <span class="co">## value for a given argument across all elements of the list, you need to</span>
@@ -421,7 +416,6 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggcorrmat-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="gghistostats">
@@ -440,9 +434,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
 
 <span class="co">## running function on every element of this list note that if you want the same</span>
 <span class="co">## value for a given argument across all elements of the list, you need to</span>
@@ -483,7 +475,6 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_gghistostats-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="ggdotplotstats">
@@ -504,9 +495,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">continent_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Africa"   "Americas" "Asia"     "Europe"</span>
 
 <span class="co">## running function on every element of this list note that if you want the same</span>
 <span class="co">## value for a given argument across all elements of the list, you need to</span>
@@ -550,7 +539,6 @@ A BibTeX entry for LaTeX users is
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
   guides <span class="op">=</span> <span class="st">"keep"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggdotplotstats-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="ggpiestats">
@@ -565,9 +553,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
 
 <span class="co">## running function on every element of this list note that if you want the same</span>
 <span class="co">## value for a given argument across all elements of the list, you need to</span>
@@ -612,7 +598,6 @@ A BibTeX entry for LaTeX users is
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
   guides <span class="op">=</span> <span class="st">"keep"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggpiestats-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="ggbarstats">
@@ -627,9 +612,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## checking the length and names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] 4</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">class_list</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1st"  "2nd"  "3rd"  "Crew"</span>
 
 <span class="co">## running function on every element of this list note that if you want the same</span>
 <span class="co">## value for a given argument across all elements of the list, you need to</span>
@@ -676,7 +659,6 @@ A BibTeX entry for LaTeX users is
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
   guides <span class="op">=</span> <span class="st">"keep"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_ggbarstats-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="grouped_-variants">
@@ -686,8 +668,7 @@ A BibTeX entry for LaTeX users is
 <p>For example, if we want to use the <code>grouped_gghistostats</code> across three different datasets, you can use <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code> function. For the sake of brevity, the plots are not displayed here, but you can run the following code and check the individual <code>grouped_</code> plots (e.g., <code>plotlist[[1]]</code>).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## create a list of plots</span>
-<span class="va">plotlist</span> <span class="op">&lt;-</span>
-  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
+<span class="va">plotlist</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
     .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
       data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">iris</span>, <span class="va">ToothGrowth</span><span class="op">)</span>,
       x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">alist</a></span><span class="op">(</span><span class="va">wt</span>, <span class="va">Sepal.Length</span>, <span class="va">len</span><span class="op">)</span>,
@@ -699,8 +680,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## given that we had three different datasets, we expect a list of length 3</span>
 <span class="co">## (each of which contains a `grouped_` plot)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">plotlist</span><span class="op">)</span>
-<span class="co">#&gt; [1] 3</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">plotlist</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="repeating-function-execution-across-multiple-columns-in-a-dataframe">Repeating function execution across multiple columns in a dataframe<a class="anchor" aria-label="anchor" href="#repeating-function-execution-across-multiple-columns-in-a-dataframe"></a>
@@ -712,8 +692,7 @@ A BibTeX entry for LaTeX users is
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span>
 
 <span class="co">## running the same analysis on two different columns (creates a list of plots)</span>
-<span class="va">plotlist</span> <span class="op">&lt;-</span>
-  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
+<span class="va">plotlist</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
     .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
       data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">movies_long</span><span class="op">)</span>,
       x <span class="op">=</span> <span class="st">"mpaa"</span>,
@@ -725,7 +704,6 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## combine plots using `patchwork`</span>
 <span class="va">plotlist</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">plotlist</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p><img src="purrr_examples_files/figure-html/purrr_columns-1.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>

@@ -34,6 +34,8 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -156,7 +158,7 @@ for (i in 3:length(col.name)) {
 
 That said, if repeating function execution across multiple columns in a
 dataframe in what you want to do, I will recommend you to have a look at
-`purrr`-based solution:
+`{purrr}`-based solution:
 
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-dataframe-1>
 
@@ -192,7 +194,7 @@ graphics via `plotly.js`.
 
 The `{ggstatsplot}` functions are compatible with `plotly`.
  
-```{r plotly, fig.width=4, fig.height=4}
+```r
 ## for reproducibility
 set.seed(123)
 library(plotly)
@@ -209,7 +211,7 @@ plotly::ggplotly(p, width = 480, height = 480)
 Currently, the `grouped_` variants of functions only support repeating the
 analysis across a _single_ grouping variable. Often, you have to run the same
 analysis across a combination of more than two grouping variables. This can be
-easily achieved using `purrr` package. 
+easily achieved using `{purrr}` package. 
 
 Here is an example-
 
@@ -445,14 +447,13 @@ any other `ggplot` object. But exception to these are all plots returned by
 set.seed(123)
 library(paletteer)
 library(ggplot2)
-library(palmerpenguins)
 
 ## plot
 grouped_ggbetweenstats(
-  penguins,
-  species,
-  body_mass_g,
-  grouping.var = sex,
+  mtcars,
+  cyl,
+  wt,
+  grouping.var = vs,
   type = "np",
   ggplot.component =
   ## modify further with `{ggplot2}` functions
@@ -542,7 +543,7 @@ can even mention this in the caption.
 
 Below is an example using `ggbetweenstats` function.
 
-```{r shiny, eval=FALSE}
+```r
 set.seed(123)
 library(shiny)
 library(rlang)
@@ -576,7 +577,7 @@ grouped_ggbetweenstats(
   y = hwy,
   grouping.var = drv,
   results.subtitle = FALSE,
-  ## arguments given to {patchwork} for combining plots
+  ## arguments given to `{patchwork}` for combining plots
   annotation.args = list(
     title = "this is my title",
     subtitle = "this is my subtitle",

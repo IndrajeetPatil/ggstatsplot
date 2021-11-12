@@ -63,7 +63,7 @@ website for this package: <br>
     development:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html>
 
-  - Examples illustrating how to use `purrr` to extend `{ggstatsplot}` functionality:
+  - Examples illustrating how to use `{purrr}` to extend `{ggstatsplot}` functionality:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
 - Pairwise comparisons with `{ggstatsplot}`:

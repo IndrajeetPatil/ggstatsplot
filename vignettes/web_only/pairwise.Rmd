@@ -37,6 +37,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   package.startup.message = FALSE
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -97,52 +99,52 @@ library(statsExpressions) ## for data
 ## parametric
 ## if `var.equal = TRUE`, then Student's *t*-test will be run
 pairwise_comparisons(
-  data = ggplot2::msleep,
-  x = vore,
-  y = brainwt,
-  type = "parametric",
-  var.equal = TRUE,
-  paired = FALSE,
+  data            = ggplot2::msleep,
+  x               = vore,
+  y               = brainwt,
+  type            = "parametric",
+  var.equal       = TRUE,
+  paired          = FALSE,
   p.adjust.method = "bonferroni"
 )
 
 ## if `var.equal = FALSE`, then Games-Howell test will be run
 pairwise_comparisons(
-  data = ggplot2::msleep,
-  x = vore,
-  y = brainwt,
-  type = "parametric",
-  var.equal = FALSE,
-  paired = FALSE,
+  data            = ggplot2::msleep,
+  x               = vore,
+  y               = brainwt,
+  type            = "parametric",
+  var.equal       = FALSE,
+  paired          = FALSE,
   p.adjust.method = "bonferroni"
 )
 
 ## non-parametric
 pairwise_comparisons(
-  data = ggplot2::msleep,
-  x = vore,
-  y = brainwt,
-  type = "nonparametric",
-  paired = FALSE,
+  data            = ggplot2::msleep,
+  x               = vore,
+  y               = brainwt,
+  type            = "nonparametric",
+  paired          = FALSE,
   p.adjust.method = "none"
 )
 
 ## robust
 pairwise_comparisons(
-  data = ggplot2::msleep,
-  x = vore,
-  y = brainwt,
-  type = "robust",
-  paired = FALSE,
+  data            = ggplot2::msleep,
+  x               = vore,
+  y               = brainwt,
+  type            = "robust",
+  paired          = FALSE,
   p.adjust.method = "fdr"
 )
 
 ## Bayesian
 pairwise_comparisons(
-  data = ggplot2::msleep,
-  x = vore,
-  y = brainwt,
-  type = "bayes",
+  data   = ggplot2::msleep,
+  x      = vore,
+  y      = brainwt,
+  type   = "bayes",
   paired = FALSE
 )
 ```
@@ -156,46 +158,46 @@ set.seed(123)
 
 ## parametric
 pairwise_comparisons(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  subject.id = subject,
-  type = "parametric",
-  paired = TRUE,
+  data            = bugs_long,
+  x               = condition,
+  y               = desire,
+  subject.id      = subject,
+  type            = "parametric",
+  paired          = TRUE,
   p.adjust.method = "BH"
 )
 
 ## non-parametric
 pairwise_comparisons(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  subject.id = subject,
-  type = "nonparametric",
-  paired = TRUE,
+  data            = bugs_long,
+  x               = condition,
+  y               = desire,
+  subject.id      = subject,
+  type            = "nonparametric",
+  paired          = TRUE,
   p.adjust.method = "BY"
 )
 
 ## robust
 pairwise_comparisons(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  subject.id = subject,
-  type = "robust",
-  paired = TRUE,
+  data            = bugs_long,
+  x               = condition,
+  y               = desire,
+  subject.id      = subject,
+  type            = "robust",
+  paired          = TRUE,
   p.adjust.method = "hommel"
 )
 
 ## Bayesian
 pairwise_comparisons(
-  data = bugs_long,
-  x = condition,
-  y = desire,
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
   subject.id = subject,
-  type = "bayes",
-  paired = TRUE,
-  bf.prior = 0.77
+  type       = "bayes",
+  paired     = TRUE,
+  bf.prior   = 0.77
 )
 ```
 
@@ -229,9 +231,9 @@ p +
   ggsignif::geom_signif(
     comparisons = list(df$groups[[1]]),
     annotations = df$label[[1]],
-    test = NULL,
-    na.rm = TRUE,
-    parse = TRUE
+    test        = NULL,
+    na.rm       = TRUE,
+    parse       = TRUE
   )
 ```
 
@@ -264,14 +266,14 @@ set.seed(123)
 ## using `geom_signif` to display results
 p +
   ggsignif::geom_signif(
-    comparisons = df$groups,
+    comparisons      = df$groups,
     map_signif_level = TRUE,
-    tip_length = 0.01,
-    y_position = c(6.5, 6.65, 6.8),
-    annotations = df$label,
-    test = NULL,
-    na.rm = TRUE,
-    parse = TRUE
+    tip_length       = 0.01,
+    y_position       = c(6.5, 6.65, 6.8),
+    annotations      = df$label,
+    test             = NULL,
+    na.rm            = TRUE,
+    parse            = TRUE
   )
 ```
 
