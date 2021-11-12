@@ -189,8 +189,7 @@ p1 <- ggwithinstats(
   conf.level = 0.99,
   title = "Parametric test",
   package = "ggsci",
-  palette = "nrc_npg",
-  ggtheme = hrbrthemes::theme_ipsum_pub()
+  palette = "nrc_npg"
 )
 
 ## Mann-Whitney U test (nonparametric test)
@@ -204,8 +203,7 @@ p2 <- ggwithinstats(
   conf.level = 0.99,
   title = "Non-parametric Test",
   package = "ggsci",
-  palette = "uniform_startrek",
-  ggtheme = ggthemes::theme_map()
+  palette = "uniform_startrek"
 )
 
 ## robust t-test
@@ -219,8 +217,7 @@ p3 <- ggwithinstats(
   conf.level = 0.99,
   title = "Robust Test",
   package = "wesanderson",
-  palette = "Royal2",
-  ggtheme = hrbrthemes::theme_ipsum_tw()
+  palette = "Royal2"
 )
 
 ## Bayes Factor for parametric t-test
@@ -233,8 +230,7 @@ p4 <- ggwithinstats(
   type = "bayes",
   title = "Bayesian Test",
   package = "ggsci",
-  palette = "nrc_npg",
-  ggtheme = ggthemes::theme_fivethirtyeight()
+  palette = "nrc_npg"
 )
 
 ## combining the individual plots into a single plot
@@ -279,7 +275,7 @@ grouped_ggwithinstats(
   type = "nonparametric", ## type of test
   pairwise.display = "significant", ## display only significant pairwise comparisons
   p.adjust.method = "BH", ## adjust p-values for multiple tests using this method
-  ggtheme = ggthemes::theme_tufte(),
+  # ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
   outlier.tagging = TRUE,
