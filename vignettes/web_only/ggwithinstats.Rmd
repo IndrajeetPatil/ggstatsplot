@@ -29,6 +29,8 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -43,7 +45,7 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggstatsplot::ggwithinstats` is designed to facilitate 
+The function `ggwithinstats` is designed to facilitate 
 **data exploration**, and for making highly customizable **publication-ready plots**,
 with relevant statistical details included in the plot itself if desired. We
 will see examples of how to use this function in this vignette.
@@ -84,7 +86,7 @@ set.seed(123)
 library(ggstatsplot)
 
 ## function call
-ggstatsplot::ggwithinstats(
+ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire
@@ -122,7 +124,7 @@ set.seed(123)
 library(ggstatsplot)
 
 ## plot
-ggstatsplot::ggwithinstats(
+ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire,
@@ -178,7 +180,7 @@ library(ggstatsplot)
 df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
 
 ## parametric t-test
-p1 <- ggstatsplot::ggwithinstats(
+p1 <- ggwithinstats(
   data = df_disgust,
   x = condition,
   y = desire,
@@ -192,7 +194,7 @@ p1 <- ggstatsplot::ggwithinstats(
 )
 
 ## Mann-Whitney U test (nonparametric test)
-p2 <- ggstatsplot::ggwithinstats(
+p2 <- ggwithinstats(
   data = df_disgust,
   x = condition,
   y = desire,
@@ -207,7 +209,7 @@ p2 <- ggstatsplot::ggwithinstats(
 )
 
 ## robust t-test
-p3 <- ggstatsplot::ggwithinstats(
+p3 <- ggwithinstats(
   data = df_disgust,
   x = condition,
   y = desire,
@@ -222,7 +224,7 @@ p3 <- ggstatsplot::ggwithinstats(
 )
 
 ## Bayes Factor for parametric t-test
-p4 <- ggstatsplot::ggwithinstats(
+p4 <- ggwithinstats(
   data = df_disgust,
   x = condition,
   y = desire,
@@ -236,7 +238,7 @@ p4 <- ggstatsplot::ggwithinstats(
 )
 
 ## combining the individual plots into a single plot
-ggstatsplot::combine_plots(
+combine_plots(
   plotlist = list(p1, p2, p3, p4),
   plotgrid.args = list(nrow = 2),
   annotation.args = list(
@@ -252,7 +254,7 @@ What if we want to carry out this same analysis but for each region (or gender)?
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggwithinstats`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `ggwithinstats` across all **levels**
+`combine_plots`. It applies `ggwithinstats` across all **levels**
 of a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
@@ -266,8 +268,8 @@ pair of continents.
 set.seed(123)
 library(ggstatsplot)
 
-ggstatsplot::grouped_ggwithinstats(
-  ## arguments relevant for ggstatsplot::ggwithinstats
+grouped_ggwithinstats(
+  ## arguments relevant for ggwithinstats
   data = bugs_long,
   x = condition,
   y = desire,
@@ -283,20 +285,20 @@ ggstatsplot::grouped_ggwithinstats(
   outlier.tagging = TRUE,
   outlier.label = education,
   k = 3,
-  ## arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for combine_plots
   annotation.args = list(title = "Desire to kill bugs across genders"),
   plotgrid.args = list(ncol = 1)
 )
 ```
 
-## Grouped analysis with `ggwithinstats` + `purrr` 
+## Grouped analysis with `ggwithinstats` + `{purrr}` 
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of test and theme is
 applied for all genders, but maybe we want to change this for different genders,
 or maybe we want to gave different effect sizes for different years. This type
 of customization for different levels of a grouping variable is not possible
-with `grouped_ggwithinstats`, but this can be easily achieved using the `purrr`
+with `grouped_ggwithinstats`, but this can be easily achieved using the `{purrr}`
 package.
 
 See the associated vignette here:

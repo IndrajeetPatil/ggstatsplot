@@ -28,6 +28,8 @@ knitr::opts_chunk$set(
   warning = FALSE,
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -89,7 +91,7 @@ library(ggstatsplot)
 dplyr::glimpse(x = Titanic)
 
 ## looking at the dataset as a tibble or dataframe
-dplyr::glimpse(x = ggstatsplot::Titanic_full)
+dplyr::glimpse(x = Titanic_full)
 ```
 
 ## Goodness of Fit with `ggpiestats`
@@ -109,10 +111,10 @@ flipping a coin. People had a 50/50 chance of surviving.
 set.seed(123)
 
 ## to speed up the process, let's use only half of the dataset
-Titanic_full_50 <- dplyr::sample_frac(ggstatsplot::Titanic_full, size = 0.5)
+Titanic_full_50 <- dplyr::sample_frac(Titanic_full, size = 0.5)
 
 ## plot
-ggstatsplot::ggpiestats(
+ggpiestats(
   data = Titanic_full_50,
   x = Survived,
   title = "Passenger survival on the Titanic", ## title for the entire plot
@@ -151,7 +153,7 @@ showcase the flexibility of `ggpiestats`. We will:
 set.seed(123)
 
 ## plot
-ggstatsplot::ggpiestats(
+ggpiestats(
   data = Titanic_full,
   x = Survived,
   y = Sex,
@@ -187,7 +189,7 @@ Child or Adult, perhaps that makes a difference to their survival rate?
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggpiestats`. It is a convenient wrapper function around
-`ggstatsplot::combine_plots`. It applies `ggpiestats` across all **levels** of a
+`combine_plots`. It applies `ggpiestats` across all **levels** of a
 specified **grouping variable** and then combines the list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
@@ -198,16 +200,16 @@ in a given study, groups in a study sample, different studies, etc.
 set.seed(123)
 
 ## plot
-ggstatsplot::grouped_ggpiestats(
-  ## arguments relevant for ggstatsplot::gghistostats
-  data = ggstatsplot::Titanic_full,
+grouped_ggpiestats(
+  ## arguments relevant for gghistostats
+  data = Titanic_full,
   x = Survived,
   y = Sex,
   grouping.var = Age,
   perc.k = 1,
   package = "ggsci",
   palette = "category10_d3",
-  ## arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for combine_plots
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
   plotgrid.args = list(nrow = 2)
@@ -219,12 +221,12 @@ very much matters. Women survived at much higher rates than men. For children
 gender is not significantly associated with survival and both male and female
 children have a survival rate that is not significantly different from 50/50.
 
-## Grouped analysis with `ggpiestats` + `purrr` 
+## Grouped analysis with `ggpiestats` + `{purrr}` 
 
 Although `grouped_ggpiestats` provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
 titles, themes, or palettes for each level of the grouping variable, etc. For
-cases like these, it would be better to use `purrr` package.  
+cases like these, it would be better to use `{purrr}` package.  
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
@@ -277,9 +279,9 @@ When the data is organized this way, we make a slightly different call to the
 the relationship of type of fish by month (a test of independence), our command
 would be:
 
-```{r ggpiestats8, message = FALSE, warning = FALSE, fig.height = 5, fig.width = 8}
+```{r ggpiestats8, fig.height = 5, fig.width = 8}
 ## running `ggpiestats` with counts information
-ggstatsplot::ggpiestats(
+ggpiestats(
   data = fishing,
   x = Fish,
   y = Month,
@@ -328,7 +330,7 @@ clinical_trial <-
   )
 
 ## plot
-ggstatsplot::ggpiestats(
+ggpiestats(
   data = clinical_trial,
   x = SickAfter,
   y = SickBefore,

@@ -5,6 +5,11 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+MINOR CHANGES
+
+  - To keep the documentation maintainable, a number of vignettes have either
+    been removed or they are no longer evaluated and only code is reported.
+
 # ggstatsplot 0.9.0
 
 NEW FEATURES

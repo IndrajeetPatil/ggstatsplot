@@ -35,6 +35,8 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -301,14 +303,14 @@ grouped_ggcorrmat(
 )
 ```
 
-## Grouped analysis with `ggcorrmat` + `purrr`
+## Grouped analysis with `ggcorrmat` + `{purrr}`
 
 Although `grouped_` function is good for quickly exploring the data, it reduces
 the flexibility with which this function can be used. This is the because the
 common parameters used are applied to plots corresponding to all levels of the
 grouping variable and there is no way to customize the arguments for different
 levels of the grouping variable. We will see how this can be done using the
-`purrr` package.  
+`{purrr}` package.  
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>

@@ -34,6 +34,8 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
@@ -108,7 +110,7 @@ PG-13, R)?
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggstatsplot`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `{ggstatsplot}` across all **levels** of
+`combine_plots`. It applies `{ggstatsplot}` across all **levels** of
 a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
@@ -122,7 +124,7 @@ set.seed(123)
 
 ## plot
 grouped_ggscatterstats(
-  ## arguments relevant for ggstatsplot::ggscatterstats
+  ## arguments relevant for ggscatterstats
   data = movies_long,
   x = budget,
   y = rating,
@@ -131,7 +133,7 @@ grouped_ggscatterstats(
   label.expression = rating < 5 & budget > 80,
   type = "r",
   ggtheme = ggthemes::theme_tufte(),
-  ## arguments relevant for ggstatsplot::combine_plots
+  ## arguments relevant for combine_plots
   annotation.args = list(
     title = "Relationship between movie budget and IMDB rating",
     caption = "Source: www.imdb.com"
@@ -144,7 +146,7 @@ As seen from the plot, this analysis has revealed something interesting: The
 relationship we found between budget and IMDB rating holds only for PG-13 and
 R-rated movies. 
 
-## Grouped analysis with `ggscatterstats` + `purrr`
+## Grouped analysis with `ggscatterstats` + `{purrr}`
 
 Although this is a quick and dirty way to explore large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
@@ -152,7 +154,7 @@ For example, if we wanted to add, let's say, a separate type of marginal
 distribution plot for each MPAA rating or if we wanted to use different types of
 correlations across different levels of MPAA ratings (NC-17 has only 6 movies,
 so a robust correlation would be a good idea), this is not possible. But this
-can be easily done using `purrr`.  
+can be easily done using `{purrr}`.  
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>

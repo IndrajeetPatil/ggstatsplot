@@ -29,6 +29,8 @@ knitr::opts_chunk$set(
   out.width = "100%",
   comment = "#>"
 )
+
+library(ggstatsplot)
 ```
 
 ---
@@ -89,7 +91,7 @@ The simplest form of the function call is-
 set.seed(123)
 
 ## function call
-ggstatsplot::ggbetweenstats(
+ggbetweenstats(
   data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
   y = lifeExp
@@ -128,7 +130,7 @@ library(ggstatsplot)
 library(gapminder)
 
 ## plot
-ggstatsplot::ggbetweenstats(
+ggbetweenstats(
   data = dplyr::filter(gapminder, year == 2007, continent != "Oceania"),
   x = continent, ## grouping/independent variable
   y = lifeExp, ## dependent variables
@@ -190,7 +192,7 @@ library(gapminder)
 df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
 
 ## parametric t-test and box plot
-p1 <- ggstatsplot::ggbetweenstats(
+p1 <- ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
@@ -205,7 +207,7 @@ p1 <- ggstatsplot::ggbetweenstats(
 )
 
 ## Mann-Whitney U test (nonparametric t) and violin plot
-p2 <- ggstatsplot::ggbetweenstats(
+p2 <- ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
@@ -220,7 +222,7 @@ p2 <- ggstatsplot::ggbetweenstats(
 )
 
 ## robust t-test and boxviolin plot
-p3 <- ggstatsplot::ggbetweenstats(
+p3 <- ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
@@ -237,7 +239,7 @@ p3 <- ggstatsplot::ggbetweenstats(
 )
 
 ## Bayes Factor for parametric t-test and boxviolin plot
-p4 <- ggstatsplot::ggbetweenstats(
+p4 <- ggbetweenstats(
   data = df_year,
   x = year,
   y = lifeExp,
@@ -251,7 +253,7 @@ p4 <- ggstatsplot::ggbetweenstats(
 )
 
 ## combining the individual plots into a single plot
-ggstatsplot::combine_plots(
+combine_plots(
   list(p1, p2, p3, p4),
   plotgrid.args = list(nrow = 2),
   annotation.args = list(
@@ -268,7 +270,7 @@ combination of our two previous efforts.
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggbetweenstats`. This is merely a wrapper function around
-`ggstatsplot::combine_plots`. It applies `ggbetweenstats` across all **levels**
+`combine_plots`. It applies `ggbetweenstats` across all **levels**
 of a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
@@ -284,8 +286,8 @@ set.seed(123)
 ## select part of the dataset and use it for plotting
 gapminder::gapminder %>%
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
-  ggstatsplot::grouped_ggbetweenstats(
-    ## arguments relevant for ggstatsplot::ggbetweenstats
+  grouped_ggbetweenstats(
+    ## arguments relevant for ggbetweenstats
     x = continent,
     y = lifeExp,
     grouping.var = year,
@@ -298,7 +300,7 @@ gapminder::gapminder %>%
     palette = "default_jco",
     outlier.tagging = TRUE,
     outlier.label = country,
-    ## arguments relevant for ggstatsplot::combine_plots
+    ## arguments relevant for combine_plots
     annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
     plotgrid.args = list(nrow = 3)
   )
@@ -311,14 +313,14 @@ which year we look at, we still find significant differences in life expectancy
 across continents which have been surprisingly consistent across five decades
 (based on the observed effect sizes).
 
-## Grouped analysis with `ggbetweenstats` + `purrr` 
+## Grouped analysis with `ggbetweenstats` + `{purrr}` 
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of plot and test is
 applied for all years, but maybe we want to change this for different years, or
 maybe we want to gave different effect sizes for different years. This type of
 customization for different levels of a grouping variable is not possible with
-`grouped_ggbetweenstats`, but this can be easily achieved using the `purrr`
+`grouped_ggbetweenstats`, but this can be easily achieved using the `{purrr}`
 package. 
 
 See the associated vignette here:

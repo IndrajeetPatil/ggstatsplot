@@ -3169,7 +3169,7 @@ a <- coxrobust::gen_data(200, c(1, 0.1, 2), cont = 0.05, p.censor = 0.30)
 mod_coxr <- coxrobust::coxr(Surv(time, status) ~ X1 + X2 + X3, data = a, trunc = 0.9)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_coxr,
   title = "robust Cox proportional hazards regression model"
 )
@@ -4928,7 +4928,7 @@ mod_bayesqr <-
   )
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_bayesqr,
   title = "Bayesian quantile regression"
 )
@@ -4950,7 +4950,7 @@ options(datadist = "dd")
 mod_blrm <- rmsb::blrm(survived ~ (rcs(age, 5) + sex + pclass)^2, data = titanic3)
 
 # plot
-ggstatsplot::ggcoefstats(
+ggcoefstats(
   x = mod_blrm,
   title = "Bayesian binary and ordinal logistic regression"
 )
