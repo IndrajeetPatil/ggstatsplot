@@ -22,13 +22,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Additional vignettes
+## Additional vignettes
 
 Due to size constraints, all available vignettes are only available on the
 website for this package: <br>
 <https://indrajeetpatil.github.io/ggstatsplot/articles/>
 
-## Vignettes for individual functions
+### Vignettes for individual functions
 
   - `ggbetweenstats`:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
@@ -54,7 +54,7 @@ website for this package: <br>
   - `ggcoefstats`:
     <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-## General vignettes
+### General vignettes
 
   - Frequently Asked Questions (FAQ):
   <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html>
@@ -69,18 +69,18 @@ website for this package: <br>
 - Pairwise comparisons with `{ggstatsplot}`:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html>
 
-# Publication
+## Publication
 
 A journal articles describing philosophy and principles behind this package:
 <https://joss.theoj.org/papers/10.21105/joss.03167>
 
-# Presentation
+## Presentation
 
 In addition to these vignettes, another quick way to get an overview of this
 package is to go through the following slides:
 <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
 
-# Statistical backend of `{ggstatsplot}`
+## Statistical backend of `{ggstatsplot}`
 
 The `{statsExpressions}` package forms the statistical backend that processes data
 and creates dataframes and expressions containing results from statistical
@@ -89,7 +89,7 @@ tests.
 For more exhaustive documentation for this package, see:
 <https://indrajeetpatil.github.io/statsExpressions/>
 
-# Suggestions
+## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>

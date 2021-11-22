@@ -35,6 +35,12 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+if (!requireNamespace("PMCMRplus", quietly = TRUE)) {
+  knitr::opts_chunk$set(eval = FALSE)
+} else {
+  library(PMCMRplus)
+}
+
 library(ggstatsplot)
 ```
 

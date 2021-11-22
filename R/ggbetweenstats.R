@@ -120,26 +120,28 @@
 #'
 #' @examples
 #' \donttest{
-#' # to get reproducible results from bootstrapping
-#' set.seed(123)
-#' library(ggstatsplot)
+#' if (require("PMCMRplus")) {
+#'   # to get reproducible results from bootstrapping
+#'   set.seed(123)
+#'   library(ggstatsplot)
 #'
-#' # simple function call with the defaults
-#' ggbetweenstats(mtcars, am, mpg)
+#'   # simple function call with the defaults
+#'   ggbetweenstats(mtcars, am, mpg)
 #'
-#' # more detailed function call
-#' ggbetweenstats(
-#'   data = morley,
-#'   x = Expt,
-#'   y = Speed,
-#'   type = "robust",
-#'   xlab = "The experiment number",
-#'   ylab = "Speed-of-light measurement",
-#'   pairwise.comparisons = TRUE,
-#'   p.adjust.method = "fdr",
-#'   outlier.tagging = TRUE,
-#'   outlier.label = Run
-#' )
+#'   # more detailed function call
+#'   ggbetweenstats(
+#'     data = morley,
+#'     x = Expt,
+#'     y = Speed,
+#'     type = "robust",
+#'     xlab = "The experiment number",
+#'     ylab = "Speed-of-light measurement",
+#'     pairwise.comparisons = TRUE,
+#'     p.adjust.method = "fdr",
+#'     outlier.tagging = TRUE,
+#'     outlier.label = Run
+#'   )
+#' }
 #' }
 #' @export
 
@@ -453,35 +455,37 @@ ggbetweenstats <- function(data,
 #'
 #' @examples
 #' \donttest{
-#' # to get reproducible results from bootstrapping
-#' set.seed(123)
-#' library(ggstatsplot)
-#' library(dplyr, warn.conflicts = FALSE)
-#' library(ggplot2)
+#' if (require("PMCMRplus")) {
+#'   # to get reproducible results from bootstrapping
+#'   set.seed(123)
+#'   library(ggstatsplot)
+#'   library(dplyr, warn.conflicts = FALSE)
+#'   library(ggplot2)
 #'
-#' # the most basic function call
-#' grouped_ggbetweenstats(
-#'   data = filter(ggplot2::mpg, drv != "4"),
-#'   x = year,
-#'   y = hwy,
-#'   grouping.var = drv
-#' )
-#'
-#' # modifying individual plots using `ggplot.component` argument
-#' grouped_ggbetweenstats(
-#'   data = filter(
-#'     movies_long,
-#'     genre %in% c("Action", "Comedy"),
-#'     mpaa %in% c("R", "PG")
-#'   ),
-#'   x = genre,
-#'   y = rating,
-#'   grouping.var = mpaa,
-#'   ggplot.component = scale_y_continuous(
-#'     breaks = seq(1, 9, 1),
-#'     limits = (c(1, 9))
+#'   # the most basic function call
+#'   grouped_ggbetweenstats(
+#'     data = filter(ggplot2::mpg, drv != "4"),
+#'     x = year,
+#'     y = hwy,
+#'     grouping.var = drv
 #'   )
-#' )
+#'
+#'   # modifying individual plots using `ggplot.component` argument
+#'   grouped_ggbetweenstats(
+#'     data = filter(
+#'       movies_long,
+#'       genre %in% c("Action", "Comedy"),
+#'       mpaa %in% c("R", "PG")
+#'     ),
+#'     x = genre,
+#'     y = rating,
+#'     grouping.var = mpaa,
+#'     ggplot.component = scale_y_continuous(
+#'       breaks = seq(1, 9, 1),
+#'       limits = (c(1, 9))
+#'     )
+#'   )
+#' }
 #' }
 #' @export
 

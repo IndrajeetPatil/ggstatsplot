@@ -5,6 +5,10 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+MAJOR CHANGES
+
+  - Moves `{PMCMRplus}` package from Imports to Suggests. So, if, as a user, you wish to use pairwise comparisons in `ggbetweenstats()` and `ggwithinstats()`
+
 MINOR CHANGES
 
   - To keep the documentation maintainable, a number of vignettes have either

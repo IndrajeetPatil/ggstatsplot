@@ -5,6 +5,8 @@ test_that(
   code = {
     # creating the plot
     set.seed(123)
+    skip_if_not_installed("PMCMRplus")
+
     p <- ggbetweenstats(
       data = ggplot2::msleep,
       x = vore,
@@ -33,6 +35,8 @@ test_that(
 test_that(
   desc = "check mcp displays - non-significant",
   code = {
+    skip_if_not_installed("PMCMRplus")
+
     # creating the plot
     set.seed(123)
     p1 <- ggbetweenstats(
@@ -78,6 +82,8 @@ test_that(
 test_that(
   desc = "check mixed comparison displays - nonparametric",
   code = {
+    skip_if_not_installed("PMCMRplus")
+
     # creating the plot
     set.seed(123)
     p <- ggbetweenstats(
@@ -110,6 +116,8 @@ test_that(
 test_that(
   desc = "check robust test display - FDR-corrected",
   code = {
+    skip_if_not_installed("PMCMRplus")
+
     # creating the plot
     set.seed(123)
     p <- ggbetweenstats(
@@ -139,6 +147,8 @@ test_that(
 test_that(
   desc = "check bayesian test display",
   code = {
+    skip_if_not_installed("PMCMRplus")
+
     # creating the plot
     set.seed(123)
     p <- ggbetweenstats(
@@ -165,6 +175,8 @@ test_that(
 test_that(
   desc = "additional test",
   code = {
+    skip_if_not_installed("PMCMRplus")
+
     set.seed(123)
     p1 <- ggbetweenstats(dplyr::filter(movies_long, genre == "Comedy"), mpaa, length,
       results.subtitle = FALSE,

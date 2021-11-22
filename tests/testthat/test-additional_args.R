@@ -4,6 +4,7 @@ test_that(
   desc = "`pairwise_comparisons()` - test additional arguments",
   code = {
     options(tibble.width = Inf)
+    skip_if_not_installed("PMCMRplus")
 
     # student's t test
     set.seed(123)

@@ -5,6 +5,7 @@ test_that(
   code = {
     skip_on_cran()
     skip_if(getRversion() < "4.0")
+    skip_if_not_installed("PMCMRplus")
 
     # creating the plot
     set.seed(123)
@@ -64,6 +65,7 @@ test_that(
   code = {
     skip_on_cran()
     skip_if(getRversion() < "4.0")
+    skip_if_not_installed("PMCMRplus")
 
     # creating the plot
     set.seed(123)
