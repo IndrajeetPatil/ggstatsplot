@@ -36,29 +36,31 @@
 #'
 #' @examples
 #' \donttest{
-#' # setup
-#' set.seed(123)
-#' library(ggstatsplot)
-#' library(dplyr, warn.conflicts = FALSE)
+#' if (require("PMCMRplus")) {
+#'   # setup
+#'   set.seed(123)
+#'   library(ggstatsplot)
+#'   library(dplyr, warn.conflicts = FALSE)
 #'
-#' # two groups (*t*-test)
-#' ggwithinstats(
-#'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-#'   x    = condition,
-#'   y    = desire
-#' )
+#'   # two groups (*t*-test)
+#'   ggwithinstats(
+#'     data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'     x    = condition,
+#'     y    = desire
+#'   )
 #'
-#' # more than two groups (anova)
-#' library(WRS2)
+#'   # more than two groups (anova)
+#'   library(WRS2)
 #'
-#' ggwithinstats(
-#'   data            = WineTasting,
-#'   x               = Wine,
-#'   y               = Taste,
-#'   type            = "r",
-#'   outlier.tagging = TRUE,
-#'   outlier.label   = Taster
-#' )
+#'   ggwithinstats(
+#'     data            = WineTasting,
+#'     x               = Wine,
+#'     y               = Taste,
+#'     type            = "r",
+#'     outlier.tagging = TRUE,
+#'     outlier.label   = Taster
+#'   )
+#' }
 #' }
 #' @export
 
@@ -167,7 +169,7 @@ ggwithinstats <- function(data,
   # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% pull({{ x }})) < 3, "t", "anova")
 
-  if (results.subtitle && insight::check_if_installed("afex")) {
+  if (results.subtitle && check_if_installed("afex")) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,
@@ -327,22 +329,24 @@ ggwithinstats <- function(data,
 #'
 #' @examples
 #' \donttest{
-#' # to get reproducible results from bootstrapping
-#' set.seed(123)
-#' library(ggstatsplot)
-#' library(dplyr, warn.conflicts = FALSE)
-#' library(ggplot2)
+#' if (require("PMCMRplus")) {
+#'   # to get reproducible results from bootstrapping
+#'   set.seed(123)
+#'   library(ggstatsplot)
+#'   library(dplyr, warn.conflicts = FALSE)
+#'   library(ggplot2)
 #'
-#' # the most basic function call
-#' grouped_ggwithinstats(
-#'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-#'   x                = condition,
-#'   y                = desire,
-#'   grouping.var     = gender,
-#'   type             = "np", # non-parametric test
-#'   # additional modifications for **each** plot using `{ggplot2}` functions
-#'   ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
-#' )
+#'   # the most basic function call
+#'   grouped_ggwithinstats(
+#'     data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'     x                = condition,
+#'     y                = desire,
+#'     grouping.var     = gender,
+#'     type             = "np", # non-parametric test
+#'     # additional modifications for **each** plot using `{ggplot2}` functions
+#'     ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
+#'   )
+#' }
 #' }
 #' @export
 

@@ -1,6 +1,7 @@
 test_that(
   desc = "checking if extract_stats works",
   code = {
+    skip_if_not_installed("PMCMRplus")
     options(tibble.width = Inf)
 
     set.seed(123)

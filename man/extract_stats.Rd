@@ -29,14 +29,16 @@ https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html
 }
 \examples{
 \donttest{
-set.seed(123)
-library(ggstatsplot)
+if (require("PMCMRplus")) {
+  set.seed(123)
+  library(ggstatsplot)
 
-# in case of group comparisons
-p <- ggbetweenstats(mtcars, cyl, mpg)
-extract_stats(p)
+  # in case of group comparisons
+  p <- ggbetweenstats(mtcars, cyl, mpg)
+  extract_stats(p)
 
-# the exact details depend on the function
-extract_stats(ggbarstats(mtcars, cyl, am))
+  # the exact details depend on the function
+  extract_stats(ggbarstats(mtcars, cyl, am))
+}
 }
 }

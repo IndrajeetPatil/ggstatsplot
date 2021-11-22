@@ -258,29 +258,31 @@ by running:
 }
 \examples{
 \donttest{
-# setup
-set.seed(123)
-library(ggstatsplot)
-library(dplyr, warn.conflicts = FALSE)
+if (require("PMCMRplus")) {
+  # setup
+  set.seed(123)
+  library(ggstatsplot)
+  library(dplyr, warn.conflicts = FALSE)
 
-# two groups (*t*-test)
-ggwithinstats(
-  data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-  x    = condition,
-  y    = desire
-)
+  # two groups (*t*-test)
+  ggwithinstats(
+    data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+    x    = condition,
+    y    = desire
+  )
 
-# more than two groups (anova)
-library(WRS2)
+  # more than two groups (anova)
+  library(WRS2)
 
-ggwithinstats(
-  data            = WineTasting,
-  x               = Wine,
-  y               = Taste,
-  type            = "r",
-  outlier.tagging = TRUE,
-  outlier.label   = Taster
-)
+  ggwithinstats(
+    data            = WineTasting,
+    x               = Wine,
+    y               = Taste,
+    type            = "r",
+    outlier.tagging = TRUE,
+    outlier.label   = Taster
+  )
+}
 }
 }
 \seealso{

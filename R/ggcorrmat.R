@@ -173,7 +173,7 @@ ggcorrmat <- function(data,
   }
 
   # installed?
-  insight::check_if_installed("ggcorrplot")
+  check_if_installed("ggcorrplot")
 
   # plotting the correlalogram
   plot <- exec(

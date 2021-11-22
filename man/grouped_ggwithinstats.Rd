@@ -194,22 +194,24 @@ A combined plot of comparison plot created for levels of a grouping variable.
 }
 \examples{
 \donttest{
-# to get reproducible results from bootstrapping
-set.seed(123)
-library(ggstatsplot)
-library(dplyr, warn.conflicts = FALSE)
-library(ggplot2)
+if (require("PMCMRplus")) {
+  # to get reproducible results from bootstrapping
+  set.seed(123)
+  library(ggstatsplot)
+  library(dplyr, warn.conflicts = FALSE)
+  library(ggplot2)
 
-# the most basic function call
-grouped_ggwithinstats(
-  data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-  x                = condition,
-  y                = desire,
-  grouping.var     = gender,
-  type             = "np", # non-parametric test
-  # additional modifications for **each** plot using `{ggplot2}` functions
-  ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
-)
+  # the most basic function call
+  grouped_ggwithinstats(
+    data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+    x                = condition,
+    y                = desire,
+    grouping.var     = gender,
+    type             = "np", # non-parametric test
+    # additional modifications for **each** plot using `{ggplot2}` functions
+    ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
+  )
+}
 }
 }
 \seealso{

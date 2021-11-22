@@ -76,6 +76,7 @@ test_that(
   desc = "subtitle output with NA",
   code = {
     skip_on_cran()
+    skip_if_not_installed("PMCMRplus")
 
     # data
     df <- dplyr::filter(bugs_long, region %in% c("North America"))

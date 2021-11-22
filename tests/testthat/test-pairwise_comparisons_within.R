@@ -4,6 +4,7 @@ test_that(
   desc = "`pairwise_comparisons()` works for within-subjects design - NAs",
   code = {
     options(tibble.width = Inf)
+    skip_if_not_installed("PMCMRplus")
 
     # student's t test
     set.seed(123)
@@ -77,6 +78,7 @@ test_that(
   desc = "`pairwise_comparisons()` works for within-subjects design - without NAs",
   code = {
     options(tibble.width = Inf)
+    skip_if_not_installed("PMCMRplus")
 
     # student's t test
     set.seed(123)
@@ -140,6 +142,7 @@ test_that(
   desc = "works with subject id",
   code = {
     set.seed(123)
+    skip_if_not_installed("PMCMRplus")
 
     # with subject id
     df1 <- purrr::pmap_dfr(

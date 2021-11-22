@@ -222,7 +222,7 @@ ggscatterstats <- function(data,
 
   if (marginal) {
     # installed?
-    insight::check_if_installed("ggside", minimum_version = "0.1.2")
+    check_if_installed("ggside", minimum_version = "0.1.2")
 
     # adding marginal distributions
     plot <- plot +
