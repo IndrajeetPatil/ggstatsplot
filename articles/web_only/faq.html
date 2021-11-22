@@ -91,7 +91,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>frequently asked questions (FAQ)</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-11-12</h4>
+            <h4 data-toc-skip class="date">2021-11-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/faq.Rmd" class="external-link"><code>vignettes/web_only/faq.Rmd</code></a></small>
       <div class="d-none name"><code>faq.Rmd</code></div>
@@ -338,7 +338,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## displaying only one comparison</span>
 <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span>, pairwise.comparisons <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://const-ae.github.io/ggsignif//reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="faq_files/figure-html/custom_pairwise-1.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -409,7 +409,7 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## adding pairwise comparisons using `ggsignif`</span>
 <span class="va">p</span> <span class="op">+</span>
-  <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif//reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>
+  <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>
     comparisons <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">groups</span>,
     map_signif_level <span class="op">=</span> <span class="cn">TRUE</span>,
     annotations <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">asterisk_label</span>,
@@ -634,7 +634,7 @@ A BibTeX entry for LaTeX users is
 <h2 id="is-there-way-to-adjust-my-alpha-level">21. Is there way to adjust my alpha level?<a class="anchor" aria-label="anchor" href="#is-there-way-to-adjust-my-alpha-level"></a>
 </h2>
 <p>No, there is no way to adjust alpha if you use <code>grouped_</code> functions (e.g., <code>grouped_ggwithinstats</code>). You will have to just report in the paper/article/report, what your adjusted alpha is.</p>
-<p>So, for example, iif 2 tests are being carried out, the alpha is going to be <code>0.05/2=0.025</code>. So, when you describe the <em>Methods</em> section, you can mention that only those tests should be considered significant where <code>p &lt; 0.025</code>. Or you can even mention this in the caption.</p>
+<p>So, for example, iif 2 tests are being carried out, the alpha is going to be <code>0.05/2 = 0.025</code>. So, when you describe the <em>Methods</em> section, you can mention that only those tests should be considered significant where <code>p &lt; 0.025</code>. Or you can even mention this in the caption.</p>
 <ol start="22" style="list-style-type: decimal">
 <li>How can I build a <code>Shiny</code> app using <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions?</li>
 </ol>
@@ -694,6 +694,10 @@ A BibTeX entry for LaTeX users is
   ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="faq_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
+<ol start="25" style="list-style-type: decimal">
+<li>How to display pairwise comparison letter in a plot?</li>
+</ol>
+<p>This is not possible out of the box, but see <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/654#issuecomment-948862514" class="external-link">this</a> comment.</p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
