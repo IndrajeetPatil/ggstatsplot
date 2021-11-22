@@ -170,11 +170,11 @@ pairwise_comparisons <- function(data,
                                  p.adjust.method = "holm",
                                  k = 2L,
                                  ...) {
-  # fail early if the needed package is not available
-  insight::check_if_installed("PMCMRplus", reason = "for pairwise comparisons")
-
   # standardize stats type
   type <- stats_type_switch(type)
+
+  # fail early if the needed package is not available
+  if (type != "robust") check_if_installed("PMCMRplus", reason = "for pairwise comparisons")
 
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))

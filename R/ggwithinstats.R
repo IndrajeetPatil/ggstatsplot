@@ -169,7 +169,7 @@ ggwithinstats <- function(data,
   # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% pull({{ x }})) < 3, "t", "anova")
 
-  if (results.subtitle && insight::check_if_installed("afex")) {
+  if (results.subtitle && check_if_installed("afex")) {
     # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,

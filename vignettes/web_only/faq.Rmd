@@ -541,7 +541,7 @@ No, there is no way to adjust alpha if you use `grouped_` functions (e.g.,
 paper/article/report, what your adjusted alpha is.
 
 So, for example, iif 2 tests are being carried out, the alpha is going to be
-`0.05/2=0.025`. So, when you describe the _Methods_ section, you can mention
+`0.05/2 = 0.025`. So, when you describe the _Methods_ section, you can mention
 that only those tests should be considered significant where `p < 0.025`. Or you
 can even mention this in the caption.
 
@@ -605,6 +605,10 @@ ggbetweenstats(
   ggplot.component = list(theme(plot.subtitle = element_text(size = 20, face = "bold")))
 )
 ```
+
+25. How to display pairwise comparison letter in a plot?
+
+This is not possible out of the box, but see [this](https://github.com/IndrajeetPatil/ggstatsplot/issues/654#issuecomment-948862514) comment.
 
 ## Suggestions
 

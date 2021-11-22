@@ -65,7 +65,7 @@
 #' @import ggplot2
 #' @import statsExpressions
 #'
-#' @importFrom insight is_model find_statistic format_value
+#' @importFrom insight is_model find_statistic format_value check_if_installed
 #' @importFrom parameters model_parameters standardize_names
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
 #'

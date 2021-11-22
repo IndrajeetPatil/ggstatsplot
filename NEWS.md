@@ -7,7 +7,9 @@ read the `NEWS` for that package:
 
 MAJOR CHANGES
 
-  - Moves `{PMCMRplus}` package from Imports to Suggests. So, if, as a user, you wish to use pairwise comparisons in `ggbetweenstats()` and `ggwithinstats()`
+  - Moves `{PMCMRplus}` package from Imports to Suggests. So, if, as a user, you
+    wish to use pairwise comparisons in `ggbetweenstats()` and
+    `ggwithinstats()`, you will need to download this package.
 
 MINOR CHANGES
 

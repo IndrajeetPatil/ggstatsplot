@@ -21,16 +21,16 @@ test_that(
     )
 
     # games-howell
-    df_ggplot2::msleep <- ggplot2::msleep
+    df_msleep <- ggplot2::msleep
 
     # adding empty factor level (shouldn't change results)
-    df_ggplot2::msleep %<>% dplyr::mutate(vore = as.factor(vore))
+    df_msleep %<>% dplyr::mutate(vore = as.factor(vore))
 
-    df_ggplot2::msleep$vore <- factor(df_ggplot2::msleep$vore, levels = c(levels(df_ggplot2::msleep$vore), "Random"))
+    df_msleep$vore <- factor(df_msleep$vore, levels = c(levels(df_msleep$vore), "Random"))
 
     set.seed(123)
     df2 <- pairwise_comparisons(
-      data = df_ggplot2::msleep,
+      data = df_msleep,
       x = vore,
       y = brainwt,
       type = "p",
@@ -73,7 +73,7 @@ test_that(
     # bayes test
     set.seed(123)
     df6 <- pairwise_comparisons(
-      data = df_ggplot2::msleep,
+      data = df_msleep,
       x = vore,
       y = brainwt,
       type = "bf",
