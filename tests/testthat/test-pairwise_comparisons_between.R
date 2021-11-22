@@ -106,12 +106,12 @@ test_that(
     skip_if_not_installed("PMCMRplus")
 
     # drop levels
-    ggplot2::msleep2 <- dplyr::filter(.data = ggplot2::msleep, vore %in% c("carni", "omni"))
+    msleep2 <- dplyr::filter(.data = ggplot2::msleep, vore %in% c("carni", "omni"))
 
     # check those levels are not included
     set.seed(123)
     df1 <- pairwise_comparisons(
-      data = ggplot2::msleep2,
+      data = msleep2,
       x = vore,
       y = brainwt,
       p.adjust.method = "none"
