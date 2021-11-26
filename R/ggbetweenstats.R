@@ -409,6 +409,7 @@ ggbetweenstats <- function(data,
     # preparing the caption for pairwise comparisons test
     caption <- pairwise_caption(
       caption,
+      bf.message = bf.message,
       unique(mpc_df$test.details),
       ifelse(type == "bayes", "all", pairwise.display)
     )

@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "ggstatsplot",
-  "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with\n    details from statistical tests included in the plots themselves. It\n    provides an easier syntax to generate information-rich plots for\n    statistical analysis of continuous (violin plots, scatterplots,\n    histograms, dot plots, dot-and-whisker plots) or categorical (pie and\n    bar charts) data. Currently, it supports the most common types of\n    statistical approaches and tests: parametric, nonparametric, robust,\n    and Bayesian versions of t-test/ANOVA, correlation analyses,\n    contingency table analysis, meta-analysis, and regression analyses.",
+  "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "relatedLink": [
@@ -195,6 +195,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "PMCMRplus",
+      "name": "PMCMRplus",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=PMCMRplus"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "psych",
       "name": "psych",
       "provider": {
@@ -348,6 +360,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "glue",
+      "name": "glue",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=glue"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
       "version": ">= 0.14.5",
@@ -408,18 +432,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=performance"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "PMCMRplus",
-      "name": "PMCMRplus",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=PMCMRplus"
     },
     {
       "@type": "SoftwareApplication",
@@ -561,6 +573,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "6352.983KB",
+  "fileSize": "6489.934KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

@@ -16,9 +16,9 @@
         label                                  
         <chr>                                  
       1 list(~italic(p)[uncorrected]==2.65e-04)
-      2 list(~italic(p)[uncorrected]==0.035)   
+      2 list(~italic(p)[uncorrected]==0.04)    
       3 list(~italic(p)[uncorrected]==3.29e-13)
-      4 list(~italic(p)[uncorrected]==0.972)   
+      4 list(~italic(p)[uncorrected]==0.97)    
       5 list(~italic(p)[uncorrected]==6.62e-04)
       6 list(~italic(p)[uncorrected]==1.11e-09)
       
@@ -32,14 +32,14 @@
       4 HDLF   LDHF    0.0281 Student's t-test None              
       5 HDLF   LDLF    0.999  Student's t-test None              
       6 LDHF   LDLF    1.00   Student's t-test None              
-        label                               
-        <chr>                               
-      1 list(~italic(p)[uncorrected]==1.000)
-      2 list(~italic(p)[uncorrected]==0.965)
-      3 list(~italic(p)[uncorrected]==1.000)
-      4 list(~italic(p)[uncorrected]==0.028)
-      5 list(~italic(p)[uncorrected]==0.999)
-      6 list(~italic(p)[uncorrected]==1.000)
+        label                              
+        <chr>                              
+      1 list(~italic(p)[uncorrected]==1.00)
+      2 list(~italic(p)[uncorrected]==0.96)
+      3 list(~italic(p)[uncorrected]==1.00)
+      4 list(~italic(p)[uncorrected]==0.03)
+      5 list(~italic(p)[uncorrected]==1.00)
+      6 list(~italic(p)[uncorrected]==1.00)
       
       [[3]]
       # A tibble: 3 x 6
@@ -48,11 +48,11 @@
       1 4      6        0.995 Student's t-test None              
       2 4      8        1.00  Student's t-test None              
       3 6      8        0.997 Student's t-test None              
-        label                               
-        <chr>                               
-      1 list(~italic(p)[uncorrected]==0.995)
-      2 list(~italic(p)[uncorrected]==1.000)
-      3 list(~italic(p)[uncorrected]==0.997)
+        label                              
+        <chr>                              
+      1 list(~italic(p)[uncorrected]==0.99)
+      2 list(~italic(p)[uncorrected]==1.00)
+      3 list(~italic(p)[uncorrected]==1.00)
       
       [[4]]
       # A tibble: 3 x 6
@@ -63,8 +63,8 @@
       3 6      8      0.00258     Student's t-test None              
         label                                  
         <chr>                                  
-      1 list(~italic(p)[uncorrected]==0.005)   
+      1 list(~italic(p)[uncorrected]==5.32e-03)
       2 list(~italic(p)[uncorrected]==1.03e-07)
-      3 list(~italic(p)[uncorrected]==0.003)   
+      3 list(~italic(p)[uncorrected]==2.58e-03)
       
 

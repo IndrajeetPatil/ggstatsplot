@@ -128,7 +128,7 @@ test_that(
 
     # tests
     expect_equal(df1$statistic, df2$statistic, tolerance = 0.01)
-    expect_identical(df2$label, "list(~italic(p)[uncorrected]==0.865)")
+    expect_snapshot(df2$label)
   }
 )
 
@@ -148,13 +148,6 @@ test_that(
       var.equal = TRUE
     )
 
-    expect_equal(
-      df$label,
-      c(
-        "list(~italic(p)[FDR-corrected]==1.32e-15)",
-        "list(~italic(p)[FDR-corrected]==6.64e-32)",
-        "list(~italic(p)[FDR-corrected]==2.77e-09)"
-      )
-    )
+    expect_snapshot(df$label)
   }
 )

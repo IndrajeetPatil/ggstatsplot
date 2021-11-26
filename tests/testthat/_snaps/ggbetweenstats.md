@@ -468,18 +468,18 @@
       2 2 15.43548     1     2    19 darkgreen    5   NA    NA    0.5
       
       [[1]][[5]]
-        x        y                            label PANEL group nudge_x  nudge_y
-      1 1 24.90880 list(~widehat(mu)[MAP]=='24.91')     1     1     1.4 24.90880
-      2 2 15.43548 list(~widehat(mu)[MAP]=='15.44')     1     2     2.4 15.43548
-        colour  fill size angle alpha family fontface lineheight hjust vjust
-      1   blue white 3.88     0    NA               1        1.2   0.5   0.5
-      2   blue white 3.88     0    NA               1        1.2   0.5   0.5
-        point.size segment.linetype segment.size segment.curvature segment.angle
-      1          1                4          0.5                 0            90
-      2          1                4          0.5                 0            90
-        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
-      1           1           0.5           TRUE                   1           FALSE
-      2           1           0.5           TRUE                   1           FALSE
+        x        y                     label PANEL group nudge_x  nudge_y colour
+      1 1 24.90880 widehat(mu)[MAP]=='24.91'     1     1     1.4 24.90880   blue
+      2 2 15.43548 widehat(mu)[MAP]=='15.44'     1     2     2.4 15.43548   blue
+         fill size angle alpha family fontface lineheight hjust vjust point.size
+      1 white 3.88     0    NA               1        1.2   0.5   0.5          1
+      2 white 3.88     0    NA               1        1.2   0.5   0.5          1
+        segment.linetype segment.size segment.curvature segment.angle segment.ncp
+      1                4          0.5                 0            90           1
+      2                4          0.5                 0            90           1
+        segment.shape segment.square segment.squareShape segment.inflect
+      1           0.5           TRUE                   1           FALSE
+      2           0.5           TRUE                   1           FALSE
         segment.debug
       1         FALSE
       2         FALSE

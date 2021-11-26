@@ -4,26 +4,26 @@
       list(pb$data[[6]], pb$data[[7]])
     Output
       [[1]]
-        x          y                             label PANEL group nudge_x    nudge_y
-      1 1 0.07925556 list(~widehat(mu)[mean]=='0.079')     1     1     1.4 0.07925556
-      2 2 0.62159750 list(~widehat(mu)[mean]=='0.622')     1     2     2.4 0.62159750
-      3 3 0.02155000 list(~widehat(mu)[mean]=='0.022')     1     3     3.4 0.02155000
-      4 4 0.14573118 list(~widehat(mu)[mean]=='0.146')     1     4     4.4 0.14573118
-        colour  fill size angle alpha family fontface lineheight hjust vjust
-      1  black white    3     0    NA               1        1.2   0.5   0.5
-      2  black white    3     0    NA               1        1.2   0.5   0.5
-      3  black white    3     0    NA               1        1.2   0.5   0.5
-      4  black white    3     0    NA               1        1.2   0.5   0.5
-        point.size segment.linetype segment.size segment.curvature segment.angle
-      1          1                4          0.5                 0            90
-      2          1                4          0.5                 0            90
-      3          1                4          0.5                 0            90
-      4          1                4          0.5                 0            90
-        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
-      1           1           0.5           TRUE                   1           FALSE
-      2           1           0.5           TRUE                   1           FALSE
-      3           1           0.5           TRUE                   1           FALSE
-      4           1           0.5           TRUE                   1           FALSE
+        x          y                      label PANEL group nudge_x    nudge_y colour
+      1 1 0.07925556 widehat(mu)[mean]=='0.079'     1     1     1.4 0.07925556  black
+      2 2 0.62159750 widehat(mu)[mean]=='0.622'     1     2     2.4 0.62159750  black
+      3 3 0.02155000 widehat(mu)[mean]=='0.022'     1     3     3.4 0.02155000  black
+      4 4 0.14573118 widehat(mu)[mean]=='0.146'     1     4     4.4 0.14573118  black
+         fill size angle alpha family fontface lineheight hjust vjust point.size
+      1 white    3     0    NA               1        1.2   0.5   0.5          1
+      2 white    3     0    NA               1        1.2   0.5   0.5          1
+      3 white    3     0    NA               1        1.2   0.5   0.5          1
+      4 white    3     0    NA               1        1.2   0.5   0.5          1
+        segment.linetype segment.size segment.curvature segment.angle segment.ncp
+      1                4          0.5                 0            90           1
+      2                4          0.5                 0            90           1
+      3                4          0.5                 0            90           1
+      4                4          0.5                 0            90           1
+        segment.shape segment.square segment.squareShape segment.inflect
+      1           0.5           TRUE                   1           FALSE
+      2           0.5           TRUE                   1           FALSE
+      3           0.5           TRUE                   1           FALSE
+      4           0.5           TRUE                   1           FALSE
         segment.debug
       1         FALSE
       2         FALSE
@@ -111,8 +111,8 @@
       NULL
       
       $caption
-      atop(displaystyle("mammalian sleep"), expr = paste("Pairwise test: ", 
-          bold("Games-Howell test"), "; Comparisons shown: ", bold("only non-significant")))
+      expression(atop(displaystyle("mammalian sleep"), list("Pairwise test:" ~ 
+          bold("Games-Howell test"), "Comparisons shown:" ~ bold("only non-significant"))))
       
       $label
       [1] "expression"
@@ -127,26 +127,26 @@
       list(pb1$data[[6]], pb1$data[[7]], pb2$data[[6]], pb2$data[[7]])
     Output
       [[1]]
-        x         y                                 label PANEL group nudge_x
-      1 1  8440.335  list(~widehat(mu)[mean]=='8440.335')     1     1     1.4
-      2 2 11148.255 list(~widehat(mu)[mean]=='11148.255')     1     2     2.4
-      3 3  9243.369  list(~widehat(mu)[mean]=='9243.369')     1     3     3.4
-          nudge_y colour  fill size angle alpha family fontface lineheight hjust
-      1  8440.335  black white    3     0    NA               1        1.2   0.5
-      2 11148.255  black white    3     0    NA               1        1.2   0.5
-      3  9243.369  black white    3     0    NA               1        1.2   0.5
-        vjust point.size segment.linetype segment.size segment.curvature
-      1   0.5          1                4          0.5                 0
-      2   0.5          1                4          0.5                 0
-      3   0.5          1                4          0.5                 0
-        segment.angle segment.ncp segment.shape segment.square segment.squareShape
-      1            90           1           0.5           TRUE                   1
-      2            90           1           0.5           TRUE                   1
-      3            90           1           0.5           TRUE                   1
-        segment.inflect segment.debug
-      1           FALSE         FALSE
-      2           FALSE         FALSE
-      3           FALSE         FALSE
+        x         y                          label PANEL group nudge_x   nudge_y
+      1 1  8440.335  widehat(mu)[mean]=='8440.335'     1     1     1.4  8440.335
+      2 2 11148.255 widehat(mu)[mean]=='11148.255'     1     2     2.4 11148.255
+      3 3  9243.369  widehat(mu)[mean]=='9243.369'     1     3     3.4  9243.369
+        colour  fill size angle alpha family fontface lineheight hjust vjust
+      1  black white    3     0    NA               1        1.2   0.5   0.5
+      2  black white    3     0    NA               1        1.2   0.5   0.5
+      3  black white    3     0    NA               1        1.2   0.5   0.5
+        point.size segment.linetype segment.size segment.curvature segment.angle
+      1          1                4          0.5                 0            90
+      2          1                4          0.5                 0            90
+      3          1                4          0.5                 0            90
+        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
+      1           1           0.5           TRUE                   1           FALSE
+      2           1           0.5           TRUE                   1           FALSE
+      3           1           0.5           TRUE                   1           FALSE
+        segment.debug
+      1         FALSE
+      2         FALSE
+      3         FALSE
       
       [[2]]
         x xend        y     yend                           annotation      group
@@ -181,26 +181,26 @@
       9        1        1.2        1  0.5
       
       [[3]]
-        x         y                                  label PANEL group nudge_x
-      1 1  8440.335  list(~widehat(mu)[mean]=='8440.3350')     1     1     1.4
-      2 2 11148.255 list(~widehat(mu)[mean]=='11148.2549')     1     2     2.4
-      3 3  9243.369  list(~widehat(mu)[mean]=='9243.3687')     1     3     3.4
-          nudge_y colour  fill size angle alpha family fontface lineheight hjust
-      1  8440.335  black white    3     0    NA               1        1.2   0.5
-      2 11148.255  black white    3     0    NA               1        1.2   0.5
-      3  9243.369  black white    3     0    NA               1        1.2   0.5
-        vjust point.size segment.linetype segment.size segment.curvature
-      1   0.5          1                4          0.5                 0
-      2   0.5          1                4          0.5                 0
-      3   0.5          1                4          0.5                 0
-        segment.angle segment.ncp segment.shape segment.square segment.squareShape
-      1            90           1           0.5           TRUE                   1
-      2            90           1           0.5           TRUE                   1
-      3            90           1           0.5           TRUE                   1
-        segment.inflect segment.debug
-      1           FALSE         FALSE
-      2           FALSE         FALSE
-      3           FALSE         FALSE
+        x         y                           label PANEL group nudge_x   nudge_y
+      1 1  8440.335  widehat(mu)[mean]=='8440.3350'     1     1     1.4  8440.335
+      2 2 11148.255 widehat(mu)[mean]=='11148.2549'     1     2     2.4 11148.255
+      3 3  9243.369  widehat(mu)[mean]=='9243.3687'     1     3     3.4  9243.369
+        colour  fill size angle alpha family fontface lineheight hjust vjust
+      1  black white    3     0    NA               1        1.2   0.5   0.5
+      2  black white    3     0    NA               1        1.2   0.5   0.5
+      3  black white    3     0    NA               1        1.2   0.5   0.5
+        point.size segment.linetype segment.size segment.curvature segment.angle
+      1          1                4          0.5                 0            90
+      2          1                4          0.5                 0            90
+      3          1                4          0.5                 0            90
+        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
+      1           1           0.5           TRUE                   1           FALSE
+      2           1           0.5           TRUE                   1           FALSE
+      3           1           0.5           TRUE                   1           FALSE
+        segment.debug
+      1         FALSE
+      2         FALSE
+      3         FALSE
       
       [[4]]
         x xend        y     yend                            annotation      group
@@ -248,8 +248,8 @@
       NULL
       
       [[1]]$caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Games-Howell test"), 
-          "; Comparisons shown: ", bold("only non-significant")))
+      expression(list("Pairwise test:" ~ bold("Games-Howell test"), 
+          "Comparisons shown:" ~ bold("only non-significant")))
       
       [[1]]$label
       [1] "expression"
@@ -275,8 +275,8 @@
       NULL
       
       [[2]]$caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Student's t-test"), 
-          "; Comparisons shown: ", bold("only significant")))
+      expression(list("Pairwise test:" ~ bold("Student's t-test"), 
+          "Comparisons shown:" ~ bold("only significant")))
       
       [[2]]$label
       [1] "expression"
@@ -292,14 +292,14 @@
       list(pb$data[[6]], pb$data[[7]])
     Output
       [[1]]
-        x   y                               label PANEL group nudge_x nudge_y colour
-      1 1 5.5 list(~widehat(mu)[median]=='5.500')     1     1     1.4     5.5  black
-      2 2 5.5 list(~widehat(mu)[median]=='5.500')     1     2     2.4     5.5  black
-      3 3 5.9 list(~widehat(mu)[median]=='5.900')     1     3     3.4     5.9  black
-         fill size angle alpha family fontface lineheight hjust vjust point.size
-      1 white    3     0    NA               1        1.2   0.5   0.5          1
-      2 white    3     0    NA               1        1.2   0.5   0.5          1
-      3 white    3     0    NA               1        1.2   0.5   0.5          1
+        x   y                        label PANEL group nudge_x nudge_y colour  fill
+      1 1 5.5 widehat(mu)[median]=='5.500'     1     1     1.4     5.5  black white
+      2 2 5.5 widehat(mu)[median]=='5.500'     1     2     2.4     5.5  black white
+      3 3 5.9 widehat(mu)[median]=='5.900'     1     3     3.4     5.9  black white
+        size angle alpha family fontface lineheight hjust vjust point.size
+      1    3     0    NA               1        1.2   0.5   0.5          1
+      2    3     0    NA               1        1.2   0.5   0.5          1
+      3    3     0    NA               1        1.2   0.5   0.5          1
         segment.linetype segment.size segment.curvature segment.angle segment.ncp
       1                4          0.5                 0            90           1
       2                4          0.5                 0            90           1
@@ -314,16 +314,16 @@
       3         FALSE
       
       [[2]]
-        x xend       y    yend                                annotation
-      1 1    1  9.5170  9.5900    list(~italic(p)[FDR-corrected]==0.812)
-      2 1    2  9.5900  9.5900    list(~italic(p)[FDR-corrected]==0.812)
-      3 2    2  9.5900  9.5170    list(~italic(p)[FDR-corrected]==0.812)
-      4 1    1 10.0645 10.1375 list(~italic(p)[FDR-corrected]==4.18e-04)
-      5 1    3 10.1375 10.1375 list(~italic(p)[FDR-corrected]==4.18e-04)
-      6 3    3 10.1375 10.0645 list(~italic(p)[FDR-corrected]==4.18e-04)
-      7 2    2 10.6120 10.6850 list(~italic(p)[FDR-corrected]==4.18e-04)
-      8 2    3 10.6850 10.6850 list(~italic(p)[FDR-corrected]==4.18e-04)
-      9 3    3 10.6850 10.6120 list(~italic(p)[FDR-corrected]==4.18e-04)
+        x xend       y    yend                                 annotation
+      1 1    1  9.5170  9.5900     list(~italic(p)[FDR-corrected]==0.812)
+      2 1    2  9.5900  9.5900     list(~italic(p)[FDR-corrected]==0.812)
+      3 2    2  9.5900  9.5170     list(~italic(p)[FDR-corrected]==0.812)
+      4 1    1 10.0645 10.1375 list(~italic(p)[FDR-corrected]==4.179e-04)
+      5 1    3 10.1375 10.1375 list(~italic(p)[FDR-corrected]==4.179e-04)
+      6 3    3 10.1375 10.0645 list(~italic(p)[FDR-corrected]==4.179e-04)
+      7 2    2 10.6120 10.6850 list(~italic(p)[FDR-corrected]==4.179e-04)
+      8 2    3 10.6850 10.6850 list(~italic(p)[FDR-corrected]==4.179e-04)
+      9 3    3 10.6850 10.6120 list(~italic(p)[FDR-corrected]==4.179e-04)
                   group flipped_aes PANEL shape colour textsize angle hjust vjust
       1 Action-Comedy-1       FALSE     1    19  black        3     0   0.5     0
       2 Action-Comedy-1       FALSE     1    19  black        3     0   0.5     0
@@ -367,8 +367,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Dunn test"), 
-          "; Comparisons shown: ", bold("all")))
+      expression(list("Pairwise test:" ~ bold("Dunn test"), "Comparisons shown:" ~ 
+          bold("all")))
       
       $label
       [1] "expression"
@@ -383,35 +383,35 @@
       list(pb$data[[6]], pb$data[[7]])
     Output
       [[1]]
-        x        y                                 label PANEL group nudge_x  nudge_y
-      1 1 14.07937 list(~widehat(mu)[trimmed]=='14.079')     1     1     1.4 14.07937
-      2 2 19.43750 list(~widehat(mu)[trimmed]=='19.438')     1     2     2.4 19.43750
-      3 3 14.13333 list(~widehat(mu)[trimmed]=='14.133')     1     3     3.4 14.13333
-        colour  fill size angle alpha family fontface lineheight hjust vjust
-      1  black white    3     0    NA               1        1.2   0.5   0.5
-      2  black white    3     0    NA               1        1.2   0.5   0.5
-      3  black white    3     0    NA               1        1.2   0.5   0.5
-        point.size segment.linetype segment.size segment.curvature segment.angle
-      1          1                4          0.5                 0            90
-      2          1                4          0.5                 0            90
-      3          1                4          0.5                 0            90
-        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
-      1           1           0.5           TRUE                   1           FALSE
-      2           1           0.5           TRUE                   1           FALSE
-      3           1           0.5           TRUE                   1           FALSE
+        x        y                          label PANEL group nudge_x  nudge_y colour
+      1 1 14.07937 widehat(mu)[trimmed]=='14.079'     1     1     1.4 14.07937  black
+      2 2 19.43750 widehat(mu)[trimmed]=='19.438'     1     2     2.4 19.43750  black
+      3 3 14.13333 widehat(mu)[trimmed]=='14.133'     1     3     3.4 14.13333  black
+         fill size angle alpha family fontface lineheight hjust vjust point.size
+      1 white    3     0    NA               1        1.2   0.5   0.5          1
+      2 white    3     0    NA               1        1.2   0.5   0.5          1
+      3 white    3     0    NA               1        1.2   0.5   0.5          1
+        segment.linetype segment.size segment.curvature segment.angle segment.ncp
+      1                4          0.5                 0            90           1
+      2                4          0.5                 0            90           1
+      3                4          0.5                 0            90           1
+        segment.shape segment.square segment.squareShape segment.inflect
+      1           0.5           TRUE                   1           FALSE
+      2           0.5           TRUE                   1           FALSE
+      3           0.5           TRUE                   1           FALSE
         segment.debug
       1         FALSE
       2         FALSE
       3         FALSE
       
       [[2]]
-        x xend      y   yend                                 annotation group
-      1 1    1 36.915 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1
-      2 1    2 37.175 37.175    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1
-      3 2    2 37.175 36.915    list(~italic(p)[Holm-corrected]==0e+00) 4-f-1
-      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2
-      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2
-      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==3.05e-08) f-r-2
+        x xend      y   yend                                  annotation group
+      1 1    1 36.915 37.175     list(~italic(p)[Holm-corrected]==0.000) 4-f-1
+      2 1    2 37.175 37.175     list(~italic(p)[Holm-corrected]==0.000) 4-f-1
+      3 2    2 37.175 36.915     list(~italic(p)[Holm-corrected]==0.000) 4-f-1
+      4 2    2 38.865 39.125 list(~italic(p)[Holm-corrected]==3.045e-08) f-r-2
+      5 2    3 39.125 39.125 list(~italic(p)[Holm-corrected]==3.045e-08) f-r-2
+      6 3    3 39.125 38.865 list(~italic(p)[Holm-corrected]==3.045e-08) f-r-2
         flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
       1       FALSE     1    19  black        3     0   0.5     0    NA       
       2       FALSE     1    19  black        3     0   0.5     0    NA       
@@ -449,8 +449,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Yuen's trimmed means test"), 
-          "; Comparisons shown: ", bold("only significant")))
+      expression(list("Pairwise test:" ~ bold("Yuen's trimmed means test"), 
+          "Comparisons shown:" ~ bold("only significant")))
       
       $label
       [1] "expression"
@@ -465,22 +465,22 @@
       list(pb$data[[6]], pb$data[[7]])
     Output
       [[1]]
-        x        y                            label PANEL group nudge_x  nudge_y
-      1 1 5.021408 list(~widehat(mu)[MAP]=='5.021')     1     1     1.4 5.021408
-      2 2 5.747801 list(~widehat(mu)[MAP]=='5.748')     1     2     2.4 5.747801
-      3 3 6.398534 list(~widehat(mu)[MAP]=='6.399')     1     3     3.4 6.398534
-        colour  fill size angle alpha family fontface lineheight hjust vjust
-      1  black white    3     0    NA               1        1.2   0.5   0.5
-      2  black white    3     0    NA               1        1.2   0.5   0.5
-      3  black white    3     0    NA               1        1.2   0.5   0.5
-        point.size segment.linetype segment.size segment.curvature segment.angle
-      1          1                4          0.5                 0            90
-      2          1                4          0.5                 0            90
-      3          1                4          0.5                 0            90
-        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
-      1           1           0.5           TRUE                   1           FALSE
-      2           1           0.5           TRUE                   1           FALSE
-      3           1           0.5           TRUE                   1           FALSE
+        x        y                     label PANEL group nudge_x  nudge_y colour
+      1 1 5.021408 widehat(mu)[MAP]=='5.021'     1     1     1.4 5.021408  black
+      2 2 5.747801 widehat(mu)[MAP]=='5.748'     1     2     2.4 5.747801  black
+      3 3 6.398534 widehat(mu)[MAP]=='6.399'     1     3     3.4 6.398534  black
+         fill size angle alpha family fontface lineheight hjust vjust point.size
+      1 white    3     0    NA               1        1.2   0.5   0.5          1
+      2 white    3     0    NA               1        1.2   0.5   0.5          1
+      3 white    3     0    NA               1        1.2   0.5   0.5          1
+        segment.linetype segment.size segment.curvature segment.angle segment.ncp
+      1                4          0.5                 0            90           1
+      2                4          0.5                 0            90           1
+      3                4          0.5                 0            90           1
+        segment.shape segment.square segment.squareShape segment.inflect
+      1           0.5           TRUE                   1           FALSE
+      2           0.5           TRUE                   1           FALSE
+      3           0.5           TRUE                   1           FALSE
         segment.debug
       1         FALSE
       2         FALSE
@@ -540,8 +540,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Student's t-test"), 
-          "; Comparisons shown: ", bold("all")))
+      expression(list("Pairwise test:" ~ bold("Student's t-test"), 
+          "Comparisons shown:" ~ bold("all")))
       
       $label
       [1] "expression"
@@ -563,32 +563,32 @@
       list(pb2$data[[6]], pb2$data[[7]])
     Output
       [[1]]
-        x        y                              label PANEL group nudge_x  nudge_y
-      1 1 116.2667 list(~widehat(mu)[mean]=='116.27')     1     1     1.4 116.2667
-      2 2 116.6944 list(~widehat(mu)[mean]=='116.69')     1     2     2.4 116.6944
-      3 3 102.3838 list(~widehat(mu)[mean]=='102.38')     1     3     3.4 102.3838
-        colour  fill size angle alpha family fontface lineheight hjust vjust
-      1  black white    3     0    NA               1        1.2   0.5   0.5
-      2  black white    3     0    NA               1        1.2   0.5   0.5
-      3  black white    3     0    NA               1        1.2   0.5   0.5
-        point.size segment.linetype segment.size segment.curvature segment.angle
-      1          1                4          0.5                 0            90
-      2          1                4          0.5                 0            90
-      3          1                4          0.5                 0            90
-        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
-      1           1           0.5           TRUE                   1           FALSE
-      2           1           0.5           TRUE                   1           FALSE
-      3           1           0.5           TRUE                   1           FALSE
+        x        y                       label PANEL group nudge_x  nudge_y colour
+      1 1 116.2667 widehat(mu)[mean]=='116.27'     1     1     1.4 116.2667  black
+      2 2 116.6944 widehat(mu)[mean]=='116.69'     1     2     2.4 116.6944  black
+      3 3 102.3838 widehat(mu)[mean]=='102.38'     1     3     3.4 102.3838  black
+         fill size angle alpha family fontface lineheight hjust vjust point.size
+      1 white    3     0    NA               1        1.2   0.5   0.5          1
+      2 white    3     0    NA               1        1.2   0.5   0.5          1
+      3 white    3     0    NA               1        1.2   0.5   0.5          1
+        segment.linetype segment.size segment.curvature segment.angle segment.ncp
+      1                4          0.5                 0            90           1
+      2                4          0.5                 0            90           1
+      3                4          0.5                 0            90           1
+        segment.shape segment.square segment.squareShape segment.inflect
+      1           0.5           TRUE                   1           FALSE
+      2           0.5           TRUE                   1           FALSE
+      3           0.5           TRUE                   1           FALSE
         segment.debug
       1         FALSE
       2         FALSE
       3         FALSE
       
       [[2]]
-        x xend       y    yend                              annotation     group
-      1 2    2 264.115 265.825 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
-      2 2    3 265.825 265.825 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
-      3 3    3 265.825 264.115 list(~italic(p)[Holm-corrected]==0.001) PG-13-R-1
+        x xend       y    yend                                 annotation     group
+      1 2    2 264.115 265.825 list(~italic(p)[Holm-corrected]==1.27e-03) PG-13-R-1
+      2 2    3 265.825 265.825 list(~italic(p)[Holm-corrected]==1.27e-03) PG-13-R-1
+      3 3    3 265.825 264.115 list(~italic(p)[Holm-corrected]==1.27e-03) PG-13-R-1
         flipped_aes PANEL shape colour textsize angle hjust vjust alpha family
       1       FALSE     1    19  black        3     0   0.5     0    NA       
       2       FALSE     1    19  black        3     0   0.5     0    NA       
@@ -620,8 +620,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Games-Howell test"), 
-          "; Comparisons shown: ", bold("only significant")))
+      expression(list("Pairwise test:" ~ bold("Games-Howell test"), 
+          "Comparisons shown:" ~ bold("only significant")))
       
       $label
       [1] "expression"
@@ -651,8 +651,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Games-Howell test"), 
-          "; Comparisons shown: ", bold("only significant")))
+      expression(list("Pairwise test:" ~ bold("Games-Howell test"), 
+          "Comparisons shown:" ~ bold("only significant")))
       
       $label
       [1] "expression"

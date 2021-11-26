@@ -309,9 +309,9 @@ pairwise_comparisons <- function(data,
       mutate(
         label = case_when(
           p.value.adjustment != "None" ~ paste0(
-            "list(~italic(p)[", p.value.adjustment, "-corrected]==", format_num(p.value, k, TRUE), ")"
+            "list(~italic(p)[", p.value.adjustment, "-corrected]==", format_value(p.value, k), ")"
           ),
-          TRUE ~ paste0("list(~italic(p)[uncorrected]==", format_num(p.value, k, TRUE), ")")
+          TRUE ~ paste0("list(~italic(p)[uncorrected]==", format_value(p.value, k), ")")
         )
       ) %>%
       ungroup()
@@ -381,22 +381,27 @@ p_adjust_text <- function(p.adjust.method) {
 
 pairwise_caption <- function(caption,
                              test.description,
+                             bf.message,
                              pairwise.display = "significant",
                              ...) {
-  # create expression
-  substitute(
-    atop(
-      displaystyle(top.text),
-      expr = paste("Pairwise test: ", bold(test), "; Comparisons shown: ", bold(display))
-    ),
-    env = list(
-      top.text = caption,
-      test = test.description,
-      display = case_when(
-        substr(pairwise.display, 1L, 1L) == "s" ~ "only significant",
-        substr(pairwise.display, 1L, 1L) == "n" ~ "only non-significant",
-        TRUE ~ "all"
-      )
-    )
+  # ' needs to be escaped inside glue
+  test <- sub("'", "\\'", test.description, fixed = TRUE)
+  display <- case_when(
+    substr(pairwise.display, 1L, 1L) == "s" ~ "only significant",
+    substr(pairwise.display, 1L, 1L) == "n" ~ "only non-significant",
+    TRUE ~ "all"
   )
+
+  # returned parsed glue expression
+  if (bf.message) {
+    parse(text = glue("atop(displaystyle({caption}),
+                    list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}')))"))
+  } else {
+    if (!is.null(caption)) {
+      parse(text = glue("atop(displaystyle('{caption}'),
+                    list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}')))"))
+    } else {
+      parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}'))"))
+    }
+  }
 }

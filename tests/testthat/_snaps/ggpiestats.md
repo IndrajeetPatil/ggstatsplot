@@ -67,10 +67,10 @@
       6     0   0.5   0.5     1               1        1.2
       
       [[1]][[3]]
-        y    x                                                              label
-      1 1 1.65 list(~chi['gof']^2~(1)==2.27, ~italic(p)=='0.132', ~italic(n)==11)
-      2 1 1.65  list(~chi['gof']^2~(1)==0.14, ~italic(p)=='0.705', ~italic(n)==7)
-      3 1 1.65 list(~chi['gof']^2~(1)==7.14, ~italic(p)=='0.008', ~italic(n)==14)
+        y    x                                                                 label
+      1 1 1.65     list(~chi['gof']^2~(1)==2.27, ~italic(p)=='0.13', ~italic(n)==11)
+      2 1 1.65      list(~chi['gof']^2~(1)==0.14, ~italic(p)=='0.71', ~italic(n)==7)
+      3 1 1.65 list(~chi['gof']^2~(1)==7.14, ~italic(p)=='7.53e-03', ~italic(n)==14)
         PANEL group ymax xmin xmax ymin colour size angle hjust vjust alpha family
       1     1    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
       2     2    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
@@ -166,7 +166,7 @@
       2 1 1.65
                                                                                label
       1 list(~chi['gof']^2~(1)==1028.62, ~italic(p)=='1.08e-225', ~italic(n)==1,490)
-      2          list(~chi['gof']^2~(1)==0.74, ~italic(p)=='0.388', ~italic(n)==711)
+      2           list(~chi['gof']^2~(1)==0.74, ~italic(p)=='0.39', ~italic(n)==711)
         PANEL group ymax xmin xmax ymin colour size angle hjust vjust alpha family
       1     1    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
       2     2    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
@@ -243,9 +243,9 @@
         y    x
       1 1 1.65
       2 1 1.65
-                                                                           label
-      1 list(~chi['gof']^2~(1)==569.62, ~italic(p)=='6.8e-126', ~italic(n)==880)
-      2  list(~chi['gof']^2~(1)==245.00, ~italic(p)=='3.2e-55', ~italic(n)==720)
+                                                                            label
+      1 list(~chi['gof']^2~(1)==569.62, ~italic(p)=='6.80e-126', ~italic(n)==880)
+      2  list(~chi['gof']^2~(1)==245.00, ~italic(p)=='3.20e-55', ~italic(n)==720)
         PANEL group ymax xmin xmax ymin colour size angle hjust vjust alpha family
       1     1    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       
       2     2    -1    1 1.65 1.65    0  black  2.8     0   0.5   0.5    NA       

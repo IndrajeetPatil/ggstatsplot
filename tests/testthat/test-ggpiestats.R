@@ -42,7 +42,7 @@ test_that(
     expect_snapshot(pb$data)
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_identical(pb$plot$labels$title, "mammalian sleep")
     expect_identical(pb$plot$labels$caption, p_cap)
     expect_null(pb$plot$labels$x, NULL)
@@ -120,7 +120,7 @@ test_that(
     expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_identical(pb$plot$labels$caption, p_cap)
   }
 )
@@ -162,7 +162,7 @@ test_that(
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
   }
 )
 
@@ -209,7 +209,7 @@ test_that(
 
     # checking plot labels
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_snapshot(pb$data[[3]])
   }
 )

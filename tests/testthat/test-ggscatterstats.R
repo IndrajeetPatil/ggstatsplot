@@ -54,7 +54,7 @@ test_that(
 
     # checking plot labels
     expect_identical(pb$plot$labels$caption, p_cap)
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
   }
 )
@@ -97,7 +97,7 @@ test_that(
       )$expression[[1]]
 
     # testing data and annotations
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
   }
 )
@@ -138,7 +138,7 @@ test_that(
     set.seed(123)
     expect_snapshot(pb$data[[1]])
 
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
   }
 )
@@ -173,7 +173,8 @@ test_that(
       data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
       x = sleep_total,
       y = sleep_cycle,
-      type = "bayes"
+      type = "bayes",
+      top.text = "source: ggplot2 package"
     )$expression[[1]]
 
     # check just the names and dims and not the actual values
@@ -181,7 +182,7 @@ test_that(
     expect_snapshot(purrr::map(pb$data, names))
     expect_snapshot(purrr::map(pb$data, dim))
 
-    expect_identical(p$labels$subtitle$expr, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
   }
 )
 

@@ -13,14 +13,14 @@
       4 HDLF   LDHF   3.37e- 1 Student's t-test Bonferroni        
       5 HDLF   LDLF   7.94e- 3 Student's t-test Bonferroni        
       6 LDHF   LDLF   1.33e- 8 Student's t-test Bonferroni        
-        label                                           
-        <chr>                                           
-      1 list(~italic(p)[Bonferroni-corrected]==0.003)   
-      2 list(~italic(p)[Bonferroni-corrected]==0.421)   
-      3 list(~italic(p)[Bonferroni-corrected]==3.95e-12)
-      4 list(~italic(p)[Bonferroni-corrected]==0.337)   
-      5 list(~italic(p)[Bonferroni-corrected]==0.008)   
-      6 list(~italic(p)[Bonferroni-corrected]==1.33e-08)
+        label                                            
+        <chr>                                            
+      1 list(~italic(p)[Bonferroni-corrected]==0.003)    
+      2 list(~italic(p)[Bonferroni-corrected]==0.421)    
+      3 list(~italic(p)[Bonferroni-corrected]==3.950e-12)
+      4 list(~italic(p)[Bonferroni-corrected]==0.337)    
+      5 list(~italic(p)[Bonferroni-corrected]==0.008)    
+      6 list(~italic(p)[Bonferroni-corrected]==1.331e-08)
       
       [[2]]
       # A tibble: 6 x 11
@@ -48,14 +48,14 @@
       4 t            none         Durbin-Conover test BY                
       5 t            none         Durbin-Conover test BY                
       6 t            none         Durbin-Conover test BY                
-        label                                   
-        <chr>                                   
-      1 list(~italic(p)[BY-corrected]==1.44e-05)
-      2 list(~italic(p)[BY-corrected]==0.045)   
-      3 list(~italic(p)[BY-corrected]==5.45e-13)
-      4 list(~italic(p)[BY-corrected]==0.050)   
-      5 list(~italic(p)[BY-corrected]==0.005)   
-      6 list(~italic(p)[BY-corrected]==4.64e-07)
+        label                                    
+        <chr>                                    
+      1 list(~italic(p)[BY-corrected]==1.436e-05)
+      2 list(~italic(p)[BY-corrected]==0.045)    
+      3 list(~italic(p)[BY-corrected]==5.447e-13)
+      4 list(~italic(p)[BY-corrected]==0.050)    
+      5 list(~italic(p)[BY-corrected]==0.005)    
+      6 list(~italic(p)[BY-corrected]==4.635e-07)
       
       [[3]]
       # A tibble: 6 x 11
@@ -75,14 +75,14 @@
       4 Yuen's trimmed means test Hommel            
       5 Yuen's trimmed means test Hommel            
       6 Yuen's trimmed means test Hommel            
-        label                                       
-        <chr>                                       
-      1 list(~italic(p)[Hommel-corrected]==0.010)   
-      2 list(~italic(p)[Hommel-corrected]==0.052)   
-      3 list(~italic(p)[Hommel-corrected]==5.64e-07)
-      4 list(~italic(p)[Hommel-corrected]==0.052)   
-      5 list(~italic(p)[Hommel-corrected]==0.020)   
-      6 list(~italic(p)[Hommel-corrected]==1.02e-04)
+        label                                        
+        <chr>                                        
+      1 list(~italic(p)[Hommel-corrected]==0.010)    
+      2 list(~italic(p)[Hommel-corrected]==0.052)    
+      3 list(~italic(p)[Hommel-corrected]==5.642e-07)
+      4 list(~italic(p)[Hommel-corrected]==0.052)    
+      5 list(~italic(p)[Hommel-corrected]==0.020)    
+      6 list(~italic(p)[Hommel-corrected]==1.017e-04)
       
 
 # `pairwise_comparisons()` works for within-subjects design - without NAs
@@ -97,11 +97,11 @@
       1 Wine A Wine B 0.732    Student's t-test None              
       2 Wine A Wine C 0.0142   Student's t-test None              
       3 Wine B Wine C 0.000675 Student's t-test None              
-        label                                  
-        <chr>                                  
-      1 list(~italic(p)[uncorrected]==0.732)   
-      2 list(~italic(p)[uncorrected]==0.014)   
-      3 list(~italic(p)[uncorrected]==6.75e-04)
+        label                                   
+        <chr>                                   
+      1 list(~italic(p)[uncorrected]==0.732)    
+      2 list(~italic(p)[uncorrected]==0.014)    
+      3 list(~italic(p)[uncorrected]==6.754e-04)
       
       [[2]]
       # A tibble: 3 x 11
@@ -120,11 +120,11 @@
       1 t            none         Durbin-Conover test None              
       2 t            none         Durbin-Conover test None              
       3 t            none         Durbin-Conover test None              
-        label                                  
-        <chr>                                  
-      1 list(~italic(p)[uncorrected]==0.301)   
-      2 list(~italic(p)[uncorrected]==6.91e-04)
-      3 list(~italic(p)[uncorrected]==0.012)   
+        label                                   
+        <chr>                                   
+      1 list(~italic(p)[uncorrected]==0.301)    
+      2 list(~italic(p)[uncorrected]==6.915e-04)
+      3 list(~italic(p)[uncorrected]==0.012)    
       
       [[3]]
       # A tibble: 3 x 11

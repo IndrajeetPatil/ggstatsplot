@@ -54,7 +54,7 @@ test_that(
       )
     )
 
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
   }
 )
 
@@ -125,8 +125,8 @@ test_that(
     expect_identical(
       pb1$data[[6]]$label,
       c(
-        "list(~widehat(mu)[mean]=='0.98')",
-        "list(~widehat(mu)[mean]=='1.39')"
+        "widehat(mu)[mean]=='0.98'",
+        "widehat(mu)[mean]=='1.39'"
       )
     )
   }

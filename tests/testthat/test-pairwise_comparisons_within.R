@@ -173,6 +173,7 @@ test_that(
     )
 
     # columns should be same no matter the test
-    expect_equal(as.data.frame(df1), as.data.frame(df2))
+    expect_equal(dplyr::select(df1, -expression), dplyr::select(df2, -expression))
+    expect_equal(dplyr::select(df1, expression), dplyr::select(df2, expression), ignore_attr = TRUE)
   }
 )

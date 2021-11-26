@@ -52,7 +52,7 @@ test_that(
       )$expression[[1]]
 
     # testing overall call
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_identical(pb$plot$labels$title, "starwars: character heights")
     expect_identical(pb$plot$labels$x, "character height")
     expect_identical(pb$plot$labels$caption, p_cap)
@@ -183,7 +183,7 @@ test_that(
     )$expression[[1]]
 
     # testing labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle)
+    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_null(pb$plot$labels$caption, NULL)
     expect_identical(pb$plot$labels$y, "count")
 
