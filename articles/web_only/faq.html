@@ -91,7 +91,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>frequently asked questions (FAQ)</h1>
                         <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2021-11-22</h4>
+            <h4 data-toc-skip class="date">2021-11-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/faq.Rmd" class="external-link"><code>vignettes/web_only/faq.Rmd</code></a></small>
       <div class="d-none name"><code>faq.Rmd</code></div>
@@ -142,16 +142,16 @@ A BibTeX entry for LaTeX users is
 
 <span class="co">## extracting detailed expression</span>
 <span class="op">(</span><span class="va">res_expr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/oneway_anova.html" class="external-link">oneway_anova</a></span><span class="op">(</span><span class="va">iris</span>, <span class="va">Species</span>, <span class="va">Sepal.Length</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 13</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 14</span></span>
 <span class="co">#&gt;   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">df.error</span>  <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>                    <span style="font-weight: bold;">effectsize</span></span>
 <span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span>      119.     2      147 1.67<span style="color: #949494;">e</span><span style="color: #BB0000;">-31</span> One-way analysis of means Omega2    </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span></span>
-<span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.</span>612       <span style="color: #949494;">0.</span>95    <span style="color: #949494;">0.</span>534         1 ncp         F                </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">expression</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span>
+<span class="co">#&gt;   <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span></span>
+<span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.</span>612       <span style="color: #949494;">0.</span>95    <span style="color: #949494;">0.</span>534         1 ncp         F                   150</span>
+<span class="co">#&gt;   <span style="font-weight: bold;">expression</span>  </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;expression&gt;</span></span>
 
 <span class="co">## adapting the details to your liking</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">iris</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Species</span>, y <span class="op">=</span> <span class="va">Sepal.Length</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -362,9 +362,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none         Games-Howell test Holm              </span>
 <span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                     </span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Holm-corrected]==0.008)   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Holm-corrected]==8.31e-03)</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[Holm-corrected]==1.24e-05)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Holm-corrected]==0.008)</span></code></pre></div>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Holm-corrected]==8.31e-03)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="how-can-i-change-annotation-in-pairwise-comparisons">13. How can I change annotation in pairwise comparisons?<a class="anchor" aria-label="anchor" href="#how-can-i-change-annotation-in-pairwise-comparisons"></a>
@@ -403,9 +403,9 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none         Games-Howell test Holm              </span>
 <span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                      <span style="font-weight: bold;">groups</span>    <span style="font-weight: bold;">asterisk_label</span></span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Holm-corrected]==0.008)    <span style="color: #949494;">&lt;chr [2]&gt;</span> **            </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Holm-corrected]==8.31e-03) <span style="color: #949494;">&lt;chr [2]&gt;</span> **            </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[Holm-corrected]==1.24e-05) <span style="color: #949494;">&lt;chr [2]&gt;</span> ***           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Holm-corrected]==0.008)    <span style="color: #949494;">&lt;chr [2]&gt;</span> **</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Holm-corrected]==8.31e-03) <span style="color: #949494;">&lt;chr [2]&gt;</span> **</span>
 
 <span class="co">## adding pairwise comparisons using `ggsignif`</span>
 <span class="va">p</span> <span class="op">+</span>
@@ -433,16 +433,25 @@ A BibTeX entry for LaTeX users is
 <span class="co">## dataframe with results</span>
 <span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>
 <span class="co">#&gt; $subtitle_data</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 12</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 13</span></span>
 <span class="co">#&gt;   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>                     <span style="font-weight: bold;">effectsize</span>        <span style="font-weight: bold;">estimate</span></span>
 <span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span>      8.74     2  <span style="color: #949494;">0.0</span>12<span style="text-decoration: underline;">6</span> Pearson's Chi-squared test Cramer's V (adj.)    <span style="color: #949494;">0.</span>464</span>
-<span class="co">#&gt;   <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">expression</span></span>
-<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       <span style="color: #949494;">0.</span>95        <span style="color: #949494;">0</span>         1 ncp         chisq             <span style="color: #949494;">&lt;language&gt;</span></span>
+<span class="co">#&gt;   <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>  </span>
+<span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       <span style="color: #949494;">0.</span>95        <span style="color: #949494;">0</span>         1 ncp         chisq                32 <span style="color: #949494;">&lt;expression&gt;</span></span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $caption_data</span>
-<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 14</span></span>
+<span class="co">#&gt;   <span style="font-weight: bold;">term</span>  <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">effectsize</span> <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span></span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Ratio       <span style="color: #949494;">0.</span>95 Cramers_v     <span style="color: #949494;">0.</span>478    <span style="color: #949494;">0.</span>221     <span style="color: #949494;">0.</span>725</span>
+<span class="co">#&gt;   <span style="font-weight: bold;">prior.distribution</span>      <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span>  <span style="font-weight: bold;">bf10</span></span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> independent multinomial              <span style="color: #949494;">0</span>           1  16.8</span>
+<span class="co">#&gt;   <span style="font-weight: bold;">method</span>                              <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>  </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Bayesian contingency table analysis       2.82    32 <span style="color: #949494;">&lt;expression&gt;</span></span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $pairwise_comparisons_data</span>
 <span class="co">#&gt; NULL</span>
@@ -470,16 +479,16 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Chi-squared test for given probabilities</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chi-squared test for given probabilities</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Chi-squared test for given probabilities</span>
-<span class="co">#&gt;   <span style="font-weight: bold;">.label</span>                                                            </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~chi['gof']^2~(1)==7.14, ~italic(p)=='0.008', ~italic(n)==14)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~chi['gof']^2~(1)==0.14, ~italic(p)=='0.705', ~italic(n)==7) </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~chi['gof']^2~(1)==2.27, ~italic(p)=='0.132', ~italic(n)==11)</span>
-<span class="co">#&gt;   <span style="font-weight: bold;">.p.label</span>                 </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)=='0.008')</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)=='0.705')</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)=='0.132')</span></code></pre></div>
+<span class="co">#&gt;   <span style="font-weight: bold;">.label</span>                                                               </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~chi['gof']^2~(1)==7.14, ~italic(p)=='7.53e-03', ~italic(n)==14)</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~chi['gof']^2~(1)==0.14, ~italic(p)=='0.71', ~italic(n)==7)     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~chi['gof']^2~(1)==2.27, ~italic(p)=='0.13', ~italic(n)==11)    </span>
+<span class="co">#&gt;   <span style="font-weight: bold;">.p.label</span>                    </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)=='7.53e-03')</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)=='0.71')    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)=='0.13')</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="how-can-i-remove-a-particular-geom-layer-from-the-plot">15. How can I remove a particular <code>geom</code> layer from the plot?<a class="anchor" aria-label="anchor" href="#how-can-i-remove-a-particular-geom-layer-from-the-plot"></a>
@@ -613,20 +622,19 @@ A BibTeX entry for LaTeX users is
   <span class="fu">parameters</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/standardize_names.html" class="external-link">standardize_names</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"broom"</span><span class="op">)</span>
 
 <span class="co">## creating expression out of these results</span>
-<span class="va">expr_results</span> <span class="op">&lt;-</span>
-  <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/expr_template.html" class="external-link">expr_template</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">results</span>,
-    no.parameters <span class="op">=</span> <span class="fl">0L</span>,
-    statistic.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span>,
-    effsize.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">widehat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"Kendall"</span><span class="op">]</span><span class="op">)</span>,
-    n <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">n.obs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="va">df_results</span> <span class="op">&lt;-</span> <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/add_expression_col.html" class="external-link">add_expression_col</a></span><span class="op">(</span>
+    data           <span class="op">=</span> <span class="va">results</span>,
+    no.parameters  <span class="op">=</span> <span class="fl">0L</span>,
+    statistic.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+    effsize.text   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">widehat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"Kendall"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
+    n              <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">n.obs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
   <span class="op">)</span>
 
 <span class="co">## plot (overriding defaults and using custom expression)</span>
 <span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
   <span class="va">df</span>, <span class="va">wt</span>, <span class="va">mpg</span>,
   results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,
-  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="va">expr_results</span><span class="op">)</span><span class="op">)</span>
+  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="va">df_results</span><span class="op">$</span><span class="va">expression</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="faq_files/figure-html/custom_test-1.png" width="100%"></p>
 </div>
@@ -705,11 +713,11 @@ A BibTeX entry for LaTeX users is
 <p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </div>
- <div class="col-md-3" id="pkgdown-sidebar">
-        <nav id="toc"><h2>On this page</h2>
+  <div class="col-md-3" id="pkgdown-sidebar">
+    <nav id="toc"><h2>On this page</h2>
     </nav>
 </div>
-
+  
 </div>
 
 
