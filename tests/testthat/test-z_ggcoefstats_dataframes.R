@@ -218,6 +218,6 @@ test_that(
         )
       )
 
-    expect_snapshot(as.character(meta_info))
+    expect_snapshot(as.character(meta_info), variant = .Platform$OS.type)
   }
 )
