@@ -29,7 +29,7 @@
       
       [[3]]
            y x                         label PANEL group colour size angle hjust
-      1 1.05 2     list(~italic(p)=='0.388')     1     2  black  2.8     0   0.5
+      1 1.05 2      list(~italic(p)=='0.39')     1     2  black  2.8     0   0.5
       2 1.05 1 list(~italic(p)=='1.08e-225')     1     1  black  2.8     0   0.5
         vjust alpha family fontface lineheight
       1   0.5    NA               1        1.2
@@ -111,8 +111,8 @@
       [[1]][[3]]
            y x                        label PANEL group colour size angle hjust vjust
       1 1.05 3 list(~italic(p)=='1.83e-04')     1     3  black  2.8     0   0.5   0.5
-      2 1.05 2    list(~italic(p)=='0.705')     1     2  black  2.8     0   0.5   0.5
-      3 1.05 1    list(~italic(p)=='0.007')     1     1  black  2.8     0   0.5   0.5
+      2 1.05 2     list(~italic(p)=='0.71')     1     2  black  2.8     0   0.5   0.5
+      3 1.05 1 list(~italic(p)=='6.66e-03')     1     1  black  2.8     0   0.5   0.5
         alpha family fontface lineheight
       1    NA               1        1.2
       2    NA               1        1.2
@@ -161,8 +161,8 @@
       [[2]][[3]]
            y x                        label PANEL group colour size angle hjust vjust
       1 1.05 3 list(~italic(p)=='1.83e-04')     1     3  black  2.8     0   0.5   0.5
-      2 1.05 2    list(~italic(p)=='0.705')     1     2  black  2.8     0   0.5   0.5
-      3 1.05 1    list(~italic(p)=='0.007')     1     1  black  2.8     0   0.5   0.5
+      2 1.05 2     list(~italic(p)=='0.71')     1     2  black  2.8     0   0.5   0.5
+      3 1.05 1 list(~italic(p)=='6.66e-03')     1     1  black  2.8     0   0.5   0.5
         alpha family fontface lineheight
       1    NA               1        1.2
       2    NA               1        1.2

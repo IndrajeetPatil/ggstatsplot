@@ -313,22 +313,22 @@
       3 3 5.459091     1     3    19 darkred    5   NA    NA    0.5
       
       [[6]]
-        x        y                              label PANEL group nudge_x  nudge_y
-      1 1 5.543182 list(~widehat(mu)[mean]=='5.5432')     1     1     1.4 5.543182
-      2 2 5.534091 list(~widehat(mu)[mean]=='5.5341')     1     2     2.4 5.534091
-      3 3 5.459091 list(~widehat(mu)[mean]=='5.4591')     1     3     3.4 5.459091
-        colour  fill size angle alpha family fontface lineheight hjust vjust
-      1  black white    3     0    NA               1        1.2   0.5   0.5
-      2  black white    3     0    NA               1        1.2   0.5   0.5
-      3  black white    3     0    NA               1        1.2   0.5   0.5
-        point.size segment.linetype segment.size segment.curvature segment.angle
-      1          1                4          0.5                 0            90
-      2          1                4          0.5                 0            90
-      3          1                4          0.5                 0            90
-        segment.ncp segment.shape segment.square segment.squareShape segment.inflect
-      1           1           0.5           TRUE                   1           FALSE
-      2           1           0.5           TRUE                   1           FALSE
-      3           1           0.5           TRUE                   1           FALSE
+        x        y                       label PANEL group nudge_x  nudge_y colour
+      1 1 5.543182 widehat(mu)[mean]=='5.5432'     1     1     1.4 5.543182  black
+      2 2 5.534091 widehat(mu)[mean]=='5.5341'     1     2     2.4 5.534091  black
+      3 3 5.459091 widehat(mu)[mean]=='5.4591'     1     3     3.4 5.459091  black
+         fill size angle alpha family fontface lineheight hjust vjust point.size
+      1 white    3     0    NA               1        1.2   0.5   0.5          1
+      2 white    3     0    NA               1        1.2   0.5   0.5          1
+      3 white    3     0    NA               1        1.2   0.5   0.5          1
+        segment.linetype segment.size segment.curvature segment.angle segment.ncp
+      1                4          0.5                 0            90           1
+      2                4          0.5                 0            90           1
+      3                4          0.5                 0            90           1
+        segment.shape segment.square segment.squareShape segment.inflect
+      1           0.5           TRUE                   1           FALSE
+      2           0.5           TRUE                   1           FALSE
+      3           0.5           TRUE                   1           FALSE
         segment.debug
       1         FALSE
       2         FALSE
@@ -380,8 +380,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Durbin-Conover test"), 
-          "; Comparisons shown: ", bold("only significant")))
+      expression(list("Pairwise test:" ~ bold("Durbin-Conover test"), 
+          "Comparisons shown:" ~ bold("only significant")))
       
       $group
       [1] ".rowid"
@@ -411,8 +411,8 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Yuen's trimmed means test"), 
-          "; Comparisons shown: ", bold("only non-significant")))
+      expression(list("Pairwise test:" ~ bold("Yuen's trimmed means test"), 
+          "Comparisons shown:" ~ bold("only non-significant")))
       
       $group
       [1] ".rowid"
@@ -505,8 +505,7 @@
       NULL
       
       $caption
-      atop(displaystyle(NULL), expr = paste("Pairwise test: ", bold("Student's t-test"), 
-          "; Comparisons shown: ", bold("only significant")))
+      expression()
       
       $group
       [1] ".rowid"

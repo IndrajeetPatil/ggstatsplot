@@ -58,14 +58,14 @@ if (require("afex")) {
       expect_equal(ggplot2::layer_scales(p1)$y$range$range, c(0L, 10L))
 
       # checking x-axis sample size labels
-      expect_identical(
+      expect_equal(
         ggplot2::layer_scales(p1)$x$labels,
         c("HDHF\n(n = 27)", "HDLF\n(n = 27)")
       )
 
       # checking plot labels
       expect_snapshot(within(pb1$plot$labels, rm(subtitle, caption)))
-      expect_identical(p1$labels$subtitle, p1_subtitle)
+      expect_equal(p1$labels$subtitle, p1_subtitle)
     }
   )
 
@@ -127,7 +127,7 @@ if (require("afex")) {
         )
 
         # checking x-axis sample size labels
-        expect_identical(
+        expect_equal(
           ggplot2::layer_scales(p1)$x$labels,
           c("Wine A\n(n = 22)", "Wine B\n(n = 22)", "Wine C\n(n = 22)")
         )
@@ -135,7 +135,7 @@ if (require("afex")) {
         # checking plot labels
         expect_snapshot(within(pb1$plot$labels, rm(subtitle, caption)))
 
-        expect_identical(p1$labels$subtitle, p1_subtitle)
+        expect_equal(p1$labels$subtitle, p1_subtitle)
       }
     }
   )
@@ -249,10 +249,10 @@ if (require("afex")) {
         pb4 <- ggplot2::ggplot_build(p4)
 
         # checking subtitle outputs
-        expect_identical(p1$labels$subtitle, p1_subtitle)
-        expect_identical(p2$labels$subtitle, p2_subtitle)
-        expect_identical(p3$labels$subtitle, p3_subtitle)
-        expect_identical(p4$labels$subtitle, p4_subtitle)
+        expect_equal(p1$labels$subtitle, p1_subtitle)
+        expect_equal(p2$labels$subtitle, p2_subtitle)
+        expect_equal(p3$labels$subtitle, p3_subtitle)
+        expect_equal(p4$labels$subtitle, p4_subtitle)
 
         # testing captions
         expect_snapshot(within(pb1$plot$labels, rm(subtitle)))

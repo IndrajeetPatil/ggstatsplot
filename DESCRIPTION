@@ -30,6 +30,7 @@ Imports:
     ggplot2,
     ggrepel,
     ggsignif,
+    glue,
     insight (>= 0.14.5),
     paletteer,
     parameters (>= 0.15.0),

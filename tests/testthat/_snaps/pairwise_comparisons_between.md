@@ -13,14 +13,14 @@
       4 herbi   insecti   1     Student's t-test Bonferroni        
       5 herbi   omni      0.979 Student's t-test Bonferroni        
       6 insecti omni      1     Student's t-test Bonferroni        
-        label                                        
-        <chr>                                        
-      1 list(~italic(p)[Bonferroni-corrected]==1.000)
-      2 list(~italic(p)[Bonferroni-corrected]==1.000)
-      3 list(~italic(p)[Bonferroni-corrected]==1.000)
-      4 list(~italic(p)[Bonferroni-corrected]==1.000)
-      5 list(~italic(p)[Bonferroni-corrected]==0.979)
-      6 list(~italic(p)[Bonferroni-corrected]==1.000)
+        label                                       
+        <chr>                                       
+      1 list(~italic(p)[Bonferroni-corrected]==1.00)
+      2 list(~italic(p)[Bonferroni-corrected]==1.00)
+      3 list(~italic(p)[Bonferroni-corrected]==1.00)
+      4 list(~italic(p)[Bonferroni-corrected]==1.00)
+      5 list(~italic(p)[Bonferroni-corrected]==0.98)
+      6 list(~italic(p)[Bonferroni-corrected]==1.00)
       
       [[2]]
       # A tibble: 6 x 11
@@ -40,14 +40,14 @@
       4 none         Games-Howell test Bonferroni        
       5 none         Games-Howell test Bonferroni        
       6 none         Games-Howell test Bonferroni        
-        label                                        
-        <chr>                                        
-      1 list(~italic(p)[Bonferroni-corrected]==1.000)
-      2 list(~italic(p)[Bonferroni-corrected]==1.000)
-      3 list(~italic(p)[Bonferroni-corrected]==1.000)
-      4 list(~italic(p)[Bonferroni-corrected]==1.000)
-      5 list(~italic(p)[Bonferroni-corrected]==1.000)
-      6 list(~italic(p)[Bonferroni-corrected]==1.000)
+        label                                       
+        <chr>                                       
+      1 list(~italic(p)[Bonferroni-corrected]==1.00)
+      2 list(~italic(p)[Bonferroni-corrected]==1.00)
+      3 list(~italic(p)[Bonferroni-corrected]==1.00)
+      4 list(~italic(p)[Bonferroni-corrected]==1.00)
+      5 list(~italic(p)[Bonferroni-corrected]==1.00)
+      6 list(~italic(p)[Bonferroni-corrected]==1.00)
       
       [[3]]
       # A tibble: 6 x 11
@@ -67,14 +67,14 @@
       4 z            none         Dunn test    None              
       5 z            none         Dunn test    None              
       6 z            none         Dunn test    None              
-        label                               
-        <chr>                               
-      1 list(~italic(p)[uncorrected]==0.561)
-      2 list(~italic(p)[uncorrected]==0.060)
-      3 list(~italic(p)[uncorrected]==0.254)
-      4 list(~italic(p)[uncorrected]==0.102)
-      5 list(~italic(p)[uncorrected]==0.474)
-      6 list(~italic(p)[uncorrected]==0.254)
+        label                              
+        <chr>                              
+      1 list(~italic(p)[uncorrected]==0.56)
+      2 list(~italic(p)[uncorrected]==0.06)
+      3 list(~italic(p)[uncorrected]==0.25)
+      4 list(~italic(p)[uncorrected]==0.10)
+      5 list(~italic(p)[uncorrected]==0.47)
+      6 list(~italic(p)[uncorrected]==0.25)
       
       [[4]]
       # A tibble: 6 x 10
@@ -94,14 +94,14 @@
       4 Yuen's trimmed means test FDR               
       5 Yuen's trimmed means test FDR               
       6 Yuen's trimmed means test FDR               
-        label                                 
-        <chr>                                 
-      1 list(~italic(p)[FDR-corrected]==0.790)
-      2 list(~italic(p)[FDR-corrected]==0.552)
-      3 list(~italic(p)[FDR-corrected]==0.898)
-      4 list(~italic(p)[FDR-corrected]==0.552)
-      5 list(~italic(p)[FDR-corrected]==0.790)
-      6 list(~italic(p)[FDR-corrected]==0.552)
+        label                                
+        <chr>                                
+      1 list(~italic(p)[FDR-corrected]==0.79)
+      2 list(~italic(p)[FDR-corrected]==0.55)
+      3 list(~italic(p)[FDR-corrected]==0.90)
+      4 list(~italic(p)[FDR-corrected]==0.55)
+      5 list(~italic(p)[FDR-corrected]==0.79)
+      6 list(~italic(p)[FDR-corrected]==0.55)
       
       [[5]]
       # A tibble: 3 x 6
@@ -110,10 +110,26 @@
       1 PG     PG-13  0.316   Student's t-test Holm              
       2 PG     R      0.00283 Student's t-test Holm              
       3 PG-13  R      0.00310 Student's t-test Holm              
-        label                                  
-        <chr>                                  
-      1 list(~italic(p)[Holm-corrected]==0.316)
-      2 list(~italic(p)[Holm-corrected]==0.003)
-      3 list(~italic(p)[Holm-corrected]==0.003)
+        label                                     
+        <chr>                                     
+      1 list(~italic(p)[Holm-corrected]==0.32)    
+      2 list(~italic(p)[Holm-corrected]==2.83e-03)
+      3 list(~italic(p)[Holm-corrected]==3.10e-03)
       
+
+# dropped levels are not included
+
+    Code
+      df2$label
+    Output
+      [1] "list(~italic(p)[uncorrected]==0.87)"
+
+# data without NAs
+
+    Code
+      df$label
+    Output
+      [1] "list(~italic(p)[FDR-corrected]==1.32e-15)"
+      [2] "list(~italic(p)[FDR-corrected]==6.64e-32)"
+      [3] "list(~italic(p)[FDR-corrected]==2.77e-09)"
 

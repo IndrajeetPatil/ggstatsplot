@@ -188,9 +188,9 @@ library(ggstatsplot)
 
 ## plot
 ggbetweenstats(
-  data = iris,
-  x = Species,
-  y = Sepal.Length,
+  data  = iris,
+  x     = Species,
+  y     = Sepal.Length,
   title = "Distribution of sepal length across Iris species"
 )
 ```
@@ -216,22 +216,22 @@ set.seed(123)
 
 ## plot
 grouped_ggbetweenstats(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x = mpaa,
-  y = length,
-  grouping.var = genre, ## grouping variable
-  outlier.tagging = TRUE, ## whether outliers need to be tagged
-  outlier.label = title, ## variable to be used for tagging outliers
-  outlier.coef = 2,
-  ggsignif.args = list(textsize = 4, tip_length = 0.01),
-  p.adjust.method = "bonferroni", ## method for adjusting p-values for multiple comparisons
+  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                = mpaa,
+  y                = length,
+  grouping.var     = genre, ## grouping variable
+  outlier.tagging  = TRUE, ## whether outliers need to be tagged
+  outlier.label    = title, ## variable to be used for tagging outliers
+  outlier.coef     = 2,
+  ggsignif.args    = list(textsize = 4, tip_length = 0.01),
+  p.adjust.method  = "bonferroni", ## method for adjusting p-values for multiple comparisons
   ## adding new components to `{ggstatsplot}` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
-  caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
-  palette = "default_jama",
-  package = "ggsci",
-  plotgrid.args = list(nrow = 1),
-  annotation.args = list(title = "Differences in movie length by mpaa ratings for different genres")
+  caption          = "Source: IMDb (Internet Movie Database)",
+  palette          = "default_jama",
+  package          = "ggsci",
+  plotgrid.args    = list(nrow = 1),
+  annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
 )
 ```
 
@@ -317,10 +317,10 @@ library(afex) ## to run anova
 
 ## plot
 ggwithinstats(
-  data = WineTasting,
-  x = Wine,
-  y = Taste,
-  title = "Wine tasting",
+  data    = WineTasting,
+  x       = Wine,
+  y       = Taste,
+  title   = "Wine tasting",
   caption = "Data source: `WRS2` R package",
   ggtheme = ggthemes::theme_fivethirtyeight()
 )
@@ -355,19 +355,15 @@ set.seed(123)
 
 ## plot
 grouped_ggwithinstats(
-  data = dplyr::filter(
-    bugs_long,
-    region %in% c("Europe", "North America"),
-    condition %in% c("LDLF", "LDHF")
-  ),
-  x = condition,
-  y = desire,
-  type = "np", ## non-parametric statistics
-  xlab = "Condition",
-  ylab = "Desire to kill an artrhopod",
-  grouping.var = region,
+  data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
+  x               = condition,
+  y               = desire,
+  type            = "np", ## non-parametric statistics
+  xlab            = "Condition",
+  ylab            = "Desire to kill an artrhopod",
+  grouping.var    = region,
   outlier.tagging = TRUE,
-  outlier.label = education
+  outlier.label   = education
 )
 ```
 
@@ -447,13 +443,13 @@ set.seed(123)
 
 ## plot
 gghistostats(
-  data = ggplot2::msleep, ## dataframe from which variable is to be taken
-  x = awake, ## numeric variable whose distribution is of interest
-  title = "Amount of time spent awake", ## title for the plot
-  caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
+  data       = ggplot2::msleep, ## dataframe from which variable is to be taken
+  x          = awake, ## numeric variable whose distribution is of interest
+  title      = "Amount of time spent awake", ## title for the plot
+  caption    = "Source: Mammalian sleep data set",
   test.value = 12, ## default value is 0
-  binwidth = 1, ## binwidth value (experiment)
-  ggtheme = hrbrthemes::theme_ipsum_tw()
+  binwidth   = 1, ## binwidth value (experiment)
+  ggtheme    = hrbrthemes::theme_ipsum_tw()
 )
 ```
 
@@ -469,25 +465,25 @@ gghistostats(
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r gghistostats2, fig.height=6, fig.width=10}
+```{r gghistostats2, fig.height=6, fig.width=12}
 ## for reproducibility
 set.seed(123)
 
 ## plot
 grouped_gghistostats(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x = budget,
-  test.value = 50,
-  type = "nonparametric",
-  xlab = "Movies budget (in million US$)",
-  grouping.var = genre, ## grouping variable
-  normal.curve = TRUE, ## superimpose a normal distribution curve
+  data              = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                 = budget,
+  test.value        = 50,
+  type              = "nonparametric",
+  xlab              = "Movies budget (in million US$)",
+  grouping.var      = genre, ## grouping variable
+  normal.curve      = TRUE, ## superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
-  ggtheme = ggthemes::theme_tufte(),
+  ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
-  ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
-  plotgrid.args = list(nrow = 1),
-  annotation.args = list(title = "Movies budgets for different genres")
+  ggplot.component  = ggplot2::labs(caption = "Source: IMDB.com"),
+  plotgrid.args     = list(nrow = 1),
+  annotation.args   = list(title = "Movies budgets for different genres")
 )
 ```
 
@@ -543,19 +539,14 @@ set.seed(123)
 
 ## plot
 ggdotplotstats(
-  data = dplyr::filter(gapminder::gapminder, continent == "Asia"),
-  y = country,
-  x = lifeExp,
+  data       = dplyr::filter(gapminder::gapminder, continent == "Asia"),
+  y          = country,
+  x          = lifeExp,
   test.value = 55,
-  type = "robust",
-  title = "Distribution of life expectancy in Asian continent",
-  xlab = "Life expectancy",
-  caption = substitute(
-    paste(
-      italic("Source"),
-      ": Gapminder dataset from https://www.gapminder.org/"
-    )
-  )
+  type       = "robust",
+  title      = "Distribution of life expectancy in Asian continent",
+  xlab       = "Life expectancy",
+  caption    = "Source: Gapminder dataset from https://www.gapminder.org/"
 )
 ```
 
@@ -577,15 +568,15 @@ set.seed(123)
 
 ## plot
 grouped_ggdotplotstats(
-  data = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
-  x = cty,
-  y = manufacturer,
-  type = "bayes", ## Bayesian test
-  xlab = "city miles per gallon",
-  ylab = "car manufacturer",
-  grouping.var = cyl, ## grouping variable
-  test.value = 15.5,
-  point.args = list(color = "red", size = 5, shape = 13),
+  data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
+  x               = cty,
+  y               = manufacturer,
+  type            = "bayes", ## Bayesian test
+  xlab            = "city miles per gallon",
+  ylab            = "car manufacturer",
+  grouping.var    = cyl, ## grouping variable
+  test.value      = 15.5,
+  point.args      = list(color = "red", size = 5, shape = 13),
   annotation.args = list(title = "Fuel economy data")
 )
 ```
@@ -633,11 +624,11 @@ axes and results from statistical tests in the subtitle:
 
 ```{r ggscatterstats1, fig.height=6}
 ggscatterstats(
-  data = ggplot2::msleep,
-  x = sleep_rem,
-  y = awake,
-  xlab = "REM sleep (in hours)",
-  ylab = "Amount of time spent awake (in hours)",
+  data  = ggplot2::msleep,
+  x     = sleep_rem,
+  y     = awake,
+  xlab  = "REM sleep (in hours)",
+  ylab  = "Amount of time spent awake (in hours)",
   title = "Understanding mammalian sleep"
 )
 ```
@@ -654,25 +645,23 @@ ggscatterstats(
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
 
-```{r ggscatterstats2, fig.height=6, fig.width=14}
+```{r ggscatterstats2, fig.height=8, fig.width=14}
 ## for reproducibility
 set.seed(123)
 
 ## plot
 grouped_ggscatterstats(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x = rating,
-  y = length,
-  grouping.var = genre, ## grouping variable
-  label.var = title,
+  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                = rating,
+  y                = length,
+  grouping.var     = genre, ## grouping variable
+  label.var        = title,
   label.expression = length > 200,
-  xlab = "IMDB rating",
-  ggtheme = ggplot2::theme_grey(),
-  ggplot.component = list(
-    ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
-  ),
-  plotgrid.args = list(nrow = 1),
-  annotation.args = list(title = "Relationship between movie length and IMDB ratings")
+  xlab             = "IMDB rating",
+  ggtheme          = ggplot2::theme_grey(),
+  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))),
+  plotgrid.args    = list(nrow = 1),
+  annotation.args  = list(title = "Relationship between movie length and IMDB ratings")
 )
 ```
 
@@ -714,9 +703,9 @@ set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
 ggcorrmat(
-  data = ggplot2::msleep,
-  colors = c("#B2182B", "white", "#4D4D4D"),
-  title = "Correlalogram for mammals sleep dataset",
+  data     = ggplot2::msleep,
+  colors   = c("#B2182B", "white", "#4D4D4D"),
+  title    = "Correlalogram for mammals sleep dataset",
   subtitle = "sleep units: hours; weight units: kilograms"
 )
 ```
@@ -738,11 +727,11 @@ set.seed(123)
 
 ## plot
 grouped_ggcorrmat(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type = "robust", ## correlation method
-  colors = c("#cbac43", "white", "#550000"),
+  data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  type         = "robust", ## correlation method
+  colors       = c("#cbac43", "white", "#550000"),
   grouping.var = genre, ## grouping variable
-  matrix.type = "lower" ## type of matrix
+  matrix.type  = "lower" ## type of matrix
 )
 ```
 
@@ -755,8 +744,8 @@ set.seed(123)
 
 ## tidy data as output
 ggcorrmat(
-  data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type = "bayes",
+  data   = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
+  type   = "bayes",
   output = "dataframe"
 )
 ```
@@ -769,10 +758,10 @@ set.seed(123)
 
 ## tidy data as output
 ggcorrmat(
-  data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type = "bayes",
+  data    = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
+  type    = "bayes",
   partial = TRUE,
-  output = "dataframe"
+  output  = "dataframe"
 )
 ```
 
@@ -813,14 +802,14 @@ set.seed(123)
 
 ## plot
 ggpiestats(
-  data = mtcars,
-  x = am,
-  y = cyl,
-  package = "wesanderson",
-  palette = "Royal1",
-  title = "Dataset: Motor Trend Car Road Tests", ## title for the plot
+  data         = mtcars,
+  x            = am,
+  y            = cyl,
+  package      = "wesanderson",
+  palette      = "Royal1",
+  title        = "Dataset: Motor Trend Car Road Tests", ## title for the plot
   legend.title = "Transmission", ## title for the legend
-  caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine"))
+  caption      = "Source: 1974 Motor Trend US magazine"
 )
 ```
 
@@ -844,12 +833,12 @@ set.seed(123)
 
 ## plot
 grouped_ggpiestats(
-  data = mtcars,
-  x = cyl,
+  data         = mtcars,
+  x            = cyl,
   grouping.var = am, ## grouping variable
-  label.repel = TRUE, ## repel labels (helpful for overlapping labels)
-  package = "ggsci", ## package from which color palette is to be taken
-  palette = "default_ucscgb" ## choosing a different color palette
+  label.repel  = TRUE, ## repel labels (helpful for overlapping labels)
+  package      = "ggsci", ## package from which color palette is to be taken
+  palette      = "default_ucscgb" ## choosing a different color palette
 )
 ```
 
@@ -916,15 +905,15 @@ library(ggplot2)
 
 ## plot
 ggbarstats(
-  data = movies_long,
-  x = mpaa,
-  y = genre,
-  title = "MPAA Ratings by Genre",
-  xlab = "movie genre",
-  legend.title = "MPAA rating",
-  ggtheme = hrbrthemes::theme_ipsum_pub(),
+  data             = movies_long,
+  x                = mpaa,
+  y                = genre,
+  title            = "MPAA Ratings by Genre",
+  xlab             = "movie genre",
+  legend.title     = "MPAA rating",
+  ggtheme          = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
-  palette = "Set2"
+  palette          = "Set2"
 )
 ```
 
@@ -946,13 +935,13 @@ set.seed(123)
 
 ## plot
 grouped_ggbarstats(
-  data = mtcars,
-  x = am,
-  y = cyl,
+  data         = mtcars,
+  x            = am,
+  y            = cyl,
   grouping.var = vs,
-  package = "wesanderson",
-  palette = "Darjeeling2",
-  ggtheme = ggthemes::theme_tufte(base_size = 12)
+  package      = "wesanderson",
+  palette      = "Darjeeling2",
+  ggtheme      = ggthemes::theme_tufte(base_size = 12)
 )
 ```
 

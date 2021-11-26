@@ -28,10 +28,10 @@
       1 -0.7800447 1
       2  2.2940067 2
       3 -0.5564393 3
-                                                                                     label
-      1 list(~widehat(italic(beta))=='-0.78', ~italic(z)=='-3.47', ~italic(p)=='5.14e-04')
-      2  list(~widehat(italic(beta))=='2.29', ~italic(z)=='19.13', ~italic(p)=='1.54e-81')
-      3    list(~widehat(italic(beta))=='-0.56', ~italic(z)=='-2.44', ~italic(p)=='0.014')
+                                                                                  label
+      1 list(widehat(italic(beta))=='-0.78', italic(z)=='-3.47', italic(p)=='5.14e-04')
+      2  list(widehat(italic(beta))=='2.29', italic(z)=='19.13', italic(p)=='1.54e-81')
+      3     list(widehat(italic(beta))=='-0.56', italic(z)=='-2.44', italic(p)=='0.01')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
       2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5
@@ -77,8 +77,8 @@
       1  0.01703351 1
       2 -0.51166834 2
                                                                                            label
-      1  list(~widehat(italic(beta))=='0.02', ~italic(chi)^2~('1')=='3.40', ~italic(p)=='0.065')
-      2 list(~widehat(italic(beta))=='-0.51', ~italic(chi)^2~('1')=='9.31', ~italic(p)=='0.002')
+      1      list(widehat(italic(beta))=='0.02', italic(chi)^2*('1')=='3.40', italic(p)=='0.07')
+      2 list(widehat(italic(beta))=='-0.51', italic(chi)^2*('1')=='9.31', italic(p)=='2.28e-03')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #3182BDFF white    3     0    NA               1        1.2   0.5
       2     1     2 #E6550DFF white    3     0    NA               1        1.2   0.5
@@ -123,10 +123,10 @@
       1 -0.15565484 1
       2 -1.80872181 2
       3  0.06471454 3
-                                                                                             label
-      1 list(~widehat(italic(beta))=='-0.156', ~italic(t)('28')=='-5.840', ~italic(p)=='2.81e-06')
-      2    list(~widehat(italic(beta))=='-1.809', ~italic(t)('28')=='-2.615', ~italic(p)=='0.014')
-      3                                                                                       <NA>
+                                                                                           label
+      1 list(widehat(italic(beta))=='-0.156', italic(t)('28')=='-5.840', italic(p)=='2.813e-06')
+      2     list(widehat(italic(beta))=='-1.809', italic(t)('28')=='-2.615', italic(p)=='0.014')
+      3                                                                                     <NA>
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
       2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5
@@ -163,10 +163,10 @@
       2         1              5.26              5.26 partial eta-squared
       3         1              5.26              5.26 partial eta-squared
         label                                                                         
-        <chr>                                                                         
-      1 "list(~italic(F)('1'*\",\"*'28')=='118.89', ~italic(p)=='1.38e-11', ~widehat(~
-      2 "list(~italic(F)('1'*\",\"*'28')=='7.30', ~italic(p)=='0.012', ~widehat(itali~
-      3 "list(~italic(F)('1'*\",\"*'28')=='3.73', ~italic(p)=='0.064', ~widehat(itali~
+        <glue>                                                                        
+      1 list(widehat(italic(eta)[p]^2)=='0.81', italic(F)('1', '28')=='118.89', itali~
+      2 list(widehat(italic(eta)[p]^2)=='0.21', italic(F)('1', '28')=='7.30', italic(~
+      3 list(widehat(italic(eta)[p]^2)=='0.12', italic(F)('1', '28')=='3.73', italic(~
       
       [[2]]
       [[2]]$x
@@ -217,10 +217,10 @@
       2         1              31.0              31.0 partial omega-squared
       3         1              31.0              31.0 partial omega-squared
         label                                                                         
-        <chr>                                                                         
-      1 "list(~italic(F)('3'*\",\"*'35')=='7.388', ~italic(p)=='5.84e-04', ~widehat(i~
-      2 "list(~italic(F)('1'*\",\"*'35')=='2.034', ~italic(p)=='0.163', ~widehat(ital~
-      3 "list(~italic(F)('3'*\",\"*'35')=='4.012', ~italic(p)=='0.015', ~widehat(ital~
+        <glue>                                                                        
+      1 list(widehat(italic(omega)[p]^2)=='0.308', italic(F)('3', '35')=='7.388', ita~
+      2 list(widehat(italic(omega)[p]^2)=='0.023', italic(F)('1', '35')=='2.034', ita~
+      3 list(widehat(italic(omega)[p]^2)=='0.174', italic(F)('3', '35')=='4.012', ita~
       
       [[2]]
       [[2]]$x
@@ -279,14 +279,14 @@
       6   0              1              185.              185. partial eta-squared
       7   0              1              306.              306. partial eta-squared
         label                                                                         
-        <chr>                                                                         
-      1 "list(~italic(F)('1'*\",\"*'12')=='12.26', ~italic(p)=='0.004', ~widehat(ital~
-      2 "list(~italic(F)('1'*\",\"*'12')=='0.54', ~italic(p)=='0.475', ~widehat(itali~
-      3 "list(~italic(F)('1'*\",\"*'12')=='6.17', ~italic(p)=='0.029', ~widehat(itali~
-      4 "list(~italic(F)('1'*\",\"*'12')=='1.38', ~italic(p)=='0.263', ~widehat(itali~
-      5 "list(~italic(F)('1'*\",\"*'12')=='2.15', ~italic(p)=='0.169', ~widehat(itali~
-      6 "list(~italic(F)('1'*\",\"*'12')=='0.03', ~italic(p)=='0.863', ~widehat(itali~
-      7 "list(~italic(F)('1'*\",\"*'4')=='0.48', ~italic(p)=='0.525', ~widehat(italic~
+        <glue>                                                                        
+      1 list(widehat(italic(eta)[p]^2)=='0.51', italic(F)('1', '12')=='12.26', italic~
+      2 list(widehat(italic(eta)[p]^2)=='0.04', italic(F)('1', '12')=='0.54', italic(~
+      3 list(widehat(italic(eta)[p]^2)=='0.34', italic(F)('1', '12')=='6.17', italic(~
+      4 list(widehat(italic(eta)[p]^2)=='0.10', italic(F)('1', '12')=='1.38', italic(~
+      5 list(widehat(italic(eta)[p]^2)=='0.15', italic(F)('1', '12')=='2.15', italic(~
+      6 list(widehat(italic(eta)[p]^2)=='2.59e-03', italic(F)('1', '12')=='0.03', ita~
+      7 list(widehat(italic(eta)[p]^2)=='0.11', italic(F)('1', '4')=='0.48', italic(p~
       
       [[2]]
       # A tibble: 7 x 14
@@ -309,14 +309,14 @@
       6         1              492.              492. partial eta-squared
       7         1              492.              492. partial eta-squared
         label                                                                         
-        <chr>                                                                         
-      1 "list(~italic(F)('1'*\",\"*'16')=='6.16', ~italic(p)=='0.025', ~widehat(itali~
-      2 "list(~italic(F)('1'*\",\"*'16')=='0.27', ~italic(p)=='0.608', ~widehat(itali~
-      3 "list(~italic(F)('1'*\",\"*'16')=='3.10', ~italic(p)=='0.097', ~widehat(itali~
-      4 "list(~italic(F)('1'*\",\"*'16')=='0.69', ~italic(p)=='0.418', ~widehat(itali~
-      5 "list(~italic(F)('1'*\",\"*'16')=='1.08', ~italic(p)=='0.314', ~widehat(itali~
-      6 "list(~italic(F)('1'*\",\"*'16')=='0.02', ~italic(p)=='0.902', ~widehat(itali~
-      7 "list(~italic(F)('1'*\",\"*'16')=='1.20', ~italic(p)=='0.289', ~widehat(itali~
+        <glue>                                                                        
+      1 list(widehat(italic(eta)[p]^2)=='0.28', italic(F)('1', '16')=='6.16', italic(~
+      2 list(widehat(italic(eta)[p]^2)=='0.02', italic(F)('1', '16')=='0.27', italic(~
+      3 list(widehat(italic(eta)[p]^2)=='0.16', italic(F)('1', '16')=='3.10', italic(~
+      4 list(widehat(italic(eta)[p]^2)=='0.04', italic(F)('1', '16')=='0.69', italic(~
+      5 list(widehat(italic(eta)[p]^2)=='0.06', italic(F)('1', '16')=='1.08', italic(~
+      6 list(widehat(italic(eta)[p]^2)=='9.79e-04', italic(F)('1', '16')=='0.02', ita~
+      7 list(widehat(italic(eta)[p]^2)=='0.07', italic(F)('1', '16')=='1.20', italic(~
       
 
 # duplicated terms
@@ -361,13 +361,13 @@
       4  1.182257 4
       5 30.628379 5
       6  1.251657 6
-                                                                                      label
-      1 list(~widehat(italic(beta))=='29.32', ~italic(z)=='249.58', ~italic(p)=='9.84e-78')
-      2    list(~widehat(italic(beta))=='1.12', ~italic(z)=='4.40', ~italic(p)=='5.77e-05')
-      3 list(~widehat(italic(beta))=='29.95', ~italic(z)=='264.18', ~italic(p)=='6.08e-79')
-      4    list(~widehat(italic(beta))=='1.18', ~italic(z)=='7.30', ~italic(p)=='2.27e-09')
-      5 list(~widehat(italic(beta))=='30.63', ~italic(z)=='307.16', ~italic(p)=='3.78e-82')
-      6     list(~widehat(italic(beta))=='1.25', ~italic(z)=='6.77', ~italic(p)=='1.5e-08')
+                                                                                   label
+      1 list(widehat(italic(beta))=='29.32', italic(z)=='249.58', italic(p)=='9.84e-78')
+      2    list(widehat(italic(beta))=='1.12', italic(z)=='4.40', italic(p)=='5.77e-05')
+      3 list(widehat(italic(beta))=='29.95', italic(z)=='264.18', italic(p)=='6.08e-79')
+      4    list(widehat(italic(beta))=='1.18', italic(z)=='7.30', italic(p)=='2.27e-09')
+      5 list(widehat(italic(beta))=='30.63', italic(z)=='307.16', italic(p)=='3.78e-82')
+      6    list(widehat(italic(beta))=='1.25', italic(z)=='6.77', italic(p)=='1.50e-08')
         PANEL group    colour  fill size angle alpha family fontface lineheight hjust
       1     1     1 #1B9E77FF white    3     0    NA               1        1.2   0.5
       2     1     2 #D95F02FF white    3     0    NA               1        1.2   0.5

@@ -218,9 +218,6 @@ test_that(
         )
       )
 
-    expect_identical(
-      as.character(meta_info)[2],
-      "\"log\"[\"e\"] * \"(BF\"[\"01\"] * \") = \" * \"1.23\" * \", \""
-    )
+    expect_snapshot(as.character(meta_info), variant = .Platform$OS.type)
   }
 )

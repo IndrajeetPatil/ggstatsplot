@@ -183,9 +183,9 @@ library(ggstatsplot)
 
 ## plot
 ggbetweenstats(
-  data = iris,
-  x = Species,
-  y = Sepal.Length,
+  data  = iris,
+  x     = Species,
+  y     = Sepal.Length,
   title = "Distribution of sepal length across Iris species"
 )
 ```
@@ -210,22 +210,22 @@ set.seed(123)
 
 ## plot
 grouped_ggbetweenstats(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x = mpaa,
-  y = length,
-  grouping.var = genre, ## grouping variable
-  outlier.tagging = TRUE, ## whether outliers need to be tagged
-  outlier.label = title, ## variable to be used for tagging outliers
-  outlier.coef = 2,
-  ggsignif.args = list(textsize = 4, tip_length = 0.01),
-  p.adjust.method = "bonferroni", ## method for adjusting p-values for multiple comparisons
+  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                = mpaa,
+  y                = length,
+  grouping.var     = genre, ## grouping variable
+  outlier.tagging  = TRUE, ## whether outliers need to be tagged
+  outlier.label    = title, ## variable to be used for tagging outliers
+  outlier.coef     = 2,
+  ggsignif.args    = list(textsize = 4, tip_length = 0.01),
+  p.adjust.method  = "bonferroni", ## method for adjusting p-values for multiple comparisons
   ## adding new components to `{ggstatsplot}` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
-  caption = substitute(paste(italic("Source"), ": IMDb (Internet Movie Database)")),
-  palette = "default_jama",
-  package = "ggsci",
-  plotgrid.args = list(nrow = 1),
-  annotation.args = list(title = "Differences in movie length by mpaa ratings for different genres")
+  caption          = "Source: IMDb (Internet Movie Database)",
+  palette          = "default_jama",
+  package          = "ggsci",
+  plotgrid.args    = list(nrow = 1),
+  annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
 )
 ```
 
@@ -313,10 +313,10 @@ library(afex) ## to run anova
 
 ## plot
 ggwithinstats(
-  data = WineTasting,
-  x = Wine,
-  y = Taste,
-  title = "Wine tasting",
+  data    = WineTasting,
+  x       = Wine,
+  y       = Taste,
+  title   = "Wine tasting",
   caption = "Data source: `WRS2` R package",
   ggtheme = ggthemes::theme_fivethirtyeight()
 )
@@ -351,19 +351,15 @@ set.seed(123)
 
 ## plot
 grouped_ggwithinstats(
-  data = dplyr::filter(
-    bugs_long,
-    region %in% c("Europe", "North America"),
-    condition %in% c("LDLF", "LDHF")
-  ),
-  x = condition,
-  y = desire,
-  type = "np", ## non-parametric statistics
-  xlab = "Condition",
-  ylab = "Desire to kill an artrhopod",
-  grouping.var = region,
+  data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
+  x               = condition,
+  y               = desire,
+  type            = "np", ## non-parametric statistics
+  xlab            = "Condition",
+  ylab            = "Desire to kill an artrhopod",
+  grouping.var    = region,
   outlier.tagging = TRUE,
-  outlier.label = education
+  outlier.label   = education
 )
 ```
 
@@ -445,13 +441,13 @@ set.seed(123)
 
 ## plot
 gghistostats(
-  data = ggplot2::msleep, ## dataframe from which variable is to be taken
-  x = awake, ## numeric variable whose distribution is of interest
-  title = "Amount of time spent awake", ## title for the plot
-  caption = substitute(paste(italic("Source: "), "Mammalian sleep data set")),
+  data       = ggplot2::msleep, ## dataframe from which variable is to be taken
+  x          = awake, ## numeric variable whose distribution is of interest
+  title      = "Amount of time spent awake", ## title for the plot
+  caption    = "Source: Mammalian sleep data set",
   test.value = 12, ## default value is 0
-  binwidth = 1, ## binwidth value (experiment)
-  ggtheme = hrbrthemes::theme_ipsum_tw()
+  binwidth   = 1, ## binwidth value (experiment)
+  ggtheme    = hrbrthemes::theme_ipsum_tw()
 )
 ```
 
@@ -472,19 +468,19 @@ set.seed(123)
 
 ## plot
 grouped_gghistostats(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x = budget,
-  test.value = 50,
-  type = "nonparametric",
-  xlab = "Movies budget (in million US$)",
-  grouping.var = genre, ## grouping variable
-  normal.curve = TRUE, ## superimpose a normal distribution curve
+  data              = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                 = budget,
+  test.value        = 50,
+  type              = "nonparametric",
+  xlab              = "Movies budget (in million US$)",
+  grouping.var      = genre, ## grouping variable
+  normal.curve      = TRUE, ## superimpose a normal distribution curve
   normal.curve.args = list(color = "red", size = 1),
-  ggtheme = ggthemes::theme_tufte(),
+  ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
-  ggplot.component = ggplot2::labs(caption = "Source: IMDB.com"),
-  plotgrid.args = list(nrow = 1),
-  annotation.args = list(title = "Movies budgets for different genres")
+  ggplot.component  = ggplot2::labs(caption = "Source: IMDB.com"),
+  plotgrid.args     = list(nrow = 1),
+  annotation.args   = list(title = "Movies budgets for different genres")
 )
 ```
 
@@ -542,19 +538,14 @@ set.seed(123)
 
 ## plot
 ggdotplotstats(
-  data = dplyr::filter(gapminder::gapminder, continent == "Asia"),
-  y = country,
-  x = lifeExp,
+  data       = dplyr::filter(gapminder::gapminder, continent == "Asia"),
+  y          = country,
+  x          = lifeExp,
   test.value = 55,
-  type = "robust",
-  title = "Distribution of life expectancy in Asian continent",
-  xlab = "Life expectancy",
-  caption = substitute(
-    paste(
-      italic("Source"),
-      ": Gapminder dataset from https://www.gapminder.org/"
-    )
-  )
+  type       = "robust",
+  title      = "Distribution of life expectancy in Asian continent",
+  xlab       = "Life expectancy",
+  caption    = "Source: Gapminder dataset from https://www.gapminder.org/"
 )
 ```
 
@@ -576,15 +567,15 @@ set.seed(123)
 
 ## plot
 grouped_ggdotplotstats(
-  data = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
-  x = cty,
-  y = manufacturer,
-  type = "bayes", ## Bayesian test
-  xlab = "city miles per gallon",
-  ylab = "car manufacturer",
-  grouping.var = cyl, ## grouping variable
-  test.value = 15.5,
-  point.args = list(color = "red", size = 5, shape = 13),
+  data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
+  x               = cty,
+  y               = manufacturer,
+  type            = "bayes", ## Bayesian test
+  xlab            = "city miles per gallon",
+  ylab            = "car manufacturer",
+  grouping.var    = cyl, ## grouping variable
+  test.value      = 15.5,
+  point.args      = list(color = "red", size = 5, shape = 13),
   annotation.args = list(title = "Fuel economy data")
 )
 ```
@@ -634,11 +625,11 @@ on the axes and results from statistical tests in the subtitle:
 
 ``` r
 ggscatterstats(
-  data = ggplot2::msleep,
-  x = sleep_rem,
-  y = awake,
-  xlab = "REM sleep (in hours)",
-  ylab = "Amount of time spent awake (in hours)",
+  data  = ggplot2::msleep,
+  x     = sleep_rem,
+  y     = awake,
+  xlab  = "REM sleep (in hours)",
+  ylab  = "Amount of time spent awake (in hours)",
   title = "Understanding mammalian sleep"
 )
 ```
@@ -660,19 +651,17 @@ set.seed(123)
 
 ## plot
 grouped_ggscatterstats(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x = rating,
-  y = length,
-  grouping.var = genre, ## grouping variable
-  label.var = title,
+  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  x                = rating,
+  y                = length,
+  grouping.var     = genre, ## grouping variable
+  label.var        = title,
   label.expression = length > 200,
-  xlab = "IMDB rating",
-  ggtheme = ggplot2::theme_grey(),
-  ggplot.component = list(
-    ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))
-  ),
-  plotgrid.args = list(nrow = 1),
-  annotation.args = list(title = "Relationship between movie length and IMDB ratings")
+  xlab             = "IMDB rating",
+  ggtheme          = ggplot2::theme_grey(),
+  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))),
+  plotgrid.args    = list(nrow = 1),
+  annotation.args  = list(title = "Relationship between movie length and IMDB ratings")
 )
 ```
 
@@ -716,9 +705,9 @@ set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
 ggcorrmat(
-  data = ggplot2::msleep,
-  colors = c("#B2182B", "white", "#4D4D4D"),
-  title = "Correlalogram for mammals sleep dataset",
+  data     = ggplot2::msleep,
+  colors   = c("#B2182B", "white", "#4D4D4D"),
+  title    = "Correlalogram for mammals sleep dataset",
   subtitle = "sleep units: hours; weight units: kilograms"
 )
 ```
@@ -742,11 +731,11 @@ set.seed(123)
 
 ## plot
 grouped_ggcorrmat(
-  data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type = "robust", ## correlation method
-  colors = c("#cbac43", "white", "#550000"),
+  data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  type         = "robust", ## correlation method
+  colors       = c("#cbac43", "white", "#550000"),
   grouping.var = genre, ## grouping variable
-  matrix.type = "lower" ## type of matrix
+  matrix.type  = "lower" ## type of matrix
 )
 ```
 
@@ -761,8 +750,8 @@ set.seed(123)
 
 ## tidy data as output
 ggcorrmat(
-  data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type = "bayes",
+  data   = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
+  type   = "bayes",
   output = "dataframe"
 )
 ##> # A tibble: 6 x 14
@@ -800,10 +789,10 @@ set.seed(123)
 
 ## tidy data as output
 ggcorrmat(
-  data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type = "bayes",
+  data    = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
+  type    = "bayes",
   partial = TRUE,
-  output = "dataframe"
+  output  = "dataframe"
 )
 ##> # A tibble: 6 x 14
 ##>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
@@ -870,14 +859,14 @@ set.seed(123)
 
 ## plot
 ggpiestats(
-  data = mtcars,
-  x = am,
-  y = cyl,
-  package = "wesanderson",
-  palette = "Royal1",
-  title = "Dataset: Motor Trend Car Road Tests", ## title for the plot
+  data         = mtcars,
+  x            = am,
+  y            = cyl,
+  package      = "wesanderson",
+  palette      = "Royal1",
+  title        = "Dataset: Motor Trend Car Road Tests", ## title for the plot
   legend.title = "Transmission", ## title for the legend
-  caption = substitute(paste(italic("Source"), ": 1974 Motor Trend US magazine"))
+  caption      = "Source: 1974 Motor Trend US magazine"
 )
 ```
 
@@ -900,12 +889,12 @@ set.seed(123)
 
 ## plot
 grouped_ggpiestats(
-  data = mtcars,
-  x = cyl,
+  data         = mtcars,
+  x            = cyl,
   grouping.var = am, ## grouping variable
-  label.repel = TRUE, ## repel labels (helpful for overlapping labels)
-  package = "ggsci", ## package from which color palette is to be taken
-  palette = "default_ucscgb" ## choosing a different color palette
+  label.repel  = TRUE, ## repel labels (helpful for overlapping labels)
+  package      = "ggsci", ## package from which color palette is to be taken
+  palette      = "default_ucscgb" ## choosing a different color palette
 )
 ```
 
@@ -974,15 +963,15 @@ library(ggplot2)
 
 ## plot
 ggbarstats(
-  data = movies_long,
-  x = mpaa,
-  y = genre,
-  title = "MPAA Ratings by Genre",
-  xlab = "movie genre",
-  legend.title = "MPAA rating",
-  ggtheme = hrbrthemes::theme_ipsum_pub(),
+  data             = movies_long,
+  x                = mpaa,
+  y                = genre,
+  title            = "MPAA Ratings by Genre",
+  xlab             = "movie genre",
+  legend.title     = "MPAA rating",
+  ggtheme          = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
-  palette = "Set2"
+  palette          = "Set2"
 )
 ```
 
@@ -1003,13 +992,13 @@ set.seed(123)
 
 ## plot
 grouped_ggbarstats(
-  data = mtcars,
-  x = am,
-  y = cyl,
+  data         = mtcars,
+  x            = am,
+  y            = cyl,
   grouping.var = vs,
-  package = "wesanderson",
-  palette = "Darjeeling2",
-  ggtheme = ggthemes::theme_tufte(base_size = 12)
+  package      = "wesanderson",
+  palette      = "Darjeeling2",
+  ggtheme      = ggthemes::theme_tufte(base_size = 12)
 )
 ```
 
@@ -1230,51 +1219,43 @@ set.seed(123)
 ggbetweenstats(mtcars, cyl, mpg) %>%
   extract_stats()
 ##> $subtitle_data
-##> # A tibble: 1 x 13
+##> # A tibble: 1 x 14
 ##>   statistic    df df.error    p.value
 ##>       <dbl> <dbl>    <dbl>      <dbl>
 ##> 1      31.6     2     18.0 0.00000127
 ##>   method                                                   effectsize estimate
 ##>   <chr>                                                    <chr>         <dbl>
 ##> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
-##>   conf.level conf.low conf.high conf.method conf.distribution expression
-##>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <list>    
-##> 1       0.95    0.531         1 ncp         F                 <language>
+##>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression  
+##>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>      
+##> 1       0.95    0.531         1 ncp         F                    32 <expression>
 ##> 
 ##> $caption_data
-##> # A tibble: 6 x 20
-##>   term  estimate conf.level conf.low conf.high    pd rope.percentage
-##>   <chr>    <dbl>      <dbl>    <dbl>     <dbl> <dbl>           <dbl>
-##> 1 mu      20.5         0.95  19.3        21.9  1              0     
-##> 2 cyl-4    5.90        0.95   4.11        7.52 1              0     
-##> 3 cyl-6   -0.704       0.95  -2.64        1.06 0.780          0.390 
-##> 4 cyl-8   -5.18        0.95  -6.76       -3.55 1              0     
-##> 5 sig2    11.0         0.95   6.24       18.3  1              0     
-##> 6 g_cyl    2.69        0.95   0.0911     18.7  1              0.0418
-##>   prior.distribution prior.location prior.scale component       bf10
-##>   <chr>                       <dbl>       <dbl> <chr>          <dbl>
-##> 1 cauchy                          0       0.707 extra       3008850.
-##> 2 cauchy                          0       0.707 conditional 3008850.
-##> 3 cauchy                          0       0.707 conditional 3008850.
-##> 4 cauchy                          0       0.707 conditional 3008850.
-##> 5 cauchy                          0       0.707 extra       3008850.
-##> 6 cauchy                          0       0.707 extra       3008850.
-##>   method                          log_e_bf10    r2 std.dev r2.conf.level
-##>   <chr>                                <dbl> <dbl>   <dbl>         <dbl>
-##> 1 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-##> 2 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-##> 3 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-##> 4 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-##> 5 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-##> 6 Bayes factors for linear models       14.9 0.714  0.0503          0.95
-##>   r2.conf.low r2.conf.high expression
-##>         <dbl>        <dbl> <list>    
-##> 1       0.574        0.788 <language>
-##> 2       0.574        0.788 <language>
-##> 3       0.574        0.788 <language>
-##> 4       0.574        0.788 <language>
-##> 5       0.574        0.788 <language>
-##> 6       0.574        0.788 <language>
+##> # A tibble: 6 x 17
+##>   term     pd rope.percentage prior.distribution prior.location prior.scale
+##>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
+##> 1 mu    1              0      cauchy                          0       0.707
+##> 2 cyl-4 1              0      cauchy                          0       0.707
+##> 3 cyl-6 0.780          0.390  cauchy                          0       0.707
+##> 4 cyl-8 1              0      cauchy                          0       0.707
+##> 5 sig2  1              0      cauchy                          0       0.707
+##> 6 g_cyl 1              0.0418 cauchy                          0       0.707
+##>       bf10 method                          log_e_bf10 effectsize        
+##>      <dbl> <chr>                                <dbl> <chr>             
+##> 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##>   estimate std.dev conf.level conf.low conf.high n.obs expression  
+##>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>      
+##> 1    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 2    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 3    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 4    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 5    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 6    0.714  0.0503       0.95    0.574     0.788    32 <expression>
 ##> 
 ##> $pairwise_comparisons_data
 ##> # A tibble: 3 x 11
@@ -1290,8 +1271,8 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 ##> 3 none         Games-Howell test Holm              
 ##>   label                                     
 ##>   <chr>                                     
-##> 1 list(~italic(p)[Holm-corrected]==0.001)   
-##> 2 list(~italic(p)[Holm-corrected]==1.4e-05) 
+##> 1 list(~italic(p)[Holm-corrected]==1.10e-03)
+##> 2 list(~italic(p)[Holm-corrected]==1.40e-05)
 ##> 3 list(~italic(p)[Holm-corrected]==2.57e-04)
 ##> 
 ##> $descriptive_data
