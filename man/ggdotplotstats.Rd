@@ -168,10 +168,7 @@ ggdotplotstats(
   x = cty,
   y = manufacturer,
   title = "Fuel economy data",
-  xlab = "city miles per gallon",
-  caption = substitute(
-    paste(italic("Source"), ": EPA dataset on http://fueleconomy.gov")
-  )
+  xlab = "city miles per gallon"
 )
 }
 }

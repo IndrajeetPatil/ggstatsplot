@@ -134,10 +134,7 @@ ggpiestats(
   x = genre,
   y = mpaa,
   title = "Distribution of MPAA ratings by film genre",
-  legend.title = "layout",
-  caption = substitute(paste(
-    italic("MPAA"), ": Motion Picture Association of America"
-  ))
+  legend.title = "layout"
 )
 ```
 

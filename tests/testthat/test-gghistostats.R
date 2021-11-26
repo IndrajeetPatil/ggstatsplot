@@ -42,8 +42,7 @@ test_that(
 
     # checking caption
     set.seed(123)
-    p_cap <-
-      statsExpressions::one_sample_test(
+    p_cap <- statsExpressions::one_sample_test(
         data = dplyr::starwars,
         x = height,
         type = "bayes",
@@ -53,9 +52,8 @@ test_that(
 
     # testing overall call
     expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
-    expect_equal(pb$plot$labels$title, "starwars: character heights")
-    expect_equal(pb$plot$labels$x, "character height")
-    expect_equal(pb$plot$labels$caption, p_cap)
+    expect_equal(pb$plot$labels$caption, p_cap, ignore_attr = TRUE)
+    expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
   }
 )
 
@@ -73,7 +71,7 @@ test_that(
       x = cty,
       xlab = "city miles per gallon",
       title = "fuel economy",
-      caption = substitute(paste(italic("source"), ": government website")),
+      caption = "source: government website",
       binwidth = 5,
       test.value = 20,
       k = 3,
@@ -98,57 +96,10 @@ test_that(
       pb$layout$panel_params[[1]]$y$breaks,
       c(0, 25, 50, 75, 100)
     )
-    expect_equal(
-      pb$layout$panel_params[[1]]$y.sec$break_info,
-      list(
-        range = c(-0.0211538461538462, 0.444230769230769),
-        labels = c("0%", "10%", "20%", "30%", "40%"),
-        major = c(
-          0.045, 0.26, 0.475, 0.69,
-          0.905
-        ),
-        minor = c(
-          0.045, 0.153, 0.26, 0.367, 0.475, 0.583, 0.69,
-          0.798, 0.905
-        ),
-        major_source = c(
-          -0.044594594594594,
-          23.3923423423423,
-          46.8292792792793,
-          70.1572072072072,
-          93.5941441441442
-        ),
-        minor_source = c(
-          -0.044594594594594,
-          11.7283783783784,
-          23.3923423423423,
-          35.0563063063063,
-          46.8292792792793,
-          58.4932432432432,
-          70.1572072072072,
-          81.9301801801802,
-          93.5941441441442
-        ),
-        major_source_user = c(0, 0.1, 0.2, 0.3, 0.4),
-        minor_source_user = c(
-          0,
-          0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4
-        )
-      )
-    )
+    expect_snapshot(pb$layout$panel_params[[1]]$y.sec$break_info)
 
     # testing labels
-    expect_equal(p$labels$subtitle, NULL)
-    expect_equal(p$labels$title, "fuel economy")
-    expect_equal(p$labels$x, "city miles per gallon")
-    expect_equal(p$labels$y, "count")
-    expect_equal(
-      p$labels$caption,
-      ggplot2::expr(paste(
-        italic("source"),
-        ": government website"
-      ))
-    )
+    expect_snapshot(pb$plot$labels)
   }
 )
 
@@ -184,12 +135,11 @@ test_that(
 
     # testing labels
     expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
-    expect_null(pb$plot$labels$caption, NULL)
-    expect_equal(pb$plot$labels$y, "count")
 
     # check data
     set.seed(123)
     expect_snapshot(pb$data)
+    expect_snapshot(within(pb$plot$labels, rm(subtitle)))
   }
 )
 
@@ -221,22 +171,7 @@ test_that(
     # check data
     set.seed(123)
     expect_snapshot(pb1$data)
-
-    # annotation
-    expect_equal(
-      pb1$plot$labels,
-      list(
-        x = "awake",
-        y = "count",
-        title = NULL,
-        subtitle = NULL,
-        caption = NULL,
-        fill = "count",
-        xintercept = "xintercept",
-        weight = structure("weight", fallback = TRUE),
-        alt = ""
-      )
-    )
+    expect_snapshot(pb1$plot$labels)
   }
 )
 
@@ -267,6 +202,6 @@ test_that(
       )$expression[[1]]
 
     # tests
-    expect_equal(p_sub, sub)
+    expect_equal(p_sub, sub, ignore_attr = TRUE)
   }
 )

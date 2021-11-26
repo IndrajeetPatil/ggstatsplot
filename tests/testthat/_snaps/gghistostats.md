@@ -34,6 +34,35 @@
       1    174.358     1    -1   blue    1   dashed    NA
       
 
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle, caption))
+    Output
+      $x
+      [1] "character height"
+      
+      $y
+      [1] "count"
+      
+      $title
+      [1] "starwars: character heights"
+      
+      $fill
+      [1] "count"
+      
+      $xintercept
+      [1] "xintercept"
+      
+      $weight
+      [1] "weight"
+      attr(,"fallback")
+      [1] TRUE
+      
+      $alt
+      [1] ""
+      
+
 # checking gghistostats and non-parametric stats - data without NAs
 
     Code
@@ -58,6 +87,72 @@
       [[2]]
         xintercept PANEL group colour size linetype alpha
       1         17     1    -1   blue    1   dashed    NA
+      
+
+---
+
+    Code
+      pb$layout$panel_params[[1]]$y.sec$break_info
+    Output
+      $range
+      [1] -0.02115385  0.44423077
+      
+      $labels
+      [1] "0%"  "10%" "20%" "30%" "40%"
+      
+      $major
+      [1] 0.045 0.260 0.475 0.690 0.905
+      
+      $minor
+      [1] 0.045 0.153 0.260 0.367 0.475 0.583 0.690 0.798 0.905
+      
+      $major_source
+      [1] -0.04459459 23.39234234 46.82927928 70.15720721 93.59414414
+      
+      $minor_source
+      [1] -0.04459459 11.72837838 23.39234234 35.05630631 46.82927928 58.49324324
+      [7] 70.15720721 81.93018018 93.59414414
+      
+      $major_source_user
+      [1] 0.0 0.1 0.2 0.3 0.4
+      
+      $minor_source_user
+      [1] 0.00 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40
+      
+
+---
+
+    Code
+      pb$plot$labels
+    Output
+      $x
+      [1] "city miles per gallon"
+      
+      $y
+      [1] "count"
+      
+      $title
+      [1] "fuel economy"
+      
+      $subtitle
+      NULL
+      
+      $caption
+      [1] "source: government website"
+      
+      $fill
+      [1] "count"
+      
+      $xintercept
+      [1] "xintercept"
+      
+      $weight
+      [1] "weight"
+      attr(,"fallback")
+      [1] TRUE
+      
+      $alt
+      [1] ""
       
 
 # checking robust stats and proportions
@@ -94,6 +189,38 @@
       [[2]]
         xintercept PANEL group colour size linetype alpha
       1      3.197     1    -1   blue    1   dashed    NA
+      
+
+---
+
+    Code
+      within(pb$plot$labels, rm(subtitle))
+    Output
+      $x
+      [1] "wt"
+      
+      $y
+      [1] "count"
+      
+      $title
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "count"
+      
+      $xintercept
+      [1] "xintercept"
+      
+      $weight
+      [1] "weight"
+      attr(,"fallback")
+      [1] TRUE
+      
+      $alt
+      [1] ""
       
 
 # checking if normal curve work
@@ -250,5 +377,40 @@
       [[3]]
         xintercept PANEL group colour size linetype alpha
       1   13.56747     1    -1   blue    1   dashed    NA
+      
+
+---
+
+    Code
+      pb1$plot$labels
+    Output
+      $x
+      [1] "awake"
+      
+      $y
+      [1] "count"
+      
+      $title
+      NULL
+      
+      $subtitle
+      NULL
+      
+      $caption
+      NULL
+      
+      $fill
+      [1] "count"
+      
+      $xintercept
+      [1] "xintercept"
+      
+      $weight
+      [1] "weight"
+      attr(,"fallback")
+      [1] TRUE
+      
+      $alt
+      [1] ""
       
 
