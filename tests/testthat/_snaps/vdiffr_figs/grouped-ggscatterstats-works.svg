@@ -283,13 +283,8 @@
 <text x='164.49' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='2.20px' lengthAdjust='spacingAndGlyphs'>,</text>
 <text x='166.70' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='2.20px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='168.90' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='4.25px' lengthAdjust='spacingAndGlyphs'>ρ</text>
-<text x='173.15' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='4.11px' lengthAdjust='spacingAndGlyphs'>P</text>
-<text x='177.26' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>e</text>
-<text x='180.68' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>a</text>
-<text x='184.11' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='2.05px' lengthAdjust='spacingAndGlyphs'>r</text>
-<text x='186.16' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.08px' lengthAdjust='spacingAndGlyphs'>s</text>
-<text x='189.24' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>o</text>
-<text x='192.67' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>n</text>
+<polyline points='168.90,555.09 171.02,553.28 173.15,555.09 ' style='stroke-width: 0.75;' />
+<text x='173.15' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='22.95px' lengthAdjust='spacingAndGlyphs'>Pearson</text>
 <text x='173.15' y='555.43' style='font-size: 6.16px; font-family: sans;' textLength='23.97px' lengthAdjust='spacingAndGlyphs'>posterior</text>
 <text x='199.15' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='208.02' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.71</text>
@@ -579,13 +574,8 @@
 <text x='520.24' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='2.20px' lengthAdjust='spacingAndGlyphs'>,</text>
 <text x='522.44' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='2.20px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='524.64' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='4.25px' lengthAdjust='spacingAndGlyphs'>ρ</text>
-<text x='528.89' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='4.11px' lengthAdjust='spacingAndGlyphs'>P</text>
-<text x='533.00' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>e</text>
-<text x='536.43' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>a</text>
-<text x='539.85' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='2.05px' lengthAdjust='spacingAndGlyphs'>r</text>
-<text x='541.90' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.08px' lengthAdjust='spacingAndGlyphs'>s</text>
-<text x='544.99' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>o</text>
-<text x='548.41' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>n</text>
+<polyline points='524.64,555.09 526.77,553.28 528.89,555.09 ' style='stroke-width: 0.75;' />
+<text x='528.89' y='562.57' style='font-size: 6.16px; font-family: sans;' textLength='22.95px' lengthAdjust='spacingAndGlyphs'>Pearson</text>
 <text x='528.89' y='555.43' style='font-size: 6.16px; font-family: sans;' textLength='23.97px' lengthAdjust='spacingAndGlyphs'>posterior</text>
 <text x='554.90' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='563.77' y='560.43' style='font-size: 8.80px; font-family: sans;' textLength='20.06px' lengthAdjust='spacingAndGlyphs'>-0.85</text>

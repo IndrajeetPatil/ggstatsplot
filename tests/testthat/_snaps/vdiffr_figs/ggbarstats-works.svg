@@ -245,12 +245,8 @@
 <text x='454.37' y='565.79' style='font-size: 8.80px; font-family: sans;' textLength='2.20px' lengthAdjust='spacingAndGlyphs'>,</text>
 <text x='456.57' y='565.79' style='font-size: 8.80px; font-family: sans;' textLength='2.20px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='458.78' y='565.79' style='font-size: 8.80px; font-style: italic; font-family: sans;' textLength='5.87px' lengthAdjust='spacingAndGlyphs'>V</text>
-<text x='465.56' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>C</text>
-<text x='470.01' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='2.05px' lengthAdjust='spacingAndGlyphs'>r</text>
-<text x='472.06' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>a</text>
-<text x='475.48' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='5.13px' lengthAdjust='spacingAndGlyphs'>m</text>
-<text x='480.62' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='3.43px' lengthAdjust='spacingAndGlyphs'>e</text>
-<text x='484.04' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='2.05px' lengthAdjust='spacingAndGlyphs'>r</text>
+<polyline points='458.78,558.52 462.17,556.70 465.56,558.52 ' style='stroke-width: 0.75;' />
+<text x='465.56' y='567.93' style='font-size: 6.16px; font-family: sans;' textLength='20.54px' lengthAdjust='spacingAndGlyphs'>Cramer</text>
 <text x='466.46' y='560.79' style='font-size: 6.16px; font-family: sans;' textLength='23.97px' lengthAdjust='spacingAndGlyphs'>posterior</text>
 <text x='492.47' y='565.79' style='font-size: 8.80px; font-family: sans;' textLength='6.83px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='501.34' y='565.79' style='font-size: 8.80px; font-family: sans;' textLength='17.13px' lengthAdjust='spacingAndGlyphs'>0.27</text>

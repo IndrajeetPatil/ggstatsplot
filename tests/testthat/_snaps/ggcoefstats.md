@@ -151,18 +151,22 @@
       list(tidy_df1, p$labels)
     Output
       [[1]]
-          term  statistic df df.error      p.value      sumsq     meansq  estimate
-      1    mpg 118.890808  1       28 1.378306e-11 22.3431348 22.3431348 0.8093822
-      2     am   7.301593  1       28 1.156944e-02  1.3721874  1.3721874 0.2068347
-      3 mpg:am   3.732186  1       28 6.355055e-02  0.7013893  0.7013893 0.1176152
-          conf.low conf.high sum.squares.error mean.square.error          effectsize
-      1 0.69286010         1          5.262037          5.262037 partial eta-squared
-      2 0.02986489         1          5.262037          5.262037 partial eta-squared
-      3 0.00000000         1          5.262037          5.262037 partial eta-squared
-                                                                                                 label
-      1 list(widehat(italic(eta)[p]^2)=='0.81', italic(F)('1', '28')=='118.89', italic(p)=='1.38e-11')
-      2       list(widehat(italic(eta)[p]^2)=='0.21', italic(F)('1', '28')=='7.30', italic(p)=='0.01')
-      3       list(widehat(italic(eta)[p]^2)=='0.12', italic(F)('1', '28')=='3.73', italic(p)=='0.06')
+      # A tibble: 3 x 14
+        term   statistic    df df.error  p.value  sumsq meansq estimate conf.low
+        <fct>      <dbl> <dbl>    <dbl>    <dbl>  <dbl>  <dbl>    <dbl>    <dbl>
+      1 mpg       119.       1       28 1.38e-11 22.3   22.3      0.809   0.693 
+      2 am          7.30     1       28 1.16e- 2  1.37   1.37     0.207   0.0299
+      3 mpg:am      3.73     1       28 6.36e- 2  0.701  0.701    0.118   0     
+        conf.high sum.squares.error mean.square.error effectsize         
+            <dbl>             <dbl>             <dbl> <chr>              
+      1         1              5.26              5.26 partial eta-squared
+      2         1              5.26              5.26 partial eta-squared
+      3         1              5.26              5.26 partial eta-squared
+        label                                                                         
+        <glue>                                                                        
+      1 list(widehat(italic(eta)[p]^2)=='0.81', italic(F)('1', '28')=='118.89', itali~
+      2 list(widehat(italic(eta)[p]^2)=='0.21', italic(F)('1', '28')=='7.30', italic(~
+      3 list(widehat(italic(eta)[p]^2)=='0.12', italic(F)('1', '28')=='3.73', italic(~
       
       [[2]]
       [[2]]$x
@@ -201,22 +205,22 @@
       list(tidy_df2, p$labels)
     Output
       [[1]]
-                term statistic df df.error      p.value     sumsq   meansq   estimate
-      1         vore  7.388224  3       35 0.0005838887 19.618369 6.539456 0.30828881
-      2      brainwt  2.033949  1       35 0.1626797382  1.800287 1.800287 0.02348073
-      3 vore:brainwt  4.012022  3       35 0.0148476585 10.653349 3.551116 0.17365008
-          conf.low conf.high sum.squares.error mean.square.error
-      1 0.07625813         1          30.97916          30.97916
-      2 0.00000000         1          30.97916          30.97916
-      3 0.00000000         1          30.97916          30.97916
-                   effectsize
-      1 partial omega-squared
-      2 partial omega-squared
-      3 partial omega-squared
-                                                                                                    label
-      1 list(widehat(italic(omega)[p]^2)=='0.308', italic(F)('3', '35')=='7.388', italic(p)=='5.839e-04')
-      2     list(widehat(italic(omega)[p]^2)=='0.023', italic(F)('1', '35')=='2.034', italic(p)=='0.163')
-      3     list(widehat(italic(omega)[p]^2)=='0.174', italic(F)('3', '35')=='4.012', italic(p)=='0.015')
+      # A tibble: 3 x 14
+        term         statistic    df df.error  p.value sumsq meansq estimate conf.low
+        <fct>            <dbl> <dbl>    <dbl>    <dbl> <dbl>  <dbl>    <dbl>    <dbl>
+      1 vore              7.39     3       35 0.000584 19.6    6.54   0.308    0.0763
+      2 brainwt           2.03     1       35 0.163     1.80   1.80   0.0235   0     
+      3 vore:brainwt      4.01     3       35 0.0148   10.7    3.55   0.174    0     
+        conf.high sum.squares.error mean.square.error effectsize           
+            <dbl>             <dbl>             <dbl> <chr>                
+      1         1              31.0              31.0 partial omega-squared
+      2         1              31.0              31.0 partial omega-squared
+      3         1              31.0              31.0 partial omega-squared
+        label                                                                         
+        <glue>                                                                        
+      1 list(widehat(italic(omega)[p]^2)=='0.308', italic(F)('3', '35')=='7.388', ita~
+      2 list(widehat(italic(omega)[p]^2)=='0.023', italic(F)('1', '35')=='2.034', ita~
+      3 list(widehat(italic(omega)[p]^2)=='0.174', italic(F)('3', '35')=='4.012', ita~
       
       [[2]]
       [[2]]$x

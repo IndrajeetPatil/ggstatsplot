@@ -1231,39 +1231,31 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 ##> 1       0.95    0.531         1 ncp         F                    32 <expression>
 ##> 
 ##> $caption_data
-##> # A tibble: 6 x 22
-##>   term  effectsize                      estimate conf.level conf.low conf.high
-##>   <chr> <chr>                              <dbl>      <dbl>    <dbl>     <dbl>
-##> 1 mu    Bayes factors for linear models   20.5         0.95  19.3        21.9 
-##> 2 cyl-4 Bayes factors for linear models    5.90        0.95   4.11        7.52
-##> 3 cyl-6 Bayes factors for linear models   -0.704       0.95  -2.64        1.06
-##> 4 cyl-8 Bayes factors for linear models   -5.18        0.95  -6.76       -3.55
-##> 5 sig2  Bayes factors for linear models   11.0         0.95   6.24       18.3 
-##> 6 g_cyl Bayes factors for linear models    2.69        0.95   0.0911     18.7 
-##>      pd rope.percentage prior.distribution prior.location prior.scale
-##>   <dbl>           <dbl> <chr>                       <dbl>       <dbl>
-##> 1 1              0      cauchy                          0       0.707
-##> 2 1              0      cauchy                          0       0.707
-##> 3 0.780          0.390  cauchy                          0       0.707
-##> 4 1              0      cauchy                          0       0.707
-##> 5 1              0      cauchy                          0       0.707
-##> 6 1              0.0418 cauchy                          0       0.707
-##>   component       bf10 method                          log_e_bf10    r2 std.dev
-##>   <chr>          <dbl> <chr>                                <dbl> <dbl>   <dbl>
-##> 1 extra       3008850. Bayes factors for linear models       14.9 0.714  0.0503
-##> 2 conditional 3008850. Bayes factors for linear models       14.9 0.714  0.0503
-##> 3 conditional 3008850. Bayes factors for linear models       14.9 0.714  0.0503
-##> 4 conditional 3008850. Bayes factors for linear models       14.9 0.714  0.0503
-##> 5 extra       3008850. Bayes factors for linear models       14.9 0.714  0.0503
-##> 6 extra       3008850. Bayes factors for linear models       14.9 0.714  0.0503
-##>   r2.conf.level r2.conf.low r2.conf.high n.obs expression  
-##>           <dbl>       <dbl>        <dbl> <int> <list>      
-##> 1          0.95       0.574        0.788    32 <expression>
-##> 2          0.95       0.574        0.788    32 <expression>
-##> 3          0.95       0.574        0.788    32 <expression>
-##> 4          0.95       0.574        0.788    32 <expression>
-##> 5          0.95       0.574        0.788    32 <expression>
-##> 6          0.95       0.574        0.788    32 <expression>
+##> # A tibble: 6 x 17
+##>   term     pd rope.percentage prior.distribution prior.location prior.scale
+##>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
+##> 1 mu    1              0      cauchy                          0       0.707
+##> 2 cyl-4 1              0      cauchy                          0       0.707
+##> 3 cyl-6 0.780          0.390  cauchy                          0       0.707
+##> 4 cyl-8 1              0      cauchy                          0       0.707
+##> 5 sig2  1              0      cauchy                          0       0.707
+##> 6 g_cyl 1              0.0418 cauchy                          0       0.707
+##>       bf10 method                          log_e_bf10 effectsize        
+##>      <dbl> <chr>                                <dbl> <chr>             
+##> 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+##>   estimate std.dev conf.level conf.low conf.high n.obs expression  
+##>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>      
+##> 1    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 2    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 3    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 4    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 5    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+##> 6    0.714  0.0503       0.95    0.574     0.788    32 <expression>
 ##> 
 ##> $pairwise_comparisons_data
 ##> # A tibble: 3 x 11
