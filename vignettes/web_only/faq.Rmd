@@ -517,20 +517,19 @@ results <-
   parameters::standardize_names(style = "broom")
 
 ## creating expression out of these results
-expr_results <-
-  statsExpressions::expr_template(
-    data = results,
-    no.parameters = 0L,
-    statistic.text = quote(italic("T")),
-    effsize.text = quote(widehat(italic(tau))["Kendall"]),
-    n = results$n.obs[[1]]
+df_results <- statsExpressions::add_expression_col(
+    data           = results,
+    no.parameters  = 0L,
+    statistic.text = list(quote(italic("T"))),
+    effsize.text   = list(quote(widehat(italic(tau))["Kendall"])),
+    n              = results$n.obs[[1]]
   )
 
 ## plot (overriding defaults and using custom expression)
 ggscatterstats(
   df, wt, mpg,
   results.subtitle = FALSE,
-  ggplot.component = list(labs(subtitle = expr_results))
+  ggplot.component = list(labs(subtitle = df_results$expression[[1]]))
 )
 ```
 
