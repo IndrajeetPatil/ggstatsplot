@@ -42,12 +42,12 @@ test_that(
     expect_snapshot(pb$data)
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
-    expect_identical(pb$plot$labels$title, "mammalian sleep")
-    expect_identical(pb$plot$labels$caption, p_cap)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$title, "mammalian sleep")
+    expect_equal(pb$plot$labels$caption, p_cap)
     expect_null(pb$plot$labels$x, NULL)
     expect_null(pb$plot$labels$y, NULL)
-    expect_identical(pb$plot$plot_env$legend.title, "vore")
+    expect_equal(pb$plot$plot_env$legend.title, "vore")
   }
 )
 
@@ -120,8 +120,8 @@ test_that(
     expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
-    expect_identical(pb$plot$labels$caption, p_cap)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$caption, p_cap)
   }
 )
 
@@ -162,7 +162,7 @@ test_that(
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
   }
 )
 
@@ -209,7 +209,7 @@ test_that(
 
     # checking plot labels
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_snapshot(pb$data[[3]])
   }
 )
@@ -329,7 +329,7 @@ test_that(
     )$expression[[1]]
 
     # tests
-    expect_identical(p_sub, stats_output)
-    expect_identical(p_cap, p_cap_exp)
+    expect_equal(p_sub, stats_output)
+    expect_equal(p_cap, p_cap_exp)
   }
 )

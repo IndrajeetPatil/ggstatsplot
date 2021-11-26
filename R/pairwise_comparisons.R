@@ -384,6 +384,7 @@ pairwise_caption <- function(caption,
                              bf.message,
                              pairwise.display = "significant",
                              ...) {
+
   # ' needs to be escaped inside glue
   test <- sub("'", "\\'", test.description, fixed = TRUE)
   display <- case_when(

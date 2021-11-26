@@ -287,7 +287,7 @@
 ---
 
     Code
-      within(pb$plot$labels, rm(caption))
+      pb$plot$labels
     Output
       $x
       [1] "cyl"
@@ -304,12 +304,24 @@
       $subtitle
       NULL
       
+      $caption
+      expression(list("Pairwise test:" ~ bold("Dunn test"), "Comparisons shown:" ~ 
+          bold("only significant")))
+      
       $label
       [1] "outlier.label"
       
       $alt
       [1] ""
       
+
+---
+
+    Code
+      pb1$data[[6]]$label
+    Output
+      widehat(mu)[mean]=='0.98'
+      widehat(mu)[mean]=='1.39'
 
 # checking if plot.type argument works
 
@@ -659,7 +671,7 @@
 ---
 
     Code
-      within(pb2$plot$labels, rm(subtitle, caption))
+      within(pb2$plot$labels, rm(subtitle))
     Output
       $x
       [1] "supp"
@@ -671,6 +683,9 @@
       [1] "supp"
       
       $title
+      NULL
+      
+      $caption
       NULL
       
       $label

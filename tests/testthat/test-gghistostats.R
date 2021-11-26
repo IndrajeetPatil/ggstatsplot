@@ -52,10 +52,10 @@ test_that(
       )$expression[[1]]
 
     # testing overall call
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
-    expect_identical(pb$plot$labels$title, "starwars: character heights")
-    expect_identical(pb$plot$labels$x, "character height")
-    expect_identical(pb$plot$labels$caption, p_cap)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$title, "starwars: character heights")
+    expect_equal(pb$plot$labels$x, "character height")
+    expect_equal(pb$plot$labels$caption, p_cap)
   }
 )
 
@@ -90,11 +90,11 @@ test_that(
 
     # checking panel parameters
     expect_equal(pb$layout$panel_params[[1]]$x$limits, c(7.5, 37.5))
-    expect_identical(
+    expect_equal(
       pb$layout$panel_params[[1]]$x$breaks,
       c(NA, 10, 20, 30, NA)
     )
-    expect_identical(
+    expect_equal(
       pb$layout$panel_params[[1]]$y$breaks,
       c(0, 25, 50, 75, 100)
     )
@@ -138,11 +138,11 @@ test_that(
     )
 
     # testing labels
-    expect_identical(p$labels$subtitle, NULL)
-    expect_identical(p$labels$title, "fuel economy")
-    expect_identical(p$labels$x, "city miles per gallon")
-    expect_identical(p$labels$y, "count")
-    expect_identical(
+    expect_equal(p$labels$subtitle, NULL)
+    expect_equal(p$labels$title, "fuel economy")
+    expect_equal(p$labels$x, "city miles per gallon")
+    expect_equal(p$labels$y, "count")
+    expect_equal(
       p$labels$caption,
       ggplot2::expr(paste(
         italic("source"),
@@ -183,9 +183,9 @@ test_that(
     )$expression[[1]]
 
     # testing labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
     expect_null(pb$plot$labels$caption, NULL)
-    expect_identical(pb$plot$labels$y, "count")
+    expect_equal(pb$plot$labels$y, "count")
 
     # check data
     set.seed(123)
@@ -267,6 +267,6 @@ test_that(
       )$expression[[1]]
 
     # tests
-    expect_identical(p_sub, sub)
+    expect_equal(p_sub, sub)
   }
 )

@@ -45,7 +45,7 @@ test_that(
     expect_snapshot(within(pb$plot$labels, rm(subtitle)))
 
     # checking plot labels
-    expect_identical(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
   }
 )
 
@@ -85,7 +85,7 @@ test_that(
     expect_snapshot(list(pb$data, pb1$data))
 
     # checking layered data
-    expect_identical(pb$plot$guides$fill$title, "Engine")
+    expect_equal(pb$plot$guides$fill$title, "Engine")
   }
 )
 
@@ -167,7 +167,7 @@ test_that(
     )$expression[[1]]
 
     # tests
-    expect_identical(p_sub, stats_output)
-    expect_identical(p_cap, p_cap_exp)
+    expect_equal(p_sub, stats_output)
+    expect_equal(p_cap, p_cap_exp)
   }
 )

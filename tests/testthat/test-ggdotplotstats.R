@@ -74,7 +74,7 @@ test_that(
       c(0.8, 5.2),
       tolerance = 0.001
     )
-    expect_identical(
+    expect_equal(
       pb$layout$panel_params[[1]]$y$scale$labels,
       structure(
         c(4L, 5L, 3L, 2L, 1L),
@@ -164,20 +164,20 @@ test_that(
     expect_snapshot(pb1$data)
 
     # tests
-    expect_identical(
+    expect_equal(
       levels(pb1$plot$data$vore),
       c("herbi", "insecti", "carni")
     )
-    expect_identical(
+    expect_equal(
       levels(pb2$plot$data$vore),
       c("carni", "herbi", "insecti")
     )
-    expect_identical(
+    expect_equal(
       dplyr::select(pb1$plot$data, -vore),
       dplyr::select(pb2$plot$data, -vore)
     )
-    expect_identical(pb1$data[[1]], pb2$data[[1]])
-    expect_identical(pb1$data[[2]], pb2$data[[2]])
+    expect_equal(pb1$data[[1]], pb2$data[[1]])
+    expect_equal(pb1$data[[2]], pb2$data[[2]])
   }
 )
 
@@ -201,7 +201,7 @@ test_that(
 
     # tests
     set.seed(123)
-    expect_identical(
+    expect_equal(
       p_sub,
       suppressWarnings(gghistostats(
         data = dplyr::group_by(morley, Expt) %>%

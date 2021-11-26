@@ -315,7 +315,7 @@ test_that(
         output = "subtitle"
       )
 
-    expect_identical(using_function1, ggcoef_label)
+    expect_equal(using_function1, ggcoef_label)
   }
 )
 

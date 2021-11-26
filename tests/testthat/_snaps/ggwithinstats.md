@@ -380,7 +380,8 @@
       NULL
       
       $caption
-      expression()
+      expression(list("Pairwise test:" ~ bold("Durbin-Conover test"), 
+          "Comparisons shown:" ~ bold("only significant")))
       
       $group
       [1] ".rowid"
@@ -410,7 +411,8 @@
       NULL
       
       $caption
-      expression()
+      expression(list("Pairwise test:" ~ bold("Yuen's trimmed means test"), 
+          "Comparisons shown:" ~ bold("only non-significant")))
       
       $group
       [1] ".rowid"
