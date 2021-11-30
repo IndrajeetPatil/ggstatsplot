@@ -1,17 +1,25 @@
 url: https://indrajeetpatil.github.io/ggstatsplot/
 
+authors:
+  Indrajeet Patil:
+    href: https://sites.google.com/site/indrajeetspatilmorality/
+
 template:
   bootstrap: 5
   bootswatch: cyborg
   theme: arrow-dark
   bslib:
-    primary: "#0054AD"
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
-
-authors:
-  Indrajeet Patil:
-    href: https://sites.google.com/site/indrajeetspatilmorality/
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Roboto"}
+    code_font: {google: "JetBrains Mono"}
+  opengraph:
+    image:
+      src: man/figures/card.png
+    twitter:
+      creator: "@patilindrajeets"
+      card: summary_large_image
 
 reference:
 
