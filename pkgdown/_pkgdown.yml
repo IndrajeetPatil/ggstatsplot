@@ -8,9 +8,10 @@ template:
   bootstrap: 5
   bootswatch: cyborg
   theme: arrow-dark
+  includes:
+    in-header: |
+      <script defer data-domain="indrajeetpatil.github.io/ggstatsplot" src="https://plausible.io/js/plausible.js"></script>
   bslib:
-    border-radius: 0.5rem
-    btn-border-radius: 0.25rem
     base_font: {google: "Roboto"}
     heading_font: {google: "Roboto"}
     code_font: {google: "JetBrains Mono"}
