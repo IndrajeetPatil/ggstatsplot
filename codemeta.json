@@ -51,7 +51,6 @@
       "@type": "SoftwareApplication",
       "identifier": "afex",
       "name": "afex",
-      "version": ">= 1.0-1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -64,6 +63,7 @@
       "@type": "SoftwareApplication",
       "identifier": "BayesFactor",
       "name": "BayesFactor",
+      "version": ">= 0.9.12-4.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -124,7 +124,6 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.1.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -573,6 +572,6 @@
     }
   ],
   "funder": {},
-  "fileSize": "6470.121KB",
+  "fileSize": "6450.448KB",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md"
 }

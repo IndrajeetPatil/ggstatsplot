@@ -7,13 +7,6 @@
 #' for within-subjects designs with statistical details included in the plot as
 #' a subtitle.
 #'
-#' @note
-#'
-#' To carry out Bayesian analysis for ANOVA designs, you will need to install
-#' the development version of `BayesFactor` (`0.9.12-4.3`). You can download it
-#' by running:
-#' `remotes::install_github("richarddmorey/BayesFactor/pkg/BayesFactor")`.
-#'
 #' @inheritParams ggbetweenstats
 #' @param point.path,centrality.path Logical that decides whether individual data
 #'   points and means, respectively, should be connected using `geom_path`. Both
