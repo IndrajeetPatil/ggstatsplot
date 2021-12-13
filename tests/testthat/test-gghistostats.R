@@ -43,12 +43,12 @@ test_that(
     # checking caption
     set.seed(123)
     p_cap <- statsExpressions::one_sample_test(
-        data = dplyr::starwars,
-        x = height,
-        type = "bayes",
-        test.value = 150,
-        bf.prior = 0.9
-      )$expression[[1]]
+      data = dplyr::starwars,
+      x = height,
+      type = "bayes",
+      test.value = 150,
+      bf.prior = 0.9
+    )$expression[[1]]
 
     # testing overall call
     expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
