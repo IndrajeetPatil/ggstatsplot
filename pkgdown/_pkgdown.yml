@@ -4,8 +4,8 @@ authors:
   Indrajeet Patil:
     href: https://sites.google.com/site/indrajeetspatilmorality/
 
-development:
-  mode: auto
+# development:
+#   mode: auto
 
 template:
   bootstrap: 5
