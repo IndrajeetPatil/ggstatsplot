@@ -1,9 +1,13 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
-    branches: [main, master]
-    tags: ['*']
+    branches: [main, master, v2-branch]
+  pull_request:
+    branches: [main, master, v2-branch]
+  release:
+    types: [published]
+  workflow_dispatch:
 
 name: pkgdown
 
@@ -15,19 +19,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: r-lib/actions/setup-pandoc@master
+      - uses: IndrajeetPatil/actions/setup-pandoc@v2-branch
 
-      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-r@v2-branch
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@master
+      - uses: r-lib/actions/setup-r-dependencies@v2-branch
         with:
-          extra-packages: r-lib/pkgdown
+          extra-packages: r-lib/pkgdown, local::.
           needs: website
 
-      - name: Deploy package
-        run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+      - name: Build site
+        run: Rscript -e 'pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)'
+
+      - name: Deploy to GitHub pages 🚀
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: docs

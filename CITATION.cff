@@ -1,0 +1,632 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.2.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "ggstatsplot" in publications use:'
+type: software
+license: GPL-3.0-only
+title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
+version: 0.9.0.9000
+doi: 10.21105/joss.03167
+abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
+  from statistical tests included in the plots themselves. It provides an easier syntax
+  to generate information-rich plots for statistical analysis of continuous (violin
+  plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical
+  (pie and bar charts) data. Currently, it supports the most common types of statistical
+  approaches and tests: parametric, nonparametric, robust, and Bayesian versions of
+  t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and
+  regression analyses.'
+authors:
+- family-names: Patil
+  given-names: Indrajeet
+  email: patilindrajeet.science@gmail.com
+  orcid: https://orcid.org/0000-0003-1995-6531
+preferred-citation:
+  type: article
+  title: 'Visualizations with statistical details: The ''ggstatsplot'' approach'
+  authors:
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  doi: 10.21105/joss.03167
+  url: https://doi.org/10.21105/joss.03167
+  year: '2021'
+  publisher:
+    name: The Open Journal
+  volume: '6'
+  issue: '61'
+  journal: Journal of Open Source Software
+  start: '3167'
+repository: https://CRAN.R-project.org/package=ggstatsplot
+repository-code: https://github.com/IndrajeetPatil/ggstatsplot
+url: https://indrajeetpatil.github.io/ggstatsplot/
+contact:
+- family-names: Patil
+  given-names: Indrajeet
+  email: patilindrajeet.science@gmail.com
+  orcid: https://orcid.org/0000-0003-1995-6531
+keywords:
+- bayes-factors
+- correlation
+- correlation-matrices
+- datascience
+- dataviz
+- effect-size
+- ggplot-extension
+- hypothesis-testing
+- meta-analysis
+- non-parametric-statistics
+- parametric
+- plot
+- r
+- regression-models
+- robust-statistics
+- statistical-analysis
+- tidy-data
+- violin-plot
+- visualization
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2022'
+  url: https://www.R-project.org/
+  institution:
+    name: R Foundation for Statistical Computing
+  version: '>= 4.0.0'
+  notes: Depends
+- type: software
+  title: 'correlation: Methods for Correlation Analysis'
+  authors:
+  - family-names: Makowski
+    given-names: Dominique
+    email: dom.makowski@gmail.com
+    orcid: https://orcid.org/0000-0001-5375-9967
+  - family-names: Wiernik
+    given-names: Brenton M.
+    email: brenton@wiernik.org
+    orcid: https://orcid.org/0000-0001-9560-6336
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  - family-names: Lüdecke
+    given-names: Daniel
+    email: d.luedecke@uke.de
+    orcid: https://orcid.org/0000-0002-8895-3206
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+    email: matanshm@post.bgu.ac.il
+    orcid: https://orcid.org/0000-0002-4287-4801
+  notes: Imports
+  url: https://easystats.github.io/correlation/
+  year: '2022'
+- type: software
+  title: 'dplyr: A Grammar of Data Manipulation'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=dplyr
+- type: software
+  title: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Chang
+    given-names: Winston
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@rstudio.com
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Takahashi
+    given-names: Kohske
+  - family-names: Wilke
+    given-names: Claus
+    orcid: https://orcid.org/0000-0002-7470-9261
+  - family-names: Woo
+    given-names: Kara
+    orcid: https://orcid.org/0000-0002-5125-4188
+  - family-names: Yutani
+    given-names: Hiroaki
+    orcid: https://orcid.org/0000-0002-3385-7233
+  - family-names: Dunnington
+    given-names: Dewey
+    orcid: https://orcid.org/0000-0002-9415-4582
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=ggplot2
+- type: software
+  title: 'ggrepel: Automatically Position Non-Overlapping Text Labels with ''ggplot2'''
+  authors:
+  - family-names: Slowikowski
+    given-names: Kamil
+    email: kslowikowski@gmail.com
+    orcid: https://orcid.org/0000-0002-2843-6370
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=ggrepel
+- type: software
+  title: 'ggsignif: Significance Brackets for ''ggplot2'''
+  authors:
+  - family-names: Ahlmann-Eltze
+    given-names: Constantin
+    email: artjom31415@googlemail.com
+    orcid: https://orcid.org/0000-0002-3762-068X
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  year: '2022'
+  notes: Imports
+- type: software
+  title: 'glue: Interpreted String Literals'
+  authors:
+  - family-names: Hester
+    given-names: Jim
+    orcid: https://orcid.org/0000-0002-2739-7082
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@rstudio.com
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=glue
+- type: software
+  title: 'insight: Easy Access to Model Information for Various Model Objects'
+  authors:
+  - family-names: Lüdecke
+    given-names: Daniel
+    email: d.luedecke@uke.de
+    orcid: https://orcid.org/0000-0002-8895-3206
+  - family-names: Makowski
+    given-names: Dominique
+    email: dom.makowski@gmail.com
+    orcid: https://orcid.org/0000-0001-5375-9967
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  - family-names: Waggoner
+    given-names: Philip
+    email: philip.waggoner@gmail.com
+    orcid: https://orcid.org/0000-0002-7825-7573
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+    email: matanshm@post.bgu.ac.il
+    orcid: https://orcid.org/0000-0002-4287-4801
+  - family-names: Wiernik
+    given-names: Brenton M.
+    email: brenton@wiernik.org
+    orcid: https://orcid.org/0000-0001-9560-6336
+  year: '2022'
+  notes: Imports
+  url: https://easystats.github.io/insight/
+  version: '>= 0.14.5'
+- type: software
+  title: 'paletteer: Comprehensive Collection of Color Palettes'
+  authors:
+  - family-names: file.
+    given-names: See AUTHORS
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=paletteer
+- type: software
+  title: 'parameters: Processing of Model Parameters'
+  authors:
+  - family-names: Lüdecke
+    given-names: Daniel
+    email: d.luedecke@uke.de
+    orcid: https://orcid.org/0000-0002-8895-3206
+  - family-names: Makowski
+    given-names: Dominique
+    email: dom.makowski@gmail.com
+    orcid: https://orcid.org/0000-0001-5375-9967
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+    email: matanshm@post.bgu.ac.il
+    orcid: https://orcid.org/0000-0002-4287-4801
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  - family-names: Højsgaard
+    given-names: Søren
+    email: sorenh@math.aau.dk
+  - family-names: Wiernik
+    given-names: Brenton M.
+    email: brenton@wiernik.org
+    orcid: https://orcid.org/0000-0001-9560-6336
+  year: '2022'
+  notes: Imports
+  url: https://easystats.github.io/parameters/
+  version: '>= 0.15.0'
+- type: software
+  title: 'patchwork: The Composer of Plots'
+  authors:
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomasp85@gmail.com
+    orcid: https://orcid.org/0000-0002-5147-4711
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=patchwork
+- type: software
+  title: 'performance: Assessment of Regression Models Performance'
+  authors:
+  - family-names: Lüdecke
+    given-names: Daniel
+    email: d.luedecke@uke.de
+    orcid: https://orcid.org/0000-0002-8895-3206
+  - family-names: Makowski
+    given-names: Dominique
+    email: dom.makowski@gmail.com
+    orcid: https://orcid.org/0000-0001-5375-9967
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+    email: matanshm@post.bgu.ac.il
+    orcid: https://orcid.org/0000-0002-4287-4801
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  - family-names: Waggoner
+    given-names: Philip
+    email: philip.waggoner@gmail.com
+    orcid: https://orcid.org/0000-0002-7825-7573
+  - family-names: Wiernik
+    given-names: Brenton M.
+    email: brenton@wiernik.org
+    orcid: https://orcid.org/0000-0001-9560-6336
+  year: '2022'
+  notes: Imports
+  url: https://easystats.github.io/performance/
+  version: '>= 0.8.0'
+- type: software
+  title: 'purrr: Functional Programming Tools'
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=purrr
+- type: software
+  title: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=rlang
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2022'
+  url: https://www.R-project.org/
+  institution:
+    name: R Foundation for Statistical Computing
+  notes: Imports
+- type: software
+  title: 'statsExpressions: Tidy Dataframes and Expressions with Statistical Details'
+  authors:
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  notes: Imports
+  version: '>= 1.2.0.9000'
+  year: '2022'
+- type: software
+  title: 'tidyr: Tidy Messy Data'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Girlich
+    given-names: Maximilian
+  year: '2022'
+  notes: Imports
+- type: software
+  title: 'WRS2: A Collection of Robust Statistical Methods'
+  authors:
+  - family-names: Mair
+    given-names: Patrick
+    email: mair@fas.harvard.edu
+  - family-names: Wilcox
+    given-names: Rand
+    email: rwilcox@usc.edu
+  year: '2022'
+  notes: Imports
+  url: https://CRAN.R-project.org/package=WRS2
+- type: software
+  title: 'afex: Analysis of Factorial Experiments'
+  authors:
+  - family-names: Singmann
+    given-names: Henrik
+    email: singmann@gmail.com
+    orcid: https://orcid.org/0000-0002-4842-3657
+  - family-names: Bolker
+    given-names: Ben
+  - family-names: Westfall
+    given-names: Jake
+  - family-names: Aust
+    given-names: Frederik
+    orcid: https://orcid.org/0000-0003-4900-788X
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=afex
+- type: software
+  title: 'BayesFactor: Computation of Bayes Factors for Common Designs'
+  authors:
+  - family-names: Morey
+    given-names: Richard D.
+    email: richarddmorey@gmail.com
+  - family-names: Rouder
+    given-names: Jeffrey N.
+    email: jrouder@uci.edu
+  year: '2022'
+  notes: Suggests
+  url: https://richarddmorey.github.io/BayesFactor/
+  version: '>= 0.9.12-4.3'
+- type: software
+  title: 'forcats: Tools for Working with Categorical Variables (Factors)'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=forcats
+- type: software
+  title: 'gapminder: Data from Gapminder'
+  authors:
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@rstudio.com
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=gapminder
+- type: software
+  title: 'ggcorrplot: Visualization of a Correlation Matrix using ''ggplot2'''
+  authors:
+  - family-names: Kassambara
+    given-names: Alboukadel
+    email: alboukadel.kassambara@gmail.com
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=ggcorrplot
+- type: software
+  title: 'gginnards: Explore the Innards of ''ggplot2'' Objects'
+  authors:
+  - family-names: Aphalo
+    given-names: Pedro J.
+    email: pedro.aphalo@helsinki.fi
+    orcid: https://orcid.org/0000-0003-3385-972X
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=gginnards
+- type: software
+  title: 'ggside: Side Grammar Graphics'
+  authors:
+  - family-names: Landis
+    given-names: Justin
+    email: jtlandis314@gmail.com
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=ggside
+- type: software
+  title: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=knitr
+- type: software
+  title: 'lme4: Linear Mixed-Effects Models using ''Eigen'' and S4'
+  authors:
+  - family-names: Bates
+    given-names: Douglas
+    orcid: https://orcid.org/0000-0001-8316-9503
+  - family-names: Maechler
+    given-names: Martin
+    orcid: https://orcid.org/0000-0002-8685-9910
+  - family-names: Bolker
+    given-names: Ben
+    email: bbolker+lme4@gmail.com
+    orcid: https://orcid.org/0000-0002-2127-0443
+  - family-names: Walker
+    given-names: Steven
+    orcid: https://orcid.org/0000-0002-4394-9078
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=lme4
+- type: software
+  title: 'MASS: Support Functions and Datasets for Venables and Ripley''s MASS'
+  authors:
+  - family-names: Ripley
+    given-names: Brian
+    email: ripley@stats.ox.ac.uk
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=MASS
+- type: software
+  title: 'metaBMA: Bayesian Model Averaging for Random and Fixed Effects Meta-Analysis'
+  authors:
+  - family-names: Heck
+    given-names: Daniel W.
+    email: dheck@uni-marburg.de
+    orcid: https://orcid.org/0000-0002-6302-9252
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=metaBMA
+- type: software
+  title: 'metafor: Meta-Analysis Package for R'
+  authors:
+  - family-names: Viechtbauer
+    given-names: Wolfgang
+    email: wvb@metafor-project.org
+    orcid: https://orcid.org/0000-0003-3463-4063
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=metafor
+- type: software
+  title: 'PMCMRplus: Calculate Pairwise Multiple Comparisons of Mean Rank Sums Extended'
+  authors:
+  - family-names: Pohlert
+    given-names: Thorsten
+    email: thorsten.pohlert@gmx.de
+    orcid: https://orcid.org/0000-0003-3855-3025
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=PMCMRplus
+- type: software
+  title: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
+  authors:
+  - family-names: Revelle
+    given-names: William
+    email: revelle@northwestern.edu
+    orcid: https://orcid.org/0000-0003-4880-9610
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=psych
+- type: software
+  title: 'rmarkdown: Dynamic Documents for R'
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2022'
+  notes: Suggests
+- type: software
+  title: 'spelling: Tools for Spell Checking in R'
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  - family-names: Hester
+    given-names: Jim
+    email: james.hester@rstudio.com
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=spelling
+- type: software
+  title: 'survival: Survival Analysis'
+  authors:
+  - family-names: Therneau
+    given-names: Terry M
+    email: therneau.terry@mayo.edu
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=survival
+- type: software
+  title: 'testthat: Unit Testing for R'
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  notes: Suggests
+  version: '>= 3.1.0'
+- type: software
+  title: 'tibble: Simple Data Frames'
+  authors:
+  - family-names: Müller
+    given-names: Kirill
+    email: krlmlr+r@mailbox.org
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=tibble
+- type: software
+  title: 'vdiffr: Visual Regression Testing and Graphical Diffing'
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@rstudio.com
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Luciani
+    given-names: T Jake
+    email: jake@apache.org
+  - family-names: Decorde
+    given-names: Matthieu
+    email: matthieu.decorde@ens-lyon.fr
+  - family-names: Lise
+    given-names: Vaudor
+    email: lise.vaudor@ens-lyon.fr
+  year: '2022'
+  notes: Suggests
+  url: https://CRAN.R-project.org/package=vdiffr
