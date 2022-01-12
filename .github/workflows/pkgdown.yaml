@@ -19,13 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: IndrajeetPatil/actions/setup-pandoc@v2-branch
+      - uses: IndrajeetPatil/actions/setup-pandoc@v2
 
-      - uses: r-lib/actions/setup-r@v2-branch
+      - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v2-branch
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: r-lib/pkgdown, local::.
           needs: website
