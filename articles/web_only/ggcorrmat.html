@@ -99,9 +99,10 @@
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>ggcorrmat</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet
+Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-01-12</h4>
+            <h4 data-toc-skip class="date">2022-01-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggcorrmat.Rmd" class="external-link"><code>vignettes/web_only/ggcorrmat.Rmd</code></a></small>
       <div class="d-none name"><code>ggcorrmat.Rmd</code></div>
@@ -132,18 +133,37 @@ A BibTeX entry for LaTeX users is
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
-<p>The function <code>ggcorrmat</code> provides a quick way to produce <strong>publication-ready correlation matrix</strong> (aka <em>correlalogram</em>) plot. The function can also be used for quick <strong>data exploration</strong>. In addition to the plot, it can also be used to get a correlation coefficient matrix or the associated <em>p</em>-value matrix. Currently, the plot can display Pearson’s <em>r</em> (and its Bayesian version), Spearman’s <em>rho</em>, and <em>robust</em> correlation coefficient (Winsorized Pearson’s <em>r</em>). This function is a convenient wrapper around <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code> function with some additional functionality.</p>
-<p>We will see examples of how to use this function in this vignette with the <code>gapminder</code> and <code>diamonds</code> dataset.</p>
-<p>To begin with, here are some instances where you would want to use <code>ggcorrmat</code>-</p>
+<p>The function <code>ggcorrmat</code> provides a quick way to produce
+<strong>publication-ready correlation matrix</strong> (aka
+<em>correlalogram</em>) plot. The function can also be used for quick
+<strong>data exploration</strong>. In addition to the plot, it can also
+be used to get a correlation coefficient matrix or the associated
+<em>p</em>-value matrix. Currently, the plot can display Pearson’s
+<em>r</em> (and its Bayesian version), Spearman’s <em>rho</em>, and
+<em>robust</em> correlation coefficient (Winsorized Pearson’s
+<em>r</em>). This function is a convenient wrapper around
+<code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot</a></code> function with some additional
+functionality.</p>
+<p>We will see examples of how to use this function in this vignette
+with the <code>gapminder</code> and <code>diamonds</code> dataset.</p>
+<p>To begin with, here are some instances where you would want to use
+<code>ggcorrmat</code>-</p>
 <ul>
-<li>to easily visualize a correlation matrix using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
+<li>to easily visualize a correlation matrix using
+<a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
 </li>
-<li>to quickly explore correlation between (all) numeric variables in the dataset</li>
+<li>to quickly explore correlation between (all) numeric variables in
+the dataset</li>
 </ul>
 <div class="section level2">
 <h2 id="correlation-matrix-plot-with-ggcorrmat">Correlation matrix plot with <code>ggcorrmat</code><a class="anchor" aria-label="anchor" href="#correlation-matrix-plot-with-ggcorrmat"></a>
 </h2>
-<p>For the first example, we will use the <code>gapminder</code> dataset (available in eponymous <a href="https://CRAN.R-project.org/package=gapminder" class="external-link">package</a> on CRAN) provides values for life expectancy, Gross Domestic Product (GDP) per capita, and population, every five years, from 1952 to 2007, for each of 142 countries and was collected by the Gapminder Foundation. Let’s have a look at the data-</p>
+<p>For the first example, we will use the <code>gapminder</code> dataset
+(available in eponymous <a href="https://CRAN.R-project.org/package=gapminder" class="external-link">package</a> on CRAN)
+provides values for life expectancy, Gross Domestic Product (GDP) per
+capita, and population, every five years, from 1952 to 2007, for each of
+142 countries and was collected by the Gapminder Foundation. Let’s have
+a look at the data-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
@@ -157,8 +177,11 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; $ <span style="font-weight: bold;">lifeExp  </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">pop      </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">gdpPercap</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span></code></pre></div>
-<p>Let’s say we are interested in studying correlation between population of a country, average life expectancy, and GDP per capita across countries only for the year 2007.</p>
-<p>The simplest way to get a correlation matrix is to stick to the defaults-</p>
+<p>Let’s say we are interested in studying correlation between
+population of a country, average life expectancy, and GDP per capita
+across countries only for the year 2007.</p>
+<p>The simplest way to get a correlation matrix is to stick to the
+defaults-</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -195,8 +218,15 @@ A BibTeX entry for LaTeX users is
   subtitle <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co">## custom subtitle</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" width="100%"></p>
-<p>As seen from this correlation matrix, although there is no relationship between population and life expectancy worldwide, at least in 2007, there is a strong positive relationship between GDP, a well-established indicator of a country’s economic performance.</p>
-<p>Given that there were only three variables, this doesn’t look that impressive. So let’s work with another example from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">dataset</a>. This dataset contains the prices and other attributes of almost 54,000 diamonds.</p>
+<p>As seen from this correlation matrix, although there is no
+relationship between population and life expectancy worldwide, at least
+in 2007, there is a strong positive relationship between GDP, a
+well-established indicator of a country’s economic performance.</p>
+<p>Given that there were only three variables, this doesn’t look that
+impressive. So let’s work with another example from
+<a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package: the <code>diamonds</code> <a href="http://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">dataset</a>.
+This dataset contains the prices and other attributes of almost 54,000
+diamonds.</p>
 <p>Let’s have a look at the data-</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
@@ -214,7 +244,8 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; $ <span style="font-weight: bold;">x      </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, 4.…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">y      </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, 4.…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">z      </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2.…</span></code></pre></div>
-<p>Let’s see the correlation matrix between different attributes of the diamond and the price.</p>
+<p>Let’s see the correlation matrix between different attributes of the
+diamond and the price.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -235,7 +266,10 @@ A BibTeX entry for LaTeX users is
   ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outline.color <span class="op">=</span> <span class="st">"black"</span>, hc.order <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" width="100%"></p>
-<p>We can make a number of changes to this basic correlation matrix. For example, since we were interested in relationship between price and other attributes, let’s make the <code>price</code> column to the the first column.</p>
+<p>We can make a number of changes to this basic correlation matrix. For
+example, since we were interested in relationship between price and
+other attributes, let’s make the <code>price</code> column to the the
+first column.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -273,12 +307,17 @@ A BibTeX entry for LaTeX users is
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" width="100%"></p>
-<p>As seen here, and unsurprisingly, the strongest predictor of the diamond price is its carat value, which a unit of mass equal to 200 mg. In other words, the heavier the diamond, the more expensive it is going to be.</p>
+<p>As seen here, and unsurprisingly, the strongest predictor of the
+diamond price is its carat value, which a unit of mass equal to 200 mg.
+In other words, the heavier the diamond, the more expensive it is going
+to be.</p>
 </div>
 <div class="section level2">
 <h2 id="dataframe-containing-statistics-with-ggcorrmat">Dataframe containing statistics with <code>ggcorrmat</code><a class="anchor" aria-label="anchor" href="#dataframe-containing-statistics-with-ggcorrmat"></a>
 </h2>
-<p>Another utility of <code>ggcorrmat</code> is in obtaining a dataframe containing all details from statistical analyses. Such dataframes can be easily embedded in manuscripts as tables.</p>
+<p>Another utility of <code>ggcorrmat</code> is in obtaining a dataframe
+containing all details from statistical analyses. Such dataframes can be
+easily embedded in manuscripts as tables.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -316,7 +355,10 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     <span style="text-decoration: underline;">1</span>08<span style="color: #949494;">3</span> 4.17<span style="color: #949494;">e</span><span style="color: #BB0000;">- 49</span> Winsorized Pearson correlation  <span style="text-decoration: underline;">1</span>08<span style="color: #949494;">5</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     <span style="text-decoration: underline;">1</span>08<span style="color: #949494;">0</span> 2.94<span style="color: #949494;">e</span><span style="color: #BB0000;">- 10</span> Winsorized Pearson correlation  <span style="text-decoration: underline;">1</span>08<span style="color: #949494;">2</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     <span style="text-decoration: underline;">1</span>08<span style="color: #949494;">0</span> 1.68<span style="color: #949494;">e</span><span style="color: #BB0000;">-  8</span> Winsorized Pearson correlation  <span style="text-decoration: underline;">1</span>08<span style="color: #949494;">2</span></span></code></pre></div>
-<p>Note that if <code>cor.vars</code> are not specified, all numeric variables will be used. Moreover, you can also use abbreviations to specify what output you want in return. Additionally, one can also carry out <strong>partial</strong> correlation analysis:</p>
+<p>Note that if <code>cor.vars</code> are not specified, all numeric
+variables will be used. Moreover, you can also use abbreviations to
+specify what output you want in return. Additionally, one can also carry
+out <strong>partial</strong> correlation analysis:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -350,8 +392,17 @@ A BibTeX entry for LaTeX users is
 <div class="section level2">
 <h2 id="grouped-analysis-with-grouped_ggcorrmat">Grouped analysis with <code>grouped_ggcorrmat</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggcorrmat"></a>
 </h2>
-<p>What if we want to do the same analysis separately for each quality of the diamond <code>cut</code> (Fair, Good, Very Good, Premium, Ideal)?</p>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper function around <code>combine_plots</code>. It applies <code>ggcorrmat</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
+<p>What if we want to do the same analysis separately for each quality
+of the diamond <code>cut</code> (Fair, Good, Very Good, Premium,
+Ideal)?</p>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for
+such instances: <code>grouped_ggcorrmat</code>. This is merely a wrapper
+function around <code>combine_plots</code>. It applies
+<code>ggcorrmat</code> across all <strong>levels</strong> of a specified
+<strong>grouping variable</strong> and then combines list of individual
+plots into a single plot. Note that the grouping variable can be
+anything: conditions in a given study, groups in a study sample,
+different studies, etc.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -371,7 +422,9 @@ A BibTeX entry for LaTeX users is
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" width="100%"></p>
-<p>Note that this function also makes it easy to run the same correlation matrix across different levels of a factor/grouping variable.</p>
+<p>Note that this function also makes it easy to run the same
+correlation matrix across different levels of a factor/grouping
+variable.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -411,9 +464,16 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; <span style="color: #949494;"># … with 14 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="grouped-analysis-with-ggcorrmat-purrr">Grouped analysis with <code>ggcorrmat</code> + <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggcorrmat-purrr"></a>
+<h2 id="grouped-analysis-with-ggcorrmat-purrr">Grouped analysis with <code>ggcorrmat</code> +
+<code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggcorrmat-purrr"></a>
 </h2>
-<p>Although <code>grouped_</code> function is good for quickly exploring the data, it reduces the flexibility with which this function can be used. This is the because the common parameters used are applied to plots corresponding to all levels of the grouping variable and there is no way to customize the arguments for different levels of the grouping variable. We will see how this can be done using the <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> package.</p>
+<p>Although <code>grouped_</code> function is good for quickly exploring
+the data, it reduces the flexibility with which this function can be
+used. This is the because the common parameters used are applied to
+plots corresponding to all levels of the grouping variable and there is
+no way to customize the arguments for different levels of the grouping
+variable. We will see how this can be done using the
+<a href="http://purrr.tidyverse.org" class="external-link">purrr</a> package.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div class="section level2">
@@ -436,7 +496,8 @@ A BibTeX entry for LaTeX users is
 <div class="section level2">
 <h2 id="summary-of-tests">Summary of tests<a class="anchor" aria-label="anchor" href="#summary-of-tests"></a>
 </h2>
-<p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
+<p><strong>Hypothesis testing</strong> and <strong>Effect size
+estimation</strong></p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -481,7 +542,8 @@ A BibTeX entry for LaTeX users is
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an
+issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -491,12 +553,15 @@ A BibTeX entry for LaTeX users is
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
+<p>Developed by
+<a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet
+Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.1.9000.</p>
 </div>
 
     </footer>
