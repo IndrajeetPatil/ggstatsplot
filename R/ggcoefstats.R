@@ -242,7 +242,7 @@ ggcoefstats <- function(x,
 
     # remove NAs
     tidy_df %<>%
-      filter(across(
+      filter(if_any(
         .cols = c(matches("estimate|statistic|std.error|p.value")),
         .fns = ~ !is.na(.)
       )) %>%
