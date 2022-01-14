@@ -10,7 +10,7 @@
 
 0 errors | 0 warnings | 0 note
 
-  - Maintenance release with a few bug fixes.
+  - Fixes breakage due to `{statsExpressions}` update.
 
 ## revdepcheck results
 
