@@ -29,10 +29,10 @@ makes data exploration simpler and faster.
 
 ## Installation
 
-| Type        | Source | Command                                                 |
-|-------------|--------|---------------------------------------------------------|
-| Release     | CRAN   | `install.packages("ggstatsplot")`                       |
-| Development | GitHub | `remotes::install_github("IndrajeetPatil/ggstatsplot")` |
+| Type        | Source                                                                                                             | Command                                                 |
+|-------------|--------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| Release     | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")`                       |
+| Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active)      | `remotes::install_github("IndrajeetPatil/ggstatsplot")` |
 
 Linux users may encounter some installation problems. In particular, the
 `{ggstatsplot}` package depends on the `PMCMRplus` package.
@@ -88,8 +88,9 @@ To see the detailed documentation for each function in the stable
 
 -   Website: <https://indrajeetpatil.github.io/ggstatsplot/>
 
--   Presentation:
-    <a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1" class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1</a>
+-   Presentation: <a
+    href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1"
+    class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1</a>
 
 -   Vignettes: <https://indrajeetpatil.github.io/ggstatsplot/articles/>
 

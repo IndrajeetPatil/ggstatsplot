@@ -57,11 +57,11 @@ details, which makes data exploration simpler and faster.
 
 Type | Source | Command
 ---|---|---
-Release | CRAN | `install.packages("ggstatsplot")`
-Development | GitHub | `remotes::install_github("IndrajeetPatil/ggstatsplot")`
+Release | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")`
+Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active) | `remotes::install_github("IndrajeetPatil/ggstatsplot")`
 
 Linux users may encounter some installation problems. In particular, the
-`{ggstatsplot}` package depends on the `PMCMRplus` package.
+`{ggstatsplot}` package depends on the `{PMCMRplus}` package.
 
 ```
 ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
