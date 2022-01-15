@@ -1,3 +1,5 @@
+# ggstatsplot 0.9.1.9000
+
 # ggstatsplot 0.9.1
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
