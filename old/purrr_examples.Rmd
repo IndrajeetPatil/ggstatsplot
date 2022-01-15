@@ -9,7 +9,6 @@ output:
     fig.asp: 0.618
     dpi: 300
     toc: true
-    eval: FALSE
     warning: FALSE
     message: FALSE
 ---
