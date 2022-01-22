@@ -36,14 +36,3 @@
       [11] "bodywt"      
       
 
-# palette_message is working
-
-    Code
-      ggstatsplot:::palette_message(package = "RColorBrewer", palette = "Dark2",
-        min_length = 20)
-    Output
-      Warning: Number of labels is greater than default palette color count.
-       Try using another color `palette` (and/or `package`).
-    Message <simpleMessage>
-      
-
