@@ -45,4 +45,5 @@
       Warning: Number of labels is greater than default palette color count.
        Try using another color `palette` (and/or `package`).
     Message <simpleMessage>
+      
 

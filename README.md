@@ -35,7 +35,7 @@ makes data exploration simpler and faster.
 | Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active)      | `remotes::install_github("IndrajeetPatil/ggstatsplot")` |
 
 Linux users may encounter some installation problems. In particular, the
-`{ggstatsplot}` package depends on the `PMCMRplus` package.
+`{ggstatsplot}` package depends on the `{PMCMRplus}` package.
 
     ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
 
@@ -288,11 +288,11 @@ Note here that the function can be used to tag outliers!
 
 | Type           | Equal variance? | Test                      | *p*-value adjustment? | Function used                   |
 |----------------|-----------------|---------------------------|-----------------------|---------------------------------|
-| Parametric     | No              | Games-Howell test         | ✅                    | `stats::pairwise.t.test`        |
-| Parametric     | Yes             | Student’s *t*-test        | ✅                    | `PMCMRplus::gamesHowellTest`    |
+| Parametric     | No              | Games-Howell test         | ✅                    | `PMCMRplus::gamesHowellTest`    |
+| Parametric     | Yes             | Student’s *t*-test        | ✅                    | `stats::pairwise.t.test`        |
 | Non-parametric | No              | Dunn test                 | ✅                    | `PMCMRplus::kwAllPairsDunnTest` |
 | Robust         | No              | Yuen’s trimmed means test | ✅                    | `WRS2::lincon`                  |
-| Bayes Factor   | ❌              | Student’s *t*-test        | ❌                    | `BayesFactor::ttestBF`          |
+| Bayesian       | `NA`            | Student’s *t*-test        | `NA`                  | `BayesFactor::ttestBF`          |
 
 For more, see the `ggbetweenstats` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>

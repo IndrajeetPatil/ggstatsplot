@@ -70,8 +70,8 @@ comparison tests-
 
 Type | Equal variance? | Test | *p*-value adjustment? | Function used
 ----------- | --- | ------------------------- | --- | -----
-Parametric | No | Games-Howell test | ✅ | `stats::pairwise.t.test`
-Parametric | Yes | Student's *t*-test | ✅ | `PMCMRplus::gamesHowellTest`
+Parametric | No | Games-Howell test | ✅ | `PMCMRplus::gamesHowellTest`
+Parametric | Yes | Student's *t*-test | ✅ | `stats::pairwise.t.test`
 Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
 Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
 Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
