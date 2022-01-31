@@ -13,8 +13,7 @@
 
 > “What is to be sought in designs for the display of information is the
 > clear portrayal of complexity. Not the complication of the simple;
-> rather … the revelation of the complex.”  
-> - Edward R. Tufte
+> rather … the revelation of the complex.” - Edward R. Tufte
 
 [`{ggstatsplot}`](https://indrajeetpatil.github.io/ggstatsplot/) is an
 extension of [`{ggplot2}`](https://github.com/tidyverse/ggplot2) package
@@ -1387,11 +1386,11 @@ wrapper around `{ggstatsplot}`.
 I would like to thank all the contributors to `{ggstatsplot}` who
 pointed out bugs or requested features I hadn’t considered. I would
 especially like to thank other package developers (especially Daniel
-Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Patrick Mair,
-Salvatore Mangiafico, etc.) who have patiently and diligently answered
-my relentless number of questions and added feature requests I wanted. I
-also want to thank Chuck Powell for his initial contributions to the
-package.
+Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Brenton Wiernik,
+Patrick Mair, Salvatore Mangiafico, etc.) who have patiently and
+diligently answered my relentless number of questions and added feature
+requests I wanted. I also want to thank Chuck Powell for his initial
+contributions to the package.
 
 The hexsticker was generously designed by Sarah Otterstetter (Max Planck
 Institute for Human Development, Berlin). This package has also

@@ -544,7 +544,7 @@ So, for example, iif 2 tests are being carried out, the alpha is going to be
 that only those tests should be considered significant where `p < 0.025`. Or you
 can even mention this in the caption.
 
-22. How can I build a `Shiny` app using `{ggstatsplot}` functions?
+## 22. How can I build a `Shiny` app using `{ggstatsplot}` functions?
 
 Below is an example using `ggbetweenstats` function.
 
@@ -571,7 +571,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-23. How to change size of annotations for combined plot in `grouped_*` functions?
+## 23. How to change size of annotations for combined plot in `grouped_*` functions?
 
 ```{r}
 library(ggplot2)
@@ -594,7 +594,7 @@ grouped_ggbetweenstats(
 )
 ```
 
-24. How to change size of text in the subtitle?
+## 24. How to change size of text in the subtitle?
 
 ```{r}
 ggbetweenstats(
@@ -605,9 +605,18 @@ ggbetweenstats(
 )
 ```
 
-25. How to display pairwise comparison letter in a plot?
+## 25. How to display pairwise comparison letter in a plot?
 
 This is not possible out of the box, but see [this](https://github.com/IndrajeetPatil/ggstatsplot/issues/654#issuecomment-948862514) comment.
+
+## 26. Does `{ggstatsplot}` carry out assumption checks?
+
+No, `{ggstatsplot}` does not carry out any analysis of whether assumptions are
+met or not. It will just carry out whatever test you ask it to carry out.
+
+To check these assumptions, you can use a different package called `{performance}`:
+
+<https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties>
 
 ## Suggestions
 
