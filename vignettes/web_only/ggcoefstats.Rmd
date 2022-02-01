@@ -27,9 +27,6 @@ options(
   pillar.min_chars = Inf
 )
 
-# use max # CPUs
-options(mc.cores = parallel::detectCores())
-
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -39,8 +36,6 @@ knitr::opts_chunk$set(
   package.startup.message = FALSE
 )
 
-# for faster post-MCMC computations
-future::plan("multicore")
 library(ggstatsplot)
 ```
 
