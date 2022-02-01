@@ -34,11 +34,8 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
-  comment = "#>",
-  package.startup.message = FALSE
+  comment = "#>"
 )
-
-future::plan("multicore")
 ```
 
 ---
