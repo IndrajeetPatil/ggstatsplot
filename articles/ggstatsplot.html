@@ -163,12 +163,17 @@ graphic with statistical details.</p>
 <p>Before discussing benefits of this approach, we will show an example
 (Figure 1).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://allisonhorst.github.io/palmerpenguins/" class="external-link">palmerpenguins</a></span><span class="op">)</span> <span class="co"># for 'penguins' dataset</span>
-<span class="co">#&gt; Error in library(palmerpenguins): there is no package called 'palmerpenguins'</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="va">species</span>, <span class="va">body_mass_g</span><span class="op">)</span>
-<span class="co">#&gt; Error in select(., {: object 'penguins' not found</span></code></pre></div>
+<span class="fu"><a href="../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">iris</span>, <span class="va">Species</span>, <span class="va">Sepal.Length</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="ggstatsplot_files/figure-html/iris-1.png" alt="Example plot from the `{ggstatsplot}` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \url{https://indrajeetpatil.github.io/ggstatsplot/}" width="100%"><p class="caption">
+Example plot from the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package illustrating
+its philosophy of juxtaposing informative visualizations with details
+from statistical analysis. To see all supported plots and statistical
+analyses, see the package website:
+</p>
+</div>
 <p>As can be seen, with a single line of code, the function produces
 details about descriptive statistics, inferential statistics, effect
 size estimate and its uncertainty, pairwise comparisons, Bayesian
@@ -217,7 +222,19 @@ experience can use it without making an error and may even encourage
 beginners to programmatically analyze data, instead of using GUI
 software.</p></li>
 </ol>
-<pre><code><span class="co">#&gt; Error in knitr::include_graphics("reporting.png"): Cannot find the file(s): "reporting.png"</span></code></pre>
+<div class="figure">
+<img src="../reference/figures/stats_reporting_format.png" alt="Comparing the 'Standard' approach of reporting statistical analysis in a publication/report with the 'ggstatsplot' approach of reporting the same analysis next to an informative graphic. Note that the results described in the 'Standard' approach are about the 'Dinosaur' dataset plotted on the right. Without the accompanying visualization, it is hard to evaluate the validity of the results. The ideal reporting practice will be a hybrid of these two approaches where the plot contains both the visual and numerical summaries about a statistical model, while the narrative provides interpretative context for the reported statistics." width="100%"><p class="caption">
+Comparing the ‘Standard’ approach of reporting statistical analysis in a
+publication/report with the ‘ggstatsplot’ approach of reporting the same
+analysis next to an informative graphic. Note that the results described
+in the ‘Standard’ approach are about the ‘Dinosaur’ dataset plotted on
+the right. Without the accompanying visualization, it is hard to
+evaluate the validity of the results. The ideal reporting practice will
+be a hybrid of these two approaches where the plot contains both the
+visual and numerical summaries about a statistical model, while the
+narrative provides interpretative context for the reported statistics.
+</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="future-scope">Future Scope<a class="anchor" aria-label="anchor" href="#future-scope"></a>
