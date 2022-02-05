@@ -48,6 +48,9 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="../../articles/ggstatsplot.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="../../reference/index.html">Reference</a>
 </li>
 <li class="active nav-item dropdown">
@@ -102,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-01-22</h4>
+            <h4 data-toc-skip class="date">2022-02-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/faq.Rmd" class="external-link"><code>vignettes/web_only/faq.Rmd</code></a></small>
       <div class="d-none name"><code>faq.Rmd</code></div>
@@ -735,10 +738,11 @@ going to be <code>0.05/2 = 0.025</code>. So, when you describe the
 <em>Methods</em> section, you can mention that only those tests should
 be considered significant where <code>p &lt; 0.025</code>. Or you can
 even mention this in the caption.</p>
-<ol start="22" style="list-style-type: decimal">
-<li>How can I build a <code>Shiny</code> app using
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions?</li>
-</ol>
+</div>
+<div class="section level2">
+<h2 id="how-can-i-build-a-shiny-app-using-ggstatsplot-functions">22. How can I build a <code>Shiny</code> app using
+<code>{ggstatsplot}</code> functions?<a class="anchor" aria-label="anchor" href="#how-can-i-build-a-shiny-app-using-ggstatsplot-functions"></a>
+</h2>
 <p>Below is an example using <code>ggbetweenstats</code> function.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -761,10 +765,11 @@ even mention this in the caption.</p>
 <span class="op">}</span>
 
 <span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
-<ol start="23" style="list-style-type: decimal">
-<li>How to change size of annotations for combined plot in
-<code>grouped_*</code> functions?</li>
-</ol>
+</div>
+<div class="section level2">
+<h2 id="how-to-change-size-of-annotations-for-combined-plot-in-grouped_-functions">23. How to change size of annotations for combined plot in
+<code>grouped_*</code> functions?<a class="anchor" aria-label="anchor" href="#how-to-change-size-of-annotations-for-combined-plot-in-grouped_-functions"></a>
+</h2>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
@@ -785,9 +790,10 @@ even mention this in the caption.</p>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="faq_files/figure-html/unnamed-chunk-3-1.png" width="100%"></p>
-<ol start="24" style="list-style-type: decimal">
-<li>How to change size of text in the subtitle?</li>
-</ol>
+</div>
+<div class="section level2">
+<h2 id="how-to-change-size-of-text-in-the-subtitle">24. How to change size of text in the subtitle?<a class="anchor" aria-label="anchor" href="#how-to-change-size-of-text-in-the-subtitle"></a>
+</h2>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">iris</span>,
@@ -796,11 +802,23 @@ even mention this in the caption.</p>
   ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="faq_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
-<ol start="25" style="list-style-type: decimal">
-<li>How to display pairwise comparison letter in a plot?</li>
-</ol>
+</div>
+<div class="section level2">
+<h2 id="how-to-display-pairwise-comparison-letter-in-a-plot">25. How to display pairwise comparison letter in a plot?<a class="anchor" aria-label="anchor" href="#how-to-display-pairwise-comparison-letter-in-a-plot"></a>
+</h2>
 <p>This is not possible out of the box, but see <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/654#issuecomment-948862514" class="external-link">this</a>
 comment.</p>
+</div>
+<div class="section level2">
+<h2 id="does-ggstatsplot-carry-out-assumption-checks">26. Does <code>{ggstatsplot}</code> carry out assumption
+checks?<a class="anchor" aria-label="anchor" href="#does-ggstatsplot-carry-out-assumption-checks"></a>
+</h2>
+<p>No, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> does not carry out any analysis of
+whether assumptions are met or not. It will just carry out whatever test
+you ask it to carry out.</p>
+<p>To check these assumptions, you can use a different package called
+<a href="https://easystats.github.io/performance/" class="external-link">performance</a>:</p>
+<p><a href="https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties" class="external-link uri">https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties</a></p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>

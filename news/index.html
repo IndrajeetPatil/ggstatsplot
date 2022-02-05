@@ -19,6 +19,9 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/ggstatsplot.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
@@ -199,8 +202,8 @@ prefixes across different facets of the plot. Given that
 <code>grouping.var</code>, it is fair to assume what variable the levels
 in the title correspond to.</li>
 </ul><p>MINOR CHANGES</p>
-<ul><li><p>Adapts to changes made in <code>statsExpressions
-1.0.0</code>.</p></li>
+<ul><li><p>Adapts to changes made in
+<code>statsExpressions 1.0.0</code>.</p></li>
 <li><p><code>sample.size.label</code> argument is retired for
 <code>ggbetweenstats</code>, <code>ggwithinstats</code>, and
 <code>ggbarstats</code>. I do not think it is ever a good idea to not do
@@ -208,8 +211,8 @@ this. If the users wish to not display sample sizes, they can easily do
 this using <code>scale_*</code> functions from
 <code>ggplot2</code>.</p></li>
 <li><p>In <code>ggpiestats</code> and <code>ggbarstats</code>,
-parametric proportion tests are now turned off when <code>type =
-"bayes"</code>.</p></li>
+parametric proportion tests are now turned off when
+<code>type = "bayes"</code>.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.0" id="ggstatsplot-070">ggstatsplot 0.7.0<a class="anchor" aria-label="anchor" href="#ggstatsplot-070"></a></h2><p class="text-muted">CRAN release: 2021-02-19</p>
@@ -224,8 +227,9 @@ This should not break any of the existing instances of
 graphical layouts. The only instance in which this change will lead to a
 breakage is when you specified <code>labels</code> argument. So, if you
 used <code>plotgrid.args = list(labels = "auto")</code>, you will now
-have to replace it with <code>plotgrid.args = list(tag_level =
-"keep")</code>. You can also use <code>annotation.args</code> (e.g.,
+have to replace it with
+<code>plotgrid.args = list(tag_level = "keep")</code>. You can also use
+<code>annotation.args</code> (e.g.,
 <code>annotation.args = list(tag_levels = "a")</code> to customize
 labels (this will create labels with pattern <code>a</code>,
 <code>b</code>, <code>c</code>, etc.). Another instance of breakage is
@@ -233,8 +237,9 @@ if you had used <code>combine_plots</code> function and provided
 individual plots to <code>...</code> instead as a
 <code>list</code>.</p></li>
 <li><p>To avoid confusion among users, the default trimming level for
-all functions is now changed from <code>tr = 0.1</code> to <code>tr =
-0.2</code> (which is what <code>WRS2</code> defaults to).</p></li>
+all functions is now changed from <code>tr = 0.1</code> to
+<code>tr = 0.2</code> (which is what <code>WRS2</code> defaults
+to).</p></li>
 </ul><p>MAJOR CHANGES</p>
 <ul><li><p>All robust tests in this package were based on trimmed means,
 except for correlation test. This has been changed: the robust
@@ -265,9 +270,10 @@ favor of <code>k</code>.</p></li>
 <li><p><code>ggbetweenstats</code>, <code>ggwithinstats</code>,
 <code>gghistostats</code>, <code>ggdotplotstats</code> gain argument
 <code>centrality.type</code> that can be used to specify which
-centrality parameter is to be displayed. So one can have <code>type =
-"robust"</code> and still show median as centrality parameter by
-choosing <code>centrality.type =     "nonparametric"</code>.</p></li>
+centrality parameter is to be displayed. So one can have
+<code>type = "robust"</code> and still show median as centrality
+parameter by choosing
+<code>centrality.type =     "nonparametric"</code>.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.8" id="ggstatsplot-068">ggstatsplot 0.6.8<a class="anchor" aria-label="anchor" href="#ggstatsplot-068"></a></h2><p class="text-muted">CRAN release: 2021-01-19</p>
@@ -295,8 +301,8 @@ measure to show depending on the <code>type</code> argument
 non-parametric, <strong>trimmed mean</strong> for robust, and
 <strong>MAP estimator</strong> for Bayes). Therefore,
 <code>centrality.parameter</code> argument has been removed. If you want
-to turn off displaying centrality measure, set <code>centrality.plotting
-= FALSE</code>.</p></li>
+to turn off displaying centrality measure, set
+<code>centrality.plotting = FALSE</code>.</p></li>
 <li><p><code>gghistostats</code> and <code>ggdotplotstats</code>
 functions remove the functionality to display a vertical line
 corresponding to <code>test.value</code>. This feature was turned off by
@@ -556,8 +562,8 @@ pairs.</p></li>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="ggstatsplot-031">ggstatsplot 0.3.1<a class="anchor" aria-label="anchor" href="#ggstatsplot-031"></a></h2><p class="text-muted">CRAN release: 2020-03-06</p>
 <p>This is a hotfix release to correct some of the failing tests and
-other minor breakages resulting from the new release of <code>ggplot2
-3.3.0</code>.</p>
+other minor breakages resulting from the new release of
+<code>ggplot2 3.3.0</code>.</p>
 <p>MAJOR CHANGES</p>
 <ul><li>
 <code>ggpiestats</code> loses <code>sample.size.label</code>
@@ -579,8 +585,9 @@ in functions with a massive number of arguments and was unsustainable in
 the long run. Instead, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions now expect a
 list of such arguments for the respective geom (e.g.,
 <code>geom_point</code> will have <code>point.args</code> argument where
-a list of arguments <code>list(size = 5, color = "darkgreen", alpha =
-0.8)</code> can be supplied).</p>
+a list of arguments
+<code>list(size = 5, color = "darkgreen", alpha = 0.8)</code> can be
+supplied).</p>
 <ul><li><p>All <code>grouped_</code> functions have been refactored to
 reduce the number of arguments. These functions now internally use the
 new <code>combine_plots</code> instead of <code>combine_plots</code>.
@@ -848,9 +855,9 @@ code which should have been <code>paired = TRUE</code>, but was instead
 from the more obscure H-based eta-squared statistic to more common and
 interpretable epsilon-squared.</li>
 </ul><p>MINOR CHANGES</p>
-<ul><li><p><code>ggcoefstats</code> defaults to <code>bf.message =
-TRUE</code> to be consistent with the rest of the functions in the
-package.</p></li>
+<ul><li><p><code>ggcoefstats</code> defaults to
+<code>bf.message = TRUE</code> to be consistent with the rest of the
+functions in the package.</p></li>
 <li><p><code>ggcoefstats</code> supports the following class of objects:
 <code>epi.2by2</code>, <code>negbin</code>, <code>emmGrid</code>,
 <code>lmrob</code>, <code>glmrob</code>, <code>glmmPQL</code>,
@@ -887,11 +894,11 @@ between-subjects (<code>subtitle_kw_nonparametric</code>), a single
 function <code>subtitle_anova_nonparametric</code> handles both of these
 designs with the <code>paired</code> argument determining which test is
 run.</p></li>
-<li><p>All functions that supported Bayes Factor analysis (<code>type =
-"bf"</code>) will only return BF value and the scale used. Previously,
-this was a mix of parametric statistics and BF, which was confusing and
-often times misleading since these two types of analyses relied on
-different tests.</p></li>
+<li><p>All functions that supported Bayes Factor analysis
+(<code>type = "bf"</code>) will only return BF value and the scale used.
+Previously, this was a mix of parametric statistics and BF, which was
+confusing and often times misleading since these two types of analyses
+relied on different tests.</p></li>
 <li><p>The default for <code>bf.message</code> has been changed from
 <code>FALSE</code> to <code>TRUE</code>. This is to make the Bayes
 Factor analysis more visible to the user.</p></li>
@@ -1051,8 +1058,8 @@ option to extract information about posterior distribution because these
 details were incorrect. The <code>posterior = TRUE</code> details were
 not used anywhere in the package so nothing about the results
 changes.</p></li>
-<li><p><code>ggcorrmat</code> didn’t output pair names when <code>output
-== "ci"</code> was used. This is fixed.</p></li>
+<li><p><code>ggcorrmat</code> didn’t output pair names when
+<code>output == "ci"</code> was used. This is fixed.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.8" id="ggstatsplot-008">ggstatsplot 0.0.8<a class="anchor" aria-label="anchor" href="#ggstatsplot-008"></a></h2><p class="text-muted">CRAN release: 2019-01-07</p>
@@ -1125,9 +1132,9 @@ for <code>merMod</code> class objects due to a bug in the
 This was fixed in <code>broom.mixed</code> and so
 <code>ggcoefstats</code> should no longer have any issues.</p></li>
 <li><p><code>specify_decimal_p</code> has been modified because it
-produced incorrect results when <code>k &lt; 3</code> and <code>p.value
-= TRUE</code> (e.g., <code>0.002</code> was printed as <code>&lt;
-0.001</code>).</p></li>
+produced incorrect results when <code>k &lt; 3</code> and
+<code>p.value = TRUE</code> (e.g., <code>0.002</code> was printed as
+<code>&lt; 0.001</code>).</p></li>
 <li><p><code>ggpiestats</code> produced incorrect results if some levels
 of the factor had been filtered out prior to using this function. It now
 drops unused levels and produces correct results.</p></li>
@@ -1196,10 +1203,10 @@ gain <code>slice.label</code> argument that decides what information
 needs to be displayed as a label on the slices of the pie chart:
 <code>"percentage"</code> (which has been the default thus far),
 <code>"counts"</code>, or <code>"both"</code>.</p></li>
-<li><p><code>ggcorrmat</code> can work with <code>cor.vars =
-NULL</code>. In such case, <strong>all</strong> numeric variables from
-the provided dataframe will be used for computing the correlation
-matrix.</p></li>
+<li><p><code>ggcorrmat</code> can work with
+<code>cor.vars = NULL</code>. In such case, <strong>all</strong> numeric
+variables from the provided dataframe will be used for computing the
+correlation matrix.</p></li>
 <li><p>Given the constant changes to the default behavior of functions,
 the lifecycle badge has been changed from <code>stable</code> to
 <code>maturing</code>.</p></li>

@@ -48,6 +48,9 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="../../articles/ggstatsplot.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="../../reference/index.html">Reference</a>
 </li>
 <li class="active nav-item dropdown">
@@ -102,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-01-22</h4>
+            <h4 data-toc-skip class="date">2022-02-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="d-none name"><code>ggpiestats.Rmd</code></div>
@@ -247,8 +250,8 @@ will:</p>
 <li><p>Change our color palette to <code>category10_d3</code> from
 <code>ggsci</code> package</p></li>
 <li><p>We’ll customize the subtitle by being more precise about which
-chi squared test this is <code>stat.title = "chi squared test of
-independence: "</code></p></li>
+chi squared test this is
+<code>stat.title = "chi squared test of independence: "</code></p></li>
 <li><p>Finally, we’ll make a call to <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> to modify
 the size of our plot title and to make it right justified</p></li>
 </ol>
@@ -440,8 +443,8 @@ interested in seeing the change in both groupings. In the case of
 within-subjects designs, you can set <code>paired = TRUE</code>, which
 will display results from <strong>McNemar test</strong> in the
 subtitle.</p>
-<p>(<strong>Note:</strong> If you forget to set <code>paired =
-TRUE</code>, the results you get will be inaccurate.)</p>
+<p>(<strong>Note:</strong> If you forget to set
+<code>paired = TRUE</code>, the results you get will be inaccurate.)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
