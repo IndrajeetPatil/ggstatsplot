@@ -195,18 +195,6 @@ faster.</p>
 </tr>
 </tbody>
 </table>
-<p>Linux users may encounter some installation problems. In particular,
-the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package depends on the
-<code>{PMCMRplus}</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ERROR<span class="sc">:</span> dependencies ‘gmp’, ‘Rmpfr’ are not available <span class="cf">for</span> package ‘PMCMRplus’</span></code></pre></div>
-<p>This means that your operating system lacks <code>gmp</code> and
-<code>Rmpfr</code> libraries.</p>
-<p>If you use <code>Ubuntu</code>, you can install these
-dependencies:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install libgmp3<span class="sc">-</span>dev</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="sc">-</span>get install libmpfr<span class="sc">-</span>dev</span></code></pre></div>
-<p>The following <code>README</code> file briefly describes the
-installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/readme/README.html" class="external-link uri">https://CRAN.R-project.org/package=PMCMRplus/readme/README.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
@@ -214,28 +202,46 @@ installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/re
 <p>If you want to cite this package in a scientific journal or in any
 other context, run the following code in your <code>R</code>
 console:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"ggstatsplot"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  Patil, <span class="fu">I.</span> (<span class="dv">2021</span>). Visualizations with statistical details<span class="sc">:</span> The</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ggstatsplot'</span> approach. Journal of Open Source Software, <span class="dv">6</span>(<span class="dv">61</span>), <span class="dv">3167</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  doi<span class="sc">:</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    publisher <span class="ot">=</span> {{The Open Journal}},</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    volume <span class="ot">=</span> {<span class="dv">6</span>},</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    number <span class="ot">=</span> {<span class="dv">61</span>},</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    pages <span class="ot">=</span> {<span class="dv">3167</span>},</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Indrajeet Patil},</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {{Visualizations with statistical details<span class="sc">:</span> The {<span class="st">'ggstatsplot'</span>} approach}},</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    journal <span class="ot">=</span> {{Journal of Open Source Software}},</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
-<p>There is currently a publication in preparation corresponding to this
-package and the citation will be updated once it’s published.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"ggstatsplot"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  Patil, <span class="fu">I.</span> (<span class="dv">2021</span>). Visualizations with statistical details<span class="sc">:</span> The</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ggstatsplot'</span> approach. Journal of Open Source Software, <span class="dv">6</span>(<span class="dv">61</span>), <span class="dv">3167</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  doi<span class="sc">:</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    publisher <span class="ot">=</span> {{The Open Journal}},</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    volume <span class="ot">=</span> {<span class="dv">6</span>},</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    number <span class="ot">=</span> {<span class="dv">61</span>},</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    pages <span class="ot">=</span> {<span class="dv">3167</span>},</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Indrajeet Patil},</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {{Visualizations with statistical details<span class="sc">:</span> The {<span class="st">'ggstatsplot'</span>} approach}},</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    journal <span class="ot">=</span> {{Journal of Open Source Software}},</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>
+</h2>
+<p>I would like to thank all the contributors to
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> who pointed out bugs or requested features I
+hadn’t considered. I would especially like to thank other package
+developers (especially Daniel Lüdecke, Dominique Makowski, Mattan S.
+Ben-Shachar, Brenton Wiernik, Patrick Mair, Salvatore Mangiafico, etc.)
+who have patiently and diligently answered my relentless questions and
+supported feature requests in their projects. I also want to thank Chuck
+Powell for his initial contributions to the package.</p>
+<p>The hexsticker was generously designed by Sarah Otterstetter (Max
+Planck Institute for Human Development, Berlin). This package has also
+benefited from the larger <code>#rstats</code> community on Twitter,
+LinkedIn, and <code>StackOverflow</code>.</p>
+<p>Thanks are also due to my postdoc advisers (Mina Cikara and Fiery
+Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for
+Human Development) who patiently supported me spending hundreds (?) of
+hours working on this package rather than what I was paid to do. 😁</p>
 </div>
 <div class="section level2">
 <h2 id="documentation-and-examples">Documentation and Examples<a class="anchor" aria-label="anchor" href="#documentation-and-examples"></a>
@@ -243,9 +249,9 @@ package and the citation will be updated once it’s published.</p>
 <p>To see the detailed documentation for each function in the stable
 <strong>CRAN</strong> version of the package, see:</p>
 <ul>
-<li><p>Website: <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a></p></li>
-<li><p>Presentation: <a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1" class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1</a></p></li>
-<li><p>Vignettes: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a></p></li>
+<li><p><a href="https://joss.theoj.org/papers/10.21105/joss.03167" class="external-link">Publication</a></p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/">Vignettes</a></p></li>
+<li><p><a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1">Presentation</a></p></li>
 </ul>
 </div>
 <div class="section level2">
@@ -440,7 +446,7 @@ currently supported in this package-</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>(one/two-sample) t-test</td>
+<td>(one/two-sample) <em>t</em>-test</td>
 <td>✅</td>
 <td>✅</td>
 </tr>
@@ -487,14 +493,6 @@ be found in article for that package: <a href="https://indrajeetpatil.github.io/
 <div class="section level2">
 <h2 id="primary-functions">Primary functions<a class="anchor" aria-label="anchor" href="#primary-functions"></a>
 </h2>
-<p>Here are examples of the main functions currently supported in
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>.</p>
-<p><strong>Note</strong>: If you are reading this on <code>GitHub</code>
-repository, the documentation below is for the
-<strong>development</strong> version of the package. So you may see some
-features available here that are not currently present in the stable
-version of this package on <strong>CRAN</strong>. For documentation
-relevant for the <code>CRAN</code> version, see: <a href="https://CRAN.R-project.org/package=ggstatsplot/readme/README.html" class="external-link uri">https://CRAN.R-project.org/package=ggstatsplot/readme/README.html</a></p>
 <div class="section level3">
 <h3 id="ggbetweenstats">
 <code>ggbetweenstats</code><a class="anchor" aria-label="anchor" href="#ggbetweenstats"></a>
@@ -504,10 +502,9 @@ two for <strong>between</strong>-group or
 <strong>between</strong>-condition comparisons with results from
 statistical tests in the subtitle. The simplest function call looks like
 this-</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co">## plot</span>
 <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
@@ -527,7 +524,7 @@ more informative or change some of the default options. Additionally,
 there is also a <code>grouped_</code> variant of this function that
 makes it easy to repeat the same operation across a
 <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -870,7 +867,7 @@ visualize the repeated measures design. As can be seen from an example
 below, the only difference between the plot structure is that now the
 group means are connected by paths to highlight the fact that these data
 are paired with each other.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility and data</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co">## for data</span>
@@ -926,7 +923,7 @@ statistics:</p>
 <code>grouped_</code> variant that makes repeating the same analysis
 across a single grouping variable quicker. We will see an example with
 only repeated measurements-</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## common setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1259,7 +1256,7 @@ concordance)</td>
 <p>To visualize the distribution of a single variable and check if its
 mean is significantly different from a specified value with a one-sample
 test, <code>gghistostats</code> can be used.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1281,7 +1278,7 @@ hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that
 makes it easy to repeat the same operation across a
 <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1466,7 +1463,7 @@ vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_onl
 </h3>
 <p>This function is similar to <code>gghistostats</code>, but is
 intended to be used when the numeric variable also has a label.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1489,7 +1486,7 @@ Bayesian estimation <br></p>
 <p>As with the rest of the functions in this package, there is also a
 <code>grouped_</code> variant of this function to facilitate looping the
 same operation for all levels of a single grouping variable.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1664,7 +1661,7 @@ same operation for all levels of a single grouping variable.</p>
 <p>This function creates a scatterplot with marginal distributions
 overlaid on the axes and results from statistical tests in the
 subtitle:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
   data  <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
   x     <span class="op">=</span> <span class="va">sleep_rem</span>,
@@ -1681,7 +1678,7 @@ hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that
 makes it easy to repeat the same operation across a
 <strong>single</strong> grouping variable.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1803,7 +1800,7 @@ itself produces publication-ready correlation matrices. But, for the
 sake of exploring the available options, let’s change some of the
 defaults. For example, multiple aesthetics-related arguments can be
 modified to change the appearance of the correlation matrix.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1824,7 +1821,7 @@ for correlation tests.</p>
 <p>There is also a <code>grouped_</code> variant of this function that
 makes it easy to repeat the same operation across a
 <strong>single</strong> grouping variable:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1839,7 +1836,7 @@ makes it easy to repeat the same operation across a
 <p><img src="reference/figures/README-ggcorrmat2-1.png" width="100%"></p>
 <p>You can also get a dataframe containing all relevant details from the
 statistical tests:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1849,34 +1846,34 @@ statistical tests:</p>
   type   <span class="op">=</span> <span class="st">"bayes"</span>,
   output <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">##&gt; # A tibble: 6 x 14</span>
-<span class="co">##&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
-<span class="co">##&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">##&gt; 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    </span>
-<span class="co">##&gt; 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995</span>
-<span class="co">##&gt; 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
-<span class="co">##&gt; 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963</span>
-<span class="co">##&gt; 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    </span>
-<span class="co">##&gt; 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998</span>
-<span class="co">##&gt;   rope.percentage prior.distribution prior.location prior.scale  bayes.factor</span>
-<span class="co">##&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;</span>
-<span class="co">##&gt; 1          0      beta                         1.41        1.41 3000790806.  </span>
-<span class="co">##&gt; 2          0.0173 beta                         1.41        1.41          8.85</span>
-<span class="co">##&gt; 3          0      beta                         1.41        1.41         NA   </span>
-<span class="co">##&gt; 4          0.100  beta                         1.41        1.41          1.42</span>
-<span class="co">##&gt; 5          0      beta                         1.41        1.41 3005546544.  </span>
-<span class="co">##&gt; 6          0.015  beta                         1.41        1.41          8.85</span>
-<span class="co">##&gt;   method                       n.obs</span>
-<span class="co">##&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
-<span class="co">##&gt; 1 Bayesian Pearson correlation    61</span>
-<span class="co">##&gt; 2 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 3 Bayesian Pearson correlation    83</span>
-<span class="co">##&gt; 4 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 5 Bayesian Pearson correlation    61</span>
-<span class="co">##&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    </span>
+<span class="co">#&gt; 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995</span>
+<span class="co">#&gt; 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    </span>
+<span class="co">#&gt; 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963</span>
+<span class="co">#&gt; 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    </span>
+<span class="co">#&gt; 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998</span>
+<span class="co">#&gt;   rope.percentage prior.distribution prior.location prior.scale  bayes.factor</span>
+<span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1          0      beta                         1.41        1.41 3000790806.  </span>
+<span class="co">#&gt; 2          0.0173 beta                         1.41        1.41          8.85</span>
+<span class="co">#&gt; 3          0      beta                         1.41        1.41         NA   </span>
+<span class="co">#&gt; 4          0.100  beta                         1.41        1.41          1.42</span>
+<span class="co">#&gt; 5          0      beta                         1.41        1.41 3005546544.  </span>
+<span class="co">#&gt; 6          0.015  beta                         1.41        1.41          8.85</span>
+<span class="co">#&gt;   method                       n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt; 1 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 3 Bayesian Pearson correlation    83</span>
+<span class="co">#&gt; 4 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 5 Bayesian Pearson correlation    61</span>
+<span class="co">#&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
 <p>Additionally, <strong>partial</strong> correlation are also
 supported:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -1887,31 +1884,31 @@ supported:</p>
   partial <span class="op">=</span> <span class="cn">TRUE</span>,
   output  <span class="op">=</span> <span class="st">"dataframe"</span>
 <span class="op">)</span>
-<span class="co">##&gt; # A tibble: 6 x 14</span>
-<span class="co">##&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
-<span class="co">##&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">##&gt; 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704</span>
-<span class="co">##&gt; 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505</span>
-<span class="co">##&gt; 3 sleep_total awake       -1             0.95   -1        -1     1    </span>
-<span class="co">##&gt; 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558</span>
-<span class="co">##&gt; 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698</span>
-<span class="co">##&gt; 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508</span>
-<span class="co">##&gt;   rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
-<span class="co">##&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
-<span class="co">##&gt; 1           0.378 beta                         1.41        1.41        0.311</span>
-<span class="co">##&gt; 2           0.434 beta                         1.41        1.41        0.267</span>
-<span class="co">##&gt; 3           0     beta                         1.41        1.41       NA    </span>
-<span class="co">##&gt; 4           0.429 beta                         1.41        1.41        0.272</span>
-<span class="co">##&gt; 5           0.386 beta                         1.41        1.41        0.309</span>
-<span class="co">##&gt; 6           0.444 beta                         1.41        1.41        0.267</span>
-<span class="co">##&gt;   method                       n.obs</span>
-<span class="co">##&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
-<span class="co">##&gt; 1 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 2 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 3 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 4 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 5 Bayesian Pearson correlation    32</span>
-<span class="co">##&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 14</span>
+<span class="co">#&gt;   parameter1  parameter2  estimate conf.level conf.low conf.high    pd</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704</span>
+<span class="co">#&gt; 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505</span>
+<span class="co">#&gt; 3 sleep_total awake       -1             0.95   -1        -1     1    </span>
+<span class="co">#&gt; 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558</span>
+<span class="co">#&gt; 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698</span>
+<span class="co">#&gt; 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508</span>
+<span class="co">#&gt;   rope.percentage prior.distribution prior.location prior.scale bayes.factor</span>
+<span class="co">#&gt;             &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span>
+<span class="co">#&gt; 1           0.378 beta                         1.41        1.41        0.311</span>
+<span class="co">#&gt; 2           0.434 beta                         1.41        1.41        0.267</span>
+<span class="co">#&gt; 3           0     beta                         1.41        1.41       NA    </span>
+<span class="co">#&gt; 4           0.429 beta                         1.41        1.41        0.272</span>
+<span class="co">#&gt; 5           0.386 beta                         1.41        1.41        0.309</span>
+<span class="co">#&gt; 6           0.444 beta                         1.41        1.41        0.267</span>
+<span class="co">#&gt;   method                       n.obs</span>
+<span class="co">#&gt;   &lt;chr&gt;                        &lt;int&gt;</span>
+<span class="co">#&gt; 1 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 2 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 3 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 4 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 5 Bayesian Pearson correlation    32</span>
+<span class="co">#&gt; 6 Bayesian Pearson correlation    32</span></code></pre></div>
 <div class="section level5">
 <h5 id="summary-of-graphics-5">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics-5"></a>
 </h5>
@@ -1995,7 +1992,7 @@ If only one categorical variable is entered, results from one-sample
 proportion test (i.e., a chi-squared goodness of fit test) will be
 displayed as a subtitle.</p>
 <p>To study an interaction between two categorical variables:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2020,7 +2017,7 @@ makes it easy to repeat the same operation across a
 <strong>single</strong> grouping variable. Following example is a case
 where the theoretical question is about proportions for different levels
 of a single nominal variable:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2228,7 +2225,7 @@ can alternatively use <code>ggbarstats</code> function which has a
 similar syntax.</p>
 <p>N.B. The <em>p</em>-values from one-sample proportion test are
 displayed on top of each bar.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
@@ -2252,7 +2249,7 @@ displayed on top of each bar.</p>
 hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>And, needless to say, there is also a <code>grouped_</code> variant
 of this function-</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## setup</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2482,10 +2479,10 @@ Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian
 Information Criterion (<strong>BIC</strong>) values, the “better” the
 model is.</p></li>
 <li><p>The output of this function will be a <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
-object and, thus, it can be further modified (e.g., change themes, etc.)
-with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> functions.</p></li>
+object and, thus, it can be further modified (e.g. change themes) with
+<a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> functions.</p></li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -2503,77 +2500,77 @@ summary (AIC and BIC) <br></p>
 </h5>
 <p>Most of the regression models that are supported in the underlying
 packages are also supported by <code>ggcoefstats</code>.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/is_model_supported.html" class="external-link">supported_models</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">##&gt;   [1] "aareg"             "afex_aov"          "AKP"              </span>
-<span class="co">##&gt;   [4] "Anova.mlm"         "aov"               "aovlist"          </span>
-<span class="co">##&gt;   [7] "Arima"             "averaging"         "bamlss"           </span>
-<span class="co">##&gt;  [10] "bamlss.frame"      "bayesQR"           "bayesx"           </span>
-<span class="co">##&gt;  [13] "BBmm"              "BBreg"             "bcplm"            </span>
-<span class="co">##&gt;  [16] "betamfx"           "betaor"            "betareg"          </span>
-<span class="co">##&gt;  [19] "BFBayesFactor"     "bfsl"              "BGGM"             </span>
-<span class="co">##&gt;  [22] "bife"              "bifeAPEs"          "bigglm"           </span>
-<span class="co">##&gt;  [25] "biglm"             "blavaan"           "blrm"             </span>
-<span class="co">##&gt;  [28] "bracl"             "brglm"             "brmsfit"          </span>
-<span class="co">##&gt;  [31] "brmultinom"        "btergm"            "censReg"          </span>
-<span class="co">##&gt;  [34] "cgam"              "cgamm"             "cglm"             </span>
-<span class="co">##&gt;  [37] "clm"               "clm2"              "clmm"             </span>
-<span class="co">##&gt;  [40] "clmm2"             "clogit"            "coeftest"         </span>
-<span class="co">##&gt;  [43] "complmrob"         "confusionMatrix"   "coxme"            </span>
-<span class="co">##&gt;  [46] "coxph"             "coxph.penal"       "coxr"             </span>
-<span class="co">##&gt;  [49] "cpglm"             "cpglmm"            "crch"             </span>
-<span class="co">##&gt;  [52] "crq"               "crqs"              "crr"              </span>
-<span class="co">##&gt;  [55] "dep.effect"        "DirichletRegModel" "drc"              </span>
-<span class="co">##&gt;  [58] "eglm"              "elm"               "epi.2by2"         </span>
-<span class="co">##&gt;  [61] "ergm"              "feglm"             "feis"             </span>
-<span class="co">##&gt;  [64] "felm"              "fitdistr"          "fixest"           </span>
-<span class="co">##&gt;  [67] "flexsurvreg"       "gam"               "Gam"              </span>
-<span class="co">##&gt;  [70] "gamlss"            "gamm"              "gamm4"            </span>
-<span class="co">##&gt;  [73] "garch"             "gbm"               "gee"              </span>
-<span class="co">##&gt;  [76] "geeglm"            "glht"              "glimML"           </span>
-<span class="co">##&gt;  [79] "glm"               "Glm"               "glmm"             </span>
-<span class="co">##&gt;  [82] "glmmadmb"          "glmmPQL"           "glmmTMB"          </span>
-<span class="co">##&gt;  [85] "glmrob"            "glmRob"            "glmx"             </span>
-<span class="co">##&gt;  [88] "gls"               "gmnl"              "HLfit"            </span>
-<span class="co">##&gt;  [91] "htest"             "hurdle"            "iv_robust"        </span>
-<span class="co">##&gt;  [94] "ivFixed"           "ivprobit"          "ivreg"            </span>
-<span class="co">##&gt;  [97] "lavaan"            "lm"                "lm_robust"        </span>
-<span class="co">##&gt; [100] "lme"               "lmerMod"           "lmerModLmerTest"  </span>
-<span class="co">##&gt; [103] "lmodel2"           "lmrob"             "lmRob"            </span>
-<span class="co">##&gt; [106] "logistf"           "logitmfx"          "logitor"          </span>
-<span class="co">##&gt; [109] "LORgee"            "lqm"               "lqmm"             </span>
-<span class="co">##&gt; [112] "lrm"               "manova"            "MANOVA"           </span>
-<span class="co">##&gt; [115] "margins"           "maxLik"            "mclogit"          </span>
-<span class="co">##&gt; [118] "mcmc"              "mcmc.list"         "MCMCglmm"         </span>
-<span class="co">##&gt; [121] "mcp1"              "mcp12"             "mcp2"             </span>
-<span class="co">##&gt; [124] "med1way"           "mediate"           "merMod"           </span>
-<span class="co">##&gt; [127] "merModList"        "meta_bma"          "meta_fixed"       </span>
-<span class="co">##&gt; [130] "meta_random"       "metaplus"          "mhurdle"          </span>
-<span class="co">##&gt; [133] "mipo"              "mira"              "mixed"            </span>
-<span class="co">##&gt; [136] "MixMod"            "mixor"             "mjoint"           </span>
-<span class="co">##&gt; [139] "mle"               "mle2"              "mlm"              </span>
-<span class="co">##&gt; [142] "mlogit"            "mmlogit"           "model_fit"        </span>
-<span class="co">##&gt; [145] "multinom"          "mvord"             "negbinirr"        </span>
-<span class="co">##&gt; [148] "negbinmfx"         "ols"               "onesampb"         </span>
-<span class="co">##&gt; [151] "orm"               "pgmm"              "plm"              </span>
-<span class="co">##&gt; [154] "PMCMR"             "poissonirr"        "poissonmfx"       </span>
-<span class="co">##&gt; [157] "polr"              "probitmfx"         "psm"              </span>
-<span class="co">##&gt; [160] "Rchoice"           "ridgelm"           "riskRegression"   </span>
-<span class="co">##&gt; [163] "rjags"             "rlm"               "rlmerMod"         </span>
-<span class="co">##&gt; [166] "RM"                "rma"               "rma.uni"          </span>
-<span class="co">##&gt; [169] "robmixglm"         "robtab"            "rq"               </span>
-<span class="co">##&gt; [172] "rqs"               "rqss"              "Sarlm"            </span>
-<span class="co">##&gt; [175] "scam"              "selection"         "sem"              </span>
-<span class="co">##&gt; [178] "SemiParBIV"        "semLm"             "semLme"           </span>
-<span class="co">##&gt; [181] "slm"               "speedglm"          "speedlm"          </span>
-<span class="co">##&gt; [184] "stanfit"           "stanmvreg"         "stanreg"          </span>
-<span class="co">##&gt; [187] "summary.lm"        "survfit"           "survreg"          </span>
-<span class="co">##&gt; [190] "svy_vglm"          "svyglm"            "svyolr"           </span>
-<span class="co">##&gt; [193] "t1way"             "tobit"             "trimcibt"         </span>
-<span class="co">##&gt; [196] "truncreg"          "vgam"              "vglm"             </span>
-<span class="co">##&gt; [199] "wbgee"             "wblm"              "wbm"              </span>
-<span class="co">##&gt; [202] "wmcpAKP"           "yuen"              "yuend"            </span>
-<span class="co">##&gt; [205] "zcpglm"            "zeroinfl"          "zerotrunc"</span></code></pre></div>
+<span class="co">#&gt;   [1] "aareg"             "afex_aov"          "AKP"              </span>
+<span class="co">#&gt;   [4] "Anova.mlm"         "aov"               "aovlist"          </span>
+<span class="co">#&gt;   [7] "Arima"             "averaging"         "bamlss"           </span>
+<span class="co">#&gt;  [10] "bamlss.frame"      "bayesQR"           "bayesx"           </span>
+<span class="co">#&gt;  [13] "BBmm"              "BBreg"             "bcplm"            </span>
+<span class="co">#&gt;  [16] "betamfx"           "betaor"            "betareg"          </span>
+<span class="co">#&gt;  [19] "BFBayesFactor"     "bfsl"              "BGGM"             </span>
+<span class="co">#&gt;  [22] "bife"              "bifeAPEs"          "bigglm"           </span>
+<span class="co">#&gt;  [25] "biglm"             "blavaan"           "blrm"             </span>
+<span class="co">#&gt;  [28] "bracl"             "brglm"             "brmsfit"          </span>
+<span class="co">#&gt;  [31] "brmultinom"        "btergm"            "censReg"          </span>
+<span class="co">#&gt;  [34] "cgam"              "cgamm"             "cglm"             </span>
+<span class="co">#&gt;  [37] "clm"               "clm2"              "clmm"             </span>
+<span class="co">#&gt;  [40] "clmm2"             "clogit"            "coeftest"         </span>
+<span class="co">#&gt;  [43] "complmrob"         "confusionMatrix"   "coxme"            </span>
+<span class="co">#&gt;  [46] "coxph"             "coxph.penal"       "coxr"             </span>
+<span class="co">#&gt;  [49] "cpglm"             "cpglmm"            "crch"             </span>
+<span class="co">#&gt;  [52] "crq"               "crqs"              "crr"              </span>
+<span class="co">#&gt;  [55] "dep.effect"        "DirichletRegModel" "drc"              </span>
+<span class="co">#&gt;  [58] "eglm"              "elm"               "epi.2by2"         </span>
+<span class="co">#&gt;  [61] "ergm"              "feglm"             "feis"             </span>
+<span class="co">#&gt;  [64] "felm"              "fitdistr"          "fixest"           </span>
+<span class="co">#&gt;  [67] "flexsurvreg"       "gam"               "Gam"              </span>
+<span class="co">#&gt;  [70] "gamlss"            "gamm"              "gamm4"            </span>
+<span class="co">#&gt;  [73] "garch"             "gbm"               "gee"              </span>
+<span class="co">#&gt;  [76] "geeglm"            "glht"              "glimML"           </span>
+<span class="co">#&gt;  [79] "glm"               "Glm"               "glmm"             </span>
+<span class="co">#&gt;  [82] "glmmadmb"          "glmmPQL"           "glmmTMB"          </span>
+<span class="co">#&gt;  [85] "glmrob"            "glmRob"            "glmx"             </span>
+<span class="co">#&gt;  [88] "gls"               "gmnl"              "HLfit"            </span>
+<span class="co">#&gt;  [91] "htest"             "hurdle"            "iv_robust"        </span>
+<span class="co">#&gt;  [94] "ivFixed"           "ivprobit"          "ivreg"            </span>
+<span class="co">#&gt;  [97] "lavaan"            "lm"                "lm_robust"        </span>
+<span class="co">#&gt; [100] "lme"               "lmerMod"           "lmerModLmerTest"  </span>
+<span class="co">#&gt; [103] "lmodel2"           "lmrob"             "lmRob"            </span>
+<span class="co">#&gt; [106] "logistf"           "logitmfx"          "logitor"          </span>
+<span class="co">#&gt; [109] "LORgee"            "lqm"               "lqmm"             </span>
+<span class="co">#&gt; [112] "lrm"               "manova"            "MANOVA"           </span>
+<span class="co">#&gt; [115] "margins"           "maxLik"            "mclogit"          </span>
+<span class="co">#&gt; [118] "mcmc"              "mcmc.list"         "MCMCglmm"         </span>
+<span class="co">#&gt; [121] "mcp1"              "mcp12"             "mcp2"             </span>
+<span class="co">#&gt; [124] "med1way"           "mediate"           "merMod"           </span>
+<span class="co">#&gt; [127] "merModList"        "meta_bma"          "meta_fixed"       </span>
+<span class="co">#&gt; [130] "meta_random"       "metaplus"          "mhurdle"          </span>
+<span class="co">#&gt; [133] "mipo"              "mira"              "mixed"            </span>
+<span class="co">#&gt; [136] "MixMod"            "mixor"             "mjoint"           </span>
+<span class="co">#&gt; [139] "mle"               "mle2"              "mlm"              </span>
+<span class="co">#&gt; [142] "mlogit"            "mmlogit"           "model_fit"        </span>
+<span class="co">#&gt; [145] "multinom"          "mvord"             "negbinirr"        </span>
+<span class="co">#&gt; [148] "negbinmfx"         "ols"               "onesampb"         </span>
+<span class="co">#&gt; [151] "orm"               "pgmm"              "plm"              </span>
+<span class="co">#&gt; [154] "PMCMR"             "poissonirr"        "poissonmfx"       </span>
+<span class="co">#&gt; [157] "polr"              "probitmfx"         "psm"              </span>
+<span class="co">#&gt; [160] "Rchoice"           "ridgelm"           "riskRegression"   </span>
+<span class="co">#&gt; [163] "rjags"             "rlm"               "rlmerMod"         </span>
+<span class="co">#&gt; [166] "RM"                "rma"               "rma.uni"          </span>
+<span class="co">#&gt; [169] "robmixglm"         "robtab"            "rq"               </span>
+<span class="co">#&gt; [172] "rqs"               "rqss"              "Sarlm"            </span>
+<span class="co">#&gt; [175] "scam"              "selection"         "sem"              </span>
+<span class="co">#&gt; [178] "SemiParBIV"        "semLm"             "semLme"           </span>
+<span class="co">#&gt; [181] "slm"               "speedglm"          "speedlm"          </span>
+<span class="co">#&gt; [184] "stanfit"           "stanmvreg"         "stanreg"          </span>
+<span class="co">#&gt; [187] "summary.lm"        "survfit"           "survreg"          </span>
+<span class="co">#&gt; [190] "svy_vglm"          "svyglm"            "svyolr"           </span>
+<span class="co">#&gt; [193] "t1way"             "tobit"             "trimcibt"         </span>
+<span class="co">#&gt; [196] "truncreg"          "vgam"              "vglm"             </span>
+<span class="co">#&gt; [199] "wbgee"             "wblm"              "wbm"              </span>
+<span class="co">#&gt; [202] "wmcpAKP"           "yuen"              "yuend"            </span>
+<span class="co">#&gt; [205] "zcpglm"            "zeroinfl"          "zerotrunc"</span></code></pre></div>
 <p>Although not shown here, this function can also be used to carry out
 parametric, robust, and Bayesian random-effects meta-analysis.</p>
 </div>
@@ -2670,74 +2667,74 @@ vignette- <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_onl
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> also offers a convenience function to
 extract dataframes with statistical details that are used to create
 expressions displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co">## a list of tibbles containing statistical analysis summaries</span>
 <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">##&gt; $subtitle_data</span>
-<span class="co">##&gt; # A tibble: 1 x 14</span>
-<span class="co">##&gt;   statistic    df df.error    p.value</span>
-<span class="co">##&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">##&gt; 1      31.6     2     18.0 0.00000127</span>
-<span class="co">##&gt;   method                                                   effectsize estimate</span>
-<span class="co">##&gt;   &lt;chr&gt;                                                    &lt;chr&gt;         &lt;dbl&gt;</span>
-<span class="co">##&gt; 1 One-way analysis of means (not assuming equal variances) Omega2        0.744</span>
-<span class="co">##&gt;   conf.level conf.low conf.high conf.method conf.distribution n.obs expression  </span>
-<span class="co">##&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;int&gt; &lt;list&gt;      </span>
-<span class="co">##&gt; 1       0.95    0.531         1 ncp         F                    32 &lt;expression&gt;</span>
-<span class="co">##&gt; </span>
-<span class="co">##&gt; $caption_data</span>
-<span class="co">##&gt; # A tibble: 6 x 17</span>
-<span class="co">##&gt;   term     pd rope.percentage prior.distribution prior.location prior.scale</span>
-<span class="co">##&gt;   &lt;chr&gt; &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">##&gt; 1 mu    1              0      cauchy                          0       0.707</span>
-<span class="co">##&gt; 2 cyl-4 1              0      cauchy                          0       0.707</span>
-<span class="co">##&gt; 3 cyl-6 0.780          0.390  cauchy                          0       0.707</span>
-<span class="co">##&gt; 4 cyl-8 1              0      cauchy                          0       0.707</span>
-<span class="co">##&gt; 5 sig2  1              0      cauchy                          0       0.707</span>
-<span class="co">##&gt; 6 g_cyl 1              0.0418 cauchy                          0       0.707</span>
-<span class="co">##&gt;       bf10 method                          log_e_bf10 effectsize        </span>
-<span class="co">##&gt;      &lt;dbl&gt; &lt;chr&gt;                                &lt;dbl&gt; &lt;chr&gt;             </span>
-<span class="co">##&gt; 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
-<span class="co">##&gt; 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
-<span class="co">##&gt; 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
-<span class="co">##&gt; 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
-<span class="co">##&gt; 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
-<span class="co">##&gt; 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
-<span class="co">##&gt;   estimate std.dev conf.level conf.low conf.high n.obs expression  </span>
-<span class="co">##&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;list&gt;      </span>
-<span class="co">##&gt; 1    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
-<span class="co">##&gt; 2    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
-<span class="co">##&gt; 3    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
-<span class="co">##&gt; 4    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
-<span class="co">##&gt; 5    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
-<span class="co">##&gt; 6    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
-<span class="co">##&gt; </span>
-<span class="co">##&gt; $pairwise_comparisons_data</span>
-<span class="co">##&gt; # A tibble: 3 x 11</span>
-<span class="co">##&gt;   group1 group2 statistic   p.value alternative method            distribution</span>
-<span class="co">##&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;chr&gt;       </span>
-<span class="co">##&gt; 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           </span>
-<span class="co">##&gt; 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           </span>
-<span class="co">##&gt; 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           </span>
-<span class="co">##&gt;   p.adjustment test.details      p.value.adjustment</span>
-<span class="co">##&gt;   &lt;chr&gt;        &lt;chr&gt;             &lt;chr&gt;             </span>
-<span class="co">##&gt; 1 none         Games-Howell test Holm              </span>
-<span class="co">##&gt; 2 none         Games-Howell test Holm              </span>
-<span class="co">##&gt; 3 none         Games-Howell test Holm              </span>
-<span class="co">##&gt;   label                                     </span>
-<span class="co">##&gt;   &lt;chr&gt;                                     </span>
-<span class="co">##&gt; 1 list(~italic(p)[Holm-corrected]==1.10e-03)</span>
-<span class="co">##&gt; 2 list(~italic(p)[Holm-corrected]==1.40e-05)</span>
-<span class="co">##&gt; 3 list(~italic(p)[Holm-corrected]==2.57e-04)</span>
-<span class="co">##&gt; </span>
-<span class="co">##&gt; $descriptive_data</span>
-<span class="co">##&gt; NULL</span>
-<span class="co">##&gt; </span>
-<span class="co">##&gt; $one_sample_data</span>
-<span class="co">##&gt; NULL</span></code></pre></div>
+<span class="co">#&gt; $subtitle_data</span>
+<span class="co">#&gt; # A tibble: 1 x 14</span>
+<span class="co">#&gt;   statistic    df df.error    p.value</span>
+<span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1      31.6     2     18.0 0.00000127</span>
+<span class="co">#&gt;   method                                                   effectsize estimate</span>
+<span class="co">#&gt;   &lt;chr&gt;                                                    &lt;chr&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 One-way analysis of means (not assuming equal variances) Omega2        0.744</span>
+<span class="co">#&gt;   conf.level conf.low conf.high conf.method conf.distribution n.obs expression  </span>
+<span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;int&gt; &lt;list&gt;      </span>
+<span class="co">#&gt; 1       0.95    0.531         1 ncp         F                    32 &lt;expression&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $caption_data</span>
+<span class="co">#&gt; # A tibble: 6 x 17</span>
+<span class="co">#&gt;   term     pd rope.percentage prior.distribution prior.location prior.scale</span>
+<span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 mu    1              0      cauchy                          0       0.707</span>
+<span class="co">#&gt; 2 cyl-4 1              0      cauchy                          0       0.707</span>
+<span class="co">#&gt; 3 cyl-6 0.780          0.390  cauchy                          0       0.707</span>
+<span class="co">#&gt; 4 cyl-8 1              0      cauchy                          0       0.707</span>
+<span class="co">#&gt; 5 sig2  1              0      cauchy                          0       0.707</span>
+<span class="co">#&gt; 6 g_cyl 1              0.0418 cauchy                          0       0.707</span>
+<span class="co">#&gt;       bf10 method                          log_e_bf10 effectsize        </span>
+<span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                                &lt;dbl&gt; &lt;chr&gt;             </span>
+<span class="co">#&gt; 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
+<span class="co">#&gt; 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
+<span class="co">#&gt; 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
+<span class="co">#&gt; 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
+<span class="co">#&gt; 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
+<span class="co">#&gt; 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span>
+<span class="co">#&gt;   estimate std.dev conf.level conf.low conf.high n.obs expression  </span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt; &lt;list&gt;      </span>
+<span class="co">#&gt; 1    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
+<span class="co">#&gt; 2    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
+<span class="co">#&gt; 3    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
+<span class="co">#&gt; 4    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
+<span class="co">#&gt; 5    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
+<span class="co">#&gt; 6    0.714  0.0503       0.95    0.574     0.788    32 &lt;expression&gt;</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $pairwise_comparisons_data</span>
+<span class="co">#&gt; # A tibble: 3 x 11</span>
+<span class="co">#&gt;   group1 group2 statistic   p.value alternative method            distribution</span>
+<span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;chr&gt;       </span>
+<span class="co">#&gt; 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           </span>
+<span class="co">#&gt; 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           </span>
+<span class="co">#&gt; 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           </span>
+<span class="co">#&gt;   p.adjustment test.details      p.value.adjustment</span>
+<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;             &lt;chr&gt;             </span>
+<span class="co">#&gt; 1 none         Games-Howell test Holm              </span>
+<span class="co">#&gt; 2 none         Games-Howell test Holm              </span>
+<span class="co">#&gt; 3 none         Games-Howell test Holm              </span>
+<span class="co">#&gt;   label                                     </span>
+<span class="co">#&gt;   &lt;chr&gt;                                     </span>
+<span class="co">#&gt; 1 list(~italic(p)[Holm-corrected]==1.10e-03)</span>
+<span class="co">#&gt; 2 list(~italic(p)[Holm-corrected]==1.40e-05)</span>
+<span class="co">#&gt; 3 list(~italic(p)[Holm-corrected]==2.57e-04)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $descriptive_data</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $one_sample_data</span>
+<span class="co">#&gt; NULL</span></code></pre></div>
 <p>Note that all of this analysis is carried out by
 <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package: <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/</a></p>
 </div>
@@ -2750,46 +2747,27 @@ plots<a class="anchor" aria-label="anchor" href="#using-ggstatsplot-statistical-
 <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> or other
 plotting packages) and still use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions to
 display results from relevant statistical test.</p>
-<p>For example, in the following chunk, we will create plot
-(<em>ridgeplot</em>) using <code>ggridges</code> package and use
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function for extracting results.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<p>For example, in the following chunk, we will create our own plot
+using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package, and use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
+function for extracting expression:</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## loading the needed libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wilkelab.org/ggridges/" class="external-link">ggridges</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
-<span class="co">## using `{ggstatsplot}` to get call with statistical results</span>
-<span class="va">stats_results</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span>
-    data <span class="op">=</span> <span class="va">morley</span>,
-    x <span class="op">=</span> <span class="va">Expt</span>,
-    y <span class="op">=</span> <span class="va">Speed</span>,
-    output <span class="op">=</span> <span class="st">"subtitle"</span>
-  <span class="op">)</span>
+<span class="co">## using `{ggstatsplot}` to get expression with statistical results</span>
+<span class="va">stats_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">morley</span>, <span class="va">Expt</span>, <span class="va">Speed</span>, output <span class="op">=</span> <span class="st">"subtitle"</span><span class="op">)</span>
 
-<span class="co">## using `ggridges` to create plot</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">morley</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Speed</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">Expt</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">Expt</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_density_ridges</span><span class="op">(</span>
-    jittered_points <span class="op">=</span> <span class="cn">TRUE</span>,
-    quantile_lines <span class="op">=</span> <span class="cn">TRUE</span>,
-    scale <span class="op">=</span> <span class="fl">0.9</span>,
-    alpha <span class="op">=</span> <span class="fl">0.7</span>,
-    vline_size <span class="op">=</span> <span class="fl">1</span>,
-    vline_color <span class="op">=</span> <span class="st">"red"</span>,
-    point_size <span class="op">=</span> <span class="fl">0.4</span>,
-    point_alpha <span class="op">=</span> <span class="fl">1</span>,
-    position <span class="op">=</span> <span class="fu">position_raincloud</span><span class="op">(</span>adjust_vlines <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span> <span class="co">## adding annotations</span>
+<span class="co">## creating a custom plot of our choosing</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">morley</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">Expt</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">Speed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Michelson-Morley experiments"</span>,
     subtitle <span class="op">=</span> <span class="va">stats_results</span>,
     x <span class="op">=</span> <span class="st">"Speed of light"</span>,
     y <span class="op">=</span> <span class="st">"Experiment number"</span>
-  <span class="op">)</span> <span class="op">+</span> <span class="co">## remove the legend</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-ridgeplot-1.png" width="100%"></p>
+  <span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-customplot-1.png" width="100%"></p>
 </div>
 </div>
 <div class="section level2">
@@ -2834,26 +2812,6 @@ time-constrained presentation settings, e.g. conference talks.)</p>
 <p>In case you use the GUI software <a href="https://www.jamovi.org/" class="external-link"><code>jamovi</code></a>, you can install
 a module called <a href="https://github.com/sbalci/jjstatsplot" class="external-link"><code>jjstatsplot</code></a>,
 which is a wrapper around <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>
-</h2>
-<p>I would like to thank all the contributors to
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> who pointed out bugs or requested features I
-hadn’t considered. I would especially like to thank other package
-developers (especially Daniel Lüdecke, Dominique Makowski, Mattan S.
-Ben-Shachar, Brenton Wiernik, Patrick Mair, Salvatore Mangiafico, etc.)
-who have patiently and diligently answered my relentless number of
-questions and added feature requests I wanted. I also want to thank
-Chuck Powell for his initial contributions to the package.</p>
-<p>The hexsticker was generously designed by Sarah Otterstetter (Max
-Planck Institute for Human Development, Berlin). This package has also
-benefited from the larger <code>rstats</code> community on Twitter and
-<code>StackOverflow</code>.</p>
-<p>Thanks are also due to my postdoc advisers (Mina Cikara and Fiery
-Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for
-Human Development) who patiently supported me spending hundreds (?) of
-hours working on this package rather than what I was paid to do. 😁</p>
 </div>
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
