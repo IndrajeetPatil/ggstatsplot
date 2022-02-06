@@ -618,6 +618,28 @@ To check these assumptions, you can use a different package called `{performance
 
 <https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties>
 
+## 27. I am on Ubuntu and have trouble installing `{PMCMRplus}`?
+
+Linux users may encounter some installation problems. In particular, the
+`{ggstatsplot}` package depends on the `{PMCMRplus}` package.
+
+```r
+ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
+```
+
+This means that your operating system lacks `gmp` and `Rmpfr` libraries.
+
+If you use `Ubuntu`, you can install these dependencies:
+
+```
+sudo apt-get install libgmp3-dev
+sudo apt-get install libmpfr-dev
+```
+
+The following `README` file briefly describes the installation procedure:
+<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
+
+
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

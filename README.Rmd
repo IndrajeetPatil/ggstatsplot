@@ -6,7 +6,7 @@ output:
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ## show me all columns
 options(
   tibble.width = Inf,
@@ -22,9 +22,11 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
-  comment = "##>",
+  comment = "#>",
   fig.path = "man/figures/README-"
 )
+
+library(ggstatsplot)
 ```
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details 
@@ -60,25 +62,6 @@ Type | Source | Command
 Release | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")`
 Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active) | `remotes::install_github("IndrajeetPatil/ggstatsplot")`
 
-Linux users may encounter some installation problems. In particular, the
-`{ggstatsplot}` package depends on the `{PMCMRplus}` package.
-
-```
-ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
-```
-
-This means that your operating system lacks `gmp` and `Rmpfr` libraries.
-
-If you use `Ubuntu`, you can install these dependencies:
-
-```
-sudo apt-get install libgmp3-dev
-sudo apt-get install libmpfr-dev
-```
-
-The following `README` file briefly describes the installation procedure:
-<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
-
 ## Citation
 
 If you want to cite this package in a scientific journal or in any other
@@ -88,21 +71,36 @@ context, run the following code in your `R` console:
 citation("ggstatsplot")
 ```
 
-There is currently a publication in preparation corresponding to this package
-and the citation will be updated once it's published.
+## Acknowledgments
+
+I would like to thank all the contributors to `{ggstatsplot}` who pointed out
+bugs or requested features I hadn't considered. I would especially like to thank
+other package developers (especially Daniel Lüdecke, Dominique Makowski, Mattan
+S. Ben-Shachar, Brenton Wiernik, Patrick Mair, Salvatore Mangiafico, etc.) who
+have patiently and diligently answered my relentless questions and supported
+feature requests in their projects. I also want to thank Chuck Powell for his
+initial contributions to the package.
+
+The hexsticker was generously designed by Sarah Otterstetter (Max Planck
+Institute for Human Development, Berlin). This package has also benefited from
+the larger `#rstats` community on Twitter, LinkedIn, and `StackOverflow`.
+
+Thanks are also due to my postdoc advisers (Mina Cikara and Fiery Cushman at
+Harvard University; Iyad Rahwan at Max Planck Institute for Human Development)
+who patiently supported me spending hundreds (?) of hours working on this
+package rather than what I was paid to do. 😁
 
 ## Documentation and Examples
 
 To see the detailed documentation for each function in the stable **CRAN**
 version of the package, see:
 
-  - Website: <https://indrajeetpatil.github.io/ggstatsplot/>
-    
-  - Presentation:
-    <https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1>
-    
-  - Vignettes: <https://indrajeetpatil.github.io/ggstatsplot/articles/>
+  - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
+  - [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
+    
+  - [Presentation](https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1)
+    
 ## Summary of available plots
 
 It, therefore, produces a limited kinds of plots for the supported analyses:
@@ -144,7 +142,7 @@ Summary of Bayesian analysis
 
 Analysis | Hypothesis testing | Estimation
 ------------------ | ---------- | ---------
-(one/two-sample) t-test | ✅ | ✅
+(one/two-sample) *t*-test | ✅ | ✅
 one-way ANOVA | ✅ |✅
 correlation | ✅ | ✅
 (one/two-way) contingency table | ✅ | ✅
@@ -167,14 +165,6 @@ various functions can be found in article for that package:
 
 ## Primary functions
 
-Here are examples of the main functions currently supported in `{ggstatsplot}`.
-
-**Note**: If you are reading this on `GitHub` repository, the documentation below
-is for the **development** version of the package. So you may see some features
-available here that are not currently present in the stable version of this
-package on **CRAN**. For documentation relevant for the `CRAN` version, see:
-<https://CRAN.R-project.org/package=ggstatsplot/readme/README.html>
-
 ### `ggbetweenstats`
 
 This function creates either a violin plot, a box plot, or a mix of two for
@@ -184,7 +174,6 @@ statistical tests in the subtitle. The simplest function call looks like this-
 ```{r ggbetweenstats1}
 ## for reproducibility
 set.seed(123)
-library(ggstatsplot)
 
 ## plot
 ggbetweenstats(
@@ -1019,7 +1008,7 @@ be invariant across models:
     (**BIC**) values, the "better" the model is.
 
   - The output of this function will be a `{ggplot2}` object and, thus, it can be
-    further modified (e.g., change themes, etc.) with `{ggplot2}` functions.
+    further modified (e.g. change themes) with `{ggplot2}` functions.
 
 ```{r ggcoefstats1, fig.height=5, fig.width=6}
 ## for reproducibility
@@ -1096,45 +1085,26 @@ cases, you can use other **custom** plots (from `{ggplot2}` or other plotting
 packages) and still use `{ggstatsplot}` functions to display results from relevant
 statistical test.
 
-For example, in the following chunk, we will create plot (*ridgeplot*) using
-`ggridges` package and use `{ggstatsplot}` function for extracting results.
+For example, in the following chunk, we will create our own plot using
+`{ggplot2}` package, and use `{ggstatsplot}` function for extracting expression:
 
-```{r ridgeplot, fig.height=10, fig.width=7}
+```{r customplot, fig.height=5, fig.width=6}
 ## loading the needed libraries
 set.seed(123)
-library(ggridges)
 library(ggplot2)
-library(ggstatsplot)
 
-## using `{ggstatsplot}` to get call with statistical results
-stats_results <-
-  ggbetweenstats(
-    data = morley,
-    x = Expt,
-    y = Speed,
-    output = "subtitle"
-  )
+## using `{ggstatsplot}` to get expression with statistical results
+stats_results <- ggbetweenstats(morley, Expt, Speed, output = "subtitle")
 
-## using `ggridges` to create plot
-ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
-  geom_density_ridges(
-    jittered_points = TRUE,
-    quantile_lines = TRUE,
-    scale = 0.9,
-    alpha = 0.7,
-    vline_size = 1,
-    vline_color = "red",
-    point_size = 0.4,
-    point_alpha = 1,
-    position = position_raincloud(adjust_vlines = TRUE)
-  ) + ## adding annotations
+## creating a custom plot of our choosing
+ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
+  geom_boxplot() +
   labs(
     title = "Michelson-Morley experiments",
     subtitle = stats_results,
     x = "Speed of light",
     y = "Experiment number"
-  ) + ## remove the legend
-  theme(legend.position = "none")
+  )
 ```
 
 ## Summary of benefits of using `{ggstatsplot}`
@@ -1178,25 +1148,6 @@ time-constrained presentation settings, e.g. conference talks.)
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/), you can
 install a module called [`jjstatsplot`](https://github.com/sbalci/jjstatsplot),
 which is a wrapper around `{ggstatsplot}`.
-
-## Acknowledgments
-
-I would like to thank all the contributors to `{ggstatsplot}` who pointed out
-bugs or requested features I hadn't considered. I would especially like to thank
-other package developers (especially Daniel Lüdecke, Dominique Makowski, Mattan
-S. Ben-Shachar, Brenton Wiernik, Patrick Mair, Salvatore Mangiafico, etc.) who
-have patiently and diligently answered my relentless number of questions and
-added feature requests I wanted. I also want to thank Chuck Powell for his
-initial contributions to the package.
-
-The hexsticker was generously designed by Sarah Otterstetter (Max Planck
-Institute for Human Development, Berlin). This package has also benefited from
-the larger `rstats` community on Twitter and `StackOverflow`.
-
-Thanks are also due to my postdoc advisers (Mina Cikara and Fiery Cushman at
-Harvard University; Iyad Rahwan at Max Planck Institute for Human Development)
-who patiently supported me spending hundreds (?) of hours working on this
-package rather than what I was paid to do. 😁
 
 ## Contributing
 

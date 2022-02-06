@@ -33,22 +33,6 @@ makes data exploration simpler and faster.
 | Release     | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")`                       |
 | Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active)      | `remotes::install_github("IndrajeetPatil/ggstatsplot")` |
 
-Linux users may encounter some installation problems. In particular, the
-`{ggstatsplot}` package depends on the `{PMCMRplus}` package.
-
-    ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
-
-This means that your operating system lacks `gmp` and `Rmpfr` libraries.
-
-If you use `Ubuntu`, you can install these dependencies:
-
-    sudo apt-get install libgmp3-dev
-    sudo apt-get install libmpfr-dev
-
-The following `README` file briefly describes the installation
-procedure:
-<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
-
 ## Citation
 
 If you want to cite this package in a scientific journal or in any other
@@ -77,21 +61,37 @@ A BibTeX entry for LaTeX users is
   }
 ```
 
-There is currently a publication in preparation corresponding to this
-package and the citation will be updated once it’s published.
+## Acknowledgments
+
+I would like to thank all the contributors to `{ggstatsplot}` who
+pointed out bugs or requested features I hadn’t considered. I would
+especially like to thank other package developers (especially Daniel
+Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Brenton Wiernik,
+Patrick Mair, Salvatore Mangiafico, etc.) who have patiently and
+diligently answered my relentless questions and supported feature
+requests in their projects. I also want to thank Chuck Powell for his
+initial contributions to the package.
+
+The hexsticker was generously designed by Sarah Otterstetter (Max Planck
+Institute for Human Development, Berlin). This package has also
+benefited from the larger `#rstats` community on Twitter, LinkedIn, and
+`StackOverflow`.
+
+Thanks are also due to my postdoc advisers (Mina Cikara and Fiery
+Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for
+Human Development) who patiently supported me spending hundreds (?) of
+hours working on this package rather than what I was paid to do. 😁
 
 ## Documentation and Examples
 
 To see the detailed documentation for each function in the stable
 **CRAN** version of the package, see:
 
--   Website: <https://indrajeetpatil.github.io/ggstatsplot/>
+-   [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
--   Presentation: <a
-    href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1"
-    class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html##1</a>
+-   [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
 
--   Vignettes: <https://indrajeetpatil.github.io/ggstatsplot/articles/>
+-   [Presentation](https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1)
 
 ## Summary of available plots
 
@@ -135,7 +135,7 @@ Summary of Bayesian analysis
 
 | Analysis                        | Hypothesis testing | Estimation |
 |---------------------------------|--------------------|------------|
-| (one/two-sample) t-test         | ✅                 | ✅         |
+| (one/two-sample) *t*-test       | ✅                 | ✅         |
 | one-way ANOVA                   | ✅                 | ✅         |
 | correlation                     | ✅                 | ✅         |
 | (one/two-way) contingency table | ✅                 | ✅         |
@@ -159,16 +159,6 @@ across various functions can be found in article for that package:
 
 ## Primary functions
 
-Here are examples of the main functions currently supported in
-`{ggstatsplot}`.
-
-**Note**: If you are reading this on `GitHub` repository, the
-documentation below is for the **development** version of the package.
-So you may see some features available here that are not currently
-present in the stable version of this package on **CRAN**. For
-documentation relevant for the `CRAN` version, see:
-<https://CRAN.R-project.org/package=ggstatsplot/readme/README.html>
-
 ### `ggbetweenstats`
 
 This function creates either a violin plot, a box plot, or a mix of two
@@ -179,7 +169,6 @@ like this-
 ``` r
 ## for reproducibility
 set.seed(123)
-library(ggstatsplot)
 
 ## plot
 ggbetweenstats(
@@ -754,31 +743,31 @@ ggcorrmat(
   type   = "bayes",
   output = "dataframe"
 )
-##> # A tibble: 6 x 14
-##>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
-##>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-##> 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    
-##> 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995
-##> 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    
-##> 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963
-##> 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    
-##> 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998
-##>   rope.percentage prior.distribution prior.location prior.scale  bayes.factor
-##>             <dbl> <chr>                       <dbl>       <dbl>         <dbl>
-##> 1          0      beta                         1.41        1.41 3000790806.  
-##> 2          0.0173 beta                         1.41        1.41          8.85
-##> 3          0      beta                         1.41        1.41         NA   
-##> 4          0.100  beta                         1.41        1.41          1.42
-##> 5          0      beta                         1.41        1.41 3005546544.  
-##> 6          0.015  beta                         1.41        1.41          8.85
-##>   method                       n.obs
-##>   <chr>                        <int>
-##> 1 Bayesian Pearson correlation    61
-##> 2 Bayesian Pearson correlation    32
-##> 3 Bayesian Pearson correlation    83
-##> 4 Bayesian Pearson correlation    32
-##> 5 Bayesian Pearson correlation    61
-##> 6 Bayesian Pearson correlation    32
+#> # A tibble: 6 x 14
+#>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
+#>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
+#> 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    
+#> 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995
+#> 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    
+#> 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963
+#> 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    
+#> 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998
+#>   rope.percentage prior.distribution prior.location prior.scale  bayes.factor
+#>             <dbl> <chr>                       <dbl>       <dbl>         <dbl>
+#> 1          0      beta                         1.41        1.41 3000790806.  
+#> 2          0.0173 beta                         1.41        1.41          8.85
+#> 3          0      beta                         1.41        1.41         NA   
+#> 4          0.100  beta                         1.41        1.41          1.42
+#> 5          0      beta                         1.41        1.41 3005546544.  
+#> 6          0.015  beta                         1.41        1.41          8.85
+#>   method                       n.obs
+#>   <chr>                        <int>
+#> 1 Bayesian Pearson correlation    61
+#> 2 Bayesian Pearson correlation    32
+#> 3 Bayesian Pearson correlation    83
+#> 4 Bayesian Pearson correlation    32
+#> 5 Bayesian Pearson correlation    61
+#> 6 Bayesian Pearson correlation    32
 ```
 
 Additionally, **partial** correlation are also supported:
@@ -794,31 +783,31 @@ ggcorrmat(
   partial = TRUE,
   output  = "dataframe"
 )
-##> # A tibble: 6 x 14
-##>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
-##>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-##> 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704
-##> 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505
-##> 3 sleep_total awake       -1             0.95   -1        -1     1    
-##> 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558
-##> 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698
-##> 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508
-##>   rope.percentage prior.distribution prior.location prior.scale bayes.factor
-##>             <dbl> <chr>                       <dbl>       <dbl>        <dbl>
-##> 1           0.378 beta                         1.41        1.41        0.311
-##> 2           0.434 beta                         1.41        1.41        0.267
-##> 3           0     beta                         1.41        1.41       NA    
-##> 4           0.429 beta                         1.41        1.41        0.272
-##> 5           0.386 beta                         1.41        1.41        0.309
-##> 6           0.444 beta                         1.41        1.41        0.267
-##>   method                       n.obs
-##>   <chr>                        <int>
-##> 1 Bayesian Pearson correlation    32
-##> 2 Bayesian Pearson correlation    32
-##> 3 Bayesian Pearson correlation    32
-##> 4 Bayesian Pearson correlation    32
-##> 5 Bayesian Pearson correlation    32
-##> 6 Bayesian Pearson correlation    32
+#> # A tibble: 6 x 14
+#>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
+#>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
+#> 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704
+#> 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505
+#> 3 sleep_total awake       -1             0.95   -1        -1     1    
+#> 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558
+#> 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698
+#> 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508
+#>   rope.percentage prior.distribution prior.location prior.scale bayes.factor
+#>             <dbl> <chr>                       <dbl>       <dbl>        <dbl>
+#> 1           0.378 beta                         1.41        1.41        0.311
+#> 2           0.434 beta                         1.41        1.41        0.267
+#> 3           0     beta                         1.41        1.41       NA    
+#> 4           0.429 beta                         1.41        1.41        0.272
+#> 5           0.386 beta                         1.41        1.41        0.309
+#> 6           0.444 beta                         1.41        1.41        0.267
+#>   method                       n.obs
+#>   <chr>                        <int>
+#> 1 Bayesian Pearson correlation    32
+#> 2 Bayesian Pearson correlation    32
+#> 3 Bayesian Pearson correlation    32
+#> 4 Bayesian Pearson correlation    32
+#> 5 Bayesian Pearson correlation    32
+#> 6 Bayesian Pearson correlation    32
 ```
 
 ##### Summary of graphics
@@ -1081,8 +1070,8 @@ plot that will be invariant across models:
     Information Criterion (**BIC**) values, the “better” the model is.
 
 -   The output of this function will be a `{ggplot2}` object and, thus,
-    it can be further modified (e.g., change themes, etc.) with
-    `{ggplot2}` functions.
+    it can be further modified (e.g. change themes) with `{ggplot2}`
+    functions.
 
 ``` r
 ## for reproducibility
@@ -1109,75 +1098,75 @@ packages are also supported by `ggcoefstats`.
 
 ``` r
 insight::supported_models()
-##>   [1] "aareg"             "afex_aov"          "AKP"              
-##>   [4] "Anova.mlm"         "aov"               "aovlist"          
-##>   [7] "Arima"             "averaging"         "bamlss"           
-##>  [10] "bamlss.frame"      "bayesQR"           "bayesx"           
-##>  [13] "BBmm"              "BBreg"             "bcplm"            
-##>  [16] "betamfx"           "betaor"            "betareg"          
-##>  [19] "BFBayesFactor"     "bfsl"              "BGGM"             
-##>  [22] "bife"              "bifeAPEs"          "bigglm"           
-##>  [25] "biglm"             "blavaan"           "blrm"             
-##>  [28] "bracl"             "brglm"             "brmsfit"          
-##>  [31] "brmultinom"        "btergm"            "censReg"          
-##>  [34] "cgam"              "cgamm"             "cglm"             
-##>  [37] "clm"               "clm2"              "clmm"             
-##>  [40] "clmm2"             "clogit"            "coeftest"         
-##>  [43] "complmrob"         "confusionMatrix"   "coxme"            
-##>  [46] "coxph"             "coxph.penal"       "coxr"             
-##>  [49] "cpglm"             "cpglmm"            "crch"             
-##>  [52] "crq"               "crqs"              "crr"              
-##>  [55] "dep.effect"        "DirichletRegModel" "drc"              
-##>  [58] "eglm"              "elm"               "epi.2by2"         
-##>  [61] "ergm"              "feglm"             "feis"             
-##>  [64] "felm"              "fitdistr"          "fixest"           
-##>  [67] "flexsurvreg"       "gam"               "Gam"              
-##>  [70] "gamlss"            "gamm"              "gamm4"            
-##>  [73] "garch"             "gbm"               "gee"              
-##>  [76] "geeglm"            "glht"              "glimML"           
-##>  [79] "glm"               "Glm"               "glmm"             
-##>  [82] "glmmadmb"          "glmmPQL"           "glmmTMB"          
-##>  [85] "glmrob"            "glmRob"            "glmx"             
-##>  [88] "gls"               "gmnl"              "HLfit"            
-##>  [91] "htest"             "hurdle"            "iv_robust"        
-##>  [94] "ivFixed"           "ivprobit"          "ivreg"            
-##>  [97] "lavaan"            "lm"                "lm_robust"        
-##> [100] "lme"               "lmerMod"           "lmerModLmerTest"  
-##> [103] "lmodel2"           "lmrob"             "lmRob"            
-##> [106] "logistf"           "logitmfx"          "logitor"          
-##> [109] "LORgee"            "lqm"               "lqmm"             
-##> [112] "lrm"               "manova"            "MANOVA"           
-##> [115] "margins"           "maxLik"            "mclogit"          
-##> [118] "mcmc"              "mcmc.list"         "MCMCglmm"         
-##> [121] "mcp1"              "mcp12"             "mcp2"             
-##> [124] "med1way"           "mediate"           "merMod"           
-##> [127] "merModList"        "meta_bma"          "meta_fixed"       
-##> [130] "meta_random"       "metaplus"          "mhurdle"          
-##> [133] "mipo"              "mira"              "mixed"            
-##> [136] "MixMod"            "mixor"             "mjoint"           
-##> [139] "mle"               "mle2"              "mlm"              
-##> [142] "mlogit"            "mmlogit"           "model_fit"        
-##> [145] "multinom"          "mvord"             "negbinirr"        
-##> [148] "negbinmfx"         "ols"               "onesampb"         
-##> [151] "orm"               "pgmm"              "plm"              
-##> [154] "PMCMR"             "poissonirr"        "poissonmfx"       
-##> [157] "polr"              "probitmfx"         "psm"              
-##> [160] "Rchoice"           "ridgelm"           "riskRegression"   
-##> [163] "rjags"             "rlm"               "rlmerMod"         
-##> [166] "RM"                "rma"               "rma.uni"          
-##> [169] "robmixglm"         "robtab"            "rq"               
-##> [172] "rqs"               "rqss"              "Sarlm"            
-##> [175] "scam"              "selection"         "sem"              
-##> [178] "SemiParBIV"        "semLm"             "semLme"           
-##> [181] "slm"               "speedglm"          "speedlm"          
-##> [184] "stanfit"           "stanmvreg"         "stanreg"          
-##> [187] "summary.lm"        "survfit"           "survreg"          
-##> [190] "svy_vglm"          "svyglm"            "svyolr"           
-##> [193] "t1way"             "tobit"             "trimcibt"         
-##> [196] "truncreg"          "vgam"              "vglm"             
-##> [199] "wbgee"             "wblm"              "wbm"              
-##> [202] "wmcpAKP"           "yuen"              "yuend"            
-##> [205] "zcpglm"            "zeroinfl"          "zerotrunc"
+#>   [1] "aareg"             "afex_aov"          "AKP"              
+#>   [4] "Anova.mlm"         "aov"               "aovlist"          
+#>   [7] "Arima"             "averaging"         "bamlss"           
+#>  [10] "bamlss.frame"      "bayesQR"           "bayesx"           
+#>  [13] "BBmm"              "BBreg"             "bcplm"            
+#>  [16] "betamfx"           "betaor"            "betareg"          
+#>  [19] "BFBayesFactor"     "bfsl"              "BGGM"             
+#>  [22] "bife"              "bifeAPEs"          "bigglm"           
+#>  [25] "biglm"             "blavaan"           "blrm"             
+#>  [28] "bracl"             "brglm"             "brmsfit"          
+#>  [31] "brmultinom"        "btergm"            "censReg"          
+#>  [34] "cgam"              "cgamm"             "cglm"             
+#>  [37] "clm"               "clm2"              "clmm"             
+#>  [40] "clmm2"             "clogit"            "coeftest"         
+#>  [43] "complmrob"         "confusionMatrix"   "coxme"            
+#>  [46] "coxph"             "coxph.penal"       "coxr"             
+#>  [49] "cpglm"             "cpglmm"            "crch"             
+#>  [52] "crq"               "crqs"              "crr"              
+#>  [55] "dep.effect"        "DirichletRegModel" "drc"              
+#>  [58] "eglm"              "elm"               "epi.2by2"         
+#>  [61] "ergm"              "feglm"             "feis"             
+#>  [64] "felm"              "fitdistr"          "fixest"           
+#>  [67] "flexsurvreg"       "gam"               "Gam"              
+#>  [70] "gamlss"            "gamm"              "gamm4"            
+#>  [73] "garch"             "gbm"               "gee"              
+#>  [76] "geeglm"            "glht"              "glimML"           
+#>  [79] "glm"               "Glm"               "glmm"             
+#>  [82] "glmmadmb"          "glmmPQL"           "glmmTMB"          
+#>  [85] "glmrob"            "glmRob"            "glmx"             
+#>  [88] "gls"               "gmnl"              "HLfit"            
+#>  [91] "htest"             "hurdle"            "iv_robust"        
+#>  [94] "ivFixed"           "ivprobit"          "ivreg"            
+#>  [97] "lavaan"            "lm"                "lm_robust"        
+#> [100] "lme"               "lmerMod"           "lmerModLmerTest"  
+#> [103] "lmodel2"           "lmrob"             "lmRob"            
+#> [106] "logistf"           "logitmfx"          "logitor"          
+#> [109] "LORgee"            "lqm"               "lqmm"             
+#> [112] "lrm"               "manova"            "MANOVA"           
+#> [115] "margins"           "maxLik"            "mclogit"          
+#> [118] "mcmc"              "mcmc.list"         "MCMCglmm"         
+#> [121] "mcp1"              "mcp12"             "mcp2"             
+#> [124] "med1way"           "mediate"           "merMod"           
+#> [127] "merModList"        "meta_bma"          "meta_fixed"       
+#> [130] "meta_random"       "metaplus"          "mhurdle"          
+#> [133] "mipo"              "mira"              "mixed"            
+#> [136] "MixMod"            "mixor"             "mjoint"           
+#> [139] "mle"               "mle2"              "mlm"              
+#> [142] "mlogit"            "mmlogit"           "model_fit"        
+#> [145] "multinom"          "mvord"             "negbinirr"        
+#> [148] "negbinmfx"         "ols"               "onesampb"         
+#> [151] "orm"               "pgmm"              "plm"              
+#> [154] "PMCMR"             "poissonirr"        "poissonmfx"       
+#> [157] "polr"              "probitmfx"         "psm"              
+#> [160] "Rchoice"           "ridgelm"           "riskRegression"   
+#> [163] "rjags"             "rlm"               "rlmerMod"         
+#> [166] "RM"                "rma"               "rma.uni"          
+#> [169] "robmixglm"         "robtab"            "rq"               
+#> [172] "rqs"               "rqss"              "Sarlm"            
+#> [175] "scam"              "selection"         "sem"              
+#> [178] "SemiParBIV"        "semLm"             "semLme"           
+#> [181] "slm"               "speedglm"          "speedlm"          
+#> [184] "stanfit"           "stanmvreg"         "stanreg"          
+#> [187] "summary.lm"        "survfit"           "survreg"          
+#> [190] "svy_vglm"          "svyglm"            "svyolr"           
+#> [193] "t1way"             "tobit"             "trimcibt"         
+#> [196] "truncreg"          "vgam"              "vglm"             
+#> [199] "wbgee"             "wblm"              "wbm"              
+#> [202] "wmcpAKP"           "yuen"              "yuend"            
+#> [205] "zcpglm"            "zeroinfl"          "zerotrunc"
 ```
 
 Although not shown here, this function can also be used to carry out
@@ -1218,68 +1207,68 @@ set.seed(123)
 ## a list of tibbles containing statistical analysis summaries
 ggbetweenstats(mtcars, cyl, mpg) %>%
   extract_stats()
-##> $subtitle_data
-##> # A tibble: 1 x 14
-##>   statistic    df df.error    p.value
-##>       <dbl> <dbl>    <dbl>      <dbl>
-##> 1      31.6     2     18.0 0.00000127
-##>   method                                                   effectsize estimate
-##>   <chr>                                                    <chr>         <dbl>
-##> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
-##>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression  
-##>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>      
-##> 1       0.95    0.531         1 ncp         F                    32 <expression>
-##> 
-##> $caption_data
-##> # A tibble: 6 x 17
-##>   term     pd rope.percentage prior.distribution prior.location prior.scale
-##>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
-##> 1 mu    1              0      cauchy                          0       0.707
-##> 2 cyl-4 1              0      cauchy                          0       0.707
-##> 3 cyl-6 0.780          0.390  cauchy                          0       0.707
-##> 4 cyl-8 1              0      cauchy                          0       0.707
-##> 5 sig2  1              0      cauchy                          0       0.707
-##> 6 g_cyl 1              0.0418 cauchy                          0       0.707
-##>       bf10 method                          log_e_bf10 effectsize        
-##>      <dbl> <chr>                                <dbl> <chr>             
-##> 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-##> 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-##> 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-##> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-##> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-##> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-##>   estimate std.dev conf.level conf.low conf.high n.obs expression  
-##>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>      
-##> 1    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-##> 2    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-##> 3    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-##> 4    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-##> 5    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-##> 6    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-##> 
-##> $pairwise_comparisons_data
-##> # A tibble: 3 x 11
-##>   group1 group2 statistic   p.value alternative method            distribution
-##>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>             <chr>       
-##> 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           
-##> 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           
-##> 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           
-##>   p.adjustment test.details      p.value.adjustment
-##>   <chr>        <chr>             <chr>             
-##> 1 none         Games-Howell test Holm              
-##> 2 none         Games-Howell test Holm              
-##> 3 none         Games-Howell test Holm              
-##>   label                                     
-##>   <chr>                                     
-##> 1 list(~italic(p)[Holm-corrected]==1.10e-03)
-##> 2 list(~italic(p)[Holm-corrected]==1.40e-05)
-##> 3 list(~italic(p)[Holm-corrected]==2.57e-04)
-##> 
-##> $descriptive_data
-##> NULL
-##> 
-##> $one_sample_data
-##> NULL
+#> $subtitle_data
+#> # A tibble: 1 x 14
+#>   statistic    df df.error    p.value
+#>       <dbl> <dbl>    <dbl>      <dbl>
+#> 1      31.6     2     18.0 0.00000127
+#>   method                                                   effectsize estimate
+#>   <chr>                                                    <chr>         <dbl>
+#> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
+#>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression  
+#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>      
+#> 1       0.95    0.531         1 ncp         F                    32 <expression>
+#> 
+#> $caption_data
+#> # A tibble: 6 x 17
+#>   term     pd rope.percentage prior.distribution prior.location prior.scale
+#>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
+#> 1 mu    1              0      cauchy                          0       0.707
+#> 2 cyl-4 1              0      cauchy                          0       0.707
+#> 3 cyl-6 0.780          0.390  cauchy                          0       0.707
+#> 4 cyl-8 1              0      cauchy                          0       0.707
+#> 5 sig2  1              0      cauchy                          0       0.707
+#> 6 g_cyl 1              0.0418 cauchy                          0       0.707
+#>       bf10 method                          log_e_bf10 effectsize        
+#>      <dbl> <chr>                                <dbl> <chr>             
+#> 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+#> 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+#> 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+#> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+#> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+#> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
+#>   estimate std.dev conf.level conf.low conf.high n.obs expression  
+#>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>      
+#> 1    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#> 2    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#> 3    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#> 4    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#> 5    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#> 6    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#> 
+#> $pairwise_comparisons_data
+#> # A tibble: 3 x 11
+#>   group1 group2 statistic   p.value alternative method            distribution
+#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>             <chr>       
+#> 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           
+#> 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           
+#> 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           
+#>   p.adjustment test.details      p.value.adjustment
+#>   <chr>        <chr>             <chr>             
+#> 1 none         Games-Howell test Holm              
+#> 2 none         Games-Howell test Holm              
+#> 3 none         Games-Howell test Holm              
+#>   label                                     
+#>   <chr>                                     
+#> 1 list(~italic(p)[Holm-corrected]==1.10e-03)
+#> 2 list(~italic(p)[Holm-corrected]==1.40e-05)
+#> 3 list(~italic(p)[Holm-corrected]==2.57e-04)
+#> 
+#> $descriptive_data
+#> NULL
+#> 
+#> $one_sample_data
+#> NULL
 ```
 
 Note that all of this analysis is carried out by `{statsExpressions}`
@@ -1292,49 +1281,30 @@ Sometimes you may not like the default plots produced by
 `{ggplot2}` or other plotting packages) and still use `{ggstatsplot}`
 functions to display results from relevant statistical test.
 
-For example, in the following chunk, we will create plot (*ridgeplot*)
-using `ggridges` package and use `{ggstatsplot}` function for extracting
-results.
+For example, in the following chunk, we will create our own plot using
+`{ggplot2}` package, and use `{ggstatsplot}` function for extracting
+expression:
 
 ``` r
 ## loading the needed libraries
 set.seed(123)
-library(ggridges)
 library(ggplot2)
-library(ggstatsplot)
 
-## using `{ggstatsplot}` to get call with statistical results
-stats_results <-
-  ggbetweenstats(
-    data = morley,
-    x = Expt,
-    y = Speed,
-    output = "subtitle"
-  )
+## using `{ggstatsplot}` to get expression with statistical results
+stats_results <- ggbetweenstats(morley, Expt, Speed, output = "subtitle")
 
-## using `ggridges` to create plot
-ggplot(morley, aes(x = Speed, y = as.factor(Expt), fill = as.factor(Expt))) +
-  geom_density_ridges(
-    jittered_points = TRUE,
-    quantile_lines = TRUE,
-    scale = 0.9,
-    alpha = 0.7,
-    vline_size = 1,
-    vline_color = "red",
-    point_size = 0.4,
-    point_alpha = 1,
-    position = position_raincloud(adjust_vlines = TRUE)
-  ) + ## adding annotations
+## creating a custom plot of our choosing
+ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
+  geom_boxplot() +
   labs(
     title = "Michelson-Morley experiments",
     subtitle = stats_results,
     x = "Speed of light",
     y = "Experiment number"
-  ) + ## remove the legend
-  theme(legend.position = "none")
+  )
 ```
 
-<img src="man/figures/README-ridgeplot-1.png" width="100%" />
+<img src="man/figures/README-customplot-1.png" width="100%" />
 
 ## Summary of benefits of using `{ggstatsplot}`
 
@@ -1380,27 +1350,6 @@ In case you use the GUI software [`jamovi`](https://www.jamovi.org/),
 you can install a module called
 [`jjstatsplot`](https://github.com/sbalci/jjstatsplot), which is a
 wrapper around `{ggstatsplot}`.
-
-## Acknowledgments
-
-I would like to thank all the contributors to `{ggstatsplot}` who
-pointed out bugs or requested features I hadn’t considered. I would
-especially like to thank other package developers (especially Daniel
-Lüdecke, Dominique Makowski, Mattan S. Ben-Shachar, Brenton Wiernik,
-Patrick Mair, Salvatore Mangiafico, etc.) who have patiently and
-diligently answered my relentless number of questions and added feature
-requests I wanted. I also want to thank Chuck Powell for his initial
-contributions to the package.
-
-The hexsticker was generously designed by Sarah Otterstetter (Max Planck
-Institute for Human Development, Berlin). This package has also
-benefited from the larger `rstats` community on Twitter and
-`StackOverflow`.
-
-Thanks are also due to my postdoc advisers (Mina Cikara and Fiery
-Cushman at Harvard University; Iyad Rahwan at Max Planck Institute for
-Human Development) who patiently supported me spending hundreds (?) of
-hours working on this package rather than what I was paid to do. 😁
 
 ## Contributing
 
