@@ -39,7 +39,6 @@
 #' @inheritParams ggbetweenstats
 #' @inheritParams gghistostats
 #'
-#'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'
@@ -48,7 +47,7 @@
 #'
 #' @note
 #' The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
-#' from over-lapping to the largest degree possible.  As a consequence plot
+#' from over-lapping to the largest degree possible. As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
 #'

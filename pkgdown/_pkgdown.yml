@@ -9,11 +9,11 @@ authors:
 
 template:
   bootstrap: 5
-  bootswatch: cyborg
-  theme: arrow-dark
-  includes:
-    in-header: |
-      <script defer data-domain="indrajeetpatil.github.io/ggstatsplot" src="https://plausible.io/js/plausible.js"></script>
+  # bootswatch: cyborg
+  # theme: arrow-dark
+  # includes:
+  #   in-header: |
+  #     <script defer data-domain="indrajeetpatil.github.io/ggstatsplot" src="https://plausible.io/js/plausible.js"></script>
   bslib:
     base_font: {google: "Roboto"}
     heading_font: {google: "Roboto"}

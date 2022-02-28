@@ -123,7 +123,7 @@ plots <- iris %>%
       )
   )
 
-# display the new object 
+# display the new object
 plots
 
 # creating a grid with patchwork

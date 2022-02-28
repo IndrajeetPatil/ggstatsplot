@@ -165,7 +165,7 @@ For details, see:
 }
 \note{
 The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
-from over-lapping to the largest degree possible.  As a consequence plot
+from over-lapping to the largest degree possible. As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
 }
