@@ -34,7 +34,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-02-06</h4>
+            <h4 data-toc-skip class="date">2022-03-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggcoefstats.Rmd</code></div>
@@ -429,10 +429,10 @@ the same object you entered as <code>x</code> argument to
 
 <span class="co"># model</span>
 <span class="va">afit</span> <span class="op">&lt;-</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/aareg.html" class="external-link">aareg</a></span><span class="op">(</span>
-    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">ph.ecog</span>,
-    data <span class="op">=</span> <span class="va">lung</span>,
-    dfbeta <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span>
+  formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span> <span class="op">+</span> <span class="va">ph.ecog</span>,
+  data <span class="op">=</span> <span class="va">lung</span>,
+  dfbeta <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
 
 <span class="co"># plot</span>
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>

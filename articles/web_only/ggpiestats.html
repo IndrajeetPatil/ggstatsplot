@@ -34,7 +34,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-02-06</h4>
+            <h4 data-toc-skip class="date">2022-03-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="d-none name"><code>ggpiestats.Rmd</code></div>
@@ -180,7 +180,7 @@ status (class), sex, age, and survival.”</p>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
 <span class="co">## looking at the original data in tabular format</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Titanic</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Titanic</span><span class="op">)</span>
 <span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span>
 <span class="co">#&gt;  - attr(*, "dimnames")=List of 4</span>
 <span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span>
@@ -189,7 +189,7 @@ status (class), sex, age, and survival.”</p>
 <span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span>
 
 <span class="co">## looking at the dataset as a tibble or dataframe</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Titanic_full</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Titanic_full</span><span class="op">)</span>
 <span class="co">#&gt; Rows: 2,201</span>
 <span class="co">#&gt; Columns: 5</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">id      </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</span>

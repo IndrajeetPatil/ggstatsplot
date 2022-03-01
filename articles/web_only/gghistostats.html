@@ -34,7 +34,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-02-06</h4>
+            <h4 data-toc-skip class="date">2022-03-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/gghistostats.Rmd" class="external-link"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="d-none name"><code>gghistostats.Rmd</code></div>
@@ -162,7 +162,7 @@ scores may range from 1 - 36. National norms have a mean of 20.</p>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 
 <span class="co">## looking at the structure of the data using glimpse</span>
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 700</span>
 <span class="co">#&gt; Columns: 6</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">gender   </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, …</span>
@@ -228,7 +228,7 @@ different studies, etc.</p>
   test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co">## test value against which sample mean is to be compared</span>
   centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D55E00"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span>,
   <span class="co"># ggtheme = ggthemes::theme_stata(), ## changing default theme</span>
-   <span class="co">## turn off ggstatsplot theme layer</span>
+  <span class="co">## turn off ggstatsplot theme layer</span>
   <span class="co">## arguments relevant for combine_plots</span>
   annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Distribution of ACT scores across genders"</span>,

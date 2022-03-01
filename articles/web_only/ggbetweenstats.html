@@ -34,7 +34,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-02-06</h4>
+            <h4 data-toc-skip class="date">2022-03-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggbetweenstats.Rmd" class="external-link"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggbetweenstats.Rmd</code></div>
@@ -163,7 +163,7 @@ have a look at the data-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span>
 
-<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span>
 <span class="co">#&gt; Rows: 1,704</span>
 <span class="co">#&gt; Columns: 6</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">country  </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span>
@@ -389,7 +389,7 @@ differences between every pair of continents.</p>
     ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,
     pairwise.display <span class="op">=</span> <span class="st">"significant"</span>, <span class="co">## display only significant pairwise comparisons</span>
     p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>, <span class="co">## adjust p-values for multiple tests using this method</span>
-    <span class="co">#ggtheme = ggthemes::theme_tufte(),</span>
+    <span class="co"># ggtheme = ggthemes::theme_tufte(),</span>
     package <span class="op">=</span> <span class="st">"ggsci"</span>,
     palette <span class="op">=</span> <span class="st">"default_jco"</span>,
     outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,

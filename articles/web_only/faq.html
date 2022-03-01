@@ -34,7 +34,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-02-06</h4>
+            <h4 data-toc-skip class="date">2022-03-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/faq.Rmd" class="external-link"><code>vignettes/web_only/faq.Rmd</code></a></small>
       <div class="d-none name"><code>faq.Rmd</code></div>
@@ -332,14 +332,14 @@ of more than two grouping variables. This can be easily achieved using
 <span class="co">## running correlation analyses between</span>
 <span class="co">## this will return a *list* of plots</span>
 <span class="va">plot_list</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
-    .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-      data <span class="op">=</span> <span class="va">df_list</span>,
-      x <span class="op">=</span> <span class="st">"displ"</span>,
-      y <span class="op">=</span> <span class="st">"hwy"</span>,
-      results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>
-    <span class="op">)</span>,
-    .f <span class="op">=</span> <span class="va">ggscatterstats</span>
-  <span class="op">)</span>
+  .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+    data <span class="op">=</span> <span class="va">df_list</span>,
+    x <span class="op">=</span> <span class="st">"displ"</span>,
+    y <span class="op">=</span> <span class="st">"hwy"</span>,
+    results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span>,
+  .f <span class="op">=</span> <span class="va">ggscatterstats</span>
+<span class="op">)</span>
 
 <span class="co">## arragen the list in a single plot</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -711,12 +711,12 @@ in the plot. But be forewarned that the expression building functions in
 
 <span class="co">## creating expression out of these results</span>
 <span class="va">df_results</span> <span class="op">&lt;-</span> <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/add_expression_col.html" class="external-link">add_expression_col</a></span><span class="op">(</span>
-    data           <span class="op">=</span> <span class="va">results</span>,
-    no.parameters  <span class="op">=</span> <span class="fl">0L</span>,
-    statistic.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-    effsize.text   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">widehat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"Kendall"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
-    n              <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">n.obs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
-  <span class="op">)</span>
+  data           <span class="op">=</span> <span class="va">results</span>,
+  no.parameters  <span class="op">=</span> <span class="fl">0L</span>,
+  statistic.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+  effsize.text   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">widehat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">italic</a></span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"Kendall"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
+  n              <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">n.obs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="op">)</span>
 
 <span class="co">## plot (overriding defaults and using custom expression)</span>
 <span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span>
