@@ -301,7 +301,7 @@ gapminder::gapminder %>%
     ylab = "Life expectancy",
     pairwise.display = "significant", ## display only significant pairwise comparisons
     p.adjust.method = "fdr", ## adjust p-values for multiple tests using this method
-    #ggtheme = ggthemes::theme_tufte(),
+    # ggtheme = ggthemes::theme_tufte(),
     package = "ggsci",
     palette = "default_jco",
     outlier.tagging = TRUE,

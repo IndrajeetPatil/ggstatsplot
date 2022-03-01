@@ -4,7 +4,7 @@
   "identifier": "ggstatsplot",
   "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
-  "relatedLink": "https://indrajeetpatil.github.io/ggstatsplot/",
+  "relatedLink": ["https://indrajeetpatil.github.io/ggstatsplot/", "https://CRAN.R-project.org/package=ggstatsplot"],
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -375,14 +375,14 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.15.0",
+      "version": ">= 0.16.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=insight"
+      "sameAs": "https://github.com/easystats/insight"
     },
     "9": {
       "@type": "SoftwareApplication",
@@ -473,7 +473,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     "17": {
       "@type": "SoftwareApplication",
@@ -506,7 +506,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "6444.78KB",
+  "fileSize": "6486.142KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -539,6 +539,6 @@
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md",
   "contIntegration": ["https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master", "https://github.com/IndrajeetPatil/ggstatsplot/actions"],
-  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html"],
+  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html", "https://www.repostatus.org/##active", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html", "https://lifecycle.r-lib.org/articles/stages.html"],
   "keywords": ["ggplot-extension", "dataviz", "r", "statistical-analysis", "visualization", "datascience", "violin-plot", "plot", "bayes-factors", "regression-models", "correlation", "correlation-matrices", "tidy-data", "effect-size", "robust-statistics", "non-parametric-statistics", "parametric", "meta-analysis", "hypothesis-testing"]
 }

@@ -238,14 +238,14 @@ length(df_list)
 ## running correlation analyses between
 ## this will return a *list* of plots
 plot_list <- purrr::pmap(
-    .l = list(
-      data = df_list,
-      x = "displ",
-      y = "hwy",
-      results.subtitle = FALSE
-    ),
-    .f = ggscatterstats
-  )
+  .l = list(
+    data = df_list,
+    x = "displ",
+    y = "hwy",
+    results.subtitle = FALSE
+  ),
+  .f = ggscatterstats
+)
 
 ## arragen the list in a single plot
 combine_plots(
@@ -518,12 +518,12 @@ results <-
 
 ## creating expression out of these results
 df_results <- statsExpressions::add_expression_col(
-    data           = results,
-    no.parameters  = 0L,
-    statistic.text = list(quote(italic("T"))),
-    effsize.text   = list(quote(widehat(italic(tau))["Kendall"])),
-    n              = results$n.obs[[1]]
-  )
+  data           = results,
+  no.parameters  = 0L,
+  statistic.text = list(quote(italic("T"))),
+  effsize.text   = list(quote(widehat(italic(tau))["Kendall"])),
+  n              = results$n.obs[[1]]
+)
 
 ## plot (overriding defaults and using custom expression)
 ggscatterstats(

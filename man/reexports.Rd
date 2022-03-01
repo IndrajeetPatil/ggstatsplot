@@ -23,7 +23,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{rlang}{\code{\link[rlang:nse-force]{!!}}, \code{\link[rlang:nse-force]{!!!}}, \code{\link[rlang:op-na-default]{\%|\%}}, \code{\link[rlang:op-null-default]{\%||\%}}, \code{\link[rlang:nse-force]{:=}}, \code{\link[rlang]{exec}}}
+  \item{rlang}{\code{\link[rlang:injection-operator]{!!}}, \code{\link[rlang:splice-operator]{!!!}}, \code{\link[rlang:op-na-default]{\%|\%}}, \code{\link[rlang:op-null-default]{\%||\%}}, \code{\link[rlang:dyn-dots]{:=}}, \code{\link[rlang]{exec}}}
 
   \item{statsExpressions}{\code{\link[statsExpressions:reexports]{\%$\%}}, \code{\link[statsExpressions:reexports]{\%<-\%}}, \code{\link[statsExpressions:reexports]{\%<>\%}}, \code{\link[statsExpressions:reexports]{\%>\%}}, \code{\link[statsExpressions:reexports]{as_tibble}}, \code{\link[statsExpressions:reexports]{enframe}}, \code{\link[statsExpressions:reexports]{tibble}}}
 }}

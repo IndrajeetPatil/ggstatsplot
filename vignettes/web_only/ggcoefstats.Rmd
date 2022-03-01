@@ -191,10 +191,10 @@ set.seed(123)
 
 # model
 afit <- survival::aareg(
-    formula = Surv(time, status) ~ age + sex + ph.ecog,
-    data = lung,
-    dfbeta = TRUE
-  )
+  formula = Surv(time, status) ~ age + sex + ph.ecog,
+  data = lung,
+  dfbeta = TRUE
+)
 
 # plot
 ggcoefstats(
