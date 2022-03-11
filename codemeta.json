@@ -400,7 +400,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.16.0",
+      "version": ">= 0.17.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -506,7 +506,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "6486.142KB",
+  "fileSize": "6492.256KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

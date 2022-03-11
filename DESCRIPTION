@@ -33,7 +33,7 @@ Imports:
     glue,
     insight (>= 0.16.0),
     paletteer,
-    parameters (>= 0.16.0),
+    parameters (>= 0.17.0),
     patchwork,
     performance,
     purrr,

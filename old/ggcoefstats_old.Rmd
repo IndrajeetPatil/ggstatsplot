@@ -454,7 +454,7 @@ data(electors)
 mod_mclogit <-
   mclogit::mclogit(
     formula = cbind(Freq, interaction(time, class)) ~
-    econ.left / class + welfare / class + auth / class,
+      econ.left / class + welfare / class + auth / class,
     random = ~ 1 | party.time,
     data = within(electors, party.time <- interaction(party, time))
   )
