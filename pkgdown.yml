@@ -1,4 +1,4 @@
-pandoc: 2.17.1.1
+pandoc: 2.14.2
 pkgdown: 2.0.2.9000
 pkgdown_sha: 9aae87398abdbe1cd5af5ff6f168d2e142d531c9
 articles:
@@ -16,7 +16,7 @@ articles:
   pairwise: web_only/pairwise.html
   principles: web_only/principles.html
   purrr_examples: web_only/purrr_examples.html
-last_built: 2022-03-06T15:23Z
+last_built: 2022-03-11T18:10Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot/reference
   article: https://indrajeetpatil.github.io/ggstatsplot/articles

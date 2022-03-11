@@ -102,10 +102,9 @@
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>using 'ggstatsplot' with the 'purrr' package</h1>
-                        <h4 data-toc-skip class="author">Indrajeet
-Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-03-06</h4>
+            <h4 data-toc-skip class="date">2022-03-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/purrr_examples.Rmd" class="external-link"><code>vignettes/web_only/purrr_examples.Rmd</code></a></small>
       <div class="d-none name"><code>purrr_examples.Rmd</code></div>
@@ -136,79 +135,41 @@ A BibTeX entry for LaTeX users is
   }</code></pre>
 <hr>
 <hr>
-<p>This is an extremely time-consuming vignette, and so it is not
-evaluated here. You can still use the code as a reference for writing
-your own <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> code.</p>
+<p>This is an extremely time-consuming vignette, and so it is not evaluated here. You can still use the code as a reference for writing your own <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> code.</p>
 <hr>
 <div class="section level2">
 <h2 id="why-use-purrr">Why use <code>{purrr}</code>?<a class="anchor" aria-label="anchor" href="#why-use-purrr"></a>
 </h2>
-<p>Most of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions have
-<code>grouped_</code> variants, which are designed to quickly run the
-same <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function across multiple levels of a
-<strong>single</strong> grouping variable. Although this function is
-useful for data exploration, it has two strong weaknesses-</p>
+<p>Most of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions have <code>grouped_</code> variants, which are designed to quickly run the same <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function across multiple levels of a <strong>single</strong> grouping variable. Although this function is useful for data exploration, it has two strong weaknesses-</p>
 <ul>
-<li><p>The arguments applied to <code>grouped_</code> function call are
-applied uniformly to all levels of the grouping variable when we might
-want to customize them for different levels of the grouping
-variable.</p></li>
-<li><p>Only one grouping variable can be used to repeat the analysis
-when in reality there can be a combination of grouping variables and the
-operation needs to be repeated for all resulting combinations.</p></li>
+<li><p>The arguments applied to <code>grouped_</code> function call are applied uniformly to all levels of the grouping variable when we might want to customize them for different levels of the grouping variable.</p></li>
+<li><p>Only one grouping variable can be used to repeat the analysis when in reality there can be a combination of grouping variables and the operation needs to be repeated for all resulting combinations.</p></li>
 </ul>
-<p>We will see how to overcome this limitation by combining
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> with the <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> package.</p>
+<p>We will see how to overcome this limitation by combining <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> with the <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> package.</p>
 <p><strong>Note:</strong></p>
 <ul>
-<li><p>While using <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code>, we <strong>must</strong>
-input the arguments as strings.</p></li>
-<li><p>You can use <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> themes from extension packages
-(e.g. <code>ggthemes</code>).</p></li>
-<li><p>If you’d like some more background or an introduction to the
-purrr package, please see <a href="https://adv-r.hadley.nz/functionals.html" class="external-link">this
-chapter</a>.</p></li>
+<li><p>While using <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code>, we <strong>must</strong> input the arguments as strings.</p></li>
+<li><p>You can use <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> themes from extension packages (e.g. <code>ggthemes</code>).</p></li>
+<li><p>If you’d like some more background or an introduction to the purrr package, please see <a href="https://adv-r.hadley.nz/functionals.html" class="external-link">this chapter</a>.</p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="introduction-and-methodology">Introduction and methodology<a class="anchor" aria-label="anchor" href="#introduction-and-methodology"></a>
 </h2>
-<p>For all the examples in this vignette we are going to build
-<code>list</code>s of things that we will pass along to
-<a href="http://purrr.tidyverse.org" class="external-link">purrr</a> which will in turn return a list of plots that will
-be passed to <code>combine_plots</code>. As the name implies
-<code>combine_plots</code> merges the individual plots into one bigger
-plot with common labeling and aesthetics.</p>
-<p>What are these <code>lists</code> that we are building? The lists
-correspond to the parameters in our <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function
-like <code>ggbetweenstats</code>. If you look at the help file for
-<code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it
-wants is the <code>data</code> file we’ll be using. We can also pass it
-different <code>titles</code> of even <code>ggtheme</code> themes.</p>
+<p>For all the examples in this vignette we are going to build <code>list</code>s of things that we will pass along to <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> which will in turn return a list of plots that will be passed to <code>combine_plots</code>. As the name implies <code>combine_plots</code> merges the individual plots into one bigger plot with common labeling and aesthetics.</p>
+<p>What are these <code>lists</code> that we are building? The lists correspond to the parameters in our <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function like <code>ggbetweenstats</code>. If you look at the help file for <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it wants is the <code>data</code> file we’ll be using. We can also pass it different <code>titles</code> of even <code>ggtheme</code> themes.</p>
 <p>You can pass:</p>
 <ul>
-<li><p>A single character string such as <code>xlab = "Continent"</code>
-or numeric such as <code>nboot = 25</code> in which case it will be
-reused/recycled as many times as needed.</p></li>
-<li><p>A vector of values such as <code>nboot = c(50, 100, 200)</code>
-in which case it will be coerced to a list and checked for the right
-class (in this case integer) and the right quantity of entries in the
-vector i.e., <code>nboot = c(50, 100)</code> will fail if we’re trying
-to make three plots.</p></li>
-<li><p>A list; either named <code>data = year_list</code> or created as
-you go <code>palette = list("Dark2", "Set1")</code>. Any list will be
-checked for the right class (in this case character) and the right
-quantity of entries in the list.</p></li>
+<li><p>A single character string such as <code>xlab = "Continent"</code> or numeric such as <code>nboot = 25</code> in which case it will be reused/recycled as many times as needed.</p></li>
+<li><p>A vector of values such as <code>nboot = c(50, 100, 200)</code> in which case it will be coerced to a list and checked for the right class (in this case integer) and the right quantity of entries in the vector i.e., <code>nboot = c(50, 100)</code> will fail if we’re trying to make three plots.</p></li>
+<li><p>A list; either named <code>data = year_list</code> or created as you go <code>palette = list("Dark2", "Set1")</code>. Any list will be checked for the right class (in this case character) and the right quantity of entries in the list.</p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="ggbetweenstats">
 <code>ggbetweenstats</code><a class="anchor" aria-label="anchor" href="#ggbetweenstats"></a>
 </h2>
-<p>Let’s start with <code>ggebtweenstats</code>. We’ll use the
-<code>gapminder</code> dataset. We’ll make a 3 item <code>list</code>
-called <code>year_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter</a></code> and
-<code>split</code>.</p>
+<p>Let’s start with <code>ggebtweenstats</code>. We’ll use the <code>gapminder</code> dataset. We’ll make a 3 item <code>list</code> called <code>year_list</code> using <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter</a></code> and <code>split</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -222,24 +183,9 @@ called <code>year_list</code> using <code><a href="https://dplyr.tidyverse.org/r
 <span class="co">## checking the length of the list and the names of each element</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">year_list</span><span class="op">)</span></code></pre></div>
-<p>Now that we have the data divided into the three relevant years in a
-list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of
-<code>ggplot</code> objects that we’ll make use of stored in
-<code>plot_list</code>. When you look at the documentation for
-<code>?pmap</code> it will accept <code>.l</code> which is a list of
-lists. The length of <code>.l</code> determines the number of arguments
-that <code>.f</code> will be called with. List names will be used if
-present. <code>.f</code> is the function we want to apply (here,
-<code>.f = ggbetweenstats</code>).</p>
-<p>Let’s keep building the list of arguments, <code>.l</code>. First is
-<code>data = year_list</code>, the <code>x</code> and <code>y</code>
-axes are constant in all three plots so we pass the variable name as a
-string <code>x = "continent"</code>.</p>
-<p>Same with the label we’ll use for outliers where needed. For
-demonstration purposes let’s assume we want the outliers on each plot to
-be a different color. Not actually recommending it just demonstrating
-what’s possible. The rest of the code shows you a wide variety of
-possibilities and we won’t catalog them here.</p>
+<p>Now that we have the data divided into the three relevant years in a list we’ll turn to <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap</a></code> to create a list of <code>ggplot</code> objects that we’ll make use of stored in <code>plot_list</code>. When you look at the documentation for <code>?pmap</code> it will accept <code>.l</code> which is a list of lists. The length of <code>.l</code> determines the number of arguments that <code>.f</code> will be called with. List names will be used if present. <code>.f</code> is the function we want to apply (here, <code>.f = ggbetweenstats</code>).</p>
+<p>Let’s keep building the list of arguments, <code>.l</code>. First is <code>data = year_list</code>, the <code>x</code> and <code>y</code> axes are constant in all three plots so we pass the variable name as a string <code>x = "continent"</code>.</p>
+<p>Same with the label we’ll use for outliers where needed. For demonstration purposes let’s assume we want the outliers on each plot to be a different color. Not actually recommending it just demonstrating what’s possible. The rest of the code shows you a wide variety of possibilities and we won’t catalog them here.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -286,11 +232,7 @@ possibilities and we won’t catalog them here.</p>
   <span class="op">)</span>,
   .f <span class="op">=</span> <span class="va">ggbetweenstats</span>
 <span class="op">)</span></code></pre></div>
-<p>The final step is to pass the <code>plot_list</code> object we just
-created to the <code>combine_plots</code> function. While each of the 3
-plots already has labeling information <code>combine_plots</code> gives
-us an opportunity to add additional details to the merged plots and
-specify the layout in rows and columns.</p>
+<p>The final step is to pass the <code>plot_list</code> object we just created to the <code>combine_plots</code> function. While each of the 3 plots already has labeling information <code>combine_plots</code> gives us an opportunity to add additional details to the merged plots and specify the layout in rows and columns.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## combining all individual plots from the list into a single plot using combine_plots function</span>
 <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
@@ -303,8 +245,7 @@ specify the layout in rows and columns.</p>
 <h2 id="ggwithinstats">
 <code>ggwithinstats</code><a class="anchor" aria-label="anchor" href="#ggwithinstats"></a>
 </h2>
-<p>We will be using simulated data from then Attention Network Test
-provided in ANT dataset in <code>ez</code> package.</p>
+<p>We will be using simulated data from then Attention Network Test provided in ANT dataset in <code>ez</code> package.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -375,14 +316,7 @@ provided in ANT dataset in <code>ez</code> package.</p>
 <h2 id="ggscatterstats">
 <code>ggscatterstats</code><a class="anchor" aria-label="anchor" href="#ggscatterstats"></a>
 </h2>
-<p>For the next example lets use the same methodology on different data
-and using <code>ggscatterstats</code> to produce scatterplots combined
-with marginal histograms/boxplots/density plots with statistical details
-added as a subtitle. For data we’ll use <code>movies_long</code> which
-is from IMDB and part of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. Since
-it’s a large dataset with some relatively small categories like
-<strong>NC-17</strong> we’ll sample only one quarter of the data and
-completely drop NC-17 using <code>dplyr</code>.</p>
+<p>For the next example lets use the same methodology on different data and using <code>ggscatterstats</code> to produce scatterplots combined with marginal histograms/boxplots/density plots with statistical details added as a subtitle. For data we’ll use <code>movies_long</code> which is from IMDB and part of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. Since it’s a large dataset with some relatively small categories like <strong>NC-17</strong> we’ll sample only one quarter of the data and completely drop NC-17 using <code>dplyr</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
@@ -434,8 +368,7 @@ completely drop NC-17 using <code>dplyr</code>.</p>
   <span class="op">)</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p>The remainder of the examples vary in content but follow the exact
-same methodology as the earlier examples.</p>
+<p>The remainder of the examples vary in content but follow the exact same methodology as the earlier examples.</p>
 </div>
 <div class="section level2">
 <h2 id="ggcorrmat">
@@ -744,14 +677,8 @@ same methodology as the earlier examples.</p>
 <h2 id="grouped_-variants">
 <code>grouped_</code> variants<a class="anchor" aria-label="anchor" href="#grouped_-variants"></a>
 </h2>
-<p>Note that although all the above examples were written with the
-non-grouped variants of functions, the same rule holds true for the
-<code>grouped_</code> variants of all the above functions.</p>
-<p>For example, if we want to use the <code>grouped_gghistostats</code>
-across three different datasets, you can use <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code>
-function. For the sake of brevity, the plots are not displayed here, but
-you can run the following code and check the individual
-<code>grouped_</code> plots (e.g., <code>plotlist[[1]]</code>).</p>
+<p>Note that although all the above examples were written with the non-grouped variants of functions, the same rule holds true for the <code>grouped_</code> variants of all the above functions.</p>
+<p>For example, if we want to use the <code>grouped_gghistostats</code> across three different datasets, you can use <code><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">purrr::pmap()</a></code> function. For the sake of brevity, the plots are not displayed here, but you can run the following code and check the individual <code>grouped_</code> plots (e.g., <code>plotlist[[1]]</code>).</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## create a list of plots</span>
 <span class="va">plotlist</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>
@@ -769,8 +696,7 @@ you can run the following code and check the individual
 <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">plotlist</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="repeating-function-execution-across-multiple-columns-in-a-dataframe">Repeating function execution across multiple columns in a
-dataframe<a class="anchor" aria-label="anchor" href="#repeating-function-execution-across-multiple-columns-in-a-dataframe"></a>
+<h2 id="repeating-function-execution-across-multiple-columns-in-a-dataframe">Repeating function execution across multiple columns in a dataframe<a class="anchor" aria-label="anchor" href="#repeating-function-execution-across-multiple-columns-in-a-dataframe"></a>
 </h2>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## setup</span>
@@ -795,8 +721,7 @@ dataframe<a class="anchor" aria-label="anchor" href="#repeating-function-executi
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
-<p>If you find any bugs or have any suggestions/remarks, please file an
-issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -806,15 +731,12 @@ issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstats
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by
-<a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet
-Patil</a>.</p>
+<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
     </footer>

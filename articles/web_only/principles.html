@@ -102,10 +102,9 @@
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>Graphic design and statistical reporting principles</h1>
-                        <h4 data-toc-skip class="author">Indrajeet
-Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-03-06</h4>
+            <h4 data-toc-skip class="date">2022-03-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
       <div class="d-none name"><code>principles.Rmd</code></div>
@@ -141,14 +140,7 @@ A BibTeX entry for LaTeX users is
 <div class="section level3">
 <h3 id="graphical-perception">Graphical perception<a class="anchor" aria-label="anchor" href="#graphical-perception"></a>
 </h3>
-<p>Graphical perception involves visual decoding of the encoded
-information in graphs. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> incorporates the
-paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>,
-Chapter 4) to facilitate making visual judgments about quantitative
-information effortless and almost instantaneous. Based on experiments,
-Cleveland proposes that there are ten elementary graphical-perception
-tasks that we perform to visually decode quantitative information in
-graphs (organized from most to least accurate; <span class="citation">(Cleveland, 1985)</span>, p.254)-</p>
+<p>Graphical perception involves visual decoding of the encoded information in graphs. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> incorporates the paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>, Chapter 4) to facilitate making visual judgments about quantitative information effortless and almost instantaneous. Based on experiments, Cleveland proposes that there are ten elementary graphical-perception tasks that we perform to visually decode quantitative information in graphs (organized from most to least accurate; <span class="citation">(Cleveland, 1985)</span>, p.254)-</p>
 <ul>
 <li><p>Position along a common scale</p></li>
 <li><p>Position along identical, non-aligned scales</p></li>
@@ -160,13 +152,9 @@ graphs (organized from most to least accurate; <span class="citation">(Cleveland
 </ul>
 <p>So the key principle of Cleveland’s paradigm for data display is-</p>
 <blockquote>
-<p>“We should encode data on a graph so that the visual decoding
-involves [graphical-perception] tasks as high in the ordering as
-possible.”</p>
+<p>“We should encode data on a graph so that the visual decoding involves [graphical-perception] tasks as high in the ordering as possible.”</p>
 </blockquote>
-<p>For example, decoding the data point values in
-<code>ggbetweenstats</code> requires position judgments along a common
-scale:</p>
+<p>For example, decoding the data point values in <code>ggbetweenstats</code> requires position judgments along a common scale:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -187,23 +175,12 @@ scale:</p>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig1-1.png" alt="Note that assessing differences in mean values between groups has been made easier with the help of \textit{position} of data points along a common scale (the Y-axis) and labels." width="100%"><p class="caption">
-Note that assessing differences in mean values between groups has been
-made easier with the help of of data points along a common scale (the
-Y-axis) and labels.
+Note that assessing differences in mean values between groups has been made easier with the help of  of data points along a common scale (the Y-axis) and labels.
 </p>
 </div>
-<p>There are few instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> diverges
-from recommendations made in Cleveland’s paradigm:</p>
+<p>There are few instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> diverges from recommendations made in Cleveland’s paradigm:</p>
 <ul>
-<li>For the categorical/nominal data, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> uses
-pie charts which rely on <em>angle</em> judgments, which are less
-accurate (as compared to bar graphs, e.g., which require
-<em>position</em> judgments). This shortcoming is assuaged to some
-degree by using plenty of labels that describe percentages for all
-slices. This makes angle judgment unnecessary and pre-vacates any
-concerns about inaccurate judgments about percentages. Additionally, it
-also provides alternative function to <code>ggpiestats</code> for
-working with categorical variables: <code>ggbarstats</code>.</li>
+<li>For the categorical/nominal data, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> uses pie charts which rely on <em>angle</em> judgments, which are less accurate (as compared to bar graphs, e.g., which require <em>position</em> judgments). This shortcoming is assuaged to some degree by using plenty of labels that describe percentages for all slices. This makes angle judgment unnecessary and pre-vacates any concerns about inaccurate judgments about percentages. Additionally, it also provides alternative function to <code>ggpiestats</code> for working with categorical variables: <code>ggbarstats</code>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
@@ -221,29 +198,11 @@ working with categorical variables: <code>ggbarstats</code>.</li>
 <span class="co">#&gt;  Try using another color `palette` (and/or `package`).</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig2-1.png" alt="Pie charts don't follow Cleveland's paradigm to data display because they rely on less accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary." width="100%"><p class="caption">
-Pie charts don’t follow Cleveland’s paradigm to data display because
-they rely on less accurate angle judgments. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
-sidesteps this issue by always labelling percentages for pie slices,
-which makes angle judgments unnecessary.
+Pie charts don’t follow Cleveland’s paradigm to data display because they rely on less accurate angle judgments. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> sidesteps this issue by always labelling percentages for pie slices, which makes angle judgments unnecessary.
 </p>
 </div>
 <ul>
-<li>Cleveland’s paradigm also emphasizes that <em>superposition</em> of
-data is better than <em>juxtaposition</em> (<span class="citation">(Cleveland, 1985)</span>, p.201) because this allows
-for a more incisive comparison of the values from different parts of the
-dataset. This recommendation is violated in all <code>grouped_</code>
-variants of the function. Note that the range for Y-axes are no longer
-the same across juxtaposed subplots and so visually comparing the data
-becomes difficult. On the other hand, in the superposed plot, all data
-have the same range and coloring different parts makes the visual
-discrimination of different components of the data, and their
-comparison, easier. But the goal of <code>grouped_</code> variants of
-functions is to not only show different aspects of the data but also to
-run statistical tests and showing detailed results for all aspects of
-the data in a superposed plot is difficult. Therefore, this is a
-compromise <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is comfortable with, at least to
-produce plots for quick exploration of different aspects of the
-data.</li>
+<li>Cleveland’s paradigm also emphasizes that <em>superposition</em> of data is better than <em>juxtaposition</em> (<span class="citation">(Cleveland, 1985)</span>, p.201) because this allows for a more incisive comparison of the values from different parts of the dataset. This recommendation is violated in all <code>grouped_</code> variants of the function. Note that the range for Y-axes are no longer the same across juxtaposed subplots and so visually comparing the data becomes difficult. On the other hand, in the superposed plot, all data have the same range and coloring different parts makes the visual discrimination of different components of the data, and their comparison, easier. But the goal of <code>grouped_</code> variants of functions is to not only show different aspects of the data but also to run statistical tests and showing detailed results for all aspects of the data in a superposed plot is difficult. Therefore, this is a compromise <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is comfortable with, at least to produce plots for quick exploration of different aspects of the data.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
@@ -279,97 +238,42 @@ data.</li>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig3-1.png" alt="Comparing different aspects of data is much more accurate in (\textit{a}) a \textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\textit{b}) a \textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot." width="100%"><p class="caption">
-Comparing different aspects of data is much more accurate in () a plot,
-which is recommended in Cleveland’s paradigm, than in () a plot, which
-is how it is implemented in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. This is
-because displaying detailed results from statistical tests would be
-difficult in a superposed plot.
+Comparing different aspects of data is much more accurate in () a  plot, which is recommended in Cleveland’s paradigm, than in () a  plot, which is how it is implemented in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. This is because displaying detailed results from statistical tests would be difficult in a superposed plot.
 </p>
 </div>
-<p>The <code>grouped_</code> plots follow the <em>Shrink Principle</em>
-(<span class="citation">(Tufte, 2001)</span>, p.166-7) for
-high-information graphics, which dictates that the data density and the
-size of the data matrix can be maximized to exploit maximum resolution
-of the available data-display technology. Given the large maximum
-resolution afforded by most computer monitors today, saving
-<code>grouped_</code> plots with appropriate resolution ensures no loss
-in legibility with reduced graphics area.</p>
+<p>The <code>grouped_</code> plots follow the <em>Shrink Principle</em> (<span class="citation">(Tufte, 2001)</span>, p.166-7) for high-information graphics, which dictates that the data density and the size of the data matrix can be maximized to exploit maximum resolution of the available data-display technology. Given the large maximum resolution afforded by most computer monitors today, saving <code>grouped_</code> plots with appropriate resolution ensures no loss in legibility with reduced graphics area.</p>
 </div>
 <div class="section level3">
 <h3 id="graphical-excellence">Graphical excellence<a class="anchor" aria-label="anchor" href="#graphical-excellence"></a>
 </h3>
-<p>Graphical excellence consists of communicating complex ideas with
-clarity and in a way that the viewer understands the greatest number of
-ideas in a short amount of time all the while not quoting the data out
-of context. The package follows the principles for <em>graphical
-integrity</em> <span class="citation">(Tufte, 2001)</span>:</p>
+<p>Graphical excellence consists of communicating complex ideas with clarity and in a way that the viewer understands the greatest number of ideas in a short amount of time all the while not quoting the data out of context. The package follows the principles for <em>graphical integrity</em> <span class="citation">(Tufte, 2001)</span>:</p>
 <ul>
-<li><p>The physical representation of numbers is proportional to the
-numerical quantities they represent. The plot show how means (in
-<code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>)
-are proportional to the vertical distance or the area,
-respectively).</p></li>
-<li><p>All important events in the data have clear, detailed, and
-thorough labeling plot shows how <code>ggbetweenstats</code> labels
-means, sample size information, outliers, and pairwise comparisons; same
-can be appreciated for <code>ggpiestats</code> and
-<code>gghistostats</code> plots. Note that data labels in the data
-region are designed in a way that they don’t interfere with our ability
-to assess the overall pattern of the data (<span class="citation">(Cleveland, 1985)</span>;</p></li>
+<li><p>The physical representation of numbers is proportional to the numerical quantities they represent. The plot show how means (in <code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>) are proportional to the vertical distance or the area, respectively).</p></li>
+<li><p>All important events in the data have clear, detailed, and thorough labeling plot shows how <code>ggbetweenstats</code> labels means, sample size information, outliers, and pairwise comparisons; same can be appreciated for <code>ggpiestats</code> and <code>gghistostats</code> plots. Note that data labels in the data region are designed in a way that they don’t interfere with our ability to assess the overall pattern of the data (<span class="citation">(Cleveland, 1985)</span>;</p></li>
 </ul>
-<p>p.44-45). This is achieved by using <code>ggrepel</code> package to
-place labels in a way that reduces their visual prominence.</p>
+<p>p.44-45). This is achieved by using <code>ggrepel</code> package to place labels in a way that reduces their visual prominence.</p>
 <ul>
-<li><p>None of the plots have <em>design</em> variation (e.g., abrupt
-change in scales) over the surface of a same graphic because this can
-lead to a false impression about variation in <em>data</em>.</p></li>
-<li><p>The number of information-carrying dimensions never exceed the
-number of dimensions in the data (e.g., using area to show
-one-dimensional data).</p></li>
-<li><p>All plots are designed to have no <strong>chartjunk</strong>
-(like moiré vibrations, fake perspective, dark grid lines, etc.) (<span class="citation">(Tufte, 2001)</span>, Chapter 5).</p></li>
+<li><p>None of the plots have <em>design</em> variation (e.g., abrupt change in scales) over the surface of a same graphic because this can lead to a false impression about variation in <em>data</em>.</p></li>
+<li><p>The number of information-carrying dimensions never exceed the number of dimensions in the data (e.g., using area to show one-dimensional data).</p></li>
+<li><p>All plots are designed to have no <strong>chartjunk</strong> (like moiré vibrations, fake perspective, dark grid lines, etc.) (<span class="citation">(Tufte, 2001)</span>, Chapter 5).</p></li>
 </ul>
-<p>There are some instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> graphs
-don’t follow principles of clean graphics, as formulated in the Tufte
-theory of data graphics (<span class="citation">(Tufte, 2001)</span>,
-Chapter 4). The theory has four key principles:</p>
+<p>There are some instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> graphs don’t follow principles of clean graphics, as formulated in the Tufte theory of data graphics (<span class="citation">(Tufte, 2001)</span>, Chapter 4). The theory has four key principles:</p>
 <ol style="list-style-type: decimal">
 <li><p>Above all else show the data.</p></li>
 <li><p>Maximize the data-ink ratio.</p></li>
 <li><p>Erase non-data-ink.</p></li>
 <li><p>Erase redundant data-ink, within reason.</p></li>
 </ol>
-<p>In particular, default plots in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> can
-sometimes violate one of the principles from 2-4. According to these
-principles, every bit of ink should have reason for its inclusion in the
-graphic and should convey some new information to the viewer. If not,
-such ink should be removed. One instance of this is bilateral symmetry
-of data measures. For example, in the figure below, we can see that both
-the box and violin plots are mirrored, which consumes twice the space in
-the graphic without adding any new information. But this redundancy is
-tolerated for the sake of beauty that such symmetrical shapes can bring
-to the graphic. Even Tufte admits that efficiency is but one
-consideration in the design of statistical graphics (<span class="citation">(Tufte, 2001)</span>,</p>
-<p>p. 137). Additionally, these principles were formulated in an era in
-which computer graphics had yet to revolutionize the ease with which
-graphics could be produced and thus some of the concerns about
-minimizing data-ink for easier production of graphics are not as
-relevant as they were.</p>
+<p>In particular, default plots in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> can sometimes violate one of the principles from 2-4. According to these principles, every bit of ink should have reason for its inclusion in the graphic and should convey some new information to the viewer. If not, such ink should be removed. One instance of this is bilateral symmetry of data measures. For example, in the figure below, we can see that both the box and violin plots are mirrored, which consumes twice the space in the graphic without adding any new information. But this redundancy is tolerated for the sake of beauty that such symmetrical shapes can bring to the graphic. Even Tufte admits that efficiency is but one consideration in the design of statistical graphics (<span class="citation">(Tufte, 2001)</span>,</p>
+<p>p. 137). Additionally, these principles were formulated in an era in which computer graphics had yet to revolutionize the ease with which graphics could be produced and thus some of the concerns about minimizing data-ink for easier production of graphics are not as relevant as they were.</p>
 </div>
 <div class="section level3">
 <h3 id="statistical-variation">Statistical variation<a class="anchor" aria-label="anchor" href="#statistical-variation"></a>
 </h3>
-<p>One of the important functions of a plot is to show the variation in
-the data, which comes in two forms:</p>
+<p>One of the important functions of a plot is to show the variation in the data, which comes in two forms:</p>
 <ul>
 <li>
-<strong>Measurement noise</strong>: In <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>,
-the actual variation in measurements is shown by plotting a combination
-of (jittered) raw data points with a boxplot laid on top or a histogram.
-None of the plots, where empirical distribution of the data is
-concerned, show the sample standard deviation because they are poor at
-conveying information about limits of the sample and presence of
-outliers (<span class="citation">(Cleveland, 1985)</span>, p.220).</li>
+<strong>Measurement noise</strong>: In <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>, the actual variation in measurements is shown by plotting a combination of (jittered) raw data points with a boxplot laid on top or a histogram. None of the plots, where empirical distribution of the data is concerned, show the sample standard deviation because they are poor at conveying information about limits of the sample and presence of outliers (<span class="citation">(Cleveland, 1985)</span>, p.220).</li>
 </ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
@@ -391,12 +295,7 @@ Distribution of a variable shown using <code>gghistostats</code>.
 </div>
 <ul>
 <li>
-<strong>Sample-to-sample statistic variation</strong>: Although,
-traditionally, this variation has been shown using the standard error of
-the mean (SEM) of the statistic, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots
-instead use 95% confidence intervals. This is because the interval
-formed by error bars correspond to a 68% confidence interval, which is
-not a particularly interesting interval (<span class="citation">(Cleveland, 1985)</span>, p.222-225).</li>
+<strong>Sample-to-sample statistic variation</strong>: Although, traditionally, this variation has been shown using the standard error of the mean (SEM) of the statistic, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots instead use 95% confidence intervals. This is because the interval formed by error bars correspond to a 68% confidence interval, which is not a particularly interesting interval (<span class="citation">(Cleveland, 1985)</span>, p.222-225).</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
@@ -412,8 +311,7 @@ not a particularly interesting interval (<span class="citation">(Cleveland, 1985
 <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mod</span><span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig6-1.png" alt="Sample-to-sample variation in regression estimates is displayed using confidence intervals in `ggcoefstats`." width="100%"><p class="caption">
-Sample-to-sample variation in regression estimates is displayed using
-confidence intervals in <code>ggcoefstats</code>.
+Sample-to-sample variation in regression estimates is displayed using confidence intervals in <code>ggcoefstats</code>.
 </p>
 </div>
 </div>
@@ -424,27 +322,10 @@ confidence intervals in <code>ggcoefstats</code>.
 <div class="section level3">
 <h3 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a>
 </h3>
-<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
-has the same expectations about the structure of the data. More
-specifically,</p>
+<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> has the same expectations about the structure of the data. More specifically,</p>
 <ul>
-<li><p>The data should be organized following the principles of <em>tidy
-data</em>, which specify how statistical structure of a data frame
-(variables and observations) should be mapped to physical structure
-(columns and rows). More specifically, tidy data means all variables
-have their own columns and each row corresponds to a unique observation
-(<span class="citation">(Wickham, 2014)</span>).</p></li>
-<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s
-from variables of interest (similar to <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display
-total sample size (<em>n</em>, either observations for between-subjects
-or pairs for within-subjects designs) in the subtitle to inform the
-user/reader about the number of observations included for both the
-statistical analysis and the visualization. But, when sample sizes
-differ <em>across</em> tests in the same function,
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this
-aspect. For example, <code>ggcorrmat</code> features several correlation
-test pairs and, depending on variables in a given pair, the sample sizes
-may vary.</p></li>
+<li><p>The data should be organized following the principles of <em>tidy data</em>, which specify how statistical structure of a data frame (variables and observations) should be mapped to physical structure (columns and rows). More specifically, tidy data means all variables have their own columns and each row corresponds to a unique observation (<span class="citation">(Wickham, 2014)</span>).</p></li>
+<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from variables of interest (similar to <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display total sample size (<em>n</em>, either observations for between-subjects or pairs for within-subjects designs) in the subtitle to inform the user/reader about the number of observations included for both the statistical analysis and the visualization. But, when sample sizes differ <em>across</em> tests in the same function, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this aspect. For example, <code>ggcorrmat</code> features several correlation test pairs and, depending on variables in a given pair, the sample sizes may vary.</p></li>
 </ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
@@ -475,128 +356,66 @@ may vary.</p></li>
 <span class="op">)</span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig4-1.png" alt="`{ggstatsplot}` functions remove `NA`s from variables of interest and display total sample size \textit{n}, but they can give more nuanced information about sample sizes when \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum, median, and maximum sample sizes across all correlation tests when `NA`s are present across correlation variables." width="100%"><p class="caption">
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from
-variables of interest and display total sample size , but they can give
-more nuanced information about sample sizes when differs across tests.
-For example, <code>ggcorrmat</code> will display () only one total
-sample size once when no <code>NA</code>s present, but () will instead
-show minimum, median, and maximum sample sizes across all correlation
-tests when <code>NA</code>s are present across correlation variables.
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from variables of interest and display total sample size , but they can give more nuanced information about sample sizes when  differs across tests. For example, <code>ggcorrmat</code> will display () only one total sample size once when no <code>NA</code>s present, but () will instead show minimum, median, and maximum sample sizes across all correlation tests when <code>NA</code>s are present across correlation variables.
 </p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="statistical-reporting">Statistical reporting<a class="anchor" aria-label="anchor" href="#statistical-reporting"></a>
 </h3>
-<p>But why would combining statistical analysis with data visualization
-be helpful? We list few reasons below-</p>
+<p>But why would combining statistical analysis with data visualization be helpful? We list few reasons below-</p>
 <ul>
-<li>A recent survey <span class="citation">(Nuijten, Hartgerink, van
-Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight
-papers in major psychology journals contained a grossly inconsistent
-<em>p</em>-value that may have affected the statistical conclusion.
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the
-plot and the statistical analysis are yoked together, the chances of
-making an error in reporting the results are minimized. One need not
-write the results manually or copy-paste them from a different
-statistics software program (like SPSS, SAS, and so on).</li>
+<li>A recent survey <span class="citation">(Nuijten, Hartgerink, van Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight papers in major psychology journals contained a grossly inconsistent <em>p</em>-value that may have affected the statistical conclusion. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the plot and the statistical analysis are yoked together, the chances of making an error in reporting the results are minimized. One need not write the results manually or copy-paste them from a different statistics software program (like SPSS, SAS, and so on).</li>
 </ul>
-<p>The default setting in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is to produce plots
-with statistical details included. Most often than not, these results
-are displayed as a <code>subtitle</code> in the plot. Great care has
-been taken into which details are included in statistical reporting and
-why.</p>
+<p>The default setting in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is to produce plots with statistical details included. Most often than not, these results are displayed as a <code>subtitle</code> in the plot. Great care has been taken into which details are included in statistical reporting and why.</p>
 <div class="figure">
 <img src="stats_reporting_format.png" alt=""><p class="caption">Template for reporting statistical details</p>
 </div>
-<p>APA guidelines <span class="citation">(Association, 2009)</span> are
-followed by default while reporting statistical details:</p>
+<p>APA guidelines <span class="citation">(Association, 2009)</span> are followed by default while reporting statistical details:</p>
 <ul>
 <li><p>Percentages are displayed with no decimal places.</p></li>
-<li><p>Correlations, <em>t</em>-tests, and <span class="math inline">\(\chi^2\)</span>-tests are reported with the
-degrees of freedom in parentheses and the significance level.</p></li>
-<li><p>ANOVAs are reported with two degrees of freedom and the
-significance level.</p></li>
-<li><p>Regression results are presented with the unstandardized or
-standardized estimate (beta), whichever was specified by the user, along
-with the statistic (depending on the model, this can be a <em>t</em>,
-<em>F</em>, or <em>z</em> statistic) and the corresponding significance
-level.</p></li>
-<li><p>With the exception of <em>p</em>-values, most statistics are
-rounded to two decimal places by default.</p></li>
+<li><p>Correlations, <em>t</em>-tests, and <span class="math inline">\(\chi^2\)</span>-tests are reported with the degrees of freedom in parentheses and the significance level.</p></li>
+<li><p>ANOVAs are reported with two degrees of freedom and the significance level.</p></li>
+<li><p>Regression results are presented with the unstandardized or standardized estimate (beta), whichever was specified by the user, along with the statistic (depending on the model, this can be a <em>t</em>, <em>F</em>, or <em>z</em> statistic) and the corresponding significance level.</p></li>
+<li><p>With the exception of <em>p</em>-values, most statistics are rounded to two decimal places by default.</p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="dealing-with-null-results">Dealing with <strong>null results</strong>:<a class="anchor" aria-label="anchor" href="#dealing-with-null-results"></a>
 </h3>
-<p>All functions therefore by default return Bayesian in favor of the
-null hypothesis by default. If the null hypothesis can’t be rejected
-with the null hypothesis significance testing (NHST) approach, the
-Bayesian approach can help index evidence in favor of the null
-hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>). By
-default, natural logarithms are shown because Bayesian values can
-sometimes be pretty large. Having values on logarithmic scale also makes
-it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = -
-log_{e}(BF_{01})\)</span>).</p>
+<p>All functions therefore by default return Bayesian in favor of the null hypothesis by default. If the null hypothesis can’t be rejected with the null hypothesis significance testing (NHST) approach, the Bayesian approach can help index evidence in favor of the null hypothesis (i.e., <span class="math inline">\(BF_{01}\)</span>). By default, natural logarithms are shown because Bayesian values can sometimes be pretty large. Having values on logarithmic scale also makes it easy to compare evidence in favor alternative (<span class="math inline">\(BF_{10}\)</span>) versus null (<span class="math inline">\(BF_{01}\)</span>) hypotheses (since <span class="math inline">\(log_{e}(BF_{01}) = - log_{e}(BF_{01})\)</span>).</p>
 </div>
 <div class="section level3">
 <h3 id="avoiding-the-p-value-error">Avoiding the <strong>“p-value error”</strong>:<a class="anchor" aria-label="anchor" href="#avoiding-the-p-value-error"></a>
 </h3>
-<p>The <em>p</em>-value indexes the probability that the researchers
-have falsely rejected a true null hypothesis (Type I error, i.e.) and
-can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on
-Google Scholar report the <em>p</em>-value to be <code>p =0.000</code>,
-putatively due to relying on default computer software outputs <span class="citation">(Lilienfeld et al., 2015)</span>. All <em>p</em>-values
-displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots avoid this mistake.
-Anything less than <code>p &lt; 0.001</code> is displayed as such. The
-package deems it unimportant how infinitesimally small the
-<em>p</em>-values are and, instead, puts emphasis on the effect size
-magnitudes and their 95% CIs.</p>
+<p>The <em>p</em>-value indexes the probability that the researchers have falsely rejected a true null hypothesis (Type I error, i.e.) and can rarely be <em>exactly</em> 0. And yet over 97,000 manuscripts on Google Scholar report the <em>p</em>-value to be <code>p =0.000</code>, putatively due to relying on default computer software outputs <span class="citation">(Lilienfeld et al., 2015)</span>. All <em>p</em>-values displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots avoid this mistake. Anything less than <code>p &lt; 0.001</code> is displayed as such. The package deems it unimportant how infinitesimally small the <em>p</em>-values are and, instead, puts emphasis on the effect size magnitudes and their 95% CIs.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
-<p>If you find any bugs or have any suggestions/remarks, please file an
-issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-apa2009" class="csl-entry">
-Association, A. P. (2009). <em>Publication <span>Manual</span> of the
-<span>American Psychological Association</span>, 6th
-<span>Edition</span></em>. <span>Washington, DC</span>: <span>American
-Psychological Association</span>.
+Association, A. P. (2009). <em>Publication <span>Manual</span> of the <span>American Psychological Association</span>, 6th <span>Edition</span></em>. <span>Washington, DC</span>: <span>American Psychological Association</span>.
 </div>
 <div id="ref-cleveland1985" class="csl-entry">
-Cleveland, W. S. (1985). <em>The <span>Elements</span> of <span>Graphing
-Data</span></em> (1st edition.). <span>Monterey, Cal</span>:
-<span>Wadsworth, Inc.</span>
+Cleveland, W. S. (1985). <em>The <span>Elements</span> of <span>Graphing Data</span></em> (1st edition.). <span>Monterey, Cal</span>: <span>Wadsworth, Inc.</span>
 </div>
 <div id="ref-lilienfeld2015" class="csl-entry">
-Lilienfeld, S. O., Sauvign’e, K. C., Lynn, S. J., Cautin, R. L.,
-Latzman, R. D., &amp; Waldman, I. D. (2015). Fifty psychological and
-psychiatric terms to avoid: A list of inaccurate, misleading, misused,
-ambiguous, and logically confused words and phrases. <em>Frontiers in
-Psychology</em>, <em>6</em>. doi:<a href="https://doi.org/10.3389/fpsyg.2015.01100" class="external-link">10.3389/fpsyg.2015.01100</a>
+Lilienfeld, S. O., Sauvign’e, K. C., Lynn, S. J., Cautin, R. L., Latzman, R. D., &amp; Waldman, I. D. (2015). Fifty psychological and psychiatric terms to avoid: A list of inaccurate, misleading, misused, ambiguous, and logically confused words and phrases. <em>Frontiers in Psychology</em>, <em>6</em>. doi:<a href="https://doi.org/10.3389/fpsyg.2015.01100" class="external-link">10.3389/fpsyg.2015.01100</a>
 </div>
 <div id="ref-nuijten2016" class="csl-entry">
-Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp,
-S., &amp; Wicherts, J. M. (2016). The prevalence of statistical
-reporting errors in psychology (19852013). <em>Behavior Research
-Methods</em>, <em>48</em>(4), 1205–1226. doi:<a href="https://doi.org/10.3758/s13428-015-0664-2" class="external-link">10.3758/s13428-015-0664-2</a>
+Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp, S., &amp; Wicherts, J. M. (2016). The prevalence of statistical reporting errors in psychology (19852013). <em>Behavior Research Methods</em>, <em>48</em>(4), 1205–1226. doi:<a href="https://doi.org/10.3758/s13428-015-0664-2" class="external-link">10.3758/s13428-015-0664-2</a>
 </div>
 <div id="ref-tufte2001" class="csl-entry">
-Tufte, E. R. (2001). <em>The <span>Visual Display</span> of
-<span>Quantitative Information</span></em> (2nd edition edition.).
-<span>Cheshire, Conn</span>: <span>Graphics Press</span>.
+Tufte, E. R. (2001). <em>The <span>Visual Display</span> of <span>Quantitative Information</span></em> (2nd edition edition.). <span>Cheshire, Conn</span>: <span>Graphics Press</span>.
 </div>
 <div id="ref-wickhamTidyData2014" class="csl-entry">
-Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical
-Software</em>, <em>59</em>(1), 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10" class="external-link">10.18637/jss.v059.i10</a>
+Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical Software</em>, <em>59</em>(1), 1–23. doi:<a href="https://doi.org/10.18637/jss.v059.i10" class="external-link">10.18637/jss.v059.i10</a>
 </div>
 <div id="ref-wickham2016" class="csl-entry">
-Wickham, H. (2016). <em>Ggplot2: <span>Elegant Graphics</span> for
-<span>Data Analysis</span></em> (2nd ed. 2016 edition.). <span>New York,
-NY</span>: <span>Springer</span>.
+Wickham, H. (2016). <em>Ggplot2: <span>Elegant Graphics</span> for <span>Data Analysis</span></em> (2nd ed. 2016 edition.). <span>New York, NY</span>: <span>Springer</span>.
 </div>
 </div>
 </div>
@@ -608,15 +427,12 @@ NY</span>: <span>Springer</span>.
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by
-<a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet
-Patil</a>.</p>
+<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
     </footer>
