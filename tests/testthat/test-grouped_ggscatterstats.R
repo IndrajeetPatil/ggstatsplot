@@ -3,7 +3,7 @@
 test_that(
   desc = "grouped_ggscatterstats works",
   code = {
-    skip_on_cran()
+
 
     # expect error if no grouping variable is specified
     expect_error(
@@ -103,7 +103,7 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
+
 
     # data
     df <- dplyr::filter(movies_long, genre %in% c("Action Drama"))

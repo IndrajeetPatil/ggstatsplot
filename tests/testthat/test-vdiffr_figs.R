@@ -1,5 +1,4 @@
 test_that("plots are rendered correctly", {
-  skip_on_cran()
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
   skip_if(getRversion() >= "4.2")
@@ -114,27 +113,6 @@ test_that("plots are rendered correctly", {
     )
   }
 
-  ## ----ggcorrmat------------------------------------
-
-  if (require("ggcorrplot")) {
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "ggcorrmat works",
-      fig = ggcorrmat(iris)
-    )
-
-    vdiffr::expect_doppelganger(
-      title = "ggcorrmat works - with NAs",
-      fig = ggcorrmat(ggplot2::msleep)
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat works",
-      fig = grouped_ggcorrmat(iris, grouping.var = Species)
-    )
-  }
-
   ## ----ggpiestats-----------------------------------
 
   set.seed(123)
@@ -142,7 +120,6 @@ test_that("plots are rendered correctly", {
     title = "ggpiestats works",
     fig = ggpiestats(mtcars, cyl)
   )
-
 
   set.seed(123)
   vdiffr::expect_doppelganger(

@@ -4,9 +4,15 @@
 test_that(
   desc = "grouped_ggcorrmat plots work",
   code = {
-    skip_on_cran()
     skip_if_not_installed("ggcorrplot")
     skip_if_not_installed("vdiffr")
+
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggcorrmat works",
+      fig = grouped_ggcorrmat(iris, grouping.var = Species)
+    )
 
     # with grouping.var missing ---------------------------------------------
 
@@ -87,7 +93,6 @@ test_that(
 test_that(
   desc = "grouped_ggcorrmat stats work",
   code = {
-    skip_on_cran()
     skip_if_not_installed("ggcorrplot")
 
     options(tibble.width = Inf)

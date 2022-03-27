@@ -3,7 +3,7 @@
 test_that(
   desc = "checking ggscatterstats - without NAs - pearson's r",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -64,7 +64,7 @@ test_that(
 test_that(
   desc = "checking ggscatterstats - without NAs - spearman's rho",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -108,7 +108,7 @@ test_that(
 test_that(
   desc = "checking ggscatterstats - without NAs - winsorized Pearson",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -148,7 +148,6 @@ test_that(
 test_that(
   desc = "bayes factor plus class of object",
   code = {
-    skip_on_cran()
     skip_if_not_installed("ggside")
 
     # creating the plot
@@ -191,7 +190,7 @@ test_that(
 test_that(
   desc = "aesthetic modifications work",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -225,7 +224,7 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
+
 
     # creating the messages
     set.seed(123)
@@ -255,7 +254,6 @@ test_that(
 )
 
 test_that("plots are rendered correctly - ggscatterstats", {
-  skip_on_cran()
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
   skip_if(getRversion() >= "4.2")

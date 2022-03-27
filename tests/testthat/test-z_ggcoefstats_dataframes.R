@@ -3,7 +3,6 @@
 test_that(
   desc = "ggcoefstats works with data frames",
   code = {
-    skip_on_cran()
     skip_if_not_installed("metafor")
     skip_if_not_installed("metaBMA")
     skip_if_not(.Platform$OS.type == "windows")

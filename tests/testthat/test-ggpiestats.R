@@ -3,7 +3,7 @@
 test_that(
   desc = "checking one sample proportion test",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -56,7 +56,7 @@ test_that(
 test_that(
   desc = "checking labels with contingency tab",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -130,7 +130,7 @@ test_that(
 test_that(
   desc = "checking labels with counts",
   code = {
-    skip_on_cran()
+
 
     # plot
     set.seed(123)
@@ -171,7 +171,7 @@ test_that(
 test_that(
   desc = "checking labels with contingency tab (paired)",
   code = {
-    skip_on_cran()
+
 
     # data
     set.seed(123)
@@ -219,7 +219,6 @@ test_that(
 test_that(
   desc = "repelling labels",
   code = {
-    skip_on_cran()
     set.seed(123)
 
     # data
@@ -283,8 +282,6 @@ test_that(
 test_that(
   desc = "expression output",
   code = {
-    skip_on_cran()
-
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
       dplyr::mutate_if(is.factor, droplevels)

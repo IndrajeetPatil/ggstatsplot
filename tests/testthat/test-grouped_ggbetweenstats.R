@@ -3,7 +3,7 @@
 test_that(
   desc = "grouped_ggbetweenstats works - vdiffr",
   code = {
-    skip_on_cran()
+
 
     # creating a smaller dataframe
     set.seed(123)
@@ -99,8 +99,6 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
-
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, 0.25) %>%
       dplyr::filter(

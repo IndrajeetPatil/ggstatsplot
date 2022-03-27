@@ -9,7 +9,6 @@ if (require("afex")) {
   test_that(
     desc = "basic plotting works - two groups",
     code = {
-      skip_on_cran()
       skip_if_not_installed("PMCMRplus")
 
       # plot
@@ -74,7 +73,6 @@ if (require("afex")) {
   test_that(
     desc = "basic plotting works - more than two groups",
     code = {
-      skip_on_cran()
       skip_if_not_installed("PMCMRplus")
 
       library(WRS2)
@@ -143,7 +141,6 @@ if (require("afex")) {
   test_that(
     desc = "checking subtitle outputs - without NAs",
     code = {
-      skip_on_cran()
       skip_if_not_installed("PMCMRplus")
       skip_if_not_installed("BayesFactor")
 
@@ -282,7 +279,6 @@ if (require("afex")) {
   test_that(
     desc = "ggplot component addition works",
     code = {
-      skip_on_cran()
       skip_if_not_installed("PMCMRplus")
 
       # setup

@@ -3,7 +3,7 @@
 test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -62,7 +62,7 @@ test_that(
 test_that(
   desc = "checking gghistostats and non-parametric stats - data without NAs",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -108,7 +108,7 @@ test_that(
 test_that(
   desc = "checking robust stats and proportions",
   code = {
-    skip_on_cran()
+
 
     # creating the plot
     set.seed(123)
@@ -148,7 +148,7 @@ test_that(
 test_that(
   desc = "checking if normal curve work",
   code = {
-    skip_on_cran()
+
 
     # plot
     set.seed(123)
@@ -180,7 +180,7 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
+
 
     # should output a list of length 3
     set.seed(123)

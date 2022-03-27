@@ -1,7 +1,7 @@
 test_that(
   desc = "grouped_ggbarstats works",
   code = {
-    skip_on_cran()
+
 
     # --------------------- without counts -----------------------------------
 
@@ -93,8 +93,6 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
-
     set.seed(123)
     df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
       dplyr::mutate_if(., is.factor, droplevels)

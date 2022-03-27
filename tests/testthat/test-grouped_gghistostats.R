@@ -3,7 +3,7 @@
 test_that(
   desc = "grouped_gghistostats works",
   code = {
-    skip_on_cran()
+
 
     # when arguments are entered as bare expressions
     set.seed(123)
@@ -48,8 +48,6 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
-
     df <- dplyr::filter(ggplot2::msleep, vore == "omni")
 
     set.seed(123)

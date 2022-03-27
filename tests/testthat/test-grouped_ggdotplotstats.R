@@ -3,7 +3,7 @@
 test_that(
   desc = "grouped_ggdotplotstats works",
   code = {
-    skip_on_cran()
+
 
     # for reproducibility
     set.seed(123)
@@ -53,7 +53,7 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
+
 
     # removing factor level with very few no. of observations
     df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4"))

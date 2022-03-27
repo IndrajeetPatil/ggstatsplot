@@ -3,7 +3,7 @@
 test_that(
   desc = "ggdotplotstats works as expected",
   code = {
-    skip_on_cran()
+
 
     # creating a new dataset
     morley_new <-
@@ -129,7 +129,7 @@ test_that(
 test_that(
   desc = "messing with factors",
   code = {
-    skip_on_cran()
+
 
     # creating a new label for the dataset
     df_msleep <- ggplot2::msleep
@@ -186,7 +186,7 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    skip_on_cran()
+
 
     # should output a list of length 3
     set.seed(123)

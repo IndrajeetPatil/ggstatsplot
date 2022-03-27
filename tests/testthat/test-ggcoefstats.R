@@ -429,7 +429,6 @@ test_that(
 
 
 test_that("plots are rendered correctly - ggcoefstats", {
-  skip_on_cran()
   skip_if_not_installed("vdiffr")
   skip_if_not_installed("survival")
   skip_on_os("linux")

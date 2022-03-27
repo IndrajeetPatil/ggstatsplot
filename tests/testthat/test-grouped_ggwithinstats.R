@@ -3,7 +3,6 @@
 test_that(
   desc = "grouping.var works across vector types",
   code = {
-    skip_on_cran()
     skip_if_not_installed("afex")
     set.seed(123)
     library(afex)
@@ -75,7 +74,6 @@ test_that(
 test_that(
   desc = "subtitle output with NA",
   code = {
-    skip_on_cran()
     skip_if_not_installed("PMCMRplus")
 
     # data

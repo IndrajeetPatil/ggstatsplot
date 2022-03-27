@@ -4,8 +4,6 @@
 test_that(
   desc = "ggbetweenstats and ggwithinstats - edge case NULL",
   code = {
-    skip_on_cran()
-
     set.seed(123)
     df <- data.frame(
       x = c(rep(1, 50), rep(2, 40), rep(3, 10)),
@@ -62,8 +60,6 @@ test_that(
 test_that(
   desc = "gghistostats and ggdotplotstats - edge case NULL",
   code = {
-    skip_on_cran()
-
     set.seed(123)
     df <- data.frame(
       x = 1,
@@ -103,8 +99,6 @@ test_that(
 test_that(
   desc = "ggscatterstats - edge case NULL",
   code = {
-    skip_on_cran()
-
     set.seed(123)
     df <- data.frame(x = 2.4, y = 3.4)
 
@@ -131,7 +125,6 @@ test_that(
 test_that(
   desc = "ggpiestats and ggbarstats - edge case NULL",
   code = {
-    skip_on_cran()
     set.seed(123)
 
     # creating a dataframe

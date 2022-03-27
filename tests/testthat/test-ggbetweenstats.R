@@ -3,7 +3,6 @@
 test_that(
   desc = "checking labels and data from plot",
   code = {
-    skip_on_cran()
     skip_if(getRversion() < "4.0")
     skip_if_not_installed("PMCMRplus")
 
@@ -63,7 +62,6 @@ test_that(
 test_that(
   desc = "checking mean labels are working",
   code = {
-    skip_on_cran()
     skip_if(getRversion() < "4.0")
     skip_if_not_installed("PMCMRplus")
 
@@ -130,7 +128,6 @@ test_that(
 test_that(
   desc = "checking if plot.type argument works",
   code = {
-    skip_on_cran()
     skip_if(getRversion() < "4.0")
 
     # boxplot
@@ -186,7 +183,6 @@ test_that(
 test_that(
   desc = "subtitle output works",
   code = {
-    skip_on_cran()
     skip_if(getRversion() < "4.0")
 
     df <- mtcars
