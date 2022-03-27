@@ -70,6 +70,8 @@ test_that(
   }
 )
 
+# expected warnings -------------------------------------------
+
 test_that(
   desc = "ggcorrmat warnings are as expected",
   code = {
@@ -79,6 +81,8 @@ test_that(
     ))
   }
 )
+
+# changing defaults -------------------------------------------
 
 test_that(
   desc = "ggcorrmat works as expected with changed defaults",

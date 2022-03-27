@@ -262,7 +262,7 @@ test_that("plots are rendered correctly - ggscatterstats", {
 
   set.seed(123)
   vdiffr::expect_doppelganger(
-    title = "label symbol args - vdiffr",
+    title = "label symbol args",
     fig = ggscatterstats(
       data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
       x = sleep_total,
@@ -275,7 +275,7 @@ test_that("plots are rendered correctly - ggscatterstats", {
 
   set.seed(123)
   vdiffr::expect_doppelganger(
-    title = "label var NULL - vdiffr",
+    title = "label var NULL",
     fig = ggscatterstats(
       data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
       x = sleep_total,
@@ -288,7 +288,7 @@ test_that("plots are rendered correctly - ggscatterstats", {
 
   set.seed(123)
   vdiffr::expect_doppelganger(
-    title = "label expr NULL - vdiffr",
+    title = "label expr NULL",
     fig = ggscatterstats(
       data = dplyr::filter(ggplot2::msleep, conservation == "lc"),
       x = sleep_total,
@@ -301,7 +301,7 @@ test_that("plots are rendered correctly - ggscatterstats", {
 
   set.seed(123)
   vdiffr::expect_doppelganger(
-    title = "changing scales and aesthetics - vdiffr",
+    title = "changing scales and aesthetics",
     fig = ggscatterstats(mtcars, wt, mpg,
       xsidehistogram.args = list(
         fill = "red",

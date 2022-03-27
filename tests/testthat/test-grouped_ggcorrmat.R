@@ -8,11 +8,11 @@ test_that(
     skip_if_not_installed("vdiffr")
 
 
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat works",
-      fig = grouped_ggcorrmat(iris, grouping.var = Species)
-    )
+    # set.seed(123)
+    # vdiffr::expect_doppelganger(
+    #   title = "grouped_ggcorrmat works",
+    #   fig = grouped_ggcorrmat(iris, grouping.var = Species)
+    # )
 
     # with grouping.var missing ---------------------------------------------
 
