@@ -31,7 +31,7 @@ Imports:
     ggrepel,
     ggsignif,
     glue,
-    insight (>= 0.16.0),
+    insight (>= 0.16.9),
     paletteer,
     parameters (>= 0.17.0),
     patchwork,

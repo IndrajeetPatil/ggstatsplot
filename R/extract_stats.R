@@ -35,7 +35,7 @@
 #' @export
 
 extract_stats <- function(p, ...) {
-  # check the input
+  # works only with ggplot objects
   if (!inherits(p, "gg")) stop("Input must be a 'ggplot' object.", call. = FALSE)
 
   # the exact details will depend on the function

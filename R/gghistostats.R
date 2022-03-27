@@ -47,7 +47,7 @@
 #' }
 #' @export
 
-# function body
+
 gghistostats <- function(data,
                          x,
                          binwidth = NULL,

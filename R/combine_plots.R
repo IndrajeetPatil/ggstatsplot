@@ -59,7 +59,7 @@
 #' )
 #' @export
 
-# function body
+
 combine_plots <- function(plotlist,
                           plotgrid.args = list(),
                           annotation.args = list(),

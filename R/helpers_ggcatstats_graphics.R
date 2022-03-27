@@ -1,7 +1,7 @@
 #' @title A dataframe with descriptive labels
 #' @noRd
 
-# function body
+
 descriptive_df <- function(data,
                            x,
                            y = NULL,

@@ -639,6 +639,7 @@ sudo apt-get install libmpfr-dev
 The following `README` file briefly describes the installation procedure:
 <https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
 
+For MacOS, have a look at this [post](https://stackoverflow.com/questions/35360885/installing-finding-gmp-under-osx).
 
 ## Suggestions
 

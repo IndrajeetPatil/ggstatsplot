@@ -156,8 +156,6 @@
 #' }
 #' }
 #' @export
-
-# function body
 pairwise_comparisons <- function(data,
                                  x,
                                  y,
@@ -338,7 +336,6 @@ pairwise_comparisons <- function(data,
 #' p_adjust_text("BY")
 #' @keywords internal
 #' @noRd
-
 p_adjust_text <- function(p.adjust.method) {
   case_when(
     grepl("^n|^bo|^h", p.adjust.method) ~ paste0(
@@ -378,15 +375,16 @@ p_adjust_text <- function(p.adjust.method) {
 #' pairwise_caption("my caption", "Student's t-test")
 #' @keywords internal
 #' @noRd
-
 pairwise_caption <- function(caption,
                              test.description,
                              bf.message,
                              pairwise.display = "significant",
                              ...) {
 
-  # ' needs to be escaped inside glue
+  # signle quote (') needs to be escaped inside glue expressions
   test <- sub("'", "\\'", test.description, fixed = TRUE)
+
+  # which comparisons were displayed?
   display <- case_when(
     substr(pairwise.display, 1L, 1L) == "s" ~ "only significant",
     substr(pairwise.display, 1L, 1L) == "n" ~ "only non-significant",

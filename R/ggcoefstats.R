@@ -113,8 +113,6 @@
 #' ggcoefstats(mod, output = "glance")
 #' }
 #' @export
-
-# function body
 ggcoefstats <- function(x,
                         output = "plot",
                         statistic = NULL,

@@ -35,7 +35,7 @@
 #' }
 #' @export
 
-# function body
+
 ggdotplotstats <- function(data,
                            x,
                            y,

@@ -1,7 +1,7 @@
 # significant display works -------------------------------------------------
 
 test_that(
-  desc = "check mcp displays - parametric - significant",
+  desc = "check mcp displays - parametric - non-significant",
   code = {
     # creating the plot
     set.seed(123)
@@ -12,7 +12,7 @@ test_that(
       x = vore,
       y = brainwt,
       results.subtitle = FALSE,
-      bf.message = FALSE,
+      bf.message = FALSE, # TODO: should work after removing this
       p.adjust.method = "none",
       pairwise.display = "ns",
       caption = "mammalian sleep",

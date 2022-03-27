@@ -25,7 +25,7 @@
 #' )
 #' @noRd
 
-# function body
+
 centrality_ggrepel <- function(plot,
                                data,
                                x,

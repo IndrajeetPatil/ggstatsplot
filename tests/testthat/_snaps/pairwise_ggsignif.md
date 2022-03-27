@@ -1,4 +1,4 @@
-# check mcp displays - parametric - significant
+# check mcp displays - parametric - non-significant
 
     Code
       list(pb$data[[6]], pb$data[[7]])

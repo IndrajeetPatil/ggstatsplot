@@ -26,7 +26,7 @@
 #' @keywords internal
 #' @noRd
 
-# function body
+
 histo_labeller <- function(plot,
                            x,
                            centrality.line.args = list(
