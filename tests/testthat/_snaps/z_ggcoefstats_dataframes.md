@@ -344,3 +344,14 @@
       
       
 
+---
+
+    Code
+      meta_info
+    Output
+      expression(list(
+      log[e]*(BF['01'])=='1.23',
+      widehat(delta)["difference"]^'posterior'=='0.13',
+      CI['95%']^HDI~'['*'-0.10', '0.43'*']',
+      italic("r")["Cauchy"]^"JZS"=='0.71'))
+
