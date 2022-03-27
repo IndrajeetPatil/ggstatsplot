@@ -6,6 +6,7 @@ test_that(
     skip_on_cran()
     skip_if_not_installed("metafor")
     skip_if_not_installed("metaBMA")
+    skip_if_not(.Platform$OS.type == "windows")
     set.seed(123)
 
     options(tibble.width = Inf)
@@ -218,6 +219,6 @@ test_that(
         )
       )
 
-    expect_snapshot(as.character(meta_info), variant = .Platform$OS.type)
+    expect_snapshot(as.character(meta_info))
   }
 )
