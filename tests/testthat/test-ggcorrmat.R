@@ -1,4 +1,3 @@
-
 # pearson's r without NAs ------------------------------------------------
 
 test_that(
@@ -150,7 +149,6 @@ test_that(
 test_that(
   desc = "checking all dataframe outputs",
   code = {
-    skip_on_cran()
     options(tibble.width = Inf)
     skip_if_not(.Platform$OS.type == "windows")
 
