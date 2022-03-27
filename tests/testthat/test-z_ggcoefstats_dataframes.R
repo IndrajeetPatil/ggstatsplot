@@ -206,18 +206,16 @@ test_that(
 
     # caption
     set.seed(123)
-    meta_info <-
-      suppressWarnings(
-        ggcoefstats(
-          x = df5,
-          statistic = "t",
-          k = 2,
-          meta.analytic.effect = TRUE,
-          bf.message = TRUE,
-          output = "caption"
-        )
-      )
-
-    expect_snapshot(meta_info)
+    expect_type(
+      ggcoefstats(
+        x = df5,
+        statistic = "t",
+        k = 2,
+        meta.analytic.effect = TRUE,
+        bf.message = TRUE,
+        output = "caption"
+      ),
+      "expression"
+    )
   }
 )
