@@ -1,6 +1,11 @@
 test_that(
   desc = "grouped_ggscatterstats plotting works as expected",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("ggside")
+
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "defaults work as expected",

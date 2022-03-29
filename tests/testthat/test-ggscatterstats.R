@@ -6,6 +6,7 @@ test_that(
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
     skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("ggside")
 
     set.seed(123)
     vdiffr::expect_doppelganger(
@@ -41,6 +42,7 @@ test_that(
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
     skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("ggside")
 
     set.seed(123)
     vdiffr::expect_doppelganger(
@@ -76,6 +78,7 @@ test_that(
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
     skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("ggside")
 
     set.seed(123)
     vdiffr::expect_doppelganger(
@@ -99,39 +102,11 @@ test_that(
   }
 )
 
-# subtitle output ----------------------------------------------------------
-
-test_that(
-  desc = "subtitle output",
-  code = {
-    set.seed(123)
-    p_sub <- ggscatterstats(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
-      conf.level = 0.90,
-      type = "r",
-      output = "subtitle"
-    )
-
-    set.seed(123)
-    fun_sub <- statsExpressions::corr_test(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
-      conf.level = 0.90,
-      type = "r",
-      output = "subtitle"
-    )$expression[[1]]
-
-    expect_equal(p_sub, fun_sub)
-  }
-)
-
 test_that("labeling variables and expressions work as expected", {
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
   skip_if(getRversion() >= "4.2")
+  skip_if_not_installed("ggside")
 
   df <- dplyr::filter(ggplot2::msleep, conservation == "lc")
 
@@ -175,3 +150,34 @@ test_that("labeling variables and expressions work as expected", {
   #   )
   # )
 })
+
+
+# subtitle output ----------------------------------------------------------
+
+test_that(
+  desc = "subtitle output",
+  code = {
+    set.seed(123)
+    p_sub <- ggscatterstats(
+      data = dplyr::starwars,
+      x = mass,
+      y = height,
+      conf.level = 0.90,
+      type = "r",
+      output = "subtitle"
+    )
+
+    set.seed(123)
+    fun_sub <- statsExpressions::corr_test(
+      data = dplyr::starwars,
+      x = mass,
+      y = height,
+      conf.level = 0.90,
+      type = "r",
+      output = "subtitle"
+    )$expression[[1]]
+
+    expect_equal(p_sub, fun_sub)
+  }
+)
+

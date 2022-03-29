@@ -186,17 +186,13 @@ ggscatterstats <- function(data,
     label.var <- ensym(label.var)
 
     # select data based on expression
-    if (!quo_is_null(enquo(label.expression))) {
-      label_data <- filter(data, !!enexpr(label.expression))
-    } else {
-      label_data <- data
-    }
+    if (!quo_is_null(enquo(label.expression))) data %<>% filter(!!enexpr(label.expression))
 
     # display points labels using `geom_repel_label`
     plot <- plot +
       exec(
         ggrepel::geom_label_repel,
-        data = label_data,
+        data = data,
         mapping = aes(label = {{ label.var }}),
         min.segment.length = 0,
         position = pos,
