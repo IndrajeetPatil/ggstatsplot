@@ -50,5 +50,5 @@ Titanic_full$Class <-
 dplyr::glimpse(Titanic_full)
 
 # saving the files
-readr::write_csv(x = Titanic_full, path = "data-raw/Titanic_full.csv")
+readr::write_csv(x = Titanic_full, file = "data-raw/Titanic_full.csv")
 save(Titanic_full, file = "data/Titanic_full.rdata")

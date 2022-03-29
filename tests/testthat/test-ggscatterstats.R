@@ -161,16 +161,17 @@ test_that("labeling variables and expressions work as expected", {
     )
   )
 
-  set.seed(123)
-  vdiffr::expect_doppelganger(
-    title = "label variable but no expression",
-    fig = ggscatterstats(
-      data = df,
-      x = sleep_total,
-      y = sleep_cycle,
-      label.expression = NULL,
-      label.var = order,
-      results.subtitle = FALSE
-    )
-  )
+  # TODO: generate snapshot on Windows machine
+  # set.seed(123)
+  # vdiffr::expect_doppelganger(
+  #   title = "label variable but no expression",
+  #   fig = ggscatterstats(
+  #     data = df,
+  #     x = sleep_total,
+  #     y = sleep_cycle,
+  #     label.expression = NULL,
+  #     label.var = order,
+  #     results.subtitle = FALSE
+  #   )
+  # )
 })
