@@ -1,97 +1,47 @@
-
 # output: plot ---------------------------------------------------------------
 
 test_that(
-  desc = "grouped_ggcorrmat plots work",
+  desc = "grouped_ggcorrmat plots are as expected",
   code = {
-    skip_if_not_installed("ggcorrplot")
     skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("ggcorrplot")
 
-
-    # set.seed(123)
-    # vdiffr::expect_doppelganger(
-    #   title = "grouped_ggcorrmat works",
-    #   fig = grouped_ggcorrmat(iris, grouping.var = Species)
-    # )
-
-    # with grouping.var missing ---------------------------------------------
-
-    expect_error(grouped_ggcorrmat(iris))
-
-    # with cor.vars specified -----------------------------------------------
-
-    # creating a smaller dataframe
-    set.seed(123)
-    movies_filtered <- movies_long %>%
-      dplyr::filter(mpaa != "NC-17") %>%
-      dplyr::select(-year) %>%
-      dplyr::sample_frac(size = 0.1)
-
-    # basic
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat works",
+      title = "without NAs",
       fig = grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = mpaa,
-        cor.vars = length:votes
+        iris,
+        grouping.var = Species,
+        cor.vars = Sepal.Length:Petal.Length
       )
     )
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat works - with NAs",
+      title = "with NAs",
       fig = grouped_ggcorrmat(
         data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
         grouping.var = vore,
-        tr = 0.2
-      )
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat works - np",
-      fig = grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = mpaa,
-        matrix.type = "lower",
-        cor.vars = c(length:votes),
-        cor.vars.names = c("w", "x", "y", "z"),
-        type = "np"
-      )
-    )
-
-    # without cor.vars specified -------------------------------------------
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat - entire data",
-      fig = grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = mpaa,
-        ggtheme = ggplot2::theme_dark(),
-        colors = NULL,
-        package = "RColorBrewer",
-        palette = "Paired"
-      )
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "grouped_ggcorrmat works - r",
-      fig = grouped_ggcorrmat(
-        data = movies_filtered,
-        grouping.var = mpaa,
-        type = "r"
       )
     )
   }
 )
 
-# output: stats ---------------------------------------------------------------
+# expected warnings -------------------------------------------
 
 test_that(
-  desc = "grouped_ggcorrmat stats work",
+  desc = "grouped_ggcorrmat produces error when grouping isn't specified",
+  code = {
+    expect_snapshot_error(grouped_ggcorrmat(iris))
+  }
+)
+
+# output: dataframe ---------------------------------------------------------------
+
+test_that(
+  desc = "grouped_ggcorrmat returns expected data frame",
   code = {
     skip_if_not_installed("ggcorrplot")
 
@@ -103,8 +53,7 @@ test_that(
       data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
       grouping.var = vore,
       type = "r",
-      output = "data",
-      tr = 0.2
+      output = "data"
     ))
   }
 )
