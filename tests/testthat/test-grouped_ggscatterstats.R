@@ -1,23 +1,9 @@
-# vdiffr output --------------------------------------------------
-
 test_that(
-  desc = "grouped_ggscatterstats works",
+  desc = "grouped_ggscatterstats plotting works as expected",
   code = {
-
-
-    # expect error if no grouping variable is specified
-    expect_error(
-      grouped_ggscatterstats(
-        data = iris,
-        x = Sepal.Length,
-        y = Petal.Width,
-      )
-    )
-
-    # without any labelling
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "without any labelling",
+      title = "defaults work as expected",
       fig = grouped_ggscatterstats(
         data = iris,
         Sepal.Length,
@@ -26,63 +12,9 @@ test_that(
       )
     )
 
-    # create a smaller dataset
-    set.seed(123)
-    df <- dplyr::sample_frac(movies_long, size = 0.25) %>%
-      dplyr::filter(
-        mpaa %in% c("R", "PG-13"),
-        genre %in% c("Drama", "Comedy")
-      )
-
-    # both unquoted
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "both labelling args unquoted",
-      fig = grouped_ggscatterstats(
-        data = df,
-        x = length,
-        y = rating,
-        label.expression = budget > 150,
-        label.var = title,
-        grouping.var = mpaa,
-        results.subtitle = FALSE
-      )
-    )
-
-    # without point labelling
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "without point labelling",
-      fig = grouped_ggscatterstats(
-        data = df,
-        x = length,
-        y = rating,
-        grouping.var = mpaa,
-        label.expression = "length > 150",
-        results.subtitle = FALSE
-      )
-    )
-
-    # labeling all points (without expression, i.e.)
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "labeling all points",
-      fig = grouped_ggscatterstats(
-        data = dplyr::sample_frac(df, size = 0.1),
-        x = length,
-        y = rating,
-        grouping.var = mpaa,
-        label.var = title,
-        label.expression = NULL,
-        type = "np",
-        results.subtitle = FALSE
-      )
-    )
-
-    # checking if ggplot component addition works
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "aesthetic modification",
+      title = "aesthetic modifications work",
       fig = grouped_ggscatterstats(
         data = ggplot2::msleep,
         x = sleep_total,
@@ -104,7 +36,6 @@ test_that(
   desc = "subtitle output",
   code = {
 
-
     # data
     df <- dplyr::filter(movies_long, genre %in% c("Action Drama"))
 
@@ -113,9 +44,9 @@ test_that(
       data = df,
       x = rating,
       y = length,
+      grouping.var = genre,
       k = 3,
       conf.level = 0.99,
-      grouping.var = genre,
       output = "subtitle"
     )
 
@@ -130,6 +61,19 @@ test_that(
 
     # tests
     expect_equal(length(ls_results), 1L)
-    expect_identical(ls_results$`Action Drama`, basic_results)
+    expect_identical(ls_results$`Action Drama`, basic_results, ignore_attr = TRUE)
+  }
+)
+
+test_that(
+  desc = "grouped_ggscatterstats errors when no grouping is present",
+  code = {
+    expect_snapshot_error(
+      grouped_ggscatterstats(
+        data = iris,
+        x = Sepal.Length,
+        y = Petal.Width,
+      )
+    )
   }
 )
