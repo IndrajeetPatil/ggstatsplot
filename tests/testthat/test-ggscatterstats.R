@@ -180,4 +180,3 @@ test_that(
     expect_equal(p_sub, fun_sub)
   }
 )
-
