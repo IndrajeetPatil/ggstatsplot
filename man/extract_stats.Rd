@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_stats.R
 \name{extract_stats}
 \alias{extract_stats}
-\title{Extracting dataframes with statistical details from \code{{ggstatsplot}}}
+\title{Extracting data frames from \code{{ggstatsplot}} plots}
 \usage{
 extract_stats(p, ...)
 }
@@ -12,20 +12,23 @@ extract_stats(p, ...)
 \item{...}{Ignored}
 }
 \value{
-A list of tibbles containing statistical analysis summaries.
+A list of tibbles containing summaries of various statistical analyses.
 }
 \description{
-Extracting dataframes with statistical details from \code{{ggstatsplot}}
+Extracting data frames from \code{{ggstatsplot}} plots
 }
 \details{
-This is a convenience function to extract dataframes with statistical details
+This is a convenience function to extract data frames with statistical details
 that are used to create expressions displayed in \code{{ggstatsplot}} plots as
-subtitle and/or as caption. Note that all of this analysis is carried out by
-the \code{{statsExpressions}} package.
+subtitle, caption, etc. Note that all of this analysis is carried out by
+the \code{{statsExpressions}} \href{https://indrajeetpatil.github.io/statsExpressions}{package}.
 
-For more details about underlying tests and effect size estimates, see the
-following vignette:
-https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html
+The only exception is the \code{ggcorrmat()} function. But, if a data frame is
+what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
+\code{correlation::correlation()} function which provides tidy data frames by
+default. This also works if the data entered is grouped (\emph{a la}
+\code{dplyr::group_by()}). This is also the function used internally by
+\code{{ggstatsplot}} to extract a data frame used to create a plot.
 }
 \examples{
 \donttest{

@@ -75,7 +75,6 @@ test_that(
     df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
       dplyr::mutate_if(is.factor, droplevels)
 
-
     # should output a list of length 3
     set.seed(123)
     ls_results <- suppressWarnings(grouped_ggpiestats(

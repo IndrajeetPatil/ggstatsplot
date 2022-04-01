@@ -108,12 +108,12 @@ ggpiestats <- function(data,
 
   # y
   if (test == "one.way") y_levels <- 0L
-  if (test == "two.way") {
-    y_levels <- nlevels(data %>% pull({{ y }}))
-    if (y_levels == 1L) bf.message <- FALSE # TODO: one-way table in `BayesFactor`
-  }
+  if (test == "two.way") y_levels <- nlevels(data %>% pull({{ y }}))
 
-  # faceting is happening only if both vars have more than one levels
+  # TODO: one-way table in `BayesFactor`
+  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
+
+  # faceting is possible only if both vars have more than one levels
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
   if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
 
@@ -262,8 +262,6 @@ ggpiestats <- function(data,
 #' grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
 #' }
 #' @export
-
-
 grouped_ggpiestats <- function(data,
                                ...,
                                grouping.var,

@@ -1,19 +1,22 @@
-#' @title Extracting dataframes with statistical details from `{ggstatsplot}`
+#' @title Extracting data frames from `{ggstatsplot}` plots
 #'
 #' @details
 #'
-#' This is a convenience function to extract dataframes with statistical details
+#' This is a convenience function to extract data frames with statistical details
 #' that are used to create expressions displayed in `{ggstatsplot}` plots as
-#' subtitle and/or as caption. Note that all of this analysis is carried out by
-#' the `{statsExpressions}` package.
+#' subtitle, caption, etc. Note that all of this analysis is carried out by
+#' the `{statsExpressions}` [package](https://indrajeetpatil.github.io/statsExpressions).
 #'
-#' For more details about underlying tests and effect size estimates, see the
-#' following vignette:
-#' https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html
+#' The only exception is the `ggcorrmat()` function. But, if a data frame is
+#' what you want, you shouldn't be using `ggcorrmat()` anyway. You can use
+#' `correlation::correlation()` function which provides tidy data frames by
+#' default. This also works if the data entered is grouped (*a la*
+#' `dplyr::group_by()`). This is also the function used internally by
+#' `{ggstatsplot}` to extract a data frame used to create a plot.
 #'
 #' @return
 #'
-#' A list of tibbles containing statistical analysis summaries.
+#' A list of tibbles containing summaries of various statistical analyses.
 #'
 #' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
