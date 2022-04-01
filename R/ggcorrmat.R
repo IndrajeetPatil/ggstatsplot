@@ -73,7 +73,7 @@
 #' )
 #' @export
 
-# defining the function
+
 ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
@@ -119,7 +119,7 @@ ggcorrmat <- function(data,
 
   # creating a dataframe of results
   # styler: off
-  stats_df <- correlation::correlation(
+  mpc_df <- correlation::correlation(
     data             = df,
     rename           = cor.vars.names,
     method           = ifelse(type == "nonparametric", "spearman", "pearson"),
@@ -135,12 +135,12 @@ ggcorrmat <- function(data,
   # styler: on
 
   # type of correlation and if it is a partial correlation
-  r.method.text <- gsub(" correlation", "", unique(stats_df$Method))
+  r.method.text <- gsub(" correlation", "", unique(mpc_df$Method))
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
 
   # early stats return
   if (output != "plot") {
-    return(as_tibble(parameters::standardize_names(stats_df, "broom")))
+    return(as_tibble(parameters::standardize_names(mpc_df, "broom")))
   }
 
   # plot -------------------------------------
@@ -155,17 +155,17 @@ ggcorrmat <- function(data,
   # legend title with information about correlation type and sample
   if (isFALSE(any(is.na(df))) || partial) {
     legend.title <- bquote(atop(
-      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))),
+      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
     # creating legend with sample size info
     legend.title <- bquote(atop(
       atop(
-        atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(stats_df$n_Obs)))),
+        atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
         atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(stats_df$n_Obs))),
-          italic(n)[max] ~ "=" ~ .(.prettyNum(max(stats_df$n_Obs)))
+          italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(mpc_df$n_Obs))),
+          italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
         )
       ),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
@@ -178,8 +178,8 @@ ggcorrmat <- function(data,
   # plotting the correlalogram
   plot <- exec(
     ggcorrplot::ggcorrplot,
-    corr         = as.matrix(select(stats_df, matches("^parameter|^r"))),
-    p.mat        = as.matrix(select(stats_df, matches("^parameter|^p"))),
+    corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
+    p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level    = ifelse(type == "bayes", Inf, sig.level),
     ggtheme      = ggtheme,
     colors       = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
@@ -277,7 +277,7 @@ ggcorrmat <- function(data,
 #' }
 #' @export
 
-# defining the function
+
 grouped_ggcorrmat <- function(data,
                               ...,
                               grouping.var,

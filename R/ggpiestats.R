@@ -51,8 +51,6 @@
 #' ggpiestats(mtcars, x = vs, y = cyl)
 #' }
 #' @export
-
-# defining the function
 ggpiestats <- function(data,
                        x,
                        y = NULL,
@@ -114,7 +112,6 @@ ggpiestats <- function(data,
     y_levels <- nlevels(data %>% pull({{ y }}))
     if (y_levels == 1L) bf.message <- FALSE # TODO: one-way table in `BayesFactor`
   }
-
 
   # faceting is happening only if both vars have more than one levels
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
@@ -266,7 +263,7 @@ ggpiestats <- function(data,
 #' }
 #' @export
 
-# defining the function
+
 grouped_ggpiestats <- function(data,
                                ...,
                                grouping.var,

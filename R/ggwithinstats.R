@@ -57,7 +57,7 @@
 #' }
 #' @export
 
-# defining the function
+
 ggwithinstats <- function(data,
                           x,
                           y,
@@ -344,7 +344,7 @@ ggwithinstats <- function(data,
 #' }
 #' @export
 
-# defining the function
+
 grouped_ggwithinstats <- function(data,
                                   ...,
                                   grouping.var,

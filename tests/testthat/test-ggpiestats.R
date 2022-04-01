@@ -25,13 +25,13 @@ test_that(
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking one-way table - without NA",
-      fig = ggpiestats(data = mtcars, x = cyl)
+      fig = ggpiestats(mtcars, cyl)
     )
 
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking one-way table - with NA",
-      fig = ggpiestats(data = ggplot2::msleep, x = vore)
+      fig = ggpiestats(ggplot2::msleep, vore)
     )
 
     set.seed(123)
@@ -49,10 +49,7 @@ test_that(
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking paired two-way table - without NA",
-      fig = ggpiestats(
-        data = survey_data,
-        x = `1st survey`,
-        y = `2nd survey`,
+      fig = ggpiestats(survey_data, `1st survey`, `2nd survey`,
         counts = Counts,
         paired = TRUE
       )
@@ -169,56 +166,51 @@ test_that(
   }
 )
 
+# edge cases ---------------------------------------------------------
+
+test_that(
+  desc = "edge cases",
+  code = {
+    # dropped level dataset
+    mtcars_small <- dplyr::filter(mtcars, am == "0")
+
+    # TODO: should one-way table results be shown in the subtitle?
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "when levels are dropped, the function still works",
+      fig = ggpiestats(mtcars_small, cyl, am)
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "when levels are dropped, proportion tests fail but function works",
+      fig = ggpiestats(mtcars_small, am, cyl)
+    )
+  }
+)
+
 # expression output --------------------------------------------------
 
 test_that(
   desc = "expression output",
   code = {
     set.seed(123)
-    df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(is.factor, droplevels)
-
-    # subtitle output
-    set.seed(123)
     p_sub <- ggpiestats(
-      data = df,
-      x = race,
-      y = marital,
+      data = ggplot2::msleep,
+      x = conservation,
+      y = vore,
       k = 4,
       output = "subtitle"
     )
 
     set.seed(123)
-    stats_output <- statsExpressions::contingency_table(
-      data = df,
-      x = race,
-      y = marital,
+    stats_output <- suppressWarnings(statsExpressions::contingency_table(
+      data = ggplot2::msleep,
+      x = conservation,
+      y = vore,
       k = 4
-    )$expression[[1]]
+    ))$expression[[1]]
 
-    # caption output
-    set.seed(123)
-    p_cap <- ggpiestats(
-      data = df,
-      x = race,
-      y = marital,
-      type = "bayes",
-      k = 4,
-      output = "subtitle"
-    )
-
-    # caption output
-    set.seed(123)
-    p_cap_exp <- statsExpressions::contingency_table(
-      data = df,
-      x = race,
-      y = marital,
-      type = "bayes",
-      k = 4
-    )$expression[[1]]
-
-    # tests
     expect_equal(p_sub, stats_output)
-    expect_equal(p_cap, p_cap_exp)
   }
 )

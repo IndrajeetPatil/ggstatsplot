@@ -27,7 +27,7 @@
 #' }
 #' @export
 
-# defining the function
+
 ggbarstats <- function(data,
                        x,
                        y,
@@ -229,7 +229,7 @@ ggbarstats <- function(data,
 #' }
 #' @export
 
-# defining the function
+
 grouped_ggbarstats <- function(data,
                                ...,
                                grouping.var,

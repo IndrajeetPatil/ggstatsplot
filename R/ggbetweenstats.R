@@ -145,7 +145,7 @@
 #' }
 #' @export
 
-# defining the function
+
 ggbetweenstats <- function(data,
                            x,
                            y,
@@ -490,7 +490,7 @@ ggbetweenstats <- function(data,
 #' }
 #' @export
 
-# defining the function
+
 grouped_ggbetweenstats <- function(data,
                                    ...,
                                    grouping.var,

@@ -233,7 +233,7 @@ gghistostats <- function(data,
 #' @export
 #'
 
-# defining the function
+
 grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,

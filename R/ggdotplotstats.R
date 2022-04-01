@@ -213,7 +213,7 @@ ggdotplotstats <- function(data,
 #' }
 #' @export
 
-# defining the function
+
 grouped_ggdotplotstats <- function(data,
                                    ...,
                                    grouping.var,

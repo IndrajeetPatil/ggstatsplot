@@ -73,7 +73,7 @@
 #' }
 #' @export
 
-# defining the function
+
 ggscatterstats <- function(data,
                            x,
                            y,
@@ -293,7 +293,7 @@ ggscatterstats <- function(data,
 #' )
 #' @export
 
-# defining the function
+
 grouped_ggscatterstats <- function(data,
                                    ...,
                                    grouping.var,
