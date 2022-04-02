@@ -128,7 +128,7 @@ test_that(
       test.value = 0.25
     )$expression[[1]]
 
-    # tests
+
     expect_equal(p_sub, sub, ignore_attr = TRUE)
   }
 )

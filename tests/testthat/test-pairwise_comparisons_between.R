@@ -126,7 +126,7 @@ test_that(
     ) %>%
       dplyr::filter(group2 == "omni", group1 == "carni")
 
-    # tests
+
     expect_equal(df1$statistic, df2$statistic, tolerance = 0.01)
     expect_snapshot(df2$label)
   }

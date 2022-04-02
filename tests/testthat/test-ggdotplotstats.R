@@ -140,7 +140,7 @@ test_that(
       output = "subtitle"
     ))
 
-    # tests
+
     set.seed(123)
     expect_equal(
       p_sub,

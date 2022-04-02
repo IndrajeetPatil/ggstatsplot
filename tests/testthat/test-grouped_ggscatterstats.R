@@ -64,7 +64,7 @@ test_that(
       conf.level = 0.99
     )$expression[[1]]
 
-    # tests
+
     expect_equal(length(ls_results), 1L)
     expect_identical(ls_results$`Action Drama`, basic_results, ignore_attr = TRUE)
   }

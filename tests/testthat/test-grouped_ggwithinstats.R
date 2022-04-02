@@ -99,7 +99,7 @@ test_that(
       bf.message = FALSE
     )
 
-    # tests
+
     expect_equal(length(ls_results), 1L)
     expect_identical(ls_results$`North America`, basic_results)
   }

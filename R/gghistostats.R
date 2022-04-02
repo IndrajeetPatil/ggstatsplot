@@ -225,7 +225,7 @@ gghistostats <- function(data,
 #'   test.value      = 5,
 #'   grouping.var    = Species,
 #'   plotgrid.args   = list(nrow = 1),
-#'   annotation.args = list(tag_levels = "i"),
+#'   annotation.args = list(tag_levels = "i")
 #' )
 #' }
 #' @export

@@ -79,7 +79,7 @@ test_that(
       output = "subtitle"
     )
 
-    # tests
+
     expect_equal(length(ls_results), 1L)
     expect_identical(ls_results$`4`, basic_results)
   }

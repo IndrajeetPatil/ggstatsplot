@@ -172,7 +172,7 @@ test_that(
     # tidy dataframe from the function
     tidy_df2 <- p$plot_env$tidy_df
 
-    # tests
+
     expect_equal(pb$data[[2]]$x, tidy_df2$estimate, tolerance = 0.001)
     expect_equal(pb$data[[2]]$xmin, tidy_df2$conf.low, tolerance = 0.001)
     expect_equal(pb$data[[2]]$xmax, tidy_df2$conf.high, tolerance = 0.001)
