@@ -56,8 +56,6 @@
 #' }
 #' }
 #' @export
-
-
 ggwithinstats <- function(data,
                           x,
                           y,
@@ -343,8 +341,6 @@ ggwithinstats <- function(data,
 #' }
 #' }
 #' @export
-
-
 grouped_ggwithinstats <- function(data,
                                   ...,
                                   grouping.var,

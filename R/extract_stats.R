@@ -36,12 +36,8 @@
 #' }
 #' }
 #' @export
-
 extract_stats <- function(p, ...) {
-  # works only with ggplot objects
-  if (!inherits(p, "gg")) stop("Input must be a 'ggplot' object.", call. = FALSE)
-
-  # the exact details will depend on the function
+  # the exact details included will depend on the function
   list(
     subtitle_data             = tryCatch(p$plot_env$subtitle_df, error = function(e) NULL),
     caption_data              = tryCatch(p$plot_env$caption_df, error = function(e) NULL),
@@ -52,7 +48,6 @@ extract_stats <- function(p, ...) {
 }
 
 #' @noRd
-
 eval_f <- function(.f, ...) {
   tryCatch(
     suppressWarnings(suppressMessages(exec(.f, ...))),

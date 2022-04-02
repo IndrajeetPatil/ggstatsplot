@@ -27,7 +27,5 @@ test_that(
     set.seed(123)
     p6 <- ggbarstats(mtcars, cyl, am)
     expect_snapshot(length(extract_stats(p6)))
-
-    expect_error(extract_stats(iris))
   }
 )

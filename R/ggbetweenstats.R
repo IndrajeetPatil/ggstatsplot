@@ -144,8 +144,6 @@
 #' }
 #' }
 #' @export
-
-
 ggbetweenstats <- function(data,
                            x,
                            y,
@@ -489,8 +487,6 @@ ggbetweenstats <- function(data,
 #' }
 #' }
 #' @export
-
-
 grouped_ggbetweenstats <- function(data,
                                    ...,
                                    grouping.var,

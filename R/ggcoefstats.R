@@ -189,7 +189,7 @@ ggcoefstats <- function(x,
 
   # check for the one necessary column
   if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
-    stop("The tidy dataframe *must* contain 'estimate' column.", call. = FALSE)
+    rlang::abort("The tidy dataframe *must* contain 'estimate' column.")
   }
 
   # create a new term column if it's not present

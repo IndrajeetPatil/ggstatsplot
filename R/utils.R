@@ -72,9 +72,9 @@ palette_message <- function(package, palette, min_length) {
 
   # inform the user
   if (!pl_message) {
-    message(cat(
-      "Warning: Number of labels is greater than default palette color count.\n",
-      "Try using another color `palette` (and/or `package`).\n"
+    rlang::warn(paste0(
+      "Number of labels is greater than default palette color count.",
+      "Select another color `palette` (and/or `package`)."
     ))
   }
 
