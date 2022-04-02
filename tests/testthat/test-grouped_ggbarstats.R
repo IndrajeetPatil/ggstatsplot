@@ -1,90 +1,69 @@
 test_that(
+  desc = "grouped_ggbarstats produces error when grouping variable not provided",
+  code = {
+    expect_snapshot_error(grouped_ggbarstats(mtcars, x = cyl, y = am))
+  }
+)
+
+test_that(
   desc = "grouped_ggbarstats works",
   code = {
-
-
-    # --------------------- without counts -----------------------------------
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
 
     # creating a smaller dataframe
-    mpg_short <- dplyr::filter(ggplot2::mpg, drv %in% c("4", "f"))
+    mpg_short <- ggplot2::mpg %>%
+      dplyr::filter(
+        drv %in% c("4", "f"),
+        class %in% c("suv", "midsize"),
+        trans %in% c("auto(l4)", "auto(l5)")
+      )
 
-    ## expecting error message
-    expect_error(grouped_ggbarstats(
-      data = mpg_short,
-      x = cyl,
-      grouping.var = class
-    ))
-
-    expect_error(grouped_ggbarstats(
-      data = mpg_short,
-      x = cyl
-    ))
-
-    expect_s3_class(
-      grouped_ggbarstats(
+    # when arguments are entered as bare expressions
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggbarstats with two-way table",
+      fig = grouped_ggbarstats(
         data = mpg_short,
         x = cyl,
         y = class,
-        grouping.var = "class"
-      ),
-      "ggplot"
+        grouping.var = drv,
+        label.repel = TRUE
+      )
+    )
+  }
+)
+
+# edge cases --------------------
+
+test_that(
+  desc = "edge case behavior",
+  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
+    df <- data.frame(
+      dataset = c("a", "b", "c", "c", "c", "c"),
+      measurement = c("old", "old", "old", "old", "new", "new"),
+      flag = c("no", "no", "yes", "no", "yes", "no"),
+      count = c(6, 8, 8, 62, 6, 33)
     )
 
-    # when arguments are entered as bare expressions
     set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = mpg_short,
-        x = cyl,
-        y = class,
-        grouping.var = drv
+    vdiffr::expect_doppelganger(
+      title = "common legend when levels are dropped",
+      fig = grouped_ggbarstats(
+        data = df,
+        x = measurement,
+        y = flag,
+        grouping.var = dataset,
+        counts = count,
+        results.subtitle = FALSE,
+        proportion.test = FALSE
       )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = mpg_short,
-        x = cyl,
-        y = class,
-        grouping.var = drv
-      )
-    ),
-    what = "gg"
-    ))
-
-    # --------------------- with counts -----------------------------------
-
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = as.data.frame(Titanic),
-        grouping.var = Class,
-        x = Sex,
-        y = Survived,
-        counts = Freq
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = as.data.frame(Titanic),
-        grouping.var = Class,
-        x = Sex,
-        y = Survived,
-        counts = Freq
-      )
-    ),
-    what = "gg"
-    ))
+    )
   }
 )
 

@@ -113,20 +113,6 @@ test_that("plots are rendered correctly", {
     )
   }
 
-  ## ----ggbarstats-----------------------------------
-
-  set.seed(123)
-  vdiffr::expect_doppelganger(
-    title = "ggbarstats works",
-    fig = ggbarstats(ggplot2::mpg, fl, class)
-  )
-
-  set.seed(123)
-  vdiffr::expect_doppelganger(
-    title = "grouped_ggbarstats works",
-    fig = grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)
-  )
-
   ## ----ggcoefstats----------------------------------
 
   set.seed(123)

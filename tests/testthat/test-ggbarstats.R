@@ -1,118 +1,187 @@
-# contingency tab (with counts) ----------------------------------------------
+# data for paired tests
+set.seed(123)
+survey_data <- dplyr::tibble(
+  `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
+  `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
+  `Counts` = c(794L, 150L, 86L, 570L)
+)
+
+survey_data_NA <- dplyr::tibble(
+  `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
+  `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
+  `Counts` = c(794L, 150L, NA_integer_, 570L)
+)
+
+
+# checking default outputs -----------------------------------------
 
 test_that(
-  desc = "checking labels with counts",
+  desc = "checking default outputs",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
 
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "checking unpaired two-way table - without NA",
+      fig = ggbarstats(mtcars, am, cyl)
+    )
 
-    # y variable is not optional for `ggbarstats`
-    expect_error(
-      ggbarstats(
-        data = as.data.frame(Titanic),
-        x = Sex
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "checking unpaired two-way table - with NA",
+      fig = ggbarstats(ggplot2::msleep, conservation, vore)
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "checking paired two-way table - without NA",
+      fig = ggbarstats(survey_data, `1st survey`, `2nd survey`,
+                       counts = Counts,
+                       paired = TRUE
       )
     )
 
-    # plot
     set.seed(123)
-    p <- ggbarstats(
-      data = as.data.frame(Titanic),
-      x = Sex,
-      y = Survived,
-      counts = Freq,
-      perc.k = 2,
-      xlab = "Passenger sex",
-      ylab = "proportion",
-      label.separator = "\n",
-      bf.message = FALSE
+    vdiffr::expect_doppelganger(
+      title = "checking paired two-way table - with NA",
+      fig = ggbarstats(
+        data = survey_data_NA,
+        x = `1st survey`,
+        y = `2nd survey`,
+        counts = Counts,
+        paired = TRUE
+      )
+    )
+  }
+)
+
+# changing labels and aesthetics -------------------------------------------
+
+test_that(
+  desc = "changing labels and aesthetics",
+  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "checking percentage labels",
+      fig = ggbarstats(
+        data = mtcars, x = cyl, y = am, label = "percentage",
+        results.subtitle = FALSE
+      )
     )
 
-    # build plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::contingency_table(
-      data = as.data.frame(Titanic),
-      x = Sex,
-      y = Survived,
-      counts = Freq
-    )$expression[[1]]
+    vdiffr::expect_doppelganger(
+      title = "checking count labels",
+      fig = ggbarstats(
+        data = mtcars, x = cyl, y = am, label = "counts",
+        results.subtitle = FALSE
+      )
+    )
 
-    # check data
     set.seed(123)
-    expect_snapshot(pb$data)
-    expect_snapshot(within(pb$plot$labels, rm(subtitle)))
+    vdiffr::expect_doppelganger(
+      title = "checking percentage and count labels",
+      fig = ggbarstats(
+        data = mtcars, x = cyl, y = am, label = "both",
+        results.subtitle = FALSE
+      )
+    )
 
-    # checking plot labels
-    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "changing aesthetics works",
+      fig = suppressWarnings(
+        ggbarstats(
+          data = mtcars,
+          x = am,
+          y = cyl,
+          perc.k = 2L,
+          title = "mtcars dataset",
+          package = "wesanderson",
+          palette = "Royal2",
+          ggtheme = ggplot2::theme_bw(),
+          label = "counts",
+          legend.title = "transmission",
+          results.subtitle = FALSE
+        )
+      )
+    )
+
+    # data
+    df <- structure(list(
+      epoch = structure(
+        c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L),
+        .Label = c("Before", "After"),
+        class = "factor"
+      ),
+      mode = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
+                       .Label = c("A", "P", "C", "T"), class = "factor"
+      ),
+      counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
+      perc = c(
+        65.1192181312663,
+        88.9586317297161,
+        16.1681691802174,
+        8.26522874715646,
+        3.50282247872609,
+        1.94624652455978,
+        15.2097902097902,
+        0.829892998567697
+      ),
+      label = c(
+        "65%", "89%", "16%", "8%",
+        "4%", "2%", "15%", "1%"
+      )
+    ),
+    row.names = c(NA, -8L),
+    class = c("tbl_df", "tbl", "data.frame")
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "label repelling works",
+      fig = ggbarstats(
+        df,
+        mode,
+        epoch,
+        counts = counts,
+        label.repel = TRUE,
+        results.subtitle = FALSE
+      )
+    )
   }
 )
 
-# aesthetic modifications --------------------------------------------------
+# edge cases ---------------------------------------------------------
 
 test_that(
-  desc = "aesthetic modifications",
+  desc = "edge cases",
   code = {
-
-
-    # plot
-    set.seed(123)
-    p <- suppressWarnings(ggbarstats(
-      data = mtcars,
-      x = vs,
-      y = cyl,
-      label = "both",
-      package = "wesanderson",
-      palette = "Royal2",
-      legend.title = "Engine"
-    ))
-
-    p1 <- suppressWarnings(ggbarstats(
-      data = mtcars,
-      x = vs,
-      y = cyl,
-      label = "counts",
-      bf.message = FALSE
-    ))
-
-    # build plot
-    pb <- ggplot2::ggplot_build(p)
-    pb1 <- ggplot2::ggplot_build(p1)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(pb$data, pb1$data))
-
-    # checking layered data
-    expect_equal(pb$plot$guides$fill$title, "Engine")
-  }
-)
-
-# dropped factor levels --------------------------------------------------
-
-test_that(
-  desc = "dropped factor levels",
-  code = {
-
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
 
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
+    # TODO: should one-way table results be shown in the subtitle?
     set.seed(123)
-    p <- ggbarstats(
-      data = mtcars_small,
-      x = cyl,
-      y = am,
-      results.subtitle = FALSE
+    vdiffr::expect_doppelganger(
+      title = "when levels are dropped, the function still works",
+      fig = ggbarstats(mtcars_small, cyl, am)
     )
 
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
     set.seed(123)
-    expect_snapshot(pb$data)
-    expect_snapshot(pb$plot$labels)
+    vdiffr::expect_doppelganger(
+      title = "when levels are dropped, proportion tests fail but function works",
+      fig = ggbarstats(mtcars_small, am, cyl)
+    )
   }
 )
 
@@ -121,47 +190,23 @@ test_that(
 test_that(
   desc = "expression output",
   code = {
-    # subtitle output
     set.seed(123)
     p_sub <- ggbarstats(
-      data = mtcars,
-      x = am,
-      y = vs,
-      output = "subtitle",
-      k = 4
+      data = ggplot2::msleep,
+      x = conservation,
+      y = vore,
+      k = 4,
+      output = "subtitle"
     )
 
     set.seed(123)
-    stats_output <- statsExpressions::contingency_table(
-      data = mtcars,
-      x = am,
-      y = vs,
+    stats_output <- suppressWarnings(statsExpressions::contingency_table(
+      data = ggplot2::msleep,
+      x = conservation,
+      y = vore,
       k = 4
-    )$expression[[1]]
+    ))$expression[[1]]
 
-    # caption output
-    set.seed(123)
-    p_cap <- ggbarstats(
-      data = mtcars,
-      x = am,
-      y = vs,
-      type = "bayes",
-      output = "subtitle",
-      k = 4
-    )
-
-    # caption output
-    set.seed(123)
-    p_cap_exp <- statsExpressions::contingency_table(
-      data = mtcars,
-      x = am,
-      y = vs,
-      type = "bayes",
-      k = 4
-    )$expression[[1]]
-
-    # tests
     expect_equal(p_sub, stats_output)
-    expect_equal(p_cap, p_cap_exp)
   }
 )

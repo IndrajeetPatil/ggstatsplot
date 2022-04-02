@@ -46,7 +46,6 @@
 #' @inheritParams ggcorrplot::ggcorrplot
 #' @inheritParams ggscatterstats
 #'
-#' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
 #' @importFrom correlation correlation
 #'
@@ -72,8 +71,6 @@
 #'   output = "dataframe"
 #' )
 #' @export
-
-
 ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
@@ -118,7 +115,6 @@ ggcorrmat <- function(data,
   type <- stats_type_switch(type)
 
   # creating a dataframe of results
-  # styler: off
   mpc_df <- correlation::correlation(
     data             = df,
     rename           = cor.vars.names,
@@ -132,7 +128,6 @@ ggcorrmat <- function(data,
     partial_bayesian = ifelse(type == "bayes" && partial, TRUE, FALSE),
     winsorize        = ifelse(type == "robust", tr, FALSE)
   )
-  # styler: on
 
   # type of correlation and if it is a partial correlation
   r.method.text <- gsub(" correlation", "", unique(mpc_df$Method))
@@ -276,8 +271,6 @@ ggcorrmat <- function(data,
 #' )
 #' }
 #' @export
-
-
 grouped_ggcorrmat <- function(data,
                               ...,
                               grouping.var,
