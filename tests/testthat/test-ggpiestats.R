@@ -74,6 +74,10 @@ test_that(
 test_that(
   desc = "changing labels and aesthetics",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking percentage labels",
@@ -171,6 +175,10 @@ test_that(
 test_that(
   desc = "edge cases",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 

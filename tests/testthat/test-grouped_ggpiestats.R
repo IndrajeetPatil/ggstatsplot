@@ -8,6 +8,10 @@ test_that(
 test_that(
   desc = "grouped_ggpiestats works",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "grouped_ggpiestats with one-way table",
@@ -46,6 +50,10 @@ test_that(
 test_that(
   desc = "edge case behavior",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
     df <- data.frame(
       dataset = c("a", "b", "c", "c", "c", "c"),
       measurement = c("old", "old", "old", "old", "new", "new"),
