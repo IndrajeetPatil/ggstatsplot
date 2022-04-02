@@ -60,11 +60,11 @@ test_that(
 # aesthetic modifications work --------------------------------------
 
 test_that(
-  desc = " aesthetic modifications work",
+  desc = "aesthetic modifications work",
   code = {
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "bayes - with NA",
+      title = "aesthetic modifications work",
       fig = gghistostats(
         data = dplyr::starwars,
         x = height,
@@ -82,7 +82,7 @@ test_that(
   }
 )
 
-# checking if normal curve works -------------------------------------
+# normal curve works -------------------------------------
 
 test_that(
   desc = "checking if normal curve work",
