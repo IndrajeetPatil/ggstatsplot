@@ -12,11 +12,11 @@ df_meta <- structure(
 
 test_that("default plots are rendered correctly for each type of statistic", {
   skip_if_not_installed("vdiffr")
+  skip_if(getRversion() < "4.1")
+  skip_if(getRversion() >= "4.2")
   skip_if_not_installed("survival")
   skip_if_not_installed("metaBMA")
   skip_if_not_installed("metafor")
-  skip_if(getRversion() < "4.1")
-  skip_if(getRversion() >= "4.2")
 
   library(survival)
 
@@ -132,7 +132,7 @@ test_that(
     options(tibble.width = Inf)
 
     set.seed(123)
-    mod <- stats::lm(formula = Sepal.Length ~ Species, data = iris)
+    mod <- stats::lm(wt ~ mpg, mtcars)
 
     set.seed(123)
     tidy_df <- ggcoefstats(mod, output = "tidy")
