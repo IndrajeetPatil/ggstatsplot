@@ -46,7 +46,6 @@ Imports:
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.3),
-    forcats,
     gapminder,
     ggcorrplot,
     gginnards,

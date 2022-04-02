@@ -230,9 +230,9 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
-  year: '2022'
   url: https://easystats.github.io/insight/
   version: '>= 0.17.0'
+  year: '2022'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -270,9 +270,9 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
-  year: '2022'
-  url: https://CRAN.R-project.org/package=parameters
+  url: https://easystats.github.io/parameters/
   version: '>= 0.17.0'
+  year: '2022'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -436,16 +436,6 @@ references:
   year: '2022'
   url: https://CRAN.R-project.org/package=BayesFactor
   version: '>= 0.9.12-4.3'
-- type: software
-  title: forcats
-  abstract: 'forcats: Tools for Working with Categorical Variables (Factors)'
-  notes: Suggests
-  authors:
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@rstudio.com
-  year: '2022'
-  url: https://CRAN.R-project.org/package=forcats
 - type: software
   title: gapminder
   abstract: 'gapminder: Data from Gapminder'
@@ -647,7 +637,7 @@ references:
     email: hadley@rstudio.com
   year: '2022'
   url: https://CRAN.R-project.org/package=testthat
-  version: '>= 3.1.0'
+  version: '>= 3.1.3'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'

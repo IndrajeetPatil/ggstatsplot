@@ -88,36 +88,23 @@ test_that(
   }
 )
 
-# subtitle output --------------------------------------------------
+# expression output --------------------
 
 test_that(
-  desc = "subtitle output",
+  desc = "expression output is as expected",
   code = {
     set.seed(123)
-    df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(., is.factor, droplevels)
-
-
-    # should output a list of length 3
-    set.seed(123)
-    ls_results <- suppressWarnings(grouped_ggbarstats(
-      data = df,
-      x = relig,
-      y = marital,
-      grouping.var = race,
+    grouped_expr <- grouped_ggbarstats(
+      mtcars,
+      grouping.var = am,
+      x = cyl,
+      y = vs,
       output = "subtitle"
-    ))
+    )
 
     set.seed(123)
-    sexpr_results <-
-      suppressWarnings(statsExpressions::contingency_table(
-        data = dplyr::filter(df, race == "Other") %>%
-          dplyr::mutate_if(., is.factor, droplevels),
-        x = relig,
-        y = marital
-      )$expression[[1]])
+    base_expr <- ggbarstats(dplyr::filter(mtcars, am == "0"), cyl, vs, output = "subtitle")
 
-    # checking subtitle
-    expect_equal(ls_results$Other, sexpr_results)
+    expect_equal(grouped_expr$`0`, base_expr)
   }
 )

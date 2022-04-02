@@ -93,40 +93,23 @@ test_that(
   }
 )
 
-
-# subtitle output --------------------------------------------------
+# expression output --------------------
 
 test_that(
-  desc = "subtitle output",
+  desc = "expression output is as expected",
   code = {
     set.seed(123)
-    df <- dplyr::sample_frac(forcats::gss_cat, 0.25) %>%
-      dplyr::filter(
-        marital %in% c("Never married"),
-        race %in% c("White", "Black")
-      )
-
-    set.seed(123)
-    ls_results <- grouped_ggbetweenstats(
-      data = df,
-      x = race,
-      y = tvhours,
-      grouping.var = marital,
-      output = "subtitle",
-      bf.message = FALSE,
-      k = 4
+    grouped_expr <- grouped_ggbetweenstats(
+      mtcars,
+      grouping.var = am,
+      x = vs,
+      y = wt,
+      output = "subtitle"
     )
 
     set.seed(123)
-    basic_results <- ggbetweenstats(
-      data = df,
-      x = race,
-      y = tvhours,
-      output = "subtitle",
-      bf.message = FALSE,
-      k = 4
-    )
-    # tests
-    expect_equal(ls_results$`Never married`, basic_results)
+    base_expr <- ggbetweenstats(dplyr::filter(mtcars, am == "0"), vs, wt, output = "subtitle")
+
+    expect_equal(grouped_expr$`0`, base_expr)
   }
 )

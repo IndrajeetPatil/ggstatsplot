@@ -124,70 +124,11 @@ test_that(
   }
 )
 
-# messing with factors --------------------------------------------------
-
-test_that(
-  desc = "messing with factors",
-  code = {
-
-
-    # creating a new label for the dataset
-    df_msleep <- ggplot2::msleep
-
-    # leaving out a level
-    df_msleep %<>% dplyr::filter(vore != "omni")
-
-    # reordering factor levels
-    df_msleep %<>% dplyr::mutate(vore = forcats::fct_relevel(vore, "herbi", "insecti", "carni"))
-
-    # plot with original data
-    p1 <- ggdotplotstats(
-      data = df_msleep,
-      y = vore,
-      x = brainwt,
-      results.subtitle = FALSE
-    )
-
-    # plot with modified data
-    p2 <- ggdotplotstats(
-      data = dplyr::filter(ggplot2::msleep, vore != "omni"),
-      y = vore,
-      x = brainwt,
-      results.subtitle = FALSE
-    )
-
-    # build those plots
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-
-    # check all data
-    expect_snapshot(pb1$data)
-
-    # tests
-    expect_equal(
-      levels(pb1$plot$data$vore),
-      c("herbi", "insecti", "carni")
-    )
-    expect_equal(
-      levels(pb2$plot$data$vore),
-      c("carni", "herbi", "insecti")
-    )
-    expect_equal(
-      dplyr::select(pb1$plot$data, -vore),
-      dplyr::select(pb2$plot$data, -vore)
-    )
-    expect_equal(pb1$data[[1]], pb2$data[[1]])
-    expect_equal(pb1$data[[2]], pb2$data[[2]])
-  }
-)
-
 # subtitle output -------------------------------------------------------
 
 test_that(
   desc = "subtitle output",
   code = {
-
-
     # should output a list of length 3
     set.seed(123)
     p_sub <- suppressWarnings(ggdotplotstats(

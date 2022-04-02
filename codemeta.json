@@ -76,18 +76,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "forcats",
-      "name": "forcats",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=forcats"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "gapminder",
       "name": "gapminder",
       "provider": {
@@ -258,7 +246,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.0",
+      "version": ">= 3.1.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -506,7 +494,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "6734.624KB",
+  "fileSize": "7814.266KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

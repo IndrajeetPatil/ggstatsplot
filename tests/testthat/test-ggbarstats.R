@@ -121,34 +121,30 @@ test_that(
 test_that(
   desc = "expression output",
   code = {
-    set.seed(123)
-    df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(is.factor, droplevels)
-
     # subtitle output
     set.seed(123)
     p_sub <- ggbarstats(
-      data = df,
-      x = race,
-      y = marital,
+      data = mtcars,
+      x = am,
+      y = vs,
       output = "subtitle",
       k = 4
     )
 
     set.seed(123)
     stats_output <- statsExpressions::contingency_table(
-      data = df,
-      x = race,
-      y = marital,
+      data = mtcars,
+      x = am,
+      y = vs,
       k = 4
     )$expression[[1]]
 
     # caption output
     set.seed(123)
     p_cap <- ggbarstats(
-      data = df,
-      x = race,
-      y = marital,
+      data = mtcars,
+      x = am,
+      y = vs,
       type = "bayes",
       output = "subtitle",
       k = 4
@@ -157,9 +153,9 @@ test_that(
     # caption output
     set.seed(123)
     p_cap_exp <- statsExpressions::contingency_table(
-      data = df,
-      x = race,
-      y = marital,
+      data = mtcars,
+      x = am,
+      y = vs,
       type = "bayes",
       k = 4
     )$expression[[1]]
