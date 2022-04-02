@@ -275,6 +275,7 @@ test_that(
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "p",
         results.subtitle = FALSE,
+        bf.message = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
         caption = "Dataset: Bugs",
