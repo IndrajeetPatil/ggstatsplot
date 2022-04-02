@@ -3,8 +3,9 @@
 test_that(
   desc = "check mcp displays - parametric - non-significant",
   code = {
-    # creating the plot
-    set.seed(123)
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
     skip_if_not_installed("PMCMRplus")
 
     p <- ggbetweenstats(

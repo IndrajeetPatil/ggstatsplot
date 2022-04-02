@@ -152,7 +152,7 @@ test_that(
         epoch,
         counts = counts,
         label.repel = TRUE,
-        results.subtitle = FALSE
+        type = "bayes"
       )
     )
   }
