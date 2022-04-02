@@ -296,7 +296,6 @@ if (require("afex")) {
       # build plot
       pb <- ggplot2::ggplot_build(p)
 
-      # test
       expect_snapshot(pb$plot$labels)
     }
   )

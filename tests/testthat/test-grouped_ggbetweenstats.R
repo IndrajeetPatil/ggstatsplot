@@ -1,9 +1,10 @@
 # outlier labeling works --------------------------------------------------
 
 test_that(
-  desc = "grouped_ggbetweenstats works - vdiffr",
+  desc = "grouped_ggbetweenstats defaults",
   code = {
-
+    # expect error when no grouping.var is specified
+    expect_snapshot_error(grouped_ggbetweenstats(dat, x = genre, y = rating))
 
     # creating a smaller dataframe
     set.seed(123)
@@ -13,77 +14,14 @@ test_that(
         genre %in% c("Drama", "Comedy")
       )
 
-    # expect error when no grouping.var is specified
-    expect_error(
-      grouped_ggbetweenstats(
-        data = dat,
-        x = genre,
-        y = rating
-      )
-    )
-
-    # outlier tagging is not required
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "no outlier tagging",
-      fig = grouped_ggbetweenstats(
-        data = dat,
-        x = genre,
-        y = rating,
-        results.subtitle = FALSE,
-        grouping.var = mpaa,
-        outlier.tagging = FALSE
-      )
-    )
-
-    # `outlier.label` is not specified
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "outlier.label not specified",
+      title = "default plot as expected",
       fig = grouped_ggbetweenstats(
         data = dat,
         x = genre,
         y = rating,
         grouping.var = mpaa,
-        output = "plot",
-        ggtheme = ggplot2::theme_linedraw(),
-        results.subtitle = FALSE,
-        outlier.tagging = TRUE
-      )
-    )
-
-    # `outlier.label` is factor
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "outlier.label is factor",
-      fig = grouped_ggbetweenstats(
-        data = dat,
-        x = genre,
-        y = rating,
-        grouping.var = mpaa,
-        type = "np",
-        palette = "default_jama",
-        package = "ggsci",
-        outlier.tagging = TRUE,
-        results.subtitle = FALSE,
-        outlier.label = title
-      )
-    )
-
-    # `outlier.label` is character
-    set.seed(123)
-    dat$title <- as.character(dat$title)
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "outlier.label is character",
-      fig = grouped_ggbetweenstats(
-        data = dat,
-        x = genre,
-        y = rating,
-        grouping.var = mpaa,
-        type = "r",
-        results.subtitle = FALSE,
         outlier.tagging = TRUE,
         outlier.label = title,
         outlier.coef = 5,

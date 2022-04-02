@@ -1,180 +1,99 @@
 # checking labels and data from plot -------------------------------------
 
 test_that(
-  desc = "checking labels and data from plot",
+  desc = "plotting features work as expected",
   code = {
-    skip_if(getRversion() < "4.0")
-    skip_if_not_installed("PMCMRplus")
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
 
-    # creating the plot
     set.seed(123)
-    p <- ggbetweenstats(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      title = "mammalian sleep",
-      caption = "From ggplot2 package",
-      xlab = "vore",
-      ylab = "brain weight",
-      ggsignif.args = list(textsize = 6, tip_length = 0.01),
-      outlier.tagging = TRUE,
-      outlier.label = name,
-      outlier.label.args = list(color = "darkgreen"),
-      conf.level = 0.99,
-      k = 5
-    )
-
-    # subtitle
-    set.seed(123)
-    p_subtitle <- statsExpressions::oneway_anova(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      k = 5,
-      conf.level = 0.99
-    )$expression[[1]]
-
-    # plot build
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(pb$data[[1]], pb$data[[2]], pb$data[[4]], pb$data[[5]]))
-    expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
-
-    # checking x-axis sample size labels
-    expect_equal(
-      ggplot2::layer_scales(p)$x$labels,
-      c(
-        "carni\n(n = 9)",
-        "herbi\n(n = 20)",
-        "insecti\n(n = 5)",
-        "omni\n(n = 17)"
+    vdiffr::expect_doppelganger(
+      title = "outlier tagging works",
+      fig = ggbetweenstats(
+        data = ggplot2::msleep,
+        x = vore,
+        y = brainwt,
+        title = "mammalian sleep",
+        caption = "From ggplot2 package",
+        xlab = "vore",
+        ylab = "brain weight",
+        pairwise.comparisons = FALSE,
+        results.subtitle = FALSE,
+        outlier.tagging = TRUE,
+        outlier.label = name,
+        outlier.label.args = list(color = "darkgreen")
       )
     )
 
-    expect_equal(pb$plot$labels$subtitle, p_subtitle, ignore_attr = TRUE)
-  }
-)
-
-# mean labelling tests work ------------------------------------------
-
-test_that(
-  desc = "checking mean labels are working",
-  code = {
-    skip_if(getRversion() < "4.0")
-    skip_if_not_installed("PMCMRplus")
-
-    # creating the plot
     set.seed(123)
-    p <- ggbetweenstats(
-      data = tibble::as_tibble(mtcars, rownames = "name") %>%
-        dplyr::rename(n = wt),
-      x = cyl,
-      y = n,
-      type = "np",
-      k = 2L,
-      conf.level = 0.90,
-      outlier.tagging = TRUE,
-      outlier.label = "name",
-      outlier.coef = 2.5,
-      results.subtitle = FALSE
-    ) +
-      ggplot2::coord_cartesian(ylim = c(1, 6)) +
-      ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
-
-    # plot build
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(pb$data[[1]], pb$data[[2]], pb$data[[4]], pb$data[[5]]))
-    expect_snapshot(pb$plot$labels)
-
-    # check if the y-axis labels have changed
-    expect_equal(
-      pb$layout$panel_params[[1]]$x$scale$labels,
-      c("4\n(n = 11)", "6\n(n = 7)", "8\n(n = 14)")
-    )
-
-    expect_equal(
-      pb$layout$panel_params[[1]]$y$breaks,
-      c(1, 2, 3, 4, 5, 6)
+    vdiffr::expect_doppelganger(
+      title = "modification with ggplot2 works as expected",
+      fig = ggbetweenstats(
+        data = tibble::as_tibble(mtcars, rownames = "name") %>%
+          dplyr::rename(n = wt),
+        x = cyl,
+        y = n,
+        pairwise.comparisons = FALSE,
+        results.subtitle = FALSE
+      ) +
+        ggplot2::coord_cartesian(ylim = c(1, 6)) +
+        ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
     )
 
     # edge case
-    a <- data.frame(
+    df_small <- data.frame(
       centrality.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
       group = c("a", "a", "a", "b", "b", "b")
     )
 
-    # plot
-    p1 <- suppressWarnings(ggbetweenstats(
-      data = a,
-      x = group,
-      y = centrality.a,
-      results.subtitle = FALSE
-    ))
-
-    # build
-    pb1 <- ggplot2::ggplot_build(p1)
-
-    expect_snapshot(pb1$data[[6]]$label)
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "centrality plotting works with insufficient data",
+      fig = suppressWarnings(ggbetweenstats(
+        data = df_small,
+        x = group,
+        y = centrality.a,
+        pairwise.comparisons = FALSE,
+        results.subtitle = FALSE
+      ))
+    )
   }
 )
 
-# checking if plot.type argument works --------------------------------------
+
+# can produce different plots --------------------------------------
 
 test_that(
-  desc = "checking if plot.type argument works",
+  desc = "checking if `plot.type` argument works",
   code = {
     skip_if(getRversion() < "4.0")
 
-    # boxplot
     set.seed(123)
-    p1 <- ggbetweenstats(
-      data = ToothGrowth,
-      x = supp,
-      y = len,
-      type = "bayes",
-      plot.type = "box",
-      results.subtitle = FALSE,
-      outlier.tagging = TRUE,
-      outlier.coef = 0.75,
-      outlier.color = "blue",
-      centrality.point.args = list(size = 5, color = "darkgreen"),
-      centrality.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
+    vdiffr::expect_doppelganger(
+      title = "box plot",
+      fig = ggbetweenstats(
+        data = ToothGrowth,
+        x = supp,
+        y = len,
+        plot.type = "box",
+        results.subtitle = FALSE,
+        centrality.point.args = list(size = 5, color = "darkgreen"),
+        centrality.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
+      )
     )
 
-    # violin
     set.seed(123)
-    p2 <- ggbetweenstats(
-      data = ToothGrowth,
-      x = supp,
-      y = len,
-      type = "r",
-      results.subtitle = FALSE,
-      plot.type = "violin",
-      outlier.tagging = TRUE,
-      outlier.coef = 0.75,
-      bf.message = FALSE,
-      package = "wesanderson",
-      palette = "Royal1"
-    ) +
-      ggplot2::scale_y_continuous(breaks = seq(0, 30, 5))
-
-    # build the plots
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-
-    # check data
-    expect_snapshot(list(
-      pb1$data,
-      list(pb2$data[[1]], pb2$data[[2]], pb2$data[[4]], pb2$data[[5]])
-    ))
-
-    expect_snapshot(within(pb1$plot$labels, rm(subtitle, caption)))
-    expect_snapshot(within(pb2$plot$labels, rm(subtitle)))
+    vdiffr::expect_doppelganger(
+      title = "violin plot",
+      fig = ggbetweenstats(
+        data = ToothGrowth,
+        x = supp,
+        y = len,
+        plot.type = "violin",
+        results.subtitle = FALSE
+      )
+    )
   }
 )
 
@@ -204,7 +123,6 @@ test_that(
       y = wt
     )$expression[[1]]
 
-    # test
     expect_equal(as.character(subtitle_exp), as.character(sub))
   }
 )

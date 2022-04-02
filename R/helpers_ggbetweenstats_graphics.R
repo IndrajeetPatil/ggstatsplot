@@ -247,14 +247,10 @@ aesthetic_addon <- function(plot,
 #' ) %>%
 #'   arrange(outlier)
 #' @noRd
-
-# add a logical column indicating whether a point is or isn't an outlier
 outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
   group_by(data, {{ x }}) %>%
     mutate(
-      isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{ y }},
-        method = "iqr", threshold = list("iqr" = outlier.coef)
-      )), TRUE, FALSE),
+      isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{y}}, method = "iqr", threshold = list("iqr" = outlier.coef))), TRUE, FALSE),
       outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
     ) %>%
     ungroup(.)
@@ -270,7 +266,6 @@ outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
 #' @param ... Arguments passed to respective subtitle helper functions.
 #'
 #' @noRd
-
 function_switch <- function(test, element, ...) {
   # which function?
   if (test == "t") .f <- statsExpressions::two_sample_test
