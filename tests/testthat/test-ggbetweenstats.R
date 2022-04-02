@@ -77,6 +77,7 @@ test_that(
         x = supp,
         y = len,
         plot.type = "box",
+        outlier.tagging = TRUE,
         results.subtitle = FALSE,
         centrality.point.args = list(size = 5, color = "darkgreen"),
         centrality.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
@@ -91,6 +92,7 @@ test_that(
         x = supp,
         y = len,
         plot.type = "violin",
+        outlier.tagging = TRUE,
         results.subtitle = FALSE
       )
     )
