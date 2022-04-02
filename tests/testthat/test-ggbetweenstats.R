@@ -67,7 +67,9 @@ test_that(
 test_that(
   desc = "checking if `plot.type` argument works",
   code = {
-    skip_if(getRversion() < "4.0")
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
 
     set.seed(123)
     vdiffr::expect_doppelganger(
@@ -104,7 +106,7 @@ test_that(
 test_that(
   desc = "subtitle output works",
   code = {
-    skip_if(getRversion() < "4.0")
+    skip_on_cran()
 
     df <- mtcars
     df$wt[3] <- NA

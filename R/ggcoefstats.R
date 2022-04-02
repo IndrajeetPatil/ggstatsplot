@@ -212,7 +212,7 @@ ggcoefstats <- function(x,
   }
 
   # halt if there are still repeated terms
-  if (any(duplicated(tidy_df$term))) stop("Elements in `term` column must be unique.")
+  if (any(duplicated(tidy_df$term))) rlang::abort("Elements in `term` column must be unique.")
 
   # if `parameters` output doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE

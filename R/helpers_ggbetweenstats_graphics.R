@@ -250,7 +250,7 @@ aesthetic_addon <- function(plot,
 outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
   group_by(data, {{ x }}) %>%
     mutate(
-      isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{y}}, method = "iqr", threshold = list("iqr" = outlier.coef))), TRUE, FALSE),
+      isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{ y }}, method = "iqr", threshold = list("iqr" = outlier.coef))), TRUE, FALSE),
       outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
     ) %>%
     ungroup(.)
