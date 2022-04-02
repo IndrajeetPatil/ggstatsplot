@@ -111,7 +111,7 @@ test_that(
         12L
       )
 
-    expect_identical(
+    expect_equal(
       colnames(ggcoefstats(df8, output = "tidy"))[[7]],
       "term"
     )
@@ -202,7 +202,7 @@ test_that(
       meta.analytic.effect = TRUE
     ))
 
-    expect_identical(pb7$plot$labels$caption, "mnp")
+    expect_equal(pb7$plot$labels$caption, "mnp")
 
     # caption
     set.seed(123)

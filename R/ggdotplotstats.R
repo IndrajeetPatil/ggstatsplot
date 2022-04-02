@@ -34,8 +34,6 @@
 #' )
 #' }
 #' @export
-
-
 ggdotplotstats <- function(data,
                            x,
                            y,
@@ -212,8 +210,6 @@ ggdotplotstats <- function(data,
 #' )
 #' }
 #' @export
-
-
 grouped_ggdotplotstats <- function(data,
                                    ...,
                                    grouping.var,

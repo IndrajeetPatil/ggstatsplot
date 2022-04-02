@@ -1,125 +1,112 @@
-# ggdotplotstats works ----------------------------------------------
+# creating a new dataset
+morley_new <- dplyr::mutate(
+  morley,
+  Expt = dplyr::case_when(
+    Expt == 1 ~ "1st",
+    Expt == 2 ~ "2nd",
+    Expt == 3 ~ "3rd",
+    Expt == 4 ~ "4th",
+    Expt == 5 ~ "5th"
+  )
+) %>%
+  dplyr::as_tibble()
+
+morley_new[3, 3] <- NA_integer_
+morley_new[23, 3] <- NA_integer_
+morley_new[87, 3] <- NA_integer_
+
+# checking default outputs -----------------------------------------
 
 test_that(
-  desc = "ggdotplotstats works as expected",
+  desc = "checking default outputs",
   code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
 
-
-    # creating a new dataset
-    morley_new <-
-      dplyr::mutate(
-        morley,
-        Expt = dplyr::case_when(
-          Expt == 1 ~ "1st",
-          Expt == 2 ~ "2nd",
-          Expt == 3 ~ "3rd",
-          Expt == 4 ~ "4th",
-          Expt == 5 ~ "5th"
-        )
-      )
-
-    # creating the plot
     set.seed(123)
-    p <- suppressMessages(ggdotplotstats(
-      data = morley_new,
-      x = Speed,
-      y = Expt,
-      test.value = 800,
-      type = "p",
-      k = 4L,
-      effsize.type = "d",
-      title = "Michelson-Morley experiment",
-      caption = "Studies carried out in 1887",
-      xlab = substitute(paste("Speed of light (", italic("c"), ")")),
-      ylab = "Experimental run",
-      ggplot.component = ggplot2::scale_x_continuous(
-        breaks = seq(800, 900, 10),
-        sec.axis = ggplot2::dup_axis()
-      ),
-      bf.prior = 0.88
-    ))
+    vdiffr::expect_doppelganger(
+      title = "parametric - without NA",
+      fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "p")
+    )
 
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # checking subtitle
     set.seed(123)
-    p_subtitle <- statsExpressions::one_sample_test(
-      data = morley_new,
-      x = Speed,
-      y = Expt,
-      test.value = 800,
-      type = "p",
-      k = 4,
-      effsize.type = "d"
-    )$expression[[1]]
+    vdiffr::expect_doppelganger(
+      title = "non-parametric - without NA",
+      fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "np")
+    )
 
-    # check data and labels
-    expect_snapshot(within(pb$plot$labels, rm(subtitle, caption)))
-    expect_snapshot(within(pb$layout$panel_params[[1]], rm(x, y, x.sec, y.sec)))
-    expect_snapshot(pb$data)
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "robust - without NA",
+      fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "r")
+    )
 
-    # checking panel parameters
-    expect_equal(
-      pb$layout$panel_params[[1]]$x$scale$range$range,
-      c(820.5, 909.0),
-      tolerance = 0.001
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "bayes - without NA",
+      fig = ggdotplotstats(ggplot2::mpg, cty, cyl,
+        test.value = 16, type = "bayes",
+        centrality.plotting = FALSE
+      ) # TODO: https://github.com/easystats/bayestestR/issues/429
     )
-    expect_equal(
-      pb$layout$panel_params[[1]]$x$breaks,
-      c(NA, NA, 820, 830, 840, 850, 860, 870, 880, 890, 900)
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "parametric - with NA",
+      fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "p")
     )
-    expect_equal(
-      pb$layout$panel_params[[1]]$y.range,
-      c(0.8, 5.2),
-      tolerance = 0.001
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "non-parametric - with NA",
+      fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "np")
     )
-    expect_equal(
-      pb$layout$panel_params[[1]]$y$scale$labels,
-      structure(
-        c(4L, 5L, 3L, 2L, 1L),
-        .Label = c(
-          "1st", "2nd", "3rd",
-          "4th", "5th"
-        ),
-        class = "factor"
-      )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "robust - with NA",
+      fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "r")
     )
-    expect_equal(
-      pb$layout$panel_params[[1]]$y.sec$break_info,
-      list(
-        range = c(0.8, 5.2),
-        labels = c(0, 25, 50, 75, 100),
-        major = c(
-          0.045,
-          0.272, 0.499, 0.728, 0.955
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "bayes - with NA",
+      fig = ggdotplotstats(morley_new, Speed, Expt,
+        test.value = 800, type = "bayes",
+        centrality.plotting = FALSE
+      ) # TODO: https://github.com/easystats/bayestestR/issues/429
+    )
+  }
+)
+
+
+# modification with ggplot2 ----------------------------------------------
+
+test_that(
+  desc = "modification with ggplot2 works as expected",
+  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "modification with ggplot2 ",
+      fig = suppressMessages(ggdotplotstats(
+        data = morley_new,
+        x = Speed,
+        y = Expt,
+        results.subtitle = FALSE,
+        title = "Michelson-Morley experiment",
+        caption = "Studies carried out in 1887",
+        xlab = substitute(paste("Speed of light (", italic("c"), ")")),
+        ylab = "Experimental run",
+        ggplot.component = ggplot2::scale_x_continuous(
+          breaks = seq(800, 900, 10),
+          sec.axis = ggplot2::dup_axis()
         ),
-        minor = c(
-          0.045, 0.159, 0.272, 0.386,
-          0.499, 0.614, 0.728, 0.841, 0.955
-        ),
-        major_source = c(
-          0.998198198198198,
-          1.997997997998,
-          2.9977977977978,
-          4.002002002002,
-          5.0018018018018
-        ),
-        minor_source = c(
-          0.998198198198198,
-          1.5003003003003,
-          1.997997997998,
-          2.5001001001001,
-          2.9977977977978,
-          3.4998998998999,
-          4.002002002002,
-          4.4996996996997,
-          5.0018018018018
-        ),
-        major_source_user = c(1, 2, 3, 4, 5),
-        minor_source_user = c(1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5)
-      ),
-      tolerance = 0.01
+      ))
     )
   }
 )
@@ -139,7 +126,6 @@ test_that(
       type = "np",
       output = "subtitle"
     ))
-
 
     set.seed(123)
     expect_equal(

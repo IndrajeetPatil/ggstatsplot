@@ -16,8 +16,8 @@ test_that(
     # testing lengths of lists
     expect_snapshot(list(length(df1), length(df2), length(df5), length(df6)))
     expect_snapshot(list(names(df1), names(df2), names(df5), names(df6)))
-    expect_identical(df1$carni, df5$carni)
-    expect_identical(ggplot2::msleep, df6)
+    expect_equal(df1$carni, df5$carni)
+    expect_equal(ggplot2::msleep, df6)
   }
 )
 

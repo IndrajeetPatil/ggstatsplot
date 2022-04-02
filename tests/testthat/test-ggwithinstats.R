@@ -269,7 +269,7 @@ if (require("afex")) {
       # checking changes made to ggsignif geom work
       expect_equal(pb1$data[[7]]$textsize[[1]], 6L)
       expect_equal(pb1$data[[7]]$shape[[1]], 19L)
-      expect_identical(pb1$data[[7]]$colour[[1]], "black")
+      expect_equal(pb1$data[[7]]$colour[[1]], "black")
       expect_equal(pb1$data[[7]]$size[[1]], 0.5, tolerance = 0.001)
     }
   )

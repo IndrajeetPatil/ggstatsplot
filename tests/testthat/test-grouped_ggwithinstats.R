@@ -101,6 +101,6 @@ test_that(
 
 
     expect_equal(length(ls_results), 1L)
-    expect_identical(ls_results$`North America`, basic_results)
+    expect_equal(ls_results$`North America`, basic_results)
   }
 )
