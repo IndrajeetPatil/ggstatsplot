@@ -282,6 +282,5 @@ grouped_ggpiestats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }

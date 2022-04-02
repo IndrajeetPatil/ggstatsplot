@@ -1,7 +1,5 @@
 #' @title A dataframe with descriptive labels
 #' @noRd
-
-
 descriptive_df <- function(data,
                            x,
                            y = NULL,
@@ -24,8 +22,6 @@ descriptive_df <- function(data,
 
 #' @title Counts and percentages across grouping variables
 #' @noRd
-
-# creating a dataframe with counts
 cat_counter <- function(data, x, y = NULL, ...) {
   data %>%
     group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
@@ -38,8 +34,6 @@ cat_counter <- function(data, x, y = NULL, ...) {
 
 #' @title A dataframe with chi-squared test results
 #' @noRd
-
-# combine info about sample size plus proportion test
 onesample_df <- function(data, x, y, k = 2L, ...) {
   full_join(
     # descriptives
@@ -68,7 +62,6 @@ onesample_df <- function(data, x, y, k = 2L, ...) {
 # needed to work with `group_modify` since it will not work when NULL is returned
 #'
 #' @noRd
-
 chisq_test_safe <- function(data, x, ...) {
   xtab <- table(data %>% pull({{ x }}))
 
@@ -91,5 +84,4 @@ chisq_test_safe <- function(data, x, ...) {
 
 
 #' @noRd
-
 .prettyNum <- function(x) prettyNum(x, big.mark = ",", scientific = FALSE)

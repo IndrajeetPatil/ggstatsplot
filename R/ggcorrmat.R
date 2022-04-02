@@ -102,7 +102,6 @@ ggcorrmat <- function(data,
 
   # dataframe -----------------------------------
 
-  # creating a dataframe out of the entered variables
   if (missing(cor.vars)) {
     df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
@@ -138,7 +137,7 @@ ggcorrmat <- function(data,
     return(as_tibble(parameters::standardize_names(mpc_df, "broom")))
   }
 
-  # plot -------------------------------------
+  # plot ------------------------------------------
 
   # in case of NAs, compute minimum and maximum sample sizes of pairs
   # also compute mode
@@ -146,6 +145,9 @@ ggcorrmat <- function(data,
     uniqv <- unique(v)
     uniqv[which.max(tabulate(match(v, uniqv)))]
   }
+
+  # installed?
+  check_if_installed("ggcorrplot")
 
   # legend title with information about correlation type and sample
   if (isFALSE(any(is.na(df))) || partial) {
@@ -167,10 +169,6 @@ ggcorrmat <- function(data,
     ))
   }
 
-  # installed?
-  check_if_installed("ggcorrplot")
-
-  # plotting the correlalogram
   plot <- exec(
     ggcorrplot::ggcorrplot,
     corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
@@ -186,9 +184,8 @@ ggcorrmat <- function(data,
     !!!ggcorrplot.args
   )
 
-  # annotations ------------------------------------------
+  # p-value adjustment message ------------------------------------------
 
-  # preparing the `pch` caption
   if ((pch == "cross" || pch == 4) && type != "bayes") {
     caption <- substitute(
       atop(
@@ -206,7 +203,8 @@ ggcorrmat <- function(data,
     )
   }
 
-  # adding text details to the plot
+  # annotations ------------------------------------------
+
   plot +
     theme(
       panel.grid.major = element_blank(),

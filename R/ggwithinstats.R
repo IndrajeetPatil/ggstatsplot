@@ -201,7 +201,6 @@ ggwithinstats <- function(data,
 
   # plot -------------------------------------------
 
-  # plot
   plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args) +
@@ -231,7 +230,6 @@ ggwithinstats <- function(data,
 
   # centrality tagging -------------------------------------
 
-  # add labels for mean values
   if (isTRUE(centrality.plotting)) {
     plot <- centrality_ggrepel(
       plot                  = plot,
@@ -251,7 +249,6 @@ ggwithinstats <- function(data,
   # ggsignif labels -------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
-    # creating dataframe with pairwise comparison results
     mpc_df <- pairwise_comparisons(
       data            = data,
       x               = {{ x }},
@@ -285,7 +282,6 @@ ggwithinstats <- function(data,
 
   # annotations -------------------------
 
-  # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(
     plot             = plot,
     x                = data %>% pull({{ x }}),
@@ -361,6 +357,5 @@ grouped_ggwithinstats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }

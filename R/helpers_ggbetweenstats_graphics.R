@@ -24,8 +24,6 @@
 #'   y = Sepal.Length
 #' )
 #' @noRd
-
-
 centrality_ggrepel <- function(plot,
                                data,
                                x,
@@ -115,7 +113,6 @@ centrality_ggrepel <- function(plot,
 #'   mpc_df = df_pair
 #' )
 #' @noRd
-
 ggsignif_adder <- function(plot,
                            data,
                            x,
@@ -165,7 +162,6 @@ ggsignif_adder <- function(plot,
 #'
 #' @keywords internal
 #' @noRd
-
 ggsignif_xy <- function(x, y) {
   # number of comparisons and size of each step
   n_comps <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
@@ -189,7 +185,6 @@ ggsignif_xy <- function(x, y) {
 #' @param ... Additional arguments.
 #'
 #' @noRd
-
 aesthetic_addon <- function(plot,
                             x,
                             xlab = NULL,

@@ -315,7 +315,6 @@ pairwise_comparisons <- function(data,
       ungroup()
   }
 
-  # return
   as_tibble(df)
 }
 

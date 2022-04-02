@@ -72,8 +72,6 @@
 #'     geom_rug(sides = "b")
 #' }
 #' @export
-
-
 ggscatterstats <- function(data,
                            x,
                            y,
@@ -227,7 +225,6 @@ ggscatterstats <- function(data,
       ggside::scale_xsidey_continuous()
   }
 
-  # return the final plot
   plot
 }
 
@@ -292,8 +289,6 @@ ggscatterstats <- function(data,
 #'   annotation.args = list(tag_levels = "a")
 #' )
 #' @export
-
-
 grouped_ggscatterstats <- function(data,
                                    ...,
                                    grouping.var,
@@ -313,6 +308,5 @@ grouped_ggscatterstats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }

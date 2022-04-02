@@ -415,7 +415,6 @@ ggbetweenstats <- function(data,
 
   # annotations ------------------------
 
-  # specifying annotations and other aesthetic aspects for the plot
   aesthetic_addon(
     plot             = plot,
     x                = data %>% pull({{ x }}),
@@ -507,6 +506,5 @@ grouped_ggbetweenstats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }

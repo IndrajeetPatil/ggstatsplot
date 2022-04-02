@@ -18,37 +18,37 @@
 #'
 #' The main functions are:
 #'
-#'   - `ggbetweenstats` function to produce information-rich comparison plot
+#'   - `ggbetweenstats()` function to produce information-rich comparison plot
 #'   *between* different groups or conditions with `{ggplot2}` and details from
 #'   the statistical tests in the subtitle.
 #'
-#'   - `ggwithinstats` function to produce information-rich comparison plot
-#'   *within* different groups or conditions with `{ggplot2}` and details from the
+#'   - `ggwithinstats()` function to produce information-rich comparison plot
+#'   *within* different groups or conditions with `{ggplot2}` and details from
+#'   the statistical tests in the subtitle.
+#'
+#'   - `ggscatterstats()` function to produce `{ggplot2}` scatterplots along
+#'   with a marginal distribution plots from `{ggside}` package and details from
+#'   the statistical tests in the subtitle.
+#'
+#'   - `ggpiestats()` function to produce pie chart with details from the
 #'   statistical tests in the subtitle.
 #'
-#'   - `ggscatterstats` function to produce `{ggplot2}` scatterplots along with a
-#'   marginal distribution plots from `ggside` package and details from the
-#'   statistical tests in the subtitle.
+#'   - `ggbarstats()` function to produce stacked bar chart with details from
+#'   the statistical tests in the subtitle.
 #'
-#'   - `ggpiestats` function to produce pie chart with details from the
-#'   statistical tests in the subtitle.
-#'
-#'   - `ggbarstats` function to produce stacked bar chart with details from the
-#'   statistical tests in the subtitle.
-#'
-#'   - `gghistostats` function to produce histogram for a single variable with
+#'   - `gghistostats()` function to produce histogram for a single variable with
 #'   results from one sample test displayed in the subtitle.
 #'
-#'   - `ggdotplotstats` function to produce Cleveland-style dot plots/charts for
-#'   a single variable with labels and results from one sample test displayed in
-#'   the subtitle.
+#'   - `ggdotplotstats()` function to produce Cleveland-style dot plots/charts
+#'   for a single variable with labels and results from one sample test
+#'   displayed in the subtitle.
 #'
-#'   - `ggcorrmat` function to visualize the correlation matrix.
+#'   - `ggcorrmat()` function to visualize the correlation matrix.
 #'
-#'   - `ggcoefstats` function to visualize results from regression analyses.
+#'   - `ggcoefstats()` function to visualize results from regression analyses.
 #'
-#'   - `combine_plots` helper function to combine multiple `{ggstatsplot}` plots
-#'   using `patchwork::wrap_plots()`.
+#'   - `combine_plots()` helper function to combine multiple `{ggstatsplot}`
+#'   plots using `patchwork::wrap_plots()`.
 #'
 #' For more documentation, see the dedicated
 #' \href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.

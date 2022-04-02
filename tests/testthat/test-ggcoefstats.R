@@ -186,28 +186,42 @@ test_that(
   }
 )
 
-# meta subtitle -------------------------------------
+# meta subtitle and caption -------------------------------------
 
 test_that(
-  desc = "meta analysis subtitle",
+  desc = "meta analysis subtitle and caption",
   code = {
     set.seed(123)
-    using_function1 <- suppressWarnings(statsExpressions::meta_analysis(
+    subtitle_expr <- suppressWarnings(statsExpressions::meta_analysis(
       data = df_meta,
-      k = 4,
       type = "p"
     ))
 
     set.seed(123)
-    ggcoef_label <- suppressWarnings(ggcoefstats(
+    caption_expr <- suppressWarnings(statsExpressions::meta_analysis(
+      data = df_meta,
+      type = "bayes"
+    ))
+
+    set.seed(123)
+    ggcoef_subtitle <- suppressWarnings(ggcoefstats(
       df_meta,
-      k = 4,
       meta.analytic.effect = TRUE,
       bf.message = FALSE,
       meta.type = "p",
       output = "subtitle"
     ))
 
-    expect_equal(using_function1$expression[[1]], ggcoef_label)
+    set.seed(123)
+    ggcoef_caption <- suppressWarnings(ggcoefstats(
+      df_meta,
+      meta.analytic.effect = TRUE,
+      bf.message = TRUE,
+      meta.type = "p",
+      output = "caption"
+    ))
+
+    expect_equal(subtitle_expr$expression[[1]], ggcoef_subtitle)
+    expect_equal(caption_expr$expression[[1]], ggcoef_caption)
   }
 )

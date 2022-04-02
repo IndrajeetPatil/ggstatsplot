@@ -26,8 +26,6 @@
 #' ggbarstats(mtcars, x = vs, y = cyl)
 #' }
 #' @export
-
-
 ggbarstats <- function(data,
                        x,
                        y,
@@ -153,7 +151,6 @@ ggbarstats <- function(data,
 
   # adding significance labels to bars for proportion tests
   if (isTRUE(proportion.test)) {
-    # modify plot
     p <- p +
       geom_text(
         data    = onesample_df,
@@ -173,7 +170,6 @@ ggbarstats <- function(data,
 
   # annotations ------------------------------------------
 
-  # preparing the plot
   p +
     labs(
       x        = xlab %||% as_name(y),
@@ -228,8 +224,6 @@ ggbarstats <- function(data,
 #' )
 #' }
 #' @export
-
-
 grouped_ggbarstats <- function(data,
                                ...,
                                grouping.var,
@@ -249,6 +243,5 @@ grouped_ggbarstats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }
