@@ -113,20 +113,6 @@ test_that("plots are rendered correctly", {
     )
   }
 
-  ## ----ggpiestats-----------------------------------
-
-  set.seed(123)
-  vdiffr::expect_doppelganger(
-    title = "ggpiestats works",
-    fig = ggpiestats(mtcars, cyl)
-  )
-
-  set.seed(123)
-  vdiffr::expect_doppelganger(
-    title = "grouped_ggpiestats works",
-    fig = grouped_ggpiestats(mtcars, cyl, grouping.var = am)
-  )
-
   ## ----ggbarstats-----------------------------------
 
   set.seed(123)

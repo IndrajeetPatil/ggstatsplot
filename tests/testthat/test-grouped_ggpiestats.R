@@ -1,30 +1,22 @@
 test_that(
+  desc = "grouped_ggpiestats produces error when grouping variable not provided",
+  code = {
+    expect_snapshot_error(grouped_ggpiestats(mtcars, x = cyl))
+  }
+)
+
+test_that(
   desc = "grouped_ggpiestats works",
   code = {
-
-
-    #--------------------- only x variable -------------------------------
-
-    ## expecting error
-    expect_error(grouped_ggpiestats(mtcars, x = cyl))
-
-    ## without counts
-
-    # when arguments are entered as bare expressions
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "no analysis",
+      title = "grouped_ggpiestats with one-way table",
       fig = grouped_ggpiestats(
         data = mtcars,
         grouping.var = am,
-        x = cyl,
-        results.subtitle = FALSE
+        x = cyl
       )
     )
-
-    #------------------ both x and y variables ------------------
-
-    ## without counts
 
     # creating a smaller dataframe
     mpg_short <- ggplot2::mpg %>%
@@ -37,64 +29,62 @@ test_that(
     # when arguments are entered as bare expressions
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "no analysis and label repel",
+      title = "grouped_ggpiestats with two-way table",
       fig = grouped_ggpiestats(
         data = mpg_short,
         x = cyl,
         y = class,
-        results.subtitle = FALSE,
         grouping.var = drv,
         label.repel = TRUE
-      )
-    )
-
-    ## with counts
-
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "with counts",
-      fig = grouped_ggpiestats(
-        data = as.data.frame(Titanic),
-        grouping.var = Class,
-        x = Sex,
-        results.subtitle = FALSE,
-        y = Survived,
-        counts = Freq
       )
     )
   }
 )
 
-# subtitle output --------------------------------------------------
+# edge cases --------------------
 
 test_that(
-  desc = "subtitle output",
+  desc = "edge case behavior",
+  code = {
+    df <- data.frame(
+      dataset = c("a", "b", "c", "c", "c", "c"),
+      measurement = c("old", "old", "old", "old", "new", "new"),
+      flag = c("no", "no", "yes", "no", "yes", "no"),
+      count = c(6, 8, 8, 62, 6, 33)
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "common legend when levels are dropped",
+      fig = grouped_ggpiestats(
+        data = df,
+        x = measurement,
+        y = flag,
+        grouping.var = dataset,
+        counts = count,
+        results.subtitle = FALSE,
+        proportion.test = FALSE
+      )
+    )
+  }
+)
+
+# expression output --------------------
+
+test_that(
+  desc = "expression output is as expected",
   code = {
     set.seed(123)
-    df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(is.factor, droplevels)
-
-    # should output a list of length 3
-    set.seed(123)
-    ls_results <- suppressWarnings(grouped_ggpiestats(
-      data = df,
-      x = relig,
-      y = marital,
-      grouping.var = race,
+    grouped_expr <- grouped_ggpiestats(
+      mtcars,
+      grouping.var = am,
+      x = cyl,
       output = "subtitle"
-    ))
+    )
 
     set.seed(123)
-    sexpr_results <- suppressWarnings(statsExpressions::contingency_table(
-      data = dplyr::filter(df, race == "Other") %>%
-        dplyr::mutate_if(is.factor, droplevels),
-      x = relig,
-      y = marital,
-      output = "subtitle"
-    )$expression[[1]])
+    base_expr <- ggpiestats(dplyr::filter(mtcars, am == "0"), cyl, output = "subtitle")
 
-    # checking subtitle
-    expect_equal(ls_results$Other, sexpr_results)
+    expect_equal(grouped_expr$`0`, base_expr)
   }
 )
