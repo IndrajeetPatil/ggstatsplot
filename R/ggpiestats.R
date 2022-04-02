@@ -119,7 +119,6 @@ ggpiestats <- function(data,
 
   # statistical analysis ------------------------------------------
 
-  # if subtitle with results is to be displayed
   if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
@@ -175,8 +174,7 @@ ggpiestats <- function(data,
     )
 
   # whether labels need to be repelled
-  if (label.repel) .fn <- ggrepel::geom_label_repel
-  if (!label.repel) .fn <- geom_label
+  .fn <- if (label.repel) ggrepel::geom_label_repel else ggplot2::geom_label
 
   # adding label with percentages and/or counts
   suppressWarnings(suppressMessages(p <- p +
@@ -208,7 +206,6 @@ ggpiestats <- function(data,
 
   # sample size + proportion test ------------------------------------------
 
-  # adding labels with proportion tests
   if (facet && proportion.test) {
     p <- p +
       exec(

@@ -185,7 +185,6 @@ ggcoefstats <- function(x,
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
   }
 
-
   # tidy dataframe cleanup -------------------------
 
   if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
@@ -199,8 +198,7 @@ ggcoefstats <- function(x,
 
   # check for duplicate terms and columns -------------------------
 
-  # a check if there are repeated terms
-  # needed for `maov`, `lqm`, `lqmm`, etc. kind of objects
+  # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
   if (any(duplicated(select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
@@ -214,17 +212,14 @@ ggcoefstats <- function(x,
   # halt if there are still repeated terms
   if (any(duplicated(tidy_df$term))) rlang::abort("Elements in `term` column must be unique.")
 
-  # if `parameters` output doesn't contain p-value or statistic column
+  # if tidy dataframe doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
 
   # CIs and intercepts -------------------------
 
-  # if `parameters` output doesn't contain CI
+  # if tidy dataframe doesn't contain CI, show only the dots
   if (!"conf.low" %in% names(tidy_df)) {
-    # add NAs so that only dots will be shown
     tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
-
-    # stop displaying whiskers
     conf.int <- FALSE
   }
 
