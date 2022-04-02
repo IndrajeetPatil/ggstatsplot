@@ -1,204 +1,260 @@
-# significant display works -------------------------------------------------
+# between-subjects -------------------------------------------------
 
 test_that(
-  desc = "check mcp displays - parametric - non-significant",
+  desc = "check pairwise displays - between-subjects",
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
     skip_if(getRversion() >= "4.2")
     skip_if_not_installed("PMCMRplus")
 
-    p <- ggbetweenstats(
-      data = ggplot2::msleep,
-      x = vore,
-      y = brainwt,
-      results.subtitle = FALSE,
-      bf.message = FALSE, # TODO: should work after removing this
-      p.adjust.method = "none",
-      pairwise.display = "ns",
-      caption = "mammalian sleep",
-      k = 3
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - parametric - only non-significant",
+      fig = ggbetweenstats(ggplot2::msleep, vore, brainwt,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "ns",
+        k = 3
+      )
     )
 
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
     set.seed(123)
-    expect_snapshot(list(pb$data[[6]], pb$data[[7]]))
-    expect_snapshot(pb$plot$labels)
+    vdiffr::expect_doppelganger(
+      title = "between - parametric - only significant",
+      fig = ggbetweenstats(ggplot2::msleep, vore, brainwt,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "s",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - parametric - all",
+      fig = ggbetweenstats(ggplot2::msleep, vore, brainwt,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "all",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - non-parametric - only non-significant",
+      fig = ggbetweenstats(movies_long, mpaa, rating,
+        type = "np",
+        results.subtitle = FALSE,
+        p.adjust.method = "bonferroni",
+        pairwise.display = "ns",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - non-parametric - only significant",
+      fig = ggbetweenstats(movies_long, mpaa, rating,
+        type = "np",
+        results.subtitle = FALSE,
+        p.adjust.method = "bonferroni",
+        pairwise.display = "s",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - non-parametric - all",
+      fig = ggbetweenstats(movies_long, mpaa, rating,
+        type = "np",
+        results.subtitle = FALSE,
+        p.adjust.method = "bonferroni",
+        pairwise.display = "all",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - robust - only non-significant",
+      fig = ggbetweenstats(ggplot2::msleep, vore, sleep_rem,
+        type = "r",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "ns",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - robust - only significant",
+      fig = ggbetweenstats(ggplot2::msleep, vore, sleep_rem,
+        type = "r",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "s",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - robust - all",
+      fig = ggbetweenstats(ggplot2::msleep, vore, sleep_rem,
+        type = "r",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "all",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "between - bayes",
+      fig = ggbetweenstats(iris, Species, Sepal.Length,
+        type = "bayes",
+        results.subtitle = FALSE,
+        k = 3
+      )
+    )
   }
 )
 
 
-# non-significant display works ---------------------------------------------
+# within-subjects -------------------------------------------------
 
 test_that(
-  desc = "check mcp displays - non-significant",
+  desc = "check pairwise displays - within-subjects",
   code = {
-    skip_if_not_installed("PMCMRplus")
-
-    # creating the plot
-    set.seed(123)
-    p1 <- ggbetweenstats(
-      data = movies_long,
-      x = mpaa,
-      y = votes,
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      p.adjust.method = "none",
-      pairwise.display = "ns",
-      k = 3
-    )
-
-    set.seed(123)
-    p2 <- ggbetweenstats(
-      data = movies_long,
-      x = mpaa,
-      y = votes,
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      var.equal = TRUE,
-      p.adjust.method = "none",
-      pairwise.display = "s",
-      k = 4
-    )
-
-    # build the plot
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(
-      pb1$data[[6]], pb1$data[[7]],
-      pb2$data[[6]], pb2$data[[7]]
-    ))
-    expect_snapshot(list(pb1$plot$labels, pb2$plot$labels))
-  }
-)
-
-# mixed display works -------------------------------------------------
-
-test_that(
-  desc = "check mixed comparison displays - nonparametric",
-  code = {
-    skip_if_not_installed("PMCMRplus")
-
-    # creating the plot
-    set.seed(123)
-    p <- ggbetweenstats(
-      data = dplyr::filter(
-        movies_long,
-        genre %in% c("Action", "Comedy", "RomCom")
-      ),
-      x = genre,
-      y = rating,
-      results.subtitle = FALSE,
-      type = "np",
-      bf.message = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "all",
-      k = 3
-    )
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(pb$data[[6]], pb$data[[7]]))
-    expect_snapshot(pb$plot$labels)
-  }
-)
-
-# robust test works -------------------------------------------------
-
-test_that(
-  desc = "check robust test display - FDR-corrected",
-  code = {
-    skip_if_not_installed("PMCMRplus")
-
-    # creating the plot
-    set.seed(123)
-    p <- ggbetweenstats(
-      data = ggplot2::mpg,
-      x = drv,
-      y = cty,
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      k = 3,
-      type = "r",
-      nboot = 20,
-      pairwise.display = "s"
-    )
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(pb$data[[6]], pb$data[[7]]))
-    expect_snapshot(pb$plot$labels)
-  }
-)
-
-# check bayesian test display works ----------------------------------------
-
-test_that(
-  desc = "check bayesian test display",
-  code = {
-    skip_if_not_installed("PMCMRplus")
-
-    # creating the plot
-    set.seed(123)
-    p <- ggbetweenstats(
-      data = iris,
-      x = Species,
-      y = Sepal.Length,
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      k = 3,
-      type = "bf",
-      pairwise.display = "everything"
-    )
-
-    # build the plot
-    pb <- ggplot2::ggplot_build(p)
-
-    # check data
-    set.seed(123)
-    expect_snapshot(list(pb$data[[6]], pb$data[[7]]))
-    expect_snapshot(pb$plot$labels)
-  }
-)
-
-test_that(
-  desc = "additional test",
-  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
     skip_if_not_installed("PMCMRplus")
 
     set.seed(123)
-    p1 <- ggbetweenstats(dplyr::filter(movies_long, genre == "Comedy"), mpaa, length,
-      results.subtitle = FALSE,
-      bf.message = FALSE
+    vdiffr::expect_doppelganger(
+      title = "within - parametric - only non-significant",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "ns",
+        k = 3
+      )
     )
 
     set.seed(123)
-    p2 <- ggbetweenstats(dplyr::filter(movies_long, genre == "Action"), mpaa, length,
-      results.subtitle = FALSE,
-      bf.message = FALSE
+    vdiffr::expect_doppelganger(
+      title = "within - parametric - only significant",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "s",
+        k = 3
+      )
     )
 
-    # build the plot
-    pb1 <- ggplot2::ggplot_build(p1)
-    pb2 <- ggplot2::ggplot_build(p2)
-
-    # check data
     set.seed(123)
-    expect_snapshot(length(pb1$data))
-    expect_snapshot(list(pb2$data[[6]], pb2$data[[7]]))
-    expect_snapshot(pb1$plot$labels)
-    expect_snapshot(pb2$plot$labels)
+    vdiffr::expect_doppelganger(
+      title = "within - parametric - all",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "all",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - non-parametric - only non-significant",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "np",
+        results.subtitle = FALSE,
+        p.adjust.method = "bonferroni",
+        pairwise.display = "ns",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - non-parametric - only significant",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "np",
+        results.subtitle = FALSE,
+        p.adjust.method = "bonferroni",
+        pairwise.display = "s",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - non-parametric - all",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "np",
+        results.subtitle = FALSE,
+        p.adjust.method = "bonferroni",
+        pairwise.display = "all",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - robust - only non-significant",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "r",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "ns",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - robust - only significant",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "r",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "s",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - robust - all",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "r",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "all",
+        k = 3
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "within - bayes",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "bayes",
+        results.subtitle = FALSE,
+        k = 3
+      )
+    )
   }
 )

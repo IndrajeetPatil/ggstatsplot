@@ -38,8 +38,8 @@ test_that(
     vdiffr::expect_doppelganger(
       title = "checking paired two-way table - without NA",
       fig = ggbarstats(survey_data, `1st survey`, `2nd survey`,
-                       counts = Counts,
-                       paired = TRUE
+        counts = Counts,
+        paired = TRUE
       )
     )
 
@@ -121,7 +121,7 @@ test_that(
         class = "factor"
       ),
       mode = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
-                       .Label = c("A", "P", "C", "T"), class = "factor"
+        .Label = c("A", "P", "C", "T"), class = "factor"
       ),
       counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
       perc = c(

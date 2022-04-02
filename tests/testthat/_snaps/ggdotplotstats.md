@@ -55,19 +55,3 @@
       1      852.4     1    -1   blue    1   dashed    NA
       
 
-# messing with factors
-
-    Code
-      pb1$data
-    Output
-      [[1]]
-        y          x PANEL group shape colour size fill alpha stroke
-      1 1 0.02155000     1    -1    16  black    3   NA    NA    0.5
-      2 2 0.07925556     1    -1    16  black    3   NA    NA    0.5
-      3 3 0.62159750     1    -1    16  black    3   NA    NA    0.5
-      
-      [[2]]
-        xintercept PANEL group colour size linetype alpha
-      1   0.240801     1    -1   blue    1   dashed    NA
-      
-
