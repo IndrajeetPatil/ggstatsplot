@@ -16,7 +16,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
-        k = 3
+        k = 3L
       )
     )
 
@@ -28,7 +28,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "s",
-        k = 3
+        k = 3L
       )
     )
 
@@ -40,7 +40,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "all",
-        k = 3
+        k = 3L
       )
     )
 
@@ -52,7 +52,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "ns",
-        k = 3
+        k = 3L
       )
     )
 
@@ -64,7 +64,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "s",
-        k = 3
+        k = 3L
       )
     )
 
@@ -76,7 +76,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "all",
-        k = 3
+        k = 3L
       )
     )
 
@@ -88,7 +88,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "ns",
-        k = 3
+        k = 3L
       )
     )
 
@@ -100,7 +100,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "s",
-        k = 3
+        k = 3L
       )
     )
 
@@ -112,7 +112,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "all",
-        k = 3
+        k = 3L
       )
     )
 
@@ -122,12 +122,11 @@ test_that(
       fig = ggbetweenstats(iris, Species, Sepal.Length,
         type = "bayes",
         results.subtitle = FALSE,
-        k = 3
+        k = 3L
       )
     )
   }
 )
-
 
 # within-subjects -------------------------------------------------
 
@@ -147,7 +146,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
-        k = 3
+        k = 3L
       )
     )
 
@@ -159,7 +158,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "s",
-        k = 3
+        k = 3L
       )
     )
 
@@ -171,7 +170,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "all",
-        k = 3
+        k = 3L
       )
     )
 
@@ -183,7 +182,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "ns",
-        k = 3
+        k = 3L
       )
     )
 
@@ -195,7 +194,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "s",
-        k = 3
+        k = 3L
       )
     )
 
@@ -207,7 +206,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "all",
-        k = 3
+        k = 3L
       )
     )
 
@@ -219,7 +218,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "ns",
-        k = 3
+        k = 3L
       )
     )
 
@@ -231,7 +230,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "s",
-        k = 3
+        k = 3L
       )
     )
 
@@ -243,7 +242,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "all",
-        k = 3
+        k = 3L
       )
     )
 
@@ -253,7 +252,33 @@ test_that(
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "bayes",
         results.subtitle = FALSE,
-        k = 3
+        k = 3L
+      )
+    )
+  }
+)
+
+
+# caption -------------------------------------------------
+
+test_that(
+  desc = "adding caption works",
+  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("PMCMRplus")
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "adding caption works",
+      fig = ggwithinstats(bugs_long, condition, desire,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "ns",
+        caption = "Dataset: Bugs",
+        k = 3L
       )
     )
   }

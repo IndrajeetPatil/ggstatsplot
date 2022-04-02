@@ -3,8 +3,6 @@
 test_that(
   desc = "checking gghistostats plot and parametric stats - data with NAs",
   code = {
-
-
     # creating the plot
     set.seed(123)
     p <- gghistostats(
@@ -203,5 +201,13 @@ test_that(
 
     # tests
     expect_equal(p_sub, sub, ignore_attr = TRUE)
+  }
+)
+
+
+test_that(
+  desc = ".binwidth works as expected",
+  code = {
+    expect_equal(ggstatsplot:::.binwidth(mtcars$wt), 0.6913737, tolerance = 0.001)
   }
 )
