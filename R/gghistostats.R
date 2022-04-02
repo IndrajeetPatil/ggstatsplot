@@ -46,8 +46,6 @@
 #' )
 #' }
 #' @export
-
-
 gghistostats <- function(data,
                          x,
                          binwidth = NULL,
@@ -231,9 +229,6 @@ gghistostats <- function(data,
 #' )
 #' }
 #' @export
-#'
-
-
 grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
