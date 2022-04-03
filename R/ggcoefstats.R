@@ -269,8 +269,7 @@ ggcoefstats <- function(x,
 
   # for non-dataframe objects
   if (insight::is_model(x)) {
-    # creating glance dataframe
-    glance_df <- performance::model_performance(x, verbose = FALSE)
+    glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
 
     # no meta-analysis in this context
     meta.analytic.effect <- FALSE
@@ -371,8 +370,8 @@ ggcoefstats <- function(x,
   switch(output,
     "subtitle" = subtitle,
     "caption"  = caption,
-    "tidy"     = as_tibble(tidy_df),
-    "glance"   = as_tibble(glance_df),
+    "tidy"     = tidy_df,
+    "glance"   = glance_df,
     plot
   )
 }

@@ -27,5 +27,9 @@ test_that(
     set.seed(123)
     p6 <- ggbarstats(mtcars, cyl, am)
     expect_snapshot(length(extract_stats(p6)))
+
+    set.seed(123)
+    p7 <- ggcoefstats(lm(wt ~ mpg, mtcars))
+    expect_snapshot(length(extract_stats(p7)))
   }
 )

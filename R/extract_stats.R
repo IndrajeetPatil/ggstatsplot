@@ -43,7 +43,9 @@ extract_stats <- function(p, ...) {
     caption_data              = tryCatch(p$plot_env$caption_df, error = function(e) NULL),
     pairwise_comparisons_data = tryCatch(p$plot_env$mpc_df, error = function(e) NULL),
     descriptive_data          = tryCatch(p$plot_env$descriptive_df, error = function(e) NULL),
-    one_sample_data           = tryCatch(p$plot_env$onesample_df, error = function(e) NULL)
+    one_sample_data           = tryCatch(p$plot_env$onesample_df, error = function(e) NULL),
+    tidy_data                 = tryCatch(p$plot_env$tidy_df, error = function(e) NULL),
+    glance_data               = tryCatch(p$plot_env$glance_df, error = function(e) NULL)
   )
 }
 
