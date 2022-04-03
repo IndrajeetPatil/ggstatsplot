@@ -128,7 +128,7 @@ ggbarstats <- function(data,
   palette_message(package, palette, nlevels(data %>% pull({{ x }})))
 
   # plot
-  p <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
+  plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
       labels       = function(x) paste0(x * 100, "%"),
@@ -150,7 +150,7 @@ ggbarstats <- function(data,
 
   # adding significance labels to bars for proportion tests
   if (isTRUE(proportion.test)) {
-    p <- p +
+    plotBar <- plotBar +
       geom_text(
         data    = onesample_df,
         mapping = aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
@@ -160,7 +160,7 @@ ggbarstats <- function(data,
   }
 
   # adding sample size info
-  p <- p +
+  plotBar <- plotBar +
     geom_text(
       data    = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
@@ -169,7 +169,7 @@ ggbarstats <- function(data,
 
   # annotations ------------------------------------------
 
-  p +
+  plotBar +
     labs(
       x        = xlab %||% as_name(y),
       y        = ylab,

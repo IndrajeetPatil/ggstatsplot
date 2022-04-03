@@ -238,7 +238,6 @@ grouped_gghistostats <- function(data,
 
   # dataframe ------------------------------------------
 
-  # getting the dataframe ready
   data %<>%
     select({{ grouping.var }}, {{ x }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
@@ -247,7 +246,6 @@ grouped_gghistostats <- function(data,
   p_ls <- purrr::pmap(
     .l       = list(data = data, title = names(data), output = output),
     .f       = ggstatsplot::gghistostats,
-    # common parameters
     x        = {{ x }},
     binwidth = binwidth %||% .binwidth(x_vec),
     ...

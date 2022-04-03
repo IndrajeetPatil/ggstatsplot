@@ -165,7 +165,7 @@ ggpiestats <- function(data,
   palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
-  p <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
+  plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
     geom_col(
       mapping  = aes(fill = {{ x }}),
       position = "fill",
@@ -177,7 +177,7 @@ ggpiestats <- function(data,
   .fn <- if (label.repel) ggrepel::geom_label_repel else ggplot2::geom_label
 
   # adding label with percentages and/or counts
-  suppressWarnings(suppressMessages(p <- p +
+  suppressWarnings(suppressMessages(plotPie <- plotPie +
     exec(
       .fn,
       mapping            = aes(label = .label, group = {{ x }}),
@@ -189,10 +189,10 @@ ggpiestats <- function(data,
     )))
 
   # if facet_wrap *is* happening
-  if (facet) p <- p + facet_wrap(facets = vars({{ y }}))
+  if (facet) plotPie <- plotPie + facet_wrap(facets = vars({{ y }}))
 
   # polar coordinates plus formatting
-  p <- p +
+  plotPie <- plotPie +
     coord_polar(theta = "y") +
     scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
@@ -207,7 +207,7 @@ ggpiestats <- function(data,
   # sample size + proportion test ------------------------------------------
 
   if (facet && proportion.test) {
-    p <- p +
+    plotPie <- plotPie +
       exec(
         geom_text,
         data     = onesample_df,
@@ -220,7 +220,7 @@ ggpiestats <- function(data,
 
   # annotations ------------------------------------------
 
-  p +
+  plotPie +
     labs(
       x        = NULL,
       y        = NULL,
