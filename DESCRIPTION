@@ -44,7 +44,7 @@ Imports:
     utils,
     WRS2
 Remotes:
-    easystats/parameters
+    easystats/parameters,
     IndrajeetPatil/statsExpressions
 Suggests:
     afex,
