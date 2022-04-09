@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1
+# CITATION file created with {cffr} R package, v0.2.2
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -230,9 +230,9 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
+  year: '2022'
   url: https://easystats.github.io/insight/
   version: '>= 0.17.0'
-  year: '2022'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -270,9 +270,9 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
+  year: '2022'
   url: https://easystats.github.io/parameters/
   version: '>= 0.17.0'
-  year: '2022'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -314,7 +314,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2022'
-  url: https://CRAN.R-project.org/package=performance
+  url: https://easystats.github.io/performance/
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'

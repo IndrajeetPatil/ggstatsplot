@@ -43,6 +43,9 @@ Imports:
     tidyr,
     utils,
     WRS2
+Remotes:
+    easystats/parameters
+    IndrajeetPatil/statsExpressions
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.3),
@@ -70,6 +73,6 @@ Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c("rd", "namespace", "collate",
     "pkgapi::api_roclet"))
-RoxygenNote: 7.1.2.9000
+RoxygenNote: 7.1.2
 Config/testthat/edition: 3
 Config/testthat/parallel: true

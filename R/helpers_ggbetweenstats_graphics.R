@@ -175,6 +175,63 @@ ggsignif_xy <- function(x, y) {
   seq(y_start, y_end, length.out = n_comps)
 }
 
+#' @name pairwise_caption
+#' @title Pairwise comparison test expression
+#'
+#' @description
+#'
+#' This returns an expression containing details about the pairwise comparison
+#' test and the *p*-value adjustment method. These details are typically
+#' included in the `{ggstatsplot}` package plots as a caption.
+#'
+#' @param test.description Text describing the details of the test.
+#' @param caption Additional text to be included in the plot.
+#' @param pairwise.display Decides *which* pairwise comparisons to display.
+#'   Available options are:
+#'   - `"significant"` (abbreviation accepted: `"s"`)
+#'   - `"non-significant"` (abbreviation accepted: `"ns"`)
+#'   - `"all"`
+#'
+#'   You can use this argument to make sure that your plot is not uber-cluttered
+#'   when you have multiple groups being compared and scores of pairwise
+#'   comparisons being displayed.
+#' @param ... Ignored.
+#'
+#' @examples
+#' pairwise_caption("my caption", "Student's t-test")
+#' @keywords internal
+#' @noRd
+pairwise_caption <- function(caption,
+                             test.description,
+                             bf.message,
+                             pairwise.display = "significant",
+                             ...) {
+
+  # signle quote (') needs to be escaped inside glue expressions
+  test <- sub("'", "\\'", test.description, fixed = TRUE)
+
+  # which comparisons were displayed?
+  display <- case_when(
+    substr(pairwise.display, 1L, 1L) == "s" ~ "only significant",
+    substr(pairwise.display, 1L, 1L) == "n" ~ "only non-significant",
+    TRUE ~ "all"
+  )
+
+  # returned parsed glue expression
+  if (bf.message) {
+    parse(text = glue("atop(displaystyle({caption}),
+                    list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}')))"))
+  } else {
+    if (!is.null(caption)) {
+      parse(text = glue("atop(displaystyle('{caption}'),
+                    list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}')))"))
+    } else {
+      parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}'))"))
+    }
+  }
+}
+
+
 
 #' @title Making aesthetic modifications to the plot
 #' @name aesthetic_addon
