@@ -44,8 +44,7 @@ test_that(
         outlier.tagging = TRUE,
         outlier.coef = 2.5,
         pairwise.comparisons = FALSE,
-        title = "wine tasting data",
-        caption = "From `WRS2` package"
+        title = "wine tasting data"
       )
     )
   }

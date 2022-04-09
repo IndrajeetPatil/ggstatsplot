@@ -57,7 +57,6 @@ test_that(
         y = Expt,
         results.subtitle = FALSE,
         title = "Michelson-Morley experiment",
-        caption = "Studies carried out in 1887",
         xlab = substitute(paste("Speed of light (", italic("c"), ")")),
         ylab = "Experimental run",
         ggplot.component = ggplot2::scale_x_continuous(

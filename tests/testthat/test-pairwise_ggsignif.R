@@ -278,7 +278,6 @@ test_that(
         bf.message = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
-        caption = "Dataset: Bugs",
         k = 3L
       )
     )

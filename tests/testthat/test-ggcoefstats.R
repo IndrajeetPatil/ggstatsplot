@@ -138,7 +138,6 @@ test_that(
         effsize = "omega",
         title = "mammalian sleep",
         subtitle = "Source: `{ggplot2}` package",
-        caption = substitute(paste(italic("Note"), ": From `tidyverse`")),
         package = "wesanderson",
         palette = "BottleRocket2",
         k = 3

@@ -28,7 +28,6 @@ test_that(
         grouping.var = vore,
         xlab = "total sleep",
         ylab = "body weight",
-        caption = "source: ggplot2 package",
         ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000))
       )
     )

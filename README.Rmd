@@ -173,7 +173,7 @@ statistical tests in the subtitle. The simplest function call looks like this-
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 ggbetweenstats(
   data  = iris,
   x     = Species,
@@ -201,7 +201,7 @@ operation across a **single** grouping variable:
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 grouped_ggbetweenstats(
   data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                = mpaa,
@@ -214,7 +214,6 @@ grouped_ggbetweenstats(
   p.adjust.method  = "bonferroni", ## method for adjusting p-values for multiple comparisons
   ## adding new components to `{ggstatsplot}` default
   ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
-  caption          = "Source: IMDb (Internet Movie Database)",
   palette          = "default_jama",
   package          = "ggsci",
   plotgrid.args    = list(nrow = 1),
@@ -302,13 +301,12 @@ set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run anova
 
-## plot
+
 ggwithinstats(
   data    = WineTasting,
   x       = Wine,
   y       = Taste,
   title   = "Wine tasting",
-  caption = "Data source: `WRS2` R package",
   ggtheme = ggthemes::theme_fivethirtyeight()
 )
 ```
@@ -340,7 +338,7 @@ will see an example with only repeated measurements-
 ## common setup
 set.seed(123)
 
-## plot
+
 grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
@@ -428,12 +426,11 @@ significantly different from a specified value with a one-sample test,
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 gghistostats(
   data       = ggplot2::msleep, ## dataframe from which variable is to be taken
   x          = awake, ## numeric variable whose distribution is of interest
   title      = "Amount of time spent awake", ## title for the plot
-  caption    = "Source: Mammalian sleep data set",
   test.value = 12, ## default value is 0
   binwidth   = 1, ## binwidth value (experiment)
   ggtheme    = hrbrthemes::theme_ipsum_tw()
@@ -456,7 +453,7 @@ easy to repeat the same operation across a **single** grouping variable:
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 grouped_gghistostats(
   data              = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                 = budget,
@@ -468,7 +465,6 @@ grouped_gghistostats(
   normal.curve.args = list(color = "red", size = 1),
   ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
-  ggplot.component  = ggplot2::labs(caption = "Source: IMDB.com"),
   plotgrid.args     = list(nrow = 1),
   annotation.args   = list(title = "Movies budgets for different genres")
 )
@@ -524,7 +520,7 @@ numeric variable also has a label.
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 ggdotplotstats(
   data       = dplyr::filter(gapminder::gapminder, continent == "Asia"),
   y          = country,
@@ -532,8 +528,7 @@ ggdotplotstats(
   test.value = 55,
   type       = "robust",
   title      = "Distribution of life expectancy in Asian continent",
-  xlab       = "Life expectancy",
-  caption    = "Source: Gapminder dataset from https://www.gapminder.org/"
+  xlab       = "Life expectancy"
 )
 ```
 
@@ -553,7 +548,7 @@ of a single grouping variable.
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 grouped_ggdotplotstats(
   data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x               = cty,
@@ -636,7 +631,7 @@ easy to repeat the same operation across a **single** grouping variable.
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 grouped_ggscatterstats(
   data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                = rating,
@@ -712,7 +707,7 @@ easy to repeat the same operation across a **single** grouping variable:
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 grouped_ggcorrmat(
   data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   type         = "robust", ## correlation method
@@ -787,7 +782,7 @@ To study an interaction between two categorical variables:
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 ggpiestats(
   data         = mtcars,
   x            = am,
@@ -795,8 +790,7 @@ ggpiestats(
   package      = "wesanderson",
   palette      = "Royal1",
   title        = "Dataset: Motor Trend Car Road Tests", ## title for the plot
-  legend.title = "Transmission", ## title for the legend
-  caption      = "Source: 1974 Motor Trend US magazine"
+  legend.title = "Transmission"
 )
 ```
 
@@ -818,7 +812,7 @@ for different levels of a single nominal variable:
 ## for reproducibility
 set.seed(123)
 
-## plot
+
 grouped_ggpiestats(
   data         = mtcars,
   x            = cyl,
@@ -890,7 +884,7 @@ bar.
 set.seed(123)
 library(ggplot2)
 
-## plot
+
 ggbarstats(
   data             = movies_long,
   x                = mpaa,
@@ -920,7 +914,7 @@ And, needless to say, there is also a `grouped_` variant of this function-
 ## setup
 set.seed(123)
 
-## plot
+
 grouped_ggbarstats(
   data         = mtcars,
   x            = am,
@@ -998,7 +992,7 @@ be invariant across models:
     
   - The label attached to dot will provide more details from the statistical
     test carried out and it will typically contain estimate, statistic, and
-    *p*-value.
+    *p*-value.e
 
   - The caption will contain diagnostic information, if available, about
     models that can be useful for model selection: The smaller the Akaike's
@@ -1015,7 +1009,7 @@ set.seed(123)
 ## model
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
-## plot
+
 ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 ```
 
