@@ -1,3 +1,5 @@
+# pairwise comparisons testing is done `test-pairwise_ggsignif.R`
+
 # checking labels and data from plot -------------------------------------
 
 test_that(

@@ -32,50 +32,8 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "non-parametric - without NA",
-      fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "robust - without NA",
-      fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayes - without NA",
-      fig = ggdotplotstats(ggplot2::mpg, cty, cyl,
-        test.value = 16, type = "bayes",
-        centrality.plotting = FALSE
-      ) # TODO: https://github.com/easystats/bayestestR/issues/429
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "parametric - with NA",
-      fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "p")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "non-parametric - with NA",
-      fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
       title = "robust - with NA",
       fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayes - with NA",
-      fig = ggdotplotstats(morley_new, Speed, Expt,
-        test.value = 800, type = "bayes",
-        centrality.plotting = FALSE
-      ) # TODO: https://github.com/easystats/bayestestR/issues/429
     )
   }
 )

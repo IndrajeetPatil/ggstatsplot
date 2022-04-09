@@ -15,44 +15,8 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "non-parametric - without NA",
-      fig = gghistostats(ggplot2::mpg, cty, test.value = 20, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "robust - without NA",
-      fig = gghistostats(ggplot2::mpg, cty, test.value = 20, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayes - without NA",
-      fig = gghistostats(ggplot2::mpg, cty, test.value = 20, type = "bayes")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "parametric - with NA",
-      fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "p")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "non-parametric - with NA",
-      fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
       title = "robust - with NA",
       fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayes - with NA",
-      fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "bayes")
     )
   }
 )

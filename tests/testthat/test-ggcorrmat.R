@@ -1,7 +1,7 @@
-# entire dataset - without NAs ------------------------------------------------
+# entire dataset ------------------------------------------------
 
 test_that(
-  desc = "checking ggcorrmat with entier dataset - without NAs",
+  desc = "checking ggcorrmat with entier dataset",
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
@@ -16,56 +16,8 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "robust correlation - without NAs",
-      fig = suppressWarnings(ggcorrmat(data = anscombe, type = "r"))
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "non-parametric correlation - without NAs",
-      fig = ggcorrmat(data = anscombe, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayesian correlation - without NAs",
-      fig = suppressWarnings(ggcorrmat(data = anscombe, type = "bayes"))
-    )
-  }
-)
-
-# entire dataset - with NAs ------------------------------------------------
-
-test_that(
-  desc = "checking ggcorrmat with entier dataset - with NAs",
-  code = {
-    skip_if_not_installed("vdiffr")
-    skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
-    skip_if_not_installed("ggcorrplot")
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "parametric correlation - with NAs",
-      fig = ggcorrmat(data = ggplot2::msleep, type = "p")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "robust correlation - with NAs",
-      fig = ggcorrmat(data = ggplot2::msleep, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
       title = "non-parametric correlation - with NAs",
       fig = ggcorrmat(data = ggplot2::msleep, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayesian correlation - with NAs",
-      fig = suppressWarnings(ggcorrmat(data = ggplot2::msleep, type = "bayes"))
     )
   }
 )

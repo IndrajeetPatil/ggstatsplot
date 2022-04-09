@@ -1,7 +1,7 @@
-# entire dataset - without NAs ------------------------------------------------
+# entire dataset ------------------------------------------------
 
 test_that(
-  desc = "checking ggscatterstats with entier dataset - without NAs",
+  desc = "checking ggscatterstats with entire dataset",
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
@@ -16,56 +16,8 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "robust correlation - without NAs",
-      fig = ggscatterstats(mtcars, wt, mpg, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "non-parametric correlation - without NAs",
-      fig = ggscatterstats(mtcars, wt, mpg, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayesian correlation - without NAs",
-      fig = ggscatterstats(mtcars, wt, mpg, type = "bayes")
-    )
-  }
-)
-
-# entire dataset - with NAs ------------------------------------------------
-
-test_that(
-  desc = "checking ggscatterstats with entier dataset - with NAs",
-  code = {
-    skip_if_not_installed("vdiffr")
-    skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
-    skip_if_not_installed("ggside")
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "parametric correlation - with NAs",
-      fig = ggscatterstats(ggplot2::msleep, sleep_total, brainwt, type = "p")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
       title = "robust correlation - with NAs",
       fig = ggscatterstats(ggplot2::msleep, sleep_total, brainwt, type = "r")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "non-parametric correlation - with NAs",
-      fig = ggscatterstats(ggplot2::msleep, sleep_total, brainwt, type = "np")
-    )
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "bayesian correlation - with NAs",
-      fig = ggscatterstats(ggplot2::msleep, sleep_total, brainwt, type = "bayes")
     )
   }
 )

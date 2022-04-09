@@ -8,6 +8,12 @@ df_meta <- structure(
   class = c("tbl_df", "tbl", "data.frame")
 )
 
+# errors ------------------------------------------
+
+test_that("ggcoefstats doesn't work if no estimate column found", {
+  expect_snapshot_error(ggcoefstats(iris))
+})
+
 # default plots for each statistic ------------------------------------------
 
 test_that("default plots are rendered correctly for each type of statistic", {

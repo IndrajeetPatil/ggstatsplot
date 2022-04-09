@@ -1,3 +1,5 @@
+# pairwise comparisons testing is done `test-pairwise_ggsignif.R`
+
 # data
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30, condition %in% c("HDLF", "HDHF"))
 
