@@ -30,11 +30,11 @@ iris_long <- datasets::iris %>%
   # converting column types
   dplyr::mutate_if(
     .predicate = purrr::is_bare_character,
-    .funs = ~ base::as.factor(.)
+    .funs = ~ as.factor(.)
   ) %>%
   dplyr::mutate_if(
-    .predicate = base::is.factor,
-    .funs = ~ base::droplevels(.)
+    .predicate = is.factor,
+    .funs = ~ droplevels(.)
   ) %>%
   dplyr::select(id, dplyr::everything()) %>%
   tibble::as_tibble(.)
@@ -43,5 +43,5 @@ iris_long <- datasets::iris %>%
 dplyr::glimpse(iris_long)
 
 # saving the files
-readr::write_csv(x = iris_long, path = "data-raw/iris_long.csv")
-base::save(iris_long, file = "data/iris_long.rdata")
+readr::write_csv(x = iris_long, file = "data-raw/iris_long.csv")
+save(iris_long, file = "data/iris_long.rdata")

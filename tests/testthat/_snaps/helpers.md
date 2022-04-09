@@ -36,3 +36,7 @@
       [11] "bodywt"      
       
 
+# palette_message is working
+
+    Number of labels is greater than default palette color count.Select another color `palette` (and/or `package`).
+

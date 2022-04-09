@@ -1,11 +1,17 @@
 # ggstatsplot 0.9.1.9000
 
-# ggstatsplot 0.9.1
-
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+MAJOR CHANGES
+
+  - The `pairwise_comparions()` function implementation now lives in
+    `{statsExpressions}` package, although it will continue to be exported from
+    `{ggstatsplot}` package.
+
+# ggstatsplot 0.9.1
 
 MAJOR CHANGES
 

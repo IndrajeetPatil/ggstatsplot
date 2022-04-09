@@ -21,8 +21,8 @@ statsExpressions::`%<-%`
 statsExpressions::tibble
 
 #' @export
-#' @importFrom statsExpressions enframe
-statsExpressions::enframe
+#' @importFrom statsExpressions pairwise_comparisons
+statsExpressions::pairwise_comparisons
 
 #' @export
 #' @importFrom statsExpressions as_tibble

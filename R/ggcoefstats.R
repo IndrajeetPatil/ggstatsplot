@@ -113,8 +113,6 @@
 #' ggcoefstats(mod, output = "glance")
 #' }
 #' @export
-
-# function body
 ggcoefstats <- function(x,
                         output = "plot",
                         statistic = NULL,
@@ -151,7 +149,8 @@ ggcoefstats <- function(x,
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
                         ...) {
-  # dataframe -------------------------
+
+  # model check -------------------------
 
   if (isFALSE(insight::is_model(x))) {
     # set tidy_df to entered dataframe
@@ -161,7 +160,7 @@ ggcoefstats <- function(x,
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
-  # tidy it -------------------------
+  # tidy dataframe -------------------------
 
   if (isTRUE(insight::is_model(x))) {
     # which effect size?
@@ -186,12 +185,10 @@ ggcoefstats <- function(x,
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
   }
 
-
   # tidy dataframe cleanup -------------------------
 
-  # check for the one necessary column
   if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
-    stop("The tidy dataframe *must* contain 'estimate' column.", call. = FALSE)
+    rlang::abort("The tidy dataframe *must* contain 'estimate' column.")
   }
 
   # create a new term column if it's not present
@@ -201,8 +198,7 @@ ggcoefstats <- function(x,
 
   # check for duplicate terms and columns -------------------------
 
-  # a check if there are repeated terms
-  # needed for maov, lqm, lqmm, etc. kind of objects
+  # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
   if (any(duplicated(select(tidy_df, term)))) {
     tidy_df %<>%
       tidyr::unite(
@@ -214,19 +210,16 @@ ggcoefstats <- function(x,
   }
 
   # halt if there are still repeated terms
-  if (any(duplicated(tidy_df$term))) stop("Elements in `term` column must be unique.")
+  if (any(duplicated(tidy_df$term))) rlang::abort("Elements in `term` column must be unique.")
 
-  # if `parameters` output doesn't contain p-value or statistic column
+  # if tidy dataframe doesn't contain p-value or statistic column
   if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
 
   # CIs and intercepts -------------------------
 
-  # if `parameters` output doesn't contain CI
+  # if tidy dataframe doesn't contain CI, show only the dots
   if (!"conf.low" %in% names(tidy_df)) {
-    # add NAs so that only dots will be shown
     tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
-
-    # stop displaying whiskers
     conf.int <- FALSE
   }
 
@@ -276,8 +269,7 @@ ggcoefstats <- function(x,
 
   # for non-dataframe objects
   if (insight::is_model(x)) {
-    # creating glance dataframe
-    glance_df <- performance::model_performance(x, verbose = FALSE)
+    glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
 
     # no meta-analysis in this context
     meta.analytic.effect <- FALSE
@@ -321,9 +313,7 @@ ggcoefstats <- function(x,
 
   # basic plot -------------------------
 
-  # palette check is necessary only if output is a plot
   if (output == "plot") {
-    # setting up the basic architecture
     plot <- ggplot(tidy_df, mapping = aes(estimate, term)) +
       exec(geom_point, !!!point.args)
 
@@ -343,13 +333,10 @@ ggcoefstats <- function(x,
 
     # ggrepel labels -------------------------
 
-    # adding the labels
     if (stats.labels) {
       # use a palette, assuming enough no. of colors are available
       if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
         stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
-      } else {
-        stats.label.color <- "black"
       }
 
       # adding labels
@@ -359,14 +346,13 @@ ggcoefstats <- function(x,
           data    = tidy_df,
           mapping = aes(x = estimate, y = term, label = label),
           parse   = TRUE,
-          color   = stats.label.color,
+          color   = stats.label.color %||% "black",
           !!!stats.label.args
         )
     }
 
     # annotations -------------------------
 
-    # adding other labels to the plot
     plot <- plot +
       labs(
         x        = xlab %||% "estimate",
@@ -381,12 +367,11 @@ ggcoefstats <- function(x,
 
   # output -------------------------
 
-  # what needs to be returned?
   switch(output,
     "subtitle" = subtitle,
     "caption"  = caption,
-    "tidy"     = as_tibble(tidy_df),
-    "glance"   = as_tibble(glance_df),
+    "tidy"     = tidy_df,
+    "glance"   = glance_df,
     plot
   )
 }

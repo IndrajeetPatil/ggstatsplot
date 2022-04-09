@@ -16,8 +16,6 @@
 #'   geom_point() +
 #'   theme_ggstatsplot()
 #' @export
-
-# function body
 theme_ggstatsplot <- function() {
   theme_bw() +
     theme(
@@ -45,8 +43,6 @@ theme_ggstatsplot <- function() {
 #' ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
 #' }
 #' @keywords internal
-
-# function body
 grouped_list <- function(data, grouping.var = NULL) {
   # ensure the grouping variable works quoted or unquoted
   if (quo_is_null(enquo(grouping.var))) {
@@ -66,8 +62,6 @@ grouped_list <- function(data, grouping.var = NULL) {
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
 #'
 #' @noRd
-
-# function body
 palette_message <- function(package, palette, min_length) {
   # computing the palette length
   filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
@@ -78,9 +72,9 @@ palette_message <- function(package, palette, min_length) {
 
   # inform the user
   if (!pl_message) {
-    message(cat(
-      "Warning: Number of labels is greater than default palette color count.\n",
-      "Try using another color `palette` (and/or `package`).\n"
+    rlang::warn(paste0(
+      "Number of labels is greater than default palette color count.",
+      "Select another color `palette` (and/or `package`)."
     ))
   }
 

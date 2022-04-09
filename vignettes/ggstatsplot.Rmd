@@ -65,7 +65,7 @@ phases into one in the form of an informative graphic with statistical details.
 Before discussing benefits of this approach, we will show an example (Figure
 1).
 
-```{r iris, fig.width=8, fig.height=5, fig.cap="Example plot from the `{ggstatsplot}` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \\url{https://indrajeetpatil.github.io/ggstatsplot/}"}
+```{r iris, fig.width=8, fig.height=5, error=TRUE, fig.cap="Example plot from the `{ggstatsplot}` package illustrating its philosophy of juxtaposing informative visualizations with details from statistical analysis. To see all supported plots and statistical analyses, see the package website: \\url{https://indrajeetpatil.github.io/ggstatsplot/}"}
 library(ggstatsplot)
 
 ggbetweenstats(iris, Species, Sepal.Length)

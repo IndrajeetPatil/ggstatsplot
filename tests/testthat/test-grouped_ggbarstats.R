@@ -1,125 +1,89 @@
 test_that(
-  desc = "grouped_ggbarstats works",
+  desc = "grouped_ggbarstats produces error when grouping variable not provided",
   code = {
-    skip_on_cran()
-
-    # --------------------- without counts -----------------------------------
-
-    # creating a smaller dataframe
-    mpg_short <- dplyr::filter(ggplot2::mpg, drv %in% c("4", "f"))
-
-    ## expecting error message
-    expect_error(grouped_ggbarstats(
-      data = mpg_short,
-      x = cyl,
-      grouping.var = class
-    ))
-
-    expect_error(grouped_ggbarstats(
-      data = mpg_short,
-      x = cyl
-    ))
-
-    expect_s3_class(
-      grouped_ggbarstats(
-        data = mpg_short,
-        x = cyl,
-        y = class,
-        grouping.var = "class"
-      ),
-      "ggplot"
-    )
-
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = mpg_short,
-        x = cyl,
-        y = class,
-        grouping.var = drv
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = mpg_short,
-        x = cyl,
-        y = class,
-        grouping.var = drv
-      )
-    ),
-    what = "gg"
-    ))
-
-    # --------------------- with counts -----------------------------------
-
-    # when arguments are entered as bare expressions
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = as.data.frame(Titanic),
-        grouping.var = Class,
-        x = Sex,
-        y = Survived,
-        counts = Freq
-      )
-    ),
-    what = "gg"
-    ))
-
-    # when arguments are entered as character
-    set.seed(123)
-    expect_true(inherits(suppressWarnings(
-      grouped_ggbarstats(
-        data = as.data.frame(Titanic),
-        grouping.var = Class,
-        x = Sex,
-        y = Survived,
-        counts = Freq
-      )
-    ),
-    what = "gg"
-    ))
+    expect_snapshot_error(grouped_ggbarstats(mtcars, x = cyl, y = am))
   }
 )
 
-# subtitle output --------------------------------------------------
+test_that(
+  desc = "grouped_ggbarstats works",
+  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
+    # creating a smaller dataframe
+    mpg_short <- ggplot2::mpg %>%
+      dplyr::filter(
+        drv %in% c("4", "f"),
+        class %in% c("suv", "midsize"),
+        trans %in% c("auto(l4)", "auto(l5)")
+      )
+
+    # when arguments are entered as bare expressions
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggbarstats with two-way table",
+      fig = grouped_ggbarstats(
+        data = mpg_short,
+        x = cyl,
+        y = class,
+        grouping.var = drv,
+        label.repel = TRUE
+      )
+    )
+  }
+)
+
+# edge cases --------------------
 
 test_that(
-  desc = "subtitle output",
+  desc = "edge case behavior",
   code = {
-    skip_on_cran()
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+
+    df <- data.frame(
+      dataset = c("a", "b", "c", "c", "c", "c"),
+      measurement = c("old", "old", "old", "old", "new", "new"),
+      flag = c("no", "no", "yes", "no", "yes", "no"),
+      count = c(6, 8, 8, 62, 6, 33)
+    )
 
     set.seed(123)
-    df <- dplyr::sample_frac(forcats::gss_cat, size = 0.1) %>%
-      dplyr::mutate_if(., is.factor, droplevels)
+    vdiffr::expect_doppelganger(
+      title = "common legend when levels are dropped",
+      fig = grouped_ggbarstats(
+        data = df,
+        x = measurement,
+        y = flag,
+        grouping.var = dataset,
+        counts = count,
+        results.subtitle = FALSE,
+        proportion.test = FALSE
+      )
+    )
+  }
+)
 
+# expression output --------------------
 
-    # should output a list of length 3
+test_that(
+  desc = "expression output is as expected",
+  code = {
     set.seed(123)
-    ls_results <- suppressWarnings(grouped_ggbarstats(
-      data = df,
-      x = relig,
-      y = marital,
-      grouping.var = race,
+    grouped_expr <- grouped_ggbarstats(
+      mtcars,
+      grouping.var = am,
+      x = cyl,
+      y = vs,
       output = "subtitle"
-    ))
+    )
 
     set.seed(123)
-    sexpr_results <-
-      suppressWarnings(statsExpressions::contingency_table(
-        data = dplyr::filter(df, race == "Other") %>%
-          dplyr::mutate_if(., is.factor, droplevels),
-        x = relig,
-        y = marital
-      )$expression[[1]])
+    base_expr <- ggbarstats(dplyr::filter(mtcars, am == "0"), cyl, vs, output = "subtitle")
 
-    # checking subtitle
-    expect_equal(ls_results$Other, sexpr_results)
+    expect_equal(grouped_expr$`0`, base_expr)
   }
 )

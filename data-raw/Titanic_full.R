@@ -10,22 +10,16 @@ dplyr::glimpse(x = Titanic)
 # converting to tibble
 tibble::as_tibble(x = Titanic)
 
-# a custom function to repeat dataframe `rep` number of times, which is going to
-# be count data for us
-rep_df <- function(df, rep) {
-  df[rep(1:nrow(df), rep), ]
-}
-
 # converting dataframe to full length based on count information
 Titanic_full <-
   tibble::as_tibble(x = datasets::Titanic) %>%
-  tibble::rowid_to_column(., var = "id") %>%
+  tibble::rowid_to_column(var = "id") %>%
   dplyr::mutate_at(
     .vars = dplyr::vars("id"),
     .funs = ~ as.factor(.)
   ) %>%
   split(f = .$id) %>%
-  purrr::map_dfr(.x = ., .f = ~ rep_df(df = ., rep = .$n)) %>%
+  purrr::map_dfr(.f = ~ tidyr::uncount(.x, n)) %>%
   dplyr::mutate_at(
     .vars = dplyr::vars("id"),
     .funs = ~ as.numeric(as.character(.))
@@ -56,5 +50,5 @@ Titanic_full$Class <-
 dplyr::glimpse(Titanic_full)
 
 # saving the files
-readr::write_csv(x = Titanic_full, path = "data-raw/Titanic_full.csv")
+readr::write_csv(x = Titanic_full, file = "data-raw/Titanic_full.csv")
 save(Titanic_full, file = "data/Titanic_full.rdata")

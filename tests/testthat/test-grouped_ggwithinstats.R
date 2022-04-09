@@ -1,26 +1,22 @@
 # outlier labeling works --------------------------------------------------
 
 test_that(
-  desc = "grouping.var works across vector types",
+  desc = "default plotting as expected",
   code = {
-    skip_on_cran()
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
+    skip_if(getRversion() >= "4.2")
+    skip_if_not_installed("PMCMRplus")
     skip_if_not_installed("afex")
-    set.seed(123)
-    library(afex)
+    skip_if_not_installed("WRS2")
 
     # expect error when no grouping.var is specified
-    expect_error(
-      grouped_ggwithinstats(
-        data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-        x = condition,
-        y = desire,
-      )
-    )
+    expect_snapshot_error(grouped_ggbetweenstats(bugs_long, x = condition, y = desire))
 
     # outlier tagging is not required
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "no outlier tagging",
+      title = "default plots",
       fig = grouped_ggwithinstats(
         data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
         x = condition,
@@ -30,10 +26,9 @@ test_that(
       )
     )
 
-    # `outlier.label` is not specified
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "outlier.label not specified",
+      title = "outlier tagging and other modifications work",
       fig = grouped_ggwithinstats(
         data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
         x = condition,
@@ -44,40 +39,14 @@ test_that(
         outlier.tagging = TRUE
       )
     )
-
-    # `outlier.label` is character
-    # also x, y, and outlier.label arguments as characters
-    set.seed(123)
-    dat <- iris_long
-    dat$id <- as.character(dat$id)
-
-    set.seed(123)
-    vdiffr::expect_doppelganger(
-      title = "outlier.label specified",
-      fig = grouped_ggwithinstats(
-        data = dat,
-        x = attribute,
-        y = value,
-        grouping.var = Species,
-        palette = "default_jama",
-        package = "ggsci",
-        results.subtitle = FALSE,
-        outlier.tagging = TRUE,
-        outlier.label = id,
-        outlier.coef = 2
-      )
-    )
   }
 )
 
 # subtitle output with NA --------------------------------------------------
 
 test_that(
-  desc = "subtitle output with NA",
+  desc = "subtitle output",
   code = {
-    skip_on_cran()
-    skip_if_not_installed("PMCMRplus")
-
     # data
     df <- dplyr::filter(bugs_long, region %in% c("North America"))
 
@@ -101,8 +70,6 @@ test_that(
       bf.message = FALSE
     )
 
-    # tests
-    expect_equal(length(ls_results), 1L)
-    expect_identical(ls_results$`North America`, basic_results)
+    expect_equal(ls_results$`North America`, basic_results)
   }
 )

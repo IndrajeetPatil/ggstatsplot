@@ -31,7 +31,7 @@ Imports:
     ggrepel,
     ggsignif,
     glue,
-    insight (>= 0.16.0),
+    insight (>= 0.17.0),
     paletteer,
     parameters (>= 0.17.0),
     patchwork,
@@ -39,14 +39,16 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 1.3.0),
+    statsExpressions (>= 1.3.1),
     tidyr,
     utils,
     WRS2
+Remotes:
+    easystats/parameters,
+    IndrajeetPatil/statsExpressions
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.3),
-    forcats,
     gapminder,
     ggcorrplot,
     gginnards,
@@ -61,12 +63,9 @@ Suggests:
     rmarkdown,
     spelling,
     survival,
-    testthat (>= 3.1.0),
+    testthat (>= 3.1.3),
     tibble,
     vdiffr
-Remotes:
-    easystats/insight,
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

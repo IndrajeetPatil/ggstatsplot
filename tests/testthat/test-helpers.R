@@ -3,7 +3,6 @@
 test_that(
   desc = "grouped_list works",
   code = {
-    skip_on_cran()
     set.seed(123)
 
     # creating lists
@@ -17,8 +16,8 @@ test_that(
     # testing lengths of lists
     expect_snapshot(list(length(df1), length(df2), length(df5), length(df6)))
     expect_snapshot(list(names(df1), names(df2), names(df5), names(df6)))
-    expect_identical(df1$carni, df5$carni)
-    expect_identical(ggplot2::msleep, df6)
+    expect_equal(df1$carni, df5$carni)
+    expect_equal(ggplot2::msleep, df6)
   }
 )
 
@@ -28,7 +27,7 @@ test_that(
 test_that(
   desc = "palette_message is working",
   code = {
-    expect_output(
+    expect_snapshot_warning(
       ggstatsplot:::palette_message(
         package = "RColorBrewer",
         palette = "Dark2",

@@ -51,8 +51,6 @@
 #' ggpiestats(mtcars, x = vs, y = cyl)
 #' }
 #' @export
-
-# defining the function
 ggpiestats <- function(data,
                        x,
                        y = NULL,
@@ -110,19 +108,17 @@ ggpiestats <- function(data,
 
   # y
   if (test == "one.way") y_levels <- 0L
-  if (test == "two.way") {
-    y_levels <- nlevels(data %>% pull({{ y }}))
-    if (y_levels == 1L) bf.message <- FALSE # TODO: one-way table in `BayesFactor`
-  }
+  if (test == "two.way") y_levels <- nlevels(data %>% pull({{ y }}))
 
+  # TODO: one-way table in `BayesFactor`
+  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
 
-  # faceting is happening only if both vars have more than one levels
+  # faceting is possible only if both vars have more than one levels
   facet <- ifelse(y_levels > 1L, TRUE, FALSE)
   if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
 
   # statistical analysis ------------------------------------------
 
-  # if subtitle with results is to be displayed
   if (results.subtitle) {
     # relevant arguments for statistical tests
     .f.args <- list(
@@ -169,7 +165,7 @@ ggpiestats <- function(data,
   palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
-  p <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
+  plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
     geom_col(
       mapping  = aes(fill = {{ x }}),
       position = "fill",
@@ -178,11 +174,10 @@ ggpiestats <- function(data,
     )
 
   # whether labels need to be repelled
-  if (label.repel) .fn <- ggrepel::geom_label_repel
-  if (!label.repel) .fn <- geom_label
+  .fn <- if (label.repel) ggrepel::geom_label_repel else ggplot2::geom_label
 
   # adding label with percentages and/or counts
-  suppressWarnings(suppressMessages(p <- p +
+  suppressWarnings(suppressMessages(plotPie <- plotPie +
     exec(
       .fn,
       mapping            = aes(label = .label, group = {{ x }}),
@@ -194,10 +189,10 @@ ggpiestats <- function(data,
     )))
 
   # if facet_wrap *is* happening
-  if (facet) p <- p + facet_wrap(facets = vars({{ y }}))
+  if (facet) plotPie <- plotPie + facet_wrap(facets = vars({{ y }}))
 
   # polar coordinates plus formatting
-  p <- p +
+  plotPie <- plotPie +
     coord_polar(theta = "y") +
     scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
@@ -211,9 +206,8 @@ ggpiestats <- function(data,
 
   # sample size + proportion test ------------------------------------------
 
-  # adding labels with proportion tests
   if (facet && proportion.test) {
-    p <- p +
+    plotPie <- plotPie +
       exec(
         geom_text,
         data     = onesample_df,
@@ -226,7 +220,7 @@ ggpiestats <- function(data,
 
   # annotations ------------------------------------------
 
-  p +
+  plotPie +
     labs(
       x        = NULL,
       y        = NULL,
@@ -265,8 +259,6 @@ ggpiestats <- function(data,
 #' grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
 #' }
 #' @export
-
-# defining the function
 grouped_ggpiestats <- function(data,
                                ...,
                                grouping.var,
@@ -287,6 +279,5 @@ grouped_ggpiestats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }

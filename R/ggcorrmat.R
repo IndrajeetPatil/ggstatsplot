@@ -46,7 +46,6 @@
 #' @inheritParams ggcorrplot::ggcorrplot
 #' @inheritParams ggscatterstats
 #'
-#' @importFrom dplyr select matches
 #' @importFrom purrr is_bare_numeric keep
 #' @importFrom correlation correlation
 #'
@@ -72,8 +71,6 @@
 #'   output = "dataframe"
 #' )
 #' @export
-
-# defining the function
 ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
@@ -105,7 +102,6 @@ ggcorrmat <- function(data,
 
   # dataframe -----------------------------------
 
-  # creating a dataframe out of the entered variables
   if (missing(cor.vars)) {
     df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   } else {
@@ -118,8 +114,7 @@ ggcorrmat <- function(data,
   type <- stats_type_switch(type)
 
   # creating a dataframe of results
-  # styler: off
-  stats_df <- correlation::correlation(
+  mpc_df <- correlation::correlation(
     data             = df,
     rename           = cor.vars.names,
     method           = ifelse(type == "nonparametric", "spearman", "pearson"),
@@ -132,18 +127,17 @@ ggcorrmat <- function(data,
     partial_bayesian = ifelse(type == "bayes" && partial, TRUE, FALSE),
     winsorize        = ifelse(type == "robust", tr, FALSE)
   )
-  # styler: on
 
   # type of correlation and if it is a partial correlation
-  r.method.text <- gsub(" correlation", "", unique(stats_df$Method))
+  r.method.text <- gsub(" correlation", "", unique(mpc_df$Method))
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
 
   # early stats return
   if (output != "plot") {
-    return(as_tibble(parameters::standardize_names(stats_df, "broom")))
+    return(as_tibble(parameters::standardize_names(mpc_df, "broom")))
   }
 
-  # plot -------------------------------------
+  # plot ------------------------------------------
 
   # in case of NAs, compute minimum and maximum sample sizes of pairs
   # also compute mode
@@ -152,34 +146,33 @@ ggcorrmat <- function(data,
     uniqv[which.max(tabulate(match(v, uniqv)))]
   }
 
+  # installed?
+  check_if_installed("ggcorrplot")
+
   # legend title with information about correlation type and sample
   if (isFALSE(any(is.na(df))) || partial) {
     legend.title <- bquote(atop(
-      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(stats_df$n_Obs[[1]]))),
+      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
     # creating legend with sample size info
     legend.title <- bquote(atop(
       atop(
-        atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(stats_df$n_Obs)))),
+        atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
         atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(stats_df$n_Obs))),
-          italic(n)[max] ~ "=" ~ .(.prettyNum(max(stats_df$n_Obs)))
+          italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(mpc_df$n_Obs))),
+          italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
         )
       ),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   }
 
-  # installed?
-  check_if_installed("ggcorrplot")
-
-  # plotting the correlalogram
   plot <- exec(
     ggcorrplot::ggcorrplot,
-    corr         = as.matrix(select(stats_df, matches("^parameter|^r"))),
-    p.mat        = as.matrix(select(stats_df, matches("^parameter|^p"))),
+    corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
+    p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level    = ifelse(type == "bayes", Inf, sig.level),
     ggtheme      = ggtheme,
     colors       = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
@@ -191,9 +184,8 @@ ggcorrmat <- function(data,
     !!!ggcorrplot.args
   )
 
-  # annotations ------------------------------------------
+  # p-value adjustment message ------------------------------------------
 
-  # preparing the `pch` caption
   if ((pch == "cross" || pch == 4) && type != "bayes") {
     caption <- substitute(
       atop(
@@ -205,13 +197,14 @@ ggcorrmat <- function(data,
       ),
       env = list(
         sig.level = sig.level,
-        adj.text = p_adjust_text(p.adjust.method),
+        adj.text = statsExpressions::p_adjust_text(p.adjust.method),
         top.text = caption
       )
     )
   }
 
-  # adding text details to the plot
+  # annotations ------------------------------------------
+
   plot +
     theme(
       panel.grid.major = element_blank(),
@@ -276,8 +269,6 @@ ggcorrmat <- function(data,
 #' )
 #' }
 #' @export
-
-# defining the function
 grouped_ggcorrmat <- function(data,
                               ...,
                               grouping.var,

@@ -46,8 +46,6 @@
 #' )
 #' }
 #' @export
-
-# function body
 gghistostats <- function(data,
                          x,
                          binwidth = NULL,
@@ -85,13 +83,10 @@ gghistostats <- function(data,
 
   # data -----------------------------------
 
-  # cover both quoted or unquoted arguments
   x <- ensym(x)
-
-  # if dataframe is provided
   data <- tidyr::drop_na(select(data, {{ x }}))
 
-  # a vector for convenience
+  # extract a vector for convenience
   x_vec <- data %>% pull({{ x }})
 
   # statistical analysis ------------------------------------------
@@ -134,7 +129,6 @@ gghistostats <- function(data,
 
   # plot -----------------------------------
 
-  # adding axes info
   plot <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
@@ -151,7 +145,7 @@ gghistostats <- function(data,
     ) +
     guides(fill = "none")
 
-  # if normal curve overlay  needs to be displayed
+  # if normal curve overlay needs to be displayed
   if (normal.curve) {
     plot <- plot +
       exec(
@@ -164,7 +158,6 @@ gghistostats <- function(data,
 
   # centrality plotting -------------------------------------
 
-  # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
     plot <- histo_labeller(
       plot,
@@ -176,7 +169,8 @@ gghistostats <- function(data,
     )
   }
 
-  # adding the theme and labels
+  # annotations -------------------------------
+
   plot +
     labs(
       x        = xlab %||% as_name(x),
@@ -191,8 +185,7 @@ gghistostats <- function(data,
 
 
 #' @noRd
-
-.binwidth <- function(x) (max(x) - min(x)) / sqrt(length(x))
+.binwidth <- function(x) (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) / sqrt(length(x))
 
 
 #' @title Grouped histograms for distribution of a numeric variable
@@ -227,13 +220,10 @@ gghistostats <- function(data,
 #'   test.value      = 5,
 #'   grouping.var    = Species,
 #'   plotgrid.args   = list(nrow = 1),
-#'   annotation.args = list(tag_levels = "i"),
+#'   annotation.args = list(tag_levels = "i")
 #' )
 #' }
 #' @export
-#'
-
-# defining the function
 grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
@@ -243,20 +233,11 @@ grouped_gghistostats <- function(data,
                                  annotation.args = list(),
                                  ...) {
 
-  # binwidth ------------------------------------------
-
-  # maximum value for x
-  binmax <- max(select(data, {{ x }}), na.rm = TRUE)
-
-  # minimum value for x
-  binmin <- min(select(data, {{ x }}), na.rm = TRUE)
-
-  # number of datapoints
-  bincount <- as.integer(data %>% count(.))
+  # extract a vector for convenience
+  x_vec <- data %>% pull({{ x }})
 
   # dataframe ------------------------------------------
 
-  # getting the dataframe ready
   data %<>%
     select({{ grouping.var }}, {{ x }}) %>%
     grouped_list(grouping.var = {{ grouping.var }})
@@ -265,15 +246,13 @@ grouped_gghistostats <- function(data,
   p_ls <- purrr::pmap(
     .l       = list(data = data, title = names(data), output = output),
     .f       = ggstatsplot::gghistostats,
-    # common parameters
     x        = {{ x }},
-    binwidth = binwidth %||% ((binmax - binmin) / sqrt(bincount)),
+    binwidth = binwidth %||% .binwidth(x_vec),
     ...
   )
 
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }

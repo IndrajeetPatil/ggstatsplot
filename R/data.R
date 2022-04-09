@@ -16,7 +16,7 @@
 #'   - votes. Number of IMDB users who rated this movie.
 #'   - mpaa. MPAA rating.
 #'   - genre. Different genres of movies (action, animation, comedy, drama,
-#'   documentary, romance, short).
+#'     documentary, romance, short).
 #'
 #' @source <https://CRAN.R-project.org/package=ggplot2movies>
 #'
@@ -25,6 +25,7 @@
 #' head(movies_long)
 #' dplyr::glimpse(movies_long)
 "movies_long"
+
 
 #' @title Titanic dataset.
 #' @name Titanic_full
@@ -49,6 +50,7 @@
 #' head(Titanic_full)
 #' dplyr::glimpse(Titanic_full)
 "Titanic_full"
+
 
 #' @title Edgar Anderson's Iris Data in long format.
 #' @name iris_long

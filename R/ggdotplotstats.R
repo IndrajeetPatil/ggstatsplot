@@ -34,8 +34,6 @@
 #' )
 #' }
 #' @export
-
-# function body
 ggdotplotstats <- function(data,
                            x,
                            y,
@@ -130,7 +128,6 @@ ggdotplotstats <- function(data,
 
   # plot -----------------------------------
 
-  # creating the basic plot
   plot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
     exec(geom_point, !!!point.args) +
     scale_y_continuous(
@@ -143,9 +140,9 @@ ggdotplotstats <- function(data,
         labels = 25 * 0:4
       )
     )
+
   # centrality plotting -------------------------------------
 
-  # using custom function for adding labels
   if (isTRUE(centrality.plotting)) {
     plot <- histo_labeller(
       plot,
@@ -159,7 +156,6 @@ ggdotplotstats <- function(data,
 
   # annotations -------------------------
 
-  # specifying theme and labels for the final plot
   plot +
     labs(
       x        = xlab %||% as_name(x),
@@ -212,8 +208,6 @@ ggdotplotstats <- function(data,
 #' )
 #' }
 #' @export
-
-# defining the function
 grouped_ggdotplotstats <- function(data,
                                    ...,
                                    grouping.var,
@@ -234,6 +228,5 @@ grouped_ggdotplotstats <- function(data,
   # combining the list of plots into a single plot
   if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  # return the object
   p_ls
 }
