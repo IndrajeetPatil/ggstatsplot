@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto-0.4.0/font.css" rel="stylesheet">
-<link href="../../deps/_JetBrains%20Mono-0.4.0/font.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
+<link href="../../deps/_JetBrains%20Mono-0.4.1/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="gghistostats">
@@ -102,9 +102,10 @@
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>gghistostats</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet
+Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-03-11</h4>
+            <h4 data-toc-skip class="date">2022-04-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/gghistostats.Rmd" class="external-link"><code>vignettes/web_only/gghistostats.Rmd</code></a></small>
       <div class="d-none name"><code>gghistostats.Rmd</code></div>
@@ -135,16 +136,25 @@ A BibTeX entry for LaTeX users is
   }</code></pre>
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
-<p>The function <code>gghistostats</code> can be used for <strong>data exploration</strong> and to provide an easy way to make <strong>publication-ready histograms</strong> with appropriate and selected statistical details embedded in the plot itself. In this vignette we will explore several examples of how to use it.</p>
-<p>Some instances where you would want to use <code>gghistostats</code>-</p>
+<p>The function <code>gghistostats</code> can be used for <strong>data
+exploration</strong> and to provide an easy way to make
+<strong>publication-ready histograms</strong> with appropriate and
+selected statistical details embedded in the plot itself. In this
+vignette we will explore several examples of how to use it.</p>
+<p>Some instances where you would want to use
+<code>gghistostats</code>-</p>
 <ul>
 <li>to inspect distribution of a continuous variable</li>
-<li>to test if the mean of a sample variable is different from a specified value (population parameter)</li>
+<li>to test if the mean of a sample variable is different from a
+specified value (population parameter)</li>
 </ul>
 <div class="section level2">
 <h2 id="statistical-analysis-with-gghistostats">Statistical analysis with <code>gghistostats</code><a class="anchor" aria-label="anchor" href="#statistical-analysis-with-gghistostats"></a>
 </h2>
-<p>Let’s begin with a very simple example from the <code>psych</code> package (<code><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">psych::sat.act</a></code>), a sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National norms have a mean of 20.</p>
+<p>Let’s begin with a very simple example from the <code>psych</code>
+package (<code><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">psych::sat.act</a></code>), a sample of 700 self-reported
+scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite
+scores may range from 1 - 36. National norms have a mean of 20.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## loading needed libraries</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -161,8 +171,15 @@ A BibTeX entry for LaTeX users is
 <span class="co">#&gt; $ <span style="font-weight: bold;">ACT      </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, 35, 27, …</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">SATV     </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 710, …</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">SATQ     </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 600, …</span></code></pre></div>
-<p>To get a simple histogram with no statistics and no special information. <code>gghistostats</code> will by default choose a binwidth <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value and explore multiple widths to find the best to illustrate the stories in your data since histograms are sensitive to binwidth.</p>
-<p>Let’s display the national norms (labeled as “Test”) and test the hypothesis that our sample mean is the same as our national population mean of 20 using a parametric one sample <em>t</em>-test (<code>type = "p"</code>).</p>
+<p>To get a simple histogram with no statistics and no special
+information. <code>gghistostats</code> will by default choose a binwidth
+<code>max(x) - min(x) / sqrt(N)</code>. You should always check this
+value and explore multiple widths to find the best to illustrate the
+stories in your data since histograms are sensitive to binwidth.</p>
+<p>Let’s display the national norms (labeled as “Test”) and test the
+hypothesis that our sample mean is the same as our national population
+mean of 20 using a parametric one sample <em>t</em>-test
+(<code>type = "p"</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -175,13 +192,29 @@ A BibTeX entry for LaTeX users is
   caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" width="100%"></p>
-<p><code>gghistostats</code> computed Bayes Factors to quantify the likelihood of the <strong>research</strong> (BF10) and the <strong>null</strong> hypothesis (BF01). In our current example, the Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf" class="external-link">(Kass and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT scores are much higher than the national average. The log(Bayes factor) of 492.5 means the odds are 7.54e+213:1 that this sample is different.</p>
+<p><code>gghistostats</code> computed Bayes Factors to quantify the
+likelihood of the <strong>research</strong> (BF10) and the
+<strong>null</strong> hypothesis (BF01). In our current example, the
+Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf" class="external-link">(Kass
+and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT
+scores are much higher than the national average. The log(Bayes factor)
+of 492.5 means the odds are 7.54e+213:1 that this sample is
+different.</p>
 </div>
 <div class="section level2">
 <h2 id="grouped-analysis-with-grouped_gghistostats">Grouped analysis with <code>grouped_gghistostats</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_gghistostats"></a>
 </h2>
-<p>What if we want to do the same analysis separately for each gender? <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for such instances: <code>grouped_gghistostats</code>. This is merely a wrapper function around <code>combine_plots</code>. It applies <code>gghistostats</code> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines the individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<p>Let’s see how we can use this function to apply <code>gghistostats</code> to accomplish our task.</p>
+<p>What if we want to do the same analysis separately for each gender?
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for such
+instances: <code>grouped_gghistostats</code>. This is merely a wrapper
+function around <code>combine_plots</code>. It applies
+<code>gghistostats</code> across all <strong>levels</strong> of a
+specified <strong>grouping variable</strong> and then combines the
+individual plots into a single plot. Note that the grouping variable can
+be anything: conditions in a given study, groups in a study sample,
+different studies, etc.</p>
+<p>Let’s see how we can use this function to apply
+<code>gghistostats</code> to accomplish our task.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -204,19 +237,33 @@ A BibTeX entry for LaTeX users is
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/grouped1-1.png" width="100%"></p>
-<p>As can be seen from these plots, the mean value is much higher than the national norm. Additionally, we see the benefits of plotting this data separately for each gender. We can <em>see</em> the differences in distributions.</p>
+<p>As can be seen from these plots, the mean value is much higher than
+the national norm. Additionally, we see the benefits of plotting this
+data separately for each gender. We can <em>see</em> the differences in
+distributions.</p>
 </div>
 <div class="section level2">
 <h2 id="grouped-analysis-with-purrr">Grouped analysis with <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-purrr"></a>
 </h2>
-<p>Although this is a quick and dirty way to explore a large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate <code>test.value</code> argument for each gender, this is not possible with <code>grouped_gghistostats</code>.</p>
-<p>For cases like these, or to run separate kinds of tests (robust for some, parametric for other, while Bayesian for some other levels of the group) it would be better to use <a href="http://purrr.tidyverse.org" class="external-link">purrr</a>.</p>
+<p>Although this is a quick and dirty way to explore a large amount of
+data with minimal effort, it does come with an important limitation:
+reduced flexibility. For example, if we wanted to add, let’s say, a
+separate <code>test.value</code> argument for each gender, this is not
+possible with <code>grouped_gghistostats</code>.</p>
+<p>For cases like these, or to run separate kinds of tests (robust for
+some, parametric for other, while Bayesian for some other levels of the
+group) it would be better to use <a href="http://purrr.tidyverse.org" class="external-link">purrr</a>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a>
 </h2>
 <table class="table">
+<colgroup>
+<col width="21%">
+<col width="16%">
+<col width="61%">
+</colgroup>
 <thead><tr class="header">
 <th>graphical element</th>
 <th>
@@ -331,7 +378,8 @@ A BibTeX entry for LaTeX users is
 </td>
 <td>✅</td>
 <td>
-<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
+<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d</a></code>,
+<code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g</a></code>
 </td>
 </tr>
 <tr class="even">
@@ -359,24 +407,39 @@ A BibTeX entry for LaTeX users is
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
 </h2>
-<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<p>If you wish to include statistical analysis results in a
+publication/report, the ideal reporting practice will be a hybrid of two
+approaches:</p>
 <ul>
-<li><p>the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
-<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+<li><p>the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> approach, where the plot contains
+both the visual and numerical summaries about a statistical model,
+and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides
+interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span><span class="va">trees</span>, <span class="va">Height</span>, test.value <span class="op">=</span> <span class="fl">75</span><span class="op">)</span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/reporting-1.png" width="100%"></p>
-<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can
+complement this plot either as a figure caption or in the main text-</p>
 <blockquote>
-<p>Student’s <em>t</em>-test revealed that, across 31 felled black cherry trees, although the height was higher than expected height of 75 ft., this effect was not statistically significant. The effect size <span class="math inline">\((g = 0.15)\)</span> was small, as per Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that the data were 3.67 times more probable under the null hypothesis as compared to the alternative hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor of the null hypothesis.</p>
+<p>Student’s <em>t</em>-test revealed that, across 31 felled black
+cherry trees, although the height was higher than expected height of 75
+ft., this effect was not statistically significant. The effect size
+<span class="math inline">\((g = 0.15)\)</span> was small, as per
+Cohen’s (1988) conventions. The Bayes Factor for the same analysis
+revealed that the data were 3.67 times more probable under the null
+hypothesis as compared to the alternative hypothesis. This can be
+considered moderate evidence (Jeffreys, 1961) in favor of the null
+hypothesis.</p>
 </blockquote>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an
+issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -386,12 +449,15 @@ A BibTeX entry for LaTeX users is
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
+<p>Developed by
+<a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet
+Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
     </footer>

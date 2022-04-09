@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto-0.4.0/font.css" rel="stylesheet">
-<link href="../../deps/_JetBrains%20Mono-0.4.0/font.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
+<link href="../../deps/_JetBrains%20Mono-0.4.1/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="ggscatterstats">
@@ -102,9 +102,10 @@
 <div class="row">
   <main id="main"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>ggscatterstats</h1>
-                        <h4 data-toc-skip class="author">Indrajeet Patil</h4>
+                        <h4 data-toc-skip class="author">Indrajeet
+Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-03-11</h4>
+            <h4 data-toc-skip class="date">2022-04-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggscatterstats.Rmd" class="external-link"><code>vignettes/web_only/ggscatterstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggscatterstats.Rmd</code></div>
@@ -113,17 +114,30 @@
     
     
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
-<p>The function <code>ggscatterstats</code> is meant to provide a <strong>publication-ready scatterplot</strong> with all statistical details included in the plot itself to show association between two continuous variables. This function is also helpful during the <strong>data exploration</strong> phase. We will see examples of how to use this function in this vignette with the <code>ggplot2movies</code> dataset.</p>
-<p>To begin with, here are some instances where you would want to use <code>ggscatterstats</code>-</p>
+<p>The function <code>ggscatterstats</code> is meant to provide a
+<strong>publication-ready scatterplot</strong> with all statistical
+details included in the plot itself to show association between two
+continuous variables. This function is also helpful during the
+<strong>data exploration</strong> phase. We will see examples of how to
+use this function in this vignette with the <code>ggplot2movies</code>
+dataset.</p>
+<p>To begin with, here are some instances where you would want to use
+<code>ggscatterstats</code>-</p>
 <ul>
 <li>to check linear association between two continuous variables</li>
 <li>to check distribution of two continuous variables</li>
 </ul>
-<p><strong>Note before</strong>: The following demo uses the pipe operator (<code>%&gt;%</code>), so in case you are not familiar with this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
+<p><strong>Note before</strong>: The following demo uses the pipe
+operator (<code>%&gt;%</code>), so in case you are not familiar with
+this operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div class="section level2">
 <h2 id="correlation-plot-with-ggscatterstats">Correlation plot with <code>ggscatterstats</code><a class="anchor" aria-label="anchor" href="#correlation-plot-with-ggscatterstats"></a>
 </h2>
-<p>To illustrate how this function can be used, we will rely on the <code>ggplot2movies</code> dataset. This dataset provides information about movies scraped from <a href="https://www.imdb.com/" class="external-link">IMDB</a>. Specifically, we will be using cleaned version of this dataset included in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package itself.</p>
+<p>To illustrate how this function can be used, we will rely on the
+<code>ggplot2movies</code> dataset. This dataset provides information
+about movies scraped from <a href="https://www.imdb.com/" class="external-link">IMDB</a>.
+Specifically, we will be using cleaned version of this dataset included
+in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package itself.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
 
@@ -139,8 +153,13 @@
 <span class="co">#&gt; $ <span style="font-weight: bold;">votes </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 149494, 103631, 157608, 114797, 132745, 97667, 134640, 103706, …</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">mpaa  </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> R, PG-13, PG-13, PG-13, R, R, PG, PG, PG-13, R, PG, R, R, R, R,…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">genre </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Drama, Action, Action, Action, Drama, Drama, Action, Action, Dr…</span></code></pre></div>
-<p>Now that we have a clean dataset, we can start asking some interesting questions. For example, let’s see if the average IMDB rating for a movie has any relationship to its budget. Additionally, let’s also see which movies had a high budget but low IMDB rating by labeling those data points.</p>
-<p>To reduce the processing time, let’s only work with 30% of the dataset.</p>
+<p>Now that we have a clean dataset, we can start asking some
+interesting questions. For example, let’s see if the average IMDB rating
+for a movie has any relationship to its budget. Additionally, let’s also
+see which movies had a high budget but low IMDB rating by labeling those
+data points.</p>
+<p>To reduce the processing time, let’s only work with 30% of the
+dataset.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -161,14 +180,27 @@
   caption <span class="op">=</span> <span class="st">"Source: www.imdb.com"</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/ggscatterstats1-1.png" width="100%"></p>
-<p>There is indeed a small, but significant, positive correlation between the amount of money studio invests in a movie and the ratings given by the audiences.</p>
+<p>There is indeed a small, but significant, positive correlation
+between the amount of money studio invests in a movie and the ratings
+given by the audiences.</p>
 </div>
 <div class="section level2">
 <h2 id="grouped-analysis-with-grouped_ggscatterstats">Grouped analysis with <code>grouped_ggscatterstats</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggscatterstats"></a>
 </h2>
-<p>What if we want to do the same analysis do the same analysis for movies with different MPAA (Motion Picture Association of America) film ratings (NC-17, PG, PG-13, R)?</p>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for such instances: <code>grouped_ggstatsplot</code>. This is merely a wrapper function around <code>combine_plots</code>. It applies <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> across all <strong>levels</strong> of a specified <strong>grouping variable</strong> and then combines list of individual plots into a single plot. Note that the grouping variable can be anything: conditions in a given study, groups in a study sample, different studies, etc.</p>
-<p>Let’s see how we can use this function to apply <code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a robust test this time.</p>
+<p>What if we want to do the same analysis do the same analysis for
+movies with different MPAA (Motion Picture Association of America) film
+ratings (NC-17, PG, PG-13, R)?</p>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for
+such instances: <code>grouped_ggstatsplot</code>. This is merely a
+wrapper function around <code>combine_plots</code>. It applies
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> across all <strong>levels</strong> of a
+specified <strong>grouping variable</strong> and then combines list of
+individual plots into a single plot. Note that the grouping variable can
+be anything: conditions in a given study, groups in a study sample,
+different studies, etc.</p>
+<p>Let’s see how we can use this function to apply
+<code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a
+robust test this time.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
@@ -192,12 +224,22 @@
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/grouped1-1.png" width="100%"></p>
-<p>As seen from the plot, this analysis has revealed something interesting: The relationship we found between budget and IMDB rating holds only for PG-13 and R-rated movies.</p>
+<p>As seen from the plot, this analysis has revealed something
+interesting: The relationship we found between budget and IMDB rating
+holds only for PG-13 and R-rated movies.</p>
 </div>
 <div class="section level2">
-<h2 id="grouped-analysis-with-ggscatterstats-purrr">Grouped analysis with <code>ggscatterstats</code> + <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggscatterstats-purrr"></a>
+<h2 id="grouped-analysis-with-ggscatterstats-purrr">Grouped analysis with <code>ggscatterstats</code> +
+<code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggscatterstats-purrr"></a>
 </h2>
-<p>Although this is a quick and dirty way to explore large amount of data with minimal effort, it does come with an important limitation: reduced flexibility. For example, if we wanted to add, let’s say, a separate type of marginal distribution plot for each MPAA rating or if we wanted to use different types of correlations across different levels of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would be a good idea), this is not possible. But this can be easily done using <a href="http://purrr.tidyverse.org" class="external-link">purrr</a>.</p>
+<p>Although this is a quick and dirty way to explore large amount of
+data with minimal effort, it does come with an important limitation:
+reduced flexibility. For example, if we wanted to add, let’s say, a
+separate type of marginal distribution plot for each MPAA rating or if
+we wanted to use different types of correlations across different levels
+of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would
+be a good idea), this is not possible. But this can be easily done using
+<a href="http://purrr.tidyverse.org" class="external-link">purrr</a>.</p>
 <p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div class="section level2">
@@ -234,10 +276,12 @@
 <tr class="even">
 <td>marginal histograms</td>
 <td>
-<code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_xsidehistogram</a></code>, <code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_ysidehistogram</a></code>
+<code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_xsidehistogram</a></code>,
+<code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_ysidehistogram</a></code>
 </td>
 <td>
-<code>xsidehistogram.args</code>, <code>ysidehistogram.args</code>
+<code>xsidehistogram.args</code>,
+<code>ysidehistogram.args</code>
 </td>
 </tr>
 </tbody>
@@ -246,7 +290,8 @@
 <div class="section level2">
 <h2 id="summary-of-tests">Summary of tests<a class="anchor" aria-label="anchor" href="#summary-of-tests"></a>
 </h2>
-<p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
+<p><strong>Hypothesis testing</strong> and <strong>Effect size
+estimation</strong></p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -291,24 +336,39 @@
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
 </h2>
-<p>If you wish to include statistical analysis results in a publication/report, the ideal reporting practice will be a hybrid of two approaches:</p>
+<p>If you wish to include statistical analysis results in a
+publication/report, the ideal reporting practice will be a hybrid of two
+approaches:</p>
 <ul>
-<li><p>the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> approach, where the plot contains both the visual and numerical summaries about a statistical model, and</p></li>
-<li><p>the <em>standard</em> narrative approach, which provides interpretive context for the reported statistics.</p></li>
+<li><p>the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> approach, where the plot contains
+both the visual and numerical summaries about a statistical model,
+and</p></li>
+<li><p>the <em>standard</em> narrative approach, which provides
+interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/reporting-1.png" width="100%"></p>
-<p>The narrative context (assuming <code>type = "parametric"</code>) can complement this plot either as a figure caption or in the main text-</p>
+<p>The narrative context (assuming <code>type = "parametric"</code>) can
+complement this plot either as a figure caption or in the main text-</p>
 <blockquote>
-<p>Pearson’s correlation test revealed that, across 32 cars, a measure of acceleration (1/4 mile time; <code>qsec</code>) was positively correlated with rear axle ratio (<code>drat</code>), but this effect was not statistically significant. The effect size <span class="math inline">\((r = 0.09)\)</span> was small, as per Cohen’s (1988) conventions. The Bayes Factor for the same analysis revealed that the data were 3.32 times more probable under the null hypothesis as compared to the alternative hypothesis. This can be considered moderate evidence (Jeffreys, 1961) in favor of the null hypothesis (of absence of any correlation between these two variables).</p>
+<p>Pearson’s correlation test revealed that, across 32 cars, a measure
+of acceleration (1/4 mile time; <code>qsec</code>) was positively
+correlated with rear axle ratio (<code>drat</code>), but this effect was
+not statistically significant. The effect size <span class="math inline">\((r = 0.09)\)</span> was small, as per Cohen’s
+(1988) conventions. The Bayes Factor for the same analysis revealed that
+the data were 3.32 times more probable under the null hypothesis as
+compared to the alternative hypothesis. This can be considered moderate
+evidence (Jeffreys, 1961) in favor of the null hypothesis (of absence of
+any correlation between these two variables).</p>
 </blockquote>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
-<p>If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+<p>If you find any bugs or have any suggestions/remarks, please file an
+issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -318,12 +378,15 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
+<p>Developed by
+<a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet
+Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.9000.</p>
 </div>
 
     </footer>
