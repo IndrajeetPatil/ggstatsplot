@@ -6,6 +6,9 @@
 #' by the author to be aesthetically pleasing to the user/reader. The theme is a
 #' wrapper around `theme_bw()`.
 #'
+#' All `{ggstatsplot}` functions have a `ggtheme` parameter that let you choose
+#' a different theme.
+#'
 #' @return A `ggplot` object with the `theme_ggstatsplot` theme overlaid.
 #'
 #' @examples
@@ -17,23 +20,24 @@
 #'   theme_ggstatsplot()
 #' @export
 theme_ggstatsplot <- function() {
-  theme_bw() +
+  theme_bw(base_size = 10) +
     theme(
-      axis.title    = element_text(face = "bold"),
-      legend.text   = element_text(size = 10),
-      legend.title  = element_text(size = 10, face = "bold"),
-      plot.title    = element_text(size = 12, face = "bold"),
-      plot.subtitle = element_text(size = 10),
-      panel.border  = element_blank(),
-      strip.text    = element_text(face = "bold")
+      axis.title         = element_text(face = "bold"),
+      axis.title.y.right = element_text(size = 8),
+      legend.title       = element_text(face = "bold"),
+      plot.title         = element_text(size = 12, face = "bold"),
+      panel.border       = element_blank(),
+      strip.text         = element_text(face = "bold")
     )
 }
 
 #' @title Split dataframe into a list by grouping variable.
-#' @description This function splits the dataframe into a list, with the length
-#'   of the list equal to the factor levels of the grouping variable. Each
-#'   element of the list will be a tibble.
-#' @name grouped_list
+#'
+#' @description
+#'
+#' This function splits the data frame into a list, with the length of the list
+#' equal to the factor levels of the grouping variable. Each element of the list
+#' will be a tibble.
 #'
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable.

@@ -13,6 +13,9 @@ A \code{ggplot} object with the \code{theme_ggstatsplot} theme overlaid.
 Common theme used across all plots generated in \code{{ggstatsplot}} and \emph{assumed}
 by the author to be aesthetically pleasing to the user/reader. The theme is a
 wrapper around \code{theme_bw()}.
+
+All \code{{ggstatsplot}} functions have a \code{ggtheme} parameter that let you choose
+a different theme.
 }
 \examples{
 library(ggplot2)

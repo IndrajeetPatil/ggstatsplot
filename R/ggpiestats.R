@@ -131,8 +131,7 @@ ggpiestats <- function(data,
       ratio               = ratio,
       sampling.plan       = sampling.plan,
       fixed.margin        = fixed.margin,
-      prior.concentration = prior.concentration,
-      top.text            = caption
+      prior.concentration = prior.concentration
     )
 
     subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)

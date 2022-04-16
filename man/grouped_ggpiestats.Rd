@@ -64,7 +64,8 @@ parametric test} (Default: \code{TRUE}).}
 return \verb{95\%} confidence/credible intervals (\code{0.95}).}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption.}
+    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{theme_bw()}), or themes from extension packages are allowed

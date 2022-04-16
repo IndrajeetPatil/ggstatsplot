@@ -97,7 +97,8 @@ the plot will be returned.}
 variable names for \code{x} and \code{y} will be used.}
     \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
-    \item{\code{caption}}{The text for the plot caption.}
+    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)

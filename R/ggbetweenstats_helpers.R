@@ -175,7 +175,7 @@ ggsignif_xy <- function(x, y) {
   seq(y_start, y_end, length.out = n_comps)
 }
 
-#' @name pairwise_caption
+#' @name pairwise_seclabel
 #' @title Pairwise comparison test expression
 #'
 #' @description
@@ -185,7 +185,6 @@ ggsignif_xy <- function(x, y) {
 #' included in the `{ggstatsplot}` package plots as a caption.
 #'
 #' @param test.description Text describing the details of the test.
-#' @param caption Additional text to be included in the plot.
 #' @param pairwise.display Decides *which* pairwise comparisons to display.
 #'   Available options are:
 #'   - `"significant"` (abbreviation accepted: `"s"`)
@@ -195,40 +194,24 @@ ggsignif_xy <- function(x, y) {
 #'   You can use this argument to make sure that your plot is not uber-cluttered
 #'   when you have multiple groups being compared and scores of pairwise
 #'   comparisons being displayed.
-#' @param ... Ignored.
 #'
 #' @examples
-#' pairwise_caption("my caption", "Student's t-test")
+#' pairwise_seclabel("my caption", "Student's t-test")
 #' @keywords internal
 #' @noRd
-pairwise_caption <- function(caption,
-                             test.description,
-                             bf.message,
-                             pairwise.display = "significant",
-                             ...) {
-
-  # signle quote (') needs to be escaped inside glue expressions
+pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
+  # single quote (') needs to be escaped inside glue expressions
   test <- sub("'", "\\'", test.description, fixed = TRUE)
 
   # which comparisons were displayed?
   display <- case_when(
-    substr(pairwise.display, 1L, 1L) == "s" ~ "only significant",
-    substr(pairwise.display, 1L, 1L) == "n" ~ "only non-significant",
+    substr(pairwise.display, 1L, 1L) == "s" ~ "significant",
+    substr(pairwise.display, 1L, 1L) == "n" ~ "non-significant",
     TRUE ~ "all"
   )
 
   # returned parsed glue expression
-  if (bf.message) {
-    parse(text = glue("atop(displaystyle({caption}),
-                    list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}')))"))
-  } else {
-    if (!is.null(caption)) {
-      parse(text = glue("atop(displaystyle('{caption}'),
-                    list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}')))"))
-    } else {
-      parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Comparisons shown:'~bold('{display}'))"))
-    }
-  }
+  parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
 }
 
 
@@ -238,6 +221,7 @@ pairwise_caption <- function(caption,
 #'
 #' @param plot Plot to be aesthetically modified.
 #' @param x A numeric vector for `x` axis.
+#' @param seclabel A label for secondary axis.
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
 #'
@@ -249,6 +233,7 @@ aesthetic_addon <- function(plot,
                             title = NULL,
                             subtitle = NULL,
                             caption = NULL,
+                            seclabel = NULL,
                             ggtheme = ggstatsplot::theme_ggstatsplot(),
                             package = "RColorBrewer",
                             palette = "Dark2",
@@ -267,6 +252,7 @@ aesthetic_addon <- function(plot,
       caption  = caption,
       color    = xlab
     ) +
+    scale_y_continuous(sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)) +
     ggtheme +
     theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +

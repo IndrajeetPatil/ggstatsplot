@@ -167,10 +167,8 @@ from statistical tests in the subtitle. The simplest function call looks
 like this-
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 ggbetweenstats(
   data  = iris,
   x     = Species,
@@ -194,23 +192,18 @@ is also a `grouped_` variant of this function that makes it easy to
 repeat the same operation across a **single** grouping variable:
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 grouped_ggbetweenstats(
   data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                = mpaa,
   y                = length,
-  grouping.var     = genre, ## grouping variable
-  outlier.tagging  = TRUE, ## whether outliers need to be tagged
-  outlier.label    = title, ## variable to be used for tagging outliers
+  grouping.var     = genre,
+  outlier.tagging  = TRUE,
+  outlier.label    = title,
   outlier.coef     = 2,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
-  p.adjust.method  = "bonferroni", ## method for adjusting p-values for multiple comparisons
-  ## adding new components to `{ggstatsplot}` default
-  ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
-  caption          = "Source: IMDb (Internet Movie Database)",
+  p.adjust.method  = "bonferroni",
   palette          = "default_jama",
   package          = "ggsci",
   plotgrid.args    = list(nrow = 1),
@@ -261,16 +254,16 @@ Note here that the function can be used to tag outliers!
 
 **Effect size estimation**
 
-| Type           | No. of groups | Effect size                                                                                                                                                                                                                                                        | CI? | Function used                                          |
-|----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | \> 2          | ![\\eta\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅  | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | \> 2          | ![\\epsilon\_{ordinal}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                                                        | ✅  | `effectsize::rank_epsilon_squared`                     |
-| Robust         | \> 2          | ![\\xi](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cxi "\xi") (Explanatory measure of effect size)                                                                                                                             | ✅  | `WRS2::t1way`                                          |
-| Bayes Factor   | \> 2          | ![R\_{posterior}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                                                          | ✅  | `performance::r2_bayes`                                |
-| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                                                                                           | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g`         |
-| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                                                                                    | ✅  | `effectsize::rank_biserial`                            |
-| Robust         | 2             | ![\\xi](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cxi "\xi") (Explanatory measure of effect size)                                                                                                                             | ✅  | `WRS2::yuen.effect.ci`                                 |
-| Bayesian       | 2             | ![\\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                                                | ✅  | `bayestestR::describe_posterior`                       |
+| Type           | No. of groups | Effect size                                                                                                                                                                                                                                                      | CI? | Function used                                          |
+|----------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
+| Parametric     | \> 2          | ![\eta\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\omega\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅  | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![\epsilon\_{ordinal}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cepsilon_%7Bordinal%7D%5E2 "\epsilon_{ordinal}^2")                                                                                                       | ✅  | `effectsize::rank_epsilon_squared`                     |
+| Robust         | \> 2          | ![\xi](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cxi "\xi") (Explanatory measure of effect size)                                                                                                                            | ✅  | `WRS2::t1way`                                          |
+| Bayes Factor   | \> 2          | ![R\_{posterior}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;R_%7Bposterior%7D%5E2 "R_{posterior}^2")                                                                                                                        | ✅  | `performance::r2_bayes`                                |
+| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                                                                                         | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g`         |
+| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                                                                                  | ✅  | `effectsize::rank_biserial`                            |
+| Robust         | 2             | ![\xi](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cxi "\xi") (Explanatory measure of effect size)                                                                                                                            | ✅  | `WRS2::yuen.effect.ci`                                 |
+| Bayesian       | 2             | ![\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                                               | ✅  | `bayestestR::describe_posterior`                       |
 
 **Pairwise comparison tests**
 
@@ -295,18 +288,15 @@ between the plot structure is that now the group means are connected by
 paths to highlight the fact that these data are paired with each other.
 
 ``` r
-## for reproducibility and data
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run anova
 
-## plot
 ggwithinstats(
   data    = WineTasting,
   x       = Wine,
   y       = Taste,
   title   = "Wine tasting",
-  caption = "Data source: `WRS2` R package",
   ggtheme = ggthemes::theme_fivethirtyeight()
 )
 ```
@@ -335,15 +325,13 @@ variable quicker. We will see an example with only repeated
 measurements-
 
 ``` r
-## common setup
 set.seed(123)
 
-## plot
 grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
   y               = desire,
-  type            = "np", ## non-parametric statistics
+  type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
   grouping.var    = region,
@@ -395,16 +383,16 @@ grouped_ggwithinstats(
 
 **Effect size estimation**
 
-| Type           | No. of groups | Effect size                                                                                                                                                                                                                                                        | CI? | Function used                                          |
-|----------------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
-| Parametric     | \> 2          | ![\\eta\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\\omega\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅  | `effectsize::omega_squared`, `effectsize::eta_squared` |
-| Non-parametric | \> 2          | ![W\_{Kendall}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                                                 | ✅  | `effectsize::kendalls_w`                               |
-| Robust         | \> 2          | ![\\delta\_{R-avg}^{AKP}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)                                  | ✅  | `WRS2::wmcpAKP`                                        |
-| Bayes Factor   | \> 2          | ![R\_{Bayesian}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                                                             | ✅  | `performance::r2_bayes`                                |
-| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                                                                                           | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g`         |
-| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                                                                                    | ✅  | `effectsize::rank_biserial`                            |
-| Robust         | 2             | ![\\delta\_{R}^{AKP}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7BR%7D%5E%7BAKP%7D "\delta_{R}^{AKP}") (Algina-Keselman-Penfield robust standardized difference)                                                      | ✅  | `WRS2::wmcpAKP`                                        |
-| Bayesian       | 2             | ![\\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                                                | ✅  | `bayestestR::describe_posterior`                       |
+| Type           | No. of groups | Effect size                                                                                                                                                                                                                                                      | CI? | Function used                                          |
+|----------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|--------------------------------------------------------|
+| Parametric     | \> 2          | ![\eta\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Ceta_%7Bp%7D%5E2 "\eta_{p}^2"), ![\omega\_{p}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Comega_%7Bp%7D%5E2 "\omega_{p}^2") | ✅  | `effectsize::omega_squared`, `effectsize::eta_squared` |
+| Non-parametric | \> 2          | ![W\_{Kendall}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;W_%7BKendall%7D "W_{Kendall}") (Kendall’s coefficient of concordance)                                                                                               | ✅  | `effectsize::kendalls_w`                               |
+| Robust         | \> 2          | ![\delta\_{R-avg}^{AKP}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D "\delta_{R-avg}^{AKP}") (Algina-Keselman-Penfield robust standardized difference average)                                 | ✅  | `WRS2::wmcpAKP`                                        |
+| Bayes Factor   | \> 2          | ![R\_{Bayesian}^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;R_%7BBayesian%7D%5E2 "R_{Bayesian}^2")                                                                                                                           | ✅  | `performance::r2_bayes`                                |
+| Parametric     | 2             | Cohen’s *d*, Hedge’s *g*                                                                                                                                                                                                                                         | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g`         |
+| Non-parametric | 2             | *r* (rank-biserial correlation)                                                                                                                                                                                                                                  | ✅  | `effectsize::rank_biserial`                            |
+| Robust         | 2             | ![\delta\_{R}^{AKP}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7BR%7D%5E%7BAKP%7D "\delta_{R}^{AKP}") (Algina-Keselman-Penfield robust standardized difference)                                                     | ✅  | `WRS2::wmcpAKP`                                        |
+| Bayesian       | 2             | ![\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}")                                                                                                               | ✅  | `bayestestR::describe_posterior`                       |
 
 **Pairwise comparison tests**
 
@@ -425,18 +413,16 @@ is significantly different from a specified value with a one-sample
 test, `gghistostats` can be used.
 
 ``` r
-## for reproducibility
+
 set.seed(123)
 
-## plot
 gghistostats(
-  data       = ggplot2::msleep, ## dataframe from which variable is to be taken
-  x          = awake, ## numeric variable whose distribution is of interest
-  title      = "Amount of time spent awake", ## title for the plot
-  caption    = "Source: Mammalian sleep data set",
-  test.value = 12, ## default value is 0
-  binwidth   = 1, ## binwidth value (experiment)
-  ggtheme    = hrbrthemes::theme_ipsum_tw()
+  data       = ggplot2::msleep,
+  x          = awake,
+  title      = "Amount of time spent awake",
+  test.value = 12,
+  binwidth   = 1,
+  # ggtheme    = hrbrthemes::theme_ipsum_tw()
 )
 ```
 
@@ -452,22 +438,19 @@ There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 grouped_gghistostats(
   data              = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                 = budget,
   test.value        = 50,
   type              = "nonparametric",
   xlab              = "Movies budget (in million US$)",
-  grouping.var      = genre, ## grouping variable
-  normal.curve      = TRUE, ## superimpose a normal distribution curve
+  grouping.var      = genre,
+  normal.curve      = TRUE,
   normal.curve.args = list(color = "red", size = 1),
   ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
-  ggplot.component  = ggplot2::labs(caption = "Source: IMDB.com"),
   plotgrid.args     = list(nrow = 1),
   annotation.args   = list(title = "Movies budgets for different genres")
 )
@@ -505,12 +488,12 @@ grouped_gghistostats(
 
 **Effect size estimation**
 
-| Type           | Effect size                                                                                                                                         | CI? | Function used                                  |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                                                            | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r* (rank-biserial correlation)                                                                                                                     | ✅  | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                                                                                                                                        | ✅  | `WRS2::trimcibt`                               |
-| Bayes Factor   | ![\\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅  | `bayestestR::describe_posterior`               |
+| Type           | Effect size                                                                                                                                        | CI? | Function used                                  |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
+| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                                                           | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
+| Non-parametric | *r* (rank-biserial correlation)                                                                                                                    | ✅  | `effectsize::rank_biserial`                    |
+| Robust         | trimmed mean                                                                                                                                       | ✅  | `WRS2::trimcibt`                               |
+| Bayes Factor   | ![\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅  | `bayestestR::describe_posterior`               |
 
 For more, including information about the variant of this function
 `grouped_gghistostats`, see the `gghistostats` vignette:
@@ -522,10 +505,8 @@ This function is similar to `gghistostats`, but is intended to be used
 when the numeric variable also has a label.
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 ggdotplotstats(
   data       = dplyr::filter(gapminder::gapminder, continent == "Asia"),
   y          = country,
@@ -533,8 +514,7 @@ ggdotplotstats(
   test.value = 55,
   type       = "robust",
   title      = "Distribution of life expectancy in Asian continent",
-  xlab       = "Life expectancy",
-  caption    = "Source: Gapminder dataset from https://www.gapminder.org/"
+  xlab       = "Life expectancy"
 )
 ```
 
@@ -551,18 +531,16 @@ As with the rest of the functions in this package, there is also a
 operation for all levels of a single grouping variable.
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 grouped_ggdotplotstats(
   data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x               = cty,
   y               = manufacturer,
-  type            = "bayes", ## Bayesian test
+  type            = "bayes",
   xlab            = "city miles per gallon",
   ylab            = "car manufacturer",
-  grouping.var    = cyl, ## grouping variable
+  grouping.var    = cyl,
   test.value      = 15.5,
   point.args      = list(color = "red", size = 5, shape = 13),
   annotation.args = list(title = "Fuel economy data")
@@ -600,12 +578,12 @@ grouped_ggdotplotstats(
 
 **Effect size estimation**
 
-| Type           | Effect size                                                                                                                                         | CI? | Function used                                  |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                                                            | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r* (rank-biserial correlation)                                                                                                                     | ✅  | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                                                                                                                                        | ✅  | `WRS2::trimcibt`                               |
-| Bayes Factor   | ![\\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅  | `bayestestR::describe_posterior`               |
+| Type           | Effect size                                                                                                                                        | CI? | Function used                                  |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------|-----|------------------------------------------------|
+| Parametric     | Cohen’s *d*, Hedge’s *g*                                                                                                                           | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
+| Non-parametric | *r* (rank-biserial correlation)                                                                                                                    | ✅  | `effectsize::rank_biserial`                    |
+| Robust         | trimmed mean                                                                                                                                       | ✅  | `WRS2::trimcibt`                               |
+| Bayes Factor   | ![\delta\_{posterior}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cdelta_%7Bposterior%7D "\delta_{posterior}") | ✅  | `bayestestR::describe_posterior`               |
 
 ### `ggscatterstats`
 
@@ -635,15 +613,13 @@ There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 grouped_ggscatterstats(
   data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                = rating,
   y                = length,
-  grouping.var     = genre, ## grouping variable
+  grouping.var     = genre,
   label.var        = title,
   label.expression = length > 200,
   xlab             = "IMDB rating",
@@ -689,7 +665,6 @@ example, multiple aesthetics-related arguments can be modified to change
 the appearance of the correlation matrix.
 
 ``` r
-## for reproducibility
 set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
@@ -715,100 +690,18 @@ There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 grouped_ggcorrmat(
   data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type         = "robust", ## correlation method
+  type         = "robust",
   colors       = c("#cbac43", "white", "#550000"),
-  grouping.var = genre, ## grouping variable
-  matrix.type  = "lower" ## type of matrix
+  grouping.var = genre,
+  matrix.type  = "lower"
 )
 ```
 
 <img src="man/figures/README-ggcorrmat2-1.png" width="100%" />
-
-You can also get a dataframe containing all relevant details from the
-statistical tests:
-
-``` r
-## setup
-set.seed(123)
-
-## tidy data as output
-ggcorrmat(
-  data   = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type   = "bayes",
-  output = "dataframe"
-)
-#> # A tibble: 6 x 14
-#>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
-#>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-#> 1 sleep_total sleep_rem      0.731       0.95    0.606    0.838  1    
-#> 2 sleep_total sleep_cycle   -0.432       0.95   -0.681   -0.131  0.995
-#> 3 sleep_total awake         -1.00        0.95   -1.00    -1.00   1    
-#> 4 sleep_rem   sleep_cycle   -0.304       0.95   -0.576    0.0241 0.963
-#> 5 sleep_rem   awake         -0.733       0.95   -0.832   -0.599  1    
-#> 6 sleep_cycle awake          0.439       0.95    0.151    0.672  0.998
-#>   rope.percentage prior.distribution prior.location prior.scale  bayes.factor
-#>             <dbl> <chr>                       <dbl>       <dbl>         <dbl>
-#> 1          0      beta                         1.41        1.41 3000790806.  
-#> 2          0.0173 beta                         1.41        1.41          8.85
-#> 3          0      beta                         1.41        1.41         NA   
-#> 4          0.100  beta                         1.41        1.41          1.42
-#> 5          0      beta                         1.41        1.41 3005546544.  
-#> 6          0.015  beta                         1.41        1.41          8.85
-#>   method                       n.obs
-#>   <chr>                        <int>
-#> 1 Bayesian Pearson correlation    61
-#> 2 Bayesian Pearson correlation    32
-#> 3 Bayesian Pearson correlation    83
-#> 4 Bayesian Pearson correlation    32
-#> 5 Bayesian Pearson correlation    61
-#> 6 Bayesian Pearson correlation    32
-```
-
-Additionally, **partial** correlation are also supported:
-
-``` r
-## setup
-set.seed(123)
-
-## tidy data as output
-ggcorrmat(
-  data    = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type    = "bayes",
-  partial = TRUE,
-  output  = "dataframe"
-)
-#> # A tibble: 6 x 14
-#>   parameter1  parameter2  estimate conf.level conf.low conf.high    pd
-#>   <chr>       <chr>          <dbl>      <dbl>    <dbl>     <dbl> <dbl>
-#> 1 sleep_total sleep_rem    0.0938        0.95   -0.249     0.411 0.704
-#> 2 sleep_total sleep_cycle  0.00194       0.95   -0.333     0.328 0.505
-#> 3 sleep_total awake       -1             0.95   -1        -1     1    
-#> 4 sleep_rem   sleep_cycle -0.0274        0.95   -0.357     0.300 0.558
-#> 5 sleep_rem   awake        0.0889        0.95   -0.231     0.433 0.698
-#> 6 sleep_cycle awake        0.00381       0.95   -0.335     0.324 0.508
-#>   rope.percentage prior.distribution prior.location prior.scale bayes.factor
-#>             <dbl> <chr>                       <dbl>       <dbl>        <dbl>
-#> 1           0.378 beta                         1.41        1.41        0.311
-#> 2           0.434 beta                         1.41        1.41        0.267
-#> 3           0     beta                         1.41        1.41       NA    
-#> 4           0.429 beta                         1.41        1.41        0.272
-#> 5           0.386 beta                         1.41        1.41        0.309
-#> 6           0.444 beta                         1.41        1.41        0.267
-#>   method                       n.obs
-#>   <chr>                        <int>
-#> 1 Bayesian Pearson correlation    32
-#> 2 Bayesian Pearson correlation    32
-#> 3 Bayesian Pearson correlation    32
-#> 4 Bayesian Pearson correlation    32
-#> 5 Bayesian Pearson correlation    32
-#> 6 Bayesian Pearson correlation    32
-```
 
 ##### Summary of graphics
 
@@ -843,19 +736,16 @@ subtitle.
 To study an interaction between two categorical variables:
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 ggpiestats(
   data         = mtcars,
   x            = am,
   y            = cyl,
   package      = "wesanderson",
   palette      = "Royal1",
-  title        = "Dataset: Motor Trend Car Road Tests", ## title for the plot
-  legend.title = "Transmission", ## title for the legend
-  caption      = "Source: 1974 Motor Trend US magazine"
+  title        = "Dataset: Motor Trend Car Road Tests",
+  legend.title = "Transmission"
 )
 ```
 
@@ -873,17 +763,15 @@ Following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
 ``` r
-## for reproducibility
 set.seed(123)
 
-## plot
 grouped_ggpiestats(
   data         = mtcars,
   x            = cyl,
-  grouping.var = am, ## grouping variable
-  label.repel  = TRUE, ## repel labels (helpful for overlapping labels)
-  package      = "ggsci", ## package from which color palette is to be taken
-  palette      = "default_ucscgb" ## choosing a different color palette
+  grouping.var = am,
+  label.repel  = TRUE,
+  package      = "ggsci",
+  palette      = "default_ucscgb"
 )
 ```
 
@@ -902,12 +790,12 @@ grouped_ggpiestats(
 
 **Hypothesis testing**
 
-| Type                      | Design   | Test                                                                                                                                 | Function used                     |
-|---------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| Parametric/Non-parametric | Unpaired | Pearson’s ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test`               |
-| Bayesian                  | Unpaired | Bayesian Pearson’s ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | `BayesFactor::contingencyTableBF` |
-| Parametric/Non-parametric | Paired   | McNemar’s ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::mcnemar.test`             |
-| Bayesian                  | Paired   | ❌                                                                                                                                   | ❌                                |
+| Type                      | Design   | Test                                                                                                                                | Function used                     |
+|---------------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| Parametric/Non-parametric | Unpaired | Pearson’s ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test`               |
+| Bayesian                  | Unpaired | Bayesian Pearson’s ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | `BayesFactor::contingencyTableBF` |
+| Parametric/Non-parametric | Paired   | McNemar’s ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::mcnemar.test`             |
+| Bayesian                  | Paired   | ❌                                                                                                                                  | ❌                                |
 
 **Effect size estimation**
 
@@ -922,10 +810,10 @@ grouped_ggpiestats(
 
 **Hypothesis testing**
 
-| Type                      | Test                                                                                                                                       | Function used       |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| Parametric/Non-parametric | Goodness of fit ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test` |
-| Bayesian                  | Bayesian Goodness of fit ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | (custom)            |
+| Type                      | Test                                                                                                                                      | Function used       |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| Parametric/Non-parametric | Goodness of fit ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test` |
+| Bayesian                  | Bayesian Goodness of fit ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | (custom)            |
 
 **Effect size estimation**
 
@@ -946,11 +834,9 @@ N.B. The *p*-values from one-sample proportion test are displayed on top
 of each bar.
 
 ``` r
-## for reproducibility
 set.seed(123)
 library(ggplot2)
 
-## plot
 ggbarstats(
   data             = movies_long,
   x                = mpaa,
@@ -958,7 +844,7 @@ ggbarstats(
   title            = "MPAA Ratings by Genre",
   xlab             = "movie genre",
   legend.title     = "MPAA rating",
-  ggtheme          = hrbrthemes::theme_ipsum_pub(),
+  # ggtheme          = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
   palette          = "Set2"
 )
@@ -979,15 +865,14 @@ function-
 ## setup
 set.seed(123)
 
-## plot
 grouped_ggbarstats(
   data         = mtcars,
   x            = am,
   y            = cyl,
   grouping.var = vs,
   package      = "wesanderson",
-  palette      = "Darjeeling2",
-  ggtheme      = ggthemes::theme_tufte(base_size = 12)
+  palette      = "Darjeeling2" # ,
+  # ggtheme      = ggthemes::theme_tufte(base_size = 12)
 )
 ```
 
@@ -1006,12 +891,12 @@ grouped_ggbarstats(
 
 **Hypothesis testing**
 
-| Type                      | Design   | Test                                                                                                                                 | Function used                     |
-|---------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| Parametric/Non-parametric | Unpaired | Pearson’s ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test`               |
-| Bayesian                  | Unpaired | Bayesian Pearson’s ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | `BayesFactor::contingencyTableBF` |
-| Parametric/Non-parametric | Paired   | McNemar’s ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::mcnemar.test`             |
-| Bayesian                  | Paired   | ❌                                                                                                                                   | ❌                                |
+| Type                      | Design   | Test                                                                                                                                | Function used                     |
+|---------------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| Parametric/Non-parametric | Unpaired | Pearson’s ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test`               |
+| Bayesian                  | Unpaired | Bayesian Pearson’s ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | `BayesFactor::contingencyTableBF` |
+| Parametric/Non-parametric | Paired   | McNemar’s ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::mcnemar.test`             |
+| Bayesian                  | Paired   | ❌                                                                                                                                  | ❌                                |
 
 **Effect size estimation**
 
@@ -1026,10 +911,10 @@ grouped_ggbarstats(
 
 **Hypothesis testing**
 
-| Type                      | Test                                                                                                                                       | Function used       |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| Parametric/Non-parametric | Goodness of fit ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test` |
-| Bayesian                  | Bayesian Goodness of fit ![\\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | (custom)            |
+| Type                      | Test                                                                                                                                      | Function used       |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| Parametric/Non-parametric | Goodness of fit ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test          | `stats::chisq.test` |
+| Bayesian                  | Bayesian Goodness of fit ![\chi^2](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E2 "\chi^2") test | (custom)            |
 
 **Effect size estimation**
 
@@ -1042,9 +927,9 @@ grouped_ggbarstats(
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are
-prepared using `parameters::model_parameters`. Additionally, if
+prepared using `parameters::model_parameters()`. Additionally, if
 available, the model summary indices are also extracted from
-`performance::model_performance`.
+`performance::model_performance()`.
 
 Although the statistical models displayed in the plot may differ based
 on the class of models being investigated, there are few aspects of the
@@ -1054,7 +939,7 @@ plot that will be invariant across models:
     and their **confidence intervals** (`95%` is the default). The
     estimate can either be effect sizes (for tests that depend on the
     `F`-statistic) or regression coefficients (for tests with `t`-,
-    ![\\chi^{2}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E%7B2%7D "\chi^{2}")-,
+    ![\chi^{2}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E%7B2%7D "\chi^{2}")-,
     and `z`-statistic), etc. The function will, by default, display a
     helpful `x`-axis label that should clear up what estimates are being
     displayed. The confidence intervals can sometimes be asymmetric if
@@ -1062,7 +947,7 @@ plot that will be invariant across models:
 
 -   The label attached to dot will provide more details from the
     statistical test carried out and it will typically contain estimate,
-    statistic, and *p*-value.
+    statistic, and *p*-value.e
 
 -   The caption will contain diagnostic information, if available, about
     models that can be useful for model selection: The smaller the
@@ -1074,17 +959,19 @@ plot that will be invariant across models:
     functions.
 
 ``` r
-## for reproducibility
 set.seed(123)
 
 ## model
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
-## plot
-ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
+ggcoefstats(mod)
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
+
+``` r
+# ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
+```
 
 **Defaults** return<br>
 
@@ -1186,11 +1073,11 @@ parametric, robust, and Bayesian random-effects meta-analysis.
 
 **Hypothesis testing** and **Effect size estimation**
 
-| Type       | Test                                             | Effect size                                                                                             | CI? | Function used          |
-|------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------------|-----|------------------------|
-| Parametric | Meta-analysis via random-effects models          | ![\\beta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cbeta "\beta") | ✅  | `metafor::metafor`     |
-| Robust     | Meta-analysis via robust random-effects models   | ![\\beta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cbeta "\beta") | ✅  | `metaplus::metaplus`   |
-| Bayes      | Meta-analysis via Bayesian random-effects models | ![\\beta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cbeta "\beta") | ✅  | `metaBMA::meta_random` |
+| Type       | Test                                             | Effect size                                                                                            | CI? | Function used          |
+|------------|--------------------------------------------------|--------------------------------------------------------------------------------------------------------|-----|------------------------|
+| Parametric | Meta-analysis via random-effects models          | ![\beta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cbeta "\beta") | ✅  | `metafor::metafor`     |
+| Robust     | Meta-analysis via robust random-effects models   | ![\beta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cbeta "\beta") | ✅  | `metaplus::metaplus`   |
+| Bayes      | Meta-analysis via Bayesian random-effects models | ![\beta](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cbeta "\beta") | ✅  | `metaBMA::meta_random` |
 
 For a more exhaustive account of this function, see the associated
 vignette-
@@ -1209,7 +1096,7 @@ set.seed(123)
 ggbetweenstats(mtcars, cyl, mpg) %>%
   extract_stats()
 #> $subtitle_data
-#> # A tibble: 1 x 14
+#> # A tibble: 1 × 14
 #>   statistic    df df.error    p.value
 #>       <dbl> <dbl>    <dbl>      <dbl>
 #> 1      31.6     2     18.0 0.00000127
@@ -1221,7 +1108,7 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 1       0.95    0.531         1 ncp         F                    32 <expression>
 #> 
 #> $caption_data
-#> # A tibble: 6 x 17
+#> # A tibble: 6 × 17
 #>   term     pd rope.percentage prior.distribution prior.location prior.scale
 #>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
 #> 1 mu    1              0      cauchy                          0       0.707
@@ -1248,27 +1135,28 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 6    0.714  0.0503       0.95    0.574     0.788    32 <expression>
 #> 
 #> $pairwise_comparisons_data
-#> # A tibble: 3 x 11
-#>   group1 group2 statistic   p.value alternative method            distribution
-#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>             <chr>       
-#> 1 4      6          -6.67 0.00110   two.sided   Games-Howell test q           
-#> 2 4      8         -10.7  0.0000140 two.sided   Games-Howell test q           
-#> 3 6      8          -7.48 0.000257  two.sided   Games-Howell test q           
-#>   p.adjustment test.details      p.value.adjustment
-#>   <chr>        <chr>             <chr>             
-#> 1 none         Games-Howell test Holm              
-#> 2 none         Games-Howell test Holm              
-#> 3 none         Games-Howell test Holm              
-#>   label                                     
-#>   <chr>                                     
-#> 1 list(~italic(p)[Holm-corrected]==1.10e-03)
-#> 2 list(~italic(p)[Holm-corrected]==1.40e-05)
-#> 3 list(~italic(p)[Holm-corrected]==2.57e-04)
+#> # A tibble: 3 × 9
+#>   group1 group2 statistic   p.value alternative distribution p.adjust.method
+#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>          
+#> 1 4      6          -6.67 0.00110   two.sided   q            Holm           
+#> 2 4      8         -10.7  0.0000140 two.sided   q            Holm           
+#> 3 6      8          -7.48 0.000257  two.sided   q            Holm           
+#>   test         expression                           
+#>   <chr>        <chr>                                
+#> 1 Games-Howell list(~italic(p)[Holm-adj.]==1.10e-03)
+#> 2 Games-Howell list(~italic(p)[Holm-adj.]==1.40e-05)
+#> 3 Games-Howell list(~italic(p)[Holm-adj.]==2.57e-04)
 #> 
 #> $descriptive_data
 #> NULL
 #> 
 #> $one_sample_data
+#> NULL
+#> 
+#> $tidy_data
+#> NULL
+#> 
+#> $glance_data
 #> NULL
 ```
 

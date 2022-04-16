@@ -145,8 +145,7 @@ ggscatterstats <- function(data,
       conf.level = conf.level,
       k = k,
       tr = tr,
-      bf.prior = bf.prior,
-      top.text = caption
+      bf.prior = bf.prior
     )
 
     subtitle_df <- eval_f(corr_test, !!!.f.args, type = type)

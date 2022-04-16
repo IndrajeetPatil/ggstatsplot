@@ -172,8 +172,7 @@ ggwithinstats <- function(data,
       tr           = tr,
       paired       = TRUE,
       bf.prior     = bf.prior,
-      nboot        = nboot,
-      top.text     = caption
+      nboot        = nboot
     )
 
     # styler: off
@@ -271,13 +270,13 @@ ggwithinstats <- function(data,
       ggsignif.args    = ggsignif.args
     )
 
-    # preparing the caption for pairwise comparisons test
-    caption <- pairwise_caption(
-      caption,
-      bf.message = ifelse(type == "parametric", bf.message, FALSE),
-      unique(mpc_df$test.details),
+    # preparing the secondary label axis to give pairwise comparisons test details
+    seclabel <- pairwise_seclabel(
+      unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
+  } else {
+    seclabel <- NULL
   }
 
   # annotations -------------------------
@@ -290,6 +289,7 @@ ggwithinstats <- function(data,
     title            = title,
     subtitle         = subtitle,
     caption          = caption,
+    seclabel         = seclabel,
     ggtheme          = ggtheme,
     package          = package,
     palette          = palette,

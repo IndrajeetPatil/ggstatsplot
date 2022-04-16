@@ -125,7 +125,8 @@ hypothesis under the alternative, and corresponds to Gunel and Dickey's
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
 
 \item{legend.title}{Title text for the legend.}
 

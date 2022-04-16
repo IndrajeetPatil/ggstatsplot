@@ -300,13 +300,7 @@ ggcoefstats <- function(x,
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && bf.message) {
-      caption_df <- statsExpressions::meta_analysis(
-        tidy_df,
-        type     = "bayes",
-        k        = k,
-        top.text = caption
-      )
-
+      caption_df <- statsExpressions::meta_analysis(tidy_df, type = "bayes", k = k)
       caption <- caption_df$expression[[1]]
     }
   }

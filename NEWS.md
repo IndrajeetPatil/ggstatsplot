@@ -11,6 +11,16 @@ MAJOR CHANGES
     `{statsExpressions}` package, although it will continue to be exported from
     `{ggstatsplot}` package.
 
+  - The details about pairwise test for `ggbetweenstats()` and `ggwithinstats()`
+    functions are now displayed as a label for the secondary axis. Previously,
+    this information was displayed in the caption. Given that caption already
+    contained Bayesian test details, it was becoming difficult to stack
+    different expressions on top of each other. To avoid unnecessary code
+    complexity and also to avoid crowded caption, this decision was made.
+    Additionally, the pairwise test label has been slightly abbreviated, and so
+    is the label for significance bars. This is done to not let the text
+    overwhelm the numeric values, the latter being more important.
+
 # ggstatsplot 0.9.1
 
 MAJOR CHANGES

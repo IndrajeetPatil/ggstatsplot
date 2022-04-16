@@ -14,9 +14,9 @@ be accepted.}
 \item{grouping.var}{A single grouping variable.}
 }
 \description{
-This function splits the dataframe into a list, with the length
-of the list equal to the factor levels of the grouping variable. Each
-element of the list will be a tibble.
+This function splits the data frame into a list, with the length of the list
+equal to the factor levels of the grouping variable. Each element of the list
+will be a tibble.
 }
 \examples{
 \donttest{

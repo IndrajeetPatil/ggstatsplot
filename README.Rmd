@@ -170,9 +170,7 @@ This function creates either a violin plot, a box plot, or a mix of two for
 statistical tests in the subtitle. The simplest function call looks like this-
 
 ```{r ggbetweenstats1}
-## for reproducibility
 set.seed(123)
-
 
 ggbetweenstats(
   data  = iris,
@@ -198,22 +196,18 @@ informative or change some of the default options. Additionally, there is also a
 operation across a **single** grouping variable:
 
 ```{r ggbetweenstats2, fig.height=8, fig.width=12}
-## for reproducibility
 set.seed(123)
-
 
 grouped_ggbetweenstats(
   data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                = mpaa,
   y                = length,
-  grouping.var     = genre, ## grouping variable
-  outlier.tagging  = TRUE, ## whether outliers need to be tagged
-  outlier.label    = title, ## variable to be used for tagging outliers
+  grouping.var     = genre,
+  outlier.tagging  = TRUE,
+  outlier.label    = title,
   outlier.coef     = 2,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
-  p.adjust.method  = "bonferroni", ## method for adjusting p-values for multiple comparisons
-  ## adding new components to `{ggstatsplot}` default
-  ggplot.component = list(ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis())),
+  p.adjust.method  = "bonferroni",
   palette          = "default_jama",
   package          = "ggsci",
   plotgrid.args    = list(nrow = 1),
@@ -296,11 +290,9 @@ that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
 ```{r ggwithinstats1, fig.width=8, fig.height=6}
-## for reproducibility and data
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run anova
-
 
 ggwithinstats(
   data    = WineTasting,
@@ -335,15 +327,13 @@ makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
 ```{r ggwithinstats2, fig.height=6, fig.width=14}
-## common setup
 set.seed(123)
-
 
 grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
   y               = desire,
-  type            = "np", ## non-parametric statistics
+  type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
   grouping.var    = region,
@@ -423,17 +413,16 @@ significantly different from a specified value with a one-sample test,
 `gghistostats` can be used.
 
 ```{r gghistostats1, fig.width=8}
-## for reproducibility
+
 set.seed(123)
 
-
 gghistostats(
-  data       = ggplot2::msleep, ## dataframe from which variable is to be taken
-  x          = awake, ## numeric variable whose distribution is of interest
-  title      = "Amount of time spent awake", ## title for the plot
-  test.value = 12, ## default value is 0
-  binwidth   = 1, ## binwidth value (experiment)
-  ggtheme    = hrbrthemes::theme_ipsum_tw()
+  data       = ggplot2::msleep,
+  x          = awake,
+  title      = "Amount of time spent awake",
+  test.value = 12,
+  binwidth   = 1,
+  # ggtheme    = hrbrthemes::theme_ipsum_tw()
 )
 ```
 
@@ -450,9 +439,7 @@ There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
 ```{r gghistostats2, fig.height=6, fig.width=12}
-## for reproducibility
 set.seed(123)
-
 
 grouped_gghistostats(
   data              = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
@@ -460,8 +447,8 @@ grouped_gghistostats(
   test.value        = 50,
   type              = "nonparametric",
   xlab              = "Movies budget (in million US$)",
-  grouping.var      = genre, ## grouping variable
-  normal.curve      = TRUE, ## superimpose a normal distribution curve
+  grouping.var      = genre,
+  normal.curve      = TRUE,
   normal.curve.args = list(color = "red", size = 1),
   ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
@@ -517,9 +504,7 @@ This function is similar to `gghistostats`, but is intended to be used when the
 numeric variable also has a label.
 
 ```{r ggdotplotstats1, fig.height=10, fig.width=8}
-## for reproducibility
 set.seed(123)
-
 
 ggdotplotstats(
   data       = dplyr::filter(gapminder::gapminder, continent == "Asia"),
@@ -545,18 +530,16 @@ variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
 
 ```{r ggdotplotstats2, fig.height=6, fig.width=12}
-## for reproducibility
 set.seed(123)
-
 
 grouped_ggdotplotstats(
   data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x               = cty,
   y               = manufacturer,
-  type            = "bayes", ## Bayesian test
+  type            = "bayes",
   xlab            = "city miles per gallon",
   ylab            = "car manufacturer",
-  grouping.var    = cyl, ## grouping variable
+  grouping.var    = cyl,
   test.value      = 15.5,
   point.args      = list(color = "red", size = 5, shape = 13),
   annotation.args = list(title = "Fuel economy data")
@@ -628,15 +611,13 @@ There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
 
 ```{r ggscatterstats2, fig.height=8, fig.width=14}
-## for reproducibility
 set.seed(123)
-
 
 grouped_ggscatterstats(
   data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
   x                = rating,
   y                = length,
-  grouping.var     = genre, ## grouping variable
+  grouping.var     = genre,
   label.var        = title,
   label.expression = length > 200,
   xlab             = "IMDB rating",
@@ -680,7 +661,6 @@ aesthetics-related arguments can be modified to change the appearance of the
 correlation matrix.
 
 ```{r ggcorrmat1}
-## for reproducibility
 set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
@@ -704,46 +684,14 @@ There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
 ```{r ggcorrmat2, fig.height=6, fig.width=10}
-## for reproducibility
 set.seed(123)
-
 
 grouped_ggcorrmat(
   data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type         = "robust", ## correlation method
+  type         = "robust",
   colors       = c("#cbac43", "white", "#550000"),
-  grouping.var = genre, ## grouping variable
-  matrix.type  = "lower" ## type of matrix
-)
-```
-
-You can also get a dataframe containing all relevant details from the
-statistical tests:
-
-```{r ggcorrmat3}
-## setup
-set.seed(123)
-
-## tidy data as output
-ggcorrmat(
-  data   = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type   = "bayes",
-  output = "dataframe"
-)
-```
-
-Additionally, **partial** correlation are also supported:
-
-```{r ggcorrmat4}
-## setup
-set.seed(123)
-
-## tidy data as output
-ggcorrmat(
-  data    = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake")),
-  type    = "bayes",
-  partial = TRUE,
-  output  = "dataframe"
+  grouping.var = genre,
+  matrix.type  = "lower"
 )
 ```
 
@@ -779,9 +727,7 @@ goodness of fit test) will be displayed as a subtitle.
 To study an interaction between two categorical variables:
 
 ```{r ggpiestats1, fig.height=4, fig.width=8}
-## for reproducibility
 set.seed(123)
-
 
 ggpiestats(
   data         = mtcars,
@@ -789,7 +735,7 @@ ggpiestats(
   y            = cyl,
   package      = "wesanderson",
   palette      = "Royal1",
-  title        = "Dataset: Motor Trend Car Road Tests", ## title for the plot
+  title        = "Dataset: Motor Trend Car Road Tests",
   legend.title = "Transmission"
 )
 ```
@@ -809,17 +755,15 @@ Following example is a case where the theoretical question is about proportions
 for different levels of a single nominal variable:
 
 ```{r ggpiestats2, fig.height=6, fig.width=10}
-## for reproducibility
 set.seed(123)
-
 
 grouped_ggpiestats(
   data         = mtcars,
   x            = cyl,
-  grouping.var = am, ## grouping variable
-  label.repel  = TRUE, ## repel labels (helpful for overlapping labels)
-  package      = "ggsci", ## package from which color palette is to be taken
-  palette      = "default_ucscgb" ## choosing a different color palette
+  grouping.var = am,
+  label.repel  = TRUE,
+  package      = "ggsci",
+  palette      = "default_ucscgb"
 )
 ```
 
@@ -880,10 +824,8 @@ N.B. The *p*-values from one-sample proportion test are displayed on top of each
 bar.
 
 ```{r ggbarstats1, fig.height=8, fig.width=10}
-## for reproducibility
 set.seed(123)
 library(ggplot2)
-
 
 ggbarstats(
   data             = movies_long,
@@ -892,7 +834,7 @@ ggbarstats(
   title            = "MPAA Ratings by Genre",
   xlab             = "movie genre",
   legend.title     = "MPAA rating",
-  ggtheme          = hrbrthemes::theme_ipsum_pub(),
+  # ggtheme          = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
   palette          = "Set2"
 )
@@ -907,13 +849,11 @@ ggbarstats(
 ✅ Bayesian hypothesis-testing <br>
 ✅ Bayesian estimation <br>
 
-
 And, needless to say, there is also a `grouped_` variant of this function-
 
 ```{r ggbarstats2, fig.height=6, fig.width=12}
 ## setup
 set.seed(123)
-
 
 grouped_ggbarstats(
   data         = mtcars,
@@ -921,8 +861,8 @@ grouped_ggbarstats(
   y            = cyl,
   grouping.var = vs,
   package      = "wesanderson",
-  palette      = "Darjeeling2",
-  ggtheme      = ggthemes::theme_tufte(base_size = 12)
+  palette      = "Darjeeling2" # ,
+  # ggtheme      = ggthemes::theme_tufte(base_size = 12)
 )
 ```
 
@@ -975,8 +915,8 @@ Bayesian | ❌ | ❌ | ❌
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy dataframes are prepared
-using `parameters::model_parameters`. Additionally, if available, the model
-summary indices are also extracted from `performance::model_performance`.
+using `parameters::model_parameters()`. Additionally, if available, the model
+summary indices are also extracted from `performance::model_performance()`.
 
 Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are few aspects of the plot that will
@@ -1003,14 +943,13 @@ be invariant across models:
     further modified (e.g. change themes) with `{ggplot2}` functions.
 
 ```{r ggcoefstats1, fig.height=5, fig.width=6}
-## for reproducibility
 set.seed(123)
 
 ## model
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
-
-ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
+ggcoefstats(mod)
+# ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 ```
 
 **Defaults** return<br>

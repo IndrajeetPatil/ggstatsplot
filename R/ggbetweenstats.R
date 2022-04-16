@@ -42,7 +42,8 @@
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle. Will work only if
 #'   `results.subtitle = FALSE`.
-#' @param caption The text for the plot caption.
+#' @param caption The text for the plot caption. This argument is relevant only
+#'   if `bf.message = FALSE`.
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
@@ -250,8 +251,7 @@ ggbetweenstats <- function(data,
       tr           = tr,
       paired       = FALSE,
       bf.prior     = bf.prior,
-      nboot        = nboot,
-      top.text     = caption
+      nboot        = nboot
     )
 
     .f <- function_switch(test)
@@ -404,13 +404,13 @@ ggbetweenstats <- function(data,
       ggsignif.args    = ggsignif.args
     )
 
-    # preparing the caption for pairwise comparisons test
-    caption <- pairwise_caption(
-      caption,
-      bf.message = ifelse(type == "parametric", bf.message, FALSE),
-      unique(mpc_df$test.details),
+    # preparing the secondary label axis to give pairwise comparisons test details
+    seclabel <- pairwise_seclabel(
+      unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
+  } else {
+    seclabel <- NULL
   }
 
   # annotations ------------------------
@@ -423,6 +423,7 @@ ggbetweenstats <- function(data,
     title            = title,
     subtitle         = subtitle,
     caption          = caption,
+    seclabel         = seclabel,
     ggtheme          = ggtheme,
     package          = package,
     palette          = palette,

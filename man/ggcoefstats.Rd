@@ -100,7 +100,8 @@ variable names for \code{x} and \code{y} will be used.}
 \item{subtitle}{The text for the plot subtitle. The input to this argument
 will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
 
 \item{only.significant}{If \code{TRUE}, only stats labels for significant effects
 is shown (Default: \code{FALSE}). This can be helpful when a large number of
