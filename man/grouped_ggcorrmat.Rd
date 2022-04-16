@@ -87,7 +87,8 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption.}
+    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
   }}
 
 \item{grouping.var}{A single grouping variable.}

@@ -128,7 +128,8 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption.}
+\item{caption}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
 
 \item{...}{Currently ignored.}
 }

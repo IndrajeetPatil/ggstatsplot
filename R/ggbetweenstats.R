@@ -42,7 +42,8 @@
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle. Will work only if
 #'   `results.subtitle = FALSE`.
-#' @param caption The text for the plot caption.
+#' @param caption The text for the plot caption. This argument is relevant only
+#'   if `bf.message = FALSE`.
 #' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
 #' @param outlier.tagging Decides whether outliers should be tagged (Default:
 #'   `FALSE`).
