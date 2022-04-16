@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-04-09</h4>
+            <h4 data-toc-skip class="date">2022-04-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/pairwise.Rmd" class="external-link"><code>vignettes/web_only/pairwise.Rmd</code></a></small>
       <div class="d-none name"><code>pairwise.Rmd</code></div>
@@ -250,361 +250,9 @@ pairwise comparison tests-</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+<h2 id="data-frame-outputs">Data frame outputs<a class="anchor" aria-label="anchor" href="#data-frame-outputs"></a>
 </h2>
-<p>Here we will see specific examples of how to use this function for
-different types of</p>
-<ul>
-<li>designs (between or within subjects)</li>
-<li>statistics (parametric, non-parametric, robust, Bayesian)</li>
-<li>
-<em>p</em>-value adjustment methods</li>
-</ul>
-<div class="section level3">
-<h3 id="between-subjects-design-1">Between-subjects design<a class="anchor" aria-label="anchor" href="#between-subjects-design-1"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a></span><span class="op">)</span> <span class="co">## for data</span>
-
-<span class="co">## parametric</span>
-<span class="co">## if `var.equal = TRUE`, then Student's *t*-test will be run</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
-  x               <span class="op">=</span> <span class="va">vore</span>,
-  y               <span class="op">=</span> <span class="va">brainwt</span>,
-  type            <span class="op">=</span> <span class="st">"parametric"</span>,
-  var.equal       <span class="op">=</span> <span class="cn">TRUE</span>,
-  paired          <span class="op">=</span> <span class="cn">FALSE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"bonferroni"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span>  <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">test.details</span>     <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> carni   herbi     1     Student's t-test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> carni   insecti   1     Student's t-test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> carni   omni      1     Student's t-test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> herbi   insecti   1     Student's t-test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> herbi   omni      <span style="color: #949494;">0.</span>979 Student's t-test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> insecti omni      1     Student's t-test Bonferroni        </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                       </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[Bonferroni-corrected]==0.98)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-
-<span class="co">## if `var.equal = FALSE`, then Games-Howell test will be run</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
-  x               <span class="op">=</span> <span class="va">vore</span>,
-  y               <span class="op">=</span> <span class="va">brainwt</span>,
-  type            <span class="op">=</span> <span class="st">"parametric"</span>,
-  var.equal       <span class="op">=</span> <span class="cn">FALSE</span>,
-  paired          <span class="op">=</span> <span class="cn">FALSE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"bonferroni"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 11</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span>  <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">statistic</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">method</span>            <span style="font-weight: bold;">distribution</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> carni   herbi        2.17       1 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> carni   insecti     -<span style="color: #BB0000;">2.17</span>       1 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> carni   omni         1.10       1 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> herbi   insecti     -<span style="color: #BB0000;">2.41</span>       1 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> herbi   omni        -<span style="color: #BB0000;">1.87</span>       1 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> insecti omni         2.19       1 two.sided   Games-Howell test q           </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">p.adjustment</span> <span style="font-weight: bold;">test.details</span>      <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> none         Games-Howell test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none         Games-Howell test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none         Games-Howell test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> none         Games-Howell test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> none         Games-Howell test Bonferroni        </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> none         Games-Howell test Bonferroni        </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                       </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[Bonferroni-corrected]==1.00)</span>
-
-<span class="co">## non-parametric</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
-  x               <span class="op">=</span> <span class="va">vore</span>,
-  y               <span class="op">=</span> <span class="va">brainwt</span>,
-  type            <span class="op">=</span> <span class="st">"nonparametric"</span>,
-  paired          <span class="op">=</span> <span class="cn">FALSE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"none"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 11</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span>  <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">statistic</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">method</span>               </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> carni   herbi       <span style="color: #949494;">0.</span>582  <span style="color: #949494;">0.</span>561  two.sided   Dunn's all-pairs test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> carni   insecti     1.88   <span style="color: #949494;">0.0</span>59<span style="text-decoration: underline;">5</span> two.sided   Dunn's all-pairs test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> carni   omni        1.14   <span style="color: #949494;">0.</span>254  two.sided   Dunn's all-pairs test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> herbi   insecti     1.63   <span style="color: #949494;">0.</span>102  two.sided   Dunn's all-pairs test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> herbi   omni        <span style="color: #949494;">0.</span>717  <span style="color: #949494;">0.</span>474  two.sided   Dunn's all-pairs test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> insecti omni        1.14   <span style="color: #949494;">0.</span>254  two.sided   Dunn's all-pairs test</span>
-<span class="co">#&gt;   <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjustment</span> <span style="font-weight: bold;">test.details</span> <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> z            none         Dunn test    None              </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> z            none         Dunn test    None              </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> z            none         Dunn test    None              </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> z            none         Dunn test    None              </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> z            none         Dunn test    None              </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> z            none         Dunn test    None              </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                              </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[uncorrected]==0.56)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[uncorrected]==0.06)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[uncorrected]==0.25)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[uncorrected]==0.10)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[uncorrected]==0.47)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[uncorrected]==0.25)</span>
-
-<span class="co">## robust</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
-  x               <span class="op">=</span> <span class="va">vore</span>,
-  y               <span class="op">=</span> <span class="va">brainwt</span>,
-  type            <span class="op">=</span> <span class="st">"robust"</span>,
-  paired          <span class="op">=</span> <span class="cn">FALSE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 10</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span>  <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">p.value</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> carni   herbi   -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">32</span><span style="color: #BB0000; text-decoration: underline;">3</span>        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">248</span>     <span style="color: #949494;">0.</span>184    <span style="color: #949494;">0.</span>790</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> carni   insecti  <span style="color: #949494;">0.0</span>45<span style="text-decoration: underline;">1</span>        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">48</span><span style="color: #BB0000; text-decoration: underline;">4</span>    <span style="color: #949494;">0.</span>139    <span style="color: #949494;">0.</span>552</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> carni   omni     <span style="color: #949494;">0.00</span>5<span style="text-decoration: underline;">20</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">114</span>     <span style="color: #949494;">0.</span>124    <span style="color: #949494;">0.</span>898</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> herbi   insecti  <span style="color: #949494;">0.0</span>77<span style="text-decoration: underline;">4</span>        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">133</span>     <span style="color: #949494;">0.</span>288    <span style="color: #949494;">0.</span>552</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> herbi   omni     <span style="color: #949494;">0.0</span>37<span style="text-decoration: underline;">5</span>        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">182</span>     <span style="color: #949494;">0.</span>257    <span style="color: #949494;">0.</span>790</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> insecti omni    -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">39</span><span style="color: #BB0000; text-decoration: underline;">9</span>        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">142</span>     <span style="color: #949494;">0.0</span>62<span style="text-decoration: underline;">5</span>   <span style="color: #949494;">0.</span>552</span>
-<span class="co">#&gt;   <span style="font-weight: bold;">test.details</span>              <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Yuen's trimmed means test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Yuen's trimmed means test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Yuen's trimmed means test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Yuen's trimmed means test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Yuen's trimmed means test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Yuen's trimmed means test FDR               </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[FDR-corrected]==0.79)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[FDR-corrected]==0.55)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[FDR-corrected]==0.90)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[FDR-corrected]==0.55)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[FDR-corrected]==0.79)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[FDR-corrected]==0.55)</span>
-
-<span class="co">## Bayesian</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data   <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,
-  x      <span class="op">=</span> <span class="va">vore</span>,
-  y      <span class="op">=</span> <span class="va">brainwt</span>,
-  type   <span class="op">=</span> <span class="st">"bayes"</span>,
-  paired <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 20</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span>  <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">term</span>       <span style="font-weight: bold;">effectsize</span>      <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> carni   herbi   Difference Bayesian t-test  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">376</span>        <span style="color: #949494;">0.</span>95  -<span style="color: #BB0000;">1.36</span>  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> carni   insecti Difference Bayesian t-test   <span style="color: #949494;">0.0</span>33<span style="text-decoration: underline;">9</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">44</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> carni   omni    Difference Bayesian t-test  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">44</span><span style="color: #BB0000; text-decoration: underline;">7</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">241</span> </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> herbi   insecti Difference Bayesian t-test   <span style="color: #949494;">0.</span>353        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">733</span> </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> herbi   omni    Difference Bayesian t-test   <span style="color: #949494;">0.</span>364        <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">313</span> </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> insecti omni    Difference Bayesian t-test  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">76</span><span style="color: #BB0000; text-decoration: underline;">6</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">337</span> </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span>    <span style="font-weight: bold;">pd</span> <span style="font-weight: bold;">rope.percentage</span> <span style="font-weight: bold;">prior.distribution</span> <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span></span>
-<span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     <span style="color: #949494;">0.</span>508 <span style="color: #949494;">0.</span>800           <span style="color: #949494;">0.</span>171 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     <span style="color: #949494;">0.</span>127 <span style="color: #949494;">0.</span>812           <span style="color: #949494;">0.</span>136 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     <span style="color: #949494;">0.</span>145 <span style="color: #949494;">0.</span>688           <span style="color: #949494;">0.</span>214 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>     1.62  <span style="color: #949494;">0.</span>742           <span style="color: #949494;">0.</span>178 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>     1.10  <span style="color: #949494;">0.</span>848           <span style="color: #949494;">0.</span>164 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>     <span style="color: #949494;">0.</span>164 <span style="color: #949494;">0.</span>743           <span style="color: #949494;">0.</span>170 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt;    <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">method</span>          <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>  </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">0.</span>540 Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">617</span>    29 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">0.</span>718 Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">332</span>    14 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">0.</span>427 Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">851</span>    26 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="color: #949494;">0.</span>540 Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">616</span>    25 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="color: #949494;">0.</span>571 Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">560</span>    37 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> <span style="color: #949494;">0.</span>545 Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">606</span>    22 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                         <span style="font-weight: bold;">test.details</span>    </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~log[e](BF['01'])==0.62) Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~log[e](BF['01'])==0.33) Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~log[e](BF['01'])==0.85) Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~log[e](BF['01'])==0.62) Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~log[e](BF['01'])==0.56) Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~log[e](BF['01'])==0.61) Student's t-test</span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="within-subjects-design-1">Within-subjects design<a class="anchor" aria-label="anchor" href="#within-subjects-design-1"></a>
-</h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-
-<span class="co">## parametric</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="va">bugs_long</span>,
-  x               <span class="op">=</span> <span class="va">condition</span>,
-  y               <span class="op">=</span> <span class="va">desire</span>,
-  subject.id      <span class="op">=</span> <span class="va">subject</span>,
-  type            <span class="op">=</span> <span class="st">"parametric"</span>,
-  paired          <span class="op">=</span> <span class="cn">TRUE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"BH"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">test.details</span>     <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> HDHF   HDLF   1.06<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span> Student's t-test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> HDHF   LDHF   7.02<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span> Student's t-test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> HDHF   LDLF   3.95<span style="color: #949494;">e</span><span style="color: #BB0000;">-12</span> Student's t-test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> HDLF   LDHF   6.74<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span> Student's t-test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> HDLF   LDLF   1.99<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span> Student's t-test FDR               </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> LDHF   LDLF   6.66<span style="color: #949494;">e</span><span style="color: #BB0000;">- 9</span> Student's t-test FDR               </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                    </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[FDR-corrected]==1.06e-03)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[FDR-corrected]==0.07)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[FDR-corrected]==3.95e-12)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[FDR-corrected]==0.07)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[FDR-corrected]==1.99e-03)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[FDR-corrected]==6.66e-09)</span>
-
-<span class="co">## non-parametric</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="va">bugs_long</span>,
-  x               <span class="op">=</span> <span class="va">condition</span>,
-  y               <span class="op">=</span> <span class="va">desire</span>,
-  subject.id      <span class="op">=</span> <span class="va">subject</span>,
-  type            <span class="op">=</span> <span class="st">"nonparametric"</span>,
-  paired          <span class="op">=</span> <span class="cn">TRUE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"BY"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 11</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>  <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> HDHF   HDLF        4.78 1.44<span style="color: #949494;">e</span><span style="color: #BB0000;">- 5</span> two.sided  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> HDHF   LDHF        2.44 4.47<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span> two.sided  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> HDHF   LDLF        8.01 5.45<span style="color: #949494;">e</span><span style="color: #BB0000;">-13</span> two.sided  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> HDLF   LDHF        2.34 4.96<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span> two.sided  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> HDLF   LDLF        3.23 5.05<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span> two.sided  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> LDHF   LDLF        5.57 4.64<span style="color: #949494;">e</span><span style="color: #BB0000;">- 7</span> two.sided  </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">method</span>                                                                </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                                 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Durbin's all-pairs test for a two-way balanced incomplete block design</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Durbin's all-pairs test for a two-way balanced incomplete block design</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Durbin's all-pairs test for a two-way balanced incomplete block design</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Durbin's all-pairs test for a two-way balanced incomplete block design</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Durbin's all-pairs test for a two-way balanced incomplete block design</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Durbin's all-pairs test for a two-way balanced incomplete block design</span>
-<span class="co">#&gt;   <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjustment</span> <span style="font-weight: bold;">test.details</span>        <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> t            none         Durbin-Conover test BY                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> t            none         Durbin-Conover test BY                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> t            none         Durbin-Conover test BY                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> t            none         Durbin-Conover test BY                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> t            none         Durbin-Conover test BY                </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> t            none         Durbin-Conover test BY                </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                   </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[BY-corrected]==1.44e-05)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[BY-corrected]==0.04)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[BY-corrected]==5.45e-13)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[BY-corrected]==0.05)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[BY-corrected]==5.05e-03)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[BY-corrected]==4.64e-07)</span>
-
-<span class="co">## robust</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data            <span class="op">=</span> <span class="va">bugs_long</span>,
-  x               <span class="op">=</span> <span class="va">condition</span>,
-  y               <span class="op">=</span> <span class="va">desire</span>,
-  subject.id      <span class="op">=</span> <span class="va">subject</span>,
-  type            <span class="op">=</span> <span class="st">"robust"</span>,
-  paired          <span class="op">=</span> <span class="cn">TRUE</span>,
-  p.adjust.method <span class="op">=</span> <span class="st">"hommel"</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 11</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span>     <span style="font-weight: bold;">p.value</span>  <span style="font-weight: bold;">p.crit</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> HDHF   HDLF      1.03        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.</span>140      1.92  <span style="color: #949494;">0.00</span>9<span style="text-decoration: underline;">99</span>     <span style="color: #949494;">0.0</span>12<span style="text-decoration: underline;">7</span> </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> HDHF   LDHF      <span style="color: #949494;">0.</span>454       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.</span><span style="color: #BB0000;">104</span>      1.01  <span style="color: #949494;">0.0</span>52<span style="text-decoration: underline;">0</span>      <span style="color: #949494;">0.0</span>25  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> HDHF   LDLF      1.95        <span style="color: #949494;">0.</span>95   1.09       2.82  <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">000</span>564 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">51</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> HDLF   LDHF     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">676</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #BB0000;">1.61</span>       <span style="color: #949494;">0.</span>256 <span style="color: #949494;">0.0</span>52<span style="text-decoration: underline;">0</span>      <span style="color: #949494;">0.0</span>5   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> HDLF   LDLF      <span style="color: #949494;">0.</span>889       <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>24<span style="text-decoration: underline;">4</span>     1.75  <span style="color: #949494;">0.0</span>20<span style="text-decoration: underline;">3</span>      <span style="color: #949494;">0.0</span>16<span style="text-decoration: underline;">9</span> </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> LDHF   LDLF      1.35        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.</span>560      2.14  <span style="color: #949494;">0.000</span><span style="text-decoration: underline;">102</span>    <span style="color: #949494;">0.0</span>10<span style="text-decoration: underline;">2</span> </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">test.details</span>              <span style="font-weight: bold;">p.value.adjustment</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Yuen's trimmed means test Hommel            </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Yuen's trimmed means test Hommel            </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Yuen's trimmed means test Hommel            </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> Yuen's trimmed means test Hommel            </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> Yuen's trimmed means test Hommel            </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> Yuen's trimmed means test Hommel            </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                       </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Hommel-corrected]==9.99e-03)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[Hommel-corrected]==0.05)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)[Hommel-corrected]==5.64e-07)</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~italic(p)[Hommel-corrected]==0.05)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~italic(p)[Hommel-corrected]==0.02)    </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~italic(p)[Hommel-corrected]==1.02e-04)</span>
-
-<span class="co">## Bayesian</span>
-<span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-  data       <span class="op">=</span> <span class="va">bugs_long</span>,
-  x          <span class="op">=</span> <span class="va">condition</span>,
-  y          <span class="op">=</span> <span class="va">desire</span>,
-  subject.id <span class="op">=</span> <span class="va">subject</span>,
-  type       <span class="op">=</span> <span class="st">"bayes"</span>,
-  paired     <span class="op">=</span> <span class="cn">TRUE</span>,
-  bf.prior   <span class="op">=</span> <span class="fl">0.77</span>
-<span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 20</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">term</span>       <span style="font-weight: bold;">effectsize</span>      <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> HDHF   HDLF   Difference Bayesian t-test    1.10        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.</span>491 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> HDHF   LDHF   Difference Bayesian t-test    <span style="color: #949494;">0.</span>453       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">55</span><span style="color: #BB0000; text-decoration: underline;">0</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> HDHF   LDLF   Difference Bayesian t-test    2.13        <span style="color: #949494;">0.</span>95   1.62  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> HDLF   LDHF   Difference Bayesian t-test   -<span style="color: #949494;">0.</span><span style="color: #BB0000;">653</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #BB0000;">1.32</span>  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> HDLF   LDLF   Difference Bayesian t-test    <span style="color: #949494;">0.</span>980       <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.</span>383 </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> LDHF   LDLF   Difference Bayesian t-test    1.66        <span style="color: #949494;">0.</span>95   1.15  </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span>    <span style="font-weight: bold;">pd</span> <span style="font-weight: bold;">rope.percentage</span> <span style="font-weight: bold;">prior.distribution</span> <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span></span>
-<span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    1.73   1               <span style="color: #949494;">0</span>     cauchy                          <span style="color: #949494;">0</span>        <span style="color: #949494;">0.</span>77</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>953  <span style="color: #949494;">0.</span>954           <span style="color: #949494;">0.</span>193 cauchy                          <span style="color: #949494;">0</span>        <span style="color: #949494;">0.</span>77</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    2.64   1               <span style="color: #949494;">0</span>     cauchy                          <span style="color: #949494;">0</span>        <span style="color: #949494;">0.</span>77</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>    <span style="color: #949494;">0.0</span>55<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>968           <span style="color: #949494;">0.</span>169 cauchy                          <span style="color: #949494;">0</span>        <span style="color: #949494;">0.</span>77</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>    1.60   <span style="color: #949494;">0.</span>999           <span style="color: #949494;">0</span>     cauchy                          <span style="color: #949494;">0</span>        <span style="color: #949494;">0.</span>77</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>    2.15   1               <span style="color: #949494;">0</span>     cauchy                          <span style="color: #949494;">0</span>        <span style="color: #949494;">0.</span>77</span>
-<span class="co">#&gt;       <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">method</span>          <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>  </span>
-<span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 3.95<span style="color: #949494;">e</span>+ 1 Bayesian t-test      3.68     88 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 5.42<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span> Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">612</span>    88 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 1.22<span style="color: #949494;">e</span>+10 Bayesian t-test     23.2      88 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 6.50<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span> Bayesian t-test     -<span style="color: #949494;">0.</span><span style="color: #BB0000;">430</span>    88 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1.72<span style="color: #949494;">e</span>+ 1 Bayesian t-test      2.84     88 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 4.78<span style="color: #949494;">e</span>+ 6 Bayesian t-test     15.4      88 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                           <span style="font-weight: bold;">test.details</span>    </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~log[e](BF['01'])==-3.68)  Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~log[e](BF['01'])==0.61)   Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~log[e](BF['01'])==-23.22) Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> list(~log[e](BF['01'])==0.43)   Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> list(~log[e](BF['01'])==-2.84)  Student's t-test</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> list(~log[e](BF['01'])==-15.38) Student's t-test</span></code></pre></div>
-</div>
+<p>See data frame outputs <a href="https://indrajeetpatil.github.io/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="using-pairwise_comparisons-with-ggsignif">Using <code>pairwise_comparisons()</code> with
@@ -613,7 +261,7 @@ different types of</p>
 <div class="section level3">
 <h3 id="example-1-between-subjects">Example-1: between-subjects<a class="anchor" aria-label="anchor" href="#example-1-between-subjects"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## needed libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
@@ -643,7 +291,7 @@ different types of</p>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> none         Games-Howell test Holm              </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> none         Games-Howell test Holm              </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> none         Games-Howell test Holm              </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                                      <span style="font-weight: bold;">groups</span>   </span>
+<span class="co">#&gt;   <span style="font-weight: bold;">expression</span>                                 <span style="font-weight: bold;">groups</span>   </span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)[Holm-corrected]==8.31e-03) <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)[Holm-corrected]==1.24e-05) <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
@@ -654,7 +302,7 @@ different types of</p>
 <span class="va">p</span> <span class="op">+</span>
   <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>
     comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">groups</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,
-    annotations <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">label</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,
+    annotations <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,
     test        <span class="op">=</span> <span class="cn">NULL</span>,
     na.rm       <span class="op">=</span> <span class="cn">TRUE</span>,
     parse       <span class="op">=</span> <span class="cn">TRUE</span>
@@ -664,7 +312,7 @@ different types of</p>
 <div class="section level3">
 <h3 id="example-2-within-subjects">Example-2: within-subjects<a class="anchor" aria-label="anchor" href="#example-2-within-subjects"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## needed libraries</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
@@ -687,7 +335,7 @@ different types of</p>
   <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 21</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 20</span></span>
 <span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">term</span>       <span style="font-weight: bold;">effectsize</span>      <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Wine A Wine B Difference Bayesian t-test  <span style="color: #949494;">0.00</span>7<span style="text-decoration: underline;">21</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">41</span><span style="color: #BB0000; text-decoration: underline;">8</span></span>
@@ -698,16 +346,16 @@ different types of</p>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624          <span style="color: #949494;">0.</span>404  cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990          <span style="color: #949494;">0.0</span>10<span style="text-decoration: underline;">3</span> cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.00           <span style="color: #949494;">0</span>      cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">method</span>          <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>  </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235 Bayesian t-test      -<span style="color: #BB0000;">1.45</span>    22 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3.71  Bayesian t-test       1.31    22 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50.5   Bayesian t-test       3.92    22 <span style="color: #949494;">&lt;expression&gt;</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">label</span>                          <span style="font-weight: bold;">test.details</span>     <span style="font-weight: bold;">groups</span>   </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~log[e](BF['01'])==1.45)  Student's t-test <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~log[e](BF['01'])==-1.31) Student's t-test <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~log[e](BF['01'])==-3.92) Student's t-test <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">method</span>          <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>                    </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235 Bayesian t-test      -<span style="color: #BB0000;">1.45</span>    22 list(~log[e](BF['01'])==1.45) </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3.71  Bayesian t-test       1.31    22 list(~log[e](BF['01'])==-1.31)</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50.5   Bayesian t-test       3.92    22 list(~log[e](BF['01'])==-3.92)</span>
+<span class="co">#&gt;   <span style="font-weight: bold;">test.details</span>     <span style="font-weight: bold;">groups</span>   </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Student's t-test <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Student's t-test <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Student's t-test <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
 
 <span class="co">## using `geom_signif` to display results</span>
 <span class="va">p</span> <span class="op">+</span>
@@ -716,7 +364,7 @@ different types of</p>
     map_signif_level <span class="op">=</span> <span class="cn">TRUE</span>,
     tip_length       <span class="op">=</span> <span class="fl">0.01</span>,
     y_position       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6.5</span>, <span class="fl">6.65</span>, <span class="fl">6.8</span><span class="op">)</span>,
-    annotations      <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">label</span>,
+    annotations      <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">expression</span>,
     test             <span class="op">=</span> <span class="cn">NULL</span>,
     na.rm            <span class="op">=</span> <span class="cn">TRUE</span>,
     parse            <span class="op">=</span> <span class="cn">TRUE</span>
