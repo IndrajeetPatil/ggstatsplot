@@ -250,8 +250,7 @@ ggbetweenstats <- function(data,
       tr           = tr,
       paired       = FALSE,
       bf.prior     = bf.prior,
-      nboot        = nboot,
-      top.text     = caption
+      nboot        = nboot
     )
 
     .f <- function_switch(test)
@@ -404,13 +403,13 @@ ggbetweenstats <- function(data,
       ggsignif.args    = ggsignif.args
     )
 
-    # preparing the caption for pairwise comparisons test
-    caption <- pairwise_caption(
-      caption,
-      bf.message = ifelse(type == "parametric", bf.message, FALSE),
-      unique(mpc_df$test.details),
+    # preparing the secondary label axis to give pairwise comparisons test details
+    seclabel <- pairwise_seclabel(
+      unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
+  } else {
+    seclabel <- NULL
   }
 
   # annotations ------------------------
@@ -423,6 +422,7 @@ ggbetweenstats <- function(data,
     title            = title,
     subtitle         = subtitle,
     caption          = caption,
+    seclabel         = seclabel,
     ggtheme          = ggtheme,
     package          = package,
     palette          = palette,

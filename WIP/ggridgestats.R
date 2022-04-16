@@ -91,8 +91,7 @@ ggridgestats <- function(data,
       k = k,
       tr = tr,
       bf.prior = bf.prior,
-      nboot = nboot,
-      top.text = caption
+      nboot = nboot
     )
 
     .f <- function_switch(test)
@@ -201,9 +200,9 @@ ggridgestats <- function(data,
     )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwise_caption(
+    caption <- pairwise_seclabel(
       caption,
-      unique(mpc_df$test.details),
+      unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
   }

@@ -103,8 +103,7 @@ ggdotplotstats <- function(data,
       conf.level   = conf.level,
       k            = k,
       tr           = tr,
-      bf.prior     = bf.prior,
-      top.text     = caption
+      bf.prior     = bf.prior
     )
 
     # preparing the subtitle with statistical results
