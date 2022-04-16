@@ -4,7 +4,7 @@
 #' @description
 #'
 #' A dot chart (as described by William S. Cleveland) with statistical details
-#' from one-sample test details.
+#' from one-sample test.
 #'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.

@@ -169,7 +169,7 @@ ggridgestats <- function(data,
       inherit.aes = FALSE,
       parse = TRUE
     ) +
-    ggplot2::scale_y_discrete(labels = c(unique(descriptive_df$n_label))) +
+    ggplot2::scale_y_discrete(labels = c(unique(descriptive_df$n.expression))) +
     ggplot2::coord_flip()
 
   # ggsignif labels -------------------------------------

@@ -85,127 +85,10 @@ Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
 Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
-## Examples
 
-Here we will see specific examples of how to use this function for different
-types of
+## Data frame outputs
 
-  - designs (between or within subjects)
-  - statistics (parametric, non-parametric, robust, Bayesian)
-  - *p*-value adjustment methods
-
-### Between-subjects design
-
-```{r}
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
-library(statsExpressions) ## for data
-
-## parametric
-## if `var.equal = TRUE`, then Student's *t*-test will be run
-pairwise_comparisons(
-  data            = ggplot2::msleep,
-  x               = vore,
-  y               = brainwt,
-  type            = "parametric",
-  var.equal       = TRUE,
-  paired          = FALSE,
-  p.adjust.method = "bonferroni"
-)
-
-## if `var.equal = FALSE`, then Games-Howell test will be run
-pairwise_comparisons(
-  data            = ggplot2::msleep,
-  x               = vore,
-  y               = brainwt,
-  type            = "parametric",
-  var.equal       = FALSE,
-  paired          = FALSE,
-  p.adjust.method = "bonferroni"
-)
-
-## non-parametric
-pairwise_comparisons(
-  data            = ggplot2::msleep,
-  x               = vore,
-  y               = brainwt,
-  type            = "nonparametric",
-  paired          = FALSE,
-  p.adjust.method = "none"
-)
-
-## robust
-pairwise_comparisons(
-  data            = ggplot2::msleep,
-  x               = vore,
-  y               = brainwt,
-  type            = "robust",
-  paired          = FALSE,
-  p.adjust.method = "fdr"
-)
-
-## Bayesian
-pairwise_comparisons(
-  data   = ggplot2::msleep,
-  x      = vore,
-  y      = brainwt,
-  type   = "bayes",
-  paired = FALSE
-)
-```
-
-
-### Within-subjects design
-
-```{r}
-## for reproducibility
-set.seed(123)
-
-## parametric
-pairwise_comparisons(
-  data            = bugs_long,
-  x               = condition,
-  y               = desire,
-  subject.id      = subject,
-  type            = "parametric",
-  paired          = TRUE,
-  p.adjust.method = "BH"
-)
-
-## non-parametric
-pairwise_comparisons(
-  data            = bugs_long,
-  x               = condition,
-  y               = desire,
-  subject.id      = subject,
-  type            = "nonparametric",
-  paired          = TRUE,
-  p.adjust.method = "BY"
-)
-
-## robust
-pairwise_comparisons(
-  data            = bugs_long,
-  x               = condition,
-  y               = desire,
-  subject.id      = subject,
-  type            = "robust",
-  paired          = TRUE,
-  p.adjust.method = "hommel"
-)
-
-## Bayesian
-pairwise_comparisons(
-  data       = bugs_long,
-  x          = condition,
-  y          = desire,
-  subject.id = subject,
-  type       = "bayes",
-  paired     = TRUE,
-  bf.prior   = 0.77
-)
-```
+See data frame outputs [here](https://indrajeetpatil.github.io/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
 
 ## Using `pairwise_comparisons()` with `ggsignif`
 
@@ -236,7 +119,7 @@ set.seed(123)
 p +
   ggsignif::geom_signif(
     comparisons = list(df$groups[[1]]),
-    annotations = df$label[[1]],
+    annotations = df$expression[[1]],
     test        = NULL,
     na.rm       = TRUE,
     parse       = TRUE
@@ -276,7 +159,7 @@ p +
     map_signif_level = TRUE,
     tip_length       = 0.01,
     y_position       = c(6.5, 6.65, 6.8),
-    annotations      = df$label,
+    annotations      = df$expression,
     test             = NULL,
     na.rm            = TRUE,
     parse            = TRUE

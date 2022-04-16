@@ -243,7 +243,7 @@ ggcoefstats <- function(x,
 
     # only significant p-value labels are shown
     if (only.significant && "p.value" %in% names(tidy_df)) {
-      tidy_df %<>% mutate(label = ifelse(p.value >= 0.05, NA, label))
+      tidy_df %<>% mutate(expression = ifelse(p.value >= 0.05, NA, expression))
     }
   }
 
@@ -344,7 +344,7 @@ ggcoefstats <- function(x,
         exec(
           ggrepel::geom_label_repel,
           data    = tidy_df,
-          mapping = aes(x = estimate, y = term, label = label),
+          mapping = aes(x = estimate, y = term, label = expression),
           parse   = TRUE,
           color   = stats.label.color %||% "black",
           !!!stats.label.args
