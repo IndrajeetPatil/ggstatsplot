@@ -77,7 +77,7 @@ centrality_ggrepel <- function(plot,
       parse = TRUE,
       !!!centrality.label.args
     ) + # adding sample size labels to the x axes
-    scale_x_discrete(labels = c(unique(centrality_df$n_label)))
+    scale_x_discrete(labels = c(unique(centrality_df$n.expression)))
 }
 
 #' @title Adding `geom_signif` to `ggplot`
@@ -149,7 +149,7 @@ ggsignif_adder <- function(plot,
         data %>% pull({{ x }}),
         data %>% pull({{ y }})
       ),
-      annotations = mpc_df$label,
+      annotations = mpc_df$expression,
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args

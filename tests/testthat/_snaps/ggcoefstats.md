@@ -17,7 +17,7 @@
            <int>    <dbl>
       1       30 1.20e-18
       2       30 1.29e-10
-        label                                                                         
+        expression                                                                    
         <glue>                                                                        
       1 list(widehat(italic(beta))=='6.05', italic(t)('30')=='19.59', italic(p)=='1.2~
       2 list(widehat(italic(beta))=='-0.14', italic(t)('30')=='-9.56', italic(p)=='1.~
