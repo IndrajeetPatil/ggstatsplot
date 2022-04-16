@@ -296,8 +296,7 @@ ggwithinstats(
   data    = WineTasting,
   x       = Wine,
   y       = Taste,
-  title   = "Wine tasting",
-  ggtheme = ggthemes::theme_fivethirtyeight()
+  title   = "Wine tasting"
 )
 ```
 

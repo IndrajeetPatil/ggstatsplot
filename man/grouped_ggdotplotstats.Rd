@@ -96,9 +96,14 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.).}
+\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
+\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
+But note that sometimes these themes will remove some of the details that
+\code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{ggbetweenstats()} shows details about multiple comparison test as a label
+on the secondary Y-axis. Some themes (e.g.
+\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
+thus the details as well.}
     \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
   }}
