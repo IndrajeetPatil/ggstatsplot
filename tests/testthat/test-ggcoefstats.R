@@ -160,7 +160,7 @@ test_that(
     tidy_df <- ggcoefstats(mod, output = "tidy")
     glance_df <- ggcoefstats(x = mod, output = "glance")
 
-    expect_snapshot(list(tidy_df, glance_df, glance_df$expression[[1]]))
+    expect_snapshot(list(tidy_df, glance_df))
   }
 )
 
