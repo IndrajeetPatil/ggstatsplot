@@ -5,7 +5,7 @@
 # data frame outputs as expected
 
     Code
-      list(tidy_df, glance_df)
+      list(tidy_df, glance_df, glance_df$expression[[1]])
     Output
       [[1]]
       # A tibble: 2 x 10
@@ -23,10 +23,13 @@
       2 list(widehat(italic(beta))=='-0.14', italic(t)('30')=='-9.56', italic(p)=='1.~
       
       [[2]]
-      # A tibble: 1 x 6
-          AIC   BIC    R2 R2_adjusted  RMSE Sigma
-        <dbl> <dbl> <dbl>       <dbl> <dbl> <dbl>
-      1  49.7  54.1 0.753       0.745 0.479 0.494
+      # A tibble: 1 x 7
+          AIC   BIC    R2 R2_adjusted  RMSE Sigma expression  
+        <dbl> <dbl> <dbl>       <dbl> <dbl> <dbl> <list>      
+      1  49.7  54.1 0.753       0.745 0.479 0.494 <expression>
+      
+      [[3]]
+      expression(list(AIC=='50', BIC=='54'))
       
 
 # edge cases

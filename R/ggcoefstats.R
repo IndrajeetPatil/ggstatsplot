@@ -258,40 +258,26 @@ ggcoefstats <- function(x,
 
   # summary caption -------------------------
 
-  # for non-dataframe objects
-  if (insight::is_model(x)) {
-    glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
+  glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
 
-    # no meta-analysis in this context
-    meta.analytic.effect <- FALSE
-
-    # if glance is not available, inform the user
-    if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
-      # preparing caption with model diagnostics
-      caption <- substitute(
-        expr = atop(displaystyle(top.text), expr = paste("AIC = ", AIC, ", BIC = ", BIC)),
-        env = list(
-          top.text = caption,
-          AIC = format_value(glance_df$AIC[[1]], 0L),
-          BIC = format_value(glance_df$BIC[[1]], 0L)
-        )
-      )
-    }
+  if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
+    glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
+    caption <- glance_df$expression[[1]]
   }
 
-  # running meta-analysis
+  # meta analysis -------------------------
+
   if (meta.analytic.effect) {
     # standardizing type of statistics name
     meta.type <- stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
-    subtitle_df <- statsExpressions::meta_analysis(tidy_df, type = meta.type, k = k)
-
+    subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
     subtitle <- subtitle_df$expression[[1]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && bf.message) {
-      caption_df <- statsExpressions::meta_analysis(tidy_df, type = "bayes", k = k)
+      caption_df <- meta_analysis(tidy_df, type = "bayes", k = k)
       caption <- caption_df$expression[[1]]
     }
   }
@@ -319,12 +305,10 @@ ggcoefstats <- function(x,
     # ggrepel labels -------------------------
 
     if (stats.labels) {
-      # use a palette, assuming enough no. of colors are available
       if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
         stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
       }
 
-      # adding labels
       plot <- plot +
         exec(
           ggrepel::geom_label_repel,
