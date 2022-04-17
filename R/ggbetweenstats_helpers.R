@@ -252,10 +252,12 @@ aesthetic_addon <- function(plot,
       caption  = caption,
       color    = xlab
     ) +
-    scale_y_continuous(sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)) +
     ggtheme +
+    # no matter the theme, the following ought to be part of a ggstatsplot plot
     theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
+    scale_y_continuous(sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)) +
+    # this is the hail mary way for users to override these defaults
     ggplot.component
 }
 

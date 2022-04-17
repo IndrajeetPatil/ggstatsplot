@@ -249,21 +249,12 @@ ggcoefstats <- function(x,
 
   # sorting -------------------------
 
-  # whether the term need to be arranged in any specified order
-  tidy_df %<>% mutate(term = as.factor(term), .rowid = row_number())
+  # whether the terms need to be sorted in specified order
+  tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 
-  # sorting factor levels
-  new_order <- switch(sort,
-    "ascending" = order(tidy_df$estimate, decreasing = FALSE),
-    "descending" = order(tidy_df$estimate, decreasing = TRUE),
-    order(tidy_df$.rowid, decreasing = FALSE)
-  )
-
-  # sorting `term` factor levels according to new sorting order
-  tidy_df %<>%
-    mutate(term = as.character(term)) %>%
-    mutate(term = factor(x = term, levels = term[new_order])) %>%
-    select(-.rowid)
+  # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
+  # labels alphabetically and terms won't appear in the expected order
+  tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
 
   # summary caption -------------------------
 
