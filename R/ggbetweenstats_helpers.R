@@ -298,16 +298,5 @@ outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
 
 
 #' @title Switch expression making function
-#' @name function_switch
-#'
-#' @param test Decides which test to run (can be either `"t"` or
-#'   `"anova"`).
-#' @param ... Arguments passed to respective subtitle helper functions.
-#'
 #' @noRd
-function_switch <- function(test, ...) {
-  if (test == "t") .f <- statsExpressions::two_sample_test
-  if (test == "anova") .f <- statsExpressions::oneway_anova
-
-  .f
-}
+.f_switch <- function(test) ifelse(test == "t", two_sample_test, oneway_anova)
