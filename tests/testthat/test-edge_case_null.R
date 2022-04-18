@@ -108,7 +108,7 @@ test_that(
         x = x,
         y = y,
         output = "subtitle"
-      )), "expression"
+      )), "language"
     )
 
     expect_type(suppressWarnings(ggscatterstats(
@@ -116,7 +116,7 @@ test_that(
       x = x,
       y = y,
       output = "caption"
-    )), "expression")
+    )), "language")
   }
 )
 

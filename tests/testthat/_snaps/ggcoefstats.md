@@ -13,14 +13,10 @@
         <fct>          <dbl>     <dbl>      <dbl>    <dbl>     <dbl>     <dbl>
       1 (Intercept)    6.05     0.309        0.95    5.42      6.68      19.6 
       2 mpg           -0.141    0.0147       0.95   -0.171    -0.111     -9.56
-        df.error  p.value
-           <int>    <dbl>
-      1       30 1.20e-18
-      2       30 1.29e-10
-        expression                                                                    
-        <glue>                                                                        
-      1 list(widehat(italic(beta))=='6.05', italic(t)('30')=='19.59', italic(p)=='1.2~
-      2 list(widehat(italic(beta))=='-0.14', italic(t)('30')=='-9.56', italic(p)=='1.~
+        df.error  p.value expression
+           <int>    <dbl> <list>    
+      1       30 1.20e-18 <language>
+      2       30 1.29e-10 <language>
       
       [[2]]
       # A tibble: 1 x 7

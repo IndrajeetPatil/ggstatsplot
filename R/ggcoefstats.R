@@ -242,8 +242,8 @@ ggcoefstats <- function(x,
       statsExpressions::tidy_model_expressions(statistic, k, effsize)
 
     # only significant p-value labels are shown
-    if (only.significant && "p.value" %in% names(tidy_df)) {
-      tidy_df %<>% mutate(expression = ifelse(p.value >= 0.05, NA, expression))
+    if (only.significant && ("p.value" %in% names(tidy_df))) {
+      tidy_df %<>% mutate(expression = ifelse(p.value >= 0.05, list(NULL), expression))
     }
   }
 
@@ -316,6 +316,7 @@ ggcoefstats <- function(x,
           mapping = aes(x = estimate, y = term, label = expression),
           parse   = TRUE,
           color   = stats.label.color %||% "black",
+          na.rm   = TRUE,
           !!!stats.label.args
         )
     }
