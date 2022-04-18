@@ -152,18 +152,17 @@ ggcoefstats <- function(x,
 
   # model check -------------------------
 
-  if (isFALSE(insight::is_model(x))) {
-    # set tidy_df to entered dataframe
+  # if a data frame is entered then `statistic` is necessary to create labels
+  if (!insight::is_model(x)) {
     tidy_df <- as_tibble(x)
-
-    # check that `statistic` is specified
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
   # tidy dataframe -------------------------
 
-  if (isTRUE(insight::is_model(x))) {
-    # which effect size?
+  if (insight::is_model(x)) {
+    statistic <- insight::find_statistic(x)
+
     eta_squared <- omega_squared <- NULL
     if (effsize == "eta") eta_squared <- "partial"
     if (effsize == "omega") omega_squared <- "partial"
@@ -212,12 +211,13 @@ ggcoefstats <- function(x,
   # halt if there are still repeated terms
   if (any(duplicated(tidy_df$term))) rlang::abort("Elements in `term` column must be unique.")
 
-  # if tidy dataframe doesn't contain p-value or statistic column
-  if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
+  # if tidy data frame doesn't contain p-value or statistic column, a label
+  # can't be prepared
+  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
 
   # CIs and intercepts -------------------------
 
-  # if tidy dataframe doesn't contain CI, show only the dots
+  # if tidy data frame doesn't contain CIs, show only the estimate dots
   if (!"conf.low" %in% names(tidy_df)) {
     tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
     conf.int <- FALSE
@@ -228,11 +228,7 @@ ggcoefstats <- function(x,
 
   # preparing label -------------------------
 
-  # adding a column with labels to be used with `ggrepel`
   if (stats.labels) {
-    # extract statistic for a model
-    if (insight::is_model(x)) statistic <- insight::find_statistic(x)
-
     # remove NAs
     tidy_df %<>%
       filter(if_any(
