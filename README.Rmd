@@ -298,7 +298,8 @@ ggwithinstats(
   data    = WineTasting,
   x       = Wine,
   y       = Taste,
-  title   = "Wine tasting"
+  title   = "Wine tasting",
+  ggtheme = hrbrthemes::theme_ipsum_es() 
 )
 ```
 
@@ -421,7 +422,7 @@ gghistostats(
   title      = "Amount of time spent awake",
   test.value = 12,
   binwidth   = 1,
-  # ggtheme    = hrbrthemes::theme_ipsum_tw()
+  ggtheme    = hrbrthemes::theme_ipsum_tw()
 )
 ```
 
@@ -833,7 +834,7 @@ ggbarstats(
   title            = "MPAA Ratings by Genre",
   xlab             = "movie genre",
   legend.title     = "MPAA rating",
-  # ggtheme          = hrbrthemes::theme_ipsum_pub(),
+  ggtheme          = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
   palette          = "Set2"
 )
@@ -947,8 +948,7 @@ set.seed(123)
 ## model
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
-ggcoefstats(mod)
-# ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
+ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
 ```
 
 **Defaults** return<br>

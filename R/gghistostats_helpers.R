@@ -40,15 +40,15 @@ histo_labeller <- function(plot,
   plot +
     exec(
       geom_vline,
-      xintercept = df_central$var[[1]],
+      xintercept = df_central$var,
       !!!centrality.line.args
     ) +
     scale_x_continuous(
       sec.axis = sec_axis(
         trans = ~.,
         name = NULL,
-        labels = parse(text = df_central$expression[[1]]),
-        breaks = df_central$var[[1]]
+        labels = parse(text = df_central$expression),
+        breaks = df_central$var
       )
     )
 }

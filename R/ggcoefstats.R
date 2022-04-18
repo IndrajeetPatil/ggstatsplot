@@ -152,18 +152,17 @@ ggcoefstats <- function(x,
 
   # model check -------------------------
 
-  if (isFALSE(insight::is_model(x))) {
-    # set tidy_df to entered dataframe
+  # if a data frame is entered then `statistic` is necessary to create labels
+  if (!insight::is_model(x)) {
     tidy_df <- as_tibble(x)
-
-    # check that `statistic` is specified
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
   # tidy dataframe -------------------------
 
-  if (isTRUE(insight::is_model(x))) {
-    # which effect size?
+  if (insight::is_model(x)) {
+    statistic <- insight::find_statistic(x)
+
     eta_squared <- omega_squared <- NULL
     if (effsize == "eta") eta_squared <- "partial"
     if (effsize == "omega") omega_squared <- "partial"
@@ -212,12 +211,13 @@ ggcoefstats <- function(x,
   # halt if there are still repeated terms
   if (any(duplicated(tidy_df$term))) rlang::abort("Elements in `term` column must be unique.")
 
-  # if tidy dataframe doesn't contain p-value or statistic column
-  if (sum(c("p.value", "statistic") %in% names(tidy_df)) != 2L) stats.labels <- FALSE
+  # if tidy data frame doesn't contain p-value or statistic column, a label
+  # can't be prepared
+  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
 
   # CIs and intercepts -------------------------
 
-  # if tidy dataframe doesn't contain CI, show only the dots
+  # if tidy data frame doesn't contain CIs, show only the estimate dots
   if (!"conf.low" %in% names(tidy_df)) {
     tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
     conf.int <- FALSE
@@ -228,11 +228,7 @@ ggcoefstats <- function(x,
 
   # preparing label -------------------------
 
-  # adding a column with labels to be used with `ggrepel`
   if (stats.labels) {
-    # extract statistic for a model
-    if (insight::is_model(x)) statistic <- insight::find_statistic(x)
-
     # remove NAs
     tidy_df %<>%
       filter(if_any(
@@ -242,65 +238,42 @@ ggcoefstats <- function(x,
       statsExpressions::tidy_model_expressions(statistic, k, effsize)
 
     # only significant p-value labels are shown
-    if (only.significant && "p.value" %in% names(tidy_df)) {
-      tidy_df %<>% mutate(expression = ifelse(p.value >= 0.05, NA, expression))
+    if (only.significant && ("p.value" %in% names(tidy_df))) {
+      tidy_df %<>% mutate(expression = ifelse(p.value >= 0.05, list(NULL), expression))
     }
   }
 
   # sorting -------------------------
 
-  # whether the term need to be arranged in any specified order
-  tidy_df %<>% mutate(term = as.factor(term), .rowid = row_number())
+  # whether the terms need to be sorted in specified order
+  tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 
-  # sorting factor levels
-  new_order <- switch(sort,
-    "ascending" = order(tidy_df$estimate, decreasing = FALSE),
-    "descending" = order(tidy_df$estimate, decreasing = TRUE),
-    order(tidy_df$.rowid, decreasing = FALSE)
-  )
-
-  # sorting `term` factor levels according to new sorting order
-  tidy_df %<>%
-    mutate(term = as.character(term)) %>%
-    mutate(term = factor(x = term, levels = term[new_order])) %>%
-    select(-.rowid)
+  # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
+  # labels alphabetically and terms won't appear in the expected order
+  tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
 
   # summary caption -------------------------
 
-  # for non-dataframe objects
-  if (insight::is_model(x)) {
-    glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
+  glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
 
-    # no meta-analysis in this context
-    meta.analytic.effect <- FALSE
-
-    # if glance is not available, inform the user
-    if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
-      # preparing caption with model diagnostics
-      caption <- substitute(
-        expr = atop(displaystyle(top.text), expr = paste("AIC = ", AIC, ", BIC = ", BIC)),
-        env = list(
-          top.text = caption,
-          AIC = format_value(glance_df$AIC[[1]], 0L),
-          BIC = format_value(glance_df$BIC[[1]], 0L)
-        )
-      )
-    }
+  if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
+    glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
+    caption <- glance_df$expression[[1]]
   }
 
-  # running meta-analysis
+  # meta analysis -------------------------
+
   if (meta.analytic.effect) {
     # standardizing type of statistics name
     meta.type <- stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
-    subtitle_df <- statsExpressions::meta_analysis(tidy_df, type = meta.type, k = k)
-
+    subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
     subtitle <- subtitle_df$expression[[1]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && bf.message) {
-      caption_df <- statsExpressions::meta_analysis(tidy_df, type = "bayes", k = k)
+      caption_df <- meta_analysis(tidy_df, type = "bayes", k = k)
       caption <- caption_df$expression[[1]]
     }
   }
@@ -328,12 +301,10 @@ ggcoefstats <- function(x,
     # ggrepel labels -------------------------
 
     if (stats.labels) {
-      # use a palette, assuming enough no. of colors are available
       if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
         stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
       }
 
-      # adding labels
       plot <- plot +
         exec(
           ggrepel::geom_label_repel,
@@ -341,6 +312,7 @@ ggcoefstats <- function(x,
           mapping = aes(x = estimate, y = term, label = expression),
           parse   = TRUE,
           color   = stats.label.color %||% "black",
+          na.rm   = TRUE,
           !!!stats.label.args
         )
     }

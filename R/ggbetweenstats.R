@@ -259,7 +259,7 @@ ggbetweenstats <- function(data,
       nboot        = nboot
     )
 
-    .f <- function_switch(test)
+    .f <- .f_switch(test)
     subtitle_df <- eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
