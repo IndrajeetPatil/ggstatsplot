@@ -119,7 +119,7 @@ set.seed(123)
 p +
   ggsignif::geom_signif(
     comparisons = list(df$groups[[1]]),
-    annotations = df$expression[[1]],
+    annotations = as.character(df$expression)[[1]],
     test        = NULL,
     na.rm       = TRUE,
     parse       = TRUE
@@ -128,7 +128,7 @@ p +
 
 ### Example-2: within-subjects
 
-```{r ggsignif2}
+```{r ggsignif2, fig.height=7}
 ## needed libraries
 library(ggplot2)
 library(ggstatsplot)
@@ -159,7 +159,7 @@ p +
     map_signif_level = TRUE,
     tip_length       = 0.01,
     y_position       = c(6.5, 6.65, 6.8),
-    annotations      = df$expression,
+    annotations      = as.character(df$expression),
     test             = NULL,
     na.rm            = TRUE,
     parse            = TRUE
