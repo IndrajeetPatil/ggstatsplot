@@ -145,11 +145,8 @@ ggsignif_adder <- function(plot,
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
-      y_position = ggsignif_xy(
-        data %>% pull({{ x }}),
-        data %>% pull({{ y }})
-      ),
-      annotations = mpc_df$expression,
+      y_position = ggsignif_xy(pull(data, {{ x }}), pull(data, {{ y }})),
+      annotations = as.character(mpc_df$expression),
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args
