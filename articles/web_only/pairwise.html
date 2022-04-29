@@ -105,7 +105,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-04-18</h4>
+            <h4 data-toc-skip class="date">2022-04-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/pairwise.Rmd" class="external-link"><code>vignettes/web_only/pairwise.Rmd</code></a></small>
       <div class="d-none name"><code>pairwise.Rmd</code></div>
@@ -116,6 +116,8 @@ Patil</h4>
 <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>
+To cite package 'ggstatsplot' in publications use:
+
   Patil, I. (2021). Visualizations with statistical details: The
   'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
   doi:10.21105/joss.03167
@@ -338,9 +340,9 @@ pairwise comparison tests-</p>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Wine B Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>69<span style="text-decoration: underline;">3</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>30<span style="text-decoration: underline;">3</span></span>
 <span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span>    <span style="font-weight: bold;">pd</span> <span style="font-weight: bold;">rope.percentage</span> <span style="font-weight: bold;">prior.distribution</span> <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span></span>
 <span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624          <span style="color: #949494;">0.</span>404  cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990          <span style="color: #949494;">0.0</span>10<span style="text-decoration: underline;">3</span> cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.00           <span style="color: #949494;">0</span>      cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624         <span style="color: #949494;">0.</span>404   cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990         <span style="color: #949494;">0.00</span>5<span style="text-decoration: underline;">53</span> cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.00          <span style="color: #949494;">0</span>       cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
 <span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>                     <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">groups</span>   </span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235      -<span style="color: #BB0000;">1.45</span>    22 list(~log[e](BF['01'])==1.45)  Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
@@ -370,15 +372,12 @@ pairwise comparison tests-</p>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by
-<a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet
-Patil</a>.</p>
+<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
     </footer>
