@@ -288,18 +288,18 @@ pairwise comparison tests-</p>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6           5.39 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8           9.11 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">12</span>4 two.sided   q            Holm           </span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8           5.12 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span>                            <span style="font-weight: bold;">groups</span>   </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell list(~italic(p)[Holm-adj.]==8.31e-03) <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell list(~italic(p)[Holm-adj.]==1.24e-05) <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell list(~italic(p)[Holm-adj.]==8.31e-03) <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">groups</span>   </span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
 
 <span class="co">## using `geom_signif` to display results</span>
 <span class="co">## (note that you can choose not to display all comparisons)</span>
 <span class="va">p</span> <span class="op">+</span>
   <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>
     comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">groups</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,
-    annotations <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,
+    annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,
     test        <span class="op">=</span> <span class="cn">NULL</span>,
     na.rm       <span class="op">=</span> <span class="cn">TRUE</span>,
     parse       <span class="op">=</span> <span class="cn">TRUE</span>
@@ -343,11 +343,11 @@ pairwise comparison tests-</p>
 <span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624         <span style="color: #949494;">0.</span>404   cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990         <span style="color: #949494;">0.00</span>5<span style="text-decoration: underline;">53</span> cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.00          <span style="color: #949494;">0</span>       cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span>                     <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">groups</span>   </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235      -<span style="color: #BB0000;">1.45</span>    22 list(~log[e](BF['01'])==1.45)  Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3.71        1.31    22 list(~log[e](BF['01'])==-1.31) Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50.5         3.92    22 list(~log[e](BF['01'])==-3.92) Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">groups</span>   </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235      -<span style="color: #BB0000;">1.45</span>    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3.71        1.31    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50.5         3.92    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
 
 <span class="co">## using `geom_signif` to display results</span>
 <span class="va">p</span> <span class="op">+</span>
@@ -356,7 +356,7 @@ pairwise comparison tests-</p>
     map_signif_level <span class="op">=</span> <span class="cn">TRUE</span>,
     tip_length       <span class="op">=</span> <span class="fl">0.01</span>,
     y_position       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6.5</span>, <span class="fl">6.65</span>, <span class="fl">6.8</span><span class="op">)</span>,
-    annotations      <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">expression</span>,
+    annotations      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">)</span>,
     test             <span class="op">=</span> <span class="cn">NULL</span>,
     na.rm            <span class="op">=</span> <span class="cn">TRUE</span>,
     parse            <span class="op">=</span> <span class="cn">TRUE</span>
