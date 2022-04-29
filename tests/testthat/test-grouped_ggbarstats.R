@@ -10,7 +10,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
 
     # creating a smaller dataframe
     mpg_short <- ggplot2::mpg %>%
@@ -42,7 +42,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
 
     df <- data.frame(
       dataset = c("a", "b", "c", "c", "c", "c"),

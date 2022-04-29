@@ -3,7 +3,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
     skip_if_not_installed("ggside")
 
     set.seed(123)

@@ -5,7 +5,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
     skip_if_not_installed("ggcorrplot")
 
     set.seed(123)
@@ -48,12 +48,14 @@ test_that(
     options(tibble.width = Inf)
 
     # tidy dataframe
-    set.seed(123)
-    expect_snapshot(grouped_ggcorrmat(
+    df <- grouped_ggcorrmat(
       data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
       grouping.var = vore,
       type = "r",
       output = "data"
-    ))
+    )
+
+    set.seed(123)
+    expect_snapshot(df)
   }
 )

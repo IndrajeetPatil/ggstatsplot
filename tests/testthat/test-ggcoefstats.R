@@ -19,7 +19,7 @@ test_that("ggcoefstats doesn't work if no estimate column found", {
 test_that("default plots are rendered correctly for each type of statistic", {
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
-  skip_if(getRversion() >= "4.2")
+
   skip_if_not_installed("survival")
 
   library(survival)
@@ -69,7 +69,7 @@ test_that("default plots are rendered correctly for each type of statistic", {
 test_that("meta-analysis works", {
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
-  skip_if(getRversion() >= "4.2")
+
   skip_if_not_installed("survival")
   skip_if_not_installed("metaBMA")
   skip_if_not_installed("metafor")
@@ -102,7 +102,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
 
     set.seed(123)
     mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)
@@ -171,7 +171,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
 
     set.seed(123)
     df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))

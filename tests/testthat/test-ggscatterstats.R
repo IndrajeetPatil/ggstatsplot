@@ -5,7 +5,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
     skip_if_not_installed("ggside")
 
     set.seed(123)
@@ -29,7 +29,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
     skip_if_not_installed("ggside")
 
     set.seed(123)
@@ -57,7 +57,7 @@ test_that(
 test_that("labeling variables and expressions work as expected", {
   skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
-  skip_if(getRversion() >= "4.2")
+
   skip_if_not_installed("ggside")
 
   df <- dplyr::filter(ggplot2::msleep, conservation == "lc")

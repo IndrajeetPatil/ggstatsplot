@@ -5,8 +5,7 @@
 # grouped_ggcorrmat returns expected data frame
 
     Code
-      grouped_ggcorrmat(data = dplyr::select(ggplot2::msleep, dplyr::matches(
-        "sleep|awake|vore")), grouping.var = vore, type = "r", output = "data")
+      df
     Output
       # A tibble: 24 x 12
          vore  parameter1  parameter2  estimate conf.level conf.low conf.high

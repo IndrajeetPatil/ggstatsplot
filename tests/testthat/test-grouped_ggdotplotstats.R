@@ -8,7 +8,7 @@ test_that(
 
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
 
     set.seed(123)
     vdiffr::expect_doppelganger(

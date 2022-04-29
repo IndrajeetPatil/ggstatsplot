@@ -10,7 +10,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
     skip_if_not_installed("PMCMRplus")
     skip_if_not_installed("afex")
     skip_if_not_installed("WRS2")
@@ -57,7 +57,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
     skip_if_not_installed("PMCMRplus")
     skip_if_not_installed("afex")
     skip_if_not_installed("WRS2")
