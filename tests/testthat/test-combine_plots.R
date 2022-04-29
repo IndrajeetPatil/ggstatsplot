@@ -3,7 +3,7 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-    skip_if(getRversion() >= "4.2")
+
 
     p1 <- ggplot2::ggplot(
       data = subset(iris, iris$Species == "setosa"),
