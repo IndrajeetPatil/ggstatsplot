@@ -185,13 +185,13 @@ test_that(
     # TODO: should one-way table results be shown in the subtitle?
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "when levels are dropped, the function still works",
+      title = "works with dropped levels",
       fig = ggpiestats(mtcars_small, cyl, am)
     )
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "when levels are dropped, proportion tests fail but function works",
+      title = "prop test fails with dropped levels",
       fig = ggpiestats(mtcars_small, am, cyl)
     )
   }
