@@ -51,7 +51,7 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "centrality plotting works with insufficient data",
+      title = "mean shown with scarce data",
       fig = suppressWarnings(ggbetweenstats(
         data = df_small,
         x = group,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggwithinstats.R
 \name{ggwithinstats}
 \alias{ggwithinstats}
-\title{Box/Violin plots for within-subjects (or repeated measures) comparisons}
+\title{Box/Violin plots for repeated measures comparisons}
 \usage{
 ggwithinstats(
   data,
@@ -258,31 +258,29 @@ For details, see:
 }
 \examples{
 \donttest{
-if (require("PMCMRplus")) {
-  # setup
-  set.seed(123)
-  library(ggstatsplot)
-  library(dplyr, warn.conflicts = FALSE)
+# setup
+set.seed(123)
+library(ggstatsplot)
+library(dplyr, warn.conflicts = FALSE)
 
-  # two groups (*t*-test)
-  ggwithinstats(
-    data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-    x    = condition,
-    y    = desire
-  )
+# two groups (*t*-test)
+ggwithinstats(
+  data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x    = condition,
+  y    = desire
+)
 
-  # more than two groups (anova)
-  library(WRS2)
+# more than two groups (anova)
+library(WRS2)
 
-  ggwithinstats(
-    data            = WineTasting,
-    x               = Wine,
-    y               = Taste,
-    type            = "r",
-    outlier.tagging = TRUE,
-    outlier.label   = Taster
-  )
-}
+ggwithinstats(
+  data            = WineTasting,
+  x               = Wine,
+  y               = Taste,
+  type            = "r",
+  outlier.tagging = TRUE,
+  outlier.label   = Taster
+)
 }
 }
 \seealso{

@@ -5,7 +5,7 @@ test_that(
   code = {
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "grouped_gghistostats defaults work as expected",
+      title = "defaults as expected",
       fig = grouped_gghistostats(
         data = ggplot2::msleep,
         x = brainwt,
@@ -16,7 +16,7 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "modification with ggplot2 works as expected",
+      title = "modification with ggplot2 works",
       fig = suppressWarnings(grouped_gghistostats(
         data = ggplot2::msleep,
         x = brainwt,

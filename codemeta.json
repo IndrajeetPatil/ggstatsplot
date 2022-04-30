@@ -278,6 +278,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=vdiffr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "WRS2",
+      "name": "WRS2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=WRS2"
     }
   ],
   "softwareRequirements": {
@@ -480,21 +492,9 @@
       "identifier": "utils",
       "name": "utils"
     },
-    "19": {
-      "@type": "SoftwareApplication",
-      "identifier": "WRS2",
-      "name": "WRS2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=WRS2"
-    },
     "SystemRequirements": null
   },
-  "fileSize": "13945.364KB",
+  "fileSize": "13895.685KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

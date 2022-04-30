@@ -325,6 +325,6 @@
 <text transform='translate(371.86,438.01) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='24.47px' lengthAdjust='spacingAndGlyphs'>count</text>
 <text transform='translate(702.37,438.01) rotate(90)' text-anchor='middle' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='36.02px' lengthAdjust='spacingAndGlyphs'>proportion</text>
 <text x='389.81' y='309.89' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='26.01px' lengthAdjust='spacingAndGlyphs'>omni</text>
-<text x='10.46' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='257.57px' lengthAdjust='spacingAndGlyphs'>modification with ggplot2 works as expected</text>
+<text x='10.46' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='182.71px' lengthAdjust='spacingAndGlyphs'>modification with ggplot2 works</text>
 </g>
 </svg>

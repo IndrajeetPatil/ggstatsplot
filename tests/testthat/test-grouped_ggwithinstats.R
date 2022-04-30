@@ -28,7 +28,7 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "outlier tagging and other modifications work",
+      title = "outlier tagging and themes work",
       fig = grouped_ggwithinstats(
         data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
         x = condition,
