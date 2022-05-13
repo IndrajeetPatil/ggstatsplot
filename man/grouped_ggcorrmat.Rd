@@ -54,13 +54,13 @@ used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}
 }
 
 You can specify just the initial letter.}
-    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
-of an error, try reducing the value of \code{tr}, which is by default set to
-\code{0.2}. Lowering the value might help.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
 return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
+of an error, try reducing the value of \code{tr}, which is by default set to
+\code{0.2}. Lowering the value might help.}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -70,10 +70,15 @@ corresponds to scale for fixed effects.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-    \item{\code{package}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-    \item{\code{palette}}{Name of the package from which the given palette is to
+    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+\code{results.subtitle = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
+variants of all primary functions. Default is \code{NULL}. The argument should
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+    \item{\code{package,palette}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
@@ -86,14 +91,6 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
-\code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
   }}
 
 \item{grouping.var}{A single grouping variable.}

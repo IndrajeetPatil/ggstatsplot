@@ -51,21 +51,21 @@ ggbetweenstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
-\item{x}{The grouping (or independent) variable from the dataframe \code{data}. In
-case of a repeated measures or within-subjects design, if \code{subject.id}
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is \strong{not} sorted, the results
-\emph{can} be inaccurate when there are more than two levels in \code{x} and there
-are \code{NA}s present. The data is expected to be sorted by user in
+\item{x}{The grouping (or independent) variable from \code{data}. In case of a
+repeated measures or within-subjects design, if \code{subject.id} argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is \strong{not} sorted, the results \emph{can}
+be inaccurate when there are more than two levels in \code{x} and there are
+\code{NA}s present. The data is expected to be sorted by user in
 subject-1,subject-2, ..., pattern.}
 
-\item{y}{The response (or outcome or dependent) variable from the
-dataframe \code{data}.}
+\item{y}{The response (or outcome or dependent) variable from \code{data}.}
 
 \item{plot.type}{Character describing the \emph{type} of plot. Currently supported
 plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),

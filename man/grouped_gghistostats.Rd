@@ -16,9 +16,10 @@ grouped_gghistostats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{x}{A numeric variable from the dataframe \code{data}.}
 
@@ -69,6 +70,13 @@ centrality parameter.}
 You can specify just the initial letter.}
     \item{\code{test.value}}{A number indicating the true value of the mean (Default:
 \code{0}).}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
+return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
+of an error, try reducing the value of \code{tr}, which is by default set to
+\code{0.2}. Lowering the value might help.}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -77,35 +85,16 @@ of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
-    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
-of an error, try reducing the value of \code{tr}, which is by default set to
-\code{0.2}. Lowering the value might help.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
-    \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
+parametric test} (Default: \code{TRUE}).}
+    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. This argument is relevant only
 if \code{bf.message = FALSE}.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
-    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
     \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
@@ -134,6 +123,16 @@ Just as \code{type} argument, abbreviations are also accepted.}
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
+\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
+But note that sometimes these themes will remove some of the details that
+\code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{ggbetweenstats()} shows details about multiple comparison test as a label
+on the secondary Y-axis. Some themes (e.g.
+\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
+thus the details as well.}
   }}
 }
 \description{

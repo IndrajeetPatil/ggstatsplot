@@ -37,9 +37,10 @@ ggpiestats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{x}{The variable to use as the \strong{rows} in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
@@ -52,8 +53,8 @@ will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion t
 appropriate association test will be run. This argument can not be \code{NULL}
 for \code{ggbarstats} function.}
 
-\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
-if each row represents a single observation.}
+\item{counts}{The variable in data containing counts, or \code{NULL} if each row
+represents a single observation.}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -141,11 +142,7 @@ on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-
-\item{palette}{Name of the package from which the given palette is to
+\item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 

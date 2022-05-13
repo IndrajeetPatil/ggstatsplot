@@ -100,11 +100,7 @@ any of the following arguments since they are already internally being
 used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
 \code{pch}, \code{legend.title}, \code{digits}.}
 
-\item{package}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-
-\item{palette}{Name of the package from which the given palette is to
+\item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 

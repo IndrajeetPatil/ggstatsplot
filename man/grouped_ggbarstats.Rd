@@ -14,9 +14,10 @@ grouped_ggbarstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggbarstats]{ggbarstats}}
@@ -33,61 +34,34 @@ will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion t
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
 appropriate association test will be run. This argument can not be \code{NULL}
 for \code{ggbarstats} function.}
-    \item{\code{counts}}{A string naming a variable in data containing counts, or \code{NULL}
-if each row represents a single observation.}
-    \item{\code{type}}{A character specifying the type of statistical approach:
-\itemize{
-\item \code{"parametric"}
-\item \code{"nonparametric"}
-\item \code{"robust"}
-\item \code{"bayes"}
-}
-
-You can specify just the initial letter.}
-    \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
-test expression will be returned. If \code{FALSE}, Pearson's chi-square test will
-be returned.}
-    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
-    \item{\code{label}}{Character decides what information needs to be displayed
-on the label in each pie slice. Possible options are \code{"percentage"}
-(default), \code{"counts"}, \code{"both"}.}
-    \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
-\code{geom_label}.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{ggbarstats}, only \emph{p}-values from this test will be displayed.}
     \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0L}).}
+    \item{\code{label}}{Character decides what information needs to be displayed
+on the label in each pie slice. Possible options are \code{"percentage"}
+(default), \code{"counts"}, \code{"both"}.}
+    \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
+\code{geom_label}.}
+    \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
-    \item{\code{ratio}}{A vector of proportions: the expected proportions for the
-proportion test (should sum to 1). Default is \code{NULL}, which means the null
-is equal theoretical proportions across the levels of the nominal variable.
-This means if there are two levels this will be \code{ratio = c(0.5,0.5)} or if
-there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
-    \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options
-are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
-\code{"jointMulti"} (joint multinomial), \code{"hypergeom"} (hypergeometric). For
-more, see \code{?BayesFactor::contingencyTableBF()}.}
-    \item{\code{fixed.margin}}{For the independent multinomial sampling plan, which
-margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
-    \item{\code{prior.concentration}}{Specifies the prior concentration parameter, set
-to \code{1} by default. It indexes the expected deviation from the null
-hypothesis under the alternative, and corresponds to Gunel and Dickey's
-(1974) \code{"a"} parameter.}
+    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
+the plot will be returned.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. This argument is relevant only
 if \code{bf.message = FALSE}.}
-    \item{\code{legend.title}}{Title text for the legend.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
+variants of all primary functions. Default is \code{NULL}. The argument should
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+    \item{\code{package,palette}}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{theme_bw()}), or themes from extension packages are allowed (e.g.,
@@ -98,16 +72,40 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{package}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-    \item{\code{palette}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+    \item{\code{type}}{A character specifying the type of statistical approach:
+\itemize{
+\item \code{"parametric"}
+\item \code{"nonparametric"}
+\item \code{"robust"}
+\item \code{"bayes"}
+}
+
+You can specify just the initial letter.}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
+return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
+repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
+test expression will be returned. If \code{FALSE}, Pearson's chi-square test will
+be returned.}
+    \item{\code{counts}}{The variable in data containing counts, or \code{NULL} if each row
+represents a single observation.}
+    \item{\code{ratio}}{A vector of proportions: the expected proportions for the
+proportion test (should sum to 1). Default is \code{NULL}, which means the null
+is equal theoretical proportions across the levels of the nominal variable.
+This means if there are two levels this will be \code{ratio = c(0.5,0.5)} or if
+there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
+    \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options
+are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
+\code{"jointMulti"} (joint multinomial), \code{"hypergeom"} (hypergeometric). For
+more, see \code{?BayesFactor::contingencyTableBF()}.}
+    \item{\code{fixed.margin}}{For the independent multinomial sampling plan, which
+margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
+    \item{\code{prior.concentration}}{Specifies the prior concentration parameter, set
+to \code{1} by default. It indexes the expected deviation from the null
+hypothesis under the alternative, and corresponds to Gunel and Dickey's
+(1974) \code{"a"} parameter.}
   }}
 
 \item{grouping.var}{A single grouping variable.}

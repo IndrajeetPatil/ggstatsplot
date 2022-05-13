@@ -89,10 +89,7 @@ should be displayed in caption. Defaults to \code{TRUE}.}
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-
-\item{ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+\item{xlab, ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
@@ -134,11 +131,7 @@ be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \code{ggrepel::geom_label_repel} geom. Please see documentation for that
 function to know more about these arguments.}
 
-\item{package}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-
-\item{palette}{Name of the package from which the given palette is to
+\item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 

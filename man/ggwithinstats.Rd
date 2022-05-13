@@ -50,21 +50,21 @@ ggwithinstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
-\item{x}{The grouping (or independent) variable from the dataframe \code{data}. In
-case of a repeated measures or within-subjects design, if \code{subject.id}
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is \strong{not} sorted, the results
-\emph{can} be inaccurate when there are more than two levels in \code{x} and there
-are \code{NA}s present. The data is expected to be sorted by user in
+\item{x}{The grouping (or independent) variable from \code{data}. In case of a
+repeated measures or within-subjects design, if \code{subject.id} argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is \strong{not} sorted, the results \emph{can}
+be inaccurate when there are more than two levels in \code{x} and there are
+\code{NA}s present. The data is expected to be sorted by user in
 subject-1,subject-2, ..., pattern.}
 
-\item{y}{The response (or outcome or dependent) variable from the
-dataframe \code{data}.}
+\item{y}{The response (or outcome or dependent) variable from \code{data}.}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -115,10 +115,7 @@ parametric test} (Default: \code{TRUE}).}
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-
-\item{ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
+\item{xlab, ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
 variable names for \code{x} and \code{y} will be used.}
 
 \item{caption}{The text for the plot caption. This argument is relevant only
@@ -168,11 +165,7 @@ to be:
 
 Just as \code{type} argument, abbreviations are also accepted.}
 
-\item{centrality.point.args}{A list of additional aesthetic
-arguments to be passed to \code{geom_point} and
-\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
-
-\item{centrality.label.args}{A list of additional aesthetic
+\item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
 arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
@@ -224,11 +217,7 @@ on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-
-\item{palette}{Name of the package from which the given palette is to
+\item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 
