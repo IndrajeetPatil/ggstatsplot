@@ -42,8 +42,11 @@ ungrouped before they are entered as \code{data}.}
 
 \item{y}{Label or grouping variable.}
 
-\item{xlab, ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
+\item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
+
+\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 

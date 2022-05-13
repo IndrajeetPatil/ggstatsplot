@@ -110,7 +110,11 @@ argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
 omega-squared).}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors.}
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -120,8 +124,11 @@ parametric test} (Default: \code{TRUE}).}
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{xlab, ylab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
+\item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
+
+\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
 
 \item{caption}{The text for the plot caption. This argument is relevant only
 if \code{bf.message = FALSE}.}

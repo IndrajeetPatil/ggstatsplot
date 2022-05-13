@@ -55,6 +55,8 @@ of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
+    \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
@@ -103,8 +105,8 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{xlab,ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
+    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
   }}
 
 \item{grouping.var}{A single grouping variable.}

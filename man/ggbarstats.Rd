@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggbarstats.R
 \name{ggbarstats}
 \alias{ggbarstats}
-\title{Bar (column) charts with statistical tests}
+\title{Stacked bar charts with statistical tests}
 \usage{
 ggbarstats(
   data,
@@ -129,10 +129,11 @@ if \code{bf.message = FALSE}.}
 
 \item{legend.title}{Title text for the legend.}
 
-\item{xlab}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
-will cause the \code{x} axis label to be the \code{x} variable).}
+\item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
 
-\item{ylab}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
+\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,

@@ -10,8 +10,10 @@
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for only boxplots), `"violin"` (for only violin plots),
 #'   and `"boxviolin"` (for a combination of box and violin plots; default).
-#' @param xlab,ylab Labels for `x` and `y` axis variables. If `NULL` (default),
-#'   variable names for `x` and `y` will be used.
+#' @param xlab Label for `x` axis variable. If `NULL` (default),
+#'   variable name for `x` will be used.
+#' @param ylab Labels for `y` axis variable. If `NULL` (default),
+#'   variable name for `y` will be used.
 #' @param pairwise.comparisons Logical that decides whether pairwise comparisons
 #'   are to be displayed (default: `TRUE`). Please note that only
 #'   **significant** comparisons will be shown by default. To change this
@@ -31,8 +33,6 @@
 #'   You can use this argument to make sure that your plot is not uber-cluttered
 #'   when you have multiple groups being compared and scores of pairwise
 #'   comparisons being displayed.
-#' @param bf.prior A number between `0.5` and `2` (default `0.707`), the prior
-#'   width to use in calculating Bayes factors.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
 #'   favor of the *null* hypothesis. This argument is relevant only **for
 #'   parametric test** (Default: `TRUE`).

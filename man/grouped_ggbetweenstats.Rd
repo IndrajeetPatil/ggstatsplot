@@ -26,8 +26,10 @@ ungrouped before they are entered as \code{data}.}
     \item{\code{plot.type}}{Character describing the \emph{type} of plot. Currently supported
 plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
 and \code{"boxviolin"} (for a combination of box and violin plots; default).}
-    \item{\code{xlab,ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
+    \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
+    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
     \item{\code{pairwise.comparisons}}{Logical that decides whether pairwise comparisons
 are to be displayed (default: \code{TRUE}). Please note that only
 \strong{significant} comparisons will be shown by default. To change this
@@ -49,8 +51,6 @@ Available options are:
 You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed.}
-    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
@@ -155,6 +155,12 @@ omega-squared).}
     two variances as being equal. If \code{TRUE} then the pooled
     variance is used to estimate the variance otherwise the Welch
     (or Satterthwaite) approximation to the degrees of freedom is used.}
+    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.}
     \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}

@@ -22,9 +22,6 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link[=ggbarstats]{ggbarstats}}
   \describe{
-    \item{\code{xlab}}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
-will cause the \code{x} axis label to be the \code{x} variable).}
-    \item{\code{ylab}}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
     \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
 dropped.}
@@ -106,6 +103,10 @@ margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
 to \code{1} by default. It indexes the expected deviation from the null
 hypothesis under the alternative, and corresponds to Gunel and Dickey's
 (1974) \code{"a"} parameter.}
+    \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
+    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
   }}
 
 \item{grouping.var}{A single grouping variable.}

@@ -1,4 +1,4 @@
-#' @title Bar (column) charts with statistical tests
+#' @title Stacked bar charts with statistical tests
 #' @name ggbarstats
 #'
 #' @description
@@ -6,10 +6,8 @@
 #' Bar charts for categorical data with statistical details included in the plot
 #' as a subtitle.
 #'
-#' @param xlab Custom text for the `x` axis label (Default: `NULL`, which
-#'   will cause the `x` axis label to be the `x` variable).
-#' @param ylab Custom text for the `y` axis label (Default: `NULL`).
 #' @inheritParams ggpiestats
+#' @inheritParams ggbetweenstats
 #'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
