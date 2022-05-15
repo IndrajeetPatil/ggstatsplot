@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggbarstats.R
 \name{ggbarstats}
 \alias{ggbarstats}
-\title{Bar (column) charts with statistical tests}
+\title{Stacked bar charts with statistical tests}
 \usage{
 ggbarstats(
   data,
@@ -38,9 +38,10 @@ ggbarstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{x}{The variable to use as the \strong{rows} in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
@@ -53,8 +54,8 @@ will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion t
 appropriate association test will be run. This argument can not be \code{NULL}
 for \code{ggbarstats} function.}
 
-\item{counts}{A string naming a variable in data containing counts, or \code{NULL}
-if each row represents a single observation.}
+\item{counts}{The variable in data containing counts, or \code{NULL} if each row
+represents a single observation.}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -128,10 +129,11 @@ if \code{bf.message = FALSE}.}
 
 \item{legend.title}{Title text for the legend.}
 
-\item{xlab}{Custom text for the \code{x} axis label (Default: \code{NULL}, which
-will cause the \code{x} axis label to be the \code{x} variable).}
+\item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
 
-\item{ylab}{Custom text for the \code{y} axis label (Default: \code{NULL}).}
+\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
@@ -144,11 +146,7 @@ on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-
-\item{palette}{Name of the package from which the given palette is to
+\item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 

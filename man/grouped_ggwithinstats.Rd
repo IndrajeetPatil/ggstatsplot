@@ -15,52 +15,29 @@ grouped_ggwithinstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggwithinstats]{ggwithinstats}}
   \describe{
-    \item{\code{point.path}}{Logical that decides whether individual data
+    \item{\code{point.path,centrality.path}}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
 default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
 there are two groups (i.e., in case of a \emph{t}-test). In case of large number
 of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
-    \item{\code{centrality.path}}{Logical that decides whether individual data
-points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
-there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{point.path = FALSE} as these lines
-can overwhelm the plot.}
-    \item{\code{centrality.path.args}}{A list of additional aesthetic
-arguments passed on to \code{geom_path} connecting raw data points and mean
-points.}
-    \item{\code{point.path.args}}{A list of additional aesthetic
+    \item{\code{centrality.path.args,point.path.args}}{A list of additional aesthetic
 arguments passed on to \code{geom_path} connecting raw data points and mean
 points.}
     \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
 \code{geom_boxplot}.}
-    \item{\code{x}}{The grouping (or independent) variable from the dataframe \code{data}. In
-case of a repeated measures or within-subjects design, if \code{subject.id}
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is \strong{not} sorted, the results
-\emph{can} be inaccurate when there are more than two levels in \code{x} and there
-are \code{NA}s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.}
-    \item{\code{y}}{The response (or outcome or dependent) variable from the
-dataframe \code{data}.}
-    \item{\code{type}}{A character specifying the type of statistical approach:
-\itemize{
-\item \code{"parametric"}
-\item \code{"nonparametric"}
-\item \code{"robust"}
-\item \code{"bayes"}
-}
-
-You can specify just the initial letter.}
+    \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
+    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
     \item{\code{pairwise.comparisons}}{Logical that decides whether pairwise comparisons
 are to be displayed (default: \code{TRUE}). Please note that only
 \strong{significant} comparisons will be shown by default. To change this
@@ -68,6 +45,9 @@ behavior, select appropriate option with \code{pairwise.display} argument. The
 pairwise comparison dataframes are prepared using the
 \code{pairwise_comparisons} function. For more details
 about pairwise comparisons, see the documentation for that function.}
+    \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
     \item{\code{pairwise.display}}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
 \itemize{
@@ -79,37 +59,26 @@ Available options are:
 You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed.}
-    \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
-comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
-\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
-    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-    \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-    \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
-    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
-    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
-of an error, try reducing the value of \code{tr}, which is by default set to
-\code{0.2}. Lowering the value might help.}
+    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
+if \code{bf.message = FALSE}.}
+    \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
+\code{FALSE}).}
+    \item{\code{outlier.label}}{Label to put on the outliers that have been tagged. This
+\strong{can't} be the same as \code{x} argument.}
+    \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
+passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
+    \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
+Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
+\code{1.5}).}
     \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
@@ -134,26 +103,20 @@ to be:
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
-    \item{\code{centrality.point.args}}{A list of additional aesthetic
-arguments to be passed to \code{geom_point} and
-\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
-    \item{\code{centrality.label.args}}{A list of additional aesthetic
-arguments to be passed to \code{geom_point} and
-\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
-    \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
-\code{FALSE}).}
-    \item{\code{outlier.label}}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
-    \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
-\code{1.5}).}
-    \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
 the \code{geom_violin}.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
+variants of all primary functions. Default is \code{NULL}. The argument should
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+    \item{\code{package,palette}}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
+    \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
+arguments to be passed to \code{geom_point} and
+\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
@@ -166,16 +129,42 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{package}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-    \item{\code{palette}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+    \item{\code{x}}{The grouping (or independent) variable from \code{data}. In case of a
+repeated measures or within-subjects design, if \code{subject.id} argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is \strong{not} sorted, the results \emph{can}
+be inaccurate when there are more than two levels in \code{x} and there are
+\code{NA}s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.}
+    \item{\code{y}}{The response (or outcome or dependent) variable from \code{data}.}
+    \item{\code{type}}{A character specifying the type of statistical approach:
+\itemize{
+\item \code{"parametric"}
+\item \code{"nonparametric"}
+\item \code{"robust"}
+\item \code{"bayes"}
+}
+
+You can specify just the initial letter.}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
+return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
+omega-squared).}
+    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
+of an error, try reducing the value of \code{tr}, which is by default set to
+\code{0.2}. Lowering the value might help.}
+    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100L}).}
   }}
 
 \item{grouping.var}{A single grouping variable.}

@@ -34,9 +34,10 @@ gghistostats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{x}{A numeric variable from the dataframe \code{data}.}
 
@@ -46,8 +47,8 @@ to use the \code{max(x) - min(x) / sqrt(N)}. You should always check this value
 and explore multiple widths to find the best to illustrate the stories in
 your data.}
 
-\item{xlab}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
+\item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
 
 \item{title}{The text for the plot title.}
 

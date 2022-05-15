@@ -106,8 +106,8 @@ references:
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
+  url: https://easystats.github.io/correlation/
   year: '2022'
-  url: https://CRAN.R-project.org/package=correlation
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -230,9 +230,13 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
+  - family-names: Arel-Bundock
+    given-names: Vincent
+    email: vincent.arel-bundock@umontreal.ca
+    orcid: https://orcid.org/0000-0003-2042-7063
   year: '2022'
   url: https://easystats.github.io/insight/
-  version: '>= 0.17.0'
+  version: '>= 0.17.1'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -362,8 +366,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.3.1'
   year: '2022'
+  version: '>= 1.3.1.9000'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -388,19 +392,6 @@ references:
   url: https://www.R-project.org/
   institution:
     name: R Foundation for Statistical Computing
-- type: software
-  title: WRS2
-  abstract: 'WRS2: A Collection of Robust Statistical Methods'
-  notes: Imports
-  authors:
-  - family-names: Mair
-    given-names: Patrick
-    email: mair@fas.harvard.edu
-  - family-names: Wilcox
-    given-names: Rand
-    email: rwilcox@usc.edu
-  year: '2022'
-  url: https://CRAN.R-project.org/package=WRS2
 - type: software
   title: afex
   abstract: 'afex: Analysis of Factorial Experiments'
@@ -456,17 +447,6 @@ references:
     email: alboukadel.kassambara@gmail.com
   year: '2022'
   url: https://CRAN.R-project.org/package=ggcorrplot
-- type: software
-  title: gginnards
-  abstract: 'gginnards: Explore the Innards of ''ggplot2'' Objects'
-  notes: Suggests
-  authors:
-  - family-names: Aphalo
-    given-names: Pedro J.
-    email: pedro.aphalo@helsinki.fi
-    orcid: https://orcid.org/0000-0003-3385-972X
-  year: '2022'
-  url: https://CRAN.R-project.org/package=gginnards
 - type: software
   title: ggside
   abstract: 'ggside: Side Grammar Graphics'
@@ -636,7 +616,7 @@ references:
     email: hadley@rstudio.com
   year: '2022'
   url: https://CRAN.R-project.org/package=testthat
-  version: '>= 3.1.3'
+  version: '>= 3.1.4'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
@@ -673,3 +653,16 @@ references:
     email: lise.vaudor@ens-lyon.fr
   year: '2022'
   url: https://CRAN.R-project.org/package=vdiffr
+- type: software
+  title: WRS2
+  abstract: 'WRS2: A Collection of Robust Statistical Methods'
+  notes: Suggests
+  authors:
+  - family-names: Mair
+    given-names: Patrick
+    email: mair@fas.harvard.edu
+  - family-names: Wilcox
+    given-names: Rand
+    email: rwilcox@usc.edu
+  year: '2022'
+  url: https://CRAN.R-project.org/package=WRS2

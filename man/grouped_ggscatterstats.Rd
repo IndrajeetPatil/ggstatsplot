@@ -15,9 +15,10 @@ grouped_ggscatterstats(
 )
 }
 \arguments{
-\item{data}{A dataframe (or a tibble) from which variables specified are to
+\item{data}{A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
-be accepted.}
+be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
+ungrouped before they are entered as \code{data}.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggscatterstats]{ggscatterstats}}
@@ -37,28 +38,16 @@ to \code{geom_point} geom used to display the raw data points.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
 axes using \code{ggside} functions. The default is \code{TRUE}. The package
 \code{ggside} must already be installed by the user.}
-    \item{\code{point.width.jitter}}{Degree of jitter in \code{x} and \code{y}
+    \item{\code{point.width.jitter,point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the *\strong{labels} for
 these points.}
-    \item{\code{point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
-data. Note that the jitter should not be specified in the \code{point.args}
-because this information will be passed to two different \code{geom}s: one
-displaying the \strong{points} and the other displaying the *\strong{labels} for
-these points.}
-    \item{\code{xfill}}{Character describing color fill for \code{x} and \code{y} axes
+    \item{\code{xfill,yfill}}{Character describing color fill for \code{x} and \code{y} axes
 marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
 \code{y})). Note that the defaults are colorblind-friendly.}
-    \item{\code{yfill}}{Character describing color fill for \code{x} and \code{y} axes
-marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). Note that the defaults are colorblind-friendly.}
-    \item{\code{xsidehistogram.args}}{A list of arguments passed to
-respective \code{geom_}s from \code{ggside} package to change the marginal
-distribution histograms plots.}
-    \item{\code{ysidehistogram.args}}{A list of arguments passed to
+    \item{\code{xsidehistogram.args,ysidehistogram.args}}{A list of arguments passed to
 respective \code{geom_}s from \code{ggside} package to change the marginal
 distribution histograms plots.}
     \item{\code{x}}{The column in \code{data} containing the explanatory variable to be
@@ -74,33 +63,37 @@ be plotted on the \code{y}-axis.}
 }
 
 You can specify just the initial letter.}
+    \item{\code{k}}{Number of digits after decimal point (should be an integer)
+(Default: \code{k = 2L}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
 return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
+of an error, try reducing the value of \code{tr}, which is by default set to
+\code{0.2}. Lowering the value might help.}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
 \code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
 of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.}
-    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
-of an error, try reducing the value of \code{tr}, which is by default set to
-\code{0.2}. Lowering the value might help.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+    \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
+variable name for \code{x} will be used.}
+    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+variable name for \code{y} will be used.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
-    \item{\code{xlab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
-    \item{\code{ylab}}{Labels for \code{x} and \code{y} axis variables. If \code{NULL} (default),
-variable names for \code{x} and \code{y} will be used.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. This argument is relevant only
 if \code{bf.message = FALSE}.}
+    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
+by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
+variants of all primary functions. Default is \code{NULL}. The argument should
+be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{theme_bw()}), or themes from extension packages are allowed (e.g.,
@@ -111,10 +104,6 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
   }}
 
 \item{grouping.var}{A single grouping variable.}
