@@ -50,7 +50,6 @@ Suggests:
     BayesFactor (>= 0.9.12-4.3),
     gapminder,
     ggcorrplot,
-    gginnards,
     ggside,
     knitr,
     lme4,

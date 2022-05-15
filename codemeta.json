@@ -100,18 +100,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "gginnards",
-      "name": "gginnards",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=gginnards"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
       "provider": {
@@ -494,7 +482,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "13891.872KB",
+  "fileSize": "13905.516KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
