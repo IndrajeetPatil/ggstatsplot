@@ -356,10 +356,10 @@ pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
 
 Type | Measure | Function used
 ----------- | --------- | ------------------ 
-Parametric | mean | `parameters::describe_distribution`
-Non-parametric | median | `parameters::describe_distribution`
-Robust | trimmed mean | `parameters::describe_distribution`
-Bayesian | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution`
+Parametric | mean | `datawizard::describe_distribution`
+Non-parametric | median | `datawizard::describe_distribution`
+Robust | trimmed mean | `datawizard::describe_distribution`
+Bayesian | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution`
 
 **Hypothesis testing**
 

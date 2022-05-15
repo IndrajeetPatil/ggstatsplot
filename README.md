@@ -234,10 +234,10 @@ Note here that the function can be used to tag outliers!
 
 | Type           | Measure                                           | Function used                       |
 |----------------|---------------------------------------------------|-------------------------------------|
-| Parametric     | mean                                              | `parameters::describe_distribution` |
-| Non-parametric | median                                            | `parameters::describe_distribution` |
-| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
-| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
+| Parametric     | mean                                              | `datawizard::describe_distribution` |
+| Non-parametric | median                                            | `datawizard::describe_distribution` |
+| Robust         | trimmed mean                                      | `datawizard::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution` |
 
 **Hypothesis testing**
 
@@ -313,10 +313,10 @@ The central tendency measure displayed will depend on the statistics:
 
 | Type           | Measure      | Function used                       |
 |----------------|--------------|-------------------------------------|
-| Parametric     | mean         | `parameters::describe_distribution` |
-| Non-parametric | median       | `parameters::describe_distribution` |
-| Robust         | trimmed mean | `parameters::describe_distribution` |
-| Bayesian       | MAP estimate | `parameters::describe_distribution` |
+| Parametric     | mean         | `datawizard::describe_distribution` |
+| Non-parametric | median       | `datawizard::describe_distribution` |
+| Robust         | trimmed mean | `datawizard::describe_distribution` |
+| Bayesian       | MAP estimate | `datawizard::describe_distribution` |
 
 As with the `ggbetweenstats`, this function also has a `grouped_`
 variant that makes repeating the same analysis across a single grouping
@@ -362,10 +362,10 @@ grouped_ggwithinstats(
 
 | Type           | Measure                                           | Function used                       |
 |----------------|---------------------------------------------------|-------------------------------------|
-| Parametric     | mean                                              | `parameters::describe_distribution` |
-| Non-parametric | median                                            | `parameters::describe_distribution` |
-| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
-| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
+| Parametric     | mean                                              | `datawizard::describe_distribution` |
+| Non-parametric | median                                            | `datawizard::describe_distribution` |
+| Robust         | trimmed mean                                      | `datawizard::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution` |
 
 **Hypothesis testing**
 
@@ -471,10 +471,10 @@ grouped_gghistostats(
 
 | Type           | Measure                                           | Function used                       |
 |----------------|---------------------------------------------------|-------------------------------------|
-| Parametric     | mean                                              | `parameters::describe_distribution` |
-| Non-parametric | median                                            | `parameters::describe_distribution` |
-| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
-| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
+| Parametric     | mean                                              | `datawizard::describe_distribution` |
+| Non-parametric | median                                            | `datawizard::describe_distribution` |
+| Robust         | trimmed mean                                      | `datawizard::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution` |
 
 **Hypothesis testing**
 
@@ -561,10 +561,10 @@ grouped_ggdotplotstats(
 
 | Type           | Measure                                           | Function used                       |
 |----------------|---------------------------------------------------|-------------------------------------|
-| Parametric     | mean                                              | `parameters::describe_distribution` |
-| Non-parametric | median                                            | `parameters::describe_distribution` |
-| Robust         | trimmed mean                                      | `parameters::describe_distribution` |
-| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `parameters::describe_distribution` |
+| Parametric     | mean                                              | `datawizard::describe_distribution` |
+| Non-parametric | median                                            | `datawizard::describe_distribution` |
+| Robust         | trimmed mean                                      | `datawizard::describe_distribution` |
+| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution` |
 
 **Hypothesis testing**
 
