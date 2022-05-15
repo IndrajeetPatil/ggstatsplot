@@ -1,5 +1,5 @@
 ---
-title: "ggpiestats"
+title: "ggbarstats"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
@@ -12,7 +12,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{ggpiestats}
+  %\VignetteIndexEntry{ggbarstats}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -44,15 +44,15 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-## Introduction to `ggpiestats`
+## Introduction to `ggbarstats`
 
-The function `ggpiestats` can be used for quick **data
+The function `ggbarstats` can be used for quick **data
 exploration** and/or to prepare **publication-ready pie charts** to summarize
 the statistical relationship(s) among one or more categorical variables. We will
 see examples of how to use this function in this vignette.
 
 To begin with, here are some instances where you would want to use
-`ggpiestats`-
+`ggbarstats`-
 
  - to check if the proportion of observations matches our hypothesized
 proportion, this is typically known as a "Goodness of Fit" test
@@ -67,13 +67,13 @@ variable is equal
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>.
 
-`ggpiestats` works **only** with data organized in dataframes or tibbles. It
+`ggbarstats` works **only** with data organized in dataframes or tibbles. It
 will not work with other data structures like base-R tables or matrices. It can
 operate on dataframes that are organized with one row per observation or
 dataframes that have one column containing counts. This vignette provides
 examples of both (see examples below).
 
-To help demonstrate how `ggpiestats` can be used with categorical (also known as
+To help demonstrate how `ggbarstats` can be used with categorical (also known as
 nominal) data, a modified version of the original `Titanic` dataset (from the
 `datasets` library) has been provided in the `{ggstatsplot}` package with the name
 `Titanic_full`. The Titanic Passenger Survival Dataset provides information "on
@@ -93,59 +93,52 @@ dplyr::glimpse(Titanic)
 dplyr::glimpse(Titanic_full)
 ```
 
-## Goodness of Fit with `ggpiestats`
+<!-- ## Goodness of Fit with `ggbarstats` -->
 
-The simplest use case for `ggpiestats` is that we want to display information
-about **one** categorical or nominal variable. As part of that display or plot,
-we may also choose to execute a chi-squared goodness of fit test to see whether
-the proportions (or percentages) in categories of the single variable appear to
-line up with our hypothesis or model. To start simple and then expand, let's say
-that we'd like to display a piechart with the percentages of passengers who did
-or did not survive. Our initial hypothesis is that it was no different than
-flipping a coin. People had a 50/50 chance of surviving.
+<!-- The simplest use case for `ggbarstats` is that we want to display information -->
+<!-- about **one** categorical or nominal variable. As part of that display or plot, -->
+<!-- we may also choose to execute a chi-squared goodness of fit test to see whether -->
+<!-- the proportions (or percentages) in categories of the single variable appear to -->
+<!-- line up with our hypothesis or model. To start simple and then expand, let's say -->
+<!-- that we'd like to display a piechart with the percentages of passengers who did -->
+<!-- or did not survive. Our initial hypothesis is that it was no different than -->
+<!-- flipping a coin. People had a 50/50 chance of surviving. -->
 
-```{r ggpiestats3, fig.height = 5, fig.width = 6}
-#  for reproducibility
-set.seed(123)
+<!-- ```{r ggbarstats3, fig.height = 5, fig.width = 6} -->
+<!-- #  for reproducibility -->
+<!-- set.seed(123) -->
 
-# plot
-ggpiestats(
-  data = Titanic_full,
-  x = Survived,
-  title = "Passenger survival on the Titanic",
-  caption = "Source: Titanic survival dataset",
-  legend.title = "Survived?"
-)
-```
+<!-- # plot -->
+<!-- ggbarstats( -->
+<!--   data = Titanic_full, -->
+<!--   x = Survived, -->
+<!--   title = "Passenger survival on the Titanic", -->
+<!--   caption = "Source: Titanic survival dataset", -->
+<!--   legend.title = "Survived?" -->
+<!-- ) -->
+<!-- ``` -->
 
-**Note:** equal proportions per category are the default, e.g. 50/50, but you
-can specify any hypothesized ratio you like with `ratio` so if our hypothesis
-was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we
-entered the code.
+<!-- **Note:** equal proportions per category are the default, e.g. 50/50, but you -->
+<!-- can specify any hypothesized ratio you like with `ratio` so if our hypothesis -->
+<!-- was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we -->
+<!-- entered the code. -->
 
-## Independence (or association) with `ggpiestats`
+## Independence (or association) with `ggbarstats`
 
 Let's next investigate whether the passenger's gender was independent of, or
 associated with, gender. The test is whether the proportion of people who
-survived was different between the sexes using `ggpiestats`.
+survived was different between the sexes using `ggbarstats`.
 
-```{r ggpiestats1, fig.height = 5, fig.width = 8}
+```{r ggbarstats1, fig.height = 5, fig.width = 8}
 #for reproducibility
 set.seed(123)
 
 ## plot
-ggpiestats(
+ggbarstats(
   data = Titanic_full,
   x = Survived,
   y = Sex
-) + # further modification with `{ggplot2}` commands
-  ggplot2::theme(
-    plot.title = ggplot2::element_text(
-      color = "black",
-      size = 14,
-      hjust = 0
-    )
-  )
+)
 ```
 
 The plot clearly shows that survival rates were very different between males and
@@ -154,26 +147,26 @@ large sample size. Additionally, for both females and males, the survival rates
 were significantly different than 50% as indicated by a goodness of fit test for
 each gender.
 
-## Grouped analysis with `grouped_ggpiestats`
+## Grouped analysis with `grouped_ggbarstats`
 
 What if we want to do the same analysis of gender but also factor in the
 passenger's age (Age)? We have information that classifies the passengers as
 Child or Adult, perhaps that makes a difference to their survival rate? 
 
 `{ggstatsplot}` provides a special helper function for such instances:
-`grouped_ggpiestats`. It is a convenient wrapper function around
-`combine_plots`. It applies `ggpiestats` across all **levels** of a
+`grouped_ggbarstats`. It is a convenient wrapper function around
+`combine_plots`. It applies `ggbarstats` across all **levels** of a
 specified **grouping variable** and then combines the list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
 
-```{r ggpiestats4, fig.height = 10, fig.width = 8}
+```{r ggbarstats4, fig.height = 10, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
 # plot
-grouped_ggpiestats(
-  # arguments relevant for `ggpiestats()`
+grouped_ggbarstats(
+  # arguments relevant for `ggbarstats()`
   data = Titanic_full,
   x = Survived,
   y = Sex,
@@ -193,9 +186,9 @@ very much matters. Women survived at much higher rates than men. For children
 gender is not significantly associated with survival and both male and female
 children have a survival rate that is not significantly different from 50/50.
 
-## Grouped analysis with `ggpiestats` + `{purrr}` 
+## Grouped analysis with `ggbarstats` + `{purrr}` 
 
-Although `grouped_ggpiestats` provides a quick way to explore the data, it
+Although `grouped_ggbarstats` provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
 titles, themes, or palettes for each level of the grouping variable, etc. For
 cases like these, it would be better to use `{purrr}` package.  
@@ -205,15 +198,15 @@ See the associated vignette here:
 
 ## Working with data organized by `counts` 
 
-`ggpiestats` can also work with data frame containing counts (aka tabled data),
+`ggbarstats` can also work with data frame containing counts (aka tabled data),
 i.e., when each row doesn't correspond to a unique observation. For example,
 consider the following notional `fishing` data frame containing data from two
 boats (`A` and `B`) about the number of different types fish they caught in the
 months of `February` and `March`. In this data frame, each row corresponds to a
 unique combination of `Boat` and `Month`.
 
-```{r ggpiestats7, fig.height = 8, fig.width = 9}
-# for reproducibility
+```{r ggbarstats7, fig.height = 8, fig.width = 9}
+## for reproducibility
 set.seed(123)
 
 # creating a dataframe
@@ -246,13 +239,13 @@ set.seed(123)
 ```
 
 When the data is organized this way, we make a slightly different call to the
-`ggpiestats()` function: we use the `counts` argument. 
+`ggbarstats()` function: we use the `counts` argument. 
 
 If we want to investigate the relationship of type of fish by month (a test of
 independence), our command would be:
 
-```{r ggpiestats8, fig.height = 5, fig.width = 8}
-ggpiestats(
+```{r ggbarstats8, fig.height = 5, fig.width = 8}
+ggbarstats(
   data = fishing,
   x = Fish,
   y = Month,
@@ -286,7 +279,7 @@ from **McNemar test** in the subtitle.
 (**Note:** If you forget to set `paired = TRUE`, the results will be
 inaccurate.)
 
-```{r ggpiestats9, fig.height = 5, fig.width = 8}
+```{r ggbarstats9, fig.height = 5, fig.width = 8}
 # for reproducibility
 set.seed(123)
 
@@ -300,7 +293,7 @@ clinical_trial <- tibble::tribble(
   )
 
 # plot
-ggpiestats(
+ggbarstats(
   data = clinical_trial,
   x = SickAfter,
   y = SickBefore,
@@ -322,8 +315,8 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 
 graphical element | `geom_` used | argument for further modification
 --------- | ------- | --------------------------
-pie slices | `ggplot2::geom_col` | ❌
-descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`
+bars | `ggplot2::geom_bar` | ❌
+descriptive labels | `ggplot2::geom_label` | `label.args`
 
 ## Summary of tests
 
@@ -349,19 +342,21 @@ Bayesian | Paired | ❌ | ❌ | ❌
 
 **one-way table**
 
-**Hypothesis testing**
+Currently not supported.
 
-Type | Test | Function used
------------ | ------------------------- | -----
-Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test`
-Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
+<!-- **Hypothesis testing** -->
 
-**Effect size estimation**
+<!-- Type | Test | Function used -->
+<!-- ----------- | ------------------------- | ----- -->
+<!-- Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test` -->
+<!-- Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom) -->
 
-Type | Effect size | CI? | Function used
------------ | ------------------------- | --- | -----
-Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
-Bayesian | ❌ | ❌ | ❌
+<!-- **Effect size estimation** -->
+
+<!-- Type | Effect size | CI? | Function used -->
+<!-- ----------- | ------------------------- | --- | ----- -->
+<!-- Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c` -->
+<!-- Bayesian | ❌ | ❌ | ❌ -->
 
 ## Reporting
 
@@ -377,7 +372,7 @@ reported statistics.
 For example, let's see the following example:
 
 ```{r reporting}
-ggpiestats(mtcars, am, cyl)
+ggbarstats(mtcars, am, cyl)
 ```
 
 The narrative context (assuming `type = "parametric"`) can complement this plot
@@ -390,10 +385,8 @@ data were `r round(exp(2.82), 2)` times more probable under the alternative
 hypothesis as compared to the null hypothesis. This can be considered strong
 evidence (Jeffreys, 1961) in favor of the alternative hypothesis.
 
-Similar reporting style can be followed when the function performs one-sample
-goodness-of-fit test instead of a $\chi^2$-test.
-
-Same holds true for `ggbarstats`.
+<!-- Similar reporting style can be followed when the function performs one-sample -->
+<!-- goodness-of-fit test instead of a $\chi^2$-test. -->
 
 ## Suggestions
 

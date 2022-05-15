@@ -95,6 +95,7 @@ articles:
     - web_only/ggdotplotstats
     - web_only/ggcorrmat
     - web_only/ggscatterstats
+    - web_only/ggbarstats
     - web_only/ggpiestats
     - web_only/ggcoefstats
 
