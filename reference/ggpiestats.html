@@ -36,13 +36,14 @@ as a subtitle."><meta property="og:image" content="https://indrajeetpatil.github
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -114,9 +115,10 @@ as a subtitle.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>x</dt>
 <dd><p>The variable to use as the <strong>rows</strong> in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
@@ -129,8 +131,8 @@ will be dropped. Default is <code>NULL</code>. If <code>NULL</code>, one-sample 
 appropriate association test will be run. This argument can not be <code>NULL</code>
 for <code>ggbarstats</code> function.</p></dd>
 <dt>counts</dt>
-<dd><p>A string naming a variable in data containing counts, or <code>NULL</code>
-if each row represents a single observation.</p></dd>
+<dd><p>The variable in data containing counts, or <code>NULL</code> if each row
+represents a single observation.</p></dd>
 <dt>type</dt>
 <dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
@@ -213,11 +215,7 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
-<dt>package</dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
-<dt>palette</dt>
+<dt>package, palette</dt>
 <dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code>View(paletteer::palettes_d_names)</code>.</p></dd>

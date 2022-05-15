@@ -38,13 +38,14 @@ subtitle."><meta property="og:image" content="https://indrajeetpatil.github.io/g
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -131,21 +132,21 @@ subtitle.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>x</dt>
-<dd><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
-case of a repeated measures or within-subjects design, if <code>subject.id</code>
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is <strong>not</strong> sorted, the results
-<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
-are <code>NA</code>s present. The data is expected to be sorted by user in
+<dd><p>The grouping (or independent) variable from <code>data</code>. In case of a
+repeated measures or within-subjects design, if <code>subject.id</code> argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is <strong>not</strong> sorted, the results <em>can</em>
+be inaccurate when there are more than two levels in <code>x</code> and there are
+<code>NA</code>s present. The data is expected to be sorted by user in
 subject-1,subject-2, ..., pattern.</p></dd>
 <dt>y</dt>
-<dd><p>The response (or outcome or dependent) variable from the
-dataframe <code>data</code>.</p></dd>
+<dd><p>The response (or outcome or dependent) variable from <code>data</code>.</p></dd>
 <dt>plot.type</dt>
 <dd><p>Character describing the <em>type</em> of plot. Currently supported
 plots are <code>"box"</code> (for only boxplots), <code>"violin"</code> (for only violin plots),
@@ -182,7 +183,11 @@ argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code>
 omega-squared).</p></dd>
 <dt>bf.prior</dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></dd>
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+<code>"medium"</code>, <code>"wide"</code>, and <code>"ultrawide"</code>, corresponding to <em>r</em> scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.</p></dd>
 <dt>bf.message</dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
@@ -191,9 +196,12 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 <dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
-<dt>xlab, ylab</dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dt>xlab</dt>
+<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>x</code> will be used.</p></dd>
+<dt>ylab</dt>
+<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>y</code> will be used.</p></dd>
 <dt>caption</dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>

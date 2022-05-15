@@ -36,13 +36,14 @@ designs repeated across all levels of a grouping variable. — grouped_ggwithins
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -91,11 +92,12 @@ designs repeated across all levels of a grouping variable.</h1>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="ggwithinstats.html">ggwithinstats</a></code></p><dl><dt><code>point.path</code></dt>
+<dd><p>Arguments passed on to <code><a href="ggwithinstats.html">ggwithinstats</a></code></p><dl><dt><code>point.path,centrality.path</code></dt>
 <dd><p>Logical that decides whether individual data
 points and means, respectively, should be connected using <code>geom_path</code>. Both
 default to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when
@@ -103,20 +105,7 @@ there are two groups (i.e., in case of a <em>t</em>-test). In case of large numb
 of data points, it is advisable to set <code>point.path = FALSE</code> as these lines
 can overwhelm the plot.</p></dd>
 
-    <dt><code>centrality.path</code></dt>
-<dd><p>Logical that decides whether individual data
-points and means, respectively, should be connected using <code>geom_path</code>. Both
-default to <code>TRUE</code>. Note that <code>point.path</code> argument is relevant only when
-there are two groups (i.e., in case of a <em>t</em>-test). In case of large number
-of data points, it is advisable to set <code>point.path = FALSE</code> as these lines
-can overwhelm the plot.</p></dd>
-
-    <dt><code>centrality.path.args</code></dt>
-<dd><p>A list of additional aesthetic
-arguments passed on to <code>geom_path</code> connecting raw data points and mean
-points.</p></dd>
-
-    <dt><code>point.path.args</code></dt>
+    <dt><code>centrality.path.args,point.path.args</code></dt>
 <dd><p>A list of additional aesthetic
 arguments passed on to <code>geom_path</code> connecting raw data points and mean
 points.</p></dd>
@@ -125,26 +114,13 @@ points.</p></dd>
 <dd><p>A list of additional aesthetic arguments passed on to
 <code>geom_boxplot</code>.</p></dd>
 
-    <dt><code>x</code></dt>
-<dd><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
-case of a repeated measures or within-subjects design, if <code>subject.id</code>
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is <strong>not</strong> sorted, the results
-<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
-are <code>NA</code>s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.</p></dd>
+    <dt><code>xlab</code></dt>
+<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>x</code> will be used.</p></dd>
 
-    <dt><code>y</code></dt>
-<dd><p>The response (or outcome or dependent) variable from the
-dataframe <code>data</code>.</p></dd>
-
-    <dt><code>type</code></dt>
-<dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
-<li><p><code>"nonparametric"</code></p></li>
-<li><p><code>"robust"</code></p></li>
-<li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
+    <dt><code>ylab</code></dt>
+<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>y</code> will be used.</p></dd>
 
     <dt><code>pairwise.comparisons</code></dt>
 <dd><p>Logical that decides whether pairwise comparisons
@@ -155,6 +131,11 @@ pairwise comparison dataframes are prepared using the
 <code>pairwise_comparisons</code> function. For more details
 about pairwise comparisons, see the documentation for that function.</p></dd>
 
+    <dt><code>p.adjust.method</code></dt>
+<dd><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
+
     <dt><code>pairwise.display</code></dt>
 <dd><p>Decides <em>which</em> pairwise comparisons to display.
 Available options are:</p><ul><li><p><code>"significant"</code> (abbreviation accepted: <code>"s"</code>)</p></li>
@@ -163,20 +144,6 @@ Available options are:</p><ul><li><p><code>"significant"</code> (abbreviation ac
 </ul><p>You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed.</p></dd>
-
-    <dt><code>p.adjust.method</code></dt>
-<dd><p>Adjustment method for <em>p</em>-values for multiple
-comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
-<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
-
-    <dt><code>effsize.type</code></dt>
-<dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code> (partial
-omega-squared).</p></dd>
-
-    <dt><code>bf.prior</code></dt>
-<dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></dd>
 
     <dt><code>bf.message</code></dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
@@ -188,38 +155,31 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
 
-    <dt><code>xlab</code></dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
-
-    <dt><code>ylab</code></dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+    <dt><code>subtitle</code></dt>
+<dd><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></dd>
 
     <dt><code>caption</code></dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>
 
-    <dt><code>subtitle</code></dt>
-<dd><p>The text for the plot subtitle. Will work only if
-<code>results.subtitle = FALSE</code>.</p></dd>
+    <dt><code>outlier.tagging</code></dt>
+<dd><p>Decides whether outliers should be tagged (Default:
+<code>FALSE</code>).</p></dd>
 
-    <dt><code>k</code></dt>
-<dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2L</code>).</p></dd>
+    <dt><code>outlier.label</code></dt>
+<dd><p>Label to put on the outliers that have been tagged. This
+<strong>can't</strong> be the same as <code>x</code> argument.</p></dd>
 
-    <dt><code>conf.level</code></dt>
-<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
-return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+    <dt><code>outlier.label.args</code></dt>
+<dd><p>A list of additional aesthetic arguments to be
+passed to <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> for outlier label plotting.</p></dd>
 
-    <dt><code>nboot</code></dt>
-<dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></dd>
-
-    <dt><code>tr</code></dt>
-<dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
-of an error, try reducing the value of <code>tr</code>, which is by default set to
-<code>0.2</code>. Lowering the value might help.</p></dd>
+    <dt><code>outlier.coef</code></dt>
+<dd><p>Coefficient for outlier detection using Tukey's method.
+With Tukey's method, outliers are below (1st Quartile) or above (3rd
+Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
+<code>1.5</code>).</p></dd>
 
     <dt><code>centrality.plotting</code></dt>
 <dd><p>Logical that decides whether centrality tendency
@@ -241,41 +201,29 @@ to be:</p><ul><li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p><
 <li><p><code>bayes</code> (for <strong>MAP estimator</strong>)</p></li>
 </ul><p>Just as <code>type</code> argument, abbreviations are also accepted.</p></dd>
 
-    <dt><code>centrality.point.args</code></dt>
-<dd><p>A list of additional aesthetic
-arguments to be passed to <code>geom_point</code> and
-<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
-
-    <dt><code>centrality.label.args</code></dt>
-<dd><p>A list of additional aesthetic
-arguments to be passed to <code>geom_point</code> and
-<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
-
     <dt><code>point.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_point</code> displaying the raw data.</p></dd>
 
-    <dt><code>outlier.tagging</code></dt>
-<dd><p>Decides whether outliers should be tagged (Default:
-<code>FALSE</code>).</p></dd>
-
-    <dt><code>outlier.label</code></dt>
-<dd><p>Label to put on the outliers that have been tagged. This
-<strong>can't</strong> be the same as <code>x</code> argument.</p></dd>
-
-    <dt><code>outlier.coef</code></dt>
-<dd><p>Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) <code>outlier.coef</code> times the Inter-Quartile Range (IQR) (Default:
-<code>1.5</code>).</p></dd>
-
-    <dt><code>outlier.label.args</code></dt>
-<dd><p>A list of additional aesthetic arguments to be
-passed to <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> for outlier label plotting.</p></dd>
-
     <dt><code>violin.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
 the <code>geom_violin</code>.</p></dd>
+
+    <dt><code>ggplot.component</code></dt>
+<dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
+variants of all primary functions. Default is <code>NULL</code>. The argument should
+be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+
+    <dt><code>package,palette</code></dt>
+<dd><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+
+    <dt><code>centrality.point.args,centrality.label.args</code></dt>
+<dd><p>A list of additional aesthetic
+arguments to be passed to <code>geom_point</code> and
+<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
 
     <dt><code>ggsignif.args</code></dt>
 <dd><p>A list of additional aesthetic
@@ -293,21 +241,55 @@ on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
 
-    <dt><code>package</code></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+    <dt><code>x</code></dt>
+<dd><p>The grouping (or independent) variable from <code>data</code>. In case of a
+repeated measures or within-subjects design, if <code>subject.id</code> argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is <strong>not</strong> sorted, the results <em>can</em>
+be inaccurate when there are more than two levels in <code>x</code> and there are
+<code>NA</code>s present. The data is expected to be sorted by user in
+subject-1,subject-2, ..., pattern.</p></dd>
 
-    <dt><code>palette</code></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+    <dt><code>y</code></dt>
+<dd><p>The response (or outcome or dependent) variable from <code>data</code>.</p></dd>
 
-    <dt><code>ggplot.component</code></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+    <dt><code>type</code></dt>
+<dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
+<li><p><code>"nonparametric"</code></p></li>
+<li><p><code>"robust"</code></p></li>
+<li><p><code>"bayes"</code></p></li>
+</ul><p>You can specify just the initial letter.</p></dd>
+
+    <dt><code>k</code></dt>
+<dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2L</code>).</p></dd>
+
+    <dt><code>conf.level</code></dt>
+<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
+return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+
+    <dt><code>effsize.type</code></dt>
+<dd><p>Type of effect size needed for <em>parametric</em> tests. The
+argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code> (partial
+omega-squared).</p></dd>
+
+    <dt><code>bf.prior</code></dt>
+<dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+<code>"medium"</code>, <code>"wide"</code>, and <code>"ultrawide"</code>, corresponding to <em>r</em> scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.</p></dd>
+
+    <dt><code>tr</code></dt>
+<dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
+of an error, try reducing the value of <code>tr</code>, which is by default set to
+<code>0.2</code>. Lowering the value might help.</p></dd>
+
+    <dt><code>nboot</code></dt>
+<dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100L</code>).</p></dd>
 
   
 </dl></dd>

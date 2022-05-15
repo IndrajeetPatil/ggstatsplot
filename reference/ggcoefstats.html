@@ -38,13 +38,14 @@ labels."><meta property="og:image" content="https://indrajeetpatil.github.io/ggs
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -169,11 +170,11 @@ should be displayed in caption. Defaults to <code>TRUE</code>.</p></dd>
 increasing coefficient value, or <code>"descending"</code> sort by decreasing
 coefficient value.</p></dd>
 <dt>xlab</dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>x</code> will be used.</p></dd>
 <dt>ylab</dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>y</code> will be used.</p></dd>
 <dt>title</dt>
 <dd><p>The text for the plot title.</p></dd>
 <dt>subtitle</dt>
@@ -213,11 +214,7 @@ be chosen from the specified <code>package</code> (Default: <code>"RColorBrewer"
 <dd><p>Additional arguments that will be passed to
 <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geom. Please see documentation for that
 function to know more about these arguments.</p></dd>
-<dt>package</dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
-<dt>palette</dt>
+<dt>package, palette</dt>
 <dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code>View(paletteer::palettes_d_names)</code>.</p></dd>

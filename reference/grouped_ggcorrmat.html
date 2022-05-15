@@ -40,13 +40,14 @@ ggstatsplot::combine_plots."><meta property="og:image" content="https://indrajee
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -147,11 +148,6 @@ used: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.leve
 <li><p><code>"bayes"</code></p></li>
 </ul><p>You can specify just the initial letter.</p></dd>
 
-    <dt><code>tr</code></dt>
-<dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
-of an error, try reducing the value of <code>tr</code>, which is by default set to
-<code>0.2</code>. Lowering the value might help.</p></dd>
-
     <dt><code>k</code></dt>
 <dd><p>Number of digits after decimal point (should be an integer)
 (Default: <code>k = 2L</code>).</p></dd>
@@ -159,6 +155,11 @@ of an error, try reducing the value of <code>tr</code>, which is by default set 
     <dt><code>conf.level</code></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
 return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+
+    <dt><code>tr</code></dt>
+<dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
+of an error, try reducing the value of <code>tr</code>, which is by default set to
+<code>0.2</code>. Lowering the value might help.</p></dd>
 
     <dt><code>bf.prior</code></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
@@ -173,12 +174,21 @@ corresponds to scale for fixed effects.</p></dd>
 comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
 
-    <dt><code>package</code></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+    <dt><code>subtitle</code></dt>
+<dd><p>The text for the plot subtitle. Will work only if
+<code>results.subtitle = FALSE</code>.</p></dd>
 
-    <dt><code>palette</code></dt>
+    <dt><code>caption</code></dt>
+<dd><p>The text for the plot caption. This argument is relevant only
+if <code>bf.message = FALSE</code>.</p></dd>
+
+    <dt><code>ggplot.component</code></dt>
+<dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
+variants of all primary functions. Default is <code>NULL</code>. The argument should
+be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+
+    <dt><code>package,palette</code></dt>
 <dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code>View(paletteer::palettes_d_names)</code>.</p></dd>
@@ -194,20 +204,6 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
-
-    <dt><code>ggplot.component</code></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
-
-    <dt><code>subtitle</code></dt>
-<dd><p>The text for the plot subtitle. Will work only if
-<code>results.subtitle = FALSE</code>.</p></dd>
-
-    <dt><code>caption</code></dt>
-<dd><p>The text for the plot caption. This argument is relevant only
-if <code>bf.message = FALSE</code>.</p></dd>
 
   
 </dl></dd>

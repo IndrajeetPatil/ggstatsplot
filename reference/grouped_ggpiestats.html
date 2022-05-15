@@ -38,13 +38,14 @@ resulting plots using ggstatsplot::combine_plots."><meta property="og:image" con
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -94,9 +95,10 @@ resulting plots using <code><a href="combine_plots.html">ggstatsplot::combine_pl
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Arguments passed on to <code><a href="ggpiestats.html">ggpiestats</a></code></p><dl><dt><code>x</code></dt>
 <dd><p>The variable to use as the <strong>rows</strong> in the contingency table. Please
@@ -136,30 +138,15 @@ This can be helpful in case the labels are overlapping.</p></dd>
     <dt><code>legend.title</code></dt>
 <dd><p>Title text for the legend.</p></dd>
 
-    <dt><code>type</code></dt>
-<dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
-<li><p><code>"nonparametric"</code></p></li>
-<li><p><code>"robust"</code></p></li>
-<li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
-
-    <dt><code>results.subtitle</code></dt>
-<dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></dd>
-
-    <dt><code>k</code></dt>
-<dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2L</code>).</p></dd>
-
     <dt><code>bf.message</code></dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 
-    <dt><code>conf.level</code></dt>
-<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
-return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+    <dt><code>results.subtitle</code></dt>
+<dd><p>Decides whether the results of statistical tests are
+to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
+the plot will be returned.</p></dd>
 
     <dt><code>subtitle</code></dt>
 <dd><p>The text for the plot subtitle. Will work only if
@@ -168,6 +155,17 @@ return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></
     <dt><code>caption</code></dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>
+
+    <dt><code>ggplot.component</code></dt>
+<dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
+variants of all primary functions. Default is <code>NULL</code>. The argument should
+be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+
+    <dt><code>package,palette</code></dt>
+<dd><p>Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+<code>View(paletteer::palettes_d_names)</code>.</p></dd>
 
     <dt><code>ggtheme</code></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
@@ -181,31 +179,30 @@ on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
 
-    <dt><code>package</code></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+    <dt><code>type</code></dt>
+<dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
+<li><p><code>"nonparametric"</code></p></li>
+<li><p><code>"robust"</code></p></li>
+<li><p><code>"bayes"</code></p></li>
+</ul><p>You can specify just the initial letter.</p></dd>
 
-    <dt><code>palette</code></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+    <dt><code>k</code></dt>
+<dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2L</code>).</p></dd>
 
-    <dt><code>ggplot.component</code></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
-
-    <dt><code>counts</code></dt>
-<dd><p>A string naming a variable in data containing counts, or <code>NULL</code>
-if each row represents a single observation.</p></dd>
+    <dt><code>conf.level</code></dt>
+<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
+return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
 
     <dt><code>paired</code></dt>
 <dd><p>Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: <code>FALSE</code>). If <code>TRUE</code>, McNemar's
 test expression will be returned. If <code>FALSE</code>, Pearson's chi-square test will
 be returned.</p></dd>
+
+    <dt><code>counts</code></dt>
+<dd><p>The variable in data containing counts, or <code>NULL</code> if each row
+represents a single observation.</p></dd>
 
     <dt><code>ratio</code></dt>
 <dd><p>A vector of proportions: the expected proportions for the

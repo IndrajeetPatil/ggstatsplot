@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="ggstatsplot">
-<title>ggpiestats • ggstatsplot</title>
+<title>ggbarstats • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../../apple-touch-icon.png">
@@ -19,7 +19,7 @@
 <link href="../../deps/_JetBrains%20Mono-0.4.1/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="ggpiestats">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="ggbarstats">
 <meta property="og:description" content="ggstatsplot">
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -102,14 +102,14 @@
 
 <div class="row">
   <main id="main"><div class="page-header">
-      <img src="../../logo.png" class="logo" alt=""><h1>ggpiestats</h1>
+      <img src="../../logo.png" class="logo" alt=""><h1>ggbarstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
             <h4 data-toc-skip class="date">2022-05-15</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
-      <div class="d-none name"><code>ggpiestats.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggbarstats.Rmd" class="external-link"><code>vignettes/web_only/ggbarstats.Rmd</code></a></small>
+      <div class="d-none name"><code>ggbarstats.Rmd</code></div>
     </div>
 
     
@@ -140,15 +140,15 @@ A BibTeX entry for LaTeX users is
 <hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
 <div class="section level2">
-<h2 id="introduction-to-ggpiestats">Introduction to <code>ggpiestats</code><a class="anchor" aria-label="anchor" href="#introduction-to-ggpiestats"></a>
+<h2 id="introduction-to-ggbarstats">Introduction to <code>ggbarstats</code><a class="anchor" aria-label="anchor" href="#introduction-to-ggbarstats"></a>
 </h2>
-<p>The function <code>ggpiestats</code> can be used for quick
+<p>The function <code>ggbarstats</code> can be used for quick
 <strong>data exploration</strong> and/or to prepare
 <strong>publication-ready pie charts</strong> to summarize the
 statistical relationship(s) among one or more categorical variables. We
 will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use
-<code>ggpiestats</code>-</p>
+<code>ggbarstats</code>-</p>
 <ul>
 <li><p>to check if the proportion of observations matches our
 hypothesized proportion, this is typically known as a “Goodness of Fit”
@@ -162,13 +162,13 @@ categorical variable is equal</p></li>
 <p><strong>Note:</strong> The following demo uses the pipe operator
 (<code>%&gt;%</code>), if you are not familiar with this operator, here
 is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a>.</p>
-<p><code>ggpiestats</code> works <strong>only</strong> with data
+<p><code>ggbarstats</code> works <strong>only</strong> with data
 organized in dataframes or tibbles. It will not work with other data
 structures like base-R tables or matrices. It can operate on dataframes
 that are organized with one row per observation or dataframes that have
 one column containing counts. This vignette provides examples of both
 (see examples below).</p>
-<p>To help demonstrate how <code>ggpiestats</code> can be used with
+<p>To help demonstrate how <code>ggbarstats</code> can be used with
 categorical (also known as nominal) data, a modified version of the
 original <code>Titanic</code> dataset (from the <code>datasets</code>
 library) has been provided in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package
@@ -199,64 +199,50 @@ status (class), sex, age, and survival.”</p>
 <span class="co">#&gt; $ <span style="font-weight: bold;">Sex     </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">Age     </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Child, Child, Child, Child, Child, Child, Child, Child, Child…</span>
 <span class="co">#&gt; $ <span style="font-weight: bold;">Survived</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…</span></code></pre></div>
+<!-- ## Goodness of Fit with `ggbarstats` -->
+<!-- The simplest use case for `ggbarstats` is that we want to display information -->
+<!-- about **one** categorical or nominal variable. As part of that display or plot, -->
+<!-- we may also choose to execute a chi-squared goodness of fit test to see whether -->
+<!-- the proportions (or percentages) in categories of the single variable appear to -->
+<!-- line up with our hypothesis or model. To start simple and then expand, let's say -->
+<!-- that we'd like to display a piechart with the percentages of passengers who did -->
+<!-- or did not survive. Our initial hypothesis is that it was no different than -->
+<!-- flipping a coin. People had a 50/50 chance of surviving. -->
+<!-- ```{r ggbarstats3, fig.height = 5, fig.width = 6} -->
+<!-- #  for reproducibility -->
+<!-- set.seed(123) -->
+<!-- # plot -->
+<!-- ggbarstats( -->
+<!--   data = Titanic_full, -->
+<!--   x = Survived, -->
+<!--   title = "Passenger survival on the Titanic", -->
+<!--   caption = "Source: Titanic survival dataset", -->
+<!--   legend.title = "Survived?" -->
+<!-- ) -->
+<!-- ``` -->
+<!-- **Note:** equal proportions per category are the default, e.g. 50/50, but you -->
+<!-- can specify any hypothesized ratio you like with `ratio` so if our hypothesis -->
+<!-- was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we -->
+<!-- entered the code. -->
 </div>
 <div class="section level2">
-<h2 id="goodness-of-fit-with-ggpiestats">Goodness of Fit with <code>ggpiestats</code><a class="anchor" aria-label="anchor" href="#goodness-of-fit-with-ggpiestats"></a>
-</h2>
-<p>The simplest use case for <code>ggpiestats</code> is that we want to
-display information about <strong>one</strong> categorical or nominal
-variable. As part of that display or plot, we may also choose to execute
-a chi-squared goodness of fit test to see whether the proportions (or
-percentages) in categories of the single variable appear to line up with
-our hypothesis or model. To start simple and then expand, let’s say that
-we’d like to display a piechart with the percentages of passengers who
-did or did not survive. Our initial hypothesis is that it was no
-different than flipping a coin. People had a 50/50 chance of
-surviving.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#  for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-
-<span class="co"># plot</span>
-<span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">Titanic_full</span>,
-  x <span class="op">=</span> <span class="va">Survived</span>,
-  title <span class="op">=</span> <span class="st">"Passenger survival on the Titanic"</span>,
-  caption <span class="op">=</span> <span class="st">"Source: Titanic survival dataset"</span>,
-  legend.title <span class="op">=</span> <span class="st">"Survived?"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="100%"></p>
-<p><strong>Note:</strong> equal proportions per category are the
-default, e.g. 50/50, but you can specify any hypothesized ratio you like
-with <code>ratio</code> so if our hypothesis was that 80% died and 20%
-survived we would add <code>ratio = c(.80,.20)</code> when we entered
-the code.</p>
-</div>
-<div class="section level2">
-<h2 id="independence-or-association-with-ggpiestats">Independence (or association) with <code>ggpiestats</code><a class="anchor" aria-label="anchor" href="#independence-or-association-with-ggpiestats"></a>
+<h2 id="independence-or-association-with-ggbarstats">Independence (or association) with <code>ggbarstats</code><a class="anchor" aria-label="anchor" href="#independence-or-association-with-ggbarstats"></a>
 </h2>
 <p>Let’s next investigate whether the passenger’s gender was independent
 of, or associated with, gender. The test is whether the proportion of
 people who survived was different between the sexes using
-<code>ggpiestats</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code>ggbarstats</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co">## plot</span>
-<span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">Titanic_full</span>,
   x <span class="op">=</span> <span class="va">Survived</span>,
   y <span class="op">=</span> <span class="va">Sex</span>
-<span class="op">)</span> <span class="op">+</span> <span class="co"># further modification with `{ggplot2}` commands</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>
-      color <span class="op">=</span> <span class="st">"black"</span>,
-      size <span class="op">=</span> <span class="fl">14</span>,
-      hjust <span class="op">=</span> <span class="fl">0</span>
-    <span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="100%"></p>
+<span class="op">)</span></code></pre></div>
+<p><img src="ggbarstats_files/figure-html/ggbarstats1-1.png" width="100%"></p>
 <p>The plot clearly shows that survival rates were very different
 between males and females. The Pearson’s <span class="math inline">\(\chi^2\)</span>-test of independence is
 significant given our large sample size. Additionally, for both females
@@ -264,27 +250,27 @@ and males, the survival rates were significantly different than 50% as
 indicated by a goodness of fit test for each gender.</p>
 </div>
 <div class="section level2">
-<h2 id="grouped-analysis-with-grouped_ggpiestats">Grouped analysis with <code>grouped_ggpiestats</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggpiestats"></a>
+<h2 id="grouped-analysis-with-grouped_ggbarstats">Grouped analysis with <code>grouped_ggbarstats</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggbarstats"></a>
 </h2>
 <p>What if we want to do the same analysis of gender but also factor in
 the passenger’s age (Age)? We have information that classifies the
 passengers as Child or Adult, perhaps that makes a difference to their
 survival rate?</p>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for
-such instances: <code>grouped_ggpiestats</code>. It is a convenient
+such instances: <code>grouped_ggbarstats</code>. It is a convenient
 wrapper function around <code>combine_plots</code>. It applies
-<code>ggpiestats</code> across all <strong>levels</strong> of a
+<code>ggbarstats</code> across all <strong>levels</strong> of a
 specified <strong>grouping variable</strong> and then combines the list
 of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span>
-  <span class="co"># arguments relevant for `ggpiestats()`</span>
+<span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span>
+  <span class="co"># arguments relevant for `ggbarstats()`</span>
   data <span class="op">=</span> <span class="va">Titanic_full</span>,
   x <span class="op">=</span> <span class="va">Survived</span>,
   y <span class="op">=</span> <span class="va">Sex</span>,
@@ -297,7 +283,7 @@ different studies, etc.</p>
   caption.text <span class="op">=</span> <span class="st">"Asterisks denote results from proportion tests; \n***: p &lt; 0.001, ns: non-significant"</span>,
   plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="100%"></p>
+<p><img src="ggbarstats_files/figure-html/ggbarstats4-1.png" width="100%"></p>
 <p>The resulting pie charts and statistics make the story clear. For
 adults gender very much matters. Women survived at much higher rates
 than men. For children gender is not significantly associated with
@@ -305,10 +291,10 @@ survival and both male and female children have a survival rate that is
 not significantly different from 50/50.</p>
 </div>
 <div class="section level2">
-<h2 id="grouped-analysis-with-ggpiestats-purrr">Grouped analysis with <code>ggpiestats</code> +
-<code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggpiestats-purrr"></a>
+<h2 id="grouped-analysis-with-ggbarstats-purrr">Grouped analysis with <code>ggbarstats</code> +
+<code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggbarstats-purrr"></a>
 </h2>
-<p>Although <code>grouped_ggpiestats</code> provides a quick way to
+<p>Although <code>grouped_ggbarstats</code> provides a quick way to
 explore the data, it leaves much to be desired. For example, we may want
 to add different captions, titles, themes, or palettes for each level of
 the grouping variable, etc. For cases like these, it would be better to
@@ -318,7 +304,7 @@ use <a href="http://purrr.tidyverse.org" class="external-link">purrr</a> package
 <div class="section level2">
 <h2 id="working-with-data-organized-by-counts">Working with data organized by <code>counts</code><a class="anchor" aria-label="anchor" href="#working-with-data-organized-by-counts"></a>
 </h2>
-<p><code>ggpiestats</code> can also work with data frame containing
+<p><code>ggbarstats</code> can also work with data frame containing
 counts (aka tabled data), i.e., when each row doesn’t correspond to a
 unique observation. For example, consider the following notional
 <code>fishing</code> data frame containing data from two boats
@@ -326,8 +312,8 @@ unique observation. For example, consider the following notional
 fish they caught in the months of <code>February</code> and
 <code>March</code>. In this data frame, each row corresponds to a unique
 combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># for reproducibility</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
 <span class="co"># creating a dataframe</span>
@@ -377,12 +363,12 @@ combination of <code>Boat</code> and <code>Month</code>.</p>
 <span class="co">#&gt; <span style="color: #BCBCBC;">15</span> B     March    Bass             20</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">16</span> B     March    Catfish          20</span></code></pre></div>
 <p>When the data is organized this way, we make a slightly different
-call to the <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></code> function: we use the
+call to the <code><a href="../../reference/ggbarstats.html">ggbarstats()</a></code> function: we use the
 <code>counts</code> argument.</p>
 <p>If we want to investigate the relationship of type of fish by month
 (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">fishing</span>,
   x <span class="op">=</span> <span class="va">Fish</span>,
   y <span class="op">=</span> <span class="va">Month</span>,
@@ -394,7 +380,7 @@ call to the <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></co
   caption <span class="op">=</span> <span class="st">"Source: completely made up"</span>,
   legend.title <span class="op">=</span> <span class="st">"Type fish caught: "</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="100%"></p>
+<p><img src="ggbarstats_files/figure-html/ggbarstats8-1.png" width="100%"></p>
 <p>The results support our hypothesis that the type of fish caught is
 related to the month in which we’re fishing. The <span class="math inline">\(\chi^2\)</span> independence test results at the
 top of the plot. In February we catch significantly more Haddock than we
@@ -416,7 +402,7 @@ designs, you can set <code>paired = TRUE</code>, which will display
 results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set
 <code>paired = TRUE</code>, the results will be inaccurate.)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -430,7 +416,7 @@ results from <strong>McNemar test</strong> in the subtitle.</p>
   <span class="op">)</span>
 
 <span class="co"># plot</span>
-<span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span>
+<span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">clinical_trial</span>,
   x <span class="op">=</span> <span class="va">SickAfter</span>,
   y <span class="op">=</span> <span class="va">SickBefore</span>,
@@ -441,7 +427,7 @@ results from <strong>McNemar test</strong> in the subtitle.</p>
   package <span class="op">=</span> <span class="st">"ggsci"</span>,
   palette <span class="op">=</span> <span class="st">"default_ucscgb"</span>
 <span class="op">)</span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="100%"></p>
+<p><img src="ggbarstats_files/figure-html/ggbarstats9-1.png" width="100%"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who
 started out healthy only 4% were sick after a month. Ideally, we would
 have hoped for zero but reality is seldom perfect. On the other side of
@@ -452,11 +438,6 @@ which is a marked improvement.</p>
 <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a>
 </h2>
 <table class="table">
-<colgroup>
-<col width="21%">
-<col width="16%">
-<col width="61%">
-</colgroup>
 <thead><tr class="header">
 <th>graphical element</th>
 <th>
@@ -465,15 +446,13 @@ which is a marked improvement.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>pie slices</td>
-<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_col</a></code></td>
+<td>bars</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_bar</a></code></td>
 <td>❌</td>
 </tr>
 <tr class="even">
 <td>descriptive labels</td>
-<td>
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label</a></code>/<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code>
-</td>
+<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label</a></code></td>
 <td><code>label.args</code></td>
 </tr>
 </tbody>
@@ -576,63 +555,17 @@ test</td>
 </tbody>
 </table>
 <p><strong>one-way table</strong></p>
-<p><strong>Hypothesis testing</strong></p>
-<table class="table">
-<colgroup>
-<col width="26%">
-<col width="60%">
-<col width="12%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Test</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric/Non-parametric</td>
-<td>Goodness of fit <span class="math inline">\(\chi^2\)</span>
-test</td>
-<td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>Bayesian Goodness of fit <span class="math inline">\(\chi^2\)</span>
-test</td>
-<td>(custom)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Effect size estimation</strong></p>
-<table class="table">
-<colgroup>
-<col width="25%">
-<col width="56%">
-<col width="6%">
-<col width="11%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Effect size</th>
-<th>CI?</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric/Non-parametric</td>
-<td>Pearson’s <span class="math inline">\(C\)</span>
-</td>
-<td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::pearsons_c</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
+<p>Currently not supported.</p>
+<!-- **Hypothesis testing** -->
+<!-- Type | Test | Function used -->
+<!-- ----------- | ------------------------- | ----- -->
+<!-- Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test` -->
+<!-- Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom) -->
+<!-- **Effect size estimation** -->
+<!-- Type | Effect size | CI? | Function used -->
+<!-- ----------- | ------------------------- | --- | ----- -->
+<!-- Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c` -->
+<!-- Bayesian | ❌ | ❌ | ❌ -->
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -648,9 +581,9 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/reporting-1.png" width="100%"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></code></pre></div>
+<p><img src="ggbarstats_files/figure-html/reporting-1.png" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
 complement this plot either as a figure caption or in the main text-</p>
 <blockquote>
@@ -662,9 +595,8 @@ were 16.78 times more probable under the alternative hypothesis as
 compared to the null hypothesis. This can be considered strong evidence
 (Jeffreys, 1961) in favor of the alternative hypothesis.</p>
 </blockquote>
-<p>Similar reporting style can be followed when the function performs
-one-sample goodness-of-fit test instead of a <span class="math inline">\(\chi^2\)</span>-test.</p>
-<p>Same holds true for <code>ggbarstats</code>.</p>
+<!-- Similar reporting style can be followed when the function performs one-sample -->
+<!-- goodness-of-fit test instead of a $\chi^2$-test. -->
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>

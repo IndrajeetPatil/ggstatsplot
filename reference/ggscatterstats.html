@@ -36,13 +36,14 @@ histogram) plots with statistical details."><meta property="og:image" content="h
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -117,9 +118,10 @@ histogram) plots with statistical details.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>x</dt>
 <dd><p>The column in <code>data</code> containing the explanatory variable to be
 plotted on the <code>x</code>-axis.</p></dd>
@@ -194,11 +196,11 @@ to <code>geom_smooth</code> geom used to display the regression line.</p></dd>
 respective <code>geom_</code>s from <code>ggside</code> package to change the marginal
 distribution histograms plots.</p></dd>
 <dt>xlab</dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>x</code> will be used.</p></dd>
 <dt>ylab</dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>y</code> will be used.</p></dd>
 <dt>title</dt>
 <dd><p>The text for the plot title.</p></dd>
 <dt>subtitle</dt>

@@ -38,13 +38,14 @@ plots with statistical details added as a subtitle."><meta property="og:image" c
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -94,9 +95,10 @@ plots with statistical details added as a subtitle.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Arguments passed on to <code><a href="ggscatterstats.html">ggscatterstats</a></code></p><dl><dt><code>label.var</code></dt>
 <dd><p>Variable to use for points labels entered as a symbol (e.g.
@@ -125,7 +127,7 @@ to <code>geom_point</code> geom used to display the raw data points.</p></dd>
 axes using <code>ggside</code> functions. The default is <code>TRUE</code>. The package
 <code>ggside</code> must already be installed by the user.</p></dd>
 
-    <dt><code>point.width.jitter</code></dt>
+    <dt><code>point.width.jitter,point.height.jitter</code></dt>
 <dd><p>Degree of jitter in <code>x</code> and <code>y</code>
 direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
 data. Note that the jitter should not be specified in the <code>point.args</code>
@@ -133,30 +135,12 @@ because this information will be passed to two different <code>geom</code>s: one
 displaying the <strong>points</strong> and the other displaying the *<strong>labels</strong> for
 these points.</p></dd>
 
-    <dt><code>point.height.jitter</code></dt>
-<dd><p>Degree of jitter in <code>x</code> and <code>y</code>
-direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
-data. Note that the jitter should not be specified in the <code>point.args</code>
-because this information will be passed to two different <code>geom</code>s: one
-displaying the <strong>points</strong> and the other displaying the *<strong>labels</strong> for
-these points.</p></dd>
-
-    <dt><code>xfill</code></dt>
+    <dt><code>xfill,yfill</code></dt>
 <dd><p>Character describing color fill for <code>x</code> and <code>y</code> axes
 marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
 <code>y</code>)). Note that the defaults are colorblind-friendly.</p></dd>
 
-    <dt><code>yfill</code></dt>
-<dd><p>Character describing color fill for <code>x</code> and <code>y</code> axes
-marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)). Note that the defaults are colorblind-friendly.</p></dd>
-
-    <dt><code>xsidehistogram.args</code></dt>
-<dd><p>A list of arguments passed to
-respective <code>geom_</code>s from <code>ggside</code> package to change the marginal
-distribution histograms plots.</p></dd>
-
-    <dt><code>ysidehistogram.args</code></dt>
+    <dt><code>xsidehistogram.args,ysidehistogram.args</code></dt>
 <dd><p>A list of arguments passed to
 respective <code>geom_</code>s from <code>ggside</code> package to change the marginal
 distribution histograms plots.</p></dd>
@@ -176,9 +160,18 @@ be plotted on the <code>y</code>-axis.</p></dd>
 <li><p><code>"bayes"</code></p></li>
 </ul><p>You can specify just the initial letter.</p></dd>
 
+    <dt><code>k</code></dt>
+<dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2L</code>).</p></dd>
+
     <dt><code>conf.level</code></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
 return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+
+    <dt><code>tr</code></dt>
+<dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
+of an error, try reducing the value of <code>tr</code>, which is by default set to
+<code>0.2</code>. Lowering the value might help.</p></dd>
 
     <dt><code>bf.prior</code></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
@@ -188,14 +181,13 @@ addition to numeric arguments, several named values are also recognized:
 of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.</p></dd>
 
-    <dt><code>tr</code></dt>
-<dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
-of an error, try reducing the value of <code>tr</code>, which is by default set to
-<code>0.2</code>. Lowering the value might help.</p></dd>
+    <dt><code>xlab</code></dt>
+<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>x</code> will be used.</p></dd>
 
-    <dt><code>k</code></dt>
-<dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2L</code>).</p></dd>
+    <dt><code>ylab</code></dt>
+<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>y</code> will be used.</p></dd>
 
     <dt><code>bf.message</code></dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
@@ -207,14 +199,6 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
 
-    <dt><code>xlab</code></dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
-
-    <dt><code>ylab</code></dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
-
     <dt><code>subtitle</code></dt>
 <dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
@@ -222,6 +206,12 @@ variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
     <dt><code>caption</code></dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>
+
+    <dt><code>ggplot.component</code></dt>
+<dd><p>A <code>ggplot</code> component to be added to the plot prepared
+by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
+variants of all primary functions. Default is <code>NULL</code>. The argument should
+be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
     <dt><code>ggtheme</code></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
@@ -234,12 +224,6 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
-
-    <dt><code>ggplot.component</code></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
   
 </dl></dd>

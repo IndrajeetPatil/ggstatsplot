@@ -40,13 +40,14 @@ using ggstatsplot::combine_plots."><meta property="og:image" content="https://in
     <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
     <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
     <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
     <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
     <a class="dropdown-item" href="../articles/additional.html">additional vignettes</a>
     <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../articles/web_only/faq.html">frequently asked questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
     <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
     <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
   </div>
@@ -97,9 +98,10 @@ using <code><a href="combine_plots.html">ggstatsplot::combine_plots</a></code>.<
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A dataframe (or a tibble) from which variables specified are to
+<dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
-be accepted.</p></dd>
+be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
+ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt>...</dt>
 <dd><p>Arguments passed on to <code><a href="ggbetweenstats.html">ggbetweenstats</a></code></p><dl><dt><code>plot.type</code></dt>
 <dd><p>Character describing the <em>type</em> of plot. Currently supported
@@ -107,12 +109,12 @@ plots are <code>"box"</code> (for only boxplots), <code>"violin"</code> (for onl
 and <code>"boxviolin"</code> (for a combination of box and violin plots; default).</p></dd>
 
     <dt><code>xlab</code></dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>x</code> will be used.</p></dd>
 
     <dt><code>ylab</code></dt>
-<dd><p>Labels for <code>x</code> and <code>y</code> axis variables. If <code>NULL</code> (default),
-variable names for <code>x</code> and <code>y</code> will be used.</p></dd>
+<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
+variable name for <code>y</code> will be used.</p></dd>
 
     <dt><code>pairwise.comparisons</code></dt>
 <dd><p>Logical that decides whether pairwise comparisons
@@ -136,10 +138,6 @@ Available options are:</p><ul><li><p><code>"significant"</code> (abbreviation ac
 </ul><p>You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed.</p></dd>
-
-    <dt><code>bf.prior</code></dt>
-<dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
-width to use in calculating Bayes factors.</p></dd>
 
     <dt><code>bf.message</code></dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
@@ -220,22 +218,12 @@ by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grou
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
-    <dt><code>package</code></dt>
+    <dt><code>package,palette</code></dt>
 <dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code>View(paletteer::palettes_d_names)</code>.</p></dd>
 
-    <dt><code>palette</code></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
-
-    <dt><code>centrality.point.args</code></dt>
-<dd><p>A list of additional aesthetic
-arguments to be passed to <code>geom_point</code> and
-<code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
-
-    <dt><code>centrality.label.args</code></dt>
+    <dt><code>centrality.point.args,centrality.label.args</code></dt>
 <dd><p>A list of additional aesthetic
 arguments to be passed to <code>geom_point</code> and
 <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
@@ -257,18 +245,17 @@ on the secondary Y-axis. Some themes (e.g.
 thus the details as well.</p></dd>
 
     <dt><code>x</code></dt>
-<dd><p>The grouping (or independent) variable from the dataframe <code>data</code>. In
-case of a repeated measures or within-subjects design, if <code>subject.id</code>
-argument is not available or not explicitly specified, the function assumes
-that the data has already been sorted by such an id by the user and creates
-an internal identifier. So if your data is <strong>not</strong> sorted, the results
-<em>can</em> be inaccurate when there are more than two levels in <code>x</code> and there
-are <code>NA</code>s present. The data is expected to be sorted by user in
+<dd><p>The grouping (or independent) variable from <code>data</code>. In case of a
+repeated measures or within-subjects design, if <code>subject.id</code> argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is <strong>not</strong> sorted, the results <em>can</em>
+be inaccurate when there are more than two levels in <code>x</code> and there are
+<code>NA</code>s present. The data is expected to be sorted by user in
 subject-1,subject-2, ..., pattern.</p></dd>
 
     <dt><code>y</code></dt>
-<dd><p>The response (or outcome or dependent) variable from the
-dataframe <code>data</code>.</p></dd>
+<dd><p>The response (or outcome or dependent) variable from <code>data</code>.</p></dd>
 
     <dt><code>type</code></dt>
 <dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
@@ -277,14 +264,18 @@ dataframe <code>data</code>.</p></dd>
 <li><p><code>"bayes"</code></p></li>
 </ul><p>You can specify just the initial letter.</p></dd>
 
+    <dt><code>k</code></dt>
+<dd><p>Number of digits after decimal point (should be an integer)
+(Default: <code>k = 2L</code>).</p></dd>
+
+    <dt><code>conf.level</code></dt>
+<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
+return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+
     <dt><code>effsize.type</code></dt>
 <dd><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code> (partial
 omega-squared).</p></dd>
-
-    <dt><code>k</code></dt>
-<dd><p>Number of digits after decimal point (should be an integer)
-(Default: <code>k = 2L</code>).</p></dd>
 
     <dt><code>var.equal</code></dt>
 <dd><p>a logical variable indicating whether to treat the
@@ -292,18 +283,22 @@ omega-squared).</p></dd>
     variance is used to estimate the variance otherwise the Welch
     (or Satterthwaite) approximation to the degrees of freedom is used.</p></dd>
 
-    <dt><code>conf.level</code></dt>
-<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
-return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
-
-    <dt><code>nboot</code></dt>
-<dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></dd>
+    <dt><code>bf.prior</code></dt>
+<dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+<code>"medium"</code>, <code>"wide"</code>, and <code>"ultrawide"</code>, corresponding to <em>r</em> scale values
+of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
+corresponds to scale for fixed effects.</p></dd>
 
     <dt><code>tr</code></dt>
 <dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
+
+    <dt><code>nboot</code></dt>
+<dd><p>Number of bootstrap samples for computing confidence interval
+for the effect size (Default: <code>100L</code>).</p></dd>
 
   
 </dl></dd>
