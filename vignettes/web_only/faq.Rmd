@@ -11,7 +11,7 @@ output:
     warning: FALSE
     message: FALSE
 vignette: >
-  %\VignetteIndexEntry{frequently asked questions (FAQ)}
+  %\VignetteIndexEntry{Frequently Asked Questions (FAQ)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

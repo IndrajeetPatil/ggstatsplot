@@ -372,7 +372,7 @@ details included. Most often than not, these results are displayed as a
 `subtitle` in the plot. Great care has been taken into which details are
 included in statistical reporting and why.
 
-![Template for reporting statistical details](stats_reporting_format.png)
+![Template for reporting statistical details](../../man/figures/stats_reporting_format.png)
 
 APA guidelines [@apa2009] are followed by default while reporting statistical
 details:
