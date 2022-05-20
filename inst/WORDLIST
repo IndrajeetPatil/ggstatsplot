@@ -102,6 +102,7 @@ faq
 freighteningness
 fueleconomy
 geoms
+ggbarstats
 ggbetweenstats
 ggcoefstats
 ggcorrmat
@@ -163,6 +164,7 @@ tibbles
 tidiers
 tidyverse
 uber
+ungrouped
 unjittered
 versicolor
 virginica

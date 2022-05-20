@@ -41,6 +41,8 @@ context, run the following code in your `R` console:
 ``` r
 citation("ggstatsplot")
 
+To cite package 'ggstatsplot' in publications use:
+
   Patil, I. (2021). Visualizations with statistical details: The
   'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
   doi:10.21105/joss.03167
@@ -412,7 +414,6 @@ is significantly different from a specified value with a one-sample
 test, `gghistostats` can be used.
 
 ``` r
-
 set.seed(123)
 
 gghistostats(
@@ -420,8 +421,7 @@ gghistostats(
   x          = awake,
   title      = "Amount of time spent awake",
   test.value = 12,
-  binwidth   = 1,
-  # ggtheme    = hrbrthemes::theme_ipsum_tw()
+  binwidth   = 1
 )
 ```
 
@@ -843,7 +843,6 @@ ggbarstats(
   title            = "MPAA Ratings by Genre",
   xlab             = "movie genre",
   legend.title     = "MPAA rating",
-  # ggtheme          = hrbrthemes::theme_ipsum_pub(),
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
   palette          = "Set2"
 )
@@ -968,10 +967,6 @@ ggcoefstats(mod)
 
 <img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
 
-``` r
-# ggcoefstats(mod, ggtheme = hrbrthemes::theme_ipsum_ps())
-```
-
 **Defaults** return<br>
 
 ✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary
@@ -984,76 +979,112 @@ packages are also supported by `ggcoefstats`.
 
 ``` r
 insight::supported_models()
-#>   [1] "aareg"             "afex_aov"          "AKP"              
-#>   [4] "Anova.mlm"         "aov"               "aovlist"          
-#>   [7] "Arima"             "averaging"         "bamlss"           
-#>  [10] "bamlss.frame"      "bayesQR"           "bayesx"           
-#>  [13] "BBmm"              "BBreg"             "bcplm"            
-#>  [16] "betamfx"           "betaor"            "betareg"          
-#>  [19] "BFBayesFactor"     "bfsl"              "BGGM"             
-#>  [22] "bife"              "bifeAPEs"          "bigglm"           
-#>  [25] "biglm"             "blavaan"           "blrm"             
-#>  [28] "bracl"             "brglm"             "brmsfit"          
-#>  [31] "brmultinom"        "btergm"            "censReg"          
-#>  [34] "cgam"              "cgamm"             "cglm"             
-#>  [37] "clm"               "clm2"              "clmm"             
-#>  [40] "clmm2"             "clogit"            "coeftest"         
-#>  [43] "complmrob"         "confusionMatrix"   "coxme"            
-#>  [46] "coxph"             "coxph.penal"       "coxr"             
-#>  [49] "cpglm"             "cpglmm"            "crch"             
-#>  [52] "crq"               "crqs"              "crr"              
-#>  [55] "dep.effect"        "DirichletRegModel" "drc"              
-#>  [58] "eglm"              "elm"               "epi.2by2"         
-#>  [61] "ergm"              "feglm"             "feis"             
-#>  [64] "felm"              "fitdistr"          "fixest"           
-#>  [67] "flexsurvreg"       "gam"               "Gam"              
-#>  [70] "gamlss"            "gamm"              "gamm4"            
-#>  [73] "garch"             "gbm"               "gee"              
-#>  [76] "geeglm"            "glht"              "glimML"           
-#>  [79] "glm"               "Glm"               "glmm"             
-#>  [82] "glmmadmb"          "glmmPQL"           "glmmTMB"          
-#>  [85] "glmrob"            "glmRob"            "glmx"             
-#>  [88] "gls"               "gmnl"              "HLfit"            
-#>  [91] "htest"             "hurdle"            "iv_robust"        
-#>  [94] "ivFixed"           "ivprobit"          "ivreg"            
-#>  [97] "lavaan"            "lm"                "lm_robust"        
-#> [100] "lme"               "lmerMod"           "lmerModLmerTest"  
-#> [103] "lmodel2"           "lmrob"             "lmRob"            
-#> [106] "logistf"           "logitmfx"          "logitor"          
-#> [109] "LORgee"            "lqm"               "lqmm"             
-#> [112] "lrm"               "manova"            "MANOVA"           
-#> [115] "margins"           "maxLik"            "mclogit"          
-#> [118] "mcmc"              "mcmc.list"         "MCMCglmm"         
-#> [121] "mcp1"              "mcp12"             "mcp2"             
-#> [124] "med1way"           "mediate"           "merMod"           
-#> [127] "merModList"        "meta_bma"          "meta_fixed"       
-#> [130] "meta_random"       "metaplus"          "mhurdle"          
-#> [133] "mipo"              "mira"              "mixed"            
-#> [136] "MixMod"            "mixor"             "mjoint"           
-#> [139] "mle"               "mle2"              "mlm"              
-#> [142] "mlogit"            "mmlogit"           "model_fit"        
-#> [145] "multinom"          "mvord"             "negbinirr"        
-#> [148] "negbinmfx"         "ols"               "onesampb"         
-#> [151] "orm"               "pgmm"              "plm"              
-#> [154] "PMCMR"             "poissonirr"        "poissonmfx"       
-#> [157] "polr"              "probitmfx"         "psm"              
-#> [160] "Rchoice"           "ridgelm"           "riskRegression"   
-#> [163] "rjags"             "rlm"               "rlmerMod"         
-#> [166] "RM"                "rma"               "rma.uni"          
-#> [169] "robmixglm"         "robtab"            "rq"               
-#> [172] "rqs"               "rqss"              "Sarlm"            
-#> [175] "scam"              "selection"         "sem"              
-#> [178] "SemiParBIV"        "semLm"             "semLme"           
-#> [181] "slm"               "speedglm"          "speedlm"          
-#> [184] "stanfit"           "stanmvreg"         "stanreg"          
-#> [187] "summary.lm"        "survfit"           "survreg"          
-#> [190] "svy_vglm"          "svychisq"          "svyglm"           
-#> [193] "svyolr"            "t1way"             "tobit"            
-#> [196] "trimcibt"          "truncreg"          "vgam"             
-#> [199] "vglm"              "wbgee"             "wblm"             
-#> [202] "wbm"               "wmcpAKP"           "yuen"             
-#> [205] "yuend"             "zcpglm"            "zeroinfl"         
-#> [208] "zerotrunc"
+#>   [1] "aareg"                   "afex_aov"               
+#>   [3] "AKP"                     "Anova.mlm"              
+#>   [5] "anova.rms"               "aov"                    
+#>   [7] "aovlist"                 "Arima"                  
+#>   [9] "averaging"               "bamlss"                 
+#>  [11] "bamlss.frame"            "bayesQR"                
+#>  [13] "bayesx"                  "BBmm"                   
+#>  [15] "BBreg"                   "bcplm"                  
+#>  [17] "betamfx"                 "betaor"                 
+#>  [19] "betareg"                 "BFBayesFactor"          
+#>  [21] "bfsl"                    "BGGM"                   
+#>  [23] "bife"                    "bifeAPEs"               
+#>  [25] "bigglm"                  "biglm"                  
+#>  [27] "blavaan"                 "blrm"                   
+#>  [29] "bracl"                   "brglm"                  
+#>  [31] "brmsfit"                 "brmultinom"             
+#>  [33] "btergm"                  "censReg"                
+#>  [35] "cgam"                    "cgamm"                  
+#>  [37] "cglm"                    "clm"                    
+#>  [39] "clm2"                    "clmm"                   
+#>  [41] "clmm2"                   "clogit"                 
+#>  [43] "coeftest"                "complmrob"              
+#>  [45] "confusionMatrix"         "coxme"                  
+#>  [47] "coxph"                   "coxph.penal"            
+#>  [49] "coxr"                    "cpglm"                  
+#>  [51] "cpglmm"                  "crch"                   
+#>  [53] "crq"                     "crqs"                   
+#>  [55] "crr"                     "dep.effect"             
+#>  [57] "DirichletRegModel"       "drc"                    
+#>  [59] "eglm"                    "elm"                    
+#>  [61] "epi.2by2"                "ergm"                   
+#>  [63] "feglm"                   "feis"                   
+#>  [65] "felm"                    "fitdistr"               
+#>  [67] "fixest"                  "flexsurvreg"            
+#>  [69] "gam"                     "Gam"                    
+#>  [71] "gamlss"                  "gamm"                   
+#>  [73] "gamm4"                   "garch"                  
+#>  [75] "gbm"                     "gee"                    
+#>  [77] "geeglm"                  "glht"                   
+#>  [79] "glimML"                  "glm"                    
+#>  [81] "Glm"                     "glmm"                   
+#>  [83] "glmmadmb"                "glmmPQL"                
+#>  [85] "glmmTMB"                 "glmrob"                 
+#>  [87] "glmRob"                  "glmx"                   
+#>  [89] "gls"                     "gmnl"                   
+#>  [91] "HLfit"                   "htest"                  
+#>  [93] "hurdle"                  "iv_robust"              
+#>  [95] "ivFixed"                 "ivprobit"               
+#>  [97] "ivreg"                   "lavaan"                 
+#>  [99] "lm"                      "lm_robust"              
+#> [101] "lme"                     "lmerMod"                
+#> [103] "lmerModLmerTest"         "lmodel2"                
+#> [105] "lmrob"                   "lmRob"                  
+#> [107] "logistf"                 "logitmfx"               
+#> [109] "logitor"                 "LORgee"                 
+#> [111] "lqm"                     "lqmm"                   
+#> [113] "lrm"                     "manova"                 
+#> [115] "MANOVA"                  "marginaleffects"        
+#> [117] "marginaleffects.summary" "margins"                
+#> [119] "maxLik"                  "mclogit"                
+#> [121] "mcmc"                    "mcmc.list"              
+#> [123] "MCMCglmm"                "mcp1"                   
+#> [125] "mcp12"                   "mcp2"                   
+#> [127] "med1way"                 "mediate"                
+#> [129] "merMod"                  "merModList"             
+#> [131] "meta_bma"                "meta_fixed"             
+#> [133] "meta_random"             "metaplus"               
+#> [135] "mhurdle"                 "mipo"                   
+#> [137] "mira"                    "mixed"                  
+#> [139] "MixMod"                  "mixor"                  
+#> [141] "mjoint"                  "mle"                    
+#> [143] "mle2"                    "mlm"                    
+#> [145] "mlogit"                  "mmlogit"                
+#> [147] "model_fit"               "multinom"               
+#> [149] "mvord"                   "negbinirr"              
+#> [151] "negbinmfx"               "ols"                    
+#> [153] "onesampb"                "orm"                    
+#> [155] "pgmm"                    "plm"                    
+#> [157] "PMCMR"                   "poissonirr"             
+#> [159] "poissonmfx"              "polr"                   
+#> [161] "probitmfx"               "psm"                    
+#> [163] "Rchoice"                 "ridgelm"                
+#> [165] "riskRegression"          "rjags"                  
+#> [167] "rlm"                     "rlmerMod"               
+#> [169] "RM"                      "rma"                    
+#> [171] "rma.uni"                 "robmixglm"              
+#> [173] "robtab"                  "rq"                     
+#> [175] "rqs"                     "rqss"                   
+#> [177] "Sarlm"                   "scam"                   
+#> [179] "selection"               "sem"                    
+#> [181] "SemiParBIV"              "semLm"                  
+#> [183] "semLme"                  "slm"                    
+#> [185] "speedglm"                "speedlm"                
+#> [187] "stanfit"                 "stanmvreg"              
+#> [189] "stanreg"                 "summary.lm"             
+#> [191] "survfit"                 "survreg"                
+#> [193] "svy_vglm"                "svychisq"               
+#> [195] "svyglm"                  "svyolr"                 
+#> [197] "t1way"                   "tobit"                  
+#> [199] "trimcibt"                "truncreg"               
+#> [201] "vgam"                    "vglm"                   
+#> [203] "wbgee"                   "wblm"                   
+#> [205] "wbm"                     "wmcpAKP"                
+#> [207] "yuen"                    "yuend"                  
+#> [209] "zcpglm"                  "zeroinfl"               
+#> [211] "zerotrunc"
 ```
 
 Although not shown here, this function can also be used to carry out
@@ -1102,9 +1133,9 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #>   method                                                   effectsize estimate
 #>   <chr>                                                    <chr>         <dbl>
 #> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
-#>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression  
-#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>      
-#> 1       0.95    0.531         1 ncp         F                    32 <expression>
+#>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression
+#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>    
+#> 1       0.95    0.531         1 ncp         F                    32 <language>
 #> 
 #> $caption_data
 #> # A tibble: 6 × 17
@@ -1115,7 +1146,7 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 3 cyl-6 0.780          0.390  cauchy                          0       0.707
 #> 4 cyl-8 1              0      cauchy                          0       0.707
 #> 5 sig2  1              0      cauchy                          0       0.707
-#> 6 g_cyl 1              0.0418 cauchy                          0       0.707
+#> 6 g_cyl 1              0.0155 cauchy                          0       0.707
 #>       bf10 method                          log_e_bf10 effectsize        
 #>      <dbl> <chr>                                <dbl> <chr>             
 #> 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
@@ -1124,14 +1155,14 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
 #> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
 #> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#>   estimate std.dev conf.level conf.low conf.high n.obs expression  
-#>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>      
-#> 1    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-#> 2    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-#> 3    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-#> 4    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-#> 5    0.714  0.0503       0.95    0.574     0.788    32 <expression>
-#> 6    0.714  0.0503       0.95    0.574     0.788    32 <expression>
+#>   estimate std.dev conf.level conf.low conf.high n.obs expression
+#>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>    
+#> 1    0.714  0.0503       0.95    0.574     0.788    32 <language>
+#> 2    0.714  0.0503       0.95    0.574     0.788    32 <language>
+#> 3    0.714  0.0503       0.95    0.574     0.788    32 <language>
+#> 4    0.714  0.0503       0.95    0.574     0.788    32 <language>
+#> 5    0.714  0.0503       0.95    0.574     0.788    32 <language>
+#> 6    0.714  0.0503       0.95    0.574     0.788    32 <language>
 #> 
 #> $pairwise_comparisons_data
 #> # A tibble: 3 × 9
@@ -1140,11 +1171,11 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 1 4      6          -6.67 0.00110   two.sided   q            Holm           
 #> 2 4      8         -10.7  0.0000140 two.sided   q            Holm           
 #> 3 6      8          -7.48 0.000257  two.sided   q            Holm           
-#>   test         expression                           
-#>   <chr>        <chr>                                
-#> 1 Games-Howell list(~italic(p)[Holm-adj.]==1.10e-03)
-#> 2 Games-Howell list(~italic(p)[Holm-adj.]==1.40e-05)
-#> 3 Games-Howell list(~italic(p)[Holm-adj.]==2.57e-04)
+#>   test         expression
+#>   <chr>        <list>    
+#> 1 Games-Howell <language>
+#> 2 Games-Howell <language>
+#> 3 Games-Howell <language>
 #> 
 #> $descriptive_data
 #> NULL
