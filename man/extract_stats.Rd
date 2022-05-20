@@ -21,7 +21,7 @@ Extracting data frames from \code{{ggstatsplot}} plots
 This is a convenience function to extract data frames with statistical details
 that are used to create expressions displayed in \code{{ggstatsplot}} plots as
 subtitle, caption, etc. Note that all of this analysis is carried out by
-the \code{{statsExpressions}} \href{https://indrajeetpatil.github.io/statsExpressions}{package}.
+the \code{{statsExpressions}} \href{https://indrajeetpatil.github.io/statsExpressions/}{package}.
 
 The only exception is the \code{ggcorrmat()} function. But, if a data frame is
 what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
