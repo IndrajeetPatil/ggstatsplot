@@ -1,4 +1,4 @@
-testthat::skip_if_not_installed("parameters", "0.17.1")
+testthat::skip_on_cran()
 
 df_meta <- structure(
   list(
