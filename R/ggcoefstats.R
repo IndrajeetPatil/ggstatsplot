@@ -245,12 +245,15 @@ ggcoefstats <- function(x,
 
   # sorting -------------------------
 
-  # whether the terms need to be sorted in specified order
-  tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
+  if (utils::packageVersion("parameters") >= "0.17.1" && requireNamespace("parameters")) {
 
-  # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
-  # labels alphabetically and terms won't appear in the expected order
-  tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
+    # whether the terms need to be sorted in specified order
+    tidy_df %<>% sort_parameters(sort = sort, column = "estimate")
+
+    # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
+    # labels alphabetically and terms won't appear in the expected order
+    tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
+  }
 
   # summary caption -------------------------
 

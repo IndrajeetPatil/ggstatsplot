@@ -1,3 +1,4 @@
+testthat::skip_on_cran()
 
 df_meta <- structure(
   list(
