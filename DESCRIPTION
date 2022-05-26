@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.9.2
+Version: 0.9.3
 Authors@R: 
     person(given = "Indrajeet",
            family = "Patil",
@@ -25,7 +25,7 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 4.0.0)
 Imports:
-    correlation,
+    correlation (>= 0.8.1),
     dplyr,
     ggplot2,
     ggrepel,
@@ -33,7 +33,7 @@ Imports:
     glue,
     insight (>= 0.17.1),
     paletteer,
-    parameters (>= 0.17.0),
+    parameters (>= 0.18.0),
     patchwork,
     performance,
     purrr,

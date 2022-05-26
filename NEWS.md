@@ -1,9 +1,13 @@
-# ggstatsplot 0.9.2
+# ggstatsplot 0.9.3
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+- Hot fix release to correct a failing example in CRAN daily checks.
+
+# ggstatsplot 0.9.2
 
 MAJOR CHANGES
 
