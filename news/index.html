@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,8 +70,12 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.9.1.9000" id="ggstatsplot-0919000">ggstatsplot 0.9.1.9000<a class="anchor" aria-label="anchor" href="#ggstatsplot-0919000"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.9.3" id="ggstatsplot-093">ggstatsplot 0.9.3<a class="anchor" aria-label="anchor" href="#ggstatsplot-093"></a></h2>
 <p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
+<ul><li>Hot fix release to correct a failing example in CRAN daily checks.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.9.2" id="ggstatsplot-092">ggstatsplot 0.9.2<a class="anchor" aria-label="anchor" href="#ggstatsplot-092"></a></h2><p class="text-muted">CRAN release: 2022-05-21</p>
 <p>MAJOR CHANGES</p>
 <ul><li><p>The <code>pairwise_comparions()</code> function implementation now lives in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package, although it will continue to be exported from <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package.</p></li>
 <li><p>The details about pairwise test for <code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> functions are now displayed as a label for the secondary axis. Previously, this information was displayed in the caption. Given that caption already contained Bayesian test details, it was becoming difficult to stack different expressions on top of each other. To avoid unnecessary code complexity and also to avoid crowded caption, this decision was made. Additionally, the pairwise test label has been slightly abbreviated, and so is the label for significance bars. This is done to not let the text overwhelm the numeric values, the latter being more important.</p></li>
