@@ -40,8 +40,7 @@ utils::globalVariables(
     ".f",
     ".fn",
     ".ns",
-    "log_e_bf10",
-    "sort_parameters"
+    "log_e_bf10"
   ),
   package = "ggstatsplot",
   add = FALSE

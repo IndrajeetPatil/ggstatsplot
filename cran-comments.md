@@ -10,7 +10,7 @@
 
 0 errors | 0 warnings | 0 note
 
-  - Fixes breakage due to `{statsExpressions}` and `{insight}` package updates.
+  - Hot fix release to correct a failing example in CRAN daily checks.
 
 ## revdepcheck results
 
