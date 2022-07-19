@@ -99,7 +99,6 @@ ggcorrmat <- function(data,
                       subtitle = NULL,
                       caption = NULL,
                       ...) {
-
   # dataframe -----------------------------------
 
   if (missing(cor.vars)) {
@@ -275,7 +274,6 @@ grouped_ggcorrmat <- function(data,
                               output = "plot",
                               plotgrid.args = list(),
                               annotation.args = list()) {
-
   # dataframe
   data %<>%
     grouped_list({{ grouping.var }}) %>%

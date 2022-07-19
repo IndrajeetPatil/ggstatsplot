@@ -67,7 +67,6 @@ ggdotplotstats <- function(data,
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
                            output = "plot",
                            ...) {
-
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
@@ -213,7 +212,6 @@ grouped_ggdotplotstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-
   # dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 

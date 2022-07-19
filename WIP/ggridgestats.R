@@ -58,7 +58,6 @@ ggridgestats <- function(data,
                          ggplot.component = NULL,
                          output = "plot",
                          ...) {
-
   # data -----------------------------------
 
   # convert entered stats type to a standard notation

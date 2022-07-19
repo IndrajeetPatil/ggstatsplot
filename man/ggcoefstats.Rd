@@ -131,7 +131,7 @@ be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \code{palette} (Default: \code{"Dark2"}).}
 
 \item{stats.label.args}{Additional arguments that will be passed to
-\code{ggrepel::geom_label_repel} geom. Please see documentation for that
+\code{ggrepel::geom_label_repel()}. Please see documentation for that
 function to know more about these arguments.}
 
 \item{package, palette}{Name of the package from which the given palette is to
@@ -179,6 +179,7 @@ is recommended that you install the GitHub versions of \code{{parameters}} and
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
+library(lme4)
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -191,5 +192,8 @@ ggcoefstats(mod, output = "tidy")
 
 # to get a glance summary
 ggcoefstats(mod, output = "glance")
+
+# further arguments can be passed to `parameters::model_parameters()`
+ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 }
 }

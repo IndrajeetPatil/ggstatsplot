@@ -122,7 +122,6 @@ ggscatterstats <- function(data,
                            ggplot.component = NULL,
                            output = "plot",
                            ...) {
-
   # data ---------------------------------------
 
   # ensure the arguments work quoted or unquoted

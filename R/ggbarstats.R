@@ -54,7 +54,6 @@ ggbarstats <- function(data,
                        ggplot.component = NULL,
                        output = "plot",
                        ...) {
-
   # dataframe ------------------------------------------
 
   # convert entered stats type to a standard notation

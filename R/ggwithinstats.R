@@ -122,7 +122,6 @@ ggwithinstats <- function(data,
                           ggplot.component = NULL,
                           output = "plot",
                           ...) {
-
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
@@ -341,7 +340,6 @@ grouped_ggwithinstats <- function(data,
                                   output = "plot",
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
-
   # creating a dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 

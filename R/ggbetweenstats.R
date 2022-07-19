@@ -210,7 +210,6 @@ ggbetweenstats <- function(data,
                            ggplot.component = NULL,
                            output = "plot",
                            ...) {
-
   # data -----------------------------------
 
   # convert entered stats type to a standard notation
@@ -498,7 +497,6 @@ grouped_ggbetweenstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-
   # creating a dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 

@@ -64,7 +64,7 @@
 #'   be chosen from the specified `package` (Default: `"RColorBrewer"`) and
 #'   `palette` (Default: `"Dark2"`).
 #' @param stats.label.args Additional arguments that will be passed to
-#'   `ggrepel::geom_label_repel` geom. Please see documentation for that
+#'   `ggrepel::geom_label_repel()`. Please see documentation for that
 #'   function to know more about these arguments.
 #' @param only.significant If `TRUE`, only stats labels for significant effects
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
@@ -99,6 +99,7 @@
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(lme4)
 #'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -111,6 +112,9 @@
 #'
 #' # to get a glance summary
 #' ggcoefstats(mod, output = "glance")
+#'
+#' # further arguments can be passed to `parameters::model_parameters()`
+#' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 #' }
 #' @export
 ggcoefstats <- function(x,
@@ -149,7 +153,6 @@ ggcoefstats <- function(x,
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
                         ...) {
-
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels

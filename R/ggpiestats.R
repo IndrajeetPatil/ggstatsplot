@@ -264,7 +264,6 @@ grouped_ggpiestats <- function(data,
                                output = "plot",
                                plotgrid.args = list(),
                                annotation.args = list()) {
-
   # creating a dataframe
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 

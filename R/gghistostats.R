@@ -80,7 +80,6 @@ gghistostats <- function(data,
                          ggplot.component = NULL,
                          output = "plot",
                          ...) {
-
   # data -----------------------------------
 
   x <- ensym(x)
@@ -231,7 +230,6 @@ grouped_gghistostats <- function(data,
                                  plotgrid.args = list(),
                                  annotation.args = list(),
                                  ...) {
-
   # extract a vector for convenience
   x_vec <- data %>% pull({{ x }})
 
