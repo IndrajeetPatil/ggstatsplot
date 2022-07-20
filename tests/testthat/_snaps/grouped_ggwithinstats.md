@@ -1,4 +1,4 @@
 # default plotting as expected
 
-    group length is 0 but data length > 0
+    argument 1 is empty
 

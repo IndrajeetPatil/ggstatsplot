@@ -11,7 +11,6 @@ test_that(
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
-
     # creating a smaller dataframe
     mpg_short <- ggplot2::mpg %>%
       dplyr::filter(

@@ -1,6 +1,6 @@
 # grouped_ggcorrmat produces error when grouping isn't specified
 
-    group length is 0 but data length > 0
+    argument 1 is empty
 
 # grouped_ggcorrmat returns expected data frame
 
