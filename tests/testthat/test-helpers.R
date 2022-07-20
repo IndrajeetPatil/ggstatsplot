@@ -7,17 +7,24 @@ test_that(
 
     # creating lists
     df1 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
-    df2 <- ggstatsplot:::grouped_list(dplyr::filter(ggplot2::msleep, vore != "herbi"),
-      grouping.var = "vore"
-    )
-    df5 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = "vore")
-    df6 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = NULL)
+    df2 <- ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = NULL)
 
     # testing lengths of lists
-    expect_snapshot(list(length(df1), length(df2), length(df5), length(df6)))
-    expect_snapshot(list(names(df1), names(df2), names(df5), names(df6)))
-    expect_equal(df1$carni, df5$carni)
-    expect_equal(ggplot2::msleep, df6)
+    expect_snapshot(names(df1))
+    expect_equal(ggplot2::msleep, df2)
+  }
+)
+
+test_that(
+  desc = "grouped_list works with non-syntactic group names",
+  code = {
+    set.seed(123)
+    expect_snapshot({
+      ggplot2::msleep %>%
+        rename("my non-syntactic name" = vore) %>%
+        ggstatsplot:::grouped_list(grouping.var = `my non-syntactic name`) %>%
+        tibble::tbl_sum()
+    })
   }
 )
 

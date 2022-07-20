@@ -48,14 +48,13 @@ theme_ggstatsplot <- function() {
 #' }
 #' @keywords internal
 grouped_list <- function(data, grouping.var = NULL) {
-  # ensure the grouping variable works quoted or unquoted
+  data <- as_tibble(data)
+
   if (quo_is_null(enquo(grouping.var))) {
-    return(as_tibble(data))
+    return(data)
   }
 
-  # creating a list; don't use `group_list` because it removes names
-  as_tibble(data) %>%
-    split(f = .[[quo_text(ensym(grouping.var))]], drop = TRUE)
+  data %>% split(f = new_formula(NULL, enquo(grouping.var)), drop = TRUE)
 }
 
 
