@@ -5,7 +5,6 @@ test_that(
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-
     skip_if_not_installed("ggcorrplot")
 
     set.seed(123)
@@ -44,7 +43,6 @@ test_that(
   desc = "grouped_ggcorrmat returns expected data frame",
   code = {
     skip_if_not_installed("ggcorrplot")
-
     options(tibble.width = Inf)
 
     # tidy dataframe

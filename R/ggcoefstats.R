@@ -232,13 +232,8 @@ ggcoefstats <- function(x,
   # preparing label -------------------------
 
   if (stats.labels) {
-    # remove NAs
-    tidy_df %<>%
-      filter(if_any(
-        .cols = c(matches("estimate|statistic|std.error|p.value")),
-        .fns = ~ !is.na(.)
-      )) %>%
-      statsExpressions::tidy_model_expressions(statistic, k, effsize)
+    # add expression labels
+    tidy_df %<>% statsExpressions::tidy_model_expressions(statistic, k, effsize)
 
     # only significant p-value labels are shown
     if (only.significant && ("p.value" %in% names(tidy_df))) {
