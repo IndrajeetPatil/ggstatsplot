@@ -168,7 +168,7 @@ test_that(
 # edge cases -------------------------------------
 
 test_that(
-  desc = "edge cases",
+  desc = "works when NAs present in numeric columns",
   code = {
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
@@ -181,6 +181,13 @@ test_that(
       title = "works when NAs present in numeric columns",
       fig = ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy))
     )
+})
+
+test_that(
+  desc = "edge cases",
+  code = {
+    skip_if_not_installed("vdiffr")
+    skip_if(getRversion() < "4.1")
 
     set.seed(123)
     df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
