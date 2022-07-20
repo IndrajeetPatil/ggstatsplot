@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.9.3",
+  "version": "0.9.3.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -484,7 +484,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "10252.038KB",
+  "fileSize": "10240.618KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
