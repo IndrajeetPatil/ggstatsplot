@@ -289,8 +289,8 @@ ggpiestats(
 
 The results support our hypothesis that the type of fish caught is related to
 the month in which we're fishing. The $\chi^2$ independence test results at
-the top of the plot. In February we catch significantly more Haddock than we
-would hypothesize for an equal distribution. Whereas in March our results
+the top of the plot. In February, we catch significantly more Cod than we
+would hypothesize for an equal distribution. Whereas, in March, our results
 indicate there's no strong evidence that the distribution isn't equal.
 
 ## Within-subjects designs
