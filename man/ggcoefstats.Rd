@@ -39,19 +39,19 @@ ggcoefstats(
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame containing results
 from a regression model. Function internally uses
-\code{parameters::model_parameters()} to get a tidy dataframe. If a dataframe is
+\code{parameters::model_parameters()} to get a tidy data frame. If a data frame is
 entered, it \emph{must} contain at the minimum two columns named \code{term} (names
 of predictors) and \code{estimate} (corresponding estimates of coefficients or
 other quantities of interest).}
 
 \item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
-dataframe of results \code{parameters::model_parameters}) or \code{"glance"} (object
+data frame of results \code{parameters::model_parameters}) or \code{"glance"} (object
 from \code{performance::model_performance}).}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
 \code{"z"} or \code{"chi"}) in the label. This is relevant if the \code{x} argument is a
-\emph{dataframe}.}
+\emph{data frame}.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
@@ -131,7 +131,7 @@ be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \code{palette} (Default: \code{"Dark2"}).}
 
 \item{stats.label.args}{Additional arguments that will be passed to
-\code{ggrepel::geom_label_repel} geom. Please see documentation for that
+\code{ggrepel::geom_label_repel()}. Please see documentation for that
 function to know more about these arguments.}
 
 \item{package, palette}{Name of the package from which the given palette is to
@@ -179,6 +179,7 @@ is recommended that you install the GitHub versions of \code{{parameters}} and
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
+library(lme4)
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -186,10 +187,13 @@ mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
 # to get a plot
 ggcoefstats(mod, output = "plot")
 
-# to get a tidy dataframe
+# to get a tidy data frame
 ggcoefstats(mod, output = "tidy")
 
 # to get a glance summary
 ggcoefstats(mod, output = "glance")
+
+# further arguments can be passed to `parameters::model_parameters()`
+ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 }
 }

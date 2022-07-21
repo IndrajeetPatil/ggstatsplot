@@ -39,7 +39,6 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-
     # data
     df <- dplyr::filter(movies_long, genre %in% c("Action Drama"))
 

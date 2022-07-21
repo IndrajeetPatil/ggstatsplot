@@ -210,7 +210,6 @@ ggbetweenstats <- function(data,
                            ggplot.component = NULL,
                            output = "plot",
                            ...) {
-
   # data -----------------------------------
 
   # convert entered stats type to a standard notation
@@ -231,7 +230,7 @@ ggbetweenstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    outlier_df(
+    .outlier_df(
       x             = {{ x }},
       y             = {{ y }},
       outlier.coef  = outlier.coef,
@@ -260,12 +259,12 @@ ggbetweenstats <- function(data,
     )
 
     .f <- .f_switch(test)
-    subtitle_df <- eval_f(.f, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
-      caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -282,22 +281,12 @@ ggbetweenstats <- function(data,
 
   # first add only the points which are *not* outliers
   plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(
-      geom_point,
-      data = ~ filter(.x, !isanoutlier),
-      aes(color = {{ x }}),
-      !!!point.args
-    )
+    exec(geom_point, data = ~ filter(.x, !isanoutlier), aes(color = {{ x }}), !!!point.args)
 
   # if outliers are not being tagged, then add the points that were previously left out
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
-      exec(
-        geom_point,
-        data      = ~ filter(.x, isanoutlier),
-        aes(color = {{ x }}),
-        !!!point.args
-      )
+      exec(geom_point, data = ~ filter(.x, isanoutlier), aes(color = {{ x }}), !!!point.args)
   }
 
   # if outlier tagging is happening, decide how those points should be displayed
@@ -369,7 +358,7 @@ ggbetweenstats <- function(data,
 
   # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
-    plot <- centrality_ggrepel(
+    plot <- .centrality_ggrepel(
       plot                  = plot,
       data                  = data,
       x                     = {{ x }},
@@ -399,7 +388,7 @@ ggbetweenstats <- function(data,
     )
 
     # adding the layer for pairwise comparisons
-    plot <- ggsignif_adder(
+    plot <- .ggsignif_adder(
       plot             = plot,
       mpc_df           = mpc_df,
       data             = data,
@@ -410,7 +399,7 @@ ggbetweenstats <- function(data,
     )
 
     # preparing the secondary label axis to give pairwise comparisons test details
-    seclabel <- pairwise_seclabel(
+    seclabel <- .pairwise_seclabel(
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
@@ -420,7 +409,7 @@ ggbetweenstats <- function(data,
 
   # annotations ------------------------
 
-  aesthetic_addon(
+  .aesthetic_addon(
     plot             = plot,
     x                = data %>% pull({{ x }}),
     xlab             = xlab %||% as_name(x),
@@ -448,7 +437,7 @@ ggbetweenstats <- function(data,
 #' using `ggstatsplot::combine_plots`.
 #'
 #' @inheritParams ggbetweenstats
-#' @inheritParams grouped_list
+#' @inheritParams .grouped_list
 #' @inheritParams combine_plots
 #' @inheritDotParams ggbetweenstats -title
 #'
@@ -498,9 +487,8 @@ grouped_ggbetweenstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-
   # creating a dataframe
-  data %<>% grouped_list(grouping.var = {{ grouping.var }})
+  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects
   p_ls <- purrr::pmap(

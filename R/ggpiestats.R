@@ -80,7 +80,7 @@ ggpiestats <- function(data,
                        ggplot.component = NULL,
                        output = "plot",
                        ...) {
-  # dataframe ------------------------------------------
+  # data frame ------------------------------------------
 
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
@@ -92,12 +92,12 @@ ggpiestats <- function(data,
   # one-way or two-way table?
   test <- ifelse(!quo_is_null(enquo(y)), "two.way", "one.way")
 
-  # creating a dataframe
+  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na(.)
 
-  # untable the dataframe based on the count for each observation
+  # untable the data frame based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
@@ -134,12 +134,12 @@ ggpiestats <- function(data,
       prior.concentration = prior.concentration
     )
 
-    subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
 
     # preparing Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
-      caption_df <- eval_f(contingency_table, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
   }
@@ -154,14 +154,14 @@ ggpiestats <- function(data,
 
   # plot ------------------------------------------
 
-  # dataframe with summary labels
-  descriptive_df <- descriptive_df(data, {{ x }}, {{ y }}, label, perc.k)
+  # data frame with summary labels
+  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, perc.k)
 
-  # dataframe containing all details needed for prop test
-  if (test == "two.way") onesample_df <- onesample_df(data, {{ x }}, {{ y }}, k)
+  # data frame containing all details needed for prop test
+  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(package, palette, min_length = x_levels)
+  .palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
@@ -264,9 +264,8 @@ grouped_ggpiestats <- function(data,
                                output = "plot",
                                plotgrid.args = list(),
                                annotation.args = list()) {
-
-  # creating a dataframe
-  data %<>% grouped_list(grouping.var = {{ grouping.var }})
+  # creating a data frame
+  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects
   p_ls <- purrr::pmap(

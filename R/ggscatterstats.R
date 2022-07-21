@@ -57,7 +57,7 @@
 #' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # creating dataframe with rownames converted to a new column
+#' # creating data frame with rownames converted to a new column
 #' mtcars_new <- as_tibble(mtcars, rownames = "car")
 #'
 #' # simple function call with the defaults
@@ -122,13 +122,12 @@ ggscatterstats <- function(data,
                            ggplot.component = NULL,
                            output = "plot",
                            ...) {
-
   # data ---------------------------------------
 
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # preparing the dataframe
+  # preparing the data frame
   data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
@@ -148,12 +147,12 @@ ggscatterstats <- function(data,
       bf.prior = bf.prior
     )
 
-    subtitle_df <- eval_f(corr_test, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
-      caption_df <- eval_f(corr_test, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -293,8 +292,8 @@ grouped_ggscatterstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  # getting the dataframe ready
-  data %<>% grouped_list({{ grouping.var }})
+  # getting the data frame ready
+  data %<>% .grouped_list({{ grouping.var }})
 
   # creating a list of plots
   p_ls <- purrr::pmap(

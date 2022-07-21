@@ -80,7 +80,6 @@ gghistostats <- function(data,
                          ggplot.component = NULL,
                          output = "plot",
                          ...) {
-
   # data -----------------------------------
 
   x <- ensym(x)
@@ -108,12 +107,12 @@ gghistostats <- function(data,
     )
 
     # preparing the subtitle with statistical results
-    subtitle_df <- eval_f(one_sample_test, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message
     if (type == "parametric" && bf.message) {
-      caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -158,7 +157,7 @@ gghistostats <- function(data,
   # centrality plotting -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- histo_labeller(
+    plot <- .histo_labeller(
       plot,
       x                    = x_vec,
       type                 = stats_type_switch(centrality.type),
@@ -231,15 +230,14 @@ grouped_gghistostats <- function(data,
                                  plotgrid.args = list(),
                                  annotation.args = list(),
                                  ...) {
-
   # extract a vector for convenience
   x_vec <- data %>% pull({{ x }})
 
-  # dataframe ------------------------------------------
+  # data frame ------------------------------------------
 
   data %<>%
     select({{ grouping.var }}, {{ x }}) %>%
-    grouped_list(grouping.var = {{ grouping.var }})
+    .grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of plots
   p_ls <- purrr::pmap(

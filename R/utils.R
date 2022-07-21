@@ -31,7 +31,7 @@ theme_ggstatsplot <- function() {
     )
 }
 
-#' @title Split dataframe into a list by grouping variable.
+#' @title Split data frame into a list by grouping variable.
 #'
 #' @description
 #'
@@ -44,29 +44,28 @@ theme_ggstatsplot <- function() {
 #'
 #' @examples
 #' \donttest{
-#' ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
+#' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' }
 #' @keywords internal
-grouped_list <- function(data, grouping.var = NULL) {
-  # ensure the grouping variable works quoted or unquoted
+.grouped_list <- function(data, grouping.var = NULL) {
+  data <- as_tibble(data)
+
   if (quo_is_null(enquo(grouping.var))) {
-    return(as_tibble(data))
+    return(data)
   }
 
-  # creating a list; don't use `group_list` because it removes names
-  as_tibble(data) %>%
-    split(f = .[[quo_text(ensym(grouping.var))]], drop = TRUE)
+  data %>% split(f = new_formula(NULL, enquo(grouping.var)), drop = TRUE)
 }
 
 
 #' @title Message if palette doesn't have enough number of colors.
-#' @name palette_message
+#' @name .palette_message
 #' @description Informs the user about not using the default color palette
 #'   when the number of factor levels is greater than 8, the maximum number of
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
 #'
 #' @noRd
-palette_message <- function(package, palette, min_length) {
+.palette_message <- function(package, palette, min_length) {
   # computing the palette length
   filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
     length[[1]] -> pl

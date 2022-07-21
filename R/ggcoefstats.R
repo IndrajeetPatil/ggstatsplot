@@ -9,17 +9,17 @@
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
-#'   `parameters::model_parameters()` to get a tidy dataframe. If a dataframe is
+#'   `parameters::model_parameters()` to get a tidy data frame. If a data frame is
 #'   entered, it *must* contain at the minimum two columns named `term` (names
 #'   of predictors) and `estimate` (corresponding estimates of coefficients or
 #'   other quantities of interest).
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
-#'   dataframe of results `parameters::model_parameters`) or `"glance"` (object
+#'   data frame of results `parameters::model_parameters`) or `"glance"` (object
 #'   from `performance::model_performance`).
 #' @param statistic Which statistic is to be displayed (either `"t"` or `"f"`or
 #'   `"z"` or `"chi"`) in the label. This is relevant if the `x` argument is a
-#'   *dataframe*.
+#'   *data frame*.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
@@ -64,7 +64,7 @@
 #'   be chosen from the specified `package` (Default: `"RColorBrewer"`) and
 #'   `palette` (Default: `"Dark2"`).
 #' @param stats.label.args Additional arguments that will be passed to
-#'   `ggrepel::geom_label_repel` geom. Please see documentation for that
+#'   `ggrepel::geom_label_repel()`. Please see documentation for that
 #'   function to know more about these arguments.
 #' @param only.significant If `TRUE`, only stats labels for significant effects
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
@@ -99,6 +99,7 @@
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(lme4)
 #'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -106,11 +107,14 @@
 #' # to get a plot
 #' ggcoefstats(mod, output = "plot")
 #'
-#' # to get a tidy dataframe
+#' # to get a tidy data frame
 #' ggcoefstats(mod, output = "tidy")
 #'
 #' # to get a glance summary
 #' ggcoefstats(mod, output = "glance")
+#'
+#' # further arguments can be passed to `parameters::model_parameters()`
+#' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 #' }
 #' @export
 ggcoefstats <- function(x,
@@ -149,7 +153,6 @@ ggcoefstats <- function(x,
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
                         ...) {
-
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels
@@ -158,7 +161,7 @@ ggcoefstats <- function(x,
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
-  # tidy dataframe -------------------------
+  # tidy data frame -------------------------
 
   if (insight::is_model(x)) {
     statistic <- insight::find_statistic(x)
@@ -167,7 +170,7 @@ ggcoefstats <- function(x,
     if (effsize == "eta") eta_squared <- "partial"
     if (effsize == "omega") omega_squared <- "partial"
 
-    # converting model object to a tidy dataframe
+    # converting model object to a tidy data frame
     tidy_df <- parameters::model_parameters(
       model         = x,
       eta_squared   = eta_squared,
@@ -184,10 +187,10 @@ ggcoefstats <- function(x,
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
   }
 
-  # tidy dataframe cleanup -------------------------
+  # tidy data frame cleanup -------------------------
 
   if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
-    rlang::abort("The tidy dataframe *must* contain 'estimate' column.")
+    rlang::abort("The tidy data frame *must* contain 'estimate' column.")
   }
 
   # create a new term column if it's not present
@@ -229,13 +232,8 @@ ggcoefstats <- function(x,
   # preparing label -------------------------
 
   if (stats.labels) {
-    # remove NAs
-    tidy_df %<>%
-      filter(if_any(
-        .cols = c(matches("estimate|statistic|std.error|p.value")),
-        .fns = ~ !is.na(.)
-      )) %>%
-      statsExpressions::tidy_model_expressions(statistic, k, effsize)
+    # add expression labels
+    tidy_df %<>% statsExpressions::tidy_model_expressions(statistic, k, effsize)
 
     # only significant p-value labels are shown
     if (only.significant && ("p.value" %in% names(tidy_df))) {
@@ -301,7 +299,7 @@ ggcoefstats <- function(x,
     # ggrepel labels -------------------------
 
     if (stats.labels) {
-      if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
+      if (is.null(stats.label.color) && .palette_message(package, palette, length(tidy_df$term))) {
         stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
       }
 

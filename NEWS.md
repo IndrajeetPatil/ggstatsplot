@@ -1,9 +1,11 @@
-# ggstatsplot 0.9.3
+# ggstatsplot 0.9.3.9000
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+# ggstatsplot 0.9.3
 
 - Hot fix release to correct a failing example in CRAN daily checks.
 
@@ -474,7 +476,7 @@ NEW FEATURES
 BREAKING CHANGES
 
   - `ggcorrmat` no longer returns matrices of correlation coefficients or other
-    details. It now returns either a plot or a dataframe and this can dataframe
+    details. It now returns either a plot or a data frame and this can data frame
     can then be used to create matrices.
 
   - `ggbarstats` loses `x.axis.orientation` argument. This argument was supposed
@@ -488,7 +490,7 @@ NEW FEATURES
     `lmerModLmerTest`, `lrm`.
 
   - Specifying `output = "proptest"` for `ggpiestats` and `ggbarstats` functions
-    will now return a dataframe containing results from proportion test.
+    will now return a data frame containing results from proportion test.
 
   - `ggbetweenstats` and `ggwithinstats` will display pairwise comparisons even
     if `results.subtitle` is set to `FALSE`.
@@ -507,7 +509,7 @@ MAJOR CHANGES
   - `ggbetweenstats` and `ggwithinstats` no longer print dataframes containing
     results from pairwise comparisons tests because this is too cluttering for
     the user's console. The users are now instead advised to either extract this
-    dataframe using `ggplot2::ggplot_build()` function or use the
+    data frame using `ggplot2::ggplot_build()` function or use the
     `pairwiseComparisons::pairwise_comparisons()` function used in the
     background by `{ggstatsplot}` to carry out this analysis.
 
@@ -707,7 +709,7 @@ MAJOR CHANGES
 BUG FIXES
 
   - `ggbetweenstats` and `ggwithinstats` no longer produce incorrect label if
-    the dataframe already contains a variable named `n` (#317) or variables with
+    the data frame already contains a variable named `n` (#317) or variables with
     pattern `mean` (#322).
 
   - `ggbetweenstats` and `ggwithinstats` mean labels respect `k` argument
@@ -1048,7 +1050,7 @@ NEW FEATURES
 
   - `ggcoefstats` gains `meta.analytic.effect` that can be used to carry out
     meta-analysis on regression estimates. This especially useful when a
-    dataframe with regression estimates and standard error is available from
+    data frame with regression estimates and standard error is available from
     prior analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
 
@@ -1190,7 +1192,7 @@ MINOR CHANGES
     `"counts"`, or `"both"`.
 
   - `ggcorrmat` can work with `cor.vars = NULL`. In such case, **all** numeric
-    variables from the provided dataframe will be used for computing the
+    variables from the provided data frame will be used for computing the
     correlation matrix.
 
   - Given the constant changes to the default behavior of functions, the
@@ -1357,7 +1359,7 @@ MAJOR CHANGES
     `{ggstatsplot}` no longer imports `MASS` and `sfsmisc`.
 
   - The `data` argument is no longer `NULL` for all functions, except
-    `gghistostats`. In other words, the user **must** provide a dataframe from
+    `gghistostats`. In other words, the user **must** provide a data frame from
     which variables or formulas should be selected.
 
   - All subtitles containing results now also show sample size information

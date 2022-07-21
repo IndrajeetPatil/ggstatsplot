@@ -1,5 +1,5 @@
 #' @title Custom function for adding labeled lines for `x`-axis variable.
-#' @name histo_labeller
+#' @name .histo_labeller
 #' @description Helper function for adding centrality parameter value and/or a
 #'   test value for the continuous, numeric `x`-axis variable.
 #'
@@ -17,7 +17,7 @@
 #'   geom_point()
 #'
 #' # adding labels
-#' ggstatsplot:::histo_labeller(
+#' ggstatsplot:::.histo_labeller(
 #'   plot = p,
 #'   x = mtcars$wt
 #' )
@@ -25,15 +25,15 @@
 #'
 #' @keywords internal
 #' @noRd
-histo_labeller <- function(plot,
-                           x,
-                           centrality.line.args = list(
-                             color = "blue",
-                             size = 1,
-                             linetype = "dashed"
-                           ),
-                           ...) {
-  # compute centrality measure (with a temporary dataframe)
+.histo_labeller <- function(plot,
+                            x,
+                            centrality.line.args = list(
+                              color = "blue",
+                              size = 1,
+                              linetype = "dashed"
+                            ),
+                            ...) {
+  # compute centrality measure (with a temporary data frame)
   df_central <- suppressWarnings(centrality_description(tibble(.x = ".x", "var" = x), .x, var, ...))
 
   # adding a vertical line corresponding to centrality parameter

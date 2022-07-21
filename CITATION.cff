@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.9.3
+version: 0.9.3.9000
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -107,8 +107,40 @@ references:
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
   year: '2022'
-  url: https://CRAN.R-project.org/package=correlation
+  url: https://easystats.github.io/correlation/
   version: '>= 0.8.1'
+- type: software
+  title: datawizard
+  abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
+  notes: Imports
+  authors:
+  - family-names: Makowski
+    given-names: Dominique
+    email: dom.makowski@gmail.com
+    orcid: https://orcid.org/0000-0001-5375-9967
+  - family-names: Lüdecke
+    given-names: Daniel
+    email: d.luedecke@uke.de
+    orcid: https://orcid.org/0000-0002-8895-3206
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+    email: matanshm@post.bgu.ac.il
+    orcid: https://orcid.org/0000-0002-4287-4801
+  - family-names: Wiernik
+    given-names: Brenton M.
+    email: brenton@wiernik.org
+    orcid: https://orcid.org/0000-0001-9560-6336
+  - family-names: Bacher
+    given-names: Etienne
+    email: etienne.bacher@protonmail.com
+    orcid: https://orcid.org/0000-0002-9271-5075
+  year: '2022'
+  url: https://easystats.github.io/datawizard/
+  version: '>= 0.4.1'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -237,7 +269,7 @@ references:
     orcid: https://orcid.org/0000-0003-2042-7063
   year: '2022'
   url: https://easystats.github.io/insight/
-  version: '>= 0.17.1'
+  version: '>= 0.18.0.1'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -277,7 +309,7 @@ references:
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2022'
   url: https://easystats.github.io/parameters/
-  version: '>= 0.18.0'
+  version: '>= 0.18.1.8'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -320,6 +352,7 @@ references:
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2022'
   url: https://easystats.github.io/performance/
+  version: '>= 0.9.1.1'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -367,7 +400,7 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.3.2'
+  version: '>= 1.3.2.9000'
   year: '2022'
 - type: software
   title: tidyr
@@ -426,7 +459,7 @@ references:
     email: jrouder@uci.edu
   year: '2022'
   url: https://CRAN.R-project.org/package=BayesFactor
-  version: '>= 0.9.12-4.3'
+  version: '>= 0.9.12-4.4'
 - type: software
   title: gapminder
   abstract: 'gapminder: Data from Gapminder'
@@ -456,6 +489,7 @@ references:
   - family-names: Landis
     given-names: Justin
     email: jtlandis314@gmail.com
+    orcid: https://orcid.org/0000-0001-5501-4934
   year: '2022'
   url: https://CRAN.R-project.org/package=ggside
 - type: software
@@ -468,7 +502,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2022'
-  url: https://CRAN.R-project.org/package=knitr
+  url: https://yihui.org/knitr/
 - type: software
   title: lme4
   abstract: 'lme4: Linear Mixed-Effects Models using ''Eigen'' and S4'

@@ -1,5 +1,5 @@
 #' @title Adding labels for mean values.
-#' @name centrality_ggrepel
+#' @name .centrality_ggrepel
 #'
 #' @param plot A `ggplot` object for which means are to be displayed.
 #' @param ... Additional arguments.
@@ -17,35 +17,35 @@
 #'   geom_boxplot()
 #'
 #' # add means
-#' ggstatsplot:::centrality_ggrepel(
+#' ggstatsplot:::.centrality_ggrepel(
 #'   data = iris,
 #'   plot = p,
 #'   x = Species,
 #'   y = Sepal.Length
 #' )
 #' @noRd
-centrality_ggrepel <- function(plot,
-                               data,
-                               x,
-                               y,
-                               centrality.path = FALSE,
-                               centrality.path.args = list(
-                                 color = "red",
-                                 size = 1,
-                                 alpha = 0.5
-                               ),
-                               centrality.point.args = list(
-                                 size = 5,
-                                 color = "darkred"
-                               ),
-                               centrality.label.args = list(
-                                 size = 3,
-                                 nudge_x = 0.4,
-                                 segment.linetype = 4,
-                                 min.segment.length = 0
-                               ),
-                               ...) {
-  # creating the dataframe
+.centrality_ggrepel <- function(plot,
+                                data,
+                                x,
+                                y,
+                                centrality.path = FALSE,
+                                centrality.path.args = list(
+                                  color = "red",
+                                  size = 1,
+                                  alpha = 0.5
+                                ),
+                                centrality.point.args = list(
+                                  size = 5,
+                                  color = "darkred"
+                                ),
+                                centrality.label.args = list(
+                                  size = 3,
+                                  nudge_x = 0.4,
+                                  segment.linetype = 4,
+                                  min.segment.length = 0
+                                ),
+                                ...) {
+  # creating the data frame
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
   # if there should be lines connecting mean values across groups
@@ -81,11 +81,11 @@ centrality_ggrepel <- function(plot,
 }
 
 #' @title Adding `geom_signif` to `ggplot`
-#' @name ggsignif_adder
+#' @name .ggsignif_adder
 #'
 #' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
-#' @param mpc_df A dataframe containing results from pairwise comparisons
+#' @param mpc_df A data frame containing results from pairwise comparisons
 #'   (produced by `pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
 #'
@@ -97,7 +97,7 @@ centrality_ggrepel <- function(plot,
 #' p <- ggplot(iris, aes(Species, Sepal.Length)) +
 #'   geom_boxplot()
 #'
-#' # dataframe with pairwise comparison test results
+#' # data frame with pairwise comparison test results
 #' df_pair <- pairwise_comparisons(
 #'   data = iris,
 #'   x = Species,
@@ -105,7 +105,7 @@ centrality_ggrepel <- function(plot,
 #' )
 #'
 #' # adding a geom for pairwise comparisons
-#' ggstatsplot:::ggsignif_adder(
+#' ggstatsplot:::.ggsignif_adder(
 #'   plot = p,
 #'   data = iris,
 #'   x = Species,
@@ -113,14 +113,14 @@ centrality_ggrepel <- function(plot,
 #'   mpc_df = df_pair
 #' )
 #' @noRd
-ggsignif_adder <- function(plot,
-                           data,
-                           x,
-                           y,
-                           mpc_df,
-                           pairwise.display = "significant",
-                           ggsignif.args = list(textsize = 3, tip_length = 0.01),
-                           ...) {
+.ggsignif_adder <- function(plot,
+                            data,
+                            x,
+                            y,
+                            mpc_df,
+                            pairwise.display = "significant",
+                            ggsignif.args = list(textsize = 3, tip_length = 0.01),
+                            ...) {
   # creating a column for group combinations
   mpc_df %<>% mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
@@ -136,7 +136,7 @@ ggsignif_adder <- function(plot,
     }
   }
 
-  # arrange the dataframe so that annotations are properly aligned
+  # arrange the data frame so that annotations are properly aligned
   mpc_df %<>% arrange(group1, group2)
 
   # adding ggsignif comparisons to the plot
@@ -145,7 +145,7 @@ ggsignif_adder <- function(plot,
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
-      y_position = ggsignif_xy(pull(data, {{ x }}), pull(data, {{ y }})),
+      y_position = .ggsignif_xy(pull(data, {{ x }}), pull(data, {{ y }})),
       annotations = as.character(mpc_df$expression),
       test = NULL,
       parse = TRUE,
@@ -153,13 +153,13 @@ ggsignif_adder <- function(plot,
     )
 }
 
-#' @name ggsignif_xy
+#' @name .ggsignif_xy
 #'
 #' @inheritParams ggbetweenstats
 #'
 #' @keywords internal
 #' @noRd
-ggsignif_xy <- function(x, y) {
+.ggsignif_xy <- function(x, y) {
   # number of comparisons and size of each step
   n_comps <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
   step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
@@ -172,7 +172,7 @@ ggsignif_xy <- function(x, y) {
   seq(y_start, y_end, length.out = n_comps)
 }
 
-#' @name pairwise_seclabel
+#' @name .pairwise_seclabel
 #' @title Pairwise comparison test expression
 #'
 #' @description
@@ -193,10 +193,10 @@ ggsignif_xy <- function(x, y) {
 #'   comparisons being displayed.
 #'
 #' @examples
-#' pairwise_seclabel("my caption", "Student's t-test")
+#' .pairwise_seclabel("my caption", "Student's t-test")
 #' @keywords internal
 #' @noRd
-pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
+.pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
   # single quote (') needs to be escaped inside glue expressions
   test <- sub("'", "\\'", test.description, fixed = TRUE)
 
@@ -214,7 +214,7 @@ pairwise_seclabel <- function(test.description, pairwise.display = "significant"
 
 
 #' @title Making aesthetic modifications to the plot
-#' @name aesthetic_addon
+#' @name .aesthetic_addon
 #'
 #' @param plot Plot to be aesthetically modified.
 #' @param x A numeric vector for `x` axis.
@@ -223,21 +223,21 @@ pairwise_seclabel <- function(test.description, pairwise.display = "significant"
 #' @param ... Additional arguments.
 #'
 #' @noRd
-aesthetic_addon <- function(plot,
-                            x,
-                            xlab = NULL,
-                            ylab = NULL,
-                            title = NULL,
-                            subtitle = NULL,
-                            caption = NULL,
-                            seclabel = NULL,
-                            ggtheme = ggstatsplot::theme_ggstatsplot(),
-                            package = "RColorBrewer",
-                            palette = "Dark2",
-                            ggplot.component = NULL,
-                            ...) {
+.aesthetic_addon <- function(plot,
+                             x,
+                             xlab = NULL,
+                             ylab = NULL,
+                             title = NULL,
+                             subtitle = NULL,
+                             caption = NULL,
+                             seclabel = NULL,
+                             ggtheme = ggstatsplot::theme_ggstatsplot(),
+                             package = "RColorBrewer",
+                             palette = "Dark2",
+                             ggplot.component = NULL,
+                             ...) {
   # if no. of factor levels is greater than the default palette color count
-  palette_message(package, palette, length(unique(levels(x)))[[1]])
+  .palette_message(package, palette, length(unique(levels(x)))[[1]])
 
   # modifying the plot
   plot +
@@ -259,13 +259,13 @@ aesthetic_addon <- function(plot,
 }
 
 
-#' @title Adding a column to dataframe describing outlier status
-#' @name outlier_df
+#' @title Adding a column to data frame describing outlier status
+#' @name .outlier_df
 #'
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
 #'
-#' @return The dataframe entered as `data` argument is returned with two
+#' @return The data frame entered as `data` argument is returned with two
 #'   additional columns: `isanoutlier` and `outlier` denoting which observation
 #'   are outliers and their corresponding labels.
 #'
@@ -275,7 +275,7 @@ aesthetic_addon <- function(plot,
 #'
 #' @examples
 #' # adding column for outlier and a label for that outlier
-#' ggstatsplot:::outlier_df(
+#' ggstatsplot:::.outlier_df(
 #'   data          = morley,
 #'   x             = Expt,
 #'   y             = Speed,
@@ -284,7 +284,7 @@ aesthetic_addon <- function(plot,
 #' ) %>%
 #'   arrange(outlier)
 #' @noRd
-outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
+.outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
   group_by(data, {{ x }}) %>%
     mutate(
       isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{ y }}, method = "iqr", threshold = list("iqr" = outlier.coef))), TRUE, FALSE),

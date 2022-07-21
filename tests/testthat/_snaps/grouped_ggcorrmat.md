@@ -1,6 +1,6 @@
 # grouped_ggcorrmat produces error when grouping isn't specified
 
-    group length is 0 but data length > 0
+    argument 1 is empty
 
 # grouped_ggcorrmat returns expected data frame
 
@@ -33,4 +33,5 @@
        9  -Inf           30 0        Winsorized Pearson correlation    32
       10    -1.16        10 2.74e- 1 Winsorized Pearson correlation    12
       # ... with 14 more rows
+      # i Use `print(n = ...)` to see more rows
 

@@ -1138,7 +1138,7 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 1       0.95    0.531         1 ncp         F                    32 <language>
 #> 
 #> $caption_data
-#> # A tibble: 6 × 17
+#> # A tibble: 6 × 18
 #>   term     pd rope.percentage prior.distribution prior.location prior.scale
 #>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
 #> 1 mu    1              0      cauchy                          0       0.707
@@ -1155,14 +1155,14 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
 #> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
 #> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#>   estimate std.dev conf.level conf.low conf.high n.obs expression
-#>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <int> <list>    
-#> 1    0.714  0.0503       0.95    0.574     0.788    32 <language>
-#> 2    0.714  0.0503       0.95    0.574     0.788    32 <language>
-#> 3    0.714  0.0503       0.95    0.574     0.788    32 <language>
-#> 4    0.714  0.0503       0.95    0.574     0.788    32 <language>
-#> 5    0.714  0.0503       0.95    0.574     0.788    32 <language>
-#> 6    0.714  0.0503       0.95    0.574     0.788    32 <language>
+#>   estimate std.dev conf.level conf.low conf.high conf.method n.obs expression
+#>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
+#> 1    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
+#> 2    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
+#> 3    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
+#> 4    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
+#> 5    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
+#> 6    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
 #> 
 #> $pairwise_comparisons_data
 #> # A tibble: 3 × 9

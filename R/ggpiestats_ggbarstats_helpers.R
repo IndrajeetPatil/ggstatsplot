@@ -1,13 +1,13 @@
-#' @title A dataframe with descriptive labels
+#' @title A data frame with descriptive labels
 #' @noRd
-descriptive_df <- function(data,
-                           x,
-                           y = NULL,
-                           label.content = "percentage",
-                           perc.k = 1,
-                           ...) {
-  # creating a dataframe with counts
-  cat_counter(data, {{ x }}, {{ y }}) %>%
+descriptive_data <- function(data,
+                             x,
+                             y = NULL,
+                             label.content = "percentage",
+                             perc.k = 1,
+                             ...) {
+  # creating a data frame with counts
+  .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(
         grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
@@ -22,7 +22,7 @@ descriptive_df <- function(data,
 
 #' @title Counts and percentages across grouping variables
 #' @noRd
-cat_counter <- function(data, x, y = NULL, ...) {
+.cat_counter <- function(data, x, y = NULL, ...) {
   data %>%
     group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
     tally(name = "counts") %>%
@@ -32,16 +32,16 @@ cat_counter <- function(data, x, y = NULL, ...) {
     filter(counts != 0L)
 }
 
-#' @title A dataframe with chi-squared test results
+#' @title A data frame with chi-squared test results
 #' @noRd
-onesample_df <- function(data, x, y, k = 2L, ...) {
+onesample_data <- function(data, x, y, k = 2L, ...) {
   full_join(
     # descriptives
-    x = cat_counter(data, {{ y }}) %>%
+    x = .cat_counter(data, {{ y }}) %>%
       mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
     # proportion tests
     y = group_by(data, {{ y }}) %>%
-      group_modify(.f = ~ chisq_test_safe(., {{ x }})) %>%
+      group_modify(.f = ~ .chisq_test_safe(., {{ x }})) %>%
       ungroup(.),
     by = as_name(ensym(y))
   ) %>%
@@ -62,7 +62,7 @@ onesample_df <- function(data, x, y, k = 2L, ...) {
 # needed to work with `group_modify` since it will not work when NULL is returned
 #'
 #' @noRd
-chisq_test_safe <- function(data, x, ...) {
+.chisq_test_safe <- function(data, x, ...) {
   xtab <- table(data %>% pull({{ x }}))
 
   # run chi-square test

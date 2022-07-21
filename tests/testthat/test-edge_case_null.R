@@ -127,7 +127,7 @@ test_that(
   code = {
     set.seed(123)
 
-    # creating a dataframe
+    # creating a data frame
     df <- data.frame(x = "one", y = "one")
 
     # ggpiestats

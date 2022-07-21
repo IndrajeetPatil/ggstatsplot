@@ -22,7 +22,7 @@ test_that(
       )
     )
 
-    # creating a smaller dataframe
+    # creating a smaller data frame
     mpg_short <- ggplot2::mpg %>%
       dplyr::filter(
         drv %in% c("4", "f"),

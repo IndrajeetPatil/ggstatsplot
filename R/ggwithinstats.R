@@ -122,7 +122,6 @@ ggwithinstats <- function(data,
                           ggplot.component = NULL,
                           output = "plot",
                           ...) {
-
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
@@ -132,7 +131,7 @@ ggwithinstats <- function(data,
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
 
-  # creating a dataframe
+  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
@@ -146,7 +145,7 @@ ggwithinstats <- function(data,
 
   # add a logical column indicating whether a point is or is not an outlier
   data %<>%
-    outlier_df(
+    .outlier_df(
       x             = {{ x }},
       y             = {{ y }},
       outlier.coef  = outlier.coef,
@@ -175,14 +174,14 @@ ggwithinstats <- function(data,
 
     # styler: off
     .f          <- .f_switch(test)
-    subtitle_df <- eval_f(.f, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
     subtitle    <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
     # styler: on
 
     # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
       # styler: off
-      caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption    <- if (!is.null(caption_df)) caption_df$expression[[1]]
       # styler: on
     }
@@ -209,7 +208,7 @@ ggwithinstats <- function(data,
   # outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
-  # the `y` vector. If the outlier tag has been provided, just use the dataframe
+  # the `y` vector. If the outlier tag has been provided, just use the data frame
   # already created.
 
   if (isTRUE(outlier.tagging)) {
@@ -228,7 +227,7 @@ ggwithinstats <- function(data,
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- centrality_ggrepel(
+    plot <- .centrality_ggrepel(
       plot                  = plot,
       data                  = data,
       x                     = {{ x }},
@@ -258,7 +257,7 @@ ggwithinstats <- function(data,
     )
 
     # adding the layer for pairwise comparisons
-    plot <- ggsignif_adder(
+    plot <- .ggsignif_adder(
       plot             = plot,
       mpc_df           = mpc_df,
       data             = data,
@@ -269,7 +268,7 @@ ggwithinstats <- function(data,
     )
 
     # preparing the secondary label axis to give pairwise comparisons test details
-    seclabel <- pairwise_seclabel(
+    seclabel <- .pairwise_seclabel(
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
@@ -279,7 +278,7 @@ ggwithinstats <- function(data,
 
   # annotations -------------------------
 
-  aesthetic_addon(
+  .aesthetic_addon(
     plot             = plot,
     x                = data %>% pull({{ x }}),
     xlab             = xlab %||% as_name(x),
@@ -341,9 +340,8 @@ grouped_ggwithinstats <- function(data,
                                   output = "plot",
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
-
-  # creating a dataframe
-  data %<>% grouped_list(grouping.var = {{ grouping.var }})
+  # creating a data frame
+  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects
   p_ls <- purrr::pmap(

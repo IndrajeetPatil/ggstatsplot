@@ -10,13 +10,12 @@
 #' The only exception is the `ggcorrmat()` function. But, if a data frame is
 #' what you want, you shouldn't be using `ggcorrmat()` anyway. You can use
 #' `correlation::correlation()` function which provides tidy data frames by
-#' default. This also works if the data entered is grouped (*a la*
-#' `dplyr::group_by()`). This is also the function used internally by
-#' `{ggstatsplot}` to extract a data frame used to create a plot.
+#' default.
 #'
 #' @return
 #'
 #' A list of tibbles containing summaries of various statistical analyses.
+#' The exact details included will depend on the function.
 #'
 #' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
@@ -37,7 +36,6 @@
 #' }
 #' @export
 extract_stats <- function(p, ...) {
-  # the exact details included will depend on the function
   list(
     subtitle_data             = tryCatch(p$plot_env$subtitle_df, error = function(e) NULL),
     caption_data              = tryCatch(p$plot_env$caption_df, error = function(e) NULL),
@@ -50,7 +48,7 @@ extract_stats <- function(p, ...) {
 }
 
 #' @noRd
-eval_f <- function(.f, ...) {
+.eval_f <- function(.f, ...) {
   tryCatch(
     suppressWarnings(suppressMessages(exec(.f, ...))),
     error = function(e) NULL

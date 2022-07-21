@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' Correlation matrix or a dataframe containing results from pairwise
+#' Correlation matrix or a data frame containing results from pairwise
 #' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for
 #' creating the visualization matrix, while the correlation analysis is carried
 #' out using the `correlation::correlation` function.
@@ -21,7 +21,7 @@
 #'   Bayesian correlation based on frequentist partialization) are returned.
 #' @param output Character that decides expected output from this function. If
 #'   `"plot"`, the visualization matrix will be returned. If `"dataframe"` (or
-#'   literally anything other than `"plot"`), a dataframe containing all details
+#'   literally anything other than `"plot"`), a data frame containing all details
 #'   from statistical analyses (e.g., correlation coefficients, statistic
 #'   values, *p*-values, no. of observations, etc.) will be returned.
 #' @param matrix.type Character, `"upper"` (default), `"lower"`, or `"full"`,
@@ -63,7 +63,7 @@
 #' # to get a plot (assumes that `ggcorrplot` is installed)
 #' if (require("ggcorrplot")) ggcorrmat(iris)
 #'
-#' # to get a dataframe
+#' # to get a data frame
 #' ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
@@ -99,23 +99,18 @@ ggcorrmat <- function(data,
                       subtitle = NULL,
                       caption = NULL,
                       ...) {
+  # data frame -----------------------------------
 
-  # dataframe -----------------------------------
-
-  if (missing(cor.vars)) {
-    df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
-  } else {
-    df <- select(data, {{ cor.vars }})
-  }
+  if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
 
   # statistical analysis ------------------------------------------
 
   # if any of the abbreviations have been entered, change them
   type <- stats_type_switch(type)
 
-  # creating a dataframe of results
+  # creating a data frame of results
   mpc_df <- correlation::correlation(
-    data             = df,
+    data             = data,
     rename           = cor.vars.names,
     method           = ifelse(type == "nonparametric", "spearman", "pearson"),
     p_adjust         = p.adjust.method,
@@ -139,18 +134,11 @@ ggcorrmat <- function(data,
 
   # plot ------------------------------------------
 
-  # in case of NAs, compute minimum and maximum sample sizes of pairs
-  # also compute mode
-  getmode <- function(v) {
-    uniqv <- unique(v)
-    uniqv[which.max(tabulate(match(v, uniqv)))]
-  }
-
   # installed?
   check_if_installed("ggcorrplot")
 
   # legend title with information about correlation type and sample
-  if (isFALSE(any(is.na(df))) || partial) {
+  if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
       atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
@@ -161,7 +149,7 @@ ggcorrmat <- function(data,
       atop(
         atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
         atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(mpc_df$n_Obs))),
+          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(mpc_df$n_Obs))),
           italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
         )
       ),
@@ -260,7 +248,7 @@ ggcorrmat <- function(data,
 #'   )
 #' }
 #'
-#' # for dataframe
+#' # for data frame
 #' grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore,
@@ -275,10 +263,9 @@ grouped_ggcorrmat <- function(data,
                               output = "plot",
                               plotgrid.args = list(),
                               annotation.args = list()) {
-
-  # dataframe
+  # data frame
   data %<>%
-    grouped_list({{ grouping.var }}) %>%
+    .grouped_list({{ grouping.var }}) %>%
     purrr::map(.f = ~ select(.x, -{{ grouping.var }}))
 
   # creating a list of return objects

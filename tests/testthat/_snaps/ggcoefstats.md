@@ -1,6 +1,6 @@
 # ggcoefstats doesn't work if no estimate column found
 
-    The tidy dataframe *must* contain 'estimate' column.
+    The tidy data frame *must* contain 'estimate' column.
 
 # data frame outputs as expected
 

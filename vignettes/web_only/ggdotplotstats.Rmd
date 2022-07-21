@@ -17,7 +17,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 ## show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
@@ -37,7 +39,10 @@ library(ggstatsplot)
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -59,14 +64,18 @@ Let's begin with a very simple example from the `{ggplot2}` package
 (`ggplot2::mpg`), a subset of the fuel economy data that the EPA makes available
 on <http://fueleconomy.gov>.
 
-```{r mpg}
+```{r}
+#| label = "mpg"
 ## looking at the structure of the data using glimpse
 dplyr::glimpse(ggplot2::mpg)
 ```
 
 Let's say we want to visualize the distribution of mileage by car manufacturer. 
 
-```{r mpg2, fig.height = 7, fig.width = 9}
+```{r}
+#| label = "mpg2",
+#| fig.height = 7,
+#| fig.width = 9
 ## for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -114,7 +123,10 @@ single plot.
 Let's see how we can use this function to apply `ggdotplotstats` to accomplish our
 task. 
 
-```{r grouped1, fig.height = 12, fig.width = 7}
+```{r}
+#| label = "grouped1",
+#| fig.height = 12,
+#| fig.width = 7
 ## for reproducibility
 set.seed(123)
 
@@ -193,7 +205,8 @@ reported statistics.
 
 For example, let's see the following example:
 
-```{r reporting}
+```{r}
+#| label = "reporting"
 ggdotplotstats(morley, Speed, Expt, test.value = 800)
 ```
 

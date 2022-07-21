@@ -13,6 +13,7 @@ extract_stats(p, ...)
 }
 \value{
 A list of tibbles containing summaries of various statistical analyses.
+The exact details included will depend on the function.
 }
 \description{
 Extracting data frames from \code{{ggstatsplot}} plots
@@ -26,9 +27,7 @@ the \code{{statsExpressions}} \href{https://indrajeetpatil.github.io/statsExpres
 The only exception is the \code{ggcorrmat()} function. But, if a data frame is
 what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
 \code{correlation::correlation()} function which provides tidy data frames by
-default. This also works if the data entered is grouped (\emph{a la}
-\code{dplyr::group_by()}). This is also the function used internally by
-\code{{ggstatsplot}} to extract a data frame used to create a plot.
+default.
 }
 \examples{
 \donttest{

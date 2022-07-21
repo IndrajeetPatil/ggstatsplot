@@ -2,7 +2,7 @@
 
     Mismatch between number of variables and names.
 
-# checking all dataframe outputs
+# checking all data frame outputs
 
     Code
       suppressWarnings(purrr::pmap(.l = list(data = list(dplyr::select(ggplot2::msleep,

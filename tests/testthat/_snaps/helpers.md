@@ -1,40 +1,18 @@
 # grouped_list works
 
     Code
-      list(length(df1), length(df2), length(df5), length(df6))
+      names(df1)
     Output
-      [[1]]
-      [1] 4
-      
-      [[2]]
-      [1] 3
-      
-      [[3]]
-      [1] 4
-      
-      [[4]]
-      [1] 11
-      
+      [1] "carni"   "herbi"   "insecti" "omni"   
 
----
+# grouped_list works with non-syntactic group names
 
     Code
-      list(names(df1), names(df2), names(df5), names(df6))
+      ggplot2::msleep %>% rename(`my non-syntactic name` = vore) %>% ggstatsplot:::grouped_list(
+        grouping.var = `my non-syntactic name`) %>% tibble::tbl_sum()
     Output
-      [[1]]
-      [1] "carni"   "herbi"   "insecti" "omni"   
-      
-      [[2]]
-      [1] "carni"   "insecti" "omni"   
-      
-      [[3]]
-      [1] "carni"   "herbi"   "insecti" "omni"   
-      
-      [[4]]
-       [1] "name"         "genus"        "vore"         "order"        "conservation"
-       [6] "sleep_total"  "sleep_rem"    "sleep_cycle"  "awake"        "brainwt"     
-      [11] "bodywt"      
-      
+           Description 
+      "named list [4]" 
 
 # palette_message is working
 

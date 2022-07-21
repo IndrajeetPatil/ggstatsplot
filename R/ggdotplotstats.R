@@ -67,13 +67,12 @@ ggdotplotstats <- function(data,
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
                            output = "plot",
                            ...) {
-
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # creating a dataframe
+  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
@@ -107,12 +106,12 @@ ggdotplotstats <- function(data,
     )
 
     # preparing the subtitle with statistical results
-    subtitle_df <- eval_f(one_sample_test, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message
     if (type == "parametric" && bf.message) {
-      caption_df <- eval_f(one_sample_test, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -143,7 +142,7 @@ ggdotplotstats <- function(data,
   # centrality plotting -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- histo_labeller(
+    plot <- .histo_labeller(
       plot,
       x                    = data %>% pull({{ x }}),
       type                 = stats_type_switch(centrality.type),
@@ -213,9 +212,8 @@ grouped_ggdotplotstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-
-  # dataframe
-  data %<>% grouped_list(grouping.var = {{ grouping.var }})
+  # data frame
+  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects
   p_ls <- purrr::pmap(

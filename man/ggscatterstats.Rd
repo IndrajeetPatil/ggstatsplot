@@ -182,7 +182,7 @@ set.seed(123)
 library(ggstatsplot)
 library(dplyr, warn.conflicts = FALSE)
 
-# creating dataframe with rownames converted to a new column
+# creating data frame with rownames converted to a new column
 mtcars_new <- as_tibble(mtcars, rownames = "car")
 
 # simple function call with the defaults
