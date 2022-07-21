@@ -4,14 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    eval: FALSE
-    warning: FALSE
-    message: FALSE
 vignette: >
   %\VignetteIndexEntry{Pairwise comparisons with `{ggstatsplot}`}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,6 +14,7 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
+
 ## pretty tibble printing
 options(
   tibble.width = Inf,
@@ -36,8 +30,7 @@ knitr::opts_chunk$set(
   warning = FALSE,
   message = FALSE,
   out.width = "100%",
-  comment = "#>",
-  package.startup.message = FALSE
+  comment = "#>"
 )
 
 if (!requireNamespace("PMCMRplus", quietly = TRUE)) {

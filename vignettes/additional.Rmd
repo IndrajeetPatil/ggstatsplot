@@ -1,12 +1,10 @@
 ---
-title: "additional vignettes"
+title: "Additional vignettes"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
-    warning: FALSE
-    message: FALSE
 vignette: >
   %\VignetteIndexEntry{additional vignettes}
   %\VignetteEngine{knitr::rmarkdown}

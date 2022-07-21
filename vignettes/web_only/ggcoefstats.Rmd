@@ -4,14 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
-    error: TRUE
 vignette: >
   %\VignetteIndexEntry{ggcoefstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,6 +14,7 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
+
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -34,8 +28,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   message = FALSE,
   warning = FALSE,
-  error = TRUE,
-  package.startup.message = FALSE
+  out.width = "100%"
 )
 
 library(ggstatsplot)

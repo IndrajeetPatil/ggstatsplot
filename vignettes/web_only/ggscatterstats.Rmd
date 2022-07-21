@@ -4,13 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
 vignette: >
   %\VignetteIndexEntry{ggscatterstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,6 +14,7 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
+
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
