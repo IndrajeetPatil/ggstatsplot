@@ -302,6 +302,19 @@
     },
     "3": {
       "@type": "SoftwareApplication",
+      "identifier": "datawizard",
+      "name": "datawizard",
+      "version": ">= 0.4.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=datawizard"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -312,7 +325,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
-    "4": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
@@ -324,7 +337,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
-    "5": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "ggrepel",
       "name": "ggrepel",
@@ -336,7 +349,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggrepel"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "ggsignif",
       "name": "ggsignif",
@@ -348,7 +361,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggsignif"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
@@ -360,7 +373,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=glue"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
@@ -373,7 +386,7 @@
       },
       "sameAs": "https://github.com/easystats/insight"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
@@ -385,7 +398,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=paletteer"
     },
-    "10": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
@@ -398,7 +411,7 @@
       },
       "sameAs": "https://github.com/easystats/parameters"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
@@ -410,7 +423,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=patchwork"
     },
-    "12": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
@@ -423,7 +436,7 @@
       },
       "sameAs": "https://github.com/easystats/performance"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -435,7 +448,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -447,12 +460,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
@@ -465,7 +478,7 @@
       },
       "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
-    "17": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -477,14 +490,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "18": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "10240.618KB",
+  "fileSize": "10188.953KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

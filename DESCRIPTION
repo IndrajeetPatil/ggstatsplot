@@ -26,6 +26,7 @@ Depends:
     R (>= 4.0.0)
 Imports:
     correlation (>= 0.8.1),
+    datawizard (>= 0.4.1),
     dplyr,
     ggplot2,
     ggrepel,
