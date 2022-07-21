@@ -101,11 +101,8 @@ ggcorrmat <- function(data,
                       ...) {
   # dataframe -----------------------------------
 
-  if (missing(cor.vars)) {
-    df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
-  } else {
-    df <- select(data, {{ cor.vars }})
-  }
+  if (missing(cor.vars)) df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
+  if (!missing(cor.vars)) df <- select(data, {{ cor.vars }})
 
   # statistical analysis ------------------------------------------
 
