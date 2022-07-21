@@ -4,7 +4,10 @@ output: github_document
 
   <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r}
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
 ## show me all columns
 options(
   tibble.width = Inf,
@@ -65,7 +68,9 @@ Development | [![Project Status](https://www.repostatus.org/badges/latest/active
 If you want to cite this package in a scientific journal or in any other
 context, run the following code in your `R` console:
 
-```{r citation, comment=""}
+```{r}
+#| label = "citation",
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -169,7 +174,8 @@ This function creates either a violin plot, a box plot, or a mix of two for
 **between**-group or **between**-condition comparisons with results from
 statistical tests in the subtitle. The simplest function call looks like this-
 
-```{r ggbetweenstats1}
+```{r}
+#| label = "ggbetweenstats1"
 set.seed(123)
 
 ggbetweenstats(
@@ -195,7 +201,10 @@ informative or change some of the default options. Additionally, there is also a
 `grouped_` variant of this function that makes it easy to repeat the same
 operation across a **single** grouping variable:
 
-```{r ggbetweenstats2, fig.height=8, fig.width=12}
+```{r}
+#| label = "ggbetweenstats2",
+#| fig.height = 8,
+#| fig.width = 12
 set.seed(123)
 
 grouped_ggbetweenstats(
@@ -289,7 +298,10 @@ seen from an example below, the only difference between the plot structure is
 that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
-```{r ggwithinstats1, fig.width=8, fig.height=6}
+```{r}
+#| label = "ggwithinstats1",
+#| fig.width = 8,
+#| fig.height = 6
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run anova
@@ -325,7 +337,10 @@ As with the `ggbetweenstats`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
-```{r ggwithinstats2, fig.height=6, fig.width=14}
+```{r}
+#| label = "ggwithinstats2",
+#| fig.height = 6,
+#| fig.width = 14
 set.seed(123)
 
 grouped_ggwithinstats(
@@ -411,7 +426,9 @@ To visualize the distribution of a single variable and check if its mean is
 significantly different from a specified value with a one-sample test,
 `gghistostats` can be used.
 
-```{r gghistostats1, fig.width=8}
+```{r}
+#| label = "gghistostats1",
+#| fig.width = 8
 set.seed(123)
 
 gghistostats(
@@ -435,7 +452,10 @@ gghistostats(
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r gghistostats2, fig.height=6, fig.width=12}
+```{r}
+#| label = "gghistostats2",
+#| fig.height = 6,
+#| fig.width = 12
 set.seed(123)
 
 grouped_gghistostats(
@@ -500,7 +520,10 @@ For more, including information about the variant of this function
 This function is similar to `gghistostats`, but is intended to be used when the
 numeric variable also has a label.
 
-```{r ggdotplotstats1, fig.height=10, fig.width=8}
+```{r}
+#| label = "ggdotplotstats1",
+#| fig.height = 10,
+#| fig.width = 8
 set.seed(123)
 
 ggdotplotstats(
@@ -526,7 +549,10 @@ As with the rest of the functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
 
-```{r ggdotplotstats2, fig.height=6, fig.width=12}
+```{r}
+#| label = "ggdotplotstats2",
+#| fig.height = 6,
+#| fig.width = 12
 set.seed(123)
 
 grouped_ggdotplotstats(
@@ -584,7 +610,9 @@ Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 This function creates a scatterplot with marginal distributions overlaid on the
 axes and results from statistical tests in the subtitle:
 
-```{r ggscatterstats1, fig.height=6}
+```{r}
+#| label = "ggscatterstats1",
+#| fig.height = 6
 ggscatterstats(
   data  = ggplot2::msleep,
   x     = sleep_rem,
@@ -607,7 +635,10 @@ ggscatterstats(
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
 
-```{r ggscatterstats2, fig.height=8, fig.width=14}
+```{r}
+#| label = "ggscatterstats2",
+#| fig.height = 8,
+#| fig.width = 14
 set.seed(123)
 
 grouped_ggscatterstats(
@@ -657,7 +688,8 @@ available options, let's change some of the defaults. For example, multiple
 aesthetics-related arguments can be modified to change the appearance of the
 correlation matrix.
 
-```{r ggcorrmat1}
+```{r}
+#| label = "ggcorrmat1"
 set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
@@ -680,7 +712,10 @@ minimum, median, and maximum number of pairs used for correlation tests.
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
 
-```{r ggcorrmat2, fig.height=6, fig.width=10}
+```{r}
+#| label = "ggcorrmat2",
+#| fig.height = 6,
+#| fig.width = 10
 set.seed(123)
 
 grouped_ggcorrmat(
@@ -723,7 +758,10 @@ goodness of fit test) will be displayed as a subtitle.
 
 To study an interaction between two categorical variables:
 
-```{r ggpiestats1, fig.height=4, fig.width=8}
+```{r}
+#| label = "ggpiestats1",
+#| fig.height = 4,
+#| fig.width = 8
 set.seed(123)
 
 ggpiestats(
@@ -751,7 +789,10 @@ easy to repeat the same operation across a **single** grouping variable.
 Following example is a case where the theoretical question is about proportions
 for different levels of a single nominal variable:
 
-```{r ggpiestats2, fig.height=6, fig.width=10}
+```{r}
+#| label = "ggpiestats2",
+#| fig.height = 6,
+#| fig.width = 10
 set.seed(123)
 
 grouped_ggpiestats(
@@ -820,7 +861,10 @@ alternatively use `ggbarstats` function which has a similar syntax.
 N.B. The *p*-values from one-sample proportion test are displayed on top of each
 bar.
 
-```{r ggbarstats1, fig.height=8, fig.width=10}
+```{r}
+#| label = "ggbarstats1",
+#| fig.height = 8,
+#| fig.width = 10
 set.seed(123)
 library(ggplot2)
 
@@ -847,7 +891,10 @@ ggbarstats(
 
 And, needless to say, there is also a `grouped_` variant of this function-
 
-```{r ggbarstats2, fig.height=6, fig.width=12}
+```{r}
+#| label = "ggbarstats2",
+#| fig.height = 6,
+#| fig.width = 12
 ## setup
 set.seed(123)
 
@@ -938,7 +985,10 @@ be invariant across models:
   - The output of this function will be a `{ggplot2}` object and, thus, it can be
     further modified (e.g. change themes) with `{ggplot2}` functions.
 
-```{r ggcoefstats1, fig.height=5, fig.width=6}
+```{r}
+#| label = "ggcoefstats1",
+#| fig.height = 5,
+#| fig.width = 6
 set.seed(123)
 
 ## model
@@ -958,7 +1008,8 @@ ggcoefstats(mod)
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. 
 
-```{r supported}
+```{r}
+#| label = "supported"
 insight::supported_models()
 ```
 
@@ -993,7 +1044,8 @@ For a more exhaustive account of this function, see the associated vignette-
 statistical details that are used to create expressions displayed in
 `{ggstatsplot}` plots.
 
-```{r extract_stats}
+```{r}
+#| label = "extract_stats"
 set.seed(123)
 
 ## a list of tibbles containing statistical analysis summaries
@@ -1014,7 +1066,10 @@ statistical test.
 For example, in the following chunk, we will create our own plot using
 `{ggplot2}` package, and use `{ggstatsplot}` function for extracting expression:
 
-```{r customplot, fig.height=5, fig.width=6}
+```{r}
+#| label = "customplot",
+#| fig.height = 5,
+#| fig.width = 6
 ## loading the needed libraries
 set.seed(123)
 library(ggplot2)

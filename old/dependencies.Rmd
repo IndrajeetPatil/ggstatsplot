@@ -14,7 +14,9 @@ output:
     message: FALSE
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -42,7 +44,10 @@ knitr::opts_chunk$set(
 
 # Dependency graph
 
-```{r deepdep, fig.height=12, fig.width=12}
+```{r}
+#| label = "deepdep",
+#| fig.height = 12,
+#| fig.width = 12
 library(deepdep)
 
 plot_dependencies("ggstatsplot", depth = 3)

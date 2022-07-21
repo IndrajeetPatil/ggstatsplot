@@ -17,7 +17,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 ## pretty tibble printing
 options(
   tibble.width = Inf,
@@ -43,7 +45,10 @@ library(ggstatsplot)
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -77,7 +82,8 @@ provides values for life expectancy, Gross Domestic Product (GDP) per capita,
 and population, every five years, from 1952 to 2007, for each of 142 countries
 and was collected by the Gapminder Foundation. Let's have a look at the data-
 
-```{r gapminder}
+```{r}
+#| label = "gapminder"
 library(gapminder)
 library(dplyr)
 
@@ -90,7 +96,10 @@ the year 2007.
 
 The simplest way to get a correlation matrix is to stick to the defaults-
 
-```{r ggcorrmat1, fig.height = 6, fig.width = 6}
+```{r}
+#| label = "ggcorrmat1",
+#| fig.height = 6,
+#| fig.width = 6
 ## setup
 set.seed(123)
 library(ggstatsplot)
@@ -107,7 +116,10 @@ ggcorrmat(
 
 This plot can be further modified with additional arguments-
 
-```{r ggcorrmat2, fig.height = 6, fig.width = 6}
+```{r}
+#| label = "ggcorrmat2",
+#| fig.height = 6,
+#| fig.width = 6
 ggcorrmat(
   data = gapminder_2007, ## data from which variable is to be taken
   cor.vars = lifeExp:gdpPercap, ## specifying correlation matrix variables
@@ -141,7 +153,8 @@ contains the prices and other attributes of almost 54,000 diamonds.
 
 Let's have a look at the data-
 
-```{r diamonds}
+```{r}
+#| label = "diamonds"
 library(ggplot2)
 
 dplyr::glimpse(ggplot2::diamonds)
@@ -150,7 +163,10 @@ dplyr::glimpse(ggplot2::diamonds)
 Let's see the correlation matrix between different attributes of the diamond and
 the price.
 
-```{r ggcorrmat3, fig.height = 7, fig.width = 7}
+```{r}
+#| label = "ggcorrmat3",
+#| fig.height = 7,
+#| fig.width = 7
 ## for reproducibility
 set.seed(123)
 
@@ -175,7 +191,10 @@ We can make a number of changes to this basic correlation matrix. For example,
 since we were interested in relationship between price and other attributes,
 let's make the `price` column to the the first column.
 
-```{r ggcorrmat4, fig.height = 7, fig.width = 7}
+```{r}
+#| label = "ggcorrmat4",
+#| fig.height = 7,
+#| fig.width = 7
 ## for reproducibility
 set.seed(123)
 
@@ -223,7 +242,8 @@ Another utility of `ggcorrmat` is in obtaining a dataframe containing all
 details from statistical analyses. Such dataframes can be easily embedded in
 manuscripts as tables.
 
-```{r ggcorrmat5}
+```{r}
+#| label = "ggcorrmat5"
 ## for reproducibility
 set.seed(123)
 
@@ -241,7 +261,8 @@ Note that if `cor.vars` are not specified, all numeric variables will be used.
 Moreover, you can also use abbreviations to specify what output you want in
 return. Additionally, one can also carry out **partial** correlation analysis:
 
-```{r ggcorrmat6}
+```{r}
+#| label = "ggcorrmat6"
 ## for reproducibility
 set.seed(123)
 options(pillar.sigfig = 4)
@@ -267,7 +288,10 @@ a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc. 
 
-```{r ggcorrmat7, fig.height = 16, fig.width = 10}
+```{r}
+#| label = "ggcorrmat7",
+#| fig.height = 16,
+#| fig.width = 10
 ## for reproducibility
 set.seed(123)
 
@@ -290,7 +314,8 @@ grouped_ggcorrmat(
 Note that this function also makes it easy to run the same correlation matrix
 across different levels of a factor/grouping variable.
 
-```{r ggcorrmat8}
+```{r}
+#| label = "ggcorrmat8"
 ## for reproducibility
 set.seed(123)
 

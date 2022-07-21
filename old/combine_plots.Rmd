@@ -17,7 +17,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -30,7 +32,10 @@ knitr::opts_chunk$set(
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -63,7 +68,10 @@ The easiest way to run the same `{ggstatsplot}` operation across multiple groupi
 variables is by using `dplyr::group_map` functions and then - of course - one
 would like to combine these plots in a single plot.
 
-```{r ggscatterstats_groupmap, fig.height = 6, fig.width = 10}
+```{r}
+#| label = "ggscatterstats_groupmap",
+#| fig.height = 6,
+#| fig.width = 10
 # libraries
 set.seed(123)
 library(tidyverse)
@@ -98,7 +106,10 @@ gluing the results or using `patchwork` directly, we'll create a `tibble` called
 `plots` using `purrr::map` then feed that to `combine_plots` to get our combined
 plot.
 
-```{r ggscatterstats_purrr, fig.height = 12, fig.width = 8}
+```{r}
+#| label = "ggscatterstats_purrr",
+#| fig.height = 12,
+#| fig.width = 8
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -159,7 +170,10 @@ is of that is a list of plots called `plots`.  We then feed `plots` to the
 the countries which have very low life expectancy (< 45 years) by labeling those
 countries when they occur.
 
-```{r ggscatterstats_plyr, fig.height = 12, fig.width = 12}
+```{r}
+#| label = "ggscatterstats_plyr",
+#| fig.height = 12,
+#| fig.width = 12
 library(plyr)
 library(gapminder)
 
@@ -209,7 +223,10 @@ caption. But we want to add at the bottom an annotation to show the formula we
 are using for our regression.  `combine_plots` allows us to add `sub.text =` to
 accomplish that task as shown in the resulting plot.
 
-```{r ggbetweenstats_subtext, fig.height = 8, fig.width = 8}
+```{r}
+#| label = "ggbetweenstats_subtext",
+#| fig.height = 8,
+#| fig.width = 8
 library(ggstatsplot)
 
 combine_plots(

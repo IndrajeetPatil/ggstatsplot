@@ -17,7 +17,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE, warning = FALSE, message = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE,
+#| warning = FALSE,
+#| message = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"

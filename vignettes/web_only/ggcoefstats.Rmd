@@ -18,7 +18,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -43,7 +45,10 @@ library(ggstatsplot)
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment=""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -92,7 +97,8 @@ be invariant across models:
 Most of the regression models that are supported in the underlying packages are
 also supported by `ggcoefstats`. 
 
-```{r supported}
+```{r}
+#| label = "supported"
 insight::supported_models()
 ```
 
@@ -127,7 +133,10 @@ old version can be found [here](https://github.com/IndrajeetPatil/ggstatsplot/bl
 
 linear model (`lm`) and linear mixed-effects model (`lmer`/`lmerMod`)
 
-```{r lmer1, fig.height=8, fig.width=6}
+```{r}
+#| label = "lmer1",
+#| fig.height = 8,
+#| fig.width = 6
 # set up
 library(lme4)
 library(ggstatsplot)
@@ -164,7 +173,8 @@ there are no confidence intervals for *random* effects terms. In case, you would
 like to see these terms, you can enter the same object you entered as `x`
 argument to `parameters::model_parameters`:
 
-```{r lmer2}
+```{r}
+#| label = "lmer2"
 # setup
 set.seed(123)
 library(lme4)
@@ -184,7 +194,10 @@ parameters::model_parameters(
 
 Aalen's additive regression model for censored data (`aareg`)
 
-```{r aareg, fig.height=5, fig.width=5}
+```{r}
+#| label = "aareg",
+#| fig.height = 5,
+#| fig.width = 5
 # setup
 library(survival)
 set.seed(123)
@@ -209,7 +222,10 @@ ggcoefstats(
 
 Cox proportional hazards regression model (`coxph`)
 
-```{r coxph, fig.height=4, fig.width=4}
+```{r}
+#| label = "coxph",
+#| fig.height = 4,
+#| fig.width = 4
 # for reproducibility
 set.seed(123)
 library(survival)
@@ -238,7 +254,10 @@ ggcoefstats(
 
 Another example with `frailty` term.
 
-```{r coxph.penal, fig.height=4, fig.width=4}
+```{r}
+#| label = "coxph.penal",
+#| fig.height = 4,
+#| fig.width = 4
 # setup
 set.seed(123)
 library(survival)
@@ -260,7 +279,10 @@ ggcoefstats(
 
 omnibus ANOVA (`aov`)
 
-```{r aov1, fig.height=6, fig.width=8}
+```{r}
+#| label = "aov1",
+#| fig.height = 6,
+#| fig.width = 8
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -288,7 +310,10 @@ ggcoefstats(
 Note that we can also use this function for model selection. You can try out
 different models with the code below and see how the AIC and BIC values change.
 
-```{r aov2, fig.height=10, fig.width=10}
+```{r}
+#| label = "aov2",
+#| fig.height = 10,
+#| fig.width = 10
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -323,7 +348,10 @@ combine_plots(
 
 Another example with multivariate analysis of variance (`manova`):
 
-```{r manova, fig.height=8, fig.width=8}
+```{r}
+#| label = "manova",
+#| fig.height = 8,
+#| fig.width = 8
 # setup
 set.seed(123)
 
@@ -342,7 +370,10 @@ ggcoefstats(
 
 ### Bayesian models - no statistic
 
-```{r BFBayesFactor, fig.width=10, fig.height=10}
+```{r}
+#| label = "BFBayesFactor",
+#| fig.width = 10,
+#| fig.height = 10
 # setup
 set.seed(123)
 library(BayesFactor)
@@ -468,7 +499,10 @@ you enter **must** contain at the minimum the following three columns-
 
 ### parametric
 
-```{r meta1, fig.height=7, fig.width=8}
+```{r}
+#| label = "meta1",
+#| fig.height = 7,
+#| fig.width = 8
 # setup
 set.seed(123)
 library(metaplus)
@@ -488,7 +522,10 @@ ggcoefstats(
 
 ### robust
 
-```{r meta2, fig.height=7, fig.width=8}
+```{r}
+#| label = "meta2",
+#| fig.height = 7,
+#| fig.width = 8
 # setup
 set.seed(123)
 library(metaplus)
@@ -507,7 +544,10 @@ ggcoefstats(
 
 ### Bayesian
 
-```{r meta3, fig.height=7, fig.width=8}
+```{r}
+#| label = "meta3",
+#| fig.height = 7,
+#| fig.width = 8
 # setup
 set.seed(123)
 library(metaplus)
@@ -538,7 +578,10 @@ statistical labels.
 You can also provide a dataframe containing all the other relevant information
 for additionally displaying labels with statistical information.
 
-```{r dataframe, fig.height=7, fig.width=7}
+```{r}
+#| label = "dataframe",
+#| fig.height = 7,
+#| fig.width = 7
 # let's make up a dataframe (with all available details)
 df_full <-
   tibble::tribble(
@@ -567,7 +610,9 @@ This function can also be used to extract outputs other than a plot, although it
 is much more preferable to use the underlying functions instead
 (`parameters::model_parameters`).
 
-```{r other_output, error=TRUE}
+```{r}
+#| label = "other_output",
+#| error = TRUE
 # setup
 set.seed(123)
 library(ggstatsplot)

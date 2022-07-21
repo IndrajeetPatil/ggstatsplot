@@ -18,7 +18,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 ## pretty tibble printing
 options(
   tibble.width = Inf,
@@ -42,7 +44,10 @@ knitr::opts_chunk$set(
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 

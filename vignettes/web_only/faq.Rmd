@@ -16,7 +16,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 ## show me all columns
 options(
   tibble.width = Inf,
@@ -48,7 +50,10 @@ library(ggstatsplot)
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment=""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -72,7 +77,8 @@ Sometimes you may not wish include so many details in the subtitle. In that
 case, you can extract the expression and copy-paste only the part you wish to
 include. For example, here only statistic and *p*-values are included:
 
-```{r custom_expr}
+```{r}
+#| label = "custom_expr"
 # setup
 set.seed(123)
 library(ggstatsplot)
@@ -114,7 +120,8 @@ to do so using the underlying function used to carry out statistical analysis.
 For example, the following returns only the plot but not the statistical details
 in a subtitle.
 
-```{r null_subtitle}
+```{r}
+#| label = "null_subtitle"
 set.seed(123)
 df <- data.frame(x = 1, y = 2)
 ggscatterstats(df, x, y, type = "robust")
@@ -123,7 +130,8 @@ ggscatterstats(df, x, y, type = "robust")
 To see why the statistical analysis failed, you can look at the error from the
 underlying function:
 
-```{r, error=TRUE}
+```{r}
+#| error = TRUE
 library(statsExpressions)
 df <- data.frame(x = 1, y = 2)
 corr_test(df, x, y, type = "robust")
@@ -144,7 +152,9 @@ Summary of all analysis is handily available in `README`:
 Given that all functions in `{ggstatsplot}` use tidy evaluation, running these
 functions in a `for` loop requires minor adjustment to how inputs are entered:
 
-```{r loop, eval=FALSE}
+```{r}
+#| label = "loop",
+#| eval = FALSE
 col.name <- colnames(mtcars)
 
 # executing the function in a `for` loop
@@ -168,7 +178,10 @@ Across different facets of a `grouped_` plot, the axes ranges might sometimes
 differ. You can use the `ggplot.component` parameter (present in all functions)
 to have the same scale across the individual plots:
 
-```{r grouped_y_axes, fig.height=6, fig.width=8}
+```{r}
+#| label = "grouped_y_axes",
+#| fig.height = 6,
+#| fig.width = 8
 # for reproducibility
 set.seed(123)
 
@@ -214,7 +227,10 @@ easily achieved using `{purrr}` package.
 
 Here is an example-
 
-```{r grouped_2, fig.width=6, fig.height=6}
+```{r}
+#| label = "grouped_2",
+#| fig.width = 6,
+#| fig.height = 6
 # setup
 set.seed(123)
 
@@ -248,7 +264,10 @@ combine_plots(
 
 ## 10. How can I include statistical expressions in facet labels?
 
-```{r facet_expr, fig.width=6, fig.height=8}
+```{r}
+#| label = "facet_expr",
+#| fig.width = 6,
+#| fig.height = 8
 set.seed(123)
 library(ggplot2)
 
@@ -256,12 +275,12 @@ library(ggplot2)
 mtcars1 <- mtcars
 
 statistics <- grouped_ggbetweenstats(
-    data = mtcars1,
-    x = cyl,
-    y = mpg,
-    grouping.var = am,
-    output = "subtitle"
-  )
+  data = mtcars1,
+  x = cyl,
+  y = mpg,
+  grouping.var = am,
+  output = "subtitle"
+)
 
 mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = statistics)
 
@@ -284,7 +303,10 @@ comparisons. But what if I am only interested in just one particular comparison?
 
 Here is a workaround using `ggsignif`:
 
-```{r custom_pairwise, fig.width=7, fig.height=6}
+```{r}
+#| label = "custom_pairwise",
+#| fig.width = 7,
+#| fig.height = 6
 set.seed(123)
 library(ggsignif)
 
@@ -313,7 +335,8 @@ annotation labels?
 
 You will have to customize them using `pairwiseComparisons` and `ggsignif:`
 
-```{r comp_asterisks}
+```{r}
+#| label = "comp_asterisks"
 set.seed(123)
 library(ggplot2)
 library(ggsignif)
@@ -347,7 +370,8 @@ p +
 
 You can use the `extract_stats()` helper function for this.
 
-```{r onesample_df}
+```{r}
+#| label = "onesample_df"
 # setup
 set.seed(123)
 library(ggplot2)
@@ -365,7 +389,10 @@ remove them by setting transparency (`alpha`) for that layer to 0.
 
 For example, let's say I want to remove the points from `ggwithintstats()` plot:
 
-```{r geom_removal, fig.width=7, fig.height=5}
+```{r}
+#| label = "geom_removal",
+#| fig.width = 7,
+#| fig.height = 5
 library(ggstatsplot)
 
 # before
@@ -393,7 +420,8 @@ ggwithinstats(
 Sometimes you may not be satisfied with the available color palette values. In
 this case, you can also change the colors by manually specifying these values.
 
-```{r ggbar_colors}
+```{r}
+#| label = "ggbar_colors"
 set.seed(123)
 library(ggplot2)
 
@@ -403,7 +431,10 @@ ggbarstats(mtcars, am, cyl, results.subtitle = FALSE) +
 
 The same can also be done for `grouped_` functions:
 
-```{r ggpie_colors, fig.width=12, fig.height=6}
+```{r}
+#| label = "ggpie_colors",
+#| fig.width = 12,
+#| fig.height = 6
 grouped_ggpiestats(
   data = mtcars,
   grouping.var = am,
@@ -418,7 +449,8 @@ All `{ggstatsplot}` are `ggplot` objects, which can be further modified, just li
 any other `ggplot` object. But exception to these are all plots returned by
 `grouped_` functions, but there is a way to tackle this.
 
-```{r grouped_modify}
+```{r}
+#| label = "grouped_modify"
 set.seed(123)
 library(paletteer)
 library(ggplot2)
@@ -473,7 +505,10 @@ In such cases, you can override the defaults and use `{statsExpressions}` to
 create custom expressions to display in the plot. But be forewarned that the
 expression building function in `{statsExpressions}` is not stable yet.
 
-```{r custom_test, fig.width=6, fig.height=6}
+```{r}
+#| label = "custom_test",
+#| fig.width = 6,
+#| fig.height = 6
 ## setup
 set.seed(123)
 library(correlation)
@@ -497,7 +532,7 @@ df_results <- statsExpressions::add_expression_col(
 )
 
 # using custom expression in plot
-ggscatterstats(df, wt, mpg, results.subtitle = FALSE) + 
+ggscatterstats(df, wt, mpg, results.subtitle = FALSE) +
   labs(subtitle = df_results$expression[[1]])
 ```
 

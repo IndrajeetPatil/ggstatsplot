@@ -17,7 +17,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(
@@ -36,7 +38,10 @@ library(ggstatsplot)
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -82,7 +87,8 @@ including economic status (class), sex, age, and survival."
 
 Let's have a look at the structure of both.
 
-```{r titanic1}
+```{r}
+#| label = "titanic1"
 library(dplyr)
 library(ggstatsplot)
 
@@ -104,7 +110,10 @@ that we'd like to display a piechart with the percentages of passengers who did
 or did not survive. Our initial hypothesis is that it was no different than
 flipping a coin. People had a 50/50 chance of surviving.
 
-```{r ggpiestats3, fig.height = 5, fig.width = 6}
+```{r}
+#| label = "ggpiestats3",
+#| fig.height = 5,
+#| fig.width = 6
 #  for reproducibility
 set.seed(123)
 
@@ -129,8 +138,11 @@ Let's next investigate whether the passenger's gender was independent of, or
 associated with, gender. The test is whether the proportion of people who
 survived was different between the sexes using `ggpiestats`.
 
-```{r ggpiestats1, fig.height = 5, fig.width = 8}
-#for reproducibility
+```{r}
+#| label = "ggpiestats1",
+#| fig.height = 5,
+#| fig.width = 8
+# for reproducibility
 set.seed(123)
 
 ## plot
@@ -167,7 +179,10 @@ specified **grouping variable** and then combines the list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
 in a given study, groups in a study sample, different studies, etc.
 
-```{r ggpiestats4, fig.height = 10, fig.width = 8}
+```{r}
+#| label = "ggpiestats4",
+#| fig.height = 10,
+#| fig.width = 8
 # for reproducibility
 set.seed(123)
 
@@ -212,7 +227,10 @@ boats (`A` and `B`) about the number of different types fish they caught in the
 months of `February` and `March`. In this data frame, each row corresponds to a
 unique combination of `Boat` and `Month`.
 
-```{r ggpiestats7, fig.height = 8, fig.width = 9}
+```{r}
+#| label = "ggpiestats7",
+#| fig.height = 8,
+#| fig.width = 9
 # for reproducibility
 set.seed(123)
 
@@ -251,7 +269,10 @@ When the data is organized this way, we make a slightly different call to the
 If we want to investigate the relationship of type of fish by month (a test of
 independence), our command would be:
 
-```{r ggpiestats8, fig.height = 5, fig.width = 8}
+```{r}
+#| label = "ggpiestats8",
+#| fig.height = 5,
+#| fig.width = 8
 ggpiestats(
   data = fishing,
   x = Fish,
@@ -286,18 +307,21 @@ from **McNemar test** in the subtitle.
 (**Note:** If you forget to set `paired = TRUE`, the results will be
 inaccurate.)
 
-```{r ggpiestats9, fig.height = 5, fig.width = 8}
+```{r}
+#| label = "ggpiestats9",
+#| fig.height = 5,
+#| fig.width = 8
 # for reproducibility
 set.seed(123)
 
 # create our imaginary data
 clinical_trial <- tibble::tribble(
-    ~SickBefore, ~SickAfter, ~Counts,
-    "No", "Yes", 4,
-    "Yes", "No", 25,
-    "Yes", "Yes", 13,
-    "No", "No", 92
-  )
+  ~SickBefore, ~SickAfter, ~Counts,
+  "No", "Yes", 4,
+  "Yes", "No", 25,
+  "Yes", "Yes", 13,
+  "No", "No", 92
+)
 
 # plot
 ggpiestats(
@@ -376,7 +400,8 @@ reported statistics.
 
 For example, let's see the following example:
 
-```{r reporting}
+```{r}
+#| label = "reporting"
 ggpiestats(mtcars, am, cyl)
 ```
 

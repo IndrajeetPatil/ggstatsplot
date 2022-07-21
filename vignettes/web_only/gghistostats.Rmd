@@ -17,7 +17,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 ## show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
@@ -35,7 +37,10 @@ knitr::opts_chunk$set(
 
 You can cite this package/vignette as:
 
-```{r citation, echo=FALSE, comment = ""}
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
 citation("ggstatsplot")
 ```
 
@@ -61,7 +66,8 @@ Let's begin with a very simple example from the `psych` package
 Quantitative and ACT tests. ACT composite scores may range from 1 - 36. National
 norms have a mean of 20.
 
-```{r psychact}
+```{r}
+#| label = "psychact"
 ## loading needed libraries
 library(ggstatsplot)
 library(psych)
@@ -81,7 +87,10 @@ Let's display the national norms (labeled as "Test") and test the hypothesis
 that our sample mean is the same as our national population mean of 20 using a
 parametric one sample *t*-test (`type = "p"`).
 
-```{r psychact3, fig.height = 6, fig.width = 7}
+```{r}
+#| label = "psychact3",
+#| fig.height = 6,
+#| fig.width = 7
 set.seed(123)
 
 gghistostats(
@@ -114,7 +123,10 @@ given study, groups in a study sample, different studies, etc.
 Let's see how we can use this function to apply `gghistostats` to accomplish our
 task. 
 
-```{r grouped1, fig.height = 10, fig.width = 7}
+```{r}
+#| label = "grouped1",
+#| fig.height = 10,
+#| fig.width = 7
 set.seed(123)
 
 grouped_gghistostats(
@@ -205,7 +217,8 @@ reported statistics.
 
 For example, let's see the following example:
 
-```{r reporting}
+```{r}
+#| label = "reporting"
 gghistostats(trees, Height, test.value = 75)
 ```
 

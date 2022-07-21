@@ -14,7 +14,9 @@ output:
     message: FALSE
 ---
 
-```{r setup, include = FALSE}
+```{r}
+#| label = "setup",
+#| include = FALSE
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -40,7 +42,8 @@ changes across time.
 
 # `ggbetweenstats`
 
-```{r ggbetweenstats}
+```{r}
+#| label = "ggbetweenstats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -73,7 +76,8 @@ bench::mark(
 
 # `ggwithinstats`
 
-```{r ggwithinstats}
+```{r}
+#| label = "ggwithinstats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -100,7 +104,8 @@ bench::mark(
 
 # `gghistostats`
 
-```{r gghistostats}
+```{r}
+#| label = "gghistostats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -114,7 +119,8 @@ bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am))
 
 # `ggdotplotstats`
 
-```{r ggdotplotstats}
+```{r}
+#| label = "ggdotplotstats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -141,7 +147,8 @@ bench::mark(
 
 # `ggscatterstats`
 
-```{r ggscatterstats}
+```{r}
+#| label = "ggscatterstats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -155,7 +162,8 @@ bench::mark(grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)) %>%
 
 # `ggcorrmat`
 
-```{r ggcorrmat}
+```{r}
+#| label = "ggcorrmat"
 library(ggstatsplot)
 
 set.seed(123)
@@ -169,7 +177,8 @@ bench::mark(grouped_ggcorrmat(iris, grouping.var = Species)) %>%
 
 # `ggpiestats`
 
-```{r ggpiestats}
+```{r}
+#| label = "ggpiestats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -183,7 +192,8 @@ bench::mark(grouped_ggpiestats(mtcars, cyl, grouping.var = am)) %>%
 
 # `ggbarstats`
 
-```{r ggbarstats}
+```{r}
+#| label = "ggbarstats"
 library(ggstatsplot)
 
 set.seed(123)
@@ -197,7 +207,8 @@ bench::mark(grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %>%
 
 # `ggcoefstats`
 
-```{r ggcoefstats}
+```{r}
+#| label = "ggcoefstats"
 library(ggstatsplot)
 
 set.seed(123)
