@@ -138,13 +138,6 @@ ggcorrmat <- function(data,
 
   # plot ------------------------------------------
 
-  # in case of NAs, compute minimum and maximum sample sizes of pairs
-  # also compute mode
-  getmode <- function(v) {
-    uniqv <- unique(v)
-    uniqv[which.max(tabulate(match(v, uniqv)))]
-  }
-
   # installed?
   check_if_installed("ggcorrplot")
 
@@ -160,7 +153,7 @@ ggcorrmat <- function(data,
       atop(
         atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
         atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(getmode(mpc_df$n_Obs))),
+          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(mpc_df$n_Obs))),
           italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
         )
       ),
