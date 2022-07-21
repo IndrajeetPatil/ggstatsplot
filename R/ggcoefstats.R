@@ -9,17 +9,17 @@
 #'
 #' @param x A model object to be tidied, or a tidy data frame containing results
 #'   from a regression model. Function internally uses
-#'   `parameters::model_parameters()` to get a tidy dataframe. If a dataframe is
+#'   `parameters::model_parameters()` to get a tidy data frame. If a data frame is
 #'   entered, it *must* contain at the minimum two columns named `term` (names
 #'   of predictors) and `estimate` (corresponding estimates of coefficients or
 #'   other quantities of interest).
 #' @param output Character describing the expected output from this function:
 #'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
-#'   dataframe of results `parameters::model_parameters`) or `"glance"` (object
+#'   data frame of results `parameters::model_parameters`) or `"glance"` (object
 #'   from `performance::model_performance`).
 #' @param statistic Which statistic is to be displayed (either `"t"` or `"f"`or
 #'   `"z"` or `"chi"`) in the label. This is relevant if the `x` argument is a
-#'   *dataframe*.
+#'   *data frame*.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
@@ -107,7 +107,7 @@
 #' # to get a plot
 #' ggcoefstats(mod, output = "plot")
 #'
-#' # to get a tidy dataframe
+#' # to get a tidy data frame
 #' ggcoefstats(mod, output = "tidy")
 #'
 #' # to get a glance summary
@@ -161,7 +161,7 @@ ggcoefstats <- function(x,
     if (is.null(statistic)) stats.labels <- FALSE
   }
 
-  # tidy dataframe -------------------------
+  # tidy data frame -------------------------
 
   if (insight::is_model(x)) {
     statistic <- insight::find_statistic(x)
@@ -170,7 +170,7 @@ ggcoefstats <- function(x,
     if (effsize == "eta") eta_squared <- "partial"
     if (effsize == "omega") omega_squared <- "partial"
 
-    # converting model object to a tidy dataframe
+    # converting model object to a tidy data frame
     tidy_df <- parameters::model_parameters(
       model         = x,
       eta_squared   = eta_squared,
@@ -187,10 +187,10 @@ ggcoefstats <- function(x,
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
   }
 
-  # tidy dataframe cleanup -------------------------
+  # tidy data frame cleanup -------------------------
 
   if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
-    rlang::abort("The tidy dataframe *must* contain 'estimate' column.")
+    rlang::abort("The tidy data frame *must* contain 'estimate' column.")
   }
 
   # create a new term column if it's not present

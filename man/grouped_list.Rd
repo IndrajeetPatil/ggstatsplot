@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{grouped_list}
 \alias{grouped_list}
-\title{Split dataframe into a list by grouping variable.}
+\title{Split data frame into a list by grouping variable.}
 \usage{
 grouped_list(data, grouping.var = NULL)
 }

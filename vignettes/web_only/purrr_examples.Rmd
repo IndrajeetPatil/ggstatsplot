@@ -127,7 +127,7 @@ a 3 item `list` called `year_list` using `dplyr::filter` and `split`.
 library(ggstatsplot)
 set.seed(123)
 
-## let's split the dataframe and create a list by years of interest
+## let's split the data frame and create a list by years of interest
 year_list <- gapminder::gapminder %>%
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
   split(f = .$year, drop = TRUE)
@@ -227,7 +227,7 @@ library(ggstatsplot)
 library(ez)
 data("ANT") ## loading data from `ez` package
 
-## let's split the dataframe and create a list by years of interest
+## let's split the data frame and create a list by years of interest
 cue_list <- ANT %>% split(f = .$cue, drop = TRUE)
 
 ## checking the length of the list and the names of each element
@@ -360,7 +360,7 @@ methodology as the earlier examples.
 ## for reproducibility
 set.seed(123)
 
-## splitting the dataframe by cut and creating a list
+## splitting the data frame by cut and creating a list
 ## let's leave out "fair" cut
 ## also, to make this fast, let's only use 5% of the sample
 cut_list <- ggplot2::diamonds %>%
@@ -419,7 +419,7 @@ combine_plots(
 ## for reproducibility
 set.seed(123)
 
-## let's split the dataframe and create a list by continent
+## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
 continent_list <-
   gapminder::gapminder %>%
@@ -479,7 +479,7 @@ set.seed(123)
 library(ggthemes)
 library(hrbrthemes)
 
-## let's split the dataframe and create a list by continent
+## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
 continent_list <-
   gapminder::gapminder %>%
@@ -540,7 +540,7 @@ combine_plots(
 ## for reproducibility
 set.seed(123)
 
-## let's split the dataframe and create a list by passenger class
+## let's split the data frame and create a list by passenger class
 class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
 
 ## checking the length and names of each element
@@ -598,7 +598,7 @@ combine_plots(
 ## for reproducibility
 set.seed(123)
 
-## let's split the dataframe and create a list by passenger class
+## let's split the data frame and create a list by passenger class
 class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
 
 ## checking the length and names of each element
@@ -680,7 +680,7 @@ plotlist <- purrr::pmap(
 length(plotlist)
 ```
 
-## Repeating function execution across multiple columns in a dataframe
+## Repeating function execution across multiple columns in a data frame
 
 ```r
 ## setup

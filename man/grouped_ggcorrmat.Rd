@@ -97,7 +97,7 @@ thus the details as well.}
 
 \item{output}{Character that decides expected output from this function. If
 \code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or
-literally anything other than \code{"plot"}), a dataframe containing all details
+literally anything other than \code{"plot"}), a data frame containing all details
 from statistical analyses (e.g., correlation coefficients, statistic
 values, \emph{p}-values, no. of observations, etc.) will be returned.}
 
@@ -135,7 +135,7 @@ if (require("ggcorrplot")) {
   )
 }
 
-# for dataframe
+# for data frame
 grouped_ggcorrmat(
   data = ggplot2::msleep,
   grouping.var = vore,

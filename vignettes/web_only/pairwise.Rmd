@@ -114,7 +114,7 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggplot(mtcars, aes(cyl, wt)) +
   geom_boxplot()
 
-## using `pairwise_comparisons()` package to create a dataframe with results
+## using `pairwise_comparisons()` package to create a data frame with results
 set.seed(123)
 (df <-
   pairwise_comparisons(mtcars, cyl, wt) %>%
@@ -147,7 +147,7 @@ library(ggsignif)
 p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
   geom_boxplot()
 
-## using `pairwise_comparisons()` package to create a dataframe with results
+## using `pairwise_comparisons()` package to create a data frame with results
 set.seed(123)
 (df <-
   pairwise_comparisons(

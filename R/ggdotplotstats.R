@@ -72,7 +72,7 @@ ggdotplotstats <- function(data,
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # creating a dataframe
+  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
@@ -212,7 +212,7 @@ grouped_ggdotplotstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  # dataframe
+  # data frame
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects

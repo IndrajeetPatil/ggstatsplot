@@ -66,7 +66,7 @@ ggridgestats <- function(data,
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # creating a dataframe
+  # creating a data frame
   data %<>%
     dplyr::select({{ x }}, {{ y }}) %>%
     tidyr::drop_na(.) %>%
@@ -173,7 +173,7 @@ ggridgestats <- function(data,
   # ggsignif labels -------------------------------------
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {
-    # creating dataframe with pairwise comparison results
+    # creating data frame with pairwise comparison results
     mpc_df <- pairwise_comparisons(
       data = data,
       x = {{ x }},

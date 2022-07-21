@@ -3,7 +3,7 @@
 #'
 #' @description
 #'
-#' Correlation matrix or a dataframe containing results from pairwise
+#' Correlation matrix or a data frame containing results from pairwise
 #' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for
 #' creating the visualization matrix, while the correlation analysis is carried
 #' out using the `correlation::correlation` function.
@@ -21,7 +21,7 @@
 #'   Bayesian correlation based on frequentist partialization) are returned.
 #' @param output Character that decides expected output from this function. If
 #'   `"plot"`, the visualization matrix will be returned. If `"dataframe"` (or
-#'   literally anything other than `"plot"`), a dataframe containing all details
+#'   literally anything other than `"plot"`), a data frame containing all details
 #'   from statistical analyses (e.g., correlation coefficients, statistic
 #'   values, *p*-values, no. of observations, etc.) will be returned.
 #' @param matrix.type Character, `"upper"` (default), `"lower"`, or `"full"`,
@@ -63,7 +63,7 @@
 #' # to get a plot (assumes that `ggcorrplot` is installed)
 #' if (require("ggcorrplot")) ggcorrmat(iris)
 #'
-#' # to get a dataframe
+#' # to get a data frame
 #' ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   cor.vars = sleep_total:bodywt,
@@ -99,7 +99,7 @@ ggcorrmat <- function(data,
                       subtitle = NULL,
                       caption = NULL,
                       ...) {
-  # dataframe -----------------------------------
+  # data frame -----------------------------------
 
   if (missing(cor.vars)) df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
   if (!missing(cor.vars)) df <- select(data, {{ cor.vars }})
@@ -109,7 +109,7 @@ ggcorrmat <- function(data,
   # if any of the abbreviations have been entered, change them
   type <- stats_type_switch(type)
 
-  # creating a dataframe of results
+  # creating a data frame of results
   mpc_df <- correlation::correlation(
     data             = df,
     rename           = cor.vars.names,
@@ -249,7 +249,7 @@ ggcorrmat <- function(data,
 #'   )
 #' }
 #'
-#' # for dataframe
+#' # for data frame
 #' grouped_ggcorrmat(
 #'   data = ggplot2::msleep,
 #'   grouping.var = vore,
@@ -264,7 +264,7 @@ grouped_ggcorrmat <- function(data,
                               output = "plot",
                               plotgrid.args = list(),
                               annotation.args = list()) {
-  # dataframe
+  # data frame
   data %<>%
     grouped_list({{ grouping.var }}) %>%
     purrr::map(.f = ~ select(.x, -{{ grouping.var }}))

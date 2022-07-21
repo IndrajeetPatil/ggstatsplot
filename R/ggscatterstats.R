@@ -57,7 +57,7 @@
 #' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # creating dataframe with rownames converted to a new column
+#' # creating data frame with rownames converted to a new column
 #' mtcars_new <- as_tibble(mtcars, rownames = "car")
 #'
 #' # simple function call with the defaults
@@ -127,7 +127,7 @@ ggscatterstats <- function(data,
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # preparing the dataframe
+  # preparing the data frame
   data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
@@ -292,7 +292,7 @@ grouped_ggscatterstats <- function(data,
                                    output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  # getting the dataframe ready
+  # getting the data frame ready
   data %<>% grouped_list({{ grouping.var }})
 
   # creating a list of plots

@@ -120,7 +120,7 @@ plots <- iris %>%
   # just creates a copy of this variable
   dplyr::group_by(Species) %>%
   tidyr::nest(.) %>%
-  # a nested dataframe with list column called `data`
+  # a nested data frame with list column called `data`
   dplyr::mutate(
     plot = data %>%
       purrr::map(

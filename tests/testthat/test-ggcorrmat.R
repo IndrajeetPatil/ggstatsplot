@@ -81,10 +81,10 @@ test_that(
   }
 )
 
-# checking all dataframe outputs -------------------------------------------
+# checking all data frame outputs -------------------------------------------
 
 test_that(
-  desc = "checking all dataframe outputs",
+  desc = "checking all data frame outputs",
   code = {
     options(tibble.width = Inf)
     skip_if_not(.Platform$OS.type == "unix")

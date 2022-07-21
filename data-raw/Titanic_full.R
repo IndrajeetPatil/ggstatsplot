@@ -10,7 +10,7 @@ dplyr::glimpse(x = Titanic)
 # converting to tibble
 tibble::as_tibble(x = Titanic)
 
-# converting dataframe to full length based on count information
+# converting data frame to full length based on count information
 Titanic_full <-
   tibble::as_tibble(x = datasets::Titanic) %>%
   tibble::rowid_to_column(var = "id") %>%

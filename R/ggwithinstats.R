@@ -131,7 +131,7 @@ ggwithinstats <- function(data,
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
 
-  # creating a dataframe
+  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
@@ -208,7 +208,7 @@ ggwithinstats <- function(data,
   # outlier labeling -----------------------------
 
   # If `outlier.label` is not provided, outlier labels will just be values of
-  # the `y` vector. If the outlier tag has been provided, just use the dataframe
+  # the `y` vector. If the outlier tag has been provided, just use the data frame
   # already created.
 
   if (isTRUE(outlier.tagging)) {
@@ -340,7 +340,7 @@ grouped_ggwithinstats <- function(data,
                                   output = "plot",
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
-  # creating a dataframe
+  # creating a data frame
   data %<>% grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects

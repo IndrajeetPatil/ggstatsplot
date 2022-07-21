@@ -45,7 +45,7 @@ centrality_ggrepel <- function(plot,
                                  min.segment.length = 0
                                ),
                                ...) {
-  # creating the dataframe
+  # creating the data frame
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
   # if there should be lines connecting mean values across groups
@@ -85,7 +85,7 @@ centrality_ggrepel <- function(plot,
 #'
 #' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
-#' @param mpc_df A dataframe containing results from pairwise comparisons
+#' @param mpc_df A data frame containing results from pairwise comparisons
 #'   (produced by `pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
 #'
@@ -97,7 +97,7 @@ centrality_ggrepel <- function(plot,
 #' p <- ggplot(iris, aes(Species, Sepal.Length)) +
 #'   geom_boxplot()
 #'
-#' # dataframe with pairwise comparison test results
+#' # data frame with pairwise comparison test results
 #' df_pair <- pairwise_comparisons(
 #'   data = iris,
 #'   x = Species,
@@ -136,7 +136,7 @@ ggsignif_adder <- function(plot,
     }
   }
 
-  # arrange the dataframe so that annotations are properly aligned
+  # arrange the data frame so that annotations are properly aligned
   mpc_df %<>% arrange(group1, group2)
 
   # adding ggsignif comparisons to the plot
@@ -259,13 +259,13 @@ aesthetic_addon <- function(plot,
 }
 
 
-#' @title Adding a column to dataframe describing outlier status
+#' @title Adding a column to data frame describing outlier status
 #' @name outlier_df
 #'
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
 #'
-#' @return The dataframe entered as `data` argument is returned with two
+#' @return The data frame entered as `data` argument is returned with two
 #'   additional columns: `isanoutlier` and `outlier` denoting which observation
 #'   are outliers and their corresponding labels.
 #'

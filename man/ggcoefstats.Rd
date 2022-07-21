@@ -39,19 +39,19 @@ ggcoefstats(
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame containing results
 from a regression model. Function internally uses
-\code{parameters::model_parameters()} to get a tidy dataframe. If a dataframe is
+\code{parameters::model_parameters()} to get a tidy data frame. If a data frame is
 entered, it \emph{must} contain at the minimum two columns named \code{term} (names
 of predictors) and \code{estimate} (corresponding estimates of coefficients or
 other quantities of interest).}
 
 \item{output}{Character describing the expected output from this function:
 \code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
-dataframe of results \code{parameters::model_parameters}) or \code{"glance"} (object
+data frame of results \code{parameters::model_parameters}) or \code{"glance"} (object
 from \code{performance::model_performance}).}
 
 \item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
 \code{"z"} or \code{"chi"}) in the label. This is relevant if the \code{x} argument is a
-\emph{dataframe}.}
+\emph{data frame}.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
@@ -187,7 +187,7 @@ mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
 # to get a plot
 ggcoefstats(mod, output = "plot")
 
-# to get a tidy dataframe
+# to get a tidy data frame
 ggcoefstats(mod, output = "tidy")
 
 # to get a glance summary

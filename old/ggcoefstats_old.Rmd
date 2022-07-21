@@ -1331,7 +1331,7 @@ statistic. The function will figure this out for you.
 set.seed(123)
 library(ggstatsplot)
 
-# dataframe #1
+# data frame #1
 df.counts <-
   data.frame(
     treatment = gl(n = 3, k = 3, length = 9),
@@ -1340,7 +1340,7 @@ df.counts <-
   ) %>%
   tibble::as_tibble(.)
 
-# dataframe #2
+# data frame #2
 df.clotting <-
   data.frame(
     u = c(5, 10, 15, 20, 30, 40, 60, 80, 100),
@@ -1349,13 +1349,13 @@ df.clotting <-
   ) %>%
   tibble::as_tibble(.)
 
-# dataframe #3
+# data frame #3
 x1 <- stats::rnorm(50)
 y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
 df.3 <- data.frame(x = x1, y = y1) %>%
   tibble::as_tibble(.)
 
-# dataframe #4
+# data frame #4
 x2 <- stats::rnorm(50)
 y2 <- rbinom(
   n = 50,
@@ -3216,7 +3216,7 @@ package.
 set.seed(123)
 library(robustbase)
 
-# dataframe
+# data frame
 data(coleman)
 clotting <-
   data.frame(
@@ -4511,7 +4511,7 @@ used to selectively show few of the terms of interest:
 library(glmnet)
 set.seed(2014)
 
-# creating a dataframe
+# creating a data frame
 x <- matrix(rnorm(100 * 20), 100, 20)
 y <- rnorm(100)
 fit1 <- glmnet::glmnet(x, y)
@@ -4807,7 +4807,7 @@ ggcoefstats(
 set.seed(123)
 library(logistf)
 
-# dataframe
+# data frame
 data <- data.frame(time = 1:12, event = c(0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1))
 
 # model
@@ -4986,7 +4986,7 @@ fit_epiR <-
     outcome = "as.columns"
   )
 
-# tidy dataframe
+# tidy data frame
 ggcoefstats(
   x = fit_epiR,
   title = "Summary measures for count data presented in a 2 by 2 table"
@@ -5714,7 +5714,7 @@ combine_plots(
 # Meta-analysis
 
 In case the estimates you are displaying come from multiple studies, you can
-also use this function to carry out random-effects meta-analysis. The dataframe
+also use this function to carry out random-effects meta-analysis. The data frame
 you enter **must** contain at the minimum the following three columns-
 
   - `term`: a column with names/identifiers to annotate each study/effect
@@ -5792,7 +5792,7 @@ ggcoefstats(
 
 # Dataframes
 
-Sometimes you don't have a model object but a custom dataframe that you want
+Sometimes you don't have a model object but a custom data frame that you want
 display using this function. If a data frame is to be plotted, it **must**
 contain columns named `term` (names of predictors), and `estimate`
 (corresponding estimates of coefficients or other quantities of interest). Other
@@ -5801,14 +5801,14 @@ optional columns are `conf.low` and `conf.high` (for confidence intervals), and
 regression models (`"t"`, `"z"`, `"f"`, `"chi"`) in case you want to display
 statistical labels.
 
-You can also provide a dataframe containing all the other relevant information
+You can also provide a data frame containing all the other relevant information
 for additionally displaying labels with statistical information.
 
 ```{r}
 #| label = "dataframe",
 #| fig.height = 7,
 #| fig.width = 7
-# let's make up a dataframe (with all available details)
+# let's make up a data frame (with all available details)
 df_full <-
   tibble::tribble(
     ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.error,
@@ -5849,7 +5849,7 @@ DNase1 <- subset(DNase, Run == 1)
 # using a selfStart model
 nlmod <- stats::nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 
-# tidy dataframe
+# tidy data frame
 ggcoefstats(nlmod, output = "tidy")
 
 # glance summary

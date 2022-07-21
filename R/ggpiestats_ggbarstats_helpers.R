@@ -1,4 +1,4 @@
-#' @title A dataframe with descriptive labels
+#' @title A data frame with descriptive labels
 #' @noRd
 descriptive_df <- function(data,
                            x,
@@ -6,7 +6,7 @@ descriptive_df <- function(data,
                            label.content = "percentage",
                            perc.k = 1,
                            ...) {
-  # creating a dataframe with counts
+  # creating a data frame with counts
   cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(
@@ -32,7 +32,7 @@ cat_counter <- function(data, x, y = NULL, ...) {
     filter(counts != 0L)
 }
 
-#' @title A dataframe with chi-squared test results
+#' @title A data frame with chi-squared test results
 #' @noRd
 onesample_df <- function(data, x, y, k = 2L, ...) {
   full_join(

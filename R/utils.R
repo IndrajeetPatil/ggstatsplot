@@ -31,7 +31,7 @@ theme_ggstatsplot <- function() {
     )
 }
 
-#' @title Split dataframe into a list by grouping variable.
+#' @title Split data frame into a list by grouping variable.
 #'
 #' @description
 #'

@@ -142,7 +142,7 @@ set.seed(123)
 library(ggstatsplot)
 library(dplyr, warn.conflicts = FALSE)
 
-# let's create a smaller dataframe
+# let's create a smaller data frame
 diamonds_short <- ggplot2::diamonds \%>\%
   filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
   filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%

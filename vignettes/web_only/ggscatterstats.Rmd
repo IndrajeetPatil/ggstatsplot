@@ -89,7 +89,7 @@ set.seed(123)
 
 ## plot
 ggscatterstats(
-  data = movies_long, ## dataframe from which variables are taken
+  data = movies_long, ## data frame from which variables are taken
   x = budget, ## predictor/independent variable
   y = rating, ## dependent variable
   xlab = "Budget (in millions of US dollars)", ## label for the x-axis

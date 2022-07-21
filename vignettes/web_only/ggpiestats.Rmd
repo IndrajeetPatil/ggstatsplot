@@ -234,7 +234,7 @@ unique combination of `Boat` and `Month`.
 # for reproducibility
 set.seed(123)
 
-# creating a dataframe
+# creating a data frame
 # (this is completely fictional; I don't know first thing about fishing!)
 (
   fishing <- tibble::as_tibble(data.frame(

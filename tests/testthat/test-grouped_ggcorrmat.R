@@ -37,7 +37,7 @@ test_that(
   }
 )
 
-# output: dataframe ---------------------------------------------------------------
+# output: data frame ---------------------------------------------------------------
 
 test_that(
   desc = "grouped_ggcorrmat returns expected data frame",
@@ -45,7 +45,7 @@ test_that(
     skip_if_not_installed("ggcorrplot")
     options(tibble.width = Inf)
 
-    # tidy dataframe
+    # tidy data frame
     df <- grouped_ggcorrmat(
       data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
       grouping.var = vore,

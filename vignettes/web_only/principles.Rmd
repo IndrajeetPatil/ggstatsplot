@@ -184,7 +184,7 @@ set.seed(123)
 library(ggplot2)
 library(ggstatsplot)
 
-## creating a smaller dataframe
+## creating a smaller data frame
 df <- dplyr::filter(movies_long, genre %in% c("Comedy", "Drama"))
 
 ## plot

@@ -233,7 +233,7 @@ grouped_gghistostats <- function(data,
   # extract a vector for convenience
   x_vec <- data %>% pull({{ x }})
 
-  # dataframe ------------------------------------------
+  # data frame ------------------------------------------
 
   data %<>%
     select({{ grouping.var }}, {{ x }}) %>%

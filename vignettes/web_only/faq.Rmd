@@ -170,7 +170,7 @@ for (i in 3:length(col.name)) {
 That said, if repeating function execution across multiple columns in a
 data frame in what you want to do, I will recommend `{purrr}`-based solution:
 
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-dataframe-1>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data frame-1>
 
 ## 7. How can I have uniform Y-axes ranges in `grouped_` functions?
 
@@ -315,7 +315,7 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
   geom_signif(comparisons = list(c("4", "6")))
 ```
 
-## 12. How to access dataframe with results from pairwise comparisons?
+## 12. How to access data frame with results from pairwise comparisons?
 
 Behind the scenes, `{ggstatsplot}` uses `statsExpressions::pairwise_comparisons()` function. 
 
@@ -366,7 +366,7 @@ p +
   )
 ```
 
-## 14. How to access dataframe containing statistical analyses?
+## 14. How to access data frame containing statistical analyses?
 
 You can use the `extract_stats()` helper function for this.
 
@@ -472,7 +472,7 @@ grouped_ggbetweenstats(
 )
 ```
 
-## 18. How can I extract dataframe containing results from `{ggstatsplot}`?
+## 18. How can I extract data frame containing results from `{ggstatsplot}`?
 
 `{ggstatsplot}` can return expressions in the subtitle and caption, but what if
 you want to actually get back data frame containing the results?

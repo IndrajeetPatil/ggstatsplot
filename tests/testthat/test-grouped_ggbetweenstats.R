@@ -11,7 +11,7 @@ test_that(
     # expect error when no grouping.var is specified
     expect_snapshot_error(grouped_ggbetweenstats(dat, x = genre, y = rating))
 
-    # creating a smaller dataframe
+    # creating a smaller data frame
     set.seed(123)
     dat <- dplyr::sample_frac(movies_long, size = 0.25) %>%
       dplyr::filter(

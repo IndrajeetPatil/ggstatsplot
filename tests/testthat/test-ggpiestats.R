@@ -178,7 +178,6 @@ test_that(
     skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
-
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 

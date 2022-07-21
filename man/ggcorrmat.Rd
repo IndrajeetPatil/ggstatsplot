@@ -44,7 +44,7 @@ names should be entered in the same order.}
 
 \item{output}{Character that decides expected output from this function. If
 \code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or
-literally anything other than \code{"plot"}), a dataframe containing all details
+literally anything other than \code{"plot"}), a data frame containing all details
 from statistical analyses (e.g., correlation coefficients, statistic
 values, \emph{p}-values, no. of observations, etc.) will be returned.}
 
@@ -135,7 +135,7 @@ if \code{bf.message = FALSE}.}
 \item{...}{Currently ignored.}
 }
 \description{
-Correlation matrix or a dataframe containing results from pairwise
+Correlation matrix or a data frame containing results from pairwise
 correlation tests. The package internally uses \code{ggcorrplot::ggcorrplot} for
 creating the visualization matrix, while the correlation analysis is carried
 out using the \code{correlation::correlation} function.
@@ -152,7 +152,7 @@ library(ggstatsplot)
 # to get a plot (assumes that `ggcorrplot` is installed)
 if (require("ggcorrplot")) ggcorrmat(iris)
 
-# to get a dataframe
+# to get a data frame
 ggcorrmat(
   data = ggplot2::msleep,
   cor.vars = sleep_total:bodywt,
