@@ -101,8 +101,7 @@ ggcorrmat <- function(data,
                       ...) {
   # data frame -----------------------------------
 
-  if (missing(cor.vars)) df <- purrr::keep(.x = data, .p = purrr::is_bare_numeric)
-  if (!missing(cor.vars)) df <- select(data, {{ cor.vars }})
+  if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
 
   # statistical analysis ------------------------------------------
 
@@ -111,7 +110,7 @@ ggcorrmat <- function(data,
 
   # creating a data frame of results
   mpc_df <- correlation::correlation(
-    data             = df,
+    data             = data,
     rename           = cor.vars.names,
     method           = ifelse(type == "nonparametric", "spearman", "pearson"),
     p_adjust         = p.adjust.method,
@@ -139,7 +138,7 @@ ggcorrmat <- function(data,
   check_if_installed("ggcorrplot")
 
   # legend title with information about correlation type and sample
-  if (isFALSE(any(is.na(df))) || partial) {
+  if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
       atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
