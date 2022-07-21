@@ -265,7 +265,7 @@ grouped_ggcorrmat <- function(data,
                               annotation.args = list()) {
   # data frame
   data %<>%
-    grouped_list({{ grouping.var }}) %>%
+    .grouped_list({{ grouping.var }}) %>%
     purrr::map(.f = ~ select(.x, -{{ grouping.var }}))
 
   # creating a list of return objects

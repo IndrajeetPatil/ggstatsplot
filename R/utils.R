@@ -44,10 +44,10 @@ theme_ggstatsplot <- function() {
 #'
 #' @examples
 #' \donttest{
-#' ggstatsplot:::grouped_list(ggplot2::msleep, grouping.var = vore)
+#' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' }
 #' @keywords internal
-grouped_list <- function(data, grouping.var = NULL) {
+.grouped_list <- function(data, grouping.var = NULL) {
   data <- as_tibble(data)
 
   if (quo_is_null(enquo(grouping.var))) {
@@ -59,13 +59,13 @@ grouped_list <- function(data, grouping.var = NULL) {
 
 
 #' @title Message if palette doesn't have enough number of colors.
-#' @name palette_message
+#' @name .palette_message
 #' @description Informs the user about not using the default color palette
 #'   when the number of factor levels is greater than 8, the maximum number of
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
 #'
 #' @noRd
-palette_message <- function(package, palette, min_length) {
+.palette_message <- function(package, palette, min_length) {
   # computing the palette length
   filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
     length[[1]] -> pl

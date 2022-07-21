@@ -94,12 +94,12 @@ ggridgestats <- function(data,
     )
 
     .f <- .f_switch(test)
-    subtitle_df <- eval_f(.f, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
-      caption_df <- eval_f(.f, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -187,7 +187,7 @@ ggridgestats <- function(data,
     )
 
     # adding the layer for pairwise comparisons
-    plot <- ggsignif_adder(
+    plot <- .ggsignif_adder(
       plot = plot,
       mpc_df = mpc_df,
       data = data,
@@ -199,7 +199,7 @@ ggridgestats <- function(data,
     )
 
     # preparing the caption for pairwise comparisons test
-    caption <- pairwise_seclabel(
+    caption <- .pairwise_seclabel(
       caption,
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
@@ -209,7 +209,7 @@ ggridgestats <- function(data,
   # annotations ------------------------
 
   # specifying annotations and other aesthetic aspects for the plot
-  aesthetic_addon(
+  .aesthetic_addon(
     plot = plot,
     x = data %>% dplyr::pull({{ x }}),
     xlab = xlab %||% rlang::as_name(x),

@@ -48,7 +48,7 @@ extract_stats <- function(p, ...) {
 }
 
 #' @noRd
-eval_f <- function(.f, ...) {
+.eval_f <- function(.f, ...) {
   tryCatch(
     suppressWarnings(suppressMessages(exec(.f, ...))),
     error = function(e) NULL

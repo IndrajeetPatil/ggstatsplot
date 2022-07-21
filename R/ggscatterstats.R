@@ -147,12 +147,12 @@ ggscatterstats <- function(data,
       bf.prior = bf.prior
     )
 
-    subtitle_df <- eval_f(corr_test, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
 
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
-      caption_df <- eval_f(corr_test, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
   }
@@ -293,7 +293,7 @@ grouped_ggscatterstats <- function(data,
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
   # getting the data frame ready
-  data %<>% grouped_list({{ grouping.var }})
+  data %<>% .grouped_list({{ grouping.var }})
 
   # creating a list of plots
   p_ls <- purrr::pmap(

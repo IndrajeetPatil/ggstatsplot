@@ -299,7 +299,7 @@ ggcoefstats <- function(x,
     # ggrepel labels -------------------------
 
     if (stats.labels) {
-      if (is.null(stats.label.color) && palette_message(package, palette, length(tidy_df$term))) {
+      if (is.null(stats.label.color) && .palette_message(package, palette, length(tidy_df$term))) {
         stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
       }
 

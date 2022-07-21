@@ -134,12 +134,12 @@ ggpiestats <- function(data,
       prior.concentration = prior.concentration
     )
 
-    subtitle_df <- eval_f(contingency_table, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
 
     # preparing Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
-      caption_df <- eval_f(contingency_table, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
   }
@@ -155,13 +155,13 @@ ggpiestats <- function(data,
   # plot ------------------------------------------
 
   # data frame with summary labels
-  descriptive_df <- descriptive_df(data, {{ x }}, {{ y }}, label, perc.k)
+  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, perc.k)
 
   # data frame containing all details needed for prop test
-  if (test == "two.way") onesample_df <- onesample_df(data, {{ x }}, {{ y }}, k)
+  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  palette_message(package, palette, min_length = x_levels)
+  .palette_message(package, palette, min_length = x_levels)
 
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
@@ -265,7 +265,7 @@ grouped_ggpiestats <- function(data,
                                plotgrid.args = list(),
                                annotation.args = list()) {
   # creating a data frame
-  data %<>% grouped_list(grouping.var = {{ grouping.var }})
+  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
