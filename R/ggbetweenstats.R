@@ -281,22 +281,12 @@ ggbetweenstats <- function(data,
 
   # first add only the points which are *not* outliers
   plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(
-      geom_point,
-      data = ~ filter(.x, !isanoutlier),
-      aes(color = {{ x }}),
-      !!!point.args
-    )
+    exec(geom_point, data = ~ filter(.x, !isanoutlier), aes(color = {{ x }}), !!!point.args)
 
   # if outliers are not being tagged, then add the points that were previously left out
   if (isFALSE(outlier.tagging)) {
     plot <- plot +
-      exec(
-        geom_point,
-        data      = ~ filter(.x, isanoutlier),
-        aes(color = {{ x }}),
-        !!!point.args
-      )
+      exec(geom_point, data = ~ filter(.x, isanoutlier), aes(color = {{ x }}), !!!point.args)
   }
 
   # if outlier tagging is happening, decide how those points should be displayed
