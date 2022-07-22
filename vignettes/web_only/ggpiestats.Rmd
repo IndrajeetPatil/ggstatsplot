@@ -66,10 +66,10 @@ variable is equal
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>.
 
-`ggpiestats` works **only** with data organized in dataframes or tibbles. It
+`ggpiestats` works **only** with data organized in data frames or tibbles. It
 will not work with other data structures like base-R tables or matrices. It can
-operate on dataframes that are organized with one row per observation or
-dataframes that have one column containing counts. This vignette provides
+operate on data frames that are organized with one row per observation or
+data frames that have one column containing counts. This vignette provides
 examples of both (see examples below).
 
 To help demonstrate how `ggpiestats` can be used with categorical (also known as

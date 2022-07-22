@@ -957,7 +957,7 @@ Bayesian | ❌ | ❌ | ❌
 ### `ggcoefstats`
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for
-regression models saved in a tidy data frame. The tidy dataframes are prepared
+regression models saved in a tidy data frame. The tidy data frames are prepared
 using `parameters::model_parameters()`. Additionally, if available, the model
 summary indices are also extracted from `performance::model_performance()`.
 
@@ -1038,9 +1038,9 @@ Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `meta
 For a more exhaustive account of this function, see the associated vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-### Extracting dataframes with statistical details
+### Extracting data frames with statistical details
 
-`{ggstatsplot}` also offers a convenience function to extract dataframes with
+`{ggstatsplot}` also offers a convenience function to extract data frames with
 statistical details that are used to create expressions displayed in
 `{ggstatsplot}` plots.
 

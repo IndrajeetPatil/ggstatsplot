@@ -31,14 +31,7 @@ jobs:
         with:
           extra-packages: |
             deps::.
-            any::statsExpressions
-            any::gghalves
-            any::ggplot2
-            any::ggridges
-            any::ggbeeswarm
-            any::PairedData
-            any::metaviz
-            any::metaplus
+            any::ggstatsplot
 
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'

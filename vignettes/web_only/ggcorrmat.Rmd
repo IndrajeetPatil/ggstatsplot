@@ -233,7 +233,7 @@ heavier the diamond, the more expensive it is going to be.
 ## Dataframe containing statistics with `ggcorrmat`
 
 Another utility of `ggcorrmat` is in obtaining a data frame containing all
-details from statistical analyses. Such dataframes can be easily embedded in
+details from statistical analyses. Such data frames can be easily embedded in
 manuscripts as tables.
 
 ```{r}
