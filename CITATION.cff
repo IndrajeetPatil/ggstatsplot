@@ -556,6 +556,20 @@ references:
   year: '2022'
   url: https://CRAN.R-project.org/package=metafor
 - type: software
+  title: metaplus
+  abstract: 'metaplus: Robust Meta-Analysis and Meta-Regression'
+  notes: Suggests
+  authors:
+  - family-names: Beath
+    given-names: Ken
+    email: ken@kjbeath.com.au
+  - family-names: Bolker
+    given-names: Ben
+    email: bolker@mcmaster.ca
+  - name: R Development Core Team
+  year: '2022'
+  url: https://CRAN.R-project.org/package=metaplus
+- type: software
   title: PMCMRplus
   abstract: 'PMCMRplus: Calculate Pairwise Multiple Comparisons of Mean Rank Sums
     Extended'
