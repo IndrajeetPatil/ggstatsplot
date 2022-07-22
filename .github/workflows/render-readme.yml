@@ -32,6 +32,7 @@ jobs:
           extra-packages: |
             deps::.
             any::ggstatsplot
+            any::ggthemes
 
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
