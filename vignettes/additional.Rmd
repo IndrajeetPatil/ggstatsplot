@@ -1,14 +1,12 @@
 ---
-title: "additional vignettes"
+title: "Additional vignettes"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
-    warning: FALSE
-    message: FALSE
 vignette: >
-  %\VignetteIndexEntry{additional vignettes}
+  %\VignetteIndexEntry{Additional vignettes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -85,7 +83,7 @@ package is to go through the following slides:
 ## Statistical backend of `{ggstatsplot}`
 
 The `{statsExpressions}` package forms the statistical backend that processes data
-and creates dataframes and expressions containing results from statistical
+and creates data frames and expressions containing results from statistical
 tests.
 
 For more exhaustive documentation for this package, see:

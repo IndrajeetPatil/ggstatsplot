@@ -4,14 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
-    error: TRUE
 vignette: >
   %\VignetteIndexEntry{ggcoefstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,6 +14,7 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
+
 options(
   tibble.width = Inf,
   pillar.bold = TRUE,
@@ -34,8 +28,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   message = FALSE,
   warning = FALSE,
-  error = TRUE,
-  package.startup.message = FALSE
+  out.width = "100%"
 )
 
 library(ggstatsplot)
@@ -58,7 +51,7 @@ Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for regression
-models saved in a tidy data frame. The tidy dataframes are prepared using
+models saved in a tidy data frame. The tidy data frames are prepared using
 `parameters::model_parameters`. Additionally, if available, the model summary
 indices are also extracted from `performance::model_performance`.
 
@@ -564,7 +557,7 @@ ggcoefstats(
 )
 ```
 
-## Dataframes
+## Data frames
 
 Sometimes you don't have a model object but a custom data frame that you want
 display using this function. If a data frame is to be plotted, it **must**

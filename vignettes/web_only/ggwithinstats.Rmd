@@ -4,13 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
 vignette: >
   %\VignetteIndexEntry{ggwithinstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,7 +14,8 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
+
+# show me all columns
 options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
 knitr::opts_chunk$set(

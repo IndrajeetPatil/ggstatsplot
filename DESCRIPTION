@@ -59,6 +59,7 @@ Suggests:
     MASS,
     metaBMA,
     metafor,
+    metaplus,
     PMCMRplus,
     psych,
     rmarkdown,
