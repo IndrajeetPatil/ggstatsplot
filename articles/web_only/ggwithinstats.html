@@ -14,9 +14,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
-<link href="../../deps/_JetBrains%20Mono-0.4.1/font.css" rel="stylesheet">
+<link href="../../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../../deps/Roboto-0.4.2/font.css" rel="stylesheet">
+<link href="../../deps/JetBrains_Mono-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="ggwithinstats">
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,12 +101,12 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>ggwithinstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-05-27</h4>
+            <h4 data-toc-skip class="date">2022-07-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggwithinstats.Rmd" class="external-link"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggwithinstats.Rmd</code></div>
@@ -173,17 +173,17 @@ differences in this desire across conditions is statistically
 significant.</p>
 <p>The simplest form of the function call is-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## since the confidence intervals for the effect sizes are computed using</span>
-<span class="co">## bootstrapping, important to set a seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-
-<span class="co">## function call</span>
-<span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">bugs_long</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## since the confidence intervals for the effect sizes are computed using</span></span>
+<span><span class="co">## bootstrapping, important to set a seed for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## function call</span></span>
+<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats1-1.png" width="100%"></p>
 <p><strong>Note</strong>:</p>
 <ul>
@@ -210,36 +210,36 @@ informative by making use of the many optional parameters in
 outliers in the data. We can and will change the overall theme as well
 as the color palette in use.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-
-<span class="co">## plot</span>
-<span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">bugs_long</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>,
-  type <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of statistical test</span>
-  xlab <span class="op">=</span> <span class="st">"Condition"</span>, <span class="co">## label for the x-axis</span>
-  ylab <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>, <span class="co">## label for the y-axis</span>
-  effsize.type <span class="op">=</span> <span class="st">"biased"</span>, <span class="co">## type of effect size</span>
-  sphericity.correction <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co">## don't display sphericity corrected dfs and p-values</span>
-  pairwise.comparisons <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## display pairwise comparisons</span>
-  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether outliers should be flagged</span>
-  outlier.coef <span class="op">=</span> <span class="fl">1.5</span>, <span class="co">## coefficient for Tukey's rule</span>
-  outlier.label <span class="op">=</span> <span class="va">region</span>, <span class="co">## label to attach to outlier values</span>
-  outlier.label.color <span class="op">=</span> <span class="st">"red"</span>, <span class="co">## outlier point label color</span>
-  mean.plotting <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether the mean is to be displayed</span>
-  mean.color <span class="op">=</span> <span class="st">"darkblue"</span>, <span class="co">## color for mean</span>
-  package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span>
-  palette <span class="op">=</span> <span class="st">"info2"</span>, <span class="co">## choosing a different color palette</span>
-  title <span class="op">=</span> <span class="st">"Comparison of desire to kill bugs"</span>,
-  caption <span class="op">=</span> <span class="st">"Source: Ryan et al., 2013"</span>
-<span class="op">)</span> <span class="op">+</span> <span class="co">## modifying the plot further</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>
-    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,
-    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## plot</span></span>
+<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of statistical test</span></span>
+<span>  xlab <span class="op">=</span> <span class="st">"Condition"</span>, <span class="co">## label for the x-axis</span></span>
+<span>  ylab <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>, <span class="co">## label for the y-axis</span></span>
+<span>  effsize.type <span class="op">=</span> <span class="st">"biased"</span>, <span class="co">## type of effect size</span></span>
+<span>  sphericity.correction <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co">## don't display sphericity corrected dfs and p-values</span></span>
+<span>  pairwise.comparisons <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## display pairwise comparisons</span></span>
+<span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether outliers should be flagged</span></span>
+<span>  outlier.coef <span class="op">=</span> <span class="fl">1.5</span>, <span class="co">## coefficient for Tukey's rule</span></span>
+<span>  outlier.label <span class="op">=</span> <span class="va">region</span>, <span class="co">## label to attach to outlier values</span></span>
+<span>  outlier.label.color <span class="op">=</span> <span class="st">"red"</span>, <span class="co">## outlier point label color</span></span>
+<span>  mean.plotting <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether the mean is to be displayed</span></span>
+<span>  mean.color <span class="op">=</span> <span class="st">"darkblue"</span>, <span class="co">## color for mean</span></span>
+<span>  package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"info2"</span>, <span class="co">## choosing a different color palette</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Comparison of desire to kill bugs"</span>,</span>
+<span>  caption <span class="op">=</span> <span class="st">"Source: Ryan et al., 2013"</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="co">## modifying the plot further</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span></span>
+<span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats2-1.png" width="100%"></p>
 <p>As can be appreciated from the effect size (partial eta squared) of
 0.18, there are small differences in the mean desire to kill across
@@ -261,76 +261,76 @@ plot with some common labeling. It is possible, but not necessarily
 recommended, to make each plot have different colors or themes.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-
-<span class="co">## selecting subset of the data</span>
-<span class="va">df_disgust</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDHF"</span>, <span class="st">"HDHF"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">## parametric t-test</span>
-<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">df_disgust</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>,
-  type <span class="op">=</span> <span class="st">"p"</span>,
-  effsize.type <span class="op">=</span> <span class="st">"d"</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-  title <span class="op">=</span> <span class="st">"Parametric test"</span>,
-  package <span class="op">=</span> <span class="st">"ggsci"</span>,
-  palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
-<span class="op">)</span>
-
-<span class="co">## Mann-Whitney U test (nonparametric test)</span>
-<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">df_disgust</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>,
-  xlab <span class="op">=</span> <span class="st">"Condition"</span>,
-  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,
-  type <span class="op">=</span> <span class="st">"np"</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-  title <span class="op">=</span> <span class="st">"Non-parametric Test"</span>,
-  package <span class="op">=</span> <span class="st">"ggsci"</span>,
-  palette <span class="op">=</span> <span class="st">"uniform_startrek"</span>
-<span class="op">)</span>
-
-<span class="co">## robust t-test</span>
-<span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">df_disgust</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>,
-  xlab <span class="op">=</span> <span class="st">"Condition"</span>,
-  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,
-  type <span class="op">=</span> <span class="st">"r"</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.99</span>,
-  title <span class="op">=</span> <span class="st">"Robust Test"</span>,
-  package <span class="op">=</span> <span class="st">"wesanderson"</span>,
-  palette <span class="op">=</span> <span class="st">"Royal2"</span>
-<span class="op">)</span>
-
-<span class="co">## Bayes Factor for parametric t-test</span>
-<span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span>
-  data <span class="op">=</span> <span class="va">df_disgust</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>,
-  xlab <span class="op">=</span> <span class="st">"Condition"</span>,
-  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,
-  type <span class="op">=</span> <span class="st">"bayes"</span>,
-  title <span class="op">=</span> <span class="st">"Bayesian Test"</span>,
-  package <span class="op">=</span> <span class="st">"ggsci"</span>,
-  palette <span class="op">=</span> <span class="st">"nrc_npg"</span>
-<span class="op">)</span>
-
-<span class="co">## combining the individual plots into a single plot</span>
-<span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>
-  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"Effect of disgust on desire to kill bugs "</span>,
-    caption <span class="op">=</span> <span class="st">"Source: Bugs dataset from `jmv` R package"</span>
-  <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## selecting subset of the data</span></span>
+<span><span class="va">df_disgust</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDHF"</span>, <span class="st">"HDHF"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## parametric t-test</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">df_disgust</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"p"</span>,</span>
+<span>  effsize.type <span class="op">=</span> <span class="st">"d"</span>,</span>
+<span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Parametric test"</span>,</span>
+<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Mann-Whitney U test (nonparametric test)</span></span>
+<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">df_disgust</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Condition"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"np"</span>,</span>
+<span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Non-parametric Test"</span>,</span>
+<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"uniform_startrek"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## robust t-test</span></span>
+<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">df_disgust</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Condition"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"r"</span>,</span>
+<span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Robust Test"</span>,</span>
+<span>  package <span class="op">=</span> <span class="st">"wesanderson"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"Royal2"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Bayes Factor for parametric t-test</span></span>
+<span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">df_disgust</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Condition"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"bayes"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Bayesian Test"</span>,</span>
+<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## combining the individual plots into a single plot</span></span>
+<span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span></span>
+<span>  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,</span>
+<span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span>
+<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Effect of disgust on desire to kill bugs "</span>,</span>
+<span>    caption <span class="op">=</span> <span class="st">"Source: Bugs dataset from `jmv` R package"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats3-1.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -350,31 +350,31 @@ different studies, etc.</p>
 let’s carry out pairwise comparisons to see if there differences between
 every pair of continents.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-
-<span class="fu"><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span>
-  <span class="co">## arguments relevant for ggwithinstats</span>
-  data <span class="op">=</span> <span class="va">bugs_long</span>,
-  x <span class="op">=</span> <span class="va">condition</span>,
-  y <span class="op">=</span> <span class="va">desire</span>,
-  grouping.var <span class="op">=</span> <span class="va">gender</span>,
-  xlab <span class="op">=</span> <span class="st">"Continent"</span>,
-  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,
-  type <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of test</span>
-  pairwise.display <span class="op">=</span> <span class="st">"significant"</span>, <span class="co">## display only significant pairwise comparisons</span>
-  p.adjust.method <span class="op">=</span> <span class="st">"BH"</span>, <span class="co">## adjust p-values for multiple tests using this method</span>
-  <span class="co"># ggtheme = ggthemes::theme_tufte(),</span>
-  package <span class="op">=</span> <span class="st">"ggsci"</span>,
-  palette <span class="op">=</span> <span class="st">"default_jco"</span>,
-  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,
-  outlier.label <span class="op">=</span> <span class="va">education</span>,
-  k <span class="op">=</span> <span class="fl">3</span>,
-  <span class="co">## arguments relevant for combine_plots</span>
-  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span><span class="op">)</span>,
-  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span></span>
+<span>  <span class="co">## arguments relevant for ggwithinstats</span></span>
+<span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  grouping.var <span class="op">=</span> <span class="va">gender</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Continent"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of test</span></span>
+<span>  pairwise.display <span class="op">=</span> <span class="st">"significant"</span>, <span class="co">## display only significant pairwise comparisons</span></span>
+<span>  p.adjust.method <span class="op">=</span> <span class="st">"BH"</span>, <span class="co">## adjust p-values for multiple tests using this method</span></span>
+<span>  <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
+<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"default_jco"</span>,</span>
+<span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  outlier.label <span class="op">=</span> <span class="va">education</span>,</span>
+<span>  k <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  <span class="co">## arguments relevant for combine_plots</span></span>
+<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span><span class="op">)</span>,</span>
+<span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/grouped1-1.png" width="100%"></p>
 </div>
 <div class="section level2">
@@ -719,8 +719,8 @@ interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co">## for data</span>
-<span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">WineTasting</span>, <span class="va">Wine</span>, <span class="va">Taste</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co">## for data</span></span>
+<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">WineTasting</span>, <span class="va">Wine</span>, <span class="va">Taste</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/reporting-1.png" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
 complement this plot either as a figure caption or in the main text-</p>
@@ -760,7 +760,7 @@ issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstats
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
     </footer>

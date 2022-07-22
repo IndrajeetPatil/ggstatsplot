@@ -14,9 +14,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
-<link href="../../deps/_JetBrains%20Mono-0.4.1/font.css" rel="stylesheet">
+<link href="../../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../../deps/Roboto-0.4.2/font.css" rel="stylesheet">
+<link href="../../deps/JetBrains_Mono-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="Pairwise comparisons with `{ggstatsplot}`">
@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,12 +101,12 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>Pairwise comparisons with `{ggstatsplot}`</h1>
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-05-27</h4>
+            <h4 data-toc-skip class="date">2022-07-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/pairwise.Rmd" class="external-link"><code>vignettes/web_only/pairwise.Rmd</code></a></small>
       <div class="d-none name"><code>pairwise.Rmd</code></div>
@@ -265,103 +265,103 @@ pairwise comparison tests-</p>
 <h3 id="example-1-between-subjects">Example-1: between-subjects<a class="anchor" aria-label="anchor" href="#example-1-between-subjects"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## needed libraries</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span>
-
-<span class="co">## converting to factor</span>
-<span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span>
-
-<span class="co">## creating a basic plot</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co">## using `pairwise_comparisons()` package to create a dataframe with results</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 10</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6           5.39 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8           9.11 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">12</span>4 two.sided   q            Holm           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8           5.12 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span>
-<span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">groups</span>   </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-
-<span class="co">## using `geom_signif` to display results</span>
-<span class="co">## (note that you can choose not to display all comparisons)</span>
-<span class="va">p</span> <span class="op">+</span>
-  <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>
-    comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">groups</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,
-    annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,
-    test        <span class="op">=</span> <span class="cn">NULL</span>,
-    na.rm       <span class="op">=</span> <span class="cn">TRUE</span>,
-    parse       <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## needed libraries</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## converting to factor</span></span>
+<span><span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## creating a basic plot</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## using `pairwise_comparisons()` package to create a data frame with results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 10</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6           5.39 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8           9.11 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">12</span>4 two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8           5.12 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">groups</span>   </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span> <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
+<span></span>
+<span><span class="co">## using `geom_signif` to display results</span></span>
+<span><span class="co">## (note that you can choose not to display all comparisons)</span></span>
+<span><span class="va">p</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span></span>
+<span>    comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">groups</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>    annotations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>    test        <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    na.rm       <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    parse       <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="pairwise_files/figure-html/ggsignif-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="example-2-within-subjects">Example-2: within-subjects<a class="anchor" aria-label="anchor" href="#example-2-within-subjects"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## needed libraries</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span>
-
-<span class="co">## creating a basic plot</span>
-<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Wine</span>, <span class="va">Taste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co">## using `pairwise_comparisons()` package to create a dataframe with results</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
-<span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span>
-    <span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>,
-    <span class="va">Wine</span>,
-    <span class="va">Taste</span>,
-    subject.id <span class="op">=</span> <span class="va">Taster</span>,
-    type <span class="op">=</span> <span class="st">"bayes"</span>,
-    paired <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 19</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">term</span>       <span style="font-weight: bold;">effectsize</span>      <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Wine A Wine B Difference Bayesian t-test  <span style="color: #949494;">0.00</span>7<span style="text-decoration: underline;">21</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">41</span><span style="color: #BB0000; text-decoration: underline;">8</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Wine A Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>75<span style="text-decoration: underline;">5</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>12<span style="text-decoration: underline;">7</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Wine B Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>69<span style="text-decoration: underline;">3</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>30<span style="text-decoration: underline;">3</span></span>
-<span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span>    <span style="font-weight: bold;">pd</span> <span style="font-weight: bold;">rope.percentage</span> <span style="font-weight: bold;">prior.distribution</span> <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span></span>
-<span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624         <span style="color: #949494;">0.</span>404   cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990         <span style="color: #949494;">0.00</span>5<span style="text-decoration: underline;">53</span> cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.00          <span style="color: #949494;">0</span>       cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span>
-<span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">groups</span>   </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235      -<span style="color: #BB0000;">1.45</span>    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3.71        1.31    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50.5         3.92    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span>
-
-<span class="co">## using `geom_signif` to display results</span>
-<span class="va">p</span> <span class="op">+</span>
-  <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>
-    comparisons      <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">groups</span>,
-    map_signif_level <span class="op">=</span> <span class="cn">TRUE</span>,
-    tip_length       <span class="op">=</span> <span class="fl">0.01</span>,
-    y_position       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6.5</span>, <span class="fl">6.65</span>, <span class="fl">6.8</span><span class="op">)</span>,
-    annotations      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">)</span>,
-    test             <span class="op">=</span> <span class="cn">NULL</span>,
-    na.rm            <span class="op">=</span> <span class="cn">TRUE</span>,
-    parse            <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## needed libraries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## creating a basic plot</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Wine</span>, <span class="va">Taste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## using `pairwise_comparisons()` package to create a data frame with results</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span></span>
+<span>    <span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>,</span>
+<span>    <span class="va">Wine</span>,</span>
+<span>    <span class="va">Taste</span>,</span>
+<span>    subject.id <span class="op">=</span> <span class="va">Taster</span>,</span>
+<span>    type <span class="op">=</span> <span class="st">"bayes"</span>,</span>
+<span>    paired <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 20</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">term</span>       <span style="font-weight: bold;">effectsize</span>      <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Wine A Wine B Difference Bayesian t-test  <span style="color: #949494;">0.00</span>7<span style="text-decoration: underline;">21</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">41</span><span style="color: #BB0000; text-decoration: underline;">8</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Wine A Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>75<span style="text-decoration: underline;">5</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>12<span style="text-decoration: underline;">7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Wine B Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>69<span style="text-decoration: underline;">3</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>30<span style="text-decoration: underline;">3</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span>    <span style="font-weight: bold;">pd</span> <span style="font-weight: bold;">rope.percentage</span> <span style="font-weight: bold;">prior.distribution</span> <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span></span></span>
+<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624         <span style="color: #949494;">0.</span>404   cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990         <span style="color: #949494;">0.00</span>5<span style="text-decoration: underline;">53</span> cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.00          <span style="color: #949494;">0</span>       cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707</span></span>
+<span><span class="co">#&gt;     <span style="font-weight: bold;">bf10</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">groups</span>   </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="color: #949494;">0.</span>235 ETI              -<span style="color: #BB0000;">1.45</span>    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  3.71  ETI               1.31    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 50.5   ETI               3.92    22 <span style="color: #949494;">&lt;language&gt;</span> Student's t <span style="color: #949494;">&lt;chr [2]&gt;</span></span></span>
+<span></span>
+<span><span class="co">## using `geom_signif` to display results</span></span>
+<span><span class="va">p</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggsignif</span><span class="fu">::</span><span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span></span>
+<span>    comparisons      <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">groups</span>,</span>
+<span>    map_signif_level <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    tip_length       <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>    y_position       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6.5</span>, <span class="fl">6.65</span>, <span class="fl">6.8</span><span class="op">)</span>,</span>
+<span>    annotations      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">expression</span><span class="op">)</span>,</span>
+<span>    test             <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    na.rm            <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    parse            <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="pairwise_files/figure-html/ggsignif2-1.png" width="100%"></p>
 </div>
 </div>
@@ -378,7 +378,7 @@ pairwise comparison tests-</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
     </footer>
