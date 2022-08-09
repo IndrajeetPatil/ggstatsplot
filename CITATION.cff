@@ -106,14 +106,18 @@ references:
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
-  year: '2022'
   url: https://easystats.github.io/correlation/
-  version: '>= 0.8.1'
+  version: '>= 0.8.2'
+  year: '2022'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   authors:
+  - family-names: Patil
+    given-names: Indrajeet
+    email: patilindrajeet.science@gmail.com
+    orcid: https://orcid.org/0000-0003-1995-6531
   - family-names: Makowski
     given-names: Dominique
     email: dom.makowski@gmail.com
@@ -122,10 +126,6 @@ references:
     given-names: Daniel
     email: d.luedecke@uke.de
     orcid: https://orcid.org/0000-0002-8895-3206
-  - family-names: Patil
-    given-names: Indrajeet
-    email: patilindrajeet.science@gmail.com
-    orcid: https://orcid.org/0000-0003-1995-6531
   - family-names: Ben-Shachar
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
@@ -140,7 +140,7 @@ references:
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2022'
   url: https://easystats.github.io/datawizard/
-  version: '>= 0.4.1'
+  version: '>= 0.5.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -502,7 +502,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2022'
-  url: https://yihui.org/knitr/
+  url: https://CRAN.R-project.org/package=knitr
 - type: software
   title: lme4
   abstract: 'lme4: Linear Mixed-Effects Models using ''Eigen'' and S4'

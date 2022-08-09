@@ -30,6 +30,15 @@
       "@id": "https://orcid.org/0000-0003-1995-6531"
     }
   ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Chuck",
+      "familyName": "Powell",
+      "email": "ibecav@gmail.com",
+      "@id": "https://orcid.org/0000-0002-3606-2188"
+    }
+  ],
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -303,7 +312,7 @@
       "@type": "SoftwareApplication",
       "identifier": "correlation",
       "name": "correlation",
-      "version": ">= 0.8.1",
+      "version": ">= 0.8.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -316,7 +325,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.4.1",
+      "version": ">= 0.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -509,7 +518,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9541.105KB",
+  "fileSize": "9541.454KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
