@@ -54,7 +54,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -2212,7 +2212,7 @@
 <h3 id="ggcoefstats">
 <code>ggcoefstats</code><a class="anchor" aria-label="anchor" href="#ggcoefstats"></a>
 </h3>
-<p>The function <code>ggcoefstats</code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy dataframes are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
+<p>The function <code>ggcoefstats</code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy data frames are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
 <li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E%7B2%7D" title="\chi^{2}" alt="^{2}">-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
@@ -2430,9 +2430,9 @@
 </div>
 </div>
 <div class="section level3">
-<h3 id="extracting-dataframes-with-statistical-details">Extracting dataframes with statistical details<a class="anchor" aria-label="anchor" href="#extracting-dataframes-with-statistical-details"></a>
+<h3 id="extracting-data-frames-with-statistical-details">Extracting data frames with statistical details<a class="anchor" aria-label="anchor" href="#extracting-data-frames-with-statistical-details"></a>
 </h3>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> also offers a convenience function to extract dataframes with statistical details that are used to create expressions displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots.</p>
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> also offers a convenience function to extract data frames with statistical details that are used to create expressions displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
