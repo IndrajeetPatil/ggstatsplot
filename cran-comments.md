@@ -1,16 +1,8 @@
-## Test environments
-
-* local Windows install, R 4.2.0
-
-* ubuntu 18.04 (on gitub-actions-ci), R 4.2.0
-
-* win-builder (devel and release)
-
 ## R CMD check results
 
 0 errors | 0 warnings | 0 note
 
-  - Hot fix release to correct a failing example in CRAN daily checks.
+- Internal housekeeping to adjust to changes in upstream dependencies.
 
 ## revdepcheck results
 

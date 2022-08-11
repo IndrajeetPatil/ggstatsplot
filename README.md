@@ -89,11 +89,11 @@ hours working on this package rather than what I was paid to do. 😁
 To see the detailed documentation for each function in the stable
 **CRAN** version of the package, see:
 
--   [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
+- [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
--   [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
+- [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
 
--   [Presentation](https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1)
+- [Presentation](https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1)
 
 ## Summary of available plots
 
@@ -924,7 +924,7 @@ grouped_ggbarstats(
 ### `ggcoefstats`
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for
-regression models saved in a tidy data frame. The tidy dataframes are
+regression models saved in a tidy data frame. The tidy data frames are
 prepared using `parameters::model_parameters()`. Additionally, if
 available, the model summary indices are also extracted from
 `performance::model_performance()`.
@@ -933,28 +933,28 @@ Although the statistical models displayed in the plot may differ based
 on the class of models being investigated, there are few aspects of the
 plot that will be invariant across models:
 
--   The dot-whisker plot contains a dot representing the **estimate**
-    and their **confidence intervals** (`95%` is the default). The
-    estimate can either be effect sizes (for tests that depend on the
-    `F`-statistic) or regression coefficients (for tests with `t`-,
-    ![\chi^{2}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E%7B2%7D "\chi^{2}")-,
-    and `z`-statistic), etc. The function will, by default, display a
-    helpful `x`-axis label that should clear up what estimates are being
-    displayed. The confidence intervals can sometimes be asymmetric if
-    bootstrapping was used.
+- The dot-whisker plot contains a dot representing the **estimate** and
+  their **confidence intervals** (`95%` is the default). The estimate
+  can either be effect sizes (for tests that depend on the
+  `F`-statistic) or regression coefficients (for tests with `t`-,
+  ![\chi^{2}](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%5Cchi%5E%7B2%7D "\chi^{2}")-,
+  and `z`-statistic), etc. The function will, by default, display a
+  helpful `x`-axis label that should clear up what estimates are being
+  displayed. The confidence intervals can sometimes be asymmetric if
+  bootstrapping was used.
 
--   The label attached to dot will provide more details from the
-    statistical test carried out and it will typically contain estimate,
-    statistic, and *p*-value.e
+- The label attached to dot will provide more details from the
+  statistical test carried out and it will typically contain estimate,
+  statistic, and *p*-value.e
 
--   The caption will contain diagnostic information, if available, about
-    models that can be useful for model selection: The smaller the
-    Akaike’s Information Criterion (**AIC**) and the Bayesian
-    Information Criterion (**BIC**) values, the “better” the model is.
+- The caption will contain diagnostic information, if available, about
+  models that can be useful for model selection: The smaller the
+  Akaike’s Information Criterion (**AIC**) and the Bayesian Information
+  Criterion (**BIC**) values, the “better” the model is.
 
--   The output of this function will be a `{ggplot2}` object and, thus,
-    it can be further modified (e.g. change themes) with `{ggplot2}`
-    functions.
+- The output of this function will be a `{ggplot2}` object and, thus, it
+  can be further modified (e.g. change themes) with `{ggplot2}`
+  functions.
 
 ``` r
 set.seed(123)
@@ -1113,11 +1113,11 @@ For a more exhaustive account of this function, see the associated
 vignette-
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-### Extracting dataframes with statistical details
+### Extracting data frames with statistical details
 
-`{ggstatsplot}` also offers a convenience function to extract dataframes
-with statistical details that are used to create expressions displayed
-in `{ggstatsplot}` plots.
+`{ggstatsplot}` also offers a convenience function to extract data
+frames with statistical details that are used to create expressions
+displayed in `{ggstatsplot}` plots.
 
 ``` r
 set.seed(123)
@@ -1227,27 +1227,27 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
 
 ## Summary of benefits of using `{ggstatsplot}`
 
--   No need to use scores of packages for statistical analysis (e.g.,
-    one to get stats, one to get effect sizes, another to get Bayes
-    Factors, and yet another to get pairwise comparisons, etc.).
+- No need to use scores of packages for statistical analysis (e.g., one
+  to get stats, one to get effect sizes, another to get Bayes Factors,
+  and yet another to get pairwise comparisons, etc.).
 
--   Minimal amount of code needed for all functions (typically only
-    `data`, `x`, and `y`), which minimizes chances of error and makes
-    for tidy scripts.
+- Minimal amount of code needed for all functions (typically only
+  `data`, `x`, and `y`), which minimizes chances of error and makes for
+  tidy scripts.
 
--   Conveniently toggle between statistical approaches.
+- Conveniently toggle between statistical approaches.
 
--   Truly makes your figures worth a thousand words.
+- Truly makes your figures worth a thousand words.
 
--   No need to copy-paste results to the text editor (MS-Word, e.g.).
+- No need to copy-paste results to the text editor (MS-Word, e.g.).
 
--   Disembodied figures stand on their own and are easy to evaluate for
-    the reader.
+- Disembodied figures stand on their own and are easy to evaluate for
+  the reader.
 
--   More breathing room for theoretical discussion and other text.
+- More breathing room for theoretical discussion and other text.
 
--   No need to worry about updating figures and statistical details
-    separately.
+- No need to worry about updating figures and statistical details
+  separately.
 
 ## Misconceptions about `{ggstatsplot}`
 
@@ -1281,12 +1281,12 @@ are encouraged.
 Here are some simple ways in which you can contribute (in the increasing
 order of commitment):
 
--   Read and correct any inconsistencies in the
-    [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
--   Raise issues about bugs or wanted features
--   Review code
--   Add new functionality (in the form of new plotting functions or
-    helpers for preparing subtitles)
+- Read and correct any inconsistencies in the
+  [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
+- Raise issues about bugs or wanted features
+- Review code
+- Add new functionality (in the form of new plotting functions or
+  helpers for preparing subtitles)
 
 Please note that this project is released with a [Contributor Code of
 Conduct](https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html).
