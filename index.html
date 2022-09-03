@@ -54,7 +54,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -656,13 +656,13 @@
 </tbody>
 </table>
 <p><strong>Effect size estimation</strong></p>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="4%">
-<col width="4%">
-<col width="73%">
-<col width="1%">
-<col width="16%">
+<col width="11%">
+<col width="11%">
+<col width="32%">
+<col width="3%">
+<col width="41%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -676,7 +676,7 @@
 <td>Parametric</td>
 <td>&gt; 2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Ceta_%7Bp%7D%5E2" title="\eta_{p}^2" alt="_{p}^2">, <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Comega_%7Bp%7D%5E2" title="\omega_{p}^2" alt="_{p}^2">
+<span class="math inline"><em>η</em><sub><em>p</em></sub><sup>2</sup></span>, <span class="math inline"><em>ω</em><sub><em>p</em></sub><sup>2</sup></span>
 </td>
 <td>✅</td>
 <td>
@@ -686,7 +686,7 @@
 <tr class="even">
 <td>Non-parametric</td>
 <td>&gt; 2</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cepsilon_%7Bordinal%7D%5E2" title="\epsilon_{ordinal}^2" alt="_{ordinal}^2"></td>
+<td><span class="math inline"><em>ϵ</em><sub><em>o</em><em>r</em><em>d</em><em>i</em><em>n</em><em>a</em><em>l</em></sub><sup>2</sup></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_epsilon_squared</a></code></td>
 </tr>
@@ -694,14 +694,14 @@
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cxi" title="\xi" alt=""> (Explanatory measure of effect size)</td>
+<span class="math inline"><em>ξ</em></span> (Explanatory measure of effect size)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;R_%7Bposterior%7D%5E2" title="R_{posterior}^2" alt="R_{posterior}^2"></td>
+<td><span class="math inline"><em>R</em><sub><em>p</em><em>o</em><em>s</em><em>t</em><em>e</em><em>r</em><em>i</em><em>o</em><em>r</em></sub><sup>2</sup></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
@@ -727,14 +727,14 @@
 <td>Robust</td>
 <td>2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cxi" title="\xi" alt=""> (Explanatory measure of effect size)</td>
+<span class="math inline"><em>ξ</em></span> (Explanatory measure of effect size)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::yuen.effect.ci</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="_{posterior}"></td>
+<td><span class="math inline"><em>δ</em><sub><em>p</em><em>o</em><em>s</em><em>t</em><em>e</em><em>r</em><em>i</em><em>o</em><em>r</em></sub></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1036,13 +1036,13 @@
 </tbody>
 </table>
 <p><strong>Effect size estimation</strong></p>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="4%">
-<col width="4%">
-<col width="73%">
-<col width="1%">
-<col width="16%">
+<col width="8%">
+<col width="8%">
+<col width="49%">
+<col width="2%">
+<col width="30%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1056,7 +1056,7 @@
 <td>Parametric</td>
 <td>&gt; 2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Ceta_%7Bp%7D%5E2" title="\eta_{p}^2" alt="_{p}^2">, <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Comega_%7Bp%7D%5E2" title="\omega_{p}^2" alt="_{p}^2">
+<span class="math inline"><em>η</em><sub><em>p</em></sub><sup>2</sup></span>, <span class="math inline"><em>ω</em><sub><em>p</em></sub><sup>2</sup></span>
 </td>
 <td>✅</td>
 <td>
@@ -1067,7 +1067,7 @@
 <td>Non-parametric</td>
 <td>&gt; 2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;W_%7BKendall%7D" title="W_{Kendall}" alt="W_{Kendall}"> (Kendall’s coefficient of concordance)</td>
+<span class="math inline"><em>W</em><sub><em>K</em><em>e</em><em>n</em><em>d</em><em>a</em><em>l</em><em>l</em></sub></span> (Kendall’s coefficient of concordance)</td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::kendalls_w</a></code></td>
 </tr>
@@ -1075,14 +1075,14 @@
 <td>Robust</td>
 <td>&gt; 2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cdelta_%7BR-avg%7D%5E%7BAKP%7D" title="\delta_{R-avg}^{AKP}" alt="_{R-avg}^{AKP}"> (Algina-Keselman-Penfield robust standardized difference average)</td>
+<span class="math inline"><em>δ</em><sub><em>R</em> − <em>a</em><em>v</em><em>g</em></sub><sup><em>A</em><em>K</em><em>P</em></sup></span> (Algina-Keselman-Penfield robust standardized difference average)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
 <td>&gt; 2</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;R_%7BBayesian%7D%5E2" title="R_{Bayesian}^2" alt="R_{Bayesian}^2"></td>
+<td><span class="math inline"><em>R</em><sub><em>B</em><em>a</em><em>y</em><em>e</em><em>s</em><em>i</em><em>a</em><em>n</em></sub><sup>2</sup></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes</a></code></td>
 </tr>
@@ -1108,14 +1108,14 @@
 <td>Robust</td>
 <td>2</td>
 <td>
-<img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cdelta_%7BR%7D%5E%7BAKP%7D" title="\delta_{R}^{AKP}" alt="_{R}^{AKP}"> (Algina-Keselman-Penfield robust standardized difference)</td>
+<span class="math inline"><em>δ</em><sub><em>R</em></sub><sup><em>A</em><em>K</em><em>P</em></sup></span> (Algina-Keselman-Penfield robust standardized difference)</td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>2</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="_{posterior}"></td>
+<td><span class="math inline"><em>δ</em><sub><em>p</em><em>o</em><em>s</em><em>t</em><em>e</em><em>r</em><em>i</em><em>o</em><em>r</em></sub></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1313,10 +1313,10 @@
 <p><strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="7%">
-<col width="68%">
-<col width="2%">
-<col width="22%">
+<col width="15%">
+<col width="32%">
+<col width="4%">
+<col width="47%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1349,7 +1349,7 @@
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="_{posterior}"></td>
+<td><span class="math inline"><em>δ</em><sub><em>p</em><em>o</em><em>s</em><em>t</em><em>e</em><em>r</em><em>i</em><em>o</em><em>r</em></sub></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1500,10 +1500,10 @@
 <p><strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="7%">
-<col width="68%">
-<col width="2%">
-<col width="22%">
+<col width="15%">
+<col width="32%">
+<col width="4%">
+<col width="47%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1536,7 +1536,7 @@
 </tr>
 <tr class="even">
 <td>Bayes Factor</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cdelta_%7Bposterior%7D" title="\delta_{posterior}" alt="_{posterior}"></td>
+<td><span class="math inline"><em>δ</em><sub><em>p</em><em>o</em><em>s</em><em>t</em><em>e</em><em>r</em><em>i</em><em>o</em><em>r</em></sub></span></td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior</a></code></td>
 </tr>
@@ -1841,10 +1841,10 @@
 <p><strong>Hypothesis testing</strong></p>
 <table class="table">
 <colgroup>
-<col width="13%">
-<col width="4%">
-<col width="64%">
-<col width="17%">
+<col width="25%">
+<col width="9%">
+<col width="32%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1856,19 +1856,19 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Pearson’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Pearson’s <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Bayesian Pearson’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Bayesian Pearson’s <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>McNemar’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>McNemar’s <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test</a></code></td>
 </tr>
 <tr class="even">
@@ -1882,11 +1882,11 @@
 <p><strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="16%">
+<col width="33%">
+<col width="12%">
+<col width="17%">
 <col width="6%">
-<col width="59%">
-<col width="3%">
-<col width="15%">
+<col width="30%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1899,7 +1899,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Cramer’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;V" title="V" alt="V">
+<td>Cramer’s <span class="math inline"><em>V</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -1907,7 +1907,7 @@
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Cramer’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;V" title="V" alt="V">
+<td>Cramer’s <span class="math inline"><em>V</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -1915,7 +1915,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>Cohen’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;g" title="g" alt="g">
+<td>Cohen’s <span class="math inline"><em>g</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
@@ -1933,9 +1933,9 @@
 <p><strong>Hypothesis testing</strong></p>
 <table class="table">
 <colgroup>
-<col width="14%">
-<col width="74%">
-<col width="11%">
+<col width="30%">
+<col width="45%">
+<col width="23%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1945,23 +1945,23 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Goodness of fit <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Goodness of fit <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
-<td>Bayesian Goodness of fit <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Bayesian Goodness of fit <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td>(custom)</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Effect size estimation</strong></p>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="17%">
-<col width="63%">
-<col width="3%">
-<col width="16%">
+<col width="36%">
+<col width="20%">
+<col width="6%">
+<col width="35%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -1972,7 +1972,7 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Pearson’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;C" title="C" alt="C">
+<td>Pearson’s <span class="math inline"><em>C</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::pearsons_c</a></code></td>
@@ -2062,10 +2062,10 @@
 <p><strong>Hypothesis testing</strong></p>
 <table class="table">
 <colgroup>
-<col width="13%">
-<col width="4%">
-<col width="64%">
-<col width="17%">
+<col width="25%">
+<col width="9%">
+<col width="32%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2077,19 +2077,19 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Pearson’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Pearson’s <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Bayesian Pearson’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Bayesian Pearson’s <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF</a></code></td>
 </tr>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>McNemar’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>McNemar’s <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test</a></code></td>
 </tr>
 <tr class="even">
@@ -2103,11 +2103,11 @@
 <p><strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="16%">
+<col width="33%">
+<col width="12%">
+<col width="17%">
 <col width="6%">
-<col width="59%">
-<col width="3%">
-<col width="15%">
+<col width="30%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2120,7 +2120,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Unpaired</td>
-<td>Cramer’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;V" title="V" alt="V">
+<td>Cramer’s <span class="math inline"><em>V</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -2128,7 +2128,7 @@
 <tr class="even">
 <td>Bayesian</td>
 <td>Unpaired</td>
-<td>Cramer’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;V" title="V" alt="V">
+<td>Cramer’s <span class="math inline"><em>V</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
@@ -2136,7 +2136,7 @@
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
 <td>Paired</td>
-<td>Cohen’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;g" title="g" alt="g">
+<td>Cohen’s <span class="math inline"><em>g</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
@@ -2154,9 +2154,9 @@
 <p><strong>Hypothesis testing</strong></p>
 <table class="table">
 <colgroup>
-<col width="14%">
-<col width="74%">
-<col width="11%">
+<col width="30%">
+<col width="45%">
+<col width="23%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2166,23 +2166,23 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Goodness of fit <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Goodness of fit <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
-<td>Bayesian Goodness of fit <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E2" title="\chi^2" alt="^2"> test</td>
+<td>Bayesian Goodness of fit <span class="math inline"><em>χ</em><sup>2</sup></span> test</td>
 <td>(custom)</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Effect size estimation</strong></p>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="17%">
-<col width="63%">
-<col width="3%">
-<col width="16%">
+<col width="36%">
+<col width="20%">
+<col width="6%">
+<col width="35%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2193,7 +2193,7 @@
 <tbody>
 <tr class="odd">
 <td>Parametric/Non-parametric</td>
-<td>Pearson’s <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;C" title="C" alt="C">
+<td>Pearson’s <span class="math inline"><em>C</em></span>
 </td>
 <td>✅</td>
 <td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::pearsons_c</a></code></td>
@@ -2215,7 +2215,7 @@
 <p>The function <code>ggcoefstats</code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy data frames are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
-<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cchi%5E%7B2%7D" title="\chi^{2}" alt="^{2}">-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
+<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline"><em>χ</em><sup>2</sup></span>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
 <li><p>The label attached to dot will provide more details from the statistical test carried out and it will typically contain estimate, statistic, and <em>p</em>-value.e</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> object and, thus, it can be further modified (e.g. change themes) with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> functions.</p></li>
@@ -2389,11 +2389,11 @@
 <p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p>
 <table class="table">
 <colgroup>
-<col width="6%">
-<col width="25%">
-<col width="53%">
-<col width="2%">
+<col width="11%">
+<col width="48%">
 <col width="12%">
+<col width="4%">
+<col width="23%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -2406,21 +2406,21 @@
 <tr class="odd">
 <td>Parametric</td>
 <td>Meta-analysis via random-effects models</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cbeta" title="\beta" alt=""></td>
+<td><span class="math inline"><em>β</em></span></td>
 <td>✅</td>
 <td><code><a href="https://wviechtb.github.io/metafor/reference/metafor-package.html" class="external-link">metafor::metafor</a></code></td>
 </tr>
 <tr class="even">
 <td>Robust</td>
 <td>Meta-analysis via robust random-effects models</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cbeta" title="\beta" alt=""></td>
+<td><span class="math inline"><em>β</em></span></td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code></td>
 </tr>
 <tr class="odd">
 <td>Bayes</td>
 <td>Meta-analysis via Bayesian random-effects models</td>
-<td><img src="https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&amp;space;%5Cbg_white&amp;space;%5Cbeta" title="\beta" alt=""></td>
+<td><span class="math inline"><em>β</em></span></td>
 <td>✅</td>
 <td><code><a href="https://rdrr.io/pkg/metaBMA/man/meta_random.html" class="external-link">metaBMA::meta_random</a></code></td>
 </tr>
