@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.2
+# CITATION file created with {cffr} R package, v0.2.3
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.9.4
+version: 0.9.4.9000
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -138,9 +138,9 @@ references:
     given-names: Etienne
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
-  year: '2022'
   url: https://easystats.github.io/datawizard/
   version: '>= 0.5.0'
+  year: '2022'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -268,7 +268,7 @@ references:
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
   year: '2022'
-  url: https://CRAN.R-project.org/package=insight
+  url: https://easystats.github.io/insight/
   version: '>= 0.18.2'
 - type: software
   title: paletteer
@@ -308,7 +308,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2022'
-  url: https://CRAN.R-project.org/package=parameters
+  url: https://easystats.github.io/parameters/
   version: '>= 0.18.2'
 - type: software
   title: patchwork
@@ -351,7 +351,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2022'
-  url: https://CRAN.R-project.org/package=performance
+  url: https://easystats.github.io/performance/
   version: '>= 0.9.2'
 - type: software
   title: purrr
