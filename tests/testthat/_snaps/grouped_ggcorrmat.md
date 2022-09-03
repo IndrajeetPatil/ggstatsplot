@@ -33,5 +33,4 @@
        9  -Inf           30 0        Winsorized Pearson correlation    32
       10    -1.16        10 2.74e- 1 Winsorized Pearson correlation    12
       # ... with 14 more rows
-      # i Use `print(n = ...)` to see more rows
 
