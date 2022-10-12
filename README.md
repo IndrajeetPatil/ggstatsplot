@@ -3,11 +3,10 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-| Status                                                                                                                                            | Usage                                                                                                                                            | Miscellaneous                                                                                                                                                    |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master) |
-| [![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot)                 | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)                                                     |
-| [![pkgdown](https://github.com/IndrajeetPatil/ggstatsplot/workflows/pkgdown/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot/actions)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                      | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                                       |
+| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main) |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                  |
 
 ## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -1006,84 +1005,86 @@ insight::supported_models()
 #>  [51] "cpglmm"                  "crch"                   
 #>  [53] "crq"                     "crqs"                   
 #>  [55] "crr"                     "dep.effect"             
-#>  [57] "DirichletRegModel"       "drc"                    
-#>  [59] "eglm"                    "elm"                    
-#>  [61] "epi.2by2"                "ergm"                   
-#>  [63] "feglm"                   "feis"                   
-#>  [65] "felm"                    "fitdistr"               
-#>  [67] "fixest"                  "flexsurvreg"            
-#>  [69] "gam"                     "Gam"                    
-#>  [71] "gamlss"                  "gamm"                   
-#>  [73] "gamm4"                   "garch"                  
-#>  [75] "gbm"                     "gee"                    
-#>  [77] "geeglm"                  "glht"                   
-#>  [79] "glimML"                  "glm"                    
-#>  [81] "Glm"                     "glmm"                   
-#>  [83] "glmmadmb"                "glmmPQL"                
-#>  [85] "glmmTMB"                 "glmrob"                 
-#>  [87] "glmRob"                  "glmx"                   
-#>  [89] "gls"                     "gmnl"                   
-#>  [91] "HLfit"                   "htest"                  
-#>  [93] "hurdle"                  "iv_robust"              
-#>  [95] "ivFixed"                 "ivprobit"               
-#>  [97] "ivreg"                   "lavaan"                 
-#>  [99] "lm"                      "lm_robust"              
-#> [101] "lme"                     "lmerMod"                
-#> [103] "lmerModLmerTest"         "lmodel2"                
-#> [105] "lmrob"                   "lmRob"                  
-#> [107] "logistf"                 "logitmfx"               
-#> [109] "logitor"                 "LORgee"                 
-#> [111] "lqm"                     "lqmm"                   
-#> [113] "lrm"                     "manova"                 
-#> [115] "MANOVA"                  "marginaleffects"        
-#> [117] "marginaleffects.summary" "margins"                
-#> [119] "maxLik"                  "mclogit"                
-#> [121] "mcmc"                    "mcmc.list"              
-#> [123] "MCMCglmm"                "mcp1"                   
-#> [125] "mcp12"                   "mcp2"                   
-#> [127] "med1way"                 "mediate"                
-#> [129] "merMod"                  "merModList"             
-#> [131] "meta_bma"                "meta_fixed"             
-#> [133] "meta_random"             "metaplus"               
-#> [135] "mhurdle"                 "mipo"                   
-#> [137] "mira"                    "mixed"                  
-#> [139] "MixMod"                  "mixor"                  
-#> [141] "mjoint"                  "mle"                    
-#> [143] "mle2"                    "mlm"                    
-#> [145] "mlogit"                  "mmlogit"                
-#> [147] "model_fit"               "multinom"               
-#> [149] "mvord"                   "negbinirr"              
-#> [151] "negbinmfx"               "ols"                    
-#> [153] "onesampb"                "orm"                    
-#> [155] "pgmm"                    "plm"                    
-#> [157] "PMCMR"                   "poissonirr"             
-#> [159] "poissonmfx"              "polr"                   
-#> [161] "probitmfx"               "psm"                    
-#> [163] "Rchoice"                 "ridgelm"                
-#> [165] "riskRegression"          "rjags"                  
-#> [167] "rlm"                     "rlmerMod"               
-#> [169] "RM"                      "rma"                    
-#> [171] "rma.uni"                 "robmixglm"              
-#> [173] "robtab"                  "rq"                     
-#> [175] "rqs"                     "rqss"                   
-#> [177] "Sarlm"                   "scam"                   
-#> [179] "selection"               "sem"                    
-#> [181] "SemiParBIV"              "semLm"                  
-#> [183] "semLme"                  "slm"                    
-#> [185] "speedglm"                "speedlm"                
-#> [187] "stanfit"                 "stanmvreg"              
-#> [189] "stanreg"                 "summary.lm"             
-#> [191] "survfit"                 "survreg"                
-#> [193] "svy_vglm"                "svychisq"               
-#> [195] "svyglm"                  "svyolr"                 
-#> [197] "t1way"                   "tobit"                  
-#> [199] "trimcibt"                "truncreg"               
-#> [201] "vgam"                    "vglm"                   
-#> [203] "wbgee"                   "wblm"                   
-#> [205] "wbm"                     "wmcpAKP"                
-#> [207] "yuen"                    "yuend"                  
-#> [209] "zcpglm"                  "zeroinfl"               
-#> [211] "zerotrunc"
+#>  [57] "DirichletRegModel"       "draws"                  
+#>  [59] "drc"                     "eglm"                   
+#>  [61] "elm"                     "epi.2by2"               
+#>  [63] "ergm"                    "feglm"                  
+#>  [65] "feis"                    "felm"                   
+#>  [67] "fitdistr"                "fixest"                 
+#>  [69] "flexsurvreg"             "gam"                    
+#>  [71] "Gam"                     "gamlss"                 
+#>  [73] "gamm"                    "gamm4"                  
+#>  [75] "garch"                   "gbm"                    
+#>  [77] "gee"                     "geeglm"                 
+#>  [79] "glht"                    "glimML"                 
+#>  [81] "glm"                     "Glm"                    
+#>  [83] "glmm"                    "glmmadmb"               
+#>  [85] "glmmPQL"                 "glmmTMB"                
+#>  [87] "glmrob"                  "glmRob"                 
+#>  [89] "glmx"                    "gls"                    
+#>  [91] "gmnl"                    "HLfit"                  
+#>  [93] "htest"                   "hurdle"                 
+#>  [95] "iv_robust"               "ivFixed"                
+#>  [97] "ivprobit"                "ivreg"                  
+#>  [99] "lavaan"                  "lm"                     
+#> [101] "lm_robust"               "lme"                    
+#> [103] "lmerMod"                 "lmerModLmerTest"        
+#> [105] "lmodel2"                 "lmrob"                  
+#> [107] "lmRob"                   "logistf"                
+#> [109] "logitmfx"                "logitor"                
+#> [111] "LORgee"                  "lqm"                    
+#> [113] "lqmm"                    "lrm"                    
+#> [115] "manova"                  "MANOVA"                 
+#> [117] "marginaleffects"         "marginaleffects.summary"
+#> [119] "margins"                 "maxLik"                 
+#> [121] "mblogit"                 "mclogit"                
+#> [123] "mcmc"                    "mcmc.list"              
+#> [125] "MCMCglmm"                "mcp1"                   
+#> [127] "mcp12"                   "mcp2"                   
+#> [129] "med1way"                 "mediate"                
+#> [131] "merMod"                  "merModList"             
+#> [133] "meta_bma"                "meta_fixed"             
+#> [135] "meta_random"             "metaplus"               
+#> [137] "mhurdle"                 "mipo"                   
+#> [139] "mira"                    "mixed"                  
+#> [141] "MixMod"                  "mixor"                  
+#> [143] "mjoint"                  "mle"                    
+#> [145] "mle2"                    "mlm"                    
+#> [147] "mlogit"                  "mmclogit"               
+#> [149] "mmlogit"                 "model_fit"              
+#> [151] "multinom"                "mvord"                  
+#> [153] "negbinirr"               "negbinmfx"              
+#> [155] "ols"                     "onesampb"               
+#> [157] "orm"                     "pgmm"                   
+#> [159] "plm"                     "PMCMR"                  
+#> [161] "poissonirr"              "poissonmfx"             
+#> [163] "polr"                    "probitmfx"              
+#> [165] "psm"                     "Rchoice"                
+#> [167] "ridgelm"                 "riskRegression"         
+#> [169] "rjags"                   "rlm"                    
+#> [171] "rlmerMod"                "RM"                     
+#> [173] "rma"                     "rma.uni"                
+#> [175] "robmixglm"               "robtab"                 
+#> [177] "rq"                      "rqs"                    
+#> [179] "rqss"                    "rvar"                   
+#> [181] "Sarlm"                   "scam"                   
+#> [183] "selection"               "sem"                    
+#> [185] "SemiParBIV"              "semLm"                  
+#> [187] "semLme"                  "slm"                    
+#> [189] "speedglm"                "speedlm"                
+#> [191] "stanfit"                 "stanmvreg"              
+#> [193] "stanreg"                 "summary.lm"             
+#> [195] "survfit"                 "survreg"                
+#> [197] "svy_vglm"                "svychisq"               
+#> [199] "svyglm"                  "svyolr"                 
+#> [201] "t1way"                   "tobit"                  
+#> [203] "trimcibt"                "truncreg"               
+#> [205] "vgam"                    "vglm"                   
+#> [207] "wbgee"                   "wblm"                   
+#> [209] "wbm"                     "wmcpAKP"                
+#> [211] "yuen"                    "yuend"                  
+#> [213] "zcpglm"                  "zeroinfl"               
+#> [215] "zerotrunc"
 ```
 
 Although not shown here, this function can also be used to carry out
@@ -1137,31 +1138,31 @@ ggbetweenstats(mtcars, cyl, mpg) %>%
 #> 1       0.95    0.531         1 ncp         F                    32 <language>
 #> 
 #> $caption_data
-#> # A tibble: 6 × 18
-#>   term     pd rope.percentage prior.distribution prior.location prior.scale
-#>   <chr> <dbl>           <dbl> <chr>                       <dbl>       <dbl>
-#> 1 mu    1              0      cauchy                          0       0.707
-#> 2 cyl-4 1              0      cauchy                          0       0.707
-#> 3 cyl-6 0.780          0.390  cauchy                          0       0.707
-#> 4 cyl-8 1              0      cauchy                          0       0.707
-#> 5 sig2  1              0      cauchy                          0       0.707
-#> 6 g_cyl 1              0.0155 cauchy                          0       0.707
-#>       bf10 method                          log_e_bf10 effectsize        
-#>      <dbl> <chr>                                <dbl> <chr>             
-#> 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#> 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#> 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#> 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#> 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#> 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared
-#>   estimate std.dev conf.level conf.low conf.high conf.method n.obs expression
-#>      <dbl>   <dbl>      <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
-#> 1    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
-#> 2    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
-#> 3    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
-#> 4    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
-#> 5    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
-#> 6    0.714  0.0503       0.95    0.574     0.788 HDI            32 <language>
+#> # A tibble: 6 × 17
+#>   term     pd prior.distribution prior.location prior.scale     bf10
+#>   <chr> <dbl> <chr>                       <dbl>       <dbl>    <dbl>
+#> 1 mu    1     cauchy                          0       0.707 3008850.
+#> 2 cyl-4 1     cauchy                          0       0.707 3008850.
+#> 3 cyl-6 0.780 cauchy                          0       0.707 3008850.
+#> 4 cyl-8 1     cauchy                          0       0.707 3008850.
+#> 5 sig2  1     cauchy                          0       0.707 3008850.
+#> 6 g_cyl 1     cauchy                          0       0.707 3008850.
+#>   method                          log_e_bf10 effectsize         estimate std.dev
+#>   <chr>                                <dbl> <chr>                 <dbl>   <dbl>
+#> 1 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
+#> 2 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
+#> 3 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
+#> 4 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
+#> 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
+#> 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
+#>   conf.level conf.low conf.high conf.method n.obs expression
+#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
+#> 1       0.95    0.574     0.788 HDI            32 <language>
+#> 2       0.95    0.574     0.788 HDI            32 <language>
+#> 3       0.95    0.574     0.788 HDI            32 <language>
+#> 4       0.95    0.574     0.788 HDI            32 <language>
+#> 5       0.95    0.574     0.788 HDI            32 <language>
+#> 6       0.95    0.574     0.788 HDI            32 <language>
 #> 
 #> $pairwise_comparisons_data
 #> # A tibble: 3 × 9

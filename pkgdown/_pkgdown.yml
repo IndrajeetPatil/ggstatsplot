@@ -79,10 +79,6 @@ reference:
       - bugs_wide
       - bugs_long
 
-  - title: Package information
-    contents:
-      - ggstatsplot-package
-
 articles:
 
   - title: Primary functions

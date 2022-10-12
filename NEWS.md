@@ -1,9 +1,13 @@
-# ggstatsplot 0.9.4
+# ggstatsplot 0.9.5
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+- Fixes tests for changes in dependencies.
+
+# ggstatsplot 0.9.4
 
 - Internal housekeeping to adjust to changes in upstream dependencies.
 

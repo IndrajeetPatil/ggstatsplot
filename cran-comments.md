@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- Internal housekeeping to adjust to changes in upstream dependencies.
+- Fixes tests for changes in dependencies.
 
 ## revdepcheck results
 
