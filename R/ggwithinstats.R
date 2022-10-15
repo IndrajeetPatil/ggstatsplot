@@ -76,46 +76,20 @@ ggwithinstats <- function(data,
                           tr = 0.2,
                           centrality.plotting = TRUE,
                           centrality.type = type,
-                          centrality.point.args = list(
-                            size = 5,
-                            color = "darkred"
-                          ),
-                          centrality.label.args = list(
-                            size = 3,
-                            nudge_x = 0.4,
-                            segment.linetype = 4
-                          ),
+                          centrality.point.args = list(size = 5, color = "darkred"),
+                          centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                           centrality.path = TRUE,
-                          centrality.path.args = list(
-                            size = 1,
-                            color = "red",
-                            alpha = 0.5
-                          ),
-                          point.args = list(
-                            size = 3,
-                            alpha = 0.5
-                          ),
+                          centrality.path.args = list(size = 1, color = "red", alpha = 0.5),
+                          point.args = list(size = 3, alpha = 0.5),
                           point.path = TRUE,
-                          point.path.args = list(
-                            alpha = 0.5,
-                            linetype = "dashed"
-                          ),
+                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
                           outlier.tagging = FALSE,
                           outlier.label = NULL,
                           outlier.coef = 1.5,
                           outlier.label.args = list(size = 3),
-                          boxplot.args = list(
-                            width = 0.2,
-                            alpha = 0.5
-                          ),
-                          violin.args = list(
-                            width = 0.5,
-                            alpha = 0.2
-                          ),
-                          ggsignif.args = list(
-                            textsize = 3,
-                            tip_length = 0.01
-                          ),
+                          boxplot.args = list(width = 0.2, alpha = 0.5),
+                          violin.args = list(width = 0.5, alpha = 0.2),
+                          ggsignif.args = list(textsize = 3, tip_length = 0.01),
                           ggtheme = ggstatsplot::theme_ggstatsplot(),
                           package = "RColorBrewer",
                           palette = "Dark2",

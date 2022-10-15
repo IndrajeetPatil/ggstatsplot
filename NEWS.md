@@ -5,6 +5,15 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+MAJOR CHANGES
+
+- Due to changes to the underlying API of `{parameters}`, the `effsize` argument 
+  has been renamed to `effectsize.type`.
+
+- Removes unnecessary re-exports of `{tidyverse}` operators.
+
+MINOR CHANGES
+
 - Fixes tests for changes in dependencies.
 
 # ggstatsplot 0.9.4

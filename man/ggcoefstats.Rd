@@ -12,7 +12,7 @@ ggcoefstats(
   conf.level = 0.95,
   k = 2L,
   exclude.intercept = FALSE,
-  effsize = "eta",
+  effectsize.type = "eta",
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   bf.message = TRUE,
@@ -37,21 +37,21 @@ ggcoefstats(
 )
 }
 \arguments{
-\item{x}{A model object to be tidied, or a tidy data frame containing results
-from a regression model. Function internally uses
-\code{parameters::model_parameters()} to get a tidy data frame. If a data frame is
-entered, it \emph{must} contain at the minimum two columns named \code{term} (names
-of predictors) and \code{estimate} (corresponding estimates of coefficients or
-other quantities of interest).}
+\item{x}{A model object to be tidied, or a tidy data frame from a regression
+model. Function internally uses \code{parameters::model_parameters()} to get a
+tidy data frame. If a data frame, it \emph{must} contain at the minimum two
+columns named \code{term} (names of predictors) and \code{estimate} (corresponding
+estimates of coefficients or other quantities of interest).}
 
 \item{output}{Character describing the expected output from this function:
-\code{"plot"} (visualization of regression coefficients) or \code{"tidy"} (tidy
-data frame of results \code{parameters::model_parameters}) or \code{"glance"} (object
-from \code{performance::model_performance}).}
+\itemize{
+\item \code{"plot"} (visualization of regression coefficients)
+\item \code{"tidy"} (tidy data frame of results \code{parameters::model_parameters()})
+\item \code{"glance"} (object from \code{performance::model_performance()})
+}}
 
-\item{statistic}{Which statistic is to be displayed (either \code{"t"} or \code{"f"}or
-\code{"z"} or \code{"chi"}) in the label. This is relevant if the \code{x} argument is a
-\emph{data frame}.}
+\item{statistic}{Relevant statistic for the model (\code{"t"}, \code{"f"}, \code{"z"}, or
+\code{"chi"}) in the label. Relevant only if \code{x} is a \emph{data frame}.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
@@ -65,9 +65,9 @@ error bars (Default: \code{TRUE}).}
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{FALSE}).}
 
-\item{effsize}{Character describing the effect size to be displayed: \code{"eta"}
-(default) or \code{"omega"}. This argument is relevant only for models objects
-with \emph{F}-statistic.}
+\item{effectsize.type}{This is the same as \code{effectsize_type} argument of
+\code{parameters::model_parameters()}. Defaults to \code{"eta"}, and relevant for
+ANOVA-like objects.}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
@@ -164,14 +164,14 @@ For details, see:
 \note{
 \enumerate{
 \item In case you want to carry out meta-analysis, you will be asked to install
-the needed packages (\code{{metafor}}, \code{{metaplus}}, or \code{{metaBMA}}) for
-meta-analysis (if unavailable).
+the needed packages (\code{{metafor}}, \code{{metaplus}}, or \code{{metaBMA}}) if they are
+unavailable.
 \item All rows of regression estimates where either of the following
-quantities is \code{NA} will be removed if labels are requested: \code{estimate},
-\code{statistic}, \code{p.value}.
+quantities is \code{NA} will be removed if labels are requested:
+\code{estimate}, \code{statistic}, \code{p.value}.
 \item Given the rapid pace at which new methods are added to these packages, it
-is recommended that you install the GitHub versions of \code{{parameters}} and
-\code{{performance}} in order to make most of this function.
+is recommended that you install development versions of \code{{easystats}}
+packages using the \code{install_latest()} function from \code{{easystats}}.
 }
 }
 \examples{

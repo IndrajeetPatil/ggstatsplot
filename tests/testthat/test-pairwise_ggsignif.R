@@ -3,7 +3,6 @@
 test_that(
   desc = "check pairwise displays - between-subjects",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("PMCMRplus")
@@ -133,7 +132,6 @@ test_that(
 test_that(
   desc = "check pairwise displays - within-subjects",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("PMCMRplus")
@@ -264,7 +262,6 @@ test_that(
 test_that(
   desc = "adding caption works",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("PMCMRplus")

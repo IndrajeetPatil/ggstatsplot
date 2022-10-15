@@ -1,7 +1,6 @@
 test_that(
   desc = "checking if combining plots works",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 

@@ -1,12 +1,6 @@
-testthat::skip_on_cran()
-
-df_meta <- structure(
-  list(
-    estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
-    std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
-  ),
-  row.names = c(NA, -5L),
-  class = c("tbl_df", "tbl", "data.frame")
+df_meta <- tibble(
+  estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
+  std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
 )
 
 # errors ------------------------------------------
@@ -18,9 +12,7 @@ test_that("ggcoefstats doesn't work if no estimate column found", {
 # default plots for each statistic ------------------------------------------
 
 test_that("default plots are rendered correctly for each type of statistic", {
-  skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
-
   skip_if_not_installed("survival")
 
   library(survival)
@@ -39,8 +31,8 @@ test_that("default plots are rendered correctly for each type of statistic", {
 
   set.seed(123)
   vdiffr::expect_doppelganger(
-    title = "F-statistic with partial effect size",
-    fig = ggcoefstats(stats::aov(wt ~ mpg * am, mtcars), effsize = "eta", partial = TRUE)
+    title = "F-statistic with omega",
+    fig = ggcoefstats(stats::aov(wt ~ mpg * am, mtcars), effectsize.type = "omega")
   )
 
   set.seed(123)
@@ -68,32 +60,18 @@ test_that("default plots are rendered correctly for each type of statistic", {
 })
 
 test_that("meta-analysis works", {
-  skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
-
-  skip_if_not_installed("survival")
-  skip_if_not_installed("metaBMA")
   skip_if_not_installed("metafor")
 
-  expect_s3_class(
-    suppressWarnings(ggcoefstats(
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "meta-analysis works",
+    fig = suppressWarnings(ggcoefstats(
       df_meta,
       meta.analytic.effect = TRUE,
       bf.message = TRUE
-    )),
-    "ggplot"
+    ))
   )
-
-  # TODO: generate from windows
-  # set.seed(123)
-  # vdiffr::expect_doppelganger(
-  #   title = "meta-analysis works",
-  #   fig = ggcoefstats(
-  #     df_meta,
-  #     meta.analytic.effect = TRUE,
-  #     bf.message = TRUE
-  #   )
-  # )
 })
 
 # plot modifications--------------------------------------------------
@@ -101,9 +79,7 @@ test_that("meta-analysis works", {
 test_that(
   desc = "plot modifications work as expected",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
-
 
     set.seed(123)
     mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)
@@ -136,7 +112,7 @@ test_that(
         x = mod2,
         exclude.intercept = FALSE,
         sort = "ascending",
-        effsize = "omega",
+        effectsize.type = "omega",
         title = "mammalian sleep",
         subtitle = "Source: `{ggplot2}` package",
         package = "wesanderson",
@@ -171,7 +147,7 @@ test_that(
 # test_that(
 #   desc = "works when NAs present in numeric columns",
 #   code = {
-#     skip_if_not_installed("vdiffr")
+#
 #     skip_if(getRversion() < "4.1")
 #     skip_if_not_installed("lme4")
 #
@@ -187,7 +163,6 @@ test_that(
 test_that(
   desc = "edge cases",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     set.seed(123)
@@ -214,16 +189,10 @@ test_that(
   desc = "meta analysis subtitle and caption",
   code = {
     set.seed(123)
-    subtitle_expr <- suppressWarnings(statsExpressions::meta_analysis(
-      data = df_meta,
-      type = "p"
-    ))
+    subtitle_expr <- suppressWarnings(meta_analysis(df_meta, type = "p"))
 
     set.seed(123)
-    caption_expr <- suppressWarnings(statsExpressions::meta_analysis(
-      data = df_meta,
-      type = "bayes"
-    ))
+    caption_expr <- suppressWarnings(meta_analysis(df_meta, type = "bayes"))
 
     set.seed(123)
     ggcoef_subtitle <- suppressWarnings(ggcoefstats(

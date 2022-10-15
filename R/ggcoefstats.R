@@ -7,19 +7,20 @@
 #' confidence interval whiskers and other statistical details included as
 #' labels.
 #'
-#' @param x A model object to be tidied, or a tidy data frame containing results
-#'   from a regression model. Function internally uses
-#'   `parameters::model_parameters()` to get a tidy data frame. If a data frame is
-#'   entered, it *must* contain at the minimum two columns named `term` (names
-#'   of predictors) and `estimate` (corresponding estimates of coefficients or
-#'   other quantities of interest).
+#' @param x A model object to be tidied, or a tidy data frame from a regression
+#'   model. Function internally uses `parameters::model_parameters()` to get a
+#'   tidy data frame. If a data frame, it *must* contain at the minimum two
+#'   columns named `term` (names of predictors) and `estimate` (corresponding
+#'   estimates of coefficients or other quantities of interest).
 #' @param output Character describing the expected output from this function:
-#'   `"plot"` (visualization of regression coefficients) or `"tidy"` (tidy
-#'   data frame of results `parameters::model_parameters`) or `"glance"` (object
-#'   from `performance::model_performance`).
-#' @param statistic Which statistic is to be displayed (either `"t"` or `"f"`or
-#'   `"z"` or `"chi"`) in the label. This is relevant if the `x` argument is a
-#'   *data frame*.
+#'   - `"plot"` (visualization of regression coefficients)
+#'   - `"tidy"` (tidy data frame of results `parameters::model_parameters()`)
+#'   - `"glance"` (object from `performance::model_performance()`)
+#' @param statistic Relevant statistic for the model (`"t"`, `"f"`, `"z"`, or
+#'   `"chi"`) in the label. Relevant only if `x` is a *data frame*.
+#' @param effectsize.type This is the same as `effectsize_type` argument of
+#'   `parameters::model_parameters()`. Defaults to `"eta"`, and relevant for
+#'   ANOVA-like objects.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
@@ -33,9 +34,6 @@
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence or credible intervals
 #'   (Default: `0.95`).
-#' @param effsize Character describing the effect size to be displayed: `"eta"`
-#'   (default) or `"omega"`. This argument is relevant only for models objects
-#'   with *F*-statistic.
 #' @param meta.analytic.effect Logical that decides whether subtitle for
 #'   meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
 #'   `TRUE`, input to argument `subtitle` will be ignored. This will be mostly
@@ -80,16 +78,16 @@
 #' @note
 #'
 #' 1. In case you want to carry out meta-analysis, you will be asked to install
-#'   the needed packages (`{metafor}`, `{metaplus}`, or `{metaBMA}`) for
-#'   meta-analysis (if unavailable).
+#'   the needed packages (`{metafor}`, `{metaplus}`, or `{metaBMA}`) if they are
+#'   unavailable.
 #'
 #' 2. All rows of regression estimates where either of the following
-#'   quantities is `NA` will be removed if labels are requested: `estimate`,
-#'   `statistic`, `p.value`.
+#'   quantities is `NA` will be removed if labels are requested:
+#'   `estimate`, `statistic`, `p.value`.
 #'
 #' 3. Given the rapid pace at which new methods are added to these packages, it
-#'   is recommended that you install the GitHub versions of `{parameters}` and
-#'   `{performance}` in order to make most of this function.
+#'   is recommended that you install development versions of `{easystats}`
+#'   packages using the `install_latest()` function from `{easystats}`.
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
@@ -124,7 +122,7 @@ ggcoefstats <- function(x,
                         conf.level = 0.95,
                         k = 2L,
                         exclude.intercept = FALSE,
-                        effsize = "eta",
+                        effectsize.type = "eta",
                         meta.analytic.effect = FALSE,
                         meta.type = "parametric",
                         bf.message = TRUE,
@@ -138,17 +136,10 @@ ggcoefstats <- function(x,
                         point.args = list(size = 3, color = "blue"),
                         errorbar.args = list(height = 0),
                         vline = TRUE,
-                        vline.args = list(
-                          size = 1,
-                          linetype = "dashed"
-                        ),
+                        vline.args = list(size = 1, linetype = "dashed"),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
-                        stats.label.args = list(
-                          size = 3,
-                          direction = "y",
-                          min.segment.length = 0
-                        ),
+                        stats.label.args = list(size = 3, direction = "y", min.segment.length = 0),
                         package = "RColorBrewer",
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -166,25 +157,18 @@ ggcoefstats <- function(x,
   if (insight::is_model(x)) {
     statistic <- insight::find_statistic(x)
 
-    eta_squared <- omega_squared <- NULL
-    if (effsize == "eta") eta_squared <- "partial"
-    if (effsize == "omega") omega_squared <- "partial"
-
     # converting model object to a tidy data frame
-    tidy_df <- parameters::model_parameters(
-      model         = x,
-      eta_squared   = eta_squared,
-      omega_squared = omega_squared,
-      ci            = conf.level,
-      verbose       = FALSE,
-      table_wide    = TRUE,
+    tidy_df <- tidy_model_parameters(
+      model           = x,
+      effectsize_type = effectsize.type,
+      ci              = conf.level,
+      table_wide      = TRUE,
       ...
     ) %>%
-      parameters::standardize_names(style = "broom") %>%
       rename_all(~ gsub("omega2.|eta2.", "", .x))
 
     # anova objects need further cleaning
-    if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effsize, "-squared"))
+    if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
   }
 
   # tidy data frame cleanup -------------------------
@@ -233,7 +217,7 @@ ggcoefstats <- function(x,
 
   if (stats.labels) {
     # add expression labels
-    tidy_df %<>% statsExpressions::tidy_model_expressions(statistic, k, effsize)
+    tidy_df %<>% tidy_model_expressions(statistic, k, effectsize.type)
 
     # only significant p-value labels are shown
     if (only.significant && ("p.value" %in% names(tidy_df))) {

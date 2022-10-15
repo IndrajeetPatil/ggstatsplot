@@ -47,7 +47,7 @@ test_that(
     )
 
     set.seed(123)
-    basic_results <- statsExpressions::one_sample_test(
+    basic_results <- one_sample_test(
       data = df,
       x = brainwt,
       test.value = 0.25

@@ -3,7 +3,6 @@
 test_that(
   desc = "checking default outputs",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -85,7 +84,7 @@ test_that(
     )
 
     set.seed(123)
-    sub <- statsExpressions::one_sample_test(
+    sub <- one_sample_test(
       data = ggplot2::msleep,
       x = brainwt,
       type = "np",

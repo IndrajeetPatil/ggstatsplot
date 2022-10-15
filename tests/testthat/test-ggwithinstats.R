@@ -8,7 +8,6 @@ data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30, condition %in% c("HDLF", 
 test_that(
   desc = "defaults plots",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("PMCMRplus")
@@ -55,7 +54,6 @@ test_that(
 test_that(
   desc = "aesthetic modifications work",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("PMCMRplus")
