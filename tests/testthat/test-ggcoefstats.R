@@ -168,7 +168,8 @@ test_that(
       title = "NAs in numeric columns",
       fig = m_lmer
     )
-})
+  }
+)
 
 test_that(
   desc = "edge cases",

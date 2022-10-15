@@ -96,9 +96,6 @@ To see the detailed documentation for each function in the stable
 
 ## Summary of available plots
 
-It, therefore, produces a limited kinds of plots for the supported
-analyses:
-
 | Function         | Plot                      | Description                                     | Lifecycle                                                                                                                  |
 |------------------|---------------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | `ggbetweenstats` | **violin plots**          | for comparisons *between* groups/conditions     | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) |
