@@ -73,6 +73,7 @@ test_that("meta-analysis works", {
 
   expect_s3_class(p_meta, "ggplot")
 
+  skip_on_os("mac", c("i386", "x86_64"))
   set.seed(123)
   vdiffr::expect_doppelganger(
     title = "meta-analysis works",
@@ -157,11 +158,15 @@ test_that(
     skip_on_os(c("windows", "linux", "solaris"))
 
     library(lme4, warn.conflicts = FALSE)
+    m_lmer <- ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), data = sleepstudy))
 
+    expect_s3_class(m_lmer, "ggplot")
+
+    skip_on_os("mac", c("i386", "x86_64"))
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "NAs in numeric columns",
-      fig = ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy))
+      fig = m_lmer
     )
 })
 
