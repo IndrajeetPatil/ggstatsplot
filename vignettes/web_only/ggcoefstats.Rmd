@@ -420,7 +420,7 @@ combine_plots(
     ggcoefstats(mod2, title = "independent t-test"),
     ggcoefstats(mod3, title = "paired t-test"),
     ggcoefstats(mod4, title = "correlation"),
-    ggcoefstats(mod5, title = "contingency table"),
+    ggcoefstats(mod5, title = "contingency table", effectsize.type = "cramers_v"),
     ggcoefstats(mod6, title = "anova"),
     ggcoefstats(mod7, title = "regression-1"),
     ggcoefstats(mod8, title = "meta-analysis"),
