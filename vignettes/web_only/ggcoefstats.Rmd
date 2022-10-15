@@ -287,7 +287,7 @@ mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
 # plot
 ggcoefstats(
   x = mod_aov,
-  effsize = "omega", # changing the effect size estimate being displayed
+  effectsize.type = "omega", # changing the effect size estimate being displayed
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
   package = "dutchmasters", # package from which color palette is to be taken
   palette = "milkmaid", # color palette for labels

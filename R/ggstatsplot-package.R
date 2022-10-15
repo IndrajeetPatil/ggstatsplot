@@ -68,7 +68,6 @@
 #' @import ggplot2
 #' @import statsExpressions
 #'
-#' @importFrom magrittr "%>%" "%<>%" "%$%" "%T>%"
 #' @importFrom glue glue
 #' @importFrom insight is_model find_statistic format_value check_if_installed
 #' @importFrom parameters model_parameters standardize_names

@@ -1,6 +1,6 @@
 #' @export
-#' @importFrom magrittr "%>%"
-magrittr::`%>%`
+#' @importFrom statsExpressions "%>%"
+statsExpressions::`%>%`
 
 #' @export
 #' @importFrom statsExpressions pairwise_comparisons

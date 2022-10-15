@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.9.4.9000
+version: 0.9.5
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -17,7 +17,7 @@ abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with detai
   (pie and bar charts) data. Currently, it supports the most common types of statistical
   approaches and tests: parametric, nonparametric, robust, and Bayesian versions of
   t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and
-  regression analyses.'
+  regression analyses. References: Patil (2021) <10.21105/joss.03236>.'
 authors:
 - family-names: Patil
   given-names: Indrajeet
@@ -138,9 +138,9 @@ references:
     given-names: Etienne
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
-  year: '2022'
   url: https://easystats.github.io/datawizard/
   version: '>= 0.6.2'
+  year: '2022'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -307,9 +307,9 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
-  year: '2022'
   url: https://easystats.github.io/parameters/
   version: '>= 0.19.0'
+  year: '2022'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
