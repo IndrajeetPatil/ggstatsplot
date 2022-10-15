@@ -62,15 +62,21 @@ test_that("default plots are rendered correctly for each type of statistic", {
 test_that("meta-analysis works", {
   skip_if(getRversion() < "4.1")
   skip_if_not_installed("metafor")
+  skip_on_os(c("windows", "linux", "solaris"))
+
+  set.seed(123)
+  p_meta <- suppressWarnings(ggcoefstats(
+    df_meta,
+    meta.analytic.effect = TRUE,
+    bf.message = TRUE
+  ))
+
+  expect_s3_class(p_meta, "ggplot")
 
   set.seed(123)
   vdiffr::expect_doppelganger(
     title = "meta-analysis works",
-    fig = suppressWarnings(ggcoefstats(
-      df_meta,
-      meta.analytic.effect = TRUE,
-      bf.message = TRUE
-    ))
+    fig = p_meta
   )
 })
 
@@ -143,22 +149,20 @@ test_that(
 
 # edge cases -------------------------------------
 
-# TODO: turn it on later
-# test_that(
-#   desc = "works when NAs present in numeric columns",
-#   code = {
-#
-#     skip_if(getRversion() < "4.1")
-#     skip_if_not_installed("lme4")
-#
-#     library(lme4, warn.conflicts = FALSE)
-#
-#     set.seed(123)
-#     vdiffr::expect_doppelganger(
-#       title = "works when NAs present in numeric columns",
-#       fig = ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy))
-#     )
-# })
+test_that(
+  desc = "missing values in numeric columns",
+  code = {
+    skip_if(getRversion() < "4.1")
+    skip_if_not_installed("lme4")
+
+    library(lme4, warn.conflicts = FALSE)
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "works when NAs present in numeric columns",
+      fig = ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy))
+    )
+})
 
 test_that(
   desc = "edge cases",
@@ -170,7 +174,7 @@ test_that(
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "works when CIs are missing",
+      title = "CIs missing",
       fig = ggcoefstats(dplyr::select(df_base, -dplyr::matches("conf")), statistic = "t")
     )
 
