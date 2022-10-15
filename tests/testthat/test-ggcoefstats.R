@@ -154,12 +154,13 @@ test_that(
   code = {
     skip_if(getRversion() < "4.1")
     skip_if_not_installed("lme4")
+    skip_on_os(c("windows", "linux", "solaris"))
 
     library(lme4, warn.conflicts = FALSE)
 
     set.seed(123)
     vdiffr::expect_doppelganger(
-      title = "works when NAs present in numeric columns",
+      title = "NAs in numeric columns",
       fig = ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy))
     )
 })
