@@ -50,7 +50,7 @@
 #'   - `combine_plots()` helper function to combine multiple `{ggstatsplot}`
 #'   plots using `patchwork::wrap_plots()`.
 #'
-#'   References: Patil (2021) <10.21105/joss.03236>.
+#' References: Patil (2021) \doi{10.21105/joss.03236}.
 #'
 #' For more documentation, see the dedicated
 #' \href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.
