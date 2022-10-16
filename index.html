@@ -13,7 +13,8 @@
     bar charts) data. Currently, it supports the most common types of
     statistical approaches and tests: parametric, nonparametric, robust,
     and Bayesian versions of t-test/ANOVA, correlation analyses,
-    contingency table analysis, meta-analysis, and regression analyses.">
+    contingency table analysis, meta-analysis, and regression analyses.
+    References: Patil (2021) &lt;doi:10.21105/joss.03236&gt;.">
 <title>ggplot2 Based Plots with Statistical Details • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -27,7 +28,7 @@
 <link href="deps/JetBrains_Mono-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Based Plots with Statistical Details">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Based Plots with Statistical Details">
 <meta property="og:description" content="Extension of ggplot2, ggstatsplot creates graphics with
     details from statistical tests included in the plots themselves. It
     provides an easier syntax to generate information-rich plots for
@@ -36,7 +37,8 @@
     bar charts) data. Currently, it supports the most common types of
     statistical approaches and tests: parametric, nonparametric, robust,
     and Bayesian versions of t-test/ANOVA, correlation analyses,
-    contingency table analysis, meta-analysis, and regression analyses.">
+    contingency table analysis, meta-analysis, and regression analyses.
+    References: Patil (2021) &lt;doi:10.21105/joss.03236&gt;.">
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@patilindrajeets">
@@ -54,7 +56,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,8 +121,8 @@
 </h2>
 <table class="table">
 <colgroup>
-<col width="32%">
-<col width="32%">
+<col width="33%">
+<col width="31%">
 <col width="35%">
 </colgroup>
 <thead><tr class="header">
@@ -131,18 +133,13 @@
 <tbody>
 <tr class="odd">
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
-<td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue" alt="Total downloads badge"></a></td>
-<td><a href="https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg" alt="Codecov"></a></td>
+<td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue" alt="Total downloads"></a></td>
+<td><a href="https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg" alt="Codecov"></a></td>
 </tr>
 <tr class="even">
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg" alt="lints"></a></td>
-<td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue" alt="Daily downloads badge"></a></td>
-<td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://tinyverse.netlify.com/badge/ggstatsplot" alt="status"></a></td>
-</tr>
-<tr class="odd">
-<td><a href="https://github.com/IndrajeetPatil/ggstatsplot/actions" class="external-link"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/pkgdown/badge.svg" alt="pkgdown"></a></td>
-<td><a href="https://doi.org/10.21105/joss.03167" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.03167/status.svg" alt="DOI"></a></td>
 <td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue" alt="Daily downloads"></a></td>
+<td><a href="https://doi.org/10.21105/joss.03167" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.03167/status.svg" alt="DOI"></a></td>
 </tr>
 </tbody>
 </table>
@@ -230,74 +227,62 @@
 <div class="section level2">
 <h2 id="summary-of-available-plots">Summary of available plots<a class="anchor" aria-label="anchor" href="#summary-of-available-plots"></a>
 </h2>
-<p>It, therefore, produces a limited kinds of plots for the supported analyses:</p>
 <table class="table">
 <colgroup>
-<col width="8%">
-<col width="12%">
-<col width="22%">
-<col width="56%">
+<col width="20%">
+<col width="28%">
+<col width="51%">
 </colgroup>
 <thead><tr class="header">
-<th>Function</th>
-<th>Plot</th>
-<th>Description</th>
-<th>Lifecycle</th>
+<th align="left">Function</th>
+<th align="left">Plot</th>
+<th align="left">Description</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>ggbetweenstats</code></td>
-<td><strong>violin plots</strong></td>
-<td>for comparisons <em>between</em> groups/conditions</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code></td>
+<td align="left"><strong>violin plots</strong></td>
+<td align="left">for comparisons <em>between</em> groups/conditions</td>
 </tr>
 <tr class="even">
-<td><code>ggwithinstats</code></td>
-<td><strong>violin plots</strong></td>
-<td>for comparisons <em>within</em> groups/conditions</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code></td>
+<td align="left"><strong>violin plots</strong></td>
+<td align="left">for comparisons <em>within</em> groups/conditions</td>
 </tr>
 <tr class="odd">
-<td><code>gghistostats</code></td>
-<td><strong>histograms</strong></td>
-<td>for distribution about numeric variable</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/gghistostats.html">gghistostats()</a></code></td>
+<td align="left"><strong>histograms</strong></td>
+<td align="left">for distribution about numeric variable</td>
 </tr>
 <tr class="even">
-<td><code>ggdotplotstats</code></td>
-<td><strong>dot plots/charts</strong></td>
-<td>for distribution about labeled numeric variable</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggdotplotstats.html">ggdotplotstats()</a></code></td>
+<td align="left"><strong>dot plots/charts</strong></td>
+<td align="left">for distribution about labeled numeric variable</td>
 </tr>
 <tr class="odd">
-<td><code>ggscatterstats</code></td>
-<td><strong>scatterplots</strong></td>
-<td>for correlation between two variables</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code></td>
+<td align="left"><strong>scatterplots</strong></td>
+<td align="left">for correlation between two variables</td>
 </tr>
 <tr class="even">
-<td><code>ggcorrmat</code></td>
-<td><strong>correlation matrices</strong></td>
-<td>for correlations between multiple variables</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggcorrmat.html">ggcorrmat()</a></code></td>
+<td align="left"><strong>correlation matrices</strong></td>
+<td align="left">for correlations between multiple variables</td>
 </tr>
 <tr class="odd">
-<td><code>ggpiestats</code></td>
-<td><strong>pie charts</strong></td>
-<td>for categorical data</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggpiestats.html">ggpiestats()</a></code></td>
+<td align="left"><strong>pie charts</strong></td>
+<td align="left">for categorical data</td>
 </tr>
 <tr class="even">
-<td><code>ggbarstats</code></td>
-<td><strong>bar charts</strong></td>
-<td>for categorical data</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggbarstats.html">ggbarstats()</a></code></td>
+<td align="left"><strong>bar charts</strong></td>
+<td align="left">for categorical data</td>
 </tr>
 <tr class="odd">
-<td><code>ggcoefstats</code></td>
-<td><strong>dot-and-whisker plots</strong></td>
-<td>for regression models and meta-analysis</td>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td align="left"><code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code></td>
+<td align="left"><strong>dot-and-whisker plots</strong></td>
+<td align="left">for regression models and meta-analysis</td>
 </tr>
 </tbody>
 </table>
@@ -309,11 +294,11 @@
 <p>The table below summarizes all the different types of analyses currently supported in this package-</p>
 <table class="table">
 <colgroup>
-<col width="25%">
-<col width="38%">
-<col width="9%">
-<col width="12%">
-<col width="6%">
+<col width="28%">
+<col width="37%">
+<col width="8%">
+<col width="11%">
+<col width="5%">
 <col width="7%">
 </colgroup>
 <thead><tr class="header">
@@ -326,7 +311,7 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>ggbetweenstats</code></td>
+<td><code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code></td>
 <td>Between group/condition comparisons</td>
 <td>✅</td>
 <td>✅</td>
@@ -334,7 +319,7 @@
 <td>✅</td>
 </tr>
 <tr class="even">
-<td><code>ggwithinstats</code></td>
+<td><code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code></td>
 <td>Within group/condition comparisons</td>
 <td>✅</td>
 <td>✅</td>
@@ -343,7 +328,7 @@
 </tr>
 <tr class="odd">
 <td>
-<code>gghistostats</code>, <code>ggdotplotstats</code>
+<code><a href="reference/gghistostats.html">gghistostats()</a></code>, <code><a href="reference/ggdotplotstats.html">ggdotplotstats()</a></code>
 </td>
 <td>Distribution of a numeric variable</td>
 <td>✅</td>
@@ -360,7 +345,7 @@
 <td>✅</td>
 </tr>
 <tr class="odd">
-<td><code>ggscatterstats</code></td>
+<td><code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code></td>
 <td>Correlation between two variables</td>
 <td>✅</td>
 <td>✅</td>
@@ -369,7 +354,7 @@
 </tr>
 <tr class="even">
 <td>
-<code>ggpiestats</code>, <code>ggbarstats</code>
+<code><a href="reference/ggpiestats.html">ggpiestats()</a></code>, <code><a href="reference/ggbarstats.html">ggbarstats()</a></code>
 </td>
 <td>Association between categorical variables</td>
 <td>✅</td>
@@ -379,7 +364,7 @@
 </tr>
 <tr class="odd">
 <td>
-<code>ggpiestats</code>, <code>ggbarstats</code>
+<code><a href="reference/ggpiestats.html">ggpiestats()</a></code>, <code><a href="reference/ggbarstats.html">ggbarstats()</a></code>
 </td>
 <td>Equal proportions for categorical variable levels</td>
 <td>✅</td>
@@ -388,7 +373,7 @@
 <td>✅</td>
 </tr>
 <tr class="even">
-<td><code>ggcoefstats</code></td>
+<td><code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code></td>
 <td>Regression model coefficients</td>
 <td>✅</td>
 <td>✅</td>
@@ -396,7 +381,7 @@
 <td>✅</td>
 </tr>
 <tr class="odd">
-<td><code>ggcoefstats</code></td>
+<td><code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code></td>
 <td>Random-effects meta-analysis</td>
 <td>✅</td>
 <td>❌</td>
@@ -457,7 +442,7 @@
 </h2>
 <div class="section level3">
 <h3 id="ggbetweenstats">
-<code>ggbetweenstats</code><a class="anchor" aria-label="anchor" href="#ggbetweenstats"></a>
+<code>ggbetweenstats()</code><a class="anchor" aria-label="anchor" href="#ggbetweenstats"></a>
 </h3>
 <p>This function creates either a violin plot, a box plot, or a mix of two for <strong>between</strong>-group or <strong>between</strong>-condition comparisons with results from statistical tests in the subtitle. The simplest function call looks like this-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -688,7 +673,7 @@
 <td>&gt; 2</td>
 <td><span class="math inline"><em>ϵ</em><sub><em>o</em><em>r</em><em>d</em><em>i</em><em>n</em><em>a</em><em>l</em></sub><sup>2</sup></span></td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_epsilon_squared</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_epsilon_squared.html" class="external-link">effectsize::rank_epsilon_squared</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -795,14 +780,14 @@
 </tr>
 </tbody>
 </table>
-<p>For more, see the <code>ggbetweenstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
+<p>For more, see the <code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="ggwithinstats">
-<code>ggwithinstats</code><a class="anchor" aria-label="anchor" href="#ggwithinstats"></a>
+<code>ggwithinstats()</code><a class="anchor" aria-label="anchor" href="#ggwithinstats"></a>
 </h3>
-<p><code>ggbetweenstats</code> function has an identical twin function <code>ggwithinstats</code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
+<p><code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code> function has an identical twin function <code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co">## for data</span></span>
@@ -847,7 +832,7 @@
 </tr>
 </tbody>
 </table>
-<p>As with the <code>ggbetweenstats</code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
+<p>As with the <code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -1069,7 +1054,7 @@
 <td>
 <span class="math inline"><em>W</em><sub><em>K</em><em>e</em><em>n</em><em>d</em><em>a</em><em>l</em><em>l</em></sub></span> (Kendall’s coefficient of concordance)</td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::kendalls_w</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/rank_epsilon_squared.html" class="external-link">effectsize::kendalls_w</a></code></td>
 </tr>
 <tr class="odd">
 <td>Robust</td>
@@ -1163,14 +1148,14 @@
 </tr>
 </tbody>
 </table>
-<p>For more, see the <code>ggwithinstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
+<p>For more, see the <code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="gghistostats">
-<code>gghistostats</code><a class="anchor" aria-label="anchor" href="#gghistostats"></a>
+<code>gghistostats()</code><a class="anchor" aria-label="anchor" href="#gghistostats"></a>
 </h3>
-<p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code>gghistostats</code> can be used.</p>
+<p>To visualize the distribution of a single variable and check if its mean is significantly different from a specified value with a one-sample test, <code><a href="reference/gghistostats.html">gghistostats()</a></code> can be used.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -1355,14 +1340,14 @@
 </tr>
 </tbody>
 </table>
-<p>For more, including information about the variant of this function <code>grouped_gghistostats</code>, see the <code>gghistostats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
+<p>For more, including information about the variant of this function <code><a href="reference/grouped_gghistostats.html">grouped_gghistostats()</a></code>, see the <code><a href="reference/gghistostats.html">gghistostats()</a></code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="ggdotplotstats">
-<code>ggdotplotstats</code><a class="anchor" aria-label="anchor" href="#ggdotplotstats"></a>
+<code>ggdotplotstats()</code><a class="anchor" aria-label="anchor" href="#ggdotplotstats"></a>
 </h3>
-<p>This function is similar to <code>gghistostats</code>, but is intended to be used when the numeric variable also has a label.</p>
+<p>This function is similar to <code><a href="reference/gghistostats.html">gghistostats()</a></code>, but is intended to be used when the numeric variable also has a label.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -1546,7 +1531,7 @@
 </div>
 <div class="section level3">
 <h3 id="ggscatterstats">
-<code>ggscatterstats</code><a class="anchor" aria-label="anchor" href="#ggscatterstats"></a>
+<code>ggscatterstats()</code><a class="anchor" aria-label="anchor" href="#ggscatterstats"></a>
 </h3>
 <p>This function creates a scatterplot with marginal distributions overlaid on the axes and results from statistical tests in the subtitle:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -1666,7 +1651,7 @@
 </tr>
 </tbody>
 </table>
-<p>For more, see the <code>ggscatterstats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
+<p>For more, see the <code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
 </div>
 </div>
 <div class="section level3">
@@ -1771,7 +1756,7 @@
 </div>
 <div class="section level3">
 <h3 id="ggpiestats">
-<code>ggpiestats</code><a class="anchor" aria-label="anchor" href="#ggpiestats"></a>
+<code>ggpiestats()</code><a class="anchor" aria-label="anchor" href="#ggpiestats"></a>
 </h3>
 <p>This function creates a pie chart for categorical or nominal variables with results from contingency table analysis (Pearson’s chi-squared test for between-subjects design and McNemar’s chi-squared test for within-subjects design) included in the subtitle of the plot. If only one categorical variable is entered, results from one-sample proportion test (i.e., a chi-squared goodness of fit test) will be displayed as a subtitle.</p>
 <p>To study an interaction between two categorical variables:</p>
@@ -1918,7 +1903,7 @@
 <td>Cohen’s <span class="math inline"><em>g</em></span>
 </td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/cohens_g.html" class="external-link">effectsize::cohens_g</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
@@ -1985,14 +1970,14 @@
 </tr>
 </tbody>
 </table>
-<p>For more, see the <code>ggpiestats</code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
+<p>For more, see the <code><a href="reference/ggpiestats.html">ggpiestats()</a></code> vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="ggbarstats">
-<code>ggbarstats</code><a class="anchor" aria-label="anchor" href="#ggbarstats"></a>
+<code>ggbarstats()</code><a class="anchor" aria-label="anchor" href="#ggbarstats"></a>
 </h3>
-<p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code>ggbarstats</code> function which has a similar syntax.</p>
+<p>In case you are not a fan of pie charts (for very good reasons), you can alternatively use <code><a href="reference/ggbarstats.html">ggbarstats()</a></code> function which has a similar syntax.</p>
 <p>N.B. The <em>p</em>-values from one-sample proportion test are displayed on top of each bar.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
@@ -2139,7 +2124,7 @@
 <td>Cohen’s <span class="math inline"><em>g</em></span>
 </td>
 <td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cohens_g</a></code></td>
+<td><code><a href="https://easystats.github.io/effectsize/reference/cohens_g.html" class="external-link">effectsize::cohens_g</a></code></td>
 </tr>
 <tr class="even">
 <td>Bayesian</td>
@@ -2210,9 +2195,9 @@
 </div>
 <div class="section level3">
 <h3 id="ggcoefstats">
-<code>ggcoefstats</code><a class="anchor" aria-label="anchor" href="#ggcoefstats"></a>
+<code>ggcoefstats()</code><a class="anchor" aria-label="anchor" href="#ggcoefstats"></a>
 </h3>
-<p>The function <code>ggcoefstats</code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy data frames are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
+<p>The function <code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy data frames are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
 <li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline"><em>χ</em><sup>2</sup></span>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
@@ -2233,7 +2218,7 @@
 <div class="section level5">
 <h5 id="supported-models">Supported models<a class="anchor" aria-label="anchor" href="#supported-models"></a>
 </h5>
-<p>Most of the regression models that are supported in the underlying packages are also supported by <code>ggcoefstats</code>.</p>
+<p>Most of the regression models that are supported in the underlying packages are also supported by <code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code>.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/is_model_supported.html" class="external-link">supported_models</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1] "aareg"                   "afex_aov"               </span></span>
@@ -2264,84 +2249,86 @@
 <span><span class="co">#&gt;  [51] "cpglmm"                  "crch"                   </span></span>
 <span><span class="co">#&gt;  [53] "crq"                     "crqs"                   </span></span>
 <span><span class="co">#&gt;  [55] "crr"                     "dep.effect"             </span></span>
-<span><span class="co">#&gt;  [57] "DirichletRegModel"       "drc"                    </span></span>
-<span><span class="co">#&gt;  [59] "eglm"                    "elm"                    </span></span>
-<span><span class="co">#&gt;  [61] "epi.2by2"                "ergm"                   </span></span>
-<span><span class="co">#&gt;  [63] "feglm"                   "feis"                   </span></span>
-<span><span class="co">#&gt;  [65] "felm"                    "fitdistr"               </span></span>
-<span><span class="co">#&gt;  [67] "fixest"                  "flexsurvreg"            </span></span>
-<span><span class="co">#&gt;  [69] "gam"                     "Gam"                    </span></span>
-<span><span class="co">#&gt;  [71] "gamlss"                  "gamm"                   </span></span>
-<span><span class="co">#&gt;  [73] "gamm4"                   "garch"                  </span></span>
-<span><span class="co">#&gt;  [75] "gbm"                     "gee"                    </span></span>
-<span><span class="co">#&gt;  [77] "geeglm"                  "glht"                   </span></span>
-<span><span class="co">#&gt;  [79] "glimML"                  "glm"                    </span></span>
-<span><span class="co">#&gt;  [81] "Glm"                     "glmm"                   </span></span>
-<span><span class="co">#&gt;  [83] "glmmadmb"                "glmmPQL"                </span></span>
-<span><span class="co">#&gt;  [85] "glmmTMB"                 "glmrob"                 </span></span>
-<span><span class="co">#&gt;  [87] "glmRob"                  "glmx"                   </span></span>
-<span><span class="co">#&gt;  [89] "gls"                     "gmnl"                   </span></span>
-<span><span class="co">#&gt;  [91] "HLfit"                   "htest"                  </span></span>
-<span><span class="co">#&gt;  [93] "hurdle"                  "iv_robust"              </span></span>
-<span><span class="co">#&gt;  [95] "ivFixed"                 "ivprobit"               </span></span>
-<span><span class="co">#&gt;  [97] "ivreg"                   "lavaan"                 </span></span>
-<span><span class="co">#&gt;  [99] "lm"                      "lm_robust"              </span></span>
-<span><span class="co">#&gt; [101] "lme"                     "lmerMod"                </span></span>
-<span><span class="co">#&gt; [103] "lmerModLmerTest"         "lmodel2"                </span></span>
-<span><span class="co">#&gt; [105] "lmrob"                   "lmRob"                  </span></span>
-<span><span class="co">#&gt; [107] "logistf"                 "logitmfx"               </span></span>
-<span><span class="co">#&gt; [109] "logitor"                 "LORgee"                 </span></span>
-<span><span class="co">#&gt; [111] "lqm"                     "lqmm"                   </span></span>
-<span><span class="co">#&gt; [113] "lrm"                     "manova"                 </span></span>
-<span><span class="co">#&gt; [115] "MANOVA"                  "marginaleffects"        </span></span>
-<span><span class="co">#&gt; [117] "marginaleffects.summary" "margins"                </span></span>
-<span><span class="co">#&gt; [119] "maxLik"                  "mclogit"                </span></span>
-<span><span class="co">#&gt; [121] "mcmc"                    "mcmc.list"              </span></span>
-<span><span class="co">#&gt; [123] "MCMCglmm"                "mcp1"                   </span></span>
-<span><span class="co">#&gt; [125] "mcp12"                   "mcp2"                   </span></span>
-<span><span class="co">#&gt; [127] "med1way"                 "mediate"                </span></span>
-<span><span class="co">#&gt; [129] "merMod"                  "merModList"             </span></span>
-<span><span class="co">#&gt; [131] "meta_bma"                "meta_fixed"             </span></span>
-<span><span class="co">#&gt; [133] "meta_random"             "metaplus"               </span></span>
-<span><span class="co">#&gt; [135] "mhurdle"                 "mipo"                   </span></span>
-<span><span class="co">#&gt; [137] "mira"                    "mixed"                  </span></span>
-<span><span class="co">#&gt; [139] "MixMod"                  "mixor"                  </span></span>
-<span><span class="co">#&gt; [141] "mjoint"                  "mle"                    </span></span>
-<span><span class="co">#&gt; [143] "mle2"                    "mlm"                    </span></span>
-<span><span class="co">#&gt; [145] "mlogit"                  "mmlogit"                </span></span>
-<span><span class="co">#&gt; [147] "model_fit"               "multinom"               </span></span>
-<span><span class="co">#&gt; [149] "mvord"                   "negbinirr"              </span></span>
-<span><span class="co">#&gt; [151] "negbinmfx"               "ols"                    </span></span>
-<span><span class="co">#&gt; [153] "onesampb"                "orm"                    </span></span>
-<span><span class="co">#&gt; [155] "pgmm"                    "plm"                    </span></span>
-<span><span class="co">#&gt; [157] "PMCMR"                   "poissonirr"             </span></span>
-<span><span class="co">#&gt; [159] "poissonmfx"              "polr"                   </span></span>
-<span><span class="co">#&gt; [161] "probitmfx"               "psm"                    </span></span>
-<span><span class="co">#&gt; [163] "Rchoice"                 "ridgelm"                </span></span>
-<span><span class="co">#&gt; [165] "riskRegression"          "rjags"                  </span></span>
-<span><span class="co">#&gt; [167] "rlm"                     "rlmerMod"               </span></span>
-<span><span class="co">#&gt; [169] "RM"                      "rma"                    </span></span>
-<span><span class="co">#&gt; [171] "rma.uni"                 "robmixglm"              </span></span>
-<span><span class="co">#&gt; [173] "robtab"                  "rq"                     </span></span>
-<span><span class="co">#&gt; [175] "rqs"                     "rqss"                   </span></span>
-<span><span class="co">#&gt; [177] "Sarlm"                   "scam"                   </span></span>
-<span><span class="co">#&gt; [179] "selection"               "sem"                    </span></span>
-<span><span class="co">#&gt; [181] "SemiParBIV"              "semLm"                  </span></span>
-<span><span class="co">#&gt; [183] "semLme"                  "slm"                    </span></span>
-<span><span class="co">#&gt; [185] "speedglm"                "speedlm"                </span></span>
-<span><span class="co">#&gt; [187] "stanfit"                 "stanmvreg"              </span></span>
-<span><span class="co">#&gt; [189] "stanreg"                 "summary.lm"             </span></span>
-<span><span class="co">#&gt; [191] "survfit"                 "survreg"                </span></span>
-<span><span class="co">#&gt; [193] "svy_vglm"                "svychisq"               </span></span>
-<span><span class="co">#&gt; [195] "svyglm"                  "svyolr"                 </span></span>
-<span><span class="co">#&gt; [197] "t1way"                   "tobit"                  </span></span>
-<span><span class="co">#&gt; [199] "trimcibt"                "truncreg"               </span></span>
-<span><span class="co">#&gt; [201] "vgam"                    "vglm"                   </span></span>
-<span><span class="co">#&gt; [203] "wbgee"                   "wblm"                   </span></span>
-<span><span class="co">#&gt; [205] "wbm"                     "wmcpAKP"                </span></span>
-<span><span class="co">#&gt; [207] "yuen"                    "yuend"                  </span></span>
-<span><span class="co">#&gt; [209] "zcpglm"                  "zeroinfl"               </span></span>
-<span><span class="co">#&gt; [211] "zerotrunc"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [57] "DirichletRegModel"       "draws"                  </span></span>
+<span><span class="co">#&gt;  [59] "drc"                     "eglm"                   </span></span>
+<span><span class="co">#&gt;  [61] "elm"                     "epi.2by2"               </span></span>
+<span><span class="co">#&gt;  [63] "ergm"                    "feglm"                  </span></span>
+<span><span class="co">#&gt;  [65] "feis"                    "felm"                   </span></span>
+<span><span class="co">#&gt;  [67] "fitdistr"                "fixest"                 </span></span>
+<span><span class="co">#&gt;  [69] "flexsurvreg"             "gam"                    </span></span>
+<span><span class="co">#&gt;  [71] "Gam"                     "gamlss"                 </span></span>
+<span><span class="co">#&gt;  [73] "gamm"                    "gamm4"                  </span></span>
+<span><span class="co">#&gt;  [75] "garch"                   "gbm"                    </span></span>
+<span><span class="co">#&gt;  [77] "gee"                     "geeglm"                 </span></span>
+<span><span class="co">#&gt;  [79] "glht"                    "glimML"                 </span></span>
+<span><span class="co">#&gt;  [81] "glm"                     "Glm"                    </span></span>
+<span><span class="co">#&gt;  [83] "glmm"                    "glmmadmb"               </span></span>
+<span><span class="co">#&gt;  [85] "glmmPQL"                 "glmmTMB"                </span></span>
+<span><span class="co">#&gt;  [87] "glmrob"                  "glmRob"                 </span></span>
+<span><span class="co">#&gt;  [89] "glmx"                    "gls"                    </span></span>
+<span><span class="co">#&gt;  [91] "gmnl"                    "HLfit"                  </span></span>
+<span><span class="co">#&gt;  [93] "htest"                   "hurdle"                 </span></span>
+<span><span class="co">#&gt;  [95] "iv_robust"               "ivFixed"                </span></span>
+<span><span class="co">#&gt;  [97] "ivprobit"                "ivreg"                  </span></span>
+<span><span class="co">#&gt;  [99] "lavaan"                  "lm"                     </span></span>
+<span><span class="co">#&gt; [101] "lm_robust"               "lme"                    </span></span>
+<span><span class="co">#&gt; [103] "lmerMod"                 "lmerModLmerTest"        </span></span>
+<span><span class="co">#&gt; [105] "lmodel2"                 "lmrob"                  </span></span>
+<span><span class="co">#&gt; [107] "lmRob"                   "logistf"                </span></span>
+<span><span class="co">#&gt; [109] "logitmfx"                "logitor"                </span></span>
+<span><span class="co">#&gt; [111] "LORgee"                  "lqm"                    </span></span>
+<span><span class="co">#&gt; [113] "lqmm"                    "lrm"                    </span></span>
+<span><span class="co">#&gt; [115] "manova"                  "MANOVA"                 </span></span>
+<span><span class="co">#&gt; [117] "marginaleffects"         "marginaleffects.summary"</span></span>
+<span><span class="co">#&gt; [119] "margins"                 "maxLik"                 </span></span>
+<span><span class="co">#&gt; [121] "mblogit"                 "mclogit"                </span></span>
+<span><span class="co">#&gt; [123] "mcmc"                    "mcmc.list"              </span></span>
+<span><span class="co">#&gt; [125] "MCMCglmm"                "mcp1"                   </span></span>
+<span><span class="co">#&gt; [127] "mcp12"                   "mcp2"                   </span></span>
+<span><span class="co">#&gt; [129] "med1way"                 "mediate"                </span></span>
+<span><span class="co">#&gt; [131] "merMod"                  "merModList"             </span></span>
+<span><span class="co">#&gt; [133] "meta_bma"                "meta_fixed"             </span></span>
+<span><span class="co">#&gt; [135] "meta_random"             "metaplus"               </span></span>
+<span><span class="co">#&gt; [137] "mhurdle"                 "mipo"                   </span></span>
+<span><span class="co">#&gt; [139] "mira"                    "mixed"                  </span></span>
+<span><span class="co">#&gt; [141] "MixMod"                  "mixor"                  </span></span>
+<span><span class="co">#&gt; [143] "mjoint"                  "mle"                    </span></span>
+<span><span class="co">#&gt; [145] "mle2"                    "mlm"                    </span></span>
+<span><span class="co">#&gt; [147] "mlogit"                  "mmclogit"               </span></span>
+<span><span class="co">#&gt; [149] "mmlogit"                 "model_fit"              </span></span>
+<span><span class="co">#&gt; [151] "multinom"                "mvord"                  </span></span>
+<span><span class="co">#&gt; [153] "negbinirr"               "negbinmfx"              </span></span>
+<span><span class="co">#&gt; [155] "ols"                     "onesampb"               </span></span>
+<span><span class="co">#&gt; [157] "orm"                     "pgmm"                   </span></span>
+<span><span class="co">#&gt; [159] "plm"                     "PMCMR"                  </span></span>
+<span><span class="co">#&gt; [161] "poissonirr"              "poissonmfx"             </span></span>
+<span><span class="co">#&gt; [163] "polr"                    "probitmfx"              </span></span>
+<span><span class="co">#&gt; [165] "psm"                     "Rchoice"                </span></span>
+<span><span class="co">#&gt; [167] "ridgelm"                 "riskRegression"         </span></span>
+<span><span class="co">#&gt; [169] "rjags"                   "rlm"                    </span></span>
+<span><span class="co">#&gt; [171] "rlmerMod"                "RM"                     </span></span>
+<span><span class="co">#&gt; [173] "rma"                     "rma.uni"                </span></span>
+<span><span class="co">#&gt; [175] "robmixglm"               "robtab"                 </span></span>
+<span><span class="co">#&gt; [177] "rq"                      "rqs"                    </span></span>
+<span><span class="co">#&gt; [179] "rqss"                    "rvar"                   </span></span>
+<span><span class="co">#&gt; [181] "Sarlm"                   "scam"                   </span></span>
+<span><span class="co">#&gt; [183] "selection"               "sem"                    </span></span>
+<span><span class="co">#&gt; [185] "SemiParBIV"              "semLm"                  </span></span>
+<span><span class="co">#&gt; [187] "semLme"                  "slm"                    </span></span>
+<span><span class="co">#&gt; [189] "speedglm"                "speedlm"                </span></span>
+<span><span class="co">#&gt; [191] "stanfit"                 "stanmvreg"              </span></span>
+<span><span class="co">#&gt; [193] "stanreg"                 "summary.lm"             </span></span>
+<span><span class="co">#&gt; [195] "survfit"                 "survreg"                </span></span>
+<span><span class="co">#&gt; [197] "svy_vglm"                "svychisq"               </span></span>
+<span><span class="co">#&gt; [199] "svyglm"                  "svyolr"                 </span></span>
+<span><span class="co">#&gt; [201] "t1way"                   "tobit"                  </span></span>
+<span><span class="co">#&gt; [203] "trimcibt"                "truncreg"               </span></span>
+<span><span class="co">#&gt; [205] "vgam"                    "vglm"                   </span></span>
+<span><span class="co">#&gt; [207] "wbgee"                   "wblm"                   </span></span>
+<span><span class="co">#&gt; [209] "wbm"                     "wmcpAKP"                </span></span>
+<span><span class="co">#&gt; [211] "yuen"                    "yuend"                  </span></span>
+<span><span class="co">#&gt; [213] "zcpglm"                  "zeroinfl"               </span></span>
+<span><span class="co">#&gt; [215] "zerotrunc"</span></span></code></pre></div>
 <p>Although not shown here, this function can also be used to carry out parametric, robust, and Bayesian random-effects meta-analysis.</p>
 </div>
 <div class="section level5">
@@ -2452,31 +2439,31 @@
 <span><span class="co">#&gt; 1       0.95    0.531         1 ncp         F                    32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $caption_data</span></span>
-<span><span class="co">#&gt; # A tibble: 6 × 18</span></span>
-<span><span class="co">#&gt;   term     pd rope.percentage prior.distribution prior.location prior.scale</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 mu    1              0      cauchy                          0       0.707</span></span>
-<span><span class="co">#&gt; 2 cyl-4 1              0      cauchy                          0       0.707</span></span>
-<span><span class="co">#&gt; 3 cyl-6 0.780          0.390  cauchy                          0       0.707</span></span>
-<span><span class="co">#&gt; 4 cyl-8 1              0      cauchy                          0       0.707</span></span>
-<span><span class="co">#&gt; 5 sig2  1              0      cauchy                          0       0.707</span></span>
-<span><span class="co">#&gt; 6 g_cyl 1              0.0155 cauchy                          0       0.707</span></span>
-<span><span class="co">#&gt;       bf10 method                          log_e_bf10 effectsize        </span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;                                &lt;dbl&gt; &lt;chr&gt;             </span></span>
-<span><span class="co">#&gt; 1 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span></span>
-<span><span class="co">#&gt; 2 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span></span>
-<span><span class="co">#&gt; 3 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span></span>
-<span><span class="co">#&gt; 4 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span></span>
-<span><span class="co">#&gt; 5 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span></span>
-<span><span class="co">#&gt; 6 3008850. Bayes factors for linear models       14.9 Bayesian R-squared</span></span>
-<span><span class="co">#&gt;   estimate std.dev conf.level conf.low conf.high conf.method n.obs expression</span></span>
-<span><span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;list&gt;    </span></span>
-<span><span class="co">#&gt; 1    0.714  0.0503       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt; 2    0.714  0.0503       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt; 3    0.714  0.0503       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt; 4    0.714  0.0503       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt; 5    0.714  0.0503       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt; 6    0.714  0.0503       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 17</span></span>
+<span><span class="co">#&gt;   term     pd prior.distribution prior.location prior.scale     bf10</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 mu    1     cauchy                          0       0.707 3008850.</span></span>
+<span><span class="co">#&gt; 2 cyl-4 1     cauchy                          0       0.707 3008850.</span></span>
+<span><span class="co">#&gt; 3 cyl-6 0.780 cauchy                          0       0.707 3008850.</span></span>
+<span><span class="co">#&gt; 4 cyl-8 1     cauchy                          0       0.707 3008850.</span></span>
+<span><span class="co">#&gt; 5 sig2  1     cauchy                          0       0.707 3008850.</span></span>
+<span><span class="co">#&gt; 6 g_cyl 1     cauchy                          0       0.707 3008850.</span></span>
+<span><span class="co">#&gt;   method                          log_e_bf10 effectsize         estimate std.dev</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                                &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
+<span><span class="co">#&gt; 2 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
+<span><span class="co">#&gt; 3 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
+<span><span class="co">#&gt; 4 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
+<span><span class="co">#&gt; 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
+<span><span class="co">#&gt; 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
+<span><span class="co">#&gt;   conf.level conf.low conf.high conf.method n.obs expression</span></span>
+<span><span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;list&gt;    </span></span>
+<span><span class="co">#&gt; 1       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
+<span><span class="co">#&gt; 2       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
+<span><span class="co">#&gt; 3       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
+<span><span class="co">#&gt; 4       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
+<span><span class="co">#&gt; 5       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
+<span><span class="co">#&gt; 6       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $pairwise_comparisons_data</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 9</span></span>
