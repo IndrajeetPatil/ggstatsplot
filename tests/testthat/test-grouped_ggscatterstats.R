@@ -1,7 +1,6 @@
 test_that(
   desc = "grouped_ggscatterstats plotting works as expected",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("ggside")
@@ -54,7 +53,7 @@ test_that(
     )
 
     set.seed(123)
-    basic_results <- statsExpressions::corr_test(
+    basic_results <- corr_test(
       data = df,
       x = rating,
       y = length,

@@ -5,7 +5,6 @@
 test_that(
   desc = "plotting features work as expected",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -69,7 +68,6 @@ test_that(
 test_that(
   desc = "checking if `plot.type` argument works",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -123,7 +121,7 @@ test_that(
     )
 
     set.seed(123)
-    sub <- statsExpressions::two_sample_test(
+    sub <- two_sample_test(
       data = df,
       x = am,
       y = wt

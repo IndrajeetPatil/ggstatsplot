@@ -3,7 +3,6 @@
 test_that(
   desc = "checking ggscatterstats with entire dataset",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("ggside")
@@ -27,7 +26,6 @@ test_that(
 test_that(
   desc = "aesthetic modifications work",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("ggside")
@@ -55,7 +53,6 @@ test_that(
 )
 
 test_that("labeling variables and expressions work as expected", {
-  skip_if_not_installed("vdiffr")
   skip_if(getRversion() < "4.1")
 
   skip_if_not_installed("ggside")
@@ -120,7 +117,7 @@ test_that(
     )
 
     set.seed(123)
-    fun_sub <- statsExpressions::corr_test(
+    fun_sub <- corr_test(
       data = dplyr::starwars,
       x = mass,
       y = height,

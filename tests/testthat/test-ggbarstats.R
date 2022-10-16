@@ -18,7 +18,6 @@ survey_data_NA <- dplyr::tibble(
 test_that(
   desc = "checking default outputs",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -62,7 +61,6 @@ test_that(
 test_that(
   desc = "changing labels and aesthetics",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -164,7 +162,6 @@ test_that(
 test_that(
   desc = "edge cases",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -201,7 +198,7 @@ test_that(
     )
 
     set.seed(123)
-    stats_output <- suppressWarnings(statsExpressions::contingency_table(
+    stats_output <- suppressWarnings(contingency_table(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,

@@ -15,7 +15,11 @@ vignette: >
 #| label = "setup",
 #| include = FALSE
 ## show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+options(
+  tibble.width = Inf,
+  pillar.bold = TRUE,
+  pillar.subtle_num = TRUE
+)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -78,7 +82,7 @@ Let's have a look at the data-
 #| label = "gapminder"
 library(gapminder)
 
-dplyr::glimpse(x = gapminder::gapminder)
+dplyr::glimpse(gapminder::gapminder)
 ```
 
 **Note**: For the remainder of the vignette, we're going to exclude *Oceania*
@@ -421,8 +425,6 @@ numerical summaries about a statistical model, and
 reported statistics.
 
 For example, let's see the following example:
-
-
 
 ```{r}
 #| label = "reporting"

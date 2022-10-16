@@ -5,14 +5,14 @@ library(dplyr)
 library(purrr)
 
 # looking at the table
-dplyr::glimpse(x = Titanic)
+dplyr::glimpse(Titanic)
 
 # converting to tibble
-tibble::as_tibble(x = Titanic)
+tibble::as_tibble(Titanic)
 
 # converting data frame to full length based on count information
 Titanic_full <-
-  tibble::as_tibble(x = datasets::Titanic) %>%
+  tibble::as_tibble(datasets::Titanic) %>%
   tibble::rowid_to_column(var = "id") %>%
   dplyr::mutate_at(
     .vars = dplyr::vars("id"),

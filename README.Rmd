@@ -32,12 +32,10 @@ library(ggstatsplot)
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details 
 
-Status | Usage| Miscellaneous
+Status | Usage | Miscellaneous
 ----------------- | ----------------- | ----------------- 
-  [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads badge](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=master)
-[![lints](https://github.com/IndrajeetPatil/ggstatsplot/workflows/lint/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Daily downloads badge](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![status](https://tinyverse.netlify.com/badge/ggstatsplot)](https://CRAN.R-project.org/package=ggstatsplot)
-[![pkgdown](https://github.com/IndrajeetPatil/ggstatsplot/workflows/pkgdown/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot/actions) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-
+[![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)
 
 ## Raison d'être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -106,19 +104,17 @@ version of the package, see:
     
 ## Summary of available plots
 
-It, therefore, produces a limited kinds of plots for the supported analyses:
-
-Function | Plot | Description | Lifecycle
-------- | ---------- | ------------------------- | ----
-`ggbetweenstats` | **violin plots** | for comparisons *between* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggwithinstats` | **violin plots** | for comparisons *within* groups/conditions | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`gghistostats` | **histograms** | for distribution about numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggdotplotstats` | **dot plots/charts** | for distribution about labeled numeric variable | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggscatterstats` | **scatterplots** | for correlation between two variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggcorrmat` | **correlation matrices** | for correlations between multiple variables | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggpiestats` | **pie charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggbarstats` | **bar charts** | for categorical data | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-`ggcoefstats` | **dot-and-whisker plots** | for regression models and meta-analysis | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+| Function           | Plot                      | Description                                     |
+| :----------------- | :------------------------ | :---------------------------------------------- |
+| `ggbetweenstats()` | **violin plots**          | for comparisons *between* groups/conditions     |
+| `ggwithinstats()`  | **violin plots**          | for comparisons *within* groups/conditions      |
+| `gghistostats()`   | **histograms**            | for distribution about numeric variable         |
+| `ggdotplotstats()` | **dot plots/charts**      | for distribution about labeled numeric variable |
+| `ggscatterstats()` | **scatterplots**          | for correlation between two variables           |
+| `ggcorrmat()`      | **correlation matrices**  | for correlations between multiple variables     |
+| `ggpiestats()`     | **pie charts**            | for categorical data                            |
+| `ggbarstats()`     | **bar charts**            | for categorical data                            |
+| `ggcoefstats()`    | **dot-and-whisker plots** | for regression models and meta-analysis         |
 
 In addition to these basic plots, `{ggstatsplot}` also provides **`grouped_`**
 versions (see below) that makes it easy to repeat the same analysis for
@@ -131,15 +127,15 @@ supported in this package-
 
 Functions | Description | Parametric | Non-parametric | Robust | Bayesian
 ------- | ------------------ | ---- | ----- | ----| ----- 
-`ggbetweenstats` | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅
-`ggwithinstats` | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅
-`gghistostats`, `ggdotplotstats` | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅
+`ggbetweenstats()` | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅
+`ggwithinstats()` | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅
+`gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅
 `ggcorrmat` | Correlation matrix | ✅ | ✅ | ✅ | ✅
-`ggscatterstats` | Correlation between two variables | ✅ | ✅ | ✅ | ✅
-`ggpiestats`, `ggbarstats` | Association between categorical variables | ✅ | ✅ | ❌ | ✅
-`ggpiestats`, `ggbarstats` | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅
-`ggcoefstats` | Regression model coefficients | ✅ | ✅ | ✅ | ✅
-`ggcoefstats` | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅
+`ggscatterstats()` | Correlation between two variables | ✅ | ✅ | ✅ | ✅
+`ggpiestats()`, `ggbarstats()` | Association between categorical variables | ✅ | ✅ | ❌ | ✅
+`ggpiestats()`, `ggbarstats()` | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅
+`ggcoefstats()` | Regression model coefficients | ✅ | ✅ | ✅ | ✅
+`ggcoefstats()` | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅
 
 Summary of Bayesian analysis
 
@@ -168,7 +164,7 @@ various functions can be found in article for that package:
 
 ## Primary functions
 
-### `ggbetweenstats`
+### `ggbetweenstats()`
 
 This function creates either a violin plot, a box plot, or a mix of two for
 **between**-group or **between**-condition comparisons with results from
@@ -286,12 +282,12 @@ Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
 Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
 Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
-For more, see the `ggbetweenstats` vignette:
+For more, see the `ggbetweenstats()` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
-### `ggwithinstats`
+### `ggwithinstats()`
 
-`ggbetweenstats` function has an identical twin function `ggwithinstats` for
+`ggbetweenstats()` function has an identical twin function `ggwithinstats()` for
 repeated measures designs that behaves in the same fashion with a few minor
 tweaks introduced to properly visualize the repeated measures design. As can be
 seen from an example below, the only difference between the plot structure is
@@ -333,7 +329,7 @@ Non-parametric | median | `datawizard::describe_distribution`
 Robust | trimmed mean | `datawizard::describe_distribution`
 Bayesian | MAP estimate | `datawizard::describe_distribution`
 
-As with the `ggbetweenstats`, this function also has a `grouped_` variant that
+As with the `ggbetweenstats()`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
 will see an example with only repeated measurements-
 
@@ -417,14 +413,14 @@ Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
 Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
 
-For more, see the `ggwithinstats` vignette:
+For more, see the `ggwithinstats()` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-### `gghistostats`
+### `gghistostats()`
 
 To visualize the distribution of a single variable and check if its mean is
 significantly different from a specified value with a one-sample test,
-`gghistostats` can be used.
+`gghistostats()` can be used.
 
 ```{r}
 #| label = "gghistostats1",
@@ -512,12 +508,12 @@ Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
 For more, including information about the variant of this function
-`grouped_gghistostats`, see the `gghistostats` vignette:
+`grouped_gghistostats()`, see the `gghistostats()` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 
-### `ggdotplotstats`
+### `ggdotplotstats()`
 
-This function is similar to `gghistostats`, but is intended to be used when the
+This function is similar to `gghistostats()`, but is intended to be used when the
 numeric variable also has a label.
 
 ```{r}
@@ -605,7 +601,7 @@ Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biser
 Robust | trimmed mean | ✅ | `WRS2::trimcibt`
 Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
 
-### `ggscatterstats`
+### `ggscatterstats()`
 
 This function creates a scatterplot with marginal distributions overlaid on the
 axes and results from statistical tests in the subtitle:
@@ -676,7 +672,7 @@ Non-parametric | Spearman's rank correlation coefficient | ✅ | `correlation::c
 Robust | Winsorized Pearson correlation coefficient | ✅ | `correlation::correlation`
 Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 
-For more, see the `ggscatterstats` vignette:
+For more, see the `ggscatterstats()` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 
 ### `ggcorrmat`
@@ -747,7 +743,7 @@ Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
 For examples and more information, see the `ggcorrmat` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 
-### `ggpiestats`
+### `ggpiestats()`
 
 This function creates a pie chart for categorical or nominal variables with
 results from contingency table analysis (Pearson's chi-squared test for
@@ -850,13 +846,13 @@ Type | Effect size | CI? | Function used
 Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
-For more, see the `ggpiestats` vignette:
+For more, see the `ggpiestats()` vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
-### `ggbarstats`
+### `ggbarstats()`
 
 In case you are not a fan of pie charts (for very good reasons), you can
-alternatively use `ggbarstats` function which has a similar syntax.
+alternatively use `ggbarstats()` function which has a similar syntax.
 
 N.B. The *p*-values from one-sample proportion test are displayed on top of each
 bar.
@@ -954,9 +950,9 @@ Type | Effect size | CI? | Function used
 Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
 Bayesian | ❌ | ❌ | ❌
 
-### `ggcoefstats`
+### `ggcoefstats()`
 
-The function `ggcoefstats` generates **dot-and-whisker plots** for
+The function `ggcoefstats()` generates **dot-and-whisker plots** for
 regression models saved in a tidy data frame. The tidy data frames are prepared
 using `parameters::model_parameters()`. Additionally, if available, the model
 summary indices are also extracted from `performance::model_performance()`.
@@ -1006,7 +1002,7 @@ ggcoefstats(mod)
 ##### Supported models
 
 Most of the regression models that are supported in the underlying packages are
-also supported by `ggcoefstats`. 
+also supported by `ggcoefstats()`. 
 
 ```{r}
 #| label = "supported"

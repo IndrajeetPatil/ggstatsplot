@@ -8,7 +8,6 @@ test_that(
 test_that(
   desc = "grouped_ggbarstats works",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     # creating a smaller data frame
@@ -39,7 +38,6 @@ test_that(
 test_that(
   desc = "edge case behavior",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 

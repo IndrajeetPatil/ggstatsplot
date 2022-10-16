@@ -57,11 +57,6 @@ reference:
     contents:
       - starts_with("grouped_")
 
-  - title: Reexported functions
-    desc:  Useful functions re-exported from other packages.
-    contents:
-      - tibble
-
   - title: Helper functions
     desc: Statistics and graphics-related helpers in `ggstatsplot`
     contents:
@@ -78,10 +73,6 @@ reference:
       - iris_long
       - bugs_wide
       - bugs_long
-
-  - title: Package information
-    contents:
-      - ggstatsplot-package
 
 articles:
 

@@ -20,7 +20,6 @@ morley_new[87, 3] <- NA_integer_
 test_that(
   desc = "checking default outputs",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -44,7 +43,6 @@ test_that(
 test_that(
   desc = "modification with ggplot2 works as expected",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 

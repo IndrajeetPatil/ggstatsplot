@@ -3,7 +3,6 @@
 test_that(
   desc = "checking ggcorrmat with entier dataset",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("ggcorrplot")
@@ -39,7 +38,6 @@ test_that(
 test_that(
   desc = "ggcorrmat works as expected with changed defaults",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
     skip_if_not_installed("ggcorrplot")

@@ -6,7 +6,7 @@ test_that(
     # removing factor level with very few no. of observations
     df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 
-    skip_if_not_installed("vdiffr")
+
     skip_if(getRversion() < "4.1")
 
 

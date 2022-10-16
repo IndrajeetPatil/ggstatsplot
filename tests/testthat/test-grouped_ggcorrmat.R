@@ -3,7 +3,6 @@
 test_that(
   desc = "grouped_ggcorrmat plots are as expected",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
     skip_if_not_installed("ggcorrplot")
 

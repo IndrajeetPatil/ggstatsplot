@@ -8,7 +8,6 @@ test_that(
 test_that(
   desc = "grouped_ggpiestats works",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
@@ -50,7 +49,6 @@ test_that(
 test_that(
   desc = "edge case behavior",
   code = {
-    skip_if_not_installed("vdiffr")
     skip_if(getRversion() < "4.1")
 
 
