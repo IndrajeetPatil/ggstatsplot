@@ -7,10 +7,10 @@ on:
   pull_request:
     branches: [main, master]
 
-name: render-readme
+name: check-readme
 
 jobs:
-  render-readme:
+  check-readme:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -21,6 +21,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Always try to use the latest pandoc version
+      # https://github.com/jgm/pandoc/releases
       - uses: r-lib/actions/setup-pandoc@v2
         with:
           pandoc-version: '2.19.2'
@@ -39,10 +41,3 @@ jobs:
 
       - name: Render README
         run: Rscript -e 'rmarkdown::render("README.Rmd")'
-
-      - name: Commit Results
-        run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git commit -m 'Re-build README.Rmd' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
