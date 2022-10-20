@@ -125,27 +125,27 @@ any grouping variable.
 The table below summarizes all the different types of analyses currently
 supported in this package-
 
-Functions | Description | Parametric | Non-parametric | Robust | Bayesian
-------- | ------------------ | ---- | ----- | ----| ----- 
-`ggbetweenstats()` | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅
-`ggwithinstats()` | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅
-`gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅
-`ggcorrmat` | Correlation matrix | ✅ | ✅ | ✅ | ✅
-`ggscatterstats()` | Correlation between two variables | ✅ | ✅ | ✅ | ✅
-`ggpiestats()`, `ggbarstats()` | Association between categorical variables | ✅ | ✅ | ❌ | ✅
-`ggpiestats()`, `ggbarstats()` | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅
-`ggcoefstats()` | Regression model coefficients | ✅ | ✅ | ✅ | ✅
-`ggcoefstats()` | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅
+| Functions                            | Description                                       | Parametric | Non-parametric | Robust | Bayesian |
+| :----------------------------------- | :------------------------------------------------ | :--------- | :------------- | :----- | :------- |
+| `ggbetweenstats()`                   | Between group/condition comparisons               | ✅         | ✅             | ✅     | ✅       |
+| `ggwithinstats()`                    | Within group/condition comparisons                | ✅         | ✅             | ✅     | ✅       |
+| `gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable                | ✅         | ✅             | ✅     | ✅       |
+| `ggcorrmat`                          | Correlation matrix                                | ✅         | ✅             | ✅     | ✅       |
+| `ggscatterstats()`                   | Correlation between two variables                 | ✅         | ✅             | ✅     | ✅       |
+| `ggpiestats()`, `ggbarstats()`       | Association between categorical variables         | ✅         | ✅             | ❌     | ✅       |
+| `ggpiestats()`, `ggbarstats()`       | Equal proportions for categorical variable levels | ✅         | ✅             | ❌     | ✅       |
+| `ggcoefstats()`                      | Regression model coefficients                     | ✅         | ✅             | ✅     | ✅       |
+| `ggcoefstats()`                      | Random-effects meta-analysis                      | ✅         | ❌             | ✅     | ✅       |
 
 Summary of Bayesian analysis
 
-Analysis | Hypothesis testing | Estimation
------------------- | ---------- | ---------
-(one/two-sample) *t*-test | ✅ | ✅
-one-way ANOVA | ✅ |✅
-correlation | ✅ | ✅
-(one/two-way) contingency table | ✅ | ✅
-random-effects meta-analysis | ✅ | ✅
+| Analysis                        | Hypothesis testing | Estimation |
+| :------------------------------ | :----------------- | :--------- |
+| (one/two-sample) *t*-test       | ✅                 | ✅         |
+| one-way ANOVA                   | ✅                 | ✅         |
+| correlation                     | ✅                 | ✅         |
+| (one/two-way) contingency table | ✅                 | ✅         |
+| random-effects meta-analysis    | ✅                 | ✅         |
 
 ## Statistical reporting
 

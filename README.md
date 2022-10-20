@@ -118,7 +118,7 @@ The table below summarizes all the different types of analyses currently
 supported in this package-
 
 | Functions                            | Description                                       | Parametric | Non-parametric | Robust | Bayesian |
-|--------------------------------------|---------------------------------------------------|------------|----------------|--------|----------|
+|:-------------------------------------|:--------------------------------------------------|:-----------|:---------------|:-------|:---------|
 | `ggbetweenstats()`                   | Between group/condition comparisons               | ✅         | ✅             | ✅     | ✅       |
 | `ggwithinstats()`                    | Within group/condition comparisons                | ✅         | ✅             | ✅     | ✅       |
 | `gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable                | ✅         | ✅             | ✅     | ✅       |
@@ -132,7 +132,7 @@ supported in this package-
 Summary of Bayesian analysis
 
 | Analysis                        | Hypothesis testing | Estimation |
-|---------------------------------|--------------------|------------|
+|:--------------------------------|:-------------------|:-----------|
 | (one/two-sample) *t*-test       | ✅                 | ✅         |
 | one-way ANOVA                   | ✅                 | ✅         |
 | correlation                     | ✅                 | ✅         |
