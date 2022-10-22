@@ -30,7 +30,6 @@
 #' @inheritParams ggbetweenstats
 #' @inheritParams statsExpressions::contingency_table
 #' @inheritParams theme_ggstatsplot
-#' @inheritParams gghistostats
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
