@@ -118,6 +118,10 @@
 #' @inheritParams statsExpressions::two_sample_test
 #' @inheritParams statsExpressions::one_sample_test
 #'
+#' @inheritSection statsExpressions::two_sample_test Two-sample tests
+#' @inheritSection statsExpressions::oneway_anova One-way ANOVA
+#' @inheritSection statsExpressions::pairwise_comparisons Pairwise comparison tests
+#'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'

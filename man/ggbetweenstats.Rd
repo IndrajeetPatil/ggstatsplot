@@ -255,6 +255,159 @@ subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
+\section{Two-sample tests}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}
+\subsection{between-subjects}{
+
+\strong{Hypothesis testing}\tabular{llll}{
+   Type \tab No. of groups \tab Test \tab Function used \cr
+   Parametric \tab 2 \tab Student's or Welch's \emph{t}-test \tab \code{stats::t.test()} \cr
+   Non-parametric \tab 2 \tab Mann-Whitney \emph{U} test \tab \code{stats::wilcox.test()} \cr
+   Robust \tab 2 \tab Yuen's test for trimmed means \tab \code{WRS2::yuen()} \cr
+   Bayesian \tab 2 \tab Student's \emph{t}-test \tab \code{BayesFactor::ttestBF()} \cr
+}
+
+
+\strong{Effect size estimation}\tabular{lllll}{
+   Type \tab No. of groups \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric \tab 2 \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
+   Non-parametric \tab 2 \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
+   Robust \tab 2 \tab Algina-Keselman-Penfield robust standardized difference \tab Yes \tab \code{WRS2::akp.effect()} \cr
+   Bayesian \tab 2 \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
+}
+
+}
+
+\subsection{within-subjects}{
+
+\strong{Hypothesis testing}\tabular{llll}{
+   Type \tab No. of groups \tab Test \tab Function used \cr
+   Parametric \tab 2 \tab Student's \emph{t}-test \tab \code{stats::t.test()} \cr
+   Non-parametric \tab 2 \tab Wilcoxon signed-rank test \tab \code{stats::wilcox.test()} \cr
+   Robust \tab 2 \tab Yuen's test on trimmed means for dependent samples \tab \code{WRS2::yuend()} \cr
+   Bayesian \tab 2 \tab Student's \emph{t}-test \tab \code{BayesFactor::ttestBF()} \cr
+}
+
+
+\strong{Effect size estimation}\tabular{lllll}{
+   Type \tab No. of groups \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric \tab 2 \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
+   Non-parametric \tab 2 \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
+   Robust \tab 2 \tab Algina-Keselman-Penfield robust standardized difference \tab Yes \tab \code{WRS2::wmcpAKP()} \cr
+   Bayesian \tab 2 \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
+}
+
+}
+
+}
+
+\section{One-way ANOVA}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}
+\subsection{between-subjects}{
+
+\strong{Hypothesis testing}\tabular{llll}{
+   Type \tab No. of groups \tab Test \tab Function used \cr
+   Parametric \tab > 2 \tab Fisher's or Welch's one-way ANOVA \tab \code{stats::oneway.test()} \cr
+   Non-parametric \tab > 2 \tab Kruskal-Wallis one-way ANOVA \tab \code{stats::kruskal.test()} \cr
+   Robust \tab > 2 \tab Heteroscedastic one-way ANOVA for trimmed means \tab \code{WRS2::t1way()} \cr
+   Bayes Factor \tab > 2 \tab Fisher's ANOVA \tab \code{BayesFactor::anovaBF()} \cr
+}
+
+
+\strong{Effect size estimation}\tabular{lllll}{
+   Type \tab No. of groups \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric \tab > 2 \tab partial eta-squared, partial omega-squared \tab Yes \tab \code{effectsize::omega_squared()}, \code{effectsize::eta_squared()} \cr
+   Non-parametric \tab > 2 \tab rank epsilon squared \tab Yes \tab \code{effectsize::rank_epsilon_squared()} \cr
+   Robust \tab > 2 \tab Explanatory measure of effect size \tab Yes \tab \code{WRS2::t1way()} \cr
+   Bayes Factor \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
+}
+
+}
+
+\subsection{within-subjects}{
+
+\strong{Hypothesis testing}\tabular{llll}{
+   Type \tab No. of groups \tab Test \tab Function used \cr
+   Parametric \tab > 2 \tab One-way repeated measures ANOVA \tab \code{afex::aov_ez()} \cr
+   Non-parametric \tab > 2 \tab Friedman rank sum test \tab \code{stats::friedman.test()} \cr
+   Robust \tab > 2 \tab Heteroscedastic one-way repeated measures ANOVA for trimmed means \tab \code{WRS2::rmanova()} \cr
+   Bayes Factor \tab > 2 \tab One-way repeated measures ANOVA \tab \code{BayesFactor::anovaBF()} \cr
+}
+
+
+\strong{Effect size estimation}\tabular{lllll}{
+   Type \tab No. of groups \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric \tab > 2 \tab partial eta-squared, partial omega-squared \tab Yes \tab \code{effectsize::omega_squared()}, \code{effectsize::eta_squared()} \cr
+   Non-parametric \tab > 2 \tab Kendall's coefficient of concordance \tab Yes \tab \code{effectsize::kendalls_w()} \cr
+   Robust \tab > 2 \tab Algina-Keselman-Penfield robust standardized difference average \tab Yes \tab \code{WRS2::wmcpAKP()} \cr
+   Bayes Factor \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
+}
+
+}
+
+}
+
+\section{Pairwise comparison tests}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}
+\subsection{between-subjects}{
+
+\strong{Hypothesis testing}\tabular{lllll}{
+   Type \tab Equal variance? \tab Test \tab \emph{p}-value adjustment? \tab Function used \cr
+   Parametric \tab No \tab Games-Howell test \tab Yes \tab \code{PMCMRplus::gamesHowellTest()} \cr
+   Parametric \tab Yes \tab Student's \emph{t}-test \tab Yes \tab \code{stats::pairwise.t.test()} \cr
+   Non-parametric \tab No \tab Dunn test \tab Yes \tab \code{PMCMRplus::kwAllPairsDunnTest()} \cr
+   Robust \tab No \tab Yuen's trimmed means test \tab Yes \tab \code{WRS2::lincon()} \cr
+   Bayesian \tab \code{NA} \tab Student's \emph{t}-test \tab \code{NA} \tab \code{BayesFactor::ttestBF()} \cr
+}
+
+
+\strong{Effect size estimation}
+
+Not supported.
+}
+
+\subsection{within-subjects}{
+
+\strong{Hypothesis testing}\tabular{llll}{
+   Type \tab Test \tab \emph{p}-value adjustment? \tab Function used \cr
+   Parametric \tab Student's \emph{t}-test \tab Yes \tab \code{stats::pairwise.t.test()} \cr
+   Non-parametric \tab Durbin-Conover test \tab Yes \tab \code{PMCMRplus::durbinAllPairsTest()} \cr
+   Robust \tab Yuen's trimmed means test \tab Yes \tab \code{WRS2::rmmcp()} \cr
+   Bayesian \tab Student's \emph{t}-test \tab \code{NA} \tab \code{BayesFactor::ttestBF()} \cr
+}
+
+
+\strong{Effect size estimation}
+
+Not supported.
+}
+
+}
+
 \examples{
 \donttest{
 if (require("PMCMRplus")) {
