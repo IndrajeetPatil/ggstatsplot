@@ -20,19 +20,30 @@
 #' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
 #'
-#' @examples
+#' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
 #' \donttest{
-#' if (require("PMCMRplus")) {
-#'   set.seed(123)
-#'   library(ggstatsplot)
+#' set.seed(123)
+#' library(ggstatsplot)
 #'
-#'   # in case of group comparisons
-#'   p <- ggbetweenstats(mtcars, cyl, mpg)
-#'   extract_stats(p)
+#' # non-grouped function -----------------------------
 #'
-#'   # the exact details depend on the function
-#'   extract_stats(ggbarstats(mtcars, cyl, am))
-#' }
+#' # in case of group comparisons
+#' p <- ggbetweenstats(mtcars, cyl, mpg)
+#' extract_stats(p)
+#'
+#' # the exact details depend on the function
+#' extract_stats(ggbarstats(mtcars, cyl, am))
+#'
+#' # grouped function -----------------------------
+#' p <- grouped_ggbarstats(
+#'   Titanic_full,
+#'   x = Survived,
+#'   y = Sex,
+#'   grouping.var = Age
+#' )
+#'
+#' extract_stats(p[[1L]])
+#' extract_stats(p[[2L]])
 #' }
 #' @export
 extract_stats <- function(p, ...) {

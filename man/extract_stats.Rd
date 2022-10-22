@@ -30,17 +30,30 @@ what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
 default.
 }
 \examples{
+\dontshow{if (requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-if (require("PMCMRplus")) {
-  set.seed(123)
-  library(ggstatsplot)
+set.seed(123)
+library(ggstatsplot)
 
-  # in case of group comparisons
-  p <- ggbetweenstats(mtcars, cyl, mpg)
-  extract_stats(p)
+# non-grouped function -----------------------------
 
-  # the exact details depend on the function
-  extract_stats(ggbarstats(mtcars, cyl, am))
+# in case of group comparisons
+p <- ggbetweenstats(mtcars, cyl, mpg)
+extract_stats(p)
+
+# the exact details depend on the function
+extract_stats(ggbarstats(mtcars, cyl, am))
+
+# grouped function -----------------------------
+p <- grouped_ggbarstats(
+  Titanic_full,
+  x = Survived,
+  y = Sex,
+  grouping.var = Age
+)
+
+extract_stats(p[[1L]])
+extract_stats(p[[2L]])
 }
-}
+\dontshow{\}) # examplesIf}
 }
