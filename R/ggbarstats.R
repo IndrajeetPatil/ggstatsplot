@@ -9,6 +9,8 @@
 #' @inheritParams ggpiestats
 #' @inheritParams ggbetweenstats
 #'
+#' @inheritSection statsExpressions::contingency_table Contingency table analyses
+#'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'

@@ -169,6 +169,56 @@ as a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
+\section{Contingency table analyses}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}
+\subsection{two-way table}{
+
+\strong{Hypothesis testing}\tabular{llll}{
+   Type \tab Design \tab Test \tab Function used \cr
+   Parametric/Non-parametric \tab Unpaired \tab Pearson's chi-squared test \tab \code{stats::chisq.test()} \cr
+   Bayesian \tab Unpaired \tab Bayesian Pearson's chi-squared test \tab \code{BayesFactor::contingencyTableBF()} \cr
+   Parametric/Non-parametric \tab Paired \tab McNemar's chi-squared test \tab \code{stats::mcnemar.test()} \cr
+   Bayesian \tab Paired \tab No \tab No \cr
+}
+
+
+\strong{Effect size estimation}\tabular{lllll}{
+   Type \tab Design \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric/Non-parametric \tab Unpaired \tab Cramer's \emph{V} \tab Yes \tab \code{effectsize::cramers_v()} \cr
+   Bayesian \tab Unpaired \tab Cramer's \emph{V} \tab Yes \tab \code{effectsize::cramers_v()} \cr
+   Parametric/Non-parametric \tab Paired \tab Cohen's \emph{g} \tab Yes \tab \code{effectsize::cohens_g()} \cr
+   Bayesian \tab Paired \tab No \tab No \tab No \cr
+}
+
+}
+
+\subsection{one-way table}{
+
+\strong{Hypothesis testing}\tabular{lll}{
+   Type \tab Test \tab Function used \cr
+   Parametric/Non-parametric \tab Goodness of fit chi-squared test \tab \code{stats::chisq.test()} \cr
+   Bayesian \tab Bayesian Goodness of fit chi-squared test \tab (custom) \cr
+}
+
+
+\strong{Effect size estimation}\tabular{llll}{
+   Type \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric/Non-parametric \tab Pearson's \emph{C} \tab Yes \tab \code{effectsize::pearsons_c()} \cr
+   Bayesian \tab No \tab No \tab No \cr
+}
+
+}
+
+}
+
 \examples{
 \donttest{
 # for reproducibility

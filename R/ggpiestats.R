@@ -32,6 +32,8 @@
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams gghistostats
 #'
+#' @inheritSection statsExpressions::contingency_table Contingency table analyses
+#'
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}
 #'
