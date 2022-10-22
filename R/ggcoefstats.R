@@ -75,6 +75,8 @@
 #' @inheritParams statsExpressions::meta_analysis
 #' @inheritParams ggbetweenstats
 #'
+#' @inheritSection statsExpressions::meta_analysis Random-effects meta-analysis
+#'
 #' @note
 #'
 #' 1. In case you want to carry out meta-analysis, you will be asked to install

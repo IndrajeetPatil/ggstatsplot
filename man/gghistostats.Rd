@@ -173,6 +173,36 @@ as a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
+\section{One-sample tests}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}
+
+\strong{Hypothesis testing}\tabular{lll}{
+   Type \tab Test \tab Function used \cr
+   Parametric \tab One-sample Student's \emph{t}-test \tab \code{stats::t.test} \cr
+   Non-parametric \tab One-sample Wilcoxon test \tab \code{stats::wilcox.test} \cr
+   Robust \tab Bootstrap-\emph{t} method for one-sample test \tab \code{WRS2::trimcibt} \cr
+   Bayesian \tab One-sample Student's \emph{t}-test \tab \code{BayesFactor::ttestBF} \cr
+}
+
+
+\strong{Effect size estimation}\tabular{llll}{
+   Type \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
+   Non-parametric \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
+   Robust \tab trimmed mean \tab Yes \tab \code{WRS2::trimcibt()} \cr
+   Bayes Factor \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
+}
+
+}
+
 \examples{
 \donttest{
 # for reproducibility

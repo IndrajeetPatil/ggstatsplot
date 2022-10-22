@@ -46,8 +46,7 @@
 #' @inheritParams ggcorrplot::ggcorrplot
 #' @inheritParams ggscatterstats
 #'
-#' @importFrom purrr is_bare_numeric keep
-#' @importFrom correlation correlation
+#' @inheritSection statsExpressions::corr_test Correlation analyses
 #'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}

@@ -39,6 +39,8 @@
 #' @inheritParams ggbetweenstats
 #' @inheritParams gghistostats
 #'
+#' @inheritSection statsExpressions::corr_test Correlation analyses
+#'
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'

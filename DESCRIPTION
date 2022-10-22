@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.9.5
+Version: 0.9.5.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -46,9 +46,11 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 1.3.4),
+    statsExpressions (>= 1.3.4.9000),
     tidyr,
     utils
+Remotes:
+    IndrajeetPatil/statsExpressions
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),

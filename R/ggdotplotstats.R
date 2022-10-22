@@ -13,11 +13,13 @@
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #'
-#' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+#' @inheritSection statsExpressions::one_sample_test One-sample tests
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 #'  \code{\link{grouped_ggdotplotstats}}
+#'
+#' @details For details, see:
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
 #' @examples
 #' \donttest{

@@ -25,6 +25,8 @@
 #' @inheritParams statsExpressions::one_sample_test
 #' @inheritParams ggbetweenstats
 #'
+#' @inheritSection statsExpressions::one_sample_test One-sample tests
+#'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{grouped_ggdotplotstats}}
 #'

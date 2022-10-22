@@ -174,6 +174,27 @@ is recommended that you install development versions of \code{{easystats}}
 packages using the \code{install_latest()} function from \code{{easystats}}.
 }
 }
+\section{Random-effects meta-analysis}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}
+
+\strong{Hypothesis testing} and \strong{Effect size estimation}\tabular{llll}{
+   Type \tab Test \tab CI available? \tab Function used \cr
+   Parametric \tab Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+   Non-parametric \tab Spearman's rank correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+   Robust \tab Winsorized Pearson correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+   Bayesian \tab Bayesian Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+}
+
+}
+
 \examples{
 \donttest{
 # for reproducibility
