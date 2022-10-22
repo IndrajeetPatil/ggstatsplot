@@ -12,7 +12,7 @@ from one-sample test."><meta property="og:image" content="https://indrajeetpatil
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -276,6 +276,16 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     <p>For details, see:
 <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html</a></p>
     </div>
+    <div class="section level2">
+    <h2 id="one-sample-tests">One-sample tests<a class="anchor" aria-label="anchor" href="#one-sample-tests"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>One-sample Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test</a></code></td></tr><tr><td>Non-parametric</td><td>One-sample Wilcoxon test</td><td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test</a></code></td></tr><tr><td>Robust</td><td>Bootstrap-<em>t</em> method for one-sample test</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/trimcibt.html" class="external-link">WRS2::trimcibt</a></code></td></tr><tr><td>Bayesian</td><td>One-sample Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Cohen's <em>d</em>, Hedge's <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g()</a></code></td></tr><tr><td>Non-parametric</td><td><em>r</em> (rank-biserial correlation)</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial()</a></code></td></tr><tr><td>Robust</td><td>trimmed mean</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/trimcibt.html" class="external-link">WRS2::trimcibt()</a></code></td></tr><tr><td>Bayes Factor</td><td>difference</td><td>Yes</td><td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior()</a></code></td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="grouped_gghistostats.html">grouped_gghistostats</a></code>, <code><a href="gghistostats.html">gghistostats</a></code>,

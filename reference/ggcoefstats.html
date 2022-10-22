@@ -14,7 +14,7 @@ labels."><meta property="og:image" content="https://indrajeetpatil.github.io/ggs
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -304,6 +304,16 @@ quantities is <code>NA</code> will be removed if labels are requested:
 is recommended that you install development versions of <code>{easystats}</code>
 packages using the <code>install_latest()</code> function from <code>{easystats}</code>.</p></li>
 </ol></div>
+    <div class="section level2">
+    <h2 id="random-effects-meta-analysis">Random-effects meta-analysis<a class="anchor" aria-label="anchor" href="#random-effects-meta-analysis"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Non-parametric</td><td>Spearman's rank correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Robust</td><td>Winsorized Pearson correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Bayesian</td><td>Bayesian Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr></table></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

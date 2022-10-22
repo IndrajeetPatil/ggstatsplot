@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-10-20</h4>
+            <h4 data-toc-skip class="date">2022-10-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggbarstats.Rmd" class="external-link"><code>vignettes/web_only/ggbarstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggbarstats.Rmd</code></div>
@@ -228,10 +228,10 @@ status (class), sex, age, and survival.”</p>
 <div class="section level2">
 <h2 id="independence-or-association-with-ggbarstats">Independence (or association) with <code>ggbarstats</code><a class="anchor" aria-label="anchor" href="#independence-or-association-with-ggbarstats"></a>
 </h2>
-<p>Let’s next investigate whether the passenger’s gender was independent
-of, or associated with, gender. The test is whether the proportion of
-people who survived was different between the sexes using
-<code>ggbarstats</code>.</p>
+<p>Let’s next investigate whether the passenger’s sex was independent
+of, or associated with, their survival status, i.e., we want to test
+whether the proportion of people who survived was different between the
+sexes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>

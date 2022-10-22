@@ -12,7 +12,7 @@ as a subtitle."><meta property="og:image" content="https://indrajeetpatil.github
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -300,6 +300,29 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>For details, see:
 <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
+    </div>
+    <div class="section level2">
+    <h2 id="contingency-table-analyses">Contingency table analyses<a class="anchor" aria-label="anchor" href="#contingency-table-analyses"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><div class="section">
+<h3 id="two-way-table">two-way table<a class="anchor" aria-label="anchor" href="#two-way-table"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Design</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Unpaired</td><td>Pearson's chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test()</a></code></td></tr><tr><td>Bayesian</td><td>Unpaired</td><td>Bayesian Pearson's chi-squared test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF()</a></code></td></tr><tr><td>Parametric/Non-parametric</td><td>Paired</td><td>McNemar's chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test()</a></code></td></tr><tr><td>Bayesian</td><td>Paired</td><td>No</td><td>No</td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Design</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Unpaired</td><td>Cramer's <em>V</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v()</a></code></td></tr><tr><td>Bayesian</td><td>Unpaired</td><td>Cramer's <em>V</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v()</a></code></td></tr><tr><td>Parametric/Non-parametric</td><td>Paired</td><td>Cohen's <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_g.html" class="external-link">effectsize::cohens_g()</a></code></td></tr><tr><td>Bayesian</td><td>Paired</td><td>No</td><td>No</td><td>No</td></tr></table></div>
+
+<div class="section">
+<h3 id="one-way-table">one-way table<a class="anchor" aria-label="anchor" href="#one-way-table"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Goodness of fit chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test()</a></code></td></tr><tr><td>Bayesian</td><td>Bayesian Goodness of fit chi-squared test</td><td>(custom)</td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Pearson's <em>C</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::pearsons_c()</a></code></td></tr><tr><td>Bayesian</td><td>No</td><td>No</td><td>No</td></tr></table></div>
+
+
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

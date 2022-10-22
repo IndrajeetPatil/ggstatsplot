@@ -12,7 +12,7 @@ histogram) plots with statistical details."><meta property="og:image" content="h
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -303,6 +303,16 @@ from over-lapping to the largest degree possible. As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.</p>
     </div>
+    <div class="section level2">
+    <h2 id="correlation-analyses">Correlation analyses<a class="anchor" aria-label="anchor" href="#correlation-analyses"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><p><strong>Hypothesis testing</strong> and <strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Non-parametric</td><td>Spearman's rank correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Robust</td><td>Winsorized Pearson correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Bayesian</td><td>Bayesian Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="grouped_ggscatterstats.html">grouped_ggscatterstats</a></code>, <code><a href="ggcorrmat.html">ggcorrmat</a></code>,

@@ -14,7 +14,7 @@ subtitle."><meta property="og:image" content="https://indrajeetpatil.github.io/g
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -394,6 +394,79 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
     </div>
     <div class="section level2">
+    <h2 id="two-sample-tests">Two-sample tests<a class="anchor" aria-label="anchor" href="#two-sample-tests"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><div class="section">
+<h3 id="between-subjects">between-subjects<a class="anchor" aria-label="anchor" href="#between-subjects"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>2</td><td>Student's or Welch's <em>t</em>-test</td><td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test()</a></code></td></tr><tr><td>Non-parametric</td><td>2</td><td>Mann-Whitney <em>U</em> test</td><td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test()</a></code></td></tr><tr><td>Robust</td><td>2</td><td>Yuen's test for trimmed means</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::yuen()</a></code></td></tr><tr><td>Bayesian</td><td>2</td><td>Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>2</td><td>Cohen's <em>d</em>, Hedge's <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g()</a></code></td></tr><tr><td>Non-parametric</td><td>2</td><td><em>r</em> (rank-biserial correlation)</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial()</a></code></td></tr><tr><td>Robust</td><td>2</td><td>Algina-Keselman-Penfield robust standardized difference</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/yuen.html" class="external-link">WRS2::akp.effect()</a></code></td></tr><tr><td>Bayesian</td><td>2</td><td>difference</td><td>Yes</td><td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior()</a></code></td></tr></table></div>
+
+<div class="section">
+<h3 id="within-subjects">within-subjects<a class="anchor" aria-label="anchor" href="#within-subjects"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>2</td><td>Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test()</a></code></td></tr><tr><td>Non-parametric</td><td>2</td><td>Wilcoxon signed-rank test</td><td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test()</a></code></td></tr><tr><td>Robust</td><td>2</td><td>Yuen's test on trimmed means for dependent samples</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/yuend.html" class="external-link">WRS2::yuend()</a></code></td></tr><tr><td>Bayesian</td><td>2</td><td>Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>2</td><td>Cohen's <em>d</em>, Hedge's <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g()</a></code></td></tr><tr><td>Non-parametric</td><td>2</td><td><em>r</em> (rank-biserial correlation)</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial()</a></code></td></tr><tr><td>Robust</td><td>2</td><td>Algina-Keselman-Penfield robust standardized difference</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP()</a></code></td></tr><tr><td>Bayesian</td><td>2</td><td>difference</td><td>Yes</td><td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior()</a></code></td></tr></table></div>
+
+
+    </div>
+    <div class="section level2">
+    <h2 id="one-way-anova">One-way ANOVA<a class="anchor" aria-label="anchor" href="#one-way-anova"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><div class="section">
+<h3 id="between-subjects-1">between-subjects<a class="anchor" aria-label="anchor" href="#between-subjects-1"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>&gt; 2</td><td>Fisher's or Welch's one-way ANOVA</td><td><code><a href="https://rdrr.io/r/stats/oneway.test.html" class="external-link">stats::oneway.test()</a></code></td></tr><tr><td>Non-parametric</td><td>&gt; 2</td><td>Kruskal-Wallis one-way ANOVA</td><td><code><a href="https://rdrr.io/r/stats/kruskal.test.html" class="external-link">stats::kruskal.test()</a></code></td></tr><tr><td>Robust</td><td>&gt; 2</td><td>Heteroscedastic one-way ANOVA for trimmed means</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way()</a></code></td></tr><tr><td>Bayes Factor</td><td>&gt; 2</td><td>Fisher's ANOVA</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html" class="external-link">BayesFactor::anovaBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>&gt; 2</td><td>partial eta-squared, partial omega-squared</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::omega_squared()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::eta_squared()</a></code></td></tr><tr><td>Non-parametric</td><td>&gt; 2</td><td>rank epsilon squared</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_epsilon_squared.html" class="external-link">effectsize::rank_epsilon_squared()</a></code></td></tr><tr><td>Robust</td><td>&gt; 2</td><td>Explanatory measure of effect size</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::t1way()</a></code></td></tr><tr><td>Bayes Factor</td><td>&gt; 2</td><td>Bayesian R-squared</td><td>Yes</td><td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes()</a></code></td></tr></table></div>
+
+<div class="section">
+<h3 id="within-subjects-1">within-subjects<a class="anchor" aria-label="anchor" href="#within-subjects-1"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>&gt; 2</td><td>One-way repeated measures ANOVA</td><td><code><a href="https://rdrr.io/pkg/afex/man/aov_car.html" class="external-link">afex::aov_ez()</a></code></td></tr><tr><td>Non-parametric</td><td>&gt; 2</td><td>Friedman rank sum test</td><td><code><a href="https://rdrr.io/r/stats/friedman.test.html" class="external-link">stats::friedman.test()</a></code></td></tr><tr><td>Robust</td><td>&gt; 2</td><td>Heteroscedastic one-way repeated measures ANOVA for trimmed means</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/rmanova.html" class="external-link">WRS2::rmanova()</a></code></td></tr><tr><td>Bayes Factor</td><td>&gt; 2</td><td>One-way repeated measures ANOVA</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/anovaBF.html" class="external-link">BayesFactor::anovaBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>No. of groups</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>&gt; 2</td><td>partial eta-squared, partial omega-squared</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::omega_squared()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/eta_squared.html" class="external-link">effectsize::eta_squared()</a></code></td></tr><tr><td>Non-parametric</td><td>&gt; 2</td><td>Kendall's coefficient of concordance</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_epsilon_squared.html" class="external-link">effectsize::kendalls_w()</a></code></td></tr><tr><td>Robust</td><td>&gt; 2</td><td>Algina-Keselman-Penfield robust standardized difference average</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/wmcpAKP.html" class="external-link">WRS2::wmcpAKP()</a></code></td></tr><tr><td>Bayes Factor</td><td>&gt; 2</td><td>Bayesian R-squared</td><td>Yes</td><td><code><a href="https://easystats.github.io/performance/reference/r2_bayes.html" class="external-link">performance::r2_bayes()</a></code></td></tr></table></div>
+
+
+    </div>
+    <div class="section level2">
+    <h2 id="pairwise-comparison-tests">Pairwise comparison tests<a class="anchor" aria-label="anchor" href="#pairwise-comparison-tests"></a></h2>
+    
+
+
+
+<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
+<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>functions used internally to compute these details</p></li>
+</ul><div class="section">
+<h3 id="between-subjects-2">between-subjects<a class="anchor" aria-label="anchor" href="#between-subjects-2"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Equal variance?</td><td>Test</td><td><em>p</em>-value adjustment?</td><td>Function used</td></tr><tr><td>Parametric</td><td>No</td><td>Games-Howell test</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/gamesHowellTest.html" class="external-link">PMCMRplus::gamesHowellTest()</a></code></td></tr><tr><td>Parametric</td><td>Yes</td><td>Student's <em>t</em>-test</td><td>Yes</td><td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test()</a></code></td></tr><tr><td>Non-parametric</td><td>No</td><td>Dunn test</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/kwAllPairsDunnTest.html" class="external-link">PMCMRplus::kwAllPairsDunnTest()</a></code></td></tr><tr><td>Robust</td><td>No</td><td>Yuen's trimmed means test</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::lincon()</a></code></td></tr><tr><td>Bayesian</td><td><code>NA</code></td><td>Student's <em>t</em>-test</td><td><code>NA</code></td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p>
+<p>Not supported.</p>
+</div>
+
+<div class="section">
+<h3 id="within-subjects-2">within-subjects<a class="anchor" aria-label="anchor" href="#within-subjects-2"></a></h3>
+
+
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td><em>p</em>-value adjustment?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Student's <em>t</em>-test</td><td>Yes</td><td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test()</a></code></td></tr><tr><td>Non-parametric</td><td>Durbin-Conover test</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/durbinAllPairsTest.html" class="external-link">PMCMRplus::durbinAllPairsTest()</a></code></td></tr><tr><td>Robust</td><td>Yuen's trimmed means test</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/rmanova.html" class="external-link">WRS2::rmmcp()</a></code></td></tr><tr><td>Bayesian</td><td>Student's <em>t</em>-test</td><td><code>NA</code></td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p>
+<p>Not supported.</p>
+</div>
+
+
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></code>, <code><a href="ggwithinstats.html">ggwithinstats</a></code>,
 <code><a href="grouped_ggwithinstats.html">grouped_ggwithinstats</a></code></p></div>
@@ -424,6 +497,7 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <span class="r-in"><span>    outlier.label <span class="op">=</span> <span class="va">Run</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: PMCMRplus</span>
 <span class="r-plt img"><img src="ggbetweenstats-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
