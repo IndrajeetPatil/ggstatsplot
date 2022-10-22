@@ -252,6 +252,25 @@ a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 }
+\section{Centrality measures}{
+
+
+
+The table below provides summary about:
+\itemize{
+\item statistical test carried out for inferential statistics
+\item type of effect size estimate and a measure of uncertainty for this estimate
+\item functions used internally to compute these details
+}\tabular{lll}{
+   Type \tab Measure \tab Function used \cr
+   Parametric \tab mean \tab \code{parameters::describe_distribution()} \cr
+   Non-parametric \tab median \tab \code{parameters::describe_distribution()} \cr
+   Robust \tab trimmed mean \tab \code{parameters::describe_distribution()} \cr
+   Bayesian \tab MAP (maximum \emph{a posteriori} probability) estimate \tab \code{parameters::describe_distribution()} \cr
+}
+
+}
+
 \section{Two-sample tests}{
 
 

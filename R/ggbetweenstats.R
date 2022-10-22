@@ -117,6 +117,7 @@
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
 #'
+#' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
 #' @inheritSection statsExpressions::oneway_anova One-way ANOVA
 #' @inheritSection statsExpressions::pairwise_comparisons Pairwise comparison tests
