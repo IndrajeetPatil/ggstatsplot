@@ -21,6 +21,10 @@
 #'   `geom_boxplot`.
 #' @inheritParams statsExpressions::oneway_anova
 #'
+#' @inheritSection statsExpressions::two_sample_test Two-sample tests
+#' @inheritSection statsExpressions::oneway_anova One-way ANOVA
+#' @inheritSection statsExpressions::pairwise_comparisons Pairwise comparison tests
+#'
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'

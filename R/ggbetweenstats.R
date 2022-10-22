@@ -116,7 +116,6 @@
 #'   thus the details as well.
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
-#' @inheritParams statsExpressions::one_sample_test
 #'
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
 #' @inheritSection statsExpressions::oneway_anova One-way ANOVA
