@@ -177,10 +177,10 @@ The table below provides summary about:
 
 \strong{Hypothesis testing}\tabular{lll}{
    Type \tab Test \tab Function used \cr
-   Parametric \tab One-sample Student's \emph{t}-test \tab \code{stats::t.test} \cr
-   Non-parametric \tab One-sample Wilcoxon test \tab \code{stats::wilcox.test} \cr
-   Robust \tab Bootstrap-\emph{t} method for one-sample test \tab \code{WRS2::trimcibt} \cr
-   Bayesian \tab One-sample Student's \emph{t}-test \tab \code{BayesFactor::ttestBF} \cr
+   Parametric \tab One-sample Student's \emph{t}-test \tab \code{stats::t.test()} \cr
+   Non-parametric \tab One-sample Wilcoxon test \tab \code{stats::wilcox.test()} \cr
+   Robust \tab Bootstrap-\emph{t} method for one-sample test \tab \code{WRS2::trimcibt()} \cr
+   Bayesian \tab One-sample Student's \emph{t}-test \tab \code{BayesFactor::ttestBF()} \cr
 }
 
 
