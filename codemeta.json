@@ -409,6 +409,18 @@
     },
     "10": {
       "@type": "SoftwareApplication",
+      "identifier": "magrittr",
+      "name": "magrittr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
+    },
+    "11": {
+      "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
       "provider": {
@@ -419,7 +431,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=paletteer"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
@@ -432,7 +444,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
-    "12": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
@@ -444,7 +456,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=patchwork"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
@@ -457,7 +469,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=performance"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -469,7 +481,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -481,12 +493,12 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    "17": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
@@ -499,7 +511,7 @@
       },
       "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
-    "18": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -511,14 +523,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "19": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "9566.588KB",
+  "fileSize": "9568.065KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
