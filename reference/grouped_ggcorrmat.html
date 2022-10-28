@@ -155,8 +155,9 @@ used: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.leve
 (Default: <code>k = 2L</code>).</p></dd>
 
     <dt><code>conf.level</code></dt>
-<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
-return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+<dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
+confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
+will be computed.</p></dd>
 
     <dt><code>tr</code></dt>
 <dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case

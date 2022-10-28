@@ -243,8 +243,9 @@ if <code>bf.message = FALSE</code>.</p></dd>
 
 
 <dt>conf.level</dt>
-<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
-return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+<dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
+confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
+will be computed.</p></dd>
 
 
 <dt>nboot</dt>
@@ -485,24 +486,23 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># two groups (*t*-test)</span></span></span>
+<span class="r-in"><span><span class="co"># two-samples test</span></span></span>
 <span class="r-in"><span><span class="fu">ggwithinstats</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HDHF"</span>, <span class="st">"HDLF"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  x    <span class="op">=</span> <span class="va">condition</span>,</span></span>
-<span class="r-in"><span>  y    <span class="op">=</span> <span class="va">desire</span></span></span>
+<span class="r-in"><span>  y    <span class="op">=</span> <span class="va">desire</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">"np"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggwithinstats-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># more than two groups (anova)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># ANOVA</span></span></span>
 <span class="r-in"><span><span class="fu">ggwithinstats</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  data            <span class="op">=</span> <span class="va">WineTasting</span>,</span></span>
-<span class="r-in"><span>  x               <span class="op">=</span> <span class="va">Wine</span>,</span></span>
-<span class="r-in"><span>  y               <span class="op">=</span> <span class="va">Taste</span>,</span></span>
-<span class="r-in"><span>  type            <span class="op">=</span> <span class="st">"r"</span>,</span></span>
+<span class="r-in"><span>  data            <span class="op">=</span> <span class="va">bugs_long</span>,</span></span>
+<span class="r-in"><span>  x               <span class="op">=</span> <span class="va">condition</span>,</span></span>
+<span class="r-in"><span>  y               <span class="op">=</span> <span class="va">desire</span>,</span></span>
+<span class="r-in"><span>  type            <span class="op">=</span> <span class="st">"robust"</span>,</span></span>
 <span class="r-in"><span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>  outlier.label   <span class="op">=</span> <span class="va">Taster</span></span></span>
+<span class="r-in"><span>  outlier.label   <span class="op">=</span> <span class="va">region</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggwithinstats-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>

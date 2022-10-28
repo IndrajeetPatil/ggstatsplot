@@ -271,8 +271,9 @@ subject-1,subject-2, ..., pattern.</p></dd>
 (Default: <code>k = 2L</code>).</p></dd>
 
     <dt><code>conf.level</code></dt>
-<dd><p>Scalar between <code>0</code> and <code>1</code>. If unspecified, the defaults
-return <code>95%</code> confidence/credible intervals (<code>0.95</code>).</p></dd>
+<dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
+confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
+will be computed.</p></dd>
 
     <dt><code>effsize.type</code></dt>
 <dd><p>Type of effect size needed for <em>parametric</em> tests. The
@@ -371,6 +372,7 @@ separately specified here.</p></dd>
 <span class="r-in"><span>    <span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: PMCMRplus</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'y' is already present. Adding another scale for 'y', which will</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'y' is already present. Adding another scale for 'y', which will</span>
