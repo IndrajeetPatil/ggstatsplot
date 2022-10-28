@@ -19,10 +19,10 @@
       2       30 1.29e-10 Wald        <language>
       
       [[2]]
-      # A tibble: 1 x 7
-          AIC   BIC    R2 R2_adjusted  RMSE Sigma expression  
-        <dbl> <dbl> <dbl>       <dbl> <dbl> <dbl> <list>      
-      1  49.7  54.1 0.753       0.745 0.479 0.494 <expression>
+      # A tibble: 1 x 8
+          AIC  AICc   BIC    R2 R2_adjusted  RMSE Sigma expression  
+        <dbl> <dbl> <dbl> <dbl>       <dbl> <dbl> <dbl> <list>      
+      1  49.7  50.5  54.1 0.753       0.745 0.479 0.494 <expression>
       
 
 # edge cases

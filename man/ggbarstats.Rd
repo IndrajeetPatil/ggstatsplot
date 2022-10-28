@@ -103,8 +103,9 @@ is equal theoretical proportions across the levels of the nominal variable.
 This means if there are two levels this will be \code{ratio = c(0.5,0.5)} or if
 there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
 
-\item{conf.level}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
 
 \item{sampling.plan}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},

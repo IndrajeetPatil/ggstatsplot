@@ -187,7 +187,7 @@ ggcoefstats <- function(x,
   # check for duplicate terms and columns -------------------------
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
-  if (any(duplicated(select(tidy_df, term)))) {
+  if (anyDuplicated(tidy_df$term)) {
     tidy_df %<>%
       tidyr::unite(
         col    = "term",
@@ -198,7 +198,7 @@ ggcoefstats <- function(x,
   }
 
   # halt if there are still repeated terms
-  if (any(duplicated(tidy_df$term))) rlang::abort("Elements in `term` column must be unique.")
+  if (anyDuplicated(tidy_df$term)) rlang::abort("Elements in `term` column must be unique.")
 
   # if tidy data frame doesn't contain p-value or statistic column, a label
   # can't be prepared

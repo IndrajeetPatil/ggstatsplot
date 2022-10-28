@@ -61,8 +61,9 @@ be plotted on the \code{y}-axis.}
 
 You can specify just the initial letter.}
 
-\item{conf.level}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In

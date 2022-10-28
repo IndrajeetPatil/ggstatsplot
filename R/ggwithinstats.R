@@ -292,22 +292,22 @@ ggwithinstats <- function(data,
 #'
 #' @examplesIf requireNamespace("afex", quietly = TRUE)
 #' \donttest{
-#'   # to get reproducible results from bootstrapping
-#'   set.seed(123)
-#'   library(ggstatsplot)
-#'   library(dplyr, warn.conflicts = FALSE)
-#'   library(ggplot2)
+#' # to get reproducible results from bootstrapping
+#' set.seed(123)
+#' library(ggstatsplot)
+#' library(dplyr, warn.conflicts = FALSE)
+#' library(ggplot2)
 #'
-#'   # the most basic function call
-#'   grouped_ggwithinstats(
-#'     data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-#'     x                = condition,
-#'     y                = desire,
-#'     grouping.var     = gender,
-#'     type             = "np",
-#'     # additional modifications for **each** plot using `{ggplot2}` functions
-#'     ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
-#'   )
+#' # the most basic function call
+#' grouped_ggwithinstats(
+#'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x                = condition,
+#'   y                = desire,
+#'   grouping.var     = gender,
+#'   type             = "np",
+#'   # additional modifications for **each** plot using `{ggplot2}` functions
+#'   ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
+#' )
 #' }
 #' @export
 grouped_ggwithinstats <- function(data,
