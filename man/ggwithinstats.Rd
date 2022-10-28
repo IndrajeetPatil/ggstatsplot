@@ -431,14 +431,15 @@ set.seed(123)
 library(ggstatsplot)
 library(dplyr, warn.conflicts = FALSE)
 
-# two groups (*t*-test)
+# two-samples test
 ggwithinstats(
   data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
   x    = condition,
-  y    = desire
+  y    = desire,
+  type = "np"
 )
 
-# more than two groups (ANOVA)
+# ANOVA
 ggwithinstats(
   data            = bugs_long,
   x               = condition,

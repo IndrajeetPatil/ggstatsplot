@@ -189,7 +189,6 @@ A combined plot of comparison plot created for levels of a grouping variable.
 }
 \examples{
 \donttest{
-if (require("PMCMRplus")) {
   # to get reproducible results from bootstrapping
   set.seed(123)
   library(ggstatsplot)
@@ -202,11 +201,10 @@ if (require("PMCMRplus")) {
     x                = condition,
     y                = desire,
     grouping.var     = gender,
-    type             = "np", # non-parametric test
+    type             = "np",
     # additional modifications for **each** plot using `{ggplot2}` functions
     ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
   )
-}
 }
 }
 \seealso{

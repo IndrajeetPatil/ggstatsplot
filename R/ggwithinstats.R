@@ -39,14 +39,15 @@
 #' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # two groups (*t*-test)
+#' # two-samples test
 #' ggwithinstats(
 #'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x    = condition,
-#'   y    = desire
+#'   y    = desire,
+#'   type = "np"
 #' )
 #'
-#' # more than two groups (ANOVA)
+#' # ANOVA
 #' ggwithinstats(
 #'   data            = bugs_long,
 #'   x               = condition,
@@ -291,7 +292,6 @@ ggwithinstats <- function(data,
 #'
 #' @examples
 #' \donttest{
-#' if (require("PMCMRplus")) {
 #'   # to get reproducible results from bootstrapping
 #'   set.seed(123)
 #'   library(ggstatsplot)
@@ -304,11 +304,10 @@ ggwithinstats <- function(data,
 #'     x                = condition,
 #'     y                = desire,
 #'     grouping.var     = gender,
-#'     type             = "np", # non-parametric test
+#'     type             = "np",
 #'     # additional modifications for **each** plot using `{ggplot2}` functions
 #'     ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
 #'   )
-#' }
 #' }
 #' @export
 grouped_ggwithinstats <- function(data,
