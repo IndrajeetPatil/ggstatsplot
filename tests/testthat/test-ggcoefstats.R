@@ -144,7 +144,7 @@ test_that(
     tidy_df <- ggcoefstats(mod, output = "tidy")
     glance_df <- ggcoefstats(x = mod, output = "glance")
 
-    expect_snapshot(list(tidy_df, glance_df))
+    expect_snapshot(list(tidy_df, select(glance_df, AIC, BIC)))
   }
 )
 
@@ -199,6 +199,10 @@ test_that(
 test_that(
   desc = "meta analysis subtitle and caption",
   code = {
+    skip_if_not_installed("metafor")
+    skip_if_not_installed("metaBMA")
+    skip_if_not_installed("metaplus")
+
     set.seed(123)
     subtitle_expr <- suppressWarnings(meta_analysis(df_meta, type = "p"))
 

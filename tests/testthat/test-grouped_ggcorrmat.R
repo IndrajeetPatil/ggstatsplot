@@ -1,10 +1,11 @@
 # output: plot ---------------------------------------------------------------
 
+skip_if_not_installed("ggcorrplot")
+
 test_that(
   desc = "grouped_ggcorrmat plots are as expected",
   code = {
     skip_if(getRversion() < "4.1")
-    skip_if_not_installed("ggcorrplot")
 
     set.seed(123)
     vdiffr::expect_doppelganger(
@@ -41,7 +42,6 @@ test_that(
 test_that(
   desc = "grouped_ggcorrmat returns expected data frame",
   code = {
-    skip_if_not_installed("ggcorrplot")
     options(tibble.width = Inf)
 
     # tidy data frame

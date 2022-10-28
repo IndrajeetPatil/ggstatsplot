@@ -46,6 +46,8 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
+    skip_if_not_installed("afex")
+
     # data
     df <- dplyr::filter(bugs_long, region %in% c("North America"))
 
