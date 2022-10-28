@@ -46,16 +46,14 @@
 #'   y    = desire
 #' )
 #'
-#' # more than two groups (anova)
-#' library(WRS2)
-#'
+#' # more than two groups (ANOVA)
 #' ggwithinstats(
-#'   data            = WineTasting,
-#'   x               = Wine,
-#'   y               = Taste,
-#'   type            = "r",
+#'   data            = bugs_long,
+#'   x               = condition,
+#'   y               = desire,
+#'   type            = "robust",
 #'   outlier.tagging = TRUE,
-#'   outlier.label   = Taster
+#'   outlier.label   = region
 #' )
 #' }
 #' @export

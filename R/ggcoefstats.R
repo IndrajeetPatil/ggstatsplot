@@ -94,7 +94,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 #'
-#' @examples
+#' @examplesIf requireNamespace("lme4", quietly = TRUE)
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)

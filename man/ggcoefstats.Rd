@@ -196,6 +196,7 @@ The table below provides summary about:
 }
 
 \examples{
+\dontshow{if (requireNamespace("lme4", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # for reproducibility
 set.seed(123)
@@ -217,4 +218,5 @@ ggcoefstats(mod, output = "glance")
 # further arguments can be passed to `parameters::model_parameters()`
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 }
+\dontshow{\}) # examplesIf}
 }
