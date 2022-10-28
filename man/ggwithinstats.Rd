@@ -425,6 +425,7 @@ Not supported.
 }
 
 \examples{
+\dontshow{if (requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 # setup
 set.seed(123)
@@ -449,6 +450,7 @@ ggwithinstats(
   outlier.label   = region
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},

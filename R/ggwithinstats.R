@@ -32,7 +32,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
-#' @examples
+#' @examplesIf requireNamespace("afex", quietly = TRUE)
 #' \donttest{
 #' # setup
 #' set.seed(123)
@@ -290,7 +290,7 @@ ggwithinstats <- function(data,
 #'
 #' @inherit ggwithinstats return references
 #'
-#' @examples
+#' @examplesIf requireNamespace("afex", quietly = TRUE)
 #' \donttest{
 #'   # to get reproducible results from bootstrapping
 #'   set.seed(123)
