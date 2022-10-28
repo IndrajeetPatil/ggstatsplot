@@ -1,8 +1,7 @@
-
 # ggbetweenstats/ggwithinstats --------------------------------------------
 
 test_that(
-  desc = "ggbetweenstats and ggwithinstats - edge case NULL",
+  desc = "ggbetweenstats - edge case NULL",
   code = {
     set.seed(123)
     df <- data.frame(
@@ -31,7 +30,20 @@ test_that(
       y = y,
       output = "subtitle"
     ))
+  }
+)
 
+test_that(
+  desc = " ggwithinstats - edge case NULL",
+  code = {
+    skip_if_not_installed("afex")
+
+    set.seed(123)
+    df <- data.frame(
+      x = c(rep(1, 50), rep(2, 40), rep(3, 10)),
+      y = rnorm(100),
+      g = c(rep("a", 49), rep("b", 51))
+    )
     expect_null(ggwithinstats(
       data = dplyr::filter(df, g == "a"),
       x = x,
