@@ -61,8 +61,9 @@ be plotted on the \code{y}-axis.}
 
 You can specify just the initial letter.}
 
-\item{conf.level}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
@@ -198,25 +199,21 @@ The table below provides summary about:
 }
 
 \examples{
-# to get reproducible results from bootstrapping
+\dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
 library(ggstatsplot)
-library(dplyr, warn.conflicts = FALSE)
-
-# creating data frame with rownames converted to a new column
-mtcars_new <- as_tibble(mtcars, rownames = "car")
+library(ggplot2)
 
 # simple function call with the defaults
-if (require("ggside")) {
-  ggscatterstats(
-    data = mtcars_new,
-    x = wt,
-    y = mpg,
-    label.var = car,
-    label.expression = wt < 4 & mpg < 20
-  ) + # making further customization with `{ggplot2}` functions
-    geom_rug(sides = "b")
-}
+ggscatterstats(
+  iris,
+  x = Sepal.Width,
+  y = Petal.Length,
+  label.var = Species,
+  label.expression = Sepal.Length > 7.6
+) +
+  geom_rug(sides = "b")
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},

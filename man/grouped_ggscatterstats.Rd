@@ -65,8 +65,9 @@ be plotted on the \code{y}-axis.}
 You can specify just the initial letter.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
     \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
@@ -132,6 +133,8 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \examples{
+\dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 # to ensure reproducibility
 set.seed(123)
 library(ggstatsplot)
@@ -171,6 +174,8 @@ grouped_ggscatterstats(
   label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
+}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},

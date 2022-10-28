@@ -146,8 +146,9 @@ if \code{bf.message = FALSE}.}
     variance is used to estimate the variance otherwise the Welch
     (or Satterthwaite) approximation to the degrees of freedom is used.}
 
-\item{conf.level}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100L}).}
@@ -428,30 +429,30 @@ Not supported.
 }
 
 \examples{
+\dontshow{if (requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-if (require("PMCMRplus")) {
-  # to get reproducible results from bootstrapping
-  set.seed(123)
-  library(ggstatsplot)
+# to get reproducible results from bootstrapping
+set.seed(123)
+library(ggstatsplot)
 
-  # simple function call with the defaults
-  ggbetweenstats(mtcars, am, mpg)
+# simple function call with the defaults
+ggbetweenstats(mtcars, am, mpg)
 
-  # more detailed function call
-  ggbetweenstats(
-    data = morley,
-    x = Expt,
-    y = Speed,
-    type = "robust",
-    xlab = "The experiment number",
-    ylab = "Speed-of-light measurement",
-    pairwise.comparisons = TRUE,
-    p.adjust.method = "fdr",
-    outlier.tagging = TRUE,
-    outlier.label = Run
-  )
+# more detailed function call
+ggbetweenstats(
+  morley,
+  x                    = Expt,
+  y                    = Speed,
+  type                 = "robust",
+  xlab                 = "The experiment number",
+  ylab                 = "Speed-of-light measurement",
+  pairwise.comparisons = TRUE,
+  p.adjust.method      = "fdr",
+  outlier.tagging      = TRUE,
+  outlier.label        = Run
+)
 }
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},

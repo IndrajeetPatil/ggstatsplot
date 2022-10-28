@@ -10,21 +10,21 @@ output: github_document
 #| message = FALSE
 ## show me all columns
 options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
+  tibble.width      = Inf,
+  pillar.bold       = TRUE,
+  pillar.neg        = TRUE,
   pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
+  pillar.min_chars  = Inf
 )
 
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 150, ## change to 300 once on CRAN
-  warning = FALSE,
-  message = FALSE,
+  collapse  = TRUE,
+  dpi       = 150, ## change to 300 once on CRAN
+  warning   = FALSE,
+  message   = FALSE,
   out.width = "100%",
-  comment = "#>",
-  fig.path = "man/figures/README-"
+  comment   = "#>",
+  fig.path  = "man/figures/README-"
 )
 
 library(ggstatsplot)

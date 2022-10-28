@@ -128,30 +128,28 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
-#' @examples
+#' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
 #' \donttest{
-#' if (require("PMCMRplus")) {
-#'   # to get reproducible results from bootstrapping
-#'   set.seed(123)
-#'   library(ggstatsplot)
+#' # to get reproducible results from bootstrapping
+#' set.seed(123)
+#' library(ggstatsplot)
 #'
-#'   # simple function call with the defaults
-#'   ggbetweenstats(mtcars, am, mpg)
+#' # simple function call with the defaults
+#' ggbetweenstats(mtcars, am, mpg)
 #'
-#'   # more detailed function call
-#'   ggbetweenstats(
-#'     data = morley,
-#'     x = Expt,
-#'     y = Speed,
-#'     type = "robust",
-#'     xlab = "The experiment number",
-#'     ylab = "Speed-of-light measurement",
-#'     pairwise.comparisons = TRUE,
-#'     p.adjust.method = "fdr",
-#'     outlier.tagging = TRUE,
-#'     outlier.label = Run
-#'   )
-#' }
+#' # more detailed function call
+#' ggbetweenstats(
+#'   morley,
+#'   x                    = Expt,
+#'   y                    = Speed,
+#'   type                 = "robust",
+#'   xlab                 = "The experiment number",
+#'   ylab                 = "Speed-of-light measurement",
+#'   pairwise.comparisons = TRUE,
+#'   p.adjust.method      = "fdr",
+#'   outlier.tagging      = TRUE,
+#'   outlier.label        = Run
+#' )
 #' }
 #' @export
 ggbetweenstats <- function(data,

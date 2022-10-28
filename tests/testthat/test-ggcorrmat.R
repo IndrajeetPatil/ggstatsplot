@@ -1,22 +1,22 @@
 # entire dataset ------------------------------------------------
 
+skip_if_not_installed("ggcorrplot")
+
 test_that(
   desc = "checking ggcorrmat with entier dataset",
   code = {
     skip_if(getRversion() < "4.1")
 
-    skip_if_not_installed("ggcorrplot")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "parametric correlation - without NAs",
-      fig = ggcorrmat(data = anscombe, type = "p")
+      fig = ggcorrmat(anscombe, type = "p")
     )
 
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "non-parametric correlation - with NAs",
-      fig = ggcorrmat(data = ggplot2::msleep, type = "np")
+      fig = ggcorrmat(ggplot2::msleep, type = "np")
     )
   }
 )
@@ -40,7 +40,7 @@ test_that(
   code = {
     skip_if(getRversion() < "4.1")
 
-    skip_if_not_installed("ggcorrplot")
+
 
     set.seed(123)
     vdiffr::expect_doppelganger(

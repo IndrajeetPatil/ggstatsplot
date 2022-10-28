@@ -149,8 +149,9 @@ subject-1,subject-2, ..., pattern.}
 You can specify just the initial letter.}
     \item{\code{k}}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1}. If unspecified, the defaults
-return \verb{95\%} confidence/credible intervals (\code{0.95}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
 omega-squared).}
@@ -188,8 +189,8 @@ separately specified here.}
 A combined plot of comparison plot created for levels of a grouping variable.
 }
 \examples{
+\dontshow{if (requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-if (require("PMCMRplus")) {
   # to get reproducible results from bootstrapping
   set.seed(123)
   library(ggstatsplot)
@@ -202,12 +203,12 @@ if (require("PMCMRplus")) {
     x                = condition,
     y                = desire,
     grouping.var     = gender,
-    type             = "np", # non-parametric test
+    type             = "np",
     # additional modifications for **each** plot using `{ggplot2}` functions
     ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
   )
 }
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},

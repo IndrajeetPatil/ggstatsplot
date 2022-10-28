@@ -27,22 +27,14 @@
 #' @noRd
 .histo_labeller <- function(plot,
                             x,
-                            centrality.line.args = list(
-                              color = "blue",
-                              size = 1,
-                              linetype = "dashed"
-                            ),
+                            centrality.line.args = list(color = "blue", size = 1, linetype = "dashed"),
                             ...) {
   # compute centrality measure (with a temporary data frame)
   df_central <- suppressWarnings(centrality_description(tibble(.x = ".x", "var" = x), .x, var, ...))
 
   # adding a vertical line corresponding to centrality parameter
   plot +
-    exec(
-      geom_vline,
-      xintercept = df_central$var,
-      !!!centrality.line.args
-    ) +
+    exec(geom_vline, xintercept = df_central$var, !!!centrality.line.args) +
     scale_x_continuous(
       sec.axis = sec_axis(
         trans = ~.,
