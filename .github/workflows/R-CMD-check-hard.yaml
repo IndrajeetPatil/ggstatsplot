@@ -51,10 +51,11 @@ jobs:
           dependencies: '"hard"'
           cache: false
           extra-packages: |
-            any::rcmdcheck
-            any::testthat
             any::knitr
+            any::rcmdcheck
             any::rmarkdown
+            any::testthat
+            any::vdiffr
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
