@@ -20,8 +20,6 @@
 #' @param ... Currently ignored.
 #' @inheritParams patchwork::wrap_plots
 #'
-#' @importFrom patchwork wrap_plots plot_annotation
-#'
 #' @examples
 #' # loading the necessary libraries
 #' library(ggplot2)

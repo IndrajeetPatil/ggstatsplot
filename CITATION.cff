@@ -97,9 +97,9 @@ references:
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
-  year: '2022'
-  url: https://CRAN.R-project.org/package=correlation
+  url: https://easystats.github.io/correlation/
   version: '>= 0.8.3'
+  year: '2022'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
@@ -129,9 +129,9 @@ references:
     given-names: Etienne
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
+  year: '2022'
   url: https://easystats.github.io/datawizard/
   version: '>= 0.6.2'
-  year: '2022'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -260,7 +260,7 @@ references:
     orcid: https://orcid.org/0000-0003-2042-7063
   year: '2022'
   url: https://easystats.github.io/insight/
-  version: '>= 0.18.5'
+  version: '>= 0.18.6'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -298,9 +298,9 @@ references:
     given-names: Brenton M.
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
+  year: '2022'
   url: https://easystats.github.io/parameters/
   version: '>= 0.19.0'
-  year: '2022'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'

@@ -269,10 +269,6 @@
 #'   additional columns: `isanoutlier` and `outlier` denoting which observation
 #'   are outliers and their corresponding labels.
 #'
-#' @importFrom dplyr group_by mutate ungroup
-#' @importFrom statsExpressions %$%
-#' @importFrom performance check_outliers
-#'
 #' @examples
 #' # adding column for outlier and a label for that outlier
 #' ggstatsplot:::.outlier_df(

@@ -71,9 +71,11 @@
 #' @importFrom glue glue
 #' @importFrom insight is_model find_statistic format_value check_if_installed
 #' @importFrom parameters model_parameters standardize_names
+#' @importFrom performance check_outliers
 #' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
-#' @importFrom purrr is_bare_numeric keep
+#' @importFrom purrr pmap map
 #' @importFrom correlation correlation
+#' @importFrom patchwork wrap_plots plot_annotation
 #'
 ## ggstatsplot namespace: end
 NULL
