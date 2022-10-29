@@ -195,11 +195,11 @@ ggscatterstats <- function(data,
 
   plotScatter <- plotScatter +
     labs(
-      x = xlab %||% as_name(x),
-      y = ylab %||% as_name(y),
-      title = title,
+      x        = xlab %||% as_name(x),
+      y        = ylab %||% as_name(y),
+      title    = title,
       subtitle = subtitle,
-      caption = caption
+      caption  = caption
     ) +
     ggtheme +
     ggplot.component
