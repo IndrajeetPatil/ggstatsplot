@@ -9,7 +9,7 @@ test_that(
 
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "outlier tagging works",
       fig = ggbetweenstats(
         data = ggplot2::msleep,
@@ -28,7 +28,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "modification with ggplot2 works as expected",
       fig = ggbetweenstats(
         data = tibble::as_tibble(mtcars, rownames = "name") %>%
@@ -49,7 +49,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "mean shown with scarce data",
       fig = suppressWarnings(ggbetweenstats(
         data = df_small,
@@ -72,7 +72,7 @@ test_that(
 
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "box plot",
       fig = ggbetweenstats(
         data = ToothGrowth,
@@ -87,7 +87,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "violin plot",
       fig = ggbetweenstats(
         data = ToothGrowth,

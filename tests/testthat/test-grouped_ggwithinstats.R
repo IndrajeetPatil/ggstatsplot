@@ -14,7 +14,7 @@ test_that(
 
     # outlier tagging is not required
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "default plots",
       fig = grouped_ggwithinstats(
         data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
@@ -26,7 +26,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "outlier tagging and themes work",
       fig = grouped_ggwithinstats(
         data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),

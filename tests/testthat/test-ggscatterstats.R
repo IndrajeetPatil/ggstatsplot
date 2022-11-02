@@ -7,13 +7,13 @@ test_that(
   desc = "checking ggscatterstats with entire dataset",
   code = {
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "parametric correlation - without NAs",
       fig = ggscatterstats(mtcars, wt, mpg, type = "p")
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "robust correlation - with NAs",
       fig = ggscatterstats(ggplot2::msleep, sleep_total, brainwt, type = "r")
     )
@@ -26,7 +26,7 @@ test_that(
   desc = "aesthetic modifications work",
   code = {
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "changing scales and aesthetics",
       fig = ggscatterstats(mtcars, wt, mpg,
         results.subtitle = FALSE,
@@ -51,7 +51,7 @@ test_that("labeling variables and expressions work as expected", {
   df <- dplyr::filter(ggplot2::msleep, conservation == "lc")
 
   set.seed(123)
-  expect_doppelganger(
+  vdiffr::expect_doppelganger(
     title = "label variable and expression",
     fig = ggscatterstats(
       data = df,
@@ -64,7 +64,7 @@ test_that("labeling variables and expressions work as expected", {
   )
 
   set.seed(123)
-  expect_doppelganger(
+  vdiffr::expect_doppelganger(
     title = "no label variable but expression",
     fig = ggscatterstats(
       data = df,
@@ -78,7 +78,7 @@ test_that("labeling variables and expressions work as expected", {
 
   # TODO: generate snapshot on Windows machine
   # set.seed(123)
-  # expect_doppelganger(
+  # vdiffr::expect_doppelganger(
   #   title = "label variable but no expression",
   #   fig = ggscatterstats(
   #     data = df,
@@ -124,7 +124,7 @@ test_that(
   desc = "grouped_ggscatterstats plotting works as expected",
   code = {
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "defaults work as expected",
       fig = grouped_ggscatterstats(
         data = iris,
@@ -135,7 +135,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "aesthetic modifications work",
       fig = grouped_ggscatterstats(
         data = ggplot2::msleep,

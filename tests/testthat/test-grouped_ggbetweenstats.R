@@ -19,7 +19,7 @@ test_that(
       )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "default plot as expected",
       fig = grouped_ggbetweenstats(
         data = dat,

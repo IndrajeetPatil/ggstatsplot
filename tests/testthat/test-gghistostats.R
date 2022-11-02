@@ -7,13 +7,13 @@ test_that(
 
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "parametric - without NA",
       fig = gghistostats(ggplot2::mpg, cty, test.value = 20, type = "p")
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "robust - with NA",
       fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "r")
     )
@@ -26,7 +26,7 @@ test_that(
   desc = "aesthetic modifications work",
   code = {
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "aesthetic modifications work",
       fig = gghistostats(
         data = dplyr::starwars,
@@ -51,7 +51,7 @@ test_that(
   desc = "checking if normal curve work",
   code = {
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "plot normal curve",
       fig = gghistostats(
         data = ggplot2::msleep,

@@ -8,7 +8,7 @@ test_that(
     skip_if(getRversion() < "4.1")
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "without NAs",
       fig = grouped_ggcorrmat(
         iris,
@@ -18,7 +18,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "with NAs",
       fig = grouped_ggcorrmat(
         data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),

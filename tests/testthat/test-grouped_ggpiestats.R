@@ -12,7 +12,7 @@ test_that(
 
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "grouped_ggpiestats with one-way table",
       fig = grouped_ggpiestats(
         data = mtcars,
@@ -31,7 +31,7 @@ test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "grouped_ggpiestats with two-way table",
       fig = grouped_ggpiestats(
         data = mpg_short,
@@ -60,7 +60,7 @@ test_that(
     )
 
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = "common legend when levels are dropped",
       fig = grouped_ggpiestats(
         data = df,
