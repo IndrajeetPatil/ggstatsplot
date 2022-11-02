@@ -21,19 +21,19 @@ test_that(
     skip_if(getRversion() < "4.1")
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
       fig = ggbarstats(mtcars, am, cyl)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking unpaired two-way table - with NA",
       fig = ggbarstats(ggplot2::msleep, conservation, vore)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking paired two-way table - without NA",
       fig = ggbarstats(survey_data, `1st survey`, `2nd survey`,
         counts = Counts,
@@ -42,7 +42,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking paired two-way table - with NA",
       fig = ggbarstats(
         data = survey_data_NA,
@@ -64,7 +64,7 @@ test_that(
 
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking percentage labels",
       fig = ggbarstats(
         data = mtcars, x = cyl, y = am, label = "percentage",
@@ -73,7 +73,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking count labels",
       fig = ggbarstats(
         data = mtcars, x = cyl, y = am, label = "counts",
@@ -82,7 +82,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking percentage and count labels",
       fig = ggbarstats(
         data = mtcars, x = cyl, y = am, label = "both",
@@ -91,7 +91,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "changing aesthetics works",
       fig = suppressWarnings(
         ggbarstats(
@@ -130,7 +130,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "label repelling works",
       fig = ggbarstats(
         df,
@@ -156,13 +156,13 @@ test_that(
 
     # TODO: should one-way table results be shown in the subtitle?
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "works with dropped levels",
       fig = ggbarstats(mtcars_small, cyl, am)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "prop test fails with dropped levels",
       fig = ggbarstats(mtcars_small, am, cyl)
     )

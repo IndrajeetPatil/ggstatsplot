@@ -8,13 +8,13 @@ test_that(
     skip_if(getRversion() < "4.1")
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "parametric correlation - without NAs",
       fig = ggcorrmat(anscombe, type = "p")
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "non-parametric correlation - with NAs",
       fig = ggcorrmat(ggplot2::msleep, type = "np")
     )
@@ -43,7 +43,7 @@ test_that(
 
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "changing aesthetic defaults",
       fig = ggcorrmat(
         data = dplyr::select(iris, dplyr::contains("Petal")),
@@ -63,7 +63,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "applying ggplot2 function works",
       fig = ggcorrmat(
         data = dplyr::select(ggplot2::msleep, brainwt, sleep_rem, bodywt),

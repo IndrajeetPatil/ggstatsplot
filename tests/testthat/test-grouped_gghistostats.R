@@ -4,7 +4,7 @@ test_that(
   desc = "grouped_gghistostats plotting works as expected",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "defaults as expected",
       fig = grouped_gghistostats(
         data = ggplot2::msleep,
@@ -15,7 +15,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "modification with ggplot2 works",
       fig = suppressWarnings(grouped_gghistostats(
         data = ggplot2::msleep,

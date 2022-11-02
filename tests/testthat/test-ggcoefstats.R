@@ -18,25 +18,25 @@ test_that("default plots are rendered correctly for each type of statistic", {
   library(survival)
 
   set.seed(123)
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     title = "t-statistic",
     fig = ggcoefstats(stats::lm(formula = wt ~ am * cyl, data = mtcars))
   )
 
   set.seed(123)
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     title = "F-statistic",
     fig = ggcoefstats(aov(yield ~ N * K, npk))
   )
 
   set.seed(123)
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     title = "F-statistic with omega",
     fig = ggcoefstats(stats::aov(wt ~ mpg * am, mtcars), effectsize.type = "omega")
   )
 
   set.seed(123)
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     title = "chi2-statistic",
     fig = suppressWarnings(ggcoefstats(
       survival::coxph(Surv(time, status) ~ age + sex + frailty(inst), lung)
@@ -53,7 +53,7 @@ test_that("default plots are rendered correctly for each type of statistic", {
   )
 
   set.seed(123)
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     title = "z-statistic",
     fig = ggcoefstats(mod_glm, conf.level = 0.90)
   )
@@ -75,7 +75,7 @@ test_that("meta-analysis works", {
 
   skip_on_os("mac", c("i386", "x86_64"))
   set.seed(123)
-  vdiffr::expect_doppelganger(
+  expect_doppelganger(
     title = "meta-analysis works",
     fig = p_meta
   )
@@ -92,7 +92,7 @@ test_that(
     mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "plot modifications",
       fig = suppressWarnings(ggcoefstats(
         x = mod1,
@@ -113,7 +113,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "sorting works",
       fig = ggcoefstats(
         x = mod2,
@@ -164,7 +164,7 @@ test_that(
 
     skip_on_os("mac", c("i386", "x86_64"))
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "NAs in numeric columns",
       fig = m_lmer
     )
@@ -180,7 +180,7 @@ test_that(
     df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "CIs missing",
       fig = ggcoefstats(dplyr::select(df_base, -dplyr::matches("conf")), statistic = "t")
     )

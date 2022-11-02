@@ -24,13 +24,13 @@ test_that(
 
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "parametric - without NA",
       fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "p")
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "robust - with NA",
       fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "r")
     )
@@ -47,7 +47,7 @@ test_that(
 
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "modification with ggplot2 ",
       fig = suppressMessages(ggdotplotstats(
         data = morley_new,

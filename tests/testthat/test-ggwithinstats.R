@@ -15,7 +15,7 @@ test_that(
     skip_if_not_installed("WRS2")
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "defaults plots - two groups",
       fig = ggwithinstats(
         data = data_bugs_2,
@@ -34,7 +34,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "defaults plots - more than two groups",
       fig = ggwithinstats(
         data = WRS2::WineTasting,
@@ -61,7 +61,7 @@ test_that(
     skip_if_not_installed("WRS2")
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "ggplot2 commands work",
       fig = ggwithinstats(
         data = WRS2::WineTasting,
@@ -74,7 +74,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "centrality path can be turned off",
       fig = ggwithinstats(
         iris_long,

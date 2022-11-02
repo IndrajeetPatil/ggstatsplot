@@ -20,7 +20,7 @@ test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "grouped_ggbarstats with two-way table",
       fig = grouped_ggbarstats(
         data = mpg_short,
@@ -49,7 +49,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "common legend when levels are dropped",
       fig = grouped_ggbarstats(
         data = df,
