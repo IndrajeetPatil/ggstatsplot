@@ -1,10 +1,7 @@
 library(testthat)
 library(ggstatsplot)
 
-# suppress printing environment name (noisy)
-invisible({
-  loadNamespace("statsExpressions")
-  loadNamespace("vdiffr")
-})
+library(statsExpressions)
+library(vdiffr)
 
 test_check("ggstatsplot")
