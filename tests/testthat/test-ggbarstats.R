@@ -20,7 +20,6 @@ test_that(
   code = {
     skip_if(getRversion() < "4.1")
 
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
@@ -123,20 +122,8 @@ test_that(
           .Label = c("A", "P", "C", "T"), class = "factor"
         ),
         counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
-        perc = c(
-          65.1192181312663,
-          88.9586317297161,
-          16.1681691802174,
-          8.26522874715646,
-          3.50282247872609,
-          1.94624652455978,
-          15.2097902097902,
-          0.829892998567697
-        ),
-        label = c(
-          "65%", "89%", "16%", "8%",
-          "4%", "2%", "15%", "1%"
-        )
+        perc = c(65.119, 88.958, 16.168, 8.265, 3.502, 1.946, 15.209, 0.829),
+        label = c("65%", "89%", "16%", "8%", "4%", "2%", "15%", "1%")
       ),
       row.names = c(NA, -8L),
       class = c("tbl_df", "tbl", "data.frame")
@@ -163,7 +150,6 @@ test_that(
   desc = "edge cases",
   code = {
     skip_if(getRversion() < "4.1")
-
 
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
@@ -193,7 +179,7 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4,
+      k = 4L,
       output = "subtitle"
     )
 
@@ -202,7 +188,7 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4
+      k = 4L
     ))$expression[[1]]
 
     expect_equal(p_sub, stats_output)

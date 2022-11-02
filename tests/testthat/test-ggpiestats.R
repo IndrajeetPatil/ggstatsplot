@@ -204,7 +204,7 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4,
+      k = 4L,
       output = "subtitle"
     )
 
@@ -213,7 +213,7 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4
+      k = 4L
     ))$expression[[1]]
 
     expect_equal(p_sub, stats_output)

@@ -54,7 +54,7 @@ test_that(
         matrix.type = "full",
         p.adjust.method = "fdr",
         colors = NULL,
-        k = 4,
+        k = 4L,
         ggcorrplot.args = list(
           lab_col = "white",
           pch.col = "white"
