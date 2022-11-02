@@ -25,7 +25,6 @@ test_that(
   code = {
     skip_if_not_installed("afex")
 
-
     df <- data.frame(
       x = c(rep(1, 50), rep(2, 40), rep(3, 10)),
       y = rnorm(100),
