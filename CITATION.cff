@@ -131,7 +131,7 @@ references:
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2022'
   url: https://easystats.github.io/datawizard/
-  version: '>= 0.6.2'
+  version: '>= 0.6.3'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'

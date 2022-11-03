@@ -1,12 +1,9 @@
-# entire dataset ------------------------------------------------
-
+skip_if(getRversion() < "4.1")
 skip_if_not_installed("ggcorrplot")
 
 test_that(
   desc = "checking ggcorrmat with entier dataset",
   code = {
-    skip_if(getRversion() < "4.1")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "parametric correlation - without NAs",
@@ -38,10 +35,6 @@ test_that(
 test_that(
   desc = "ggcorrmat works as expected with changed defaults",
   code = {
-    skip_if(getRversion() < "4.1")
-
-
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "changing aesthetic defaults",
@@ -97,5 +90,62 @@ test_that(
       ),
       .f = ggcorrmat
     )))
+  }
+)
+
+# grouped_ggcorrmat output: plot ---------------------------------------------------------------
+
+skip_if_not_installed("ggcorrplot")
+
+test_that(
+  desc = "grouped_ggcorrmat plots are as expected",
+  code = {
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "without NAs",
+      fig = grouped_ggcorrmat(
+        iris,
+        grouping.var = Species,
+        cor.vars = Sepal.Length:Petal.Length
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "with NAs",
+      fig = grouped_ggcorrmat(
+        data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
+        grouping.var = vore,
+      )
+    )
+  }
+)
+
+# expected warnings -------------------------------------------
+
+test_that(
+  desc = "grouped_ggcorrmat produces error when grouping isn't specified",
+  code = {
+    expect_snapshot_error(grouped_ggcorrmat(iris))
+  }
+)
+
+# output: data frame ---------------------------------------------------------------
+
+test_that(
+  desc = "grouped_ggcorrmat returns expected data frame",
+  code = {
+    options(tibble.width = Inf)
+
+    # tidy data frame
+    df <- grouped_ggcorrmat(
+      data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
+      grouping.var = vore,
+      type = "r",
+      output = "data"
+    )
+
+    set.seed(123)
+    expect_snapshot(df)
   }
 )

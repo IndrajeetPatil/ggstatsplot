@@ -1,28 +1,27 @@
+skip_if(getRversion() < "4.1")
+
 # creating a new dataset
 morley_new <- dplyr::mutate(
   morley,
   Expt = dplyr::case_when(
-    Expt == 1 ~ "1st",
-    Expt == 2 ~ "2nd",
-    Expt == 3 ~ "3rd",
-    Expt == 4 ~ "4th",
-    Expt == 5 ~ "5th"
+    Expt == 1L ~ "1st",
+    Expt == 2L ~ "2nd",
+    Expt == 3L ~ "3rd",
+    Expt == 4L ~ "4th",
+    Expt == 5L ~ "5th"
   )
 ) %>%
   dplyr::as_tibble()
 
-morley_new[3, 3] <- NA_integer_
-morley_new[23, 3] <- NA_integer_
-morley_new[87, 3] <- NA_integer_
+morley_new[3L, 3L] <- NA_integer_
+morley_new[23L, 3L] <- NA_integer_
+morley_new[87L, 3L] <- NA_integer_
 
 # checking default outputs -----------------------------------------
 
 test_that(
   desc = "checking default outputs",
   code = {
-    skip_if(getRversion() < "4.1")
-
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "parametric - without NA",
@@ -43,9 +42,6 @@ test_that(
 test_that(
   desc = "modification with ggplot2 works as expected",
   code = {
-    skip_if(getRversion() < "4.1")
-
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "modification with ggplot2 ",
@@ -94,5 +90,82 @@ test_that(
         output = "subtitle"
       ))
     )
+  }
+)
+
+# grouped_ggdotplotstats works -----------------------------------------------
+
+test_that(
+  desc = "grouped_ggdotplotstats works",
+  code = {
+    # removing factor level with very few no. of observations
+    df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "defaults work as expected",
+      fig = grouped_ggdotplotstats(
+        data = df,
+        x = cty,
+        y = manufacturer,
+        xlab = "city miles per gallon",
+        ylab = "car manufacturer",
+        grouping.var = cyl,
+        test.value = 15.5,
+        point.args = list(color = "red", size = 5, shape = 13),
+        results.subtitle = FALSE,
+        ggtheme = ggplot2::theme_classic()
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "further modification with ggplot works",
+      fig = grouped_ggdotplotstats(
+        data = df,
+        x = cty,
+        y = manufacturer,
+        grouping.var = cyl,
+        test.value = 15.5,
+        results.subtitle = FALSE,
+        effsize.type = "d",
+        ggplot.component = ggplot2::scale_y_continuous(
+          sec.axis = ggplot2::dup_axis(name = "percentile score"),
+          breaks = seq(0, 12, 2)
+        )
+      )
+    )
+  }
+)
+
+# subtitle output --------------------------------------------------
+
+test_that(
+  desc = "subtitle output",
+  code = {
+    # removing factor level with very few no. of observations
+    df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4"))
+
+    set.seed(123)
+    ls_results <-
+      grouped_ggdotplotstats(
+        data = df,
+        x = cty,
+        y = manufacturer,
+        grouping.var = cyl,
+        test.value = 15.5,
+        output = "subtitle"
+      )
+
+    set.seed(123)
+    basic_results <- ggdotplotstats(
+      data = df,
+      x = cty,
+      y = manufacturer,
+      test.value = 15.5,
+      output = "subtitle"
+    )
+
+    expect_equal(ls_results$`4`, basic_results)
   }
 )

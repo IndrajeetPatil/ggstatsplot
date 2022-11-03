@@ -1,12 +1,11 @@
+skip_if(getRversion() < "4.1")
+skip_if_not_installed("PMCMRplus")
+
 # between-subjects -------------------------------------------------
 
 test_that(
   desc = "check pairwise displays - between-subjects",
   code = {
-    skip_if(getRversion() < "4.1")
-
-    skip_if_not_installed("PMCMRplus")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "between - parametric - only non-significant",
@@ -132,10 +131,6 @@ test_that(
 test_that(
   desc = "check pairwise displays - within-subjects",
   code = {
-    skip_if(getRversion() < "4.1")
-
-    skip_if_not_installed("PMCMRplus")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "within - parametric - only non-significant",
@@ -262,10 +257,6 @@ test_that(
 test_that(
   desc = "adding caption works",
   code = {
-    skip_if(getRversion() < "4.1")
-
-    skip_if_not_installed("PMCMRplus")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "adding caption works",
