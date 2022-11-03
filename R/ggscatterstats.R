@@ -83,12 +83,7 @@ ggscatterstats <- function(data,
                            marginal = TRUE,
                            xfill = "#009E73",
                            yfill = "#D55E00",
-                           point.args = list(
-                             size = 3,
-                             alpha = 0.4,
-                             stroke = 0,
-                             na.rm = TRUE
-                           ),
+                           point.args = list(size = 3, alpha = 0.4, stroke = 0, na.rm = TRUE),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
@@ -99,16 +94,8 @@ ggscatterstats <- function(data,
                              formula = y ~ x,
                              na.rm = TRUE
                            ),
-                           xsidehistogram.args = list(
-                             fill = xfill,
-                             color = "black",
-                             na.rm = TRUE
-                           ),
-                           ysidehistogram.args = list(
-                             fill = yfill,
-                             color = "black",
-                             na.rm = TRUE
-                           ),
+                           xsidehistogram.args = list(fill = xfill, color = "black", na.rm = TRUE),
+                           ysidehistogram.args = list(fill = yfill, color = "black", na.rm = TRUE),
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -195,11 +182,11 @@ ggscatterstats <- function(data,
 
   plotScatter <- plotScatter +
     labs(
-      x = xlab %||% as_name(x),
-      y = ylab %||% as_name(y),
-      title = title,
+      x        = xlab %||% as_name(x),
+      y        = ylab %||% as_name(y),
+      title    = title,
       subtitle = subtitle,
-      caption = caption
+      caption  = caption
     ) +
     ggtheme +
     ggplot.component
@@ -207,8 +194,7 @@ ggscatterstats <- function(data,
   # marginal  ---------------------------------------------
 
   if (marginal) {
-    # installed?
-    check_if_installed("ggside", minimum_version = "0.1.2")
+    check_if_installed("ggside", minimum_version = "0.2.1")
 
     # adding marginal distributions
     plotScatter <- plotScatter +

@@ -1,12 +1,11 @@
+skip_if(getRversion() < "4.1")
+skip_if_not_installed("ggside")
+
 # entire dataset ------------------------------------------------
 
 test_that(
   desc = "checking ggscatterstats with entire dataset",
   code = {
-    skip_if(getRversion() < "4.1")
-
-    skip_if_not_installed("ggside")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "parametric correlation - without NAs",
@@ -26,10 +25,6 @@ test_that(
 test_that(
   desc = "aesthetic modifications work",
   code = {
-    skip_if(getRversion() < "4.1")
-
-    skip_if_not_installed("ggside")
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "changing scales and aesthetics",
@@ -53,10 +48,6 @@ test_that(
 )
 
 test_that("labeling variables and expressions work as expected", {
-  skip_if(getRversion() < "4.1")
-
-  skip_if_not_installed("ggside")
-
   df <- dplyr::filter(ggplot2::msleep, conservation == "lc")
 
   set.seed(123)
@@ -100,11 +91,10 @@ test_that("labeling variables and expressions work as expected", {
   # )
 })
 
-
 # subtitle output ----------------------------------------------------------
 
 test_that(
-  desc = "subtitle output",
+  desc = "subtitle output - ggscatterstats",
   code = {
     set.seed(123)
     p_sub <- ggscatterstats(
@@ -127,5 +117,82 @@ test_that(
     )$expression[[1]]
 
     expect_equal(p_sub, fun_sub)
+  }
+)
+
+test_that(
+  desc = "grouped_ggscatterstats plotting works as expected",
+  code = {
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "defaults work as expected",
+      fig = grouped_ggscatterstats(
+        data = iris,
+        Sepal.Length,
+        Petal.Width,
+        grouping.var = Species
+      )
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "aesthetic modifications work",
+      fig = grouped_ggscatterstats(
+        data = ggplot2::msleep,
+        x = sleep_total,
+        y = bodywt,
+        results.subtitle = FALSE,
+        grouping.var = vore,
+        xlab = "total sleep",
+        ylab = "body weight",
+        ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000))
+      )
+    )
+  }
+)
+
+
+test_that(
+  desc = "grouped_ggscatterstats - subtitle output",
+  code = {
+    # data
+    df <- dplyr::filter(movies_long, genre %in% c("Action Drama"))
+
+    set.seed(123)
+    ls_results <- grouped_ggscatterstats(
+      data = df,
+      x = rating,
+      y = length,
+      grouping.var = genre,
+      k = 3L,
+      conf.level = 0.99,
+      output = "subtitle"
+    )
+
+    set.seed(123)
+    basic_results <- corr_test(
+      data = df,
+      x = rating,
+      y = length,
+      k = 3L,
+      conf.level = 0.99
+    )$expression[[1]]
+
+
+    expect_equal(length(ls_results), 1L)
+    expect_equal(ls_results$`Action Drama`, basic_results, ignore_attr = TRUE)
+  }
+)
+
+test_that(
+  desc = "grouped_ggscatterstats errors when no grouping is present",
+  code = {
+    expect_snapshot_error(
+      grouped_ggscatterstats(
+        data = iris,
+        x = Sepal.Length,
+        y = Petal.Width,
+      )
+    )
   }
 )

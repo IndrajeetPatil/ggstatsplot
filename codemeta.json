@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -99,6 +99,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
+      "version": ">= 0.1.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -111,6 +112,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
+      "version": ">= 0.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -325,7 +327,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.6.2",
+      "version": ">= 0.6.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -518,7 +520,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9567.966KB",
+  "fileSize": "9566.959KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

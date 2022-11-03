@@ -32,7 +32,7 @@ Depends:
     R (>= 4.0.0)
 Imports:
     correlation (>= 0.8.3),
-    datawizard (>= 0.6.2),
+    datawizard (>= 0.6.3),
     dplyr,
     ggplot2,
     ggrepel,
@@ -55,8 +55,8 @@ Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
     gapminder,
-    ggcorrplot,
-    ggside,
+    ggcorrplot (>= 0.1.4),
+    ggside (>= 0.2.1),
     knitr,
     lme4,
     MASS,

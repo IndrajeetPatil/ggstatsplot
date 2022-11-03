@@ -11,7 +11,7 @@ test_that(
 
     # testing lengths of lists
     expect_snapshot(names(df1))
-    expect_equal(ggplot2::msleep, df2)
+    expect_identical(ggplot2::msleep, df2)
   }
 )
 
@@ -38,7 +38,7 @@ test_that(
       ggstatsplot:::.palette_message(
         package = "RColorBrewer",
         palette = "Dark2",
-        min_length = 20
+        min_length = 20L
       )
     )
   }

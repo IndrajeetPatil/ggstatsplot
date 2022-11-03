@@ -1,3 +1,5 @@
+skip_if(getRversion() < "4.1")
+
 # data for paired tests
 set.seed(123)
 survey_data <- dplyr::tibble(
@@ -18,9 +20,6 @@ survey_data_NA <- dplyr::tibble(
 test_that(
   desc = "checking default outputs",
   code = {
-    skip_if(getRversion() < "4.1")
-
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
@@ -61,9 +60,6 @@ test_that(
 test_that(
   desc = "changing labels and aesthetics",
   code = {
-    skip_if(getRversion() < "4.1")
-
-
     set.seed(123)
     vdiffr::expect_doppelganger(
       title = "checking percentage labels",
@@ -123,20 +119,8 @@ test_that(
           .Label = c("A", "P", "C", "T"), class = "factor"
         ),
         counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
-        perc = c(
-          65.1192181312663,
-          88.9586317297161,
-          16.1681691802174,
-          8.26522874715646,
-          3.50282247872609,
-          1.94624652455978,
-          15.2097902097902,
-          0.829892998567697
-        ),
-        label = c(
-          "65%", "89%", "16%", "8%",
-          "4%", "2%", "15%", "1%"
-        )
+        perc = c(65.119, 88.958, 16.168, 8.265, 3.502, 1.946, 15.209, 0.829),
+        label = c("65%", "89%", "16%", "8%", "4%", "2%", "15%", "1%")
       ),
       row.names = c(NA, -8L),
       class = c("tbl_df", "tbl", "data.frame")
@@ -162,9 +146,6 @@ test_that(
 test_that(
   desc = "edge cases",
   code = {
-    skip_if(getRversion() < "4.1")
-
-
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
@@ -193,7 +174,7 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4,
+      k = 4L,
       output = "subtitle"
     )
 
@@ -202,9 +183,93 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4
+      k = 4L
     ))$expression[[1]]
 
     expect_equal(p_sub, stats_output)
+  }
+)
+
+# grouped_ggbarstats works as expected
+
+test_that(
+  desc = "grouped_ggbarstats produces error when grouping variable not provided",
+  code = {
+    expect_snapshot_error(grouped_ggbarstats(mtcars, x = cyl, y = am))
+  }
+)
+
+test_that(
+  desc = "grouped_ggbarstats works",
+  code = {
+    # creating a smaller data frame
+    mpg_short <- ggplot2::mpg %>%
+      dplyr::filter(
+        drv %in% c("4", "f"),
+        class %in% c("suv", "midsize"),
+        trans %in% c("auto(l4)", "auto(l5)")
+      )
+
+    # when arguments are entered as bare expressions
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "grouped_ggbarstats with two-way table",
+      fig = grouped_ggbarstats(
+        data = mpg_short,
+        x = cyl,
+        y = class,
+        grouping.var = drv,
+        label.repel = TRUE
+      )
+    )
+  }
+)
+
+# edge cases --------------------
+
+test_that(
+  desc = "edge case behavior",
+  code = {
+    df <- data.frame(
+      dataset = c("a", "b", "c", "c", "c", "c"),
+      measurement = c("old", "old", "old", "old", "new", "new"),
+      flag = c("no", "no", "yes", "no", "yes", "no"),
+      count = c(6, 8, 8, 62, 6, 33)
+    )
+
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = "common legend when levels are dropped",
+      fig = grouped_ggbarstats(
+        data = df,
+        x = measurement,
+        y = flag,
+        grouping.var = dataset,
+        counts = count,
+        results.subtitle = FALSE,
+        proportion.test = FALSE
+      )
+    )
+  }
+)
+
+# expression output --------------------
+
+test_that(
+  desc = "grouped_ggbarstats expression output is as expected",
+  code = {
+    set.seed(123)
+    grouped_expr <- grouped_ggbarstats(
+      mtcars,
+      grouping.var = am,
+      x = cyl,
+      y = vs,
+      output = "subtitle"
+    )
+
+    set.seed(123)
+    base_expr <- ggbarstats(dplyr::filter(mtcars, am == "0"), cyl, vs, output = "subtitle")
+
+    expect_equal(grouped_expr$`0`, base_expr)
   }
 )

@@ -131,7 +131,7 @@ references:
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2022'
   url: https://easystats.github.io/datawizard/
-  version: '>= 0.6.2'
+  version: '>= 0.6.3'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -472,6 +472,7 @@ references:
     email: alboukadel.kassambara@gmail.com
   year: '2022'
   url: https://CRAN.R-project.org/package=ggcorrplot
+  version: '>= 0.1.4'
 - type: software
   title: ggside
   abstract: 'ggside: Side Grammar Graphics'
@@ -483,6 +484,7 @@ references:
     orcid: https://orcid.org/0000-0001-5501-4934
   year: '2022'
   url: https://CRAN.R-project.org/package=ggside
+  version: '>= 0.2.1'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
