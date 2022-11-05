@@ -30,7 +30,7 @@ ggwithinstats(
   centrality.point.args = list(size = 5, color = "darkred"),
   centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
   centrality.path = TRUE,
-  centrality.path.args = list(size = 1, color = "red", alpha = 0.5),
+  centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
   point.args = list(size = 3, alpha = 0.5),
   point.path = TRUE,
   point.path.args = list(alpha = 0.5, linetype = "dashed"),

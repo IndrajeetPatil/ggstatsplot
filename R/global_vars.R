@@ -3,7 +3,6 @@
 utils::globalVariables(
   names = c(
     ".",
-    "..count..",
     "N",
     "conf.high",
     "conf.low",

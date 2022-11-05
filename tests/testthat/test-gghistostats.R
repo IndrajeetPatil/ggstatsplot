@@ -58,10 +58,7 @@ test_that(
         binwidth = 1,
         results.subtitle = FALSE,
         normal.curve = TRUE,
-        normal.curve.args = list(
-          color = "red",
-          size = 0.8
-        )
+        normal.curve.args = list(color = "red", linewidth = 0.8)
       )
     )
   }

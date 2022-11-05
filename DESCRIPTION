@@ -34,7 +34,7 @@ Imports:
     correlation (>= 0.8.3),
     datawizard (>= 0.6.3),
     dplyr,
-    ggplot2,
+    ggplot2 (>= 3.4.0),
     ggrepel,
     ggsignif,
     glue,
@@ -68,7 +68,7 @@ Suggests:
     rmarkdown,
     spelling,
     survival,
-    testthat (>= 3.1.4),
+    testthat (>= 3.1.5),
     tibble,
     vdiffr,
     WRS2
