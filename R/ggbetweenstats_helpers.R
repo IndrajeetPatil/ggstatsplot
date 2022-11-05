@@ -29,21 +29,9 @@
                                 x,
                                 y,
                                 centrality.path = FALSE,
-                                centrality.path.args = list(
-                                  color = "red",
-                                  size = 1,
-                                  alpha = 0.5
-                                ),
-                                centrality.point.args = list(
-                                  size = 5,
-                                  color = "darkred"
-                                ),
-                                centrality.label.args = list(
-                                  size = 3,
-                                  nudge_x = 0.4,
-                                  segment.linetype = 4,
-                                  min.segment.length = 0
-                                ),
+                                centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
+                                centrality.point.args = list(size = 5, color = "darkred"),
+                                centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                                 ...) {
   # creating the data frame
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
