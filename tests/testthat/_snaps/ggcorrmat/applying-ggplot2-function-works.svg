@@ -36,9 +36,9 @@
 </defs>
 <g clip-path='url(#cpNzYuMTV8NTkwLjQ4fDQuOTh8NTE5LjMx)'>
 <rect x='76.15' y='4.98' width='514.33' height='514.33' style='stroke-width: 0.97; stroke: none; fill: #FFFFFF;' />
-<rect x='99.53' y='262.15' width='233.79' height='233.79' style='stroke-width: 0.21; stroke-linecap: square; stroke-linejoin: miter; fill: #FFE2BD;' />
-<rect x='99.53' y='28.36' width='233.79' height='233.79' style='stroke-width: 0.21; stroke-linecap: square; stroke-linejoin: miter; fill: #71BE9E;' />
-<rect x='333.31' y='28.36' width='233.79' height='233.79' style='stroke-width: 0.21; stroke-linecap: square; stroke-linejoin: miter; fill: #DAEEE4;' />
+<rect x='99.53' y='262.15' width='233.79' height='233.79' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFE2BD;' />
+<rect x='99.53' y='28.36' width='233.79' height='233.79' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #71BE9E;' />
+<rect x='333.31' y='28.36' width='233.79' height='233.79' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #DAEEE4;' />
 <text x='216.42' y='382.95' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='25.94px' lengthAdjust='spacingAndGlyphs'>-0.29</text>
 <text x='216.42' y='149.17' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='22.15px' lengthAdjust='spacingAndGlyphs'>0.68</text>
 <text x='450.21' y='149.17' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='22.15px' lengthAdjust='spacingAndGlyphs'>0.18</text>
