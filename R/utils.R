@@ -30,19 +30,17 @@
 #' @description Informs the user about not using the default color palette
 #'   when the number of factor levels is greater than 8, the maximum number of
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
-#'
 #' @noRd
 .palette_message <- function(package, palette, min_length) {
-  # computing the palette length
-  filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
-    length[[1]] -> pl
+  pl <- filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
+    length[[1]]
 
   # check if insufficient number of colors are available in a given palette
   pl_message <- ifelse(pl < min_length, FALSE, TRUE)
 
   # inform the user
   if (!pl_message) {
-    rlang::warn(paste0(
+    rlang::warn(c(
       "Number of labels is greater than default palette color count.",
       "Select another color `palette` (and/or `package`)."
     ))

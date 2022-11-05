@@ -1,4 +1,4 @@
-# .grouped_list works -----------------------------------------------------
+# .grouped_list -----------------------------------------------------
 
 test_that(
   desc = ".grouped_list works",
@@ -28,8 +28,7 @@ test_that(
   }
 )
 
-
-# .palette_message is working ------------------------------------
+# .palette_message ------------------------------------
 
 test_that(
   desc = ".palette_message is working",
@@ -41,5 +40,15 @@ test_that(
         min_length = 20L
       )
     )
+  }
+)
+
+# .eval_f ------------------------------------
+
+test_that(
+  desc = ".eval_f works as expected",
+  code = {
+    f <- function() stop("Not working", call. = FALSE)
+    expect_null(.eval_f(f))
   }
 )
