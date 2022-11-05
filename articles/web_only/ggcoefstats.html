@@ -867,8 +867,24 @@ instead (<code><a href="https://easystats.github.io/parameters/reference/model_p
 <span><span class="co"># using a selfStart model</span></span>
 <span><span class="va">nlmod</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/nls.html" class="external-link">nls</a></span><span class="op">(</span><span class="va">density</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/SSlogis.html" class="external-link">SSlogis</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">conc</span><span class="op">)</span>, <span class="va">Asym</span>, <span class="va">xmid</span>, <span class="va">scal</span><span class="op">)</span>, <span class="va">DNase1</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># tidy data frame</span></span>
-<span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span>, output <span class="op">=</span> <span class="st">"tidy"</span><span class="op">)</span></span>
+<span><span class="co"># data frames</span></span>
+<span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $subtitle_data</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $caption_data</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $pairwise_comparisons_data</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $descriptive_data</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $one_sample_data</span></span>
+<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $tidy_data</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 11</span></span></span>
 <span><span class="co">#&gt;   <span style="font-weight: bold;">term</span>  <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">std.error</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">statistic</span> <span style="font-weight: bold;">df.error</span></span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
@@ -880,9 +896,8 @@ instead (<code><a href="https://easystats.github.io/parameters/reference/model_p
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2.17<span style="color: #949494;">e</span><span style="color: #BB0000;">-13</span> Wald        <span style="color: #949494;">&lt;language&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1.22<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span> Wald        <span style="color: #949494;">&lt;language&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 8.51<span style="color: #949494;">e</span><span style="color: #BB0000;">-14</span> Wald        <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span></span>
-<span><span class="co"># glance summary</span></span>
-<span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">nlmod</span>, output <span class="op">=</span> <span class="st">"glance"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $glance_data</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 0</span></span></span></code></pre></div>
 </div>
 <div class="section level2">

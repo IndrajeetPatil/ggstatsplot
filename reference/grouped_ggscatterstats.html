@@ -86,7 +86,6 @@ plots with statistical details added as a subtitle.</p>
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">...</span>,</span>
 <span>  <span class="va">grouping.var</span>,</span>
-<span>  output <span class="op">=</span> <span class="st">"plot"</span>,</span>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -136,11 +135,6 @@ data. Note that the jitter should not be specified in the <code>point.args</code
 because this information will be passed to two different <code>geom</code>s: one
 displaying the <strong>points</strong> and the other displaying the *<strong>labels</strong> for
 these points.</p></dd>
-
-    <dt><code>xfill,yfill</code></dt>
-<dd><p>Character describing color fill for <code>x</code> and <code>y</code> axes
-marginal distributions (default: <code>"#009E73"</code> (for <code>x</code>) and <code>"#D55E00"</code> (for
-<code>y</code>)). Note that the defaults are colorblind-friendly.</p></dd>
 
     <dt><code>xsidehistogram.args,ysidehistogram.args</code></dt>
 <dd><p>A list of arguments passed to
@@ -234,16 +228,6 @@ thus the details as well.</p></dd>
 
 <dt>grouping.var</dt>
 <dd><p>A single grouping variable.</p></dd>
-
-
-<dt>output</dt>
-<dd><p>Character that describes what is to be returned: can be
-<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
-<code>"subtitle"</code> will return the expression containing statistical results. If
-you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
-Setting this to <code>"caption"</code> will return the expression containing details
-about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></dd>
 
 
 <dt>plotgrid.args</dt>

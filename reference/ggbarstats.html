@@ -108,7 +108,6 @@ as a subtitle.</p>
 <span>  package <span class="op">=</span> <span class="st">"RColorBrewer"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"Dark2"</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  output <span class="op">=</span> <span class="st">"plot"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -281,16 +280,6 @@ be extracted. The available palettes and packages can be checked by running
 by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
-
-
-<dt>output</dt>
-<dd><p>Character that describes what is to be returned: can be
-<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
-<code>"subtitle"</code> will return the expression containing statistical results. If
-you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
-Setting this to <code>"caption"</code> will return the expression containing details
-about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></dd>
 
 
 <dt>...</dt>

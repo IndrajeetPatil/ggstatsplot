@@ -103,7 +103,6 @@ from one-sample test.</p>
 <span>  centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, linewidth <span class="op">=</span> <span class="fl">1</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="theme_ggstatsplot.html">theme_ggstatsplot</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  output <span class="op">=</span> <span class="st">"plot"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -256,16 +255,6 @@ But note that sometimes these themes will remove some of the details that
 on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
-
-
-<dt>output</dt>
-<dd><p>Character that describes what is to be returned: can be
-<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
-<code>"subtitle"</code> will return the expression containing statistical results. If
-you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
-Setting this to <code>"caption"</code> will return the expression containing details
-about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></dd>
 
 
 <dt>...</dt>

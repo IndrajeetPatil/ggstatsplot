@@ -72,7 +72,12 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.5.9000" id="ggstatsplot-0959000-development-version">ggstatsplot 0.9.5.9000 (development version)<a class="anchor" aria-label="anchor" href="#ggstatsplot-0959000-development-version"></a></h2>
 <p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
-</div>
+<p>BREAKING CHANGES</p>
+<ul><li>The <code>output</code> parameter for all functions has been removed. All functions now return only the plot, which itself contains all necessary details that were previously extracted using the <code>output</code> argument. You can extract all the necessary details (including expressions containing statistical details) from a plot using <code><a href="../reference/extract_stats.html">extract_stats()</a></code> function. There are two additional helpers to get expressions: <code><a href="../reference/extract_stats.html">extract_subtitle()</a></code> and <code><a href="../reference/extract_stats.html">extract_caption()</a></code>.</li>
+</ul><p>MAJOR CHANGES</p>
+<ul><li>
+<code>xfill</code> and <code>yfill</code> arguments for <code><a href="../reference/ggscatterstats.html">ggscatterstats()</a></code> have been removed. You can specify all aesthetic modifications for side histograms in scatter plot using <code>xsidehistogram.args</code> and <code>ysidehistogram.args</code> arguments.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.5" id="ggstatsplot-095">ggstatsplot 0.9.5<a class="anchor" aria-label="anchor" href="#ggstatsplot-095"></a></h2><p class="text-muted">CRAN release: 2022-10-16</p>
 <p>MAJOR CHANGES</p>

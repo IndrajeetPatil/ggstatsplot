@@ -84,7 +84,6 @@ labels.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggcoefstats</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
-<span>  output <span class="op">=</span> <span class="st">"plot"</span>,</span>
 <span>  statistic <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  conf.int <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
@@ -123,13 +122,6 @@ model. Function internally uses <code><a href="https://easystats.github.io/param
 tidy data frame. If a data frame, it <em>must</em> contain at the minimum two
 columns named <code>term</code> (names of predictors) and <code>estimate</code> (corresponding
 estimates of coefficients or other quantities of interest).</p></dd>
-
-
-<dt>output</dt>
-<dd><p>Character describing the expected output from this function:</p><ul><li><p><code>"plot"</code> (visualization of regression coefficients)</p></li>
-<li><p><code>"tidy"</code> (tidy data frame of results <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>)</p></li>
-<li><p><code>"glance"</code> (object from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>)</p></li>
-</ul></dd>
 
 
 <dt>statistic</dt>
@@ -218,8 +210,7 @@ if <code>bf.message = FALSE</code>.</p></dd>
 <dt>only.significant</dt>
 <dd><p>If <code>TRUE</code>, only stats labels for significant effects
 is shown (Default: <code>FALSE</code>). This can be helpful when a large number of
-regression coefficients are to be displayed in a single plot. Relevant only
-when the <code>output</code> is a plot.</p></dd>
+regression coefficients are to be displayed in a single plot.</p></dd>
 
 
 <dt>point.args</dt>
@@ -326,30 +317,8 @@ packages using the <code>install_latest()</code> function from <code>{easystats}
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># model object</span></span></span>
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">*</span> <span class="va">am</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># to get a plot</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoefstats</span><span class="op">(</span><span class="va">mod</span>, output <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggcoefstats</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcoefstats-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># to get a tidy data frame</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoefstats</span><span class="op">(</span><span class="va">mod</span>, output <span class="op">=</span> <span class="st">"tidy"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term  estim…¹ std.e…² conf.…³ conf.…⁴ conf.…⁵ stati…⁶ df.er…⁷  p.value conf.…⁸</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> (Int…   30.9    3.19     0.95   24.3   37.4      9.68      28 1.95<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span> Wald   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> cyl     -<span style="color: #BB0000;">1.98</span>   0.449    0.95   -<span style="color: #BB0000;">2.89</span>  -<span style="color: #BB0000;">1.06</span>    -<span style="color: #BB0000;">4.40</span>      28 1.41<span style="color: #949494;">e</span><span style="color: #BB0000;">- 4</span> Wald   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> am      10.2    4.30     0.95    1.36  19.0      2.36      28 2.53<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span> Wald   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> cyl:…   -<span style="color: #BB0000;">1.31</span>   0.707    0.95   -<span style="color: #BB0000;">2.75</span>   0.143   -<span style="color: #BB0000;">1.85</span>      28 7.55<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span> Wald   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: expression &lt;list&gt;, and abbreviated variable names</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ¹​estimate, ²​std.error, ³​conf.level, ⁴​conf.low, ⁵​conf.high, ⁶​statistic,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁷​df.error, ⁸​conf.method</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># to get a glance summary</span></span></span>
-<span class="r-in"><span><span class="fu">ggcoefstats</span><span class="op">(</span><span class="va">mod</span>, output <span class="op">=</span> <span class="st">"glance"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     AIC   BIC    R2 R2_adjusted  RMSE Sigma expression  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  166.  173. 0.785       0.762  2.75  2.94 <span style="color: #949494;">&lt;expression&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># further arguments can be passed to `parameters::model_parameters()`</span></span></span>
 <span class="r-in"><span><span class="fu">ggcoefstats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="va">Days</span> <span class="op">|</span> <span class="va">Subject</span><span class="op">)</span>, <span class="va">sleepstudy</span><span class="op">)</span>, effects <span class="op">=</span> <span class="st">"fixed"</span><span class="op">)</span></span></span>

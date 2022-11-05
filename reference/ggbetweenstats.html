@@ -124,7 +124,6 @@ subtitle.</p>
 <span>  package <span class="op">=</span> <span class="st">"RColorBrewer"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"Dark2"</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  output <span class="op">=</span> <span class="st">"plot"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -375,16 +374,6 @@ variants of all primary functions. Default is <code>NULL</code>. The argument sh
 be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
 
-<dt>output</dt>
-<dd><p>Character that describes what is to be returned: can be
-<code>"plot"</code> (default) or <code>"subtitle"</code> or <code>"caption"</code>. Setting this to
-<code>"subtitle"</code> will return the expression containing statistical results. If
-you have set <code>results.subtitle = FALSE</code>, then this will return a <code>NULL</code>.
-Setting this to <code>"caption"</code> will return the expression containing details
-about Bayes Factor analysis, but valid only when <code>type = "parametric"</code> and
-<code>bf.message = TRUE</code>, otherwise this will return a <code>NULL</code>.</p></dd>
-
-
 <dt>...</dt>
 <dd><p>Currently ignored.</p></dd>
 
@@ -486,7 +475,7 @@ about Bayes Factor analysis, but valid only when <code>type = "parametric"</code
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co"># to get reproducible results from bootstrapping</span></span></span>
+<span class="r-in"><span><span class="co"># for reproducibility</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
