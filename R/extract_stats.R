@@ -50,15 +50,17 @@
 #' }
 #' @export
 extract_stats <- function(p, ...) {
+  # styler: off
   list(
-    subtitle_data             = tryCatch(p$plot_env$subtitle_df, error = function(e) NULL),
-    caption_data              = tryCatch(p$plot_env$caption_df, error = function(e) NULL),
-    pairwise_comparisons_data = tryCatch(p$plot_env$mpc_df, error = function(e) NULL),
+    subtitle_data             = tryCatch(p$plot_env$subtitle_df,    error = function(e) NULL),
+    caption_data              = tryCatch(p$plot_env$caption_df,     error = function(e) NULL),
+    pairwise_comparisons_data = tryCatch(p$plot_env$mpc_df,         error = function(e) NULL),
     descriptive_data          = tryCatch(p$plot_env$descriptive_df, error = function(e) NULL),
-    one_sample_data           = tryCatch(p$plot_env$onesample_df, error = function(e) NULL),
-    tidy_data                 = tryCatch(p$plot_env$tidy_df, error = function(e) NULL),
-    glance_data               = tryCatch(p$plot_env$glance_df, error = function(e) NULL)
+    one_sample_data           = tryCatch(p$plot_env$onesample_df,   error = function(e) NULL),
+    tidy_data                 = tryCatch(p$plot_env$tidy_df,        error = function(e) NULL),
+    glance_data               = tryCatch(p$plot_env$glance_df,      error = function(e) NULL)
   )
+  # styler: on
 }
 
 #' @rdname extract_stats
@@ -68,12 +70,3 @@ extract_subtitle <- function(p) extract_stats(p)$subtitle_data$expression[[1L]]
 #' @rdname extract_stats
 #' @export
 extract_caption <- function(p) extract_stats(p)$caption_data$expression[[1L]]
-
-
-#' @noRd
-.eval_f <- function(.f, ...) {
-  tryCatch(
-    suppressWarnings(suppressMessages(exec(.f, ...))),
-    error = function(e) NULL
-  )
-}
