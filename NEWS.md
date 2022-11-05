@@ -14,6 +14,12 @@ BREAKING CHANGES
   from a plot using `extract_stats()` function. There are two additional helpers
   to get expressions: `extract_subtitle()` and `extract_caption()`.
 
+MAJOR CHANGES
+
+- `xfill` and `yfill` arguments for `ggscatterstats()` have been removed. You 
+  can specify all aesthetic modifications for side histograms in scatter plot
+  using `xsidehistogram.args` and `ysidehistogram.args` arguments.
+
 # ggstatsplot 0.9.5
 
 MAJOR CHANGES

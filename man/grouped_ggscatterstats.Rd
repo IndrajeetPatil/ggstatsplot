@@ -43,9 +43,6 @@ data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the *\strong{labels} for
 these points.}
-    \item{\code{xfill,yfill}}{Character describing color fill for \code{x} and \code{y} axes
-marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). Note that the defaults are colorblind-friendly.}
     \item{\code{xsidehistogram.args,ysidehistogram.args}}{A list of arguments passed to
 respective \code{geom_}s from \code{ggside} package to change the marginal
 distribution histograms plots.}

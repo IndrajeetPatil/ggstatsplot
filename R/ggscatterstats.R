@@ -28,9 +28,6 @@
 #'   because this information will be passed to two different `geom`s: one
 #'   displaying the **points** and the other displaying the ***labels** for
 #'   these points.
-#' @param xfill,yfill Character describing color fill for `x` and `y` axes
-#'  marginal distributions (default: `"#009E73"` (for `x`) and `"#D55E00"` (for
-#'  `y`)). Note that the defaults are colorblind-friendly.
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
 #'   respective `geom_`s from `ggside` package to change the marginal
 #'   distribution histograms plots.
@@ -81,15 +78,13 @@ ggscatterstats <- function(data,
                            label.var = NULL,
                            label.expression = NULL,
                            marginal = TRUE,
-                           xfill = "#009E73",
-                           yfill = "#D55E00",
                            point.args = list(size = 3, alpha = 0.4, stroke = 0),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
                            smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
-                           xsidehistogram.args = list(fill = xfill, color = "black"),
-                           ysidehistogram.args = list(fill = yfill, color = "black"),
+                           xsidehistogram.args = list(fill = "#009E73", color = "black"),
+                           ysidehistogram.args = list(fill = "#D55E00", color = "black"),
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,

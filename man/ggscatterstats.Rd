@@ -18,16 +18,14 @@ ggscatterstats(
   label.var = NULL,
   label.expression = NULL,
   marginal = TRUE,
-  xfill = "#009E73",
-  yfill = "#D55E00",
   point.args = list(size = 3, alpha = 0.4, stroke = 0),
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e+06),
   smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~
     x),
-  xsidehistogram.args = list(fill = xfill, color = "black"),
-  ysidehistogram.args = list(fill = yfill, color = "black"),
+  xsidehistogram.args = list(fill = "#009E73", color = "black"),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black"),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -97,10 +95,6 @@ quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 \item{marginal}{Decides whether marginal distributions will be plotted on
 axes using \code{ggside} functions. The default is \code{TRUE}. The package
 \code{ggside} must already be installed by the user.}
-
-\item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
-marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). Note that the defaults are colorblind-friendly.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{geom_point} geom used to display the raw data points.}
