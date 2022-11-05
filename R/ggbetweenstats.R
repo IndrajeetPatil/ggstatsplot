@@ -90,13 +90,6 @@
 #' @param package,palette Name of the package from which the given palette is to
 #'   be extracted. The available palettes and packages can be checked by running
 #'   `View(paletteer::palettes_d_names)`.
-#' @param output Character that describes what is to be returned: can be
-#'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
-#'   `"subtitle"` will return the expression containing statistical results. If
-#'   you have set `results.subtitle = FALSE`, then this will return a `NULL`.
-#'   Setting this to `"caption"` will return the expression containing details
-#'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
-#'   `bf.message = TRUE`, otherwise this will return a `NULL`.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic

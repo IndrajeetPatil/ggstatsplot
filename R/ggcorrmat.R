@@ -274,7 +274,6 @@ grouped_ggcorrmat <- function(data,
     ...
   )
 
-
   if (output == "plot") {
     return(combine_plots(
       plotlist = p_ls,

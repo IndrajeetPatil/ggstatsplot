@@ -65,7 +65,6 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
 .chisq_test_safe <- function(data, x, ...) {
   xtab <- table(data %>% pull({{ x }}))
 
-  # run chi-square test
   result <- tryCatch(
     expr = parameters::model_parameters(suppressWarnings(stats::chisq.test(xtab))),
     error = function(e) NULL
