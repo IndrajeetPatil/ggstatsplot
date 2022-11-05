@@ -48,7 +48,7 @@
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
-#' The plot uses `ggrepel::geom_label_repel` to attempt to keep labels
+#' The plot uses `ggrepel::geom_label_repel()` to attempt to keep labels
 #' from over-lapping to the largest degree possible. As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
@@ -83,19 +83,13 @@ ggscatterstats <- function(data,
                            marginal = TRUE,
                            xfill = "#009E73",
                            yfill = "#D55E00",
-                           point.args = list(size = 3, alpha = 0.4, stroke = 0, na.rm = TRUE),
+                           point.args = list(size = 3, alpha = 0.4, stroke = 0),
                            point.width.jitter = 0,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
-                           smooth.line.args = list(
-                             linewidth = 1.5,
-                             color = "blue",
-                             method = "lm",
-                             formula = y ~ x,
-                             na.rm = TRUE
-                           ),
-                           xsidehistogram.args = list(fill = xfill, color = "black", na.rm = TRUE),
-                           ysidehistogram.args = list(fill = yfill, color = "black", na.rm = TRUE),
+                           smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
+                           xsidehistogram.args = list(fill = xfill, color = "black"),
+                           ysidehistogram.args = list(fill = yfill, color = "black"),
                            xlab = NULL,
                            ylab = NULL,
                            title = NULL,
@@ -103,7 +97,6 @@ ggscatterstats <- function(data,
                            caption = NULL,
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
                            ggplot.component = NULL,
-                           output = "plot",
                            ...) {
   # data ---------------------------------------
 
@@ -140,15 +133,7 @@ ggscatterstats <- function(data,
     }
   }
 
-  # quit early if only subtitle is needed
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
-  }
-
-  # plot ------------------------------------------
+  # basic plot ------------------------------------------
 
   # creating jittered positions
   pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
@@ -156,7 +141,7 @@ ggscatterstats <- function(data,
   # preparing the scatterplot
   plotScatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
-    exec(geom_smooth, level = conf.level, !!!smooth.line.args)
+    exec(geom_smooth, level = conf.level, !!!smooth.line.args, na.rm = TRUE)
 
   # point labels --------------------------------
 
@@ -273,7 +258,6 @@ ggscatterstats <- function(data,
 grouped_ggscatterstats <- function(data,
                                    ...,
                                    grouping.var,
-                                   output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
   # getting the data frame ready
@@ -281,13 +265,11 @@ grouped_ggscatterstats <- function(data,
 
   # creating a list of plots
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggscatterstats,
     ...
   )
 
   # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }
