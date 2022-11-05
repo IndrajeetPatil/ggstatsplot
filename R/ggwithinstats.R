@@ -213,6 +213,9 @@ ggwithinstats <- function(data,
 
   # ggsignif labels -------------------------------------
 
+  # initialize
+  seclabel <- NULL
+
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     mpc_df <- pairwise_comparisons(
       data            = data,
@@ -241,8 +244,6 @@ ggwithinstats <- function(data,
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
-  } else {
-    seclabel <- NULL
   }
 
   # annotations -------------------------

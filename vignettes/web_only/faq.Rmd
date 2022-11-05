@@ -274,15 +274,17 @@ library(ggplot2)
 # data
 mtcars1 <- mtcars
 
-statistics <- grouped_ggbetweenstats(
+p <- grouped_ggbetweenstats(
   data = mtcars1,
   x = cyl,
   y = mpg,
-  grouping.var = am,
-  output = "subtitle"
+  grouping.var = am
 )
 
-mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = statistics)
+expr1 <- extract_subtitle(p[[1L]])
+expr2 <- extract_subtitle(p[[2L]])
+
+mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = c(expr1, expr2))
 
 mtcars1 %>%
   ggplot(aes(x = cyl, y = mpg)) +

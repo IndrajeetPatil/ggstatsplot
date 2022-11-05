@@ -350,8 +350,10 @@ ggbetweenstats <- function(data,
 
   # ggsignif labels -------------------------------------
 
+  # initialize
+  seclabel <- NULL
+
   if (isTRUE(pairwise.comparisons) && test == "anova") {
-    # creating dataframe with pairwise comparison results
     mpc_df <- pairwise_comparisons(
       data            = data,
       x               = {{ x }},
@@ -380,8 +382,6 @@ ggbetweenstats <- function(data,
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
-  } else {
-    seclabel <- NULL
   }
 
   # annotations ------------------------
