@@ -11,7 +11,8 @@ BREAKING CHANGES
   return only the plot, which itself contains all necessary details that were
   previously extracted using the `output` argument. You can extract all the 
   necessary details (including expressions containing statistical details) 
-  from a plot using `extract_stats()` function.
+  from a plot using `extract_stats()` function. There are two additional helpers
+  to get expressions: `extract_subtitle()` and `extract_caption()`.
 
 # ggstatsplot 0.9.5
 

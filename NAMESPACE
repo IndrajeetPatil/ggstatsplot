@@ -2,7 +2,9 @@
 
 export("%>%")
 export(combine_plots)
+export(extract_caption)
 export(extract_stats)
+export(extract_subtitle)
 export(ggbarstats)
 export(ggbetweenstats)
 export(ggcoefstats)

@@ -2,9 +2,15 @@
 % Please edit documentation in R/extract_stats.R
 \name{extract_stats}
 \alias{extract_stats}
-\title{Extracting data frames from \code{{ggstatsplot}} plots}
+\alias{extract_subtitle}
+\alias{extract_caption}
+\title{Extracting data frames or expressions from \code{{ggstatsplot}} plots}
 \usage{
 extract_stats(p, ...)
+
+extract_subtitle(p)
+
+extract_caption(p)
 }
 \arguments{
 \item{p}{A plot from \code{{ggstatsplot}} package}
@@ -16,13 +22,16 @@ A list of tibbles containing summaries of various statistical analyses.
 The exact details included will depend on the function.
 }
 \description{
-Extracting data frames from \code{{ggstatsplot}} plots
+Extracting data frames or expressions from \code{{ggstatsplot}} plots
 }
 \details{
-This is a convenience function to extract data frames with statistical details
-that are used to create expressions displayed in \code{{ggstatsplot}} plots as
-subtitle, caption, etc. Note that all of this analysis is carried out by
-the \code{{statsExpressions}} \href{https://indrajeetpatil.github.io/statsExpressions/}{package}.
+These are convenience functions to extract data frames or expressions with
+statistical details that are used to create expressions displayed in
+\code{{ggstatsplot}} plots as subtitle, caption, etc. Note that all of this
+analysis is carried out by the \code{{statsExpressions}}
+\href{https://indrajeetpatil.github.io/statsExpressions/}{package}. And so if you
+are using these functions only to extract data frames, you are better off
+using that package.
 
 The only exception is the \code{ggcorrmat()} function. But, if a data frame is
 what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use

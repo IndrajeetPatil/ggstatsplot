@@ -1,11 +1,14 @@
-#' @title Extracting data frames from `{ggstatsplot}` plots
+#' @title Extracting data frames or expressions from `{ggstatsplot}` plots
 #'
 #' @details
 #'
-#' This is a convenience function to extract data frames with statistical details
-#' that are used to create expressions displayed in `{ggstatsplot}` plots as
-#' subtitle, caption, etc. Note that all of this analysis is carried out by
-#' the `{statsExpressions}` [package](https://indrajeetpatil.github.io/statsExpressions/).
+#' These are convenience functions to extract data frames or expressions with
+#' statistical details that are used to create expressions displayed in
+#' `{ggstatsplot}` plots as subtitle, caption, etc. Note that all of this
+#' analysis is carried out by the `{statsExpressions}`
+#' [package](https://indrajeetpatil.github.io/statsExpressions/). And so if you
+#' are using these functions only to extract data frames, you are better off
+#' using that package.
 #'
 #' The only exception is the `ggcorrmat()` function. But, if a data frame is
 #' what you want, you shouldn't be using `ggcorrmat()` anyway. You can use
@@ -57,6 +60,15 @@ extract_stats <- function(p, ...) {
     glance_data               = tryCatch(p$plot_env$glance_df, error = function(e) NULL)
   )
 }
+
+#' @rdname extract_stats
+#' @export
+extract_subtitle <- function(p) extract_stats(p)$subtitle_data$expression[[1L]]
+
+#' @rdname extract_stats
+#' @export
+extract_caption <- function(p) extract_stats(p)$caption_data$expression[[1L]]
+
 
 #' @noRd
 .eval_f <- function(.f, ...) {
