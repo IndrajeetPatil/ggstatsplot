@@ -5,6 +5,14 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+BREAKING CHANGES
+
+- The `output` parameter for all functions has been removed. All functions now
+  return only the plot, which itself contains all necessary details that were
+  previously extracted using the `output` argument. You can extract all the 
+  necessary details (including expressions containing statistical details) 
+  from a plot using `extract_stats()` function.
+
 # ggstatsplot 0.9.5
 
 MAJOR CHANGES
