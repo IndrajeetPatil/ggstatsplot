@@ -88,7 +88,7 @@ ggscatterstats <- function(data,
                            point.height.jitter = 0,
                            point.label.args = list(size = 3, max.overlaps = 1e6),
                            smooth.line.args = list(
-                             size = 1.5,
+                             linewidth = 1.5,
                              color = "blue",
                              method = "lm",
                              formula = y ~ x,

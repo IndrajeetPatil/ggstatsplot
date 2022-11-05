@@ -25,7 +25,7 @@ ggdotplotstats(
   point.args = list(color = "black", size = 3, shape = 16),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(color = "blue", size = 1, linetype = "dashed"),
+  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
   ggplot.component = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   output = "plot",

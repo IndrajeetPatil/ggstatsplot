@@ -65,20 +65,12 @@ gghistostats <- function(data,
                          k = 2L,
                          ggtheme = ggstatsplot::theme_ggstatsplot(),
                          results.subtitle = TRUE,
-                         bin.args = list(
-                           color = "black",
-                           fill = "grey50",
-                           alpha = 0.7
-                         ),
+                         bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
                          centrality.plotting = TRUE,
                          centrality.type = type,
-                         centrality.line.args = list(
-                           color = "blue",
-                           size = 1,
-                           linetype = "dashed"
-                         ),
+                         centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
                          normal.curve = FALSE,
-                         normal.curve.args = list(size = 2),
+                         normal.curve.args = list(linewidth = 2),
                          ggplot.component = NULL,
                          output = "plot",
                          ...) {
@@ -132,7 +124,7 @@ gghistostats <- function(data,
   plot <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
-      mapping   = aes(y = ..count.., fill = ..count..),
+      mapping   = aes(y = after_stat(count), fill = after_stat(count)),
       binwidth  = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +

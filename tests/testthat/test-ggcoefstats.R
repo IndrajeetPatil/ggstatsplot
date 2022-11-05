@@ -3,6 +3,8 @@ df_meta <- tibble(
   std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
 )
 
+skip_if(getRversion() < "4.1")
+
 # errors ------------------------------------------
 
 test_that("ggcoefstats doesn't work if no estimate column found", {
@@ -12,7 +14,6 @@ test_that("ggcoefstats doesn't work if no estimate column found", {
 # default plots for each statistic ------------------------------------------
 
 test_that("default plots are rendered correctly for each type of statistic", {
-  skip_if(getRversion() < "4.1")
   skip_if_not_installed("survival")
 
   library(survival)
@@ -60,7 +61,6 @@ test_that("default plots are rendered correctly for each type of statistic", {
 })
 
 test_that("meta-analysis works", {
-  skip_if(getRversion() < "4.1")
   skip_if_not_installed("metafor")
   skip_on_os(c("windows", "linux", "solaris"))
 
@@ -86,8 +86,6 @@ test_that("meta-analysis works", {
 test_that(
   desc = "plot modifications work as expected",
   code = {
-    skip_if(getRversion() < "4.1")
-
     set.seed(123)
     mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)
 
@@ -153,7 +151,6 @@ test_that(
 test_that(
   desc = "missing values in numeric columns",
   code = {
-    skip_if(getRversion() < "4.1")
     skip_if_not_installed("lme4")
     skip_on_os(c("windows", "linux", "solaris"))
 
@@ -174,8 +171,6 @@ test_that(
 test_that(
   desc = "edge cases",
   code = {
-    skip_if(getRversion() < "4.1")
-
     set.seed(123)
     df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
 
