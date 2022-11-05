@@ -90,13 +90,6 @@
 #' @param package,palette Name of the package from which the given palette is to
 #'   be extracted. The available palettes and packages can be checked by running
 #'   `View(paletteer::palettes_d_names)`.
-#' @param output Character that describes what is to be returned: can be
-#'   `"plot"` (default) or `"subtitle"` or `"caption"`. Setting this to
-#'   `"subtitle"` will return the expression containing statistical results. If
-#'   you have set `results.subtitle = FALSE`, then this will return a `NULL`.
-#'   Setting this to `"caption"` will return the expression containing details
-#'   about Bayes Factor analysis, but valid only when `type = "parametric"` and
-#'   `bf.message = TRUE`, otherwise this will return a `NULL`.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
@@ -130,7 +123,7 @@
 #'
 #' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
 #' \donttest{
-#' # to get reproducible results from bootstrapping
+#' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
 #'
@@ -201,7 +194,6 @@ ggbetweenstats <- function(data,
                            package = "RColorBrewer",
                            palette = "Dark2",
                            ggplot.component = NULL,
-                           output = "plot",
                            ...) {
   # data -----------------------------------
 
@@ -260,14 +252,6 @@ ggbetweenstats <- function(data,
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-  }
-
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
   }
 
   # plot -----------------------------------
@@ -366,8 +350,10 @@ ggbetweenstats <- function(data,
 
   # ggsignif labels -------------------------------------
 
+  # initialize
+  seclabel <- NULL
+
   if (isTRUE(pairwise.comparisons) && test == "anova") {
-    # creating dataframe with pairwise comparison results
     mpc_df <- pairwise_comparisons(
       data            = data,
       x               = {{ x }},
@@ -396,8 +382,6 @@ ggbetweenstats <- function(data,
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
-  } else {
-    seclabel <- NULL
   }
 
   # annotations ------------------------
@@ -442,7 +426,7 @@ ggbetweenstats <- function(data,
 #' @examples
 #' \donttest{
 #' if (require("PMCMRplus")) {
-#'   # to get reproducible results from bootstrapping
+#'   # for reproducibility
 #'   set.seed(123)
 #'   library(ggstatsplot)
 #'   library(dplyr, warn.conflicts = FALSE)
@@ -477,7 +461,6 @@ ggbetweenstats <- function(data,
 grouped_ggbetweenstats <- function(data,
                                    ...,
                                    grouping.var,
-                                   output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
   # creating a dataframe
@@ -485,13 +468,10 @@ grouped_ggbetweenstats <- function(data,
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbetweenstats,
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

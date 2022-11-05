@@ -102,9 +102,9 @@ test_that(
       x = mass,
       y = height,
       conf.level = 0.90,
-      type = "r",
-      output = "subtitle"
-    )
+      type = "r"
+    ) %>%
+      extract_subtitle()
 
     set.seed(123)
     fun_sub <- corr_test(
@@ -112,8 +112,7 @@ test_that(
       x = mass,
       y = height,
       conf.level = 0.90,
-      type = "r",
-      output = "subtitle"
+      type = "r"
     )$expression[[1]]
 
     expect_equal(p_sub, fun_sub)
@@ -148,39 +147,6 @@ test_that(
         ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000))
       )
     )
-  }
-)
-
-
-test_that(
-  desc = "grouped_ggscatterstats - subtitle output",
-  code = {
-    # data
-    df <- dplyr::filter(movies_long, genre %in% c("Action Drama"))
-
-    set.seed(123)
-    ls_results <- grouped_ggscatterstats(
-      data = df,
-      x = rating,
-      y = length,
-      grouping.var = genre,
-      k = 3L,
-      conf.level = 0.99,
-      output = "subtitle"
-    )
-
-    set.seed(123)
-    basic_results <- corr_test(
-      data = df,
-      x = rating,
-      y = length,
-      k = 3L,
-      conf.level = 0.99
-    )$expression[[1]]
-
-
-    expect_equal(length(ls_results), 1L)
-    expect_equal(ls_results$`Action Drama`, basic_results, ignore_attr = TRUE)
   }
 )
 

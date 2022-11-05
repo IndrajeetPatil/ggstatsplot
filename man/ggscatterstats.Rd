@@ -18,16 +18,14 @@ ggscatterstats(
   label.var = NULL,
   label.expression = NULL,
   marginal = TRUE,
-  xfill = "#009E73",
-  yfill = "#D55E00",
-  point.args = list(size = 3, alpha = 0.4, stroke = 0, na.rm = TRUE),
+  point.args = list(size = 3, alpha = 0.4, stroke = 0),
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e+06),
   smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~
-    x, na.rm = TRUE),
-  xsidehistogram.args = list(fill = xfill, color = "black", na.rm = TRUE),
-  ysidehistogram.args = list(fill = yfill, color = "black", na.rm = TRUE),
+    x),
+  xsidehistogram.args = list(fill = "#009E73", color = "black"),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black"),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -35,7 +33,6 @@ ggscatterstats(
   caption = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
-  output = "plot",
   ...
 )
 }
@@ -99,10 +96,6 @@ quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 axes using \code{ggside} functions. The default is \code{TRUE}. The package
 \code{ggside} must already be installed by the user.}
 
-\item{xfill, yfill}{Character describing color fill for \code{x} and \code{y} axes
-marginal distributions (default: \code{"#009E73"} (for \code{x}) and \code{"#D55E00"} (for
-\code{y})). Note that the defaults are colorblind-friendly.}
-
 \item{point.args}{A list of additional aesthetic arguments to be passed
 to \code{geom_point} geom used to display the raw data points.}
 
@@ -153,14 +146,6 @@ by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
 
-\item{output}{Character that describes what is to be returned: can be
-\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results. If
-you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
-Setting this to \code{"caption"} will return the expression containing details
-about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
-
 \item{...}{Currently ignored.}
 }
 \description{
@@ -172,7 +157,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \note{
-The plot uses \code{ggrepel::geom_label_repel} to attempt to keep labels
+The plot uses \code{ggrepel::geom_label_repel()} to attempt to keep labels
 from over-lapping to the largest degree possible. As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.

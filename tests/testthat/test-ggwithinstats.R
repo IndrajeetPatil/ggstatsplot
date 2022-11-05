@@ -118,35 +118,3 @@ test_that(
     )
   }
 )
-
-# grouped_ggwithinstats output --------------------------------------------------
-
-test_that(
-  desc = "grouped_ggwithinstats subtitle output",
-  code = {
-    # data
-    df <- dplyr::filter(bugs_long, region %in% c("North America"))
-
-    # should output a list of length 2
-    set.seed(123)
-    ls_results <- grouped_ggwithinstats(
-      data = df,
-      x = condition,
-      y = desire,
-      grouping.var = region,
-      output = "subtitle",
-      bf.message = FALSE
-    )
-
-    set.seed(123)
-    basic_results <- ggwithinstats(
-      data = df,
-      x = condition,
-      y = desire,
-      output = "subtitle",
-      bf.message = FALSE
-    )
-
-    expect_equal(ls_results$`North America`, basic_results)
-  }
-)

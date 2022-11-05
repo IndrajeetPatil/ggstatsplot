@@ -616,11 +616,8 @@ DNase1 <- subset(DNase, Run == 1)
 # using a selfStart model
 nlmod <- stats::nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 
-# tidy data frame
-ggcoefstats(nlmod, output = "tidy")
-
-# glance summary
-ggcoefstats(nlmod, output = "glance")
+# data frames
+ggcoefstats(nlmod) %>% extract_stats()
 ```
 
 ## Not supported

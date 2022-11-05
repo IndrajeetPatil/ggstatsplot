@@ -79,7 +79,6 @@ ggpiestats <- function(data,
                        package = "RColorBrewer",
                        palette = "Dark2",
                        ggplot.component = NULL,
-                       output = "plot",
                        ...) {
   # data frame ------------------------------------------
 
@@ -143,14 +142,6 @@ ggpiestats <- function(data,
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
-  }
-
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
   }
 
   # plot ------------------------------------------
@@ -262,7 +253,6 @@ ggpiestats <- function(data,
 grouped_ggpiestats <- function(data,
                                ...,
                                grouping.var,
-                               output = "plot",
                                plotgrid.args = list(),
                                annotation.args = list()) {
   # creating a data frame
@@ -270,13 +260,11 @@ grouped_ggpiestats <- function(data,
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggpiestats,
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
 
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

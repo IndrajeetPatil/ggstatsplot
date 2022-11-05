@@ -113,9 +113,9 @@ test_that(
     subtitle_exp <- ggbetweenstats(
       data = df,
       x = am,
-      y = wt,
-      output = "subtitle"
-    )
+      y = wt
+    ) %>%
+      extract_subtitle()
 
     set.seed(123)
     sub <- two_sample_test(
@@ -158,26 +158,5 @@ test_that(
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
       )
     )
-  }
-)
-
-# expression output --------------------
-
-test_that(
-  desc = "expression output is as expected",
-  code = {
-    set.seed(123)
-    grouped_expr <- grouped_ggbetweenstats(
-      mtcars,
-      grouping.var = am,
-      x = vs,
-      y = wt,
-      output = "subtitle"
-    )
-
-    set.seed(123)
-    base_expr <- ggbetweenstats(dplyr::filter(mtcars, am == "0"), vs, wt, output = "subtitle")
-
-    expect_equal(grouped_expr$`0`, base_expr)
   }
 )

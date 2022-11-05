@@ -1208,7 +1208,7 @@ set.seed(123)
 library(ggplot2)
 
 ## using `{ggstatsplot}` to get expression with statistical results
-stats_results <- ggbetweenstats(morley, Expt, Speed, output = "subtitle")
+stats_results <- ggbetweenstats(morley, Expt, Speed) %>% extract_subtitle()
 
 ## creating a custom plot of our choosing
 ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +

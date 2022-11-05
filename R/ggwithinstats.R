@@ -98,7 +98,6 @@ ggwithinstats <- function(data,
                           package = "RColorBrewer",
                           palette = "Dark2",
                           ggplot.component = NULL,
-                          output = "plot",
                           ...) {
   # data -----------------------------------
 
@@ -165,14 +164,6 @@ ggwithinstats <- function(data,
     }
   }
 
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
-  }
-
   # plot -------------------------------------------
 
   plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
@@ -222,6 +213,9 @@ ggwithinstats <- function(data,
 
   # ggsignif labels -------------------------------------
 
+  # initialize
+  seclabel <- NULL
+
   if (isTRUE(pairwise.comparisons) && test == "anova") {
     mpc_df <- pairwise_comparisons(
       data            = data,
@@ -250,8 +244,6 @@ ggwithinstats <- function(data,
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
     )
-  } else {
-    seclabel <- NULL
   }
 
   # annotations -------------------------
@@ -292,7 +284,7 @@ ggwithinstats <- function(data,
 #'
 #' @examplesIf requireNamespace("afex", quietly = TRUE)
 #' \donttest{
-#' # to get reproducible results from bootstrapping
+#' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
@@ -313,7 +305,6 @@ ggwithinstats <- function(data,
 grouped_ggwithinstats <- function(data,
                                   ...,
                                   grouping.var,
-                                  output = "plot",
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
   # creating a data frame
@@ -321,13 +312,10 @@ grouped_ggwithinstats <- function(data,
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggwithinstats,
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

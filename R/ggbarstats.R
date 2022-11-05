@@ -54,7 +54,6 @@ ggbarstats <- function(data,
                        package = "RColorBrewer",
                        palette = "Dark2",
                        ggplot.component = NULL,
-                       output = "plot",
                        ...) {
   # data frame ------------------------------------------
 
@@ -104,14 +103,6 @@ ggbarstats <- function(data,
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
     }
-  }
-
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
   }
 
   # plot ------------------------------------------
@@ -224,7 +215,6 @@ ggbarstats <- function(data,
 grouped_ggbarstats <- function(data,
                                ...,
                                grouping.var,
-                               output = "plot",
                                plotgrid.args = list(),
                                annotation.args = list()) {
   # creating a data frame
@@ -232,13 +222,10 @@ grouped_ggbarstats <- function(data,
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbarstats,
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

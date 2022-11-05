@@ -1,8 +1,3 @@
-df_meta <- tibble(
-  estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
-  std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
-)
-
 skip_if(getRversion() < "4.1")
 
 # errors ------------------------------------------
@@ -59,6 +54,11 @@ test_that("default plots are rendered correctly for each type of statistic", {
     fig = ggcoefstats(mod_glm, conf.level = 0.90)
   )
 })
+
+df_meta <- tibble(
+  estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
+  std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
+)
 
 test_that("meta-analysis works", {
   skip_if_not_installed("metafor")
@@ -128,24 +128,6 @@ test_that(
   }
 )
 
-# data frame outputs ----------------------------------------------
-
-test_that(
-  desc = "data frame outputs as expected",
-  code = {
-    options(tibble.width = Inf)
-
-    set.seed(123)
-    mod <- stats::lm(wt ~ mpg, mtcars)
-
-    set.seed(123)
-    tidy_df <- ggcoefstats(mod, output = "tidy")
-    glance_df <- ggcoefstats(x = mod, output = "glance")
-
-    expect_snapshot(list(tidy_df, select(glance_df, AIC, BIC)))
-  }
-)
-
 # edge cases -------------------------------------
 
 test_that(
@@ -209,18 +191,18 @@ test_that(
       df_meta,
       meta.analytic.effect = TRUE,
       bf.message = FALSE,
-      meta.type = "p",
-      output = "subtitle"
-    ))
+      meta.type = "p"
+    ) %>%
+      extract_subtitle())
 
     set.seed(123)
     ggcoef_caption <- suppressWarnings(ggcoefstats(
       df_meta,
       meta.analytic.effect = TRUE,
       bf.message = TRUE,
-      meta.type = "p",
-      output = "caption"
-    ))
+      meta.type = "p"
+    ) %>%
+      extract_caption())
 
     expect_equal(subtitle_expr$expression[[1]], ggcoef_subtitle)
     expect_equal(caption_expr$expression[[1]], ggcoef_caption)

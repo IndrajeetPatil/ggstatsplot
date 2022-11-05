@@ -46,7 +46,6 @@ ggbetweenstats(
   package = "RColorBrewer",
   palette = "Dark2",
   ggplot.component = NULL,
-  output = "plot",
   ...
 )
 }
@@ -237,14 +236,6 @@ by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
 
-\item{output}{Character that describes what is to be returned: can be
-\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results. If
-you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
-Setting this to \code{"caption"} will return the expression containing details
-about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
-
 \item{...}{Currently ignored.}
 }
 \description{
@@ -431,7 +422,7 @@ Not supported.
 \examples{
 \dontshow{if (requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-# to get reproducible results from bootstrapping
+# for reproducibility
 set.seed(123)
 library(ggstatsplot)
 

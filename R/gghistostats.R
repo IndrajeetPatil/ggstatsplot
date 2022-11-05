@@ -72,7 +72,6 @@ gghistostats <- function(data,
                          normal.curve = FALSE,
                          normal.curve.args = list(linewidth = 2),
                          ggplot.component = NULL,
-                         output = "plot",
                          ...) {
   # data -----------------------------------
 
@@ -109,14 +108,6 @@ gghistostats <- function(data,
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-  }
-
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
   }
 
   # plot -----------------------------------
@@ -220,7 +211,6 @@ grouped_gghistostats <- function(data,
                                  x,
                                  grouping.var,
                                  binwidth = NULL,
-                                 output = "plot",
                                  plotgrid.args = list(),
                                  annotation.args = list(),
                                  ...) {
@@ -235,15 +225,12 @@ grouped_gghistostats <- function(data,
 
   # creating a list of plots
   p_ls <- purrr::pmap(
-    .l       = list(data = data, title = names(data), output = output),
+    .l       = list(data = data, title = names(data)),
     .f       = ggstatsplot::gghistostats,
     x        = {{ x }},
     binwidth = binwidth %||% .binwidth(x_vec),
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

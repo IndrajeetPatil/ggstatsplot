@@ -137,9 +137,9 @@ if \code{bf.message = FALSE}.}
 }
 \description{
 Correlation matrix or a data frame containing results from pairwise
-correlation tests. The package internally uses \code{ggcorrplot::ggcorrplot} for
+correlation tests. The package internally uses \code{ggcorrplot::ggcorrplot()} for
 creating the visualization matrix, while the correlation analysis is carried
-out using the \code{correlation::correlation} function.
+out using the \code{correlation::correlation()} function.
 }
 \details{
 For details, see:
@@ -167,12 +167,14 @@ The table below provides summary about:
 }
 
 \examples{
+\dontshow{if (requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(ggstatsplot)
+library(ggcorrplot) # for plot
 
-# to get a plot (assumes that `ggcorrplot` is installed)
-if (require("ggcorrplot")) ggcorrmat(iris)
+# to get a plot
+ggcorrmat(iris)
 
 # to get a data frame
 ggcorrmat(
@@ -181,6 +183,7 @@ ggcorrmat(
   partial = TRUE,
   output = "dataframe"
 )
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}

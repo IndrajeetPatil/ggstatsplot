@@ -69,27 +69,27 @@ test_that(
   code = {
     # should output a list of length 3
     set.seed(123)
-    p_sub <- suppressWarnings(ggdotplotstats(
+    p_sub_ggdot <- suppressWarnings(ggdotplotstats(
       data = morley,
       x = Speed,
       y = Expt,
       test.value = 800,
-      type = "np",
-      output = "subtitle"
-    ))
+      type = "np"
+    ) %>%
+      extract_subtitle())
 
     set.seed(123)
-    expect_equal(
-      p_sub,
-      suppressWarnings(gghistostats(
-        data = dplyr::group_by(morley, Expt) %>%
-          dplyr::summarise(mean = mean(Speed)),
-        x = mean,
-        test.value = 800,
-        type = "np",
-        output = "subtitle"
-      ))
-    )
+    p_sub_gghist <- suppressWarnings(gghistostats(
+      data = dplyr::group_by(morley, Expt) %>%
+        dplyr::summarise(mean = mean(Speed)),
+      x = mean,
+      test.value = 800,
+      type = "np"
+    ) %>%
+      extract_subtitle())
+
+    set.seed(123)
+    expect_equal(p_sub_ggdot, p_sub_gghist)
   }
 )
 
@@ -135,37 +135,5 @@ test_that(
         )
       )
     )
-  }
-)
-
-# subtitle output --------------------------------------------------
-
-test_that(
-  desc = "subtitle output",
-  code = {
-    # removing factor level with very few no. of observations
-    df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4"))
-
-    set.seed(123)
-    ls_results <-
-      grouped_ggdotplotstats(
-        data = df,
-        x = cty,
-        y = manufacturer,
-        grouping.var = cyl,
-        test.value = 15.5,
-        output = "subtitle"
-      )
-
-    set.seed(123)
-    basic_results <- ggdotplotstats(
-      data = df,
-      x = cty,
-      y = manufacturer,
-      test.value = 15.5,
-      output = "subtitle"
-    )
-
-    expect_equal(ls_results$`4`, basic_results)
   }
 )

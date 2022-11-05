@@ -4,9 +4,9 @@
 #' @description
 #'
 #' Correlation matrix or a data frame containing results from pairwise
-#' correlation tests. The package internally uses `ggcorrplot::ggcorrplot` for
+#' correlation tests. The package internally uses `ggcorrplot::ggcorrplot()` for
 #' creating the visualization matrix, while the correlation analysis is carried
-#' out using the `correlation::correlation` function.
+#' out using the `correlation::correlation()` function.
 #'
 #' @param ... Currently ignored.
 #' @param data Dataframe from which variables specified are preferentially to be
@@ -54,13 +54,14 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
-#' @examples
+#' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(ggcorrplot) # for plot
 #'
-#' # to get a plot (assumes that `ggcorrplot` is installed)
-#' if (require("ggcorrplot")) ggcorrmat(iris)
+#' # to get a plot
+#' ggcorrmat(iris)
 #'
 #' # to get a data frame
 #' ggcorrmat(
@@ -229,23 +230,22 @@ ggcorrmat <- function(data,
 #' @inherit ggcorrmat return references
 #' @inherit ggcorrmat return details
 #'
-#' @examples
+#' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
+#' library(ggcorrplot) # for plot
 #'
 #' # for plot
-#' if (require("ggcorrplot")) {
-#'   grouped_ggcorrmat(
-#'     data = iris,
-#'     grouping.var = Species,
-#'     type = "robust",
-#'     p.adjust.method = "holm",
-#'     plotgrid.args = list(ncol = 1),
-#'     annotation.args = list(tag_levels = "i")
-#'   )
-#' }
+#' grouped_ggcorrmat(
+#'   data = iris,
+#'   grouping.var = Species,
+#'   type = "robust",
+#'   p.adjust.method = "holm",
+#'   plotgrid.args = list(ncol = 1),
+#'   annotation.args = list(tag_levels = "i")
+#' )
 #'
 #' # for data frame
 #' grouped_ggcorrmat(
@@ -274,7 +274,6 @@ grouped_ggcorrmat <- function(data,
     ...
   )
 
-  # combining the list of plots into a single plot
   if (output == "plot") {
     return(combine_plots(
       plotlist = p_ls,

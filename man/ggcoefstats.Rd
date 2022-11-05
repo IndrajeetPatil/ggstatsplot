@@ -6,7 +6,6 @@
 \usage{
 ggcoefstats(
   x,
-  output = "plot",
   statistic = NULL,
   conf.int = TRUE,
   conf.level = 0.95,
@@ -42,13 +41,6 @@ model. Function internally uses \code{parameters::model_parameters()} to get a
 tidy data frame. If a data frame, it \emph{must} contain at the minimum two
 columns named \code{term} (names of predictors) and \code{estimate} (corresponding
 estimates of coefficients or other quantities of interest).}
-
-\item{output}{Character describing the expected output from this function:
-\itemize{
-\item \code{"plot"} (visualization of regression coefficients)
-\item \code{"tidy"} (tidy data frame of results \code{parameters::model_parameters()})
-\item \code{"glance"} (object from \code{performance::model_performance()})
-}}
 
 \item{statistic}{Relevant statistic for the model (\code{"t"}, \code{"f"}, \code{"z"}, or
 \code{"chi"}) in the label. Relevant only if \code{x} is a \emph{data frame}.}
@@ -105,8 +97,7 @@ if \code{bf.message = FALSE}.}
 
 \item{only.significant}{If \code{TRUE}, only stats labels for significant effects
 is shown (Default: \code{FALSE}). This can be helpful when a large number of
-regression coefficients are to be displayed in a single plot. Relevant only
-when the \code{output} is a plot.}
+regression coefficients are to be displayed in a single plot.}
 
 \item{point.args}{Additional arguments that will be passed to
 \code{geom_point} geom. Please see documentation for that function to
@@ -205,15 +196,7 @@ library(lme4)
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-
-# to get a plot
-ggcoefstats(mod, output = "plot")
-
-# to get a tidy data frame
-ggcoefstats(mod, output = "tidy")
-
-# to get a glance summary
-ggcoefstats(mod, output = "glance")
+ggcoefstats(mod)
 
 # further arguments can be passed to `parameters::model_parameters()`
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")

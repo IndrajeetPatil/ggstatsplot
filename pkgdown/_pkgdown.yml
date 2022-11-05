@@ -53,15 +53,15 @@ reference:
       - ggcoefstats
 
   - title: Grouped variants of primary functions
-    desc:  Convenience functions to run the main functions repeatedly across all levels of a single grouping variable
+    desc:  Convenience functions to repeat analysis across a single grouping
     contents:
       - starts_with("grouped_")
 
   - title: Helper functions
-    desc: Statistics and graphics-related helpers in `ggstatsplot`
+    desc: Statistics and graphics-related helpers
     contents:
       - pairwise_comparisons
-      - extract_stats
+      - starts_with("extract_")
       - starts_with("theme_")
       - starts_with("combine")
 
