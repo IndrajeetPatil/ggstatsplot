@@ -9,7 +9,6 @@ grouped_gghistostats(
   x,
   grouping.var,
   binwidth = NULL,
-  output = "plot",
   plotgrid.args = list(),
   annotation.args = list(),
   ...
@@ -30,14 +29,6 @@ numeric value, or a function that calculates width from \code{x}. The default is
 to use the \code{max(x) - min(x) / sqrt(N)}. You should always check this value
 and explore multiple widths to find the best to illustrate the stories in
 your data.}
-
-\item{output}{Character that describes what is to be returned: can be
-\code{"plot"} (default) or \code{"subtitle"} or \code{"caption"}. Setting this to
-\code{"subtitle"} will return the expression containing statistical results. If
-you have set \code{results.subtitle = FALSE}, then this will return a \code{NULL}.
-Setting this to \code{"caption"} will return the expression containing details
-about Bayes Factor analysis, but valid only when \code{type = "parametric"} and
-\code{bf.message = TRUE}, otherwise this will return a \code{NULL}.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{patchwork::wrap_plots}, except for \code{guides} argument which is already

@@ -97,15 +97,14 @@ test_that(
   desc = "subtitle output - ggscatterstats",
   code = {
     set.seed(123)
-    p <- ggscatterstats(
+    p_sub <- ggscatterstats(
       data = dplyr::starwars,
       x = mass,
       y = height,
       conf.level = 0.90,
-      type = "r",
-      output = "subtitle"
-    )
-    p_sub <- extract_subtitle(p)
+      type = "r"
+    ) %>%
+      extract_subtitle()
 
     set.seed(123)
     fun_sub <- corr_test(
@@ -113,8 +112,7 @@ test_that(
       x = mass,
       y = height,
       conf.level = 0.90,
-      type = "r",
-      output = "subtitle"
+      type = "r"
     )$expression[[1]]
 
     expect_equal(p_sub, fun_sub)

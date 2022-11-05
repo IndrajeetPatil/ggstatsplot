@@ -59,7 +59,6 @@ ggdotplotstats <- function(data,
                            centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
                            ggplot.component = NULL,
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
-                           output = "plot",
                            ...) {
   # data -----------------------------------
 
@@ -108,14 +107,6 @@ ggdotplotstats <- function(data,
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-  }
-
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
   }
 
   # plot -----------------------------------
@@ -203,7 +194,6 @@ ggdotplotstats <- function(data,
 grouped_ggdotplotstats <- function(data,
                                    ...,
                                    grouping.var,
-                                   output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
   # data frame
@@ -211,13 +201,10 @@ grouped_ggdotplotstats <- function(data,
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggdotplotstats,
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

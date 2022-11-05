@@ -12,9 +12,9 @@ test_that(
     df_a <- dplyr::filter(df, g == "a")
     df_b <- dplyr::filter(df, g == "b")
 
-    expect_null(ggbetweenstats(df_a, x, y, output = "subtitle"))
-    expect_null(ggbetweenstats(df_a, x, y, output = "caption"))
-    expect_null(ggbetweenstats(df_b, x, y, output = "subtitle"))
+    expect_null(ggbetweenstats(df_a, x, y) %>% extract_subtitle())
+    expect_null(ggbetweenstats(df_a, x, y) %>% extract_caption())
+    expect_null(ggbetweenstats(df_b, x, y) %>% extract_subtitle())
   }
 )
 
@@ -34,9 +34,9 @@ test_that(
     df_a <- dplyr::filter(df, g == "a")
     df_b <- dplyr::filter(df, g == "b")
 
-    expect_null(ggwithinstats(df_a, x, y, output = "subtitle"))
-    expect_null(ggwithinstats(df_a, x, y, output = "caption"))
-    expect_null(ggwithinstats(df_b, x, y, output = "subtitle"))
+    expect_null(ggwithinstats(df_a, x, y) %>% extract_subtitle())
+    expect_null(ggwithinstats(df_a, x, y) %>% extract_caption())
+    expect_null(ggwithinstats(df_b, x, y) %>% extract_subtitle())
   }
 )
 
@@ -47,8 +47,8 @@ test_that(
   code = {
     df <- data.frame(x = 1, y = "a")
 
-    expect_null(gghistostats(df, x, output = "subtitle"))
-    expect_null(gghistostats(df, x, output = "caption"))
+    expect_null(gghistostats(df, x) %>% extract_subtitle())
+    expect_null(gghistostats(df, x) %>% extract_caption())
   }
 )
 
@@ -59,8 +59,8 @@ test_that(
   code = {
     df <- data.frame(x = 1, y = "a")
 
-    expect_null(ggdotplotstats(df, x, y, output = "subtitle"))
-    expect_null(ggdotplotstats(df, x, y, output = "caption"))
+    expect_null(ggdotplotstats(df, x, y) %>% extract_subtitle())
+    expect_null(ggdotplotstats(df, x, y) %>% extract_caption())
   }
 )
 
@@ -71,10 +71,10 @@ test_that(
   code = {
     df <- data.frame(x = "one", y = "one")
 
-    expect_null(ggpiestats(df, x, output = "subtitle"))
-    expect_null(ggpiestats(df, x, output = "caption"))
-    expect_null(ggpiestats(df, x, y, output = "subtitle"))
-    expect_null(ggpiestats(df, x, y, output = "caption"))
+    expect_null(ggpiestats(df, x) %>% extract_subtitle())
+    expect_null(ggpiestats(df, x) %>% extract_caption())
+    expect_null(ggpiestats(df, x, y) %>% extract_subtitle())
+    expect_null(ggpiestats(df, x, y) %>% extract_caption())
   }
 )
 
@@ -85,8 +85,8 @@ test_that(
   code = {
     df <- data.frame(x = "one", y = "one")
 
-    expect_null(ggbarstats(df, x, y, output = "subtitle"))
-    expect_null(ggbarstats(df, x, y, output = "caption"))
+    expect_null(ggbarstats(df, x, y) %>% extract_subtitle())
+    expect_null(ggbarstats(df, x, y) %>% extract_caption())
   }
 )
 

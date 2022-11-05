@@ -56,7 +56,7 @@ ggridgestats <- function(data,
                          package = "RColorBrewer",
                          palette = "Dark2",
                          ggplot.component = NULL,
-                         output = "plot",
+
                          ...) {
   # data -----------------------------------
 
@@ -104,17 +104,9 @@ ggridgestats <- function(data,
     }
   }
 
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
-  }
-
   # plot -----------------------------------
 
-  descriptive_df <- statsExpressions::centrality_description(
+  descriptive_df <- centrality_description(
     data,
     x = {{ x }},
     y = {{ y }},

@@ -130,7 +130,7 @@
 #'
 #' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
 #' \donttest{
-#' # to get reproducible results from bootstrapping
+#' # for reproducibility
 #' set.seed(123)
 #' library(ggstatsplot)
 #'
@@ -201,7 +201,6 @@ ggbetweenstats <- function(data,
                            package = "RColorBrewer",
                            palette = "Dark2",
                            ggplot.component = NULL,
-                           output = "plot",
                            ...) {
   # data -----------------------------------
 
@@ -260,14 +259,6 @@ ggbetweenstats <- function(data,
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
     }
-  }
-
-  # return early if anything other than plot
-  if (output != "plot") {
-    return(switch(output,
-      "caption" = caption,
-      subtitle
-    ))
   }
 
   # plot -----------------------------------
@@ -442,7 +433,7 @@ ggbetweenstats <- function(data,
 #' @examples
 #' \donttest{
 #' if (require("PMCMRplus")) {
-#'   # to get reproducible results from bootstrapping
+#'   # for reproducibility
 #'   set.seed(123)
 #'   library(ggstatsplot)
 #'   library(dplyr, warn.conflicts = FALSE)
@@ -477,7 +468,6 @@ ggbetweenstats <- function(data,
 grouped_ggbetweenstats <- function(data,
                                    ...,
                                    grouping.var,
-                                   output = "plot",
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
   # creating a dataframe
@@ -485,13 +475,10 @@ grouped_ggbetweenstats <- function(data,
 
   # creating a list of return objects
   p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+    .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbetweenstats,
     ...
   )
 
-  # combining the list of plots into a single plot
-  if (output == "plot") p_ls <- combine_plots(p_ls, plotgrid.args, annotation.args)
-
-  p_ls
+  combine_plots(p_ls, plotgrid.args, annotation.args)
 }

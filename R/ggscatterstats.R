@@ -270,6 +270,6 @@ grouped_ggscatterstats <- function(data,
     ...
   )
 
-  # combining the list of plots into a single plot
+
   combine_plots(p_ls, plotgrid.args, annotation.args)
 }

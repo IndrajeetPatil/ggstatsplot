@@ -174,9 +174,9 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4L,
-      output = "subtitle"
-    )
+      k = 4L
+    ) %>%
+      extract_subtitle()
 
     set.seed(123)
     stats_output <- suppressWarnings(contingency_table(
@@ -250,26 +250,5 @@ test_that(
         proportion.test = FALSE
       )
     )
-  }
-)
-
-# expression output --------------------
-
-test_that(
-  desc = "grouped_ggbarstats expression output is as expected",
-  code = {
-    set.seed(123)
-    grouped_expr <- grouped_ggbarstats(
-      mtcars,
-      grouping.var = am,
-      x = cyl,
-      y = vs,
-      output = "subtitle"
-    )
-
-    set.seed(123)
-    base_expr <- ggbarstats(dplyr::filter(mtcars, am == "0"), cyl, vs, output = "subtitle")
-
-    expect_equal(grouped_expr$`0`, base_expr)
   }
 )

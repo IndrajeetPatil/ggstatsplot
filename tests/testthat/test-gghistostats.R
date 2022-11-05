@@ -75,9 +75,9 @@ test_that(
       data = ggplot2::msleep,
       x = brainwt,
       type = "np",
-      output = "subtitle",
       test.value = 0.25
-    )
+    ) %>%
+      extract_subtitle()
 
     set.seed(123)
     sub <- one_sample_test(
@@ -86,7 +86,6 @@ test_that(
       type = "np",
       test.value = 0.25
     )$expression[[1]]
-
 
     expect_equal(p_sub, sub, ignore_attr = TRUE)
   }
@@ -130,32 +129,5 @@ test_that(
         )
       ))
     )
-  }
-)
-
-# subtitle output --------------------------------------------------
-
-test_that(
-  desc = "subtitle output",
-  code = {
-    df <- dplyr::filter(ggplot2::msleep, vore == "omni")
-
-    set.seed(123)
-    ls_results <- grouped_gghistostats(
-      data = df,
-      x = brainwt,
-      grouping.var = vore,
-      test.value = 0.25,
-      output = "subtitle"
-    )
-
-    set.seed(123)
-    basic_results <- one_sample_test(
-      data = df,
-      x = brainwt,
-      test.value = 0.25
-    )$expression[[1]]
-
-    expect_equal(ls_results$`omni`, basic_results)
   }
 )
