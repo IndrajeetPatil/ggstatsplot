@@ -52,8 +52,7 @@
 #'
 #' @examplesIf requireNamespace("ggside", quietly = TRUE)
 #' set.seed(123)
-#' library(ggstatsplot)
-#' library(ggplot2)
+#' library(ggside) # for marginals
 #'
 #' # simple function call with the defaults
 #' ggscatterstats(
@@ -63,7 +62,7 @@
 #'   label.var = Species,
 #'   label.expression = Sepal.Length > 7.6
 #' ) +
-#'   geom_rug(sides = "b")
+#'   ggplot2::geom_rug(sides = "b")
 #' @export
 ggscatterstats <- function(data,
                            x,
@@ -211,7 +210,7 @@ ggscatterstats <- function(data,
 #' \donttest{
 #' # to ensure reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
+#'
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'

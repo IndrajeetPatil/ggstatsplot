@@ -125,7 +125,7 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
+#' library(PMCMRplus) # for pairwise comparisons
 #'
 #' # simple function call with the defaults
 #' ggbetweenstats(mtcars, am, mpg)
@@ -133,15 +133,13 @@
 #' # more detailed function call
 #' ggbetweenstats(
 #'   morley,
-#'   x                    = Expt,
-#'   y                    = Speed,
-#'   type                 = "robust",
-#'   xlab                 = "The experiment number",
-#'   ylab                 = "Speed-of-light measurement",
-#'   pairwise.comparisons = TRUE,
-#'   p.adjust.method      = "fdr",
-#'   outlier.tagging      = TRUE,
-#'   outlier.label        = Run
+#'   x               = Expt,
+#'   y               = Speed,
+#'   type            = "robust",
+#'   xlab            = "The experiment number",
+#'   ylab            = "Speed-of-light measurement",
+#'   outlier.tagging = TRUE,
+#'   outlier.label   = Run
 #' )
 #' }
 #' @export
@@ -214,13 +212,12 @@ ggbetweenstats <- function(data,
   if (!"outlier.label" %in% names(data)) data %<>% mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
-  data %<>%
-    .outlier_df(
-      x             = {{ x }},
-      y             = {{ y }},
-      outlier.coef  = outlier.coef,
-      outlier.label = outlier.label
-    )
+  data %<>% .outlier_df(
+    x             = {{ x }},
+    y             = {{ y }},
+    outlier.coef  = outlier.coef,
+    outlier.label = outlier.label
+  )
 
   # statistical analysis ------------------------------------------
 
@@ -269,7 +266,6 @@ ggbetweenstats <- function(data,
   # if outlier tagging is happening, decide how those points should be displayed
   if (plot.type == "violin" && isTRUE(outlier.tagging)) {
     plot <- plot +
-      # add all outliers in
       geom_point(
         data   = ~ filter(.x, isanoutlier),
         size   = 3,
@@ -423,39 +419,37 @@ ggbetweenstats <- function(data,
 #'
 #' @inherit ggbetweenstats return references
 #'
-#' @examples
+#' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
 #' \donttest{
-#' if (require("PMCMRplus")) {
-#'   # for reproducibility
-#'   set.seed(123)
-#'   library(ggstatsplot)
-#'   library(dplyr, warn.conflicts = FALSE)
-#'   library(ggplot2)
+#' # for reproducibility
+#' set.seed(123)
+#' library(PMCMRplus) # for pairwise comparisons
+#' library(dplyr, warn.conflicts = FALSE)
+#' library(ggplot2)
 #'
-#'   # the most basic function call
-#'   grouped_ggbetweenstats(
-#'     data = filter(ggplot2::mpg, drv != "4"),
-#'     x = year,
-#'     y = hwy,
-#'     grouping.var = drv
-#'   )
+#' # the most basic function call
+#' grouped_ggbetweenstats(
+#'   data = filter(ggplot2::mpg, drv != "4"),
+#'   x = year,
+#'   y = hwy,
+#'   grouping.var = drv
+#' )
 #'
-#'   # modifying individual plots using `ggplot.component` argument
-#'   grouped_ggbetweenstats(
-#'     data = filter(
-#'       movies_long,
-#'       genre %in% c("Action", "Comedy"),
-#'       mpaa %in% c("R", "PG")
-#'     ),
-#'     x = genre,
-#'     y = rating,
-#'     grouping.var = mpaa,
-#'     ggplot.component = scale_y_continuous(
-#'       breaks = seq(1, 9, 1),
-#'       limits = (c(1, 9))
-#'     )
+#' # modifying individual plots using `ggplot.component` argument
+#' grouped_ggbetweenstats(
+#'   data = filter(
+#'     movies_long,
+#'     genre %in% c("Action", "Comedy"),
+#'     mpaa %in% c("R", "PG")
+#'   ),
+#'   x = genre,
+#'   y = rating,
+#'   grouping.var = mpaa,
+#'   ggplot.component = scale_y_continuous(
+#'     breaks = seq(1, 9, 1),
+#'     limits = (c(1, 9))
 #'   )
-#' }
+#' )
 #' }
 #' @export
 grouped_ggbetweenstats <- function(data,

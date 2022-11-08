@@ -93,7 +93,6 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(lme4)
 #'
 #' # model object

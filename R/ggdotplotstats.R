@@ -175,7 +175,6 @@ ggdotplotstats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # removing factor level with very few no. of observations

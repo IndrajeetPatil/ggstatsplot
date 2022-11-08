@@ -424,7 +424,7 @@ Not supported.
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
+library(PMCMRplus) # for pairwise comparisons
 
 # simple function call with the defaults
 ggbetweenstats(mtcars, am, mpg)
@@ -432,15 +432,13 @@ ggbetweenstats(mtcars, am, mpg)
 # more detailed function call
 ggbetweenstats(
   morley,
-  x                    = Expt,
-  y                    = Speed,
-  type                 = "robust",
-  xlab                 = "The experiment number",
-  ylab                 = "Speed-of-light measurement",
-  pairwise.comparisons = TRUE,
-  p.adjust.method      = "fdr",
-  outlier.tagging      = TRUE,
-  outlier.label        = Run
+  x               = Expt,
+  y               = Speed,
+  type            = "robust",
+  xlab            = "The experiment number",
+  ylab            = "Speed-of-light measurement",
+  outlier.tagging = TRUE,
+  outlier.label   = Run
 )
 }
 \dontshow{\}) # examplesIf}

@@ -21,7 +21,6 @@
 #' @inheritParams patchwork::wrap_plots
 #'
 #' @examples
-#' # loading the necessary libraries
 #' library(ggplot2)
 #'
 #' # preparing the first plot

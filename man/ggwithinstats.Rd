@@ -419,9 +419,8 @@ Not supported.
 \examples{
 \dontshow{if (requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-# setup
+# for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(dplyr, warn.conflicts = FALSE)
 
 # two-samples test

@@ -57,7 +57,6 @@
 #' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(ggcorrplot) # for plot
 #'
 #' # to get a plot
@@ -200,11 +199,11 @@ ggcorrmat <- function(data,
       legend.title     = element_text(size = 15)
     ) +
     labs(
-      title            = title,
-      subtitle         = subtitle,
-      caption          = caption,
-      xlab             = NULL,
-      ylab             = NULL
+      title    = title,
+      subtitle = subtitle,
+      caption  = caption,
+      xlab     = NULL,
+      ylab     = NULL
     ) +
     ggplot.component
 }
@@ -234,7 +233,6 @@ ggcorrmat <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(ggcorrplot) # for plot
 #'
 #' # for plot

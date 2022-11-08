@@ -170,7 +170,6 @@ The table below provides summary about:
 \dontshow{if (requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(ggcorrplot) # for plot
 
 # to get a plot

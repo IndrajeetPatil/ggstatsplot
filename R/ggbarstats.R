@@ -20,7 +20,6 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #'
 #' # association test (or contingency table analysis)
 #' ggbarstats(mtcars, x = vs, y = cyl)
@@ -193,7 +192,7 @@ ggbarstats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
+#'
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # let's create a smaller data frame

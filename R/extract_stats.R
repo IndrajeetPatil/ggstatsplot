@@ -26,16 +26,14 @@
 #' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
 #' \donttest{
 #' set.seed(123)
-#' library(ggstatsplot)
 #'
 #' # non-grouped function -----------------------------
 #'
-#' # in case of group comparisons
 #' p <- ggbetweenstats(mtcars, cyl, mpg)
 #' extract_stats(p)
 #'
 #' # the exact details depend on the function
-#' extract_stats(ggbarstats(mtcars, cyl, am))
+#' ggbarstats(mtcars, cyl, am) %>% extract_stats()
 #'
 #' # grouped function -----------------------------
 #' p <- grouped_ggbarstats(

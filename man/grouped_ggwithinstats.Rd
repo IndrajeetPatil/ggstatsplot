@@ -184,7 +184,6 @@ A combined plot of comparison plot created for levels of a grouping variable.
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 

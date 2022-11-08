@@ -219,7 +219,6 @@ The table below provides summary about:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 
 # association test (or contingency table analysis)
 ggbarstats(mtcars, x = vs, y = cyl)

@@ -37,7 +37,6 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #'
 #' # using defaults, but modifying which centrality parameter is to be shown
 #' gghistostats(
@@ -121,9 +120,9 @@ gghistostats <- function(data,
     ) +
     scale_y_continuous(
       sec.axis = sec_axis(
-        trans   = ~ . / nrow(data),
-        labels  = function(x) paste0(x * 100, "%"),
-        name    = "proportion"
+        trans  = ~ . / nrow(data),
+        labels = function(x) paste0(x * 100, "%"),
+        name   = "proportion"
       )
     ) +
     guides(fill = "none")
@@ -194,7 +193,6 @@ gghistostats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #'
 #' # plot
 #' grouped_gghistostats(

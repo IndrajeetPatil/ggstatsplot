@@ -186,8 +186,7 @@ The table below provides summary about:
 \examples{
 \dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
-library(ggstatsplot)
-library(ggplot2)
+library(ggside) # for marginals
 
 # simple function call with the defaults
 ggscatterstats(
@@ -197,7 +196,7 @@ ggscatterstats(
   label.var = Species,
   label.expression = Sepal.Length > 7.6
 ) +
-  geom_rug(sides = "b")
+  ggplot2::geom_rug(sides = "b")
 \dontshow{\}) # examplesIf}
 }
 \seealso{

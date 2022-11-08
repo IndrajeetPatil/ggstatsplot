@@ -34,9 +34,8 @@
 #'
 #' @examplesIf requireNamespace("afex", quietly = TRUE)
 #' \donttest{
-#' # setup
+#' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # two-samples test
@@ -286,7 +285,6 @@ ggwithinstats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'

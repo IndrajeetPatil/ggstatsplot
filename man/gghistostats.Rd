@@ -199,7 +199,6 @@ The table below provides summary about:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 
 # using defaults, but modifying which centrality parameter is to be shown
 gghistostats(
