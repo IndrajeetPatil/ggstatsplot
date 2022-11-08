@@ -113,7 +113,7 @@ ggwithinstats <- function(data,
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     group_by({{ x }}) %>%
     mutate(.rowid = row_number()) %>%
-    ungroup(.) %>%
+    ungroup() %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column

@@ -65,7 +65,7 @@ ggbarstats <- function(data,
   # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na(.)
+    tidyr::drop_na()
 
   # untable the data frame based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)

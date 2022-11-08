@@ -205,7 +205,7 @@ ggbetweenstats <- function(data,
   # creating a dataframe
   data %<>%
     select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
-    tidyr::drop_na(.) %>%
+    tidyr::drop_na() %>%
     mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   # if outlier.label column is not present, just use the values from `y` column

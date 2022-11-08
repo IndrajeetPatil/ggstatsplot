@@ -119,7 +119,7 @@ plots <- iris %>%
   dplyr::mutate(Species2 = Species) %>%
   # just creates a copy of this variable
   dplyr::group_by(Species) %>%
-  tidyr::nest(.) %>%
+  tidyr::nest() %>%
   # a nested data frame with list column called `data`
   dplyr::mutate(
     plot = data %>%

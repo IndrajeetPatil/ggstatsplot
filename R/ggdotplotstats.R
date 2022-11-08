@@ -68,11 +68,11 @@ ggdotplotstats <- function(data,
   # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na(.) %>%
+    tidyr::drop_na() %>%
     mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
     group_by({{ y }}) %>%
     summarise({{ x }} := mean({{ x }})) %>%
-    ungroup(.) %>%
+    ungroup() %>%
     # rank ordering the data
     arrange({{ x }}) %>%
     mutate(
