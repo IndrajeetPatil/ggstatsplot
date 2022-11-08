@@ -11,7 +11,7 @@ A data frame with 93 rows and 6 variables
 \item gender. Participant's gender (Female, Male).
 \item region. Region of the world the participant was from.
 \item education. Level of education.
-\item ldlf,ldhf,hdlf,hdhf.The desire to kill an arthropod was indicated on
+\item ldlf,ldhf,hdlf,hdhf. The desire to kill an arthropod was indicated on
 a scale from 0 to 10 in each condition of the experiment (\strong{LDLF}: low
 freighteningness and low disgustingness; \strong{LFHD}: low freighteningness and
 high disgustingness; \strong{HFHD}: high freighteningness and low

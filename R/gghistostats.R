@@ -114,8 +114,8 @@ gghistostats <- function(data,
   plot <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
-      mapping   = aes(y = after_stat(count), fill = after_stat(count)),
-      binwidth  = binwidth %||% .binwidth(x_vec),
+      mapping  = aes(y = after_stat(count), fill = after_stat(count)),
+      binwidth = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
     scale_y_continuous(
