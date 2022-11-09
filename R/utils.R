@@ -36,13 +36,16 @@
     filter(package == !!package, palette == !!palette) %$%
     length[[1L]]
 
-  # inform the user
-  if (palette_length < min_length) {
+  are_enough_colors_available <- palette_length > min_length
+
+  if (!are_enough_colors_available) {
     rlang::warn(c(
       "Number of labels is greater than default palette color count.",
       "Select another color `palette` (and/or `package`)."
     ))
   }
+
+  return(are_enough_colors_available)
 }
 
 #' @noRd
