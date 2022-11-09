@@ -227,7 +227,7 @@ ggcoefstats <- function(x,
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
-    caption <- glance_df$expression[[1]]
+    caption <- glance_df$expression[[1L]]
   }
 
   # meta analysis -------------------------
@@ -238,12 +238,12 @@ ggcoefstats <- function(x,
 
     # results from frequentist random-effects meta-analysis
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
-    subtitle <- subtitle_df$expression[[1]]
+    subtitle <- subtitle_df$expression[[1L]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && bf.message) {
       caption_df <- meta_analysis(tidy_df, type = "bayes", k = k)
-      caption <- caption_df$expression[[1]]
+      caption <- caption_df$expression[[1L]]
     }
   }
 

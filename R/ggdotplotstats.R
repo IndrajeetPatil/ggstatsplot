@@ -100,12 +100,12 @@ ggdotplotstats <- function(data,
 
     # preparing the subtitle with statistical results
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
     # preparing the BF message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
     }
   }
 

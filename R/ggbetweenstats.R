@@ -242,12 +242,12 @@ ggbetweenstats <- function(data,
 
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
     # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
     }
   }
 

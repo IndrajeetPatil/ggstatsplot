@@ -139,7 +139,7 @@ ggcorrmat <- function(data,
   # legend title with information about correlation type and sample
   if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
-      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1]]))),
+      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {

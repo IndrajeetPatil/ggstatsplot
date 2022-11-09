@@ -122,7 +122,7 @@ test_that(
       data = df,
       x = am,
       y = wt
-    )$expression[[1]]
+    )$expression[[1L]]
 
     expect_equal(as.character(subtitle_exp), as.character(sub))
   }

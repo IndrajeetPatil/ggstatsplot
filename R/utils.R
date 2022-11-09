@@ -32,21 +32,17 @@
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
 #' @noRd
 .palette_message <- function(package, palette, min_length) {
-  pl <- filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
-    length[[1]]
-
-  # check if insufficient number of colors are available in a given palette
-  pl_message <- ifelse(pl < min_length, FALSE, TRUE)
+  palette_length <- paletteer::palettes_d_names %>%
+    filter(package == !!package, palette == !!palette) %$%
+    length[[1L]]
 
   # inform the user
-  if (!pl_message) {
+  if (palette_length < min_length) {
     rlang::warn(c(
       "Number of labels is greater than default palette color count.",
       "Select another color `palette` (and/or `package`)."
     ))
   }
-
-  invisible(pl_message)
 }
 
 #' @noRd

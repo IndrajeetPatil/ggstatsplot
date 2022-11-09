@@ -42,14 +42,13 @@
       exec(
         geom_path,
         data = centrality_df,
-        mapping = aes(x = {{ x }}, y = {{ y }}, group = 1),
+        mapping = aes({{ x }}, {{ y }}, group = 1L),
         inherit.aes = FALSE,
         !!!centrality.path.args
       )
   }
 
-  # highlight the mean of each group
-  plot +
+  plot + # highlight the mean of each group
     exec(
       geom_point,
       mapping = aes({{ x }}, {{ y }}),
@@ -60,7 +59,7 @@
     exec(
       ggrepel::geom_label_repel,
       data = centrality_df,
-      mapping = aes(x = {{ x }}, y = {{ y }}, label = expression),
+      mapping = aes({{ x }}, {{ y }}, label = expression),
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args
@@ -119,7 +118,7 @@
     if (grepl("^n", pairwise.display)) mpc_df %<>% filter(p.value >= 0.05)
 
     # proceed only if there are any significant comparisons to display
-    if (dim(mpc_df)[[1]] == 0L) {
+    if (dim(mpc_df)[[1L]] == 0L) {
       return(plot)
     }
   }
@@ -225,7 +224,7 @@
                              ggplot.component = NULL,
                              ...) {
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, length(unique(levels(x)))[[1]])
+  .palette_message(package, palette, length(unique(levels(x)))[[1L]])
 
   # modifying the plot
   plot +
@@ -271,7 +270,7 @@
 .outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
   group_by(data, {{ x }}) %>%
     mutate(
-      isanoutlier = ifelse((.) %$% as.vector(performance::check_outliers({{ y }}, method = "iqr", threshold = list("iqr" = outlier.coef))), TRUE, FALSE),
+      isanoutlier = (.) %$% as.vector(performance::check_outliers({{ y }}, method = "iqr", threshold = list("iqr" = outlier.coef))),
       outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
     ) %>%
     ungroup()

@@ -37,7 +37,7 @@ iris_long <- datasets::iris %>%
     .funs = ~ droplevels(.)
   ) %>%
   dplyr::select(id, dplyr::everything()) %>%
-  tibble::as_tibble(.)
+  tibble::as_tibble()
 
 # looking at the long format data
 dplyr::glimpse(iris_long)
