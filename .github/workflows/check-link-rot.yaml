@@ -36,8 +36,8 @@ jobs:
         run: |
           options(crayon.enabled = TRUE)
           rotten_links <- urlchecker::url_check(progress = FALSE)
+          print(rotten_links)
           if (length(rotten_links$URL) > 0L) {
-            print(rotten_links)
             stop("Some URLs are outdated and need to be updated.", call. = FALSE)
           }
         shell: Rscript {0}
