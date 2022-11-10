@@ -34,6 +34,7 @@ jobs:
 
       - name: Run URL checker
         run: |
+          options(crayon.enabled = TRUE)
           rotten_links <- urlchecker::url_check(progress = FALSE)
           if (length(rotten_links$URL) > 0L) {
             print(rotten_links)
