@@ -16,8 +16,7 @@ ungrouped before they are entered as \code{data}.}
 }
 \description{
 This function splits the data frame into a list, with the length of the list
-equal to the factor levels of the grouping variable. Each element of the list
-will be a tibble.
+equal to the factor levels of the grouping variable.
 }
 \examples{
 \donttest{

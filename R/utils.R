@@ -3,8 +3,7 @@
 #' @description
 #'
 #' This function splits the data frame into a list, with the length of the list
-#' equal to the factor levels of the grouping variable. Each element of the list
-#' will be a tibble.
+#' equal to the factor levels of the grouping variable.
 #'
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable.
