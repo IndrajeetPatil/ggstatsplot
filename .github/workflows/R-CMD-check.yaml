@@ -20,16 +20,16 @@ jobs:
       matrix:
         config:
           #- {os: macos-latest,   r: 'devel'}
-          - {os: macos-latest,   r: 'release'}
-          - {os: macos-latest,   r: 'oldrel-1'}
+          - { os: macos-latest, r: "release" }
+          - { os: macos-latest, r: "oldrel-1" }
 
-          - {os: windows-latest, r: 'devel'}
-          - {os: windows-latest, r: 'release'}
-          - {os: windows-latest, r: 'oldrel-1'}
+          - { os: windows-latest, r: "devel" }
+          - { os: windows-latest, r: "release" }
+          - { os: windows-latest, r: "oldrel-1" }
 
-          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,  r: 'release'}
-          - {os: ubuntu-latest,  r: 'oldrel-1'}
+          - { os: ubuntu-latest, r: "devel", http-user-agent: "release" }
+          - { os: ubuntu-latest, r: "release" }
+          - { os: ubuntu-latest, r: "oldrel-1" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +40,7 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
         with:
-          pandoc-version: '2.19.2'
+          pandoc-version: "2.19.2"
 
       - uses: r-lib/actions/setup-r@v2
         with:
