@@ -84,7 +84,6 @@ Let's have a look at the structure of both.
 ```{r}
 #| label = "titanic1"
 library(dplyr)
-library(ggstatsplot)
 
 # looking at the original data in tabular format
 dplyr::glimpse(Titanic)
