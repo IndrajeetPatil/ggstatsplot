@@ -32,6 +32,16 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
+pkgs <- c(
+  "gapminder"
+)
+
+if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
+  knitr::opts_chunk$set(eval = FALSE)
+} else {
+  purrr::walk(pkgs, library, character.only = TRUE)
+}
+
 library(ggstatsplot)
 ```
 
