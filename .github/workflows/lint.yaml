@@ -44,6 +44,7 @@ jobs:
             object_usage_linter = NULL,
             todo_comment_linter = NULL,
             undesirable_function_linter = NULL,
-            defaults = linters_with_tags(tags = NULL)
+            defaults = linters_with_tags(tags = NULL),
+            exclusions = list("data-raw")
           ))
         shell: Rscript {0}

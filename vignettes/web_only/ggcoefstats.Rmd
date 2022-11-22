@@ -38,7 +38,7 @@ pkgs <- c(
   "survival"
 )
 
-if (!all(map(pkgs, requireNamespace, quietly = TRUE))) {
+if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
   knitr::opts_chunk$set(eval = FALSE)
 } else {
   purrr::walk(pkgs, library, character.only = TRUE)
