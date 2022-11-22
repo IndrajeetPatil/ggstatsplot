@@ -40,6 +40,8 @@ if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
 } else {
   purrr::walk(pkgs, library, character.only = TRUE)
 }
+
+library(ggstatsplot)
 ```
 
 ---
