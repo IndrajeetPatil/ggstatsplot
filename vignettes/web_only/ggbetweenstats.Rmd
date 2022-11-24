@@ -14,21 +14,12 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.subtle_num = TRUE
-)
+source("../setup.R")
+```
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
 
 pkgs <- c(
   "gapminder",
