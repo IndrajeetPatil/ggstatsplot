@@ -1,12 +1,12 @@
 ---
-title: "using 'ggstatsplot' with the 'purrr' package"
+title: "Using '{ggstatsplot}' with the '{purrr}' package"
 author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{using 'ggstatsplot' with the 'purrr' package}
+  %\VignetteIndexEntry{using '{ggstatsplot}' with the '{purrr}' package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,23 +14,7 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## pretty tibble printing
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
-  pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
-)
-
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
+source("../setup.R")
 ```
 
 ---
@@ -116,9 +100,8 @@ Let's start with `ggebtweenstats`. We'll use the `gapminder` dataset. We'll make
 a 3 item `list` called `year_list` using `dplyr::filter` and `split`.
 
 ```r
-## for reproducibility
-library(ggstatsplot)
-set.seed(123)
+
+
 
 ## let's split the data frame and create a list by years of interest
 year_list <- gapminder::gapminder %>%
@@ -147,9 +130,7 @@ Not actually recommending it just demonstrating what's possible. The rest of the
 code shows you a wide variety of possibilities and we won't catalog them here.
 
 ```r
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
 
 ## creating a list of plots
 plot_list <- purrr::pmap(
@@ -214,9 +195,7 @@ We will be using simulated data from then Attention Network Test provided in ANT
 dataset in `ez` package.
 
 ```r
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
 library(ez)
 data("ANT") ## loading data from `ez` package
 
@@ -293,9 +272,6 @@ completely drop NC-17 using `dplyr`.
 This time we'll put all the code in one block-
 
 ```r
-## for reproducibility
-set.seed(123)
-
 mpaa_list <- movies_long %>%
   dplyr::filter(mpaa != "NC-17") %>%
   dplyr::sample_frac(size = 0.25) %>%
@@ -350,9 +326,6 @@ methodology as the earlier examples.
 ## `ggcorrmat`
 
 ```r
-## for reproducibility
-set.seed(123)
-
 ## splitting the data frame by cut and creating a list
 ## let's leave out "fair" cut
 ## also, to make this fast, let's only use 5% of the sample
@@ -409,9 +382,6 @@ combine_plots(
 ## `gghistostats`
 
 ```r
-## for reproducibility
-set.seed(123)
-
 ## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
 continent_list <-
@@ -467,8 +437,6 @@ combine_plots(
 ## `ggdotplotstats`
 
 ```r
-## for reproducibility
-set.seed(123)
 library(ggthemes)
 library(hrbrthemes)
 
@@ -530,9 +498,6 @@ combine_plots(
 ## `ggpiestats`
 
 ```r
-## for reproducibility
-set.seed(123)
-
 ## let's split the data frame and create a list by passenger class
 class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
 
@@ -588,9 +553,6 @@ combine_plots(
 ## `ggbarstats`
 
 ```r
-## for reproducibility
-set.seed(123)
-
 ## let's split the data frame and create a list by passenger class
 class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
 
@@ -676,9 +638,7 @@ length(plotlist)
 ## Repeating function execution across multiple columns in a data frame
 
 ```r
-## setup
-set.seed(123)
-library(ggstatsplot)
+
 library(patchwork)
 
 ## running the same analysis on two different columns (creates a list of plots)

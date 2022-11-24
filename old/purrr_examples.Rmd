@@ -117,9 +117,9 @@ a 3 item `list` called `year_list` using `dplyr::filter` and `split`.
 #| label = "purrr_ggbetweenstats1",
 #| fig.height = 12,
 #| fig.width = 7
-## for reproducibility
-library(ggstatsplot)
-set.seed(123)
+
+
+
 
 ## let's split the data frame and create a list by years of interest
 year_list <- gapminder::gapminder %>%
@@ -151,9 +151,9 @@ code shows you a wide variety of possibilities and we won't catalog them here.
 #| label = "purrr_ggbetweenstats2",
 #| fig.height = 10,
 #| fig.width = 7
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
+
+
 
 ## creating a list of plots
 plot_list <- purrr::pmap(
@@ -224,9 +224,9 @@ dataset in `ez` package.
 #| label = "purrr_ggwithinstats",
 #| fig.height = 20,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
+
+
 library(ez)
 data("ANT") ## loading data from `ez` package
 
@@ -306,8 +306,8 @@ This time we'll put all the code in one block-
 #| label = "purrr_ggscatterstats",
 #| fig.height = 14,
 #| fig.width = 7
-## for reproducibility
-set.seed(123)
+
+
 
 mpaa_list <- movies_long %>%
   dplyr::filter(mpaa != "NC-17") %>%
@@ -366,8 +366,8 @@ methodology as the earlier examples.
 #| label = "purrr_ggcorrmat",
 #| fig.height = 10,
 #| fig.width = 10
-## for reproducibility
-set.seed(123)
+
+
 
 ## splitting the data frame by cut and creating a list
 ## let's leave out "fair" cut
@@ -428,8 +428,8 @@ combine_plots(
 #| label = "purrr_gghistostats",
 #| fig.height = 14,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
+
+
 
 ## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
@@ -489,8 +489,8 @@ combine_plots(
 #| label = "purrr_ggdotplotstats",
 #| fig.height = 16,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
+
+
 library(ggthemes)
 library(hrbrthemes)
 
@@ -555,8 +555,8 @@ combine_plots(
 #| label = "purrr_ggpiestats",
 #| fig.height = 22,
 #| fig.width = 9
-## for reproducibility
-set.seed(123)
+
+
 
 ## let's split the data frame and create a list by passenger class
 class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
@@ -616,8 +616,8 @@ combine_plots(
 #| label = "purrr_ggbarstats",
 #| fig.height = 24,
 #| fig.width = 6
-## for reproducibility
-set.seed(123)
+
+
 
 ## let's split the data frame and create a list by passenger class
 class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
@@ -708,9 +708,9 @@ length(plotlist)
 ```{r}
 #| label = "purrr_columns",
 #| fig.width = 12
-## setup
-set.seed(123)
-library(ggstatsplot)
+#
+
+
 library(patchwork)
 
 ## running the same analysis on two different columns (creates a list of plots)

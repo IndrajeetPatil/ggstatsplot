@@ -15,22 +15,10 @@ vignette: >
 ---
 
 ```{r}
-#| warning = FALSE,
-#| message = FALSE,
-#| echo = FALSE
-# needed libraries
-library(ggstatsplot)
+#| label = "setup",
+#| include = FALSE
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  out.width = "100%",
-  dpi = 300,
-  comment = "#>",
-  message = FALSE,
-  warning = FALSE
-)
-
-set.seed(123) # for reproducibility
+source("setup.R")
 ```
 
 This vignette can be cited as:
@@ -75,7 +63,7 @@ Before discussing benefits of this approach, we will show an example (Figure
 #| juxtaposing informative visualizations with details from statistical analysis. To see all
 #| supported plots and statistical analyses, see the package website:
 #| \\url{https://indrajeetpatil.github.io/ggstatsplot/}"
-library(ggstatsplot)
+
 
 ggbetweenstats(iris, Species, Sepal.Length)
 ```

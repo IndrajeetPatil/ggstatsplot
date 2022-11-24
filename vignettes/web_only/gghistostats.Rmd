@@ -20,17 +20,13 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
+source("../setup.R")
+```
+
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
 
 pkgs <- c(
   "psych"
@@ -41,8 +37,6 @@ if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
 } else {
   purrr::walk(pkgs, library, character.only = TRUE)
 }
-
-library(ggstatsplot)
 ```
 
 ---
@@ -81,7 +75,7 @@ norms have a mean of 20.
 ```{r}
 #| label = "psychact"
 ## loading needed libraries
-library(ggstatsplot)
+
 library(psych)
 library(dplyr)
 
@@ -103,7 +97,7 @@ parametric one sample *t*-test (`type = "p"`).
 #| label = "psychact3",
 #| fig.height = 6,
 #| fig.width = 7
-set.seed(123)
+
 
 gghistostats(
   data = psych::sat.act, ## data from which variable is to be taken
@@ -139,7 +133,7 @@ task.
 #| label = "grouped1",
 #| fig.height = 10,
 #| fig.width = 7
-set.seed(123)
+
 
 grouped_gghistostats(
   ## arguments relevant for gghistostats

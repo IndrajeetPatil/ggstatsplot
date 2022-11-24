@@ -4,13 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
 vignette: >
   %\VignetteIndexEntry{ggdotplotstats}
   %\VignetteEngine{knitr::rmarkdown}
@@ -20,19 +14,8 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
-
-library(ggstatsplot)
+source("../setup.R")
 ```
 
 ---
@@ -76,9 +59,9 @@ Let's say we want to visualize the distribution of mileage by car manufacturer.
 #| label = "mpg2",
 #| fig.height = 7,
 #| fig.width = 9
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
+
+
 
 ## removing factor level with very few no. of observations
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
@@ -91,7 +74,7 @@ paletter_vector <-
     type = "discrete"
   )
 
-## plot
+
 ggdotplotstats(
   data = df,
   x = cty,
@@ -127,13 +110,13 @@ task.
 #| label = "grouped1",
 #| fig.height = 12,
 #| fig.width = 7
-## for reproducibility
-set.seed(123)
+
+
 
 ## removing factor level with very few no. of observations
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
-## plot
+
 grouped_ggdotplotstats(
   ## arguments relevant for ggdotplotstats
   data = df,

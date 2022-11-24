@@ -27,8 +27,6 @@ link-citations: yes
 #| warning = FALSE,
 #| message = FALSE,
 #| echo = FALSE
-# needed libraries
-library(ggstatsplot)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -39,8 +37,6 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE
 )
-
-set.seed(123) # for reproducibility
 ```
 
 # Summary
@@ -76,7 +72,7 @@ Before discussing benefits of this approach, we will show an example (Figure
 #| supported plots and statistical analyses, see the package website:
 #| \\url{https://indrajeetpatil.github.io/ggstatsplot/}"
 library(palmerpenguins) # for 'penguins' dataset
-library(ggstatsplot)
+
 
 ggbetweenstats(penguins, species, body_mass_g)
 ```

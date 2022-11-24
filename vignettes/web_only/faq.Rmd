@@ -4,12 +4,7 @@ author: "Indrajeet Patil"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
 vignette: >
   %\VignetteIndexEntry{Frequently Asked Questions (FAQ)}
   %\VignetteEngine{knitr::rmarkdown}
@@ -19,31 +14,19 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
-  pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
-)
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
+source("../setup.R")
+```
+
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
 
 if (!requireNamespace("PMCMRplus", quietly = TRUE)) {
   knitr::opts_chunk$set(eval = FALSE)
 } else {
   library(PMCMRplus)
 }
-
-library(ggstatsplot)
 ```
 
 ---
@@ -79,9 +62,8 @@ include. For example, here only statistic and *p*-values are included:
 
 ```{r}
 #| label = "custom_expr"
-# setup
-set.seed(123)
-library(ggstatsplot)
+
+
 library(ggplot2)
 library(statsExpressions)
 
@@ -122,7 +104,7 @@ in a subtitle.
 
 ```{r}
 #| label = "null_subtitle"
-set.seed(123)
+
 df <- data.frame(x = 1, y = 2)
 ggscatterstats(df, x, y, type = "robust")
 ```
@@ -182,8 +164,6 @@ to have the same scale across the individual plots:
 #| label = "grouped_y_axes",
 #| fig.height = 6,
 #| fig.width = 8
-# for reproducibility
-set.seed(123)
 
 # provide a list of further `{ggplot2}` modifications using `ggplot.component`
 grouped_ggscatterstats(
@@ -207,8 +187,6 @@ graphics via `plotly.js`.
 The `{ggstatsplot}` functions are compatible with `plotly`.
  
 ```r
-# for reproducibility
-set.seed(123)
 library(plotly)
 
 # creating ggplot object with `{ggstatsplot}`
@@ -231,8 +209,8 @@ Here is an example-
 #| label = "grouped_2",
 #| fig.width = 6,
 #| fig.height = 6
-# setup
-set.seed(123)
+
+
 
 # creating a list by splitting data frame by combination of two different
 # grouping variables
@@ -268,7 +246,7 @@ combine_plots(
 #| label = "facet_expr",
 #| fig.width = 6,
 #| fig.height = 8
-set.seed(123)
+
 library(ggplot2)
 
 # data
@@ -309,7 +287,7 @@ Here is a workaround using `ggsignif`:
 #| label = "custom_pairwise",
 #| fig.width = 7,
 #| fig.height = 6
-set.seed(123)
+
 library(ggsignif)
 
 ## displaying only one comparison
@@ -339,7 +317,7 @@ You will have to customize them using `pairwiseComparisons` and `ggsignif:`
 
 ```{r}
 #| label = "comp_asterisks"
-set.seed(123)
+
 library(ggplot2)
 library(ggsignif)
 
@@ -350,7 +328,7 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE)
 
 # using `pairwise_comparisons()` function to create a data frame with results
-set.seed(123)
+
 (df <- pairwise_comparisons(mtcars, cyl, wt) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
   dplyr::arrange(group1) %>%
@@ -374,8 +352,7 @@ You can use the `extract_stats()` helper function for this.
 
 ```{r}
 #| label = "onesample_df"
-# setup
-set.seed(123)
+
 library(ggplot2)
 
 p <- ggpiestats(mtcars, am, cyl)
@@ -395,7 +372,7 @@ For example, let's say I want to remove the points from `ggwithintstats()` plot:
 #| label = "geom_removal",
 #| fig.width = 7,
 #| fig.height = 5
-library(ggstatsplot)
+
 
 # before
 ggwithinstats(
@@ -424,7 +401,7 @@ this case, you can also change the colors by manually specifying these values.
 
 ```{r}
 #| label = "ggbar_colors"
-set.seed(123)
+
 library(ggplot2)
 
 ggbarstats(mtcars, am, cyl, results.subtitle = FALSE) +
@@ -453,7 +430,7 @@ any other `ggplot` object. But exception to these are all plots returned by
 
 ```{r}
 #| label = "grouped_modify"
-set.seed(123)
+
 library(paletteer)
 library(ggplot2)
 
@@ -511,8 +488,7 @@ expression building function in `{statsExpressions}` is not stable yet.
 #| label = "custom_test",
 #| fig.width = 6,
 #| fig.height = 6
-## setup
-set.seed(123)
+
 library(correlation)
 library(statsExpressions)
 library(ggplot2)
@@ -554,7 +530,6 @@ can even mention this in the caption.
 Below is an example using `ggbetweenstats` function.
 
 ```r
-set.seed(123)
 library(shiny)
 library(rlang)
 

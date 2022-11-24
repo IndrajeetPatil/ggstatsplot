@@ -14,23 +14,13 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## pretty tibble printing
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
-  pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
-)
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
+source("../setup.R")
+```
+
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
 
 pkgs <- c(
   "gapminder"
@@ -41,8 +31,6 @@ if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
 } else {
   purrr::walk(pkgs, library, character.only = TRUE)
 }
-
-library(ggstatsplot)
 ```
 
 ---
@@ -104,9 +92,6 @@ The simplest way to get a correlation matrix is to stick to the defaults-
 #| label = "ggcorrmat1",
 #| fig.height = 6,
 #| fig.width = 6
-## setup
-set.seed(123)
-library(ggstatsplot)
 
 ## select data only from the year 2007
 gapminder_2007 <- dplyr::filter(gapminder::gapminder, year == 2007)
@@ -171,8 +156,8 @@ the price.
 #| label = "ggcorrmat3",
 #| fig.height = 7,
 #| fig.width = 7
-## for reproducibility
-set.seed(123)
+
+
 
 ## let's use just 5% of the data to speed it up
 ggcorrmat(
@@ -199,8 +184,8 @@ let's make the `price` column to the the first column.
 #| label = "ggcorrmat4",
 #| fig.height = 7,
 #| fig.width = 7
-## for reproducibility
-set.seed(123)
+
+
 
 ## let's use just 5% of the data to speed it up
 ggcorrmat(
@@ -248,8 +233,8 @@ manuscripts as tables.
 
 ```{r}
 #| label = "ggcorrmat5"
-## for reproducibility
-set.seed(123)
+
+
 
 ## to get correlations
 ggcorrmat(
@@ -267,8 +252,8 @@ return. Additionally, one can also carry out **partial** correlation analysis:
 
 ```{r}
 #| label = "ggcorrmat6"
-## for reproducibility
-set.seed(123)
+
+
 options(pillar.sigfig = 4)
 
 ## getting the correlation coefficient matrix
@@ -296,10 +281,10 @@ in a given study, groups in a study sample, different studies, etc.
 #| label = "ggcorrmat7",
 #| fig.height = 16,
 #| fig.width = 10
-## for reproducibility
-set.seed(123)
 
-## plot
+
+
+
 grouped_ggcorrmat(
   ## arguments relevant for `ggcorrmat`
   data = ggplot2::diamonds,
@@ -320,8 +305,8 @@ across different levels of a factor/grouping variable.
 
 ```{r}
 #| label = "ggcorrmat8"
-## for reproducibility
-set.seed(123)
+
+
 
 ## let's obtain correlation coefficients with their CIs
 grouped_ggcorrmat(

@@ -15,17 +15,12 @@ vignette: >
 #| label = "setup",
 #| include = FALSE
 
-# show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
+source("../setup.R")
+```
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
 
 pkgs <- c(
   "afex",
@@ -38,8 +33,6 @@ if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
 } else {
   purrr::walk(pkgs, library, character.only = TRUE)
 }
-
-library(ggstatsplot)
 ```
 
 ---
@@ -95,12 +88,7 @@ The simplest form of the function call is-
 #| label = "ggwithinstats1",
 #| fig.height = 6,
 #| fig.width = 8
-## since the confidence intervals for the effect sizes are computed using
-## bootstrapping, important to set a seed for reproducibility
-set.seed(123)
-library(ggstatsplot)
 
-## function call
 ggwithinstats(
   data = bugs_long,
   x = condition,
@@ -137,11 +125,7 @@ color palette in use.
 #| label = "ggwithinstats2",
 #| fig.height = 6,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
 
-## plot
 ggwithinstats(
   data = bugs_long,
   x = condition,
@@ -193,9 +177,6 @@ For example,
 #| label = "ggwithinstats3",
 #| fig.height = 14,
 #| fig.width = 14
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
 
 ## selecting subset of the data
 df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
@@ -284,9 +265,6 @@ pair of continents.
 #| label = "grouped1",
 #| fig.height = 14,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
 
 grouped_ggwithinstats(
   ## arguments relevant for ggwithinstats

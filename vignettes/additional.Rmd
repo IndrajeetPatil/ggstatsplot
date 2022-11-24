@@ -11,17 +11,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r}
-#| label = "setup",
-#| include = FALSE
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  comment = "#>"
-)
-```
-
 ## Additional vignettes
 
 Due to size constraints, all available vignettes are only available on the
@@ -93,4 +82,3 @@ For more exhaustive documentation for this package, see:
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-

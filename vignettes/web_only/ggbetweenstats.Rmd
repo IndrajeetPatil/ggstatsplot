@@ -40,8 +40,6 @@ if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
 } else {
   purrr::walk(pkgs, library, character.only = TRUE)
 }
-
-library(ggstatsplot)
 ```
 
 ---
@@ -104,11 +102,7 @@ The simplest form of the function call is-
 #| label = "ggbetweenstats1",
 #| fig.height = 6,
 #| fig.width = 8
-## since the confidence intervals for the effect sizes are computed using
-## bootstrapping, important to set a seed for reproducibility
-set.seed(123)
 
-## function call
 ggbetweenstats(
   data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
@@ -145,12 +139,7 @@ color palette in use.
 #| label = "ggbetweenstats2",
 #| fig.height = 6,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
-library(gapminder)
 
-## plot
 ggbetweenstats(
   data = dplyr::filter(gapminder, year == 2007, continent != "Oceania"),
   x = continent, ## grouping/independent variable
@@ -207,10 +196,6 @@ For example,
 #| label = "ggbetweenstats3",
 #| fig.height = 10,
 #| fig.width = 12
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
-library(gapminder)
 
 ## selecting subset of the data
 df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
@@ -307,8 +292,6 @@ every pair of continents.
 #| label = "grouped1",
 #| fig.height = 18,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
 
 ## select part of the dataset and use it for plotting
 gapminder::gapminder %>%
