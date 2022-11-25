@@ -401,7 +401,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.18.7",
+      "version": ">= 0.18.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -451,7 +451,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.10.0",
+      "version": ">= 0.10.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -521,7 +521,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9561.834KB",
+  "fileSize": "9555.347KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
