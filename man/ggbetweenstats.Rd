@@ -247,6 +247,20 @@ subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   box plot \tab \code{ggplot2::geom_boxplot()} \tab \code{NA} \cr
+   density plot \tab \code{ggplot2::geom_violin()} \tab \code{violin.args} \cr
+   centrality measure point \tab \code{ggplot2::geom_point()} \tab \code{centrality.point.args} \cr
+   centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
+   outlier point \tab \code{ggplot2::stat_boxplot()} \tab \code{NA} \cr
+   outlier label \tab \code{ggrepel::geom_label_repel()} \tab \code{outlier.label.args} \cr
+   pairwise comparisons \tab \code{ggsignif::geom_signif()} \tab \code{ggsignif.args} \cr
+}
+}
+
 \section{Centrality measures}{
 
 

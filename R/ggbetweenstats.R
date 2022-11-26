@@ -7,6 +7,11 @@
 #' between-subjects designs with statistical details included in the plot as a
 #' subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggbetweenstats_graphics.Rmd"}
+#' ```
+#'
 #' @param plot.type Character describing the *type* of plot. Currently supported
 #'   plots are `"box"` (for only boxplots), `"violin"` (for only violin plots),
 #'   and `"boxviolin"` (for a combination of box and violin plots; default).

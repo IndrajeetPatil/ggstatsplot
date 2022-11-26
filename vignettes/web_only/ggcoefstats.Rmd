@@ -97,25 +97,6 @@ also supported by `ggcoefstats`.
 insight::supported_models()
 ```
 
-## Summary of graphics
-
-graphical element | `geom_` used | argument for further modification 
---------- | ------- | -------------------------- 
-regression estimate | `ggplot2::geom_point`| `point.args` 
-error bars | `ggplot2::geom_errorbarh` | `errorbar.args` 
-vertical line | `ggplot2::geom_vline` | `vline.args` 
-label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
-
-## Summary of meta-analysis tests
-
-**Hypothesis testing** and **Effect size estimation**
-
-Type | Test | Effect size | CI? | Function used 
------------ | -------------------- | -------- | --- | -----
-Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor` 
-Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus` 
-Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `metaBMA::meta_random`
-
 ## Examples of supported models
 
 The following examples are organized by statistics type.
@@ -590,6 +571,11 @@ nlmod <- stats::nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 ggcoefstats(nlmod) %>% extract_stats()
 ```
 
+## Summary of graphics and tests
+
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+
 ## Not supported
 
 This vignette was supposed to give a comprehensive account of regression models
@@ -597,7 +583,7 @@ supported by `ggcoefstats`. The list of supported models will keep expanding as
 additional tidiers are added to the `parameters` and `performance` packages.
 
 Note that not **all** models supported in these packages will be supported by
-`ggcoefstats`. In particular, classes of objects for which there is no column
+`ggcoefstats()`. In particular, classes of objects for which there is no column
 for `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are
 not supported.
 

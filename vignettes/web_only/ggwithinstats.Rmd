@@ -307,66 +307,10 @@ See the associated vignette here:
 For independent measures designs, `ggbetweenstats` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
-## Summary of graphics
+## Summary of graphics and tests
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-raw data | `ggplot2::geom_point` | `point.args`
-point path | `ggplot2::geom_path` | `point.path.args`
-box plot | `ggplot2::geom_boxplot` | `boxplot.args`
-density plot | `ggplot2::geom_violin` | `violin.args`
-centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
-centrality measure point path | `ggplot2::geom_path` | `centrality.path.args`
-centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`
-outlier point | `ggplot2::stat_boxplot` | ❌
-outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
-pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
-
-## Summary of tests
-
-**Central tendency measure**
-
-Type | Measure | Function used
------------ | --------- | ------------------ 
-Parametric | mean | `datawizard::describe_distribution`
-Non-parametric | median | `datawizard::describe_distribution`
-Robust | trimmed mean | `datawizard::describe_distribution`
-Bayesian | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution`
-
-**Hypothesis testing**
-
-Type | No. of groups | Test | Function used
------------ | --- | ------------------------- | -----
-Parametric | > 2 | One-way repeated measures ANOVA | `afex::aov_ez`
-Non-parametric | > 2 | Friedman rank sum test | `stats::friedman.test`
-Robust | > 2 | Heteroscedastic one-way repeated measures ANOVA for trimmed means | `WRS2::rmanova`
-Bayes Factor | > 2 | One-way repeated measures ANOVA | `BayesFactor::anovaBF`
-Parametric | 2 | Student's *t*-test | `stats::t.test`
-Non-parametric | 2 | Wilcoxon signed-rank test | `stats::wilcox.test`
-Robust | 2 | Yuen's test on trimmed means for dependent samples | `WRS2::yuend`
-Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
-
-**Effect size estimation**
-
-Type | No. of groups | Effect size | CI? | Function used
------------ | --- | ------------------------- | --- | -----
-Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | ✅ | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $W_{Kendall}$ (Kendall's coefficient of concordance) | ✅ | `effectsize::kendalls_w`
-Robust | > 2 | $\delta_{R-avg}^{AKP}$ (Algina-Keselman-Penfield robust standardized difference average) | ✅ | `WRS2::wmcpAKP`
-Bayes Factor | > 2 | $R_{Bayesian}^2$ | ✅ | `performance::r2_bayes`
-Parametric | 2 | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | 2 |  $\delta_{R}^{AKP}$ (Algina-Keselman-Penfield robust standardized difference) | ✅ | `WRS2::wmcpAKP`
-Bayesian | 2 | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
-
-**Pairwise comparison tests**
-
-Type | Test | *p*-value adjustment? | Function used
------------ | ---------------------------- | --- | -----
-Parametric | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest` 
-Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
-Bayesian | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html>
 
 ## Reporting
 

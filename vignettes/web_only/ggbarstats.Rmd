@@ -299,52 +299,10 @@ out healthy only 4% were sick after a month. Ideally, we would have hoped for
 zero but reality is seldom perfect. On the other side of the 38 who started out
 sick that number has reduced to just 13 or 34% which is a marked improvement.
 
-## Summary of graphics
+## Summary of graphics and tests
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-bars | `ggplot2::geom_bar` | ❌
-descriptive labels | `ggplot2::geom_label` | `label.args`
-
-## Summary of tests
-
-**two-way table**
-
-**Hypothesis testing**
-
-Type | Design | Test | Function used
------------ | ----- | ------------------------- | -----
-Parametric/Non-parametric | Unpaired | Pearson's $\chi^2$ test | `stats::chisq.test`
-Bayesian | Unpaired | Bayesian Pearson's $\chi^2$ test | `BayesFactor::contingencyTableBF`
-Parametric/Non-parametric | Paired  | McNemar's $\chi^2$ test | `stats::mcnemar.test`
-Bayesian | Paired  | ❌ | ❌
-
-**Effect size estimation**
-
-Type | Design | Effect size | CI? | Function used
------------ | ----- | ------------------------- | --- | -----
-Parametric/Non-parametric | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-Bayesian | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-Parametric/Non-parametric | Paired | Cohen's $g$ | ✅ | `effectsize::cohens_g`
-Bayesian | Paired | ❌ | ❌ | ❌
-
-**one-way table**
-
-Currently not supported.
-
-<!-- **Hypothesis testing** -->
-
-<!-- Type | Test | Function used -->
-<!-- ----------- | ------------------------- | ----- -->
-<!-- Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test` -->
-<!-- Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom) -->
-
-<!-- **Effect size estimation** -->
-
-<!-- Type | Effect size | CI? | Function used -->
-<!-- ----------- | ------------------------- | --- | ----- -->
-<!-- Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c` -->
-<!-- Bayesian | ❌ | ❌ | ❌ -->
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
 
 ## Reporting
 

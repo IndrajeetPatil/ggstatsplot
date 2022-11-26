@@ -329,22 +329,10 @@ levels of the grouping variable. We will see how this can be done using the
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Summary of graphics
+## Summary of graphics and tests
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-correlation matrix | `ggcorrplot::ggcorrplot` | `ggcorrplot.args`
-
-## Summary of tests
-
-**Hypothesis testing** and **Effect size estimation**
-
-Type | Test | CI? | Function used
------------ | ------------------------- | --- | -----
-Parametric | Pearson's correlation coefficient | ✅ | `correlation::correlation`
-Non-parametric | Spearman's rank correlation coefficient | ✅ | `correlation::correlation`
-Robust | Winsorized Pearson correlation coefficient | ✅ | `correlation::correlation`
-Bayesian | Pearson's correlation coefficient | ✅ | `correlation::correlation`
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
 
 ## Suggestions
 

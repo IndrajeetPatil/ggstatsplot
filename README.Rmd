@@ -222,67 +222,10 @@ grouped_ggbetweenstats(
 
 Note here that the function can be used to tag outliers!
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-raw data | `ggplot2::geom_point` | `point.args`
-box plot | `ggplot2::geom_boxplot` | ❌
-density plot | `ggplot2::geom_violin` | `violin.args`
-centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
-centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`
-outlier point | `ggplot2::stat_boxplot` | ❌
-outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
-pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
-
-##### Summary of tests
-
-**Central tendency measure**
-
-Type | Measure | Function used
------------ | --------- | ------------------ 
-Parametric | mean | `datawizard::describe_distribution`
-Non-parametric | median | `datawizard::describe_distribution`
-Robust | trimmed mean | `datawizard::describe_distribution`
-Bayesian | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution`
-
-**Hypothesis testing**
-
-Type | No. of groups | Test | Function used
------------ | --- | ------------------------- | -----
-Parametric | > 2 | Fisher's or Welch's one-way ANOVA | `stats::oneway.test`
-Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA | `stats::kruskal.test`
-Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`
-Bayes Factor | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
-Parametric | 2 | Student's or Welch's *t*-test | `stats::t.test`
-Non-parametric | 2 | Mann–Whitney *U* test | `stats::wilcox.test`
-Robust | 2 |  Yuen's test for trimmed means | `WRS2::yuen`
-Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
-
-**Effect size estimation**
-
-Type | No. of groups | Effect size | CI? | Function used
------------ | --- | ------------------------- | --- | -----
-Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | ✅ | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | ✅ | `effectsize::rank_epsilon_squared`
-Robust | > 2 | $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::t1way`
-Bayes Factor | > 2 | $R_{posterior}^2$ | ✅ | `performance::r2_bayes`
-Parametric | 2 | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | 2 |  $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::yuen.effect.ci`
-Bayesian | 2 | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
-
-**Pairwise comparison tests**
-
-Type | Equal variance? | Test | *p*-value adjustment? | Function used
------------ | --- | ------------------------- | --- | -----
-Parametric | No | Games-Howell test | ✅ | `PMCMRplus::gamesHowellTest`
-Parametric | Yes | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
-Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
-Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
-
-For more, see the `ggbetweenstats()` vignette:
+For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ### `ggwithinstats()`
