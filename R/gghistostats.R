@@ -6,6 +6,11 @@
 #' Histogram with statistical details from one-sample test included in the plot
 #' as a subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```
+#'
 #' @param ... Currently ignored.
 #' @param normal.curve A logical value that decides whether to super-impose a
 #'   normal curve using `stats::dnorm(mean(x), sd(x))`. Default is `FALSE`.

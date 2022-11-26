@@ -306,13 +306,15 @@ Details about underlying functions used to create graphics and statistical tests
 
 ## Reporting
 
-```{r child="../../man/rmd-fragments/reporting.Rmd"}
+```{r child="reporting.Rmd"}
 ```
 
 For example, let's see the following example:
 
 ```{r}
-#| label = "reporting"
+#| label = "reporting",
+#| fig.height = 6,
+#| fig.width = 8
 ggbarstats(mtcars, am, cyl)
 ```
 
