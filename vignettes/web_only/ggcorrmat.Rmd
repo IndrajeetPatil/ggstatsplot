@@ -157,8 +157,6 @@ the price.
 #| fig.height = 7,
 #| fig.width = 7
 
-
-
 ## let's use just 5% of the data to speed it up
 ggcorrmat(
   data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
@@ -184,8 +182,6 @@ let's make the `price` column to the the first column.
 #| label = "ggcorrmat4",
 #| fig.height = 7,
 #| fig.width = 7
-
-
 
 ## let's use just 5% of the data to speed it up
 ggcorrmat(
@@ -234,8 +230,6 @@ manuscripts as tables.
 ```{r}
 #| label = "ggcorrmat5"
 
-
-
 ## to get correlations
 ggcorrmat(
   data = dplyr::sample_frac(ggplot2::txhousing, size = 0.15),
@@ -252,8 +246,6 @@ return. Additionally, one can also carry out **partial** correlation analysis:
 
 ```{r}
 #| label = "ggcorrmat6"
-
-
 options(pillar.sigfig = 4)
 
 ## getting the correlation coefficient matrix
@@ -282,9 +274,6 @@ in a given study, groups in a study sample, different studies, etc.
 #| fig.height = 16,
 #| fig.width = 10
 
-
-
-
 grouped_ggcorrmat(
   ## arguments relevant for `ggcorrmat`
   data = ggplot2::diamonds,
@@ -305,8 +294,6 @@ across different levels of a factor/grouping variable.
 
 ```{r}
 #| label = "ggcorrmat8"
-
-
 
 ## let's obtain correlation coefficients with their CIs
 grouped_ggcorrmat(

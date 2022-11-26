@@ -339,14 +339,8 @@ Details about underlying functions used to create graphics and statistical tests
 
 ## Reporting
 
-If you wish to include statistical analysis results in a publication/report, the
-ideal reporting practice will be a hybrid of two approaches:
-
-- the `{ggstatsplot}` approach, where the plot contains both the visual and
-numerical summaries about a statistical model, and
-
-- the *standard* narrative approach, which provides interpretive context for the
-reported statistics.
+```{r child="../../man/rmd-fragments/reporting.Rmd"}
+```
 
 For example, let's see the following example:
 

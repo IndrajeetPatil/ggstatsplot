@@ -60,9 +60,6 @@ Let's say we want to visualize the distribution of mileage by car manufacturer.
 #| fig.height = 7,
 #| fig.width = 9
 
-
-
-
 ## removing factor level with very few no. of observations
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
@@ -73,7 +70,6 @@ paletter_vector <-
     n = nlevels(as.factor(df$manufacturer)),
     type = "discrete"
   )
-
 
 ggdotplotstats(
   data = df,
@@ -111,11 +107,8 @@ task.
 #| fig.height = 12,
 #| fig.width = 7
 
-
-
 ## removing factor level with very few no. of observations
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
-
 
 grouped_ggdotplotstats(
   ## arguments relevant for ggdotplotstats
@@ -153,14 +146,8 @@ Details about underlying functions used to create graphics and statistical tests
 
 ## Reporting
 
-If you wish to include statistical analysis results in a publication/report, the
-ideal reporting practice will be a hybrid of two approaches:
-
-- the `{ggstatsplot}` approach, where the plot contains both the visual and
-numerical summaries about a statistical model, and
-
-- the *standard* narrative approach, which provides interpretive context for the
-reported statistics.
+```{r child="../../man/rmd-fragments/reporting.Rmd"}
+```
 
 For example, let's see the following example:
 
