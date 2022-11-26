@@ -7,6 +7,11 @@
 #' confidence interval whiskers and other statistical details included as
 #' labels.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggcoefstats_graphics.Rmd"}
+#' ```
+#'
 #' @param x A model object to be tidied, or a tidy data frame from a regression
 #'   model. Function internally uses `parameters::model_parameters()` to get a
 #'   tidy data frame. If a data frame, it *must* contain at the minimum two

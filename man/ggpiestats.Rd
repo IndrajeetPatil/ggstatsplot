@@ -161,6 +161,14 @@ as a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   pie slices \tab \code{ggplot2::geom_col()} \tab \code{NA} \cr
+   labels \tab \code{ggplot2::geom_label()}/\code{ggrepel::geom_label_repel()} \tab \code{label.args} \cr
+}
+}
+
 \section{Contingency table analyses}{
 
 

@@ -5,6 +5,11 @@
 #' Pie charts for categorical data with statistical details included in the plot
 #' as a subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggpiestats_graphics.Rmd"}
+#' ```
+#'
 #' @param x The variable to use as the **rows** in the contingency table. Please
 #'   note that if there are empty factor levels in your variable, they will be
 #'   dropped.

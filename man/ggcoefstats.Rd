@@ -165,6 +165,16 @@ is recommended that you install development versions of \code{{easystats}}
 packages using the \code{install_latest()} function from \code{{easystats}}.
 }
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   regression estimate \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
+   vertical line \tab \code{ggplot2::geom_vline()} \tab \code{vline.args} \cr
+   label with statistical details \tab \code{ggrepel::geom_label_repel()} \tab \code{stats.label.args} \cr
+}
+}
+
 \section{Random-effects meta-analysis}{
 
 

@@ -1,0 +1,6 @@
+| graphical element              | `geom` used                   | argument for further modification |
+| :----------------------------- | :---------------------------- | :-------------------------------- |
+| regression estimate            | `ggplot2::geom_point()`       | `point.args`                      |
+| error bars                     | `ggplot2::geom_errorbarh()`   | `errorbar.args`                   |
+| vertical line                  | `ggplot2::geom_vline()`       | `vline.args`                      |
+| label with statistical details | `ggrepel::geom_label_repel()` | `stats.label.args`                |

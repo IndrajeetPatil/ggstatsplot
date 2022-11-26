@@ -464,10 +464,10 @@ grouped_ggscatterstats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggdscatterstats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdscatterstats.html>
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 
 ### `ggcorrmat`
 
@@ -581,52 +581,10 @@ grouped_ggpiestats(
 )
 ```
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html>
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-pie slices | `ggplot2::geom_col` | ❌
-descriptive labels | `ggplot2::geom_label`/`ggrepel::geom_label_repel` | `label.args`
-
-##### Summary of tests
-
-**two-way table**
-
-**Hypothesis testing**
-
-Type | Design | Test | Function used
------------ | ----- | ------------------------- | -----
-Parametric/Non-parametric | Unpaired | Pearson's $\chi^2$ test | `stats::chisq.test`
-Bayesian | Unpaired | Bayesian Pearson's $\chi^2$ test | `BayesFactor::contingencyTableBF`
-Parametric/Non-parametric | Paired  | McNemar's $\chi^2$ test | `stats::mcnemar.test`
-Bayesian | Paired  | ❌ | ❌
-
-**Effect size estimation**
-
-Type | Design | Effect size | CI? | Function used
------------ | ----- | ------------------------- | --- | -----
-Parametric/Non-parametric | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-Bayesian | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-Parametric/Non-parametric | Paired | Cohen's $g$ | ✅ | `effectsize::cohens_g`
-Bayesian | Paired | ❌ | ❌ | ❌
-
-**one-way table**
-
-**Hypothesis testing**
-
-Type | Test | Function used
------------ | ------------------------- | -----
-Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test`
-Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
-
-**Effect size estimation**
-
-Type | Effect size | CI? | Function used
------------ | ------------------------- | --- | -----
-Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
-Bayesian | ❌ | ❌ | ❌
-
-For more, see the `ggpiestats()` vignette:
+For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ### `ggbarstats()`
@@ -685,50 +643,11 @@ grouped_ggbarstats(
 )
 ```
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-bars | `ggplot2::geom_bar` | ❌
-descriptive labels | `ggplot2::geom_label` | `label.args`
-
-##### Summary of tests
-
-**two-way table**
-
-**Hypothesis testing**
-
-Type | Design | Test | Function used
------------ | ----- | ------------------------- | -----
-Parametric/Non-parametric | Unpaired | Pearson's $\chi^2$ test | `stats::chisq.test`
-Bayesian | Unpaired | Bayesian Pearson's $\chi^2$ test | `BayesFactor::contingencyTableBF`
-Parametric/Non-parametric | Paired  | McNemar's $\chi^2$ test | `stats::mcnemar.test`
-Bayesian | Paired  | ❌ | ❌
-
-**Effect size estimation**
-
-Type | Design | Effect size | CI? | Function used
------------ | ----- | ------------------------- | --- | -----
-Parametric/Non-parametric | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-Bayesian | Unpaired | Cramer's $V$ | ✅ | `effectsize::cramers_v`
-Parametric/Non-parametric | Paired | Cohen's $g$ | ✅ | `effectsize::cohens_g`
-Bayesian | Paired | ❌ | ❌ | ❌
-
-**one-way table**
-
-**Hypothesis testing**
-
-Type | Test | Function used
------------ | ------------------------- | -----
-Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test`
-Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom)
-
-**Effect size estimation**
-
-Type | Effect size | CI? | Function used
------------ | ------------------------- | --- | -----
-Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c`
-Bayesian | ❌ | ❌ | ❌
+For more, also read the following vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ### `ggcoefstats()`
 
@@ -792,26 +711,10 @@ insight::supported_models()
 Although not shown here, this function can also be used to carry out parametric,
 robust, and Bayesian random-effects meta-analysis.
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html>
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-regression estimate | `ggplot2::geom_point` | `point.args`
-error bars | `ggplot2::geom_errorbarh` | `errorbar.args`
-vertical line | `ggplot2::geom_vline` | `vline.args`
-label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
-
-##### Summary of meta-analysis tests
-
-**Hypothesis testing** and **Effect size estimation**
-
-Type | Test | Effect size | CI? | Function used
------------ | -------------------- | -------- | ---  | -----
-Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor`
-Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus`
-Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `metaBMA::meta_random`
-
-For a more exhaustive account of this function, see the associated vignette-
+For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ### Extracting data frames with statistical details

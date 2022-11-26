@@ -6,6 +6,11 @@
 #' Bar charts for categorical data with statistical details included in the plot
 #' as a subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggbarstats_graphics.Rmd"}
+#' ```
+#'
 #' @inheritParams ggpiestats
 #' @inheritParams ggbetweenstats
 #'
