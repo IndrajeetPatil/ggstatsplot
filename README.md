@@ -334,45 +334,12 @@ grouped_gghistostats(
 
 <img src="man/figures/README-gghistostats2-1.png" width="100%" />
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and
+statistical tests carried out can be found in the function
+documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
 
-| graphical element       | `geom_` used             | argument for further modification |
-|-------------------------|--------------------------|-----------------------------------|
-| histogram bin           | `ggplot2::stat_bin`      | `bin.args`                        |
-| centrality measure line | `ggplot2::geom_vline`    | `centrality.line.args`            |
-| normality curve         | `ggplot2::stat_function` | `normal.curve.args`               |
-
-##### Summary of tests
-
-**Central tendency measure**
-
-| Type           | Measure                                           | Function used                       |
-|----------------|---------------------------------------------------|-------------------------------------|
-| Parametric     | mean                                              | `datawizard::describe_distribution` |
-| Non-parametric | median                                            | `datawizard::describe_distribution` |
-| Robust         | trimmed mean                                      | `datawizard::describe_distribution` |
-| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution` |
-
-**Hypothesis testing**
-
-| Type           | Test                                     | Function used          |
-|----------------|------------------------------------------|------------------------|
-| Parametric     | One-sample Student’s *t*-test            | `stats::t.test`        |
-| Non-parametric | One-sample Wilcoxon test                 | `stats::wilcox.test`   |
-| Robust         | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`       |
-| Bayesian       | One-sample Student’s *t*-test            | `BayesFactor::ttestBF` |
-
-**Effect size estimation**
-
-| Type           | Effect size                     | CI? | Function used                                  |
-|----------------|---------------------------------|-----|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*        | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r* (rank-biserial correlation) | ✅  | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                    | ✅  | `WRS2::trimcibt`                               |
-| Bayes Factor   | $\delta_{posterior}$            | ✅  | `bayestestR::describe_posterior`               |
-
-For more, including information about the variant of this function
-`grouped_gghistostats()`, see the `gghistostats()` vignette:
+For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 
 ### `ggdotplotstats()`
@@ -425,41 +392,13 @@ grouped_ggdotplotstats(
 
 <img src="man/figures/README-ggdotplotstats2-1.png" width="100%" />
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and
+statistical tests carried out can be found in the function
+documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html>
 
-| graphical element       | `geom_` used          | argument for further modification |
-|-------------------------|-----------------------|-----------------------------------|
-| raw data                | `ggplot2::geom_point` | `point.args`                      |
-| centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`            |
-
-##### Summary of tests
-
-**Central tendency measure**
-
-| Type           | Measure                                           | Function used                       |
-|----------------|---------------------------------------------------|-------------------------------------|
-| Parametric     | mean                                              | `datawizard::describe_distribution` |
-| Non-parametric | median                                            | `datawizard::describe_distribution` |
-| Robust         | trimmed mean                                      | `datawizard::describe_distribution` |
-| Bayesian       | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution` |
-
-**Hypothesis testing**
-
-| Type           | Test                                     | Function used          |
-|----------------|------------------------------------------|------------------------|
-| Parametric     | One-sample Student’s *t*-test            | `stats::t.test`        |
-| Non-parametric | One-sample Wilcoxon test                 | `stats::wilcox.test`   |
-| Robust         | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`       |
-| Bayesian       | One-sample Student’s *t*-test            | `BayesFactor::ttestBF` |
-
-**Effect size estimation**
-
-| Type           | Effect size                     | CI? | Function used                                  |
-|----------------|---------------------------------|-----|------------------------------------------------|
-| Parametric     | Cohen’s *d*, Hedge’s *g*        | ✅  | `effectsize::cohens_d`, `effectsize::hedges_g` |
-| Non-parametric | *r* (rank-biserial correlation) | ✅  | `effectsize::rank_biserial`                    |
-| Robust         | trimmed mean                    | ✅  | `WRS2::trimcibt`                               |
-| Bayes Factor   | $\delta_{posterior}$            | ✅  | `bayestestR::describe_posterior`               |
+For more, also read the following vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 
 ### `ggscatterstats()`
 
@@ -508,28 +447,13 @@ grouped_ggscatterstats(
 
 <img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and
+statistical tests carried out can be found in the function
+documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggdscatterstats.html>
 
-| graphical element   | `geom_` used                                                 | argument for further modification            |
-|---------------------|--------------------------------------------------------------|----------------------------------------------|
-| raw data            | `ggplot2::geom_point`                                        | `point.args`                                 |
-| labels for raw data | `ggrepel::geom_label_repel`                                  | `point.label.args`                           |
-| smooth line         | `ggplot2::geom_smooth`                                       | `smooth.line.args`                           |
-| marginal histograms | `ggside::geom_xsidehistogram`, `ggside::geom_ysidehistogram` | `xsidehistogram.args`, `ysidehistogram.args` |
-
-##### Summary of tests
-
-**Hypothesis testing** and **Effect size estimation**
-
-| Type           | Test                                       | CI? | Function used              |
-|----------------|--------------------------------------------|-----|----------------------------|
-| Parametric     | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient    | ✅  | `correlation::correlation` |
-| Robust         | Winsorized Pearson correlation coefficient | ✅  | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
-
-For more, see the `ggscatterstats()` vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
+For more, also read the following vignette:
+<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdscatterstats.html>
 
 ### `ggcorrmat`
 
@@ -579,24 +503,12 @@ grouped_ggcorrmat(
 
 <img src="man/figures/README-ggcorrmat2-1.png" width="100%" />
 
-##### Summary of graphics
+Details about underlying functions used to create graphics and
+statistical tests carried out can be found in the function
+documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html>
 
-| graphical element  | `geom_` used             | argument for further modification |
-|--------------------|--------------------------|-----------------------------------|
-| correlation matrix | `ggcorrplot::ggcorrplot` | `ggcorrplot.args`                 |
-
-##### Summary of tests
-
-**Hypothesis testing** and **Effect size estimation**
-
-| Type           | Test                                       | CI? | Function used              |
-|----------------|--------------------------------------------|-----|----------------------------|
-| Parametric     | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
-| Non-parametric | Spearman’s rank correlation coefficient    | ✅  | `correlation::correlation` |
-| Robust         | Winsorized Pearson correlation coefficient | ✅  | `correlation::correlation` |
-| Bayesian       | Pearson’s correlation coefficient          | ✅  | `correlation::correlation` |
-
-For examples and more information, see the `ggcorrmat` vignette:
+For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 
 ### `ggpiestats()`

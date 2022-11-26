@@ -6,6 +6,11 @@
 #' Scatterplots from `{ggplot2}` combined with marginal densigram (density +
 #' histogram) plots with statistical details.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```
+#'
 #' @param ... Currently ignored.
 #' @param label.var Variable to use for points labels entered as a symbol (e.g.
 #'   `var1`).

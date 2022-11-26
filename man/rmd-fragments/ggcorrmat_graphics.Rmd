@@ -1,0 +1,3 @@
+| graphical element  | `geom` used                | argument for further modification |
+| :----------------- | :------------------------- | :-------------------------------- |
+| correlation matrix | `ggcorrplot::ggcorrplot()` | `ggcorrplot.args`                 |

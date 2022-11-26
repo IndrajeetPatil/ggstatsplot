@@ -4,9 +4,12 @@
 #' @description
 #'
 #' Correlation matrix or a data frame containing results from pairwise
-#' correlation tests. The package internally uses `ggcorrplot::ggcorrplot()` for
-#' creating the visualization matrix, while the correlation analysis is carried
-#' out using the `correlation::correlation()` function.
+#' correlation tests.
+#'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggcorrmat_graphics.Rmd"}
+#' ```
 #'
 #' @param ... Currently ignored.
 #' @param data Dataframe from which variables specified are preferentially to be

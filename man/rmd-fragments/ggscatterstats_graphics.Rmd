@@ -1,0 +1,6 @@
+| graphical element   | `geom` used                                                      | argument for further modification            |
+| :------------------ | :--------------------------------------------------------------- | :------------------------------------------- |
+| raw data            | `ggplot2::geom_point()`                                          | `point.args`                                 |
+| labels for raw data | `ggrepel::geom_label_repel()`                                    | `point.label.args`                           |
+| smooth line         | `ggplot2::geom_smooth()`                                         | `smooth.line.args`                           |
+| marginal histograms | `ggside::geom_xsidehistogram()`, `ggside::geom_ysidehistogram()` | `xsidehistogram.args`, `ysidehistogram.args` |

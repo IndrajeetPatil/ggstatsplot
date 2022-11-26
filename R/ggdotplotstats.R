@@ -6,6 +6,11 @@
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```
+#'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
 #' @param point.args A list of additional aesthetic arguments passed to

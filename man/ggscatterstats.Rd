@@ -162,6 +162,15 @@ from over-lapping to the largest degree possible. As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   histogram bin \tab \code{ggplot2::stat_bin()} \tab \code{bin.args} \cr
+   centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
+   normality curve \tab \code{ggplot2::stat_function()} \tab \code{normal.curve.args} \cr
+}
+}
+
 \section{Correlation analyses}{
 
 
