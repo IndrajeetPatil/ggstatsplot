@@ -7,6 +7,11 @@
 #' for within-subjects designs with statistical details included in the plot as
 #' a subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggwithinstats_graphics.Rmd"}
+#' ```
+#'
 #' @inheritParams ggbetweenstats
 #' @param point.path,centrality.path Logical that decides whether individual data
 #'   points and means, respectively, should be connected using `geom_path`. Both
