@@ -440,10 +440,16 @@ Not supported.
 set.seed(123)
 library(PMCMRplus) # for pairwise comparisons
 
-# simple function call with the defaults
-ggbetweenstats(mtcars, am, mpg)
+# create a plot
+p <- ggbetweenstats(mtcars, am, mpg)
 
-# more detailed function call
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
+
+# modifying defaults
 ggbetweenstats(
   morley,
   x               = Expt,

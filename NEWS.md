@@ -20,7 +20,7 @@ MAJOR CHANGES
   can specify all aesthetic modifications for side histograms in scatter plot
   using `xsidehistogram.args` and `ysidehistogram.args` arguments.
 
-- Updates to changes made in the latest (`3.4.0`) `{ggplot2}` release.
+- Updates to changes made in the latest `{ggplot2}` release (`3.4.0`).
 
 # ggstatsplot 0.9.5
 

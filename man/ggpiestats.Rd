@@ -225,10 +225,16 @@ The table below provides summary about:
 set.seed(123)
 
 # one sample goodness of fit proportion test
-ggpiestats(mtcars, x = vs)
+p <- ggpiestats(mtcars, vs)
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 
 # association test (or contingency table analysis)
-ggpiestats(mtcars, x = vs, y = cyl)
+ggpiestats(mtcars, vs, cyl)
 }
 }
 \seealso{

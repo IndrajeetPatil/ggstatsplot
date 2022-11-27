@@ -31,14 +31,20 @@
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # plot
-#' ggdotplotstats(
+#' # creating a plot
+#' p <- ggdotplotstats(
 #'   data = ggplot2::mpg,
 #'   x = cty,
 #'   y = manufacturer,
 #'   title = "Fuel economy data",
 #'   xlab = "city miles per gallon"
 #' )
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
 #' }
 #' @export
 ggdotplotstats <- function(data,

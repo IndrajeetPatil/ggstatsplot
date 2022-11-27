@@ -43,15 +43,22 @@
 #' set.seed(123)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # two-samples test
-#' ggwithinstats(
+#' # create a plot
+#' p <- ggwithinstats(
 #'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x    = condition,
 #'   y    = desire,
 #'   type = "np"
 #' )
 #'
-#' # ANOVA
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
+#'
+#' # modifying defaults
 #' ggwithinstats(
 #'   data            = bugs_long,
 #'   x               = condition,

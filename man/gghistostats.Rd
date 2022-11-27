@@ -209,13 +209,19 @@ The table below provides summary about:
 # for reproducibility
 set.seed(123)
 
-# using defaults, but modifying which centrality parameter is to be shown
-gghistostats(
+# creating a plot
+p <- gghistostats(
   data            = ToothGrowth,
   x               = len,
   xlab            = "Tooth length",
   centrality.type = "np"
 )
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 }
 }
 \seealso{

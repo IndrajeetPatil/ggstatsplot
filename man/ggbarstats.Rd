@@ -228,8 +228,14 @@ The table below provides summary about:
 # for reproducibility
 set.seed(123)
 
-# association test (or contingency table analysis)
-ggbarstats(mtcars, x = vs, y = cyl)
+# creating a plot
+p <- ggbarstats(mtcars, x = vs, y = cyl)
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 }
 }
 \seealso{

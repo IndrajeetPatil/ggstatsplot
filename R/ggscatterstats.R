@@ -57,10 +57,10 @@
 #'
 #' @examplesIf requireNamespace("ggside", quietly = TRUE)
 #' set.seed(123)
-#' library(ggside) # for marginals
+#' library(ggside) # for plotting marginals
 #'
-#' # simple function call with the defaults
-#' ggscatterstats(
+#' # creating a plot
+#' p <- ggscatterstats(
 #'   iris,
 #'   x = Sepal.Width,
 #'   y = Petal.Length,
@@ -68,6 +68,14 @@
 #'   label.expression = Sepal.Length > 7.6
 #' ) +
 #'   ggplot2::geom_rug(sides = "b")
+#'
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
+#'
 #' @export
 ggscatterstats <- function(data,
                            x,

@@ -195,10 +195,10 @@ The table below provides summary about:
 \examples{
 \dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
-library(ggside) # for marginals
+library(ggside) # for plotting marginals
 
-# simple function call with the defaults
-ggscatterstats(
+# creating a plot
+p <- ggscatterstats(
   iris,
   x = Sepal.Width,
   y = Petal.Length,
@@ -206,6 +206,13 @@ ggscatterstats(
   label.expression = Sepal.Length > 7.6
 ) +
   ggplot2::geom_rug(sides = "b")
+
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
