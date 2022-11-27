@@ -4,8 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="ggstatsplot">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ggbarstats • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -13,103 +12,133 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../../deps/Roboto-0.4.2/font.css" rel="stylesheet">
-<link href="../../deps/JetBrains_Mono-0.4.2/font.css" rel="stylesheet">
-<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="ggbarstats">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../pkgdown.js"></script><meta property="og:title" content="ggbarstats">
 <meta property="og:description" content="ggstatsplot">
-<meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:creator" content="@patilindrajeets">
-<meta name="twitter:site" content="@patilindrajeets">
+<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
-    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+<body data-spy="scroll" data-target="#toc">
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
-    <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
+    <div class="container template-article">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../../index.html">ggstatsplot</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.0</span>
+      </span>
+    </div>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.5.9000</small>
-
-    
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../../articles/ggstatsplot.html">Get started</a>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+<li>
+  <a href="../../articles/ggstatsplot.html">Get started</a>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../../reference/index.html">Reference</a>
+<li>
+  <a href="../../reference/index.html">Reference</a>
 </li>
-<li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <h6 class="dropdown-header" data-toc-skip>Primary functions</h6>
-    <a class="dropdown-item" href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
-    <a class="dropdown-item" href="../../articles/web_only/gghistostats.html">gghistostats</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggbarstats.html">ggbarstats</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
-    <a class="dropdown-item" href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
-    <a class="dropdown-item" href="../../articles/additional.html">Additional vignettes</a>
-    <a class="dropdown-item" href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    <a class="dropdown-item" href="../../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
-    <a class="dropdown-item" href="../../articles/web_only/purrr_examples.html">using 'ggstatsplot' with the 'purrr' package</a>
-    <a class="dropdown-item" href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-  </div>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../../articles/additional.html">Additional vignettes</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggbarstats.html">ggbarstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/purrr_examples.html">Using '{ggstatsplot}' with the '{purrr}' package</a>
+    </li>
+    <li>
+      <a href="../../articles/web_only/reporting.html">UNKNOWN TITLE</a>
+    </li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../../news/index.html">Changelog</a>
+<li>
+  <a href="../../news/index.html">Changelog</a>
 </li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/IndrajeetPatil/ggstatsplot/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
 </div>
-
-    
+<!--/.nav-collapse -->
   </div>
-</nav><div class="container template-article">
+<!--/.container -->
+</div>
+<!--/.navbar -->
 
+      
 
-
-
-<div class="row">
-  <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../../logo.png" class="logo" alt=""><h1>ggbarstats</h1>
+      </header><div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header toc-ignore">
+      <h1 data-toc-skip>ggbarstats</h1>
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2022-11-05</h4>
+            <h4 data-toc-skip class="date">2022-11-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggbarstats.Rmd" class="external-link"><code>vignettes/web_only/ggbarstats.Rmd</code></a></small>
-      <div class="d-none name"><code>ggbarstats.Rmd</code></div>
+      <div class="hidden name"><code>ggbarstats.Rmd</code></div>
+
     </div>
 
     
@@ -171,7 +200,7 @@ one column containing counts. This vignette provides examples of both
 <p>To help demonstrate how <code>ggbarstats</code> can be used with
 categorical (also known as nominal) data, a modified version of the
 original <code>Titanic</code> dataset (from the <code>datasets</code>
-library) has been provided in the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package
+library) has been provided in the <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> package
 with the name <code>Titanic_full</code>. The Titanic Passenger Survival
 Dataset provides information “on the fate of passengers on the fatal
 maiden voyage of the ocean liner <em>Titanic</em>, including economic
@@ -179,7 +208,6 @@ status (class), sex, age, and survival.”</p>
 <p>Let’s have a look at the structure of both.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># looking at the original data in tabular format</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
@@ -209,9 +237,6 @@ status (class), sex, age, and survival.”</p>
 <!-- or did not survive. Our initial hypothesis is that it was no different than -->
 <!-- flipping a coin. People had a 50/50 chance of surviving. -->
 <!-- ```{r ggbarstats3, fig.height = 5, fig.width = 6} -->
-<!-- #  for reproducibility -->
-<!-- set.seed(123) -->
-<!-- # plot -->
 <!-- ggbarstats( -->
 <!--   data = Titanic_full, -->
 <!--   x = Survived, -->
@@ -233,11 +258,7 @@ of, or associated with, their survival status, i.e., we want to test
 whether the proportion of people who survived was different between the
 sexes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># for reproducibility</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## plot</span></span>
-<span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">Sex</span></span>
@@ -256,7 +277,7 @@ indicated by a goodness of fit test for each gender.</p>
 the passenger’s age (Age)? We have information that classifies the
 passengers as Child or Adult, perhaps that makes a difference to their
 survival rate?</p>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides a special helper function for
+<p><a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> provides a special helper function for
 such instances: <code>grouped_ggbarstats</code>. It is a convenient
 wrapper function around <code>combine_plots</code>. It applies
 <code>ggbarstats</code> across all <strong>levels</strong> of a
@@ -265,11 +286,7 @@ of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># for reproducibility</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># plot</span></span>
-<span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span></span>
 <span>  <span class="co"># arguments relevant for `ggbarstats()`</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -299,7 +316,7 @@ explore the data, it leaves much to be desired. For example, we may want
 to add different captions, titles, themes, or palettes for each level of
 the grouping variable, etc. For cases like these, it would be better to
 use <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
-<p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
+<p>See the associated vignette here: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="working-with-data-organized-by-counts">Working with data organized by <code>counts</code><a class="anchor" aria-label="anchor" href="#working-with-data-organized-by-counts"></a>
@@ -313,10 +330,7 @@ fish they caught in the months of <code>February</code> and
 <code>March</code>. In this data frame, each row corresponds to a unique
 combination of <code>Boat</code> and <code>Month</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## for reproducibility</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># creating a data frame</span></span>
+<code class="sourceCode R"><span><span class="co"># creating a data frame</span></span>
 <span><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
 <span><span class="op">(</span></span>
 <span>  <span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
@@ -403,10 +417,7 @@ results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set
 <code>paired = TRUE</code>, the results will be inaccurate.)</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># for reproducibility</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># create our imaginary data</span></span>
+<code class="sourceCode R"><span><span class="co"># create imaginary data</span></span>
 <span><span class="va">clinical_trial</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">SickBefore</span>, <span class="op">~</span><span class="va">SickAfter</span>, <span class="op">~</span><span class="va">Counts</span>,</span>
 <span>  <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="fl">4</span>,</span>
@@ -415,7 +426,6 @@ results from <strong>McNemar test</strong> in the subtitle.</p>
 <span>  <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="fl">92</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># plot</span></span>
 <span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">clinical_trial</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">SickAfter</span>,</span>
@@ -435,137 +445,11 @@ the 38 who started out sick that number has reduced to just 13 or 34%
 which is a marked improvement.</p>
 </div>
 <div class="section level2">
-<h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a>
+<h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<table class="table">
-<thead><tr class="header">
-<th>graphical element</th>
-<th>
-<code>geom_</code> used</th>
-<th>argument for further modification</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>bars</td>
-<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_bar</a></code></td>
-<td>❌</td>
-</tr>
-<tr class="even">
-<td>descriptive labels</td>
-<td><code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label</a></code></td>
-<td><code>label.args</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level2">
-<h2 id="summary-of-tests">Summary of tests<a class="anchor" aria-label="anchor" href="#summary-of-tests"></a>
-</h2>
-<p><strong>two-way table</strong></p>
-<p><strong>Hypothesis testing</strong></p>
-<table class="table">
-<colgroup>
-<col width="23%">
-<col width="10%">
-<col width="54%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Design</th>
-<th>Test</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric/Non-parametric</td>
-<td>Unpaired</td>
-<td>Pearson’s <span class="math inline">\(\chi^2\)</span> test</td>
-<td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>Unpaired</td>
-<td>Bayesian Pearson’s <span class="math inline">\(\chi^2\)</span>
-test</td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF</a></code></td>
-</tr>
-<tr class="odd">
-<td>Parametric/Non-parametric</td>
-<td>Paired</td>
-<td>McNemar’s <span class="math inline">\(\chi^2\)</span> test</td>
-<td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>Paired</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Effect size estimation</strong></p>
-<table class="table">
-<colgroup>
-<col width="22%">
-<col width="10%">
-<col width="51%">
-<col width="6%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Design</th>
-<th>Effect size</th>
-<th>CI?</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric/Non-parametric</td>
-<td>Unpaired</td>
-<td>Cramer’s <span class="math inline">\(V\)</span>
-</td>
-<td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>Unpaired</td>
-<td>Cramer’s <span class="math inline">\(V\)</span>
-</td>
-<td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v</a></code></td>
-</tr>
-<tr class="odd">
-<td>Parametric/Non-parametric</td>
-<td>Paired</td>
-<td>Cohen’s <span class="math inline">\(g\)</span>
-</td>
-<td>✅</td>
-<td><code><a href="https://easystats.github.io/effectsize/reference/cohens_g.html" class="external-link">effectsize::cohens_g</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>Paired</td>
-<td>❌</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-</tbody>
-</table>
-<p><strong>one-way table</strong></p>
-<p>Currently not supported.</p>
-<!-- **Hypothesis testing** -->
-<!-- Type | Test | Function used -->
-<!-- ----------- | ------------------------- | ----- -->
-<!-- Parametric/Non-parametric | Goodness of fit $\chi^2$ test | `stats::chisq.test` -->
-<!-- Bayesian | Bayesian Goodness of fit $\chi^2$ test | (custom) -->
-<!-- **Effect size estimation** -->
-<!-- Type | Effect size | CI? | Function used -->
-<!-- ----------- | ------------------------- | --- | ----- -->
-<!-- Parametric/Non-parametric | Pearson's $C$ | ✅ | `effectsize::pearsons_c` -->
-<!-- Bayesian | ❌ | ❌ | ❌ -->
+<p>Details about underlying functions used to create graphics and
+statistical tests carried out can be found in the function
+documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -574,7 +458,7 @@ test</td>
 publication/report, the ideal reporting practice will be a hybrid of two
 approaches:</p>
 <ul>
-<li><p>the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> approach, where the plot contains
+<li><p>the <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> approach, where the plot contains
 both the visual and numerical summaries about a statistical model,
 and</p></li>
 <li><p>the <em>standard</em> narrative approach, which provides
@@ -604,26 +488,33 @@ compared to the null hypothesis. This can be considered strong evidence
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
-    </nav></aside>
+  </div>
+
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
+
 </div>
 
 
 
-    <footer><div class="pkgdown-footer-left">
+      <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
+<p>Developed by Indrajeet Patil.</p>
 </div>
 
-<div class="pkgdown-footer-right">
+<div class="pkgdown">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
-    </footer>
+      </footer>
 </div>
 
   
+
 
   
 
