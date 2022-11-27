@@ -1,6 +1,6 @@
 #' @title Movie information and user ratings from IMDB.com (long format).
 #' @name movies_long
-#' @details Modified dataset from `ggplot2movies` package.
+#' @details Modified dataset from `{ggplot2movies}` package.
 #'
 #' The internet movie database, <https://imdb.com/>, is a website devoted
 #' to collecting movie data supplied by studios and fans. It claims to be the
@@ -33,7 +33,7 @@
 #'   fatal maiden voyage of the ocean liner 'Titanic', summarized according to
 #'   economic status (class), sex, age and survival.
 #'
-#' This is a modified dataset from `datasets` package.
+#' This is a modified dataset from `{datasets}` package.
 #'
 #' @format
 #'
@@ -59,19 +59,16 @@
 #'   petal length and width, respectively, for 50 flowers from each of 3 species
 #'   of iris. The species are Iris setosa, versicolor, and virginica.
 #'
-#' This is a modified dataset from `datasets` package.
+#' This is a modified dataset from `{datasets}` package.
 #'
 #' @format A data frame with 600 rows and 5 variables
 #'
 #'   - id. Dummy identity number for each flower (150 flowers in total).
-#'   - Species. The species are *Iris setosa*, *versicolor*, and
-#'   *virginica*.
+#'   - Species. The species are *Iris setosa*, *versicolor*, and *virginica*.
 #'   - condition. Factor giving a detailed description of the attribute
-#'   (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`,
-#'   `"Sepal.Width"`).
+#'     (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`, `"Sepal.Width"`).
 #'   - attribute. What attribute is being measured (`"Sepal"` or `"Pepal"`).
-#'   - measure. What aspect of the attribute is being measured (`"Length"`
-#'   or `"Width"`).
+#'   - measure. What aspect of the attribute is being measured (`"Length"` or `"Width"`).
 #'   - value. Value of the measurement.
 #'
 #' @examples
@@ -95,12 +92,11 @@
 #'   - region. Region of the world the participant was from.
 #'   - education. Level of education.
 #'   - condition. Condition of the experiment the participant gave rating
-#'   for (**LDLF**: low freighteningness and low disgustingness; **LFHD**: low
-#'   freighteningness and high disgustingness; **HFHD**: high freighteningness
-#'   and low disgustingness; **HFHD**: high freighteningness and high
-#'   disgustingness).
-#'   - desire. The desire to kill an arthropod was indicated on a scale from
-#'   0 to 10.
+#'     for (**LDLF**: low freighteningness and low disgustingness; **LFHD**: low
+#'     freighteningness and high disgustingness; **HFHD**: high freighteningness
+#'     and low disgustingness; **HFHD**: high freighteningness and high
+#'     disgustingness).
+#'   - desire. The desire to kill an arthropod was indicated on a scale from 0 to 10.
 #'
 #' @source <https://www.sciencedirect.com/science/article/pii/S0747563213000277>
 #'
@@ -124,11 +120,11 @@
 #'   - gender. Participant's gender (Female, Male).
 #'   - region. Region of the world the participant was from.
 #'   - education. Level of education.
-#'   - ldlf,ldhf,hdlf,hdhf.The desire to kill an arthropod was indicated on
-#'   a scale from 0 to 10 in each condition of the experiment (**LDLF**: low
-#'   freighteningness and low disgustingness; **LFHD**: low freighteningness and
-#'   high disgustingness; **HFHD**: high freighteningness and low
-#'   disgustingness; **HFHD**: high freighteningness and high disgustingness).
+#'   - ldlf,ldhf,hdlf,hdhf. The desire to kill an arthropod was indicated on
+#'     a scale from 0 to 10 in each condition of the experiment (**LDLF**: low
+#'     freighteningness and low disgustingness; **LFHD**: low freighteningness and
+#'     high disgustingness; **HFHD**: high freighteningness and low
+#'     disgustingness; **HFHD**: high freighteningness and high disgustingness).
 #'
 #'
 #' @source

@@ -27,7 +27,7 @@ descriptive_data <- function(data,
     group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
     tally(name = "counts") %>%
     mutate(perc = (counts / sum(counts)) * 100) %>%
-    ungroup(.) %>%
+    ungroup() %>%
     arrange(desc({{ x }})) %>%
     filter(counts != 0L)
 }
@@ -42,7 +42,7 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
     # proportion tests
     y = group_by(data, {{ y }}) %>%
       group_modify(.f = ~ .chisq_test_safe(., {{ x }})) %>%
-      ungroup(.),
+      ungroup(),
     by = as_name(ensym(y))
   ) %>%
     rowwise() %>%

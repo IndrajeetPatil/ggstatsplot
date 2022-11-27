@@ -48,7 +48,7 @@ Before discussing benefits of this approach, we will show an example (Figure
 
 ```r
 library(palmerpenguins) # for 'penguins' dataset
-library(ggstatsplot)
+
 
 ggbetweenstats(penguins, species, body_mass_g)
 ```

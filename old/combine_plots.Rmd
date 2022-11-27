@@ -73,9 +73,9 @@ would like to combine these plots in a single plot.
 #| fig.height = 6,
 #| fig.width = 10
 # libraries
-set.seed(123)
+
 library(tidyverse)
-library(ggstatsplot)
+
 
 # creating a list of plots
 p_list <-
@@ -110,16 +110,16 @@ plot.
 #| label = "ggscatterstats_purrr",
 #| fig.height = 12,
 #| fig.width = 8
-# for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
+
+
 
 # creating a list column with `{ggstatsplot}` plots
 plots <- iris %>%
   dplyr::mutate(Species2 = Species) %>%
   # just creates a copy of this variable
   dplyr::group_by(Species) %>%
-  tidyr::nest(.) %>%
+  tidyr::nest() %>%
   # a nested data frame with list column called `data`
   dplyr::mutate(
     plot = data %>%
@@ -177,8 +177,8 @@ countries when they occur.
 library(plyr)
 library(gapminder)
 
-# for reproducibility
-set.seed(123)
+
+
 
 # let's have a look at the structure of the data
 dplyr::glimpse(gapminder::gapminder)
@@ -227,7 +227,7 @@ accomplish that task as shown in the resulting plot.
 #| label = "ggbetweenstats_subtext",
 #| fig.height = 8,
 #| fig.width = 8
-library(ggstatsplot)
+
 
 combine_plots(
   plotlist = list(ggcoefstats(

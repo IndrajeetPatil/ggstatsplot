@@ -95,12 +95,12 @@ ggridgestats <- function(data,
 
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
     # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
     }
   }
 
@@ -152,7 +152,7 @@ ggridgestats <- function(data,
       x = descriptive_df %>% dplyr::pull({{ y }}),
       y = descriptive_df %>% dplyr::pull({{ x }}),
       direction = "x",
-      label = descriptive_df$expression[[1]],
+      label = descriptive_df$expression[[1L]],
       # min.segment.length = 0,
       hjust = "right",
       segment.linetype = 4,

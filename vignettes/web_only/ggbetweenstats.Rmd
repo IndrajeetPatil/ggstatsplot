@@ -14,29 +14,23 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.subtle_num = TRUE
+source("../setup.R")
+```
+
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
+
+pkgs <- c(
+  "gapminder",
+  "PMCMRplus"
 )
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
-)
-
-if (!requireNamespace("PMCMRplus", quietly = TRUE)) {
+if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
   knitr::opts_chunk$set(eval = FALSE)
 } else {
-  library(PMCMRplus)
+  purrr::walk(pkgs, library, character.only = TRUE)
 }
-
-library(ggstatsplot)
 ```
 
 ---
@@ -99,11 +93,7 @@ The simplest form of the function call is-
 #| label = "ggbetweenstats1",
 #| fig.height = 6,
 #| fig.width = 8
-## since the confidence intervals for the effect sizes are computed using
-## bootstrapping, important to set a seed for reproducibility
-set.seed(123)
 
-## function call
 ggbetweenstats(
   data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
   x = continent,
@@ -140,12 +130,7 @@ color palette in use.
 #| label = "ggbetweenstats2",
 #| fig.height = 6,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
-library(gapminder)
 
-## plot
 ggbetweenstats(
   data = dplyr::filter(gapminder, year == 2007, continent != "Oceania"),
   x = continent, ## grouping/independent variable
@@ -202,10 +187,6 @@ For example,
 #| label = "ggbetweenstats3",
 #| fig.height = 10,
 #| fig.width = 12
-## for reproducibility
-set.seed(123)
-library(ggstatsplot)
-library(gapminder)
 
 ## selecting subset of the data
 df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
@@ -302,8 +283,6 @@ every pair of continents.
 #| label = "grouped1",
 #| fig.height = 18,
 #| fig.width = 8
-## for reproducibility
-set.seed(123)
 
 ## select part of the dataset and use it for plotting
 gapminder::gapminder %>%
@@ -350,79 +329,18 @@ See the associated vignette here:
 
 ## Within-subjects designs
 
-For repeated measures designs, `ggwithinstats` function can be used:
+For repeated measures designs, `ggwithinstats()` function can be used:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 
-## Summary of graphics
+## Summary of graphics and tests
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-raw data | `ggplot2::geom_point` | `point.args`
-box plot | `ggplot2::geom_boxplot` | ❌
-density plot | `ggplot2::geom_violin` | `violin.args`
-centrality measure point | `ggplot2::geom_point` | `centrality.point.args`
-centrality measure label | `ggrepel::geom_label_repel` | `centrality.label.args`
-outlier point | `ggplot2::stat_boxplot` | ❌
-outlier label | `ggrepel::geom_label_repel` | `outlier.label.args`
-pairwise comparisons | `ggsignif::geom_signif` | `ggsignif.args`
-
-## Summary of tests
-
-**Central tendency measure**
-
-Type | Measure | Function used
------------ | --------- | ------------------ 
-Parametric | mean | `datawizard::describe_distribution`
-Non-parametric | median | `datawizard::describe_distribution`
-Robust | trimmed mean | `datawizard::describe_distribution`
-Bayesian | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution`
-
-**Hypothesis testing**
-
-Type | No. of groups | Test | Function used
------------ | --- | ------------------------- | -----
-Parametric | > 2 | Fisher's or Welch's one-way ANOVA | `stats::oneway.test`
-Non-parametric | > 2 | Kruskal–Wallis one-way ANOVA | `stats::kruskal.test`
-Robust | > 2 | Heteroscedastic one-way ANOVA for trimmed means | `WRS2::t1way`
-Bayes Factor | > 2 | Fisher's ANOVA | `BayesFactor::anovaBF`
-Parametric | 2 | Student's or Welch's *t*-test | `stats::t.test`
-Non-parametric | 2 | Mann–Whitney *U* test | `stats::wilcox.test`
-Robust | 2 |  Yuen's test for trimmed means | `WRS2::yuen`
-Bayesian | 2 | Student's *t*-test | `BayesFactor::ttestBF`
-
-**Effect size estimation**
-
-Type | No. of groups | Effect size | CI? | Function used
------------ | --- | ------------------------- | --- | -----
-Parametric | > 2 | $\eta_{p}^2$, $\omega_{p}^2$ | ✅ | `effectsize::omega_squared`, `effectsize::eta_squared`
-Non-parametric | > 2 | $\epsilon_{ordinal}^2$ | ✅ | `effectsize::rank_epsilon_squared`
-Robust | > 2 | $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::t1way`
-Bayes Factor | > 2 | $R_{posterior}^2$ | ✅ | `performance::r2_bayes`
-Parametric | 2 | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | 2 | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | 2 |  $\xi$ (Explanatory measure of effect size) | ✅ | `WRS2::yuen.effect.ci`
-Bayesian | 2 | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
-
-**Pairwise comparison tests**
-
-Type | Equal variance? | Test | *p*-value adjustment? | Function used
------------ | --- | ------------------------- | --- | -----
-Parametric | No | Games-Howell test | ✅ | `PMCMRplus::gamesHowellTest`
-Parametric | Yes | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
-Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
-Bayes Factor | ❌ | Student's *t*-test | ❌ | `BayesFactor::ttestBF`
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
 
 ## Reporting
 
-If you wish to include statistical analysis results in a publication/report, the
-ideal reporting practice will be a hybrid of two approaches:
-
-- the `{ggstatsplot}` approach, where the plot contains both the visual and
-numerical summaries about a statistical model, and
-
-- the *standard* narrative approach, which provides interpretive context for the
-reported statistics.
+```{r child="reporting.Rmd"}
+```
 
 For example, let's see the following example:
 

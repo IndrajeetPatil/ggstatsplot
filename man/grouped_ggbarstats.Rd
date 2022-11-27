@@ -131,7 +131,7 @@ For details, see:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
+
 library(dplyr, warn.conflicts = FALSE)
 
 # let's create a smaller data frame

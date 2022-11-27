@@ -244,6 +244,22 @@ a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   point path \tab \code{ggplot2::geom_path()} \tab \code{point.path.args} \cr
+   box plot \tab \code{ggplot2::geom_boxplot()} \tab \code{boxplot.args} \cr
+   density plot \tab \code{ggplot2::geom_violin()} \tab \code{violin.args} \cr
+   centrality measure point \tab \code{ggplot2::geom_point()} \tab \code{centrality.point.args} \cr
+   centrality measure point path \tab \code{ggplot2::geom_path()} \tab \code{centrality.path.args} \cr
+   centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
+   outlier point \tab \code{ggplot2::stat_boxplot()} \tab \code{NA} \cr
+   outlier label \tab \code{ggrepel::geom_label_repel()} \tab \code{outlier.label.args} \cr
+   pairwise comparisons \tab \code{ggsignif::geom_signif()} \tab \code{ggsignif.args} \cr
+}
+}
+
 \section{Centrality measures}{
 
 
@@ -255,10 +271,10 @@ The table below provides summary about:
 \item functions used internally to compute these details
 }\tabular{lll}{
    Type \tab Measure \tab Function used \cr
-   Parametric \tab mean \tab \code{parameters::describe_distribution()} \cr
-   Non-parametric \tab median \tab \code{parameters::describe_distribution()} \cr
-   Robust \tab trimmed mean \tab \code{parameters::describe_distribution()} \cr
-   Bayesian \tab MAP (maximum \emph{a posteriori} probability) estimate \tab \code{parameters::describe_distribution()} \cr
+   Parametric \tab mean \tab \code{datawizard::describe_distribution()} \cr
+   Non-parametric \tab median \tab \code{datawizard::describe_distribution()} \cr
+   Robust \tab trimmed mean \tab \code{datawizard::describe_distribution()} \cr
+   Bayesian \tab MAP \tab \code{datawizard::describe_distribution()} \cr
 }
 
 }
@@ -419,20 +435,26 @@ Not supported.
 \examples{
 \dontshow{if (requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-# setup
+# for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(dplyr, warn.conflicts = FALSE)
 
-# two-samples test
-ggwithinstats(
+# create a plot
+p <- ggwithinstats(
   data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
   x    = condition,
   y    = desire,
   type = "np"
 )
 
-# ANOVA
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
+
+# modifying defaults
 ggwithinstats(
   data            = bugs_long,
   x               = condition,

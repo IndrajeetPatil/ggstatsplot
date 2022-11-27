@@ -165,6 +165,15 @@ as a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   histogram bin \tab \code{ggplot2::stat_bin()} \tab \code{bin.args} \cr
+   centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
+   normality curve \tab \code{ggplot2::stat_function()} \tab \code{normal.curve.args} \cr
+}
+}
+
 \section{One-sample tests}{
 
 
@@ -199,15 +208,20 @@ The table below provides summary about:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 
-# using defaults, but modifying which centrality parameter is to be shown
-gghistostats(
+# creating a plot
+p <- gghistostats(
   data            = ToothGrowth,
   x               = len,
   xlab            = "Tooth length",
   centrality.type = "np"
 )
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 }
 }
 \seealso{

@@ -156,6 +156,15 @@ from one-sample test.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   histogram bin \tab \code{ggplot2::stat_bin()} \tab \code{bin.args} \cr
+   centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
+   normality curve \tab \code{ggplot2::stat_function()} \tab \code{normal.curve.args} \cr
+}
+}
+
 \section{One-sample tests}{
 
 
@@ -191,14 +200,20 @@ The table below provides summary about:
 # for reproducibility
 set.seed(123)
 
-# plot
-ggdotplotstats(
+# creating a plot
+p <- ggdotplotstats(
   data = ggplot2::mpg,
   x = cty,
   y = manufacturer,
   title = "Fuel economy data",
   xlab = "city miles per gallon"
 )
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 }
 }
 \seealso{

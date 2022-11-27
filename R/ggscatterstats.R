@@ -6,6 +6,11 @@
 #' Scatterplots from `{ggplot2}` combined with marginal densigram (density +
 #' histogram) plots with statistical details.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```
+#'
 #' @param ... Currently ignored.
 #' @param label.var Variable to use for points labels entered as a symbol (e.g.
 #'   `var1`).
@@ -52,18 +57,25 @@
 #'
 #' @examplesIf requireNamespace("ggside", quietly = TRUE)
 #' set.seed(123)
-#' library(ggstatsplot)
-#' library(ggplot2)
+#' library(ggside) # for plotting marginals
 #'
-#' # simple function call with the defaults
-#' ggscatterstats(
+#' # creating a plot
+#' p <- ggscatterstats(
 #'   iris,
 #'   x = Sepal.Width,
 #'   y = Petal.Length,
 #'   label.var = Species,
 #'   label.expression = Sepal.Length > 7.6
 #' ) +
-#'   geom_rug(sides = "b")
+#'   ggplot2::geom_rug(sides = "b")
+#'
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
+#'
 #' @export
 ggscatterstats <- function(data,
                            x,
@@ -119,12 +131,12 @@ ggscatterstats <- function(data,
     )
 
     subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
     # preparing the BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
     }
   }
 
@@ -211,7 +223,7 @@ ggscatterstats <- function(data,
 #' \donttest{
 #' # to ensure reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
+#'
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'

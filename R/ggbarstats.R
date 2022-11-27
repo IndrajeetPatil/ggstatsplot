@@ -6,6 +6,11 @@
 #' Bar charts for categorical data with statistical details included in the plot
 #' as a subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggbarstats_graphics.Rmd"}
+#' ```
+#'
 #' @inheritParams ggpiestats
 #' @inheritParams ggbetweenstats
 #'
@@ -20,10 +25,15 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #'
-#' # association test (or contingency table analysis)
-#' ggbarstats(mtcars, x = vs, y = cyl)
+#' # creating a plot
+#' p <- ggbarstats(mtcars, x = vs, y = cyl)
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
 #' }
 #' @export
 ggbarstats <- function(data,
@@ -66,7 +76,7 @@ ggbarstats <- function(data,
   # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na(.)
+    tidyr::drop_na()
 
   # untable the data frame based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
@@ -96,12 +106,12 @@ ggbarstats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1]]
+    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
 
     # preparing Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      if (!is.null(caption_df)) caption <- caption_df$expression[[1]]
+      if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]
     }
   }
 
@@ -193,7 +203,7 @@ ggbarstats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
+#'
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # let's create a smaller data frame

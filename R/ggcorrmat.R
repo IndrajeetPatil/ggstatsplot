@@ -4,9 +4,12 @@
 #' @description
 #'
 #' Correlation matrix or a data frame containing results from pairwise
-#' correlation tests. The package internally uses `ggcorrplot::ggcorrplot()` for
-#' creating the visualization matrix, while the correlation analysis is carried
-#' out using the `correlation::correlation()` function.
+#' correlation tests.
+#'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggcorrmat_graphics.Rmd"}
+#' ```
 #'
 #' @param ... Currently ignored.
 #' @param data Dataframe from which variables specified are preferentially to be
@@ -57,7 +60,6 @@
 #' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(ggcorrplot) # for plot
 #'
 #' # to get a plot
@@ -140,7 +142,7 @@ ggcorrmat <- function(data,
   # legend title with information about correlation type and sample
   if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
-      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1]]))),
+      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
@@ -200,11 +202,11 @@ ggcorrmat <- function(data,
       legend.title     = element_text(size = 15)
     ) +
     labs(
-      title            = title,
-      subtitle         = subtitle,
-      caption          = caption,
-      xlab             = NULL,
-      ylab             = NULL
+      title    = title,
+      subtitle = subtitle,
+      caption  = caption,
+      xlab     = NULL,
+      ylab     = NULL
     ) +
     ggplot.component
 }
@@ -234,7 +236,6 @@ ggcorrmat <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(ggcorrplot) # for plot
 #'
 #' # for plot

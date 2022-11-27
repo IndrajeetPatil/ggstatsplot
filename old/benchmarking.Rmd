@@ -44,9 +44,9 @@ changes across time.
 
 ```{r}
 #| label = "ggbetweenstats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(
   ggbetweenstats(
     data = dplyr::filter(
@@ -59,7 +59,7 @@ bench::mark(
 ) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(
   grouped_ggbetweenstats(
     data = dplyr::filter(
@@ -78,9 +78,9 @@ bench::mark(
 
 ```{r}
 #| label = "ggwithinstats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(
   ggwithinstats(
     data = bugs_long,
@@ -90,7 +90,7 @@ bench::mark(
 ) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(
   grouped_ggwithinstats(
     data = bugs_long,
@@ -106,13 +106,13 @@ bench::mark(
 
 ```{r}
 #| label = "gghistostats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(gghistostats(mtcars, wt, test.value = 3)) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am)) %>%
   dplyr::select(-expression)
 ```
@@ -121,9 +121,9 @@ bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am))
 
 ```{r}
 #| label = "ggdotplotstats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(ggdotplotstats(
   dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   cty,
@@ -132,7 +132,7 @@ bench::mark(ggdotplotstats(
 )) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(
   grouped_ggdotplotstats(
     dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
@@ -149,13 +149,13 @@ bench::mark(
 
 ```{r}
 #| label = "ggscatterstats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(ggscatterstats(mtcars, wt, mpg)) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)) %>%
   dplyr::select(-expression)
 ```
@@ -164,13 +164,13 @@ bench::mark(grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)) %>%
 
 ```{r}
 #| label = "ggcorrmat"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(ggcorrmat(iris)) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(grouped_ggcorrmat(iris, grouping.var = Species)) %>%
   dplyr::select(-expression)
 ```
@@ -179,13 +179,13 @@ bench::mark(grouped_ggcorrmat(iris, grouping.var = Species)) %>%
 
 ```{r}
 #| label = "ggpiestats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(ggpiestats(mtcars, cyl)) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(grouped_ggpiestats(mtcars, cyl, grouping.var = am)) %>%
   dplyr::select(-expression)
 ```
@@ -194,13 +194,13 @@ bench::mark(grouped_ggpiestats(mtcars, cyl, grouping.var = am)) %>%
 
 ```{r}
 #| label = "ggbarstats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(ggbarstats(ggplot2::mpg, fl, class)) %>%
   dplyr::select(-expression)
 
-set.seed(123)
+
 bench::mark(grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %>%
   dplyr::select(-expression)
 ```
@@ -209,9 +209,9 @@ bench::mark(grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %>%
 
 ```{r}
 #| label = "ggcoefstats"
-library(ggstatsplot)
 
-set.seed(123)
+
+
 bench::mark(ggcoefstats(stats::lm(formula = wt ~ am * cyl, data = mtcars))) %>%
   dplyr::select(-expression)
 ```

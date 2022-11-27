@@ -7,6 +7,11 @@
 #' confidence interval whiskers and other statistical details included as
 #' labels.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggcoefstats_graphics.Rmd"}
+#' ```
+#'
 #' @param x A model object to be tidied, or a tidy data frame from a regression
 #'   model. Function internally uses `parameters::model_parameters()` to get a
 #'   tidy data frame. If a data frame, it *must* contain at the minimum two
@@ -93,12 +98,19 @@
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(lme4)
 #'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-#' ggcoefstats(mod)
+#'
+#' # creating a plot
+#' p <- ggcoefstats(mod)
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
 #'
 #' # further arguments can be passed to `parameters::model_parameters()`
 #' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
@@ -228,7 +240,7 @@ ggcoefstats <- function(x,
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
-    caption <- glance_df$expression[[1]]
+    caption <- glance_df$expression[[1L]]
   }
 
   # meta analysis -------------------------
@@ -239,12 +251,12 @@ ggcoefstats <- function(x,
 
     # results from frequentist random-effects meta-analysis
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
-    subtitle <- subtitle_df$expression[[1]]
+    subtitle <- subtitle_df$expression[[1L]]
 
     # results from Bayesian random-effects meta-analysis (only for parametric)
     if (meta.type == "parametric" && bf.message) {
       caption_df <- meta_analysis(tidy_df, type = "bayes", k = k)
-      caption <- caption_df$expression[[1]]
+      caption <- caption_df$expression[[1L]]
     }
   }
 

@@ -3,8 +3,7 @@
 #' @description
 #'
 #' This function splits the data frame into a list, with the length of the list
-#' equal to the factor levels of the grouping variable. Each element of the list
-#' will be a tibble.
+#' equal to the factor levels of the grouping variable.
 #'
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable.
@@ -32,21 +31,20 @@
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
 #' @noRd
 .palette_message <- function(package, palette, min_length) {
-  pl <- filter(paletteer::palettes_d_names, package == !!package, palette == !!palette) %$%
-    length[[1]]
+  palette_length <- paletteer::palettes_d_names %>%
+    filter(package == !!package, palette == !!palette) %$%
+    length[[1L]]
 
-  # check if insufficient number of colors are available in a given palette
-  pl_message <- ifelse(pl < min_length, FALSE, TRUE)
+  are_enough_colors_available <- palette_length > min_length
 
-  # inform the user
-  if (!pl_message) {
+  if (!are_enough_colors_available) {
     rlang::warn(c(
       "Number of labels is greater than default palette color count.",
       "Select another color `palette` (and/or `package`)."
     ))
   }
 
-  invisible(pl_message)
+  return(are_enough_colors_available)
 }
 
 #' @noRd

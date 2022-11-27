@@ -6,6 +6,11 @@
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```
+#'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
 #' @param point.args A list of additional aesthetic arguments passed to
@@ -26,14 +31,20 @@
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # plot
-#' ggdotplotstats(
+#' # creating a plot
+#' p <- ggdotplotstats(
 #'   data = ggplot2::mpg,
 #'   x = cty,
 #'   y = manufacturer,
 #'   title = "Fuel economy data",
 #'   xlab = "city miles per gallon"
 #' )
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
 #' }
 #' @export
 ggdotplotstats <- function(data,
@@ -68,11 +79,11 @@ ggdotplotstats <- function(data,
   # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na(.) %>%
+    tidyr::drop_na() %>%
     mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
     group_by({{ y }}) %>%
     summarise({{ x }} := mean({{ x }})) %>%
-    ungroup(.) %>%
+    ungroup() %>%
     # rank ordering the data
     arrange({{ x }}) %>%
     mutate(
@@ -100,12 +111,12 @@ ggdotplotstats <- function(data,
 
     # preparing the subtitle with statistical results
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
     # preparing the BF message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1]]
+      caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
     }
   }
 
@@ -175,7 +186,6 @@ ggdotplotstats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # removing factor level with very few no. of observations

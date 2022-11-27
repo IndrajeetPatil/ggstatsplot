@@ -15,23 +15,25 @@ vignette: >
 #| label = "setup",
 #| include = FALSE
 
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
-  pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
+source("../setup.R")
+```
+
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
+
+pkgs <- c(
+  "BayesFactor",
+  "lme4",
+  "metaplus",
+  "survival"
 )
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  message = FALSE,
-  warning = FALSE,
-  out.width = "100%"
-)
-
-library(ggstatsplot)
+if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
+  knitr::opts_chunk$set(eval = FALSE)
+} else {
+  purrr::walk(pkgs, library, character.only = TRUE)
+}
 ```
 
 ---
@@ -95,25 +97,6 @@ also supported by `ggcoefstats`.
 insight::supported_models()
 ```
 
-## Summary of graphics
-
-graphical element | `geom_` used | argument for further modification 
---------- | ------- | -------------------------- 
-regression estimate | `ggplot2::geom_point`| `point.args` 
-error bars | `ggplot2::geom_errorbarh` | `errorbar.args` 
-vertical line | `ggplot2::geom_vline` | `vline.args` 
-label with statistical details | `ggrepel::geom_label_repel` | `stats.label.args`
-
-## Summary of meta-analysis tests
-
-**Hypothesis testing** and **Effect size estimation**
-
-Type | Test | Effect size | CI? | Function used 
------------ | -------------------- | -------- | --- | -----
-Parametric | Meta-analysis via random-effects models | $\beta$ | ✅ | `metafor::metafor` 
-Robust | Meta-analysis via robust random-effects models | $\beta$ | ✅ | `metaplus::metaplus` 
-Bayes | Meta-analysis via Bayesian random-effects models | $\beta$ | ✅ | `metaBMA::meta_random`
-
 ## Examples of supported models
 
 The following examples are organized by statistics type.
@@ -130,10 +113,8 @@ linear model (`lm`) and linear mixed-effects model (`lmer`/`lmerMod`)
 #| label = "lmer1",
 #| fig.height = 8,
 #| fig.width = 6
-# set up
+
 library(lme4)
-library(ggstatsplot)
-set.seed(123)
 
 # lm model
 mod1 <- stats::lm(formula = scale(rating) ~ scale(budget), data = movies_long)
@@ -168,8 +149,7 @@ argument to `parameters::model_parameters`:
 
 ```{r}
 #| label = "lmer2"
-# setup
-set.seed(123)
+
 library(lme4)
 library(parameters)
 
@@ -191,9 +171,8 @@ Aalen's additive regression model for censored data (`aareg`)
 #| label = "aareg",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 library(survival)
-set.seed(123)
 
 # model
 afit <- survival::aareg(
@@ -202,7 +181,6 @@ afit <- survival::aareg(
   dfbeta = TRUE
 )
 
-# plot
 ggcoefstats(
   x = afit,
   title = "Aalen's additive regression model",
@@ -219,8 +197,7 @@ Cox proportional hazards regression model (`coxph`)
 #| label = "coxph",
 #| fig.height = 4,
 #| fig.width = 4
-# for reproducibility
-set.seed(123)
+
 library(survival)
 
 # create the simplest-test data set
@@ -238,7 +215,7 @@ mod_coxph <-
     data = test1
   )
 
-# plot
+
 ggcoefstats(
   x = mod_coxph,
   title = "Cox proportional hazards regression model"
@@ -251,8 +228,7 @@ Another example with `frailty` term.
 #| label = "coxph.penal",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
 library(survival)
 
 # model
@@ -261,7 +237,7 @@ mod_coxph <- survival::coxph(
   data = lung
 )
 
-# plot
+
 ggcoefstats(
   x = mod_coxph,
   title = "Proportional Hazards Regression Model\nwith Frailty penalty function"
@@ -276,15 +252,11 @@ omnibus ANOVA (`aov`)
 #| label = "aov1",
 #| fig.height = 6,
 #| fig.width = 8
-# setup
-set.seed(123)
-library(ggstatsplot)
 library(ggplot2)
 
 # model
 mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
 
-# plot
 ggcoefstats(
   x = mod_aov,
   effectsize.type = "omega", # changing the effect size estimate being displayed
@@ -307,11 +279,7 @@ different models with the code below and see how the AIC and BIC values change.
 #| label = "aov2",
 #| fig.height = 10,
 #| fig.width = 10
-# setup
-set.seed(123)
-library(ggstatsplot)
 
-# plot
 combine_plots(
   plotlist = list(
     # model 1
@@ -345,8 +313,6 @@ Another example with multivariate analysis of variance (`manova`):
 #| label = "manova",
 #| fig.height = 8,
 #| fig.width = 8
-# setup
-set.seed(123)
 
 # fake a 2nd response variable
 npk2 <- within(npk, foo <- rnorm(24))
@@ -354,7 +320,7 @@ npk2 <- within(npk, foo <- rnorm(24))
 # model
 m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
 
-# plot
+
 ggcoefstats(
   x = m_manova,
   title = "multivariate analysis of variance"
@@ -367,10 +333,8 @@ ggcoefstats(
 #| label = "BFBayesFactor",
 #| fig.width = 10,
 #| fig.height = 10
-# setup
-set.seed(123)
+
 library(BayesFactor)
-library(ggstatsplot)
 
 # one sample t-test
 mod1 <- ttestBF(mtcars$wt, mu = 3)
@@ -437,9 +401,7 @@ in which case this function will fail. But often you can extract the object of
 interest from this list and use it to plot the regression coefficients.
 
 ```r
-# setup
 library(gamm4)
-set.seed(123)
 
 # data
 dat <- gamSim(1, n = 400, scale = 2)
@@ -458,7 +420,6 @@ br <- gamm4::gamm4(
 # looking at the classes of the objects contained in the list
 purrr::map(br, class)
 
-# plotting
 combine_plots(
   plotlist = list(
     # first object plot (only parametric terms are shown)
@@ -496,14 +457,12 @@ you enter **must** contain at the minimum the following three columns-
 #| label = "meta1",
 #| fig.height = 7,
 #| fig.width = 8
-# setup
-set.seed(123)
+
 library(metaplus)
 
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-# plot
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -519,14 +478,12 @@ ggcoefstats(
 #| label = "meta2",
 #| fig.height = 7,
 #| fig.width = 8
-# setup
-set.seed(123)
+
 library(metaplus)
 
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-# plot
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -541,14 +498,12 @@ ggcoefstats(
 #| label = "meta3",
 #| fig.height = 7,
 #| fig.width = 8
-# setup
-set.seed(123)
+
 library(metaplus)
 
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-# plot
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -575,19 +530,18 @@ for additionally displaying labels with statistical information.
 #| label = "dataframe",
 #| fig.height = 7,
 #| fig.width = 7
-# let's make up a data frame (with all available details)
-df_full <-
-  tibble::tribble(
-    ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.error,
-    "study1", 0.158, 0.0665, 0.778, 0.875, 5L,
-    "study2", 1.33, 0.542, 0.280, 0.191, 10L,
-    "study3", 1.24, 0.045, 0.030, 0.001, 12L,
-    "study4", 0.156, 0.500, 0.708, 0.885, 8L,
-    "study5", 0.33, 0.032, 0.280, 0.101, 2L,
-    "study6", 1.04, 0.085, 0.030, 0.001, 3L
-  )
 
-# plot
+# let's create a data frame
+df_full <- tibble::tribble(
+  ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.error,
+  "study1", 0.158, 0.0665, 0.778, 0.875, 5L,
+  "study2", 1.33, 0.542, 0.280, 0.191, 10L,
+  "study3", 1.24, 0.045, 0.030, 0.001, 12L,
+  "study4", 0.156, 0.500, 0.708, 0.885, 8L,
+  "study5", 0.33, 0.032, 0.280, 0.101, 2L,
+  "study6", 1.04, 0.085, 0.030, 0.001, 3L
+)
+
 ggcoefstats(
   x = df_full,
   meta.analytic.effect = TRUE,
@@ -606,9 +560,6 @@ is much more preferable to use the underlying functions instead
 ```{r}
 #| label = "other_output",
 #| error = TRUE
-# setup
-set.seed(123)
-library(ggstatsplot)
 
 # data
 DNase1 <- subset(DNase, Run == 1)
@@ -620,6 +571,11 @@ nlmod <- stats::nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 ggcoefstats(nlmod) %>% extract_stats()
 ```
 
+## Summary of graphics and tests
+
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+
 ## Not supported
 
 This vignette was supposed to give a comprehensive account of regression models
@@ -627,7 +583,7 @@ supported by `ggcoefstats`. The list of supported models will keep expanding as
 additional tidiers are added to the `parameters` and `performance` packages.
 
 Note that not **all** models supported in these packages will be supported by
-`ggcoefstats`. In particular, classes of objects for which there is no column
+`ggcoefstats()`. In particular, classes of objects for which there is no column
 for `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are
 not supported.
 

@@ -183,39 +183,39 @@ across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
 \examples{
+\dontshow{if (requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
-if (require("PMCMRplus")) {
-  # for reproducibility
-  set.seed(123)
-  library(ggstatsplot)
-  library(dplyr, warn.conflicts = FALSE)
-  library(ggplot2)
+# for reproducibility
+set.seed(123)
+library(PMCMRplus) # for pairwise comparisons
+library(dplyr, warn.conflicts = FALSE)
+library(ggplot2)
 
-  # the most basic function call
-  grouped_ggbetweenstats(
-    data = filter(ggplot2::mpg, drv != "4"),
-    x = year,
-    y = hwy,
-    grouping.var = drv
-  )
+# the most basic function call
+grouped_ggbetweenstats(
+  data = filter(ggplot2::mpg, drv != "4"),
+  x = year,
+  y = hwy,
+  grouping.var = drv
+)
 
-  # modifying individual plots using `ggplot.component` argument
-  grouped_ggbetweenstats(
-    data = filter(
-      movies_long,
-      genre \%in\% c("Action", "Comedy"),
-      mpaa \%in\% c("R", "PG")
-    ),
-    x = genre,
-    y = rating,
-    grouping.var = mpaa,
-    ggplot.component = scale_y_continuous(
-      breaks = seq(1, 9, 1),
-      limits = (c(1, 9))
-    )
+# modifying individual plots using `ggplot.component` argument
+grouped_ggbetweenstats(
+  data = filter(
+    movies_long,
+    genre \%in\% c("Action", "Comedy"),
+    mpaa \%in\% c("R", "PG")
+  ),
+  x = genre,
+  y = rating,
+  grouping.var = mpaa,
+  ggplot.component = scale_y_continuous(
+    breaks = seq(1, 9, 1),
+    limits = (c(1, 9))
   )
+)
 }
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},

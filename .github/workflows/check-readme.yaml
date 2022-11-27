@@ -49,4 +49,7 @@ jobs:
             any::ggthemes
 
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: |
+          options(crayon.enabled = TRUE)
+          rmarkdown::render("README.Rmd")
+        shell: Rscript {0}

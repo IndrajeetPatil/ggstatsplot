@@ -9,15 +9,13 @@ authors:
 
 template:
   bootstrap: 5
-  # bootswatch: cyborg
-  # theme: arrow-dark
   # includes:
   #   in-header: |
   #     <script defer data-domain="indrajeetpatil.github.io/ggstatsplot" src="https://plausible.io/js/plausible.js"></script>
   bslib:
-    base_font: {google: "Roboto"}
-    heading_font: {google: "Roboto"}
-    code_font: {google: "JetBrains Mono"}
+    base_font: { google: "Roboto" }
+    heading_font: { google: "Roboto" }
+    code_font: { google: "JetBrains Mono" }
   opengraph:
     image:
       src: man/figures/card.png
@@ -26,7 +24,6 @@ template:
       card: summary_large_image
 
 reference:
-
   - title: Hypothesis about group differences
     #desc:  Main functions to use from `ggstatsplot`.
     contents:
@@ -53,7 +50,7 @@ reference:
       - ggcoefstats
 
   - title: Grouped variants of primary functions
-    desc:  Convenience functions to repeat analysis across a single grouping
+    desc: Convenience functions to repeat analysis across a single grouping
     contents:
       - starts_with("grouped_")
 
@@ -75,27 +72,26 @@ reference:
       - bugs_long
 
 articles:
-
   - title: Primary functions
     navbar: Primary functions
     desc: Details about primary functions and their `grouped_` variants
     contents:
-    - web_only/ggbetweenstats
-    - web_only/ggwithinstats
-    - web_only/gghistostats
-    - web_only/ggdotplotstats
-    - web_only/ggcorrmat
-    - web_only/ggscatterstats
-    - web_only/ggbarstats
-    - web_only/ggpiestats
-    - web_only/ggcoefstats
+      - web_only/ggbetweenstats
+      - web_only/ggwithinstats
+      - web_only/gghistostats
+      - web_only/ggdotplotstats
+      - web_only/ggcorrmat
+      - web_only/ggscatterstats
+      - web_only/ggbarstats
+      - web_only/ggpiestats
+      - web_only/ggcoefstats
 
   - title: Miscellaneous
     navbar: Miscellaneous
     desc: Salad of various things
     contents:
-    - additional
-    - web_only/pairwise
-    - web_only/faq
-    - web_only/purrr_examples
-    - web_only/principles
+      - additional
+      - web_only/pairwise
+      - web_only/faq
+      - web_only/purrr_examples
+      - web_only/principles

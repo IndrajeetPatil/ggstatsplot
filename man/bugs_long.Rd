@@ -16,8 +16,7 @@ for (\strong{LDLF}: low freighteningness and low disgustingness; \strong{LFHD}: 
 freighteningness and high disgustingness; \strong{HFHD}: high freighteningness
 and low disgustingness; \strong{HFHD}: high freighteningness and high
 disgustingness).
-\item desire. The desire to kill an arthropod was indicated on a scale from
-0 to 10.
+\item desire. The desire to kill an arthropod was indicated on a scale from 0 to 10.
 }
 }
 \source{

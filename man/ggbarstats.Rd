@@ -165,6 +165,14 @@ as a subtitle.
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   bars \tab \code{ggplot2::geom_bar()} \tab \code{NA} \cr
+   descriptive labels \tab \code{ggplot2::geom_label()} \tab \code{label.args} \cr
+}
+}
+
 \section{Contingency table analyses}{
 
 
@@ -219,10 +227,15 @@ The table below provides summary about:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 
-# association test (or contingency table analysis)
-ggbarstats(mtcars, x = vs, y = cyl)
+# creating a plot
+p <- ggbarstats(mtcars, x = vs, y = cyl)
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 }
 }
 \seealso{

@@ -85,7 +85,7 @@ test_that(
       x = brainwt,
       type = "np",
       test.value = 0.25
-    )$expression[[1]]
+    )$expression[[1L]]
 
     expect_equal(p_sub, sub, ignore_attr = TRUE)
   }

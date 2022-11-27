@@ -1,0 +1,42 @@
+# Make sure all examples run successfully, even the ones that are not supposed
+# to be run or tested on CRAN machines by default.
+#
+# The examples that fail should use
+#  - `if (FALSE) { ... }` (if example is included only for illustrative purposes)
+#  - `try({ ... })` (if the intent is to show the error)
+#
+# This workflow helps find such failing examples that need to be modified.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: check-all-examples
+
+jobs:
+  check-all-examples:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          pak-version: devel
+          extra-packages: |
+            any::devtools
+            local::.
+
+      - name: Run examples
+        run: |
+          options(crayon.enabled = TRUE)
+          devtools::run_examples(fresh = TRUE, run_dontrun = TRUE, run_donttest = TRUE)
+        shell: Rscript {0}

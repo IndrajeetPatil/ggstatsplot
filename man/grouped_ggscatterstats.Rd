@@ -125,7 +125,7 @@ For details, see:
 \donttest{
 # to ensure reproducibility
 set.seed(123)
-library(ggstatsplot)
+
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 

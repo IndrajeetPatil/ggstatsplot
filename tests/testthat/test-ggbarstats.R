@@ -184,7 +184,7 @@ test_that(
       x = conservation,
       y = vore,
       k = 4L
-    ))$expression[[1]]
+    ))$expression[[1L]]
 
     expect_equal(p_sub, stats_output)
   }

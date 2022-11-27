@@ -128,7 +128,7 @@ For details, see:
 \examples{
 \donttest{
 set.seed(123)
-library(ggstatsplot)
+
 
 # grouped one-sample proportion test
 grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)

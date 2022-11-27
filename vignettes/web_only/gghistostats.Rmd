@@ -20,17 +20,23 @@ vignette: >
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(tibble.width = Inf, pillar.bold = TRUE, pillar.subtle_num = TRUE)
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  warning = FALSE,
-  message = FALSE,
-  out.width = "100%",
-  comment = "#>"
+source("../setup.R")
+```
+
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
+
+pkgs <- c(
+  "psych"
 )
+
+if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
+  knitr::opts_chunk$set(eval = FALSE)
+} else {
+  purrr::walk(pkgs, library, character.only = TRUE)
+}
 ```
 
 ---
@@ -69,7 +75,7 @@ norms have a mean of 20.
 ```{r}
 #| label = "psychact"
 ## loading needed libraries
-library(ggstatsplot)
+
 library(psych)
 library(dplyr)
 
@@ -91,7 +97,7 @@ parametric one sample *t*-test (`type = "p"`).
 #| label = "psychact3",
 #| fig.height = 6,
 #| fig.width = 7
-set.seed(123)
+
 
 gghistostats(
   data = psych::sat.act, ## data from which variable is to be taken
@@ -127,7 +133,7 @@ task.
 #| label = "grouped1",
 #| fig.height = 10,
 #| fig.width = 7
-set.seed(123)
+
 
 grouped_gghistostats(
   ## arguments relevant for gghistostats
@@ -167,53 +173,15 @@ would be better to use `{purrr}`.
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Summary of graphics
+## Summary of graphics and tests
 
-graphical element | `geom_` used | argument for further modification
---------- | ------- | --------------------------
-histogram bin | `ggplot2::stat_bin` | `bin.args`
-centrality measure line | `ggplot2::geom_vline` | `centrality.line.args`
-normality curve | `ggplot2::stat_function` | `normal.curve.args`
-
-## Summary of tests
-
-**Central tendency measure**
-
-Type | Measure | Function used
------------ | --------- | ------------------ 
-Parametric | mean | `datawizard::describe_distribution`
-Non-parametric | median | `datawizard::describe_distribution`
-Robust | trimmed mean | `datawizard::describe_distribution`
-Bayesian | MAP (maximum *a posteriori* probability) estimate | `datawizard::describe_distribution`
-
-**Hypothesis testing**
-
-Type | Test | Function used
------------------- | ------------------------- | -----
-Parametric | One-sample Student's *t*-test | `stats::t.test`
-Non-parametric | One-sample Wilcoxon test | `stats::wilcox.test`
-Robust | Bootstrap-*t* method for one-sample test | `WRS2::trimcibt`
-Bayesian | One-sample Student's *t*-test | `BayesFactor::ttestBF`
-
-**Effect size estimation**
-
-Type | Effect size | CI? | Function used
------------- | ----------------------- | --- | -----
-Parametric | Cohen's *d*, Hedge's *g* | ✅ | `effectsize::cohens_d`, `effectsize::hedges_g`
-Non-parametric | *r* (rank-biserial correlation) | ✅ | `effectsize::rank_biserial`
-Robust | trimmed mean | ✅ | `WRS2::trimcibt`
-Bayes Factor | $\delta_{posterior}$ | ✅ | `bayestestR::describe_posterior`
+Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
 
 ## Reporting
 
-If you wish to include statistical analysis results in a publication/report, the
-ideal reporting practice will be a hybrid of two approaches:
-
-- the `{ggstatsplot}` approach, where the plot contains both the visual and
-numerical summaries about a statistical model, and
-
-- the *standard* narrative approach, which provides interpretive context for the
-reported statistics.
+```{r child="reporting.Rmd"}
+```
 
 For example, let's see the following example:
 

@@ -1,0 +1,4 @@
+| graphical element  | `geom` used             | argument for further modification |
+| :----------------- | :---------------------- | :-------------------------------- |
+| bars               | `ggplot2::geom_bar()`   | `NA`                              |
+| descriptive labels | `ggplot2::geom_label()` | `label.args`                      |

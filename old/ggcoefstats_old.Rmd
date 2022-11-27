@@ -43,7 +43,7 @@ knitr::opts_chunk$set(
 
 # for faster post-MCMC computations
 future::plan("multicore")
-library(ggstatsplot)
+
 ```
 
 ---
@@ -132,7 +132,7 @@ First let's load the needed library.
 
 ```{r}
 #| label = "log_ggstats"
-library(ggstatsplot)
+
 ```
 
 The following demos are in **no particular order**.
@@ -145,8 +145,8 @@ The following demos are in **no particular order**.
 #| fig.width = 6
 # set up
 library(lme4)
-library(ggstatsplot)
-set.seed(123)
+
+
 
 # lm model
 mod1 <- stats::lm(formula = scale(rating) ~ scale(budget), data = movies_long)
@@ -191,8 +191,8 @@ argument to `parameters::model_parameters`:
 
 ```{r}
 #| label = "lmer2"
-# setup
-set.seed(123)
+
+
 library(lme4)
 library(parameters)
 
@@ -212,8 +212,8 @@ parameters::model_parameters(
 #| label = "emmGrid",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(emmeans)
 
 # linear model for sales of oranges per day
@@ -227,7 +227,7 @@ oranges_lm1 <-
 oranges_rg1 <- emmeans::ref_grid(oranges_lm1)
 marginal <- emmeans::emmeans(oranges_rg1, "day")
 
-# plot
+
 ggcoefstats(
   x = marginal,
   point.args = list(color = "darkgreen", shape = 9),
@@ -241,8 +241,8 @@ Another example with output containing effect sizes
 #| label = "emmGrid2",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(emmeans)
 
 # model and effect sizes
@@ -250,7 +250,7 @@ fiber.lm <- lm(strength ~ diameter + machine, data = fiber)
 emm <- emmeans::emmeans(fiber.lm, "machine")
 es <- emmeans::eff_size(emm, sigma = sigma(fiber.lm), edf = df.residual(fiber.lm))
 
-# plot
+
 ggcoefstats(
   x = es,
   title = "summary grid with effect sizes\nfrom `emmeans` package"
@@ -263,8 +263,8 @@ ggcoefstats(
 #| label = "bamlss",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(bamlss)
 data("SwissLabor", package = "AER")
 
@@ -279,7 +279,7 @@ b_bamlss <-
     data = SwissLabor
   )
 
-# plot
+
 ggcoefstats(
   x = b_bamlss,
   title = "Bayesian additive models \nfor location scale and shape"
@@ -292,10 +292,10 @@ ggcoefstats(
 #| label = "BFBayesFactor",
 #| fig.width = 10,
 #| fig.height = 10
-# setup
-set.seed(123)
+
+
 library(BayesFactor)
-library(ggstatsplot)
+
 
 # one sample t-test
 mod1 <- ttestBF(mtcars$wt, mu = 3)
@@ -361,8 +361,8 @@ combine_plots(
 #| label = "feis",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(feisr)
 data("mwp", package = "feisr")
 
@@ -375,7 +375,7 @@ feis.mod <-
     robust = TRUE
   )
 
-# plot
+
 ggcoefstats(
   x = feis.mod,
   title = "Fixed Effects Individual Slope Estimator"
@@ -388,15 +388,15 @@ ggcoefstats(
 #| label = "aov1",
 #| fig.height = 6,
 #| fig.width = 8
-# setup
-set.seed(123)
-library(ggstatsplot)
+
+
+
 library(ggplot2)
 
 # model
 mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
 
-# plot
+
 ggcoefstats(
   x = mod_aov,
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
@@ -418,11 +418,11 @@ different models with the code below and see how the AIC and BIC values change.
 #| label = "aov2",
 #| fig.height = 10,
 #| fig.width = 10
-# setup
-set.seed(123)
-library(ggstatsplot)
 
-# plot
+
+
+
+
 combine_plots(
   plotlist = list(
     # model 1
@@ -456,8 +456,8 @@ combine_plots(
 #| label = "mclogit",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(mclogit)
 data(Transport)
 
@@ -469,7 +469,7 @@ mod_mclogit <-
     control = mclogit::mclogit.control(trace = FALSE)
   )
 
-# plot
+
 ggcoefstats(
   x = mod_mclogit,
   title = "conditional logit models"
@@ -482,8 +482,8 @@ ggcoefstats(
 #| label = "mmclogit",
 #| fig.height = 8,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(mclogit)
 data(electors)
 
@@ -496,7 +496,7 @@ mod_mclogit <-
     data = within(electors, party.time <- interaction(party, time))
   )
 
-# plot
+
 ggcoefstats(
   x = mod_mclogit,
   title = "Mixed Conditional Logit Models"
@@ -509,10 +509,10 @@ ggcoefstats(
 #| label = "Anova",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(car)
-library(ggstatsplot)
+
 
 # model
 mod_Anova <-
@@ -522,7 +522,7 @@ mod_Anova <-
     contrasts = list(fcategory = contr.sum, partner.status = contr.sum)
   ))
 
-# plot
+
 ggcoefstats(
   x = mod_Anova,
   title = "Anova with `car`"
@@ -536,8 +536,8 @@ ggcoefstats(
 #| fig.height = 6,
 #| fig.width = 6,
 #| eval = FALSE
-# setup
-set.seed(123)
+
+
 library(car)
 
 # data
@@ -570,7 +570,7 @@ mlm1.aov <-
     type = "III"
   )
 
-# plot
+
 ggcoefstats(
   x = mlm1.aov,
   title = "ANOVA with `car` on multiple linear models"
@@ -583,7 +583,7 @@ ggcoefstats(
 #| label = "anova_ez",
 #| fig.height = 4,
 #| fig.width = 4
-set.seed(123)
+
 library(ez)
 data(ANT)
 
@@ -598,7 +598,7 @@ rt_anova <-
     return_aov = TRUE
   ))
 
-# plot
+
 ggcoefstats(
   x = rt_anova$aov,
   title = "Anova with `ez` package"
@@ -611,8 +611,8 @@ ggcoefstats(
 #| label = "lm",
 #| fig.height = 8,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 
 # data
 df <- dplyr::filter(
@@ -627,7 +627,7 @@ df <- dplyr::filter(
   )
 )
 
-# plot
+
 ggcoefstats(
   x = stats::lm(formula = rating ~ genre, data = df),
   sort = "ascending", # sorting the terms of the model based on estimate values
@@ -646,8 +646,8 @@ The same output will also be returned for objects of type `summary.lm`.
 #| label = "lm.beta",
 #| fig.width = 10,
 #| fig.height = 6
-# setup
-set.seed(123)
+
+
 library(MASS)
 library(lm.beta)
 
@@ -657,7 +657,7 @@ mod.robust <- MASS::rlm(formula = mpg ~ wt, data = mtcars)
 mod.beta <- lm.beta::lm.beta(mod.lm)
 mod.robust.beta <- lm.beta::lm.beta(mod.robust)
 
-# plot
+
 combine_plots(
   plotlist = list(
     ggcoefstats(mod.beta),
@@ -673,8 +673,8 @@ combine_plots(
 #| label = "biglm",
 #| fig.height = 4,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(biglm)
 
 # model
@@ -684,7 +684,7 @@ bfit1 <-
     data = mtcars
   )
 
-# plot
+
 ggcoefstats(
   x = bfit1,
   title = "bounded memory simple linear regression"
@@ -697,8 +697,8 @@ ggcoefstats(
 #| label = "bigglm",
 #| fig.height = 4,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(biglm)
 data(trees)
 
@@ -711,7 +711,7 @@ mod_bigglm <-
     sandwich = TRUE
   )
 
-# plot
+
 ggcoefstats(
   x = mod_bigglm,
   title = "bounded memory general linear regression"
@@ -724,15 +724,15 @@ ggcoefstats(
 #| label = "eflm",
 #| fig.height = 5,
 #| fig.width = 12
-# setup
-set.seed(123)
+
+
 library(eflm)
 
 # models
 mod_elm <- eflm::elm(mpg ~ wt, data = mtcars)
 mod_eglm <- eflm::eglm(mpg ~ wt, family = gaussian(), data = mtcars)
 
-# plot
+
 combine_plots(
   plotlist = list(
     ggcoefstats(
@@ -755,7 +755,7 @@ combine_plots(
 #| label = "gnls",
 #| fig.height = 6,
 #| fig.width = 8
-set.seed(123)
+
 library(nlme)
 
 # variance increases with a power of the absolute fitted values
@@ -777,8 +777,8 @@ ggcoefstats(
 #| label = "mixed",
 #| fig.height = 4,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(afex)
 library(MEMSS)
 data("Machines", package = "MEMSS")
@@ -798,7 +798,7 @@ m2_afex <-
     expand_re = TRUE
   )
 
-# plot
+
 combine_plots(
   plotlist = list(
     ggcoefstats(m1_afex, title = "example-1"),
@@ -814,8 +814,8 @@ combine_plots(
 #| label = "afex_aov",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(afex)
 data(obk.long)
 
@@ -829,7 +829,7 @@ fit_all <-
     within = c("phase")
   )
 
-# plot
+
 ggcoefstats(
   x = fit_all,
   title = "anova using `afex`"
@@ -841,8 +841,8 @@ ggcoefstats(
 ```{r}
 #| label = "joint",
 #| eval = FALSE
-# setup
-set.seed(123)
+
+
 library(joineR)
 
 # data
@@ -872,7 +872,7 @@ mod_joint <- joint(
   model = "intslope"
 )
 
-# plot
+
 ggcoefstats(
   x = mod_joint,
   title = "joint model for survival and longitudinal data measured with error"
@@ -885,8 +885,8 @@ ggcoefstats(
 #| label = "riskRegression",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(riskRegression)
 library(prodlim)
 data(Melanoma, package = "riskRegression")
@@ -902,7 +902,7 @@ multi.arr <-
     cause = 1
   )
 
-# plot
+
 ggcoefstats(
   x = multi.arr,
   title = "risk regression"
@@ -915,9 +915,9 @@ ggcoefstats(
 #| label = "aareg",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 library(survival)
-set.seed(123)
+
 
 # model
 afit <-
@@ -927,7 +927,7 @@ afit <-
     dfbeta = TRUE
   )
 
-# plot
+
 ggcoefstats(
   x = afit,
   title = "Aalen's additive regression model",
@@ -942,8 +942,8 @@ ggcoefstats(
 #| label = "MCMCglmm",
 #| fig.height = 4,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(lme4)
 library(MCMCglmm)
 data(sleepstudy)
@@ -959,7 +959,7 @@ mm0 <-
     verbose = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = mm0,
   title = "multivariate generalized linear mixed model",
@@ -974,7 +974,7 @@ ggcoefstats(
 #| label = "bayesx",
 #| fig.height = 4,
 #| fig.width = 5
-# setup
+
 set.seed(111)
 library(R2BayesX)
 
@@ -990,7 +990,7 @@ dat$y <- with(dat, 1.5 + sin(x) + rnorm(n, sd = 0.6))
 ## estimate models with bayesx REML and MCMC
 b1 <- R2BayesX::bayesx(y ~ sx(x), method = "REML", data = dat)
 
-# plot
+
 ggcoefstats(
   x = b1,
   title = "STAR Models with BayesX"
@@ -1006,7 +1006,7 @@ ggcoefstats(
 library(GJRM)
 
 # data
-set.seed(123)
+
 dat <- data.frame(
   x1 = rnorm(40, 1:10),
   x2 = rnorm(40, 1:30),
@@ -1024,7 +1024,7 @@ f.list <- list(
 # model
 mod_gjrm <- gjrm(f.list, dat, Model = "B", margins = c("probit", "probit"))
 
-# plot
+
 ggcoefstats(
   x = mod_gjrm,
   title = "Generalised Joint Regression Models\n with Binary/Continuous/Discrete/Survival Margins"
@@ -1049,7 +1049,7 @@ mod_selection <- selection(
   data = mroz
 )
 
-# plot
+
 ggcoefstats(
   x = mod_selection,
   title = "Heckman-style selection and treatment effect models"
@@ -1062,8 +1062,8 @@ ggcoefstats(
 #| label = "HLfit",
 #| width = 4,
 #| height = 4
-# setup
-set.seed(123)
+
+
 library(spaMM)
 data("wafers")
 data("scotlip")
@@ -1076,7 +1076,7 @@ mod_HLfit <-
     data = wafers
   )
 
-# plot
+
 ggcoefstats(
   x = mod_HLfit,
   title = "Inference in spatial GLMMs"
@@ -1089,8 +1089,8 @@ ggcoefstats(
 #| label = "rlmer",
 #| width = 5,
 #| height = 5
-# setups
-set.seed(123)
+s
+
 library(robustlmm)
 
 # model
@@ -1102,7 +1102,7 @@ roblmm.mod <-
     rho.sigma.b = chgDefaults(smoothPsi, k = 5.11, s = 10)
   )
 
-# plot
+
 ggcoefstats(
   x = roblmm.mod,
   title = "robust estimation of linear mixed-effects model",
@@ -1116,8 +1116,8 @@ ggcoefstats(
 #| label = "lmerModLmerTest",
 #| width = 8,
 #| height = 18
-# setup
-set.seed(123)
+
+
 library(lmerTest)
 
 # fit linear mixed model to the ham data:
@@ -1128,7 +1128,7 @@ fm <-
     data = ham
   )
 
-# plot
+
 ggcoefstats(
   x = fm,
   title = "linear mixed-effects models with `lmerTest`"
@@ -1143,7 +1143,7 @@ ggcoefstats(
 #| fig.width = 6
 # data
 library(lme4)
-set.seed(123)
+
 startvec <- c(Asym = 200, xmid = 725, scal = 350)
 
 # model
@@ -1154,7 +1154,7 @@ nm1 <-
     start = startvec
   )
 
-# plot
+
 ggcoefstats(
   x = nm1,
   title = "non-linear mixed-effects model"
@@ -1167,9 +1167,9 @@ ggcoefstats(
 #| label = "nls",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
-library(ggstatsplot)
+
+
+
 
 # model
 mod_nls <-
@@ -1179,7 +1179,7 @@ mod_nls <-
     start = list(k = 1, c = 0)
   )
 
-# plot
+
 ggcoefstats(
   x = mod_nls,
   title = "non-linear least squares regression",
@@ -1193,8 +1193,8 @@ ggcoefstats(
 #| label = "cglm",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(cglm)
 data(teenpov)
 
@@ -1208,7 +1208,7 @@ fit.ide <-
     link = "identity"
   )
 
-# plot
+
 ggcoefstats(
   x = fit.ide,
   title = "conditional generalized linear models for clustered data"
@@ -1221,8 +1221,8 @@ ggcoefstats(
 #| label = "mjoint",
 #| fig.height = 8,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(joineRML)
 data(heart.valve)
 
@@ -1263,8 +1263,8 @@ ggcoefstats(
 #| label = "slm",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(slm)
 data("shan")
 
@@ -1277,7 +1277,7 @@ mod_slm <-
     model_selec = -1
   )
 
-# plot
+
 ggcoefstats(
   x = mod_slm,
   conf.level = 0.90,
@@ -1293,9 +1293,9 @@ ggcoefstats(
 #| label = "glm1",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-library(ggstatsplot)
-set.seed(123)
+
+
+
 
 # having a look at the Titanic dataset
 df <- as.data.frame(Titanic)
@@ -1309,7 +1309,7 @@ mod_glm <-
     family = stats::binomial(link = "logit")
   )
 
-# plot
+
 ggcoefstats(
   x = mod_glm,
   ggtheme = ggthemes::theme_economist_white(),
@@ -1327,8 +1327,8 @@ statistic. The function will figure this out for you.
 #| fig.height = 13,
 #| fig.width = 10
 # creating data frames to use for regression analyses
-set.seed(123)
-library(ggstatsplot)
+
+
 
 # data frame #1
 df.counts <-
@@ -1337,7 +1337,7 @@ df.counts <-
     outcome = gl(n = 3, k = 1, length = 9),
     counts = c(18, 17, 15, 20, 10, 20, 25, 13, 12)
   ) %>%
-  tibble::as_tibble(.)
+  tibble::as_tibble()
 
 # data frame #2
 df.clotting <-
@@ -1346,13 +1346,13 @@ df.clotting <-
     lot1 = c(118, 58, 42, 35, 27, 25, 21, 19, 18),
     lot2 = c(69, 35, 26, 21, 18, 16, 13, 12, 12)
   ) %>%
-  tibble::as_tibble(.)
+  tibble::as_tibble()
 
 # data frame #3
 x1 <- stats::rnorm(50)
 y1 <- stats::rpois(n = 50, lambda = exp(1 + x1))
 df.3 <- data.frame(x = x1, y = y1) %>%
-  tibble::as_tibble(.)
+  tibble::as_tibble()
 
 # data frame #4
 x2 <- stats::rnorm(50)
@@ -1363,7 +1363,7 @@ y2 <- rbinom(
 )
 
 df.4 <- data.frame(x = x2, y = y2) %>%
-  tibble::as_tibble(.)
+  tibble::as_tibble()
 
 # combining all plots in a single plot
 combine_plots(
@@ -1440,9 +1440,9 @@ The version of `glm` implemented in `rms` is also supported.
 #| label = "rms_Glm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
-library(ggstatsplot)
+
+
+
 library(rms)
 
 # Dobson (1990) Page 93: Randomized Controlled Trial :
@@ -1451,7 +1451,7 @@ outcome <- gl(3, 1, 9)
 treatment <- gl(3, 3)
 f_Glm <- rms::Glm(counts ~ outcome + treatment, family = poisson())
 
-# plot
+
 ggcoefstats(
   x = f_Glm,
   title = "rms' implementation of glm"
@@ -1464,8 +1464,8 @@ ggcoefstats(
 #| label = "glm2",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(glm2)
 y <- c(1, 1, 1, 0)
 
@@ -1477,7 +1477,7 @@ fit_glm2 <-
     control = glm.control(trace = FALSE)
   )
 
-# plot
+
 ggcoefstats(
   x = fit_glm2,
   title = "greater stability for fitting generalized linear models"
@@ -1490,8 +1490,8 @@ ggcoefstats(
 #| label = "geeglm",
 #| fig.height = 7,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(geepack)
 data(dietox)
 dietox$Cu <- as.factor(dietox$Cu)
@@ -1507,7 +1507,7 @@ gee1 <-
     corstr = "ar1"
   )
 
-# plot
+
 ggcoefstats(
   x = gee1,
   title = "Fit Generalized Estimating Equations",
@@ -1522,9 +1522,9 @@ ggcoefstats(
 #| label = "orm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 library(rms)
-set.seed(123)
+
 
 # data
 n <- 100
@@ -1535,7 +1535,7 @@ x2 <- sample(c(-1, 0, 1), n, TRUE)
 # model
 g <- rms::orm(y ~ x1 + x2, eps = 1e-5)
 
-# plot
+
 ggcoefstats(
   x = g,
   title = "Ordinal Regression Model"
@@ -1548,9 +1548,9 @@ ggcoefstats(
 #| label = "lrm",
 #| fig.height = 12,
 #| fig.width = 7
-# setup
+
 library(rms)
-set.seed(123)
+
 
 # data
 n <- 500
@@ -1565,7 +1565,7 @@ options(datadist = "dd")
 # model
 f_lrm <- rms::lrm(y ~ x1 + pol(x2, 2) + x3, eps = 1e-7) # eps to check against rstan
 
-# plot
+
 ggcoefstats(
   x = f_lrm,
   title = "Logistic Regression Model",
@@ -1580,8 +1580,8 @@ ggcoefstats(
 #| label = "iv_robust",
 #| fig.height = 6,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(fabricatr)
 library(estimatr)
 
@@ -1599,7 +1599,7 @@ dat <-
 # instrument for treatment `D` with encouragement `Z`
 mod_ivrobust <- estimatr::iv_robust(formula = Y ~ D + X | Z + X, data = dat)
 
-# plot
+
 ggcoefstats(
   x = mod_ivrobust,
   title = "Two-Stage Least Squares Instrumental Variables Regression"
@@ -1612,8 +1612,8 @@ ggcoefstats(
 #| label = "lm_robust",
 #| fig.height = 5,
 #| fig.width = 5
-# for reproducibility
-set.seed(123)
+
+
 library(estimatr)
 
 # model
@@ -1623,7 +1623,7 @@ mod_lmrobust <-
     data = mtcars
   )
 
-# plot
+
 ggcoefstats(
   x = mod_lmrobust,
   title = "ordinary least squares with robust standard errors"
@@ -1638,7 +1638,7 @@ Just to demonstrate that this can be done, let's also flip the axes:
 #| label = "negbin",
 #| fig.height = 6,
 #| fig.width = 8
-# setup
+
 library(MASS)
 library(lme4)
 set.seed(101)
@@ -1658,7 +1658,7 @@ dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 # model
 m.glm <- MASS::glm.nb(formula = y ~ f1 * f2, data = dd)
 
-# plot
+
 ggcoefstats(
   x = m.glm,
   title = "generalized linear model (GLM) for the negative binomial family",
@@ -1674,8 +1674,8 @@ ggcoefstats(
 #| label = "glmer",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(lme4)
 
 # model
@@ -1691,7 +1691,7 @@ mod_glmer <-
     )
   )
 
-# plot
+
 ggcoefstats(
   x = mod_glmer,
   title = "generalized linear mixed-effects model"
@@ -1704,7 +1704,7 @@ ggcoefstats(
 #| label = "glmm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 library(glmm)
 data(BoothHobert)
 set.seed(1234)
@@ -1721,7 +1721,7 @@ mod.mcml1 <-
     doPQL = TRUE
   )
 
-# plot
+
 ggcoefstats(
   x = mod.mcml1,
   title = "Fitting Generalized Linear Mixed Models using MCML"
@@ -1734,7 +1734,7 @@ ggcoefstats(
 #| label = "glmer.nb",
 #| fig.height = 7,
 #| fig.width = 6
-# setup
+
 library(MASS)
 library(lme4)
 set.seed(101)
@@ -1754,7 +1754,7 @@ dd$y <- rnbinom(nrow(dd), mu = mu, size = 0.5)
 # model
 m.nb <- lme4::glmer.nb(formula = y ~ f1 * f2 + (1 | g), data = dd)
 
-# plot
+
 ggcoefstats(
   x = m.nb,
   title = "generalized linear mixed-effects model (GLMM) for the negative binomial family"
@@ -1767,8 +1767,8 @@ ggcoefstats(
 #| label = "zeroinfl",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(pscl)
 
 # data
@@ -1782,7 +1782,7 @@ mod_zeroinfl <-
     dist = "negbin"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_zeroinfl,
   title = "Zero-Inflated Count Data Regression"
@@ -1795,8 +1795,8 @@ ggcoefstats(
 #| label = "vgam",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(VGAM)
 pneumo <- transform(pneumo, let = log(exposure.time))
 
@@ -1809,7 +1809,7 @@ mod_vgam <-
     trace = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = mod_vgam,
   title = "Vector Generalized Additive Models"
@@ -1822,8 +1822,8 @@ ggcoefstats(
 #| label = "vglm",
 #| fig.height = 4,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(VGAM)
 pneumo <- transform(pneumo, let = log(exposure.time))
 
@@ -1835,7 +1835,7 @@ mod_vglm <-
     data = pneumo
   )
 
-# plot
+
 ggcoefstats(
   x = mod_vglm,
   title = "Vector Generalized Linear Models"
@@ -1848,8 +1848,8 @@ ggcoefstats(
 #| label = "rrvglm",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(VGAM)
 
 # data
@@ -1872,7 +1872,7 @@ rrnb2 <-
     trace = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = rrnb2,
   title = "Reduced-Rank Vector Generalized Linear Models"
@@ -1885,15 +1885,15 @@ ggcoefstats(
 #| label = "varest",
 #| fig.height = 12,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(vars)
 data(Canada)
 
 # model
 mod_varest <- vars::VAR(Canada, p = 2, type = "none")
 
-# plot
+
 ggcoefstats(
   x = mod_varest,
   title = "Vector autoregression models"
@@ -1906,15 +1906,15 @@ ggcoefstats(
 #| label = "cgam",
 #| fig.height = 4,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(cgam)
 data(cubic)
 
 # model
 m_cgam <- cgam::cgam(formula = y ~ incr.conv(x), data = cubic)
 
-# plot
+
 ggcoefstats(
   x = m_cgam,
   title = "Constrained Generalized Additive Model Fitting"
@@ -1927,8 +1927,8 @@ ggcoefstats(
 #| label = "cgamm",
 #| fig.height = 4,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(cgam)
 
 # simulate a balanced data set with 30 clusters
@@ -1964,7 +1964,7 @@ for (i in 1:m) {
 # use REML method to fit the model
 ans <- cgam::cgamm(formula = y ~ s.incr(x) + (1 | group), reml = TRUE)
 
-# plot
+
 ggcoefstats(
   x = ans,
   title = "Constrained Generalized Additive Mixed-Effects Model Fitting"
@@ -1975,8 +1975,8 @@ ggcoefstats(
 
 ```{r}
 #| label = "scam"
-# setup
-set.seed(123)
+
+
 library(scam)
 
 # data
@@ -2000,7 +2000,7 @@ b_scam <-
     not.exp = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = b_scam,
   title = "Shape constrained additive models"
@@ -2013,8 +2013,8 @@ ggcoefstats(
 #| label = "hurdle",
 #| fig.height = 10,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(pscl)
 data("bioChemists", package = "pscl")
 
@@ -2026,7 +2026,7 @@ fm_hp2 <-
     zero = "geometric"
   )
 
-# plot
+
 ggcoefstats(
   x = fm_hp2,
   only.significant = TRUE,
@@ -2041,7 +2041,7 @@ ggcoefstats(
 #| label = "BBmm",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
+
 if (isFALSE("PROreg" %in% installed.packages())) {
   install.packages("https://cran.r-project.org/src/contrib/Archive/PROreg/PROreg_1.0.tar.gz",
     repos = NULL,
@@ -2049,7 +2049,7 @@ if (isFALSE("PROreg" %in% installed.packages())) {
   )
 }
 library(PROreg)
-set.seed(123)
+
 
 # defining the parameters
 k <- 100
@@ -2081,7 +2081,7 @@ mod_BBmm <-
     data = dat
   )
 
-# plot
+
 ggcoefstats(
   x = mod_BBmm,
   title = "beta-binomial mixed-effects model"
@@ -2094,7 +2094,7 @@ ggcoefstats(
 #| label = "BBreg",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 set.seed(18)
 library(PROreg)
 
@@ -2112,7 +2112,7 @@ y <- PROreg::rBB(k, m, p, phi)
 # model
 mod_BBreg <- PROreg::BBreg(y ~ x, m)
 
-# plot
+
 ggcoefstats(
   x = mod_BBreg,
   title = "beta-binomial logistic regression model"
@@ -2125,8 +2125,8 @@ ggcoefstats(
 #| label = "bife",
 #| fig.height = 10,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(bife)
 
 # binary choice models with fixed effects
@@ -2136,7 +2136,7 @@ mod_bife <-
     data = psid
   )
 
-# plot
+
 ggcoefstats(
   x = mod_bife,
   title = "binary choice models with fixed effects"
@@ -2149,8 +2149,8 @@ ggcoefstats(
 #| label = "DirichReg",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(DirichletReg)
 
 # data
@@ -2160,7 +2160,7 @@ ALake$Y <- DR_data(ALake[, 1:3])
 # fit a quadratic Dirichlet regression models ("common")
 mod_DirichReg <- DirichletReg::DirichReg(Y ~ depth + I(depth^2), ALake)
 
-# plot
+
 ggcoefstats(
   x = mod_DirichReg,
   title = "Dirichlet Regression"
@@ -2173,8 +2173,8 @@ ggcoefstats(
 #| label = "robmixglm",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(robmixglm)
 library(MASS)
 data(forbes)
@@ -2182,7 +2182,7 @@ data(forbes)
 # model
 forbes.robustmix <- robmixglm(100 * log10(pres) ~ bp, data = forbes)
 
-# plot
+
 ggcoefstats(
   x = forbes.robustmix,
   title = "robust generalized linear models"
@@ -2195,7 +2195,7 @@ ggcoefstats(
 #| label = "glmx",
 #| fig.height = 6,
 #| fig.width = 8
-# setup
+
 library(glmx)
 library(MASS)
 set.seed(1)
@@ -2224,8 +2224,8 @@ ggcoefstats(
 #| label = "glmertree",
 #| fig.height = 6,
 #| fig.width = 12
-# setup
-set.seed(123)
+
+
 library(glmertree)
 data("DepressionDemo", package = "glmertree")
 
@@ -2241,7 +2241,7 @@ gt <- glmertree::glmertree(
   data = DepressionDemo
 )
 
-# plot
+
 combine_plots(
   plotlist = list(
     ggcoefstats(
@@ -2262,8 +2262,8 @@ combine_plots(
 #| label = "glmmPQL",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(MASS)
 library(nlme)
 
@@ -2277,7 +2277,7 @@ mod_glmmPQL <-
     verbose = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = mod_glmmPQL,
   title = "generalized linear mixed models \nusing Penalized Quasi-Likelihood"
@@ -2296,7 +2296,7 @@ ggcoefstats(
 # set up
 library(glmmTMB)
 library(lme4)
-set.seed(123)
+
 
 # model
 mod_glmmTMB <-
@@ -2306,7 +2306,7 @@ mod_glmmTMB <-
     family = glmmTMB::truncated_poisson()
   )
 
-# plotting the model
+
 ggcoefstats(
   x = mod_glmmTMB,
   title = "generalized linear mixed models using Template Model Builder"
@@ -2320,8 +2320,8 @@ significant effects):
 #| label = "glmmTMB2",
 #| fig.height = 14,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(glmmTMB)
 data(Salamanders)
 
@@ -2333,7 +2333,7 @@ zipm3 <-
     family = "poisson"
   )
 
-# plot
+
 ggcoefstats(
   x = zipm3,
   package = "palettesForR",
@@ -2348,7 +2348,7 @@ ggcoefstats(
 #| label = "glmmadmb",
 #| fig.height = 5,
 #| fig.width = 7
-# setup
+
 if (isFALSE("glmmADMB" %in% installed.packages())) {
   install.packages("glmmADMB",
     repos = c(
@@ -2378,7 +2378,7 @@ zipmodel <-
     zeroInflation = TRUE
   )
 
-# plotting the model
+
 ggcoefstats(
   x = zipmodel,
   title = "generalized linear mixed models using AD Model Builder"
@@ -2391,8 +2391,8 @@ ggcoefstats(
 #| label = "merModList",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(lme4)
 library(merTools)
 
@@ -2408,7 +2408,7 @@ fml <- "Reaction ~ Days + (Days | Subject)"
 # model
 mod_lmerModList <- lmerModList(fml, data = sim_list)
 
-# plot
+
 ggcoefstats(
   x = mod_lmerModList,
   title = "a multilevel model to a list of data frames"
@@ -2421,14 +2421,14 @@ ggcoefstats(
 #| label = "clm",
 #| fig.height = 6,
 #| fig.width = 8
-# for reproducibility
-set.seed(123)
+
+
 library(ordinal)
 
 # model
 mod_clm <- ordinal::clm(formula = rating ~ temp * contact, data = wine)
 
-# plot
+
 ggcoefstats(
   x = mod_clm,
   stats.label.color = "black",
@@ -2444,8 +2444,8 @@ ggcoefstats(
 #| label = "clm2",
 #| fig.height = 6,
 #| fig.width = 6
-# for reproducibility
-set.seed(123)
+
+
 library(ordinal)
 library(MASS)
 data(housing, package = "MASS")
@@ -2466,7 +2466,7 @@ mod_clm2 <-
     link = "logistic"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_clm2,
   title = "older version of `clm`"
@@ -2479,8 +2479,8 @@ ggcoefstats(
 #| label = "clmm1",
 #| fig.height = 6,
 #| fig.width = 6
-# for reproducibility
-set.seed(123)
+
+
 library(ordinal)
 
 # model
@@ -2507,8 +2507,8 @@ ggcoefstats(
 #| label = "clmm2",
 #| fig.height = 6,
 #| fig.width = 6
-# for reproducibility
-set.seed(123)
+
+
 library(ordinal)
 
 # data
@@ -2527,7 +2527,7 @@ mod_clmm2 <-
     threshold = "symmetric"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_clmm2,
   title = "older version of cumulative link mixed models"
@@ -2540,8 +2540,8 @@ ggcoefstats(
 #| label = "margins",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(margins)
 
 # logit model
@@ -2554,7 +2554,7 @@ mod_log <- glm(
 # convert to marginal effects with margins::margins()
 marg_log <- margins(mod_log)
 
-# plot
+
 ggcoefstats(
   x = marg_log,
   title = "marginal effects estimation"
@@ -2567,8 +2567,8 @@ ggcoefstats(
 #| label = "semLm",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(smicd)
 
 # Load and prepare data
@@ -2584,7 +2584,7 @@ mod_semLm <-
     classes = classes
   )
 
-# plot
+
 ggcoefstats(
   x = mod_semLm,
   title = "Linear Regression with \nInterval-Censored Dependent Variable"
@@ -2597,8 +2597,8 @@ ggcoefstats(
 #| label = "semLme",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(smicd)
 
 # Load and prepare data
@@ -2614,7 +2614,7 @@ model1 <-
     classes = classes
   )
 
-# plot
+
 ggcoefstats(
   x = model1,
   title = "Linear Mixed Regression with \nInterval-Censored Dependent Variable"
@@ -2626,8 +2626,7 @@ ggcoefstats(
 <!-- ## Mixed-Effects Ordinal Regression Analysis (`mixor`) -->
 
 <!-- ```{r mixor, fig.height=8, fig.width=6} -->
-<!-- # setup -->
-<!-- set.seed(123) -->
+<!--  -->
 <!-- library(mixor) -->
 <!-- data("SmokingPrevention") -->
 
@@ -2643,7 +2642,6 @@ ggcoefstats(
 <!--     link = "logit" -->
 <!--   ) -->
 
-<!-- # plot -->
 <!-- ggcoefstats( -->
 <!--   x = mod_mixor, -->
 <!--   title = "Mixed-Effects Ordinal Regression Analysis" -->
@@ -2656,8 +2654,8 @@ ggcoefstats(
 #| label = "brglm",
 #| fig.height = 6,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(brglm)
 data("lizards")
 
@@ -2670,7 +2668,7 @@ lizards.brglm <-
     method = "brglm.fit"
   )
 
-# plot
+
 ggcoefstats(
   x = lizards.brglm,
   only.significant = TRUE,
@@ -2684,8 +2682,8 @@ ggcoefstats(
 #| label = "brglm2",
 #| fig.height = 6,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(brglm2)
 data("lizards")
 
@@ -2698,7 +2696,7 @@ lizardsBR_mean <-
     method = "brglmFit"
   )
 
-# plot
+
 ggcoefstats(
   x = lizardsBR_mean,
   only.significant = TRUE,
@@ -2712,8 +2710,8 @@ ggcoefstats(
 #| label = "brmultinom",
 #| fig.height = 12,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(MASS)
 library(brglm2)
 data("housing", package = "MASS")
@@ -2728,7 +2726,7 @@ houseML1 <-
     ref = 1
   )
 
-# plot
+
 ggcoefstats(
   x = houseML1,
   title = "Bias Reduction For Multinomial Response Models Using The Poisson Trick"
@@ -2741,8 +2739,8 @@ ggcoefstats(
 #| label = "bracl",
 #| fig.height = 6,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(brglm2)
 data("stemcell")
 
@@ -2756,7 +2754,7 @@ fit_bracl <-
     type = "ML"
   )
 
-# plot
+
 ggcoefstats(
   x = fit_bracl,
   title = "bias reduction for adjacent category logit models"
@@ -2769,8 +2767,8 @@ ggcoefstats(
 #| label = "glmc",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(glmc)
 
 # data
@@ -2808,7 +2806,7 @@ gfit <-
     )
   )
 
-# plot
+
 ggcoefstats(
   x = gfit,
   title = "generalized linear models subject to population constraints"
@@ -2821,8 +2819,8 @@ ggcoefstats(
 #| label = "blmerMod",
 #| fig.height = 5,
 #| fig.width = 5
-# for reproducibility
-set.seed(123)
+
+
 library(blme)
 
 # data
@@ -2844,7 +2842,7 @@ mod_blmer <-
     REML = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = mod_blmer,
   title = "Bayesian linear mixed-effects models"
@@ -2857,8 +2855,8 @@ ggcoefstats(
 #| label = "bglmerMod",
 #| fig.height = 6,
 #| fig.width = 6
-# for reproducibility
-set.seed(123)
+
+
 library(blme)
 
 # model
@@ -2870,7 +2868,7 @@ mod_bglmer <-
     fixef.prior = normal
   )
 
-# plot
+
 ggcoefstats(
   x = mod_bglmer,
   title = "Bayesian generalized linear mixed-effects models"
@@ -2884,7 +2882,7 @@ ggcoefstats(
 #| fig.height = 6,
 #| fig.width = 8
 # polr model
-set.seed(123)
+
 library(MASS)
 polr.mod <-
   MASS::polr(
@@ -2893,7 +2891,7 @@ polr.mod <-
     data = housing
   )
 
-# plot
+
 ggcoefstats(
   x = polr.mod,
   coefficient.type = "both",
@@ -2908,8 +2906,8 @@ ggcoefstats(
 #| label = "mlm",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(effectsize)
 
 # model (converting all numeric columns in data to z-scores)
@@ -2919,7 +2917,7 @@ mod_mlm <-
     data = effectsize::standardize(mtcars)
   )
 
-# plot
+
 ggcoefstats(
   x = mod_mlm,
   title = "multiple linear regression models"
@@ -2932,14 +2930,14 @@ ggcoefstats(
 #| label = "maov",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 
 # model
 fit <- lm(cbind(mpg, disp, hp) ~ factor(cyl), data = mtcars)
 m_maov <- aov(fit)
 
-# plot
+
 ggcoefstats(
   x = m_maov,
   title = "anova on multiple linear regression models",
@@ -2955,8 +2953,8 @@ ggcoefstats(
 #| label = "multinom",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(nnet)
 library(MASS)
 utils::example(topic = birthwt, echo = FALSE)
@@ -2969,7 +2967,7 @@ bwt.mu <-
     trace = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = bwt.mu,
   title = "multinomial logistic regression models",
@@ -2984,8 +2982,8 @@ ggcoefstats(
 #| label = "bmlm",
 #| fig.height = 7,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(bmlm)
 
 # model
@@ -3002,7 +3000,7 @@ df_summary <-
     conf.high = `97.5%`
   )
 
-# plot
+
 ggcoefstats(
   x = df_summary,
   title = "Bayesian multilevel mediation models with Stan"
@@ -3015,8 +3013,8 @@ ggcoefstats(
 #| label = "svyolr",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(survey)
 data(api)
 
@@ -3039,7 +3037,7 @@ m_svyolr <-
     design = dclus1
   )
 
-# plot
+
 ggcoefstats(
   x = m_svyolr,
   title = "proportional odds and related models",
@@ -3055,7 +3053,7 @@ ggcoefstats(
 #| fig.width = 5
 # data
 library(survey)
-set.seed(123)
+
 data(api)
 dstrat <-
   survey::svydesign(
@@ -3074,7 +3072,7 @@ mod_svyglm <-
     family = quasibinomial()
   )
 
-# plot
+
 ggcoefstats(
   x = mod_svyglm,
   title = "survey-weighted generalized linear model"
@@ -3086,8 +3084,8 @@ ggcoefstats(
 ```{r}
 #| fig.height = 7,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(svyVGAM)
 data(api)
 
@@ -3104,7 +3102,7 @@ mod_svy_vglm <- svy_vglm(api00 ~ api99 + mobility + ell,
   family = uninormal()
 )
 
-# plot
+
 ggcoefstats(
   x = mod_svy_vglm,
   title = "design-based inference for\nvector generalised linear models"
@@ -3117,7 +3115,7 @@ ggcoefstats(
 #| label = "mhurdle",
 #| fig.height = 6,
 #| fig.width = 8
-# setup
+
 data("Interview", package = "mhurdle")
 library(mhurdle)
 
@@ -3130,7 +3128,7 @@ idhm <- mhurdle::mhurdle(
   method = "bfgs"
 )
 
-# plot
+
 ggcoefstats(
   x = idhm,
   title = "estimation of limited dependent variable models"
@@ -3143,9 +3141,9 @@ ggcoefstats(
 #| label = "aovlist1",
 #| fig.height = 6,
 #| fig.width = 8
-# for reproducibility
-set.seed(123)
-library(ggstatsplot)
+
+
+
 
 # specifying the model (note the error structure)
 mod_aovlist <-
@@ -3154,7 +3152,7 @@ mod_aovlist <-
     data = iris_long
   )
 
-# plot
+
 ggcoefstats(
   x = mod_aovlist,
   effsize = "eta",
@@ -3174,7 +3172,6 @@ ggcoefstats(
 #| fig.width = 6
 combine_plots(
   plotlist = list(
-    # plot 1: glmRob
     ggcoefstats(
       x = robust::glmRob(
         formula = Survived ~ Sex,
@@ -3184,7 +3181,6 @@ combine_plots(
       title = "generalized robust linear model",
       ggtheme = ggthemes::theme_fivethirtyeight()
     ),
-    # plot 2: lmRob
     ggcoefstats(
       x = robust::lmRob(
         formula = Sepal.Length ~ Sepal.Width * Species,
@@ -3211,8 +3207,6 @@ package.
 #| label = "robustbase",
 #| fig.height = 10,
 #| fig.width = 6
-# setup
-set.seed(123)
 library(robustbase)
 
 # data frame
@@ -3227,7 +3221,6 @@ clotting <-
 # combined plot for both generalized and simple robust models
 combine_plots(
   plotlist = list(
-    # plot 1: glmrob
     ggcoefstats(
       x = glmrob(
         formula = lot1 ~ log(u),
@@ -3236,7 +3229,6 @@ combine_plots(
       ),
       title = "generalized robust linear model"
     ),
-    # plot 2: lmrob
     ggcoefstats(
       x = lmrob(formula = Y ~ ., data = coleman),
       title = "robust linear model"
@@ -3254,8 +3246,8 @@ combine_plots(
 #| label = "complmrob",
 #| fig.height = 7,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(complmrob)
 
 # data
@@ -3267,7 +3259,7 @@ crimes <- data.frame(
 # model
 mUSArr <- complmrob::complmrob(formula = lifeExp ~ ., data = crimes)
 
-# plot
+
 ggcoefstats(
   x = mUSArr,
   title = "MM-type estimators for linear regression on compositional data"
@@ -3280,7 +3272,7 @@ ggcoefstats(
 #| label = "nlreg",
 #| fig.height = 5,
 #| fig.width = 7
-set.seed(123)
+
 library(nlreg)
 library(boot)
 data(calcium)
@@ -3293,7 +3285,7 @@ calcium.nl <-
     data = calcium
   )
 
-# plot
+
 ggcoefstats(
   x = calcium.nl,
   conf.int = FALSE,
@@ -3307,8 +3299,8 @@ ggcoefstats(
 #| label = "felm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(lfe)
 
 # create covariates
@@ -3330,7 +3322,7 @@ y <- x + 0.5 * x2 + id.eff[id] + firm.eff[firm] + u
 # estimate and print result
 est <- lfe::felm(formula = y ~ x + x2 | id + firm)
 
-# plot
+
 ggcoefstats(
   x = est,
   title = "linear model with multiple group fixed effects"
@@ -3344,7 +3336,7 @@ ggcoefstats(
 #| fig.height = 5,
 #| fig.width = 5
 # data
-set.seed(123)
+
 library(plm)
 data("Produc", package = "plm")
 
@@ -3356,7 +3348,7 @@ plm.mod <-
     index = c("state", "year")
   )
 
-# plot
+
 ggcoefstats(
   x = plm.mod,
   title = "linear models for panel data"
@@ -3369,8 +3361,8 @@ ggcoefstats(
 #| label = "mlogit",
 #| fig.height = 8,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(mlogit)
 
 # data
@@ -3385,7 +3377,7 @@ Fish <-
 # a "mixed" model
 m_mlogit <- mlogit::mlogit(mode ~ price + catch | income, data = Fish)
 
-# plot
+
 ggcoefstats(
   x = m_mlogit,
   title = "multinomial logit model"
@@ -3398,8 +3390,8 @@ ggcoefstats(
 #| label = "coxph",
 #| fig.height = 4,
 #| fig.width = 4
-# for reproducibility
-set.seed(123)
+
+
 library(survival)
 
 # create the simplest-test data set
@@ -3417,7 +3409,7 @@ mod_coxph <-
     data = test1
   )
 
-# plot
+
 ggcoefstats(
   x = mod_coxph,
   title = "Cox proportional hazards regression model"
@@ -3430,8 +3422,8 @@ Another example with `frailty` term.
 #| label = "coxph.penal",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(survival)
 
 # model
@@ -3440,7 +3432,7 @@ mod_coxph <- survival::coxph(
   data = lung
 )
 
-# plot
+
 ggcoefstats(
   x = mod_coxph,
   title = "Proportional Hazards Regression Model\nwith Frailty penalty function"
@@ -3453,8 +3445,8 @@ ggcoefstats(
 #| label = "coxme",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(survival)
 library(coxme)
 
@@ -3464,7 +3456,7 @@ fit <- coxme::coxme(
   data = eortc
 )
 
-# plot
+
 ggcoefstats(
   x = fit,
   title = "mixed effects Cox model"
@@ -3477,8 +3469,8 @@ ggcoefstats(
 #| label = "coxr",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(coxrobust)
 
 # create a simple test data set using the attached function `gen_data`
@@ -3487,7 +3479,7 @@ a <- coxrobust::gen_data(200, c(1, 0.1, 2), cont = 0.05, p.censor = 0.30)
 # model
 mod_coxr <- coxrobust::coxr(Surv(time, status) ~ X1 + X2 + X3, data = a, trunc = 0.9)
 
-# plot
+
 ggcoefstats(
   x = mod_coxr,
   title = "robust Cox proportional hazards regression model"
@@ -3500,8 +3492,8 @@ ggcoefstats(
 #| label = "truncreg",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(truncreg)
 library(survival)
 
@@ -3516,7 +3508,7 @@ cragg_trunc <-
     subset = durable > 0
   )
 
-# plot
+
 ggcoefstats(
   x = cragg_trunc,
   title = "Truncated Gaussian Regression Models"
@@ -3529,8 +3521,8 @@ ggcoefstats(
 #| label = "lqm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(lqmm)
 
 # data
@@ -3549,7 +3541,7 @@ fit.lqm <-
     fit = TRUE
   )
 
-# plot
+
 ggcoefstats(
   x = fit.lqm,
   title = "Fitting Linear Quantile Models"
@@ -3562,8 +3554,8 @@ ggcoefstats(
 #| label = "lqmm",
 #| fig.height = 4,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(lqmm)
 
 # data
@@ -3584,7 +3576,7 @@ fit.lqmm <-
     type = "normal"
   )
 
-# plot
+
 ggcoefstats(
   x = fit.lqmm,
   title = "Fitting Linear Quantile Mixed Models"
@@ -3597,13 +3589,13 @@ ggcoefstats(
 #| label = "arima",
 #| fig.height = 5,
 #| fig.width = 5
-# for reproducibility
-set.seed(123)
+
+
 
 # model
 fit <- stats::arima(x = lh, order = c(1, 0, 0))
 
-# plot
+
 ggcoefstats(
   x = fit,
   title = "autoregressive integrated moving average"
@@ -3618,9 +3610,9 @@ Example of high performance linear model-
 #| label = "speedlm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 library(speedglm)
-set.seed(123)
+
 
 # model
 mod_speedlm <-
@@ -3630,7 +3622,7 @@ mod_speedlm <-
     fitted = TRUE
   )
 
-# plot
+
 ggcoefstats(
   x = mod_speedlm,
   title = "high performance linear model"
@@ -3643,8 +3635,8 @@ Example of high performance generalized linear model-
 #| label = "speedglm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(speedglm)
 
 # data
@@ -3664,7 +3656,7 @@ mod_speedglm <-
     family = stats::Gamma(log)
   )
 
-# plot
+
 ggcoefstats(
   x = mod_speedglm,
   title = "high performance generalized linear model"
@@ -3677,8 +3669,8 @@ ggcoefstats(
 #| label = "survreg",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(survival)
 
 # model
@@ -3689,7 +3681,7 @@ mod_survreg <-
     dist = "logistic"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_survreg,
   ggtheme = hrbrthemes::theme_ipsum_rc(),
@@ -3705,7 +3697,7 @@ ggcoefstats(
 #| label = "crr",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
+
 set.seed(10)
 library(cmprsk)
 
@@ -3718,7 +3710,7 @@ dimnames(cov)[[2]] <- c("x1", "x2", "x3")
 # model
 mod_crr <- cmprsk::crr(ftime, fstatus, cov)
 
-# plot
+
 ggcoefstats(
   x = mod_crr,
   title = "Competing Risks Regression"
@@ -3731,8 +3723,8 @@ ggcoefstats(
 #| label = "tobit",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(AER)
 data("Affairs", package = "AER")
 
@@ -3743,7 +3735,7 @@ m_tobit <-
     data = Affairs
   )
 
-# plot
+
 ggcoefstats(
   x = m_tobit,
   title = "tobit regression"
@@ -3756,8 +3748,8 @@ ggcoefstats(
 #| label = "censReg",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(censReg)
 data("Affairs", package = "AER")
 
@@ -3768,7 +3760,7 @@ estResult <-
     data = Affairs
   )
 
-# plot
+
 ggcoefstats(
   x = estResult,
   title = "censored regression (tobit) regression"
@@ -3781,8 +3773,8 @@ ggcoefstats(
 #| label = "cch",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(survival)
 
 # examples come from cch documentation
@@ -3808,7 +3800,7 @@ fit.ccP <-
     cohort.size = 4028
   )
 
-# plot
+
 ggcoefstats(
   x = fit.ccP,
   title = "relative risk regression model",
@@ -3826,15 +3818,15 @@ estimates are available, so only estimates will be displayed.
 #| label = "ridgelm",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(MASS)
 
 # model
 names(longley)[1] <- "y"
 mod_ridgelm <- MASS::lm.ridge(formula = y ~ ., data = longley)
 
-# plot
+
 ggcoefstats(
   x = mod_ridgelm,
   title = "ridge regression"
@@ -3850,8 +3842,8 @@ ggcoefstats(
 #| label = "gam_mgcv",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(mgcv)
 
 # model
@@ -3862,7 +3854,7 @@ g_gam <-
     data = mtcars
   )
 
-# plot
+
 ggcoefstats(
   x = g_gam,
   title = "generalized additive models with \nintegrated smoothness estimation",
@@ -3876,8 +3868,8 @@ ggcoefstats(
 #| label = "bam_mgcv",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(mgcv)
 
 # data
@@ -3893,7 +3885,7 @@ b_bam <-
     data = dat
   )
 
-# plot
+
 ggcoefstats(
   x = b_bam,
   title = "generalized additive models for \nvery large datasets"
@@ -3906,8 +3898,8 @@ ggcoefstats(
 #| label = "Gam",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(gam)
 
 # model
@@ -3916,7 +3908,7 @@ mod_gam <- gam::gam(
   data = mtcars
 )
 
-# plot
+
 ggcoefstats(
   x = mod_gam,
   title = "generalized additive model",
@@ -3930,8 +3922,8 @@ ggcoefstats(
 #| label = "lme",
 #| fig.height = 5,
 #| fig.width = 5
-# for reproducibility
-set.seed(123)
+
+
 library(lme4)
 library(nlme)
 data("sleepstudy")
@@ -3944,7 +3936,7 @@ mod_lme <-
     data = sleepstudy
   )
 
-# plot
+
 ggcoefstats(
   x = mod_lme,
   title = "linear mixed-effects models (`lme`)"
@@ -3961,8 +3953,8 @@ variances.
 #| label = "gls",
 #| fig.height = 5,
 #| fig.width = 6
-# for reproducibility
-set.seed(123)
+
+
 library(nlme)
 
 # model
@@ -3973,7 +3965,7 @@ mod_gls <-
     correlation = corAR1(form = ~ 1 | Mare)
   )
 
-# plot
+
 ggcoefstats(
   x = mod_gls,
   stats.label.color = "black",
@@ -3988,8 +3980,8 @@ ggcoefstats(
 #| label = "coeftest",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(lmtest)
 
 # load data and fit model
@@ -3999,7 +3991,7 @@ fm <- stats::lm(formula = length ~ age, data = Mandible, subset = (age <= 28))
 # the following commands lead to the same tests
 ct <- lmtest::coeftest(fm)
 
-# plot
+
 ggcoefstats(
   x = ct,
   plot = "inference for estimated coefficients",
@@ -4013,13 +4005,13 @@ ggcoefstats(
 #| label = "rlm",
 #| fig.height = 5,
 #| fig.width = 5
-# for reproducibility
-set.seed(123)
+
+
 
 # model
 mod_rlm <- MASS::rlm(formula = mpg ~ am * cyl, data = mtcars)
 
-# plot
+
 ggcoefstats(
   x = mod_rlm,
   point.args = list(color = "red", shape = 15),
@@ -4035,8 +4027,8 @@ ggcoefstats(
 #| label = "rq",
 #| fig.height = 5,
 #| fig.width = 6
-# for reproducibility
-set.seed(123)
+
+
 library(quantreg)
 
 # data
@@ -4050,7 +4042,7 @@ mod_rq <-
     method = "br"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_rq,
   se.type = "iid",
@@ -4064,8 +4056,8 @@ ggcoefstats(
 #| label = "rqs",
 #| fig.height = 7,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(quantreg)
 data("engel")
 
@@ -4077,7 +4069,7 @@ fm <-
     tau = 1:4 / 10
   )
 
-# plot
+
 ggcoefstats(
   x = fm,
   title = "multiple response quantile regression (`rqs`)"
@@ -4090,8 +4082,8 @@ ggcoefstats(
 #| label = "nlrq",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(quantreg)
 
 # preparing data
@@ -4108,7 +4100,7 @@ Dat.nlrq <-
     trace = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = Dat.nlrq,
   title = "non-linear quantile regression",
@@ -4122,8 +4114,8 @@ ggcoefstats(
 #| label = "rqss",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(quantreg)
 data(CobarOre)
 
@@ -4162,7 +4154,7 @@ f_crq <- quantreg::crq(survival::Surv(pmax(y, c), d, type = "left") ~ x,
   method = "Portnoy"
 )
 
-# plot
+
 ggcoefstats(
   x = f_crq,
   title = "censored quantile regression models"
@@ -4175,9 +4167,9 @@ ggcoefstats(
 #| label = "ivreg",
 #| fig.height = 7,
 #| fig.width = 5
-# setup
+
 suppressPackageStartupMessages(library(AER))
-set.seed(123)
+
 data("CigarettesSW", package = "AER")
 
 # model
@@ -4188,7 +4180,7 @@ ivr <-
     subset = year == "1995"
   )
 
-# plot
+
 ggcoefstats(
   x = ivr,
   title = "instrumental-variable regression"
@@ -4201,8 +4193,8 @@ ggcoefstats(
 #| label = "ivprobit",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(ivprobit)
 data(eco)
 
@@ -4213,7 +4205,7 @@ pro <-
     data = eco
   )
 
-# plot
+
 ggcoefstats(
   x = pro,
   title = "instrumental variables probit regression"
@@ -4226,8 +4218,8 @@ ggcoefstats(
 #| label = "ivFixed",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(ivfixed)
 
 #  data
@@ -4252,7 +4244,7 @@ mdata <- data.frame(p = pib, t = tir, int = inf, np = npl)
 # model
 ivf <- ivfixed::ivFixed(t ~ p + int | p + np, mdata, n = 6, t = 3)
 
-# plot
+
 ggcoefstats(
   x = ivf,
   title = "instrumental fixed effect panel regression"
@@ -4265,8 +4257,8 @@ ggcoefstats(
 #| label = "mediate",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(mediation)
 data(jobs)
 
@@ -4292,7 +4284,7 @@ mod_mediate <-
     mediator = "job_seek"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_mediate,
   title = "causal mediation analysis"
@@ -4305,8 +4297,8 @@ ggcoefstats(
 #| label = "lmodel2",
 #| fig.height = 6,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(lmodel2)
 data(mod2ex2)
 
@@ -4320,7 +4312,7 @@ Ex2.res <-
     nperm = 99
   )
 
-# plot
+
 ggcoefstats(
   x = Ex2.res,
   title = "Model II regression"
@@ -4333,7 +4325,7 @@ ggcoefstats(
 #| label = "mvord",
 #| fig.height = 6,
 #| fig.width = 5
-set.seed(123)
+
 library(mvord)
 
 # toy example
@@ -4345,7 +4337,7 @@ res_mvord <- mvord(
   data = data_mvord_toy
 )
 
-# plot
+
 ggcoefstats(
   x = res_mvord,
   title = "Multivariate Ordinal Regression Models"
@@ -4358,8 +4350,8 @@ ggcoefstats(
 #| label = "gamlss",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(gamlss)
 
 # model
@@ -4372,7 +4364,7 @@ g_gamlss <-
     method = mixed(1, 20)
   )
 
-# plot
+
 ggcoefstats(
   x = g_gamlss,
   title = "generalized additive models \nfor location scale and shape"
@@ -4385,7 +4377,7 @@ ggcoefstats(
 #| label = "BGGM",
 #| fig.height = 10,
 #| fig.width = 6
-set.seed(123)
+
 library(BGGM)
 
 # data
@@ -4394,7 +4386,7 @@ Y <- dplyr::select(ptsd, B1:B5)
 # fit model (note + 1, due to zeros)
 fit_ggm <- estimate(Y + 1, type = "ordinal", iter = 250)
 
-# plot
+
 ggcoefstats(
   x = fit_ggm,
   title = "Bayesian Gaussian Graphical Model"
@@ -4426,7 +4418,7 @@ m_systemfit <- systemfit(
   data = Kmenta
 )
 
-# plot
+
 ggcoefstats(
   x = m_systemfit,
   title = "Linear Equation System Estimation"
@@ -4440,8 +4432,8 @@ ggcoefstats(
 #| label = "gmm",
 #| fig.height = 8,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(gmm)
 
 # examples come from the "gmm" package
@@ -4456,7 +4448,7 @@ zm <- rm - rf
 h <- matrix(zm, t, 1)
 res_gmm <- gmm::gmm(z ~ zm, x = h)
 
-# plot
+
 ggcoefstats(
   x = res_gmm,
   package = "palettetown",
@@ -4488,7 +4480,7 @@ COL.lag.eig <- lagsarlm(
   control = list(pre_eig = ev, OrdVsign = 1)
 )
 
-# plot
+
 ggcoefstats(
   x = COL.lag.eig,
   title = "Spatial simultaneous autoregressive model estimation\n by maximum likelihood"
@@ -4506,7 +4498,7 @@ used to selectively show few of the terms of interest:
 #| label = "glmnet",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
+
 library(glmnet)
 set.seed(2014)
 
@@ -4527,7 +4519,7 @@ ggcoefstats(x = dplyr::filter(df, step == 4))
 #| fig.height = 5,
 #| fig.width = 5
 # load the Florentine marriage network data
-set.seed(123)
+
 suppressPackageStartupMessages(library(ergm))
 data(florentine)
 
@@ -4535,7 +4527,7 @@ data(florentine)
 # families depends on the absolute difference in wealth
 gest <- ergm::ergm(flomarriage ~ edges + absdiff("wealth"))
 
-# plot
+
 ggcoefstats(
   x = gest,
   conf.level = 0.99,
@@ -4549,10 +4541,10 @@ ggcoefstats(
 #| label = "btergm",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
+
 library(network)
 library(btergm)
-set.seed(123)
+
 
 # create 10 random networks with 10 actors
 networks <- list()
@@ -4580,7 +4572,7 @@ fit_btergm <-
     verbose = FALSE
   )
 
-# plot
+
 ggcoefstats(
   x = fit_btergm,
   title = "Terms used in Exponential Family Random Graph Models",
@@ -4594,8 +4586,8 @@ ggcoefstats(
 #| label = "garch",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(tseries)
 data(EuStockMarkets)
 
@@ -4603,7 +4595,7 @@ data(EuStockMarkets)
 dax <- diff(log(EuStockMarkets))[, "DAX"]
 dax.garch <- tseries::garch(x = dax, trace = FALSE)
 
-# plot
+
 ggcoefstats(
   x = dax.garch,
   title = "generalized autoregressive conditional heteroscedastic"
@@ -4616,8 +4608,8 @@ ggcoefstats(
 #| label = "bayesGARCH",
 #| fig.height = 4,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(bayesGARCH)
 
 # data
@@ -4629,7 +4621,7 @@ mod_bayesGARCH <- bayesGARCH::bayesGARCH(y,
   control = list(n.chain = 4, l.chain = 200, refresh = 1000)
 )
 
-# plot
+
 ggcoefstats(
   x = mod_bayesGARCH,
   title = "Bayesian Estimation of the GARCH(1,1) Model \nwith Student-t Innovations"
@@ -4642,15 +4634,15 @@ ggcoefstats(
 #| label = "fitdistr",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(MASS)
 x <- rnorm(100, 5, 2)
 
 # model
 fit_fitdistr <- MASS::fitdistr(x, dnorm, list(mean = 3, sd = 1))
 
-# plot
+
 ggcoefstats(
   x = fit_fitdistr,
   title = "maximum-likelihood fitting of univariate distributions",
@@ -4664,8 +4656,8 @@ ggcoefstats(
 #| label = "mle2",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(bbmle)
 
 # data
@@ -4681,7 +4673,7 @@ LL <- function(ymax = 15, xhalf = 6) {
 # use default parameters of LL
 fit_mle2 <- bbmle::mle2(LL, fixed = list(xhalf = 6))
 
-# plot
+
 ggcoefstats(
   x = fit_mle2,
   title = "maximum likelihood estimation",
@@ -4695,8 +4687,8 @@ ggcoefstats(
 #| label = "glht",
 #| fig.height = 5,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(multcomp)
 
 # multiple linear model, swiss data
@@ -4715,7 +4707,7 @@ mod_glht <-
     )
   )
 
-# plot
+
 ggcoefstats(
   x = mod_glht,
   title = "General Linear Hypotheses (using `multcomp`)"
@@ -4728,15 +4720,15 @@ ggcoefstats(
 #| label = "orcutt",
 #| fig.height = 5,
 #| fig.width = 5
-# setup
+
 library(orcutt)
-set.seed(123)
+
 
 # model
 reg <- stats::lm(formula = mpg ~ wt + qsec + disp, data = mtcars)
 co <- orcutt::cochrane.orcutt(reg)
 
-# plot
+
 ggcoefstats(
   x = co,
   title = "Cochrane-Orcutt estimation"
@@ -4749,9 +4741,9 @@ ggcoefstats(
 #| label = "confusionMatrix",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
+
 library(caret)
-set.seed(123)
+
 
 # setting up confusion matrix
 two_class_sample1 <- as.factor(sample(letters[1:2], 100, TRUE))
@@ -4759,7 +4751,7 @@ two_class_sample2 <- as.factor(sample(letters[1:2], 100, TRUE))
 
 two_class_cm <- caret::confusionMatrix(two_class_sample1, two_class_sample2)
 
-# plot
+
 ggcoefstats(
   x = two_class_cm,
   by.class = TRUE,
@@ -4773,8 +4765,8 @@ ggcoefstats(
 #| label = "drc",
 #| fig.height = 7,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(drc)
 
 # model
@@ -4788,7 +4780,7 @@ mod_drc <-
     type = "binomial"
   )
 
-# plot
+
 ggcoefstats(
   x = mod_drc,
   conf.level = 0.99,
@@ -4802,8 +4794,8 @@ ggcoefstats(
 #| label = "logitsf",
 #| fig.height = 4,
 #| fig.width = 4
-# setup
-set.seed(123)
+
+
 library(logistf)
 
 # data frame
@@ -4812,7 +4804,7 @@ data <- data.frame(time = 1:12, event = c(0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1))
 # model
 mod_logistf <- logistf::logistf(event ~ time, data)
 
-# plot
+
 ggcoefstats(
   x = mod_logistf,
   title = "Firth's bias-reduced logistic regression"
@@ -4825,8 +4817,8 @@ ggcoefstats(
 #| label = "flexsurvreg",
 #| fig.height = 6,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(flexsurv)
 data(ovarian)
 
@@ -4850,8 +4842,8 @@ ggcoefstats(
 #| label = "wblm",
 #| fig.height = 6,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(panelr)
 
 # data
@@ -4865,7 +4857,7 @@ mod_wblm <-
     data = wages
   )
 
-# plot
+
 ggcoefstats(
   x = mod_wblm,
   title = "panel regression models fit via multilevel modeling"
@@ -4878,8 +4870,8 @@ ggcoefstats(
 #| label = "wbgee",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(panelr)
 data("WageData")
 
@@ -4893,7 +4885,7 @@ mod_wbgee <-
     data = wages
   )
 
-# plot
+
 ggcoefstats(
   x = mod_wbgee,
   conf.level = 0.99,
@@ -4907,8 +4899,8 @@ ggcoefstats(
 #| label = "crch",
 #| fig.height = 4,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(crch)
 data("RainIbk")
 
@@ -4924,7 +4916,7 @@ CRCH <-
     dist = "gaussian"
   )
 
-# plot
+
 ggcoefstats(
   x = CRCH,
   title = "Censored Regression with Conditional Heteroscedasticy"
@@ -4937,8 +4929,8 @@ ggcoefstats(
 #| label = "LORgee",
 #| fig.height = 10,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(multgee)
 data("arthritis")
 
@@ -4953,7 +4945,7 @@ fit_LORgee <-
     LORstr = "uniform"
   )
 
-# plot
+
 ggcoefstats(
   x = fit_LORgee,
   title = "Marginal Models For Correlated Ordinal Multinomial Responses"
@@ -4966,8 +4958,8 @@ ggcoefstats(
 #| label = "epi.2by2",
 #| fig.height = 4,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(epiR)
 
 # data
@@ -4998,8 +4990,8 @@ ggcoefstats(
 #| label = "probitmfx",
 #| fig.height = 4,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(mfx)
 
 # simulate some data
@@ -5014,7 +5006,7 @@ data <- data.frame(y, x)
 # model
 mod_probitmfx <- mfx::probitmfx(formula = y ~ x, data = data)
 
-# plot
+
 ggcoefstats(
   x = mod_probitmfx,
   title = "marginal effects for a probit regression"
@@ -5027,8 +5019,8 @@ ggcoefstats(
 #| label = "betamfx",
 #| fig.height = 4,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(mfx)
 
 # simulate some data
@@ -5047,7 +5039,7 @@ d <- data.frame(y, x)
 # model
 mod_betamfx <- mfx::betamfx(y ~ x | x, data = d)
 
-# plot
+
 ggcoefstats(
   x = mod_betamfx,
   title = "marginal effects for a beta regression"
@@ -5062,8 +5054,8 @@ Same example can also be used for `logitor` object.
 #| label = "logitmfx",
 #| fig.height = 4,
 #| fig.width = 5
-# setup
-set.seed(123)
+
+
 library(mfx)
 
 # simulate some data
@@ -5079,7 +5071,7 @@ data <- data.frame(y, x)
 # model
 mod_logitmfx <- logitmfx(formula = y ~ x, data = data)
 
-# plot
+
 ggcoefstats(
   x = mod_logitmfx,
   title = "marginal effects for a logit regression"
@@ -5095,7 +5087,7 @@ Same example can also be used for `negbinirr` object.
 #| fig.height = 4,
 #| fig.width = 5
 # simulate some data
-set.seed(123)
+
 n <- 1000
 
 # data
@@ -5106,7 +5098,7 @@ data <- data.frame(y, x)
 # model
 mod_negbinmfx <- negbinmfx(formula = y ~ x, data = data)
 
-# plot
+
 ggcoefstats(
   x = mod_negbinmfx,
   title = "marginal effects for a negative binomial regression"
@@ -5122,7 +5114,7 @@ Same example can also be used for `poissonirr` object.
 #| fig.height = 4,
 #| fig.width = 5
 # simulate some data
-set.seed(123)
+
 n <- 1000
 x <- rnorm(n)
 y <- rnegbin(n, mu = exp(1 + 0.5 * x), theta = 0.5)
@@ -5131,7 +5123,7 @@ data <- data.frame(y, x)
 # model
 mod_poissonmfx <- poissonmfx(formula = y ~ x, data = data)
 
-# plot
+
 ggcoefstats(
   x = mod_poissonmfx,
   title = "marginal effects for a Poisson regression"
@@ -5144,8 +5136,8 @@ ggcoefstats(
 #| label = "brmsfit",
 #| fig.height = 5,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(brms)
 
 # prior
@@ -5162,7 +5154,7 @@ fit_brm <-
     refresh = 0
   )
 
-# plot
+
 ggcoefstats(
   x = fit_brm,
   standardize = TRUE,
@@ -5178,8 +5170,8 @@ datasets-
 #| label = "brmsfit_multiple",
 #| fig.height = 5,
 #| fig.width = 7
-# setup
-set.seed(123)
+
+
 library(brms)
 library(mice)
 
@@ -5195,7 +5187,7 @@ fit_brm_m <-
     refresh = 0
   )
 
-# plot
+
 ggcoefstats(
   x = fit_brm_m,
   title = "Same `brms` model with multiple datasets",
@@ -5210,8 +5202,8 @@ ggcoefstats(
 #| fig.height = 5,
 #| fig.width = 5,
 #| error = TRUE
-# setup
-set.seed(123)
+
+
 library(rstanarm)
 data("Orange", package = "datasets")
 Orange$circumference <- Orange$circumference / 100
@@ -5228,7 +5220,7 @@ fit_nlstanreg <-
     refresh = 0
   )
 
-# plot
+
 ggcoefstats(
   x = fit_nlstanreg,
   title = "Bayesian nonlinear models via Stan"
@@ -5242,14 +5234,14 @@ ggcoefstats(
 #| fig.height = 5,
 #| fig.width = 5
 # loading the data
-set.seed(123)
+
 library(coda)
 data(line)
 
 # select first chain
 x1 <- line[[1]]
 
-# plot
+
 ggcoefstats(
   x = x1,
   title = "Markov Chain Monte Carlo objects",
@@ -5264,8 +5256,8 @@ ggcoefstats(
 #| label = "R2jags",
 #| fig.height = 8,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(R2jags)
 
 # An example model file is given in:
@@ -5293,7 +5285,7 @@ jagsfit <-
     model.file = model.file
   )
 
-# plot
+
 ggcoefstats(
   x = jagsfit,
   title = "Markov Chain Monte Carlo with Just Another Gibbs Sampler (JAGS)"
@@ -5306,8 +5298,8 @@ ggcoefstats(
 #| label = "lavaan",
 #| fig.height = 10,
 #| fig.width = 6
-# setup
-set.seed(123)
+
+
 library(lavaan)
 
 # The Holzinger and Swineford (1939) example
@@ -5342,8 +5334,8 @@ Too time-consuming to be run here, so currently skipped.
 #| fig.height = 10,
 #| fig.width = 6,
 #| eval = FALSE
-# setup
-set.seed(123)
+
+
 library(blavaan)
 
 # The Holzinger and Swineford (1939) example
@@ -5375,7 +5367,7 @@ ggcoefstats(
 #| fig.height = 5,
 #| fig.width = 5
 # set up
-set.seed(123)
+
 library(rstanarm)
 
 # model
@@ -5387,7 +5379,7 @@ fit_stanreg <-
     refresh = 0
   )
 
-# plot
+
 ggcoefstats(
   x = fit_stanreg,
   title = "Bayesian generalized linear models via Stan"
@@ -5401,8 +5393,8 @@ ggcoefstats(
 #| fig.height = 5,
 #| fig.width = 5,
 #| error = TRUE
-# setup
-set.seed(123)
+
+
 library(rstanarm)
 pbcLong$ybern <- as.integer(pbcLong$logBili >= mean(pbcLong$logBili))
 
@@ -5420,7 +5412,7 @@ mod_stanmvreg <-
     refresh = 0
   )
 
-# plot
+
 ggcoefstats(
   x = mod_stanmvreg,
   title = "Bayesian multivariate generalized linear models \nvia Stan"
@@ -5451,7 +5443,7 @@ mod_bayesqr <-
     ndraw = 500
   )
 
-# plot
+
 ggcoefstats(
   x = mod_bayesqr,
   title = "Bayesian quantile regression"
@@ -5464,8 +5456,8 @@ ggcoefstats(
 #| label = "blrm",
 #| fig.height = 8,
 #| fig.width = 10
-# setup
-set.seed(123)
+
+
 library(rmsb)
 library(rms)
 library(Hmisc)
@@ -5476,7 +5468,7 @@ options(datadist = "dd")
 # model
 mod_blrm <- rmsb::blrm(survived ~ (rcs(age, 5) + sex + pclass)^2, data = titanic3)
 
-# plot
+
 ggcoefstats(
   x = mod_blrm,
   title = "Bayesian binary and ordinal logistic regression"
@@ -5490,7 +5482,7 @@ ggcoefstats(
 #| fig.height = 6,
 #| fig.width = 10
 # set up
-set.seed(123)
+
 library(cplm)
 
 # model
@@ -5500,7 +5492,7 @@ mod_cpglm <-
     data = FineRoot
   )
 
-# plot
+
 ggcoefstats(
   x = mod_cpglm,
   title = "Compound Poisson Generalized Linear Models"
@@ -5514,7 +5506,7 @@ ggcoefstats(
 #| fig.height = 6,
 #| fig.width = 10
 # set up
-set.seed(123)
+
 library(cplm)
 
 # model
@@ -5524,7 +5516,7 @@ mod_cpglmm <-
     data = FineRoot
   )
 
-# plot
+
 ggcoefstats(
   x = mod_cpglmm,
   title = "Compound Poisson Generalized Linear Mixed Models"
@@ -5538,7 +5530,7 @@ ggcoefstats(
 #| fig.height = 6,
 #| fig.width = 10
 # set up
-set.seed(123)
+
 library(cplm)
 
 # model
@@ -5553,7 +5545,7 @@ mod_bcplm <-
     n.report = 0
   )
 
-# plot
+
 ggcoefstats(
   x = mod_bcplm,
   title = "Bayesian Compound Poisson Linear Models"
@@ -5570,7 +5562,7 @@ library(mice)
 data(nhanes2)
 imp <- mice(nhanes2)
 
-# plot
+
 ggcoefstats(
   x = with(data = imp, exp = lm(bmi ~ age + hyp + chl)),
   title = "Multivariate Imputation by Chained Equations"
@@ -5583,7 +5575,7 @@ ggcoefstats(
 #| label = "fixest",
 #| fig.height = 10,
 #| fig.width = 10
-# setup
+
 library(fixest)
 
 # data
@@ -5642,8 +5634,8 @@ combine_plots(
 #| label = "manova",
 #| fig.height = 8,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 
 # fake a 2nd response variable
 npk2 <- within(npk, foo <- rnorm(24))
@@ -5651,7 +5643,7 @@ npk2 <- within(npk, foo <- rnorm(24))
 # model
 m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
 
-# plot
+
 ggcoefstats(
   x = m_manova,
   title = "multivariate analysis of variance"
@@ -5668,9 +5660,9 @@ interest from this list and use it to plot the regression coefficients.
 #| label = "list_gamm4",
 #| fig.height = 6,
 #| fig.width = 10
-# setup
+
 library(gamm4)
-set.seed(123)
+
 
 # data
 dat <- gamSim(1, n = 400, scale = 2)
@@ -5690,7 +5682,7 @@ br <-
 # looking at the classes of the objects contained in the list
 purrr::map(br, class)
 
-# plotting
+
 combine_plots(
   plotlist = list(
     # first object plot (only parametric terms are shown)
@@ -5728,14 +5720,14 @@ you enter **must** contain at the minimum the following three columns-
 #| label = "meta1",
 #| fig.height = 7,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(metaplus)
 
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-# plot
+
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -5751,14 +5743,14 @@ ggcoefstats(
 #| label = "meta2",
 #| fig.height = 7,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(metaplus)
 
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-# plot
+
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -5773,14 +5765,14 @@ ggcoefstats(
 #| label = "meta3",
 #| fig.height = 7,
 #| fig.width = 8
-# setup
-set.seed(123)
+
+
 library(metaplus)
 
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-# plot
+
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -5819,7 +5811,7 @@ df_full <-
     "study6", 1.04, 0.085, 0.030, 0.001, 3L
   )
 
-# plot
+
 ggcoefstats(
   x = df_full,
   meta.analytic.effect = TRUE,
@@ -5838,9 +5830,9 @@ is much more preferable to use the underlying functions instead
 ```{r}
 #| label = "other_output",
 #| error = TRUE
-# setup
-set.seed(123)
-library(ggstatsplot)
+
+
+
 
 # data
 DNase1 <- subset(DNase, Run == 1)

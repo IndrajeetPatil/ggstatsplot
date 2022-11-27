@@ -123,7 +123,6 @@ For details, see:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(ggcorrplot) # for plot
 
 # for plot

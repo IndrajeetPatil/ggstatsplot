@@ -44,7 +44,6 @@ this wrapper around it which is mostly useful with \code{{ggstatsplot}} plots. I
 is exported only for backward compatibility.
 }
 \examples{
-# loading the necessary libraries
 library(ggplot2)
 
 # preparing the first plot

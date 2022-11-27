@@ -137,14 +137,19 @@ if \code{bf.message = FALSE}.}
 }
 \description{
 Correlation matrix or a data frame containing results from pairwise
-correlation tests. The package internally uses \code{ggcorrplot::ggcorrplot()} for
-creating the visualization matrix, while the correlation analysis is carried
-out using the \code{correlation::correlation()} function.
+correlation tests.
 }
 \details{
 For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   correlation matrix \tab \code{ggcorrplot::ggcorrplot()} \tab \code{ggcorrplot.args} \cr
+}
+}
+
 \section{Correlation analyses}{
 
 
@@ -170,7 +175,6 @@ The table below provides summary about:
 \dontshow{if (requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(ggcorrplot) # for plot
 
 # to get a plot

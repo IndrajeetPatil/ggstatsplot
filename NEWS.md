@@ -1,4 +1,4 @@
-# ggstatsplot 0.9.5.9000 (development version)
+# ggstatsplot 0.10.0
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
@@ -19,6 +19,8 @@ MAJOR CHANGES
 - `xfill` and `yfill` arguments for `ggscatterstats()` have been removed. You 
   can specify all aesthetic modifications for side histograms in scatter plot
   using `xsidehistogram.args` and `ysidehistogram.args` arguments.
+
+- Updates to changes made in the latest `{ggplot2}` release (`3.4.0`).
 
 # ggstatsplot 0.9.5
 

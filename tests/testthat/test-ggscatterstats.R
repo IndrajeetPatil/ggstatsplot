@@ -113,7 +113,7 @@ test_that(
       y = height,
       conf.level = 0.90,
       type = "r"
-    )$expression[[1]]
+    )$expression[[1L]]
 
     expect_equal(p_sub, fun_sub)
   }

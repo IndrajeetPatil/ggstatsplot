@@ -16,26 +16,13 @@ csl: apa.csl
 ```{r}
 #| label = "setup",
 #| include = FALSE
-## show me all columns
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
-  pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
-)
 
-knitr::opts_chunk$set(
-  dpi = 300,
-  out.width = "100%",
-  collapse = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  comment = "#>"
-)
+source("../setup.R")
+```
 
-library(ggstatsplot)
-library(ggplot2)
+```{r}
+#| label = "suggested_pkgs",
+#| include = FALSE
 
 if (!requireNamespace("PMCMRplus", quietly = TRUE)) {
   knitr::opts_chunk$set(eval = FALSE)
@@ -57,10 +44,12 @@ citation("ggstatsplot")
 
 ---
 
+> **This vignette is still work in progress.**
+
 ## Graphic design principles
 
 ### Graphical perception
-   
+
 Graphical perception involves visual decoding of the encoded information in
 graphs. `{ggstatsplot}` incorporates the paradigm proposed in ([@cleveland1985],
 Chapter 4) to facilitate making visual judgments about quantitative information
@@ -98,10 +87,7 @@ position judgments along a common scale:
 #| fig.cap = "Note that assessing differences in mean values between groups has been made easier
 #| with the help of \\textit{position} of data points along a common scale (the Y-axis) and
 #| labels."
-## for reproducibility
-set.seed(123)
 
-## plot
 ggbetweenstats(
   data = dplyr::filter(
     movies_long,
@@ -136,10 +122,7 @@ in Cleveland's paradigm:
 #| fig.cap = "Pie charts don't follow Cleveland's paradigm to data display because they rely on
 #| less accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labelling
 #| percentages for pie slices, which makes angle judgments unnecessary."
-## for reproducibility
-set.seed(123)
 
-## plot
 ggpiestats(
   data = movies_long,
   x = genre,
@@ -173,24 +156,21 @@ ggpiestats(
 #| a \\textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This is
 #| because displaying detailed results from statistical tests would be difficult in a superposed
 #| plot."
-## for reproducibility
-set.seed(123)
 library(ggplot2)
-library(ggstatsplot)
+
 
 ## creating a smaller data frame
 df <- dplyr::filter(movies_long, genre %in% c("Comedy", "Drama"))
 
-## plot
 combine_plots(
   plotlist = list(
-    ## plot 1: superposition
+    # superposition
     ggplot(data = df, mapping = aes(x = length, y = rating, color = genre)) +
       geom_jitter(size = 3, alpha = 0.5) +
       geom_smooth(method = "lm") +
       labs(title = "superposition (recommended in Cleveland's paradigm)") +
       theme_ggstatsplot(),
-    ## plot 2: juxtaposition
+    # juxtaposition
     grouped_ggscatterstats(
       data = df,
       x = length,
@@ -290,10 +270,7 @@ which comes in two forms:
 #| fig.height = 6,
 #| fig.width = 8,
 #| fig.cap = "Distribution of a variable shown using `gghistostats`."
-## for reproducibility
-set.seed(123)
 
-## plot
 gghistostats(
   data = morley,
   x = Speed,
@@ -316,18 +293,14 @@ gghistostats(
 #| fig.height = 5,
 #| fig.width = 5,
 #| fig.cap = "Sample-to-sample variation in regression estimates is displayed using confidence
-#| intervals in `ggcoefstats`."
-## for reproducibility
-set.seed(123)
+#| intervals in `ggcoefstats()`."
 
-## creating model object
-mod <- lme4::lmer(
+model <- lme4::lmer(
   formula = total.fruits ~ nutrient + rack + (nutrient | gen),
   data = lme4::Arabidopsis
 )
 
-## plot
-ggcoefstats(x = mod)
+ggcoefstats(model)
 ```
 
 ## Statistical analysis
@@ -363,8 +336,6 @@ structure of the data. More specifically,
 #| total sample size once when no `NA`s present, but (\\textit{b}) will instead show minimum,
 #| median, and maximum sample sizes across all correlation tests when `NA`s are present across
 #| correlation variables."
-## for reproducibility
-set.seed(123)
 
 ## creating a new dataset without any NAs in variables of interest
 msleep_no_na <-
@@ -439,17 +410,6 @@ natural logarithms are shown because Bayesian values can sometimes be pretty
 large. Having values on logarithmic scale also makes it easy to compare evidence
 in favor alternative ($BF_{10}$) versus null ($BF_{01}$) hypotheses (since
 $log_{e}(BF_{01}) = - log_{e}(BF_{01})$).
-
-###  Avoiding the **"p-value error"**:  
-
-The *p*-value indexes the probability that the researchers have falsely rejected
-a true null hypothesis (Type I error, i.e.) and can rarely be *exactly* 0. And
-yet over 97,000 manuscripts on Google Scholar report the *p*-value to be `p
-=0.000`, putatively due to relying on default computer software outputs
-[@lilienfeld2015]. All *p*-values displayed in `{ggstatsplot}` plots avoid this
-mistake. Anything less than `p < 0.001` is displayed as such. The package deems
-it unimportant how infinitesimally small the *p*-values are and, instead, puts
-emphasis on the effect size magnitudes and their 95% CIs.
 
 ## Suggestions
 

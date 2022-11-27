@@ -162,6 +162,15 @@ from over-lapping to the largest degree possible. As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   histogram bin \tab \code{ggplot2::stat_bin()} \tab \code{bin.args} \cr
+   centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
+   normality curve \tab \code{ggplot2::stat_function()} \tab \code{normal.curve.args} \cr
+}
+}
+
 \section{Correlation analyses}{
 
 
@@ -186,18 +195,24 @@ The table below provides summary about:
 \examples{
 \dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
-library(ggstatsplot)
-library(ggplot2)
+library(ggside) # for plotting marginals
 
-# simple function call with the defaults
-ggscatterstats(
+# creating a plot
+p <- ggscatterstats(
   iris,
   x = Sepal.Width,
   y = Petal.Length,
   label.var = Species,
   label.expression = Sepal.Length > 7.6
 ) +
-  geom_rug(sides = "b")
+  ggplot2::geom_rug(sides = "b")
+
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

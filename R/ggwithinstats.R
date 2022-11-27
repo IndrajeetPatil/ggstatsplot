@@ -7,6 +7,11 @@
 #' for within-subjects designs with statistical details included in the plot as
 #' a subtitle.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggwithinstats_graphics.Rmd"}
+#' ```
+#'
 #' @inheritParams ggbetweenstats
 #' @param point.path,centrality.path Logical that decides whether individual data
 #'   points and means, respectively, should be connected using `geom_path`. Both
@@ -34,20 +39,26 @@
 #'
 #' @examplesIf requireNamespace("afex", quietly = TRUE)
 #' \donttest{
-#' # setup
+#' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # two-samples test
-#' ggwithinstats(
+#' # create a plot
+#' p <- ggwithinstats(
 #'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x    = condition,
 #'   y    = desire,
 #'   type = "np"
 #' )
 #'
-#' # ANOVA
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
+#'
+#' # modifying defaults
 #' ggwithinstats(
 #'   data            = bugs_long,
 #'   x               = condition,
@@ -114,7 +125,7 @@ ggwithinstats <- function(data,
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     group_by({{ x }}) %>%
     mutate(.rowid = row_number()) %>%
-    ungroup(.) %>%
+    ungroup() %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
 
   # if `outlier.label` column is not present, just use the values from `y` column
@@ -152,14 +163,14 @@ ggwithinstats <- function(data,
     # styler: off
     .f          <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle    <- if (!is.null(subtitle_df)) subtitle_df$expression[[1]]
+    subtitle    <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
     # styler: on
 
     # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
       # styler: off
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption    <- if (!is.null(caption_df)) caption_df$expression[[1]]
+      caption    <- if (!is.null(caption_df)) caption_df$expression[[1L]]
       # styler: on
     }
   }
@@ -286,7 +297,6 @@ ggwithinstats <- function(data,
 #' \donttest{
 #' # for reproducibility
 #' set.seed(123)
-#' library(ggstatsplot)
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'

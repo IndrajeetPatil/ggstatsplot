@@ -165,6 +165,16 @@ is recommended that you install development versions of \code{{easystats}}
 packages using the \code{install_latest()} function from \code{{easystats}}.
 }
 }
+\section{Summary of graphics}{
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   regression estimate \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
+   vertical line \tab \code{ggplot2::geom_vline()} \tab \code{vline.args} \cr
+   label with statistical details \tab \code{ggrepel::geom_label_repel()} \tab \code{stats.label.args} \cr
+}
+}
+
 \section{Random-effects meta-analysis}{
 
 
@@ -191,12 +201,19 @@ The table below provides summary about:
 \donttest{
 # for reproducibility
 set.seed(123)
-library(ggstatsplot)
 library(lme4)
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
-ggcoefstats(mod)
+
+# creating a plot
+p <- ggcoefstats(mod)
+
+# looking at the plot
+p
+
+# extracting details from statistical tests
+extract_stats(p)
 
 # further arguments can be passed to `parameters::model_parameters()`
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
