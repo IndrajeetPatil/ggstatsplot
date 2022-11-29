@@ -157,7 +157,7 @@ Details about underlying functions used to create graphics and statistical tests
 
 ## Reporting
 
-```{r child="reporting.Rmd"}
+```{r child="../../man/rmd-fragments/reporting.Rmd"}
 ```
 
 For example, let's see the following example:
