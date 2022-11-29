@@ -1,6 +1,6 @@
 pandoc: 2.19.2
 pkgdown: 2.0.6.9000
-pkgdown_sha: 4d7f0f8620fc6b9c80932cac0c7ec7946678bbd3
+pkgdown_sha: 2766829b0b6310be5f92820ab6174607353e7f03
 articles:
   additional: additional.html
   ggstatsplot: ggstatsplot.html
@@ -18,5 +18,5 @@ articles:
   principles: web_only/principles.html
   purrr_examples: web_only/purrr_examples.html
   reporting: web_only/reporting.html
-last_built: 2022-11-27T13:41Z
+last_built: 2022-11-29T18:35Z
 
