@@ -18,5 +18,8 @@ articles:
   principles: web_only/principles.html
   purrr_examples: web_only/purrr_examples.html
   reporting: web_only/reporting.html
-last_built: 2022-11-29T18:35Z
+last_built: 2022-11-29T19:34Z
+urls:
+  reference: https://indrajeetpatil.github.io/ggstatsplot/reference
+  article: https://indrajeetpatil.github.io/ggstatsplot/articles
 

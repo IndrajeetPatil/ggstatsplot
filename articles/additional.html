@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="ggstatsplot">
 <title>Additional vignettes • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,133 +13,104 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.4/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Additional vignettes">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Additional vignettes">
 <meta property="og:description" content="ggstatsplot">
-<meta property="og:image" content="/logo.png">
+<meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@patilindrajeets">
+<meta name="twitter:site" content="@patilindrajeets">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/ggstatsplot.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../articles/ggstatsplot.html">Get started</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/additional.html">Additional vignettes</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggbarstats.html">ggbarstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/purrr_examples.html">Using '{ggstatsplot}' with the '{purrr}' package</a>
-    </li>
-    <li>
-      <a href="../articles/web_only/reporting.html">UNKNOWN TITLE</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <h6 class="dropdown-header" data-toc-skip>Primary functions</h6>
+    <a class="dropdown-item" href="../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    <a class="dropdown-item" href="../articles/web_only/gghistostats.html">gghistostats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    <a class="dropdown-item" href="../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggbarstats.html">ggbarstats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggpiestats.html">ggpiestats</a>
+    <a class="dropdown-item" href="../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
+    <a class="dropdown-item" href="../articles/additional.html">Additional vignettes</a>
+    <a class="dropdown-item" href="../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    <a class="dropdown-item" href="../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
+    <a class="dropdown-item" href="../articles/web_only/purrr_examples.html">Using '{ggstatsplot}' with the '{purrr}' package</a>
+    <a class="dropdown-item" href="../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    <a class="dropdown-item" href="../articles/web_only/reporting.html">UNKNOWN TITLE</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/IndrajeetPatil/ggstatsplot/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Additional vignettes</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Additional vignettes</h1>
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
             <h4 data-toc-skip class="date">2022-11-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/additional.Rmd" class="external-link"><code>vignettes/additional.Rmd</code></a></small>
-      <div class="hidden name"><code>additional.Rmd</code></div>
-
+      <div class="d-none name"><code>additional.Rmd</code></div>
     </div>
 
     
@@ -147,31 +119,31 @@ Patil</h4>
 <h2 id="additional-vignettes">Additional vignettes<a class="anchor" aria-label="anchor" href="#additional-vignettes"></a>
 </h2>
 <p>Due to size constraints, all available vignettes are only available
-on the website for this package: <br><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a></p>
+on the website for this package: <br><a href="https://indrajeetpatil.github.io/ggstatsplot/articles/" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/</a></p>
 <div class="section level3">
 <h3 id="vignettes-for-individual-functions">Vignettes for individual functions<a class="anchor" aria-label="anchor" href="#vignettes-for-individual-functions"></a>
 </h3>
 <ul>
-<li><p><code>ggbetweenstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p></li>
-<li><p><code>ggwithinstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p></li>
-<li><p><code>ggcorrmat</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p></li>
-<li><p><code>gghistostats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p></li>
-<li><p><code>ggdotplotstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html</a></p></li>
-<li><p><code>ggpiestats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p></li>
-<li><p><code>ggscatterstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p></li>
-<li><p><code>ggcoefstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p></li>
+<li><p><code>ggbetweenstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p></li>
+<li><p><code>ggwithinstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p></li>
+<li><p><code>ggcorrmat</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p></li>
+<li><p><code>gghistostats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p></li>
+<li><p><code>ggdotplotstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html</a></p></li>
+<li><p><code>ggpiestats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p></li>
+<li><p><code>ggscatterstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p></li>
+<li><p><code>ggcoefstats</code>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p></li>
 </ul>
 </div>
 <div class="section level3">
 <h3 id="general-vignettes">General vignettes<a class="anchor" aria-label="anchor" href="#general-vignettes"></a>
 </h3>
 <ul>
-<li><p>Frequently Asked Questions (FAQ): <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html</a></p></li>
+<li><p>Frequently Asked Questions (FAQ): <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html</a></p></li>
 <li><p>Graphic design and statistical reporting principles guiding
-<a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> development: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html</a></p></li>
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> development: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html</a></p></li>
 <li><p>Examples illustrating how to use <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> to extend
-<a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> functionality: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p></li>
-<li><p>Pairwise comparisons with <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html</a></p></li>
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functionality: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</a></p></li>
+<li><p>Pairwise comparisons with <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html</a></p></li>
 </ul>
 </div>
 </div>
@@ -185,7 +157,7 @@ package: <a href="https://joss.theoj.org/papers/10.21105/joss.03167" class="exte
 <h2 id="presentation">Presentation<a class="anchor" aria-label="anchor" href="#presentation"></a>
 </h2>
 <p>In addition to these vignettes, another quick way to get an overview
-of this package is to go through the following slides: <a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1" class="external-link uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1</a></p>
+of this package is to go through the following slides: <a href="https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1" class="uri">https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1</a></p>
 </div>
 <div class="section level2">
 <h2 id="statistical-backend-of-ggstatsplot">Statistical backend of <code>{ggstatsplot}</code><a class="anchor" aria-label="anchor" href="#statistical-backend-of-ggstatsplot"></a>
@@ -201,33 +173,26 @@ containing results from statistical tests.</p>
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Indrajeet Patil.</p>
+<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 

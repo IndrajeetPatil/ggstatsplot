@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="ggstatsplot">
 <title>Graphic design and statistical reporting principles • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -12,134 +13,104 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
-<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../../deps/Roboto-0.4.4/font.css" rel="stylesheet">
+<link href="../../deps/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><meta property="og:title" content="Graphic design and statistical reporting principles">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="Graphic design and statistical reporting principles">
 <meta property="og:description" content="ggstatsplot">
-<meta property="og:image" content="/logo.png">
+<meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@patilindrajeets">
+<meta name="twitter:site" content="@patilindrajeets">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../../index.html">ggstatsplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.10.0</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../../articles/ggstatsplot.html">Get started</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../../articles/ggstatsplot.html">Get started</a>
 </li>
-<li>
-  <a href="../../reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="../../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../../articles/additional.html">Additional vignettes</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggbarstats.html">ggbarstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/gghistostats.html">gghistostats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/purrr_examples.html">Using '{ggstatsplot}' with the '{purrr}' package</a>
-    </li>
-    <li>
-      <a href="../../articles/web_only/reporting.html">UNKNOWN TITLE</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <h6 class="dropdown-header" data-toc-skip>Primary functions</h6>
+    <a class="dropdown-item" href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggwithinstats.html">ggwithinstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/gghistostats.html">gghistostats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggdotplotstats.html">ggdotplotstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggcorrmat.html">ggcorrmat</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggscatterstats.html">ggscatterstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggbarstats.html">ggbarstats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggpiestats.html">ggpiestats</a>
+    <a class="dropdown-item" href="../../articles/web_only/ggcoefstats.html">ggcoefstats</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Miscellaneous</h6>
+    <a class="dropdown-item" href="../../articles/additional.html">Additional vignettes</a>
+    <a class="dropdown-item" href="../../articles/web_only/pairwise.html">Pairwise comparisons with `{ggstatsplot}`</a>
+    <a class="dropdown-item" href="../../articles/web_only/faq.html">Frequently Asked Questions (FAQ)</a>
+    <a class="dropdown-item" href="../../articles/web_only/purrr_examples.html">Using '{ggstatsplot}' with the '{purrr}' package</a>
+    <a class="dropdown-item" href="../../articles/web_only/principles.html">Graphic design and statistical reporting principles</a>
+    <a class="dropdown-item" href="../../articles/web_only/reporting.html">UNKNOWN TITLE</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/IndrajeetPatil/ggstatsplot/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
 
-      
+    
+  </div>
+</nav><div class="container template-article">
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Graphic design and statistical reporting
-principles</h1>
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../../logo.png" class="logo" alt=""><h1>Graphic design and statistical reporting principles</h1>
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
             <h4 data-toc-skip class="date">2022-11-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
-      <div class="hidden name"><code>principles.Rmd</code></div>
-
+      <div class="d-none name"><code>principles.Rmd</code></div>
     </div>
 
     
@@ -178,7 +149,7 @@ A BibTeX entry for LaTeX users is
 <h3 id="graphical-perception">Graphical perception<a class="anchor" aria-label="anchor" href="#graphical-perception"></a>
 </h3>
 <p>Graphical perception involves visual decoding of the encoded
-information in graphs. <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> incorporates the
+information in graphs. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> incorporates the
 paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>,
 Chapter 4) to facilitate making visual judgments about quantitative
 information effortless and almost instantaneous. Based on experiments,
@@ -224,10 +195,10 @@ made easierwith the help of of data points along a common scale (the
 Y-axis) andlabels.
 </p>
 </div>
-<p>There are few instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> diverges
+<p>There are few instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> diverges
 from recommendations made in Cleveland’s paradigm:</p>
 <ul>
-<li>For the categorical/nominal data, <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> uses
+<li>For the categorical/nominal data, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> uses
 pie charts which rely on <em>angle</em> judgments, which are less
 accurate (as compared to bar graphs, e.g., which require
 <em>position</em> judgments). This shortcoming is assuaged to some
@@ -248,7 +219,7 @@ working with categorical variables: <code>ggbarstats</code>.</li>
 <div class="figure">
 <img src="principles_files/figure-html/fig2-1.png" alt="Pie charts don't follow Cleveland's paradigm to data display because they rely onless accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labellingpercentages for pie slices, which makes angle judgments unnecessary." width="100%"><p class="caption">
 Pie charts don’t follow Cleveland’s paradigm to data display because
-they rely onless accurate angle judgments. <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a>
+they rely onless accurate angle judgments. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
 sidesteps this issue by always labellingpercentages for pie slices,
 which makes angle judgments unnecessary.
 </p>
@@ -267,7 +238,7 @@ comparison, easier. But the goal of <code>grouped_</code> variants of
 functions is to not only show different aspects of the data but also to
 run statistical tests and showing detailed results for all aspects of
 the data in a superposed plot is difficult. Therefore, this is a
-compromise <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> is comfortable with, at least to
+compromise <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is comfortable with, at least to
 produce plots for quick exploration of different aspects of the
 data.</li>
 </ul>
@@ -304,7 +275,7 @@ data.</li>
 <img src="principles_files/figure-html/fig3-1.png" alt="Comparing different aspects of data is much more accurate in (\textit{a}) a\textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\textit{b})a \textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This isbecause displaying detailed results from statistical tests would be difficult in a superposedplot." width="100%"><p class="caption">
 Comparing different aspects of data is much more accurate in () a plot,
 which is recommended in Cleveland’s paradigm, than in ()a plot, which is
-how it is implemented in <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> package. This
+how it is implemented in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. This
 isbecause displaying detailed results from statistical tests would be
 difficult in a superposedplot.
 </p>
@@ -352,7 +323,7 @@ one-dimensional data).</p></li>
 <li><p>All plots are designed to have no <strong>chartjunk</strong>
 (like moiré vibrations, fake perspective, dark grid lines, etc.) (<span class="citation">(Tufte, 2001)</span>, Chapter 5).</p></li>
 </ul>
-<p>There are some instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> graphs
+<p>There are some instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> graphs
 don’t follow principles of clean graphics, as formulated in the Tufte
 theory of data graphics (<span class="citation">(Tufte, 2001)</span>,
 Chapter 4). The theory has four key principles:</p>
@@ -362,7 +333,7 @@ Chapter 4). The theory has four key principles:</p>
 <li><p>Erase non-data-ink.</p></li>
 <li><p>Erase redundant data-ink, within reason.</p></li>
 </ol>
-<p>In particular, default plots in <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> can
+<p>In particular, default plots in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> can
 sometimes violate one of the principles from 2-4. According to these
 principles, every bit of ink should have reason for its inclusion in the
 graphic and should convey some new information to the viewer. If not,
@@ -386,7 +357,7 @@ relevant as they were.</p>
 the data, which comes in two forms:</p>
 <ul>
 <li>
-<strong>Measurement noise</strong>: In <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a>,
+<strong>Measurement noise</strong>: In <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>,
 the actual variation in measurements is shown by plotting a combination
 of (jittered) raw data points with a boxplot laid on top or a histogram.
 None of the plots, where empirical distribution of the data is
@@ -412,7 +383,7 @@ Distribution of a variable shown using <code>gghistostats</code>.
 <li>
 <strong>Sample-to-sample statistic variation</strong>: Although,
 traditionally, this variation has been shown using the standard error of
-the mean (SEM) of the statistic, <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> plots
+the mean (SEM) of the statistic, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots
 instead use 95% confidence intervals. This is because the interval
 formed by error bars correspond to a 68% confidence interval, which is
 not a particularly interesting interval (<span class="citation">(Cleveland, 1985)</span>, p.222-225).</li>
@@ -438,7 +409,7 @@ confidenceintervals in <code><a href="../../reference/ggcoefstats.html">ggcoefst
 <div class="section level3">
 <h3 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a>
 </h3>
-<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a>
+<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
 has the same expectations about the structure of the data. More
 specifically,</p>
 <ul>
@@ -448,14 +419,14 @@ data</em>, which specify how statistical structure of a data frame
 (columns and rows). More specifically, tidy data means all variables
 have their own columns and each row corresponds to a unique observation
 (<span class="citation">(Wickham, 2014)</span>).</p></li>
-<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> functions remove <code>NA</code>s
+<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s
 from variables of interest (similar to <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display
 total sample size (<em>n</em>, either observations for between-subjects
 or pairs for within-subjects designs) in the subtitle to inform the
 user/reader about the number of observations included for both the
 statistical analysis and the visualization. But, when sample sizes
 differ <em>across</em> tests in the same function,
-<a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> makes an effort to inform the user of this
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this
 aspect. For example, <code>ggcorrmat</code> features several correlation
 test pairs and, depending on variables in a given pair, the sample sizes
 may vary.</p></li>
@@ -486,7 +457,7 @@ may vary.</p></li>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig4-1.png" alt="`{ggstatsplot}` functions remove `NA`s from variables of interest and display totalsample size \textit{n}, but they can give more nuanced information about sample sizes when\textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only onetotal sample size once when no `NA`s present, but (\textit{b}) will instead show minimum,median, and maximum sample sizes across all correlation tests when `NA`s are present acrosscorrelation variables." width="100%"><p class="caption">
-<a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> functions remove <code>NA</code>s from
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from
 variables of interest and display totalsample size , but they can give
 more nuanced information about sample sizes when differs across tests.
 For example, <code>ggcorrmat</code> will display () only onetotal sample
@@ -506,13 +477,13 @@ be helpful? We list few reasons below-</p>
 Assen, Epskamp, &amp; Wicherts, 2016)</span> revealed that one in eight
 papers in major psychology journals contained a grossly inconsistent
 <em>p</em>-value that may have affected the statistical conclusion.
-<a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> helps avoid such reporting errors: Since the
+<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the
 plot and the statistical analysis are yoked together, the chances of
 making an error in reporting the results are minimized. One need not
 write the results manually or copy-paste them from a different
 statistics software program (like SPSS, SAS, and so on).</li>
 </ul>
-<p>The default setting in <a href="https://indrajeetpatil.github.io/ggstatsplot/" class="external-link">ggstatsplot</a> is to produce plots
+<p>The default setting in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is to produce plots
 with statistical details included. Most often than not, these results
 are displayed as a <code>subtitle</code> in the plot. Great care has
 been taken into which details are included in statistical reporting and
@@ -590,33 +561,26 @@ NY</span>: <span>Springer</span>.
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Indrajeet Patil.</p>
+<p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
-<div class="pkgdown">
+<div class="pkgdown-footer-right">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
