@@ -34,6 +34,7 @@ jobs:
         run: |
           library(lintr)
           lint_package(linters = linters_with_defaults(
+            absolute_path_linter = NULL,
             commented_code_linter = NULL,
             cyclocomp_linter = cyclocomp_linter(25),
             extraction_operator_linter = NULL,
@@ -42,8 +43,12 @@ jobs:
             object_name_linter = NULL,
             object_length_linter(50),
             object_usage_linter = NULL,
+            nonportable_path_linter = NULL,
+            string_boundary_linter = NULL,
+            strings_as_factors_linter = NULL,
             todo_comment_linter = NULL,
             undesirable_function_linter = NULL,
+            unused_import_linter = NULL,
             defaults = linters_with_tags(tags = NULL)
-          ), exclusions = list("data-raw"))
+          ))
         shell: Rscript {0}
