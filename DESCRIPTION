@@ -79,6 +79,6 @@ Roxygen: list(
     markdown = TRUE, 
     roclets = c("rd", "namespace", "collate", "pkgapi::api_roclet")
   )
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3
 Config/testthat/parallel: true

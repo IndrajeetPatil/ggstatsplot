@@ -186,7 +186,7 @@ The table below provides summary about:
    Type \tab Test \tab CI available? \tab Function used \cr
    Parametric \tab Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
    Non-parametric \tab Spearman's rank correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
-   Robust \tab Winsorized Pearson correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+   Robust \tab Winsorized Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
    Bayesian \tab Bayesian Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
 }
 

@@ -1,0 +1,45 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: test-coverage-examples
+
+jobs:
+  test-coverage-examples:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            r-lib/covr
+            local::.
+
+      - name: Test example coverage
+        run: |
+          options(crayon.enabled = TRUE)
+          library(covr)
+          coverage <- covr::package_coverage(type = "examples", quiet = TRUE)
+          print(coverage)
+          percent_coverage <- covr::percent_coverage(coverage)
+          threshold <- 95
+          cli::cli_rule()
+          if (percent_coverage < threshold) {
+            cli::cli_abort("Code coverage using examples is below the required threshold ({threshold}%).")
+          } else {
+            cli::cli_alert_success("Code coverage using examples is above the required threshold ({threshold}%).")
+          }
+          cli::cli_rule()
+        shell: Rscript {0}
