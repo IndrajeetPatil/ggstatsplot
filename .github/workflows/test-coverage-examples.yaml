@@ -34,7 +34,7 @@ jobs:
           coverage <- covr::package_coverage(type = "examples", quiet = TRUE)
           print(coverage)
           percent_coverage <- covr::percent_coverage(coverage)
-          threshold <- 95
+          threshold <- 90
           cli::cli_rule()
           if (percent_coverage < threshold) {
             cli::cli_abort("Code coverage using examples is below the required threshold ({threshold}%).")
