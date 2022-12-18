@@ -8,10 +8,8 @@
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable.
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
-#' }
 #' @keywords internal
 .grouped_list <- function(data, grouping.var = NULL) {
   data <- as_tibble(data)

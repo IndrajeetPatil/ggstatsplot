@@ -119,8 +119,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \examples{
-\dontshow{if (requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(ggcorrplot) # for plot
@@ -142,7 +141,6 @@ grouped_ggcorrmat(
   type = "bayes",
   output = "dataframe"
 )
-}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

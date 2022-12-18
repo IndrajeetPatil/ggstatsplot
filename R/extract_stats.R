@@ -23,8 +23,7 @@
 #' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
 #'
-#' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
 #' set.seed(123)
 #'
 #' # non-grouped function -----------------------------
@@ -45,7 +44,6 @@
 #'
 #' extract_stats(p[[1L]])
 #' extract_stats(p[[2L]])
-#' }
 #' @export
 extract_stats <- function(p, ...) {
   # styler: off

@@ -126,8 +126,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
-#' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(PMCMRplus) # for pairwise comparisons
@@ -152,7 +151,6 @@
 #'   outlier.tagging = TRUE,
 #'   outlier.label   = Run
 #' )
-#' }
 #' @export
 ggbetweenstats <- function(data,
                            x,
@@ -430,8 +428,7 @@ ggbetweenstats <- function(data,
 #'
 #' @inherit ggbetweenstats return references
 #'
-#' @examplesIf requireNamespace("PMCMRplus", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(PMCMRplus) # for pairwise comparisons
@@ -461,7 +458,6 @@ ggbetweenstats <- function(data,
 #'     limits = (c(1, 9))
 #'   )
 #' )
-#' }
 #' @export
 grouped_ggbetweenstats <- function(data,
                                    ...,

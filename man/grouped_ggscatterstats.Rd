@@ -121,8 +121,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \examples{
-\dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # to ensure reproducibility
 set.seed(123)
 
@@ -162,7 +161,6 @@ grouped_ggscatterstats(
   label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
-}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

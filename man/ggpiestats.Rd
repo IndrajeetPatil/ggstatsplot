@@ -220,7 +220,7 @@ The table below provides summary about:
 }
 
 \examples{
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
@@ -235,7 +235,7 @@ extract_stats(p)
 
 # association test (or contingency table analysis)
 ggpiestats(mtcars, vs, cyl)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},

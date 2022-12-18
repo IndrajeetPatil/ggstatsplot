@@ -434,8 +434,7 @@ Not supported.
 }
 
 \examples{
-\dontshow{if (requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(PMCMRplus) # for pairwise comparisons
@@ -460,7 +459,6 @@ ggbetweenstats(
   outlier.tagging = TRUE,
   outlier.label   = Run
 )
-}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

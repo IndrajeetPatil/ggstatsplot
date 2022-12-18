@@ -433,8 +433,7 @@ Not supported.
 }
 
 \examples{
-\dontshow{if (requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(dplyr, warn.conflicts = FALSE)
@@ -463,7 +462,6 @@ ggwithinstats(
   outlier.tagging = TRUE,
   outlier.label   = region
 )
-}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

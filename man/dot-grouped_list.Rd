@@ -19,8 +19,8 @@ This function splits the data frame into a list, with the length of the list
 equal to the factor levels of the grouping variable.
 }
 \examples{
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
-}
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}

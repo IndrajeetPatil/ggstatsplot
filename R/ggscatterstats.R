@@ -219,8 +219,7 @@ ggscatterstats <- function(data,
 #' @inherit ggscatterstats return references
 #' @inherit ggscatterstats return details
 #'
-#' @examplesIf requireNamespace("ggside", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggside", quietly = TRUE)
 #' # to ensure reproducibility
 #' set.seed(123)
 #'
@@ -260,7 +259,6 @@ ggscatterstats <- function(data,
 #'   label.var       = "title",
 #'   annotation.args = list(tag_levels = "a")
 #' )
-#' }
 #' @export
 grouped_ggscatterstats <- function(data,
                                    ...,

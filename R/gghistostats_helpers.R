@@ -8,8 +8,7 @@
 #' @param ... Currently ignored.
 #' @inheritParams statsExpressions::one_sample_test
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' library(ggplot2)
 #'
 #' # creating a plot; lines and labels will be superposed on this plot
@@ -22,7 +21,6 @@
 #'   x = mtcars$wt,
 #'   centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
 #' )
-#' }
 #'
 #' @keywords internal
 #' @noRd

@@ -21,8 +21,7 @@
 #'
 #' @inherit ggpiestats return details
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -34,7 +33,6 @@
 #'
 #' # extracting details from statistical tests
 #' extract_stats(p)
-#' }
 #' @export
 ggbarstats <- function(data,
                        x,
@@ -199,11 +197,9 @@ ggbarstats <- function(data,
 #' @inherit ggbarstats return details
 #' @inherit ggbarstats return return
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#'
 #' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # let's create a smaller data frame
@@ -220,7 +216,6 @@ ggbarstats <- function(data,
 #'   grouping.var  = cut,
 #'   plotgrid.args = list(nrow = 2)
 #' )
-#' }
 #' @export
 grouped_ggbarstats <- function(data,
                                ...,

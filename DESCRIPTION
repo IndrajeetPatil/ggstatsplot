@@ -32,7 +32,7 @@ Depends:
     R (>= 4.0.0)
 Imports:
     correlation (>= 0.8.3),
-    datawizard (>= 0.6.4),
+    datawizard (>= 0.6.5),
     dplyr,
     ggplot2 (>= 3.4.0),
     ggrepel,
@@ -46,7 +46,7 @@ Imports:
     purrr,
     rlang,
     stats,
-    statsExpressions (>= 1.3.5),
+    statsExpressions (>= 1.3.6),
     tidyr,
     utils
 Suggests:
@@ -54,7 +54,7 @@ Suggests:
     BayesFactor (>= 0.9.12-4.4),
     gapminder,
     ggcorrplot (>= 0.1.4),
-    ggside (>= 0.2.1),
+    ggside (>= 0.2.2),
     knitr,
     lme4,
     MASS,
@@ -66,7 +66,7 @@ Suggests:
     rmarkdown,
     spelling,
     survival,
-    testthat (>= 3.1.5),
+    testthat (>= 3.1.6),
     tibble,
     vdiffr,
     WRS2

@@ -224,7 +224,7 @@ The table below provides summary about:
 }
 
 \examples{
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
@@ -236,7 +236,7 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},

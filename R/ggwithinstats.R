@@ -37,8 +37,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
-#' @examplesIf requireNamespace("afex", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(dplyr, warn.conflicts = FALSE)
@@ -67,7 +66,6 @@
 #'   outlier.tagging = TRUE,
 #'   outlier.label   = region
 #' )
-#' }
 #' @export
 ggwithinstats <- function(data,
                           x,
@@ -293,8 +291,7 @@ ggwithinstats <- function(data,
 #'
 #' @inherit ggwithinstats return references
 #'
-#' @examplesIf requireNamespace("afex", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(dplyr, warn.conflicts = FALSE)
@@ -310,7 +307,6 @@ ggwithinstats <- function(data,
 #'   # additional modifications for **each** plot using `{ggplot2}` functions
 #'   ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
 #' )
-#' }
 #' @export
 grouped_ggwithinstats <- function(data,
                                   ...,

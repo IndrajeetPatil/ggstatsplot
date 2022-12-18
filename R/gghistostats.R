@@ -38,8 +38,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -56,7 +55,6 @@
 #'
 #' # extracting details from statistical tests
 #' extract_stats(p)
-#' }
 #' @export
 gghistostats <- function(data,
                          x,
@@ -200,8 +198,7 @@ gghistostats <- function(data,
 #' @inherit gghistostats return references
 #' @inherit gghistostats return details
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -214,7 +211,6 @@ gghistostats <- function(data,
 #'   plotgrid.args   = list(nrow = 1),
 #'   annotation.args = list(tag_levels = "i")
 #' )
-#' }
 #' @export
 grouped_gghistostats <- function(data,
                                  x,

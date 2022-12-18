@@ -44,8 +44,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
 #'
@@ -60,7 +59,7 @@
 #'
 #' # association test (or contingency table analysis)
 #' ggpiestats(mtcars, vs, cyl)
-#' }
+#'
 #' @export
 ggpiestats <- function(data,
                        x,
@@ -251,14 +250,10 @@ ggpiestats <- function(data,
 #' @inherit ggpiestats return details
 #' @inherit ggpiestats return return
 #'
-#' @examples
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' set.seed(123)
-#'
-#'
 #' # grouped one-sample proportion test
 #' grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
-#' }
 #' @export
 grouped_ggpiestats <- function(data,
                                ...,
