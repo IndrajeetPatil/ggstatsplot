@@ -180,8 +180,7 @@ separately specified here.}
 A combined plot of comparison plot created for levels of a grouping variable.
 }
 \examples{
-\dontshow{if (requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(dplyr, warn.conflicts = FALSE)
@@ -197,7 +196,6 @@ grouped_ggwithinstats(
   # additional modifications for **each** plot using `{ggplot2}` functions
   ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
 )
-}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

@@ -39,8 +39,7 @@ what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
 default.
 }
 \examples{
-\dontshow{if (requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
 
 # non-grouped function -----------------------------
@@ -61,6 +60,5 @@ p <- grouped_ggbarstats(
 
 extract_stats(p[[1L]])
 extract_stats(p[[2L]])
-}
 \dontshow{\}) # examplesIf}
 }

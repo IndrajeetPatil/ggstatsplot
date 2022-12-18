@@ -94,8 +94,7 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 #'
-#' @examplesIf requireNamespace("lme4", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(lme4)
@@ -114,7 +113,6 @@
 #'
 #' # further arguments can be passed to `parameters::model_parameters()`
 #' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
-#' }
 #' @export
 ggcoefstats <- function(x,
                         statistic = NULL,

@@ -190,15 +190,14 @@ The table below provides summary about:
    Type \tab Test \tab CI available? \tab Function used \cr
    Parametric \tab Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
    Non-parametric \tab Spearman's rank correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
-   Robust \tab Winsorized Pearson correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+   Robust \tab Winsorized Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
    Bayesian \tab Bayesian Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
 }
 
 }
 
 \examples{
-\dontshow{if (requireNamespace("lme4", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(lme4)
@@ -217,6 +216,5 @@ extract_stats(p)
 
 # further arguments can be passed to `parameters::model_parameters()`
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
-}
 \dontshow{\}) # examplesIf}
 }

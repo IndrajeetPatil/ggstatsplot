@@ -38,7 +38,7 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
-\item{x}{A numeric variable from the dataframe \code{data}.}
+\item{x}{A numeric variable from the data frame \code{data}.}
 
 \item{binwidth}{The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from \code{x}. The default is
@@ -205,7 +205,7 @@ The table below provides summary about:
 }
 
 \examples{
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
@@ -222,7 +222,7 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},

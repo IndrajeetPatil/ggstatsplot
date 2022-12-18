@@ -128,10 +128,9 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \examples{
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
-
 library(dplyr, warn.conflicts = FALSE)
 
 # let's create a smaller data frame
@@ -148,7 +147,7 @@ grouped_ggbarstats(
   grouping.var  = cut,
   plotgrid.args = list(nrow = 2)
 )
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{ggbarstats}}, \code{\link{ggpiestats}},

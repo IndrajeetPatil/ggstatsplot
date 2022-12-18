@@ -232,8 +232,7 @@ ggcorrmat <- function(data,
 #' @inherit ggcorrmat return references
 #' @inherit ggcorrmat return details
 #'
-#' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
-#' \donttest{
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggcorrplot", quietly = TRUE)
 #' # for reproducibility
 #' set.seed(123)
 #' library(ggcorrplot) # for plot
@@ -255,7 +254,6 @@ ggcorrmat <- function(data,
 #'   type = "bayes",
 #'   output = "dataframe"
 #' )
-#' }
 #' @export
 grouped_ggcorrmat <- function(data,
                               ...,

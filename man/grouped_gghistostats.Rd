@@ -20,7 +20,7 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
-\item{x}{A numeric variable from the dataframe \code{data}.}
+\item{x}{A numeric variable from the data frame \code{data}.}
 
 \item{grouping.var}{A single grouping variable.}
 
@@ -139,7 +139,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \examples{
-\donttest{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
@@ -152,7 +152,7 @@ grouped_gghistostats(
   plotgrid.args   = list(nrow = 1),
   annotation.args = list(tag_levels = "i")
 )
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
