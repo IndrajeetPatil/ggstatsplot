@@ -24,17 +24,22 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            r-lib/covr
+            any::covr
             local::.
 
       - name: Test example coverage
         run: |
           options(crayon.enabled = TRUE)
           library(covr)
-          coverage <- covr::package_coverage(type = "examples", quiet = TRUE)
+          coverage <- covr::package_coverage(
+            type = "examples",
+            quiet = TRUE,
+            commentDonttest = FALSE,
+            commentDontrun = FALSE
+          )
           print(coverage)
           percent_coverage <- covr::percent_coverage(coverage)
-          threshold <- 90
+          threshold <- 95
           cli::cli_rule()
           if (percent_coverage < threshold) {
             cli::cli_abort("Code coverage using examples is below the required threshold ({threshold}%).")
