@@ -375,7 +375,6 @@ references:
     given-names: Lionel
     email: lionel@rstudio.com
   year: '2022'
-  version: '>= 1.0.0'
 - type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'

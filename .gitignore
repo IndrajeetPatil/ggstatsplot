@@ -18,36 +18,36 @@ $RECYCLE.BIN/
 # =========================
 # Operating System Files
 # OSX
-.DS_Store
 .AppleDouble
+.DS_Store
 .LSOverride
 # Thumbnails
 ._*
 # Files that might appear in the root of a volume
 .DocumentRevisions-V100
-.fseventsd
 .Spotlight-V100
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.fseventsd
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
+.apdisk
 Network Trash Folder
 Temporary Items
-.apdisk
 # R Studio files
-.Rproj.user
-.Rhistory
 .RData
+.Rhistory
+.Rproj.user
 .Ruserdata
-inst/doc
 .httr-oauth
-revdep/checks
-revdep/library
-revdep/checks.noindex
-revdep/library.noindex
-revdep/data.sqlite
-/doc/
 /Meta/
+/doc/
 CRAN-SUBMISSION
+inst/doc
+revdep/checks
+revdep/checks.noindex
+revdep/data.sqlite
+revdep/library
+revdep/library.noindex

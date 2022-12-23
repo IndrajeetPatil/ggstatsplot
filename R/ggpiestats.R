@@ -110,7 +110,7 @@ ggpiestats <- function(data,
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% mutate(across(.fns = ~ droplevels(as.factor(.x))))
+  data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
 
   # x
   x_levels <- nlevels(data %>% pull({{ x }}))

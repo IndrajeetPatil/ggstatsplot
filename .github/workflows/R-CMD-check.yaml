@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          #- {os: macos-latest,   r: 'devel'}
+          - {os: macos-latest,   r: 'devel'}
           - { os: macos-latest, r: "release" }
           - { os: macos-latest, r: "oldrel-1" }
 
@@ -51,7 +51,6 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          cache: false
           extra-packages: any::rcmdcheck
           needs: check
 
