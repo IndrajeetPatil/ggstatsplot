@@ -31,7 +31,12 @@ jobs:
         run: |
           options(crayon.enabled = TRUE)
           library(covr)
-          coverage <- covr::package_coverage(type = "examples", quiet = TRUE)
+          coverage <- covr::package_coverage(
+            type = "examples",
+            quiet = TRUE,
+            commentDonttest = FALSE,
+            commentDontrun = FALSE
+          )
           print(coverage)
           percent_coverage <- covr::percent_coverage(coverage)
           threshold <- 90

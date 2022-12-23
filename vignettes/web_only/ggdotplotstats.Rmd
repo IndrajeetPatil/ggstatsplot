@@ -64,12 +64,11 @@ Let's say we want to visualize the distribution of mileage by car manufacturer.
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
 ## creating a vector of colors using `paletteer` package
-paletter_vector <-
-  paletteer::paletteer_d(
-    palette = "palettetown::venusaur",
-    n = nlevels(as.factor(df$manufacturer)),
-    type = "discrete"
-  )
+paletter_vector <- paletteer::paletteer_d(
+  palette = "palettetown::venusaur",
+  n = nlevels(as.factor(df$manufacturer)),
+  type = "discrete"
+)
 
 ggdotplotstats(
   data = df,
@@ -167,9 +166,7 @@ under the alternative hypothesis as compared to the null hypothesis. This can be
 considered moderate evidence (Jeffreys, 1961) in favor of the alternative
 hypothesis.
 
-
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-

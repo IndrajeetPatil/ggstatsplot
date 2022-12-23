@@ -80,7 +80,7 @@ ggbarstats <- function(data,
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% mutate(across(.fns = ~ droplevels(as.factor(.x))))
+  data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   if (nlevels(data %>% pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
@@ -222,10 +222,8 @@ grouped_ggbarstats <- function(data,
                                grouping.var,
                                plotgrid.args = list(),
                                annotation.args = list()) {
-  # creating a data frame
   data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
-  # creating a list of return objects
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbarstats,

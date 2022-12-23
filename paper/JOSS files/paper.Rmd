@@ -166,4 +166,3 @@ the users. I would additionally like to thank the contributors to `{ggstatsplot}
 for reporting bugs, providing helpful feedback, or helping with enhancements.
 
 # References
-

@@ -1,0 +1,53 @@
+on:
+  pull_request:
+    branches: [main, master]
+
+name: pre-commit
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    if: >-
+      !contains(github.event.head_commit.message, 'ci skip') &&
+      (
+        startsWith(github.ref, 'refs/heads') ||
+        github.event.pull_request.draft == false
+      )
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          architecture: "x64"
+
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.0
+
+      - name: Commit files
+        if: failure() && startsWith(github.ref, 'refs/heads')
+        run: |
+          if [[ `git status --porcelain --untracked-files=no` ]]; then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git checkout -- .github/workflows
+            git commit -m "pre-commit" -a
+          fi
+
+      - name: Push changes
+        if: failure() && startsWith(github.ref, 'refs/heads')
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+    env:
+      RENV_CONFIG_CACHE_ENABLED: FALSE

@@ -110,20 +110,15 @@ ggpiestats <- function(data,
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% mutate(across(.fns = ~ droplevels(as.factor(.x))))
-
-  # x
+  data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
   x_levels <- nlevels(data %>% pull({{ x }}))
-
-  # y
-  if (test == "one.way") y_levels <- 0L
-  if (test == "two.way") y_levels <- nlevels(data %>% pull({{ y }}))
+  y_levels <- ifelse(test == "one.way", 0L, nlevels(data %>% pull({{ y }})))
 
   # TODO: one-way table in `BayesFactor`
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
 
   # faceting is possible only if both vars have more than one levels
-  facet <- ifelse(y_levels > 1L, TRUE, FALSE)
+  facet <- as.logical(y_levels > 1L)
   if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
 
   # statistical analysis ------------------------------------------
@@ -260,16 +255,13 @@ grouped_ggpiestats <- function(data,
                                grouping.var,
                                plotgrid.args = list(),
                                annotation.args = list()) {
-  # creating a data frame
   data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
-  # creating a list of return objects
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggpiestats,
     ...
   )
-
 
   combine_plots(p_ls, plotgrid.args, annotation.args)
 }
