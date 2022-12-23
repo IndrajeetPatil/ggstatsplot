@@ -2,9 +2,10 @@
 #' @name ggcorrmat
 #'
 #' @description
-#'
-#' Correlation matrix or a data frame containing results from pairwise
-#' correlation tests.
+#' Correlation matrix containing results from pairwise correlation tests.
+#' If you want a data frame of (grouped) correlation matrix, use
+#' `correlation::correlation()` instead. It can also do grouped analysis when
+#' used with output from `dplyr::group_by()`.
 #'
 #' @section Summary of graphics:
 #'
@@ -12,8 +13,7 @@
 #' ```
 #'
 #' @param ... Currently ignored.
-#' @param data Dataframe from which variables specified are preferentially to be
-#'   taken.
+#' @param data A data frame from which variables specified are to be taken.
 #' @param cor.vars List of variables for which the correlation matrix is to be
 #'   computed and visualized. If `NULL` (default), all numeric variables from
 #'   `data` will be used.
@@ -22,24 +22,19 @@
 #' @param partial Can be `TRUE` for partial correlations. For Bayesian partial
 #'   correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
 #'   Bayesian correlation based on frequentist partialization) are returned.
-#' @param output Character that decides expected output from this function. If
-#'   `"plot"`, the visualization matrix will be returned. If `"dataframe"` (or
-#'   literally anything other than `"plot"`), a data frame containing all details
-#'   from statistical analyses (e.g., correlation coefficients, statistic
-#'   values, *p*-values, no. of observations, etc.) will be returned.
 #' @param matrix.type Character, `"upper"` (default), `"lower"`, or `"full"`,
 #'   display full matrix, lower triangular or upper triangular matrix.
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
-#'   the plot. Relevant only when `output = "plot"`.
+#'   the plot.
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #'   If set to `NULL`, manual specification of colors will be turned off and 3
 #'   colors from the specified `palette` from `package` will be selected.
 #' @param pch Decides the point shape to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
-#'   will be passed to `ggcorrplot::ggcorrplot` function. The list should avoid
+#'   will be passed to `ggcorrplot::ggcorrplot()` function. The list should avoid
 #'   any of the following arguments since they are already internally being
 #'   used: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `lab`,
 #'   `pch`, `legend.title`, `digits`.
@@ -62,21 +57,11 @@
 #' set.seed(123)
 #' library(ggcorrplot) # for plot
 #'
-#' # to get a plot
 #' ggcorrmat(iris)
-#'
-#' # to get a data frame
-#' ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   cor.vars = sleep_total:bodywt,
-#'   partial = TRUE,
-#'   output = "dataframe"
-#' )
 #' @export
 ggcorrmat <- function(data,
                       cor.vars = NULL,
                       cor.vars.names = NULL,
-                      output = "plot",
                       matrix.type = "upper",
                       type = "parametric",
                       tr = 0.2,
@@ -101,16 +86,11 @@ ggcorrmat <- function(data,
                       subtitle = NULL,
                       caption = NULL,
                       ...) {
-  # data frame -----------------------------------
-
+  type <- stats_type_switch(type)
   if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
 
   # statistical analysis ------------------------------------------
 
-  # if any of the abbreviations have been entered, change them
-  type <- stats_type_switch(type)
-
-  # creating a data frame of results
   mpc_df <- correlation::correlation(
     data             = data,
     rename           = cor.vars.names,
@@ -128,11 +108,6 @@ ggcorrmat <- function(data,
   # type of correlation and if it is a partial correlation
   r.method.text <- gsub(" correlation", "", unique(mpc_df$Method))
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
-
-  # early stats return
-  if (output != "plot") {
-    return(as_tibble(parameters::standardize_names(mpc_df, "broom")))
-  }
 
   # plot ------------------------------------------
 
@@ -176,7 +151,7 @@ ggcorrmat <- function(data,
 
   # p-value adjustment message ------------------------------------------
 
-  if ((pch == "cross" || pch == 4) && type != "bayes") {
+  if ((pch == "cross" || pch == 4L) && type != "bayes") {
     caption <- substitute(
       atop(
         displaystyle(top.text),
@@ -218,9 +193,9 @@ ggcorrmat <- function(data,
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::ggcorrmat` to apply this function across
+#' Helper function for `ggstatsplot::ggcorrmat()` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
-#' `ggstatsplot::combine_plots`.
+#' `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats
@@ -237,7 +212,6 @@ ggcorrmat <- function(data,
 #' set.seed(123)
 #' library(ggcorrplot) # for plot
 #'
-#' # for plot
 #' grouped_ggcorrmat(
 #'   data = iris,
 #'   grouping.var = Species,
@@ -246,39 +220,16 @@ ggcorrmat <- function(data,
 #'   plotgrid.args = list(ncol = 1),
 #'   annotation.args = list(tag_levels = "i")
 #' )
-#'
-#' # for data frame
-#' grouped_ggcorrmat(
-#'   data = ggplot2::msleep,
-#'   grouping.var = vore,
-#'   type = "bayes",
-#'   output = "dataframe"
-#' )
 #' @export
 grouped_ggcorrmat <- function(data,
                               ...,
                               grouping.var,
-                              output = "plot",
                               plotgrid.args = list(),
                               annotation.args = list()) {
-  data %<>%
-    .grouped_list({{ grouping.var }}) %>%
-    purrr::map(.f = ~ select(.x, -{{ grouping.var }}))
-
-  p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data), output = output),
+  purrr::pmap(
+    .l = .grouped_list(data, {{ grouping.var }}),
     .f = ggstatsplot::ggcorrmat,
     ...
-  )
-
-  if (output == "plot") {
-    return(combine_plots(
-      plotlist = p_ls,
-      guides = "keep", # each legend is going to be different
-      plotgrid.args = plotgrid.args,
-      annotation.args = annotation.args
-    ))
-  } else {
-    return(bind_rows(p_ls, .id = as_name(ensym(grouping.var))))
-  }
+  ) %>% # each legend is going to be different
+    combine_plots(guides = "keep", plotgrid.args, annotation.args)
 }

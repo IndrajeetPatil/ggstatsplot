@@ -18,7 +18,9 @@
     return(data)
   }
 
-  data %>% split(f = new_formula(NULL, enquo(grouping.var)), drop = TRUE)
+  data %>%
+    split(f = new_formula(NULL, enquo(grouping.var)), drop = TRUE) %>%
+    list(data = ., title = names(.))
 }
 
 

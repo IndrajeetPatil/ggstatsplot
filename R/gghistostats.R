@@ -219,23 +219,12 @@ grouped_gghistostats <- function(data,
                                  plotgrid.args = list(),
                                  annotation.args = list(),
                                  ...) {
-  # extract a vector for convenience
-  x_vec <- data %>% pull({{ x }})
-
-  # data frame ------------------------------------------
-
-  data %<>%
-    select({{ grouping.var }}, {{ x }}) %>%
-    .grouped_list(grouping.var = {{ grouping.var }})
-
-  # creating a list of plots
-  p_ls <- purrr::pmap(
-    .l       = list(data = data, title = names(data)),
-    .f       = ggstatsplot::gghistostats,
-    x        = {{ x }},
-    binwidth = binwidth %||% .binwidth(x_vec),
+  purrr::pmap(
+    .l = .grouped_list(data, {{ grouping.var }}),
+    .f = ggstatsplot::gghistostats,
+    x = {{ x }},
+    binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
     ...
-  )
-
-  combine_plots(p_ls, plotgrid.args, annotation.args)
+  ) %>%
+    combine_plots(plotgrid.args, annotation.args)
 }

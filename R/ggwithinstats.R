@@ -205,7 +205,7 @@ ggwithinstats <- function(data,
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- .centrality_ggrepel(
+    plot <- suppressWarnings(.centrality_ggrepel(
       plot                  = plot,
       data                  = data,
       x                     = {{ x }},
@@ -217,7 +217,7 @@ ggwithinstats <- function(data,
       centrality.path.args  = centrality.path.args,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
-    )
+    ))
   }
 
   # ggsignif labels -------------------------------------
@@ -313,13 +313,10 @@ grouped_ggwithinstats <- function(data,
                                   grouping.var,
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
-  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
-
-  p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data)),
+  purrr::pmap(
+    .l = .grouped_list(data, {{ grouping.var }}),
     .f = ggstatsplot::ggwithinstats,
     ...
-  )
-
-  combine_plots(p_ls, plotgrid.args, annotation.args)
+  ) %>%
+    combine_plots(plotgrid.args, annotation.args)
 }

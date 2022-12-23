@@ -8,7 +8,6 @@ ggcorrmat(
   data,
   cor.vars = NULL,
   cor.vars.names = NULL,
-  output = "plot",
   matrix.type = "upper",
   type = "parametric",
   tr = 0.2,
@@ -32,8 +31,7 @@ ggcorrmat(
 )
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A data frame from which variables specified are to be taken.}
 
 \item{cor.vars}{List of variables for which the correlation matrix is to be
 computed and visualized. If \code{NULL} (default), all numeric variables from
@@ -41,12 +39,6 @@ computed and visualized. If \code{NULL} (default), all numeric variables from
 
 \item{cor.vars.names}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
-
-\item{output}{Character that decides expected output from this function. If
-\code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or
-literally anything other than \code{"plot"}), a data frame containing all details
-from statistical analyses (e.g., correlation coefficients, statistic
-values, \emph{p}-values, no. of observations, etc.) will be returned.}
 
 \item{matrix.type}{Character, \code{"upper"} (default), \code{"lower"}, or \code{"full"},
 display full matrix, lower triangular or upper triangular matrix.}
@@ -75,7 +67,7 @@ Bayesian correlation based on frequentist partialization) are returned.}
 \item{sig.level}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
-the plot. Relevant only when \code{output = "plot"}.}
+the plot.}
 
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
@@ -96,7 +88,7 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
 
 \item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments that
-will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
+will be passed to \code{ggcorrplot::ggcorrplot()} function. The list should avoid
 any of the following arguments since they are already internally being
 used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
 \code{pch}, \code{legend.title}, \code{digits}.}
@@ -136,8 +128,10 @@ if \code{bf.message = FALSE}.}
 \item{...}{Currently ignored.}
 }
 \description{
-Correlation matrix or a data frame containing results from pairwise
-correlation tests.
+Correlation matrix containing results from pairwise correlation tests.
+If you want a data frame of (grouped) correlation matrix, use
+\code{correlation::correlation()} instead. It can also do grouped analysis when
+used with output from \code{dplyr::group_by()}.
 }
 \details{
 For details, see:
@@ -177,16 +171,7 @@ The table below provides summary about:
 set.seed(123)
 library(ggcorrplot) # for plot
 
-# to get a plot
 ggcorrmat(iris)
-
-# to get a data frame
-ggcorrmat(
-  data = ggplot2::msleep,
-  cor.vars = sleep_total:bodywt,
-  partial = TRUE,
-  output = "dataframe"
-)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
