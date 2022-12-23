@@ -99,7 +99,8 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ggstatsplot</span><span class="fu">:::</span><span class="fu">.grouped_list</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>, grouping.var <span class="op">=</span> <span class="va">vore</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $carni</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data$carni</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 19 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name  genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake brainwt  bodywt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -125,7 +126,7 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​conservation, ²​sleep_total, ³​sleep_rem,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​sleep_cycle</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $herbi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data$herbi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name  genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake brainwt  bodywt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -142,7 +143,7 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 22 more rows, and abbreviated variable names ¹​conservation,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​sleep_total, ³​sleep_rem, ⁴​sleep_cycle</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $insecti</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data$insecti</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   name    genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake brainwt bodywt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -154,7 +155,7 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​conservation, ²​sleep_total, ³​sleep_rem,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​sleep_cycle</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $omni</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data$omni</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name  genus vore  order conse…¹ sleep…² sleep…³ sleep…⁴ awake  brainwt bodywt</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -180,6 +181,10 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> Tree… Tupa… omni  Scan… <span style="color: #BB0000;">NA</span>          8.9     2.6   0.233  15.1  0.002<span style="text-decoration: underline;">5</span>   0.104</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​conservation, ²​sleep_total, ³​sleep_rem,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​sleep_cycle</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "carni"   "herbi"   "insecti" "omni"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
