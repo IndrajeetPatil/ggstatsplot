@@ -6,7 +6,6 @@ descriptive_data <- function(data,
                              label.content = "percentage",
                              perc.k = 1,
                              ...) {
-  # creating a data frame with counts
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(
@@ -14,8 +13,7 @@ descriptive_data <- function(data,
         grepl("count|n|N", label.content) ~ .prettyNum(counts),
         TRUE ~ paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
       )
-    ) %>%
-    # reorder the category factor levels to order the legend
+    ) %>% # reorder the category factor levels to order the legend
     mutate({{ x }} := factor({{ x }}, unique({{ x }})))
 }
 

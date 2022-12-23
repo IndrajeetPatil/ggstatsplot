@@ -225,7 +225,7 @@ grouped_ggbarstats <- function(data,
   # creating a data frame
   data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
-  # creating a list of return objects
+
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbarstats,

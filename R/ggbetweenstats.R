@@ -211,7 +211,7 @@ ggbetweenstats <- function(data,
   c(x, y) %<-% c(ensym(x), ensym(y))
   outlier.label <- if (!quo_is_null(enquo(outlier.label))) ensym(outlier.label)
 
-  # creating a dataframe
+
   data %<>%
     select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
     tidyr::drop_na() %>%
@@ -464,10 +464,8 @@ grouped_ggbetweenstats <- function(data,
                                    grouping.var,
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  # creating a dataframe
   data %<>% .grouped_list(grouping.var = {{ grouping.var }})
 
-  # creating a list of return objects
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data)),
     .f = ggstatsplot::ggbetweenstats,

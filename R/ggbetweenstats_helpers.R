@@ -33,7 +33,6 @@
                                 centrality.point.args = list(size = 5, color = "darkred"),
                                 centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
                                 ...) {
-  # creating the data frame
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
   # if there should be lines connecting mean values across groups
@@ -194,7 +193,6 @@
     TRUE ~ "all"
   )
 
-  # returned parsed glue expression
   parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
 }
 
@@ -226,7 +224,6 @@
   # if no. of factor levels is greater than the default palette color count
   .palette_message(package, palette, length(unique(levels(x)))[[1L]])
 
-  # modifying the plot
   plot +
     labs(
       x        = xlab,

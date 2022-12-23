@@ -261,12 +261,10 @@ grouped_ggcorrmat <- function(data,
                               output = "plot",
                               plotgrid.args = list(),
                               annotation.args = list()) {
-  # data frame
   data %<>%
     .grouped_list({{ grouping.var }}) %>%
     purrr::map(.f = ~ select(.x, -{{ grouping.var }}))
 
-  # creating a list of return objects
   p_ls <- purrr::pmap(
     .l = list(data = data, title = names(data), output = output),
     .f = ggstatsplot::ggcorrmat,
