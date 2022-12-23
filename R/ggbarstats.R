@@ -222,13 +222,14 @@ grouped_ggbarstats <- function(data,
                                grouping.var,
                                plotgrid.args = list(),
                                annotation.args = list()) {
-  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
-
-  p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data)),
-    .f = ggstatsplot::ggbarstats,
-    ...
-  )
-
-  combine_plots(p_ls, plotgrid.args, annotation.args)
+  data %>%
+    .grouped_list(grouping.var = {{ grouping.var }}) %>%
+    {
+      purrr::pmap(
+        .l = list(data = ., title = names(.)),
+        .f = ggstatsplot::ggbarstats,
+        ...
+      )
+    } %>%
+    combine_plots(plotgrid.args, annotation.args)
 }
