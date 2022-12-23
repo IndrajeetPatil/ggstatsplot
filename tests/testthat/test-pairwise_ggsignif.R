@@ -7,7 +7,7 @@ test_that(
   desc = "check pairwise displays - between-subjects",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - parametric - only non-significant",
       fig = ggbetweenstats(ggplot2::msleep, vore, brainwt,
         type = "p",
@@ -19,7 +19,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - parametric - only significant",
       fig = ggbetweenstats(ggplot2::msleep, vore, brainwt,
         type = "p",
@@ -31,7 +31,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - parametric - all",
       fig = ggbetweenstats(ggplot2::msleep, vore, brainwt,
         type = "p",
@@ -43,7 +43,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - non-parametric - only non-significant",
       fig = ggbetweenstats(movies_long, mpaa, rating,
         type = "np",
@@ -55,7 +55,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - non-parametric - only significant",
       fig = ggbetweenstats(movies_long, mpaa, rating,
         type = "np",
@@ -67,7 +67,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - non-parametric - all",
       fig = ggbetweenstats(movies_long, mpaa, rating,
         type = "np",
@@ -79,7 +79,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - robust - only non-significant",
       fig = ggbetweenstats(ggplot2::msleep, vore, sleep_rem,
         type = "r",
@@ -91,7 +91,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - robust - only significant",
       fig = ggbetweenstats(ggplot2::msleep, vore, sleep_rem,
         type = "r",
@@ -103,7 +103,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - robust - all",
       fig = ggbetweenstats(ggplot2::msleep, vore, sleep_rem,
         type = "r",
@@ -115,7 +115,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "between - bayes",
       fig = ggbetweenstats(iris, Species, Sepal.Length,
         type = "bayes",
@@ -132,7 +132,7 @@ test_that(
   desc = "check pairwise displays - within-subjects",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - parametric - only non-significant",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "p",
@@ -144,7 +144,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - parametric - only significant",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "p",
@@ -156,7 +156,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - parametric - all",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "p",
@@ -168,7 +168,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - non-parametric - only non-significant",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "np",
@@ -180,7 +180,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - non-parametric - only significant",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "np",
@@ -192,7 +192,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - non-parametric - all",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "np",
@@ -204,7 +204,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - robust - only non-significant",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "r",
@@ -216,7 +216,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - robust - only significant",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "r",
@@ -228,7 +228,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - robust - all",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "r",
@@ -240,7 +240,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "within - bayes",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "bayes",
@@ -258,7 +258,7 @@ test_that(
   desc = "adding caption works",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "adding caption works",
       fig = ggwithinstats(bugs_long, condition, desire,
         type = "p",

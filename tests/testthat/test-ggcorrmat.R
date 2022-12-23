@@ -5,13 +5,13 @@ test_that(
   desc = "checking ggcorrmat with entier dataset",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "parametric correlation - without NAs",
       fig = ggcorrmat(anscombe, type = "p")
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "non-parametric correlation - with NAs",
       fig = ggcorrmat(ggplot2::msleep, type = "np")
     )
@@ -36,7 +36,7 @@ test_that(
   desc = "ggcorrmat works as expected with changed defaults",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "changing aesthetic defaults",
       fig = ggcorrmat(
         data = dplyr::select(iris, dplyr::contains("Petal")),
@@ -56,7 +56,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "applying ggplot2 function works",
       fig = ggcorrmat(
         data = dplyr::select(ggplot2::msleep, brainwt, sleep_rem, bodywt),
@@ -81,7 +81,7 @@ test_that(
   desc = "grouped_ggcorrmat plots are as expected",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "without NAs",
       fig = grouped_ggcorrmat(
         iris,
@@ -91,7 +91,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "with NAs",
       fig = grouped_ggcorrmat(
         data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),

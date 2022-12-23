@@ -18,7 +18,7 @@ test_that(
       labs(title = "versicolor")
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "defaults work as expected",
       fig = combine_plots(
         plotlist = list(p1, p2),
