@@ -202,13 +202,10 @@ grouped_ggdotplotstats <- function(data,
                                    grouping.var,
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  data %<>% .grouped_list(grouping.var = {{ grouping.var }})
-
-  p_ls <- purrr::pmap(
-    .l = list(data = data, title = names(data)),
+  purrr::pmap(
+    .l = .grouped_list(data, {{ grouping.var }}),
     .f = ggstatsplot::ggdotplotstats,
     ...
-  )
-
-  combine_plots(p_ls, plotgrid.args, annotation.args)
+  ) %>%
+    combine_plots(plotgrid.args, annotation.args)
 }

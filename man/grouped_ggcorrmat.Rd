@@ -9,14 +9,12 @@ grouped_ggcorrmat(
   data,
   ...,
   grouping.var,
-  output = "plot",
   plotgrid.args = list(),
   annotation.args = list()
 )
 }
 \arguments{
-\item{data}{Dataframe from which variables specified are preferentially to be
-taken.}
+\item{data}{A data frame from which variables specified are to be taken.}
 
 \item{...}{
   Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
@@ -41,7 +39,7 @@ colors from the specified \code{palette} from \code{package} will be selected.}
     \item{\code{pch}}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
-will be passed to \code{ggcorrplot::ggcorrplot} function. The list should avoid
+will be passed to \code{ggcorrplot::ggcorrplot()} function. The list should avoid
 any of the following arguments since they are already internally being
 used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
 \code{pch}, \code{legend.title}, \code{digits}.}
@@ -96,12 +94,6 @@ thus the details as well.}
 
 \item{grouping.var}{A single grouping variable.}
 
-\item{output}{Character that decides expected output from this function. If
-\code{"plot"}, the visualization matrix will be returned. If \code{"dataframe"} (or
-literally anything other than \code{"plot"}), a data frame containing all details
-from statistical analyses (e.g., correlation coefficients, statistic
-values, \emph{p}-values, no. of observations, etc.) will be returned.}
-
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{patchwork::wrap_plots}, except for \code{guides} argument which is already
 separately specified here.}
@@ -110,9 +102,9 @@ separately specified here.}
 \code{patchwork::plot_annotation}.}
 }
 \description{
-Helper function for \code{ggstatsplot::ggcorrmat} to apply this function across
+Helper function for \code{ggstatsplot::ggcorrmat()} to apply this function across
 multiple levels of a given factor and combining the resulting plots using
-\code{ggstatsplot::combine_plots}.
+\code{ggstatsplot::combine_plots()}.
 }
 \details{
 For details, see:
@@ -124,7 +116,6 @@ For details, see:
 set.seed(123)
 library(ggcorrplot) # for plot
 
-# for plot
 grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
@@ -132,14 +123,6 @@ grouped_ggcorrmat(
   p.adjust.method = "holm",
   plotgrid.args = list(ncol = 1),
   annotation.args = list(tag_levels = "i")
-)
-
-# for data frame
-grouped_ggcorrmat(
-  data = ggplot2::msleep,
-  grouping.var = vore,
-  type = "bayes",
-  output = "dataframe"
 )
 \dontshow{\}) # examplesIf}
 }

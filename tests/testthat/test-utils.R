@@ -5,13 +5,8 @@ test_that(
   code = {
     set.seed(123)
 
-    # creating lists
-    df1 <- ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
-    df2 <- ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = NULL)
-
-    # testing lengths of lists
-    expect_snapshot(names(df1))
-    expect_identical(ggplot2::msleep, df2)
+    expect_snapshot(glimpse(ggstatsplot:::.grouped_list(sleep, grouping.var = group)))
+    expect_snapshot(glimpse(ggstatsplot:::.grouped_list(sleep)))
   }
 )
 
@@ -20,8 +15,8 @@ test_that(
   code = {
     set.seed(123)
     expect_snapshot({
-      ggplot2::msleep %>%
-        rename("my non-syntactic name" = vore) %>%
+      sleep %>%
+        rename("my non-syntactic name" = group) %>%
         ggstatsplot:::.grouped_list(grouping.var = `my non-syntactic name`) %>%
         tibble::tbl_sum()
     })
