@@ -45,8 +45,6 @@ changes across time.
 ```{r}
 #| label = "ggbetweenstats"
 
-
-
 bench::mark(
   ggbetweenstats(
     data = dplyr::filter(
@@ -58,7 +56,6 @@ bench::mark(
   )
 ) %>%
   dplyr::select(-expression)
-
 
 bench::mark(
   grouped_ggbetweenstats(
@@ -78,8 +75,6 @@ bench::mark(
 
 ```{r}
 #| label = "ggwithinstats"
-
-
 
 bench::mark(
   ggwithinstats(
@@ -107,8 +102,6 @@ bench::mark(
 ```{r}
 #| label = "gghistostats"
 
-
-
 bench::mark(gghistostats(mtcars, wt, test.value = 3)) %>%
   dplyr::select(-expression)
 
@@ -121,8 +114,6 @@ bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am))
 
 ```{r}
 #| label = "ggdotplotstats"
-
-
 
 bench::mark(ggdotplotstats(
   dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
@@ -150,8 +141,6 @@ bench::mark(
 ```{r}
 #| label = "ggscatterstats"
 
-
-
 bench::mark(ggscatterstats(mtcars, wt, mpg)) %>%
   dplyr::select(-expression)
 
@@ -164,8 +153,6 @@ bench::mark(grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)) %>%
 
 ```{r}
 #| label = "ggcorrmat"
-
-
 
 bench::mark(ggcorrmat(iris)) %>%
   dplyr::select(-expression)
@@ -195,8 +182,6 @@ bench::mark(grouped_ggpiestats(mtcars, cyl, grouping.var = am)) %>%
 ```{r}
 #| label = "ggbarstats"
 
-
-
 bench::mark(ggbarstats(ggplot2::mpg, fl, class)) %>%
   dplyr::select(-expression)
 
@@ -209,9 +194,6 @@ bench::mark(grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %>%
 
 ```{r}
 #| label = "ggcoefstats"
-
-
-
 bench::mark(ggcoefstats(stats::lm(formula = wt ~ am * cyl, data = mtcars))) %>%
   dplyr::select(-expression)
 ```
@@ -220,4 +202,3 @@ bench::mark(ggcoefstats(stats::lm(formula = wt ~ am * cyl, data = mtcars))) %>%
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-
