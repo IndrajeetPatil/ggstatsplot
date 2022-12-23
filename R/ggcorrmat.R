@@ -4,7 +4,8 @@
 #' @description
 #' Correlation matrix containing results from pairwise correlation tests.
 #' If you want a data frame of (grouped) correlation matrix, use
-#' `correlation::correlation()` instead.
+#' `correlation::correlation()` instead. It can also do grouped analysis when
+#' used with output from `dplyr::group_by()`.
 #'
 #' @section Summary of graphics:
 #'
@@ -26,7 +27,7 @@
 #' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
-#'   the plot. Relevant only when `output = "plot"`.
+#'   the plot.
 #' @param colors A vector of 3 colors for low, mid, and high correlation values.
 #'   If set to `NULL`, manual specification of colors will be turned off and 3
 #'   colors from the specified `palette` from `package` will be selected.

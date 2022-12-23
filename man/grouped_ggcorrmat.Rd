@@ -32,7 +32,7 @@ display full matrix, lower triangular or upper triangular matrix.}
     \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
-the plot. Relevant only when \code{output = "plot"}.}
+the plot.}
     \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}

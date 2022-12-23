@@ -221,42 +221,6 @@ As seen here, and unsurprisingly, the strongest predictor of the diamond price
 is its carat value, which a unit of mass equal to 200 mg. In other words, the
 heavier the diamond, the more expensive it is going to be.
 
-## Dataframe containing statistics with `ggcorrmat`
-
-Another utility of `ggcorrmat` is in obtaining a data frame containing all
-details from statistical analyses. Such data frames can be easily embedded in
-manuscripts as tables.
-
-```{r}
-#| label = "ggcorrmat5"
-
-## to get correlations
-ggcorrmat(
-  data = dplyr::sample_frac(ggplot2::txhousing, size = 0.15),
-  cor.vars = sales:inventory,
-  output = "dataframe",
-  type = "robust",
-  digits = 3
-)
-```
-
-Note that if `cor.vars` are not specified, all numeric variables will be used.
-Moreover, you can also use abbreviations to specify what output you want in
-return. Additionally, one can also carry out **partial** correlation analysis:
-
-```{r}
-#| label = "ggcorrmat6"
-options(pillar.sigfig = 4)
-
-## getting the correlation coefficient matrix
-ggcorrmat(
-  data = iris, ## all numeric variables from data will be used
-  type = "np", ## non-parametric
-  partial = TRUE,
-  output = "dataframe"
-)
-```
-
 ## Grouped analysis with `grouped_ggcorrmat`
 
 What if we want to do the same analysis separately for each quality of the
@@ -275,11 +239,11 @@ in a given study, groups in a study sample, different studies, etc.
 #| fig.width = 10
 
 grouped_ggcorrmat(
-  ## arguments relevant for `ggcorrmat`
+  ## arguments relevant for `ggcorrmat()`
   data = ggplot2::diamonds,
-  type = "bayes", ## Bayesian test
+  type = "bayes", 
   grouping.var = cut,
-  ## arguments relevant for `combine_plots`
+  ## arguments relevant for `combine_plots()`
   plotgrid.args = list(nrow = 3),
   annotation.args = list(
     tag_levels = "a",
@@ -292,26 +256,20 @@ grouped_ggcorrmat(
 Note that this function also makes it easy to run the same correlation matrix
 across different levels of a factor/grouping variable.
 
-```{r}
-#| label = "ggcorrmat8"
+## Data frame
 
-## let's obtain correlation coefficients with their CIs
-grouped_ggcorrmat(
-  data = ggplot2::msleep,
-  cor.vars = sleep_total:awake,
-  grouping.var = vore,
-  output = "dataframe"
-)
-```
+If you want a data frame of (grouped) correlation matrix, use
+`correlation::correlation()` instead. It can also do grouped analysis when 
+used with output from `dplyr::group_by()`.
 
-## Grouped analysis with `ggcorrmat` + `{purrr}`
+## Grouped analysis with `ggcorrmat()` + `{purrr}`
 
 Although `grouped_` function is good for quickly exploring the data, it reduces
 the flexibility with which this function can be used. This is the because the
 common parameters used are applied to plots corresponding to all levels of the
 grouping variable and there is no way to customize the arguments for different
 levels of the grouping variable. We will see how this can be done using the
-`{purrr}` package.  
+`{purrr}` package.
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
