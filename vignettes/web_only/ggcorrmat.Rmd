@@ -241,7 +241,7 @@ in a given study, groups in a study sample, different studies, etc.
 grouped_ggcorrmat(
   ## arguments relevant for `ggcorrmat()`
   data = ggplot2::diamonds,
-  type = "bayes", 
+  type = "bayes",
   grouping.var = cut,
   ## arguments relevant for `combine_plots()`
   plotgrid.args = list(nrow = 3),
