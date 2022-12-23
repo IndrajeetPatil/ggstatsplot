@@ -335,4 +335,3 @@ evidence (Jeffreys, 1961) in favor of the alternative hypothesis.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-
