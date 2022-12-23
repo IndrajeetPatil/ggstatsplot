@@ -5,8 +5,8 @@ test_that(
   code = {
     set.seed(123)
 
-    expect_snapshot(glimpse(ggstatsplot:::.grouped_list(sleep, grouping.var = group)))
-    expect_snapshot(glimpse(ggstatsplot:::.grouped_list(sleep)))
+    expect_snapshot(str(ggstatsplot:::.grouped_list(sleep, grouping.var = group)))
+    expect_snapshot(str(ggstatsplot:::.grouped_list(sleep)))
   }
 )
 
@@ -18,7 +18,7 @@ test_that(
       sleep %>%
         rename("my non-syntactic name" = group) %>%
         ggstatsplot:::.grouped_list(grouping.var = `my non-syntactic name`) %>%
-        tibble::tbl_sum()
+        str()
     })
   }
 )
