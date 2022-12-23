@@ -1,4 +1,4 @@
-skip_if(getRversion() < "4.1")
+
 
 # checking default outputs -----------------------------------------
 

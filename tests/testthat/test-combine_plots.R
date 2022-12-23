@@ -1,7 +1,7 @@
 test_that(
   desc = "checking if combining plots works",
   code = {
-    skip_if(getRversion() < "4.1")
+    
 
     p1 <- ggplot2::ggplot(
       data = subset(iris, iris$Species == "setosa"),

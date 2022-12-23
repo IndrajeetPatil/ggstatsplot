@@ -1,6 +1,6 @@
 # graphical pairwise comparisons are tested in `test-pairwise_ggsignif.R`
 
-skip_if(getRversion() < "4.1")
+
 skip_if_not_installed("PMCMRplus")
 skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")

@@ -1,6 +1,6 @@
 # pairwise comparisons testing is done `test-pairwise_ggsignif.R`
 
-skip_if(getRversion() < "4.1")
+
 skip_if_not_installed("PMCMRplus")
 
 # checking labels and data from plot -------------------------------------

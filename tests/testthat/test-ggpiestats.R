@@ -1,4 +1,4 @@
-skip_if(getRversion() < "4.1")
+
 
 # data for paired tests
 set.seed(123)
