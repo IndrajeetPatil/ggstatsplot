@@ -1,11 +1,10 @@
-# pairwise comparisons testing is done `test-pairwise_ggsignif.R`
+# graphical pairwise comparisons are tested in `test-pairwise_ggsignif.R`
 
 skip_if(getRversion() < "4.1")
 skip_if_not_installed("PMCMRplus")
 skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
 
-# data
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30L, condition %in% c("HDLF", "HDHF"))
 
 # defaults plots ---------------------------------

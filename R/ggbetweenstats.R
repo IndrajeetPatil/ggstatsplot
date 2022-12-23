@@ -340,7 +340,7 @@ ggbetweenstats <- function(data,
 
   # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
-    plot <- .centrality_ggrepel(
+    plot <- suppressWarnings(.centrality_ggrepel(
       plot                  = plot,
       data                  = data,
       x                     = {{ x }},
@@ -350,7 +350,7 @@ ggbetweenstats <- function(data,
       tr                    = tr,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
-    )
+    ))
   }
 
   # ggsignif labels -------------------------------------
