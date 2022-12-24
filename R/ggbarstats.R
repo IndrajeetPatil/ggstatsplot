@@ -182,9 +182,9 @@ ggbarstats <- function(data,
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::ggbarstats` to apply this function across
+#' Helper function for `ggstatsplot::ggbarstats()` to apply this function across
 #' multiple levels of a given factor and combining the resulting plots using
-#' `ggstatsplot::combine_plots`.
+#' `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggbarstats
 #' @inheritParams grouped_ggbetweenstats
@@ -224,7 +224,7 @@ grouped_ggbarstats <- function(data,
                                annotation.args = list()) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::ggbarstats,
+    .f = ggbarstats,
     ...
   ) %>%
     combine_plots(plotgrid.args, annotation.args)

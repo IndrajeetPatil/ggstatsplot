@@ -1,5 +1,3 @@
-skip_if(getRversion() < "4.1")
-
 # data for paired tests
 set.seed(123)
 survey_data <- dplyr::tibble(
@@ -20,31 +18,31 @@ test_that(
   desc = "checking default outputs",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking one-way table - without NA",
       fig = ggpiestats(mtcars, cyl)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking one-way table - with NA",
       fig = ggpiestats(ggplot2::msleep, vore)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
       fig = ggpiestats(mtcars, am, cyl)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking unpaired two-way table - with NA",
       fig = ggpiestats(ggplot2::msleep, conservation, vore)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking paired two-way table - without NA",
       fig = ggpiestats(survey_data, `1st survey`, `2nd survey`,
         counts = Counts,
@@ -53,7 +51,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking paired two-way table - with NA",
       fig = ggpiestats(
         data = survey_data_NA,
@@ -72,7 +70,7 @@ test_that(
   desc = "changing labels and aesthetics",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking percentage labels",
       fig = ggpiestats(
         data = mtcars, x = cyl, label = "percentage",
@@ -81,7 +79,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking count labels",
       fig = ggpiestats(
         data = mtcars, x = cyl, label = "counts",
@@ -90,7 +88,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "checking percentage and count labels",
       fig = ggpiestats(
         data = mtcars, x = cyl, label = "both",
@@ -99,7 +97,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "changing aesthetics works",
       fig = suppressWarnings(
         ggpiestats(
@@ -150,7 +148,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "label repelling works",
       fig = ggpiestats(
         df,
@@ -174,13 +172,13 @@ test_that(
 
     # TODO: should one-way table results be shown in the subtitle?
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "works with dropped levels",
       fig = ggpiestats(mtcars_small, cyl, am)
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "prop test fails with dropped levels",
       fig = ggpiestats(mtcars_small, am, cyl)
     )
@@ -226,7 +224,7 @@ test_that(
   desc = "grouped_ggpiestats works",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "grouped_ggpiestats with one-way table",
       fig = grouped_ggpiestats(
         data = mtcars,
@@ -245,7 +243,7 @@ test_that(
 
     # when arguments are entered as bare expressions
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "grouped_ggpiestats with two-way table",
       fig = grouped_ggpiestats(
         data = mpg_short,
@@ -271,7 +269,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "common legend when levels are dropped",
       fig = grouped_ggpiestats(
         data = df,

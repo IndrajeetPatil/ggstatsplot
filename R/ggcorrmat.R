@@ -72,11 +72,7 @@ ggcorrmat <- function(data,
                       bf.prior = 0.707,
                       p.adjust.method = "holm",
                       pch = "cross",
-                      ggcorrplot.args = list(
-                        method = "square",
-                        outline.color = "black",
-                        pch.cex = 14
-                      ),
+                      ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
                       package = "RColorBrewer",
                       palette = "Dark2",
                       colors = c("#E69F00", "white", "#009E73"),
@@ -111,17 +107,15 @@ ggcorrmat <- function(data,
 
   # plot ------------------------------------------
 
-  # installed?
   check_if_installed("ggcorrplot")
 
-  # legend title with information about correlation type and sample
+  # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
       atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
-    # creating legend with sample size info
     legend.title <- bquote(atop(
       atop(
         atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
@@ -228,8 +222,8 @@ grouped_ggcorrmat <- function(data,
                               annotation.args = list()) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::ggcorrmat,
+    .f = ggcorrmat,
     ...
-  ) %>% # each legend is going to be different
+  ) %>% # `guides = "keep"` is needed because each legend will be different
     combine_plots(guides = "keep", plotgrid.args, annotation.args)
 }

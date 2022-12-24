@@ -16,11 +16,11 @@ combine_plots(
 \item{plotlist}{A list containing \code{ggplot} objects.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+\code{patchwork::wrap_plots()}, except for \code{guides} argument which is already
 separately specified here.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation}.}
+\code{patchwork::plot_annotation()}.}
 
 \item{guides}{A string specifying how guides should be treated in the layout.
 \code{'collect'} will collect guides below to the given nesting level, removing
@@ -37,7 +37,7 @@ patchwork (see example).}
 Combined plot with annotation labels
 }
 \description{
-Wrapper around \code{patchwork::wrap_plots} that will return a combined grid of
+Wrapper around \code{patchwork::wrap_plots()} that will return a combined grid of
 plots with annotations. In case you want to create a grid of plots, it is
 \strong{highly recommended} that you use \code{{patchwork}} package directly and not
 this wrapper around it which is mostly useful with \code{{ggstatsplot}} plots. It

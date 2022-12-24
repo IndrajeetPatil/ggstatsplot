@@ -71,10 +71,12 @@ ggdotplotstats <- function(data,
                            ...) {
   # data -----------------------------------
 
+  # convert entered stats type to a standard notation
+  type <- stats_type_switch(type)
+
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
@@ -92,9 +94,6 @@ ggdotplotstats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # convert entered stats type to a standard notation
-    type <- stats_type_switch(type)
-
     # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,
@@ -204,7 +203,7 @@ grouped_ggdotplotstats <- function(data,
                                    annotation.args = list()) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::ggdotplotstats,
+    .f = ggdotplotstats,
     ...
   ) %>%
     combine_plots(plotgrid.args, annotation.args)

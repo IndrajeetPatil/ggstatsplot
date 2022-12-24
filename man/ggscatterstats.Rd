@@ -89,7 +89,7 @@ the plot will be returned.}
 
 \item{label.expression}{An expression evaluating to a logical vector that
 determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
-While using this argument with \code{purrr::pmap}, you will have to provide a
+While using this argument with \code{purrr::pmap()}, you will have to provide a
 quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 
 \item{marginal}{Decides whether marginal distributions will be plotted on
@@ -113,7 +113,7 @@ to \code{ggrepel::geom_label_repel} geom used to display the labels.}
 to \code{geom_smooth} geom used to display the regression line.}
 
 \item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
-respective \code{geom_}s from \code{ggside} package to change the marginal
+respective \code{geom_}s from the \code{{ggside}} package to change the marginal
 distribution histograms plots.}
 
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
@@ -206,7 +206,6 @@ p <- ggscatterstats(
   label.expression = Sepal.Length > 7.6
 ) +
   ggplot2::geom_rug(sides = "b")
-
 
 # looking at the plot
 p

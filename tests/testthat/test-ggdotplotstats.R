@@ -1,5 +1,3 @@
-skip_if(getRversion() < "4.1")
-
 # creating a new dataset
 morley_new <- dplyr::mutate(
   morley,
@@ -11,7 +9,7 @@ morley_new <- dplyr::mutate(
     Expt == 5L ~ "5th"
   )
 ) %>%
-  dplyr::as_tibble()
+  tibble::as_tibble()
 
 morley_new[3L, 3L] <- NA_integer_
 morley_new[23L, 3L] <- NA_integer_
@@ -23,13 +21,13 @@ test_that(
   desc = "checking default outputs",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "parametric - without NA",
       fig = ggdotplotstats(ggplot2::mpg, cty, cyl, test.value = 16, type = "p")
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "robust - with NA",
       fig = ggdotplotstats(morley_new, Speed, Expt, test.value = 800, type = "r")
     )
@@ -43,7 +41,7 @@ test_that(
   desc = "modification with ggplot2 works as expected",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "modification with ggplot2 ",
       fig = suppressMessages(ggdotplotstats(
         data = morley_new,
@@ -102,7 +100,7 @@ test_that(
     df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "defaults work as expected",
       fig = grouped_ggdotplotstats(
         data = df,
@@ -119,7 +117,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "further modification with ggplot works",
       fig = grouped_ggdotplotstats(
         data = df,

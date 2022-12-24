@@ -1,8 +1,6 @@
 test_that(
   desc = "checking if combining plots works",
   code = {
-    skip_if(getRversion() < "4.1")
-
     p1 <- ggplot2::ggplot(
       data = subset(iris, iris$Species == "setosa"),
       aes(x = Sepal.Length, y = Sepal.Width)
@@ -18,7 +16,7 @@ test_that(
       labs(title = "versicolor")
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "defaults work as expected",
       fig = combine_plots(
         plotlist = list(p1, p2),

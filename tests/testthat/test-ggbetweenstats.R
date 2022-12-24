@@ -1,6 +1,4 @@
 # pairwise comparisons testing is done `test-pairwise_ggsignif.R`
-
-skip_if(getRversion() < "4.1")
 skip_if_not_installed("PMCMRplus")
 
 # checking labels and data from plot -------------------------------------
@@ -9,7 +7,7 @@ test_that(
   desc = "plotting features work as expected",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "outlier tagging works",
       fig = ggbetweenstats(
         data = ggplot2::msleep,
@@ -28,11 +26,10 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "modification with ggplot2 works as expected",
       fig = ggbetweenstats(
-        data = tibble::as_tibble(mtcars, rownames = "name") %>%
-          dplyr::rename(n = wt),
+        data = tibble::as_tibble(mtcars, rownames = "name") %>% dplyr::rename(n = wt),
         x = cyl,
         y = n,
         pairwise.comparisons = FALSE,
@@ -49,7 +46,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "mean shown with scarce data",
       fig = suppressWarnings(ggbetweenstats(
         data = df_small,
@@ -69,7 +66,7 @@ test_that(
   desc = "checking if `plot.type` argument works",
   code = {
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "box plot",
       fig = ggbetweenstats(
         data = ToothGrowth,
@@ -84,7 +81,7 @@ test_that(
     )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "violin plot",
       fig = ggbetweenstats(
         data = ToothGrowth,
@@ -145,7 +142,7 @@ test_that(
       )
 
     set.seed(123)
-    vdiffr::expect_doppelganger(
+    expect_doppelganger(
       title = "default plot as expected",
       fig = grouped_ggbetweenstats(
         data = dat,

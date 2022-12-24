@@ -26,7 +26,7 @@ ungrouped before they are entered as \code{data}.}
 \code{var1}).}
     \item{\code{label.expression}}{An expression evaluating to a logical vector that
 determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
-While using this argument with \code{purrr::pmap}, you will have to provide a
+While using this argument with \code{purrr::pmap()}, you will have to provide a
 quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
 to \code{ggrepel::geom_label_repel} geom used to display the labels.}
@@ -44,7 +44,7 @@ because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the *\strong{labels} for
 these points.}
     \item{\code{xsidehistogram.args,ysidehistogram.args}}{A list of arguments passed to
-respective \code{geom_}s from \code{ggside} package to change the marginal
+respective \code{geom_}s from the \code{{ggside}} package to change the marginal
 distribution histograms plots.}
     \item{\code{x}}{The column in \code{data} containing the explanatory variable to be
 plotted on the \code{x}-axis.}
@@ -106,11 +106,11 @@ thus the details as well.}
 \item{grouping.var}{A single grouping variable.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots}, except for \code{guides} argument which is already
+\code{patchwork::wrap_plots()}, except for \code{guides} argument which is already
 separately specified here.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation}.}
+\code{patchwork::plot_annotation()}.}
 }
 \description{
 Grouped scatterplots from \code{{ggplot2}} combined with marginal distribution
