@@ -1,6 +1,4 @@
 # pairwise comparisons testing is done `test-pairwise_ggsignif.R`
-
-
 skip_if_not_installed("PMCMRplus")
 
 # checking labels and data from plot -------------------------------------
@@ -31,8 +29,7 @@ test_that(
     expect_doppelganger(
       title = "modification with ggplot2 works as expected",
       fig = ggbetweenstats(
-        data = tibble::as_tibble(mtcars, rownames = "name") %>%
-          dplyr::rename(n = wt),
+        data = tibble::as_tibble(mtcars, rownames = "name") %>% dplyr::rename(n = wt),
         x = cyl,
         y = n,
         pairwise.comparisons = FALSE,

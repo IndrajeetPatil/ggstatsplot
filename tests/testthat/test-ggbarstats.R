@@ -1,5 +1,3 @@
-
-
 # data for paired tests
 set.seed(123)
 survey_data <- dplyr::tibble(

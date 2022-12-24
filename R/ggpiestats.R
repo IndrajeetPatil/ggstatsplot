@@ -257,7 +257,7 @@ grouped_ggpiestats <- function(data,
                                annotation.args = list()) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::ggpiestats,
+    .f = ggpiestats,
     ...
   ) %>%
     combine_plots(plotgrid.args, annotation.args)

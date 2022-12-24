@@ -1,7 +1,9 @@
 #' @title Custom function for adding labeled lines for `x`-axis variable.
 #' @name .histo_labeller
-#' @description Helper function for adding centrality parameter value and/or a
-#'   test value for the continuous, numeric `x`-axis variable.
+#'
+#' @description
+#' Helper function for adding centrality parameter value and/or a test value for
+#' the continuous, numeric `x`-axis variable.
 #'
 #' @param plot A `ggplot` object for which the labeled lines need to be added
 #'   for a test value and/or a centrality parameter (mean/median) value.

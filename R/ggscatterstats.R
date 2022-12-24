@@ -16,7 +16,7 @@
 #'   `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label (e.g. `y < 4 & z < 20`).
-#'   While using this argument with `purrr::pmap`, you will have to provide a
+#'   While using this argument with `purrr::pmap()`, you will have to provide a
 #'   quoted expression  (e.g. `quote(y < 4 & z < 20)`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
 #'   to `ggrepel::geom_label_repel` geom used to display the labels.
@@ -34,7 +34,7 @@
 #'   displaying the **points** and the other displaying the ***labels** for
 #'   these points.
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
-#'   respective `geom_`s from `ggside` package to change the marginal
+#'   respective `geom_`s from the `{ggside}` package to change the marginal
 #'   distribution histograms plots.
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
@@ -68,7 +68,6 @@
 #'   label.expression = Sepal.Length > 7.6
 #' ) +
 #'   ggplot2::geom_rug(sides = "b")
-#'
 #'
 #' # looking at the plot
 #' p
@@ -185,7 +184,7 @@ ggscatterstats <- function(data,
 
   # marginal  ---------------------------------------------
 
-  if (marginal) {
+  if (isTRUE(marginal)) {
     check_if_installed("ggside", minimum_version = "0.2.1")
 
     # adding marginal distributions
@@ -267,7 +266,7 @@ grouped_ggscatterstats <- function(data,
                                    annotation.args = list()) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::ggscatterstats,
+    .f = ggscatterstats,
     ...
   ) %>%
     combine_plots(plotgrid.args, annotation.args)

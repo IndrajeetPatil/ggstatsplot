@@ -1,5 +1,3 @@
-
-
 # creating a new dataset
 morley_new <- dplyr::mutate(
   morley,
@@ -11,7 +9,7 @@ morley_new <- dplyr::mutate(
     Expt == 5L ~ "5th"
   )
 ) %>%
-  dplyr::as_tibble()
+  tibble::as_tibble()
 
 morley_new[3L, 3L] <- NA_integer_
 morley_new[23L, 3L] <- NA_integer_

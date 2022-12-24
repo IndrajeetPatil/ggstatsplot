@@ -1,5 +1,3 @@
-
-
 # errors ------------------------------------------
 
 test_that("ggcoefstats doesn't work if no estimate column found", {

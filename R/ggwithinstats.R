@@ -130,18 +130,17 @@ ggwithinstats <- function(data,
   if (!"outlier.label" %in% names(data)) data %<>% mutate(outlier.label = {{ y }})
 
   # add a logical column indicating whether a point is or is not an outlier
-  data %<>%
-    .outlier_df(
-      x             = {{ x }},
-      y             = {{ y }},
-      outlier.coef  = outlier.coef,
-      outlier.label = outlier.label
-    )
+  data %<>% .outlier_df(
+    x             = {{ x }},
+    y             = {{ y }},
+    outlier.coef  = outlier.coef,
+    outlier.label = outlier.label
+  )
 
   # statistical analysis ------------------------------------------
 
   # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3, "t", "anova")
+  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle && check_if_installed("afex")) {
     # relevant arguments for statistical tests
@@ -315,7 +314,7 @@ grouped_ggwithinstats <- function(data,
                                   annotation.args = list()) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::ggwithinstats,
+    .f = ggwithinstats,
     ...
   ) %>%
     combine_plots(plotgrid.args, annotation.args)

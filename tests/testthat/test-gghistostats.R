@@ -1,5 +1,3 @@
-
-
 # checking default outputs -----------------------------------------
 
 test_that(

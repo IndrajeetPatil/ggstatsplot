@@ -221,7 +221,7 @@ grouped_gghistostats <- function(data,
                                  ...) {
   purrr::pmap(
     .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggstatsplot::gghistostats,
+    .f = gghistostats,
     x = {{ x }},
     binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
     ...
