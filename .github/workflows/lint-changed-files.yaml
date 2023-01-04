@@ -36,11 +36,32 @@ jobs:
 
       - name: Extract and lint files changed by this PR
         run: |
+          options(crayon.enabled = TRUE)
+          library(lintr)
           files <- gh::gh("GET https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files")
           changed_files <- purrr::map_chr(files, "filename")
           all_files <- list.files(recursive = TRUE)
           exclusions_list <- as.list(setdiff(all_files, changed_files))
-          lintr::lint_package(exclusions = exclusions_list)
+          lint_package(linters = linters_with_defaults(
+            absolute_path_linter = NULL,
+            commented_code_linter = NULL,
+            cyclocomp_linter(25L),
+            extraction_operator_linter = NULL,
+            implicit_integer_linter = NULL,
+            line_length_linter(120L),
+            namespace_linter = NULL,
+            nonportable_path_linter = NULL,
+            object_name_linter = NULL,
+            object_length_linter(50L),
+            object_usage_linter = NULL,
+            string_boundary_linter = NULL,
+            strings_as_factors_linter = NULL,
+            todo_comment_linter = NULL,
+            undesirable_operator_linter = NULL,
+            unnecessary_concatenation_linter(allow_single_expression = FALSE),
+            unused_import_linter = NULL,
+            defaults = linters_with_tags(tags = NULL)
+          ), exclusions = exclusions_list)
         shell: Rscript {0}
         # env:
         #   LINTR_ERROR_ON_LINT: true

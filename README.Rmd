@@ -717,7 +717,7 @@ Details about underlying functions used to create graphics and statistical tests
 For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-### Extracting data frames with statistical details
+### Extracting expressions and data frames with statistical details
 
 `{ggstatsplot}` also offers a convenience function to extract data frames with
 statistical details that are used to create expressions displayed in
@@ -727,9 +727,16 @@ statistical details that are used to create expressions displayed in
 #| label = "extract_stats"
 set.seed(123)
 
-## a list of tibbles containing statistical analysis summaries
-ggbetweenstats(mtcars, cyl, mpg) %>%
-  extract_stats()
+p <- ggbetweenstats(mtcars, cyl, mpg) 
+
+# extracting expression present in the subtitle
+extract_subtitle(p)
+
+# extracting expression present in the caption
+extract_caption(p)
+
+# a list of tibbles containing statistical analysis summaries
+extract_stats(p)
 ```
 
 Note that all of this analysis is carried out by `{statsExpressions}`

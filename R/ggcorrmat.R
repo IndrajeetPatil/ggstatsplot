@@ -93,11 +93,11 @@ ggcorrmat <- function(data,
     method           = ifelse(type == "nonparametric", "spearman", "pearson"),
     p_adjust         = p.adjust.method,
     ci               = conf.level,
-    bayesian         = ifelse(type == "bayes", TRUE, FALSE),
+    bayesian         = type == "bayes",
     bayesian_prior   = bf.prior,
     tr               = tr,
     partial          = partial,
-    partial_bayesian = ifelse(type == "bayes" && partial, TRUE, FALSE),
+    partial_bayesian = type == "bayes" && partial,
     winsorize        = ifelse(type == "robust", tr, FALSE)
   )
 
