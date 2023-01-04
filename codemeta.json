@@ -464,6 +464,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -521,7 +522,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9531.087KB",
+  "fileSize": "9517.813KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
