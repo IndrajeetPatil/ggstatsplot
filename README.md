@@ -811,7 +811,7 @@ documentation:
 For more, also read the following vignette:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 
-### Extracting data frames with statistical details
+### Extracting expressions and data frames with statistical details
 
 `{ggstatsplot}` also offers a convenience function to extract data
 frames with statistical details that are used to create expressions
@@ -820,9 +820,22 @@ displayed in `{ggstatsplot}` plots.
 ``` r
 set.seed(123)
 
-## a list of tibbles containing statistical analysis summaries
-ggbetweenstats(mtcars, cyl, mpg) %>%
-  extract_stats()
+p <- ggbetweenstats(mtcars, cyl, mpg) 
+
+# extracting expression present in the subtitle
+extract_subtitle(p)
+#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == 
+#>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ 
+#>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")
+
+# extracting expression present in the caption
+extract_caption(p)
+#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == 
+#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == 
+#>     "0.71")
+
+# a list of tibbles containing statistical analysis summaries
+extract_stats(p)
 #> $subtitle_data
 #> # A tibble: 1 × 14
 #>   statistic    df df.error    p.value
