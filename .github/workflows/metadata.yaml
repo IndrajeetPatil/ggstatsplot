@@ -1,6 +1,4 @@
 on:
-  push:
-    branches: [main, master]
   pull_request:
     branches: [main, master]
 
@@ -23,7 +21,6 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          dependencies: '"hard"'
           extra-packages: |
             local::.
             ropensci/codemetar
