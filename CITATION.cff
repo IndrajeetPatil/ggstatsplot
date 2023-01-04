@@ -436,6 +436,27 @@ references:
   institution:
     name: R Foundation for Statistical Computing
 - type: software
+  title: afex
+  abstract: 'afex: Analysis of Factorial Experiments'
+  notes: Suggests
+  url: https://afex.singmann.science/
+  repository: https://CRAN.R-project.org/package=afex
+  authors:
+  - family-names: Singmann
+    given-names: Henrik
+    email: singmann@gmail.com
+    orcid: https://orcid.org/0000-0002-4842-3657
+  - family-names: Bolker
+    given-names: Ben
+  - family-names: Westfall
+    given-names: Jake
+  - family-names: Aust
+    given-names: Frederik
+    orcid: https://orcid.org/0000-0003-4900-788X
+  - family-names: Ben-Shachar
+    given-names: Mattan S.
+  year: '2023'
+- type: software
   title: BayesFactor
   abstract: 'BayesFactor: Computation of Bayes Factors for Common Designs'
   notes: Suggests
@@ -451,6 +472,76 @@ references:
   year: '2023'
   version: '>= 0.9.12-4.4'
 - type: software
+  title: gapminder
+  abstract: 'gapminder: Data from Gapminder'
+  notes: Suggests
+  url: http://www.gapminder.org/data/
+  repository: https://CRAN.R-project.org/package=gapminder
+  authors:
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@rstudio.com
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2023'
+- type: software
+  title: ggcorrplot
+  abstract: 'ggcorrplot: Visualization of a Correlation Matrix using ''ggplot2'''
+  notes: Suggests
+  url: http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2
+  repository: https://CRAN.R-project.org/package=ggcorrplot
+  authors:
+  - family-names: Kassambara
+    given-names: Alboukadel
+    email: alboukadel.kassambara@gmail.com
+  year: '2023'
+  version: '>= 0.1.4'
+- type: software
+  title: ggside
+  abstract: 'ggside: Side Grammar Graphics'
+  notes: Suggests
+  url: https://github.com/jtlandis/ggside
+  repository: https://CRAN.R-project.org/package=ggside
+  authors:
+  - family-names: Landis
+    given-names: Justin
+    email: jtlandis314@gmail.com
+    orcid: https://orcid.org/0000-0001-5501-4934
+  year: '2023'
+  version: '>= 0.2.2'
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  url: https://yihui.org/knitr/
+  repository: https://CRAN.R-project.org/package=knitr
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2023'
+- type: software
+  title: lme4
+  abstract: 'lme4: Linear Mixed-Effects Models using ''Eigen'' and S4'
+  notes: Suggests
+  url: https://github.com/lme4/lme4/
+  repository: https://CRAN.R-project.org/package=lme4
+  authors:
+  - family-names: Bates
+    given-names: Douglas
+    orcid: https://orcid.org/0000-0001-8316-9503
+  - family-names: Maechler
+    given-names: Martin
+    orcid: https://orcid.org/0000-0002-8685-9910
+  - family-names: Bolker
+    given-names: Ben
+    email: bbolker+lme4@gmail.com
+    orcid: https://orcid.org/0000-0002-2127-0443
+  - family-names: Walker
+    given-names: Steven
+    orcid: https://orcid.org/0000-0002-4394-9078
+  year: '2023'
+- type: software
   title: MASS
   abstract: 'MASS: Support Functions and Datasets for Venables and Ripley''s MASS'
   notes: Suggests
@@ -460,6 +551,126 @@ references:
   - family-names: Ripley
     given-names: Brian
     email: ripley@stats.ox.ac.uk
+  year: '2023'
+- type: software
+  title: metaBMA
+  abstract: 'metaBMA: Bayesian Model Averaging for Random and Fixed Effects Meta-Analysis'
+  notes: Suggests
+  url: https://github.com/danheck/metaBMA
+  repository: https://CRAN.R-project.org/package=metaBMA
+  authors:
+  - family-names: Heck
+    given-names: Daniel W.
+    email: dheck@uni-marburg.de
+    orcid: https://orcid.org/0000-0002-6302-9252
+  year: '2023'
+- type: software
+  title: metafor
+  abstract: 'metafor: Meta-Analysis Package for R'
+  notes: Suggests
+  url: https://www.metafor-project.org
+  repository: https://CRAN.R-project.org/package=metafor
+  authors:
+  - family-names: Viechtbauer
+    given-names: Wolfgang
+    email: wvb@metafor-project.org
+    orcid: https://orcid.org/0000-0003-3463-4063
+  year: '2023'
+- type: software
+  title: metaplus
+  abstract: 'metaplus: Robust Meta-Analysis and Meta-Regression'
+  notes: Suggests
+  repository: https://CRAN.R-project.org/package=metaplus
+  authors:
+  - family-names: Beath
+    given-names: Ken
+    email: ken@kjbeath.com.au
+  - family-names: Bolker
+    given-names: Ben
+    email: bolker@mcmaster.ca
+  - name: R Development Core Team
+  year: '2023'
+- type: software
+  title: PMCMRplus
+  abstract: 'PMCMRplus: Calculate Pairwise Multiple Comparisons of Mean Rank Sums
+    Extended'
+  notes: Suggests
+  repository: https://CRAN.R-project.org/package=PMCMRplus
+  authors:
+  - family-names: Pohlert
+    given-names: Thorsten
+    email: thorsten.pohlert@gmx.de
+    orcid: https://orcid.org/0000-0003-3855-3025
+  year: '2023'
+- type: software
+  title: psych
+  abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
+  notes: Suggests
+  url: https://personality-project.org/r/psych/
+  repository: https://CRAN.R-project.org/package=psych
+  authors:
+  - family-names: Revelle
+    given-names: William
+    email: revelle@northwestern.edu
+    orcid: https://orcid.org/0000-0003-4880-9610
+  year: '2023'
+  identifiers:
+  - type: url
+    value: https://personality-project.org/r/psych-manual.pdf
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Suggests
+  url: https://pkgs.rstudio.com/rmarkdown/
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2023'
+- type: software
+  title: spelling
+  abstract: 'spelling: Tools for Spell Checking in R'
+  notes: Suggests
+  url: https://docs.ropensci.org/spelling/
+  repository: https://CRAN.R-project.org/package=spelling
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  - family-names: Hester
+    given-names: Jim
+    email: james.hester@rstudio.com
   year: '2023'
 - type: software
   title: survival
@@ -473,6 +684,18 @@ references:
     email: therneau.terry@mayo.edu
   year: '2023'
 - type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
+  version: '>= 3.1.6'
+- type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
   notes: Suggests
@@ -485,6 +708,30 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
+  year: '2023'
+- type: software
+  title: vdiffr
+  abstract: 'vdiffr: Visual Regression Testing and Graphical Diffing'
+  notes: Suggests
+  url: https://vdiffr.r-lib.org/
+  repository: https://CRAN.R-project.org/package=vdiffr
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@rstudio.com
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Luciani
+    given-names: T Jake
+    email: jake@apache.org
+  - family-names: Decorde
+    given-names: Matthieu
+    email: matthieu.decorde@ens-lyon.fr
+  - family-names: Lise
+    given-names: Vaudor
+    email: lise.vaudor@ens-lyon.fr
   year: '2023'
 - type: software
   title: WRS2
