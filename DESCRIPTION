@@ -43,7 +43,7 @@ Imports:
     parameters (>= 0.20.0),
     patchwork,
     performance (>= 0.10.1),
-    purrr,
+    purrr (>= 1.0.0),
     rlang,
     stats,
     statsExpressions (>= 1.3.6),
