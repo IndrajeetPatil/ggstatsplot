@@ -727,7 +727,7 @@ statistical details that are used to create expressions displayed in
 #| label = "extract_stats"
 set.seed(123)
 
-p <- ggbetweenstats(mtcars, cyl, mpg) 
+p <- ggbetweenstats(mtcars, cyl, mpg)
 
 # extracting expression present in the subtitle
 extract_subtitle(p)
