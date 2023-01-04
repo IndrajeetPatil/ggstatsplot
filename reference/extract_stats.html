@@ -119,10 +119,35 @@ default.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># non-grouped function -----------------------------</span></span></span>
+<span class="r-in"><span><span class="co"># non-grouped plot</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># grouped plot</span></span></span>
+<span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span><span class="va">Titanic_full</span>, <span class="va">Survived</span>, <span class="va">Sex</span>, grouping.var <span class="op">=</span> <span class="va">Age</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># extracting expressions -----------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">extract_subtitle</span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span>
+<span class="r-in"><span><span class="fu">extract_caption</span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "0.71")</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">extract_subtitle</span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(chi["Pearson"]^2 * "(" * 1 * ")" == "3.03", italic(p) == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "0.08", widehat(italic("V"))["Cramer"] == "0.14", CI["95%"] ~ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "[" * "0.00", "1.00" * "]", italic("n")["obs"] == "109")</span>
+<span class="r-in"><span><span class="fu">extract_caption</span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(log[e] * (BF["01"]) == "-0.03", widehat(italic("V"))["Cramer"]^"posterior" == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "0.13", CI["95%"]^ETI ~ "[" * "0.00", "0.33" * "]", italic("a")["Gunel-Dickey"] == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "1.00")</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># extracting data frames -----------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $subtitle_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 14</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   statistic    df df.er…¹ p.value method effec…² estim…³ conf.…⁴ conf.…⁵ conf.…⁶</span>
@@ -169,65 +194,7 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># the exact details depend on the function</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">extract_stats</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $subtitle_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 13</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   statistic    df p.value method effec…¹ estim…² conf.…³ conf.…⁴ conf.…⁵ conf.…⁶</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>      8.74     2  0.012<span style="text-decoration: underline;">6</span> Pears… Cramer…   0.464    0.95       0       1 ncp    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 3 more variables: conf.distribution &lt;chr&gt;, n.obs &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   expression &lt;list&gt;, and abbreviated variable names ¹​effectsize, ²​estimate,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​conf.level, ⁴​conf.low, ⁵​conf.high, ⁶​conf.method</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $caption_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 15</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   term  conf.level effec…¹ estim…² conf.…³ conf.…⁴ prior…⁵ prior…⁶ prior…⁷  bf10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Ratio       0.95 Cramer…   0.410       0   0.670 indepe…       0       1  15.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 5 more variables: method &lt;chr&gt;, conf.method &lt;chr&gt;, log_e_bf10 &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   n.obs &lt;int&gt;, expression &lt;list&gt;, and abbreviated variable names ¹​effectsize,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​estimate, ³​conf.low, ⁴​conf.high, ⁵​prior.distribution, ⁶​prior.location,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁷​prior.scale</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $pairwise_comparisons_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $descriptive_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   am    cyl   counts  perc .label</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0     8         12  63.2 63%   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 1     8          2  15.4 15%   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 0     6          4  21.1 21%   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 1     6          3  23.1 23%   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 0     4          3  15.8 16%   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 1     4          8  61.5 62%   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $one_sample_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 10</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   am    counts  perc N        statistic    df p.value method      .label .p.la…¹</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1         13  40.6 (n = 13)      4.77     2  0.092<span style="text-decoration: underline;">1</span> Chi-square… list(… list(~…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 0         19  59.4 (n = 19)      7.68     2  0.021<span style="text-decoration: underline;">4</span> Chi-square… list(… list(~…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​.p.label</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $tidy_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $glance_data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># grouped function -----------------------------</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="va">Titanic_full</span>,</span></span>
-<span class="r-in"><span>  x <span class="op">=</span> <span class="va">Survived</span>,</span></span>
-<span class="r-in"><span>  y <span class="op">=</span> <span class="va">Sex</span>,</span></span>
-<span class="r-in"><span>  grouping.var <span class="op">=</span> <span class="va">Age</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">1L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p2</span><span class="op">[[</span><span class="fl">1L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $subtitle_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   stati…¹    df   p.value method effec…² estim…³ conf.…⁴ conf.…⁵ conf.…⁶ conf.…⁷</span>
@@ -241,7 +208,7 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   term  conf.l…¹ effec…² estim…³ conf.…⁴ conf.…⁵ prior…⁶ prior…⁷ prior…⁸    bf10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Ratio     0.95 Cramer…   0.468   0.427   0.510 indepe…       0       1 7.02<span style="color: #949494;">e</span>92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Ratio     0.95 Cramer…   0.468   0.426   0.509 indepe…       0       1 7.02<span style="color: #949494;">e</span>92</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 5 more variables: method &lt;chr&gt;, conf.method &lt;chr&gt;, log_e_bf10 &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   n.obs &lt;int&gt;, expression &lt;list&gt;, and abbreviated variable names ¹​conf.level,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​effectsize, ³​estimate, ⁴​conf.low, ⁵​conf.high, ⁶​prior.distribution,</span></span>
@@ -273,7 +240,7 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $glance_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">2L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p2</span><span class="op">[[</span><span class="fl">2L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $subtitle_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   statistic    df p.value method effec…¹ estim…² conf.…³ conf.…⁴ conf.…⁵ conf.…⁶</span>
@@ -287,7 +254,7 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   term  conf.level effec…¹ estim…² conf.…³ conf.…⁴ prior…⁵ prior…⁶ prior…⁷  bf10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Ratio       0.95 Cramer…   0.129       0   0.330 indepe…       0       1  1.03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Ratio       0.95 Cramer…   0.131       0   0.328 indepe…       0       1  1.03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 5 more variables: method &lt;chr&gt;, conf.method &lt;chr&gt;, log_e_bf10 &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   n.obs &lt;int&gt;, expression &lt;list&gt;, and abbreviated variable names ¹​effectsize,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​estimate, ³​conf.low, ⁴​conf.high, ⁵​prior.distribution, ⁶​prior.location,</span></span>

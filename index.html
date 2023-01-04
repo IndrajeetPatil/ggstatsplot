@@ -891,15 +891,28 @@
 </div>
 </div>
 <div class="section level3">
-<h3 id="extracting-data-frames-with-statistical-details">Extracting data frames with statistical details<a class="anchor" aria-label="anchor" href="#extracting-data-frames-with-statistical-details"></a>
+<h3 id="extracting-expressions-and-data-frames-with-statistical-details">Extracting expressions and data frames with statistical details<a class="anchor" aria-label="anchor" href="#extracting-expressions-and-data-frames-with-statistical-details"></a>
 </h3>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> also offers a convenience function to extract data frames with statistical details that are used to create expressions displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## a list of tibbles containing statistical analysis summaries</span></span>
-<span><span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># extracting expression present in the subtitle</span></span>
+<span><span class="fu"><a href="reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span><span class="co">#&gt; list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == </span></span>
+<span><span class="co">#&gt;     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ </span></span>
+<span><span class="co">#&gt;     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span></span>
+<span></span>
+<span><span class="co"># extracting expression present in the caption</span></span>
+<span><span class="fu"><a href="reference/extract_stats.html">extract_caption</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
+<span><span class="co">#&gt; list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == </span></span>
+<span><span class="co">#&gt;     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == </span></span>
+<span><span class="co">#&gt;     "0.71")</span></span>
+<span></span>
+<span><span class="co"># a list of tibbles containing statistical analysis summaries</span></span>
+<span><span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $subtitle_data</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 14</span></span>
 <span><span class="co">#&gt;   statistic    df df.error    p.value</span></span>
