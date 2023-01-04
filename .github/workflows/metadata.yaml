@@ -23,13 +23,13 @@ jobs:
           pak-version: devel
           extra-packages: |
             local::.
-            ropensci/codemetar
+            ropensci/codemeta
             ropensci/cffr
 
       - name: Generate codemeta metadata
         run: |
           options(crayon.enabled = TRUE)
-          codemetar::write_codemeta()
+          codemeta::write_codemeta()
         shell: Rscript {0}
 
       - name: Generate CFF metadata
