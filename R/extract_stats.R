@@ -26,24 +26,26 @@
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
 #' set.seed(123)
 #'
-#' # non-grouped function -----------------------------
+#' # non-grouped plot
+#' p1 <- ggbetweenstats(mtcars, cyl, mpg)
 #'
-#' p <- ggbetweenstats(mtcars, cyl, mpg)
-#' extract_stats(p)
+#' # grouped plot
+#' p2 <- grouped_ggbarstats(Titanic_full, Survived, Sex, grouping.var = Age)
 #'
-#' # the exact details depend on the function
-#' ggbarstats(mtcars, cyl, am) %>% extract_stats()
+#' # extracting expressions -----------------------------
 #'
-#' # grouped function -----------------------------
-#' p <- grouped_ggbarstats(
-#'   Titanic_full,
-#'   x = Survived,
-#'   y = Sex,
-#'   grouping.var = Age
-#' )
+#' extract_subtitle(p1)
+#' extract_caption(p1)
 #'
-#' extract_stats(p[[1L]])
-#' extract_stats(p[[2L]])
+#' extract_subtitle(p2)
+#' extract_caption(p2)
+#'
+#' # extracting data frames -----------------------------
+#'
+#' extract_stats(p1)
+#'
+#' extract_stats(p2[[1L]])
+#' extract_stats(p2[[2L]])
 #' @export
 extract_stats <- function(p, ...) {
   # styler: off
