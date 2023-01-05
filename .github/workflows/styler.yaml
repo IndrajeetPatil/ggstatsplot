@@ -64,7 +64,7 @@ jobs:
       - name: Style package
         run: |
           options(crayon.enabled = TRUE)
-          styler::style_pkg(filetype = c(".R", ".Rmd", ".Rmarkdown", ".Rnw"))
+          styler::style_pkg(filetype = c(".qmd", ".R", ".Rmd", ".Rmarkdown", ".Rnw"))
         shell: Rscript {0}
 
       - name: Document
