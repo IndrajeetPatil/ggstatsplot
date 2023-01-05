@@ -23,7 +23,7 @@ jobs:
           pak-version: devel
           extra-packages: |
             local::.
-            ropensci/codemeta
+            cboettig/codemeta
             ropensci/cffr
 
       - name: Generate codemeta metadata
