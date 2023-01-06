@@ -24,12 +24,6 @@ jobs:
             any::gh
             r-lib/lintr
             any::purrr
-          needs: check
-
-      - name: Add lintr options
-        run: |
-          cat('\noptions(lintr.linter_file = ".lintr")\n', file = "~/.Rprofile", append = TRUE)
-        shell: Rscript {0}
 
       - name: Install package
         run: R CMD INSTALL .
@@ -63,5 +57,5 @@ jobs:
             defaults = linters_with_tags(tags = NULL)
           ), exclusions = exclusions_list)
         shell: Rscript {0}
-        # env:
-        #   LINTR_ERROR_ON_LINT: true
+        env:
+          LINTR_ERROR_ON_LINT: true
