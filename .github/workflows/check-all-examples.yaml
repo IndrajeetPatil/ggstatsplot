@@ -42,5 +42,5 @@ jobs:
       - name: Run examples
         run: |
           options(crayon.enabled = TRUE, warn = 2L)
-          devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
+          devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE, document = FALSE)
         shell: Rscript {0}
