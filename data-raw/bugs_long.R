@@ -1,14 +1,7 @@
-# loading the needed libraries
-library(jmv)
-library(tibble)
-library(tidyr)
-
-# loading dataset
 data("bugs", package = "jmv")
 
-# converting to long format
-bugs_long <- bugs %>%
-  tibble::as_tibble() %>%
+bugs_long <- bugs |>
+  tibble::as_tibble() |>
   tidyr::gather(key = "condition", value = "desire", LDLF:HDHF)
 
 # all column names in lower case
