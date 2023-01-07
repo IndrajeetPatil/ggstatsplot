@@ -234,7 +234,7 @@ ggcoefstats <- function(x,
 
   # summary caption -------------------------
 
-  glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
+  glance_df <- performance::model_performance(x, metrics = c("AIC", "BIC"), verbose = FALSE) %>% as_tibble()
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
