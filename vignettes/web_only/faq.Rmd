@@ -281,7 +281,7 @@ Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
 **significant** comparisons, all **non-significant** comparisons, or **all**
 comparisons. But what if I am only interested in just one particular comparison?
 
-Here is a workaround using `ggsignif`:
+Here is a workaround using `{ggsignif}`:
 
 ```{r}
 #| label = "custom_pairwise",
@@ -292,7 +292,7 @@ library(ggsignif)
 
 ## displaying only one comparison
 ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
-  geom_signif(comparisons = list(c("4", "6")))
+  geom_signif(comparisons = list(c("4", "6")), test = NULL)
 ```
 
 ## 12. How to access data frame with results from pairwise comparisons?
@@ -313,7 +313,7 @@ pairwise_comparisons(mtcars, cyl, wt)
 values for pairwise comparisons. But what if you wish to adopt a different
 annotation labels?
 
-You will have to customize them using `pairwiseComparisons` and `ggsignif:`
+You will have to customize them yourself:
 
 ```{r}
 #| label = "comp_asterisks"

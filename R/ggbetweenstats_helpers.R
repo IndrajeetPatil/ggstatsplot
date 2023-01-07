@@ -112,12 +112,11 @@
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
-    # decide what needs to be displayed
-    if (grepl("^s", pairwise.display)) mpc_df %<>% filter(p.value < 0.05)
-    if (grepl("^n", pairwise.display)) mpc_df %<>% filter(p.value >= 0.05)
+    if (startsWith(pairwise.display, "s")) mpc_df %<>% filter(p.value < 0.05) # sig
+    if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= 0.05) # non-sig
 
     # proceed only if there are any significant comparisons to display
-    if (dim(mpc_df)[[1L]] == 0L) {
+    if (nrow(mpc_df) == 0L) {
       return(plot)
     }
   }
@@ -127,7 +126,7 @@
 
   # adding ggsignif comparisons to the plot
   plot +
-    suppressWarnings(exec(
+    exec(
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
@@ -136,7 +135,7 @@
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args
-    ))
+    )
 }
 
 #' @name .ggsignif_xy
