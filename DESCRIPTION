@@ -50,7 +50,8 @@ Imports:
     tidyr,
     utils
 Remotes:
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions,
+    easystats/performance
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
