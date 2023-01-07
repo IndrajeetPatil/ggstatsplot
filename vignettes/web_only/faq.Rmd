@@ -292,7 +292,7 @@ library(ggsignif)
 
 ## displaying only one comparison
 ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
-  geom_signif(comparisons = list(c("4", "6")), test = NULL)
+  geom_signif(comparisons = list(c("4", "6")), test.args = list(exact = FALSE))
 ```
 
 ## 12. How to access data frame with results from pairwise comparisons?
@@ -328,7 +328,6 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE)
 
 # using `pairwise_comparisons()` function to create a data frame with results
-
 (df <- pairwise_comparisons(mtcars, cyl, wt) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
   dplyr::arrange(group1) %>%
@@ -434,16 +433,15 @@ any other `ggplot` object. But exception to these are all plots returned by
 library(paletteer)
 library(ggplot2)
 
-
 grouped_ggbetweenstats(
   mtcars,
   cyl,
   wt,
-  grouping.var = vs,
+  grouping.var = am,
   results.subtitle = FALSE,
-  pairwise_comparisons = FALSE,
+  pairwise.comparisons = FALSE,
   ggplot.component =
-  ## modify further with `{ggplot2}` functions
+  # modify further with `{ggplot2}` functions
     list(
       scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
       theme(axis.text.x = element_text(angle = 90))
