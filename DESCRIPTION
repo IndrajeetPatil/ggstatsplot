@@ -50,9 +50,6 @@ Imports:
     tidyr,
     utils
 Remotes:
-    easystats/insight,
-    easystats/effectsize,
-    easystats/parameters,
     IndrajeetPatil/statsExpressions
 Suggests:
     afex,

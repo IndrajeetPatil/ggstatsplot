@@ -127,7 +127,7 @@
 
   # adding ggsignif comparisons to the plot
   plot +
-    exec(
+    suppressWarnings(exec(
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
@@ -136,7 +136,7 @@
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args
-    )
+    ))
 }
 
 #' @name .ggsignif_xy
