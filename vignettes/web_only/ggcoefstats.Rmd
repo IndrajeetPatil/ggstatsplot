@@ -310,26 +310,6 @@ combine_plots(
 )
 ```
 
-Another example with multivariate analysis of variance (`manova`):
-
-```{r}
-#| label = "manova",
-#| fig.height = 8,
-#| fig.width = 8
-
-# fake a 2nd response variable
-npk2 <- within(npk, foo <- rnorm(24))
-
-# model
-m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
-
-
-ggcoefstats(
-  x = m_manova,
-  title = "multivariate analysis of variance"
-)
-```
-
 ### Bayesian models - no statistic
 
 ```{r}
@@ -393,7 +373,7 @@ combine_plots(
     ggcoefstats(mod8, title = "meta-analysis"),
     ggcoefstats(mod9, title = "proportion test")
   ),
-  annotation.args = list(title = "Example from `BayesFactor` package")
+  annotation.args = list(title = "Example from `{BayesFactor}` package")
 )
 ```
 
