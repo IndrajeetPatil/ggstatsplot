@@ -501,7 +501,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     "18": {
       "@type": "SoftwareApplication",
@@ -522,7 +522,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9518.362KB",
+  "fileSize": "9519.254KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
