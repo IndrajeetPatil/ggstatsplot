@@ -24,8 +24,8 @@ ggscatterstats(
   point.label.args = list(size = 3, max.overlaps = 1e+06),
   smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~
     x),
-  xsidehistogram.args = list(fill = "#009E73", color = "black"),
-  ysidehistogram.args = list(fill = "#D55E00", color = "black"),
+  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
   xlab = NULL,
   ylab = NULL,
   title = NULL,

@@ -49,6 +49,8 @@ Imports:
     statsExpressions (>= 1.3.6),
     tidyr,
     utils
+Remotes:
+    IndrajeetPatil/statsExpressions
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
