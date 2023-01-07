@@ -408,7 +408,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/insight"
+      "sameAs": "https://CRAN.R-project.org/package=insight"
     },
     "10": {
       "@type": "SoftwareApplication",
@@ -433,7 +433,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/parameters"
+      "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
     "12": {
       "@type": "SoftwareApplication",
@@ -522,7 +522,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9519.329KB",
+  "fileSize": "9518.481KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
