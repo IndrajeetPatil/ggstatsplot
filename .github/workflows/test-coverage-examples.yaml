@@ -32,7 +32,7 @@ jobs:
           options(crayon.enabled = TRUE)
           library(covr)
           coverage <- covr::package_coverage(
-            type = "examples",
+            type = c("examples", "vignettes"),
             quiet = TRUE,
             commentDonttest = FALSE,
             commentDontrun = FALSE

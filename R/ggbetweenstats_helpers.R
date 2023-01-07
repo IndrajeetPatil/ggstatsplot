@@ -105,7 +105,7 @@
                             y,
                             mpc_df,
                             pairwise.display = "significant",
-                            ggsignif.args = list(textsize = 3, tip_length = 0.01),
+                            ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
                             ...) {
   # creating a column for group combinations
   mpc_df %<>% mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))

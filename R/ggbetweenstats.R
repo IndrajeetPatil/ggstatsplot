@@ -196,7 +196,7 @@ ggbetweenstats <- function(data,
                              stroke = 0
                            ),
                            violin.args = list(width = 0.5, alpha = 0.2),
-                           ggsignif.args = list(textsize = 3, tip_length = 0.01),
+                           ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
                            package = "RColorBrewer",
                            palette = "Dark2",
