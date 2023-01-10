@@ -16,7 +16,18 @@ name: R-CMD-check-strict
 
 jobs:
   R-CMD-check-strict:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { os: windows-latest, r: "devel" }
+          - { os: ubuntu-latest, r: "devel" }
+          # CRAN does not provide macOS binaries for R-devel, so a number of packages
+          # need to be built from source.
+          - { os: macos-latest, r: "release" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +44,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "devel"
+          r-version: ${{ matrix.config.r }}
           http-user-agent: "release"
           use-public-rspm: true
 
@@ -41,6 +52,8 @@ jobs:
         with:
           pak-version: devel
           needs: check
+          extra-packages: |
+            any::rcmdcheck
 
       - uses: r-lib/actions/check-r-package@v2
         with:
