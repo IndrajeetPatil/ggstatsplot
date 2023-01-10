@@ -43,15 +43,12 @@ Imports:
     parameters (>= 0.20.0),
     patchwork,
     performance (>= 0.10.1),
-    purrr (>= 1.0.0),
+    purrr (>= 1.0.1),
     rlang,
     stats,
     statsExpressions (>= 1.3.6),
     tidyr,
     utils
-Remotes:
-    IndrajeetPatil/statsExpressions,
-    easystats/performance
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),

@@ -18,16 +18,18 @@ jobs:
       fail-fast: false
       matrix:
         config:
+          # Checks are not run on R-devel because they are already run in
+          # `R-CMD-check-strict` workflow
+
           #- { os: macos-latest,   r: 'devel' }
-          - { os: macos-latest, r: "release" }
+          #- { os: macos-latest, r: "release" }
           - { os: macos-latest, r: "oldrel-1" }
 
-          - { os: windows-latest, r: "devel" }
+          #- { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
-          # DLL 'purrr' not found: maybe not installed for this architecture?
-          #- { os: windows-latest, r: "oldrel-1" }
+          - { os: windows-latest, r: "oldrel-1" }
 
-          - { os: ubuntu-latest, r: "devel", http-user-agent: "release" }
+          #- { os: ubuntu-latest, r: "devel", http-user-agent: "release" }
           - { os: ubuntu-latest, r: "release" }
           - { os: ubuntu-latest, r: "oldrel-1" }
 
@@ -45,13 +47,14 @@ jobs:
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
-          http-user-agent: ${{ matrix.config.http-user-agent }}
+          http-user-agent: "release"
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            any::rcmdcheck
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
