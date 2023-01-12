@@ -43,8 +43,8 @@ jobs:
           spelling_mistakes <- spelling::spell_check_package()
           cli::cli_rule()
           if (length(spelling_mistakes$word) > 0L) {
-            cli::cli_abort("Spelling errors found. Either correct them or update `inst/WORDLIST` file.")
             print(spelling_mistakes)
+            cli::cli_abort("Spelling errors found. Either correct them or update `inst/WORDLIST` file.")
           } else {
             cli::cli_alert_success("No spelling errors found.")
           }
