@@ -8,10 +8,10 @@ on:
     # Trigger once a week at 00:00 on Sunday
     - cron: "0 0 * * SUN"
 
-name: check-link-rot
+name: check-spelling
 
 jobs:
-  check-link-rot:
+  check-spelling:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -32,16 +32,21 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
+          dependencies: '"hard"'
           extra-packages: |
             any::rcmdcheck
-            any::urlchecker
+            any::spelling
 
-      - name: Run URL checker
+      - name: Spell check
         run: |
           options(crayon.enabled = TRUE)
-          rotten_links <- urlchecker::url_check(progress = FALSE)
-          print(rotten_links)
-          if (length(rotten_links$URL) > 0L) {
-            cli::cli_abort("Some URLs are outdated and need to be updated.")
+          spelling_mistakes <- spelling::spell_check_package()
+          cli::cli_rule()
+          if (length(spelling_mistakes$word) > 0L) {
+            cli::cli_abort("Spelling errors found. Either correct them or update `inst/WORDLIST` file.")
+            print(spelling_mistakes)
+          } else {
+            cli::cli_alert_success("No spelling errors found.")
           }
+          cli::cli_rule()
         shell: Rscript {0}

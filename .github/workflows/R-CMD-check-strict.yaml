@@ -23,11 +23,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
+          # CRAN does not provide macOS binaries for R-devel, so some packages
+          # need to be built from source. To avoid that, use R-release.
+          - { os: macos-latest, r: "release" }
           - { os: windows-latest, r: "devel" }
           - { os: ubuntu-latest, r: "devel" }
-          # CRAN does not provide macOS binaries for R-devel, so a number of packages
-          # need to be built from source.
-          - { os: macos-latest, r: "release" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -36,8 +36,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Always try to use the latest pandoc version
-      # https://github.com/jgm/pandoc/releases
       - uses: r-lib/actions/setup-pandoc@v2
         with:
           pandoc-version: "2.19.2"
@@ -51,11 +49,12 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
+          needs: check
           extra-packages: |
             any::rcmdcheck
-          needs: check
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+          upload-results: true
           error-on: '"note"'
