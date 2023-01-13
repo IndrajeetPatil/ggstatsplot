@@ -245,7 +245,7 @@ into a single plot.
 grouped_ggcorrmat(
   ## arguments relevant for `ggcorrmat()`
   data = ggplot2::diamonds,
-  cor.vars = c(price, carat, depth), 
+  cor.vars = c(price, carat, depth),
   grouping.var = cut,
   ## arguments relevant for `combine_plots()`
   plotgrid.args = list(nrow = 3),
