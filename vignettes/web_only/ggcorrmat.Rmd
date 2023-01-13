@@ -53,12 +53,10 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggcorrmat` provides a quick way to produce **publication-ready correlation matrix** (aka *correlalogram*) plot. The function can also be used
+The function `ggcorrmat()` provides a quick way to produce **publication-ready correlation matrix** (aka *correlalogram*) plot. The function can also be used
 for quick **data exploration**. In addition to the plot, it can also be used to
 get a correlation coefficient matrix or the associated *p*-value matrix.
-Currently, the plot can display Pearson's *r* (and its Bayesian version),
-Pearson's *rho*, and *robust* correlation coefficient (Winsorized Pearson's
-*r*). This function is a convenient wrapper around `ggcorrplot::ggcorrplot()`
+This function is a convenient wrapper around `ggcorrplot::ggcorrplot()`
 function with some additional functionality.
 
 We will see examples of how to use this function in this vignette with the

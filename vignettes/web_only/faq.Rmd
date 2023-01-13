@@ -69,7 +69,7 @@ Sometimes you may not wish include so many details in the subtitle. In that
 case, you can extract the expression and copy-paste only the part you wish to
 include. For example, here only statistic and *p*-values are included:
 
-```{r}
+```{r, eval=FALSE}
 #| label = "custom_expr"
 
 library(ggplot2)
