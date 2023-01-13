@@ -23,7 +23,8 @@ source("../setup.R")
 
 pkgs <- c(
   "gapminder",
-  "PMCMRplus"
+  "PMCMRplus",
+  "svglite"
 )
 
 successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
@@ -31,6 +32,7 @@ can_evaluate <- all(successfully_loaded)
 
 if (can_evaluate) {
   purrr::walk(pkgs, library, character.only = TRUE)
+  knitr::opts_chunk$set(eval = TRUE, dev = "svglite")
 } else {
   knitr::opts_chunk$set(eval = FALSE)
 }

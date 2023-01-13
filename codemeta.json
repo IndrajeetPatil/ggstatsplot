@@ -243,6 +243,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "svglite",
+      "name": "svglite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=svglite"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.1.6",
@@ -510,7 +522,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9518.521KB",
+  "fileSize": "9519.442KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

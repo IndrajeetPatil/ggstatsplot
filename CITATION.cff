@@ -106,7 +106,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://CRAN.R-project.org/package=datawizard
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -288,7 +288,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://CRAN.R-project.org/package=parameters
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -667,6 +667,33 @@ references:
   - family-names: Therneau
     given-names: Terry M
     email: therneau.terry@mayo.edu
+  year: '2023'
+- type: software
+  title: svglite
+  abstract: 'svglite: An ''SVG'' Graphics Device'
+  notes: Suggests
+  url: https://svglite.r-lib.org
+  repository: https://CRAN.R-project.org/package=svglite
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Luciani
+    given-names: T Jake
+    email: jake@apache.org
+  - family-names: Decorde
+    given-names: Matthieu
+    email: matthieu.decorde@ens-lyon.fr
+  - family-names: Lise
+    given-names: Vaudor
+    email: lise.vaudor@ens-lyon.fr
   year: '2023'
 - type: software
   title: testthat

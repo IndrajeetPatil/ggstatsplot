@@ -20,13 +20,17 @@ source("../setup.R")
 ```{r}
 #| label = "suggested_pkgs",
 #| include = FALSE
-pkgs <- c("ggside")
+pkgs <- c(
+  "ggside",
+  "svglite"
+)
 
 successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
 can_evaluate <- all(successfully_loaded)
 
 if (can_evaluate) {
   purrr::walk(pkgs, library, character.only = TRUE)
+  knitr::opts_chunk$set(eval = TRUE, dev = "svglite")
 } else {
   knitr::opts_chunk$set(eval = FALSE)
 }

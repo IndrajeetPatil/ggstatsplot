@@ -26,7 +26,8 @@ pkgs <- c(
   "BayesFactor",
   "lme4",
   "metaplus",
-  "survival"
+  "survival",
+  "svglite"
 )
 
 successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
@@ -34,6 +35,7 @@ can_evaluate <- all(successfully_loaded)
 
 if (can_evaluate) {
   purrr::walk(pkgs, library, character.only = TRUE)
+  knitr::opts_chunk$set(eval = TRUE, dev = "svglite")
 } else {
   knitr::opts_chunk$set(eval = FALSE)
 }
@@ -315,7 +317,8 @@ combine_plots(
 ```{r}
 #| label = "BFBayesFactor",
 #| fig.width = 10,
-#| fig.height = 10
+#| fig.height = 10,
+#| eval = FALSE
 
 library(BayesFactor)
 
@@ -429,9 +432,7 @@ also use this function to carry out random-effects meta-analysis. The data frame
 you enter **must** contain at the minimum the following three columns-
 
   - `term`: a column with names/identifiers to annotate each study/effect
-
   - `estimate`: a column with the observed effect sizes or outcomes
-
   - `std.error`: a column the corresponding standard errors
 
 ### parametric
