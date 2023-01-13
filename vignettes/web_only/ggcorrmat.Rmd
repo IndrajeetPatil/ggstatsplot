@@ -57,8 +57,8 @@ The function `ggcorrmat` provides a quick way to produce **publication-ready cor
 for quick **data exploration**. In addition to the plot, it can also be used to
 get a correlation coefficient matrix or the associated *p*-value matrix.
 Currently, the plot can display Pearson's *r* (and its Bayesian version),
-np's *rho*, and *robust* correlation coefficient (Winsorized Pearson's
-*r*). This function is a convenient wrapper around `ggcorrplot::ggcorrplot`
+Pearson's *rho*, and *robust* correlation coefficient (Winsorized Pearson's
+*r*). This function is a convenient wrapper around `ggcorrplot::ggcorrplot()`
 function with some additional functionality.
 
 We will see examples of how to use this function in this vignette with the
@@ -71,7 +71,7 @@ To begin with, here are some instances where you would want to use
   - to quickly explore correlation between (all) numeric variables in the
   dataset
 
-## Correlation matrix plot with `ggcorrmat`
+## Correlation matrix plot with `ggcorrmat()`
 
 For the first example, we will use the `gapminder` dataset (available in
 eponymous [package](https://CRAN.R-project.org/package=gapminder) on CRAN)

@@ -51,7 +51,7 @@ Imports:
     utils
 Remptes:
     easystats/performance,
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions@devel_perf
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
