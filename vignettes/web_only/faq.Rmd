@@ -72,7 +72,6 @@ include. For example, here only statistic and *p*-values are included:
 ```{r}
 #| label = "custom_expr"
 
-
 library(ggplot2)
 library(statsExpressions)
 

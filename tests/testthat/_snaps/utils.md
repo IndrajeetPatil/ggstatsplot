@@ -45,6 +45,12 @@
 
 # .palette_message is working
 
-    Number of labels is greater than default palette color count.
-    * Select another color `palette` (and/or `package`).
+    Code
+      ggstatsplot:::.palette_message(package = "RColorBrewer", palette = "Dark2",
+        min_length = 20L)
+    Message <rlang_message>
+      Number of labels is greater than default palette color count.
+      * Select another color `palette` (and/or `package`).
+    Output
+      [1] FALSE
 

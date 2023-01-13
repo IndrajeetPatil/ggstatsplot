@@ -28,7 +28,7 @@ test_that(
 test_that(
   desc = ".palette_message is working",
   code = {
-    expect_snapshot_warning(
+    expect_snapshot(
       ggstatsplot:::.palette_message(
         package = "RColorBrewer",
         palette = "Dark2",

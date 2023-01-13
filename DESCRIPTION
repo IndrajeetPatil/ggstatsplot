@@ -50,7 +50,8 @@ Imports:
     tidyr,
     utils
 Remptes:
-    easystats/performance
+    easystats/performance,
+    IndrajeetPatil/statsExpressions
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
