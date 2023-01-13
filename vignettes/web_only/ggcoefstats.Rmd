@@ -317,8 +317,7 @@ combine_plots(
 ```{r}
 #| label = "BFBayesFactor",
 #| fig.width = 10,
-#| fig.height = 10,
-#| eval = FALSE
+#| fig.height = 10
 
 library(BayesFactor)
 

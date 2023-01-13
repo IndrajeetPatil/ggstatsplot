@@ -42,16 +42,13 @@ Imports:
     paletteer,
     parameters (>= 0.20.1),
     patchwork,
-    performance (>= 0.10.2.1),
+    performance (>= 0.10.2),
     purrr (>= 1.0.1),
     rlang,
     stats,
-    statsExpressions (>= 1.3.6.9000),
+    statsExpressions (>= 1.3.6),
     tidyr,
     utils
-Remptes:
-    easystats/performance,
-    IndrajeetPatil/statsExpressions@devel_perf
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),

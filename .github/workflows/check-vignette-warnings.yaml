@@ -33,7 +33,7 @@ jobs:
 
       - name: Build vignettes
         run: |
-          options(crayon.enabled = TRUE, warn = 2L)
+          # options(crayon.enabled = TRUE, warn = 2L)
           vignettes <- fs::dir_ls("vignettes/", glob = "*.Rmd", recurse = TRUE)
           purrr::walk(vignettes, rmarkdown::render)
         shell: Rscript {0}
