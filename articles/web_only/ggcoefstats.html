@@ -106,7 +106,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2023-01-04</h4>
+            <h4 data-toc-skip class="date">2023-01-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggcoefstats.Rmd</code></div>
@@ -494,26 +494,11 @@ values change.</p>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Model selection using ggcoefstats"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aov2-1.png" width="100%"></p>
-<p>Another example with multivariate analysis of variance
-(<code>manova</code>):</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># fake a 2nd response variable</span></span>
-<span><span class="va">npk2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">npk</span>, <span class="va">foo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">24</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># model</span></span>
-<span><span class="va">m_manova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/manova.html" class="external-link">manova</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">yield</span>, <span class="va">foo</span><span class="op">)</span> <span class="op">~</span> <span class="va">block</span> <span class="op">+</span> <span class="va">N</span> <span class="op">*</span> <span class="va">P</span> <span class="op">*</span> <span class="va">K</span>, <span class="va">npk2</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">m_manova</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"multivariate analysis of variance"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/manova-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="bayesian-models---no-statistic">Bayesian models - no statistic<a class="anchor" aria-label="anchor" href="#bayesian-models---no-statistic"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://richarddmorey.github.io/BayesFactor/" class="external-link">BayesFactor</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># one sample t-test</span></span>
@@ -570,7 +555,7 @@ values change.</p>
 <span>    <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod8</span>, title <span class="op">=</span> <span class="st">"meta-analysis"</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod9</span>, title <span class="op">=</span> <span class="st">"proportion test"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Example from `BayesFactor` package"</span><span class="op">)</span></span>
+<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Example from `{BayesFactor}` package"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/BFBayesFactor-1.png" width="100%"></p>
 </div>
@@ -581,7 +566,7 @@ values change.</p>
 class <code>list</code>, in which case this function will fail. But
 often you can extract the object of interest from this list and use it
 to plot the regression coefficients.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gamm4</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># data</span></span>
@@ -628,17 +613,20 @@ you can also use this function to carry out random-effects
 meta-analysis. The data frame you enter <strong>must</strong> contain at
 the minimum the following three columns-</p>
 <ul>
-<li><p><code>term</code>: a column with names/identifiers to annotate
-each study/effect</p></li>
-<li><p><code>estimate</code>: a column with the observed effect sizes or
-outcomes</p></li>
-<li><p><code>std.error</code>: a column the corresponding standard
-errors</p></li>
+<li>
+<code>term</code>: a column with names/identifiers to annotate each
+study/effect</li>
+<li>
+<code>estimate</code>: a column with the observed effect sizes or
+outcomes</li>
+<li>
+<code>std.error</code>: a column the corresponding standard
+errors</li>
 </ul>
 <div class="section level3">
 <h3 id="parametric">parametric<a class="anchor" aria-label="anchor" href="#parametric"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -656,7 +644,7 @@ errors</p></li>
 <div class="section level3">
 <h3 id="robust">robust<a class="anchor" aria-label="anchor" href="#robust"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -673,7 +661,7 @@ errors</p></li>
 <div class="section level3">
 <h3 id="bayesian">Bayesian<a class="anchor" aria-label="anchor" href="#bayesian"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -704,7 +692,7 @@ to display statistical labels.</p>
 <p>You can also provide a data frame containing all the other relevant
 information for additionally displaying labels with statistical
 information.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># let's create a data frame</span></span>
 <span><span class="va">df_full</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">term</span>, <span class="op">~</span><span class="va">statistic</span>, <span class="op">~</span><span class="va">estimate</span>, <span class="op">~</span><span class="va">std.error</span>, <span class="op">~</span><span class="va">p.value</span>, <span class="op">~</span><span class="va">df.error</span>,</span>
@@ -731,7 +719,7 @@ information.</p>
 <p>This function can also be used to extract outputs other than a plot,
 although it is much more preferable to use the underlying functions
 instead (<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>).</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># data</span></span>
 <span><span class="va">DNase1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DNase</span>, <span class="va">Run</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
