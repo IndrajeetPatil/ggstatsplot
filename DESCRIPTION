@@ -65,7 +65,6 @@ Suggests:
     psych,
     rmarkdown,
     survival,
-    svglite,
     testthat (>= 3.1.6),
     tibble,
     vdiffr,

@@ -4,7 +4,8 @@ knitr::opts_chunk$set(
   warning   = FALSE,
   message   = FALSE,
   out.width = "100%",
-  dpi       = 300
+  dpi       = 300,
+  dev       = "ragg_png"
 )
 
 # to pretty-print all columns in the output tibble
