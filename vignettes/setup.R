@@ -7,7 +7,7 @@ options(
   pillar.min_chars  = Inf
 )
 
-device <- ifelse(requireNamespace("ragg", quietly = TRUE), "ragg_png", "png")
+device <- ifelse(requireNamespace("svglite", quietly = TRUE), "svglite", "png")
 knitr::opts_chunk$set(
   collapse  = TRUE,
   comment   = "#>",
