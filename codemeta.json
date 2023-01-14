@@ -219,6 +219,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "ragg",
+      "name": "ragg",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ragg"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -240,18 +252,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=survival"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "svglite",
-      "name": "svglite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=svglite"
     },
     {
       "@type": "SoftwareApplication",
@@ -522,7 +522,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9519.653KB",
+  "fileSize": "9518.993KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

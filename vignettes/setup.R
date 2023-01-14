@@ -1,12 +1,3 @@
-knitr::opts_chunk$set(
-  collapse  = TRUE,
-  comment   = "#>",
-  warning   = FALSE,
-  message   = FALSE,
-  out.width = "100%",
-  dpi       = 300
-)
-
 # to pretty-print all columns in the output tibble
 options(
   tibble.width      = Inf,
@@ -14,6 +5,17 @@ options(
   pillar.neg        = TRUE,
   pillar.subtle_num = TRUE,
   pillar.min_chars  = Inf
+)
+
+device <- ifelse(requireNamespace("ragg", quietly = TRUE), "ragg_png", "svg")
+knitr::opts_chunk$set(
+  collapse  = TRUE,
+  comment   = "#>",
+  warning   = FALSE,
+  message   = FALSE,
+  out.width = "100%",
+  dpi       = 300,
+  dev       = device
 )
 
 # local library

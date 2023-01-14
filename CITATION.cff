@@ -618,6 +618,20 @@ references:
     orcid: https://orcid.org/0000-0003-4880-9610
   year: '2023'
 - type: software
+  title: ragg
+  abstract: 'ragg: Graphic Devices Based on AGG'
+  notes: Suggests
+  url: https://ragg.r-lib.org
+  repository: https://CRAN.R-project.org/package=ragg
+  authors:
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Shemanarev
+    given-names: Maxim
+  year: '2023'
+- type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
   notes: Suggests
@@ -667,33 +681,6 @@ references:
   - family-names: Therneau
     given-names: Terry M
     email: therneau.terry@mayo.edu
-  year: '2023'
-- type: software
-  title: svglite
-  abstract: 'svglite: An ''SVG'' Graphics Device'
-  notes: Suggests
-  url: https://svglite.r-lib.org
-  repository: https://CRAN.R-project.org/package=svglite
-  authors:
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@posit.co
-  - family-names: Henry
-    given-names: Lionel
-    email: lionel@posit.co
-  - family-names: Pedersen
-    given-names: Thomas Lin
-    email: thomas.pedersen@posit.co
-    orcid: https://orcid.org/0000-0002-5147-4711
-  - family-names: Luciani
-    given-names: T Jake
-    email: jake@apache.org
-  - family-names: Decorde
-    given-names: Matthieu
-    email: matthieu.decorde@ens-lyon.fr
-  - family-names: Lise
-    given-names: Vaudor
-    email: lise.vaudor@ens-lyon.fr
   year: '2023'
 - type: software
   title: testthat
