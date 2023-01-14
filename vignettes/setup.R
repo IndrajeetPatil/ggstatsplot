@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   message   = FALSE,
   out.width = "100%",
   dpi       = 300,
-  dev       = device
+  dev       = "svg"
 )
 
 # local library
