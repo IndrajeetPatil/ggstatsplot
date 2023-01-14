@@ -1,24 +1,21 @@
-# Run tests with `options(warn = 2)` to fail on test warnings
 on:
-  push:
-    branches: [main, master]
   pull_request:
     branches: [main, master]
 
-name: check-test-warnings
+name: metadata
 
 jobs:
-  check-test-warnings:
+  metadata:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "devel"
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
@@ -26,12 +23,19 @@ jobs:
           pak-version: devel
           extra-packages: |
             local::.
+            cboettig/codemeta
+            ropensci/cffr
 
-      - name: Run Tests
+      - name: Generate codemeta metadata
         run: |
-          options(crayon.enabled = TRUE, warn = 2L)
-          if (Sys.getenv("_R_CHECK_FORCE_SUGGESTS_", "") == "") {
-            Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "false")
-          }
-          testthat::test_dir("tests")
+          options(crayon.enabled = TRUE)
+          codemeta::write_codemeta()
         shell: Rscript {0}
+
+      - name: Generate CFF metadata
+        run: |
+          options(crayon.enabled = TRUE)
+          cffr::cff_write()
+        shell: Rscript {0}
+
+      - uses: stefanzweifel/git-auto-commit-action@v4

@@ -69,7 +69,7 @@ ggridgestats <- function(data,
   # creating a data frame
   data %<>%
     dplyr::select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na(.) %>%
+    tidyr::drop_na() %>%
     dplyr::mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   # statistical analysis ------------------------------------------

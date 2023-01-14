@@ -1,37 +1,33 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+#
+# R CMD Check will fail on NOTE.
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # Trigger once a week at 00:00 on Sunday
+    - cron: "0 0 * * SUN"
 
-name: R-CMD-check
+name: R-CMD-check-strict
 
 jobs:
-  R-CMD-check:
+  R-CMD-check-strict:
     runs-on: ${{ matrix.config.os }}
-
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
 
     strategy:
       fail-fast: false
       matrix:
         config:
-          # Checks are not run on R-devel because they are already run in
-          # `R-CMD-check-strict` workflow
-
-          #- { os: macos-latest,   r: 'devel' }
-          #- { os: macos-latest, r: "release" }
-          - { os: macos-latest, r: "oldrel-1" }
-
-          #- { os: windows-latest, r: "devel" }
-          - { os: windows-latest, r: "release" }
-          - { os: windows-latest, r: "oldrel-1" }
-
-          #- { os: ubuntu-latest, r: "devel", http-user-agent: "release" }
-          - { os: ubuntu-latest, r: "release" }
-          - { os: ubuntu-latest, r: "oldrel-1" }
+          # CRAN does not provide macOS binaries for R-devel, so some packages
+          # need to be built from source. To avoid that, use R-release.
+          - { os: macos-latest, r: "release" }
+          - { os: windows-latest, r: "devel" }
+          - { os: ubuntu-latest, r: "devel" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -53,10 +49,12 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
+          needs: check
           extra-packages: |
             any::rcmdcheck
-          needs: check
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+          upload-results: true
+          error-on: '"note"'

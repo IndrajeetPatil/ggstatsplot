@@ -23,13 +23,18 @@ source("../setup.R")
 #| include = FALSE
 
 pkgs <- c(
-  "gapminder"
+  "gapminder",
+  "svglite"
 )
 
-if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
-  knitr::opts_chunk$set(eval = FALSE)
-} else {
+successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
+can_evaluate <- all(successfully_loaded)
+
+if (can_evaluate) {
   purrr::walk(pkgs, library, character.only = TRUE)
+  knitr::opts_chunk$set(eval = TRUE)
+} else {
+  knitr::opts_chunk$set(eval = FALSE)
 }
 ```
 
@@ -48,12 +53,10 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggcorrmat` provides a quick way to produce **publication-ready correlation matrix** (aka *correlalogram*) plot. The function can also be used
+The function `ggcorrmat()` provides a quick way to produce **publication-ready correlation matrix** (aka *correlalogram*) plot. The function can also be used
 for quick **data exploration**. In addition to the plot, it can also be used to
 get a correlation coefficient matrix or the associated *p*-value matrix.
-Currently, the plot can display Pearson's *r* (and its Bayesian version),
-Spearman's *rho*, and *robust* correlation coefficient (Winsorized Pearson's
-*r*). This function is a convenient wrapper around `ggcorrplot::ggcorrplot`
+This function is a convenient wrapper around `ggcorrplot::ggcorrplot()`
 function with some additional functionality.
 
 We will see examples of how to use this function in this vignette with the
@@ -66,7 +69,7 @@ To begin with, here are some instances where you would want to use
   - to quickly explore correlation between (all) numeric variables in the
   dataset
 
-## Correlation matrix plot with `ggcorrmat`
+## Correlation matrix plot with `ggcorrmat()`
 
 For the first example, we will use the `gapminder` dataset (available in
 eponymous [package](https://CRAN.R-project.org/package=gapminder) on CRAN)
@@ -117,7 +120,7 @@ ggcorrmat(
     "population",
     "GDP (per capita)"
   ),
-  type = "spearman", ## which correlation coefficient is to be computed
+  type = "np", ## which correlation coefficient is to be computed
   lab.col = "red", ## label color
   ggtheme = ggplot2::theme_light(), ## selected ggplot2 theme
   ## turn off default ggestatsplot theme overlay
@@ -196,12 +199,12 @@ ggcorrmat(
     "width (in mm)",
     "depth (in mm)"
   ),
-  type = "spearman",
+  type = "np",
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
   colors = c("#0072B2", "#D55E00", "#CC79A7"),
   pch = "square cross",
-  ## additional aesthetic arguments passed to `ggcorrmat`
+  ## additional aesthetic arguments passed to `ggcorrmat()`
   ggcorrplot.args = list(
     lab_col = "yellow",
     lab_size = 6,
@@ -227,11 +230,10 @@ What if we want to do the same analysis separately for each quality of the
 diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? 
 
 `{ggstatsplot}` provides a special helper function for such instances:
-`grouped_ggcorrmat`. This is merely a wrapper function around
-`combine_plots`. It applies `ggcorrmat` across all **levels** of
+`grouped_ggcorrmat()`. This is merely a wrapper function around
+`combine_plots()`. It applies `ggcorrmat()` across all **levels** of
 a specified **grouping variable** and then combines list of individual plots
-into a single plot. Note that the grouping variable can be anything: conditions
-in a given study, groups in a study sample, different studies, etc. 
+into a single plot. 
 
 ```{r}
 #| label = "ggcorrmat7",
@@ -241,7 +243,7 @@ in a given study, groups in a study sample, different studies, etc.
 grouped_ggcorrmat(
   ## arguments relevant for `ggcorrmat()`
   data = ggplot2::diamonds,
-  type = "bayes",
+  cor.vars = c(price, carat, depth),
   grouping.var = cut,
   ## arguments relevant for `combine_plots()`
   plotgrid.args = list(nrow = 3),

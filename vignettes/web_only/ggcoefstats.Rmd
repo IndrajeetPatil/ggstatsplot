@@ -26,13 +26,18 @@ pkgs <- c(
   "BayesFactor",
   "lme4",
   "metaplus",
-  "survival"
+  "survival",
+  "svglite"
 )
 
-if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
-  knitr::opts_chunk$set(eval = FALSE)
-} else {
+successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
+can_evaluate <- all(successfully_loaded)
+
+if (can_evaluate) {
   purrr::walk(pkgs, library, character.only = TRUE)
+  knitr::opts_chunk$set(eval = TRUE)
+} else {
+  knitr::opts_chunk$set(eval = FALSE)
 }
 ```
 
@@ -307,26 +312,6 @@ combine_plots(
 )
 ```
 
-Another example with multivariate analysis of variance (`manova`):
-
-```{r}
-#| label = "manova",
-#| fig.height = 8,
-#| fig.width = 8
-
-# fake a 2nd response variable
-npk2 <- within(npk, foo <- rnorm(24))
-
-# model
-m_manova <- manova(cbind(yield, foo) ~ block + N * P * K, npk2)
-
-
-ggcoefstats(
-  x = m_manova,
-  title = "multivariate analysis of variance"
-)
-```
-
 ### Bayesian models - no statistic
 
 ```{r}
@@ -390,7 +375,7 @@ combine_plots(
     ggcoefstats(mod8, title = "meta-analysis"),
     ggcoefstats(mod9, title = "proportion test")
   ),
-  annotation.args = list(title = "Example from `BayesFactor` package")
+  annotation.args = list(title = "Example from `{BayesFactor}` package")
 )
 ```
 
@@ -446,9 +431,7 @@ also use this function to carry out random-effects meta-analysis. The data frame
 you enter **must** contain at the minimum the following three columns-
 
   - `term`: a column with names/identifiers to annotate each study/effect
-
   - `estimate`: a column with the observed effect sizes or outcomes
-
   - `std.error`: a column the corresponding standard errors
 
 ### parametric

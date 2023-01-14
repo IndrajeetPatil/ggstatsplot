@@ -29,13 +29,18 @@ source("../setup.R")
 #| include = FALSE
 
 pkgs <- c(
-  "psych"
+  "psych",
+  "svglite"
 )
 
-if (!all(purrr::map(pkgs, requireNamespace, quietly = TRUE))) {
-  knitr::opts_chunk$set(eval = FALSE)
-} else {
+successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
+can_evaluate <- all(successfully_loaded)
+
+if (can_evaluate) {
   purrr::walk(pkgs, library, character.only = TRUE)
+  knitr::opts_chunk$set(eval = TRUE)
+} else {
+  knitr::opts_chunk$set(eval = FALSE)
 }
 ```
 

@@ -1,28 +1,20 @@
-# loading the needed libraries
-library(ggplot2movies)
-library(dplyr)
-
-# looking at the table
-dplyr::glimpse(ggplot2movies::movies)
-
 # clean data leave it in wide format
-movies_wide <- ggplot2movies::movies %>%
-  dplyr::select(c(title:votes, mpaa:Short)) %>%
-  dplyr::filter(mpaa != "", mpaa != "NC-17") %>%
-  dplyr::filter(Short != 1, Documentary != 1) %>%
-  dplyr::select(-c(Short, Documentary)) %>%
-  stats::na.omit(.) %>%
-  dplyr::mutate(budget = budget / 1000000) %>%
-  dplyr::mutate(mpaa = factor(mpaa)) %>%
-  dplyr::mutate(NumGenre = as.integer(rowSums(select(., Action:Romance)))) %>%
+movies_wide <- ggplot2movies::movies |>
+  dplyr::select(c(title:votes, mpaa:Short)) |>
+  dplyr::filter(mpaa != "", mpaa != "NC-17") |>
+  dplyr::filter(Short != 1, Documentary != 1) |>
+  dplyr::select(-c(Short, Documentary)) |>
+  tidyr::drop_na() |>
+  dplyr::mutate(budget = budget / 1000000) |>
+  dplyr::mutate(mpaa = factor(mpaa)) |>
+  dplyr::mutate(NumGenre = as.integer(rowSums(select(., Action:Romance)))) |>
   dplyr::filter(NumGenre > 0)
 
 # see the selected data (we have data from 1,579 movies)
 dplyr::glimpse(movies_wide)
 
 # converting to long format
-
-movies_long <- movies_wide %>%
+movies_long <- movies_wide |>
   dplyr::mutate(
     genre = dplyr::case_when(
       Action == 1 & Comedy == 1 & Animation == 0 ~ "Action Comedy",
@@ -34,20 +26,19 @@ movies_long <- movies_wide %>%
       Animation == 1 ~ "Animated",
       Comedy == 1 ~ "Comedy",
       Drama == 1 ~ "Drama",
-      Romance == 1 ~ "Romance Drama" # judgment call there are only 3 of them
+      Romance == 1 ~ "Romance Drama" # there are only 3 of them
     )
-  ) %>%
-  stats::na.omit(.) %>%
-  # removing NAs
-  dplyr::mutate(genre = factor(genre)) %>%
-  dplyr::select(-c(Action:NumGenre)) %>%
+  ) |>
+  tidyr::drop_na() |>
+  dplyr::mutate(genre = factor(genre)) |>
+  dplyr::select(-c(Action:NumGenre)) |>
   dplyr::arrange(desc(rating), title, year)
 
 # see the selected data (we have data from the exact same 1,579 movies)
 dplyr::glimpse(movies_long)
 
-# saving the files
-readr::write_csv(x = movies_wide, path = "data-raw/movies_wide.csv")
+readr::write_csv(movies_wide, file = "data-raw/movies_wide.csv")
 base::save(movies_wide, file = "data/movies_wide.rdata")
-readr::write_csv(x = movies_long, path = "data-raw/movies_long.csv")
+
+readr::write_csv(movies_long, file = "data-raw/movies_long.csv")
 base::save(movies_long, file = "data/movies_long.rdata")

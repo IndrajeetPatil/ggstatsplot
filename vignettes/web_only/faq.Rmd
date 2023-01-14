@@ -22,10 +22,19 @@ source("../setup.R")
 #| label = "suggested_pkgs",
 #| include = FALSE
 
-if (!requireNamespace("PMCMRplus", quietly = TRUE)) {
-  knitr::opts_chunk$set(eval = FALSE)
+pkgs <- c(
+  "PMCMRplus",
+  "svglite"
+)
+
+successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
+can_evaluate <- all(successfully_loaded)
+
+if (can_evaluate) {
+  purrr::walk(pkgs, library, character.only = TRUE)
+  # knitr::opts_chunk$set(eval = TRUE)
 } else {
-  library(PMCMRplus)
+  knitr::opts_chunk$set(eval = FALSE)
 }
 ```
 
@@ -62,7 +71,6 @@ include. For example, here only statistic and *p*-values are included:
 
 ```{r}
 #| label = "custom_expr"
-
 
 library(ggplot2)
 library(statsExpressions)
@@ -281,7 +289,7 @@ Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
 **significant** comparisons, all **non-significant** comparisons, or **all**
 comparisons. But what if I am only interested in just one particular comparison?
 
-Here is a workaround using `ggsignif`:
+Here is a workaround using `{ggsignif}`:
 
 ```{r}
 #| label = "custom_pairwise",
@@ -292,7 +300,7 @@ library(ggsignif)
 
 ## displaying only one comparison
 ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
-  geom_signif(comparisons = list(c("4", "6")))
+  geom_signif(comparisons = list(c("4", "6")), test.args = list(exact = FALSE))
 ```
 
 ## 12. How to access data frame with results from pairwise comparisons?
@@ -313,7 +321,7 @@ pairwise_comparisons(mtcars, cyl, wt)
 values for pairwise comparisons. But what if you wish to adopt a different
 annotation labels?
 
-You will have to customize them using `pairwiseComparisons` and `ggsignif:`
+You will have to customize them yourself:
 
 ```{r}
 #| label = "comp_asterisks"
@@ -328,7 +336,6 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE)
 
 # using `pairwise_comparisons()` function to create a data frame with results
-
 (df <- pairwise_comparisons(mtcars, cyl, wt) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
   dplyr::arrange(group1) %>%
@@ -434,16 +441,15 @@ any other `ggplot` object. But exception to these are all plots returned by
 library(paletteer)
 library(ggplot2)
 
-
 grouped_ggbetweenstats(
   mtcars,
   cyl,
   wt,
-  grouping.var = vs,
+  grouping.var = am,
   results.subtitle = FALSE,
-  pairwise_comparisons = FALSE,
+  pairwise.comparisons = FALSE,
   ggplot.component =
-  ## modify further with `{ggplot2}` functions
+  # modify further with `{ggplot2}` functions
     list(
       scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
       theme(axis.text.x = element_text(angle = 90))
