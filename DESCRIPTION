@@ -63,6 +63,7 @@ Suggests:
     metaplus,
     PMCMRplus,
     psych,
+    ragg,
     rmarkdown,
     survival,
     testthat (>= 3.1.6),

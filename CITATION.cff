@@ -618,6 +618,20 @@ references:
     orcid: https://orcid.org/0000-0003-4880-9610
   year: '2023'
 - type: software
+  title: ragg
+  abstract: 'ragg: Graphic Devices Based on AGG'
+  notes: Suggests
+  url: https://ragg.r-lib.org
+  repository: https://CRAN.R-project.org/package=ragg
+  authors:
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Shemanarev
+    given-names: Maxim
+  year: '2023'
+- type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
   notes: Suggests
