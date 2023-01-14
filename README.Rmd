@@ -698,19 +698,6 @@ ggcoefstats(mod)
 ✅ estimate + CIs <br>
 ✅ model summary (AIC and BIC) <br>
 
-##### Supported models
-
-Most of the regression models that are supported in the underlying packages are
-also supported by `ggcoefstats()`. 
-
-```{r}
-#| label = "supported"
-insight::supported_models()
-```
-
-Although not shown here, this function can also be used to carry out parametric,
-robust, and Bayesian random-effects meta-analysis.
-
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
 <https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html>
 

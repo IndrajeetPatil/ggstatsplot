@@ -2,7 +2,7 @@
 # previous R version won't work
 if (getRversion() > "4.1.0") {
   library(testthat)
-  library(ggstatsplot)
+  suppressPackageStartupMessages(library(ggstatsplot))
 
   test_check("ggstatsplot")
 }
