@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { os: ubuntu-latest, r: "release" }
+          #- { os: ubuntu-latest, r: "release" }
           - { os: ubuntu-latest, r: "devel" }
 
     env:
@@ -50,6 +50,6 @@ jobs:
 
       - name: Render README
         run: |
-          options(crayon.enabled = TRUE)
+          options(crayon.enabled = TRUE, warn = 2L)
           rmarkdown::render("README.Rmd")
         shell: Rscript {0}
