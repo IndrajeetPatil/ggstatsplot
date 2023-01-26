@@ -282,6 +282,7 @@
       "@type": "SoftwareApplication",
       "identifier": "vdiffr",
       "name": "vdiffr",
+      "version": ">= 1.0.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -522,7 +523,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9512.154KB",
+  "fileSize": "9512.165KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
