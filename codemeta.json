@@ -341,6 +341,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
+      "version": ">= 1.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -402,7 +403,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.18.8",
+      "version": ">= 0.19.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -523,7 +524,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9512.165KB",
+  "fileSize": "9512.176KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
