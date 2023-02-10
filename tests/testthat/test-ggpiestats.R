@@ -1,3 +1,5 @@
+skip_if_not(getRversion() >= "4.2.0")
+
 # data for paired tests
 set.seed(123)
 survey_data <- dplyr::tibble(
