@@ -77,7 +77,7 @@ references:
   abstract: 'correlation: Methods for Correlation Analysis'
   notes: Imports
   url: https://easystats.github.io/correlation/
-  repository: https://CRAN.R-project.org/package=correlation
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Makowski
     given-names: Dominique
@@ -99,8 +99,8 @@ references:
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
-  version: '>= 0.8.3'
   year: '2023'
+  version: '>= 0.8.3'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
@@ -207,6 +207,7 @@ references:
     email: kslowikowski@gmail.com
     orcid: https://orcid.org/0000-0002-2843-6370
   year: '2023'
+  version: '>= 0.9.3'
 - type: software
   title: ggsignif
   abstract: 'ggsignif: Significance Brackets for ''ggplot2'''

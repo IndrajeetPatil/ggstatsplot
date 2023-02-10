@@ -35,7 +35,7 @@ Imports:
     datawizard (>= 0.6.5),
     dplyr (>= 1.1.0),
     ggplot2 (>= 3.4.0),
-    ggrepel,
+    ggrepel (>= 0.9.3),
     ggsignif,
     glue,
     insight (>= 0.19.0),
