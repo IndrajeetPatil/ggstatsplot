@@ -34,7 +34,7 @@ Imports:
     correlation (>= 0.8.3),
     datawizard (>= 0.6.5),
     dplyr (>= 1.1.0),
-    ggplot2 (>= 3.4.0),
+    ggplot2 (>= 3.4.1),
     ggrepel (>= 0.9.3),
     ggsignif,
     glue,

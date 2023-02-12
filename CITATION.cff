@@ -168,7 +168,7 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
   - family-names: Chang
     given-names: Winston
@@ -177,7 +177,7 @@ references:
     given-names: Lionel
   - family-names: Pedersen
     given-names: Thomas Lin
-    email: thomas.pedersen@rstudio.com
+    email: thomas.pedersen@posit.co
     orcid: https://orcid.org/0000-0002-5147-4711
   - family-names: Takahashi
     given-names: Kohske
@@ -194,7 +194,7 @@ references:
     given-names: Dewey
     orcid: https://orcid.org/0000-0002-9415-4582
   year: '2023'
-  version: '>= 3.4.0'
+  version: '>= 3.4.1'
 - type: software
   title: ggrepel
   abstract: 'ggrepel: Automatically Position Non-Overlapping Text Labels with ''ggplot2'''
