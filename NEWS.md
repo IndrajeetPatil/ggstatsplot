@@ -1,4 +1,4 @@
-# ggstatsplot 0.10.1
+# ggstatsplot 0.11.0
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
