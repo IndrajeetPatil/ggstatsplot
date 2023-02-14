@@ -71,7 +71,7 @@ references:
   year: '2023'
   institution:
     name: R Foundation for Statistical Computing
-  version: '>= 4.0.0'
+  version: '>= 4.1.0'
 - type: software
   title: correlation
   abstract: 'correlation: Methods for Correlation Analysis'

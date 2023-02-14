@@ -5,7 +5,14 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
-- Maintenance release.
+BREAKING CHANGES
+
+- The minimum needed R version is now bumped to `R 4.1` because a crucial 
+  dependency (`{pbkrtest}`) requires this R version.
+
+MINOR CHANGES
+
+- Maintenance release to catch up with `{ggplot2}` and `{easystats}` updates.
 
 # ggstatsplot 0.10.0
 
