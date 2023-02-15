@@ -24,8 +24,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.4/font.css" rel="stylesheet">
-<link href="deps/JetBrains_Mono-0.4.4/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.5/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.4.5/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Based Plots with Statistical Details">
@@ -56,7 +56,7 @@
     
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -184,28 +184,28 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>If you want to cite this package in a scientific journal or in any other context, run the following code in your <code>R</code> console:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"ggstatsplot"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>To cite package <span class="st">'ggstatsplot'</span> <span class="cf">in</span> publications use<span class="sc">:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  Patil, <span class="fu">I.</span> (<span class="dv">2021</span>). Visualizations with statistical details<span class="sc">:</span> The</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ggstatsplot'</span> approach. Journal of Open Source Software, <span class="dv">6</span>(<span class="dv">61</span>), <span class="dv">3167</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  doi<span class="sc">:</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    publisher <span class="ot">=</span> {{The Open Journal}},</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    volume <span class="ot">=</span> {<span class="dv">6</span>},</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    number <span class="ot">=</span> {<span class="dv">61</span>},</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    pages <span class="ot">=</span> {<span class="dv">3167</span>},</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Indrajeet Patil},</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {{Visualizations with statistical details<span class="sc">:</span> The {<span class="st">'ggstatsplot'</span>} approach}},</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    journal <span class="ot">=</span> {{Journal of Open Source Software}},</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"ggstatsplot"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>To cite package <span class="st">'ggstatsplot'</span> <span class="cf">in</span> publications use<span class="sc">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  Patil, <span class="fu">I.</span> (<span class="dv">2021</span>). Visualizations with statistical details<span class="sc">:</span> The</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="st">'ggstatsplot'</span> approach. Journal of Open Source Software, <span class="dv">6</span>(<span class="dv">61</span>), <span class="dv">3167</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  doi<span class="sc">:</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="sc">@</span>Article{,</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>doi.org<span class="sc">/</span><span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03167</span>},</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    publisher <span class="ot">=</span> {{The Open Journal}},</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    volume <span class="ot">=</span> {<span class="dv">6</span>},</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    number <span class="ot">=</span> {<span class="dv">61</span>},</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    pages <span class="ot">=</span> {<span class="dv">3167</span>},</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>    author <span class="ot">=</span> {Indrajeet Patil},</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    title <span class="ot">=</span> {{Visualizations with statistical details<span class="sc">:</span> The {<span class="st">'ggstatsplot'</span>} approach}},</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>    journal <span class="ot">=</span> {{Journal of Open Source Software}},</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>
@@ -771,133 +771,17 @@
 <p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC and BIC) <br></p>
-<div class="section level5">
-<h5 id="supported-models">Supported models<a class="anchor" aria-label="anchor" href="#supported-models"></a>
-</h5>
-<p>Most of the regression models that are supported in the underlying packages are also supported by <code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/is_model_supported.html" class="external-link">supported_models</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   [1] "aareg"                   "afex_aov"               </span></span>
-<span><span class="co">#&gt;   [3] "AKP"                     "Anova.mlm"              </span></span>
-<span><span class="co">#&gt;   [5] "anova.rms"               "aov"                    </span></span>
-<span><span class="co">#&gt;   [7] "aovlist"                 "Arima"                  </span></span>
-<span><span class="co">#&gt;   [9] "averaging"               "bamlss"                 </span></span>
-<span><span class="co">#&gt;  [11] "bamlss.frame"            "bayesQR"                </span></span>
-<span><span class="co">#&gt;  [13] "bayesx"                  "BBmm"                   </span></span>
-<span><span class="co">#&gt;  [15] "BBreg"                   "bcplm"                  </span></span>
-<span><span class="co">#&gt;  [17] "betamfx"                 "betaor"                 </span></span>
-<span><span class="co">#&gt;  [19] "betareg"                 "BFBayesFactor"          </span></span>
-<span><span class="co">#&gt;  [21] "bfsl"                    "BGGM"                   </span></span>
-<span><span class="co">#&gt;  [23] "bife"                    "bifeAPEs"               </span></span>
-<span><span class="co">#&gt;  [25] "bigglm"                  "biglm"                  </span></span>
-<span><span class="co">#&gt;  [27] "blavaan"                 "blrm"                   </span></span>
-<span><span class="co">#&gt;  [29] "bracl"                   "brglm"                  </span></span>
-<span><span class="co">#&gt;  [31] "brmsfit"                 "brmultinom"             </span></span>
-<span><span class="co">#&gt;  [33] "btergm"                  "censReg"                </span></span>
-<span><span class="co">#&gt;  [35] "cgam"                    "cgamm"                  </span></span>
-<span><span class="co">#&gt;  [37] "cglm"                    "clm"                    </span></span>
-<span><span class="co">#&gt;  [39] "clm2"                    "clmm"                   </span></span>
-<span><span class="co">#&gt;  [41] "clmm2"                   "clogit"                 </span></span>
-<span><span class="co">#&gt;  [43] "coeftest"                "complmrob"              </span></span>
-<span><span class="co">#&gt;  [45] "confusionMatrix"         "coxme"                  </span></span>
-<span><span class="co">#&gt;  [47] "coxph"                   "coxph.penal"            </span></span>
-<span><span class="co">#&gt;  [49] "coxr"                    "cpglm"                  </span></span>
-<span><span class="co">#&gt;  [51] "cpglmm"                  "crch"                   </span></span>
-<span><span class="co">#&gt;  [53] "crq"                     "crqs"                   </span></span>
-<span><span class="co">#&gt;  [55] "crr"                     "dep.effect"             </span></span>
-<span><span class="co">#&gt;  [57] "DirichletRegModel"       "draws"                  </span></span>
-<span><span class="co">#&gt;  [59] "drc"                     "eglm"                   </span></span>
-<span><span class="co">#&gt;  [61] "elm"                     "epi.2by2"               </span></span>
-<span><span class="co">#&gt;  [63] "ergm"                    "feglm"                  </span></span>
-<span><span class="co">#&gt;  [65] "feis"                    "felm"                   </span></span>
-<span><span class="co">#&gt;  [67] "fitdistr"                "fixest"                 </span></span>
-<span><span class="co">#&gt;  [69] "flexsurvreg"             "gam"                    </span></span>
-<span><span class="co">#&gt;  [71] "Gam"                     "gamlss"                 </span></span>
-<span><span class="co">#&gt;  [73] "gamm"                    "gamm4"                  </span></span>
-<span><span class="co">#&gt;  [75] "garch"                   "gbm"                    </span></span>
-<span><span class="co">#&gt;  [77] "gee"                     "geeglm"                 </span></span>
-<span><span class="co">#&gt;  [79] "glht"                    "glimML"                 </span></span>
-<span><span class="co">#&gt;  [81] "glm"                     "Glm"                    </span></span>
-<span><span class="co">#&gt;  [83] "glmm"                    "glmmadmb"               </span></span>
-<span><span class="co">#&gt;  [85] "glmmPQL"                 "glmmTMB"                </span></span>
-<span><span class="co">#&gt;  [87] "glmrob"                  "glmRob"                 </span></span>
-<span><span class="co">#&gt;  [89] "glmx"                    "gls"                    </span></span>
-<span><span class="co">#&gt;  [91] "gmnl"                    "HLfit"                  </span></span>
-<span><span class="co">#&gt;  [93] "htest"                   "hurdle"                 </span></span>
-<span><span class="co">#&gt;  [95] "iv_robust"               "ivFixed"                </span></span>
-<span><span class="co">#&gt;  [97] "ivprobit"                "ivreg"                  </span></span>
-<span><span class="co">#&gt;  [99] "lavaan"                  "lm"                     </span></span>
-<span><span class="co">#&gt; [101] "lm_robust"               "lme"                    </span></span>
-<span><span class="co">#&gt; [103] "lmerMod"                 "lmerModLmerTest"        </span></span>
-<span><span class="co">#&gt; [105] "lmodel2"                 "lmrob"                  </span></span>
-<span><span class="co">#&gt; [107] "lmRob"                   "logistf"                </span></span>
-<span><span class="co">#&gt; [109] "logitmfx"                "logitor"                </span></span>
-<span><span class="co">#&gt; [111] "logitr"                  "LORgee"                 </span></span>
-<span><span class="co">#&gt; [113] "lqm"                     "lqmm"                   </span></span>
-<span><span class="co">#&gt; [115] "lrm"                     "manova"                 </span></span>
-<span><span class="co">#&gt; [117] "MANOVA"                  "marginaleffects"        </span></span>
-<span><span class="co">#&gt; [119] "marginaleffects.summary" "margins"                </span></span>
-<span><span class="co">#&gt; [121] "maxLik"                  "mblogit"                </span></span>
-<span><span class="co">#&gt; [123] "mclogit"                 "mcmc"                   </span></span>
-<span><span class="co">#&gt; [125] "mcmc.list"               "MCMCglmm"               </span></span>
-<span><span class="co">#&gt; [127] "mcp1"                    "mcp12"                  </span></span>
-<span><span class="co">#&gt; [129] "mcp2"                    "med1way"                </span></span>
-<span><span class="co">#&gt; [131] "mediate"                 "merMod"                 </span></span>
-<span><span class="co">#&gt; [133] "merModList"              "meta_bma"               </span></span>
-<span><span class="co">#&gt; [135] "meta_fixed"              "meta_random"            </span></span>
-<span><span class="co">#&gt; [137] "metaplus"                "mhurdle"                </span></span>
-<span><span class="co">#&gt; [139] "mipo"                    "mira"                   </span></span>
-<span><span class="co">#&gt; [141] "mixed"                   "MixMod"                 </span></span>
-<span><span class="co">#&gt; [143] "mixor"                   "mjoint"                 </span></span>
-<span><span class="co">#&gt; [145] "mle"                     "mle2"                   </span></span>
-<span><span class="co">#&gt; [147] "mlm"                     "mlogit"                 </span></span>
-<span><span class="co">#&gt; [149] "mmclogit"                "mmlogit"                </span></span>
-<span><span class="co">#&gt; [151] "model_fit"               "multinom"               </span></span>
-<span><span class="co">#&gt; [153] "mvord"                   "negbinirr"              </span></span>
-<span><span class="co">#&gt; [155] "negbinmfx"               "ols"                    </span></span>
-<span><span class="co">#&gt; [157] "onesampb"                "orm"                    </span></span>
-<span><span class="co">#&gt; [159] "pgmm"                    "plm"                    </span></span>
-<span><span class="co">#&gt; [161] "PMCMR"                   "poissonirr"             </span></span>
-<span><span class="co">#&gt; [163] "poissonmfx"              "polr"                   </span></span>
-<span><span class="co">#&gt; [165] "probitmfx"               "psm"                    </span></span>
-<span><span class="co">#&gt; [167] "Rchoice"                 "ridgelm"                </span></span>
-<span><span class="co">#&gt; [169] "riskRegression"          "rjags"                  </span></span>
-<span><span class="co">#&gt; [171] "rlm"                     "rlmerMod"               </span></span>
-<span><span class="co">#&gt; [173] "RM"                      "rma"                    </span></span>
-<span><span class="co">#&gt; [175] "rma.uni"                 "robmixglm"              </span></span>
-<span><span class="co">#&gt; [177] "robtab"                  "rq"                     </span></span>
-<span><span class="co">#&gt; [179] "rqs"                     "rqss"                   </span></span>
-<span><span class="co">#&gt; [181] "rvar"                    "Sarlm"                  </span></span>
-<span><span class="co">#&gt; [183] "scam"                    "selection"              </span></span>
-<span><span class="co">#&gt; [185] "sem"                     "SemiParBIV"             </span></span>
-<span><span class="co">#&gt; [187] "semLm"                   "semLme"                 </span></span>
-<span><span class="co">#&gt; [189] "slm"                     "speedglm"               </span></span>
-<span><span class="co">#&gt; [191] "speedlm"                 "stanfit"                </span></span>
-<span><span class="co">#&gt; [193] "stanmvreg"               "stanreg"                </span></span>
-<span><span class="co">#&gt; [195] "summary.lm"              "survfit"                </span></span>
-<span><span class="co">#&gt; [197] "survreg"                 "svy_vglm"               </span></span>
-<span><span class="co">#&gt; [199] "svychisq"                "svyglm"                 </span></span>
-<span><span class="co">#&gt; [201] "svyolr"                  "t1way"                  </span></span>
-<span><span class="co">#&gt; [203] "tobit"                   "trimcibt"               </span></span>
-<span><span class="co">#&gt; [205] "truncreg"                "vgam"                   </span></span>
-<span><span class="co">#&gt; [207] "vglm"                    "wbgee"                  </span></span>
-<span><span class="co">#&gt; [209] "wblm"                    "wbm"                    </span></span>
-<span><span class="co">#&gt; [211] "wmcpAKP"                 "yuen"                   </span></span>
-<span><span class="co">#&gt; [213] "yuend"                   "zcpglm"                 </span></span>
-<span><span class="co">#&gt; [215] "zeroinfl"                "zerotrunc"</span></span></code></pre></div>
-<p>Although not shown here, this function can also be used to carry out parametric, robust, and Bayesian random-effects meta-analysis.</p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="extracting-expressions-and-data-frames-with-statistical-details">Extracting expressions and data frames with statistical details<a class="anchor" aria-label="anchor" href="#extracting-expressions-and-data-frames-with-statistical-details"></a>
 </h3>
 <p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> also offers a convenience function to extract data frames with statistical details that are used to create expressions displayed in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span> </span>
+<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># extracting expression present in the subtitle</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
@@ -983,7 +867,7 @@
 </h3>
 <p>Sometimes you may not like the default plots produced by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> or other plotting packages) and still use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create our own plot using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package, and use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function for extracting expression:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## loading the needed libraries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
