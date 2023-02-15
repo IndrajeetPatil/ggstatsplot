@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.4.0
+# CITATION file created with {cffr} R package, v0.4.1
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.10.0.9000
+version: 0.11.0
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -71,13 +71,13 @@ references:
   year: '2023'
   institution:
     name: R Foundation for Statistical Computing
-  version: '>= 4.0.0'
+  version: '>= 4.1.0'
 - type: software
   title: correlation
   abstract: 'correlation: Methods for Correlation Analysis'
   notes: Imports
   url: https://easystats.github.io/correlation/
-  repository: https://CRAN.R-project.org/package=correlation
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Makowski
     given-names: Dominique
@@ -99,8 +99,8 @@ references:
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
-  version: '>= 0.8.3'
   year: '2023'
+  version: '>= 0.8.3'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
@@ -143,7 +143,7 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
   - family-names: François
     given-names: Romain
@@ -155,8 +155,10 @@ references:
     orcid: https://orcid.org/0000-0002-1416-3412
   - family-names: Vaughan
     given-names: Davis
+    email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2023'
+  version: '>= 1.1.0'
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -166,7 +168,7 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
   - family-names: Chang
     given-names: Winston
@@ -175,7 +177,7 @@ references:
     given-names: Lionel
   - family-names: Pedersen
     given-names: Thomas Lin
-    email: thomas.pedersen@rstudio.com
+    email: thomas.pedersen@posit.co
     orcid: https://orcid.org/0000-0002-5147-4711
   - family-names: Takahashi
     given-names: Kohske
@@ -192,7 +194,7 @@ references:
     given-names: Dewey
     orcid: https://orcid.org/0000-0002-9415-4582
   year: '2023'
-  version: '>= 3.4.0'
+  version: '>= 3.4.1'
 - type: software
   title: ggrepel
   abstract: 'ggrepel: Automatically Position Non-Overlapping Text Labels with ''ggplot2'''
@@ -205,6 +207,7 @@ references:
     email: kslowikowski@gmail.com
     orcid: https://orcid.org/0000-0002-2843-6370
   year: '2023'
+  version: '>= 0.9.3'
 - type: software
   title: ggsignif
   abstract: 'ggsignif: Significance Brackets for ''ggplot2'''
@@ -272,7 +275,7 @@ references:
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
   year: '2023'
-  version: '>= 0.18.8'
+  version: '>= 0.19.0'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -288,7 +291,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=parameters
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -332,7 +335,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://CRAN.R-project.org/package=performance
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -412,8 +415,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.3.6'
   year: '2023'
+  version: '>= 1.4.0'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -423,7 +426,10 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
   - family-names: Girlich
     given-names: Maximilian
   year: '2023'
@@ -733,6 +739,7 @@ references:
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
   year: '2023'
+  version: '>= 1.0.5'
 - type: software
   title: WRS2
   abstract: 'WRS2: A Collection of Robust Statistical Methods'
