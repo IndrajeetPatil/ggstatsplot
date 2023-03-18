@@ -62,9 +62,7 @@
 #'   data            = bugs_long,
 #'   x               = condition,
 #'   y               = desire,
-#'   type            = "robust",
-#'   outlier.tagging = TRUE,
-#'   outlier.label   = region
+#'   type            = "robust"
 #' )
 #' @export
 ggwithinstats <- function(data,
@@ -96,10 +94,6 @@ ggwithinstats <- function(data,
                           point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
                           point.path = TRUE,
                           point.path.args = list(alpha = 0.5, linetype = "dashed"),
-                          outlier.tagging = FALSE,
-                          outlier.label = NULL,
-                          outlier.coef = 1.5,
-                          outlier.label.args = list(size = 3),
                           boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
                           violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
                           ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
@@ -112,30 +106,18 @@ ggwithinstats <- function(data,
 
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
-  if (!quo_is_null(enquo(outlier.label))) ensym(outlier.label)
 
   # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
 
   # creating a data frame
   data %<>%
-    select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    select({{ x }}, {{ y }}) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     group_by({{ x }}) %>%
     mutate(.rowid = row_number()) %>%
     ungroup() %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
-
-  # if `outlier.label` column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(data)) data %<>% mutate(outlier.label = {{ y }})
-
-  # add a logical column indicating whether a point is or is not an outlier
-  data %<>% .outlier_df(
-    x             = {{ x }},
-    y             = {{ y }},
-    outlier.coef  = outlier.coef,
-    outlier.label = outlier.label
-  )
 
   # statistical analysis ------------------------------------------
 
@@ -181,25 +163,6 @@ ggwithinstats <- function(data,
 
   # add a connecting path only if there are only two groups
   if (test == "t" && point.path) plot <- plot + exec(geom_path, !!!point.path.args)
-
-  # outlier labeling -----------------------------
-
-  # If `outlier.label` is not provided, outlier labels will just be values of
-  # the `y` vector. If the outlier tag has been provided, just use the data frame
-  # already created.
-
-  if (isTRUE(outlier.tagging)) {
-    # applying the labels to tagged outliers with `ggrepel`
-    plot <- plot +
-      exec(
-        .fn                = ggrepel::geom_label_repel,
-        data               = ~ filter(.x, isanoutlier),
-        mapping            = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        min.segment.length = 0,
-        inherit.aes        = FALSE,
-        !!!outlier.label.args
-      )
-  }
 
   # centrality tagging -------------------------------------
 

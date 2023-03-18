@@ -46,7 +46,7 @@ Imports:
     purrr (>= 1.0.1),
     rlang,
     stats,
-    statsExpressions (>= 1.4.0),
+    statsExpressions (>= 1.5.0),
     tidyr,
     utils
 Suggests:
@@ -70,6 +70,9 @@ Suggests:
     tibble,
     vdiffr (>= 1.0.5),
     WRS2
+Remotes:
+    easystats/insight,
+    easystats/bayestestR
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

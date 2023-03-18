@@ -291,7 +291,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://CRAN.R-project.org/package=parameters
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -388,10 +388,10 @@ references:
   authors:
   - family-names: Henry
     given-names: Lionel
-    email: lionel@rstudio.com
+    email: lionel@posit.co
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   year: '2023'
 - type: software
   title: stats
@@ -416,7 +416,7 @@ references:
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
   year: '2023'
-  version: '>= 1.4.0'
+  version: '>= 1.5.0'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -484,12 +484,12 @@ references:
   title: gapminder
   abstract: 'gapminder: Data from Gapminder'
   notes: Suggests
-  url: http://www.gapminder.org/data/
+  url: https://www.gapminder.org/data/
   repository: https://CRAN.R-project.org/package=gapminder
   authors:
   - family-names: Bryan
     given-names: Jennifer
-    email: jenny@rstudio.com
+    email: jenny@posit.co
     orcid: https://orcid.org/0000-0002-6983-2759
   year: '2023'
 - type: software

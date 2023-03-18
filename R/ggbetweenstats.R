@@ -49,21 +49,6 @@
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption. This argument is relevant only
 #'   if `bf.message = FALSE`.
-#' @param outlier.color Default aesthetics for outliers (Default: `"black"`).
-#' @param outlier.tagging Decides whether outliers should be tagged (Default:
-#'   `FALSE`).
-#' @param outlier.label Label to put on the outliers that have been tagged. This
-#'   **can't** be the same as `x` argument.
-#' @param outlier.shape Hiding the outliers can be achieved by setting
-#'   `outlier.shape = NA`. Importantly, this does not remove the outliers,
-#'   it only hides them, so the range calculated for the `y`-axis will be
-#'   the same with outliers shown and outliers hidden.
-#' @param outlier.label.args A list of additional aesthetic arguments to be
-#'   passed to `ggrepel::geom_label_repel` for outlier label plotting.
-#' @param outlier.coef Coefficient for outlier detection using Tukey's method.
-#'   With Tukey's method, outliers are below (1st Quartile) or above (3rd
-#'   Quartile) `outlier.coef` times the Inter-Quartile Range (IQR) (Default:
-#'   `1.5`).
 #' @param centrality.plotting Logical that decides whether centrality tendency
 #'   measure is to be displayed as a point with a label (Default: `TRUE`).
 #'   Function decides which central tendency measure to show depending on the
@@ -147,9 +132,7 @@
 #'   y               = Speed,
 #'   type            = "robust",
 #'   xlab            = "The experiment number",
-#'   ylab            = "Speed-of-light measurement",
-#'   outlier.tagging = TRUE,
-#'   outlier.label   = Run
+#'   ylab            = "Speed-of-light measurement"
 #' )
 #' @export
 ggbetweenstats <- function(data,
@@ -183,12 +166,6 @@ ggbetweenstats <- function(data,
                              segment.linetype = 4,
                              min.segment.length = 0
                            ),
-                           outlier.tagging = FALSE,
-                           outlier.label = NULL,
-                           outlier.coef = 1.5,
-                           outlier.shape = 19,
-                           outlier.color = "black",
-                           outlier.label.args = list(size = 3),
                            point.args = list(
                              position = ggplot2::position_jitterdodge(dodge.width = 0.60),
                              alpha = 0.4,
@@ -210,23 +187,11 @@ ggbetweenstats <- function(data,
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
-  outlier.label <- if (!quo_is_null(enquo(outlier.label))) ensym(outlier.label)
 
   data %<>%
-    select({{ x }}, {{ y }}, outlier.label = {{ outlier.label }}) %>%
+    select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
     mutate({{ x }} := droplevels(as.factor({{ x }})))
-
-  # if outlier.label column is not present, just use the values from `y` column
-  if (!"outlier.label" %in% names(data)) data %<>% mutate(outlier.label = {{ y }})
-
-  # add a logical column indicating whether a point is or is not an outlier
-  data %<>% .outlier_df(
-    x             = {{ x }},
-    y             = {{ y }},
-    outlier.coef  = outlier.coef,
-    outlier.label = outlier.label
-  )
 
   # statistical analysis ------------------------------------------
 
@@ -262,83 +227,25 @@ ggbetweenstats <- function(data,
 
   # plot -----------------------------------
 
-  # first add only the points which are *not* outliers
   plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(geom_point, data = ~ filter(.x, !isanoutlier), aes(color = {{ x }}), !!!point.args)
+    exec(geom_point, aes(color = {{ x }}), !!!point.args)
 
-  # if outliers are not being tagged, then add the points that were previously left out
-  if (isFALSE(outlier.tagging)) {
-    plot <- plot +
-      exec(geom_point, data = ~ filter(.x, isanoutlier), aes(color = {{ x }}), !!!point.args)
-  }
-
-  # if outlier tagging is happening, decide how those points should be displayed
-  if (plot.type == "violin" && isTRUE(outlier.tagging)) {
-    plot <- plot +
-      geom_point(
-        data   = ~ filter(.x, isanoutlier),
-        size   = 3,
-        stroke = 0,
-        alpha  = 0.7,
-        color  = outlier.color,
-        shape  = outlier.shape
-      )
-  }
-
-  # adding a boxplot
   if (plot.type %in% c("box", "boxviolin")) {
-    if (isTRUE(outlier.tagging)) {
-      .f <- stat_boxplot
-      outlier_list <- list(
-        outlier.shape = outlier.shape,
-        outlier.size = 3,
-        outlier.alpha = 0.7,
-        outlier.color = outlier.color
-      )
-    } else {
-      .f <- geom_boxplot
-      outlier_list <- list(outlier.shape = NA, position = position_dodge(width = NULL))
-    }
-
-    # add a boxplot
     suppressWarnings(plot <- plot +
       exec(
-        .fn   = .f,
+        .fn   = geom_boxplot,
         width = 0.3,
         alpha = 0.2,
-        geom  = "boxplot",
-        coef  = outlier.coef,
-        !!!outlier_list
+        geom  = "boxplot"
       ))
   }
 
-  # add violin geom
   if (plot.type %in% c("violin", "boxviolin")) {
     plot <- plot + exec(geom_violin, !!!violin.args)
   }
 
-  # outlier labeling -----------------------------
-
-  # If `outlier.label` is not provided, outlier labels will just be values of
-  # the `y` vector. If the outlier tag has been provided, just use the dataframe
-  # already created.
-
-  # applying the labels to tagged outliers with `ggrepel`
-  if (isTRUE(outlier.tagging)) {
-    plot <- plot +
-      exec(
-        .fn                = ggrepel::geom_label_repel,
-        data               = ~ filter(.x, isanoutlier),
-        mapping            = aes(x = {{ x }}, y = {{ y }}, label = outlier.label),
-        min.segment.length = 0,
-        inherit.aes        = FALSE,
-        !!!outlier.label.args
-      )
-  }
-
   # centrality tagging -------------------------------------
 
-  # add labels for centrality measure
   if (isTRUE(centrality.plotting)) {
     plot <- suppressWarnings(.centrality_ggrepel(
       plot                  = plot,
@@ -355,7 +262,6 @@ ggbetweenstats <- function(data,
 
   # ggsignif labels -------------------------------------
 
-  # initialize
   seclabel <- NULL
 
   if (isTRUE(pairwise.comparisons) && test == "anova") {

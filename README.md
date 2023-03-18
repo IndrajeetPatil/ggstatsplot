@@ -3,10 +3,10 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                  |
+| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                 |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://codecov.io/gh/IndrajeetPatil/ggstatsplot) |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                   |
 
 ## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -197,9 +197,6 @@ grouped_ggbetweenstats(
   x                = mpaa,
   y                = length,
   grouping.var     = genre,
-  outlier.tagging  = TRUE,
-  outlier.label    = title,
-  outlier.coef     = 2,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
   p.adjust.method  = "bonferroni",
   palette          = "default_jama",
@@ -210,8 +207,6 @@ grouped_ggbetweenstats(
 ```
 
 <img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
-
-Note here that the function can be used to tag outliers!
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -268,9 +263,7 @@ grouped_ggwithinstats(
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
-  grouping.var    = region,
-  outlier.tagging = TRUE,
-  outlier.label   = education
+  grouping.var    = region
 )
 ```
 
@@ -710,9 +703,7 @@ extract_subtitle(p)
 
 # extracting expression present in the caption
 extract_caption(p)
-#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == 
-#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == 
-#>     "0.71")
+#> NULL
 
 # a list of tibbles containing statistical analysis summaries
 extract_stats(p)
@@ -729,31 +720,7 @@ extract_stats(p)
 #> 1       0.95    0.531         1 ncp         F                    32 <language>
 #> 
 #> $caption_data
-#> # A tibble: 6 × 17
-#>   term     pd prior.distribution prior.location prior.scale     bf10
-#>   <chr> <dbl> <chr>                       <dbl>       <dbl>    <dbl>
-#> 1 mu    1     cauchy                          0       0.707 3008850.
-#> 2 cyl-4 1     cauchy                          0       0.707 3008850.
-#> 3 cyl-6 0.780 cauchy                          0       0.707 3008850.
-#> 4 cyl-8 1     cauchy                          0       0.707 3008850.
-#> 5 sig2  1     cauchy                          0       0.707 3008850.
-#> 6 g_cyl 1     cauchy                          0       0.707 3008850.
-#>   method                          log_e_bf10 effectsize         estimate std.dev
-#>   <chr>                                <dbl> <chr>                 <dbl>   <dbl>
-#> 1 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 2 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 3 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 4 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#>   conf.level conf.low conf.high conf.method n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
-#> 1       0.95    0.574     0.788 HDI            32 <language>
-#> 2       0.95    0.574     0.788 HDI            32 <language>
-#> 3       0.95    0.574     0.788 HDI            32 <language>
-#> 4       0.95    0.574     0.788 HDI            32 <language>
-#> 5       0.95    0.574     0.788 HDI            32 <language>
-#> 6       0.95    0.574     0.788 HDI            32 <language>
+#> NULL
 #> 
 #> $pairwise_comparisons_data
 #> # A tibble: 3 × 9

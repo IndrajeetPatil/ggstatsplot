@@ -61,7 +61,7 @@ To begin with, here are some instances where you would want to use
 
  - to check if a continuous variable differs across multiple groups/conditions
 
- - to compare distributions visually and check for outliers
+ - to compare distributions visually
 
 **Note**: This vignette uses the pipe operator (`%>%`), if you are not
 familiar with this operator, here is a good explanation:
@@ -125,8 +125,7 @@ hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{10})$).
 
 We can make the output much more aesthetically pleasing as well as informative
 by making use of the many optional parameters in `ggbetweenstats`. We'll add a
-title and caption, better `x` and `y` axis labels, and tag and label the
-outliers in the data. We can and will change the overall theme as well as the
+title and caption, better `x` and `y` axis labels. We can and will change the overall theme as well as the
 color palette in use.
 
 ```{r}
@@ -142,10 +141,6 @@ ggbetweenstats(
   xlab = "Continent", ## label for the x-axis
   ylab = "Life expectancy", ## label for the y-axis
   plot.type = "boxviolin", ## type of plot
-  outlier.tagging = TRUE, ## whether outliers should be flagged
-  outlier.coef = 1.5, ## coefficient for Tukey's rule
-  outlier.label = country, ## label to attach to outlier values
-  outlier.label.args = list(color = "red"), ## outlier point label color
   ## turn off messages
   ggtheme = ggplot2::theme_gray(), ## a different theme
   package = "yarrr", ## package from which color palette is to be taken
@@ -302,8 +297,6 @@ gapminder::gapminder %>%
     # ggtheme = ggthemes::theme_tufte(),
     package = "ggsci",
     palette = "default_jco",
-    outlier.tagging = TRUE,
-    outlier.label = country,
     ## arguments relevant for combine_plots
     annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
     plotgrid.args = list(nrow = 3)

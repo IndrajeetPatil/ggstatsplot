@@ -1,4 +1,4 @@
-# default plotting as expected
+# defaults plots
 
     argument 1 is empty
 
