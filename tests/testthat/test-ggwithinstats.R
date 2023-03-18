@@ -82,12 +82,13 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "grouped plots - default",
-      fig =  grouped_ggwithinstats(
-      data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-      x                = condition,
-      y                = desire,
-      grouping.var     = gender,
-      type             = "np"
-    ))
+      fig = grouped_ggwithinstats(
+        data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+        x                = condition,
+        y                = desire,
+        grouping.var     = gender,
+        type             = "np"
+      )
+    )
   }
 )
