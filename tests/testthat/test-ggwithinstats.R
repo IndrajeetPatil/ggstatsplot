@@ -5,8 +5,6 @@ skip_if_not_installed("WRS2")
 
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30L, condition %in% c("HDLF", "HDHF"))
 
-# defaults plots ---------------------------------
-
 test_that(
   desc = "defaults plots",
   code = {
@@ -73,5 +71,23 @@ test_that(
         pairwise.comparisons = FALSE
       )
     )
+  }
+)
+
+test_that(
+  desc = "grouped plots work",
+  code = {
+    expect_snapshot_error(grouped_ggbetweenstats(bugs_long, x = condition, y = desire))
+
+    set.seed(123)
+    expect_doppelganger(
+      title = "grouped plots - default",
+      fig =  grouped_ggwithinstats(
+      data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+      x                = condition,
+      y                = desire,
+      grouping.var     = gender,
+      type             = "np"
+    ))
   }
 )

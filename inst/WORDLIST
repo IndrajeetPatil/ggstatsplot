@@ -4,7 +4,6 @@ Aalen's
 Acknowledgements
 Algina
 Cikara
-Codecov
 Conover
 Cramer'V
 Cramer's
@@ -48,7 +47,6 @@ Oneway
 Otterstetter
 PMCMRplus
 Penfield
-Quartile
 README
 RStudio
 Rafferty
@@ -77,6 +75,7 @@ binwidth
 biserial
 boxviolin
 chartjunk
+codecov
 codesize
 colorbar
 correlalogram
