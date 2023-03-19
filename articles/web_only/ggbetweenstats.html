@@ -106,7 +106,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2023-02-15</h4>
+            <h4 data-toc-skip class="date">2023-03-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggbetweenstats.Rmd" class="external-link"><code>vignettes/web_only/ggbetweenstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggbetweenstats.Rmd</code></div>
@@ -116,8 +116,7 @@ Patil</h4>
     
 <hr>
 <p>You can cite this package/vignette as:</p>
-<pre><code>
-To cite package 'ggstatsplot' in publications use:
+<pre><code>To cite package 'ggstatsplot' in publications use:
 
   Patil, I. (2021). Visualizations with statistical details: The
   'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
@@ -149,7 +148,7 @@ how to use this function in this vignette.</p>
 <ul>
 <li><p>to check if a continuous variable differs across multiple
 groups/conditions</p></li>
-<li><p>to compare distributions visually and check for outliers</p></li>
+<li><p>to compare distributions visually</p></li>
 </ul>
 <p><strong>Note</strong>: This vignette uses the pipe operator
 (<code>%&gt;%</code>), if you are not familiar with this operator, here
@@ -166,7 +165,7 @@ have a look at the data-</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1,704</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ <span style="font-weight: bold;">country  </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span></span>
@@ -185,7 +184,7 @@ continents is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
+<span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">continent</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">lifeExp</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -212,9 +211,8 @@ log_{e}(BF_{10})\)</span>).</p>
 <p>We can make the output much more aesthetically pleasing as well as
 informative by making use of the many optional parameters in
 <code>ggbetweenstats</code>. We’ll add a title and caption, better
-<code>x</code> and <code>y</code> axis labels, and tag and label the
-outliers in the data. We can and will change the overall theme as well
-as the color palette in use.</p>
+<code>x</code> and <code>y</code> axis labels. We can and will change
+the overall theme as well as the color palette in use.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
@@ -224,10 +222,6 @@ as the color palette in use.</p>
 <span>  xlab <span class="op">=</span> <span class="st">"Continent"</span>, <span class="co">## label for the x-axis</span></span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>, <span class="co">## label for the y-axis</span></span>
 <span>  plot.type <span class="op">=</span> <span class="st">"boxviolin"</span>, <span class="co">## type of plot</span></span>
-<span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether outliers should be flagged</span></span>
-<span>  outlier.coef <span class="op">=</span> <span class="fl">1.5</span>, <span class="co">## coefficient for Tukey's rule</span></span>
-<span>  outlier.label <span class="op">=</span> <span class="va">country</span>, <span class="co">## label to attach to outlier values</span></span>
-<span>  outlier.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>, <span class="co">## outlier point label color</span></span>
 <span>  <span class="co">## turn off messages</span></span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray</a></span><span class="op">(</span><span class="op">)</span>, <span class="co">## a different theme</span></span>
 <span>  package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span></span>
@@ -270,7 +264,7 @@ to make each plot have different colors or themes.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## selecting subset of the data</span></span>
-<span><span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span></span>
+<span><span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## parametric t-test and box plot</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
@@ -362,7 +356,7 @@ different studies, etc.</p>
 differences between every pair of continents.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## select part of the dataset and use it for plotting</span></span>
-<span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span><span class="op">)</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span></span>
 <span>    <span class="co">## arguments relevant for ggbetweenstats</span></span>
@@ -376,8 +370,6 @@ differences between every pair of continents.</p>
 <span>    <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
 <span>    package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
 <span>    palette <span class="op">=</span> <span class="st">"default_jco"</span>,</span>
-<span>    outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>    outlier.label <span class="op">=</span> <span class="va">country</span>,</span>
 <span>    <span class="co">## arguments relevant for combine_plots</span></span>
 <span>    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,</span>
 <span>    plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>

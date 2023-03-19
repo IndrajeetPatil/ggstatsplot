@@ -106,7 +106,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2023-02-15</h4>
+            <h4 data-toc-skip class="date">2023-03-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggwithinstats.Rmd" class="external-link"><code>vignettes/web_only/ggwithinstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggwithinstats.Rmd</code></div>
@@ -116,8 +116,7 @@ Patil</h4>
     
 <hr>
 <p>You can cite this package/vignette as:</p>
-<pre><code>
-To cite package 'ggstatsplot' in publications use:
+<pre><code>To cite package 'ggstatsplot' in publications use:
 
   Patil, I. (2021). Visualizations with statistical details: The
   'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
@@ -149,7 +148,7 @@ how to use this function in this vignette.</p>
 <ul>
 <li><p>to check if a continuous variable differs across multiple
 groups/conditions</p></li>
-<li><p>to compare distributions visually and check for outliers</p></li>
+<li><p>to compare distributions visually</p></li>
 </ul>
 <p><strong>Note</strong>: This vignette uses the pipe operator
 (<code>%&gt;%</code>), if you are not familiar with this operator, here
@@ -200,9 +199,8 @@ log_{e}(BF_{10})\)</span>).</p>
 <p>We can make the output much more aesthetically pleasing as well as
 informative by making use of the many optional parameters in
 <code>ggwithinstats</code>. We’ll add a title and caption, better
-<code>x</code> and <code>y</code> axis labels, and tag and label the
-outliers in the data. We can and will change the overall theme as well
-as the color palette in use.</p>
+<code>x</code> and <code>y</code> axis labels. We can and will change
+the overall theme as well as the color palette in use.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
@@ -214,10 +212,6 @@ as the color palette in use.</p>
 <span>  effsize.type <span class="op">=</span> <span class="st">"biased"</span>, <span class="co">## type of effect size</span></span>
 <span>  sphericity.correction <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co">## don't display sphericity corrected dfs and p-values</span></span>
 <span>  pairwise.comparisons <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## display pairwise comparisons</span></span>
-<span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether outliers should be flagged</span></span>
-<span>  outlier.coef <span class="op">=</span> <span class="fl">1.5</span>, <span class="co">## coefficient for Tukey's rule</span></span>
-<span>  outlier.label <span class="op">=</span> <span class="va">region</span>, <span class="co">## label to attach to outlier values</span></span>
-<span>  outlier.label.color <span class="op">=</span> <span class="st">"red"</span>, <span class="co">## outlier point label color</span></span>
 <span>  mean.plotting <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co">## whether the mean is to be displayed</span></span>
 <span>  mean.color <span class="op">=</span> <span class="st">"darkblue"</span>, <span class="co">## color for mean</span></span>
 <span>  package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span></span>
@@ -349,8 +343,6 @@ every pair of continents.</p>
 <span>  <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
 <span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"default_jco"</span>,</span>
-<span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  outlier.label <span class="op">=</span> <span class="va">education</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  <span class="co">## arguments relevant for combine_plots</span></span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span><span class="op">)</span>,</span>

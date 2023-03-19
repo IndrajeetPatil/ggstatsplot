@@ -121,9 +121,9 @@
 </h2>
 <table class="table">
 <colgroup>
-<col width="33%">
+<col width="32%">
 <col width="31%">
-<col width="35%">
+<col width="36%">
 </colgroup>
 <thead><tr class="header">
 <th>Status</th>
@@ -134,7 +134,7 @@
 <tr class="odd">
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue" alt="Total downloads"></a></td>
-<td><a href="https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg" alt="Codecov"></a></td>
+<td><a href="https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8" alt="codecov"></a></td>
 </tr>
 <tr class="even">
 <td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
@@ -466,9 +466,6 @@
 <span>  x                <span class="op">=</span> <span class="va">mpaa</span>,</span>
 <span>  y                <span class="op">=</span> <span class="va">length</span>,</span>
 <span>  grouping.var     <span class="op">=</span> <span class="va">genre</span>,</span>
-<span>  outlier.tagging  <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  outlier.label    <span class="op">=</span> <span class="va">title</span>,</span>
-<span>  outlier.coef     <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  ggsignif.args    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>textsize <span class="op">=</span> <span class="fl">4</span>, tip_length <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
 <span>  p.adjust.method  <span class="op">=</span> <span class="st">"bonferroni"</span>,</span>
 <span>  palette          <span class="op">=</span> <span class="st">"default_jama"</span>,</span>
@@ -477,7 +474,6 @@
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
-<p>Note here that the function can be used to tag outliers!</p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
 </div>
@@ -511,9 +507,7 @@
 <span>  type            <span class="op">=</span> <span class="st">"np"</span>,</span>
 <span>  xlab            <span class="op">=</span> <span class="st">"Condition"</span>,</span>
 <span>  ylab            <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>,</span>
-<span>  grouping.var    <span class="op">=</span> <span class="va">region</span>,</span>
-<span>  outlier.tagging <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  outlier.label   <span class="op">=</span> <span class="va">education</span></span>
+<span>  grouping.var    <span class="op">=</span> <span class="va">region</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats2-1.png" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html</a></p>
@@ -568,7 +562,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span></span>
-<span>  data       <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gapminder/man/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>,</span>
+<span>  data       <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">continent</span> <span class="op">==</span> <span class="st">"Asia"</span><span class="op">)</span>,</span>
 <span>  y          <span class="op">=</span> <span class="va">country</span>,</span>
 <span>  x          <span class="op">=</span> <span class="va">lifeExp</span>,</span>
 <span>  test.value <span class="op">=</span> <span class="fl">55</span>,</span>
