@@ -218,7 +218,6 @@ ggbetweenstats <- function(data,
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
-    # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
@@ -231,13 +230,7 @@ ggbetweenstats <- function(data,
     exec(geom_point, aes(color = {{ x }}), !!!point.args)
 
   if (plot.type %in% c("box", "boxviolin")) {
-    suppressWarnings(plot <- plot +
-      exec(
-        .fn   = geom_boxplot,
-        width = 0.3,
-        alpha = 0.2,
-        geom  = "boxplot"
-      ))
+    suppressWarnings(plot <- plot + exec(geom_boxplot, width = 0.3, alpha = 0.2))
   }
 
   if (plot.type %in% c("violin", "boxviolin")) {

@@ -275,7 +275,7 @@ references:
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
   year: '2023'
-  version: '>= 0.19.0'
+  version: '>= 0.19.1'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -699,7 +699,7 @@ references:
     given-names: Hadley
     email: hadley@rstudio.com
   year: '2023'
-  version: '>= 3.1.6'
+  version: '>= 3.1.7'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'

@@ -38,7 +38,7 @@ Imports:
     ggrepel (>= 0.9.3),
     ggsignif,
     glue,
-    insight (>= 0.19.0),
+    insight (>= 0.19.1),
     paletteer,
     parameters (>= 0.20.1),
     patchwork,
@@ -66,12 +66,11 @@ Suggests:
     ragg,
     rmarkdown,
     survival,
-    testthat (>= 3.1.6),
+    testthat (>= 3.1.7),
     tibble,
     vdiffr (>= 1.0.5),
     WRS2
 Remotes:
-    easystats/insight,
     easystats/bayestestR
 VignetteBuilder: 
     knitr

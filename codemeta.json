@@ -257,7 +257,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.6",
+      "version": ">= 3.1.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -404,14 +404,14 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.0",
+      "version": ">= 0.19.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/easystats/insight"
+      "sameAs": "https://CRAN.R-project.org/package=insight"
     },
     "10": {
       "@type": "SoftwareApplication",
@@ -525,7 +525,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9012.535KB",
+  "fileSize": "9255.649KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -557,7 +557,7 @@
   ],
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/main/README.md",
-  "contIntegration": "https://codecov.io/gh/IndrajeetPatil/ggstatsplot",
+  "contIntegration": "https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot",
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html", "https://www.repostatus.org/##active"],
   "keywords": ["ggplot-extension", "dataviz", "r", "statistical-analysis", "datascience", "bayes-factors", "regression-models", "effect-size", "non-parametric-statistics", "hypothesis-testing"]
 }

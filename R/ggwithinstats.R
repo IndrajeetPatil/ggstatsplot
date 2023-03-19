@@ -145,7 +145,6 @@ ggwithinstats <- function(data,
     subtitle    <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
     # styler: on
 
-    # preparing the Bayes factor message
     if (type == "parametric" && bf.message) {
       # styler: off
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")

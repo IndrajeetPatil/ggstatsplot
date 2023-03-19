@@ -5,6 +5,12 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+BREAKING CHANGES
+
+- The outlier tagging functionality in `ggbetweenstats()` and `ggwithinstats()`
+  has been removed. It was too crude to be useful or reliable, and users should
+  instead prefer more informative methods (e.g. `performance::check_outliers()`).
+
 # ggstatsplot 0.11.0
 
 BREAKING CHANGES
