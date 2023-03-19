@@ -12,7 +12,6 @@ utils::globalVariables(
     "estimate",
     "group1",
     "group2",
-    "isanoutlier",
     "label",
     "median",
     "p.value",

@@ -3,10 +3,10 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                  |
+| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                       |
 
 ## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -197,9 +197,6 @@ grouped_ggbetweenstats(
   x                = mpaa,
   y                = length,
   grouping.var     = genre,
-  outlier.tagging  = TRUE,
-  outlier.label    = title,
-  outlier.coef     = 2,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
   p.adjust.method  = "bonferroni",
   palette          = "default_jama",
@@ -210,8 +207,6 @@ grouped_ggbetweenstats(
 ```
 
 <img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
-
-Note here that the function can be used to tag outliers!
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -268,9 +263,7 @@ grouped_ggwithinstats(
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
-  grouping.var    = region,
-  outlier.tagging = TRUE,
-  outlier.label   = education
+  grouping.var    = region
 )
 ```
 

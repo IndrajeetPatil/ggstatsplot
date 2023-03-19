@@ -68,16 +68,6 @@ the plot will be returned.}
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. This argument is relevant only
 if \code{bf.message = FALSE}.}
-    \item{\code{outlier.tagging}}{Decides whether outliers should be tagged (Default:
-\code{FALSE}).}
-    \item{\code{outlier.label}}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
-    \item{\code{outlier.label.args}}{A list of additional aesthetic arguments to be
-passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
-    \item{\code{outlier.coef}}{Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
-\code{1.5}).}
     \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the

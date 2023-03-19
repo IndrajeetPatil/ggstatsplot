@@ -7,6 +7,4 @@
 | centrality measure point      | `ggplot2::geom_point()`       | `centrality.point.args`           |
 | centrality measure point path | `ggplot2::geom_path()`        | `centrality.path.args`            |
 | centrality measure label      | `ggrepel::geom_label_repel()` | `centrality.label.args`           |
-| outlier point                 | `ggplot2::stat_boxplot()`     | `NA`                              |
-| outlier label                 | `ggrepel::geom_label_repel()` | `outlier.label.args`              |
 | pairwise comparisons          | `ggsignif::geom_signif()`     | `ggsignif.args`                   |
