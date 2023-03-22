@@ -1,0 +1,74 @@
+# Run tests in random order
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: check-random-test-order
+
+jobs:
+  check-random-test-order:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "devel"
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          pak-version: devel
+          extra-packages: |
+            local::.
+
+      - name: Run Tests in Random Order
+        run: |
+          options(crayon.enabled = TRUE)
+          withr::local_envvar(TESTTHAT_PARALLEL = "FALSE")
+          library(cli)
+          library(glue)
+          library(testthat)
+          pkgload::load_all(".")
+          test_script_paths <- testthat::find_test_scripts("tests/testthat")
+          set.seed(123)
+          randomized_test_script_paths <- sample(test_script_paths)
+          any_test_failures <- FALSE
+          any_test_errors <- FALSE
+          test_path <- function(path) {
+            report <- as.data.frame(testthat::test_file(path, reporter = "silent"))
+            has_test_failures <- any(report$failed == 1L)
+            has_test_errors <- any(report$error == 1L)
+            if (has_test_failures) {
+              cli_alert_danger(glue("Tests in `{path}` are failing."))
+              any_test_failures <<- TRUE
+            }
+            if (has_test_errors) {
+              cli_alert_danger(glue("There was error while running tests in `{path}`."))
+              any_test_errors <<- TRUE
+            }
+            if (!has_test_failures && !has_test_errors) {
+              cli_alert_success(glue("All tests passing in `{path}`."))
+            }
+          }
+          cli_rule()
+          cli_inform("Running tests in random order:")
+          cli_rule()
+          purrr::walk(randomized_test_script_paths, test_path)
+          cli_rule()
+          if (any_test_failures) {
+            cli_abort("Tests in some files are failing. Check the log.")
+          }
+          if (any_test_errors) {
+            cli_abort("There was error while running tests in some files. Check the log.")
+          }
+          if (!any_test_failures && !any_test_errors) {
+            cli_alert_success("Tests from all files are passing!")
+          }
+          cli_rule()
+        shell: Rscript {0}
