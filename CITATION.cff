@@ -77,7 +77,7 @@ references:
   abstract: 'correlation: Methods for Correlation Analysis'
   notes: Imports
   url: https://easystats.github.io/correlation/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=correlation
   authors:
   - family-names: Makowski
     given-names: Dominique
@@ -106,7 +106,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=datawizard
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -158,7 +158,7 @@ references:
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2023'
-  version: '>= 1.1.0'
+  version: '>= 1.1.1'
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -291,7 +291,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=parameters
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -317,7 +317,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.20.1'
+  version: '>= 0.20.2'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -335,7 +335,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=performance
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -622,20 +622,6 @@ references:
     given-names: William
     email: revelle@northwestern.edu
     orcid: https://orcid.org/0000-0003-4880-9610
-  year: '2023'
-- type: software
-  title: ragg
-  abstract: 'ragg: Graphic Devices Based on AGG'
-  notes: Suggests
-  url: https://ragg.r-lib.org
-  repository: https://CRAN.R-project.org/package=ragg
-  authors:
-  - family-names: Pedersen
-    given-names: Thomas Lin
-    email: thomas.pedersen@posit.co
-    orcid: https://orcid.org/0000-0002-5147-4711
-  - family-names: Shemanarev
-    given-names: Maxim
   year: '2023'
 - type: software
   title: rmarkdown
