@@ -1,13 +1,9 @@
 # R CMD Check is run with the development versions of hard dependencies.
 on:
-  push:
-    branches: [main master]
-  pull_request:
-    branches: [main master]
-  # schedule:
-  #   # * is a special character in YAML so you have to quote this string
-  #   # Trigger once a week at 00:00 on Sunday
-  #   - cron: "0 0 * * SUN"
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # Trigger once a week at 00:00 on Sunday
+    - cron: "0 0 * * SUN"
 
 name: R-CMD-check-devel
 
