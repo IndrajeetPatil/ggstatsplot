@@ -219,18 +219,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "ragg",
-      "name": "ragg",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ragg"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -341,7 +329,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 1.1.0",
+      "version": ">= 1.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -429,7 +417,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.20.1",
+      "version": ">= 0.20.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -525,7 +513,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9255.649KB",
+  "fileSize": "9255.557KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

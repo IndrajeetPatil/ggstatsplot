@@ -7,7 +7,6 @@ options(
   pillar.min_chars  = Inf
 )
 
-device <- ifelse(requireNamespace("ragg", quietly = TRUE), "ragg_png", "png")
 knitr::opts_chunk$set(
   collapse  = TRUE,
   comment   = "#>",
@@ -15,7 +14,7 @@ knitr::opts_chunk$set(
   message   = FALSE,
   out.width = "100%",
   dpi       = 300,
-  dev       = device
+  dev       = "png"
 )
 
 # local library

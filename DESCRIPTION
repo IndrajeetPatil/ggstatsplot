@@ -33,14 +33,14 @@ Depends:
 Imports:
     correlation (>= 0.8.3),
     datawizard (>= 0.6.5),
-    dplyr (>= 1.1.0),
+    dplyr (>= 1.1.1),
     ggplot2 (>= 3.4.1),
     ggrepel (>= 0.9.3),
     ggsignif,
     glue,
     insight (>= 0.19.1),
     paletteer,
-    parameters (>= 0.20.1),
+    parameters (>= 0.20.2),
     patchwork,
     performance (>= 0.10.2),
     purrr (>= 1.0.1),
@@ -63,15 +63,12 @@ Suggests:
     metaplus,
     PMCMRplus,
     psych,
-    ragg,
     rmarkdown,
     survival,
     testthat (>= 3.1.7),
     tibble,
     vdiffr (>= 1.0.5),
     WRS2
-Remotes:
-    easystats/bayestestR
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
