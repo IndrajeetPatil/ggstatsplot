@@ -34,10 +34,6 @@ ggwithinstats(
   point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
   point.path = TRUE,
   point.path.args = list(alpha = 0.5, linetype = "dashed"),
-  outlier.tagging = FALSE,
-  outlier.label = NULL,
-  outlier.coef = 1.5,
-  outlier.label.args = list(size = 3),
   boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
@@ -190,20 +186,6 @@ there are two groups (i.e., in case of a \emph{t}-test). In case of large number
 of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
 
-\item{outlier.tagging}{Decides whether outliers should be tagged (Default:
-\code{FALSE}).}
-
-\item{outlier.label}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
-
-\item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
-\code{1.5}).}
-
-\item{outlier.label.args}{A list of additional aesthetic arguments to be
-passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
-
 \item{boxplot.args}{A list of additional aesthetic arguments passed on to
 \code{geom_boxplot}.}
 
@@ -254,8 +236,6 @@ For details, see:
    centrality measure point \tab \code{ggplot2::geom_point()} \tab \code{centrality.point.args} \cr
    centrality measure point path \tab \code{ggplot2::geom_path()} \tab \code{centrality.path.args} \cr
    centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
-   outlier point \tab \code{ggplot2::stat_boxplot()} \tab \code{NA} \cr
-   outlier label \tab \code{ggrepel::geom_label_repel()} \tab \code{outlier.label.args} \cr
    pairwise comparisons \tab \code{ggsignif::geom_signif()} \tab \code{ggsignif.args} \cr
 }
 }
@@ -458,9 +438,7 @@ ggwithinstats(
   data            = bugs_long,
   x               = condition,
   y               = desire,
-  type            = "robust",
-  outlier.tagging = TRUE,
-  outlier.label   = region
+  type            = "robust"
 )
 \dontshow{\}) # examplesIf}
 }

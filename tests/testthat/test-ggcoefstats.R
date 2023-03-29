@@ -59,6 +59,7 @@ df_meta <- tibble(
 )
 
 test_that("meta-analysis works", {
+  skip_on_cran()
   skip_if_not_installed("metafor")
   skip_on_os(c("windows", "linux", "solaris"))
 
@@ -174,6 +175,7 @@ test_that(
 test_that(
   desc = "meta analysis subtitle and caption",
   code = {
+    skip_on_cran()
     skip_if_not_installed("metafor")
     skip_if_not_installed("metaBMA")
     skip_if_not_installed("metaplus")

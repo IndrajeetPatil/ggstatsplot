@@ -54,7 +54,7 @@ test_that(
     expect_doppelganger(
       title = "checking paired two-way table - with NA",
       fig = ggpiestats(
-        data = survey_data_NA,
+        survey_data_NA,
         x = `1st survey`,
         y = `2nd survey`,
         counts = Counts,
@@ -73,7 +73,8 @@ test_that(
     expect_doppelganger(
       title = "checking percentage labels",
       fig = ggpiestats(
-        data = mtcars, x = cyl, label = "percentage",
+        mtcars,
+        x = cyl, label = "percentage",
         results.subtitle = FALSE
       )
     )
@@ -82,7 +83,8 @@ test_that(
     expect_doppelganger(
       title = "checking count labels",
       fig = ggpiestats(
-        data = mtcars, x = cyl, label = "counts",
+        mtcars,
+        x = cyl, label = "counts",
         results.subtitle = FALSE
       )
     )
@@ -91,7 +93,8 @@ test_that(
     expect_doppelganger(
       title = "checking percentage and count labels",
       fig = ggpiestats(
-        data = mtcars, x = cyl, label = "both",
+        mtcars,
+        x = cyl, label = "both",
         results.subtitle = FALSE
       )
     )
@@ -101,7 +104,7 @@ test_that(
       title = "changing aesthetics works",
       fig = suppressWarnings(
         ggpiestats(
-          data = mtcars,
+          mtcars,
           x = am,
           y = cyl,
           perc.k = 2L,
@@ -116,45 +119,11 @@ test_that(
       )
     )
 
-    # data
-    df <- structure(
-      list(
-        epoch = structure(
-          c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L),
-          .Label = c("Before", "After"),
-          class = "factor"
-        ),
-        mode = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
-          .Label = c("A", "P", "C", "T"), class = "factor"
-        ),
-        counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
-        perc = c(
-          65.1192181312663,
-          88.9586317297161,
-          16.1681691802174,
-          8.26522874715646,
-          3.50282247872609,
-          1.94624652455978,
-          15.2097902097902,
-          0.829892998567697
-        ),
-        label = c(
-          "65%", "89%", "16%", "8%",
-          "4%", "2%", "15%", "1%"
-        )
-      ),
-      row.names = c(NA, -8L),
-      class = c("tbl_df", "tbl", "data.frame")
-    )
-
     set.seed(123)
     expect_doppelganger(
       title = "label repelling works",
       fig = ggpiestats(
-        df,
-        mode,
-        epoch,
-        counts = counts,
+        mtcars, am, vs,
         label.repel = TRUE,
         results.subtitle = FALSE
       )
@@ -192,7 +161,7 @@ test_that(
   code = {
     set.seed(123)
     p_sub <- ggpiestats(
-      data = ggplot2::msleep,
+      ggplot2::msleep,
       x = conservation,
       y = vore,
       k = 4L
@@ -201,7 +170,7 @@ test_that(
 
     set.seed(123)
     stats_output <- suppressWarnings(contingency_table(
-      data = ggplot2::msleep,
+      ggplot2::msleep,
       x = conservation,
       y = vore,
       k = 4L
@@ -227,7 +196,7 @@ test_that(
     expect_doppelganger(
       title = "grouped_ggpiestats with one-way table",
       fig = grouped_ggpiestats(
-        data = mtcars,
+        mtcars,
         grouping.var = am,
         x = cyl
       )
@@ -246,7 +215,7 @@ test_that(
     expect_doppelganger(
       title = "grouped_ggpiestats with two-way table",
       fig = grouped_ggpiestats(
-        data = mpg_short,
+        mpg_short,
         x = cyl,
         y = class,
         grouping.var = drv,
@@ -272,7 +241,7 @@ test_that(
     expect_doppelganger(
       title = "common legend when levels are dropped",
       fig = grouped_ggpiestats(
-        data = df,
+        df,
         x = measurement,
         y = flag,
         grouping.var = dataset,

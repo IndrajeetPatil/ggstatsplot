@@ -142,11 +142,6 @@ Let's keep building the list of arguments, `.l`. First is `data = year_list`,
 the `x` and `y` axes are constant in all three plots so we pass the variable
 name as a string `x = "continent"`.
 
-Same with the label we'll use for outliers where needed. For demonstration
-purposes let's assume we want the outliers on each plot to be a different color.
-Not actually recommending it just demonstrating what's possible. The rest of the
-code shows you a wide variety of possibilities and we won't catalog them here.
-
 ```{r}
 #| label = "purrr_ggbetweenstats2",
 #| fig.height = 10,
@@ -161,13 +156,6 @@ plot_list <- purrr::pmap(
     data = year_list,
     x = "continent",
     y = "lifeExp",
-    outlier.tagging = TRUE,
-    outlier.label = "country",
-    outlier.label.args = list(
-      list(size = 3, color = "#56B4E9"),
-      list(size = 2.5, color = "#009E73"),
-      list(size = 3.5, color = "#F0E442")
-    ),
     xlab = "Continent",
     ylab = "Life expectancy",
     title = list(
@@ -242,15 +230,6 @@ plot_list <- purrr::pmap(
     data = cue_list,
     x = "flank",
     y = "rt",
-    outlier.tagging = TRUE,
-    outlier.label = "group",
-    outlier.coef = list(2, 2, 2.5, 3),
-    outlier.label.args = list(
-      list(size = 3, color = "#56B4E9"),
-      list(size = 2.5, color = "#009E73"),
-      list(size = 4, color = "#F0E442"),
-      list(size = 2, color = "red")
-    ),
     xlab = "Flank",
     ylab = "Response time",
     title = list(

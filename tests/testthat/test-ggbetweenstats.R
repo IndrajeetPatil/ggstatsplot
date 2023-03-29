@@ -8,25 +8,6 @@ test_that(
   code = {
     set.seed(123)
     expect_doppelganger(
-      title = "outlier tagging works",
-      fig = ggbetweenstats(
-        data = ggplot2::msleep,
-        x = vore,
-        y = brainwt,
-        title = "mammalian sleep",
-        caption = "From ggplot2 package",
-        xlab = "vore",
-        ylab = "brain weight",
-        pairwise.comparisons = FALSE,
-        results.subtitle = FALSE,
-        outlier.tagging = TRUE,
-        outlier.label = name,
-        outlier.label.args = list(color = "darkgreen")
-      )
-    )
-
-    set.seed(123)
-    expect_doppelganger(
       title = "modification with ggplot2 works as expected",
       fig = ggbetweenstats(
         data = tibble::as_tibble(mtcars, rownames = "name") %>% dplyr::rename(n = wt),
@@ -73,7 +54,6 @@ test_that(
         x = supp,
         y = len,
         plot.type = "box",
-        outlier.tagging = TRUE,
         results.subtitle = FALSE,
         centrality.point.args = list(size = 5, color = "darkgreen"),
         centrality.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
@@ -88,7 +68,6 @@ test_that(
         x = supp,
         y = len,
         plot.type = "violin",
-        outlier.tagging = TRUE,
         results.subtitle = FALSE
       )
     )
@@ -149,9 +128,6 @@ test_that(
         x = genre,
         y = rating,
         grouping.var = mpaa,
-        outlier.tagging = TRUE,
-        outlier.label = title,
-        outlier.coef = 5,
         ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
       )
     )

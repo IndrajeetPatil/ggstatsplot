@@ -241,38 +241,6 @@
     ggplot.component
 }
 
-
-#' @title Adding a column to data frame describing outlier status
-#' @name .outlier_df
-#'
-#' @inheritParams ggbetweenstats
-#' @param ... Additional arguments.
-#'
-#' @return The data frame entered as `data` argument is returned with two
-#'   additional columns: `isanoutlier` and `outlier` denoting which observation
-#'   are outliers and their corresponding labels.
-#'
-#' @examples
-#' # adding column for outlier and a label for that outlier
-#' ggstatsplot:::.outlier_df(
-#'   data          = morley,
-#'   x             = Expt,
-#'   y             = Speed,
-#'   outlier.label = Run,
-#'   outlier.coef  = 2
-#' ) %>%
-#'   arrange(outlier)
-#' @noRd
-.outlier_df <- function(data, x, y, outlier.label, outlier.coef = 1.5, ...) {
-  group_by(data, {{ x }}) %>%
-    mutate(
-      isanoutlier = (.) %$% as.vector(performance::check_outliers({{ y }}, method = "iqr", threshold = list("iqr" = outlier.coef))),
-      outlier = ifelse(isanoutlier, {{ outlier.label }}, NA)
-    ) %>%
-    ungroup()
-}
-
-
 #' @title Switch expression making function
 #' @noRd
 .f_switch <- function(test) ifelse(test == "t", two_sample_test, oneway_anova)

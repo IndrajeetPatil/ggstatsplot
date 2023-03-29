@@ -32,12 +32,6 @@ ggbetweenstats(
   centrality.point.args = list(size = 5, color = "darkred"),
   centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4,
     min.segment.length = 0),
-  outlier.tagging = FALSE,
-  outlier.label = NULL,
-  outlier.coef = 1.5,
-  outlier.shape = 19,
-  outlier.color = "black",
-  outlier.label.args = list(size = 3),
   point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha =
     0.4, size = 3, stroke = 0, na.rm = TRUE),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
@@ -186,27 +180,6 @@ Just as \code{type} argument, abbreviations are also accepted.}
 arguments to be passed to \code{geom_point} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
-\item{outlier.tagging}{Decides whether outliers should be tagged (Default:
-\code{FALSE}).}
-
-\item{outlier.label}{Label to put on the outliers that have been tagged. This
-\strong{can't} be the same as \code{x} argument.}
-
-\item{outlier.coef}{Coefficient for outlier detection using Tukey's method.
-With Tukey's method, outliers are below (1st Quartile) or above (3rd
-Quartile) \code{outlier.coef} times the Inter-Quartile Range (IQR) (Default:
-\code{1.5}).}
-
-\item{outlier.shape}{Hiding the outliers can be achieved by setting
-\code{outlier.shape = NA}. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the \code{y}-axis will be
-the same with outliers shown and outliers hidden.}
-
-\item{outlier.color}{Default aesthetics for outliers (Default: \code{"black"}).}
-
-\item{outlier.label.args}{A list of additional aesthetic arguments to be
-passed to \code{ggrepel::geom_label_repel} for outlier label plotting.}
-
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{geom_point} displaying the raw data.}
 
@@ -255,8 +228,6 @@ For details, see:
    density plot \tab \code{ggplot2::geom_violin()} \tab \code{violin.args} \cr
    centrality measure point \tab \code{ggplot2::geom_point()} \tab \code{centrality.point.args} \cr
    centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
-   outlier point \tab \code{ggplot2::stat_boxplot()} \tab \code{NA} \cr
-   outlier label \tab \code{ggrepel::geom_label_repel()} \tab \code{outlier.label.args} \cr
    pairwise comparisons \tab \code{ggsignif::geom_signif()} \tab \code{ggsignif.args} \cr
 }
 }
@@ -455,9 +426,7 @@ ggbetweenstats(
   y               = Speed,
   type            = "robust",
   xlab            = "The experiment number",
-  ylab            = "Speed-of-light measurement",
-  outlier.tagging = TRUE,
-  outlier.label   = Run
+  ylab            = "Speed-of-light measurement"
 )
 \dontshow{\}) # examplesIf}
 }

@@ -5,11 +5,11 @@ skip_if_not_installed("WRS2")
 
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30L, condition %in% c("HDLF", "HDHF"))
 
-# defaults plots ---------------------------------
-
 test_that(
   desc = "defaults plots",
   code = {
+    expect_snapshot_error(grouped_ggbetweenstats(bugs_long, x = condition, y = desire))
+
     set.seed(123)
     expect_doppelganger(
       title = "defaults plots - two groups",
@@ -17,9 +17,6 @@ test_that(
         data = data_bugs_2,
         x = condition,
         y = desire,
-        outlier.tagging = TRUE,
-        outlier.label = "region",
-        outlier.coef = 1.5,
         pairwise.comparisons = FALSE,
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
         point.path.args = list(color = "red"),
@@ -36,8 +33,6 @@ test_that(
         data = WRS2::WineTasting,
         x = Wine,
         y = Taste,
-        outlier.tagging = TRUE,
-        outlier.coef = 2.5,
         pairwise.comparisons = FALSE,
         title = "wine tasting data"
       )
@@ -79,38 +74,20 @@ test_that(
   }
 )
 
-# outlier labeling works --------------------------------------------------
-
 test_that(
-  desc = "default plotting as expected",
+  desc = "grouped plots work",
   code = {
-    # expect error when no grouping.var is specified
     expect_snapshot_error(grouped_ggbetweenstats(bugs_long, x = condition, y = desire))
 
-    # outlier tagging is not required
     set.seed(123)
     expect_doppelganger(
-      title = "default plots",
+      title = "grouped plots - default",
       fig = grouped_ggwithinstats(
-        data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-        x = condition,
-        y = desire,
-        grouping.var = gender,
-        results.subtitle = FALSE
-      )
-    )
-
-    set.seed(123)
-    expect_doppelganger(
-      title = "outlier tagging and themes work",
-      fig = grouped_ggwithinstats(
-        data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-        x = condition,
-        y = desire,
-        grouping.var = gender,
-        ggtheme = ggplot2::theme_linedraw(),
-        results.subtitle = FALSE,
-        outlier.tagging = TRUE
+        data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+        x                = condition,
+        y                = desire,
+        grouping.var     = gender,
+        type             = "np"
       )
     )
   }

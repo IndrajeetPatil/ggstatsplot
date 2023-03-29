@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- Fixes tests for changes in dependencies.
+- Maintenance release to catch up with `{ggplot2}` and `{easystats}` updates.
 
 ## revdepcheck results
 

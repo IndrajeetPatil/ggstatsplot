@@ -3,10 +3,10 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![Codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot?branch=main) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                  |
+| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                       |
 
 ## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -197,9 +197,6 @@ grouped_ggbetweenstats(
   x                = mpaa,
   y                = length,
   grouping.var     = genre,
-  outlier.tagging  = TRUE,
-  outlier.label    = title,
-  outlier.coef     = 2,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
   p.adjust.method  = "bonferroni",
   palette          = "default_jama",
@@ -210,8 +207,6 @@ grouped_ggbetweenstats(
 ```
 
 <img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
-
-Note here that the function can be used to tag outliers!
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -268,9 +263,7 @@ grouped_ggwithinstats(
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
-  grouping.var    = region,
-  outlier.tagging = TRUE,
-  outlier.label   = education
+  grouping.var    = region
 )
 ```
 
@@ -683,126 +676,6 @@ ggcoefstats(mod)
 ✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary
 (AIC and BIC) <br>
 
-##### Supported models
-
-Most of the regression models that are supported in the underlying
-packages are also supported by `ggcoefstats()`.
-
-``` r
-insight::supported_models()
-#>   [1] "aareg"                   "afex_aov"               
-#>   [3] "AKP"                     "Anova.mlm"              
-#>   [5] "anova.rms"               "aov"                    
-#>   [7] "aovlist"                 "Arima"                  
-#>   [9] "averaging"               "bamlss"                 
-#>  [11] "bamlss.frame"            "bayesQR"                
-#>  [13] "bayesx"                  "BBmm"                   
-#>  [15] "BBreg"                   "bcplm"                  
-#>  [17] "betamfx"                 "betaor"                 
-#>  [19] "betareg"                 "BFBayesFactor"          
-#>  [21] "bfsl"                    "BGGM"                   
-#>  [23] "bife"                    "bifeAPEs"               
-#>  [25] "bigglm"                  "biglm"                  
-#>  [27] "blavaan"                 "blrm"                   
-#>  [29] "bracl"                   "brglm"                  
-#>  [31] "brmsfit"                 "brmultinom"             
-#>  [33] "btergm"                  "censReg"                
-#>  [35] "cgam"                    "cgamm"                  
-#>  [37] "cglm"                    "clm"                    
-#>  [39] "clm2"                    "clmm"                   
-#>  [41] "clmm2"                   "clogit"                 
-#>  [43] "coeftest"                "complmrob"              
-#>  [45] "confusionMatrix"         "coxme"                  
-#>  [47] "coxph"                   "coxph.penal"            
-#>  [49] "coxr"                    "cpglm"                  
-#>  [51] "cpglmm"                  "crch"                   
-#>  [53] "crq"                     "crqs"                   
-#>  [55] "crr"                     "dep.effect"             
-#>  [57] "DirichletRegModel"       "draws"                  
-#>  [59] "drc"                     "eglm"                   
-#>  [61] "elm"                     "epi.2by2"               
-#>  [63] "ergm"                    "feglm"                  
-#>  [65] "feis"                    "felm"                   
-#>  [67] "fitdistr"                "fixest"                 
-#>  [69] "flexsurvreg"             "gam"                    
-#>  [71] "Gam"                     "gamlss"                 
-#>  [73] "gamm"                    "gamm4"                  
-#>  [75] "garch"                   "gbm"                    
-#>  [77] "gee"                     "geeglm"                 
-#>  [79] "glht"                    "glimML"                 
-#>  [81] "glm"                     "Glm"                    
-#>  [83] "glmm"                    "glmmadmb"               
-#>  [85] "glmmPQL"                 "glmmTMB"                
-#>  [87] "glmrob"                  "glmRob"                 
-#>  [89] "glmx"                    "gls"                    
-#>  [91] "gmnl"                    "HLfit"                  
-#>  [93] "htest"                   "hurdle"                 
-#>  [95] "iv_robust"               "ivFixed"                
-#>  [97] "ivprobit"                "ivreg"                  
-#>  [99] "lavaan"                  "lm"                     
-#> [101] "lm_robust"               "lme"                    
-#> [103] "lmerMod"                 "lmerModLmerTest"        
-#> [105] "lmodel2"                 "lmrob"                  
-#> [107] "lmRob"                   "logistf"                
-#> [109] "logitmfx"                "logitor"                
-#> [111] "logitr"                  "LORgee"                 
-#> [113] "lqm"                     "lqmm"                   
-#> [115] "lrm"                     "manova"                 
-#> [117] "MANOVA"                  "marginaleffects"        
-#> [119] "marginaleffects.summary" "margins"                
-#> [121] "maxLik"                  "mblogit"                
-#> [123] "mclogit"                 "mcmc"                   
-#> [125] "mcmc.list"               "MCMCglmm"               
-#> [127] "mcp1"                    "mcp12"                  
-#> [129] "mcp2"                    "med1way"                
-#> [131] "mediate"                 "merMod"                 
-#> [133] "merModList"              "meta_bma"               
-#> [135] "meta_fixed"              "meta_random"            
-#> [137] "metaplus"                "mhurdle"                
-#> [139] "mipo"                    "mira"                   
-#> [141] "mixed"                   "MixMod"                 
-#> [143] "mixor"                   "mjoint"                 
-#> [145] "mle"                     "mle2"                   
-#> [147] "mlm"                     "mlogit"                 
-#> [149] "mmclogit"                "mmlogit"                
-#> [151] "model_fit"               "multinom"               
-#> [153] "mvord"                   "negbinirr"              
-#> [155] "negbinmfx"               "ols"                    
-#> [157] "onesampb"                "orm"                    
-#> [159] "pgmm"                    "plm"                    
-#> [161] "PMCMR"                   "poissonirr"             
-#> [163] "poissonmfx"              "polr"                   
-#> [165] "probitmfx"               "psm"                    
-#> [167] "Rchoice"                 "ridgelm"                
-#> [169] "riskRegression"          "rjags"                  
-#> [171] "rlm"                     "rlmerMod"               
-#> [173] "RM"                      "rma"                    
-#> [175] "rma.uni"                 "robmixglm"              
-#> [177] "robtab"                  "rq"                     
-#> [179] "rqs"                     "rqss"                   
-#> [181] "rvar"                    "Sarlm"                  
-#> [183] "scam"                    "selection"              
-#> [185] "sem"                     "SemiParBIV"             
-#> [187] "semLm"                   "semLme"                 
-#> [189] "slm"                     "speedglm"               
-#> [191] "speedlm"                 "stanfit"                
-#> [193] "stanmvreg"               "stanreg"                
-#> [195] "summary.lm"              "survfit"                
-#> [197] "survreg"                 "svy_vglm"               
-#> [199] "svychisq"                "svyglm"                 
-#> [201] "svyolr"                  "t1way"                  
-#> [203] "tobit"                   "trimcibt"               
-#> [205] "truncreg"                "vgam"                   
-#> [207] "vglm"                    "wbgee"                  
-#> [209] "wblm"                    "wbm"                    
-#> [211] "wmcpAKP"                 "yuen"                   
-#> [213] "yuend"                   "zcpglm"                 
-#> [215] "zeroinfl"                "zerotrunc"
-```
-
-Although not shown here, this function can also be used to carry out
-parametric, robust, and Bayesian random-effects meta-analysis.
-
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
@@ -820,7 +693,7 @@ displayed in `{ggstatsplot}` plots.
 ``` r
 set.seed(123)
 
-p <- ggbetweenstats(mtcars, cyl, mpg) 
+p <- ggbetweenstats(mtcars, cyl, mpg)
 
 # extracting expression present in the subtitle
 extract_subtitle(p)
