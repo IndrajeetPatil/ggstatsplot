@@ -316,7 +316,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.6.5",
+      "version": ">= 0.7.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -342,7 +342,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.4.1",
+      "version": ">= 3.4.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -513,7 +513,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9255.557KB",
+  "fileSize": "9255.892KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

@@ -20,9 +20,7 @@ source("../setup.R")
 ```{r}
 #| label = "suggested_pkgs",
 #| include = FALSE
-pkgs <- c(
-  "ggside"
-)
+pkgs <- "ggside"
 
 successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
 can_evaluate <- all(successfully_loaded)

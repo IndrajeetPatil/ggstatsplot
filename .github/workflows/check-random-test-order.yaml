@@ -36,7 +36,9 @@ jobs:
           library(testthat)
           pkgload::load_all(".")
           test_script_paths <- testthat::find_test_scripts("tests/testthat")
-          set.seed(123)
+          seed <- sample.int(1e6, 1L)
+          cli_inform("Chosen seed for the current test run: {seed}")
+          set.seed(seed)
           randomized_test_script_paths <- sample(test_script_paths)
           any_test_failures <- FALSE
           any_test_errors <- FALSE

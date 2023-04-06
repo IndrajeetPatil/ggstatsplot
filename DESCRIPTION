@@ -32,9 +32,9 @@ Depends:
     R (>= 4.1.0)
 Imports:
     correlation (>= 0.8.3),
-    datawizard (>= 0.6.5),
+    datawizard (>= 0.7.1),
     dplyr (>= 1.1.1),
-    ggplot2 (>= 3.4.1),
+    ggplot2 (>= 3.4.2),
     ggrepel (>= 0.9.3),
     ggsignif,
     glue,
