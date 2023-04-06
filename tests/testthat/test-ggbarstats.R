@@ -184,11 +184,9 @@ test_that(
       k = 4L
     ))$expression[[1L]]
 
-    expect_equal(p_sub, stats_output)
+    expect_identical(p_sub, stats_output)
   }
 )
-
-# grouped_ggbarstats works as expected
 
 test_that(
   desc = "grouped_ggbarstats produces error when grouping variable not provided",

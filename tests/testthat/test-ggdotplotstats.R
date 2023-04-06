@@ -54,7 +54,7 @@ test_that(
         ggplot.component = ggplot2::scale_x_continuous(
           breaks = seq(800, 900, 10),
           sec.axis = ggplot2::dup_axis()
-        ),
+        )
       ))
     )
   }
@@ -87,7 +87,7 @@ test_that(
       extract_subtitle())
 
     set.seed(123)
-    expect_equal(p_sub_ggdot, p_sub_gghist)
+    expect_identical(p_sub_ggdot, p_sub_gghist)
   }
 )
 

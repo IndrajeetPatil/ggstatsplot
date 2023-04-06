@@ -94,7 +94,7 @@ test_that(
       title = "with NAs",
       fig = grouped_ggcorrmat(
         data = dplyr::select(ggplot2::msleep, dplyr::matches("sleep|awake|vore")),
-        grouping.var = vore,
+        grouping.var = vore
       )
     )
   }

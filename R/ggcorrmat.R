@@ -102,7 +102,7 @@ ggcorrmat <- function(data,
   )
 
   # type of correlation and if it is a partial correlation
-  r.method.text <- gsub(" correlation", "", unique(mpc_df$Method))
+  r.method.text <- gsub(" correlation", "", unique(mpc_df$Method), fixed = TRUE)
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
 
   # plot ------------------------------------------

@@ -114,7 +114,7 @@ test_that(
       type = "r"
     )$expression[[1L]]
 
-    expect_equal(p_sub, fun_sub)
+    expect_identical(p_sub, fun_sub)
   }
 )
 
@@ -156,7 +156,7 @@ test_that(
       grouped_ggscatterstats(
         data = iris,
         x = Sepal.Length,
-        y = Petal.Width,
+        y = Petal.Width
       )
     )
   }

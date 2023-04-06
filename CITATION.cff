@@ -100,7 +100,7 @@ references:
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
   year: '2023'
-  version: '>= 0.8.3'
+  version: '>= 0.8.4'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
@@ -317,7 +317,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.20.2'
+  version: '>= 0.20.3'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'

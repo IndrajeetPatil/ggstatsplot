@@ -303,7 +303,7 @@
       "@type": "SoftwareApplication",
       "identifier": "correlation",
       "name": "correlation",
-      "version": ">= 0.8.3",
+      "version": ">= 0.8.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -417,7 +417,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.20.2",
+      "version": ">= 0.20.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -513,7 +513,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9255.892KB",
+  "fileSize": "9259.422KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

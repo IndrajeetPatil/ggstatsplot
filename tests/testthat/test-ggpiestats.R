@@ -176,7 +176,7 @@ test_that(
       k = 4L
     ))$expression[[1L]]
 
-    expect_equal(p_sub, stats_output)
+    expect_identical(p_sub, stats_output)
   }
 )
 
