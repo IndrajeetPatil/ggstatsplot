@@ -230,7 +230,9 @@ ggbetweenstats <- function(data,
     exec(geom_point, aes(color = {{ x }}), !!!point.args)
 
   if (plot.type %in% c("box", "boxviolin")) {
-    suppressWarnings(plot <- plot + exec(geom_boxplot, width = 0.3, alpha = 0.2))
+    suppressWarnings({
+      plot <- plot + exec(geom_boxplot, width = 0.3, alpha = 0.2)
+    })
   }
 
   if (plot.type %in% c("violin", "boxviolin")) {

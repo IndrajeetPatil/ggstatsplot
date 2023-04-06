@@ -172,16 +172,18 @@ ggpiestats <- function(data,
   .fn <- if (label.repel) ggrepel::geom_label_repel else ggplot2::geom_label
 
   # adding label with percentages and/or counts
-  suppressWarnings(suppressMessages(plotPie <- plotPie +
-    exec(
-      .fn,
-      mapping            = aes(label = .label, group = {{ x }}),
-      position           = position_fill(vjust = 0.5),
-      min.segment.length = 0,
-      fill               = "white",
-      alpha              = 1,
-      !!!label.args
-    )))
+  suppressWarnings(suppressMessages({
+    plotPie <- plotPie +
+      exec(
+        .fn,
+        mapping            = aes(label = .label, group = {{ x }}),
+        position           = position_fill(vjust = 0.5),
+        min.segment.length = 0,
+        fill               = "white",
+        alpha              = 1,
+        !!!label.args
+      )
+  }))
 
   # if facet_wrap *is* happening
   if (facet) plotPie <- plotPie + facet_wrap(facets = vars({{ y }}))

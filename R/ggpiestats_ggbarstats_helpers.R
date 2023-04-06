@@ -47,7 +47,7 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
     mutate(
       .label = paste0(
         "list(~chi['gof']^2~", "(", df, ")==", format_value(statistic, k),
-        ", ~italic(p)=='", format_value(p.value, k, ),
+        ", ~italic(p)=='", format_value(p.value, k),
         "', ~italic(n)==", .prettyNum(counts), ")"
       ),
       .p.label = paste0("list(~italic(p)=='", format_value(p.value, k), "')")

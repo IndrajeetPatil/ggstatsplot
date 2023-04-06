@@ -353,12 +353,12 @@ mod6 <- anovaBF(
 mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
 
 # meta-analysis
-t <- c(-.15, 2.39, 2.42, 2.43, -.15, 2.39, 2.42, 2.43)
+t <- c(-0.15, 2.39, 2.42, 2.43, -0.15, 2.39, 2.42, 2.43)
 N <- c(100, 150, 97, 99, 99, 97, 100, 150)
 mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
 
 # proportion test
-mod9 <- proportionBF(y = 15, N = 25, p = .5)
+mod9 <- proportionBF(y = 15, N = 25, p = 0.5)
 
 # list of plots
 combine_plots(

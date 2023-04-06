@@ -100,7 +100,7 @@ test_that(
       y = wt
     )$expression[[1L]]
 
-    expect_equal(as.character(subtitle_exp), as.character(sub))
+    expect_identical(as.character(subtitle_exp), as.character(sub))
   }
 )
 
@@ -128,7 +128,7 @@ test_that(
         x = genre,
         y = rating,
         grouping.var = mpaa,
-        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
+        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1))
       )
     )
   }
