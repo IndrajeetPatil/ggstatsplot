@@ -1,20 +1,22 @@
+library(magrittr)
+
 # clean data leave it in wide format
-movies_wide <- ggplot2movies::movies |>
-  dplyr::select(c(title:votes, mpaa:Short)) |>
-  dplyr::filter(mpaa != "", mpaa != "NC-17") |>
-  dplyr::filter(Short != 1, Documentary != 1) |>
-  dplyr::select(-c(Short, Documentary)) |>
-  tidyr::drop_na() |>
-  dplyr::mutate(budget = budget / 1000000) |>
-  dplyr::mutate(mpaa = factor(mpaa)) |>
-  dplyr::mutate(NumGenre = as.integer(rowSums(select(., Action:Romance)))) |>
+movies_wide <- ggplot2movies::movies %>%
+  dplyr::select(c(title:votes, mpaa:Short)) %>%
+  dplyr::filter(mpaa != "", mpaa != "NC-17") %>%
+  dplyr::filter(Short != 1, Documentary != 1) %>%
+  dplyr::select(-c(Short, Documentary)) %>%
+  tidyr::drop_na() %>%
+  dplyr::mutate(budget = budget / 1000000) %>%
+  dplyr::mutate(mpaa = factor(mpaa)) %>%
+  dplyr::mutate(NumGenre = as.integer(rowSums(dplyr::select(., Action:Romance)))) %>%
   dplyr::filter(NumGenre > 0)
 
 # see the selected data (we have data from 1,579 movies)
 dplyr::glimpse(movies_wide)
 
 # converting to long format
-movies_long <- movies_wide |>
+movies_long <- movies_wide %>%
   dplyr::mutate(
     genre = dplyr::case_when(
       Action == 1 & Comedy == 1 & Animation == 0 ~ "Action Comedy",
@@ -28,10 +30,10 @@ movies_long <- movies_wide |>
       Drama == 1 ~ "Drama",
       Romance == 1 ~ "Romance Drama" # there are only 3 of them
     )
-  ) |>
-  tidyr::drop_na() |>
-  dplyr::mutate(genre = factor(genre)) |>
-  dplyr::select(-c(Action:NumGenre)) |>
+  ) %>%
+  tidyr::drop_na() %>%
+  dplyr::mutate(genre = factor(genre)) %>%
+  dplyr::select(-(Action:NumGenre)) %>%
   dplyr::arrange(desc(rating), title, year)
 
 # see the selected data (we have data from the exact same 1,579 movies)

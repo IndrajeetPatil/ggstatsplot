@@ -204,7 +204,7 @@ test_that(
     ) %>%
       extract_caption())
 
-    expect_equal(subtitle_expr$expression[[1L]], ggcoef_subtitle)
-    expect_equal(caption_expr$expression[[1L]], ggcoef_caption)
+    expect_identical(subtitle_expr$expression[[1L]], ggcoef_subtitle)
+    expect_identical(caption_expr$expression[[1L]], ggcoef_caption)
   }
 )

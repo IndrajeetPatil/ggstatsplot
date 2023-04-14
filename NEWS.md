@@ -1,41 +1,60 @@
-# ggstatsplot 0.11.0.9000
+# ggstatsplot 0.11.1.9000
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
-BREAKING CHANGES
+## BREAKING CHANGES
+
+- To be internally consistent, the `plot.type` argument has been removed from
+  `ggbetweenstats()`, since no such argument exists for `ggwithinstats()`. This
+  argument was also redundant. Since removing a specific geom is straightforward
+  using `*.args` arguments. Examples for these two functions illustrate how.
+
+## NEW FEATURES
+
+- `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments
+  to the underlying geom function.
+
+# ggstatsplot 0.11.1
+
+## BREAKING CHANGES
 
 - The outlier tagging functionality in `ggbetweenstats()` and `ggwithinstats()`
   has been removed. It was too crude to be useful or reliable, and users should
-  instead prefer more informative methods (e.g. `performance::check_outliers()`).
+  instead prefer more informative methods (e.g.
+  `performance::check_outliers()`).
+
+## MINOR CHANGES
+
+- Fix failures due to changes in `{parameters}`.
 
 # ggstatsplot 0.11.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
-- The minimum needed R version is now bumped to `R 4.1` because a crucial 
+- The minimum needed R version is now bumped to `R 4.1` because a crucial
   dependency (`{pbkrtest}`) requires this R version.
 
-MINOR CHANGES
+## MINOR CHANGES
 
 - Maintenance release to catch up with `{ggplot2}` and `{easystats}` updates.
 
 # ggstatsplot 0.10.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
 - The `output` parameter for all functions has been removed. All functions now
   return only the plot, which itself contains all necessary details that were
-  previously extracted using the `output` argument. You can extract all the 
-  necessary details (including expressions containing statistical details) 
-  from a plot using `extract_stats()` function. There are two additional helpers
-  to get expressions: `extract_subtitle()` and `extract_caption()`.
+  previously extracted using the `output` argument. You can extract all the
+  necessary details (including expressions containing statistical details) from
+  a plot using `extract_stats()` function. There are two additional helpers to
+  get expressions: `extract_subtitle()` and `extract_caption()`.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
-- `xfill` and `yfill` arguments for `ggscatterstats()` have been removed. You 
+- `xfill` and `yfill` arguments for `ggscatterstats()` have been removed. You
   can specify all aesthetic modifications for side histograms in scatter plot
   using `xsidehistogram.args` and `ysidehistogram.args` arguments.
 
@@ -43,28 +62,32 @@ MAJOR CHANGES
 
 # ggstatsplot 0.9.5
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
-- Due to changes to the underlying API of `{parameters}`, the `effsize` argument 
+- Due to changes to the underlying API of `{parameters}`, the `effsize` argument
   has been renamed to `effectsize.type`.
 
 - Removes unnecessary re-exports of `{tidyverse}` operators.
 
-MINOR CHANGES
+## MINOR CHANGES
 
 - Fixes tests for changes in dependencies.
 
 # ggstatsplot 0.9.4
 
+## MINOR CHANGES
+
 - Internal housekeeping to adjust to changes in upstream dependencies.
 
 # ggstatsplot 0.9.3
+
+## MINOR CHANGES
 
 - Hot fix release to correct a failing example in CRAN daily checks.
 
 # ggstatsplot 0.9.2
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - The `pairwise_comparions()` function implementation now lives in
     `{statsExpressions}` package, although it will continue to be exported from
@@ -82,26 +105,26 @@ MAJOR CHANGES
 
 # ggstatsplot 0.9.1
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - Moves `{PMCMRplus}` package from Imports to Suggests. So, if, as a user, you
     wish to use pairwise comparisons in `ggbetweenstats()` and
     `ggwithinstats()`, you will need to download this package.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - To keep the documentation maintainable, a number of vignettes have either
     been removed or they are no longer evaluated and only code is reported.
 
 # ggstatsplot 0.9.0
 
-NEW FEATURES
+## NEW FEATURES
 
   - The `pairwise_comparisons()` function for carrying out one-way pairwise
     comparisons has now moved in `{ggstatsplot}` from `{pairwiseComparisons}`
     package.
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - A number of effect size estimates and their confidence intervals have
     changed due to respective changes made in `{effectsize}` package version
@@ -111,7 +134,7 @@ BREAKING CHANGES
   - For the same reason, the effect size for one-way contingency table has
     changed from Cramer's *V* to Pearson's *C*.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - For plotting marginal distributions in `ggscatterstats`, `{ggstatsplot}` now
     relies on `ggside` package instead of `ggExtra`. This was done to remove a
@@ -127,7 +150,7 @@ MAJOR CHANGES
 
   - Minimum needed R version is now `4.0`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Online vignette about `combine_plots` has been removed. In case you want to
     create a grid of plots, it is highly recommended that you use `patchwork`
@@ -148,12 +171,12 @@ MINOR CHANGES
 
 # ggstatsplot 0.8.0
 
-NEW FUNCTIONS
+## NEW FEATURES
 
   - Adds `extract_stats` function to extract dataframes containing statistical
     details.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - There is finally a publication for `{ggstatsplot}` package!
     <https://joss.theoj.org/papers/10.21105/joss.03167>
@@ -177,7 +200,7 @@ MAJOR CHANGES
     This is a backward compatible change, so the plots should not look
     different.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - The `pch` size for `ggcorrmat` has been increased to 14 (#579) to increase
     its visibility compared to the correlation value text.
@@ -187,14 +210,14 @@ MINOR CHANGES
   - Minor change to `ggcorrmat` legend title - content in parentheses is now
     shown outside of it.
 
-BUG FIXES
+## BUG FIXES
 
   - `ggcoefstats` didn't work when statistic for the given model was
     chi-squared. This has been fixed.
 
 # ggstatsplot 0.7.2
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - To reduce the dependency load, `ggExtra` moves from `Imports` to
     `Suggests`.
@@ -206,21 +229,21 @@ MAJOR CHANGES
     and `ggbarstats` functions always behaved this way, but the rest of the
     functions now also mimic this behavior.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - The `ggcoefstats` labels do not contain degrees of freedom when they are not
     available instead of displaying `Inf`.
 
 # ggstatsplot 0.7.1
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - Based on feedback from the users, the argument `title.prefix` is now
     removed. It led to redundant title prefixes across different facets of the
     plot. Given that `grouped_` functions require users to set `grouping.var`,
     it is fair to assume what variable the levels in the title correspond to.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Adapts to changes made in `statsExpressions 1.0.0`.
 
@@ -234,7 +257,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.7.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `combine_plots` has been completely revised to rely not on `patchwork`, but
     on `patchwork`, to combine a list of `ggplot` together. This was done to
@@ -254,7 +277,7 @@ BREAKING CHANGES
     is now changed from `tr = 0.1` to `tr = 0.2` (which is what `WRS2` defaults
     to).
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - All robust tests in this package were based on trimmed means, except for
     correlation test. This has been changed: the robust correlation measure is
@@ -278,7 +301,7 @@ MAJOR CHANGES
     `ggplot2::scale_x_continuous` function, this label will likely disappear.
     The `centrality.k` argument is retired in favor of `k`.
 
-NEW FEATURES
+## NEW FEATURES
 
   - More models supported in `ggcoefstats`: `crr`, `eglm`, `elm`, `varest`.
 
@@ -290,7 +313,7 @@ NEW FEATURES
 
 # ggstatsplot 0.6.8
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `gghistostats` removes `bar.measure` argument. The function now defaults to
     showing the `count` information on the `x`-axis and the `proportion`
@@ -331,7 +354,7 @@ MAJOR CHANGES
     of them will have CIs available. So, for the sake of consistency, this
     argument is just going to be retired.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `ggcorrmat` uses pretty formatting to display sample size information.
 
@@ -340,7 +363,7 @@ MINOR CHANGES
   - Expects minor changes in some of the effect sizes and their confidence
     intervals due to changes in `{statsExpressions}`.
 
-NEW FEATURES
+## NEW FEATURES
 
   - More models supported in `ggcoefstats`: `fixest`, `ivFixed`, `ivprobit`,
     `riskRegression`.
@@ -349,7 +372,7 @@ NEW FEATURES
 
 # ggstatsplot 0.6.6
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `ggcoefstats` no longer supports `exponentiate` argument. If it is
     specified, the user will have to themselves adjust the scales
@@ -366,7 +389,7 @@ BREAKING CHANGES
     3. Default text size for legend has been increased to 15 and background grid
        has been removed.
 
-BUG FIXES
+## BUG FIXES
 
   - In the prior release, when the GitHub version of `BayesFactor` wasn't
     present, `ggwithinstats` just outright failed to run for ANOVA designs. This
@@ -379,7 +402,7 @@ BUG FIXES
     formatting for `ggpiestats` and `ggcoefstats` looked super-ugly (#478). This
     has been fixed.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - Drops `broomExtra` from dependencies. All regression modeling-related
     analysis now relies on `easystats` ecosystem.
@@ -400,18 +423,18 @@ MAJOR CHANGES
     conventions, `ggbarstats` now instead shows the actual *p*-values from
     one-sample proportion tests.
 
-NEW FEATURES
+## NEW FEATURES
 
   - More models supported in `ggcoefstats`: `Glm`.
 
 # ggstatsplot 0.6.5
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `ggpiestats` and `ggbarstats` no longer have the vestigial arguments `main`
     and `condition`, which are superseded by `x` and `y`, respectively.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - For consistency and to reduce confusion, all Bayes Factor (irrespective of
     whether in the subtitle or caption) are always in favor of null over
@@ -423,24 +446,24 @@ MAJOR CHANGES
 
 # ggstatsplot 0.6.1
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggbetweenstats` and `ggwithinstats` functions now default to
     `pairwise.comparisons = TRUE`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Plot borders are now removed from the default theme.
 
   - Small *p*-values (< 0.001) are now displayed in scientific notation.
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `pairwiseComparisons` re-exports are deprecated.
 
 # ggstatsplot 0.6.0
 
-NEW FEATURES
+## NEW FEATURES
 
   - More models supported in `ggcoefstats`: `BFBayesFactor`, `betamfx`, `crq`,
     `coxph.penal`, `geeglm`, `glht`, `glmm`, `lm_robust`, `lqm`, `lqmm`,
@@ -457,7 +480,7 @@ NEW FEATURES
   - The subtitle and caption for Bayes Factor tests now also provide information
     about posterior estimates, when relevant.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - Removed unused `intent_morality` dataset.
 
@@ -465,7 +488,7 @@ MAJOR CHANGES
     caption is going to contain as much information as it can and the users can
     then choose to modify the default caption using `ggplot2` functions.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - The argument `method` for `ggcorrmat` has been renamed to `matrix.method`,
     since it was confusing whether this method referred to correlation method.
@@ -479,7 +502,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.5.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - The `pairwise.annotation` argument for `ggbetweenstats` and `ggwithinstats`
     is deprecated. This was done because-
@@ -501,7 +524,7 @@ BREAKING CHANGES
     enough that most of the time one can either assess these assumptions from
     the plots or need not worry about them.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggcoefstats` has been refactored to reflect that
     `broomExtra::tidy_parameters` now defaults to `parameters` package instead
@@ -519,25 +542,25 @@ MAJOR CHANGES
   - The non-parametric post hoc test for between-subjects design has been
     changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.
 
-NEW FEATURES
+## NEW FEATURES
 
   - More models supported in `ggcoefstats`: `bayesGARCH`, `clm2`, `clmm2`,
     `mcmc.list`, `robmixglm`.
 
 # ggstatsplot 0.4.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `ggcorrmat` no longer returns matrices of correlation coefficients or other
-    details. It now returns either a plot or a data frame and this can data frame
-    can then be used to create matrices.
+    details. It now returns either a plot or a data frame and this can data
+    frame can then be used to create matrices.
 
   - `ggbarstats` loses `x.axis.orientation` argument. This argument was supposed
     to help avoid overlapping *x*-axis label, but now `ggplot2 3.3.0` has a
     better way to handle this:
     <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
 
-NEW FEATURES
+## NEW FEATURES
 
   - More models supported in `ggcoefstats`: `bayesx`, `BBmm`, `brmultinom`,
     `lmerModLmerTest`, `lrm`.
@@ -553,7 +576,7 @@ NEW FEATURES
   - `ggbetweenstats` and `ggwithinstats` now support pairwise comparisons for
     Bayes Factor test.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - For changes related to subtitle details, see changes made in new version of
     `statsExpressions 4.0.0`:
@@ -569,7 +592,7 @@ MAJOR CHANGES
   - Due to changes in one of the downstream dependencies, `{ggstatsplot}` now
     expects the minimum R version to be `3.6.0`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `ggcorrmat` now internally relies on `correlation` for correlation
     analyses.
@@ -600,7 +623,7 @@ MINOR CHANGES
 This is a hotfix release to correct some of the failing tests and other minor
 breakages resulting from the new release of `ggplot2 3.3.0`.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggpiestats` loses `sample.size.label` argument since this information is
     included in the goodness of fit test results itself. So setting
@@ -608,7 +631,7 @@ MAJOR CHANGES
 
 # ggstatsplot 0.3.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
 To give users more flexibility in terms of modifying the aesthetic defaults for
 **all** `geoms` included in the `{ggstatsplot}` plots (each plot typically has
@@ -671,7 +694,7 @@ supplied).
     This is something the users can easily do before entering the data in these
     functions.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggcorrmat` was never supposed to work with Kendall's correlation
     coefficient but it accidentally did. This is no longer the case.
@@ -683,7 +706,7 @@ MAJOR CHANGES
     plot. This change also forced the legend for `ggpiestats` to be displayed on
     the right side of the plot rather than at the bottom.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - More models supported in `ggcoefstats`: `BBreg`, `bcplm`, `bife`, `cglm`,
     `crch`, `DirichReg`, `LORgee`, `zcpglm`, `zeroinfl`.
@@ -694,7 +717,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.2.0
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - To have a more manageable length of function arguments, additional aesthetic
     specifications for any given geom can be provided via a dedicated `*.args`
@@ -708,7 +731,7 @@ BREAKING CHANGES
     reason, `lm_effsize_ci` function is also no longer exported and lives in the
     `groupedstats` package.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - The summary caption no longer displays log-likelihood value because it tends
     to be not available for a number of regression model objects and so the
@@ -716,7 +739,7 @@ MAJOR CHANGES
 
   - Supports robust and Bayes Factors for random-effects meta-analysis.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - New dataset included: `bugs_wide`
 
@@ -729,18 +752,18 @@ MINOR CHANGES
 
 # ggstatsplot 0.1.4
 
-BUG FIXES
+## BUG FIXES
 
   - `ggbetweenstats` and `ggwithinstats` no longer produce error with variables
     with pattern `mean` (#336).
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `pairwise_p` has been reintroduced as a number of users found it useful to
     call the function from `{ggstatsplot}` itself rather than using
     `pairwiseComparisons` package.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `ggbetweenstats` and `ggwithinstats` use `[` instead of `(` to display
     confidence intervals. Additionally, $$\mu$$ denoted sample mean, but was
@@ -753,17 +776,17 @@ MINOR CHANGES
 
 # ggstatsplot 0.1.3
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - To avoid excessive arguments to function, most arguments relevant for
     `ggrepel` in `ggcoefstats` function have been removed. The users can instead
     provide all such arguments in a list to `stats.labels.args` argument.
 
-BUG FIXES
+## BUG FIXES
 
   - `ggbetweenstats` and `ggwithinstats` no longer produce incorrect label if
-    the data frame already contains a variable named `n` (#317) or variables with
-    pattern `mean` (#322).
+    the data frame already contains a variable named `n` (#317) or variables
+    with pattern `mean` (#322).
 
   - `ggbetweenstats` and `ggwithinstats` mean labels respect `k` argument
     (#331).
@@ -817,7 +840,7 @@ This uncoupling is designed to achieve two things:
     relying on `{ggstatsplot}` default plots which are heavily opinionated and
     not appealing to everyone.
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - All helper functions `subtitle_*` and `bf_*` have been moved to the new
     `{statsExpressions}` package.
@@ -826,7 +849,7 @@ BREAKING CHANGES
     `subtitle_contingency_tab` and `bf_contingency_tab` now use the arguments
     `x` and `y` instead of `main` and `condition`.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - Major refactoring to reduce the codesize and to rely fully on `rlang`.
 
@@ -849,7 +872,7 @@ MAJOR CHANGES
     functions. This was done because the asterisk conventions are not consistent
     across various scientific disciplines.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - New dataset included: `bugs_long`, for repeated measures designs with `NA`s
     present in the data.
@@ -877,19 +900,19 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.12
 
-BUG FIXES
+## BUG FIXES
 
   - Bayes Factor in `ggwithinstats` caption, displayed by default, was
     incorrect. This has been fixed. This stemmed from a line of code which
     should have been `paired = TRUE`, but was instead `paired = FALSE`.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - The effect size measure for Kruskal-Wallis test has been changed from the
     more obscure H-based eta-squared statistic to more common and interpretable
     epsilon-squared.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `ggcoefstats` defaults to `bf.message = TRUE` to be consistent with the rest
     of the functions in the package.
@@ -903,7 +926,7 @@ MINOR CHANGES
   - `bf_meta_message` syntax changes to adapt to updates made to `metaBMA`
     package (thanks to #259).
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - The vestigial arguments `axis.text.x.margin.t`, `axis.text.x.margin.r`,
     `axis.text.x.margin.b`, `axis.text.x.margin.l` for `ggcorrmat` have been
@@ -921,7 +944,7 @@ BREAKING CHANGES
 
 # ggstatsplot 0.0.11
  
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - Instead of having two separate functions that dealt with repeated measures
     (`subtitle_friedman_nonparametric`) and between-subjects
@@ -937,13 +960,13 @@ BREAKING CHANGES
   - The default for `bf.message` has been changed from `FALSE` to `TRUE`. This
     is to make the Bayes Factor analysis more visible to the user.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggscatterstats` returns only plot (without any statistical details) when
     the specified model is not linear (i.e., either when `method` argument is
     not `"lm"` or when `formula` is not `y ~ x`).
 
-NEW FEATURES
+## NEW FEATURES
 
   - New functions `ggwithinstats` (and its `grouped_` variant) are introduced as
     a counterpart to `ggbetweenstats` to handle repeated measures designs.
@@ -973,7 +996,7 @@ NEW FEATURES
     used to prefix the subtitle with a string of interest. This is possibly
     useful for specifying the details of the statistical test.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `pairwise_p()` function no longer outputs `conf.low` and `conf.high` columns
     when parametric *post hoc* tests are run. This is because these values were
@@ -991,7 +1014,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.10
 
-NEW FEATURES
+## NEW FEATURES
 
   - `ggcoefstats` can support following new model objects: `rjags`.
 
@@ -1008,7 +1031,7 @@ NEW FEATURES
     contingency table. It now instead displays Cohen's *G* as effect size, which
     generalizes to any kind of design.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - The internal function `outlier_df` to add a column specifying outlier status
     of any given data point is now exported.
@@ -1025,12 +1048,12 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.9
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `subtitle_t_onesample` no longer has `data` as the optional argument. This
     was done to be consistent with other subtitle helper functions.
 
-NEW FEATURES
+## NEW FEATURES
 
   - New function `ggbarstats` (and its `grouped_` variant) introduced for making
     bar charts (thanks to #78).
@@ -1057,13 +1080,13 @@ NEW FEATURES
     statistical analysis is not required, in which case `subtitle` argument can
     be used to provide alternative subtitle.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggbetweenstats` now defaults to using noncentral-*t* distribution for
     computing Cohen's *d* and Hedge's *g*. To get variants with central-*t*
     distribution, use `effsize.noncentral = FALSE`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - All `grouped_` functions had argument `title.prefix` that defaulted to
     `"Group"`. It now instead defaults to `NULL`, in which case the prefix will
@@ -1087,7 +1110,7 @@ MINOR CHANGES
 
   - `ggcoefstats` passes dots (`...`) to `augment` method from `broom`.
 
-BUG FIXES
+## BUG FIXES
 
   - The helper function `bf_extractor` no longer provides option to extract
     information about posterior distribution because these details were
@@ -1099,12 +1122,12 @@ BUG FIXES
 
 # ggstatsplot 0.0.8
 
-NEW FEATURES
+## NEW FEATURES
 
   - `ggcoefstats` gains `meta.analytic.effect` that can be used to carry out
-    meta-analysis on regression estimates. This especially useful when a
-    data frame with regression estimates and standard error is available from
-    prior analyses. The `subtitle` is prepared with the new function
+    meta-analysis on regression estimates. This especially useful when a data
+    frame with regression estimates and standard error is available from prior
+    analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
 
   - `ggbetweenstats`, `ggscatterstats`, `gghistostats`, and `ggdotplotstats`
@@ -1118,7 +1141,7 @@ NEW FEATURES
     `svyolr`, `confusionMatrix`, `multinom`, `nlmerMod`, `svyglm`, `MCMCglmm`,
     `lm.beta`, `speedlm`, `fitdistr`, `mle2`, `orcutt`, `glmmadmb`.
 
-BUG FIXES
+## BUG FIXES
 
   - `ggcoefstats` didn't work when `statistic` argument was set to `NULL`. This
     was not expected behavior. This has been fixed. Now, if `statistic` is not
@@ -1127,7 +1150,7 @@ BUG FIXES
   - `subtitle_t_parametric` was producing incorrect sample size information when
     `paired = TRUE` and the data contained `NA`s. This has been fixed.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - `ggscatterstats` and its `grouped_` variant accept both character and bare
     exressions as input to arguments `label.var` and `labe.expression` (#110).
@@ -1144,7 +1167,7 @@ MAJOR CHANGES
     and its `grouped_` variant, `point.jitter.height` default has been changed
     from `0.1` to `0` (no vertical jitter, i.e.).
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Confidence interval for Kendall's *W* is now computed using
     `stats::kruskal.test`. As a result, `PMCMRplus` removed from dependencies.
@@ -1155,7 +1178,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.7
 
-BUG FIXES
+## BUG FIXES
 
   - `ggcoefstats` was showing wrong confidence intervals for `merMod` class
     objects due to a bug in the `broom.mixed` package
@@ -1172,7 +1195,7 @@ BUG FIXES
 
   - `gghistostats` wasn't filtering out `NA`s properly. This has been fixed.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - New function `ggdotplotstats` for creating a dot plot/chart for labelled
     numeric data.
@@ -1226,7 +1249,7 @@ MAJOR CHANGES
   - A number of tidyverse operators are now reexported by `{ggstatsplot}`:
     `%>%`, `%<>%`, `%$%`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `ggscatterstats`, `ggpiestats`, and their `grouped_` variant support bayes
     factor tests and gain new arguments relevant to this test.
@@ -1270,7 +1293,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.6
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - The package now exports all functions used to create text expressions with
     results. This makes it easy for people to use these results in their own
@@ -1299,7 +1322,7 @@ MAJOR CHANGES
   - `gghistostats` function no longer has `line.labeller.y` argument; this
     position is automatically determined now.
 
-BREAKING CHANGES
+## BREAKING CHANGES
 
   - `legend.title.margin` function has been deprecated since `ggplot2 3.0.0` has
     improved on the margin issues from previous versions. All functions that
@@ -1324,7 +1347,7 @@ BREAKING CHANGES
     naming schema, the `width.jitter` and `height.jitter` arguments have been
     renamed to `point.width.jitter` and `point.height.jitter`, resp.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - `gghistostats`: To be compatible with `JASP`, natural logarithm of Bayes
     Factors is displayed, and not base 10 logarithm.
@@ -1346,14 +1369,14 @@ MINOR CHANGES
   - `ggpiestats` gains `perc.k` argument to show desired number of decimal
     places in percentage labels.
 
-BUG FIXES
+## BUG FIXES
 
   - `grouped_ggpiestats` wasn't working when only `main` variable was provided
     with `counts` data. Fixed that.
 
 # ggstatsplot 0.0.5
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - For the sake of consistency, `theme_mprl` is now called `theme_ggstatsplot`.
     The `theme_mprl` function will still be around and will **not** be
@@ -1366,7 +1389,7 @@ MAJOR CHANGES
   - `ggpiestats` can now handle within-subjects designs (McNemar test results
     will be displayed).
 
-BUG FIXES
+## BUG FIXES
 
   - `ggbetweenstats` was producing wrong axes labels when `sample.size.label`
     was set to `TRUE` and user had reordered factor levels before using this
@@ -1375,7 +1398,7 @@ BUG FIXES
   - `ggcoefstats` wasn't producing partial omega-squared for `aovlist` objects.
     Fixed that with new version of `sjstats`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Removed the trailing comma from the robust correlation analyses.
 
@@ -1397,7 +1420,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.4
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - New function: `ggcoefstats` for displaying model coefficients.
 
@@ -1419,7 +1442,7 @@ MAJOR CHANGES
     (*n*). To adjust for the inflated length of the subtitle, the default
     subtitle text size has been changed from `12` to `11`.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Switched back to Shapiro-Wilk test of normality to remove `nortest` from
     imports.
@@ -1457,7 +1480,7 @@ MINOR CHANGES
 
 # ggstatsplot 0.0.3
 
-NEW FEATURES
+## NEW FEATURES
 
   - The `ggbetweenstats` function can now show notched box plots. Two new
     arguments `notch` and `notchwidth` control its behavior. The defaults are
@@ -1476,7 +1499,7 @@ NEW FEATURES
     `ggbetweenstats`, and `ggpiestats` introduced to create multiple plots for
     different levels of a grouping variable.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - To be internally consistent, all functions in `{ggstatsplot}` use the
     spelling `color`, rather than `colour` in some functions, while `color` in
@@ -1489,7 +1512,7 @@ MAJOR CHANGES
   - To be internally consistent, the argument `lab_col` and `lab_size` in
     `ggcorrmat` have been changed to `lab.col` and `lab.size`, respectively.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - Added a new argument to `ggstatsplot.theme` function to control if
     `ggstatsplot::theme_mprl` is to be overlaid on top of the selected `ggtheme`
@@ -1506,7 +1529,7 @@ MINOR CHANGES
     tagged with text labels with a new argument `line.labeller` in
     `gghistostats` function.
 
-BUG FIXES
+## BUG FIXES
 
   - The `centrality.para` argument for `ggscatterstats` was not working
     properly. Choosing `"median"` didn't show median, but the mean. This is
@@ -1514,7 +1537,7 @@ BUG FIXES
 
 # ggstatsplot 0.0.2
 
-NEW FEATURES
+## NEW FEATURES
 
   - Bayesian test added to `gghistostats` and two new arguments to also display
     a vertical line for `test.value` argument.
@@ -1528,7 +1551,7 @@ NEW FEATURES
     to detect outliers. Removed bug from the same function when `outlier.label`
     argument is of factor/character type.
 
-MAJOR CHANGES
+## MAJOR CHANGES
 
   - Functions `signif_column` and `grouped_proptest` are now deprecated. They
     were exported in the first release by mistake.
@@ -1547,7 +1570,7 @@ MAJOR CHANGES
     Additionally, both partial eta- and omega-squared are not computed using
     bootstrapping with (default) 100 bootstrap samples.
 
-MINOR CHANGES
+## MINOR CHANGES
 
   - More examples added to the `README` document.
 

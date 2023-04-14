@@ -10,14 +10,13 @@ test_that(
     expect_doppelganger(
       title = "modification with ggplot2 works as expected",
       fig = ggbetweenstats(
-        data = tibble::as_tibble(mtcars, rownames = "name") %>% dplyr::rename(n = wt),
-        x = cyl,
-        y = n,
+        data = mtcars,
+        x = am,
+        y = wt,
         pairwise.comparisons = FALSE,
         results.subtitle = FALSE
       ) +
-        ggplot2::coord_cartesian(ylim = c(1, 6)) +
-        ggplot2::scale_y_continuous(limits = c(1, 6), breaks = seq(1, 6, 1))
+        ggplot2::labs(x = "Transmission", y = "Weight")
     )
 
     # edge case
@@ -37,38 +36,20 @@ test_that(
         results.subtitle = FALSE
       ))
     )
-  }
-)
-
-
-# can produce different plots --------------------------------------
-
-test_that(
-  desc = "checking if `plot.type` argument works",
-  code = {
-    set.seed(123)
-    expect_doppelganger(
-      title = "box plot",
-      fig = ggbetweenstats(
-        data = ToothGrowth,
-        x = supp,
-        y = len,
-        plot.type = "box",
-        results.subtitle = FALSE,
-        centrality.point.args = list(size = 5, color = "darkgreen"),
-        centrality.label.args = list(color = "blue", nudge_x = 0.4, segment.linetype = 4)
-      )
-    )
 
     set.seed(123)
     expect_doppelganger(
-      title = "violin plot",
-      fig = ggbetweenstats(
-        data = ToothGrowth,
-        x = supp,
-        y = len,
-        plot.type = "violin",
-        results.subtitle = FALSE
+      title = "specific geoms removed",
+      ggbetweenstats(
+        data = mtcars,
+        x = am,
+        y = wt,
+        xlab = "Transmission",
+        ylab = "Weight",
+        violin.args = list(width = 0),
+        boxplot.args = list(width = 0),
+        point.args = list(alpha = 0),
+        title = "Bayesian Test"
       )
     )
   }
@@ -100,7 +81,7 @@ test_that(
       y = wt
     )$expression[[1L]]
 
-    expect_equal(as.character(subtitle_exp), as.character(sub))
+    expect_identical(as.character(subtitle_exp), as.character(sub))
   }
 )
 
@@ -128,7 +109,7 @@ test_that(
         x = genre,
         y = rating,
         grouping.var = mpaa,
-        ggplot.component = ggplot2::scale_y_continuous(breaks = seq(1, 9, 1)),
+        ggplot.component = ggplot2::labs(x = "Movie Genre")
       )
     )
   }

@@ -1616,35 +1616,14 @@
 <circle cx='166.35' cy='503.64' r='3.20' style='stroke-width: 0.00; stroke: #1B9E77; stroke-opacity: 0.40; fill: #1B9E77; fill-opacity: 0.40;' />
 <circle cx='379.67' cy='503.64' r='3.20' style='stroke-width: 0.00; stroke: #D95F02; stroke-opacity: 0.40; fill: #D95F02; fill-opacity: 0.40;' />
 <circle cx='169.14' cy='514.99' r='3.20' style='stroke-width: 0.00; stroke: #1B9E77; stroke-opacity: 0.40; fill: #1B9E77; fill-opacity: 0.40;' />
-<circle cx='161.53' cy='503.64' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='161.53' cy='514.99' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='161.53' y1='225.35' x2='161.53' y2='111.76' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='161.53' y1='333.25' x2='161.53' y2='486.60' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='130.27,225.35 130.27,333.25 192.79,333.25 192.79,225.35 130.27,225.35 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
 <line x1='130.27' y1='276.46' x2='192.79' y2='276.46' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='369.95' cy='100.40' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='111.76' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='111.76' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='435.48' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='441.16' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='446.84' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='446.84' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='463.88' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='463.88' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='475.24' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='475.24' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='492.28' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='369.95' cy='503.64' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='369.95' y1='236.71' x2='369.95' y2='117.44' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='369.95' y1='316.22' x2='369.95' y2='429.80' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='338.68,236.71 338.68,316.22 401.21,316.22 401.21,236.71 338.68,236.71 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
 <line x1='338.68' y1='270.78' x2='401.21' y2='270.78' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='578.36' cy='469.56' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='578.36' cy='475.24' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='578.36' cy='480.92' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='578.36' cy='480.92' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='578.36' cy='480.92' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
-<circle cx='578.36' cy='492.28' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='578.36' y1='208.31' x2='578.36' y2='94.72' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='578.36' y1='310.54' x2='578.36' y2='458.20' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='547.10,208.31 547.10,310.54 609.62,310.54 609.62,208.31 547.10,208.31 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />

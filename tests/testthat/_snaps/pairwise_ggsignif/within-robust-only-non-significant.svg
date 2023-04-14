@@ -399,8 +399,6 @@
 <line x1='283.67' y1='327.76' x2='283.67' y2='514.99' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='267.52,108.44 267.52,327.76 299.81,327.76 299.81,108.44 267.52,108.44 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.50;' />
 <line x1='267.52' y1='183.33' x2='299.81' y2='183.33' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='445.11' cy='493.60' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.50; fill: #333333; fill-opacity: 0.50;' />
-<circle cx='445.11' cy='493.60' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.50; fill: #333333; fill-opacity: 0.50;' />
 <line x1='445.11' y1='108.44' x2='445.11' y2='87.04' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='445.11' y1='258.22' x2='445.11' y2='450.80' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='428.96,108.44 428.96,258.22 461.25,258.22 461.25,108.44 428.96,108.44 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.50;' />

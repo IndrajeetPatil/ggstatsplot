@@ -22,9 +22,6 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link[=ggbetweenstats]{ggbetweenstats}}
   \describe{
-    \item{\code{plot.type}}{Character describing the \emph{type} of plot. Currently supported
-plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
-and \code{"boxviolin"} (for a combination of box and violin plots; default).}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
@@ -85,9 +82,11 @@ to be:
 
 Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
-the \code{geom_point} displaying the raw data.}
+the \code{ggplot2::geom_point()} displaying the raw data.}
+    \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
+\code{ggplot2::geom_boxplot()}.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
-the \code{geom_violin}.}
+the \code{ggplot2::geom_violin()}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
@@ -96,7 +95,7 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
     \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
-arguments to be passed to \code{geom_point} and
+arguments to be passed to \code{ggplot2::geom_point()} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}

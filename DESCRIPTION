@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.11.0.9000
+Version: 0.11.1.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -31,16 +31,16 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 4.1.0)
 Imports:
-    correlation (>= 0.8.3),
-    datawizard (>= 0.6.5),
+    correlation (>= 0.8.4),
+    datawizard (>= 0.7.1),
     dplyr (>= 1.1.1),
-    ggplot2 (>= 3.4.1),
+    ggplot2 (>= 3.4.2),
     ggrepel (>= 0.9.3),
     ggsignif,
     glue,
     insight (>= 0.19.1),
     paletteer,
-    parameters (>= 0.20.2),
+    parameters (>= 0.20.3),
     patchwork,
     performance (>= 0.10.2),
     purrr (>= 1.0.1),

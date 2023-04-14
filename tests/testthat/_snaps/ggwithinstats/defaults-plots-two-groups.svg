@@ -92,10 +92,6 @@
 <circle cx='221.54' cy='61.73' r='3.56' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.50; fill: #1B9E77; fill-opacity: 0.50;' />
 <circle cx='221.54' cy='61.73' r='3.56' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.50; fill: #1B9E77; fill-opacity: 0.50;' />
 <circle cx='221.54' cy='149.09' r='3.56' style='stroke-width: 0.71; stroke: #1B9E77; stroke-opacity: 0.50; fill: #1B9E77; fill-opacity: 0.50;' />
-<circle cx='221.54' cy='367.50' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.50; fill: #333333; fill-opacity: 0.50;' />
-<circle cx='221.54' cy='498.55' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.50; fill: #333333; fill-opacity: 0.50;' />
-<circle cx='221.54' cy='433.03' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.50; fill: #333333; fill-opacity: 0.50;' />
-<circle cx='221.54' cy='258.30' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.50; fill: #333333; fill-opacity: 0.50;' />
 <line x1='221.54' y1='61.73' x2='221.54' y2='61.73' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='221.54' y1='138.17' x2='221.54' y2='192.77' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='190.70,61.73 190.70,138.17 252.38,138.17 252.38,61.73 190.70,61.73 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.50;' />

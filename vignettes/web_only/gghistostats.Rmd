@@ -28,9 +28,7 @@ source("../setup.R")
 #| label = "suggested_pkgs",
 #| include = FALSE
 
-pkgs <- c(
-  "psych"
-)
+pkgs <- "psych"
 
 successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
 can_evaluate <- all(successfully_loaded)
