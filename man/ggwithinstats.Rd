@@ -169,7 +169,7 @@ to be:
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
-arguments to be passed to \code{geom_point} and
+arguments to be passed to \code{ggplot2::geom_point()} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
 \item{centrality.path.args, point.path.args}{A list of additional aesthetic
@@ -177,7 +177,7 @@ arguments passed on to \code{geom_path} connecting raw data points and mean
 points.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{geom_point} displaying the raw data.}
+the \code{ggplot2::geom_point()} displaying the raw data.}
 
 \item{point.path, centrality.path}{Logical that decides whether individual data
 points and means, respectively, should be connected using \code{geom_path}. Both
@@ -187,10 +187,10 @@ of data points, it is advisable to set \code{point.path = FALSE} as these lines
 can overwhelm the plot.}
 
 \item{boxplot.args}{A list of additional aesthetic arguments passed on to
-\code{geom_boxplot}.}
+\code{ggplot2::geom_boxplot()}.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
-the \code{geom_violin}.}
+the \code{ggplot2::geom_violin()}.}
 
 \item{ggsignif.args}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}

@@ -1,9 +1,16 @@
-# ggstatsplot 0.11.1
+# ggstatsplot 0.11.1.9000
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+## NEW FEATURES
+
+- `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments to
+  the underlying geom function.
+
+# ggstatsplot 0.11.1
 
 ## BREAKING CHANGES
 

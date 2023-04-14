@@ -22,8 +22,6 @@
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
 #'   arguments passed on to `geom_path` connecting raw data points and mean
 #'   points.
-#' @param boxplot.args A list of additional aesthetic arguments passed on to
-#'   `geom_boxplot`.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures

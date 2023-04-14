@@ -70,9 +70,11 @@
 #'
 #'   Just as `type` argument, abbreviations are also accepted.
 #' @param point.args A list of additional aesthetic arguments to be passed to
-#'   the `geom_point` displaying the raw data.
+#'   the `ggplot2::geom_point()` displaying the raw data.
+#' @param boxplot.args A list of additional aesthetic arguments passed on to
+#'   `ggplot2::geom_boxplot()`.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
-#'   the `geom_violin`.
+#'   the `ggplot2::geom_violin()`.
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
 #'   by `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
 #'   variants of all primary functions. Default is `NULL`. The argument should
@@ -83,7 +85,7 @@
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
-#'   arguments to be passed to `geom_point` and
+#'   arguments to be passed to `ggplot2::geom_point()` and
 #'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to `ggsignif::geom_signif`.
@@ -128,11 +130,11 @@
 #' # modifying defaults
 #' ggbetweenstats(
 #'   morley,
-#'   x               = Expt,
-#'   y               = Speed,
-#'   type            = "robust",
-#'   xlab            = "The experiment number",
-#'   ylab            = "Speed-of-light measurement"
+#'   x    = Expt,
+#'   y    = Speed,
+#'   type = "robust",
+#'   xlab = "The experiment number",
+#'   ylab = "Speed-of-light measurement"
 #' )
 #' @export
 ggbetweenstats <- function(data,
@@ -173,6 +175,7 @@ ggbetweenstats <- function(data,
                              stroke = 0,
                              na.rm = TRUE
                            ),
+                           boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
                            violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
                            ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
                            ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -196,7 +199,7 @@ ggbetweenstats <- function(data,
   # statistical analysis ------------------------------------------
 
   # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3, "t", "anova")
+  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
     # relevant arguments for statistical tests
@@ -231,7 +234,7 @@ ggbetweenstats <- function(data,
 
   if (plot.type %in% c("box", "boxviolin")) {
     suppressWarnings({
-      plot <- plot + exec(geom_boxplot, width = 0.3, alpha = 0.2)
+      plot <- plot + exec(geom_boxplot, !!!boxplot.args)
     })
   }
 
