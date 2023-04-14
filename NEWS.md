@@ -1,4 +1,4 @@
-# ggstatsplot 0.11.0.9000
+# ggstatsplot 0.11.1
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
@@ -10,6 +10,10 @@ read the `NEWS` for that package:
 - The outlier tagging functionality in `ggbetweenstats()` and `ggwithinstats()`
   has been removed. It was too crude to be useful or reliable, and users should
   instead prefer more informative methods (e.g. `performance::check_outliers()`).
+
+## MINOR CHANGES
+
+- Fix failures due to changes in `{parameters}`.
 
 # ggstatsplot 0.11.0
 

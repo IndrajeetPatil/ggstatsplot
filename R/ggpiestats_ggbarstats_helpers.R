@@ -70,7 +70,7 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
 
   # if not null, return tidy output, otherwise return NAs
   if (!is.null(result)) {
-    as_tibble(parameters::standardize_names(result, style = "broom"))
+    as_tibble(insight::standardize_names(result, style = "broom"))
   } else {
     tibble(
       statistic = NA_real_, p.value = NA_real_, df = NA_real_,

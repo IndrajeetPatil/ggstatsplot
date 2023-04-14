@@ -107,7 +107,7 @@ ggcorrmat <- function(data,
 
   # plot ------------------------------------------
 
-  check_if_installed("ggcorrplot")
+  insight::check_if_installed("ggcorrplot")
 
   # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
