@@ -16,7 +16,7 @@ using ggstatsplot::combine_plots."><meta property="og:image" content="https://in
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,12 +104,7 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="ggbetweenstats.html">ggbetweenstats</a></code></p><dl><dt><code>plot.type</code></dt>
-<dd><p>Character describing the <em>type</em> of plot. Currently supported
-plots are <code>"box"</code> (for only boxplots), <code>"violin"</code> (for only violin plots),
-and <code>"boxviolin"</code> (for a combination of box and violin plots; default).</p></dd>
-
-    <dt><code>xlab</code></dt>
+<dd><p>Arguments passed on to <code><a href="ggbetweenstats.html">ggbetweenstats</a></code></p><dl><dt><code>xlab</code></dt>
 <dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>x</code> will be used.</p></dd>
 
@@ -180,11 +175,15 @@ to be:</p><ul><li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p><
 
     <dt><code>point.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
-the <code>geom_point</code> displaying the raw data.</p></dd>
+the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code> displaying the raw data.</p></dd>
+
+    <dt><code>boxplot.args</code></dt>
+<dd><p>A list of additional aesthetic arguments passed on to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code>.</p></dd>
 
     <dt><code>violin.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
-the <code>geom_violin</code>.</p></dd>
+the <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin()</a></code>.</p></dd>
 
     <dt><code>ggplot.component</code></dt>
 <dd><p>A <code>ggplot</code> component to be added to the plot prepared
@@ -199,7 +198,7 @@ be extracted. The available palettes and packages can be checked by running
 
     <dt><code>centrality.point.args,centrality.label.args</code></dt>
 <dd><p>A list of additional aesthetic
-arguments to be passed to <code>geom_point</code> and
+arguments to be passed to <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code> and
 <code><a href="https://rdrr.io/pkg/ggrepel/man/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
 
     <dt><code>ggsignif.args</code></dt>

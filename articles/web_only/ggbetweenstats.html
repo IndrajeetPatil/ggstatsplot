@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -221,7 +221,6 @@ the overall theme as well as the color palette in use.</p>
 <span>  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co">## type of statistics</span></span>
 <span>  xlab <span class="op">=</span> <span class="st">"Continent"</span>, <span class="co">## label for the x-axis</span></span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>, <span class="co">## label for the y-axis</span></span>
-<span>  plot.type <span class="op">=</span> <span class="st">"boxviolin"</span>, <span class="co">## type of plot</span></span>
 <span>  <span class="co">## turn off messages</span></span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray</a></span><span class="op">(</span><span class="op">)</span>, <span class="co">## a different theme</span></span>
 <span>  package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span></span>
@@ -266,14 +265,14 @@ to make each plot have different colors or themes.</p>
 <code class="sourceCode R"><span><span class="co">## selecting subset of the data</span></span>
 <span><span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## parametric t-test and box plot</span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">df_year</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">year</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Year"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,</span>
-<span>  plot.type <span class="op">=</span> <span class="st">"box"</span>,</span>
+<span>  <span class="co"># to remove violin plot</span></span>
+<span>  violin.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"p"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Parametric test"</span>,</span>
@@ -281,32 +280,30 @@ to make each plot have different colors or themes.</p>
 <span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Mann-Whitney U test (nonparametric t) and violin plot</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">df_year</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">year</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Year"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,</span>
-<span>  plot.type <span class="op">=</span> <span class="st">"violin"</span>,</span>
+<span>  <span class="co"># to remove box plot</span></span>
+<span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"np"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Non-parametric Test (violin plot)"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Non-parametric Test"</span>,</span>
 <span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"uniform_startrek"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## robust t-test and boxviolin plot</span></span>
 <span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">df_year</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">year</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">lifeExp</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Year"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,</span>
-<span>  plot.type <span class="op">=</span> <span class="st">"boxviolin"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"r"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Robust Test (box &amp; violin plot)"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Robust Test"</span>,</span>
 <span>  tr <span class="op">=</span> <span class="fl">0.005</span>,</span>
 <span>  package <span class="op">=</span> <span class="st">"wesanderson"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"Royal2"</span>,</span>
@@ -321,8 +318,10 @@ to make each plot have different colors or themes.</p>
 <span>  xlab <span class="op">=</span> <span class="st">"Year"</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"bayes"</span>,</span>
-<span>  plot.type <span class="op">=</span> <span class="st">"box"</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Bayesian Test (box plot)"</span>,</span>
+<span>  violin.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Bayesian Test"</span>,</span>
 <span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
 <span><span class="op">)</span></span>
