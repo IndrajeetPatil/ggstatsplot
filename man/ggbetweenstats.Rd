@@ -8,7 +8,6 @@ ggbetweenstats(
   data,
   x,
   y,
-  plot.type = "boxviolin",
   type = "parametric",
   pairwise.comparisons = TRUE,
   pairwise.display = "significant",
@@ -34,6 +33,7 @@ ggbetweenstats(
     min.segment.length = 0),
   point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha =
     0.4, size = 3, stroke = 0, na.rm = TRUE),
+  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -59,10 +59,6 @@ be inaccurate when there are more than two levels in \code{x} and there are
 subject-1,subject-2, ..., pattern.}
 
 \item{y}{The response (or outcome or dependent) variable from \code{data}.}
-
-\item{plot.type}{Character describing the \emph{type} of plot. Currently supported
-plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
-and \code{"boxviolin"} (for a combination of box and violin plots; default).}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -177,14 +173,17 @@ to be:
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
-arguments to be passed to \code{geom_point} and
+arguments to be passed to \code{ggplot2::geom_point()} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{geom_point} displaying the raw data.}
+the \code{ggplot2::geom_point()} displaying the raw data.}
+
+\item{boxplot.args}{A list of additional aesthetic arguments passed on to
+\code{ggplot2::geom_boxplot()}.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
-the \code{geom_violin}.}
+the \code{ggplot2::geom_violin()}.}
 
 \item{ggsignif.args}{A list of additional aesthetic
 arguments to be passed to \code{ggsignif::geom_signif}.}
@@ -224,7 +223,7 @@ For details, see:
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
    raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
-   box plot \tab \code{ggplot2::geom_boxplot()} \tab \code{NA} \cr
+   box plot \tab \code{ggplot2::geom_boxplot()} \tab \code{boxplot.args} \cr
    density plot \tab \code{ggplot2::geom_violin()} \tab \code{violin.args} \cr
    centrality measure point \tab \code{ggplot2::geom_point()} \tab \code{centrality.point.args} \cr
    centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
@@ -422,11 +421,22 @@ extract_stats(p)
 # modifying defaults
 ggbetweenstats(
   morley,
-  x               = Expt,
-  y               = Speed,
-  type            = "robust",
-  xlab            = "The experiment number",
-  ylab            = "Speed-of-light measurement"
+  x    = Expt,
+  y    = Speed,
+  type = "robust",
+  xlab = "The experiment number",
+  ylab = "Speed-of-light measurement"
+)
+
+# you can remove a specific geom to reduce complexity of the plot
+ggbetweenstats(
+  mtcars, am, wt,
+  # to remove violin plot
+  violin.args = list(width = 0),
+  # to remove boxplot
+  boxplot.args = list(width = 0),
+  # to remove points
+  point.args = list(alpha = 0)
 )
 \dontshow{\}) # examplesIf}
 }

@@ -95,7 +95,6 @@
 <circle cx='616.28' cy='379.16' r='3.20' style='stroke-width: 0.00; stroke: #E7298A; stroke-opacity: 0.40; fill: #E7298A; fill-opacity: 0.40;' />
 <circle cx='132.07' cy='449.80' r='3.20' style='stroke-width: 0.00; stroke: #1B9E77; stroke-opacity: 0.40; fill: #1B9E77; fill-opacity: 0.40;' />
 <circle cx='126.84' cy='390.03' r='3.20' style='stroke-width: 0.00; stroke: #1B9E77; stroke-opacity: 0.40; fill: #1B9E77; fill-opacity: 0.40;' />
-<circle cx='127.95' cy='161.84' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='127.95' y1='354.72' x2='127.95' y2='346.57' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='127.95' y1='448.44' x2='127.95' y2='514.99' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='103.97,354.72 103.97,448.44 151.92,448.44 151.92,354.72 103.97,354.72 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
@@ -108,7 +107,6 @@
 <line x1='447.65' y1='407.69' x2='447.65' y2='411.76' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='423.67,278.65 423.67,407.69 471.62,407.69 471.62,278.65 423.67,278.65 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
 <line x1='423.67' y1='357.43' x2='471.62' y2='357.43' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='607.50' cy='254.20' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='607.50' y1='395.46' x2='607.50' y2='330.27' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='607.50' y1='452.51' x2='607.50' y2='482.40' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='583.52,395.46 583.52,452.51 631.48,452.51 631.48,395.46 583.52,395.46 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />

@@ -173,7 +173,6 @@ plot_list <- purrr::pmap(
       "partial_omega",
       "partial_eta"
     ),
-    plot.type = list("box", "boxviolin", "violin"),
     package = list("nord", "ochRe", "awtools"),
     palette = list("aurora", "parliament", "bpalette"),
     ggtheme = list(

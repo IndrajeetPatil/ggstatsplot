@@ -316,8 +316,10 @@ Details about underlying functions used to create graphics and statistical tests
 For example, let's see the following example:
 
 ```{r}
-#| label = "reporting"
-library(WRS2) ## for data
+#| label = "reporting",
+#| fig.height = 6,
+#| fig.width = 8
+library(WRS2) # for data
 ggwithinstats(WineTasting, Wine, Taste)
 ```
 
