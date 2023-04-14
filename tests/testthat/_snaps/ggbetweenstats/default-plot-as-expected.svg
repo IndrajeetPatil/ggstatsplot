@@ -37,18 +37,12 @@
 </defs>
 <g clip-path='url(#cpMzAuODR8MzU1LjAyfDYyLjY3fDUxNC45MQ==)'>
 <rect x='30.84' y='62.67' width='324.18' height='452.25' style='stroke-width: 0.97; stroke: none; fill: #FFFFFF;' />
-<polyline points='30.84,450.31 355.02,450.31 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,376.89 355.02,376.89 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,303.47 355.02,303.47 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,230.06 355.02,230.06 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,156.64 355.02,156.64 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,83.22 355.02,83.22 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='30.84,413.60 355.02,413.60 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='30.84,266.77 355.02,266.77 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
+<polyline points='30.84,119.93 355.02,119.93 ' style='stroke-width: 0.48; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='30.84,487.02 355.02,487.02 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,413.60 355.02,413.60 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='30.84,340.18 355.02,340.18 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,266.77 355.02,266.77 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='30.84,193.35 355.02,193.35 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='30.84,119.93 355.02,119.93 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='119.25,514.91 119.25,62.67 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='266.61,514.91 266.61,62.67 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='265.70' cy='171.32' r='3.20' style='stroke-width: 0.00; stroke: #D95F02; stroke-opacity: 0.40; fill: #D95F02; fill-opacity: 0.40;' />
@@ -129,24 +123,18 @@
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <text x='26.36' y='489.77' text-anchor='end' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='26.36' y='416.35' text-anchor='end' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>3</text>
 <text x='26.36' y='342.94' text-anchor='end' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='26.36' y='269.52' text-anchor='end' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>5</text>
 <text x='26.36' y='196.10' text-anchor='end' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>6</text>
-<text x='26.36' y='122.69' text-anchor='end' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>7</text>
 <polyline points='28.35,487.02 30.84,487.02 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='28.35,413.60 30.84,413.60 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='28.35,340.18 30.84,340.18 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='28.35,266.77 30.84,266.77 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='28.35,193.35 30.84,193.35 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
-<polyline points='28.35,119.93 30.84,119.93 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='119.25,517.40 119.25,514.91 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
 <polyline points='266.61,517.40 266.61,514.91 ' style='stroke-width: 0.97; stroke: #333333; stroke-linecap: butt;' />
 <text x='119.25' y='524.90' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='29.80px' lengthAdjust='spacingAndGlyphs'>Comedy</text>
 <text x='119.25' y='533.54' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 21)</text>
 <text x='266.61' y='524.90' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='24.01px' lengthAdjust='spacingAndGlyphs'>Drama</text>
 <text x='266.61' y='533.54' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 22)</text>
-<text x='192.93' y='544.58' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.58px' lengthAdjust='spacingAndGlyphs'>genre</text>
+<text x='192.93' y='544.58' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='57.26px' lengthAdjust='spacingAndGlyphs'>Movie Genre</text>
 <text transform='translate(17.34,288.79) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.01px' lengthAdjust='spacingAndGlyphs'>rating</text>
 <text x='30.84' y='52.31' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='2.78px' lengthAdjust='spacingAndGlyphs'>t</text>
 <text x='34.59' y='54.16' style='font-size: 7.00px; font-family: sans;' textLength='19.45px' lengthAdjust='spacingAndGlyphs'>Welch</text>
@@ -416,7 +404,7 @@
 <text x='473.77' y='533.54' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 35)</text>
 <text x='621.13' y='524.90' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='24.01px' lengthAdjust='spacingAndGlyphs'>Drama</text>
 <text x='621.13' y='533.54' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 70)</text>
-<text x='547.45' y='544.58' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.58px' lengthAdjust='spacingAndGlyphs'>genre</text>
+<text x='547.45' y='544.58' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='57.26px' lengthAdjust='spacingAndGlyphs'>Movie Genre</text>
 <text transform='translate(371.86,288.79) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.01px' lengthAdjust='spacingAndGlyphs'>rating</text>
 <text x='385.36' y='52.31' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='2.78px' lengthAdjust='spacingAndGlyphs'>t</text>
 <text x='389.11' y='54.16' style='font-size: 7.00px; font-family: sans;' textLength='19.45px' lengthAdjust='spacingAndGlyphs'>Welch</text>

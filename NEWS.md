@@ -5,10 +5,17 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+## BREAKING CHANGES
+
+- To be internally consistent, the `plot.type` argument has been removed from
+  `ggbetweenstats()`, since no such argument exists for `ggwithinstats()`. This
+  argument was also redundant. Since removing a specific geom is straightforward
+  using `*.args` arguments. Examples for these two functions illustrate how.
+
 ## NEW FEATURES
 
-- `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments to
-  the underlying geom function.
+- `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments
+  to the underlying geom function.
 
 # ggstatsplot 0.11.1
 
@@ -16,7 +23,8 @@ read the `NEWS` for that package:
 
 - The outlier tagging functionality in `ggbetweenstats()` and `ggwithinstats()`
   has been removed. It was too crude to be useful or reliable, and users should
-  instead prefer more informative methods (e.g. `performance::check_outliers()`).
+  instead prefer more informative methods (e.g.
+  `performance::check_outliers()`).
 
 ## MINOR CHANGES
 
@@ -26,7 +34,7 @@ read the `NEWS` for that package:
 
 ## BREAKING CHANGES
 
-- The minimum needed R version is now bumped to `R 4.1` because a crucial 
+- The minimum needed R version is now bumped to `R 4.1` because a crucial
   dependency (`{pbkrtest}`) requires this R version.
 
 ## MINOR CHANGES
@@ -39,14 +47,14 @@ read the `NEWS` for that package:
 
 - The `output` parameter for all functions has been removed. All functions now
   return only the plot, which itself contains all necessary details that were
-  previously extracted using the `output` argument. You can extract all the 
-  necessary details (including expressions containing statistical details) 
-  from a plot using `extract_stats()` function. There are two additional helpers
-  to get expressions: `extract_subtitle()` and `extract_caption()`.
+  previously extracted using the `output` argument. You can extract all the
+  necessary details (including expressions containing statistical details) from
+  a plot using `extract_stats()` function. There are two additional helpers to
+  get expressions: `extract_subtitle()` and `extract_caption()`.
 
 ## MAJOR CHANGES
 
-- `xfill` and `yfill` arguments for `ggscatterstats()` have been removed. You 
+- `xfill` and `yfill` arguments for `ggscatterstats()` have been removed. You
   can specify all aesthetic modifications for side histograms in scatter plot
   using `xsidehistogram.args` and `ysidehistogram.args` arguments.
 
@@ -56,7 +64,7 @@ read the `NEWS` for that package:
 
 ## MAJOR CHANGES
 
-- Due to changes to the underlying API of `{parameters}`, the `effsize` argument 
+- Due to changes to the underlying API of `{parameters}`, the `effsize` argument
   has been renamed to `effectsize.type`.
 
 - Removes unnecessary re-exports of `{tidyverse}` operators.
@@ -544,8 +552,8 @@ read the `NEWS` for that package:
 ## BREAKING CHANGES
 
   - `ggcorrmat` no longer returns matrices of correlation coefficients or other
-    details. It now returns either a plot or a data frame and this can data frame
-    can then be used to create matrices.
+    details. It now returns either a plot or a data frame and this can data
+    frame can then be used to create matrices.
 
   - `ggbarstats` loses `x.axis.orientation` argument. This argument was supposed
     to help avoid overlapping *x*-axis label, but now `ggplot2 3.3.0` has a
@@ -777,8 +785,8 @@ supplied).
 ## BUG FIXES
 
   - `ggbetweenstats` and `ggwithinstats` no longer produce incorrect label if
-    the data frame already contains a variable named `n` (#317) or variables with
-    pattern `mean` (#322).
+    the data frame already contains a variable named `n` (#317) or variables
+    with pattern `mean` (#322).
 
   - `ggbetweenstats` and `ggwithinstats` mean labels respect `k` argument
     (#331).
@@ -1117,9 +1125,9 @@ This uncoupling is designed to achieve two things:
 ## NEW FEATURES
 
   - `ggcoefstats` gains `meta.analytic.effect` that can be used to carry out
-    meta-analysis on regression estimates. This especially useful when a
-    data frame with regression estimates and standard error is available from
-    prior analyses. The `subtitle` is prepared with the new function
+    meta-analysis on regression estimates. This especially useful when a data
+    frame with regression estimates and standard error is available from prior
+    analyses. The `subtitle` is prepared with the new function
     `subtitle_meta_ggcoefstats` which is also exported.
 
   - `ggbetweenstats`, `ggscatterstats`, `gghistostats`, and `ggdotplotstats`

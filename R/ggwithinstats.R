@@ -66,12 +66,14 @@
 #' # you can remove a specific geom by setting `width` to `0` for that geom
 #' ggbetweenstats(
 #'   data = bugs_long,
-#'   x    = condition,
-#'   y    = desire,
+#'   x = condition,
+#'   y = desire,
 #'   # to remove violin plot
 #'   violin.args = list(width = 0),
 #'   # to remove boxplot
-#'   boxplot.args = list(width = 0)
+#'   boxplot.args = list(width = 0),
+#'   # to remove points
+#'   point.args = list(alpha = 0)
 #' )
 #' @export
 ggwithinstats <- function(data,

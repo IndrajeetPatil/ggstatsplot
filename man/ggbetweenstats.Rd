@@ -8,7 +8,6 @@ ggbetweenstats(
   data,
   x,
   y,
-  plot.type = "boxviolin",
   type = "parametric",
   pairwise.comparisons = TRUE,
   pairwise.display = "significant",
@@ -60,10 +59,6 @@ be inaccurate when there are more than two levels in \code{x} and there are
 subject-1,subject-2, ..., pattern.}
 
 \item{y}{The response (or outcome or dependent) variable from \code{data}.}
-
-\item{plot.type}{Character describing the \emph{type} of plot. Currently supported
-plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
-and \code{"boxviolin"} (for a combination of box and violin plots; default).}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -433,13 +428,15 @@ ggbetweenstats(
   ylab = "Speed-of-light measurement"
 )
 
-# you can remove a specific geom by setting `width` to `0` for that geom
+# you can remove a specific geom to reduce complexity of the plot
 ggbetweenstats(
   mtcars, am, wt,
   # to remove violin plot
   violin.args = list(width = 0),
   # to remove boxplot
-  boxplot.args = list(width = 0)
+  boxplot.args = list(width = 0),
+  # to remove points
+  point.args = list(alpha = 0)
 )
 \dontshow{\}) # examplesIf}
 }

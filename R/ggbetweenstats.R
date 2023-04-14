@@ -12,9 +12,6 @@
 #' ```{r child="man/rmd-fragments/ggbetweenstats_graphics.Rmd"}
 #' ```
 #'
-#' @param plot.type Character describing the *type* of plot. Currently supported
-#'   plots are `"box"` (for only boxplots), `"violin"` (for only violin plots),
-#'   and `"boxviolin"` (for a combination of box and violin plots; default).
 #' @param xlab Label for `x` axis variable. If `NULL` (default),
 #'   variable name for `x` will be used.
 #' @param ylab Labels for `y` axis variable. If `NULL` (default),
@@ -137,19 +134,20 @@
 #'   ylab = "Speed-of-light measurement"
 #' )
 #'
-#' # you can remove a specific geom by setting `width` to `0` for that geom
+#' # you can remove a specific geom to reduce complexity of the plot
 #' ggbetweenstats(
 #'   mtcars, am, wt,
 #'   # to remove violin plot
 #'   violin.args = list(width = 0),
 #'   # to remove boxplot
-#'   boxplot.args = list(width = 0)
+#'   boxplot.args = list(width = 0),
+#'   # to remove points
+#'   point.args = list(alpha = 0)
 #' )
 #' @export
 ggbetweenstats <- function(data,
                            x,
                            y,
-                           plot.type = "boxviolin",
                            type = "parametric",
                            pairwise.comparisons = TRUE,
                            pairwise.display = "significant",
@@ -239,17 +237,9 @@ ggbetweenstats <- function(data,
   # plot -----------------------------------
 
   plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(geom_point, aes(color = {{ x }}), !!!point.args)
-
-  if (plot.type %in% c("box", "boxviolin")) {
-    suppressWarnings({
-      plot <- plot + exec(geom_boxplot, outlier.shape = NA, !!!boxplot.args)
-    })
-  }
-
-  if (plot.type %in% c("violin", "boxviolin")) {
-    plot <- plot + exec(geom_violin, !!!violin.args)
-  }
+    exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+    exec(geom_boxplot, outlier.shape = NA, !!!boxplot.args) +
+    exec(geom_violin, !!!violin.args)
 
   # centrality tagging -------------------------------------
 

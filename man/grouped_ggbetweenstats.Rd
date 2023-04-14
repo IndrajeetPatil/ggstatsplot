@@ -22,9 +22,6 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link[=ggbetweenstats]{ggbetweenstats}}
   \describe{
-    \item{\code{plot.type}}{Character describing the \emph{type} of plot. Currently supported
-plots are \code{"box"} (for only boxplots), \code{"violin"} (for only violin plots),
-and \code{"boxviolin"} (for a combination of box and violin plots; default).}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
