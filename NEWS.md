@@ -11,6 +11,10 @@ read the `NEWS` for that package:
   has been removed. It was too crude to be useful or reliable, and users should
   instead prefer more informative methods (e.g. `performance::check_outliers()`).
 
+## MINOR CHANGES
+
+- Fix failures due to changes in `{parameters}`.
+
 # ggstatsplot 0.11.0
 
 ## BREAKING CHANGES
