@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.11.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +106,7 @@
                         <h4 data-toc-skip class="author">Indrajeet
 Patil</h4>
             
-            <h4 data-toc-skip class="date">2023-04-06</h4>
+            <h4 data-toc-skip class="date">2023-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/faq.Rmd" class="external-link"><code>vignettes/web_only/faq.Rmd</code></a></small>
       <div class="d-none name"><code>faq.Rmd</code></div>
@@ -430,10 +430,12 @@ wish to adopt a different annotation labels?</p>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span>, pairwise.comparisons <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># using `pairwise_comparisons()` function to create a data frame with results</span></span>
-<span><span class="op">(</span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">group1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>asterisk_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"**"</span>, <span class="st">"***"</span>, <span class="st">"**"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>asterisk_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"**"</span>, <span class="st">"***"</span>, <span class="st">"**"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 11</span></span></span>
 <span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
@@ -608,12 +610,11 @@ functions, but there is a way to tackle this.</p>
 <span>  grouping.var <span class="op">=</span> <span class="va">am</span>,</span>
 <span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  pairwise.comparisons <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  ggplot.component <span class="op">=</span></span>
 <span>  <span class="co"># modify further with `{ggplot2}` functions</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">paletteer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/paletteer/man/paletteer_c.html" class="external-link">paletteer_c</a></span><span class="op">(</span><span class="st">"viridis::viridis"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
+<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">paletteer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/paletteer/man/paletteer_c.html" class="external-link">paletteer_c</a></span><span class="op">(</span><span class="st">"viridis::viridis"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="faq_files/figure-html/grouped_modify-1.png" width="100%"></p>
 </div>
@@ -703,22 +704,22 @@ even mention this in the caption.</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rlang.r-lib.org" class="external-link">rlang</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
-<span>  <span class="fu">headerPanel</span><span class="op">(</span><span class="st">"Example - ggbetweenstats"</span><span class="op">)</span>,</span>
-<span>  <span class="fu">sidebarPanel</span><span class="op">(</span></span>
-<span>    <span class="fu">selectInput</span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"xcol"</span>, <span class="st">"X Variable"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>    <span class="fu">selectInput</span><span class="op">(</span><span class="st">"y"</span>, <span class="st">"ycol"</span>, <span class="st">"Y Variable"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/headerPanel.html" class="external-link">headerPanel</a></span><span class="op">(</span><span class="st">"Example - ggbetweenstats"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sidebarLayout.html" class="external-link">sidebarPanel</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"xcol"</span>, <span class="st">"X Variable"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="st">"ycol"</span>, <span class="st">"Y Variable"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
-<span>  <span class="fu">mainPanel</span><span class="op">(</span><span class="fu">plotOutput</span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/sidebarLayout.html" class="external-link">mainPanel</a></span><span class="op">(</span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">iris</span>, <span class="op">!</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">x</span>, <span class="op">!</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="how-to-change-size-of-annotations-for-combined-plot-in-grouped_-functions">23. How to change size of annotations for combined plot in
