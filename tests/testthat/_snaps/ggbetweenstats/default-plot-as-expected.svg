@@ -98,7 +98,6 @@
 <line x1='119.25' y1='244.74' x2='119.25' y2='354.87' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='97.15,156.64 97.15,244.74 141.36,244.74 141.36,156.64 97.15,156.64 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
 <line x1='97.15' y1='208.03' x2='141.36' y2='208.03' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='266.61' cy='494.36' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='266.61' y1='134.62' x2='266.61' y2='83.22' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='266.61' y1='242.91' x2='266.61' y2='332.84' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='244.50,134.62 244.50,242.91 288.71,242.91 288.71,134.62 244.50,134.62 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
@@ -369,7 +368,6 @@
 <line x1='473.77' y1='356.07' x2='473.77' y2='494.36' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='451.67,262.63 451.67,356.07 495.88,356.07 495.88,262.63 451.67,262.63 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
 <line x1='451.67' y1='314.95' x2='495.88' y2='314.95' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='621.13' cy='471.93' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='621.13' y1='182.27' x2='621.13' y2='83.22' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='621.13' y1='277.58' x2='621.13' y2='419.61' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='599.02,182.27 599.02,277.58 643.23,277.58 643.23,182.27 599.02,182.27 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />

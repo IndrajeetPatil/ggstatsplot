@@ -13,15 +13,15 @@
 #' ```
 #'
 #' @inheritParams ggbetweenstats
-#' @param point.path,centrality.path Logical that decides whether individual data
-#'   points and means, respectively, should be connected using `geom_path`. Both
-#'   default to `TRUE`. Note that `point.path` argument is relevant only when
-#'   there are two groups (i.e., in case of a *t*-test). In case of large number
-#'   of data points, it is advisable to set `point.path = FALSE` as these lines
-#'   can overwhelm the plot.
+#' @param point.path,centrality.path Logical that decides whether individual
+#'   data points and means, respectively, should be connected using
+#'   `ggplot2::geom_path()`. Both default to `TRUE`. Note that `point.path`
+#'   argument is relevant only when there are two groups (i.e., in case of a
+#'   *t*-test). In case of large number of data points, it is advisable to set
+#'   `point.path = FALSE` as these lines can overwhelm the plot.
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
-#'   arguments passed on to `geom_path` connecting raw data points and mean
-#'   points.
+#'   arguments passed on to `ggplot2::geom_path()` connecting raw data points
+#'   and mean points.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
@@ -57,10 +57,21 @@
 #'
 #' # modifying defaults
 #' ggwithinstats(
-#'   data            = bugs_long,
-#'   x               = condition,
-#'   y               = desire,
-#'   type            = "robust"
+#'   data = bugs_long,
+#'   x    = condition,
+#'   y    = desire,
+#'   type = "robust"
+#' )
+#'
+#' # you can remove a specific geom by setting `width` to `0` for that geom
+#' ggbetweenstats(
+#'   data = bugs_long,
+#'   x    = condition,
+#'   y    = desire,
+#'   # to remove violin plot
+#'   violin.args = list(width = 0),
+#'   # to remove boxplot
+#'   boxplot.args = list(width = 0)
 #' )
 #' @export
 ggwithinstats <- function(data,
@@ -155,7 +166,7 @@ ggwithinstats <- function(data,
 
   plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args) +
+    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, outlier.shape = NA, !!!boxplot.args) +
     exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
 
   # add a connecting path only if there are only two groups

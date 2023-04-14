@@ -136,6 +136,15 @@
 #'   xlab = "The experiment number",
 #'   ylab = "Speed-of-light measurement"
 #' )
+#'
+#' # you can remove a specific geom by setting `width` to `0` for that geom
+#' ggbetweenstats(
+#'   mtcars, am, wt,
+#'   # to remove violin plot
+#'   violin.args = list(width = 0),
+#'   # to remove boxplot
+#'   boxplot.args = list(width = 0)
+#' )
 #' @export
 ggbetweenstats <- function(data,
                            x,
@@ -234,7 +243,7 @@ ggbetweenstats <- function(data,
 
   if (plot.type %in% c("box", "boxviolin")) {
     suppressWarnings({
-      plot <- plot + exec(geom_boxplot, !!!boxplot.args)
+      plot <- plot + exec(geom_boxplot, outlier.shape = NA, !!!boxplot.args)
     })
   }
 

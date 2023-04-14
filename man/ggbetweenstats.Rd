@@ -432,6 +432,15 @@ ggbetweenstats(
   xlab = "The experiment number",
   ylab = "Speed-of-light measurement"
 )
+
+# you can remove a specific geom by setting `width` to `0` for that geom
+ggbetweenstats(
+  mtcars, am, wt,
+  # to remove violin plot
+  violin.args = list(width = 0),
+  # to remove boxplot
+  boxplot.args = list(width = 0)
+)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

@@ -94,7 +94,6 @@
 <circle cx='615.41' cy='328.18' r='3.20' style='stroke-width: 0.00; stroke: #E7298A; stroke-opacity: 0.40; fill: #E7298A; fill-opacity: 0.40;' />
 <circle cx='126.39' cy='425.32' r='3.20' style='stroke-width: 0.00; stroke: #1B9E77; stroke-opacity: 0.40; fill: #1B9E77; fill-opacity: 0.40;' />
 <circle cx='121.11' cy='343.12' r='3.20' style='stroke-width: 0.00; stroke: #1B9E77; stroke-opacity: 0.40; fill: #1B9E77; fill-opacity: 0.40;' />
-<circle cx='122.23' cy='29.27' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='122.23' y1='294.55' x2='122.23' y2='283.34' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='122.23' y1='423.45' x2='122.23' y2='514.99' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='98.01,294.55 98.01,423.45 146.44,423.45 146.44,294.55 98.01,294.55 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
@@ -107,7 +106,6 @@
 <line x1='445.11' y1='367.41' x2='445.11' y2='373.01' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='420.89,189.93 420.89,367.41 469.32,367.41 469.32,189.93 420.89,189.93 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />
 <line x1='420.89' y1='298.29' x2='469.32' y2='298.29' style='stroke-width: 2.13; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter;' />
-<circle cx='606.54' cy='156.30' r='1.95' style='stroke-width: 0.71; stroke: #333333; stroke-opacity: 0.20; fill: #333333; fill-opacity: 0.20;' />
 <line x1='606.54' y1='350.59' x2='606.54' y2='260.92' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <line x1='606.54' y1='429.06' x2='606.54' y2='470.16' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
 <polygon points='582.33,350.59 582.33,429.06 630.76,429.06 630.76,350.59 582.33,350.59 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFFFFF; fill-opacity: 0.20;' />

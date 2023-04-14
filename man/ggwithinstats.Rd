@@ -173,18 +173,18 @@ arguments to be passed to \code{ggplot2::geom_point()} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
 
 \item{centrality.path.args, point.path.args}{A list of additional aesthetic
-arguments passed on to \code{geom_path} connecting raw data points and mean
-points.}
+arguments passed on to \code{ggplot2::geom_path()} connecting raw data points
+and mean points.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{ggplot2::geom_point()} displaying the raw data.}
 
-\item{point.path, centrality.path}{Logical that decides whether individual data
-points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
-there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{point.path = FALSE} as these lines
-can overwhelm the plot.}
+\item{point.path, centrality.path}{Logical that decides whether individual
+data points and means, respectively, should be connected using
+\code{ggplot2::geom_path()}. Both default to \code{TRUE}. Note that \code{point.path}
+argument is relevant only when there are two groups (i.e., in case of a
+\emph{t}-test). In case of large number of data points, it is advisable to set
+\code{point.path = FALSE} as these lines can overwhelm the plot.}
 
 \item{boxplot.args}{A list of additional aesthetic arguments passed on to
 \code{ggplot2::geom_boxplot()}.}
@@ -435,10 +435,21 @@ extract_stats(p)
 
 # modifying defaults
 ggwithinstats(
-  data            = bugs_long,
-  x               = condition,
-  y               = desire,
-  type            = "robust"
+  data = bugs_long,
+  x    = condition,
+  y    = desire,
+  type = "robust"
+)
+
+# you can remove a specific geom by setting `width` to `0` for that geom
+ggbetweenstats(
+  data = bugs_long,
+  x    = condition,
+  y    = desire,
+  # to remove violin plot
+  violin.args = list(width = 0),
+  # to remove boxplot
+  boxplot.args = list(width = 0)
 )
 \dontshow{\}) # examplesIf}
 }

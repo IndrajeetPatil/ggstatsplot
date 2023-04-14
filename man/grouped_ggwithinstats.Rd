@@ -22,15 +22,15 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link[=ggwithinstats]{ggwithinstats}}
   \describe{
-    \item{\code{point.path,centrality.path}}{Logical that decides whether individual data
-points and means, respectively, should be connected using \code{geom_path}. Both
-default to \code{TRUE}. Note that \code{point.path} argument is relevant only when
-there are two groups (i.e., in case of a \emph{t}-test). In case of large number
-of data points, it is advisable to set \code{point.path = FALSE} as these lines
-can overwhelm the plot.}
+    \item{\code{point.path,centrality.path}}{Logical that decides whether individual
+data points and means, respectively, should be connected using
+\code{ggplot2::geom_path()}. Both default to \code{TRUE}. Note that \code{point.path}
+argument is relevant only when there are two groups (i.e., in case of a
+\emph{t}-test). In case of large number of data points, it is advisable to set
+\code{point.path = FALSE} as these lines can overwhelm the plot.}
     \item{\code{centrality.path.args,point.path.args}}{A list of additional aesthetic
-arguments passed on to \code{geom_path} connecting raw data points and mean
-points.}
+arguments passed on to \code{ggplot2::geom_path()} connecting raw data points
+and mean points.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
