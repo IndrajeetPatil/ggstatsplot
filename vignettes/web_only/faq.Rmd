@@ -332,10 +332,12 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE)
 
 # using `pairwise_comparisons()` function to create a data frame with results
-(df <- pairwise_comparisons(mtcars, cyl, wt) %>%
+df <- pairwise_comparisons(mtcars, cyl, wt) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
   dplyr::arrange(group1) %>%
-  dplyr::mutate(asterisk_label = c("**", "***", "**")))
+  dplyr::mutate(asterisk_label = c("**", "***", "**"))
+
+df
 
 # adding pairwise comparisons using `{ggsignif}` package
 p +
@@ -444,12 +446,11 @@ grouped_ggbetweenstats(
   grouping.var = am,
   results.subtitle = FALSE,
   pairwise.comparisons = FALSE,
-  ggplot.component =
   # modify further with `{ggplot2}` functions
-    list(
-      scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
-      theme(axis.text.x = element_text(angle = 90))
-    )
+  ggplot.component = list(
+    scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
+    theme(axis.text.x = element_text(angle = 90))
+  )
 )
 ```
 

@@ -100,11 +100,12 @@ p <- ggplot(mtcars, aes(cyl, wt)) +
   geom_boxplot()
 
 ## using `pairwise_comparisons()` package to create a data frame with results
-
-(df <-
+df <-
   pairwise_comparisons(mtcars, cyl, wt) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
-  dplyr::arrange(group1))
+  dplyr::arrange(group1)
+
+df
 
 ## using `geom_signif` to display results
 ## (note that you can choose not to display all comparisons)
