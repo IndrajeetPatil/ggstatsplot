@@ -1,5 +1,3 @@
-skip_if_not_installed("ggcorrplot")
-
 test_that(
   desc = "checking ggcorrmat with entier dataset",
   code = {
@@ -22,10 +20,7 @@ test_that(
 test_that(
   desc = "ggcorrmat warnings are as expected",
   code = {
-    expect_snapshot_warning(ggcorrmat(
-      data = iris,
-      cor.vars.names = "x"
-    ))
+    expect_snapshot_warning(ggcorrmat(iris, cor.vars.names = "x"))
   }
 )
 
@@ -73,8 +68,6 @@ test_that(
 
 
 # grouped_ggcorrmat output: plot ---------------------------------------------------------------
-
-skip_if_not_installed("ggcorrplot")
 
 test_that(
   desc = "grouped_ggcorrmat plots are as expected",

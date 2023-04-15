@@ -137,16 +137,16 @@ read the `NEWS` for that package:
 ## MAJOR CHANGES
 
   - For plotting marginal distributions in `ggscatterstats`, `{ggstatsplot}` now
-    relies on `ggside` package instead of `ggExtra`. This was done to remove a
-    glaring inconsistency in the API. All functions in `{ggstatsplot}` produced
-    `ggplot` objects and could be further modified with `ggplot2` functions,
-    except `ggscatterstats`, which led to a lot of confusion among users (e.g.
-    #28). This change gets rid of this inconsistency. But it comes at a cost:
-    there is no more `marginal.type` argument that lets you change the type of
-    marginal distribution graphic and histogram is the only possible option.
-    Note that this is **not** a breaking change. Your past code will continue to
-    work but it will now always produce a histogram instead of other marginal
-    graphic you might have chosen.
+    relies on `{ggside}` package instead of `{ggExtra}`. This was done to remove
+    a glaring inconsistency in the API. All functions in `{ggstatsplot}`
+    produced `ggplot` objects and could be further modified with `ggplot2`
+    functions, except `ggscatterstats`, which led to a lot of confusion among
+    users (e.g. #28). This change gets rid of this inconsistency. But it comes
+    at a cost: there is no more `marginal.type` argument that lets you change
+    the type of marginal distribution graphic and histogram is the only possible
+    option. Note that this is **not** a breaking change. Your past code will
+    continue to work but it will now always produce a histogram instead of other
+    marginal graphic you might have chosen.
 
   - Minimum needed R version is now `4.0`.
 

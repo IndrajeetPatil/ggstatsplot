@@ -55,9 +55,8 @@
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
 #'
-#' @examplesIf requireNamespace("ggside", quietly = TRUE)
+#' @examples
 #' set.seed(123)
-#' library(ggside) # for plotting marginals
 #'
 #' # creating a plot
 #' p <- ggscatterstats(
@@ -185,9 +184,6 @@ ggscatterstats <- function(data,
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
-    insight::check_if_installed("ggside", minimum_version = "0.2.1")
-
-    # adding marginal distributions
     plotScatter <- plotScatter +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
@@ -218,7 +214,7 @@ ggscatterstats <- function(data,
 #' @inherit ggscatterstats return references
 #' @inherit ggscatterstats return details
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggside", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # to ensure reproducibility
 #' set.seed(123)
 #'

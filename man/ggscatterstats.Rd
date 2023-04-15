@@ -193,9 +193,7 @@ The table below provides summary about:
 }
 
 \examples{
-\dontshow{if (requireNamespace("ggside", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
-library(ggside) # for plotting marginals
 
 # creating a plot
 p <- ggscatterstats(
@@ -212,7 +210,7 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
-\dontshow{\}) # examplesIf}
+
 }
 \seealso{
 \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
