@@ -52,11 +52,9 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
-#' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
-#' # for reproducibility
+#' @examples
 #' set.seed(123)
-#' library(ggcorrplot) # for plot
-#'
+#' library(ggcorrplot)
 #' ggcorrmat(iris)
 #' @export
 ggcorrmat <- function(data,
@@ -106,8 +104,6 @@ ggcorrmat <- function(data,
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
 
   # plot ------------------------------------------
-
-  insight::check_if_installed("ggcorrplot")
 
   # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
@@ -201,17 +197,15 @@ ggcorrmat <- function(data,
 #' @inherit ggcorrmat return references
 #' @inherit ggcorrmat return details
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggcorrplot", quietly = TRUE)
-#' # for reproducibility
+#' @examples
 #' set.seed(123)
-#' library(ggcorrplot) # for plot
 #'
 #' grouped_ggcorrmat(
 #'   data = iris,
 #'   grouping.var = Species,
 #'   type = "robust",
 #'   p.adjust.method = "holm",
-#'   plotgrid.args = list(ncol = 1),
+#'   plotgrid.args = list(ncol = 1L),
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export

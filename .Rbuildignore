@@ -1,4 +1,5 @@
 ^.*\.Rproj$
+^.dev$
 ^.gitlab-ci\.yml$
 ^API$
 ^CITATION\.cff$

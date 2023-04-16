@@ -111,20 +111,16 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# for reproducibility
 set.seed(123)
-library(ggcorrplot) # for plot
 
 grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
   type = "robust",
   p.adjust.method = "holm",
-  plotgrid.args = list(ncol = 1),
+  plotgrid.args = list(ncol = 1L),
   annotation.args = list(tag_levels = "i")
 )
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
