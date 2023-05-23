@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.11.1.9000",
+  "version": "0.12.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
+  "runtimePlatform": "R version 4.3.0 (2023-04-21)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -219,7 +219,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.7",
+      "version": ">= 3.1.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -303,7 +303,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 1.1.1",
+      "version": ">= 1.1.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -392,7 +392,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.1",
+      "version": ">= 0.19.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -417,7 +417,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.20.3",
+      "version": ">= 0.21.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -442,7 +442,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.10.2",
+      "version": ">= 0.10.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -513,7 +513,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9198.026KB",
+  "fileSize": "9198.016KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
