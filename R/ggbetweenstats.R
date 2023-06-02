@@ -238,7 +238,7 @@ ggbetweenstats <- function(data,
 
   plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, outlier.shape = NA, !!!boxplot.args) +
+    exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, !!!violin.args)
 
   # centrality tagging -------------------------------------

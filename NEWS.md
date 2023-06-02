@@ -15,7 +15,8 @@ read the `NEWS` for that package:
 ## NEW FEATURES
 
 - `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments
-  to the underlying geom function.
+  to the underlying geom function. This also fixes regression introduced in
+  `0.11.1` release where outlier points were displayed along with box plot.
 
 # ggstatsplot 0.11.1
 

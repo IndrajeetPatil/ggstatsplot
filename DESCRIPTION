@@ -42,13 +42,13 @@ Imports:
     glue,
     insight (>= 0.19.2),
     paletteer,
-    parameters (>= 0.21.0),
+    parameters (>= 0.21.1),
     patchwork,
     performance (>= 0.10.3),
     purrr (>= 1.0.1),
     rlang,
     stats,
-    statsExpressions (>= 1.5.0),
+    statsExpressions (>= 1.5.1),
     tidyr,
     utils
 Suggests:

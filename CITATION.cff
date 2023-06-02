@@ -160,6 +160,18 @@ references:
   year: '2023'
   version: '>= 1.1.2'
 - type: software
+  title: ggcorrplot
+  abstract: 'ggcorrplot: Visualization of a Correlation Matrix using ''ggplot2'''
+  notes: Imports
+  url: http://www.sthda.com/english/wiki/ggcorrplot-visualization-of-a-correlation-matrix-using-ggplot2
+  repository: https://CRAN.R-project.org/package=ggcorrplot
+  authors:
+  - family-names: Kassambara
+    given-names: Alboukadel
+    email: alboukadel.kassambara@gmail.com
+  year: '2023'
+  version: '>= 0.1.4'
+- type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
   notes: Imports
@@ -308,7 +320,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=parameters
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -334,7 +346,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.21.0'
+  version: '>= 0.21.1'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -432,7 +444,7 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.5.0'
+  version: '>= 1.5.1'
   year: '2023'
 - type: software
   title: tidyr
@@ -497,6 +509,18 @@ references:
     email: jrouder@uci.edu
   year: '2023'
   version: '>= 0.9.12-4.4'
+- type: software
+  title: gapminder
+  abstract: 'gapminder: Data from Gapminder'
+  notes: Suggests
+  url: https://www.gapminder.org/data/
+  repository: https://CRAN.R-project.org/package=gapminder
+  authors:
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@posit.co
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2023'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
