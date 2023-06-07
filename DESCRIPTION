@@ -44,7 +44,7 @@ Imports:
     paletteer,
     parameters (>= 0.21.1),
     patchwork,
-    performance (>= 0.10.3),
+    performance (>= 0.10.4),
     purrr (>= 1.0.1),
     rlang,
     stats,

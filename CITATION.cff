@@ -364,7 +364,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=performance
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -391,7 +391,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.10.3'
+  version: '>= 0.10.4'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
