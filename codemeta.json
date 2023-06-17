@@ -219,7 +219,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.8",
+      "version": ">= 3.1.9",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -290,7 +290,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.7.1",
+      "version": ">= 0.8.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

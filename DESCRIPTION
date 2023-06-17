@@ -32,7 +32,7 @@ Depends:
     R (>= 4.1.0)
 Imports:
     correlation (>= 0.8.4),
-    datawizard (>= 0.7.1),
+    datawizard (>= 0.8.0),
     dplyr (>= 1.1.2),
     ggcorrplot (>= 0.1.4),
     ggplot2 (>= 3.4.2),
@@ -65,7 +65,7 @@ Suggests:
     psych,
     rmarkdown,
     survival,
-    testthat (>= 3.1.8),
+    testthat (>= 3.1.9),
     tibble,
     vdiffr (>= 1.0.5),
     WRS2

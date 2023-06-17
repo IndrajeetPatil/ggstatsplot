@@ -106,7 +106,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=datawizard
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -133,7 +133,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.7.1'
+  version: '>= 0.8.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -269,7 +269,7 @@ references:
   abstract: 'insight: Easy Access to Model Information for Various Model Objects'
   notes: Imports
   url: https://easystats.github.io/insight/
-  repository: https://CRAN.R-project.org/package=insight
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -692,7 +692,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2023'
-  version: '>= 3.1.8'
+  version: '>= 3.1.9'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
