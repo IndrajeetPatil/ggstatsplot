@@ -40,7 +40,7 @@ Imports:
     ggside (>= 0.2.2),
     ggsignif,
     glue,
-    insight (>= 0.19.2),
+    insight (>= 0.19.3),
     paletteer,
     parameters (>= 0.21.1),
     patchwork,
@@ -65,7 +65,7 @@ Suggests:
     psych,
     rmarkdown,
     survival,
-    testthat (>= 3.1.9),
+    testthat (>= 3.1.10),
     tibble,
     vdiffr (>= 1.0.5),
     WRS2
