@@ -294,8 +294,7 @@ Here is a workaround using `{ggsignif}`:
 
 library(ggsignif)
 
-## displaying only one comparison
-ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE) +
+ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
   geom_signif(comparisons = list(c("4", "6")), test.args = list(exact = FALSE))
 ```
 
@@ -329,7 +328,7 @@ library(ggsignif)
 mtcars$cyl <- as.factor(mtcars$cyl)
 
 # creating the base plot
-p <- ggbetweenstats(mtcars, cyl, wt, pairwise.comparisons = FALSE)
+p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
 # using `pairwise_comparisons()` function to create a data frame with results
 df <- pairwise_comparisons(mtcars, cyl, wt) %>%
@@ -385,7 +384,7 @@ ggwithinstats(
   x = condition,
   y = desire,
   results.subtitle = FALSE,
-  pairwise.comparisons = FALSE
+  pairwise.display = "none"
 )
 
 # after
@@ -395,7 +394,7 @@ ggwithinstats(
   y = desire,
   point.args = list(alpha = 0),
   results.subtitle = FALSE,
-  pairwise.comparisons = FALSE
+  pairwise.display = "none"
 )
 ```
 
@@ -445,7 +444,7 @@ grouped_ggbetweenstats(
   wt,
   grouping.var = am,
   results.subtitle = FALSE,
-  pairwise.comparisons = FALSE,
+  pairwise.display = "none",
   # modify further with `{ggplot2}` functions
   ggplot.component = list(
     scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
