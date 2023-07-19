@@ -13,7 +13,7 @@ test_that(
         data = mtcars,
         x = am,
         y = wt,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         results.subtitle = FALSE
       ) +
         ggplot2::labs(x = "Transmission", y = "Weight")
@@ -32,7 +32,7 @@ test_that(
         data = df_small,
         x = group,
         y = centrality.a,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         results.subtitle = FALSE
       ))
     )

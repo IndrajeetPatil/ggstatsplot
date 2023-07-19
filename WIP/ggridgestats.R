@@ -19,7 +19,6 @@ ggridgestats <- function(data,
                          y,
                          type = "parametric",
                          paired = FALSE,
-                         pairwise.comparisons = TRUE,
                          pairwise.display = "significant",
                          p.adjust.method = "holm",
                          effsize.type = "unbiased",
@@ -164,7 +163,7 @@ ggridgestats <- function(data,
 
   # ggsignif labels -------------------------------------
 
-  if (isTRUE(pairwise.comparisons) && test == "anova") {
+  if (pairwise.display != "none" && test == "anova") {
     # creating data frame with pairwise comparison results
     mpc_df <- pairwise_comparisons(
       data = data,

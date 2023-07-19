@@ -80,7 +80,6 @@ ggwithinstats <- function(data,
                           x,
                           y,
                           type = "parametric",
-                          pairwise.comparisons = TRUE,
                           pairwise.display = "significant",
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
@@ -197,7 +196,7 @@ ggwithinstats <- function(data,
   # initialize
   seclabel <- NULL
 
-  if (isTRUE(pairwise.comparisons) && test == "anova") {
+  if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
       data            = data,
       x               = {{ x }},

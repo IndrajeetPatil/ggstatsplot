@@ -16,13 +16,6 @@
 #'   variable name for `x` will be used.
 #' @param ylab Labels for `y` axis variable. If `NULL` (default),
 #'   variable name for `y` will be used.
-#' @param pairwise.comparisons Logical that decides whether pairwise comparisons
-#'   are to be displayed (default: `TRUE`). Please note that only
-#'   **significant** comparisons will be shown by default. To change this
-#'   behavior, select appropriate option with `pairwise.display` argument. The
-#'   pairwise comparison dataframes are prepared using the
-#'   `pairwise_comparisons` function. For more details
-#'   about pairwise comparisons, see the documentation for that function.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
 #'   `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
@@ -34,7 +27,8 @@
 #'
 #'   You can use this argument to make sure that your plot is not uber-cluttered
 #'   when you have multiple groups being compared and scores of pairwise
-#'   comparisons being displayed.
+#'   comparisons being displayed. If set to `"none"`, no pairwise comparisons
+#'   will be displayed.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
 #'   favor of the *null* hypothesis. This argument is relevant only **for
 #'   parametric test** (Default: `TRUE`).
@@ -149,7 +143,6 @@ ggbetweenstats <- function(data,
                            x,
                            y,
                            type = "parametric",
-                           pairwise.comparisons = TRUE,
                            pairwise.display = "significant",
                            p.adjust.method = "holm",
                            effsize.type = "unbiased",
@@ -261,7 +254,7 @@ ggbetweenstats <- function(data,
 
   seclabel <- NULL
 
-  if (isTRUE(pairwise.comparisons) && test == "anova") {
+  if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
       data            = data,
       x               = {{ x }},

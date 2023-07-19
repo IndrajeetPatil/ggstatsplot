@@ -12,6 +12,10 @@ read the `NEWS` for that package:
   argument was also redundant. Since removing a specific geom is straightforward
   using `*.args` arguments. Examples for these two functions illustrate how.
 
+- `ggbetweenstats()` and `ggwithinstats()` retire `pairwise.comparisons`
+  argument since it was redundant. In order to turn off showing pairwise
+  comparisons, you can now use `pairwise.display = "none"`.
+
 ## NEW FEATURES
 
 - `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments
