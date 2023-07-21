@@ -222,12 +222,12 @@ grouped_gghistostats <- function(data,
                                  plotgrid.args = list(),
                                  annotation.args = list(),
                                  ...) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = gghistostats,
-    x = {{ x }},
-    binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(
+      .f = gghistostats,
+      x = {{ x }},
+      binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
+      ...
+    ) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

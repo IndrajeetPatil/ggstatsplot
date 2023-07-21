@@ -67,7 +67,6 @@ ggbarstats <- function(data,
                        ...) {
   # data frame ------------------------------------------
 
-
   type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
@@ -226,10 +225,7 @@ grouped_ggbarstats <- function(data,
                                grouping.var,
                                plotgrid.args = list(),
                                annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggbarstats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggbarstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

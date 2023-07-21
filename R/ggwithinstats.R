@@ -288,10 +288,7 @@ grouped_ggwithinstats <- function(data,
                                   grouping.var,
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggwithinstats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggwithinstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }
