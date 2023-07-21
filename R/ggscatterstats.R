@@ -46,6 +46,8 @@
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
@@ -114,7 +116,6 @@ ggscatterstats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # convert entered stats type to a standard notation
     type <- stats_type_switch(type)
 
     # relevant arguments for statistical tests
@@ -210,6 +211,8 @@ ggscatterstats <- function(data,
 #'
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
+#'
+#' @autoglobal
 #'
 #' @inherit ggscatterstats return references
 #' @inherit ggscatterstats return details

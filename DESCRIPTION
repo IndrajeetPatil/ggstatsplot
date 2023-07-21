@@ -75,9 +75,10 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(
-    markdown = TRUE, 
-    roclets = c("rd", "namespace", "collate", "pkgapi::api_roclet")
+    markdown = TRUE,
+    roclets = c("collate", "namespace", "rd", "pkgapi::api_roclet", "roxyglobals::global_roclet")
   )
 RoxygenNote: 7.2.3.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
+Config/Needs/check: anthonynorth/roxyglobals

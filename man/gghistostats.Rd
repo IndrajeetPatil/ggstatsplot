@@ -145,7 +145,7 @@ passed to the \code{geom_line} used to display the lines corresponding to the
 centrality parameter.}
 
 \item{normal.curve}{A logical value that decides whether to super-impose a
-normal curve using \code{stats::dnorm(mean(x), sd(x))}. Default is \code{FALSE}.}
+normal curve using \code{stats::dnorm(mean(x), stats::sd(x))}. Default is \code{FALSE}.}
 
 \item{normal.curve.args}{A list of additional aesthetic arguments to be
 passed to the normal curve.}

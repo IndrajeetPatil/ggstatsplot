@@ -20,6 +20,8 @@
 #' @param ... Currently ignored.
 #' @inheritParams patchwork::wrap_plots
 #'
+#' @autoglobal
+#'
 #' @examples
 #' library(ggplot2)
 #'

@@ -32,6 +32,8 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
@@ -117,7 +119,7 @@ ggwithinstats <- function(data,
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
   # creating a data frame
@@ -259,6 +261,8 @@ ggwithinstats <- function(data,
 #'
 #' @seealso \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},
 #' \code{\link{grouped_ggbetweenstats}}
+#'
+#' @autoglobal
 #'
 #' @inherit ggwithinstats return references
 #'

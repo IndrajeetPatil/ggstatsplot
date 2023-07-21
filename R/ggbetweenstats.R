@@ -101,6 +101,8 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
@@ -185,7 +187,7 @@ ggbetweenstats <- function(data,
                            ...) {
   # data -----------------------------------
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
@@ -318,6 +320,8 @@ ggbetweenstats <- function(data,
 #' @inheritParams .grouped_list
 #' @inheritParams combine_plots
 #' @inheritDotParams ggbetweenstats -title
+#'
+#' @autoglobal
 #'
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}

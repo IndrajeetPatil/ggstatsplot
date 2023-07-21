@@ -46,6 +46,8 @@
 #'
 #' @inheritSection statsExpressions::corr_test Correlation analyses
 #'
+#' @autoglobal
+#'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
 #'
@@ -190,6 +192,8 @@ ggcorrmat <- function(data,
 #' @inheritParams ggcorrmat
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggcorrmat -title
+#'
+#' @autoglobal
 #'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}

@@ -41,6 +41,8 @@
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
@@ -91,7 +93,7 @@ ggpiestats <- function(data,
                        ...) {
   # data frame ------------------------------------------
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
@@ -242,6 +244,8 @@ ggpiestats <- function(data,
 #'
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggbarstats}}
+#'
+#' @autoglobal
 #'
 #' @inherit ggpiestats return references
 #' @inherit ggpiestats return details

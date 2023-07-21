@@ -77,6 +77,8 @@
 #'
 #' @inheritSection statsExpressions::meta_analysis Random-effects meta-analysis
 #'
+#' @autoglobal
+#'
 #' @note
 #'
 #' 1. In case you want to carry out meta-analysis, you will be asked to install

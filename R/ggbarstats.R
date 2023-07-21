@@ -21,6 +21,8 @@
 #'
 #' @inherit ggpiestats return details
 #'
+#' @autoglobal
+#'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
@@ -65,7 +67,7 @@ ggbarstats <- function(data,
                        ...) {
   # data frame ------------------------------------------
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
@@ -196,6 +198,8 @@ ggbarstats <- function(data,
 #' @inherit ggbarstats return references
 #' @inherit ggbarstats return details
 #' @inherit ggbarstats return return
+#'
+#' @autoglobal
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility

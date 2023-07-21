@@ -23,6 +23,8 @@
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 #'  \code{\link{grouped_ggdotplotstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
@@ -71,7 +73,7 @@ ggdotplotstats <- function(data,
                            ...) {
   # data -----------------------------------
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
@@ -175,6 +177,8 @@ ggdotplotstats <- function(data,
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{gghistostats}}
+#'
+#' @autoglobal
 #'
 #' @inherit ggdotplotstats return references
 #' @inherit ggdotplotstats return details

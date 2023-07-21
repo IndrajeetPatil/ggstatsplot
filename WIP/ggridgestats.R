@@ -59,7 +59,7 @@ ggridgestats <- function(data,
                          ...) {
   # data -----------------------------------
 
-  # convert entered stats type to a standard notation
+  
   type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed

@@ -7,6 +7,8 @@
 #' @inheritParams ggwithinstats
 #' @inheritParams ggrepel::geom_label_repel
 #'
+#' @autoglobal
+#'
 #' @examples
 #' # this internal function may not have much utility outside of the package
 #' set.seed(123)
@@ -74,6 +76,8 @@
 #' @param mpc_df A data frame containing results from pairwise comparisons
 #'   (produced by `pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
+#'
+#' @autoglobal
 #'
 #' @examples
 #' set.seed(123)
@@ -143,6 +147,7 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @keywords internal
+#' @autoglobal
 #' @noRd
 .ggsignif_xy <- function(x, y) {
   # number of comparisons and size of each step
@@ -180,6 +185,7 @@
 #' @examples
 #' .pairwise_seclabel("my caption", "Student's t-test")
 #' @keywords internal
+#' @autoglobal
 #' @noRd
 .pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
   # single quote (') needs to be escaped inside glue expressions
