@@ -122,7 +122,7 @@ ggwithinstats <- function(data,
 
   type <- stats_type_switch(type)
 
-  # creating a data frame
+
   data %<>%
     select({{ x }}, {{ y }}) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
@@ -137,7 +137,6 @@ ggwithinstats <- function(data,
   test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle && insight::check_if_installed("afex")) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,
       x            = as_string(x),
@@ -221,7 +220,7 @@ ggwithinstats <- function(data,
       ggsignif.args    = ggsignif.args
     )
 
-    # preparing the secondary label axis to give pairwise comparisons test details
+    # secondary label axis to give pairwise comparisons test details
     seclabel <- .pairwise_seclabel(
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)

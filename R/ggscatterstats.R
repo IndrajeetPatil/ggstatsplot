@@ -110,7 +110,7 @@ ggscatterstats <- function(data,
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # preparing the data frame
+  # data frame
   data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
@@ -118,7 +118,7 @@ ggscatterstats <- function(data,
   if (results.subtitle) {
     type <- stats_type_switch(type)
 
-    # relevant arguments for statistical tests
+
     .f.args <- list(
       data = data,
       x = {{ x }},
@@ -132,7 +132,7 @@ ggscatterstats <- function(data,
     subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
-    # preparing the BF message for null hypothesis support
+    # BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
@@ -144,7 +144,7 @@ ggscatterstats <- function(data,
   # creating jittered positions
   pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
 
-  # preparing the scatterplot
+  # scatterplot
   plotScatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
     exec(geom_smooth, level = conf.level, !!!smooth.line.args, na.rm = TRUE)

@@ -72,7 +72,6 @@ ggbarstats <- function(data,
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na()
@@ -90,7 +89,6 @@ ggbarstats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data                = data,
       x                   = {{ x }},
@@ -107,7 +105,7 @@ ggbarstats <- function(data,
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
 
-    # preparing Bayes Factor caption
+    # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]

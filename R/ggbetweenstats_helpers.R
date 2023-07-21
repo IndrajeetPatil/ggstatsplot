@@ -37,7 +37,7 @@
                                 ...) {
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
-  # if there should be lines connecting mean values across groups
+  # lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
     plot <- plot +
       exec(

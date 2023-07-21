@@ -204,7 +204,6 @@ ggbetweenstats <- function(data,
   test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,
       x            = as_string(x),
@@ -280,7 +279,7 @@ ggbetweenstats <- function(data,
       ggsignif.args    = ggsignif.args
     )
 
-    # preparing the secondary label axis to give pairwise comparisons test details
+    # secondary label axis to give pairwise comparisons test details
     seclabel <- .pairwise_seclabel(
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
