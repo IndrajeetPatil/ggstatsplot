@@ -178,9 +178,7 @@ ggcoefstats <- function(x,
   }
 
   # create a new term column if it's not present
-  if (!"term" %in% names(tidy_df)) {
-    tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
-  }
+  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
 
   # check for duplicate terms and columns -------------------------
 

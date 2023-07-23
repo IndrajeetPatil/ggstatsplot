@@ -117,7 +117,7 @@ ggpiestats <- function(data,
   # TODO: one-way table in `BayesFactor`
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
 
-  # faceting is possible only if both vars have more than one levels
+  # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
   if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
 
@@ -193,11 +193,7 @@ ggpiestats <- function(data,
     scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
     ggtheme +
-    theme(
-      panel.grid = element_blank(),
-      axis.ticks = element_blank(),
-      axis.title = element_blank()
-    ) +
+    theme(panel.grid = element_blank(), axis.ticks = element_blank()) +
     guides(fill = guide_legend(override.aes = list(color = NA)))
 
   # sample size + proportion test ------------------------------------------
