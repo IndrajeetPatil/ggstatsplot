@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.0 (2023-04-21)",
+  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -171,6 +171,7 @@
       "@type": "SoftwareApplication",
       "identifier": "PMCMRplus",
       "name": "PMCMRplus",
+      "version": ">= 1.9.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -368,6 +369,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggsignif",
       "name": "ggsignif",
+      "version": ">= 0.6.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -513,7 +515,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9405.029KB",
+  "fileSize": "9401.95KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

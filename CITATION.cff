@@ -249,6 +249,7 @@ references:
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
   year: '2023'
+  version: '>= 0.6.4'
 - type: software
   title: glue
   abstract: 'glue: Interpreted String Literals'
@@ -615,6 +616,7 @@ references:
     email: thorsten.pohlert@gmx.de
     orcid: https://orcid.org/0000-0003-3855-3025
   year: '2023'
+  version: '>= 1.9.7'
 - type: software
   title: psych
   abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
