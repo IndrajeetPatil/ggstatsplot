@@ -21,9 +21,6 @@ utils::globalVariables(c(
   ".label", # <ggpiestats>
   "counts", # <.cat_counter>
   "counts", # <onesample_data>
-  "df", # <onesample_data>
-  "statistic", # <onesample_data>
-  "p.value", # <onesample_data>
   ".", # <ggwithinstats>
   ".rowid", # <ggwithinstats>
   ".", # <.grouped_list>
