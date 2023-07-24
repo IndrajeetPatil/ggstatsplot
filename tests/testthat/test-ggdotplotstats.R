@@ -65,7 +65,6 @@ test_that(
 test_that(
   desc = "subtitle output",
   code = {
-    # should output a list of length 3
     set.seed(123)
     p_sub_ggdot <- suppressWarnings(ggdotplotstats(
       data = morley,

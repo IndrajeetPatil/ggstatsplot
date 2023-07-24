@@ -126,9 +126,7 @@ ggwithinstats <- function(data,
   data %<>%
     select({{ x }}, {{ y }}) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    group_by({{ x }}) %>%
-    mutate(.rowid = row_number()) %>%
-    ungroup() %>%
+    mutate(.rowid = row_number(), .by = {{ x }}) %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
 
   # statistical analysis ------------------------------------------
