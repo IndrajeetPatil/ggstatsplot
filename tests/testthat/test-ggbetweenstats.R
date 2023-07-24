@@ -1,5 +1,6 @@
 # pairwise comparisons testing is done `test-pairwise_ggsignif.R`
 skip_if_not_installed("PMCMRplus")
+skip_if_not_installed("rstantools")
 
 # checking labels and data from plot -------------------------------------
 

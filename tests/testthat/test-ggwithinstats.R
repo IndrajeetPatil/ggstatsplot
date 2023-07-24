@@ -2,6 +2,7 @@
 skip_if_not_installed("PMCMRplus")
 skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
+skip_if_not_installed("rstantools")
 
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30L, condition %in% c("HDLF", "HDHF"))
 
