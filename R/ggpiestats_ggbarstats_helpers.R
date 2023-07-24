@@ -5,7 +5,7 @@ descriptive_data <- function(data,
                              x,
                              y = NULL,
                              label.content = "percentage",
-                             perc.k = 1,
+                             perc.k = 1L,
                              ...) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
@@ -37,10 +37,10 @@ descriptive_data <- function(data,
 #' @noRd
 onesample_data <- function(data, x, y, k = 2L, ...) {
   full_join(
-    # descriptives
+    # descriptive summary
     x = .cat_counter(data, {{ y }}) %>%
       mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
-    # proportion tests
+    # proportion test results
     y = group_by(data, {{ y }}) %>%
       group_modify(.f = ~ .chisq_test_safe(., {{ x }})) %>%
       ungroup(),
@@ -48,19 +48,15 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
   ) %>%
     rowwise() %>%
     mutate(
-      .label = paste0(
-        "list(~chi['gof']^2~", "(", df, ")==", format_value(statistic, k),
-        ", ~italic(p)=='", format_value(p.value, k),
-        "', ~italic(n)==", .prettyNum(counts), ")"
-      ),
-      .p.label = paste0("list(~italic(p)=='", format_value(p.value, k), "')")
+      .label = glue("list(~chi['gof']^2~({df})=={format_value(statistic, k)}, ~italic(p)=='{format_value(p.value, k)}', ~italic(n)=='{.prettyNum(counts)}')"),
+      .p.label = glue("list(~italic(p)=='{format_value(p.value, k)}')")
     ) %>%
     ungroup()
 }
 
 
 #' Safer version of chi-squared test that returns `NA`s
-#' Needed to work with `group_modify` since it will not work when `NULL` is returned
+#' Needed to work with `group_modify()` since it will not work when `NULL` is returned
 #' @autoglobal
 #' @noRd
 .chisq_test_safe <- function(data, x, ...) {
