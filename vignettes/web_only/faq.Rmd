@@ -623,6 +623,17 @@ The following `README` file briefly describes the installation procedure:
 
 For MacOS, have a look at this [post](https://stackoverflow.com/questions/35360885/installing-finding-gmp-under-osx).
 
+## 28. How to modify the secondary Y-axis title?
+
+```{r}
+ggbetweenstats(
+  mtcars, cyl, wt,
+  ggplot.component = list(
+    ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis(name = "My custom test"))
+  )
+)
+```
+
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
