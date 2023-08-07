@@ -31,9 +31,17 @@
                                 x,
                                 y,
                                 centrality.path = FALSE,
-                                centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
+                                centrality.path.args = list(
+                                  linewidth = 1,
+                                  color = "red",
+                                  alpha = 0.5
+                                ),
                                 centrality.point.args = list(size = 5, color = "darkred"),
-                                centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+                                centrality.label.args = list(
+                                  size = 3,
+                                  nudge_x = 0.4,
+                                  segment.linetype = 4
+                                ),
                                 ...) {
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
@@ -227,7 +235,7 @@
                              ggplot.component = NULL,
                              ...) {
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, length(unique(levels(x)))[[1L]])
+  .palette_message(package, palette, nlevels(x))
 
   plot +
     labs(

@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- Fix breaking change caused by `{parameters}` updates.
+- Maintenance release.
 
 ## revdepcheck results
 
