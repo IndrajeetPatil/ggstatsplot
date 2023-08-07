@@ -23,6 +23,8 @@
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
 #'  \code{\link{grouped_ggdotplotstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
@@ -71,7 +73,7 @@ ggdotplotstats <- function(data,
                            ...) {
   # data -----------------------------------
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
@@ -81,9 +83,7 @@ ggdotplotstats <- function(data,
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
     mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
-    group_by({{ y }}) %>%
-    summarise({{ x }} := mean({{ x }})) %>%
-    ungroup() %>%
+    summarise({{ x }} := mean({{ x }}), .by = {{ y }}) %>%
     # rank ordering the data
     arrange({{ x }}) %>%
     mutate(
@@ -94,7 +94,6 @@ ggdotplotstats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,
       x            = {{ x }},
@@ -106,11 +105,11 @@ ggdotplotstats <- function(data,
       bf.prior     = bf.prior
     )
 
-    # preparing the subtitle with statistical results
+    # subtitle with statistical results
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
-    # preparing the BF message
+    # BF message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
@@ -176,6 +175,8 @@ ggdotplotstats <- function(data,
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{gghistostats}}
 #'
+#' @autoglobal
+#'
 #' @inherit ggdotplotstats return references
 #' @inherit ggdotplotstats return details
 #'
@@ -201,10 +202,7 @@ grouped_ggdotplotstats <- function(data,
                                    grouping.var,
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggdotplotstats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggdotplotstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

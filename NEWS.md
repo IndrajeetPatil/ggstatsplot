@@ -1,4 +1,4 @@
-# ggstatsplot 0.11.1.9000
+# ggstatsplot 0.12.0
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
@@ -12,10 +12,15 @@ read the `NEWS` for that package:
   argument was also redundant. Since removing a specific geom is straightforward
   using `*.args` arguments. Examples for these two functions illustrate how.
 
+- `ggbetweenstats()` and `ggwithinstats()` retire `pairwise.comparisons`
+  argument since it was redundant. In order to turn off showing pairwise
+  comparisons, you can now use `pairwise.display = "none"`.
+
 ## NEW FEATURES
 
 - `ggbetweenstats()` gets `boxplot.args` argument to pass additional arguments
-  to the underlying geom function.
+  to the underlying geom function. This also fixes regression introduced in
+  `0.11.1` release where outlier points were displayed along with box plot.
 
 # ggstatsplot 0.11.1
 

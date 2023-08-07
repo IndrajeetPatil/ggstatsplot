@@ -1,5 +1,6 @@
 # pairwise comparisons testing is done `test-pairwise_ggsignif.R`
 skip_if_not_installed("PMCMRplus")
+skip_if_not_installed("rstantools")
 
 # checking labels and data from plot -------------------------------------
 
@@ -13,7 +14,7 @@ test_that(
         data = mtcars,
         x = am,
         y = wt,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         results.subtitle = FALSE
       ) +
         ggplot2::labs(x = "Transmission", y = "Weight")
@@ -32,7 +33,7 @@ test_that(
         data = df_small,
         x = group,
         y = centrality.a,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         results.subtitle = FALSE
       ))
     )
@@ -110,6 +111,23 @@ test_that(
         y = rating,
         grouping.var = mpaa,
         ggplot.component = ggplot2::labs(x = "Movie Genre")
+      )
+    )
+
+    set.seed(123)
+    expect_doppelganger(
+      title = "plot with outliers as expected",
+      fig = grouped_ggbetweenstats(
+        data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+        x                = mpaa,
+        y                = length,
+        grouping.var     = genre,
+        ggsignif.args    = list(textsize = 4, tip_length = 0.01),
+        p.adjust.method  = "bonferroni",
+        palette          = "default_jama",
+        package          = "ggsci",
+        plotgrid.args    = list(nrow = 1),
+        annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
       )
     )
   }

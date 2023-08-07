@@ -35,13 +35,6 @@ and mean points.}
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
-    \item{\code{pairwise.comparisons}}{Logical that decides whether pairwise comparisons
-are to be displayed (default: \code{TRUE}). Please note that only
-\strong{significant} comparisons will be shown by default. To change this
-behavior, select appropriate option with \code{pairwise.display} argument. The
-pairwise comparison dataframes are prepared using the
-\code{pairwise_comparisons} function. For more details
-about pairwise comparisons, see the documentation for that function.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
@@ -55,7 +48,8 @@ Available options are:
 
 You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
-comparisons being displayed.}
+comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
+will be displayed.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}

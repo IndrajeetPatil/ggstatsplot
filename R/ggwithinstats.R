@@ -32,6 +32,8 @@
 #' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
@@ -80,7 +82,6 @@ ggwithinstats <- function(data,
                           x,
                           y,
                           type = "parametric",
-                          pairwise.comparisons = TRUE,
                           pairwise.display = "significant",
                           p.adjust.method = "holm",
                           effsize.type = "unbiased",
@@ -118,16 +119,14 @@ ggwithinstats <- function(data,
   # ensure the variables work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # convert entered stats type to a standard notation
+
   type <- stats_type_switch(type)
 
-  # creating a data frame
+
   data %<>%
     select({{ x }}, {{ y }}) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    group_by({{ x }}) %>%
-    mutate(.rowid = row_number()) %>%
-    ungroup() %>%
+    mutate(.rowid = row_number(), .by = {{ x }}) %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
 
   # statistical analysis ------------------------------------------
@@ -136,7 +135,6 @@ ggwithinstats <- function(data,
   test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle && insight::check_if_installed("afex")) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data         = data,
       x            = as_string(x),
@@ -168,7 +166,7 @@ ggwithinstats <- function(data,
 
   plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, outlier.shape = NA, !!!boxplot.args) +
+    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
 
   # add a connecting path only if there are only two groups
@@ -197,7 +195,7 @@ ggwithinstats <- function(data,
   # initialize
   seclabel <- NULL
 
-  if (isTRUE(pairwise.comparisons) && test == "anova") {
+  if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
       data            = data,
       x               = {{ x }},
@@ -220,7 +218,7 @@ ggwithinstats <- function(data,
       ggsignif.args    = ggsignif.args
     )
 
-    # preparing the secondary label axis to give pairwise comparisons test details
+    # secondary label axis to give pairwise comparisons test details
     seclabel <- .pairwise_seclabel(
       unique(mpc_df$test),
       ifelse(type == "bayes", "all", pairwise.display)
@@ -261,6 +259,8 @@ ggwithinstats <- function(data,
 #' @seealso \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},
 #' \code{\link{grouped_ggbetweenstats}}
 #'
+#' @autoglobal
+#'
 #' @inherit ggwithinstats return references
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)
@@ -285,10 +285,7 @@ grouped_ggwithinstats <- function(data,
                                   grouping.var,
                                   plotgrid.args = list(),
                                   annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggwithinstats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggwithinstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

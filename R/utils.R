@@ -8,6 +8,7 @@
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable.
 #'
+#' @autoglobal
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
@@ -29,6 +30,7 @@
 #' @description Informs the user about not using the default color palette
 #'   when the number of factor levels is greater than 8, the maximum number of
 #'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
+#' @autoglobal
 #' @noRd
 .palette_message <- function(package, palette, min_length) {
   palette_length <- paletteer::palettes_d_names %>%

@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.4.1
+# CITATION file created with {cffr} R package, v0.5.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.11.1.9000
+version: 0.12.0
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -106,7 +106,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://CRAN.R-project.org/package=datawizard
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -133,7 +133,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.7.1'
+  version: '>= 0.8.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -158,7 +158,7 @@ references:
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2023'
-  version: '>= 1.1.1'
+  version: '>= 1.1.2'
 - type: software
   title: ggcorrplot
   abstract: 'ggcorrplot: Visualization of a Correlation Matrix using ''ggplot2'''
@@ -249,6 +249,7 @@ references:
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
   year: '2023'
+  version: '>= 0.6.4'
 - type: software
   title: glue
   abstract: 'glue: Interpreted String Literals'
@@ -299,8 +300,12 @@ references:
     given-names: Vincent
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
-  version: '>= 0.19.1'
+  - family-names: Bacher
+    given-names: Etienne
+    email: etienne.bacher@protonmail.com
+    orcid: https://orcid.org/0000-0002-9271-5075
   year: '2023'
+  version: '>= 0.19.3'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -316,7 +321,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://CRAN.R-project.org/package=parameters
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -342,7 +347,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.20.3'
+  version: '>= 0.21.1'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -360,7 +365,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://CRAN.R-project.org/package=performance
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -387,7 +392,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.10.2'
+  version: '>= 0.10.4'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -440,8 +445,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
+  version: '>= 1.5.1'
   year: '2023'
-  version: '>= 1.5.0'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -611,6 +616,7 @@ references:
     email: thorsten.pohlert@gmx.de
     orcid: https://orcid.org/0000-0003-3855-3025
   year: '2023'
+  version: '>= 1.9.7'
 - type: software
   title: psych
   abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
@@ -686,9 +692,9 @@ references:
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   year: '2023'
-  version: '>= 3.1.7'
+  version: '>= 3.1.10'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'

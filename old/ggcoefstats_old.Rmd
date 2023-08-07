@@ -3018,7 +3018,6 @@ ggcoefstats(
 library(survey)
 data(api)
 
-# preparing data
 dclus1 <-
   survey::svydesign(
     id = ~dnum,
@@ -4086,7 +4085,6 @@ ggcoefstats(
 
 library(quantreg)
 
-# preparing data
 Dat <- NULL
 Dat$x <- rep(1:25, 20)
 Dat$y <- stats::SSlogis(Dat$x, 10, 12, 2) * rnorm(500, 1, 0.1)
@@ -4502,7 +4500,7 @@ used to selectively show few of the terms of interest:
 library(glmnet)
 set.seed(2014)
 
-# creating a data frame
+
 x <- matrix(rnorm(100 * 20), 100, 20)
 y <- rnorm(100)
 fit1 <- glmnet::glmnet(x, y)

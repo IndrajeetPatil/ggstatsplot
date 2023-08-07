@@ -2,6 +2,7 @@ test_that(
   desc = "checking if extract_stats works",
   code = {
     skip_if_not_installed("PMCMRplus")
+    skip_if_not_installed("rstantools")
     options(tibble.width = Inf)
 
     set.seed(123)

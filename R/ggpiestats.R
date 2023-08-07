@@ -41,6 +41,8 @@
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
 #'  \code{\link{grouped_ggbarstats}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
@@ -91,7 +93,6 @@ ggpiestats <- function(data,
                        ...) {
   # data frame ------------------------------------------
 
-  # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
@@ -101,7 +102,6 @@ ggpiestats <- function(data,
   # one-way or two-way table?
   test <- ifelse(!quo_is_null(enquo(y)), "two.way", "one.way")
 
-  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na()
@@ -117,14 +117,13 @@ ggpiestats <- function(data,
   # TODO: one-way table in `BayesFactor`
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
 
-  # faceting is possible only if both vars have more than one levels
+  # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
   if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data                = data,
       x                   = {{ x }},
@@ -141,7 +140,7 @@ ggpiestats <- function(data,
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
 
-    # preparing Bayes Factor caption
+    # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]
@@ -153,7 +152,7 @@ ggpiestats <- function(data,
   # data frame with summary labels
   descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, perc.k)
 
-  # data frame containing all details needed for prop test
+  # data frame containing all details needed for proportion test
   if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
@@ -194,11 +193,7 @@ ggpiestats <- function(data,
     scale_y_continuous(breaks = NULL) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
     ggtheme +
-    theme(
-      panel.grid = element_blank(),
-      axis.ticks = element_blank(),
-      axis.title = element_blank()
-    ) +
+    theme(panel.grid = element_blank(), axis.ticks = element_blank()) +
     guides(fill = guide_legend(override.aes = list(color = NA)))
 
   # sample size + proportion test ------------------------------------------
@@ -243,6 +238,8 @@ ggpiestats <- function(data,
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggbarstats}}
 #'
+#' @autoglobal
+#'
 #' @inherit ggpiestats return references
 #' @inherit ggpiestats return details
 #' @inherit ggpiestats return return
@@ -257,10 +254,7 @@ grouped_ggpiestats <- function(data,
                                grouping.var,
                                plotgrid.args = list(),
                                annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggpiestats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggpiestats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

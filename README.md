@@ -39,7 +39,6 @@ context, run the following code in your `R` console:
 
 ``` r
 citation("ggstatsplot")
-
 To cite package 'ggstatsplot' in publications use:
 
   Patil, I. (2021). Visualizations with statistical details: The

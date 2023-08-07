@@ -9,7 +9,6 @@ ggwithinstats(
   x,
   y,
   type = "parametric",
-  pairwise.comparisons = TRUE,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -71,14 +70,6 @@ subject-1,subject-2, ..., pattern.}
 
 You can specify just the initial letter.}
 
-\item{pairwise.comparisons}{Logical that decides whether pairwise comparisons
-are to be displayed (default: \code{TRUE}). Please note that only
-\strong{significant} comparisons will be shown by default. To change this
-behavior, select appropriate option with \code{pairwise.display} argument. The
-pairwise comparison dataframes are prepared using the
-\code{pairwise_comparisons} function. For more details
-about pairwise comparisons, see the documentation for that function.}
-
 \item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
 \itemize{
@@ -89,7 +80,8 @@ Available options are:
 
 You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
-comparisons being displayed.}
+comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
+will be displayed.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
