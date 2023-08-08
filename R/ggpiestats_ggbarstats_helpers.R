@@ -1,10 +1,11 @@
 #' @title A data frame with descriptive labels
+#' @autoglobal
 #' @noRd
 descriptive_data <- function(data,
                              x,
                              y = NULL,
                              label.content = "percentage",
-                             perc.k = 1,
+                             perc.k = 1L,
                              ...) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
@@ -19,6 +20,7 @@ descriptive_data <- function(data,
 
 
 #' @title Counts and percentages across grouping variables
+#' @autoglobal
 #' @noRd
 .cat_counter <- function(data, x, y = NULL, ...) {
   data %>%
@@ -31,13 +33,14 @@ descriptive_data <- function(data,
 }
 
 #' @title A data frame with chi-squared test results
+#' @autoglobal
 #' @noRd
 onesample_data <- function(data, x, y, k = 2L, ...) {
   full_join(
-    # descriptives
+    # descriptive summary
     x = .cat_counter(data, {{ y }}) %>%
       mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
-    # proportion tests
+    # proportion test results
     y = group_by(data, {{ y }}) %>%
       group_modify(.f = ~ .chisq_test_safe(., {{ x }})) %>%
       ungroup(),
@@ -45,20 +48,16 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
   ) %>%
     rowwise() %>%
     mutate(
-      .label = paste0(
-        "list(~chi['gof']^2~", "(", df, ")==", format_value(statistic, k),
-        ", ~italic(p)=='", format_value(p.value, k),
-        "', ~italic(n)==", .prettyNum(counts), ")"
-      ),
-      .p.label = paste0("list(~italic(p)=='", format_value(p.value, k), "')")
+      .label = glue("list(~chi['gof']^2~({df})=={format_value(statistic, k)}, ~italic(p)=='{format_value(p.value, k)}', ~italic(n)=='{.prettyNum(counts)}')"),
+      .p.label = glue("list(~italic(p)=='{format_value(p.value, k)}')")
     ) %>%
     ungroup()
 }
 
 
-# safer version of chi-squared test that returns NAs
-# needed to work with `group_modify` since it will not work when NULL is returned
-#'
+#' Safer version of chi-squared test that returns `NA`s
+#' Needed to work with `group_modify()` since it will not work when `NULL` is returned
+#' @autoglobal
 #' @noRd
 .chisq_test_safe <- function(data, x, ...) {
   xtab <- table(data %>% pull({{ x }}))
@@ -68,7 +67,6 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
     error = function(e) NULL
   )
 
-  # if not null, return tidy output, otherwise return NAs
   if (!is.null(result)) {
     as_tibble(insight::standardize_names(result, style = "broom"))
   } else {

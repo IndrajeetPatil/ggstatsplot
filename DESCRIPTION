@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.11.1.9000
+Version: 0.12.0.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -32,21 +32,23 @@ Depends:
     R (>= 4.1.0)
 Imports:
     correlation (>= 0.8.4),
-    datawizard (>= 0.7.1),
-    dplyr (>= 1.1.1),
+    datawizard (>= 0.8.0),
+    dplyr (>= 1.1.2),
+    ggcorrplot (>= 0.1.4),
     ggplot2 (>= 3.4.2),
     ggrepel (>= 0.9.3),
-    ggsignif,
+    ggside (>= 0.2.2),
+    ggsignif (>= 0.6.4),
     glue,
-    insight (>= 0.19.1),
+    insight (>= 0.19.3),
     paletteer,
-    parameters (>= 0.20.3),
+    parameters (>= 0.21.1),
     patchwork,
-    performance (>= 0.10.2),
+    performance (>= 0.10.4),
     purrr (>= 1.0.1),
     rlang,
     stats,
-    statsExpressions (>= 1.5.0),
+    statsExpressions (>= 1.5.1),
     tidyr,
     utils
 Remotes:
@@ -58,19 +60,17 @@ Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
     gapminder,
-    ggcorrplot (>= 0.1.4),
-    ggside (>= 0.2.2),
     knitr,
     lme4,
     MASS,
     metaBMA,
     metafor,
     metaplus,
-    PMCMRplus,
+    PMCMRplus (>= 1.9.7),
     psych,
     rmarkdown,
     survival,
-    testthat (>= 3.1.7),
+    testthat (>= 3.1.10),
     tibble,
     vdiffr (>= 1.0.5),
     WRS2
@@ -80,9 +80,10 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(
-    markdown = TRUE, 
-    roclets = c("rd", "namespace", "collate", "pkgapi::api_roclet")
+    markdown = TRUE,
+    roclets = c("collate", "namespace", "rd", "pkgapi::api_roclet", "roxyglobals::global_roclet")
   )
 RoxygenNote: 7.2.3.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
+Config/Needs/check: anthonynorth/roxyglobals

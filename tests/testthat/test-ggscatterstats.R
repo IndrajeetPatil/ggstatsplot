@@ -1,5 +1,3 @@
-skip_if_not_installed("ggside")
-
 # entire dataset ------------------------------------------------
 
 test_that(

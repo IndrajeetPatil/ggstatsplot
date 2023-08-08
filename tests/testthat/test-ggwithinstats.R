@@ -2,6 +2,7 @@
 skip_if_not_installed("PMCMRplus")
 skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
+skip_if_not_installed("rstantools")
 
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30L, condition %in% c("HDLF", "HDHF"))
 
@@ -17,7 +18,7 @@ test_that(
         data = data_bugs_2,
         x = condition,
         y = desire,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
         point.path.args = list(color = "red"),
         centrality.path.args = list(color = "blue", size = 2, alpha = 0.8),
@@ -33,7 +34,7 @@ test_that(
         data = WRS2::WineTasting,
         x = Wine,
         y = Taste,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         title = "wine tasting data"
       )
     )
@@ -53,7 +54,7 @@ test_that(
         x = Wine,
         y = Taste,
         results.subtitle = FALSE,
-        pairwise.comparisons = FALSE,
+        pairwise.display = "none",
         ggplot.component = ggplot2::labs(y = "Taste rating")
       )
     )
@@ -68,7 +69,7 @@ test_that(
         centrality.point.args = list(size = 5, alpha = 0.5, color = "darkred"),
         centrality.path = FALSE,
         results.subtitle = FALSE,
-        pairwise.comparisons = FALSE
+        pairwise.display = "none"
       )
     )
   }

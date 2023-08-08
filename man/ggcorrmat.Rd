@@ -166,13 +166,9 @@ The table below provides summary about:
 }
 
 \examples{
-\dontshow{if (requireNamespace("ggcorrplot", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# for reproducibility
 set.seed(123)
-library(ggcorrplot) # for plot
-
+library(ggcorrplot)
 ggcorrmat(iris)
-\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}

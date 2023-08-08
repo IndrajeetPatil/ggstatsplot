@@ -25,6 +25,7 @@
 #' )
 #'
 #' @keywords internal
+#' @autoglobal
 #' @noRd
 .histo_labeller <- function(plot, x, centrality.line.args, ...) {
   # compute centrality measure (with a temporary data frame)

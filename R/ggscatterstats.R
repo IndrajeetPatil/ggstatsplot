@@ -46,6 +46,8 @@
 #' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'
+#' @autoglobal
+#'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
@@ -55,9 +57,8 @@
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
 #'
-#' @examplesIf requireNamespace("ggside", quietly = TRUE)
+#' @examples
 #' set.seed(123)
-#' library(ggside) # for plotting marginals
 #'
 #' # creating a plot
 #' p <- ggscatterstats(
@@ -109,16 +110,15 @@ ggscatterstats <- function(data,
   # ensure the arguments work quoted or unquoted
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # preparing the data frame
+  # data frame
   data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # convert entered stats type to a standard notation
     type <- stats_type_switch(type)
 
-    # relevant arguments for statistical tests
+
     .f.args <- list(
       data = data,
       x = {{ x }},
@@ -132,7 +132,7 @@ ggscatterstats <- function(data,
     subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
-    # preparing the BF message for null hypothesis support
+    # BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
@@ -144,7 +144,7 @@ ggscatterstats <- function(data,
   # creating jittered positions
   pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
 
-  # preparing the scatterplot
+  # scatterplot
   plotScatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
     exec(geom_smooth, level = conf.level, !!!smooth.line.args, na.rm = TRUE)
@@ -185,9 +185,6 @@ ggscatterstats <- function(data,
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
-    insight::check_if_installed("ggside", minimum_version = "0.2.1")
-
-    # adding marginal distributions
     plotScatter <- plotScatter +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
@@ -215,10 +212,12 @@ ggscatterstats <- function(data,
 #' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
 #' \code{\link{grouped_ggcorrmat}}
 #'
+#' @autoglobal
+#'
 #' @inherit ggscatterstats return references
 #' @inherit ggscatterstats return details
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggside", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # to ensure reproducibility
 #' set.seed(123)
 #'
@@ -264,10 +263,7 @@ grouped_ggscatterstats <- function(data,
                                    grouping.var,
                                    plotgrid.args = list(),
                                    annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggscatterstats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggscatterstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

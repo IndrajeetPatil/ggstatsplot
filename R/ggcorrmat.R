@@ -46,17 +46,17 @@
 #'
 #' @inheritSection statsExpressions::corr_test Correlation analyses
 #'
+#' @autoglobal
+#'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
-#' @examplesIf requireNamespace("ggcorrplot", quietly = TRUE)
-#' # for reproducibility
+#' @examples
 #' set.seed(123)
-#' library(ggcorrplot) # for plot
-#'
+#' library(ggcorrplot)
 #' ggcorrmat(iris)
 #' @export
 ggcorrmat <- function(data,
@@ -106,8 +106,6 @@ ggcorrmat <- function(data,
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
 
   # plot ------------------------------------------
-
-  insight::check_if_installed("ggcorrplot")
 
   # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
@@ -195,23 +193,23 @@ ggcorrmat <- function(data,
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggcorrmat -title
 #'
+#' @autoglobal
+#'
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @inherit ggcorrmat return references
 #' @inherit ggcorrmat return details
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("ggcorrplot", quietly = TRUE)
-#' # for reproducibility
+#' @examples
 #' set.seed(123)
-#' library(ggcorrplot) # for plot
 #'
 #' grouped_ggcorrmat(
 #'   data = iris,
 #'   grouping.var = Species,
 #'   type = "robust",
 #'   p.adjust.method = "holm",
-#'   plotgrid.args = list(ncol = 1),
+#'   plotgrid.args = list(ncol = 1L),
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export
@@ -220,10 +218,8 @@ grouped_ggcorrmat <- function(data,
                               grouping.var,
                               plotgrid.args = list(),
                               annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggcorrmat,
-    ...
-  ) %>% # `guides = "keep"` is needed because each legend will be different
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggcorrmat, ...) %>%
+    # `guides = "keep"` because legends can be different across grouping levels
     combine_plots(guides = "keep", plotgrid.args, annotation.args)
 }

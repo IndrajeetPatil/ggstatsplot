@@ -21,6 +21,8 @@
 #'
 #' @inherit ggpiestats return details
 #'
+#' @autoglobal
+#'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
@@ -65,13 +67,11 @@ ggbarstats <- function(data,
                        ...) {
   # data frame ------------------------------------------
 
-  # convert entered stats type to a standard notation
   type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
 
-  # creating a data frame
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
     tidyr::drop_na()
@@ -89,7 +89,6 @@ ggbarstats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # relevant arguments for statistical tests
     .f.args <- list(
       data                = data,
       x                   = {{ x }},
@@ -106,7 +105,7 @@ ggbarstats <- function(data,
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
     if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
 
-    # preparing Bayes Factor caption
+    # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]
@@ -197,6 +196,8 @@ ggbarstats <- function(data,
 #' @inherit ggbarstats return details
 #' @inherit ggbarstats return return
 #'
+#' @autoglobal
+#'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
@@ -222,10 +223,7 @@ grouped_ggbarstats <- function(data,
                                grouping.var,
                                plotgrid.args = list(),
                                annotation.args = list()) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = ggbarstats,
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(.f = ggbarstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

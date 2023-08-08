@@ -7,6 +7,8 @@
 #' @inheritParams ggwithinstats
 #' @inheritParams ggrepel::geom_label_repel
 #'
+#' @autoglobal
+#'
 #' @examples
 #' # this internal function may not have much utility outside of the package
 #' set.seed(123)
@@ -29,13 +31,21 @@
                                 x,
                                 y,
                                 centrality.path = FALSE,
-                                centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
+                                centrality.path.args = list(
+                                  linewidth = 1,
+                                  color = "red",
+                                  alpha = 0.5
+                                ),
                                 centrality.point.args = list(size = 5, color = "darkred"),
-                                centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+                                centrality.label.args = list(
+                                  size = 3,
+                                  nudge_x = 0.4,
+                                  segment.linetype = 4
+                                ),
                                 ...) {
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
-  # if there should be lines connecting mean values across groups
+  # lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
     plot <- plot +
       exec(
@@ -74,6 +84,8 @@
 #' @param mpc_df A data frame containing results from pairwise comparisons
 #'   (produced by `pairwise_comparisons()` function).
 #' @inheritParams ggbetweenstats
+#'
+#' @autoglobal
 #'
 #' @examples
 #' set.seed(123)
@@ -143,6 +155,7 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @keywords internal
+#' @autoglobal
 #' @noRd
 .ggsignif_xy <- function(x, y) {
   # number of comparisons and size of each step
@@ -180,6 +193,7 @@
 #' @examples
 #' .pairwise_seclabel("my caption", "Student's t-test")
 #' @keywords internal
+#' @autoglobal
 #' @noRd
 .pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
   # single quote (') needs to be escaped inside glue expressions
@@ -221,7 +235,7 @@
                              ggplot.component = NULL,
                              ...) {
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, length(unique(levels(x)))[[1L]])
+  .palette_message(package, palette, nlevels(x))
 
   plot +
     labs(

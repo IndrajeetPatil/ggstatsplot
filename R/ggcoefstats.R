@@ -77,6 +77,8 @@
 #'
 #' @inheritSection statsExpressions::meta_analysis Random-effects meta-analysis
 #'
+#' @autoglobal
+#'
 #' @note
 #'
 #' 1. In case you want to carry out meta-analysis, you will be asked to install
@@ -176,9 +178,7 @@ ggcoefstats <- function(x,
   }
 
   # create a new term column if it's not present
-  if (!"term" %in% names(tidy_df)) {
-    tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
-  }
+  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
 
   # check for duplicate terms and columns -------------------------
 
@@ -196,8 +196,7 @@ ggcoefstats <- function(x,
   # halt if there are still repeated terms
   if (anyDuplicated(tidy_df$term)) rlang::abort("Elements in `term` column must be unique.")
 
-  # if tidy data frame doesn't contain p-value or statistic column, a label
-  # can't be prepared
+  # if tidy data frame doesn't contain p-value or statistic column, no label
   if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
 
   # CIs and intercepts -------------------------
@@ -211,10 +210,9 @@ ggcoefstats <- function(x,
   # whether to show model intercept
   if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
 
-  # preparing label -------------------------
+  # label -------------------------
 
   if (stats.labels) {
-    # add expression labels
     tidy_df %<>% tidy_model_expressions(statistic, k, effectsize.type)
 
     # only significant p-value labels are shown
@@ -225,7 +223,6 @@ ggcoefstats <- function(x,
 
   # sorting -------------------------
 
-  # whether the terms need to be sorted in specified order
   tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 
   # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
@@ -244,7 +241,6 @@ ggcoefstats <- function(x,
   # meta analysis -------------------------
 
   if (meta.analytic.effect) {
-    # standardizing type of statistics name
     meta.type <- stats_type_switch(meta.type)
 
     # results from frequentist random-effects meta-analysis
@@ -263,7 +259,7 @@ ggcoefstats <- function(x,
   plot <- ggplot(tidy_df, mapping = aes(estimate, term)) +
     exec(geom_point, !!!point.args)
 
-  # if the confidence intervals are to be displayed on the plot
+  # adding confidence intervals
   if (conf.int) {
     plot <- plot +
       exec(
@@ -274,7 +270,7 @@ ggcoefstats <- function(x,
       )
   }
 
-  # if needed, adding the vertical line
+  # adding the vertical line
   if (vline) plot <- plot + exec(geom_vline, xintercept = 0, !!!vline.args)
 
   # ggrepel labels -------------------------

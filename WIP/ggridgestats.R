@@ -19,7 +19,6 @@ ggridgestats <- function(data,
                          y,
                          type = "parametric",
                          paired = FALSE,
-                         pairwise.comparisons = TRUE,
                          pairwise.display = "significant",
                          p.adjust.method = "holm",
                          effsize.type = "unbiased",
@@ -60,13 +59,13 @@ ggridgestats <- function(data,
                          ...) {
   # data -----------------------------------
 
-  # convert entered stats type to a standard notation
+  
   type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  # creating a data frame
+  
   data %<>%
     dplyr::select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
@@ -78,7 +77,7 @@ ggridgestats <- function(data,
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
 
   if (results.subtitle) {
-    # relevant arguments for statistical tests
+    
     .f.args <- list(
       data = data,
       x = rlang::as_string(x),
@@ -97,7 +96,7 @@ ggridgestats <- function(data,
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
-    # preparing the Bayes factor message
+    # Bayes factor message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
@@ -164,7 +163,7 @@ ggridgestats <- function(data,
 
   # ggsignif labels -------------------------------------
 
-  if (isTRUE(pairwise.comparisons) && test == "anova") {
+  if (pairwise.display != "none" && test == "anova") {
     # creating data frame with pairwise comparison results
     mpc_df <- pairwise_comparisons(
       data = data,
@@ -190,7 +189,7 @@ ggridgestats <- function(data,
       y_start_jitter = 0.2
     )
 
-    # preparing the caption for pairwise comparisons test
+    # caption for pairwise comparisons test
     caption <- .pairwise_seclabel(
       caption,
       unique(mpc_df$test),

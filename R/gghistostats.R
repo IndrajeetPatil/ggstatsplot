@@ -13,7 +13,7 @@
 #'
 #' @param ... Currently ignored.
 #' @param normal.curve A logical value that decides whether to super-impose a
-#'   normal curve using `stats::dnorm(mean(x), sd(x))`. Default is `FALSE`.
+#'   normal curve using `stats::dnorm(mean(x), stats::sd(x))`. Default is `FALSE`.
 #' @param normal.curve.args A list of additional aesthetic arguments to be
 #'   passed to the normal curve.
 #' @param binwidth The width of the histogram bins. Can be specified as a
@@ -34,6 +34,8 @@
 #'
 #' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{grouped_ggdotplotstats}}
+#'
+#' @autoglobal
 #'
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
@@ -92,10 +94,9 @@ gghistostats <- function(data,
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    # convert entered stats type to a standard notation
     type <- stats_type_switch(type)
 
-    # relevant arguments for statistical tests
+
     .f.args <- list(
       data         = data,
       x            = {{ x }},
@@ -107,11 +108,11 @@ gghistostats <- function(data,
       bf.prior     = bf.prior
     )
 
-    # preparing the subtitle with statistical results
+    # subtitle with statistical results
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
     subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
 
-    # preparing the BF message
+    # BF message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
       caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
@@ -142,7 +143,7 @@ gghistostats <- function(data,
       exec(
         stat_function,
         fun  = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
-        args = list(mean = mean(x_vec), sd = sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
+        args = list(mean = mean(x_vec), sd = stats::sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
         !!!normal.curve.args
       )
   }
@@ -195,6 +196,8 @@ gghistostats <- function(data,
 #' @seealso \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
 #'  \code{\link{grouped_ggdotplotstats}}
 #'
+#' @autoglobal
+#'
 #' @inherit gghistostats return references
 #' @inherit gghistostats return details
 #'
@@ -219,12 +222,12 @@ grouped_gghistostats <- function(data,
                                  plotgrid.args = list(),
                                  annotation.args = list(),
                                  ...) {
-  purrr::pmap(
-    .l = .grouped_list(data, {{ grouping.var }}),
-    .f = gghistostats,
-    x = {{ x }},
-    binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
-    ...
-  ) %>%
+  .grouped_list(data, {{ grouping.var }}) %>%
+    purrr::pmap(
+      .f = gghistostats,
+      x = {{ x }},
+      binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
+      ...
+    ) %>%
     combine_plots(plotgrid.args, annotation.args)
 }

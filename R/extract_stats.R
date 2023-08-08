@@ -23,6 +23,8 @@
 #' @param p A plot from `{ggstatsplot}` package
 #' @param ... Ignored
 #'
+#' @autoglobal
+#'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
 #' set.seed(123)
 #'
