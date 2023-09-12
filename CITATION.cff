@@ -174,7 +174,7 @@ references:
     given-names: Alboukadel
     email: alboukadel.kassambara@gmail.com
   year: '2023'
-  version: '>= 0.1.4'
+  version: '>= 0.1.4.1'
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -274,7 +274,7 @@ references:
   abstract: 'insight: Easy Access to Model Information for Various Model Objects'
   notes: Imports
   url: https://easystats.github.io/insight/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=insight
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -309,7 +309,7 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2023'
-  version: '>= 0.19.3'
+  version: '>= 0.19.4'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -369,7 +369,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=performance
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -396,7 +396,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.10.4'
+  version: '>= 0.10.5'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -412,7 +412,7 @@ references:
     given-names: Lionel
     email: lionel@rstudio.com
   year: '2023'
-  version: '>= 1.0.1'
+  version: '>= 1.0.2'
 - type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
@@ -449,8 +449,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.5.1'
   year: '2023'
+  version: '>= 1.5.2'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'

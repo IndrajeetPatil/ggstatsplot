@@ -252,7 +252,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=vdiffr"
+      "sameAs": "https://github.com/r-lib/vdiffr"
     },
     {
       "@type": "SoftwareApplication",
@@ -317,7 +317,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
-      "version": ">= 0.1.4",
+      "version": ">= 0.1.4.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -394,7 +394,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.3",
+      "version": ">= 0.19.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -444,7 +444,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.10.4",
+      "version": ">= 0.10.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -457,7 +457,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.0.1",
+      "version": ">= 1.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -487,7 +487,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.5.1",
+      "version": ">= 1.5.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -515,7 +515,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9407.049KB",
+  "fileSize": "9407.077KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
