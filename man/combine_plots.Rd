@@ -34,7 +34,7 @@ patchwork (see example).}
 \item{...}{Currently ignored.}
 }
 \value{
-Combined plot with annotation labels
+A combined plot with annotation labels.
 }
 \description{
 Wrapper around \code{patchwork::wrap_plots()} that will return a combined grid of
