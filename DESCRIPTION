@@ -33,24 +33,26 @@ Depends:
 Imports:
     correlation (>= 0.8.4),
     datawizard (>= 0.8.0),
-    dplyr (>= 1.1.2),
-    ggcorrplot (>= 0.1.4),
-    ggplot2 (>= 3.4.2),
+    dplyr (>= 1.1.3),
+    ggcorrplot (>= 0.1.4.1),
+    ggplot2 (>= 3.4.3),
     ggrepel (>= 0.9.3),
     ggside (>= 0.2.2),
     ggsignif (>= 0.6.4),
     glue,
-    insight (>= 0.19.3),
+    insight (>= 0.19.4),
     paletteer,
     parameters (>= 0.21.1),
     patchwork,
-    performance (>= 0.10.4),
-    purrr (>= 1.0.1),
+    performance (>= 0.10.5),
+    purrr (>= 1.0.2),
     rlang,
     stats,
-    statsExpressions (>= 1.5.1),
+    statsExpressions (>= 1.5.2),
     tidyr,
     utils
+Remotes:
+    r-lib/vdiffr
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
@@ -67,7 +69,7 @@ Suggests:
     survival,
     testthat (>= 3.1.10),
     tibble,
-    vdiffr (>= 1.0.5),
+    vdiffr (>= 1.0.6),
     WRS2
 VignetteBuilder: 
     knitr
