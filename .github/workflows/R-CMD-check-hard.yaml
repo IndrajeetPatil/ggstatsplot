@@ -23,7 +23,7 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Always try to use the latest pandoc version
       # https://github.com/jgm/pandoc/releases
