@@ -280,10 +280,7 @@ ggbetweenstats <- function(data,
     )
 
     # secondary label axis to give pairwise comparisons test details
-    seclabel <- .pairwise_seclabel(
-      unique(mpc_df$test),
-      ifelse(type == "bayes", "all", pairwise.display)
-    )
+    seclabel <- .pairwise_seclabel(unique(mpc_df$test), ifelse(type == "bayes", "all", pairwise.display))
   }
 
   # annotations ------------------------
