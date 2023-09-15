@@ -29,7 +29,7 @@
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
 #'   `geom_label`.
-#' @param label.repel Whether labels should be repelled using `ggrepel` package.
+#' @param label.repel Whether labels should be repelled using `{ggrepel}` package.
 #'   This can be helpful in case the labels are overlapping.
 #' @param legend.title Title text for the legend.
 #' @inheritParams ggbetweenstats
@@ -164,7 +164,7 @@ ggpiestats <- function(data,
       mapping  = aes(fill = {{ x }}),
       position = "fill",
       color    = "black",
-      width    = 1
+      width    = 1.0
     )
 
   # whether labels need to be repelled
@@ -179,7 +179,7 @@ ggpiestats <- function(data,
         position           = position_fill(vjust = 0.5),
         min.segment.length = 0,
         fill               = "white",
-        alpha              = 1,
+        alpha              = 1.0,
         !!!label.args
       )
   }))
@@ -204,7 +204,7 @@ ggpiestats <- function(data,
         geom_text,
         data     = onesample_df,
         mapping  = aes(label = .label, x = 1.65, y = 0.5),
-        position = position_fill(vjust = 1),
+        position = position_fill(vjust = 1.0),
         size     = 2.8,
         parse    = TRUE
       )

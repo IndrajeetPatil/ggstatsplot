@@ -32,15 +32,15 @@
                                 y,
                                 centrality.path = FALSE,
                                 centrality.path.args = list(
-                                  linewidth = 1,
+                                  linewidth = 1.0,
                                   color = "red",
                                   alpha = 0.5
                                 ),
-                                centrality.point.args = list(size = 5, color = "darkred"),
+                                centrality.point.args = list(size = 5.0, color = "darkred"),
                                 centrality.label.args = list(
-                                  size = 3,
+                                  size = 3.0,
                                   nudge_x = 0.4,
-                                  segment.linetype = 4
+                                  segment.linetype = 4.0
                                 ),
                                 ...) {
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))

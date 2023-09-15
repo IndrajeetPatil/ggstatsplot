@@ -44,7 +44,7 @@ ggbarstats <- function(data,
                        paired = FALSE,
                        results.subtitle = TRUE,
                        label = "percentage",
-                       label.args = list(alpha = 1, fill = "white"),
+                       label.args = list(alpha = 1.0, fill = "white"),
                        k = 2L,
                        proportion.test = results.subtitle,
                        perc.k = 0L,
@@ -53,7 +53,7 @@ ggbarstats <- function(data,
                        conf.level = 0.95,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
-                       prior.concentration = 1,
+                       prior.concentration = 1.0,
                        title = NULL,
                        subtitle = NULL,
                        caption = NULL,
@@ -127,8 +127,8 @@ ggbarstats <- function(data,
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
-      labels       = function(x) paste0(x * 100, "%"),
-      breaks       = seq(from = 0, to = 1, by = 0.10),
+      labels       = function(x) paste0(x * 100L, "%"),
+      breaks       = seq(from = 0.0, to = 1.0, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     exec(
@@ -160,7 +160,7 @@ ggbarstats <- function(data,
     geom_text(
       data    = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-      size    = 4
+      size    = 4.0
     )
 
   # annotations ------------------------------------------
