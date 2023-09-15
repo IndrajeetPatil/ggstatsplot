@@ -9,7 +9,7 @@
 #' this wrapper around it which is mostly useful with `{ggstatsplot}` plots. It
 #' is exported only for backward compatibility.
 #'
-#' @return Combined plot with annotation labels
+#' @returns A combined plot with annotation labels.
 #'
 #' @param plotlist A list containing `ggplot` objects.
 #' @param plotgrid.args A `list` of additional arguments passed to
