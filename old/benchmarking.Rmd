@@ -1,38 +1,14 @@
 ---
 title: "Benchmarking"
-author: "Indrajeet Patil"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_document:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    toc_depth: 3
-    warning: FALSE
-    message: FALSE
 ---
 
 ```{r}
 #| label = "setup",
 #| include = FALSE
-options(
-  tibble.width = Inf,
-  pillar.bold = TRUE,
-  pillar.neg = TRUE,
-  pillar.subtle_num = TRUE,
-  pillar.min_chars = Inf
-)
-
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  dpi = 300,
-  out.width = "100%",
-  comment = "#>",
-  warning = FALSE,
-  message = FALSE
-)
+source("../setup.R")
 ```
 
 # Introduction

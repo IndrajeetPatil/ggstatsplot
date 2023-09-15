@@ -1,7 +1,5 @@
 ---
 title: "Pairwise comparisons with `{ggstatsplot}`"
-author: "Indrajeet Patil"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true

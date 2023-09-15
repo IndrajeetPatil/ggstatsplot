@@ -201,9 +201,9 @@
 
   # which comparisons were displayed?
   display <- case_when(
-    substr(pairwise.display, 1L, 1L) == "s" ~ "significant",
-    substr(pairwise.display, 1L, 1L) == "n" ~ "non-significant",
-    TRUE ~ "all"
+    startsWith(pairwise.display, "s") ~ "significant",
+    startsWith(pairwise.display, "n") ~ "non-significant",
+    .default = "all"
   )
 
   parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))

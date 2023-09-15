@@ -1,7 +1,5 @@
 ---
 title: "Visualizations with statistical details: The 'ggstatsplot' approach"
-author: "Indrajeet Patil"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true

@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.12.0.9000",
+  "version": "0.12.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -291,7 +291,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.8.0",
+      "version": ">= 0.9.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -394,7 +394,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.4",
+      "version": ">= 0.19.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -457,7 +457,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.0.2",
+      "version": ">= 1.0.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -515,7 +515,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9407.077KB",
+  "fileSize": "9389.231KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

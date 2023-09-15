@@ -12,7 +12,7 @@ descriptive_data <- function(data,
       .label = case_when(
         grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
         grepl("count|n|N", label.content) ~ .prettyNum(counts),
-        TRUE ~ paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
+        .default = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
       )
     ) %>% # reorder the category factor levels to order the legend
     mutate({{ x }} := factor({{ x }}, unique({{ x }})))

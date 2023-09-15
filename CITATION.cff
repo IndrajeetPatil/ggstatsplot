@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.0.9000
+version: 0.12.1
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -110,7 +110,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=datawizard
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -137,7 +137,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.8.0'
+  version: '>= 0.9.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -309,7 +309,7 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2023'
-  version: '>= 0.19.4'
+  version: '>= 0.19.5'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -369,7 +369,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://CRAN.R-project.org/package=performance
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -449,8 +449,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  year: '2023'
   version: '>= 1.5.2'
+  year: '2023'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -574,12 +574,12 @@ references:
   title: metaBMA
   abstract: 'metaBMA: Bayesian Model Averaging for Random and Fixed Effects Meta-Analysis'
   notes: Suggests
-  url: https://github.com/danheck/metaBMA
+  url: https://danheck.github.io/metaBMA/
   repository: https://CRAN.R-project.org/package=metaBMA
   authors:
   - family-names: Heck
     given-names: Daniel W.
-    email: dheck@uni-marburg.de
+    email: daniel.heck@uni-marburg.de
     orcid: https://orcid.org/0000-0002-6302-9252
   year: '2023'
 - type: software

@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- Maintenance release.
+- No user-visible changes. Maintenance-only release.
 
 ## revdepcheck results
 

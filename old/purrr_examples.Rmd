@@ -1,16 +1,8 @@
 ---
 title: "using `{ggstatsplot}` with the `{purrr}` package"
-author: "Indrajeet Patil"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_document:
-    fig_width: 6
-    fig.align: 'center'
-    fig.asp: 0.618
-    dpi: 300
     toc: true
-    warning: FALSE
-    message: FALSE
 ---
 
 ```{r}
