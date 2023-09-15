@@ -100,7 +100,7 @@ ggpiestats <- function(data,
   y <- if (!quo_is_null(enquo(y))) ensym(y)
 
   # one-way or two-way table?
-  test <- ifelse(!quo_is_null(enquo(y)), "two.way", "one.way")
+  test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
 
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%

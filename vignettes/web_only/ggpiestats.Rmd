@@ -119,9 +119,6 @@ survived was different between the sexes using `ggpiestats`.
 #| fig.height = 5,
 #| fig.width = 8
 
-
-
-
 ggpiestats(
   data = Titanic_full,
   x = Survived,
@@ -205,33 +202,33 @@ unique combination of `Boat` and `Month`.
 #| fig.height = 8,
 #| fig.width = 9
 
-
 # (this is completely fictional; I don't know first thing about fishing!)
-(
-  fishing <- tibble::as_tibble(data.frame(
-    Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
-    Month = c(rep("February", 2), rep("March", 2), rep("February", 2), rep("March", 2)),
-    Fish = c(
-      "Bass",
-      "Catfish",
-      "Cod",
-      "Haddock",
-      "Cod",
-      "Haddock",
-      "Bass",
-      "Catfish",
-      "Bass",
-      "Catfish",
-      "Cod",
-      "Haddock",
-      "Cod",
-      "Haddock",
-      "Bass",
-      "Catfish"
-    ),
-    SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
-  ))
-)
+
+fishing <- tibble::as_tibble(data.frame(
+  Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
+  Month = c(rep("February", 2), rep("March", 2), rep("February", 2), rep("March", 2)),
+  Fish = c(
+    "Bass",
+    "Catfish",
+    "Cod",
+    "Haddock",
+    "Cod",
+    "Haddock",
+    "Bass",
+    "Catfish",
+    "Bass",
+    "Catfish",
+    "Cod",
+    "Haddock",
+    "Cod",
+    "Haddock",
+    "Bass",
+    "Catfish"
+  ),
+  SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
+))
+
+fishing
 ```
 
 When the data is organized this way, we make a slightly different call to the

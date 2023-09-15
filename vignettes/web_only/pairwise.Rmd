@@ -86,7 +86,6 @@ See data frame outputs [here](https://indrajeetpatil.github.io/statsExpressions/
 #| label = "ggsignif",
 #| fig.height = 5
 
-
 library(ggplot2)
 library(ggsignif)
 
@@ -131,8 +130,7 @@ p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
   geom_boxplot()
 
 ## using `pairwise_comparisons()` package to create a data frame with results
-
-(df <-
+df <-
   pairwise_comparisons(
     WRS2::WineTasting,
     Wine,
@@ -142,7 +140,9 @@ p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
     paired = TRUE
   ) %>%
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
-  dplyr::arrange(group1))
+  dplyr::arrange(group1)
+
+df
 
 ## using `geom_signif` to display results
 p +
