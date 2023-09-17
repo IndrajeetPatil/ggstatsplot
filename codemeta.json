@@ -278,7 +278,6 @@
       "@type": "SoftwareApplication",
       "identifier": "correlation",
       "name": "correlation",
-      "version": ">= 0.8.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -317,7 +316,6 @@
       "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
-      "version": ">= 0.1.4.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -419,7 +417,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.21.1",
+      "version": ">= 0.21.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -457,7 +455,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.0.3",
+      "version": ">= 1.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -515,7 +513,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9389.231KB",
+  "fileSize": "9388.316KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

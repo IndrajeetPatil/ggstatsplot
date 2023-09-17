@@ -104,7 +104,6 @@ references:
     email: remi.theriault@mail.mcgill.ca
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2023'
-  version: '>= 0.8.4'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
@@ -174,7 +173,6 @@ references:
     given-names: Alboukadel
     email: alboukadel.kassambara@gmail.com
   year: '2023'
-  version: '>= 0.1.4.1'
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -308,8 +306,8 @@ references:
     given-names: Etienne
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
-  year: '2023'
   version: '>= 0.19.5'
+  year: '2023'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -325,7 +323,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=parameters
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -351,7 +349,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.21.1'
+  version: '>= 0.21.2'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
