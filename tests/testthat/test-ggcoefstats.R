@@ -7,6 +7,8 @@ test_that("ggcoefstats doesn't work if no estimate column found", {
 # default plots for each statistic ------------------------------------------
 
 test_that("default plots are rendered correctly for each type of statistic", {
+  skip_if_not_installed("withr")
+
   set.seed(123)
   expect_doppelganger(
     title = "t-statistic",
