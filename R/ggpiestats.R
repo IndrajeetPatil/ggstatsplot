@@ -28,7 +28,7 @@
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
-#'   `geom_label`.
+#'   `ggplot2::geom_label()`.
 #' @param label.repel Whether labels should be repelled using `{ggrepel}` package.
 #'   This can be helpful in case the labels are overlapping.
 #' @param legend.title Title text for the legend.

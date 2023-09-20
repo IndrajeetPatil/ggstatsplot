@@ -13,6 +13,8 @@
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams ggbetweenstats
+#' @param sample.size.label.args Additional aesthetic arguments that will be passed to
+#'   `ggplot2::geom_text()`.
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
@@ -45,6 +47,7 @@ ggbarstats <- function(data,
                        results.subtitle = TRUE,
                        label = "percentage",
                        label.args = list(alpha = 1.0, fill = "white"),
+                       sample.size.label.args = list(size = 4.0),
                        k = 2L,
                        proportion.test = results.subtitle,
                        perc.k = 0L,
@@ -157,10 +160,11 @@ ggbarstats <- function(data,
 
   # adding sample size info
   plotBar <- plotBar +
-    geom_text(
+    exec(
+      geom_text,
       data    = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-      size    = 4.0
+      !!!sample.size.label.args
     )
 
   # annotations ------------------------------------------

@@ -14,6 +14,7 @@ ggbarstats(
   results.subtitle = TRUE,
   label = "percentage",
   label.args = list(alpha = 1, fill = "white"),
+  sample.size.label.args = list(size = 4),
   k = 2L,
   proportion.test = results.subtitle,
   perc.k = 0L,
@@ -80,7 +81,10 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{label.args}{Additional aesthetic arguments that will be passed to
-\code{geom_label}.}
+\code{ggplot2::geom_label()}.}
+
+\item{sample.size.label.args}{Additional aesthetic arguments that will be passed to
+\code{ggplot2::geom_text()}.}
 
 \item{k}{Number of digits after decimal point (should be an integer)
 (Default: \code{k = 2L}).}
@@ -170,6 +174,7 @@ For details, see:
    graphical element \tab \code{geom} used \tab argument for further modification \cr
    bars \tab \code{ggplot2::geom_bar()} \tab \code{NA} \cr
    descriptive labels \tab \code{ggplot2::geom_label()} \tab \code{label.args} \cr
+   sample size labels \tab \code{ggplot2::geom_text()} \tab \code{sample.size.label.args} \cr
 }
 }
 

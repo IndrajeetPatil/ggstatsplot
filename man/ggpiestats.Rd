@@ -79,7 +79,7 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{label.args}{Additional aesthetic arguments that will be passed to
-\code{geom_label}.}
+\code{ggplot2::geom_label()}.}
 
 \item{label.repel}{Whether labels should be repelled using \code{{ggrepel}} package.
 This can be helpful in case the labels are overlapping.}

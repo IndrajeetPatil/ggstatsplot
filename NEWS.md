@@ -5,7 +5,10 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
-- No user-visible changes. Maintenance-only release.
+## MINOR CHANGES
+
+- `ggbarstats()` gains `sample.size.label.args` parameter to pass additional
+  arguments to `ggplot2::geom_text()`.
 
 # ggstatsplot 0.12.0
 
