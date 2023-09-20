@@ -7,6 +7,8 @@ read the `NEWS` for that package:
 
 ## MINOR CHANGES
 
+- Maintenance updates for changes in upstream dependencies.
+
 - `ggbarstats()` gains `sample.size.label.args` parameter to pass additional
   arguments to `ggplot2::geom_text()`.
 
