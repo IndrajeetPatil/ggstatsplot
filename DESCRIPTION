@@ -51,8 +51,6 @@ Imports:
     statsExpressions (>= 1.5.2),
     tidyr,
     utils
-Remotes:
-    r-lib/vdiffr
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.4),
@@ -83,4 +81,6 @@ Roxygen: list(
 RoxygenNote: 7.2.3.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Config/Needs/check: anthonynorth/roxyglobals
+Config/Needs/check: 
+    anthonynorth/roxyglobals, 
+    r-lib/vdiffr
