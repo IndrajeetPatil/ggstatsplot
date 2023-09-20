@@ -7,10 +7,6 @@ test_that("ggcoefstats doesn't work if no estimate column found", {
 # default plots for each statistic ------------------------------------------
 
 test_that("default plots are rendered correctly for each type of statistic", {
-  skip_if_not_installed("survival")
-
-  library(survival)
-
   set.seed(123)
   expect_doppelganger(
     title = "t-statistic",
@@ -29,14 +25,6 @@ test_that("default plots are rendered correctly for each type of statistic", {
     fig = ggcoefstats(stats::aov(wt ~ mpg * am, mtcars), effectsize.type = "omega")
   )
 
-  set.seed(123)
-  expect_doppelganger(
-    title = "chi2-statistic",
-    fig = suppressWarnings(ggcoefstats(
-      survival::coxph(Surv(time, status) ~ age + sex + frailty(inst), lung)
-    ))
-  )
-
   df <- as.data.frame(Titanic)
 
   mod_glm <- stats::glm(
@@ -50,6 +38,17 @@ test_that("default plots are rendered correctly for each type of statistic", {
   expect_doppelganger(
     title = "z-statistic",
     fig = ggcoefstats(mod_glm, conf.level = 0.90)
+  )
+
+  skip_if_not_installed("survival")
+  withr::local_package("survival")
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "chi2-statistic",
+    fig = suppressWarnings(ggcoefstats(
+      survival::coxph(Surv(time, status) ~ age + sex + frailty(inst), lung)
+    ))
   )
 })
 
@@ -135,8 +134,12 @@ test_that(
     skip_if_not_installed("lme4")
     skip_on_os(c("windows", "linux", "solaris"))
 
-    library(lme4, warn.conflicts = FALSE)
-    m_lmer <- ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), data = sleepstudy))
+    withr::local_package("lme4")
+    m_lmer <- ggcoefstats(
+      lme4::lmer(Reaction ~ Days + (Days | Subject),
+        data = lme4::sleepstudy
+      )
+    )
 
     expect_s3_class(m_lmer, "ggplot")
 

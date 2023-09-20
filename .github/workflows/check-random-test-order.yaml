@@ -26,6 +26,7 @@ jobs:
           pak-version: devel
           extra-packages: |
             local::.
+          needs: check
 
       - name: Run Tests in Random Order
         run: |
