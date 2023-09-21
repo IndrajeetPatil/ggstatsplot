@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.12.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,10 +103,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>ggbarstats</h1>
-                        <h4 data-toc-skip class="author">Indrajeet
-Patil</h4>
             
-            <h4 data-toc-skip class="date">2023-09-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggbarstats.Rmd" class="external-link"><code>vignettes/web_only/ggbarstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggbarstats.Rmd</code></div>
@@ -302,31 +299,32 @@ combination of <code>Boat</code> and <code>Month</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
-<span><span class="op">(</span></span>
-<span>  <span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>    Boat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    Month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    Fish <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>      <span class="st">"Bass"</span>,</span>
-<span>      <span class="st">"Catfish"</span>,</span>
-<span>      <span class="st">"Cod"</span>,</span>
-<span>      <span class="st">"Haddock"</span>,</span>
-<span>      <span class="st">"Cod"</span>,</span>
-<span>      <span class="st">"Haddock"</span>,</span>
-<span>      <span class="st">"Bass"</span>,</span>
-<span>      <span class="st">"Catfish"</span>,</span>
-<span>      <span class="st">"Bass"</span>,</span>
-<span>      <span class="st">"Catfish"</span>,</span>
-<span>      <span class="st">"Cod"</span>,</span>
-<span>      <span class="st">"Haddock"</span>,</span>
-<span>      <span class="st">"Cod"</span>,</span>
-<span>      <span class="st">"Haddock"</span>,</span>
-<span>      <span class="st">"Bass"</span>,</span>
-<span>      <span class="st">"Catfish"</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    SumOfCaught <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">42</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">33</span>, <span class="fl">26</span>, <span class="fl">100</span>, <span class="fl">30</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span></span>
-<span>  <span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  Boat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  Fish <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Bass"</span>,</span>
+<span>    <span class="st">"Catfish"</span>,</span>
+<span>    <span class="st">"Cod"</span>,</span>
+<span>    <span class="st">"Haddock"</span>,</span>
+<span>    <span class="st">"Cod"</span>,</span>
+<span>    <span class="st">"Haddock"</span>,</span>
+<span>    <span class="st">"Bass"</span>,</span>
+<span>    <span class="st">"Catfish"</span>,</span>
+<span>    <span class="st">"Bass"</span>,</span>
+<span>    <span class="st">"Catfish"</span>,</span>
+<span>    <span class="st">"Cod"</span>,</span>
+<span>    <span class="st">"Haddock"</span>,</span>
+<span>    <span class="st">"Cod"</span>,</span>
+<span>    <span class="st">"Haddock"</span>,</span>
+<span>    <span class="st">"Bass"</span>,</span>
+<span>    <span class="st">"Catfish"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  SumOfCaught <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">42</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">33</span>, <span class="fl">26</span>, <span class="fl">100</span>, <span class="fl">30</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fishing</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 16 × 4</span></span></span>
 <span><span class="co">#&gt;    <span style="font-weight: bold;">Boat</span>  <span style="font-weight: bold;">Month</span>    <span style="font-weight: bold;">Fish</span>    <span style="font-weight: bold;">SumOfCaught</span></span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>

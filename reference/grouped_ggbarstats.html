@@ -14,7 +14,7 @@ ggstatsplot::combine_plots()."><meta property="og:image" content="https://indraj
     
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.12.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +101,11 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="ggbarstats.html">ggbarstats</a></code></p><dl><dt><code>x</code></dt>
+<dd><p>Arguments passed on to <code><a href="ggbarstats.html">ggbarstats</a></code></p><dl><dt><code>sample.size.label.args</code></dt>
+<dd><p>Additional aesthetic arguments that will be passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_text()</a></code>.</p></dd>
+
+    <dt><code>x</code></dt>
 <dd><p>The variable to use as the <strong>rows</strong> in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
 dropped.</p></dd>
@@ -130,7 +134,7 @@ on the label in each pie slice. Possible options are <code>"percentage"</code>
 
     <dt><code>label.args</code></dt>
 <dd><p>Additional aesthetic arguments that will be passed to
-<code>geom_label</code>.</p></dd>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label()</a></code>.</p></dd>
 
     <dt><code>legend.title</code></dt>
 <dd><p>Title text for the legend.</p></dd>
