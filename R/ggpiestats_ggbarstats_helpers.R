@@ -67,13 +67,13 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
     error = function(e) NULL
   )
 
-  if (!is.null(result)) {
-    as_tibble(insight::standardize_names(result, style = "broom"))
-  } else {
+  if (is.null(result)) {
     tibble(
       statistic = NA_real_, p.value = NA_real_, df = NA_real_,
       method = "Chi-squared test for given probabilities"
     )
+  } else {
+    as_tibble(insight::standardize_names(result, style = "broom"))
   }
 }
 
