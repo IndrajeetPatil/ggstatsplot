@@ -106,7 +106,7 @@ ggbarstats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
+    subtitle <- extract_expression(subtitle_df)
 
     # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
