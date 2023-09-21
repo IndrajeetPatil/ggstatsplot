@@ -1,7 +1,5 @@
 ---
 title: "Using '{ggstatsplot}' with the '{purrr}' package"
-author: "Indrajeet Patil"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true

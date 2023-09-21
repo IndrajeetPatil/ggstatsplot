@@ -40,6 +40,7 @@ jobs:
           extra-packages: |
             any::devtools
             local::.
+          needs: check
 
       - name: Run examples
         run: |

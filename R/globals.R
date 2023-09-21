@@ -19,6 +19,8 @@ utils::globalVariables(c(
   ".counts", # <ggpiestats>
   "perc", # <ggpiestats>
   ".label", # <ggpiestats>
+  "counts", # <descriptive_data>
+  "perc", # <descriptive_data>
   "counts", # <.cat_counter>
   "counts", # <onesample_data>
   ".", # <ggwithinstats>

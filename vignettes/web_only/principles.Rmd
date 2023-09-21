@@ -1,7 +1,5 @@
 ---
 title: "Graphic design and statistical reporting principles"
-author: "Indrajeet Patil"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true

@@ -29,7 +29,7 @@
 #' @noRd
 .histo_labeller <- function(plot, x, centrality.line.args, ...) {
   # compute centrality measure (with a temporary data frame)
-  df_central <- suppressWarnings(centrality_description(tibble(.x = ".x", "var" = x), .x, var, ...))
+  df_central <- suppressWarnings(centrality_description(tibble(.x = ".x", var = x), .x, var, ...))
 
   # adding a vertical line corresponding to centrality parameter
   plot +

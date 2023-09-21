@@ -2,3 +2,4 @@
 | :----------------- | :---------------------- | :-------------------------------- |
 | bars               | `ggplot2::geom_bar()`   | `NA`                              |
 | descriptive labels | `ggplot2::geom_label()` | `label.args`                      |
+| sample size labels | `ggplot2::geom_text()`  | `sample.size.label.args`          |

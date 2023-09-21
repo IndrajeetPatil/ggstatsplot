@@ -27,7 +27,7 @@ jobs:
           pak-version: devel
           extra-packages: |
             r-lib/covr
-          needs: coverage
+          needs: check
 
       - name: Test coverage
         run: |

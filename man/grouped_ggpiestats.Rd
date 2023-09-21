@@ -39,8 +39,8 @@ labels (Default: \code{0L}).}
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
-\code{geom_label}.}
-    \item{\code{label.repel}}{Whether labels should be repelled using \code{ggrepel} package.
+\code{ggplot2::geom_label()}.}
+    \item{\code{label.repel}}{Whether labels should be repelled using \code{{ggrepel}} package.
 This can be helpful in case the labels are overlapping.}
     \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in

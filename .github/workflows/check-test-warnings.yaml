@@ -28,6 +28,7 @@ jobs:
           extra-packages: |
             local::.
             any::devtools
+          needs: check
 
       - name: Run Tests
         run: |

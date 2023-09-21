@@ -23,8 +23,6 @@ jobs:
           extra-packages: |
             any::gh
             r-lib/lintr
-            any::purrr
-          needs: check
 
       - name: Install package
         run: R CMD INSTALL .
