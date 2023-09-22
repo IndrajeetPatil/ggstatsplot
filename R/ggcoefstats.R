@@ -139,7 +139,12 @@ ggcoefstats <- function(x,
                         vline.args = list(linewidth = 1.0, linetype = "dashed"),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
-                        stats.label.args = list(size = 3.0, direction = "y", min.segment.length = 0),
+                        stats.label.args = list(
+                          size = 3.0,
+                          direction = "y",
+                          min.segment.length = 0,
+                          na.rm = TRUE
+                        ),
                         package = "RColorBrewer",
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -164,8 +169,7 @@ ggcoefstats <- function(x,
       ci              = conf.level,
       table_wide      = TRUE,
       ...
-    ) %>%
-      rename_all(~ gsub("omega2.|eta2.", "", .x))
+    )
 
     # anova objects need further cleaning
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
@@ -243,14 +247,14 @@ ggcoefstats <- function(x,
   if (meta.analytic.effect) {
     meta.type <- stats_type_switch(meta.type)
 
-    # results from frequentist random-effects meta-analysis
+    # frequentist
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
-    subtitle <- subtitle_df$expression[[1L]]
+    subtitle <- extract_expression(subtitle_df)
 
-    # results from Bayesian random-effects meta-analysis (only for parametric)
+    # Bayesian
     if (meta.type == "parametric" && bf.message) {
       caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", k = k))
-      caption <- caption_df$expression[[1L]]
+      caption <- extract_expression(caption_df)
     }
   }
 
@@ -287,7 +291,6 @@ ggcoefstats <- function(x,
         mapping = aes(x = estimate, y = term, label = expression),
         parse   = TRUE,
         color   = stats.label.color %||% "black",
-        na.rm   = TRUE,
         !!!stats.label.args
       )
   }

@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.1
+version: 0.12.1.9000
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -447,8 +447,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.5.2'
   year: '2023'
+  version: '>= 1.5.2.9000'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -511,7 +511,7 @@ references:
     given-names: Jeffrey N.
     email: jrouder@uci.edu
   year: '2023'
-  version: '>= 0.9.12-4.4'
+  version: '>= 0.9.12-4.5'
 - type: software
   title: gapminder
   abstract: 'gapminder: Data from Gapminder'
@@ -736,7 +736,7 @@ references:
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
   year: '2023'
-  version: '>= 1.0.6'
+  version: '>= 1.0.7'
 - type: software
   title: withr
   abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
