@@ -114,7 +114,7 @@ ggpiestats <- function(data,
   x_levels <- nlevels(data %>% pull({{ x }}))
   y_levels <- ifelse(test == "one.way", 0L, nlevels(data %>% pull({{ y }})))
 
-  # TODO: one-way table in `BayesFactor`
+  # TODO: one-way table in `BayesFactor` (richarddmorey/BayesFactor#159)
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
 
   # faceting is possible only if both vars have more than one level
@@ -138,12 +138,12 @@ ggpiestats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
+    subtitle <- extract_expression(subtitle_df)
 
     # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]
+      caption <- extract_expression(caption_df)
     }
   }
 

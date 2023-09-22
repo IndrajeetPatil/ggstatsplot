@@ -110,12 +110,12 @@ gghistostats <- function(data,
 
     # subtitle with statistical results
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-    subtitle <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
+    subtitle <- extract_expression(subtitle_df)
 
     # BF message
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-      caption <- if (!is.null(caption_df)) caption_df$expression[[1L]]
+      caption <- extract_expression(caption_df)
     }
   }
 
