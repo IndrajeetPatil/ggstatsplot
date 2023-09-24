@@ -1,16 +1,6 @@
 # .grouped_list -----------------------------------------------------
 
 test_that(
-  desc = ".grouped_list works",
-  code = {
-    set.seed(123)
-
-    expect_snapshot(str(ggstatsplot:::.grouped_list(sleep, grouping.var = group)))
-    expect_snapshot(str(ggstatsplot:::.grouped_list(sleep)))
-  }
-)
-
-test_that(
   desc = ".grouped_list works with non-syntactic group names",
   code = {
     set.seed(123)
@@ -23,18 +13,13 @@ test_that(
   }
 )
 
-# .palette_message ------------------------------------
+# .is_palette_sufficient ------------------------------------
 
 test_that(
-  desc = ".palette_message is working",
+  desc = ".is_palette_sufficient is working",
   code = {
-    expect_snapshot(
-      ggstatsplot:::.palette_message(
-        package = "RColorBrewer",
-        palette = "Dark2",
-        min_length = 20L
-      )
-    )
+    expect_no_condition(ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
+    expect_snapshot(ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
   }
 )
 

@@ -156,7 +156,7 @@ ggpiestats <- function(data,
   if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, min_length = x_levels)
+  .is_palette_sufficient(package, palette, min_length = x_levels)
 
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +

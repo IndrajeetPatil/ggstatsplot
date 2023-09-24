@@ -235,7 +235,7 @@
                              ggplot.component = NULL,
                              ...) {
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, nlevels(x))
+  .is_palette_sufficient(package, palette, nlevels(x))
 
   plot +
     labs(

@@ -124,7 +124,7 @@ ggbarstats <- function(data,
   onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, nlevels(data %>% pull({{ x }})))
+  .is_palette_sufficient(package, palette, nlevels(data %>% pull({{ x }})))
 
   # plot
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +

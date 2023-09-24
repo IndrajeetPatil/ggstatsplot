@@ -182,7 +182,7 @@ ggcoefstats <- function(x,
   }
 
   # create a new term column if it's not present
-  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
+  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste0("term_", row_number()))
 
   # check for duplicate terms and columns -------------------------
 
@@ -229,7 +229,7 @@ ggcoefstats <- function(x,
 
   tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 
-  # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
+  # `term` needs to be a factor column; otherwise, ggplot2 will sort the `x`-axis
   # labels alphabetically and terms won't appear in the expected order
   tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
 
@@ -239,7 +239,7 @@ ggcoefstats <- function(x,
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
-    caption <- glance_df$expression[[1L]]
+    caption <- extract_expression(glance_df)
   }
 
   # meta analysis -------------------------
@@ -280,7 +280,7 @@ ggcoefstats <- function(x,
   # ggrepel labels -------------------------
 
   if (stats.labels) {
-    if (is.null(stats.label.color) && .palette_message(package, palette, length(tidy_df$term))) {
+    if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(tidy_df$term))) {
       stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
     }
 
