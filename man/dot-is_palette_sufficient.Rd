@@ -12,8 +12,8 @@ when the number of factor levels is greater than 8, the maximum number of
 colors allowed by \code{"Dark2"} palette from the \code{{RColorBrewer}} package.
 }
 \examples{
-.is_palette_sufficient("RColorBrewer", "Dark2", 6L)
-.is_palette_sufficient("RColorBrewer", "Dark2", 12L)
+ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 6L)
+ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 12L)
 
 }
 \keyword{internal}

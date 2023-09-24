@@ -7,7 +7,7 @@ test_that(
     expect_snapshot({
       sleep %>%
         rename("my non-syntactic name" = group) %>%
-        ggstatsplot:::.grouped_list(grouping.var = `my non-syntactic name`) %>%
+        .grouped_list(grouping.var = `my non-syntactic name`) %>%
         str()
     })
   }
@@ -18,8 +18,8 @@ test_that(
 test_that(
   desc = ".is_palette_sufficient is working",
   code = {
-    expect_no_condition(ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
-    expect_snapshot(ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
+    expect_no_condition(.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
+    expect_snapshot(.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
   }
 )
 

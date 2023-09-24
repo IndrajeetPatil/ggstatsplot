@@ -32,8 +32,8 @@
 #'   colors allowed by `"Dark2"` palette from the `{RColorBrewer}` package.
 #'
 #' @examples
-#' .is_palette_sufficient("RColorBrewer", "Dark2", 6L)
-#' .is_palette_sufficient("RColorBrewer", "Dark2", 12L)
+#' ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 6L)
+#' ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 12L)
 #'
 #' @autoglobal
 #' @keywords internal

@@ -1,7 +1,7 @@
 # .grouped_list works with non-syntactic group names
 
     Code
-      sleep %>% rename(`my non-syntactic name` = group) %>% ggstatsplot:::.grouped_list(
+      sleep %>% rename(`my non-syntactic name` = group) %>% .grouped_list(
         grouping.var = `my non-syntactic name`) %>% str()
     Output
       List of 2
@@ -19,7 +19,7 @@
 # .is_palette_sufficient is working
 
     Code
-      ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 20L)
+      .is_palette_sufficient("RColorBrewer", "Dark2", 20L)
     Message <rlang_message>
       Number of labels is greater than default palette color count.
       * Select another color `palette` (and/or `package`).
