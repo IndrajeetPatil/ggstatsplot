@@ -151,13 +151,13 @@ ggwithinstats <- function(data,
     # styler: off
     .f          <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle    <- extract_expression(subtitle_df)
+    subtitle    <- .extract_expression(subtitle_df)
     # styler: on
 
     if (type == "parametric" && bf.message) {
       # styler: off
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption    <- extract_expression(caption_df)
+      caption    <- .extract_expression(caption_df)
       # styler: on
     }
   }

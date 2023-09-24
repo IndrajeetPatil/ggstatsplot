@@ -12,14 +12,9 @@
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
-.grouped_list <- function(data, grouping.var = NULL) {
-  data <- as_tibble(data)
-
-  if (quo_is_null(enquo(grouping.var))) {
-    return(data)
-  }
-
-  split(data, f = new_formula(NULL, enquo(grouping.var)), drop = TRUE) %>%
+.grouped_list <- function(data, grouping.var) {
+  as_tibble(data) %>%
+    split(f = new_formula(NULL, enquo(grouping.var)), drop = TRUE) %>%
     list(data = ., title = names(.))
 }
 
@@ -65,4 +60,4 @@
 
 
 #' @noRd
-extract_expression <- function(data) purrr::pluck(data, "expression", 1L, .default = NULL)
+.extract_expression <- function(data) purrr::pluck(data, "expression", 1L, .default = NULL)

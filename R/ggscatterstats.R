@@ -130,12 +130,12 @@ ggscatterstats <- function(data,
     )
 
     subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
-    subtitle <- extract_expression(subtitle_df)
+    subtitle <- .extract_expression(subtitle_df)
 
     # BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
-      caption <- extract_expression(caption_df)
+      caption <- .extract_expression(caption_df)
     }
   }
 
