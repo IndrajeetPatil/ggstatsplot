@@ -139,7 +139,12 @@ ggcoefstats <- function(x,
                         vline.args = list(linewidth = 1.0, linetype = "dashed"),
                         stats.labels = TRUE,
                         stats.label.color = NULL,
-                        stats.label.args = list(size = 3.0, direction = "y", min.segment.length = 0),
+                        stats.label.args = list(
+                          size = 3.0,
+                          direction = "y",
+                          min.segment.length = 0,
+                          na.rm = TRUE
+                        ),
                         package = "RColorBrewer",
                         palette = "Dark2",
                         ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -164,8 +169,7 @@ ggcoefstats <- function(x,
       ci              = conf.level,
       table_wide      = TRUE,
       ...
-    ) %>%
-      rename_all(~ gsub("omega2.|eta2.", "", .x))
+    )
 
     # anova objects need further cleaning
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
@@ -178,7 +182,7 @@ ggcoefstats <- function(x,
   }
 
   # create a new term column if it's not present
-  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste("term", row_number(), sep = "_"))
+  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste0("term_", row_number()))
 
   # check for duplicate terms and columns -------------------------
 
@@ -225,7 +229,7 @@ ggcoefstats <- function(x,
 
   tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 
-  # `term` needs to be a factor column; otherwise, ggplot2 will sort the x-axis
+  # `term` needs to be a factor column; otherwise, ggplot2 will sort the `x`-axis
   # labels alphabetically and terms won't appear in the expected order
   tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
 
@@ -235,7 +239,7 @@ ggcoefstats <- function(x,
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
-    caption <- glance_df$expression[[1L]]
+    caption <- .extract_expression(glance_df)
   }
 
   # meta analysis -------------------------
@@ -243,14 +247,14 @@ ggcoefstats <- function(x,
   if (meta.analytic.effect) {
     meta.type <- stats_type_switch(meta.type)
 
-    # results from frequentist random-effects meta-analysis
+    # frequentist
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
-    subtitle <- subtitle_df$expression[[1L]]
+    subtitle <- .extract_expression(subtitle_df)
 
-    # results from Bayesian random-effects meta-analysis (only for parametric)
+    # Bayesian
     if (meta.type == "parametric" && bf.message) {
       caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", k = k))
-      caption <- caption_df$expression[[1L]]
+      caption <- .extract_expression(caption_df)
     }
   }
 
@@ -276,7 +280,7 @@ ggcoefstats <- function(x,
   # ggrepel labels -------------------------
 
   if (stats.labels) {
-    if (is.null(stats.label.color) && .palette_message(package, palette, length(tidy_df$term))) {
+    if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(tidy_df$term))) {
       stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
     }
 
@@ -287,7 +291,6 @@ ggcoefstats <- function(x,
         mapping = aes(x = estimate, y = term, label = expression),
         parse   = TRUE,
         color   = stats.label.color %||% "black",
-        na.rm   = TRUE,
         !!!stats.label.args
       )
   }

@@ -48,12 +48,12 @@ Imports:
     purrr (>= 1.0.2),
     rlang,
     stats,
-    statsExpressions (>= 1.5.2),
+    statsExpressions (>= 1.5.2.9000),
     tidyr,
     utils
 Suggests:
     afex,
-    BayesFactor (>= 0.9.12-4.4),
+    BayesFactor (>= 0.9.12-4.5),
     gapminder,
     knitr,
     lme4,
@@ -67,9 +67,11 @@ Suggests:
     survival,
     testthat (>= 3.1.10),
     tibble,
-    vdiffr (>= 1.0.6),
+    vdiffr (>= 1.0.7),
     withr,
     WRS2
+Remotes:
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

@@ -106,12 +106,12 @@ ggbarstats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    subtitle <- extract_expression(subtitle_df)
+    subtitle <- .extract_expression(subtitle_df)
 
     # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      caption <- extract_expression(caption_df)
+      caption <- .extract_expression(caption_df)
     }
   }
 
@@ -124,13 +124,13 @@ ggbarstats <- function(data,
   onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, nlevels(data %>% pull({{ x }})))
+  .is_palette_sufficient(package, palette, nlevels(data %>% pull({{ x }})))
 
   # plot
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
-      labels       = function(x) paste0(x * 100L, "%"),
+      labels       = ~ insight::format_percent(., digits = 0L),
       breaks       = seq(from = 0.0, to = 1.0, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +

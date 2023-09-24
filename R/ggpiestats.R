@@ -138,12 +138,12 @@ ggpiestats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    subtitle <- extract_expression(subtitle_df)
+    subtitle <- .extract_expression(subtitle_df)
 
     # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      caption <- extract_expression(caption_df)
+      caption <- .extract_expression(caption_df)
     }
   }
 
@@ -156,7 +156,7 @@ ggpiestats <- function(data,
   if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, min_length = x_levels)
+  .is_palette_sufficient(package, palette, min_length = x_levels)
 
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +

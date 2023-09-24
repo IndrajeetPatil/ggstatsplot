@@ -1,4 +1,4 @@
-#' @title Split data frame into a list by grouping variable.
+#' @title Split data frame into a list by grouping variable
 #'
 #' @description
 #'
@@ -12,27 +12,27 @@
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
-.grouped_list <- function(data, grouping.var = NULL) {
-  data <- as_tibble(data)
-
-  if (quo_is_null(enquo(grouping.var))) {
-    return(data)
-  }
-
-  data %>%
+.grouped_list <- function(data, grouping.var) {
+  as_tibble(data) %>%
     split(f = new_formula(NULL, enquo(grouping.var)), drop = TRUE) %>%
     list(data = ., title = names(.))
 }
 
 
-#' @title Message if palette doesn't have enough number of colors.
-#' @name .palette_message
-#' @description Informs the user about not using the default color palette
+#' @title Check if palette has enough number of colors
+#'
+#' @description
+#' Informs the user about not using the default color palette
 #'   when the number of factor levels is greater than 8, the maximum number of
-#'   colors allowed by `"Dark2"` palette from the `RColorBrewer` package.
+#'   colors allowed by `"Dark2"` palette from the `{RColorBrewer}` package.
+#'
+#' @examples
+#' ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 6L)
+#' ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 12L)
+#'
 #' @autoglobal
-#' @noRd
-.palette_message <- function(package, palette, min_length) {
+#' @keywords internal
+.is_palette_sufficient <- function(package, palette, min_length) {
   palette_length <- paletteer::palettes_d_names %>%
     filter(package == !!package, palette == !!palette) %$%
     length[[1L]]
@@ -49,6 +49,7 @@
   return(are_enough_colors_available)
 }
 
+
 #' @noRd
 .eval_f <- function(.f, ...) {
   tryCatch(
@@ -57,5 +58,6 @@
   )
 }
 
+
 #' @noRd
-extract_expression <- function(data) purrr::pluck(data, "expression", 1L, .default = NULL)
+.extract_expression <- function(data) purrr::pluck(data, "expression", 1L, .default = NULL)

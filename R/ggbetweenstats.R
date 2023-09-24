@@ -220,11 +220,11 @@ ggbetweenstats <- function(data,
 
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle <- extract_expression(subtitle_df)
+    subtitle <- .extract_expression(subtitle_df)
 
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption <- extract_expression(caption_df)
+      caption <- .extract_expression(caption_df)
     }
   }
 
