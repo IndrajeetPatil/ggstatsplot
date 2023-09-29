@@ -73,7 +73,7 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
       method = "Chi-squared test for given probabilities"
     )
   } else {
-    as_tibble(insight::standardize_names(result, style = "broom"))
+    insight::standardize_names(result, style = "broom") %>% as_tibble()
   }
 }
 
