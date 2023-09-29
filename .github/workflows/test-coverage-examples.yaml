@@ -28,7 +28,7 @@ jobs:
           extra-packages: |
             any::covr
             local::.
-        needs: coverage
+          needs: coverage
 
       - name: Test example coverage
         run: |
