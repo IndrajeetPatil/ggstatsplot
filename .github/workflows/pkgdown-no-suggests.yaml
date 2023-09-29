@@ -23,8 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Always try to use the latest pandoc version
-      # https://github.com/jgm/pandoc/releases
       - uses: r-lib/actions/setup-pandoc@v2
         with:
           pandoc-version: "3.1.8"
