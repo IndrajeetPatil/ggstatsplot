@@ -20,7 +20,7 @@
 
     Code
       .is_palette_sufficient("RColorBrewer", "Dark2", 20L)
-    Message <rlang_message>
+    Message
       Number of labels is greater than default palette color count.
       * Select another color `palette` (and/or `package`).
     Output
