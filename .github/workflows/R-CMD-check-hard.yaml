@@ -43,6 +43,7 @@ jobs:
             any::knitr
             any::rcmdcheck
             any::rmarkdown
+            any::curl
             any::testthat
             any::vdiffr
           needs: check

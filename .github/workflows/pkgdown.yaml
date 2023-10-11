@@ -37,7 +37,6 @@ jobs:
           upgrade: 'TRUE'
           extra-packages: |
             r-lib/pkgdown
-            r-lib/vdiffr
             local::.
           needs: website
 
