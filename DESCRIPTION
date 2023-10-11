@@ -65,7 +65,7 @@ Suggests:
     psych,
     rmarkdown,
     survival,
-    testthat (>= 3.1.10),
+    testthat (>= 3.2.0),
     tibble,
     vdiffr (>= 1.0.7),
     withr,
@@ -84,6 +84,4 @@ Roxygen: list(
 RoxygenNote: 7.2.3.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Config/Needs/check: 
-    anthonynorth/roxyglobals, 
-    r-lib/vdiffr
+Config/Needs/check: anthonynorth/roxyglobals

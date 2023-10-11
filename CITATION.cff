@@ -109,7 +109,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://CRAN.R-project.org/package=datawizard
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -447,8 +447,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  year: '2023'
   version: '>= 1.5.2.9000'
+  year: '2023'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -696,7 +696,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2023'
-  version: '>= 3.1.10'
+  version: '>= 3.2.0'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
@@ -748,7 +748,7 @@ references:
     given-names: Jim
   - family-names: Henry
     given-names: Lionel
-    email: lionel@rstudio.com
+    email: lionel@posit.co
   - family-names: Müller
     given-names: Kirill
     email: krlmlr+r@mailbox.org
