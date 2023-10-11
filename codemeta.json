@@ -220,7 +220,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.10",
+      "version": ">= 3.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -525,7 +525,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9422.075KB",
+  "fileSize": "9388.713KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
