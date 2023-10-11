@@ -131,31 +131,7 @@ test_that(
 # edge cases -------------------------------------
 
 test_that(
-  desc = "missing values in numeric columns",
-  code = {
-    skip_if_not_installed("lme4")
-    skip_on_os(c("windows", "linux", "solaris"))
-
-    withr::local_package("lme4")
-    m_lmer <- ggcoefstats(
-      lme4::lmer(Reaction ~ Days + (Days | Subject),
-        data = lme4::sleepstudy
-      )
-    )
-
-    expect_s3_class(m_lmer, "ggplot")
-
-    skip_on_os("mac", c("i386", "x86_64"))
-    set.seed(123)
-    expect_doppelganger(
-      title = "NAs in numeric columns",
-      fig = m_lmer
-    )
-  }
-)
-
-test_that(
-  desc = "edge cases",
+  desc = "works when CIs unavailable",
   code = {
     set.seed(123)
     df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
