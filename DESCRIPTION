@@ -84,6 +84,4 @@ Roxygen: list(
 RoxygenNote: 7.2.3.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
-Config/Needs/check: 
-    anthonynorth/roxyglobals, 
-    r-lib/vdiffr
+Config/Needs/check: anthonynorth/roxyglobals
