@@ -8,7 +8,7 @@ output:
 ```{r}
 #| label = "setup",
 #| include = FALSE
-source("../setup.R")
+source("../vignettes/setup.R")
 ```
 
 # Introduction
