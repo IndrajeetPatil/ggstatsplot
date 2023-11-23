@@ -13,6 +13,8 @@
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams ggbetweenstats
+#' @param sample.size.label.args Additional aesthetic arguments that will be passed to
+#'   `ggplot2::geom_text()`.
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
@@ -44,7 +46,8 @@ ggbarstats <- function(data,
                        paired = FALSE,
                        results.subtitle = TRUE,
                        label = "percentage",
-                       label.args = list(alpha = 1, fill = "white"),
+                       label.args = list(alpha = 1.0, fill = "white"),
+                       sample.size.label.args = list(size = 4.0),
                        k = 2L,
                        proportion.test = results.subtitle,
                        perc.k = 0L,
@@ -53,7 +56,7 @@ ggbarstats <- function(data,
                        conf.level = 0.95,
                        sampling.plan = "indepMulti",
                        fixed.margin = "rows",
-                       prior.concentration = 1,
+                       prior.concentration = 1.0,
                        title = NULL,
                        subtitle = NULL,
                        caption = NULL,
@@ -103,12 +106,12 @@ ggbarstats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
+    subtitle <- .extract_expression(subtitle_df)
 
     # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]
+      caption <- .extract_expression(caption_df)
     }
   }
 
@@ -121,14 +124,14 @@ ggbarstats <- function(data,
   onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, nlevels(data %>% pull({{ x }})))
+  .is_palette_sufficient(package, palette, nlevels(data %>% pull({{ x }})))
 
   # plot
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
-      labels       = function(x) paste0(x * 100, "%"),
-      breaks       = seq(from = 0, to = 1, by = 0.10),
+      labels       = ~ insight::format_percent(., digits = 0L),
+      breaks       = seq(from = 0.0, to = 1.0, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     exec(
@@ -157,10 +160,11 @@ ggbarstats <- function(data,
 
   # adding sample size info
   plotBar <- plotBar +
-    geom_text(
+    exec(
+      geom_text,
       data    = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-      size    = 4
+      !!!sample.size.label.args
     )
 
   # annotations ------------------------------------------

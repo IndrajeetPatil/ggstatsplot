@@ -15,7 +15,7 @@
 #' `correlation::correlation()` function which provides tidy data frames by
 #' default.
 #'
-#' @return
+#' @returns
 #'
 #' A list of tibbles containing summaries of various statistical analyses.
 #' The exact details included will depend on the function.

@@ -9,7 +9,7 @@
 #' All `{ggstatsplot}` functions have a `ggtheme` parameter that let you choose
 #' a different theme.
 #'
-#' @return A `ggplot` object with the `theme_ggstatsplot` theme overlaid.
+#' @returns A `ggplot` object with the `theme_ggstatsplot` theme overlaid.
 #'
 #' @examples
 #' library(ggplot2)

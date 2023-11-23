@@ -8,4 +8,4 @@ bugs_long <- bugs |>
 names(bugs_long) <- tolower(names(bugs_long))
 
 # saving the data
-save(bugs_long, file = "data/bugs_long.rdata")
+save(bugs_long, file = file.path("data", "bugs_long.rdata"))

@@ -13,7 +13,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -24,6 +24,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
+          upgrade: 'TRUE'
           dependencies: '"hard"'
           extra-packages: |
             local::.
@@ -73,4 +74,4 @@ jobs:
           roxygen2::roxygenise()
         shell: Rscript {0}
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v5

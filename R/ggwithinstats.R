@@ -134,7 +134,7 @@ ggwithinstats <- function(data,
   # test to run; depends on the no. of levels of the independent variable
   test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
 
-  if (results.subtitle && insight::check_if_installed("afex")) {
+  if (results.subtitle) {
     .f.args <- list(
       data         = data,
       x            = as_string(x),
@@ -151,13 +151,13 @@ ggwithinstats <- function(data,
     # styler: off
     .f          <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle    <- if (!is.null(subtitle_df)) subtitle_df$expression[[1L]]
+    subtitle    <- .extract_expression(subtitle_df)
     # styler: on
 
     if (type == "parametric" && bf.message) {
       # styler: off
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption    <- if (!is.null(caption_df)) caption_df$expression[[1L]]
+      caption    <- .extract_expression(caption_df)
       # styler: on
     }
   }
@@ -219,10 +219,7 @@ ggwithinstats <- function(data,
     )
 
     # secondary label axis to give pairwise comparisons test details
-    seclabel <- .pairwise_seclabel(
-      unique(mpc_df$test),
-      ifelse(type == "bayes", "all", pairwise.display)
-    )
+    seclabel <- .pairwise_seclabel(unique(mpc_df$test), ifelse(type == "bayes", "all", pairwise.display))
   }
 
   # annotations -------------------------

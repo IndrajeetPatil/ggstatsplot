@@ -2,7 +2,7 @@
 
     The tidy data frame *must* contain 'estimate' column.
 
-# edge cases
+# works when CIs unavailable
 
     Elements in `term` column must be unique.
 

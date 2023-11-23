@@ -2,9 +2,9 @@
 % Please edit documentation in R/utils.R
 \name{.grouped_list}
 \alias{.grouped_list}
-\title{Split data frame into a list by grouping variable.}
+\title{Split data frame into a list by grouping variable}
 \usage{
-.grouped_list(data, grouping.var = NULL)
+.grouped_list(data, grouping.var)
 }
 \arguments{
 \item{data}{A data frame (or a tibble) from which variables specified are to

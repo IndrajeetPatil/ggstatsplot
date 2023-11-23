@@ -18,7 +18,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -27,6 +27,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
+          upgrade: 'TRUE'
           extra-packages: |
             r-lib/lintr
             local::.
@@ -40,10 +41,13 @@ jobs:
           library(lintr)
           lint_package(linters = linters_with_defaults(
             absolute_path_linter = NULL,
+            assignment_linter = NULL,
             commented_code_linter = NULL,
             cyclocomp_linter(25L),
             extraction_operator_linter = NULL,
+            if_not_else_linter(exceptions = character(0L)),
             implicit_integer_linter = NULL,
+            library_call_linter = NULL,
             line_length_linter(120L),
             namespace_linter = NULL,
             nonportable_path_linter = NULL,

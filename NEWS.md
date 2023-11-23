@@ -1,9 +1,16 @@
-# ggstatsplot 0.12.0.9000
+# ggstatsplot 0.12.1
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+## MINOR CHANGES
+
+- Maintenance updates for changes in upstream dependencies.
+
+- `ggbarstats()` gains `sample.size.label.args` parameter to pass additional
+  arguments to `ggplot2::geom_text()`.
 
 # ggstatsplot 0.12.0
 

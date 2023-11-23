@@ -32,15 +32,15 @@
                                 y,
                                 centrality.path = FALSE,
                                 centrality.path.args = list(
-                                  linewidth = 1,
+                                  linewidth = 1.0,
                                   color = "red",
                                   alpha = 0.5
                                 ),
-                                centrality.point.args = list(size = 5, color = "darkred"),
+                                centrality.point.args = list(size = 5.0, color = "darkred"),
                                 centrality.label.args = list(
-                                  size = 3,
+                                  size = 3.0,
                                   nudge_x = 0.4,
-                                  segment.linetype = 4
+                                  segment.linetype = 4.0
                                 ),
                                 ...) {
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
@@ -201,9 +201,9 @@
 
   # which comparisons were displayed?
   display <- case_when(
-    substr(pairwise.display, 1L, 1L) == "s" ~ "significant",
-    substr(pairwise.display, 1L, 1L) == "n" ~ "non-significant",
-    TRUE ~ "all"
+    startsWith(pairwise.display, "s") ~ "significant",
+    startsWith(pairwise.display, "n") ~ "non-significant",
+    .default = "all"
   )
 
   parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
@@ -235,7 +235,7 @@
                              ggplot.component = NULL,
                              ...) {
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, nlevels(x))
+  .is_palette_sufficient(package, palette, nlevels(x))
 
   plot +
     labs(

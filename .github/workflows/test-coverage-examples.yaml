@@ -11,11 +11,12 @@ name: test-coverage-examples
 jobs:
   test-coverage-examples:
     runs-on: ubuntu-latest
+
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -23,9 +24,12 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          pak-version: devel
+          upgrade: 'TRUE'
           extra-packages: |
-            r-lib/covr
+            any::covr
             local::.
+          needs: coverage
 
       - name: Test example coverage
         run: |

@@ -12,7 +12,7 @@ descriptive_data <- function(data,
       .label = case_when(
         grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
         grepl("count|n|N", label.content) ~ .prettyNum(counts),
-        TRUE ~ paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
+        .default = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
       )
     ) %>% # reorder the category factor levels to order the legend
     mutate({{ x }} := factor({{ x }}, unique({{ x }})))
@@ -67,13 +67,13 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
     error = function(e) NULL
   )
 
-  if (!is.null(result)) {
-    as_tibble(insight::standardize_names(result, style = "broom"))
-  } else {
+  if (is.null(result)) {
     tibble(
       statistic = NA_real_, p.value = NA_real_, df = NA_real_,
       method = "Chi-squared test for given probabilities"
     )
+  } else {
+    insight::standardize_names(result, style = "broom") %>% as_tibble()
   }
 }
 

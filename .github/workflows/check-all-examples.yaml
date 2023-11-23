@@ -26,7 +26,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -35,11 +35,12 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
           pak-version: devel
+          upgrade: 'TRUE'
           extra-packages: |
             any::devtools
             local::.
+          needs: check
 
       - name: Run examples
         run: |

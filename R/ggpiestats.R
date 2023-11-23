@@ -28,8 +28,8 @@
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
-#'   `geom_label`.
-#' @param label.repel Whether labels should be repelled using `ggrepel` package.
+#'   `ggplot2::geom_label()`.
+#' @param label.repel Whether labels should be repelled using `{ggrepel}` package.
 #'   This can be helpful in case the labels are overlapping.
 #' @param legend.title Title text for the legend.
 #' @inheritParams ggbetweenstats
@@ -100,7 +100,7 @@ ggpiestats <- function(data,
   y <- if (!quo_is_null(enquo(y))) ensym(y)
 
   # one-way or two-way table?
-  test <- ifelse(!quo_is_null(enquo(y)), "two.way", "one.way")
+  test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
 
   data %<>%
     select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
@@ -114,7 +114,7 @@ ggpiestats <- function(data,
   x_levels <- nlevels(data %>% pull({{ x }}))
   y_levels <- ifelse(test == "one.way", 0L, nlevels(data %>% pull({{ y }})))
 
-  # TODO: one-way table in `BayesFactor`
+  # TODO: one-way table in `BayesFactor` (richarddmorey/BayesFactor#159)
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
 
   # faceting is possible only if both vars have more than one level
@@ -138,12 +138,12 @@ ggpiestats <- function(data,
     )
 
     subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    if (!is.null(subtitle_df)) subtitle <- subtitle_df$expression[[1L]]
+    subtitle <- .extract_expression(subtitle_df)
 
     # Bayes Factor caption
     if (type != "bayes" && bf.message && isFALSE(paired)) {
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      if (!is.null(caption_df)) caption <- caption_df$expression[[1L]]
+      caption <- .extract_expression(caption_df)
     }
   }
 
@@ -156,7 +156,7 @@ ggpiestats <- function(data,
   if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .palette_message(package, palette, min_length = x_levels)
+  .is_palette_sufficient(package, palette, min_length = x_levels)
 
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
@@ -164,7 +164,7 @@ ggpiestats <- function(data,
       mapping  = aes(fill = {{ x }}),
       position = "fill",
       color    = "black",
-      width    = 1
+      width    = 1.0
     )
 
   # whether labels need to be repelled
@@ -179,7 +179,7 @@ ggpiestats <- function(data,
         position           = position_fill(vjust = 0.5),
         min.segment.length = 0,
         fill               = "white",
-        alpha              = 1,
+        alpha              = 1.0,
         !!!label.args
       )
   }))
@@ -204,7 +204,7 @@ ggpiestats <- function(data,
         geom_text,
         data     = onesample_df,
         mapping  = aes(label = .label, x = 1.65, y = 0.5),
-        position = position_fill(vjust = 1),
+        position = position_fill(vjust = 1.0),
         size     = 2.8,
         parse    = TRUE
       )

@@ -116,7 +116,7 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "between - bayes",
-      fig = ggbetweenstats(iris, Species, Sepal.Length,
+      fig = ggbetweenstats(mtcars, cyl, mpg,
         type = "bayes",
         results.subtitle = FALSE,
         k = 3L

@@ -21,5 +21,5 @@ iris_long <- datasets::iris |>
 
 dplyr::glimpse(iris_long)
 
-readr::write_csv(iris_long, file = "data-raw/iris_long.csv")
-save(iris_long, file = "data/iris_long.rdata")
+readr::write_csv(iris_long, file = file.path("data-raw", "iris_long.csv"))
+save(iris_long, file = file.path("data-raw", "iris_long.rdata"))

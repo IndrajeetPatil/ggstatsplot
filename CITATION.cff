@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.0
+version: 0.12.1.9000
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -77,7 +77,7 @@ references:
   abstract: 'correlation: Methods for Correlation Analysis'
   notes: Imports
   url: https://easystats.github.io/correlation/
-  repository: https://CRAN.R-project.org/package=correlation
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Makowski
     given-names: Dominique
@@ -99,6 +99,10 @@ references:
     given-names: Mattan S.
     email: matanshm@post.bgu.ac.il
     orcid: https://orcid.org/0000-0002-4287-4801
+  - family-names: Thériault
+    given-names: Rémi
+    email: remi.theriault@mail.mcgill.ca
+    orcid: https://orcid.org/0000-0003-4315-6788
   year: '2023'
   version: '>= 0.8.4'
 - type: software
@@ -133,7 +137,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.8.0'
+  version: '>= 0.9.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -158,7 +162,7 @@ references:
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2023'
-  version: '>= 1.1.2'
+  version: '>= 1.1.3'
 - type: software
   title: ggcorrplot
   abstract: 'ggcorrplot: Visualization of a Correlation Matrix using ''ggplot2'''
@@ -170,7 +174,7 @@ references:
     given-names: Alboukadel
     email: alboukadel.kassambara@gmail.com
   year: '2023'
-  version: '>= 0.1.4'
+  version: '>= 0.1.4.1'
 - type: software
   title: ggplot2
   abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
@@ -206,7 +210,7 @@ references:
     given-names: Dewey
     orcid: https://orcid.org/0000-0002-9415-4582
   year: '2023'
-  version: '>= 3.4.2'
+  version: '>= 3.4.4'
 - type: software
   title: ggrepel
   abstract: 'ggrepel: Automatically Position Non-Overlapping Text Labels with ''ggplot2'''
@@ -219,7 +223,7 @@ references:
     email: kslowikowski@gmail.com
     orcid: https://orcid.org/0000-0002-2843-6370
   year: '2023'
-  version: '>= 0.9.3'
+  version: '>= 0.9.4'
 - type: software
   title: ggside
   abstract: 'ggside: Side Grammar Graphics'
@@ -270,7 +274,7 @@ references:
   abstract: 'insight: Easy Access to Model Information for Various Model Objects'
   notes: Imports
   url: https://easystats.github.io/insight/
-  repository: https://CRAN.R-project.org/package=insight
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -305,7 +309,7 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2023'
-  version: '>= 0.19.3'
+  version: '>= 0.19.6'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -316,6 +320,7 @@ references:
   - family-names: file.
     given-names: See AUTHORS
   year: '2023'
+  version: '>= 1.5.0'
 - type: software
   title: parameters
   abstract: 'parameters: Processing of Model Parameters'
@@ -347,7 +352,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.21.1'
+  version: '>= 0.21.2'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -360,12 +365,13 @@ references:
     email: thomasp85@gmail.com
     orcid: https://orcid.org/0000-0002-5147-4711
   year: '2023'
+  version: '>= 1.1.3'
 - type: software
   title: performance
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=performance
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -392,7 +398,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2023'
-  version: '>= 0.10.4'
+  version: '>= 0.10.8'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -408,7 +414,7 @@ references:
     given-names: Lionel
     email: lionel@rstudio.com
   year: '2023'
-  version: '>= 1.0.1'
+  version: '>= 1.0.2'
 - type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
@@ -445,8 +451,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.5.1'
   year: '2023'
+  version: '>= 1.5.2.9000'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -463,6 +469,7 @@ references:
   - family-names: Girlich
     given-names: Maximilian
   year: '2023'
+  version: '>= 1.3.0'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -509,7 +516,7 @@ references:
     given-names: Jeffrey N.
     email: jrouder@uci.edu
   year: '2023'
-  version: '>= 0.9.12-4.4'
+  version: '>= 0.9.12-4.5'
 - type: software
   title: gapminder
   abstract: 'gapminder: Data from Gapminder'
@@ -570,12 +577,12 @@ references:
   title: metaBMA
   abstract: 'metaBMA: Bayesian Model Averaging for Random and Fixed Effects Meta-Analysis'
   notes: Suggests
-  url: https://github.com/danheck/metaBMA
+  url: https://danheck.github.io/metaBMA/
   repository: https://CRAN.R-project.org/package=metaBMA
   authors:
   - family-names: Heck
     given-names: Daniel W.
-    email: dheck@uni-marburg.de
+    email: daniel.heck@uni-marburg.de
     orcid: https://orcid.org/0000-0002-6302-9252
   year: '2023'
 - type: software
@@ -694,7 +701,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2023'
-  version: '>= 3.1.10'
+  version: '>= 3.2.0'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
@@ -719,10 +726,10 @@ references:
   authors:
   - family-names: Henry
     given-names: Lionel
-    email: lionel@rstudio.com
+    email: lionel@posit.co
   - family-names: Pedersen
     given-names: Thomas Lin
-    email: thomas.pedersen@rstudio.com
+    email: thomas.pedersen@posit.co
     orcid: https://orcid.org/0000-0002-5147-4711
   - family-names: Luciani
     given-names: T Jake
@@ -734,7 +741,31 @@ references:
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
   year: '2023'
-  version: '>= 1.0.5'
+  version: '>= 1.0.7'
+- type: software
+  title: withr
+  abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
+  notes: Suggests
+  url: https://withr.r-lib.org
+  repository: https://CRAN.R-project.org/package=withr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Müller
+    given-names: Kirill
+    email: krlmlr+r@mailbox.org
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevinushey@gmail.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+  year: '2023'
 - type: software
   title: WRS2
   abstract: 'WRS2: A Collection of Robust Statistical Methods'

@@ -28,7 +28,8 @@ ggcoefstats(
   vline.args = list(linewidth = 1, linetype = "dashed"),
   stats.labels = TRUE,
   stats.label.color = NULL,
-  stats.label.args = list(size = 3, direction = "y", min.segment.length = 0),
+  stats.label.args = list(size = 3, direction = "y", min.segment.length = 0, na.rm =
+    TRUE),
   package = "RColorBrewer",
   palette = "Dark2",
   ggtheme = ggstatsplot::theme_ggstatsplot(),

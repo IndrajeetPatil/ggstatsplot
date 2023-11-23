@@ -4,7 +4,7 @@ Titanic_full <-
   tibble::rowid_to_column(var = "id") |>
   dplyr::mutate(dplyr::across(dplyr::vars("id"), ~ as.factor(.x))) |>
   split(f = .$id) |>
-  purrr::map_dfr(.f = ~ tidyr::uncount(.x, n)) |>
+  purrr::map_dfr(tidyr::uncount, n) |>
   dplyr::mutate(dplyr::across(dplyr::vars("id"), ~ as.numeric(as.character(.x)))) |>
   dplyr::mutate(dplyr::across(where(is.character), ~ droplevels(as.factor(.x)))) |>
   dplyr::select(-n, -id) |>

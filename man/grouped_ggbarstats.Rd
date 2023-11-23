@@ -21,6 +21,8 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link[=ggbarstats]{ggbarstats}}
   \describe{
+    \item{\code{sample.size.label.args}}{Additional aesthetic arguments that will be passed to
+\code{ggplot2::geom_text()}.}
     \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
 dropped.}
@@ -39,7 +41,7 @@ labels (Default: \code{0L}).}
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
-\code{geom_label}.}
+\code{ggplot2::geom_label()}.}
     \item{\code{legend.title}}{Title text for the legend.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
