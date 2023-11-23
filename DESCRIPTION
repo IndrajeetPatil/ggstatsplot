@@ -51,11 +51,6 @@ Imports:
     statsExpressions (>= 1.5.2.9000),
     tidyr (>= 1.3.0),
     utils
-Remotes:
-    easystats/insight,
-    easystats/datawizard,
-    easystats/parameters,
-    easystats/performance
 Suggests:
     afex,
     BayesFactor (>= 0.9.12-4.5),
