@@ -78,42 +78,43 @@
 #'   point.args = list(alpha = 0)
 #' )
 #' @export
-ggwithinstats <- function(data,
-                          x,
-                          y,
-                          type = "parametric",
-                          pairwise.display = "significant",
-                          p.adjust.method = "holm",
-                          effsize.type = "unbiased",
-                          bf.prior = 0.707,
-                          bf.message = TRUE,
-                          results.subtitle = TRUE,
-                          xlab = NULL,
-                          ylab = NULL,
-                          caption = NULL,
-                          title = NULL,
-                          subtitle = NULL,
-                          k = 2L,
-                          conf.level = 0.95,
-                          nboot = 100L,
-                          tr = 0.2,
-                          centrality.plotting = TRUE,
-                          centrality.type = type,
-                          centrality.point.args = list(size = 5, color = "darkred"),
-                          centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
-                          centrality.path = TRUE,
-                          centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
-                          point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
-                          point.path = TRUE,
-                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
-                          boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
-                          violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-                          ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-                          ggtheme = ggstatsplot::theme_ggstatsplot(),
-                          package = "RColorBrewer",
-                          palette = "Dark2",
-                          ggplot.component = NULL,
-                          ...) {
+ggwithinstats <- function(
+    data,
+    x,
+    y,
+    type = "parametric",
+    pairwise.display = "significant",
+    p.adjust.method = "holm",
+    effsize.type = "unbiased",
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    results.subtitle = TRUE,
+    xlab = NULL,
+    ylab = NULL,
+    caption = NULL,
+    title = NULL,
+    subtitle = NULL,
+    k = 2L,
+    conf.level = 0.95,
+    nboot = 100L,
+    tr = 0.2,
+    centrality.plotting = TRUE,
+    centrality.type = type,
+    centrality.point.args = list(size = 5, color = "darkred"),
+    centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+    centrality.path = TRUE,
+    centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
+    point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
+    point.path = TRUE,
+    point.path.args = list(alpha = 0.5, linetype = "dashed"),
+    boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
+    violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
+    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggplot.component = NULL,
+    ...) {
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
@@ -277,11 +278,12 @@ ggwithinstats <- function(data,
 #'   ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
 #' )
 #' @export
-grouped_ggwithinstats <- function(data,
-                                  ...,
-                                  grouping.var,
-                                  plotgrid.args = list(),
-                                  annotation.args = list()) {
+grouped_ggwithinstats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggwithinstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

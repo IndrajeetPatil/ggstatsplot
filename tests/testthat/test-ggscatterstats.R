@@ -25,7 +25,10 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "changing scales and aesthetics",
-      fig = ggscatterstats(mtcars, wt, mpg,
+      fig = ggscatterstats(
+        mtcars,
+        wt,
+        mpg,
         results.subtitle = FALSE,
         xsidehistogram.args = list(
           fill = "red",

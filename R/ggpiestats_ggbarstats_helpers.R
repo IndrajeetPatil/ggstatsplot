@@ -1,12 +1,13 @@
 #' @title A data frame with descriptive labels
 #' @autoglobal
 #' @noRd
-descriptive_data <- function(data,
-                             x,
-                             y = NULL,
-                             label.content = "percentage",
-                             perc.k = 1L,
-                             ...) {
+descriptive_data <- function(
+    data,
+    x,
+    y = NULL,
+    label.content = "percentage",
+    perc.k = 1L,
+    ...) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(

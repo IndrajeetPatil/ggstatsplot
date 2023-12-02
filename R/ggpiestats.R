@@ -63,34 +63,35 @@
 #' ggpiestats(mtcars, vs, cyl)
 #'
 #' @export
-ggpiestats <- function(data,
-                       x,
-                       y = NULL,
-                       counts = NULL,
-                       type = "parametric",
-                       paired = FALSE,
-                       results.subtitle = TRUE,
-                       label = "percentage",
-                       label.args = list(direction = "both"),
-                       label.repel = FALSE,
-                       k = 2L,
-                       proportion.test = results.subtitle,
-                       perc.k = 0L,
-                       bf.message = TRUE,
-                       ratio = NULL,
-                       conf.level = 0.95,
-                       sampling.plan = "indepMulti",
-                       fixed.margin = "rows",
-                       prior.concentration = 1,
-                       title = NULL,
-                       subtitle = NULL,
-                       caption = NULL,
-                       legend.title = NULL,
-                       ggtheme = ggstatsplot::theme_ggstatsplot(),
-                       package = "RColorBrewer",
-                       palette = "Dark2",
-                       ggplot.component = NULL,
-                       ...) {
+ggpiestats <- function(
+    data,
+    x,
+    y = NULL,
+    counts = NULL,
+    type = "parametric",
+    paired = FALSE,
+    results.subtitle = TRUE,
+    label = "percentage",
+    label.args = list(direction = "both"),
+    label.repel = FALSE,
+    k = 2L,
+    proportion.test = results.subtitle,
+    perc.k = 0L,
+    bf.message = TRUE,
+    ratio = NULL,
+    conf.level = 0.95,
+    sampling.plan = "indepMulti",
+    fixed.margin = "rows",
+    prior.concentration = 1,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    legend.title = NULL,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggplot.component = NULL,
+    ...) {
   # data frame ------------------------------------------
 
   type <- stats_type_switch(type)
@@ -249,11 +250,12 @@ ggpiestats <- function(data,
 #' # grouped one-sample proportion test
 #' grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
 #' @export
-grouped_ggpiestats <- function(data,
-                               ...,
-                               grouping.var,
-                               plotgrid.args = list(),
-                               annotation.args = list()) {
+grouped_ggpiestats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggpiestats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

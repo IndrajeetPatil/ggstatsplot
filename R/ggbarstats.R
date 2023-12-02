@@ -38,36 +38,37 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #' @export
-ggbarstats <- function(data,
-                       x,
-                       y,
-                       counts = NULL,
-                       type = "parametric",
-                       paired = FALSE,
-                       results.subtitle = TRUE,
-                       label = "percentage",
-                       label.args = list(alpha = 1.0, fill = "white"),
-                       sample.size.label.args = list(size = 4.0),
-                       k = 2L,
-                       proportion.test = results.subtitle,
-                       perc.k = 0L,
-                       bf.message = TRUE,
-                       ratio = NULL,
-                       conf.level = 0.95,
-                       sampling.plan = "indepMulti",
-                       fixed.margin = "rows",
-                       prior.concentration = 1.0,
-                       title = NULL,
-                       subtitle = NULL,
-                       caption = NULL,
-                       legend.title = NULL,
-                       xlab = NULL,
-                       ylab = NULL,
-                       ggtheme = ggstatsplot::theme_ggstatsplot(),
-                       package = "RColorBrewer",
-                       palette = "Dark2",
-                       ggplot.component = NULL,
-                       ...) {
+ggbarstats <- function(
+    data,
+    x,
+    y,
+    counts = NULL,
+    type = "parametric",
+    paired = FALSE,
+    results.subtitle = TRUE,
+    label = "percentage",
+    label.args = list(alpha = 1.0, fill = "white"),
+    sample.size.label.args = list(size = 4.0),
+    k = 2L,
+    proportion.test = results.subtitle,
+    perc.k = 0L,
+    bf.message = TRUE,
+    ratio = NULL,
+    conf.level = 0.95,
+    sampling.plan = "indepMulti",
+    fixed.margin = "rows",
+    prior.concentration = 1.0,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    legend.title = NULL,
+    xlab = NULL,
+    ylab = NULL,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggplot.component = NULL,
+    ...) {
   # data frame ------------------------------------------
 
   type <- stats_type_switch(type)
@@ -222,11 +223,12 @@ ggbarstats <- function(data,
 #'   plotgrid.args = list(nrow = 2)
 #' )
 #' @export
-grouped_ggbarstats <- function(data,
-                               ...,
-                               grouping.var,
-                               plotgrid.args = list(),
-                               annotation.args = list()) {
+grouped_ggbarstats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggbarstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

@@ -422,7 +422,9 @@ ggbetweenstats(
 
 # you can remove a specific geom to reduce complexity of the plot
 ggbetweenstats(
-  mtcars, am, wt,
+  mtcars,
+  am,
+  wt,
   # to remove violin plot
   violin.args = list(width = 0),
   # to remove boxplot

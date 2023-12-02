@@ -33,7 +33,10 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "checking paired two-way table - without NA",
-      fig = ggbarstats(survey_data, `1st survey`, `2nd survey`,
+      fig = ggbarstats(
+        survey_data,
+        `1st survey`,
+        `2nd survey`,
         counts = Counts,
         paired = TRUE
       )
@@ -62,7 +65,10 @@ test_that(
     expect_doppelganger(
       title = "checking percentage labels",
       fig = ggbarstats(
-        data = mtcars, x = cyl, y = am, label = "percentage",
+        data = mtcars,
+        x = cyl,
+        y = am,
+        label = "percentage",
         results.subtitle = FALSE
       )
     )
@@ -71,7 +77,10 @@ test_that(
     expect_doppelganger(
       title = "checking count labels",
       fig = ggbarstats(
-        data = mtcars, x = cyl, y = am, label = "counts",
+        data = mtcars,
+        x = cyl,
+        y = am,
+        label = "counts",
         results.subtitle = FALSE
       )
     )
@@ -80,7 +89,10 @@ test_that(
     expect_doppelganger(
       title = "checking percentage and count labels",
       fig = ggbarstats(
-        data = mtcars, x = cyl, y = am, label = "both",
+        data = mtcars,
+        x = cyl,
+        y = am,
+        label = "both",
         results.subtitle = FALSE
       )
     )
@@ -113,8 +125,10 @@ test_that(
           .Label = c("Before", "After"),
           class = "factor"
         ),
-        mode = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
-          .Label = c("A", "P", "C", "T"), class = "factor"
+        mode = structure(
+          c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
+          .Label = c("A", "P", "C", "T"),
+          class = "factor"
         ),
         counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
         perc = c(65.119, 88.958, 16.168, 8.265, 3.502, 1.946, 15.209, 0.829),

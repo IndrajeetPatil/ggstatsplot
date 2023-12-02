@@ -44,7 +44,10 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "checking paired two-way table - without NA",
-      fig = ggpiestats(survey_data, `1st survey`, `2nd survey`,
+      fig = ggpiestats(
+        survey_data,
+        `1st survey`,
+        `2nd survey`,
         counts = Counts,
         paired = TRUE
       )
@@ -74,7 +77,8 @@ test_that(
       title = "checking percentage labels",
       fig = ggpiestats(
         mtcars,
-        x = cyl, label = "percentage",
+        x = cyl,
+        label = "percentage",
         results.subtitle = FALSE
       )
     )
@@ -84,7 +88,8 @@ test_that(
       title = "checking count labels",
       fig = ggpiestats(
         mtcars,
-        x = cyl, label = "counts",
+        x = cyl,
+        label = "counts",
         results.subtitle = FALSE
       )
     )
@@ -94,7 +99,8 @@ test_that(
       title = "checking percentage and count labels",
       fig = ggpiestats(
         mtcars,
-        x = cyl, label = "both",
+        x = cyl,
+        label = "both",
         results.subtitle = FALSE
       )
     )
@@ -123,7 +129,9 @@ test_that(
     expect_doppelganger(
       title = "label repelling works",
       fig = ggpiestats(
-        mtcars, am, vs,
+        mtcars,
+        am,
+        vs,
         label.repel = TRUE,
         results.subtitle = FALSE
       )

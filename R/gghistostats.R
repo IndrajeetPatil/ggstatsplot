@@ -58,31 +58,32 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #' @export
-gghistostats <- function(data,
-                         x,
-                         binwidth = NULL,
-                         xlab = NULL,
-                         title = NULL,
-                         subtitle = NULL,
-                         caption = NULL,
-                         type = "parametric",
-                         test.value = 0,
-                         bf.prior = 0.707,
-                         bf.message = TRUE,
-                         effsize.type = "g",
-                         conf.level = 0.95,
-                         tr = 0.2,
-                         k = 2L,
-                         ggtheme = ggstatsplot::theme_ggstatsplot(),
-                         results.subtitle = TRUE,
-                         bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
-                         centrality.plotting = TRUE,
-                         centrality.type = type,
-                         centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
-                         normal.curve = FALSE,
-                         normal.curve.args = list(linewidth = 2),
-                         ggplot.component = NULL,
-                         ...) {
+gghistostats <- function(
+    data,
+    x,
+    binwidth = NULL,
+    xlab = NULL,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    type = "parametric",
+    test.value = 0,
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    effsize.type = "g",
+    conf.level = 0.95,
+    tr = 0.2,
+    k = 2L,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    results.subtitle = TRUE,
+    bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
+    centrality.plotting = TRUE,
+    centrality.type = type,
+    centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+    normal.curve = FALSE,
+    normal.curve.args = list(linewidth = 2),
+    ggplot.component = NULL,
+    ...) {
   # data -----------------------------------
 
   x <- ensym(x)
@@ -215,13 +216,14 @@ gghistostats <- function(data,
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export
-grouped_gghistostats <- function(data,
-                                 x,
-                                 grouping.var,
-                                 binwidth = NULL,
-                                 plotgrid.args = list(),
-                                 annotation.args = list(),
-                                 ...) {
+grouped_gghistostats <- function(
+    data,
+    x,
+    grouping.var,
+    binwidth = NULL,
+    plotgrid.args = list(),
+    annotation.args = list(),
+    ...) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(
       .f = gghistostats,
