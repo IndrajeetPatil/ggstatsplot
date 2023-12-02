@@ -30,7 +30,7 @@ jobs:
             local::.
             r-lib/pkgapi
             r-lib/styler
-            r-lib/roxygen2
+            any::roxygen2
             anthonynorth/roxyglobals
           needs: |
             styler
