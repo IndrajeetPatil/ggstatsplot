@@ -164,19 +164,19 @@ ggwithinstats <- function(
 
   # plot -------------------------------------------
 
-  plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
+  plot_comparison <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
 
   # add a connecting path only if there are only two groups
-  if (test == "t" && point.path) plot <- plot + exec(geom_path, !!!point.path.args)
+  if (test == "t" && point.path) plot_comparison <- plot_comparison + exec(geom_path, !!!point.path.args)
 
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- suppressWarnings(.centrality_ggrepel(
-      plot                  = plot,
+    plot_comparison <- suppressWarnings(.centrality_ggrepel(
+      plot                  = plot_comparison,
       data                  = data,
       x                     = {{ x }},
       y                     = {{ y }},
@@ -208,8 +208,8 @@ ggwithinstats <- function(
     )
 
     # adding the layer for pairwise comparisons
-    plot <- .ggsignif_adder(
-      plot             = plot,
+    plot_comparison <- .ggsignif_adder(
+      plot             = plot_comparison,
       mpc_df           = mpc_df,
       data             = data,
       x                = {{ x }},
@@ -225,7 +225,7 @@ ggwithinstats <- function(
   # annotations -------------------------
 
   .aesthetic_addon(
-    plot             = plot,
+    plot             = plot_comparison,
     x                = pull(data, {{ x }}),
     xlab             = xlab %||% as_name(x),
     ylab             = ylab %||% as_name(y),

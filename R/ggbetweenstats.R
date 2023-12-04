@@ -232,7 +232,7 @@ ggbetweenstats <- function(
 
   # plot -----------------------------------
 
-  plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+  plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, !!!violin.args)
@@ -240,8 +240,8 @@ ggbetweenstats <- function(
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- suppressWarnings(.centrality_ggrepel(
-      plot                  = plot,
+    plot_comparison <- suppressWarnings(.centrality_ggrepel(
+      plot                  = plot_comparison,
       data                  = data,
       x                     = {{ x }},
       y                     = {{ y }},
@@ -271,8 +271,8 @@ ggbetweenstats <- function(
     )
 
     # adding the layer for pairwise comparisons
-    plot <- .ggsignif_adder(
-      plot             = plot,
+    plot_comparison <- .ggsignif_adder(
+      plot             = plot_comparison,
       mpc_df           = mpc_df,
       data             = data,
       x                = {{ x }},
@@ -288,7 +288,7 @@ ggbetweenstats <- function(
   # annotations ------------------------
 
   .aesthetic_addon(
-    plot             = plot,
+    plot             = plot_comparison,
     x                = pull(data, {{ x }}),
     xlab             = xlab %||% as_name(x),
     ylab             = ylab %||% as_name(y),

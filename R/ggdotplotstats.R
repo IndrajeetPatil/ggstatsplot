@@ -117,7 +117,7 @@ ggdotplotstats <- function(
 
   # plot -----------------------------------
 
-  plot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
+  plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
     exec(geom_point, !!!point.args) +
     scale_y_continuous(
       name = ylab,
@@ -133,8 +133,8 @@ ggdotplotstats <- function(
   # centrality plotting -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- .histo_labeller(
-      plot,
+    plot_dot <- .histo_labeller(
+      plot_dot,
       x                    = pull(data, {{ x }}),
       type                 = stats_type_switch(centrality.type),
       tr                   = tr,
@@ -145,7 +145,7 @@ ggdotplotstats <- function(
 
   # annotations -------------------------
 
-  plot +
+  plot_dot +
     labs(
       x        = xlab %||% as_name(x),
       y        = ylab %||% as_name(y),

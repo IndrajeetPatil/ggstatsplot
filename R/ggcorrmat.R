@@ -127,7 +127,7 @@ ggcorrmat <- function(
     ))
   }
 
-  plot <- exec(
+  plot_corr <- exec(
     ggcorrplot::ggcorrplot,
     corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
     p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
@@ -163,7 +163,7 @@ ggcorrmat <- function(
 
   # annotations ------------------------------------------
 
-  plot +
+  plot_corr +
     theme(
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),

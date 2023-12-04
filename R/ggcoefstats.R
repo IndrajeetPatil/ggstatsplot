@@ -261,12 +261,12 @@ ggcoefstats <- function(
 
   # basic plot -------------------------
 
-  plot <- ggplot(tidy_df, mapping = aes(estimate, term)) +
+  plot_coef <- ggplot(tidy_df, mapping = aes(estimate, term)) +
     exec(geom_point, !!!point.args)
 
   # adding confidence intervals
   if (conf.int) {
-    plot <- plot +
+    plot_coef <- plot_coef +
       exec(
         geom_errorbarh,
         data    = tidy_df,
@@ -276,7 +276,7 @@ ggcoefstats <- function(
   }
 
   # adding the vertical line
-  if (vline) plot <- plot + exec(geom_vline, xintercept = 0, !!!vline.args)
+  if (vline) plot_coef <- plot_coef + exec(geom_vline, xintercept = 0, !!!vline.args)
 
   # ggrepel labels -------------------------
 
@@ -285,7 +285,7 @@ ggcoefstats <- function(
       stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
     }
 
-    plot <- plot +
+    plot_coef <- plot_coef +
       exec(
         ggrepel::geom_label_repel,
         data    = tidy_df,
@@ -298,7 +298,7 @@ ggcoefstats <- function(
 
   # annotations -------------------------
 
-  plot +
+  plot_coef +
     labs(
       x        = xlab %||% "estimate",
       y        = ylab %||% "term",
