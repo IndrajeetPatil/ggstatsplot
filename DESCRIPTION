@@ -64,6 +64,7 @@ Suggests:
     PMCMRplus (>= 1.9.7),
     psych,
     rmarkdown,
+    rstantools,
     survival,
     testthat (>= 3.2.0),
     tibble,
