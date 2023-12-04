@@ -87,7 +87,7 @@ ggbarstats <- function(
   data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
 
   # TO DO: until one-way table is supported by `BayesFactor`
-  if (nlevels(data %>% pull({{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
+  if (nlevels(pull(data, {{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
   if (type == "bayes") proportion.test <- FALSE
 
   # statistical analysis ------------------------------------------
@@ -125,7 +125,7 @@ ggbarstats <- function(
   onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
 
   # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(package, palette, nlevels(data %>% pull({{ x }})))
+  .is_palette_sufficient(package, palette, nlevels(pull(data, {{ x }})))
 
   # plot
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +

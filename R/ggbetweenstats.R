@@ -203,8 +203,7 @@ ggbetweenstats <- function(
 
   # statistical analysis ------------------------------------------
 
-  # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
+  test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
     .f.args <- list(
@@ -290,7 +289,7 @@ ggbetweenstats <- function(
 
   .aesthetic_addon(
     plot             = plot,
-    x                = data %>% pull({{ x }}),
+    x                = pull(data, {{ x }}),
     xlab             = xlab %||% as_name(x),
     ylab             = ylab %||% as_name(y),
     title            = title,

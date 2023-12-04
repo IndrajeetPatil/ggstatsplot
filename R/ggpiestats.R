@@ -112,8 +112,8 @@ ggpiestats <- function(
 
   # x and y need to be a factor; also drop the unused levels of the factors
   data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
-  x_levels <- nlevels(data %>% pull({{ x }}))
-  y_levels <- ifelse(test == "one.way", 0L, nlevels(data %>% pull({{ y }})))
+  x_levels <- nlevels(pull(data, {{ x }}))
+  y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
 
   # TODO: one-way table in `BayesFactor` (richarddmorey/BayesFactor#159)
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE

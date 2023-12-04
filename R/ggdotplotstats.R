@@ -121,7 +121,7 @@ ggdotplotstats <- function(
     exec(geom_point, !!!point.args) +
     scale_y_continuous(
       name = ylab,
-      labels = data %>% pull({{ y }}),
+      labels = pull(data, {{ y }}),
       breaks = data$rank,
       sec.axis = dup_axis(
         name   = "percentile",
@@ -135,7 +135,7 @@ ggdotplotstats <- function(
   if (isTRUE(centrality.plotting)) {
     plot <- .histo_labeller(
       plot,
-      x                    = data %>% pull({{ x }}),
+      x                    = pull(data, {{ x }}),
       type                 = stats_type_switch(centrality.type),
       tr                   = tr,
       k                    = k,

@@ -88,15 +88,12 @@ gghistostats <- function(
 
   x <- ensym(x)
   data <- tidyr::drop_na(select(data, {{ x }}))
-
-  # extract a vector for convenience
-  x_vec <- data %>% pull({{ x }})
+  x_vec <- pull(data, {{ x }})
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
     type <- stats_type_switch(type)
-
 
     .f.args <- list(
       data         = data,
@@ -122,7 +119,7 @@ gghistostats <- function(
 
   # plot -----------------------------------
 
-  plot <- ggplot(data, mapping = aes(x = {{ x }})) +
+  plot_hist <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
       mapping  = aes(y = after_stat(count), fill = after_stat(count)),
@@ -140,7 +137,7 @@ gghistostats <- function(
 
   # if normal curve overlay needs to be displayed
   if (normal.curve) {
-    plot <- plot +
+    plot_hist <- plot_hist +
       exec(
         stat_function,
         fun  = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
@@ -152,8 +149,8 @@ gghistostats <- function(
   # centrality plotting -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- .histo_labeller(
-      plot,
+    plot_hist <- .histo_labeller(
+      plot_hist,
       x                    = x_vec,
       type                 = stats_type_switch(centrality.type),
       tr                   = tr,
@@ -164,7 +161,7 @@ gghistostats <- function(
 
   # annotations -------------------------------
 
-  plot +
+  plot_hist +
     labs(
       x        = xlab %||% as_name(x),
       y        = "count",
@@ -228,7 +225,7 @@ grouped_gghistostats <- function(
     purrr::pmap(
       .f = gghistostats,
       x = {{ x }},
-      binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
+      binwidth = binwidth %||% .binwidth(pull(data, {{ x }})),
       ...
     ) %>%
     combine_plots(plotgrid.args, annotation.args)

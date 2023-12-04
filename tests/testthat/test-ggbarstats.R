@@ -205,7 +205,7 @@ test_that(
 test_that(
   desc = "grouped_ggbarstats produces error when grouping variable not provided",
   code = {
-    expect_snapshot_error(grouped_ggbarstats(mtcars, x = cyl, y = am))
+    expect_snapshot(grouped_ggbarstats(mtcars, x = cyl, y = am), error = TRUE)
   }
 )
 

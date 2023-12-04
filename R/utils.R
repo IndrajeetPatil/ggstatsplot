@@ -46,7 +46,7 @@
     ))
   }
 
-  return(are_enough_colors_available)
+  are_enough_colors_available
 }
 
 

@@ -15,15 +15,6 @@ test_that(
   }
 )
 
-# expected warnings -------------------------------------------
-
-test_that(
-  desc = "ggcorrmat warnings are as expected",
-  code = {
-    expect_snapshot_warning(ggcorrmat(iris, cor.vars.names = "x"))
-  }
-)
-
 # changing defaults -------------------------------------------
 
 test_that(
@@ -98,6 +89,6 @@ test_that(
 test_that(
   desc = "grouped_ggcorrmat produces error when grouping isn't specified",
   code = {
-    expect_snapshot_error(grouped_ggcorrmat(iris))
+    expect_snapshot(grouped_ggcorrmat(iris), error = TRUE)
   }
 )

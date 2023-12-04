@@ -1,15 +1,17 @@
 library(magrittr)
 
 # clean data leave it in wide format
-movies_wide <- ggplot2movies::movies %>%
+movies_wide <-
+  ggplot2movies::movies %>%
   dplyr::select(c(title:votes, mpaa:Short)) %>%
-  dplyr::filter(mpaa != "", mpaa != "NC-17") %>%
-  dplyr::filter(Short != 1L, Documentary != 1L) %>%
+  dplyr::filter(mpaa != "", mpaa != "NC-17", Short != 1L, Documentary != 1L) %>%
   dplyr::select(-c(Short, Documentary)) %>%
   tidyr::drop_na() %>%
-  dplyr::mutate(budget = budget / 1000000) %>%
-  dplyr::mutate(mpaa = factor(mpaa)) %>%
-  dplyr::mutate(NumGenre = as.integer(rowSums(dplyr::select(., Action:Romance)))) %>%
+  dplyr::mutate(
+    budget = budget / 1000000,
+    mpaa = factor(mpaa),
+    NumGenre = as.integer(rowSums(dplyr::select(., Action:Romance)))
+  ) %>%
   dplyr::filter(NumGenre > 0L)
 
 # see the selected data (we have data from 1,579 movies)
