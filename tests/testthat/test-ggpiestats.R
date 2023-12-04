@@ -15,8 +15,8 @@ survey_data_NA <- dplyr::tibble(
 # checking default outputs -----------------------------------------
 
 test_that(
-  desc = "checking default outputs",
-  code = {
+  "checking default outputs",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "checking one-way table - without NA",
@@ -70,8 +70,8 @@ test_that(
 # changing labels and aesthetics -------------------------------------------
 
 test_that(
-  desc = "changing labels and aesthetics",
-  code = {
+  "changing labels and aesthetics",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "checking percentage labels",
@@ -142,8 +142,8 @@ test_that(
 # edge cases ---------------------------------------------------------
 
 test_that(
-  desc = "edge cases",
-  code = {
+  "edge cases",
+  {
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
@@ -165,8 +165,8 @@ test_that(
 # expression output --------------------------------------------------
 
 test_that(
-  desc = "expression output",
-  code = {
+  "expression output",
+  {
     set.seed(123)
     p_sub <- ggpiestats(
       ggplot2::msleep,
@@ -191,15 +191,15 @@ test_that(
 # grouped_ggpiestats works as expected ---------------------
 
 test_that(
-  desc = "grouped_ggpiestats produces error when grouping variable not provided",
-  code = {
+  "grouped_ggpiestats produces error when grouping variable not provided",
+  {
     expect_snapshot_error(grouped_ggpiestats(mtcars, x = cyl))
   }
 )
 
 test_that(
-  desc = "grouped_ggpiestats works",
-  code = {
+  "grouped_ggpiestats works",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "grouped_ggpiestats with one-way table",
@@ -236,8 +236,8 @@ test_that(
 # grouped_ggpiestats edge cases --------------------
 
 test_that(
-  desc = "edge case behavior",
-  code = {
+  "edge case behavior",
+  {
     df <- data.frame(
       dataset = c("a", "b", "c", "c", "c", "c"),
       measurement = c("old", "old", "old", "old", "new", "new"),

@@ -1,6 +1,6 @@
 test_that(
-  desc = "checking ggcorrmat with entier dataset",
-  code = {
+  "checking ggcorrmat with entier dataset",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "parametric correlation - without NAs",
@@ -18,8 +18,8 @@ test_that(
 # changing defaults -------------------------------------------
 
 test_that(
-  desc = "ggcorrmat works as expected with changed defaults",
-  code = {
+  "ggcorrmat works as expected with changed defaults",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "changing aesthetic defaults",
@@ -61,8 +61,8 @@ test_that(
 # grouped_ggcorrmat output: plot ---------------------------------------------------------------
 
 test_that(
-  desc = "grouped_ggcorrmat plots are as expected",
-  code = {
+  "grouped_ggcorrmat plots are as expected",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "without NAs",
@@ -87,8 +87,8 @@ test_that(
 # expected warnings -------------------------------------------
 
 test_that(
-  desc = "grouped_ggcorrmat produces error when grouping isn't specified",
-  code = {
+  "grouped_ggcorrmat produces error when grouping isn't specified",
+  {
     expect_snapshot(grouped_ggcorrmat(iris), error = TRUE)
   }
 )

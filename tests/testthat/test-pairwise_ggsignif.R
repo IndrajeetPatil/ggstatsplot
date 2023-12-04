@@ -3,8 +3,8 @@ skip_if_not_installed("PMCMRplus")
 # between-subjects -------------------------------------------------
 
 test_that(
-  desc = "check pairwise displays - between-subjects",
-  code = {
+  "check pairwise displays - between-subjects",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "between - parametric - only non-significant",
@@ -158,8 +158,8 @@ test_that(
 # within-subjects -------------------------------------------------
 
 test_that(
-  desc = "check pairwise displays - within-subjects",
-  code = {
+  "check pairwise displays - within-subjects",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "within - parametric - only non-significant",
@@ -314,8 +314,8 @@ test_that(
 # caption -------------------------------------------------
 
 test_that(
-  desc = "adding caption works",
-  code = {
+  "adding caption works",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "adding caption works",

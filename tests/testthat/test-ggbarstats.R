@@ -16,8 +16,8 @@ survey_data_NA <- dplyr::tibble(
 # checking default outputs -----------------------------------------
 
 test_that(
-  desc = "checking default outputs",
-  code = {
+  "checking default outputs",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
@@ -59,8 +59,8 @@ test_that(
 # changing labels and aesthetics -------------------------------------------
 
 test_that(
-  desc = "changing labels and aesthetics",
-  code = {
+  "changing labels and aesthetics",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "checking percentage labels",
@@ -156,8 +156,8 @@ test_that(
 # edge cases ---------------------------------------------------------
 
 test_that(
-  desc = "edge cases",
-  code = {
+  "edge cases",
+  {
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
@@ -179,8 +179,8 @@ test_that(
 # expression output --------------------------------------------------
 
 test_that(
-  desc = "expression output",
-  code = {
+  "expression output",
+  {
     set.seed(123)
     p_sub <- ggbarstats(
       data = ggplot2::msleep,
@@ -203,15 +203,15 @@ test_that(
 )
 
 test_that(
-  desc = "grouped_ggbarstats produces error when grouping variable not provided",
-  code = {
+  "grouped_ggbarstats produces error when grouping variable not provided",
+  {
     expect_snapshot(grouped_ggbarstats(mtcars, x = cyl, y = am), error = TRUE)
   }
 )
 
 test_that(
-  desc = "grouped_ggbarstats works",
-  code = {
+  "grouped_ggbarstats works",
+  {
     # creating a smaller data frame
     mpg_short <- ggplot2::mpg %>%
       dplyr::filter(
@@ -238,8 +238,8 @@ test_that(
 # edge cases --------------------
 
 test_that(
-  desc = "edge case behavior",
-  code = {
+  "edge case behavior",
+  {
     df <- data.frame(
       dataset = c("a", "b", "c", "c", "c", "c"),
       measurement = c("old", "old", "old", "old", "new", "new"),

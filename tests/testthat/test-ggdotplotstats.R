@@ -18,8 +18,8 @@ morley_new[87L, 3L] <- NA_integer_
 # checking default outputs -----------------------------------------
 
 test_that(
-  desc = "checking default outputs",
-  code = {
+  "checking default outputs",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "parametric - without NA",
@@ -38,8 +38,8 @@ test_that(
 # modification with ggplot2 ----------------------------------------------
 
 test_that(
-  desc = "modification with ggplot2 works as expected",
-  code = {
+  "modification with ggplot2 works as expected",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "modification with ggplot2 ",
@@ -63,8 +63,8 @@ test_that(
 # subtitle output -------------------------------------------------------
 
 test_that(
-  desc = "subtitle output",
-  code = {
+  "subtitle output",
+  {
     set.seed(123)
     p_sub_ggdot <- suppressWarnings(ggdotplotstats(
       data = morley,
@@ -93,8 +93,8 @@ test_that(
 # grouped_ggdotplotstats works -----------------------------------------------
 
 test_that(
-  desc = "grouped_ggdotplotstats works",
-  code = {
+  "grouped_ggdotplotstats works",
+  {
     # removing factor level with very few no. of observations
     df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 

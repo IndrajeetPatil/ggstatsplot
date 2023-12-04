@@ -1,8 +1,8 @@
 # entire dataset ------------------------------------------------
 
 test_that(
-  desc = "checking ggscatterstats with entire dataset",
-  code = {
+  "checking ggscatterstats with entire dataset",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "parametric correlation - without NAs",
@@ -20,8 +20,8 @@ test_that(
 # aesthetic modifications work ---------------------------------------------
 
 test_that(
-  desc = "aesthetic modifications work",
-  code = {
+  "aesthetic modifications work",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "changing scales and aesthetics",
@@ -94,8 +94,8 @@ test_that("labeling variables and expressions work as expected", {
 # subtitle output ----------------------------------------------------------
 
 test_that(
-  desc = "subtitle output - ggscatterstats",
-  code = {
+  "subtitle output - ggscatterstats",
+  {
     set.seed(123)
     p_sub <- ggscatterstats(
       data = ggplot2::msleep,
@@ -120,8 +120,8 @@ test_that(
 )
 
 test_that(
-  desc = "grouped_ggscatterstats plotting works as expected",
-  code = {
+  "grouped_ggscatterstats plotting works as expected",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "defaults work as expected",
@@ -151,8 +151,8 @@ test_that(
 )
 
 test_that(
-  desc = "grouped_ggscatterstats errors when no grouping is present",
-  code = {
+  "grouped_ggscatterstats errors when no grouping is present",
+  {
     expect_snapshot_error(
       grouped_ggscatterstats(
         data = iris,

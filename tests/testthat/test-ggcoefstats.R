@@ -84,8 +84,8 @@ test_that("meta-analysis works", {
 # plot modifications--------------------------------------------------
 
 test_that(
-  desc = "plot modifications work as expected",
-  code = {
+  "plot modifications work as expected",
+  {
     set.seed(123)
     mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)
 
@@ -131,8 +131,8 @@ test_that(
 # edge cases -------------------------------------
 
 test_that(
-  desc = "works when CIs unavailable",
-  code = {
+  "works when CIs unavailable",
+  {
     set.seed(123)
     df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
 
@@ -154,8 +154,8 @@ test_that(
 # meta subtitle and caption -------------------------------------
 
 test_that(
-  desc = "meta analysis subtitle and caption",
-  code = {
+  "meta analysis subtitle and caption",
+  {
     skip_on_cran()
     skip_if_not_installed("metafor")
     skip_if_not_installed("metaBMA")
