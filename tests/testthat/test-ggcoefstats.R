@@ -168,22 +168,20 @@ test_that(
     caption_expr <- suppressWarnings(meta_analysis(df_meta, type = "bayes"))
 
     set.seed(123)
-    ggcoef_subtitle <- suppressWarnings(ggcoefstats(
+    ggcoef_subtitle <- extract_subtitle(suppressWarnings(ggcoefstats(
       df_meta,
       meta.analytic.effect = TRUE,
       bf.message = FALSE,
       meta.type = "p"
-    ) %>%
-      extract_subtitle())
+    )))
 
     set.seed(123)
-    ggcoef_caption <- suppressWarnings(ggcoefstats(
+    ggcoef_caption <- extract_caption(suppressWarnings(ggcoefstats(
       df_meta,
       meta.analytic.effect = TRUE,
       bf.message = TRUE,
       meta.type = "p"
-    ) %>%
-      extract_caption())
+    )))
 
     expect_identical(subtitle_expr$expression[[1L]], ggcoef_subtitle)
     expect_identical(caption_expr$expression[[1L]], ggcoef_caption)
