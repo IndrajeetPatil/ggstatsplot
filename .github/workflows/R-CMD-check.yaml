@@ -49,28 +49,14 @@ jobs:
           r-version: ${{ matrix.config.r }}
           use-public-rspm: true
 
-      - name: Install packages from source
-        run: |
-          install.packages(c("Matrix", "TMB"), type = "source")
-        shell: Rscript {0}
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
           upgrade: 'TRUE'
           extra-packages: |
             any::rcmdcheck
-            lme4=?ignore-before-r=100.0.0
-            TMB=?ignore-before-r=100.0.0
-            Matrix=?ignore-before-r=100.0.0
-            MatrixModels=?ignore-before-r=100.0.0
-            glmmTMB=?ignore-before-r=100.0.0
+            Matrix
           needs: check
-
-      - name: Install other packages from source
-        run: |
-          install.packages(c("lme4", "MatrixModels", "glmmTMB"), type = "source")
-        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
