@@ -98,9 +98,9 @@ test_that(
   code = {
     set.seed(123)
     p_sub <- ggscatterstats(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = bodywt,
       conf.level = 0.90,
       type = "r"
     ) %>%
@@ -108,9 +108,9 @@ test_that(
 
     set.seed(123)
     fun_sub <- corr_test(
-      data = dplyr::starwars,
-      x = mass,
-      y = height,
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = bodywt,
       conf.level = 0.90,
       type = "r"
     )$expression[[1L]]

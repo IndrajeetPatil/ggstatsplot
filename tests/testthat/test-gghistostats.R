@@ -12,7 +12,7 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "robust - with NA",
-      fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "r")
+      fig = gghistostats(ggplot2::msleep, sleep_total, test.value = 10, type = "r")
     )
   }
 )
@@ -26,11 +26,11 @@ test_that(
     expect_doppelganger(
       title = "aesthetic modifications work",
       fig = gghistostats(
-        data = dplyr::starwars,
-        x = height,
-        xlab = "character height",
-        title = "starwars: character heights",
-        binwidth = 20,
+        data = mtcars,
+        x = wt,
+        xlab = "weight",
+        title = "mtcars: car wights",
+        binwidth = 5,
         bin.args = list(
           col = "black",
           fill = "orange",
