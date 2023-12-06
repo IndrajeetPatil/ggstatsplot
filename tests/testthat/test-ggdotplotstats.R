@@ -66,24 +66,26 @@ test_that(
   "subtitle output",
   {
     set.seed(123)
-    p_sub_ggdot <- suppressWarnings(ggdotplotstats(
+    p_sub_ggdot <- ggdotplotstats(
       data = morley,
       x = Speed,
       y = Expt,
       test.value = 800,
       type = "np"
     ) %>%
-      extract_subtitle())
+      extract_subtitle()
 
     set.seed(123)
-    p_sub_gghist <- suppressWarnings(gghistostats(
-      data = dplyr::group_by(morley, Expt) %>%
-        dplyr::summarise(mean = mean(Speed)),
-      x = mean,
-      test.value = 800,
-      type = "np"
-    ) %>%
-      extract_subtitle())
+    p_sub_gghist <-
+      morley %>%
+      dplyr::group_by(Expt) %>%
+      dplyr::summarise(mean = mean(Speed), .groups = "drop") %>%
+      gghistostats(
+        x = mean,
+        test.value = 800,
+        type = "np"
+      ) %>%
+      extract_subtitle()
 
     set.seed(123)
     expect_identical(p_sub_ggdot, p_sub_gghist)
