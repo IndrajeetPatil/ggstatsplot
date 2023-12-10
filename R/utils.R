@@ -34,8 +34,8 @@
 #' @keywords internal
 .is_palette_sufficient <- function(package, palette, min_length) {
   palette_length <- paletteer::palettes_d_names %>%
-    filter(package == !!package, palette == !!palette) %$%
-    length[[1L]]
+    filter(package == !!package, palette == !!palette) %>%
+    purrr::pluck("length")
 
   are_enough_colors_available <- palette_length > min_length
 

@@ -1,4 +1,3 @@
-# creating a new dataset
 morley_new <- dplyr::mutate(
   morley,
   Expt = dplyr::case_when(

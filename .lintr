@@ -3,7 +3,6 @@ linters: linters_with_defaults(
     assignment_linter = NULL,
     commented_code_linter = NULL,
     cyclocomp_linter(25L),
-    extraction_operator_linter = NULL,
     if_not_else_linter(exceptions = character(0L)),
     implicit_integer_linter = NULL,
     library_call_linter = NULL,
