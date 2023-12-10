@@ -1,4 +1,4 @@
-linters: linters_with_defaults(
+linters: all_linters(
     absolute_path_linter = NULL,
     assignment_linter = NULL,
     commented_code_linter = NULL,
@@ -18,6 +18,5 @@ linters: linters_with_defaults(
     undesirable_function_linter = NULL,
     undesirable_operator_linter = NULL,
     unnecessary_concatenation_linter(allow_single_expression = FALSE),
-    unused_import_linter = NULL,
-    defaults = linters_with_tags(tags = NULL)
+    unused_import_linter = NULL
   )
