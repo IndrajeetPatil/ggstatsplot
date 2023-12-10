@@ -136,7 +136,7 @@
 #'   am,
 #'   wt,
 #'   # to remove violin plot
-#'   violin.args = list(width = 0),
+#'   violin.args = list(width = 0, linewidth = 0),
 #'   # to remove boxplot
 #'   boxplot.args = list(width = 0),
 #'   # to remove points

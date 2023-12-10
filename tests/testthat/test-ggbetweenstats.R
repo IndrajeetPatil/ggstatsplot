@@ -47,7 +47,7 @@ test_that(
         y = wt,
         xlab = "Transmission",
         ylab = "Weight",
-        violin.args = list(width = 0),
+        violin.args = list(width = 0, linewidth = 0),
         boxplot.args = list(width = 0),
         point.args = list(alpha = 0),
         title = "Bayesian Test"
