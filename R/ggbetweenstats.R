@@ -164,19 +164,6 @@ ggbetweenstats <- function(
     conf.level = 0.95,
     nboot = 100L,
     tr = 0.2,
-    ggtheme = ggstatsplot::theme_ggstatsplot(),
-    package = "RColorBrewer",
-    palette = "Dark2",
-    point.args = list(
-      alpha = 0.4,
-      size = 3,
-      stroke = 0,
-      na.rm = TRUE,
-      position = ggplot2::position_jitterdodge(dodge.width = 0.60)
-    ),
-    boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
-    violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
     centrality.plotting = TRUE,
     centrality.type = type,
     centrality.point.args = list(size = 5, color = "darkred"),
@@ -186,6 +173,19 @@ ggbetweenstats <- function(
       segment.linetype = 4,
       min.segment.length = 0
     ),
+    point.args = list(
+      position = ggplot2::position_jitterdodge(dodge.width = 0.60),
+      alpha = 0.4,
+      size = 3,
+      stroke = 0,
+      na.rm = TRUE
+    ),
+    boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
+    violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
+    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
     ggplot.component = NULL,
     ...) {
   # data -----------------------------------

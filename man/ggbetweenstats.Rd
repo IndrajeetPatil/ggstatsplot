@@ -25,19 +25,19 @@ ggbetweenstats(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
-  ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
-  point.args = list(alpha = 0.4, size = 3, stroke = 0, na.rm = TRUE, position =
-    ggplot2::position_jitterdodge(dodge.width = 0.6)),
-  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
-  violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
   centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4,
     min.segment.length = 0),
+  point.args = list(position = ggplot2::position_jitterdodge(dodge.width = 0.6), alpha =
+    0.4, size = 3, stroke = 0, na.rm = TRUE),
+  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
+  violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
+  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
+  package = "RColorBrewer",
+  palette = "Dark2",
   ggplot.component = NULL,
   ...
 )
@@ -138,33 +138,6 @@ for the effect size (Default: \code{100L}).}
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
 
-\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
-
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
-
-\item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{ggplot2::geom_point()} displaying the raw data.}
-
-\item{boxplot.args}{A list of additional aesthetic arguments passed on to
-\code{ggplot2::geom_boxplot()}.}
-
-\item{violin.args}{A list of additional aesthetic arguments to be passed to
-the \code{ggplot2::geom_violin()}.}
-
-\item{ggsignif.args}{A list of additional aesthetic
-arguments to be passed to \code{ggsignif::geom_signif}.}
-
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
@@ -194,6 +167,33 @@ Just as \code{type} argument, abbreviations are also accepted.}
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
 arguments to be passed to \code{ggplot2::geom_point()} and
 \code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
+
+\item{point.args}{A list of additional aesthetic arguments to be passed to
+the \code{ggplot2::geom_point()} displaying the raw data.}
+
+\item{boxplot.args}{A list of additional aesthetic arguments passed on to
+\code{ggplot2::geom_boxplot()}.}
+
+\item{violin.args}{A list of additional aesthetic arguments to be passed to
+the \code{ggplot2::geom_violin()}.}
+
+\item{ggsignif.args}{A list of additional aesthetic
+arguments to be passed to \code{ggsignif::geom_signif}.}
+
+\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
+\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
+\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
+But note that sometimes these themes will remove some of the details that
+\code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{ggbetweenstats()} shows details about multiple comparison test as a label
+on the secondary Y-axis. Some themes (e.g.
+\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
+thus the details as well.}
+
+\item{package, palette}{Name of the package from which the given palette is to
+be extracted. The available palettes and packages can be checked by running
+\code{View(paletteer::palettes_d_names)}.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
