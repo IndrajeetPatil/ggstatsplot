@@ -562,6 +562,7 @@ references:
     given-names: Steven
     orcid: https://orcid.org/0000-0002-4394-9078
   year: '2023'
+  version: '>= 1.1-35.1'
 - type: software
   title: MASS
   abstract: 'MASS: Support Functions and Datasets for Venables and Ripley''s MASS'
@@ -623,7 +624,7 @@ references:
     email: thorsten.pohlert@gmx.de
     orcid: https://orcid.org/0000-0003-3855-3025
   year: '2023'
-  version: '>= 1.9.7'
+  version: '>= 1.9.9'
 - type: software
   title: psych
   abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
@@ -720,7 +721,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2023'
-  version: '>= 3.2.0'
+  version: '>= 3.2.1'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
