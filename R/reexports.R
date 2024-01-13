@@ -1,5 +1,5 @@
 #' @export
-#' @importFrom statsExpressions "%>%"
+#' @importFrom statsExpressions %>%
 statsExpressions::`%>%`
 
 #' @export
