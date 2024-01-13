@@ -32,12 +32,12 @@ Depends:
     R (>= 4.1.0)
 Imports:
     correlation (>= 0.8.4),
-    datawizard (>= 0.9.0),
+    datawizard (>= 0.9.1),
     dplyr (>= 1.1.4),
     ggcorrplot (>= 0.1.4.1),
     ggplot2 (>= 3.4.4),
-    ggrepel (>= 0.9.4),
-    ggside (>= 0.2.2),
+    ggrepel (>= 0.9.5),
+    ggside (>= 0.2.3),
     ggsignif (>= 0.6.4),
     glue,
     insight (>= 0.19.7),
@@ -48,7 +48,7 @@ Imports:
     purrr (>= 1.0.2),
     rlang,
     stats,
-    statsExpressions (>= 1.5.2.9000),
+    statsExpressions (>= 1.5.3),
     tidyr (>= 1.3.0),
     utils
 Suggests:
@@ -71,8 +71,6 @@ Suggests:
     vdiffr (>= 1.0.7),
     withr,
     WRS2
-Remotes:
-    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

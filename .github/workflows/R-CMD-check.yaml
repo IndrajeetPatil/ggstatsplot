@@ -27,11 +27,11 @@ jobs:
 
           #- { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
-          - { os: windows-latest, r: "oldrel-1" }
+          #- { os: windows-latest, r: "oldrel-1" }
 
           #- { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" }
-          - { os: ubuntu-latest, r: "oldrel-1" }
+          #- { os: ubuntu-latest, r: "oldrel-1" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}

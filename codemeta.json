@@ -316,7 +316,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.9.0",
+      "version": ">= 0.9.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -368,7 +368,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggrepel",
       "name": "ggrepel",
-      "version": ">= 0.9.4",
+      "version": ">= 0.9.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -381,7 +381,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.2.2",
+      "version": ">= 0.2.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -514,14 +514,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.5.2.9000",
+      "version": ">= 1.5.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     "20": {
       "@type": "SoftwareApplication",
@@ -543,7 +543,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9364.293KB",
+  "fileSize": "9364.255KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
