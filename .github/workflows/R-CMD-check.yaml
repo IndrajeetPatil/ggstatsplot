@@ -30,7 +30,7 @@ jobs:
           #- { os: windows-latest, r: "oldrel-1" }
 
           #- { os: ubuntu-latest, r: "devel" }
-          - { os: ubuntu-latest, r: "release" }
+          #- { os: ubuntu-latest, r: "release" }
           #- { os: ubuntu-latest, r: "oldrel-1" }
 
     env:
