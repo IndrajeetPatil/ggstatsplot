@@ -1,6 +1,6 @@
 test_that(
-  desc = "checking if extract_stats works",
-  code = {
+  "checking if extract_stats works",
+  {
     skip_if_not_installed("PMCMRplus")
     skip_if_not_installed("rstantools")
     options(tibble.width = Inf)

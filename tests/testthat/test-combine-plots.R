@@ -1,6 +1,6 @@
 test_that(
-  desc = "checking if combining plots works",
-  code = {
+  "checking if combining plots works",
+  {
     p1 <- ggplot2::ggplot(
       data = subset(iris, iris$Species == "setosa"),
       aes(x = Sepal.Length, y = Sepal.Width)

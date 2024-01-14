@@ -1,9 +1,13 @@
-# ggstatsplot 0.12.1
+# ggstatsplot 0.12.2
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+- No user-visible changes. Maintenance-only release.
+
+# ggstatsplot 0.12.1
 
 ## MINOR CHANGES
 

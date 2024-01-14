@@ -71,49 +71,50 @@
 #'   x = condition,
 #'   y = desire,
 #'   # to remove violin plot
-#'   violin.args = list(width = 0),
+#'   violin.args = list(width = 0, linewidth = 0),
 #'   # to remove boxplot
 #'   boxplot.args = list(width = 0),
 #'   # to remove points
 #'   point.args = list(alpha = 0)
 #' )
 #' @export
-ggwithinstats <- function(data,
-                          x,
-                          y,
-                          type = "parametric",
-                          pairwise.display = "significant",
-                          p.adjust.method = "holm",
-                          effsize.type = "unbiased",
-                          bf.prior = 0.707,
-                          bf.message = TRUE,
-                          results.subtitle = TRUE,
-                          xlab = NULL,
-                          ylab = NULL,
-                          caption = NULL,
-                          title = NULL,
-                          subtitle = NULL,
-                          k = 2L,
-                          conf.level = 0.95,
-                          nboot = 100L,
-                          tr = 0.2,
-                          centrality.plotting = TRUE,
-                          centrality.type = type,
-                          centrality.point.args = list(size = 5, color = "darkred"),
-                          centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
-                          centrality.path = TRUE,
-                          centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
-                          point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
-                          point.path = TRUE,
-                          point.path.args = list(alpha = 0.5, linetype = "dashed"),
-                          boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
-                          violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-                          ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-                          ggtheme = ggstatsplot::theme_ggstatsplot(),
-                          package = "RColorBrewer",
-                          palette = "Dark2",
-                          ggplot.component = NULL,
-                          ...) {
+ggwithinstats <- function(
+    data,
+    x,
+    y,
+    type = "parametric",
+    pairwise.display = "significant",
+    p.adjust.method = "holm",
+    effsize.type = "unbiased",
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    results.subtitle = TRUE,
+    xlab = NULL,
+    ylab = NULL,
+    caption = NULL,
+    title = NULL,
+    subtitle = NULL,
+    k = 2L,
+    conf.level = 0.95,
+    nboot = 100L,
+    tr = 0.2,
+    centrality.plotting = TRUE,
+    centrality.type = type,
+    centrality.point.args = list(size = 5, color = "darkred"),
+    centrality.label.args = list(size = 3, nudge_x = 0.4, segment.linetype = 4),
+    centrality.path = TRUE,
+    centrality.path.args = list(linewidth = 1, color = "red", alpha = 0.5),
+    point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
+    point.path = TRUE,
+    point.path.args = list(alpha = 0.5, linetype = "dashed"),
+    boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
+    violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
+    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggplot.component = NULL,
+    ...) {
   # data -----------------------------------
 
   # ensure the variables work quoted or unquoted
@@ -131,8 +132,7 @@ ggwithinstats <- function(data,
 
   # statistical analysis ------------------------------------------
 
-  # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
+  test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
     .f.args <- list(
@@ -164,19 +164,19 @@ ggwithinstats <- function(data,
 
   # plot -------------------------------------------
 
-  plot <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
+  plot_comparison <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
 
   # add a connecting path only if there are only two groups
-  if (test == "t" && point.path) plot <- plot + exec(geom_path, !!!point.path.args)
+  if (test == "t" && point.path) plot_comparison <- plot_comparison + exec(geom_path, !!!point.path.args)
 
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- suppressWarnings(.centrality_ggrepel(
-      plot                  = plot,
+    plot_comparison <- suppressWarnings(.centrality_ggrepel(
+      plot                  = plot_comparison,
       data                  = data,
       x                     = {{ x }},
       y                     = {{ y }},
@@ -208,8 +208,8 @@ ggwithinstats <- function(data,
     )
 
     # adding the layer for pairwise comparisons
-    plot <- .ggsignif_adder(
-      plot             = plot,
+    plot_comparison <- .ggsignif_adder(
+      plot             = plot_comparison,
       mpc_df           = mpc_df,
       data             = data,
       x                = {{ x }},
@@ -225,8 +225,8 @@ ggwithinstats <- function(data,
   # annotations -------------------------
 
   .aesthetic_addon(
-    plot             = plot,
-    x                = data %>% pull({{ x }}),
+    plot             = plot_comparison,
+    x                = pull(data, {{ x }}),
     xlab             = xlab %||% as_name(x),
     ylab             = ylab %||% as_name(y),
     title            = title,
@@ -277,11 +277,12 @@ ggwithinstats <- function(data,
 #'   ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
 #' )
 #' @export
-grouped_ggwithinstats <- function(data,
-                                  ...,
-                                  grouping.var,
-                                  plotgrid.args = list(),
-                                  annotation.args = list()) {
+grouped_ggwithinstats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggwithinstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

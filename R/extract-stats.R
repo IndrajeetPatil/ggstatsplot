@@ -65,8 +65,8 @@ extract_stats <- function(p, ...) {
 
 #' @rdname extract_stats
 #' @export
-extract_subtitle <- function(p) extract_stats(p)$subtitle_data$expression[[1L]]
+extract_subtitle <- function(p) purrr::pluck(extract_stats(p), "subtitle_data", "expression", 1L)
 
 #' @rdname extract_stats
 #' @export
-extract_caption <- function(p) extract_stats(p)$caption_data$expression[[1L]]
+extract_caption <- function(p) purrr::pluck(extract_stats(p), "caption_data", "expression", 1L)

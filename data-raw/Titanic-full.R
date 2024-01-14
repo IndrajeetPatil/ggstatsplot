@@ -5,8 +5,10 @@ Titanic_full <-
   dplyr::mutate(dplyr::across(dplyr::vars("id"), ~ as.factor(.x))) |>
   split(f = .$id) |>
   purrr::map_dfr(tidyr::uncount, n) |>
-  dplyr::mutate(dplyr::across(dplyr::vars("id"), ~ as.numeric(as.character(.x)))) |>
-  dplyr::mutate(dplyr::across(where(is.character), ~ droplevels(as.factor(.x)))) |>
+  dplyr::mutate(
+    dplyr::across(dplyr::vars("id"), ~ as.numeric(as.character(.x))),
+    dplyr::across(where(is.character), ~ droplevels(as.factor(.x)))
+  ) |>
   dplyr::select(-n, -id) |>
   tibble::rownames_to_column(var = "id") |>
   dplyr::mutate(dplyr::across("id", ~ as.numeric(as.character(.x))))

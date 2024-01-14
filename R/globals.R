@@ -16,13 +16,13 @@ utils::globalVariables(c(
   "conf.high", # <ggcoefstats>
   ".x", # <.histo_labeller>
   "var", # <.histo_labeller>
-  ".counts", # <ggpiestats>
-  "perc", # <ggpiestats>
-  ".label", # <ggpiestats>
   "counts", # <descriptive_data>
   "perc", # <descriptive_data>
   "counts", # <.cat_counter>
   "counts", # <onesample_data>
+  ".counts", # <ggpiestats>
+  "perc", # <ggpiestats>
+  ".label", # <ggpiestats>
   ".", # <ggwithinstats>
   ".rowid", # <ggwithinstats>
   ".", # <.grouped_list>

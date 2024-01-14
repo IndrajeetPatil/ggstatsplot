@@ -1,21 +1,22 @@
 #' @title A data frame with descriptive labels
 #' @autoglobal
 #' @noRd
-descriptive_data <- function(data,
-                             x,
-                             y = NULL,
-                             label.content = "percentage",
-                             perc.k = 1L,
-                             ...) {
+descriptive_data <- function(
+    data,
+    x,
+    y = NULL,
+    label.content = "percentage",
+    perc.k = 1L,
+    ...) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(
         grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
         grepl("count|n|N", label.content) ~ .prettyNum(counts),
         .default = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
-      )
-    ) %>% # reorder the category factor levels to order the legend
-    mutate({{ x }} := factor({{ x }}, unique({{ x }})))
+      ), # reorder the category factor levels to order the legend
+      {{ x }} := factor({{ x }}, unique({{ x }}))
+    )
 }
 
 
@@ -60,7 +61,7 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
 #' @autoglobal
 #' @noRd
 .chisq_test_safe <- function(data, x, ...) {
-  xtab <- table(data %>% pull({{ x }}))
+  xtab <- table(pull(data, {{ x }}))
 
   result <- tryCatch(
     expr = parameters::model_parameters(suppressWarnings(stats::chisq.test(xtab))),

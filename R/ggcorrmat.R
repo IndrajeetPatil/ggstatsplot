@@ -59,29 +59,30 @@
 #' library(ggcorrplot)
 #' ggcorrmat(iris)
 #' @export
-ggcorrmat <- function(data,
-                      cor.vars = NULL,
-                      cor.vars.names = NULL,
-                      matrix.type = "upper",
-                      type = "parametric",
-                      tr = 0.2,
-                      partial = FALSE,
-                      k = 2L,
-                      sig.level = 0.05,
-                      conf.level = 0.95,
-                      bf.prior = 0.707,
-                      p.adjust.method = "holm",
-                      pch = "cross",
-                      ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-                      package = "RColorBrewer",
-                      palette = "Dark2",
-                      colors = c("#E69F00", "white", "#009E73"),
-                      ggtheme = ggstatsplot::theme_ggstatsplot(),
-                      ggplot.component = NULL,
-                      title = NULL,
-                      subtitle = NULL,
-                      caption = NULL,
-                      ...) {
+ggcorrmat <- function(
+    data,
+    cor.vars = NULL,
+    cor.vars.names = NULL,
+    matrix.type = "upper",
+    type = "parametric",
+    tr = 0.2,
+    partial = FALSE,
+    k = 2L,
+    sig.level = 0.05,
+    conf.level = 0.95,
+    bf.prior = 0.707,
+    p.adjust.method = "holm",
+    pch = "cross",
+    ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    colors = c("#E69F00", "white", "#009E73"),
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    ggplot.component = NULL,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    ...) {
   type <- stats_type_switch(type)
   if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
 
@@ -126,7 +127,7 @@ ggcorrmat <- function(data,
     ))
   }
 
-  plot <- exec(
+  plot_corr <- exec(
     ggcorrplot::ggcorrplot,
     corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
     p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
@@ -162,7 +163,7 @@ ggcorrmat <- function(data,
 
   # annotations ------------------------------------------
 
-  plot +
+  plot_corr +
     theme(
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
@@ -213,11 +214,12 @@ ggcorrmat <- function(data,
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export
-grouped_ggcorrmat <- function(data,
-                              ...,
-                              grouping.var,
-                              plotgrid.args = list(),
-                              annotation.args = list()) {
+grouped_ggcorrmat <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggcorrmat, ...) %>%
     # `guides = "keep"` because legends can be different across grouping levels
