@@ -55,7 +55,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Cache styler
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.styler-location.outputs.location }}
           key: ${{ runner.os }}-styler-${{ github.sha }}
