@@ -36,7 +36,7 @@
     exec(geom_vline, xintercept = df_central$var, !!!centrality.line.args) +
     scale_x_continuous(
       sec.axis = sec_axis(
-        trans = ~.,
+        transform = ~.,
         name = NULL,
         labels = parse(text = df_central$expression),
         breaks = df_central$var
