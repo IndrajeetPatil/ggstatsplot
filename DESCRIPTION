@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.12.2
+Version: 0.12.2.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -35,16 +35,16 @@ Imports:
     datawizard (>= 0.9.1),
     dplyr (>= 1.1.4),
     ggcorrplot (>= 0.1.4.1),
-    ggplot2 (>= 3.4.4),
+    ggplot2 (>= 3.5.0),
     ggrepel (>= 0.9.5),
-    ggside (>= 0.2.3),
+    ggside (>= 0.3.0),
     ggsignif (>= 0.6.4),
     glue,
-    insight (>= 0.19.7),
-    paletteer (>= 1.5.0),
-    parameters (>= 0.21.3),
+    insight (>= 0.19.8),
+    paletteer (>= 1.6.0),
+    parameters (>= 0.21.5),
     patchwork (>= 1.2.0),
-    performance (>= 0.10.8),
+    performance (>= 0.10.9),
     purrr (>= 1.0.2),
     rlang,
     stats,
@@ -61,7 +61,7 @@ Suggests:
     metaBMA,
     metafor,
     metaplus,
-    PMCMRplus (>= 1.9.9),
+    PMCMRplus (>= 1.9.10),
     psych,
     rmarkdown,
     rstantools,
@@ -71,6 +71,8 @@ Suggests:
     vdiffr (>= 1.0.7),
     withr,
     WRS2
+Remotes:
+    tidyverse/ggplot2
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
@@ -80,7 +82,7 @@ Roxygen: list(
     markdown = TRUE,
     roclets = c("collate", "namespace", "rd", "pkgapi::api_roclet", "roxyglobals::global_roclet")
   )
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/Needs/check: anthonynorth/roxyglobals

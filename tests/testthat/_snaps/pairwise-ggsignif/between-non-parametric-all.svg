@@ -18,7 +18,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<rect x='0.000000000000064' y='0.00' width='720.00' height='576.00' style='stroke-width: 0.97; stroke: #FFFFFF; fill: #FFFFFF;' />
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 0.97; stroke: #FFFFFF; fill: #FFFFFF;' />
 </g>
 <defs>
   <clipPath id='cpMjUuMzZ8NzAzLjUyfDQuOTh8NTM5LjI4'>
@@ -1725,13 +1725,13 @@
 <text x='576.37' y='557.91' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='32.25px' lengthAdjust='spacingAndGlyphs'>(n = 876)</text>
 <text x='364.44' y='568.94' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>mpaa</text>
 <text transform='translate(11.86,272.13) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.01px' lengthAdjust='spacingAndGlyphs'>rating</text>
-<text transform='translate(707.56,208.76) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(707.56,256.34) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(707.56,258.34) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='19.13px' lengthAdjust='spacingAndGlyphs'>Dunn</text>
-<text transform='translate(707.56,277.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(707.56,279.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(707.56,281.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(707.56,325.50) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(707.56,327.50) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='8.00px' lengthAdjust='spacingAndGlyphs'>all</text>
+<text transform='translate(709.22,208.76) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(709.22,256.34) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,258.34) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='19.13px' lengthAdjust='spacingAndGlyphs'>Dunn</text>
+<text transform='translate(709.22,277.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,279.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,281.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(709.22,325.50) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,327.50) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='8.00px' lengthAdjust='spacingAndGlyphs'>all</text>
 </g>
 </svg>

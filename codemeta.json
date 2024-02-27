@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.12.1.9000",
+  "version": "0.12.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -172,7 +172,7 @@
       "@type": "SoftwareApplication",
       "identifier": "PMCMRplus",
       "name": "PMCMRplus",
-      "version": ">= 1.9.9",
+      "version": ">= 1.9.10",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -355,14 +355,14 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.4.4",
+      "version": ">= 3.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+      "sameAs": "https://github.com/tidyverse/ggplot2"
     },
     "7": {
       "@type": "SoftwareApplication",
@@ -381,7 +381,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.2.3",
+      "version": ">= 0.3.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -419,7 +419,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.7",
+      "version": ">= 0.19.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -432,7 +432,7 @@
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
-      "version": ">= 1.5.0",
+      "version": ">= 1.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -445,7 +445,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.21.3",
+      "version": ">= 0.21.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -471,7 +471,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.10.8",
+      "version": ">= 0.10.9",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -543,7 +543,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9364.282KB",
+  "fileSize": "9359.421KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
