@@ -128,9 +128,9 @@ gghistostats <- function(
     ) +
     scale_y_continuous(
       sec.axis = sec_axis(
-        transform  = ~ . / nrow(data),
+        transform = ~ . / nrow(data),
         labels = function(x) insight::format_percent(x, digits = 0L),
-        name   = "proportion"
+        name = "proportion"
       )
     ) +
     guides(fill = "none")
