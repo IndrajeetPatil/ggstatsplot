@@ -40,11 +40,11 @@ Imports:
     ggside (>= 0.3.0),
     ggsignif (>= 0.6.4),
     glue,
-    insight (>= 0.19.7),
-    paletteer (>= 1.5.0),
-    parameters (>= 0.21.3),
+    insight (>= 0.19.8),
+    paletteer (>= 1.6.0),
+    parameters (>= 0.21.5),
     patchwork (>= 1.2.0),
-    performance (>= 0.10.8),
+    performance (>= 0.10.9),
     purrr (>= 1.0.2),
     rlang,
     stats,
@@ -61,7 +61,7 @@ Suggests:
     metaBMA,
     metafor,
     metaplus,
-    PMCMRplus (>= 1.9.9),
+    PMCMRplus (>= 1.9.10),
     psych,
     rmarkdown,
     rstantools,
@@ -71,6 +71,8 @@ Suggests:
     vdiffr (>= 1.0.7),
     withr,
     WRS2
+Remotes:
+    tidyverse/ggplot2
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
