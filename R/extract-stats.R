@@ -25,7 +25,7 @@
 #'
 #' @autoglobal
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' set.seed(123)
 #'
 #' # non-grouped plot

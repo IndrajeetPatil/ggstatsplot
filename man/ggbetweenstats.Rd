@@ -396,15 +396,11 @@ Not supported.
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
-library(PMCMRplus) # for pairwise comparisons
 
-# create a plot
 p <- ggbetweenstats(mtcars, am, mpg)
-
-# looking at the plot
 p
 
 # extracting details from statistical tests

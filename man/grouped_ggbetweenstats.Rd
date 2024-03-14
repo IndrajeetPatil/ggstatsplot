@@ -161,14 +161,13 @@ across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
-library(PMCMRplus) # for pairwise comparisons
+
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 
-# the most basic function call
 grouped_ggbetweenstats(
   data = filter(ggplot2::mpg, drv != "4"),
   x = year,
