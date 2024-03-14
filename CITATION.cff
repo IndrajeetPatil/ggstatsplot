@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.5.0
+# CITATION file created with {cffr} R package, v1.0.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -17,7 +17,7 @@ abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with detai
   (pie and bar charts) data. Currently, it supports the most common types of statistical
   approaches and tests: parametric, nonparametric, robust, and Bayesian versions of
   t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and
-  regression analyses. References: Patil (2021) <doi:10.21105/joss.03236>.'
+  regression analyses. References: Patil (2021) <https://doi.org/10.21105/joss.03236>.'
 authors:
 - family-names: Patil
   given-names: Indrajeet
@@ -66,11 +66,10 @@ references:
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
   version: '>= 4.1.0'
 - type: software
   title: correlation
@@ -209,8 +208,9 @@ references:
   - family-names: Dunnington
     given-names: Dewey
     orcid: https://orcid.org/0000-0002-9415-4582
-  - family-names: van den Brand
+  - family-names: Brand
     given-names: Teun
+    name-particle: van den
     orcid: https://orcid.org/0000-0002-9335-7468
   year: '2024'
   version: '>= 3.5.0'
@@ -442,11 +442,10 @@ references:
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
 - type: software
   title: statsExpressions
   abstract: 'statsExpressions: Tidy Dataframes and Expressions with Statistical Details'
@@ -483,11 +482,10 @@ references:
   notes: Imports
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
 - type: software
   title: afex
   abstract: 'afex: Analysis of Factorial Experiments'
@@ -523,7 +521,7 @@ references:
     given-names: Jeffrey N.
     email: jrouder@uci.edu
   year: '2024'
-  version: '>= 0.9.12-4.5'
+  version: '>= 0.9.12-4.7'
 - type: software
   title: gapminder
   abstract: 'gapminder: Data from Gapminder'
@@ -619,19 +617,6 @@ references:
     email: bolker@mcmaster.ca
   - name: R Development Core Team
   year: '2024'
-- type: software
-  title: PMCMRplus
-  abstract: 'PMCMRplus: Calculate Pairwise Multiple Comparisons of Mean Rank Sums
-    Extended'
-  notes: Suggests
-  repository: https://CRAN.R-project.org/package=PMCMRplus
-  authors:
-  - family-names: Pohlert
-    given-names: Thorsten
-    email: thorsten.pohlert@gmx.de
-    orcid: https://orcid.org/0000-0003-3855-3025
-  year: '2024'
-  version: '>= 1.9.10'
 - type: software
   title: psych
   abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
