@@ -651,7 +651,7 @@ ggwithinstats(
   Wine,
   Taste,
   paired = TRUE,
-  digits = 4L 
+  digits = 4L
 )
 ```
 
