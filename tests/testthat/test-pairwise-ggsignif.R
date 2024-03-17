@@ -14,7 +14,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -29,7 +29,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "s",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -44,7 +44,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "all",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -59,7 +59,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -74,7 +74,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "s",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -89,7 +89,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "all",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -104,7 +104,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -119,7 +119,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "s",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -134,7 +134,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "all",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -147,7 +147,7 @@ test_that(
         mpg,
         type = "bayes",
         results.subtitle = FALSE,
-        k = 3L
+        digits = 3L
       )
     )
   }
@@ -169,7 +169,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -184,7 +184,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "s",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -199,7 +199,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "all",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -214,7 +214,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -229,7 +229,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "s",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -244,7 +244,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "bonferroni",
         pairwise.display = "all",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -259,7 +259,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -274,7 +274,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "s",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -289,7 +289,7 @@ test_that(
         results.subtitle = FALSE,
         p.adjust.method = "holm",
         pairwise.display = "all",
-        k = 3L
+        digits = 3L
       )
     )
 
@@ -302,7 +302,7 @@ test_that(
         desire,
         type = "bayes",
         results.subtitle = FALSE,
-        k = 3L
+        digits = 3L
       )
     )
   }
@@ -326,7 +326,7 @@ test_that(
         bf.message = FALSE,
         p.adjust.method = "fdr",
         pairwise.display = "ns",
-        k = 3L
+        digits = 3L
       )
     )
   }

@@ -86,7 +86,7 @@ ggscatterstats <- function(
     bf.prior = 0.707,
     bf.message = TRUE,
     tr = 0.2,
-    k = 2L,
+    digits = 2L,
     results.subtitle = TRUE,
     label.var = NULL,
     label.expression = NULL,
@@ -119,13 +119,12 @@ ggscatterstats <- function(
   if (results.subtitle) {
     type <- stats_type_switch(type)
 
-
     .f.args <- list(
       data = data,
       x = {{ x }},
       y = {{ y }},
       conf.level = conf.level,
-      k = k,
+      digits = digits,
       tr = tr,
       bf.prior = bf.prior
     )

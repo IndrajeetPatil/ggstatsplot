@@ -67,7 +67,7 @@ ggcorrmat <- function(
     type = "parametric",
     tr = 0.2,
     partial = FALSE,
-    k = 2L,
+    digits = 2L,
     sig.level = 0.05,
     conf.level = 0.95,
     bf.prior = 0.707,
@@ -138,7 +138,7 @@ ggcorrmat <- function(
     lab          = TRUE,
     pch          = pch,
     legend.title = legend.title,
-    digits       = k,
+    digits       = digits,
     !!!ggcorrplot.args
   )
 

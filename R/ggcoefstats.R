@@ -121,7 +121,7 @@ ggcoefstats <- function(
     statistic = NULL,
     conf.int = TRUE,
     conf.level = 0.95,
-    k = 2L,
+    digits = 2L,
     exclude.intercept = FALSE,
     effectsize.type = "eta",
     meta.analytic.effect = FALSE,
@@ -218,7 +218,7 @@ ggcoefstats <- function(
   # label -------------------------
 
   if (stats.labels) {
-    tidy_df %<>% tidy_model_expressions(statistic, k, effectsize.type)
+    tidy_df %<>% tidy_model_expressions(statistic, digits, effectsize.type)
 
     # only significant p-value labels are shown
     if (only.significant && ("p.value" %in% names(tidy_df))) {
@@ -249,12 +249,12 @@ ggcoefstats <- function(
     meta.type <- stats_type_switch(meta.type)
 
     # frequentist
-    subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
+    subtitle_df <- meta_analysis(tidy_df, type = meta.type, digits = digits)
     subtitle <- .extract_expression(subtitle_df)
 
     # Bayesian
     if (meta.type == "parametric" && bf.message) {
-      caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", k = k))
+      caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", digits = digits))
       caption <- .extract_expression(caption_df)
     }
   }

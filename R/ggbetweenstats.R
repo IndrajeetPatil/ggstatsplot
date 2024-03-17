@@ -155,7 +155,7 @@ ggbetweenstats <- function(
     caption = NULL,
     title = NULL,
     subtitle = NULL,
-    k = 2L,
+    digits = 2L,
     var.equal = FALSE,
     conf.level = 0.95,
     nboot = 100L,
@@ -203,17 +203,17 @@ ggbetweenstats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data         = data,
-      x            = as_string(x),
-      y            = as_string(y),
+      data = data,
+      x = as_string(x),
+      y = as_string(y),
       effsize.type = effsize.type,
-      conf.level   = conf.level,
-      var.equal    = var.equal,
-      k            = k,
-      tr           = tr,
-      paired       = FALSE,
-      bf.prior     = bf.prior,
-      nboot        = nboot
+      conf.level = conf.level,
+      var.equal = var.equal,
+      digits = digits,
+      tr = tr,
+      paired = FALSE,
+      bf.prior = bf.prior,
+      nboot = nboot
     )
 
     .f <- .f_switch(test)
@@ -237,13 +237,13 @@ ggbetweenstats <- function(
 
   if (isTRUE(centrality.plotting)) {
     plot_comparison <- suppressWarnings(.centrality_ggrepel(
-      plot                  = plot_comparison,
-      data                  = data,
-      x                     = {{ x }},
-      y                     = {{ y }},
-      k                     = k,
-      type                  = stats_type_switch(centrality.type),
-      tr                    = tr,
+      plot = plot_comparison,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      digits = digits,
+      type = stats_type_switch(centrality.type),
+      tr = tr,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
     ))
@@ -255,15 +255,15 @@ ggbetweenstats <- function(
 
   if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
-      data            = data,
-      x               = {{ x }},
-      y               = {{ y }},
-      type            = type,
-      tr              = tr,
-      paired          = FALSE,
-      var.equal       = var.equal,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      type = type,
+      tr = tr,
+      paired = FALSE,
+      var.equal = var.equal,
       p.adjust.method = p.adjust.method,
-      k               = k
+      digits = digits,
     )
 
     # adding the layer for pairwise comparisons

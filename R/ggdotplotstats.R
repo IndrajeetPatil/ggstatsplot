@@ -63,7 +63,7 @@ ggdotplotstats <- function(
     effsize.type = "g",
     conf.level = 0.95,
     tr = 0.2,
-    k = 2L,
+    digits = 2L,
     results.subtitle = TRUE,
     point.args = list(color = "black", size = 3, shape = 16),
     centrality.plotting = TRUE,
@@ -96,14 +96,14 @@ ggdotplotstats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data         = data,
-      x            = {{ x }},
-      test.value   = test.value,
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
       effsize.type = effsize.type,
-      conf.level   = conf.level,
-      k            = k,
-      tr           = tr,
-      bf.prior     = bf.prior
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior
     )
 
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
@@ -135,10 +135,10 @@ ggdotplotstats <- function(
   if (isTRUE(centrality.plotting)) {
     plot_dot <- .histo_labeller(
       plot_dot,
-      x                    = pull(data, {{ x }}),
-      type                 = stats_type_switch(centrality.type),
-      tr                   = tr,
-      k                    = k,
+      x = pull(data, {{ x }}),
+      type = stats_type_switch(centrality.type),
+      tr = tr,
+      digits = digits,
       centrality.line.args = centrality.line.args
     )
   }

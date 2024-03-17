@@ -33,7 +33,7 @@ for \code{ggbarstats} function.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{ggbarstats}, only \emph{p}-values from this test will be displayed.}
-    \item{\code{perc.k}}{Numeric that decides number of decimal places for percentage
+    \item{\code{digits.perc}}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0L}).}
     \item{\code{label}}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
@@ -79,22 +79,24 @@ thus the details as well.}
 }
 
 You can specify just the initial letter.}
-    \item{\code{k}}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+    \item{\code{digits}}{Number of digits for rounding or significant figures. May also
+be \code{"signif"} to return significant figures or \code{"scientific"}
+to return scientific notation. Control the number of digits by adding the
+value as suffix, e.g. \code{digits = "scientific4"} to have scientific
+notation with 4 decimal places, or \code{digits = "signif5"} for 5
+significant figures (see also \code{\link[=signif]{signif()}}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
-test expression will be returned. If \code{FALSE}, Pearson's chi-square test will
-be returned.}
+repeated measures design study (Default: \code{FALSE}).}
     \item{\code{counts}}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
     \item{\code{ratio}}{A vector of proportions: the expected proportions for the
-proportion test (should sum to 1). Default is \code{NULL}, which means the null
+proportion test (should sum to \code{1}). Default is \code{NULL}, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
-This means if there are two levels this will be \code{ratio = c(0.5,0.5)} or if
-there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
+E.g., \code{ratio = c(0.5, 0.5)} for two levels,
+\code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
     \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options
 are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
 \code{"jointMulti"} (joint multinomial), \code{"hypergeom"} (hypergeometric). For

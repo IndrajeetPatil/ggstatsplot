@@ -113,7 +113,7 @@ test_that(
           mtcars,
           x = am,
           y = cyl,
-          perc.k = 2L,
+          digits.perc = 2L,
           title = "mtcars dataset",
           package = "wesanderson",
           palette = "Royal2",
@@ -172,7 +172,7 @@ test_that(
       ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4L
+      digits = 4L
     ) %>%
       extract_subtitle()
 
@@ -181,7 +181,7 @@ test_that(
       ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4L
+      digits = 4L
     ))$expression[[1L]]
 
     expect_identical(p_sub, stats_output)

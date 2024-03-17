@@ -48,7 +48,7 @@ Imports:
     purrr (>= 1.0.2),
     rlang,
     stats,
-    statsExpressions (>= 1.5.3),
+    statsExpressions (>= 1.5.3.9000),
     tidyr (>= 1.3.0),
     utils
 Suggests:
@@ -71,6 +71,7 @@ Suggests:
     withr,
     WRS2
 Remotes:
+    IndrajeetPatil/statsExpressions@rename-k-parameter,
     tidyverse/ggplot2
 VignetteBuilder: 
     knitr
