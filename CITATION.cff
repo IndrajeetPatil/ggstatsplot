@@ -277,7 +277,7 @@ references:
   abstract: 'insight: Easy Access to Model Information for Various Model Objects'
   notes: Imports
   url: https://easystats.github.io/insight/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=insight
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -457,7 +457,7 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.5.3'
+  version: '>= 1.5.3.9000'
   year: '2024'
 - type: software
   title: tidyr

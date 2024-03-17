@@ -71,7 +71,7 @@ Suggests:
     withr,
     WRS2
 Remotes:
-    IndrajeetPatil/statsExpressions@rename-k-parameter,
+    IndrajeetPatil/statsExpressions,
     tidyverse/ggplot2
 VignetteBuilder: 
     knitr
