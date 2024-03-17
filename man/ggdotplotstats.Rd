@@ -20,7 +20,7 @@ ggdotplotstats(
   effsize.type = "g",
   conf.level = 0.95,
   tr = 0.2,
-  k = 2L,
+  digits = 2L,
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
   centrality.plotting = TRUE,
@@ -90,8 +90,12 @@ will be computed.}
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+\item{digits}{Number of digits for rounding or significant figures. May also
+be \code{"signif"} to return significant figures or \code{"scientific"}
+to return scientific notation. Control the number of digits by adding the
+value as suffix, e.g. \code{digits = "scientific4"} to have scientific
+notation with 4 decimal places, or \code{digits = "signif5"} for 5
+significant figures (see also \code{\link[=signif]{signif()}}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only

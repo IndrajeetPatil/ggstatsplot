@@ -39,7 +39,7 @@ what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
 default.
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 set.seed(123)
 
 # non-grouped plot

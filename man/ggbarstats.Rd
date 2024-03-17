@@ -15,9 +15,9 @@ ggbarstats(
   label = "percentage",
   label.args = list(alpha = 1, fill = "white"),
   sample.size.label.args = list(size = 4),
-  k = 2L,
+  digits = 2L,
   proportion.test = results.subtitle,
-  perc.k = 0L,
+  digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
   conf.level = 0.95,
@@ -68,9 +68,7 @@ represents a single observation.}
 You can specify just the initial letter.}
 
 \item{paired}{Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: \code{FALSE}). If \code{TRUE}, McNemar's
-test expression will be returned. If \code{FALSE}, Pearson's chi-square test will
-be returned.}
+repeated measures design study (Default: \code{FALSE}).}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
@@ -86,14 +84,18 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 \item{sample.size.label.args}{Additional aesthetic arguments that will be passed to
 \code{ggplot2::geom_text()}.}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+\item{digits}{Number of digits for rounding or significant figures. May also
+be \code{"signif"} to return significant figures or \code{"scientific"}
+to return scientific notation. Control the number of digits by adding the
+value as suffix, e.g. \code{digits = "scientific4"} to have scientific
+notation with 4 decimal places, or \code{digits = "signif5"} for 5
+significant figures (see also \code{\link[=signif]{signif()}}).}
 
 \item{proportion.test}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{ggbarstats}, only \emph{p}-values from this test will be displayed.}
 
-\item{perc.k}{Numeric that decides number of decimal places for percentage
+\item{digits.perc}{Numeric that decides number of decimal places for percentage
 labels (Default: \code{0L}).}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
@@ -101,10 +103,10 @@ favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
 
 \item{ratio}{A vector of proportions: the expected proportions for the
-proportion test (should sum to 1). Default is \code{NULL}, which means the null
+proportion test (should sum to \code{1}). Default is \code{NULL}, which means the null
 is equal theoretical proportions across the levels of the nominal variable.
-This means if there are two levels this will be \code{ratio = c(0.5,0.5)} or if
-there are four levels this will be \code{ratio = c(0.25,0.25,0.25,0.25)}, etc.}
+E.g., \code{ratio = c(0.5, 0.5)} for two levels,
+\code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
 
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals

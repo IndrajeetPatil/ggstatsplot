@@ -22,7 +22,7 @@
 #' @param proportion.test Decides whether proportion test for `x` variable is to
 #'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
 #'   `ggbarstats`, only *p*-values from this test will be displayed.
-#' @param perc.k Numeric that decides number of decimal places for percentage
+#' @param digits.perc Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0L`).
 #' @param label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
@@ -74,9 +74,9 @@ ggpiestats <- function(
     label = "percentage",
     label.args = list(direction = "both"),
     label.repel = FALSE,
-    k = 2L,
+    digits = 2L,
     proportion.test = results.subtitle,
-    perc.k = 0L,
+    digits.perc = 0L,
     bf.message = TRUE,
     ratio = NULL,
     conf.level = 0.95,
@@ -126,15 +126,15 @@ ggpiestats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data                = data,
-      x                   = {{ x }},
-      y                   = {{ y }},
-      conf.level          = conf.level,
-      k                   = k,
-      paired              = paired,
-      ratio               = ratio,
-      sampling.plan       = sampling.plan,
-      fixed.margin        = fixed.margin,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      conf.level = conf.level,
+      digits = digits,
+      paired = paired,
+      ratio = ratio,
+      sampling.plan = sampling.plan,
+      fixed.margin = fixed.margin,
       prior.concentration = prior.concentration
     )
 
@@ -151,10 +151,10 @@ ggpiestats <- function(
   # plot ------------------------------------------
 
   # data frame with summary labels
-  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, perc.k)
+  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
 
   # data frame containing all details needed for proportion test
-  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
+  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits)
 
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(package, palette, min_length = x_levels)

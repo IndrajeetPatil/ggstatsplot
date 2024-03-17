@@ -6,14 +6,14 @@ descriptive_data <- function(
     x,
     y = NULL,
     label.content = "percentage",
-    perc.k = 1L,
+    digits.perc = 1L,
     ...) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(
-        grepl("perc|prop", label.content) ~ paste0(round(perc, perc.k), "%"),
+        grepl("perc|prop", label.content) ~ paste0(round(perc, digits.perc), "%"),
         grepl("count|n|N", label.content) ~ .prettyNum(counts),
-        .default = paste0(.prettyNum(counts), "\n", "(", round(perc, perc.k), "%)")
+        .default = paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
       ), # reorder the category factor levels to order the legend
       {{ x }} := factor({{ x }}, unique({{ x }}))
     )
@@ -36,7 +36,7 @@ descriptive_data <- function(
 #' @title A data frame with chi-squared test results
 #' @autoglobal
 #' @noRd
-onesample_data <- function(data, x, y, k = 2L, ...) {
+onesample_data <- function(data, x, y, digits = 2L, ...) {
   full_join(
     # descriptive summary
     x = .cat_counter(data, {{ y }}) %>%
@@ -49,8 +49,8 @@ onesample_data <- function(data, x, y, k = 2L, ...) {
   ) %>%
     rowwise() %>%
     mutate(
-      .label = glue("list(~chi['gof']^2~({df})=={format_value(statistic, k)}, ~italic(p)=='{format_value(p.value, k)}', ~italic(n)=='{.prettyNum(counts)}')"),
-      .p.label = glue("list(~italic(p)=='{format_value(p.value, k)}')")
+      .label = glue("list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ~italic(p)=='{format_value(p.value, digits)}', ~italic(n)=='{.prettyNum(counts)}')"),
+      .p.label = glue("list(~italic(p)=='{format_value(p.value, digits)}')")
     ) %>%
     ungroup()
 }

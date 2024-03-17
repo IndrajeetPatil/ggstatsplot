@@ -159,7 +159,7 @@ plot_list <- purrr::pmap(
     pairwise.display = list("s", "ns", "all"),
     p.adjust.method = list("hommel", "bonferroni", "BH"),
     conf.level = list(0.99, 0.95, 0.90),
-    k = list(1, 2, 3),
+    digits = list(1L, 2L, 3L),
     effsize.type = list(
       NULL,
       "partial_omega",
@@ -233,7 +233,7 @@ plot_list <- purrr::pmap(
     pairwise.display = list("ns", "s", "ns", "all"),
     p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
     conf.level = list(0.99, 0.99, 0.95, 0.90),
-    k = list(3, 2, 2, 3),
+    digits = list(3L, 2L, 2L, 3L),
     effsize.type = list(
       "omega",
       "eta",

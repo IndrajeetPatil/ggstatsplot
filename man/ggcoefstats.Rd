@@ -9,7 +9,7 @@ ggcoefstats(
   statistic = NULL,
   conf.int = TRUE,
   conf.level = 0.95,
-  k = 2L,
+  digits = 2L,
   exclude.intercept = FALSE,
   effectsize.type = "eta",
   meta.analytic.effect = FALSE,
@@ -52,8 +52,12 @@ error bars (Default: \code{TRUE}).}
 \item{conf.level}{Numeric deciding level of confidence or credible intervals
 (Default: \code{0.95}).}
 
-\item{k}{Number of digits after decimal point (should be an integer)
-(Default: \code{k = 2L}).}
+\item{digits}{Number of digits for rounding or significant figures. May also
+be \code{"signif"} to return significant figures or \code{"scientific"}
+to return scientific notation. Control the number of digits by adding the
+value as suffix, e.g. \code{digits = "scientific4"} to have scientific
+notation with 4 decimal places, or \code{digits = "signif5"} for 5
+significant figures (see also \code{\link[=signif]{signif()}}).}
 
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{FALSE}).}

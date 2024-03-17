@@ -271,7 +271,7 @@ grouped_ggwithinstats(
   # ggtheme = ggthemes::theme_tufte(),
   package = "ggsci",
   palette = "default_jco",
-  k = 3,
+  digits = 3,
   ## arguments relevant for combine_plots
   annotation.args = list(title = "Desire to kill bugs across genders"),
   plotgrid.args = list(ncol = 1)

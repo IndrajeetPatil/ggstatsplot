@@ -99,7 +99,7 @@ test_that(
         only.significant = TRUE,
         package = "ggsci",
         palette = "category20c_d3",
-        k = 3L
+        digits = 3L
       ))
     )
 
@@ -122,7 +122,7 @@ test_that(
         subtitle = "Source: `{ggplot2}` package",
         package = "wesanderson",
         palette = "BottleRocket2",
-        k = 3L
+        digits = 3L
       )
     )
   }

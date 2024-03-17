@@ -49,9 +49,9 @@ ggbarstats <- function(
     label = "percentage",
     label.args = list(alpha = 1.0, fill = "white"),
     sample.size.label.args = list(size = 4.0),
-    k = 2L,
+    digits = 2L,
     proportion.test = results.subtitle,
-    perc.k = 0L,
+    digits.perc = 0L,
     bf.message = TRUE,
     ratio = NULL,
     conf.level = 0.95,
@@ -94,15 +94,15 @@ ggbarstats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data                = data,
-      x                   = {{ x }},
-      y                   = {{ y }},
-      conf.level          = conf.level,
-      k                   = k,
-      paired              = paired,
-      ratio               = ratio,
-      sampling.plan       = sampling.plan,
-      fixed.margin        = fixed.margin,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      conf.level = conf.level,
+      digits = digits,
+      paired = paired,
+      ratio = ratio,
+      sampling.plan = sampling.plan,
+      fixed.margin = fixed.margin,
       prior.concentration = prior.concentration
     )
 
@@ -119,10 +119,10 @@ ggbarstats <- function(
   # plot ------------------------------------------
 
   # data frame with summary labels
-  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, perc.k)
+  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
 
   # data frame containing all details needed for prop test
-  onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
+  onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits)
 
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(package, palette, nlevels(pull(data, {{ x }})))

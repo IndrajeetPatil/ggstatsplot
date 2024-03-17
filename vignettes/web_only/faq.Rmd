@@ -632,6 +632,29 @@ ggbetweenstats(
 )
 ```
 
+## 29. How to turn off scientific notation in expressions?
+
+```{r}
+set.seed(123)
+library(ggstatsplot)
+library(WRS2)
+
+ggwithinstats(
+  WineTasting,
+  Wine,
+  Taste,
+  paired = TRUE
+)
+
+ggwithinstats(
+  WineTasting,
+  Wine,
+  Taste,
+  paired = TRUE,
+  digits = 4L
+)
+```
+
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on

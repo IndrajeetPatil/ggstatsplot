@@ -106,15 +106,11 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#' library(PMCMRplus) # for pairwise comparisons
 #'
-#' # create a plot
 #' p <- ggbetweenstats(mtcars, am, mpg)
-#'
-#' # looking at the plot
 #' p
 #'
 #' # extracting details from statistical tests
@@ -159,7 +155,7 @@ ggbetweenstats <- function(
     caption = NULL,
     title = NULL,
     subtitle = NULL,
-    k = 2L,
+    digits = 2L,
     var.equal = FALSE,
     conf.level = 0.95,
     nboot = 100L,
@@ -207,17 +203,17 @@ ggbetweenstats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data         = data,
-      x            = as_string(x),
-      y            = as_string(y),
+      data = data,
+      x = as_string(x),
+      y = as_string(y),
       effsize.type = effsize.type,
-      conf.level   = conf.level,
-      var.equal    = var.equal,
-      k            = k,
-      tr           = tr,
-      paired       = FALSE,
-      bf.prior     = bf.prior,
-      nboot        = nboot
+      conf.level = conf.level,
+      var.equal = var.equal,
+      digits = digits,
+      tr = tr,
+      paired = FALSE,
+      bf.prior = bf.prior,
+      nboot = nboot
     )
 
     .f <- .f_switch(test)
@@ -241,13 +237,13 @@ ggbetweenstats <- function(
 
   if (isTRUE(centrality.plotting)) {
     plot_comparison <- suppressWarnings(.centrality_ggrepel(
-      plot                  = plot_comparison,
-      data                  = data,
-      x                     = {{ x }},
-      y                     = {{ y }},
-      k                     = k,
-      type                  = stats_type_switch(centrality.type),
-      tr                    = tr,
+      plot = plot_comparison,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      digits = digits,
+      type = stats_type_switch(centrality.type),
+      tr = tr,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
     ))
@@ -259,15 +255,15 @@ ggbetweenstats <- function(
 
   if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
-      data            = data,
-      x               = {{ x }},
-      y               = {{ y }},
-      type            = type,
-      tr              = tr,
-      paired          = FALSE,
-      var.equal       = var.equal,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      type = type,
+      tr = tr,
+      paired = FALSE,
+      var.equal = var.equal,
       p.adjust.method = p.adjust.method,
-      k               = k
+      digits = digits,
     )
 
     # adding the layer for pairwise comparisons
@@ -326,14 +322,13 @@ ggbetweenstats <- function(
 #'
 #' @inherit ggbetweenstats return references
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#' library(PMCMRplus) # for pairwise comparisons
+#'
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'
-#' # the most basic function call
 #' grouped_ggbetweenstats(
 #'   data = filter(ggplot2::mpg, drv != "4"),
 #'   x = year,

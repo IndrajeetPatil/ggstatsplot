@@ -74,7 +74,7 @@
       "@type": "SoftwareApplication",
       "identifier": "BayesFactor",
       "name": "BayesFactor",
-      "version": ">= 0.9.12-4.5",
+      "version": ">= 0.9.12-4.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -167,19 +167,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=metaplus"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "PMCMRplus",
-      "name": "PMCMRplus",
-      "version": ">= 1.9.10",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=PMCMRplus"
     },
     {
       "@type": "SoftwareApplication",
@@ -514,14 +501,14 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.5.3",
+      "version": ">= 1.5.3.9000",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     "20": {
       "@type": "SoftwareApplication",
@@ -543,7 +530,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9359.421KB",
+  "fileSize": "9363.938KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

@@ -85,7 +85,7 @@
       [[2]]
       list(chi["gof"]^2 * "(" * 2 * ")" == "2.31", italic(p) == "0.31", 
           widehat(italic("C"))["Pearson"] == "0.26", CI["95%"] ~ "[" * 
-              "0.00", "1.00" * "]", italic("n")["obs"] == "32")
+              "0.00", "0.50" * "]", italic("n")["obs"] == "32")
       
       [[3]]
       list(log[e] * (BF["01"]) == "2.81", italic("a")["Gunel-Dickey"] == 
@@ -104,7 +104,7 @@
       [[2]]
       list(chi["Pearson"]^2 * "(" * 2 * ")" == "8.74", italic(p) == 
           "0.01", widehat(italic("V"))["Cramer"] == "0.46", CI["95%"] ~ 
-          "[" * "0.00", "1.00" * "]", italic("n")["obs"] == "32")
+          "[" * "0.00", "0.82" * "]", italic("n")["obs"] == "32")
       
       [[3]]
       list(log[e] * (BF["01"]) == "-2.72", widehat(italic("V"))["Cramer"]^"posterior" == 
