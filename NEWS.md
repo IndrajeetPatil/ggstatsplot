@@ -7,7 +7,11 @@ read the `NEWS` for that package:
 
 ## MAJOR CHANGES
 
-- The cryptic but very useful parameter `k` has been renamed to `digits` to improve its discoverability.
+- The cryptic but very useful parameter `k` has been renamed to `digits` to
+  improve its discoverability.
+
+- To be consistent with other functions, `ggpiestats()` and `ggbarstats()` now
+  default to two-sided alternative hypothesis.
 
 # ggstatsplot 0.12.2
 
