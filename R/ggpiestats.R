@@ -94,11 +94,10 @@ ggpiestats <- function(
     ...) {
   # data frame ------------------------------------------
 
-  type <- stats_type_switch(type)
-
   # ensure the variables work quoted or unquoted
   x <- ensym(x)
   y <- if (!quo_is_null(enquo(y))) ensym(y)
+  type <- stats_type_switch(type)
 
   # one-way or two-way table?
   test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")

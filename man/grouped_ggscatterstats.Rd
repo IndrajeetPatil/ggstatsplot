@@ -132,7 +132,6 @@ set.seed(123)
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 
-# basic function call
 grouped_ggscatterstats(
   data             = filter(movies_long, genre == "Comedy" | genre == "Drama"),
   x                = length,

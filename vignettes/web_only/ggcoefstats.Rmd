@@ -118,23 +118,19 @@ linear model (`lm`) and linear mixed-effects model (`lmer`/`lmerMod`)
 library(lme4)
 
 # lm model
-mod1 <- stats::lm(formula = scale(rating) ~ scale(budget), data = movies_long)
+mod1 <- stats::lm(formula = Reaction ~ Days, data = sleepstudy)
 
 # merMod model
-mod2 <- lme4::lmer(
-  formula = scale(rating) ~ scale(budget) + (budget | genre),
-  data = movies_long,
-  control = lme4::lmerControl(calc.derivs = FALSE)
-)
+mod2 <- lme4::lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
 
 # combining the two different plots
 combine_plots(
   plotlist = list(
     ggcoefstats(mod1) +
-      ggplot2::labs(x = parse(text = "'standardized regression coefficient' ~italic(beta)")),
+      ggplot2::labs(x = parse(text = "'regression coefficient' ~italic(beta)")),
     ggcoefstats(mod2) +
       ggplot2::labs(
-        x = parse(text = "'standardized regression coefficient' ~italic(beta)"),
+        x = parse(text = "'regression coefficient' ~italic(beta)"),
         y = "fixed effects"
       )
   ),
@@ -145,24 +141,7 @@ combine_plots(
 
 Note that for mixed-effects models, only the *fixed* effects are shown because
 there are no confidence intervals for *random* effects terms. In case, you would
-like to see these terms, you can enter the same object you entered as `x`
-argument to `parameters::model_parameters`:
-
-```{r}
-#| label = "lmer2"
-
-library(lme4)
-library(parameters)
-
-# tidy output
-parameters::model_parameters(
-  lme4::lmer(
-    formula = scale(rating) ~ scale(budget) + (budget | genre),
-    data = movies_long,
-    control = lme4::lmerControl(calc.derivs = FALSE)
-  )
-)
-```
+like to see these terms, you can use `parameters::model_parameters()`.
 
 ### *z*-statistic
 
