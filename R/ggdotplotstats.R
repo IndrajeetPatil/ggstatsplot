@@ -74,11 +74,9 @@ ggdotplotstats <- function(
     ...) {
   # data -----------------------------------
 
-
-  type <- stats_type_switch(type)
-
-  # ensure the variables work quoted or unquoted
+  # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
+  type <- stats_type_switch(type)
 
   data %<>%
     select({{ x }}, {{ y }}) %>%

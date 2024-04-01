@@ -89,12 +89,11 @@ gghistostats <- function(
   x <- ensym(x)
   data <- tidyr::drop_na(select(data, {{ x }}))
   x_vec <- pull(data, {{ x }})
+  type <- stats_type_switch(type)
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    type <- stats_type_switch(type)
-
     .f.args <- list(
       data = data,
       x = {{ x }},

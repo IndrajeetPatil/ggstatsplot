@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "runtimePlatform": "R version 4.3.3 (2024-02-29)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -111,7 +111,7 @@
       "@type": "SoftwareApplication",
       "identifier": "lme4",
       "name": "lme4",
-      "version": ">= 1.1-35.1",
+      "version": ">= 1.1-35.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -303,7 +303,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.9.1",
+      "version": ">= 0.10.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -406,7 +406,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.8",
+      "version": ">= 0.19.10",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -432,7 +432,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.21.5",
+      "version": ">= 0.21.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -458,7 +458,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.10.9",
+      "version": ">= 0.11.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -501,20 +501,20 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.5.3.9000",
+      "version": ">= 1.5.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     "20": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
-      "version": ">= 1.3.0",
+      "version": ">= 1.3.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -530,7 +530,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9363.938KB",
+  "fileSize": "9363.846KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

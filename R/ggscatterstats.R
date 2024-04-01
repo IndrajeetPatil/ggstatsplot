@@ -108,17 +108,15 @@ ggscatterstats <- function(
     ...) {
   # data ---------------------------------------
 
-  # ensure the arguments work quoted or unquoted
+  # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
+  type <- stats_type_switch(type)
 
-  # data frame
   data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    type <- stats_type_switch(type)
-
     .f.args <- list(
       data = data,
       x = {{ x }},
@@ -145,7 +143,7 @@ ggscatterstats <- function(
   pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # scatterplot
-  plotScatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+  plot_scatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
     exec(geom_smooth, level = conf.level, !!!smooth.line.args, na.rm = TRUE)
 
@@ -158,7 +156,7 @@ ggscatterstats <- function(
     if (!quo_is_null(enquo(label.expression))) data %<>% filter(!!enexpr(label.expression))
 
     # display points labels using `geom_repel_label`
-    plotScatter <- plotScatter +
+    plot_scatter <- plot_scatter +
       exec(
         ggrepel::geom_label_repel,
         data = data,
@@ -171,7 +169,7 @@ ggscatterstats <- function(
 
   # annotations -------------------------------------
 
-  plotScatter <- plotScatter +
+  plot_scatter <- plot_scatter +
     labs(
       x        = xlab %||% as_name(x),
       y        = ylab %||% as_name(y),
@@ -185,14 +183,14 @@ ggscatterstats <- function(
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
-    plotScatter <- plotScatter +
+    plot_scatter <- plot_scatter +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }
 
-  plotScatter
+  plot_scatter
 }
 
 
@@ -224,7 +222,6 @@ ggscatterstats <- function(
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'
-#' # basic function call
 #' grouped_ggscatterstats(
 #'   data             = filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x                = length,
