@@ -109,7 +109,7 @@ references:
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=datawizard
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -136,7 +136,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.9.1'
+  version: '>= 0.10.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -312,7 +312,7 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2024'
-  version: '>= 0.19.8'
+  version: '>= 0.19.10'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -329,7 +329,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=parameters
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -355,7 +355,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.21.5'
+  version: '>= 0.21.6'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -374,7 +374,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=performance
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -405,7 +405,7 @@ references:
     email: remi.theriault@mail.mcgill.ca
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
-  version: '>= 0.10.9'
+  version: '>= 0.11.0'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -457,8 +457,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  version: '>= 1.5.3.9000'
   year: '2024'
+  version: '>= 1.5.4'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -475,7 +475,7 @@ references:
   - family-names: Girlich
     given-names: Maximilian
   year: '2024'
-  version: '>= 1.3.0'
+  version: '>= 1.3.1'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -567,7 +567,7 @@ references:
     given-names: Steven
     orcid: https://orcid.org/0000-0002-4394-9078
   year: '2024'
-  version: '>= 1.1-35.1'
+  version: '>= 1.1-35.2'
 - type: software
   title: MASS
   abstract: 'MASS: Support Functions and Datasets for Venables and Ripley''s MASS'
@@ -603,6 +603,13 @@ references:
     email: wvb@metafor-project.org
     orcid: https://orcid.org/0000-0003-3463-4063
   year: '2024'
+  identifiers:
+  - type: url
+    value: https://github.com/wviechtb/metafor
+  - type: url
+    value: https://wviechtb.github.io/metafor/
+  - type: url
+    value: https://www.wvbauer.com
 - type: software
   title: metaplus
   abstract: 'metaplus: Robust Meta-Analysis and Meta-Regression'
