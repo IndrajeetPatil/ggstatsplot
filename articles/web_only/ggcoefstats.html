@@ -313,23 +313,19 @@ have removed it. The old version can be found <a href="https://github.com/Indraj
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># lm model</span></span>
-<span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">rating</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">budget</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">movies_long</span><span class="op">)</span></span>
+<span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span>, data <span class="op">=</span> <span class="va">sleepstudy</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># merMod model</span></span>
-<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span></span>
-<span>  formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">rating</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">budget</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">budget</span> <span class="op">|</span> <span class="va">genre</span><span class="op">)</span>,</span>
-<span>  data <span class="op">=</span> <span class="va">movies_long</span>,</span>
-<span>  control <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html" class="external-link">lmerControl</a></span><span class="op">(</span>calc.derivs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
+<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span><span class="va">Reaction</span> <span class="op">~</span> <span class="va">Days</span> <span class="op">+</span> <span class="op">(</span><span class="va">Days</span> <span class="op">|</span> <span class="va">Subject</span><span class="op">)</span>, <span class="va">sleepstudy</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># combining the two different plots</span></span>
 <span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span></span>
 <span>  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'regression coefficient' ~italic(beta)"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'standardized regression coefficient' ~italic(beta)"</span><span class="op">)</span>,</span>
+<span>        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'regression coefficient' ~italic(beta)"</span><span class="op">)</span>,</span>
 <span>        y <span class="op">=</span> <span class="st">"fixed effects"</span></span>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
@@ -339,36 +335,8 @@ have removed it. The old version can be found <a href="https://github.com/Indraj
 <p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="100%"></p>
 <p>Note that for mixed-effects models, only the <em>fixed</em> effects
 are shown because there are no confidence intervals for <em>random</em>
-effects terms. In case, you would like to see these terms, you can enter
-the same object you entered as <code>x</code> argument to
-<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/parameters/" class="external-link">parameters</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># tidy output</span></span>
-<span><span class="fu">parameters</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">model_parameters</a></span><span class="op">(</span></span>
-<span>  <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmer.html" class="external-link">lmer</a></span><span class="op">(</span></span>
-<span>    formula <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">rating</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">budget</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">budget</span> <span class="op">|</span> <span class="va">genre</span><span class="op">)</span>,</span>
-<span>    data <span class="op">=</span> <span class="va">movies_long</span>,</span>
-<span>    control <span class="op">=</span> <span class="fu">lme4</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lme4/man/lmerControl.html" class="external-link">lmerControl</a></span><span class="op">(</span>calc.derivs <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; # Fixed Effects</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Parameter   | Coefficient |   SE |        95% CI | t(1573) |     p</span></span>
-<span><span class="co">#&gt; ------------------------------------------------------------------</span></span>
-<span><span class="co">#&gt; (Intercept) |       -0.06 | 0.14 | [-0.33, 0.20] |   -0.46 | 0.649</span></span>
-<span><span class="co">#&gt; budget      |        0.10 | 0.04 | [ 0.02, 0.19] |    2.50 | 0.013</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; # Random Effects</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Parameter                     | Coefficient</span></span>
-<span><span class="co">#&gt; -------------------------------------------</span></span>
-<span><span class="co">#&gt; SD (Intercept: genre)         |        0.43</span></span>
-<span><span class="co">#&gt; SD (budget: genre)            |    3.03e-03</span></span>
-<span><span class="co">#&gt; Cor (Intercept~budget: genre) |       -0.49</span></span>
-<span><span class="co">#&gt; SD (Residual)                 |        0.92</span></span></code></pre></div>
+effects terms. In case, you would like to see these terms, you can use
+<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>.</p>
 </div>
 <div class="section level3">
 <h3 id="z-statistic">
@@ -376,7 +344,7 @@ the same object you entered as <code>x</code> argument to
 </h3>
 <p>Aalen’s additive regression model for censored data
 (<code>aareg</code>)</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
@@ -399,7 +367,7 @@ the same object you entered as <code>x</code> argument to
 <span class="math inline">\(\chi^2\)</span>-statistic<a class="anchor" aria-label="anchor" href="#chi2-statistic"></a>
 </h3>
 <p>Cox proportional hazards regression model (<code>coxph</code>)</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create the simplest-test data set</span></span>
@@ -424,7 +392,7 @@ the same object you entered as <code>x</code> argument to
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/coxph-1.png" width="100%"></p>
 <p>Another example with <code>frailty</code> term.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
@@ -445,7 +413,7 @@ the same object you entered as <code>x</code> argument to
 <em>F</em>-statistic<a class="anchor" aria-label="anchor" href="#f-statistic"></a>
 </h3>
 <p>omnibus ANOVA (<code>aov</code>)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
@@ -468,7 +436,7 @@ the same object you entered as <code>x</code> argument to
 <p>Note that we can also use this function for model selection. You can
 try out different models with the code below and see how the AIC and BIC
 values change.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span></span>
 <span>  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="co"># model 1</span></span>
@@ -499,7 +467,7 @@ values change.</p>
 <div class="section level3">
 <h3 id="bayesian-models---no-statistic">Bayesian models - no statistic<a class="anchor" aria-label="anchor" href="#bayesian-models---no-statistic"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://richarddmorey.github.io/BayesFactor/" class="external-link">BayesFactor</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># one sample t-test</span></span>
@@ -567,7 +535,7 @@ values change.</p>
 class <code>list</code>, in which case this function will fail. But
 often you can extract the object of interest from this list and use it
 to plot the regression coefficients.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gamm4</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># data</span></span>
@@ -627,7 +595,7 @@ errors</li>
 <div class="section level3">
 <h3 id="parametric">parametric<a class="anchor" aria-label="anchor" href="#parametric"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -645,7 +613,7 @@ errors</li>
 <div class="section level3">
 <h3 id="robust">robust<a class="anchor" aria-label="anchor" href="#robust"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -662,7 +630,7 @@ errors</li>
 <div class="section level3">
 <h3 id="bayesian">Bayesian<a class="anchor" aria-label="anchor" href="#bayesian"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -693,7 +661,7 @@ to display statistical labels.</p>
 <p>You can also provide a data frame containing all the other relevant
 information for additionally displaying labels with statistical
 information.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># let's create a data frame</span></span>
 <span><span class="va">df_full</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">term</span>, <span class="op">~</span><span class="va">statistic</span>, <span class="op">~</span><span class="va">estimate</span>, <span class="op">~</span><span class="va">std.error</span>, <span class="op">~</span><span class="va">p.value</span>, <span class="op">~</span><span class="va">df.error</span>,</span>
@@ -720,7 +688,7 @@ information.</p>
 <p>This function can also be used to extract outputs other than a plot,
 although it is much more preferable to use the underlying functions
 instead (<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>).</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># data</span></span>
 <span><span class="va">DNase1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DNase</span>, <span class="va">Run</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
