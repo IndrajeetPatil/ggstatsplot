@@ -24,6 +24,8 @@ jobs:
         with:
           extra-packages: |
             any::roxygen2
+        needs:
+          - development
 
       - name: Ensure roxygen content matches manual directory
         run: |
