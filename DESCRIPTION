@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.12.3
+Version: 0.12.3.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -70,6 +70,8 @@ Suggests:
     vdiffr (>= 1.0.7),
     withr,
     WRS2
+Remotes:
+    tidyverse/ggplot2
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

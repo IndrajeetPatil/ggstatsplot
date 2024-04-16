@@ -1,14 +1,14 @@
-# -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v1.0.0
+# --------------------------------------------
+# CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# -----------------------------------------------------------
+# --------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.2.9000
+version: 0.12.3.9000
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -329,7 +329,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://CRAN.R-project.org/package=parameters
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -374,7 +374,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://CRAN.R-project.org/package=performance
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
