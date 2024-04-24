@@ -342,7 +342,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.5.0",
+      "version": ">= 3.5.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -368,7 +368,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.3.0",
+      "version": ">= 0.3.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -394,6 +394,7 @@
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
+      "version": ">= 1.7.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -484,6 +485,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
+      "version": ">= 1.1.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -530,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9363.868KB",
+  "fileSize": "9363.89KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
