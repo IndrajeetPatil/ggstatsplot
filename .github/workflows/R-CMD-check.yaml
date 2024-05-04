@@ -64,6 +64,8 @@ jobs:
       - name: Install packages from source
         run: |
           install.packages("Matrix", type = "source")
+          install.packages("lme4", type = "source")
+          install.packages("TMB", type = "source")
         shell: Rscript {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
@@ -73,6 +75,8 @@ jobs:
           extra-packages: |
             any::rcmdcheck
             Matrix=?ignore-before-r=100.0.0
+            lme4=?ignore-before-r=100.0.0
+            TMB=?ignore-before-r=100.0.0
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
