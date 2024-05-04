@@ -61,13 +61,18 @@ jobs:
           r-version: ${{ matrix.config.r }}
           use-public-rspm: true
 
+      - name: Install packages from source
+        run: |
+          install.packages("Matrix", type = "source")
+        shell: Rscript {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
           upgrade: 'TRUE'
           extra-packages: |
             any::rcmdcheck
-            Matrix=?reinstall
+            Matrix=?ignore-before-r=100.0.0
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
