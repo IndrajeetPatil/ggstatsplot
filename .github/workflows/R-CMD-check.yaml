@@ -67,6 +67,7 @@ jobs:
           upgrade: 'TRUE'
           extra-packages: |
             any::rcmdcheck
+            Matrix=?reinstall
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
