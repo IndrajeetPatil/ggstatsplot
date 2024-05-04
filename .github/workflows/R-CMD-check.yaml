@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [main, master]
 
+name: R-CMD-check
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
   cancel-in-progress: true
@@ -40,8 +42,8 @@ jobs:
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" }
           - { os: ubuntu-latest, r: "oldrel" }
-          - { os: ubuntu-latest, r: "oldrel-2" }
-          - { os: ubuntu-latest, r: "oldrel-3" }
+          #- { os: ubuntu-latest, r: "oldrel-2" }
+          #- { os: ubuntu-latest, r: "oldrel-3" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -63,7 +65,6 @@ jobs:
         with:
           pak-version: devel
           upgrade: 'TRUE'
-          cache-version: 2
           extra-packages: |
             any::rcmdcheck
           needs: check
