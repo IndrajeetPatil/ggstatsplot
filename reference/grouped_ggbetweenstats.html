@@ -92,14 +92,14 @@ using <code><a href="combine_plots.html">ggstatsplot::combine_plots</a></code>.<
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>data</dt>
+    <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="ggbetweenstats.html">ggbetweenstats</a></code></p><dl><dt><code>xlab</code></dt>
 <dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>x</code> will be used.</p></dd>
@@ -270,17 +270,17 @@ for the effect size (Default: <code>100L</code>).</p></dd>
 </dl></dd>
 
 
-<dt>grouping.var</dt>
+<dt id="arg-grouping-var">grouping.var<a class="anchor" aria-label="anchor" href="#arg-grouping-var"></a></dt>
 <dd><p>A single grouping variable.</p></dd>
 
 
-<dt>plotgrid.args</dt>
+<dt id="arg-plotgrid-args">plotgrid.args<a class="anchor" aria-label="anchor" href="#arg-plotgrid-args"></a></dt>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>, except for <code>guides</code> argument which is already
 separately specified here.</p></dd>
 
 
-<dt>annotation.args</dt>
+<dt id="arg-annotation-args">annotation.args<a class="anchor" aria-label="anchor" href="#arg-annotation-args"></a></dt>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">patchwork::plot_annotation()</a></code>.</p></dd>
 

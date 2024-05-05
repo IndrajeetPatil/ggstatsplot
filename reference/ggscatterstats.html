@@ -113,24 +113,24 @@ histogram) plots with statistical details.</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>data</dt>
+    <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
 
-<dt>x</dt>
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>The column in <code>data</code> containing the explanatory variable to be
 plotted on the <code>x</code>-axis.</p></dd>
 
 
-<dt>y</dt>
+<dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
 <dd><p>The column in <code>data</code> containing the response (outcome) variable to
 be plotted on the <code>y</code>-axis.</p></dd>
 
 
-<dt>type</dt>
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
@@ -138,13 +138,13 @@ be plotted on the <code>y</code>-axis.</p></dd>
 </ul><p>You can specify just the initial letter.</p></dd>
 
 
-<dt>conf.level</dt>
+<dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
 confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
 will be computed.</p></dd>
 
 
-<dt>bf.prior</dt>
+<dt id="arg-bf-prior">bf.prior<a class="anchor" aria-label="anchor" href="#arg-bf-prior"></a></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -153,19 +153,19 @@ of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.</p></dd>
 
 
-<dt>bf.message</dt>
+<dt id="arg-bf-message">bf.message<a class="anchor" aria-label="anchor" href="#arg-bf-message"></a></dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 
 
-<dt>tr</dt>
+<dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
 <dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
 
 
-<dt>digits</dt>
+<dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>Number of digits for rounding or significant figures. May also
 be <code>"signif"</code> to return significant figures or <code>"scientific"</code>
 to return scientific notation. Control the number of digits by adding the
@@ -174,36 +174,36 @@ notation with 4 decimal places, or <code>digits = "signif5"</code> for 5
 significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif()</a></code>).</p></dd>
 
 
-<dt>results.subtitle</dt>
+<dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
 <dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
 
 
-<dt>label.var</dt>
+<dt id="arg-label-var">label.var<a class="anchor" aria-label="anchor" href="#arg-label-var"></a></dt>
 <dd><p>Variable to use for points labels entered as a symbol (e.g.
 <code>var1</code>).</p></dd>
 
 
-<dt>label.expression</dt>
+<dt id="arg-label-expression">label.expression<a class="anchor" aria-label="anchor" href="#arg-label-expression"></a></dt>
 <dd><p>An expression evaluating to a logical vector that
 determines the subset of data points to label (e.g. <code>y &lt; 4 &amp; z &lt; 20</code>).
 While using this argument with <code><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">purrr::pmap()</a></code>, you will have to provide a
 quoted expression  (e.g. <code>quote(y &lt; 4 &amp; z &lt; 20)</code>).</p></dd>
 
 
-<dt>marginal</dt>
+<dt id="arg-marginal">marginal<a class="anchor" aria-label="anchor" href="#arg-marginal"></a></dt>
 <dd><p>Decides whether marginal distributions will be plotted on
 axes using <code>ggside</code> functions. The default is <code>TRUE</code>. The package
 <code>ggside</code> must already be installed by the user.</p></dd>
 
 
-<dt>point.args</dt>
+<dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed
 to <code>geom_point</code> geom used to display the raw data points.</p></dd>
 
 
-<dt>point.width.jitter, point.height.jitter</dt>
+<dt id="arg-point-width-jitter-point-height-jitter">point.width.jitter, point.height.jitter<a class="anchor" aria-label="anchor" href="#arg-point-width-jitter-point-height-jitter"></a></dt>
 <dd><p>Degree of jitter in <code>x</code> and <code>y</code>
 direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
 data. Note that the jitter should not be specified in the <code>point.args</code>
@@ -212,47 +212,47 @@ displaying the <strong>points</strong> and the other displaying the *<strong>lab
 these points.</p></dd>
 
 
-<dt>point.label.args</dt>
+<dt id="arg-point-label-args">point.label.args<a class="anchor" aria-label="anchor" href="#arg-point-label-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed
 to <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
 
 
-<dt>smooth.line.args</dt>
+<dt id="arg-smooth-line-args">smooth.line.args<a class="anchor" aria-label="anchor" href="#arg-smooth-line-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed
 to <code>geom_smooth</code> geom used to display the regression line.</p></dd>
 
 
-<dt>xsidehistogram.args, ysidehistogram.args</dt>
+<dt id="arg-xsidehistogram-args-ysidehistogram-args">xsidehistogram.args, ysidehistogram.args<a class="anchor" aria-label="anchor" href="#arg-xsidehistogram-args-ysidehistogram-args"></a></dt>
 <dd><p>A list of arguments passed to
 respective <code>geom_</code>s from the <code>{ggside}</code> package to change the marginal
 distribution histograms plots.</p></dd>
 
 
-<dt>xlab</dt>
+<dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
 <dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>x</code> will be used.</p></dd>
 
 
-<dt>ylab</dt>
+<dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
 <dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>y</code> will be used.</p></dd>
 
 
-<dt>title</dt>
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
 <dd><p>The text for the plot title.</p></dd>
 
 
-<dt>subtitle</dt>
+<dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
 <dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
 
 
-<dt>caption</dt>
+<dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>
 
 
-<dt>ggtheme</dt>
+<dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
 <code><a href="theme_ggstatsplot.html">ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
 <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>), or themes from extension packages are allowed (e.g.,
@@ -265,14 +265,14 @@ on the secondary Y-axis. Some themes (e.g.
 thus the details as well.</p></dd>
 
 
-<dt>ggplot.component</dt>
+<dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
 <dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Currently ignored.</p></dd>
 
 </dl></div>

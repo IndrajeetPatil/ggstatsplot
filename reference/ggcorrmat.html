@@ -113,27 +113,27 @@ used with output from <code><a href="https://dplyr.tidyverse.org/reference/group
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>data</dt>
+    <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame from which variables specified are to be taken.</p></dd>
 
 
-<dt>cor.vars</dt>
+<dt id="arg-cor-vars">cor.vars<a class="anchor" aria-label="anchor" href="#arg-cor-vars"></a></dt>
 <dd><p>List of variables for which the correlation matrix is to be
 computed and visualized. If <code>NULL</code> (default), all numeric variables from
 <code>data</code> will be used.</p></dd>
 
 
-<dt>cor.vars.names</dt>
+<dt id="arg-cor-vars-names">cor.vars.names<a class="anchor" aria-label="anchor" href="#arg-cor-vars-names"></a></dt>
 <dd><p>Optional list of names to be used for <code>cor.vars</code>. The
 names should be entered in the same order.</p></dd>
 
 
-<dt>matrix.type</dt>
+<dt id="arg-matrix-type">matrix.type<a class="anchor" aria-label="anchor" href="#arg-matrix-type"></a></dt>
 <dd><p>Character, <code>"upper"</code> (default), <code>"lower"</code>, or <code>"full"</code>,
 display full matrix, lower triangular or upper triangular matrix.</p></dd>
 
 
-<dt>type</dt>
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
@@ -141,19 +141,19 @@ display full matrix, lower triangular or upper triangular matrix.</p></dd>
 </ul><p>You can specify just the initial letter.</p></dd>
 
 
-<dt>tr</dt>
+<dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
 <dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
 
 
-<dt>partial</dt>
+<dt id="arg-partial">partial<a class="anchor" aria-label="anchor" href="#arg-partial"></a></dt>
 <dd><p>Can be <code>TRUE</code> for partial correlations. For Bayesian partial
 correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
 Bayesian correlation based on frequentist partialization) are returned.</p></dd>
 
 
-<dt>digits</dt>
+<dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>Number of digits for rounding or significant figures. May also
 be <code>"signif"</code> to return significant figures or <code>"scientific"</code>
 to return scientific notation. Control the number of digits by adding the
@@ -162,20 +162,20 @@ notation with 4 decimal places, or <code>digits = "signif5"</code> for 5
 significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif()</a></code>).</p></dd>
 
 
-<dt>sig.level</dt>
+<dt id="arg-sig-level">sig.level<a class="anchor" aria-label="anchor" href="#arg-sig-level"></a></dt>
 <dd><p>Significance level (Default: <code>0.05</code>). If the <em>p</em>-value in
 <em>p</em>-value matrix is bigger than <code>sig.level</code>, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot.</p></dd>
 
 
-<dt>conf.level</dt>
+<dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
 confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
 will be computed.</p></dd>
 
 
-<dt>bf.prior</dt>
+<dt id="arg-bf-prior">bf.prior<a class="anchor" aria-label="anchor" href="#arg-bf-prior"></a></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -184,18 +184,18 @@ of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.</p></dd>
 
 
-<dt>p.adjust.method</dt>
+<dt id="arg-p-adjust-method">p.adjust.method<a class="anchor" aria-label="anchor" href="#arg-p-adjust-method"></a></dt>
 <dd><p>Adjustment method for <em>p</em>-values for multiple
 comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
 
 
-<dt>pch</dt>
+<dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
 <dd><p>Decides the point shape to be used for insignificant correlation
 coefficients (only valid when <code>insig = "pch"</code>). Default: <code>pch = "cross"</code>.</p></dd>
 
 
-<dt>ggcorrplot.args</dt>
+<dt id="arg-ggcorrplot-args">ggcorrplot.args<a class="anchor" aria-label="anchor" href="#arg-ggcorrplot-args"></a></dt>
 <dd><p>A list of additional (mostly aesthetic) arguments that
 will be passed to <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot()</a></code> function. The list should avoid
 any of the following arguments since they are already internally being
@@ -203,19 +203,19 @@ used: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.leve
 <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
 
 
-<dt>package, palette</dt>
+<dt id="arg-package-palette">package, palette<a class="anchor" aria-label="anchor" href="#arg-package-palette"></a></dt>
 <dd><p>Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 <code>View(paletteer::palettes_d_names)</code>.</p></dd>
 
 
-<dt>colors</dt>
+<dt id="arg-colors">colors<a class="anchor" aria-label="anchor" href="#arg-colors"></a></dt>
 <dd><p>A vector of 3 colors for low, mid, and high correlation values.
 If set to <code>NULL</code>, manual specification of colors will be turned off and 3
 colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></dd>
 
 
-<dt>ggtheme</dt>
+<dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
 <code><a href="theme_ggstatsplot.html">ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
 <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>), or themes from extension packages are allowed (e.g.,
@@ -228,28 +228,28 @@ on the secondary Y-axis. Some themes (e.g.
 thus the details as well.</p></dd>
 
 
-<dt>ggplot.component</dt>
+<dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
 <dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
 
-<dt>title</dt>
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
 <dd><p>The text for the plot title.</p></dd>
 
 
-<dt>subtitle</dt>
+<dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
 <dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
 
 
-<dt>caption</dt>
+<dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Currently ignored.</p></dd>
 
 </dl></div>

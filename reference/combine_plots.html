@@ -98,22 +98,22 @@ is exported only for backward compatibility.</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>plotlist</dt>
+    <dl><dt id="arg-plotlist">plotlist<a class="anchor" aria-label="anchor" href="#arg-plotlist"></a></dt>
 <dd><p>A list containing <code>ggplot</code> objects.</p></dd>
 
 
-<dt>plotgrid.args</dt>
+<dt id="arg-plotgrid-args">plotgrid.args<a class="anchor" aria-label="anchor" href="#arg-plotgrid-args"></a></dt>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>, except for <code>guides</code> argument which is already
 separately specified here.</p></dd>
 
 
-<dt>annotation.args</dt>
+<dt id="arg-annotation-args">annotation.args<a class="anchor" aria-label="anchor" href="#arg-annotation-args"></a></dt>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">patchwork::plot_annotation()</a></code>.</p></dd>
 
 
-<dt>guides</dt>
+<dt id="arg-guides">guides<a class="anchor" aria-label="anchor" href="#arg-guides"></a></dt>
 <dd><p>A string specifying how guides should be treated in the layout.
 <code>'collect'</code> will collect guides below to the given nesting level, removing
 duplicates. <code>'keep'</code> will stop collection at this level and let guides be
@@ -124,7 +124,7 @@ while also collecting guides you must apply that change to the overall
 patchwork (see example).</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Currently ignored.</p></dd>
 
 </dl></div>

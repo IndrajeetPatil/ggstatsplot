@@ -94,22 +94,22 @@ using <code><a href="combine_plots.html">ggstatsplot::combine_plots</a></code>.<
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>data</dt>
+    <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
 
-<dt>x</dt>
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A numeric variable from the data frame <code>data</code>.</p></dd>
 
 
-<dt>grouping.var</dt>
+<dt id="arg-grouping-var">grouping.var<a class="anchor" aria-label="anchor" href="#arg-grouping-var"></a></dt>
 <dd><p>A single grouping variable.</p></dd>
 
 
-<dt>binwidth</dt>
+<dt id="arg-binwidth">binwidth<a class="anchor" aria-label="anchor" href="#arg-binwidth"></a></dt>
 <dd><p>The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from <code>x</code>. The default is
 to use the <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value
@@ -117,18 +117,18 @@ and explore multiple widths to find the best to illustrate the stories in
 your data.</p></dd>
 
 
-<dt>plotgrid.args</dt>
+<dt id="arg-plotgrid-args">plotgrid.args<a class="anchor" aria-label="anchor" href="#arg-plotgrid-args"></a></dt>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>, except for <code>guides</code> argument which is already
 separately specified here.</p></dd>
 
 
-<dt>annotation.args</dt>
+<dt id="arg-annotation-args">annotation.args<a class="anchor" aria-label="anchor" href="#arg-annotation-args"></a></dt>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">patchwork::plot_annotation()</a></code>.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to <code><a href="gghistostats.html">gghistostats</a></code></p><dl><dt><code>normal.curve</code></dt>
 <dd><p>A logical value that decides whether to super-impose a
 normal curve using <code>stats::dnorm(mean(x), stats::sd(x))</code>. Default is <code>FALSE</code>.</p></dd>

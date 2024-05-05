@@ -109,18 +109,18 @@ as a subtitle.</p>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>data</dt>
+    <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
 be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
 
-<dt>x</dt>
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A numeric variable from the data frame <code>data</code>.</p></dd>
 
 
-<dt>binwidth</dt>
+<dt id="arg-binwidth">binwidth<a class="anchor" aria-label="anchor" href="#arg-binwidth"></a></dt>
 <dd><p>The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from <code>x</code>. The default is
 to use the <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value
@@ -128,26 +128,26 @@ and explore multiple widths to find the best to illustrate the stories in
 your data.</p></dd>
 
 
-<dt>xlab</dt>
+<dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
 <dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>x</code> will be used.</p></dd>
 
 
-<dt>title</dt>
+<dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
 <dd><p>The text for the plot title.</p></dd>
 
 
-<dt>subtitle</dt>
+<dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
 <dd><p>The text for the plot subtitle. Will work only if
 <code>results.subtitle = FALSE</code>.</p></dd>
 
 
-<dt>caption</dt>
+<dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
 <dd><p>The text for the plot caption. This argument is relevant only
 if <code>bf.message = FALSE</code>.</p></dd>
 
 
-<dt>type</dt>
+<dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
 <dd><p>A character specifying the type of statistical approach:</p><ul><li><p><code>"parametric"</code></p></li>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
@@ -155,12 +155,12 @@ if <code>bf.message = FALSE</code>.</p></dd>
 </ul><p>You can specify just the initial letter.</p></dd>
 
 
-<dt>test.value</dt>
+<dt id="arg-test-value">test.value<a class="anchor" aria-label="anchor" href="#arg-test-value"></a></dt>
 <dd><p>A number indicating the true value of the mean (Default:
 <code>0</code>).</p></dd>
 
 
-<dt>bf.prior</dt>
+<dt id="arg-bf-prior">bf.prior<a class="anchor" aria-label="anchor" href="#arg-bf-prior"></a></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -169,30 +169,30 @@ of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
 corresponds to scale for fixed effects.</p></dd>
 
 
-<dt>bf.message</dt>
+<dt id="arg-bf-message">bf.message<a class="anchor" aria-label="anchor" href="#arg-bf-message"></a></dt>
 <dd><p>Logical that decides whether to display Bayes Factor in
 favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
 parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 
 
-<dt>effsize.type</dt>
+<dt id="arg-effsize-type">effsize.type<a class="anchor" aria-label="anchor" href="#arg-effsize-type"></a></dt>
 <dd><p>Type of effect size needed for <em>parametric</em> tests. The
 argument can be <code>"d"</code> (for Cohen's <em>d</em>) or <code>"g"</code> (for Hedge's <em>g</em>).</p></dd>
 
 
-<dt>conf.level</dt>
+<dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
 confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
 will be computed.</p></dd>
 
 
-<dt>tr</dt>
+<dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
 <dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
 
 
-<dt>digits</dt>
+<dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>Number of digits for rounding or significant figures. May also
 be <code>"signif"</code> to return significant figures or <code>"scientific"</code>
 to return scientific notation. Control the number of digits by adding the
@@ -201,7 +201,7 @@ notation with 4 decimal places, or <code>digits = "signif5"</code> for 5
 significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif()</a></code>).</p></dd>
 
 
-<dt>ggtheme</dt>
+<dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
 <code><a href="theme_ggstatsplot.html">ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
 <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>), or themes from extension packages are allowed (e.g.,
@@ -214,19 +214,19 @@ on the secondary Y-axis. Some themes (e.g.
 thus the details as well.</p></dd>
 
 
-<dt>results.subtitle</dt>
+<dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
 <dd><p>Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
 the plot will be returned.</p></dd>
 
 
-<dt>bin.args</dt>
+<dt id="arg-bin-args">bin.args<a class="anchor" aria-label="anchor" href="#arg-bin-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to the
 <code>stat_bin</code> used to display the bins. Do not specify <code>binwidth</code> argument in
 this list since it has already been specified using the dedicated argument.</p></dd>
 
 
-<dt>centrality.plotting</dt>
+<dt id="arg-centrality-plotting">centrality.plotting<a class="anchor" aria-label="anchor" href="#arg-centrality-plotting"></a></dt>
 <dd><p>Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: <code>TRUE</code>).
 Function decides which central tendency measure to show depending on the
@@ -238,7 +238,7 @@ Function decides which central tendency measure to show depending on the
 <code>centrality.type</code> argument.</p></dd>
 
 
-<dt>centrality.type</dt>
+<dt id="arg-centrality-type">centrality.type<a class="anchor" aria-label="anchor" href="#arg-centrality-type"></a></dt>
 <dd><p>Decides which centrality parameter is to be displayed.
 The default is to choose the same as <code>type</code> argument. You can specify this
 to be:</p><ul><li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p></li>
@@ -248,30 +248,30 @@ to be:</p><ul><li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p><
 </ul><p>Just as <code>type</code> argument, abbreviations are also accepted.</p></dd>
 
 
-<dt>centrality.line.args</dt>
+<dt id="arg-centrality-line-args">centrality.line.args<a class="anchor" aria-label="anchor" href="#arg-centrality-line-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be
 passed to the <code>geom_line</code> used to display the lines corresponding to the
 centrality parameter.</p></dd>
 
 
-<dt>normal.curve</dt>
+<dt id="arg-normal-curve">normal.curve<a class="anchor" aria-label="anchor" href="#arg-normal-curve"></a></dt>
 <dd><p>A logical value that decides whether to super-impose a
 normal curve using <code>stats::dnorm(mean(x), stats::sd(x))</code>. Default is <code>FALSE</code>.</p></dd>
 
 
-<dt>normal.curve.args</dt>
+<dt id="arg-normal-curve-args">normal.curve.args<a class="anchor" aria-label="anchor" href="#arg-normal-curve-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be
 passed to the normal curve.</p></dd>
 
 
-<dt>ggplot.component</dt>
+<dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
 <dd><p>A <code>ggplot</code> component to be added to the plot prepared
 by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
 variants of all primary functions. Default is <code>NULL</code>. The argument should
 be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Currently ignored.</p></dd>
 
 </dl></div>
