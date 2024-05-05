@@ -8,6 +8,10 @@ on:
 
 name: R-CMD-check
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
@@ -18,22 +22,29 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # Checks are not run on R-devel because they are already run in
-          # `R-CMD-check-strict` workflow
+          #- {os: macOS-latest, r: 'devel'}
+          - { os: macOS-latest, r: "release" }
+          - { os: macOS-latest, r: "oldrel" }
+          #- {os: macOS-latest, r: 'oldrel-2'}
+          #- {os: macOS-latest, r: 'oldrel-3'}
 
-          #- { os: macos-latest,   r: 'devel' }
-          #- { os: macos-latest, r: "release" }
-          - { os: macos-latest, r: "oldrel-1" }
-
+          # TODO: turn on windows-devel when stringi#508 is fixed
           #- { os: windows-latest, r: "next" }
           #- { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
-          #- { os: windows-latest, r: "oldrel-1" }
+          - { os: windows-latest, r: "oldrel" }
+          #- {os: windows-latest, r: 'oldrel-2'}
+          #- {os: windows-latest, r: 'oldrel-3'}
+
+          # use 4.1 to check with rtools40's older compiler
+          #- { os: windows-latest, r: "4.1" }
 
           #- { os: ubuntu-latest, r: "next" }
-          #- { os: ubuntu-latest, r: "devel" }
-          #- { os: ubuntu-latest, r: "release" }
-          #- { os: ubuntu-latest, r: "oldrel-1" }
+          - { os: ubuntu-latest, r: "devel" }
+          - { os: ubuntu-latest, r: "release" }
+          #- { os: ubuntu-latest, r: "oldrel" }
+          #- { os: ubuntu-latest, r: "oldrel-2" }
+          #- { os: ubuntu-latest, r: "oldrel-3" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -55,10 +66,26 @@ jobs:
         with:
           pak-version: devel
           upgrade: 'TRUE'
+          cache-version: 99
           extra-packages: |
             any::rcmdcheck
+            Matrix=?ignore-before-r=100.0.0
+            lme4=?ignore-before-r=100.0.0
+            TMB=?ignore-before-r=100.0.0
           needs: check
+
+      - name: Install packages from source
+        run: |
+          utils::install.packages(c("Matrix", "lme4", "TMB"), type = "source")
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+          upload-results: true
+          error-on: 'ifelse(getRversion() > "4.3", "note", "warning")'
+        env:
+          _R_CHECK_CRAN_INCOMING_REMOTE_: false
+          _R_CHECK_CRAN_INCOMING_: false
+          _R_CHECK_FORCE_SUGGESTS_: false
+          _R_CHECK_STOP_ON_INVALID_NUMERIC_VERSION_INPUTS_: true
