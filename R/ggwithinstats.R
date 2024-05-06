@@ -201,7 +201,7 @@ ggwithinstats <- function(
       tr = tr,
       paired = TRUE,
       p.adjust.method = p.adjust.method,
-      digits = digits,
+      digits = digits
     )
 
     # adding the layer for pairwise comparisons
