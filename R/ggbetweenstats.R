@@ -261,7 +261,7 @@ ggbetweenstats <- function(
       paired = FALSE,
       var.equal = var.equal,
       p.adjust.method = p.adjust.method,
-      digits = digits,
+      digits = digits
     )
 
     # adding the layer for pairwise comparisons
