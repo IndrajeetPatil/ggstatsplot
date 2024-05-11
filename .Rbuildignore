@@ -9,6 +9,7 @@
 ^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
 ^LICENSE\.md$
+^Makefile$
 ^Meta$
 ^NEWS$
 ^README-.*\.png$

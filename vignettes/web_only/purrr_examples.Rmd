@@ -1,10 +1,10 @@
 ---
-title: "Using '{ggstatsplot}' with the '{purrr}' package"
+title: "Using 'ggstatsplot' with the 'purrr' package"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Using '{ggstatsplot}' with the '{purrr}' package}
+  %\VignetteIndexEntry{Using 'ggstatsplot' with the 'purrr' package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
