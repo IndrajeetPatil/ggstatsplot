@@ -4,7 +4,7 @@ output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{using '{ggstatsplot}' with the '{purrr}' package}
+  %\VignetteIndexEntry{Using '{ggstatsplot}' with the '{purrr}' package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
