@@ -77,54 +77,52 @@
 #' extract_stats(p)
 #'
 #' @export
-ggscatterstats <- function(data,
-                           x,
-                           y,
-                           type = "parametric",
-                           conf.level = 0.95,
-                           bf.prior = 0.707,
-                           bf.message = TRUE,
-                           tr = 0.2,
-                           k = 2L,
-                           results.subtitle = TRUE,
-                           label.var = NULL,
-                           label.expression = NULL,
-                           marginal = TRUE,
-                           point.args = list(size = 3, alpha = 0.4, stroke = 0),
-                           point.width.jitter = 0,
-                           point.height.jitter = 0,
-                           point.label.args = list(size = 3, max.overlaps = 1e6),
-                           smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
-                           xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
-                           ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
-                           xlab = NULL,
-                           ylab = NULL,
-                           title = NULL,
-                           subtitle = NULL,
-                           caption = NULL,
-                           ggtheme = ggstatsplot::theme_ggstatsplot(),
-                           ggplot.component = NULL,
-                           ...) {
+ggscatterstats <- function(
+    data,
+    x,
+    y,
+    type = "parametric",
+    conf.level = 0.95,
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    tr = 0.2,
+    digits = 2L,
+    results.subtitle = TRUE,
+    label.var = NULL,
+    label.expression = NULL,
+    marginal = TRUE,
+    point.args = list(size = 3, alpha = 0.4, stroke = 0),
+    point.width.jitter = 0,
+    point.height.jitter = 0,
+    point.label.args = list(size = 3, max.overlaps = 1e6),
+    smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
+    xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
+    ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+    xlab = NULL,
+    ylab = NULL,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    ggplot.component = NULL,
+    ...) {
   # data ---------------------------------------
 
-  # ensure the arguments work quoted or unquoted
+  # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
+  type <- stats_type_switch(type)
 
-  # data frame
   data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    type <- stats_type_switch(type)
-
-
     .f.args <- list(
       data = data,
       x = {{ x }},
       y = {{ y }},
       conf.level = conf.level,
-      k = k,
+      digits = digits,
       tr = tr,
       bf.prior = bf.prior
     )
@@ -145,7 +143,7 @@ ggscatterstats <- function(data,
   pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
 
   # scatterplot
-  plotScatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+  plot_scatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
     exec(geom_smooth, level = conf.level, !!!smooth.line.args, na.rm = TRUE)
 
@@ -158,7 +156,7 @@ ggscatterstats <- function(data,
     if (!quo_is_null(enquo(label.expression))) data %<>% filter(!!enexpr(label.expression))
 
     # display points labels using `geom_repel_label`
-    plotScatter <- plotScatter +
+    plot_scatter <- plot_scatter +
       exec(
         ggrepel::geom_label_repel,
         data = data,
@@ -171,7 +169,7 @@ ggscatterstats <- function(data,
 
   # annotations -------------------------------------
 
-  plotScatter <- plotScatter +
+  plot_scatter <- plot_scatter +
     labs(
       x        = xlab %||% as_name(x),
       y        = ylab %||% as_name(y),
@@ -185,14 +183,14 @@ ggscatterstats <- function(data,
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
-    plotScatter <- plotScatter +
+    plot_scatter <- plot_scatter +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }
 
-  plotScatter
+  plot_scatter
 }
 
 
@@ -224,7 +222,6 @@ ggscatterstats <- function(data,
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'
-#' # basic function call
 #' grouped_ggscatterstats(
 #'   data             = filter(movies_long, genre == "Comedy" | genre == "Drama"),
 #'   x                = length,
@@ -258,11 +255,12 @@ ggscatterstats <- function(data,
 #'   annotation.args = list(tag_levels = "a")
 #' )
 #' @export
-grouped_ggscatterstats <- function(data,
-                                   ...,
-                                   grouping.var,
-                                   plotgrid.args = list(),
-                                   annotation.args = list()) {
+grouped_ggscatterstats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggscatterstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

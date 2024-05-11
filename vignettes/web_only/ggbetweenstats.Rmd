@@ -227,7 +227,7 @@ p3 <- ggbetweenstats(
   tr = 0.005,
   package = "wesanderson",
   palette = "Royal2",
-  k = 3
+  digits = 3
 )
 
 ## Bayes Factor for parametric t-test and boxviolin plot

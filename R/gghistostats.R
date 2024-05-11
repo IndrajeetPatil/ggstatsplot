@@ -58,54 +58,51 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #' @export
-gghistostats <- function(data,
-                         x,
-                         binwidth = NULL,
-                         xlab = NULL,
-                         title = NULL,
-                         subtitle = NULL,
-                         caption = NULL,
-                         type = "parametric",
-                         test.value = 0,
-                         bf.prior = 0.707,
-                         bf.message = TRUE,
-                         effsize.type = "g",
-                         conf.level = 0.95,
-                         tr = 0.2,
-                         k = 2L,
-                         ggtheme = ggstatsplot::theme_ggstatsplot(),
-                         results.subtitle = TRUE,
-                         bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
-                         centrality.plotting = TRUE,
-                         centrality.type = type,
-                         centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
-                         normal.curve = FALSE,
-                         normal.curve.args = list(linewidth = 2),
-                         ggplot.component = NULL,
-                         ...) {
+gghistostats <- function(
+    data,
+    x,
+    binwidth = NULL,
+    xlab = NULL,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    type = "parametric",
+    test.value = 0,
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    effsize.type = "g",
+    conf.level = 0.95,
+    tr = 0.2,
+    digits = 2L,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    results.subtitle = TRUE,
+    bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
+    centrality.plotting = TRUE,
+    centrality.type = type,
+    centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+    normal.curve = FALSE,
+    normal.curve.args = list(linewidth = 2),
+    ggplot.component = NULL,
+    ...) {
   # data -----------------------------------
 
   x <- ensym(x)
   data <- tidyr::drop_na(select(data, {{ x }}))
-
-  # extract a vector for convenience
-  x_vec <- data %>% pull({{ x }})
+  x_vec <- pull(data, {{ x }})
+  type <- stats_type_switch(type)
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    type <- stats_type_switch(type)
-
-
     .f.args <- list(
-      data         = data,
-      x            = {{ x }},
-      test.value   = test.value,
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
       effsize.type = effsize.type,
-      conf.level   = conf.level,
-      k            = k,
-      tr           = tr,
-      bf.prior     = bf.prior
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior
     )
 
     # subtitle with statistical results
@@ -121,7 +118,7 @@ gghistostats <- function(data,
 
   # plot -----------------------------------
 
-  plot <- ggplot(data, mapping = aes(x = {{ x }})) +
+  plot_hist <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
       mapping  = aes(y = after_stat(count), fill = after_stat(count)),
@@ -130,16 +127,16 @@ gghistostats <- function(data,
     ) +
     scale_y_continuous(
       sec.axis = sec_axis(
-        trans  = ~ . / nrow(data),
+        transform = ~ . / nrow(data),
         labels = function(x) insight::format_percent(x, digits = 0L),
-        name   = "proportion"
+        name = "proportion"
       )
     ) +
     guides(fill = "none")
 
   # if normal curve overlay needs to be displayed
   if (normal.curve) {
-    plot <- plot +
+    plot_hist <- plot_hist +
       exec(
         stat_function,
         fun  = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
@@ -151,19 +148,19 @@ gghistostats <- function(data,
   # centrality plotting -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- .histo_labeller(
-      plot,
-      x                    = x_vec,
-      type                 = stats_type_switch(centrality.type),
-      tr                   = tr,
-      k                    = k,
+    plot_hist <- .histo_labeller(
+      plot_hist,
+      x = x_vec,
+      type = stats_type_switch(centrality.type),
+      tr = tr,
+      digits = digits,
       centrality.line.args = centrality.line.args
     )
   }
 
   # annotations -------------------------------
 
-  plot +
+  plot_hist +
     labs(
       x        = xlab %||% as_name(x),
       y        = "count",
@@ -215,18 +212,19 @@ gghistostats <- function(data,
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export
-grouped_gghistostats <- function(data,
-                                 x,
-                                 grouping.var,
-                                 binwidth = NULL,
-                                 plotgrid.args = list(),
-                                 annotation.args = list(),
-                                 ...) {
+grouped_gghistostats <- function(
+    data,
+    x,
+    grouping.var,
+    binwidth = NULL,
+    plotgrid.args = list(),
+    annotation.args = list(),
+    ...) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(
       .f = gghistostats,
       x = {{ x }},
-      binwidth = binwidth %||% .binwidth(data %>% pull({{ x }})),
+      binwidth = binwidth %||% .binwidth(pull(data, {{ x }})),
       ...
     ) %>%
     combine_plots(plotgrid.args, annotation.args)

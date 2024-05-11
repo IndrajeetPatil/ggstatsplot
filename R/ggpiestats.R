@@ -22,7 +22,7 @@
 #' @param proportion.test Decides whether proportion test for `x` variable is to
 #'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
 #'   `ggbarstats`, only *p*-values from this test will be displayed.
-#' @param perc.k Numeric that decides number of decimal places for percentage
+#' @param digits.perc Numeric that decides number of decimal places for percentage
 #'   labels (Default: `0L`).
 #' @param label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
@@ -63,41 +63,41 @@
 #' ggpiestats(mtcars, vs, cyl)
 #'
 #' @export
-ggpiestats <- function(data,
-                       x,
-                       y = NULL,
-                       counts = NULL,
-                       type = "parametric",
-                       paired = FALSE,
-                       results.subtitle = TRUE,
-                       label = "percentage",
-                       label.args = list(direction = "both"),
-                       label.repel = FALSE,
-                       k = 2L,
-                       proportion.test = results.subtitle,
-                       perc.k = 0L,
-                       bf.message = TRUE,
-                       ratio = NULL,
-                       conf.level = 0.95,
-                       sampling.plan = "indepMulti",
-                       fixed.margin = "rows",
-                       prior.concentration = 1,
-                       title = NULL,
-                       subtitle = NULL,
-                       caption = NULL,
-                       legend.title = NULL,
-                       ggtheme = ggstatsplot::theme_ggstatsplot(),
-                       package = "RColorBrewer",
-                       palette = "Dark2",
-                       ggplot.component = NULL,
-                       ...) {
+ggpiestats <- function(
+    data,
+    x,
+    y = NULL,
+    counts = NULL,
+    type = "parametric",
+    paired = FALSE,
+    results.subtitle = TRUE,
+    label = "percentage",
+    label.args = list(direction = "both"),
+    label.repel = FALSE,
+    digits = 2L,
+    proportion.test = results.subtitle,
+    digits.perc = 0L,
+    bf.message = TRUE,
+    ratio = NULL,
+    conf.level = 0.95,
+    sampling.plan = "indepMulti",
+    fixed.margin = "rows",
+    prior.concentration = 1,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    legend.title = NULL,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggplot.component = NULL,
+    ...) {
   # data frame ------------------------------------------
-
-  type <- stats_type_switch(type)
 
   # ensure the variables work quoted or unquoted
   x <- ensym(x)
   y <- if (!quo_is_null(enquo(y))) ensym(y)
+  type <- stats_type_switch(type)
 
   # one-way or two-way table?
   test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
@@ -111,8 +111,8 @@ ggpiestats <- function(data,
 
   # x and y need to be a factor; also drop the unused levels of the factors
   data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
-  x_levels <- nlevels(data %>% pull({{ x }}))
-  y_levels <- ifelse(test == "one.way", 0L, nlevels(data %>% pull({{ y }})))
+  x_levels <- nlevels(pull(data, {{ x }}))
+  y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
 
   # TODO: one-way table in `BayesFactor` (richarddmorey/BayesFactor#159)
   if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
@@ -125,15 +125,15 @@ ggpiestats <- function(data,
 
   if (results.subtitle) {
     .f.args <- list(
-      data                = data,
-      x                   = {{ x }},
-      y                   = {{ y }},
-      conf.level          = conf.level,
-      k                   = k,
-      paired              = paired,
-      ratio               = ratio,
-      sampling.plan       = sampling.plan,
-      fixed.margin        = fixed.margin,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      conf.level = conf.level,
+      digits = digits,
+      paired = paired,
+      ratio = ratio,
+      sampling.plan = sampling.plan,
+      fixed.margin = fixed.margin,
       prior.concentration = prior.concentration
     )
 
@@ -150,10 +150,10 @@ ggpiestats <- function(data,
   # plot ------------------------------------------
 
   # data frame with summary labels
-  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, perc.k)
+  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
 
   # data frame containing all details needed for proportion test
-  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, k)
+  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits)
 
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(package, palette, min_length = x_levels)
@@ -249,11 +249,12 @@ ggpiestats <- function(data,
 #' # grouped one-sample proportion test
 #' grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
 #' @export
-grouped_ggpiestats <- function(data,
-                               ...,
-                               grouping.var,
-                               plotgrid.args = list(),
-                               annotation.args = list()) {
+grouped_ggpiestats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggpiestats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

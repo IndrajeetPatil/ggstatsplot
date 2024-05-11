@@ -1,8 +1,8 @@
 # checking default outputs -----------------------------------------
 
 test_that(
-  desc = "checking default outputs",
-  code = {
+  "checking default outputs",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "parametric - without NA",
@@ -12,7 +12,7 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "robust - with NA",
-      fig = gghistostats(dplyr::starwars, height, test.value = 150, type = "r")
+      fig = gghistostats(ggplot2::msleep, sleep_total, test.value = 10, type = "r")
     )
   }
 )
@@ -20,17 +20,17 @@ test_that(
 # aesthetic modifications work --------------------------------------
 
 test_that(
-  desc = "aesthetic modifications work",
-  code = {
+  "aesthetic modifications work",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "aesthetic modifications work",
       fig = gghistostats(
-        data = dplyr::starwars,
-        x = height,
-        xlab = "character height",
-        title = "starwars: character heights",
-        binwidth = 20,
+        data = mtcars,
+        x = wt,
+        xlab = "weight",
+        title = "mtcars: car wights",
+        binwidth = 5,
         bin.args = list(
           col = "black",
           fill = "orange",
@@ -45,8 +45,8 @@ test_that(
 # normal curve works -------------------------------------
 
 test_that(
-  desc = "checking if normal curve work",
-  code = {
+  "checking if normal curve work",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "plot normal curve",
@@ -65,8 +65,8 @@ test_that(
 # subtitle output --------------------------------------------------
 
 test_that(
-  desc = "subtitle output",
-  code = {
+  "subtitle output",
+  {
     set.seed(123)
     p_sub <- gghistostats(
       data = ggplot2::msleep,
@@ -91,8 +91,8 @@ test_that(
 # utilities ---------------
 
 test_that(
-  desc = ".binwidth works as expected",
-  code = {
+  ".binwidth works as expected",
+  {
     expect_equal(ggstatsplot:::.binwidth(mtcars$wt), 0.6913737, tolerance = 0.001)
   }
 )
@@ -100,8 +100,8 @@ test_that(
 # grouped_gghistostats works ---------------------------------------------
 
 test_that(
-  desc = "grouped_gghistostats plotting works as expected",
-  code = {
+  "grouped_gghistostats plotting works as expected",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "defaults as expected",

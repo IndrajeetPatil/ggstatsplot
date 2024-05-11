@@ -1,12 +1,12 @@
 # pairwise comparisons testing is done `test-pairwise_ggsignif.R`
-skip_if_not_installed("PMCMRplus")
+
 skip_if_not_installed("rstantools")
 
 # checking labels and data from plot -------------------------------------
 
 test_that(
-  desc = "plotting features work as expected",
-  code = {
+  "plotting features work as expected",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "modification with ggplot2 works as expected",
@@ -47,7 +47,7 @@ test_that(
         y = wt,
         xlab = "Transmission",
         ylab = "Weight",
-        violin.args = list(width = 0),
+        violin.args = list(width = 0, linewidth = 0),
         boxplot.args = list(width = 0),
         point.args = list(alpha = 0),
         title = "Bayesian Test"
@@ -59,8 +59,8 @@ test_that(
 # subtitle output works ------------------------------------------------
 
 test_that(
-  desc = "subtitle output works",
-  code = {
+  "subtitle output works",
+  {
     skip_on_cran()
 
     df <- mtcars
@@ -89,8 +89,8 @@ test_that(
 # grouped_ggbetweenstats defaults --------------------------------------------------
 
 test_that(
-  desc = "grouped_ggbetweenstats defaults",
-  code = {
+  "grouped_ggbetweenstats defaults",
+  {
     # expect error when no grouping.var is specified
     expect_snapshot_error(grouped_ggbetweenstats(mtcars, x = am, y = wt))
 

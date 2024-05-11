@@ -1,9 +1,25 @@
-# ggstatsplot 0.12.1
+# ggstatsplot 0.12.3.9000
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+# ggstatsplot 0.12.3
+
+## MAJOR CHANGES
+
+- The cryptic but very useful parameter `k` has been renamed to `digits` to
+  improve its discoverability.
+
+- To be consistent with other functions, `ggpiestats()` and `ggbarstats()` now
+  default to two-sided alternative hypothesis.
+
+# ggstatsplot 0.12.2
+
+- No user-visible changes. Maintenance-only release.
+
+# ggstatsplot 0.12.1
 
 ## MINOR CHANGES
 
@@ -1380,7 +1396,7 @@ This uncoupling is designed to achieve two things:
     omega-squared effect sizes for anovas, in addition to the prior partial
     variants of these effect sizes.
 
-  - `ggpiestats` gains `perc.k` argument to show desired number of decimal
+  - `ggpiestats` gains `digits.perc` argument to show desired number of decimal
     places in percentage labels.
 
 ## BUG FIXES

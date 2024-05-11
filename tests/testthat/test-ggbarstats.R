@@ -16,8 +16,8 @@ survey_data_NA <- dplyr::tibble(
 # checking default outputs -----------------------------------------
 
 test_that(
-  desc = "checking default outputs",
-  code = {
+  "checking default outputs",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
@@ -33,7 +33,10 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "checking paired two-way table - without NA",
-      fig = ggbarstats(survey_data, `1st survey`, `2nd survey`,
+      fig = ggbarstats(
+        survey_data,
+        `1st survey`,
+        `2nd survey`,
         counts = Counts,
         paired = TRUE
       )
@@ -56,13 +59,16 @@ test_that(
 # changing labels and aesthetics -------------------------------------------
 
 test_that(
-  desc = "changing labels and aesthetics",
-  code = {
+  "changing labels and aesthetics",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "checking percentage labels",
       fig = ggbarstats(
-        data = mtcars, x = cyl, y = am, label = "percentage",
+        data = mtcars,
+        x = cyl,
+        y = am,
+        label = "percentage",
         results.subtitle = FALSE
       )
     )
@@ -71,7 +77,10 @@ test_that(
     expect_doppelganger(
       title = "checking count labels",
       fig = ggbarstats(
-        data = mtcars, x = cyl, y = am, label = "counts",
+        data = mtcars,
+        x = cyl,
+        y = am,
+        label = "counts",
         results.subtitle = FALSE
       )
     )
@@ -80,7 +89,10 @@ test_that(
     expect_doppelganger(
       title = "checking percentage and count labels",
       fig = ggbarstats(
-        data = mtcars, x = cyl, y = am, label = "both",
+        data = mtcars,
+        x = cyl,
+        y = am,
+        label = "both",
         results.subtitle = FALSE
       )
     )
@@ -93,7 +105,7 @@ test_that(
           data = mtcars,
           x = am,
           y = cyl,
-          perc.k = 2L,
+          digits.perc = 2L,
           title = "mtcars dataset",
           package = "wesanderson",
           palette = "Royal2",
@@ -113,8 +125,10 @@ test_that(
           .Label = c("Before", "After"),
           class = "factor"
         ),
-        mode = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
-          .Label = c("A", "P", "C", "T"), class = "factor"
+        mode = structure(
+          c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
+          .Label = c("A", "P", "C", "T"),
+          class = "factor"
         ),
         counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
         perc = c(65.119, 88.958, 16.168, 8.265, 3.502, 1.946, 15.209, 0.829),
@@ -142,8 +156,8 @@ test_that(
 # edge cases ---------------------------------------------------------
 
 test_that(
-  desc = "edge cases",
-  code = {
+  "edge cases",
+  {
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
@@ -165,14 +179,14 @@ test_that(
 # expression output --------------------------------------------------
 
 test_that(
-  desc = "expression output",
-  code = {
+  "expression output",
+  {
     set.seed(123)
     p_sub <- ggbarstats(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4L
+      digits = 4L
     ) %>%
       extract_subtitle()
 
@@ -181,7 +195,7 @@ test_that(
       data = ggplot2::msleep,
       x = conservation,
       y = vore,
-      k = 4L
+      digits = 4L
     ))$expression[[1L]]
 
     expect_identical(p_sub, stats_output)
@@ -189,15 +203,15 @@ test_that(
 )
 
 test_that(
-  desc = "grouped_ggbarstats produces error when grouping variable not provided",
-  code = {
-    expect_snapshot_error(grouped_ggbarstats(mtcars, x = cyl, y = am))
+  "grouped_ggbarstats produces error when grouping variable not provided",
+  {
+    expect_snapshot(grouped_ggbarstats(mtcars, x = cyl, y = am), error = TRUE)
   }
 )
 
 test_that(
-  desc = "grouped_ggbarstats works",
-  code = {
+  "grouped_ggbarstats works",
+  {
     # creating a smaller data frame
     mpg_short <- ggplot2::mpg %>%
       dplyr::filter(
@@ -224,8 +238,8 @@ test_that(
 # edge cases --------------------
 
 test_that(
-  desc = "edge case behavior",
-  code = {
+  "edge case behavior",
+  {
     df <- data.frame(
       dataset = c("a", "b", "c", "c", "c", "c"),
       measurement = c("old", "old", "old", "old", "new", "new"),

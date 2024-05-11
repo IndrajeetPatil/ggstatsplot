@@ -156,6 +156,23 @@ data frame in what you want to do, I will recommend `{purrr}`-based solution:
 
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data frame-1>
 
+This solution would work for `x` and `y` arguments, but not for `grouping.var` argument, which first needs to be converted to a symbol:
+
+```{r}
+#| label = "tidyeval-grouping-var",
+#| eval = FALSE
+
+df <- dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama")
+
+grouped_ggscatterstats(
+  data = df,
+  x = !!colnames(df)[3],
+  y = !!colnames(df)[5],
+  grouping.var = !!rlang::sym(colnames(df)[8]),
+  results.subtitle = FALSE
+)
+```
+
 ## 7. How can I have uniform Y-axes ranges in `grouped_` functions?
 
 Across different facets of a `grouped_` plot, the axes ranges might sometimes
@@ -629,6 +646,29 @@ ggbetweenstats(
   ggplot.component = list(
     ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis(name = "My custom test"))
   )
+)
+```
+
+## 29. How to turn off scientific notation in expressions?
+
+```{r}
+set.seed(123)
+library(ggstatsplot)
+library(WRS2)
+
+ggwithinstats(
+  WineTasting,
+  Wine,
+  Taste,
+  paired = TRUE
+)
+
+ggwithinstats(
+  WineTasting,
+  Wine,
+  Taste,
+  paired = TRUE,
+  digits = 4L
 )
 ```
 

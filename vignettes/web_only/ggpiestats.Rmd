@@ -163,7 +163,7 @@ grouped_ggpiestats(
   x = Survived,
   y = Sex,
   grouping.var = Age,
-  perc.k = 1,
+  digits.perc = 1,
   package = "ggsci",
   palette = "category10_d3",
   # arguments relevant for `combine_plots()`

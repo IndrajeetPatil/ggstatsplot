@@ -3,7 +3,6 @@
 \docType{package}
 \name{ggstatsplot-package}
 \alias{ggstatsplot-package}
-\alias{_PACKAGE}
 \alias{ggstatsplot}
 \title{ggstatsplot: 'ggplot2' Based Plots with Statistical Details}
 \description{

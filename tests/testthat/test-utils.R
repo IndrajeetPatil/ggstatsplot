@@ -1,8 +1,8 @@
 # .grouped_list -----------------------------------------------------
 
 test_that(
-  desc = ".grouped_list works with non-syntactic group names",
-  code = {
+  ".grouped_list works with non-syntactic group names",
+  {
     set.seed(123)
     expect_snapshot({
       sleep %>%
@@ -16,8 +16,8 @@ test_that(
 # .is_palette_sufficient ------------------------------------
 
 test_that(
-  desc = ".is_palette_sufficient is working",
-  code = {
+  ".is_palette_sufficient is working",
+  {
     expect_no_condition(.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
     expect_snapshot(.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
   }
@@ -26,8 +26,8 @@ test_that(
 # .eval_f ------------------------------------
 
 test_that(
-  desc = ".eval_f works as expected",
-  code = {
+  ".eval_f works as expected",
+  {
     f <- function() stop("Not working", call. = FALSE)
     expect_null(.eval_f(f))
   }

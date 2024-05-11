@@ -1,5 +1,5 @@
 # graphical pairwise comparisons are tested in `test-pairwise_ggsignif.R`
-skip_if_not_installed("PMCMRplus")
+
 skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
 skip_if_not_installed("rstantools")
@@ -7,8 +7,8 @@ skip_if_not_installed("rstantools")
 data_bugs_2 <- dplyr::filter(bugs_long, subject <= 30L, condition %in% c("HDLF", "HDHF"))
 
 test_that(
-  desc = "defaults plots",
-  code = {
+  "defaults plots",
+  {
     expect_snapshot_error(grouped_ggbetweenstats(bugs_long, x = condition, y = desire))
 
     set.seed(123)
@@ -44,8 +44,8 @@ test_that(
 # aesthetic modifications work ------------------------------------------
 
 test_that(
-  desc = "aesthetic modifications work",
-  code = {
+  "aesthetic modifications work",
+  {
     set.seed(123)
     expect_doppelganger(
       title = "ggplot2 commands work",
@@ -76,8 +76,8 @@ test_that(
 )
 
 test_that(
-  desc = "grouped plots work",
-  code = {
+  "grouped plots work",
+  {
     expect_snapshot_error(grouped_ggbetweenstats(bugs_long, x = condition, y = desire))
 
     set.seed(123)

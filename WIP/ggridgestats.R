@@ -30,7 +30,7 @@ ggridgestats <- function(data,
                          caption = NULL,
                          title = NULL,
                          subtitle = NULL,
-                         k = 2L,
+                         digits = 2L,
                          var.equal = FALSE,
                          conf.level = 0.95,
                          nboot = 100L,
@@ -59,13 +59,13 @@ ggridgestats <- function(data,
                          ...) {
   # data -----------------------------------
 
-  
+
   type <- statsExpressions::stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(rlang::ensym(x), rlang::ensym(y))
 
-  
+
   data %<>%
     dplyr::select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
@@ -77,7 +77,7 @@ ggridgestats <- function(data,
   test <- ifelse(nlevels(data %>% dplyr::pull({{ x }})) < 3, "t", "anova")
 
   if (results.subtitle) {
-    
+
     .f.args <- list(
       data = data,
       x = rlang::as_string(x),
@@ -86,7 +86,7 @@ ggridgestats <- function(data,
       effsize.type = effsize.type,
       conf.level = conf.level,
       var.equal = var.equal,
-      k = k,
+      digits = digits,
       tr = tr,
       bf.prior = bf.prior,
       nboot = nboot
@@ -111,7 +111,7 @@ ggridgestats <- function(data,
     y = {{ y }},
     type = type,
     tr = tr,
-    k = k
+    digits = digits
   )
 
 
@@ -174,7 +174,7 @@ ggridgestats <- function(data,
       paired = paired,
       var.equal = var.equal,
       p.adjust.method = p.adjust.method,
-      k = k
+      digits = digits
     )
 
     # adding the layer for pairwise comparisons

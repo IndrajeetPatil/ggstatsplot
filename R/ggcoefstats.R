@@ -116,39 +116,40 @@
 #' # further arguments can be passed to `parameters::model_parameters()`
 #' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 #' @export
-ggcoefstats <- function(x,
-                        statistic = NULL,
-                        conf.int = TRUE,
-                        conf.level = 0.95,
-                        k = 2L,
-                        exclude.intercept = FALSE,
-                        effectsize.type = "eta",
-                        meta.analytic.effect = FALSE,
-                        meta.type = "parametric",
-                        bf.message = TRUE,
-                        sort = "none",
-                        xlab = NULL,
-                        ylab = NULL,
-                        title = NULL,
-                        subtitle = NULL,
-                        caption = NULL,
-                        only.significant = FALSE,
-                        point.args = list(size = 3.0, color = "blue", na.rm = TRUE),
-                        errorbar.args = list(height = 0, na.rm = TRUE),
-                        vline = TRUE,
-                        vline.args = list(linewidth = 1.0, linetype = "dashed"),
-                        stats.labels = TRUE,
-                        stats.label.color = NULL,
-                        stats.label.args = list(
-                          size = 3.0,
-                          direction = "y",
-                          min.segment.length = 0,
-                          na.rm = TRUE
-                        ),
-                        package = "RColorBrewer",
-                        palette = "Dark2",
-                        ggtheme = ggstatsplot::theme_ggstatsplot(),
-                        ...) {
+ggcoefstats <- function(
+    x,
+    statistic = NULL,
+    conf.int = TRUE,
+    conf.level = 0.95,
+    digits = 2L,
+    exclude.intercept = FALSE,
+    effectsize.type = "eta",
+    meta.analytic.effect = FALSE,
+    meta.type = "parametric",
+    bf.message = TRUE,
+    sort = "none",
+    xlab = NULL,
+    ylab = NULL,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    only.significant = FALSE,
+    point.args = list(size = 3.0, color = "blue", na.rm = TRUE),
+    errorbar.args = list(height = 0, na.rm = TRUE),
+    vline = TRUE,
+    vline.args = list(linewidth = 1.0, linetype = "dashed"),
+    stats.labels = TRUE,
+    stats.label.color = NULL,
+    stats.label.args = list(
+      size = 3.0,
+      direction = "y",
+      min.segment.length = 0,
+      na.rm = TRUE
+    ),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    ...) {
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels
@@ -217,7 +218,7 @@ ggcoefstats <- function(x,
   # label -------------------------
 
   if (stats.labels) {
-    tidy_df %<>% tidy_model_expressions(statistic, k, effectsize.type)
+    tidy_df %<>% tidy_model_expressions(statistic, digits, effectsize.type)
 
     # only significant p-value labels are shown
     if (only.significant && ("p.value" %in% names(tidy_df))) {
@@ -248,24 +249,24 @@ ggcoefstats <- function(x,
     meta.type <- stats_type_switch(meta.type)
 
     # frequentist
-    subtitle_df <- meta_analysis(tidy_df, type = meta.type, k = k)
+    subtitle_df <- meta_analysis(tidy_df, type = meta.type, digits = digits)
     subtitle <- .extract_expression(subtitle_df)
 
     # Bayesian
     if (meta.type == "parametric" && bf.message) {
-      caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", k = k))
+      caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", digits = digits))
       caption <- .extract_expression(caption_df)
     }
   }
 
   # basic plot -------------------------
 
-  plot <- ggplot(tidy_df, mapping = aes(estimate, term)) +
+  plot_coef <- ggplot(tidy_df, mapping = aes(estimate, term)) +
     exec(geom_point, !!!point.args)
 
   # adding confidence intervals
   if (conf.int) {
-    plot <- plot +
+    plot_coef <- plot_coef +
       exec(
         geom_errorbarh,
         data    = tidy_df,
@@ -275,7 +276,7 @@ ggcoefstats <- function(x,
   }
 
   # adding the vertical line
-  if (vline) plot <- plot + exec(geom_vline, xintercept = 0, !!!vline.args)
+  if (vline) plot_coef <- plot_coef + exec(geom_vline, xintercept = 0, !!!vline.args)
 
   # ggrepel labels -------------------------
 
@@ -284,7 +285,7 @@ ggcoefstats <- function(x,
       stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
     }
 
-    plot <- plot +
+    plot_coef <- plot_coef +
       exec(
         ggrepel::geom_label_repel,
         data    = tidy_df,
@@ -297,7 +298,7 @@ ggcoefstats <- function(x,
 
   # annotations -------------------------
 
-  plot +
+  plot_coef +
     labs(
       x        = xlab %||% "estimate",
       y        = ylab %||% "term",

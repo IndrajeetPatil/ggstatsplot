@@ -106,15 +106,11 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#' library(PMCMRplus) # for pairwise comparisons
 #'
-#' # create a plot
 #' p <- ggbetweenstats(mtcars, am, mpg)
-#'
-#' # looking at the plot
 #' p
 #'
 #' # extracting details from statistical tests
@@ -132,66 +128,67 @@
 #'
 #' # you can remove a specific geom to reduce complexity of the plot
 #' ggbetweenstats(
-#'   mtcars, am, wt,
+#'   mtcars,
+#'   am,
+#'   wt,
 #'   # to remove violin plot
-#'   violin.args = list(width = 0),
+#'   violin.args = list(width = 0, linewidth = 0),
 #'   # to remove boxplot
 #'   boxplot.args = list(width = 0),
 #'   # to remove points
 #'   point.args = list(alpha = 0)
 #' )
 #' @export
-ggbetweenstats <- function(data,
-                           x,
-                           y,
-                           type = "parametric",
-                           pairwise.display = "significant",
-                           p.adjust.method = "holm",
-                           effsize.type = "unbiased",
-                           bf.prior = 0.707,
-                           bf.message = TRUE,
-                           results.subtitle = TRUE,
-                           xlab = NULL,
-                           ylab = NULL,
-                           caption = NULL,
-                           title = NULL,
-                           subtitle = NULL,
-                           k = 2L,
-                           var.equal = FALSE,
-                           conf.level = 0.95,
-                           nboot = 100L,
-                           tr = 0.2,
-                           centrality.plotting = TRUE,
-                           centrality.type = type,
-                           centrality.point.args = list(size = 5, color = "darkred"),
-                           centrality.label.args = list(
-                             size = 3,
-                             nudge_x = 0.4,
-                             segment.linetype = 4,
-                             min.segment.length = 0
-                           ),
-                           point.args = list(
-                             position = ggplot2::position_jitterdodge(dodge.width = 0.60),
-                             alpha = 0.4,
-                             size = 3,
-                             stroke = 0,
-                             na.rm = TRUE
-                           ),
-                           boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
-                           violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-                           ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-                           ggtheme = ggstatsplot::theme_ggstatsplot(),
-                           package = "RColorBrewer",
-                           palette = "Dark2",
-                           ggplot.component = NULL,
-                           ...) {
+ggbetweenstats <- function(
+    data,
+    x,
+    y,
+    type = "parametric",
+    pairwise.display = "significant",
+    p.adjust.method = "holm",
+    effsize.type = "unbiased",
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    results.subtitle = TRUE,
+    xlab = NULL,
+    ylab = NULL,
+    caption = NULL,
+    title = NULL,
+    subtitle = NULL,
+    digits = 2L,
+    var.equal = FALSE,
+    conf.level = 0.95,
+    nboot = 100L,
+    tr = 0.2,
+    centrality.plotting = TRUE,
+    centrality.type = type,
+    centrality.point.args = list(size = 5, color = "darkred"),
+    centrality.label.args = list(
+      size = 3,
+      nudge_x = 0.4,
+      segment.linetype = 4,
+      min.segment.length = 0
+    ),
+    point.args = list(
+      position = ggplot2::position_jitterdodge(dodge.width = 0.60),
+      alpha = 0.4,
+      size = 3,
+      stroke = 0,
+      na.rm = TRUE
+    ),
+    boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
+    violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
+    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    package = "RColorBrewer",
+    palette = "Dark2",
+    ggplot.component = NULL,
+    ...) {
   # data -----------------------------------
-
-
-  type <- stats_type_switch(type)
 
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
+  type <- stats_type_switch(type)
 
   data %<>%
     select({{ x }}, {{ y }}) %>%
@@ -200,22 +197,21 @@ ggbetweenstats <- function(data,
 
   # statistical analysis ------------------------------------------
 
-  # test to run; depends on the no. of levels of the independent variable
-  test <- ifelse(nlevels(data %>% pull({{ x }})) < 3L, "t", "anova")
+  test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
     .f.args <- list(
-      data         = data,
-      x            = as_string(x),
-      y            = as_string(y),
+      data = data,
+      x = as_string(x),
+      y = as_string(y),
       effsize.type = effsize.type,
-      conf.level   = conf.level,
-      var.equal    = var.equal,
-      k            = k,
-      tr           = tr,
-      paired       = FALSE,
-      bf.prior     = bf.prior,
-      nboot        = nboot
+      conf.level = conf.level,
+      var.equal = var.equal,
+      digits = digits,
+      tr = tr,
+      paired = FALSE,
+      bf.prior = bf.prior,
+      nboot = nboot
     )
 
     .f <- .f_switch(test)
@@ -230,7 +226,7 @@ ggbetweenstats <- function(data,
 
   # plot -----------------------------------
 
-  plot <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+  plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, !!!violin.args)
@@ -238,14 +234,14 @@ ggbetweenstats <- function(data,
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot <- suppressWarnings(.centrality_ggrepel(
-      plot                  = plot,
-      data                  = data,
-      x                     = {{ x }},
-      y                     = {{ y }},
-      k                     = k,
-      type                  = stats_type_switch(centrality.type),
-      tr                    = tr,
+    plot_comparison <- suppressWarnings(.centrality_ggrepel(
+      plot = plot_comparison,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      digits = digits,
+      type = stats_type_switch(centrality.type),
+      tr = tr,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
     ))
@@ -257,20 +253,20 @@ ggbetweenstats <- function(data,
 
   if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
-      data            = data,
-      x               = {{ x }},
-      y               = {{ y }},
-      type            = type,
-      tr              = tr,
-      paired          = FALSE,
-      var.equal       = var.equal,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      type = type,
+      tr = tr,
+      paired = FALSE,
+      var.equal = var.equal,
       p.adjust.method = p.adjust.method,
-      k               = k
+      digits = digits
     )
 
     # adding the layer for pairwise comparisons
-    plot <- .ggsignif_adder(
-      plot             = plot,
+    plot_comparison <- .ggsignif_adder(
+      plot             = plot_comparison,
       mpc_df           = mpc_df,
       data             = data,
       x                = {{ x }},
@@ -286,8 +282,8 @@ ggbetweenstats <- function(data,
   # annotations ------------------------
 
   .aesthetic_addon(
-    plot             = plot,
-    x                = data %>% pull({{ x }}),
+    plot             = plot_comparison,
+    x                = pull(data, {{ x }}),
     xlab             = xlab %||% as_name(x),
     ylab             = ylab %||% as_name(y),
     title            = title,
@@ -324,14 +320,13 @@ ggbetweenstats <- function(data,
 #'
 #' @inherit ggbetweenstats return references
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("PMCMRplus", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#' library(PMCMRplus) # for pairwise comparisons
+#'
 #' library(dplyr, warn.conflicts = FALSE)
 #' library(ggplot2)
 #'
-#' # the most basic function call
 #' grouped_ggbetweenstats(
 #'   data = filter(ggplot2::mpg, drv != "4"),
 #'   x = year,
@@ -355,11 +350,12 @@ ggbetweenstats <- function(data,
 #'   )
 #' )
 #' @export
-grouped_ggbetweenstats <- function(data,
-                                   ...,
-                                   grouping.var,
-                                   plotgrid.args = list(),
-                                   annotation.args = list()) {
+grouped_ggbetweenstats <- function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggbetweenstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
