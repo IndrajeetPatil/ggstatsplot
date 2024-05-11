@@ -6,14 +6,14 @@ default_language_version:
 
 repos:
   - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.1
+    rev: v0.4.2
     hooks:
       - id: no-browser-statement
       - id: no-debug-statement
       - id: parsable-R
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-added-large-files
       - id: check-json
