@@ -20,10 +20,12 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          pak-version: devel
+          upgrade: "TRUE"
           extra-packages: |
             any::gh
-            r-lib/lintr
             any::purrr
+            r-lib/lintr
           needs: check
 
       - name: Install package
