@@ -20,11 +20,11 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          pak-version: devel
-          upgrade: 'TRUE'
           extra-packages: |
             any::gh
             r-lib/lintr
+            any::purrr
+          needs: check
 
       - name: Install package
         run: R CMD INSTALL .
@@ -37,12 +37,11 @@ jobs:
           changed_files <- purrr::map_chr(files, "filename")
           all_files <- list.files(recursive = TRUE)
           exclusions_list <- as.list(setdiff(all_files, changed_files))
-          lint_package(linters = linters_with_defaults(
+          lint_package(linters = all_linters(
             absolute_path_linter = NULL,
             assignment_linter = NULL,
             commented_code_linter = NULL,
             cyclocomp_linter(25L),
-            extraction_operator_linter = NULL,
             if_not_else_linter(exceptions = character(0L)),
             implicit_integer_linter = NULL,
             library_call_linter = NULL,
@@ -58,9 +57,8 @@ jobs:
             undesirable_function_linter = NULL,
             undesirable_operator_linter = NULL,
             unnecessary_concatenation_linter(allow_single_expression = FALSE),
-            unused_import_linter = NULL,
-            defaults = linters_with_tags(tags = NULL)
+            unused_import_linter = NULL
           ), exclusions = exclusions_list)
         shell: Rscript {0}
-        # env:
-        #   LINTR_ERROR_ON_LINT: true
+        env:
+          LINTR_ERROR_ON_LINT: true
