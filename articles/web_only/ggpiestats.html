@@ -25,26 +25,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@patilindrajeets">
 <meta name="twitter:site" content="@patilindrajeets">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
-
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
-
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.3.9000</small>
-
-    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
@@ -54,7 +44,7 @@
   <a class="nav-link" href="../../reference/index.html">Reference</a>
 </li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <button href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</button>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <h6 class="dropdown-header" data-toc-skip>Primary functions</h6>
     <a class="dropdown-item" href="../../articles/web_only/ggbetweenstats.html">ggbetweenstats</a>
@@ -85,32 +75,23 @@
 </form></li>
 <li class="nav-item">
   <a class="external-link nav-link" href="https://github.com/IndrajeetPatil/ggstatsplot/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
+    <span class="fa fab fa-github fa-lg"></span>
   </a>
 </li>
       </ul>
 </div>
-
-    
   </div>
 </nav><div class="container template-article">
-
 
 
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1>ggpiestats</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
+                        <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/HEAD/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="d-none name"><code>ggpiestats.Rmd</code></div>
     </div>
-
-    
-    
-<hr>
+        <hr>
 <p>You can cite this package/vignette as:</p>
 <pre><code>To cite package 'ggstatsplot' in publications use:
 
@@ -180,8 +161,9 @@ status (class), sex, age, and survival.”</p>
 <span><span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span></span>
 <span><span class="co">#&gt;   ..$ Sex     : chr [1:2] "Male" "Female"</span></span>
 <span><span class="co">#&gt;   ..$ Age     : chr [1:2] "Child" "Adult"</span></span>
-<span><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></span>
-<span></span>
+<span><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># looking at the dataset as a tibble or data frame</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Titanic_full</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 2,201</span></span>
@@ -205,7 +187,7 @@ we’d like to display a piechart with the percentages of passengers who
 did or did not survive. Our initial hypothesis is that it was no
 different than flipping a coin. People had a 50/50 chance of
 surviving.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -227,7 +209,7 @@ the code.</p>
 of, or associated with, gender. The test is whether the proportion of
 people who survived was different between the sexes using
 <code>ggpiestats</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -262,7 +244,7 @@ specified <strong>grouping variable</strong> and then combines the list
 of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span></span>
 <span>  <span class="co"># arguments relevant for `ggpiestats()`</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
@@ -306,7 +288,7 @@ unique observation. For example, consider the following notional
 fish they caught in the months of <code>February</code> and
 <code>March</code>. In this data frame, each row corresponds to a unique
 combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
 <span></span>
 <span><span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
@@ -358,7 +340,7 @@ call to the <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></co
 <code>counts</code> argument.</p>
 <p>If we want to investigate the relationship of type of fish by month
 (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">fishing</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Fish</span>,</span>
@@ -393,7 +375,7 @@ designs, you can set <code>paired = TRUE</code>, which will display
 results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set
 <code>paired = TRUE</code>, the results will be inaccurate.)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create imaginary data</span></span>
 <span><span class="va">clinical_trial</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">SickBefore</span>, <span class="op">~</span><span class="va">SickAfter</span>, <span class="op">~</span><span class="va">Counts</span>,</span>
@@ -442,7 +424,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggpiestats_files/figure-html/reporting-1.png" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
@@ -466,26 +448,16 @@ one-sample goodness-of-fit test instead of a <span class="math inline">\(\chi^2\
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
-
-
-
     <footer><div class="pkgdown-footer-left">
   <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
-
 <div class="pkgdown-footer-right">
   <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
-
     </footer>
 </div>
-
-  
-
-  
-
   </body>
 </html>
