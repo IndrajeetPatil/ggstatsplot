@@ -407,7 +407,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.19.10",
+      "version": ">= 0.19.11",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -433,7 +433,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.21.6",
+      "version": ">= 0.21.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
