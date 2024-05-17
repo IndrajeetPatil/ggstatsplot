@@ -258,5 +258,15 @@ test_that(
         proportion.test = FALSE
       )
     )
+
+    smokers <- tibble(
+      smoker = factor(c("no", "no", "no", "no", "no"), levels = c("yes", "no"))
+    )
+
+    set.seed(123)
+    expect_doppelganger(
+      title = "empty groups in factors not dropped",
+      fig = ggpiestats(smokers, smoker)
+    )
   }
 )

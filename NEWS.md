@@ -5,6 +5,10 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+## BUG FIXES
+
+- Empty groups in factors are no longer dropped in `ggpiestats()` and `ggbarstats()` (#935).
+
 # ggstatsplot 0.12.3
 
 ## MAJOR CHANGES

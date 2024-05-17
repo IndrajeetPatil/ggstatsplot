@@ -83,7 +83,7 @@ ggbarstats <- function(
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
   # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
+  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   if (nlevels(pull(data, {{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
