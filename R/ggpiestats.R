@@ -109,7 +109,7 @@ ggpiestats <- function(
   # untable the data frame based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
-  # x and y need to be a factor; also drop the unused levels of the factors
+  # x and y need to be a factor
   data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
   x_levels <- nlevels(pull(data, {{ x }}))
   y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
