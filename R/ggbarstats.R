@@ -82,8 +82,8 @@ ggbarstats <- function(
   # untable the data frame based on the count for each observation
   if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
 
-  # x and y need to be a factor; also drop the unused levels of the factors
-  data %<>% mutate(across(.cols = everything(), .fns = ~ droplevels(as.factor(.x))))
+  # x and y need to be a factor
+  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   if (nlevels(pull(data, {{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
@@ -126,7 +126,6 @@ ggbarstats <- function(
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(package, palette, nlevels(pull(data, {{ x }})))
 
-  # plot
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
@@ -145,9 +144,8 @@ ggbarstats <- function(
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
     paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
 
-  # sample size + proportion test ------------------------------------------
+  # proportion test ------------------------------------------
 
-  # adding significance labels to bars for proportion tests
   if (isTRUE(proportion.test)) {
     plotBar <- plotBar +
       geom_text(
@@ -158,7 +156,8 @@ ggbarstats <- function(
       )
   }
 
-  # adding sample size info
+  # sample size -------------------------------------------------
+
   plotBar <- plotBar +
     exec(
       geom_text,
@@ -207,13 +206,12 @@ ggbarstats <- function(
 #' set.seed(123)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # let's create a smaller data frame
+#' # let's create a smaller data frame first
 #' diamonds_short <- ggplot2::diamonds %>%
 #'   filter(cut %in% c("Very Good", "Ideal")) %>%
 #'   filter(clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
 #'   sample_frac(size = 0.05)
 #'
-#' # plot
 #' grouped_ggbarstats(
 #'   data          = diamonds_short,
 #'   x             = color,

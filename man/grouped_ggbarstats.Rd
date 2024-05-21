@@ -137,13 +137,12 @@ For details, see:
 set.seed(123)
 library(dplyr, warn.conflicts = FALSE)
 
-# let's create a smaller data frame
+# let's create a smaller data frame first
 diamonds_short <- ggplot2::diamonds \%>\%
   filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
   filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
   sample_frac(size = 0.05)
 
-# plot
 grouped_ggbarstats(
   data          = diamonds_short,
   x             = color,

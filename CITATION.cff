@@ -2,7 +2,7 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
- 
+
 cff-version: 1.2.0
 message: 'To cite package "ggstatsplot" in publications use:'
 type: software
@@ -278,7 +278,7 @@ references:
   abstract: 'insight: Easy Access to Model Information for Various Model Objects'
   notes: Imports
   url: https://easystats.github.io/insight/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=insight
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -313,7 +313,7 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2024'
-  version: '>= 0.19.10'
+  version: '>= 0.19.11'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -330,7 +330,7 @@ references:
   abstract: 'parameters: Processing of Model Parameters'
   notes: Imports
   url: https://easystats.github.io/parameters/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=parameters
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -356,7 +356,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.21.6'
+  version: '>= 0.21.7'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -582,6 +582,18 @@ references:
     email: ripley@stats.ox.ac.uk
   year: '2024'
 - type: software
+  title: metaBMA
+  abstract: 'metaBMA: Bayesian Model Averaging for Random and Fixed Effects Meta-Analysis'
+  notes: Suggests
+  url: https://danheck.github.io/metaBMA/
+  repository: https://CRAN.R-project.org/package=metaBMA
+  authors:
+  - family-names: Heck
+    given-names: Daniel W.
+    email: daniel.heck@uni-marburg.de
+    orcid: https://orcid.org/0000-0002-6302-9252
+  year: '2024'
+- type: software
   title: metafor
   abstract: 'metafor: Meta-Analysis Package for R'
   notes: Suggests
@@ -600,6 +612,20 @@ references:
     value: https://wviechtb.github.io/metafor/
   - type: url
     value: https://www.wvbauer.com
+- type: software
+  title: metaplus
+  abstract: 'metaplus: Robust Meta-Analysis and Meta-Regression'
+  notes: Suggests
+  repository: https://CRAN.R-project.org/package=metaplus
+  authors:
+  - family-names: Beath
+    given-names: Ken
+    email: ken@kjbeath.com.au
+  - family-names: Bolker
+    given-names: Ben
+    email: bolker@mcmaster.ca
+  - name: R Development Core Team
+  year: '2024'
 - type: software
   title: psych
   abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
