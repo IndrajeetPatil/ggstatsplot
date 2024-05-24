@@ -70,8 +70,6 @@ Suggests:
     vdiffr (>= 1.0.7),
     withr,
     WRS2
-Remotes:
-    tidyverse/ggplot2
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
