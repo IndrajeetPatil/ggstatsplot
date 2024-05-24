@@ -25,6 +25,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
+          cache-version: 100
           upgrade: 'TRUE'
           extra-packages: |
             any::covr
