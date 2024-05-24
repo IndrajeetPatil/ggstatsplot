@@ -386,7 +386,6 @@ plot_list <-
         "Continent: Europe"
       ),
       effsize.type = list("d", "d", "g", "g"),
-      normal.curve = list(TRUE, FALSE, FALSE, TRUE),
       ggtheme = list(
         ggplot2::theme_classic(),
         hrbrthemes::theme_ipsum_tw(),

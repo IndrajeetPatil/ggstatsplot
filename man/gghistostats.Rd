@@ -26,8 +26,6 @@ gghistostats(
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
-  normal.curve = FALSE,
-  normal.curve.args = list(linewidth = 2),
   ggplot.component = NULL,
   ...
 )
@@ -147,12 +145,6 @@ Just as \code{type} argument, abbreviations are also accepted.}
 \item{centrality.line.args}{A list of additional aesthetic arguments to be
 passed to the \code{geom_line} used to display the lines corresponding to the
 centrality parameter.}
-
-\item{normal.curve}{A logical value that decides whether to super-impose a
-normal curve using \code{stats::dnorm(mean(x), stats::sd(x))}. Default is \code{FALSE}.}
-
-\item{normal.curve.args}{A list of additional aesthetic arguments to be
-passed to the normal curve.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
