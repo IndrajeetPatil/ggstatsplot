@@ -163,9 +163,8 @@ For details, see:
 \section{Summary of graphics}{
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
-   histogram bin \tab \code{ggplot2::stat_bin()} \tab \code{bin.args} \cr
+   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
    centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
-   normality curve \tab \code{ggplot2::stat_function()} \tab \code{normal.curve.args} \cr
 }
 }
 
