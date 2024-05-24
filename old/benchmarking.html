@@ -389,8 +389,8 @@ functions changes across time.</p>
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    665ms    665ms      1.50     286MB     9.03
-
+#&gt; 1    700ms    700ms      1.43     327MB     5.71</code></pre>
+<pre class="r"><code>
 bench::mark(
   grouped_ggbetweenstats(
     data = dplyr::filter(
@@ -406,7 +406,7 @@ bench::mark(
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    1.53s    1.53s     0.653     251MB     5.22</code></pre>
+#&gt; 1    1.31s    1.31s     0.765     226MB     6.12</code></pre>
 </div>
 <div id="ggwithinstats" class="section level1">
 <h1><code>ggwithinstats</code></h1>
@@ -421,8 +421,8 @@ bench::mark(
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    4.76s    4.76s     0.210     622MB     1.89
-
+#&gt; 1     4.5s     4.5s     0.222     600MB     2.00</code></pre>
+<pre class="r"><code>
 
 bench::mark(
   grouped_ggwithinstats(
@@ -436,7 +436,7 @@ bench::mark(
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    3.31s    3.31s     0.302     600MB     2.42</code></pre>
+#&gt; 1    3.22s    3.22s     0.310     577MB     2.48</code></pre>
 </div>
 <div id="gghistostats" class="section level1">
 <h1><code>gghistostats</code></h1>
@@ -445,15 +445,15 @@ bench::mark(
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    101ms    102ms      9.72    3.71MB     6.48
-
+#&gt; 1   82.1ms   83.9ms      11.4    3.59MB     5.72</code></pre>
+<pre class="r"><code>
 
 bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am)) %&gt;%
   dplyr::select(-expression)
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    212ms    213ms      4.67    5.55MB     4.67</code></pre>
+#&gt; 1    180ms    180ms      5.56    5.13MB     11.1</code></pre>
 </div>
 <div id="ggdotplotstats" class="section level1">
 <h1><code>ggdotplotstats</code></h1>
@@ -467,8 +467,8 @@ bench::mark(grouped_gghistostats(mtcars, wt, test.value = 3, grouping.var = am))
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    105ms    106ms      9.36    3.03MB     6.24
-
+#&gt; 1   87.8ms   91.4ms      11.0    2.88MB     2.21</code></pre>
+<pre class="r"><code>
 
 bench::mark(
   grouped_ggdotplotstats(
@@ -483,7 +483,7 @@ bench::mark(
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    217ms    219ms      4.56    5.64MB     4.56</code></pre>
+#&gt; 1    179ms    181ms      5.52    5.19MB     2.76</code></pre>
 </div>
 <div id="ggscatterstats" class="section level1">
 <h1><code>ggscatterstats</code></h1>
@@ -492,15 +492,15 @@ bench::mark(
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1   64.8ms   65.6ms      15.2    6.64MB     9.15
-
+#&gt; 1   64.3ms   64.7ms      14.8    6.33MB     4.94</code></pre>
+<pre class="r"><code>
 
 bench::mark(grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)) %&gt;%
   dplyr::select(-expression)
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    133ms    133ms      7.49    5.63MB     7.49</code></pre>
+#&gt; 1    133ms    134ms      7.48    5.53MB     7.48</code></pre>
 </div>
 <div id="ggcorrmat" class="section level1">
 <h1><code>ggcorrmat</code></h1>
@@ -509,15 +509,15 @@ bench::mark(grouped_ggscatterstats(mtcars, wt, mpg, grouping.var = am)) %&gt;%
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1   13.8ms   14.6ms      68.3    1.47MB     4.71
-
+#&gt; 1     12ms   12.4ms      80.2    1.52MB     6.68</code></pre>
+<pre class="r"><code>
 
 bench::mark(grouped_ggcorrmat(iris, grouping.var = Species)) %&gt;%
   dplyr::select(-expression)
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1   44.6ms   45.3ms      22.0     575KB     8.24</code></pre>
+#&gt; 1   39.2ms   40.1ms      24.8     609KB     6.20</code></pre>
 </div>
 <div id="ggpiestats" class="section level1">
 <h1><code>ggpiestats</code></h1>
@@ -528,15 +528,15 @@ bench::mark(ggpiestats(mtcars, cyl)) %&gt;%
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    815ms    815ms      1.23    14.1MB     7.36
-
+#&gt; 1    818ms    818ms      1.22    13.4MB     4.89</code></pre>
+<pre class="r"><code>
 
 bench::mark(grouped_ggpiestats(mtcars, cyl, grouping.var = am)) %&gt;%
   dplyr::select(-expression)
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    1.63s    1.63s     0.615    20.8MB     7.38</code></pre>
+#&gt; 1    1.73s    1.73s     0.579    20.6MB     4.64</code></pre>
 </div>
 <div id="ggbarstats" class="section level1">
 <h1><code>ggbarstats</code></h1>
@@ -545,15 +545,15 @@ bench::mark(grouped_ggpiestats(mtcars, cyl, grouping.var = am)) %&gt;%
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    2.21s    2.21s     0.453     284MB     7.24
-
+#&gt; 1    2.33s    2.33s     0.428     138MB     4.71</code></pre>
+<pre class="r"><code>
 
 bench::mark(grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %&gt;%
   dplyr::select(-expression)
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1    6.22s    6.22s     0.161     534MB     4.02</code></pre>
+#&gt; 1    5.89s    5.89s     0.170     183MB     4.42</code></pre>
 </div>
 <div id="ggcoefstats" class="section level1">
 <h1><code>ggcoefstats</code></h1>
@@ -562,7 +562,7 @@ bench::mark(grouped_ggbarstats(ggplot2::mpg, fl, class, grouping.var = drv)) %&g
 #&gt; # A tibble: 1 × 5
 #&gt;        min   median `itr/sec` mem_alloc `gc/sec`
 #&gt;   &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-#&gt; 1   39.8ms   41.3ms      23.9    4.89MB     4.78</code></pre>
+#&gt; 1   34.4ms   35.3ms      27.9    5.01MB     4.65</code></pre>
 </div>
 <div id="suggestions" class="section level1">
 <h1>Suggestions</h1>
