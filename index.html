@@ -29,7 +29,7 @@
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.3.9000</small>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,9 +80,9 @@
 </h2>
 <table class="table">
 <colgroup>
-<col width="32%">
-<col width="31%">
-<col width="36%">
+<col width="33%">
+<col width="33%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th>Status</th>
@@ -114,11 +114,11 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="7%">
-<col width="67%">
-<col width="24%">
+<col width="33%">
+<col width="33%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th>Type</th>
@@ -187,9 +187,9 @@
 </h2>
 <table class="table">
 <colgroup>
-<col width="20%">
-<col width="28%">
-<col width="51%">
+<col width="33%">
+<col width="33%">
+<col width="33%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Function</th>
@@ -250,14 +250,14 @@
 <h2 id="summary-of-types-of-statistical-analyses">Summary of types of statistical analyses<a class="anchor" aria-label="anchor" href="#summary-of-types-of-statistical-analyses"></a>
 </h2>
 <p>The table below summarizes all the different types of analyses currently supported in this package-</p>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="28%">
-<col width="37%">
-<col width="8%">
-<col width="11%">
-<col width="5%">
-<col width="7%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">Functions</th>
@@ -500,8 +500,6 @@
 <span>  type              <span class="op">=</span> <span class="st">"nonparametric"</span>,</span>
 <span>  xlab              <span class="op">=</span> <span class="st">"Movies budget (in million US$)"</span>,</span>
 <span>  grouping.var      <span class="op">=</span> <span class="va">genre</span>,</span>
-<span>  normal.curve      <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  normal.curve.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  ggtheme           <span class="op">=</span> <span class="fu">ggthemes</span><span class="fu">::</span><span class="fu">theme_tufte</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="co">## modify the defaults from `{ggstatsplot}` for each plot</span></span>
 <span>  plotgrid.args     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -739,14 +737,16 @@
 <span><span class="fu"><a href="reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == </span></span>
 <span><span class="co">#&gt;     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ </span></span>
-<span><span class="co">#&gt;     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span></span>
-<span></span>
+<span><span class="co">#&gt;     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># extracting expression present in the caption</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_caption</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == </span></span>
 <span><span class="co">#&gt;     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == </span></span>
-<span><span class="co">#&gt;     "0.71")</span></span>
-<span></span>
+<span><span class="co">#&gt;     "0.71")</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># a list of tibbles containing statistical analysis summaries</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $subtitle_data</span></span>
@@ -819,7 +819,7 @@
 </h3>
 <p>Sometimes you may not like the default plots produced by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> or other plotting packages) and still use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create our own plot using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package, and use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function for extracting expression:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## loading the needed libraries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>

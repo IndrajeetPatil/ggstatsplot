@@ -5,7 +5,7 @@ using ggstatsplot::combine_plots."><title>Grouped histograms for distribution of
 across multiple levels of a given factor and combining the resulting plots
 using ggstatsplot::combine_plots."><meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@patilindrajeets"><meta name="twitter:site" content="@patilindrajeets"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.3.9000</small>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,13 +90,7 @@ separately specified here.</p></dd>
 <dd><p>A <code>list</code> of additional arguments passed to
 <code><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">patchwork::plot_annotation()</a></code>.</p></dd>
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments passed on to <code><a href="gghistostats.html">gghistostats</a></code></p><dl><dt><code>normal.curve</code></dt>
-<dd><p>A logical value that decides whether to super-impose a
-normal curve using <code>stats::dnorm(mean(x), stats::sd(x))</code>. Default is <code>FALSE</code>.</p></dd>
-    <dt><code>normal.curve.args</code></dt>
-<dd><p>A list of additional aesthetic arguments to be
-passed to the normal curve.</p></dd>
-    <dt><code>bin.args</code></dt>
+<dd><p>Arguments passed on to <code><a href="gghistostats.html">gghistostats</a></code></p><dl><dt><code>bin.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to the
 <code>stat_bin</code> used to display the bins. Do not specify <code>binwidth</code> argument in
 this list since it has already been specified using the dedicated argument.</p></dd>
