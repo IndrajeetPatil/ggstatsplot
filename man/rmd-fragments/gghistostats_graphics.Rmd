@@ -2,4 +2,3 @@
 | :---------------------- | :------------------------- | :-------------------------------- |
 | histogram bin           | `ggplot2::stat_bin()`      | `bin.args`                        |
 | centrality measure line | `ggplot2::geom_vline()`    | `centrality.line.args`            |
-| normality curve         | `ggplot2::stat_function()` | `normal.curve.args`               |

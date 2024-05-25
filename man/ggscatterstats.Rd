@@ -153,8 +153,8 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 \item{...}{Currently ignored.}
 }
 \description{
-Scatterplots from \code{{ggplot2}} combined with marginal densigram (density +
-histogram) plots with statistical details.
+Scatterplots from \code{{ggplot2}} combined with marginal distributions plots
+with statistical details.
 }
 \details{
 For details, see:
@@ -169,9 +169,10 @@ have a lot of labels that overlap.
 \section{Summary of graphics}{
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
-   histogram bin \tab \code{ggplot2::stat_bin()} \tab \code{bin.args} \cr
-   centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
-   normality curve \tab \code{ggplot2::stat_function()} \tab \code{normal.curve.args} \cr
+   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   labels for raw data \tab \code{ggrepel::geom_label_repel()} \tab \code{point.label.args} \cr
+   smooth line \tab \code{ggplot2::geom_smooth()} \tab \code{smooth.line.args} \cr
+   marginal histograms \tab \code{ggside::geom_xsidehistogram()}, \code{ggside::geom_ysidehistogram()} \tab \code{xsidehistogram.args}, \code{ysidehistogram.args} \cr
 }
 }
 

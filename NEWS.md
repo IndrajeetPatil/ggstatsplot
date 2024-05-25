@@ -5,6 +5,12 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+## MAJOR CHANGES
+
+- The feature to superimpose normality curve on a histogram (in `gghistostats()`) has been removed. 
+  This feature always felt like an ad hoc addition to the plot, and has nothing to do with the key
+  statistical analysis in question (which is not about checking the normality of the distribution).
+
 ## BUG FIXES
 
 - Empty groups in factors are no longer dropped in `ggpiestats()` and `ggbarstats()` (#935).
