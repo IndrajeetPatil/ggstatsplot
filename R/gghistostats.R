@@ -12,10 +12,6 @@
 #' ```
 #'
 #' @param ... Currently ignored.
-#' @param normal.curve A logical value that decides whether to super-impose a
-#'   normal curve using `stats::dnorm(mean(x), stats::sd(x))`. Default is `FALSE`.
-#' @param normal.curve.args A list of additional aesthetic arguments to be
-#'   passed to the normal curve.
 #' @param binwidth The width of the histogram bins. Can be specified as a
 #'   numeric value, or a function that calculates width from `x`. The default is
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value
@@ -80,8 +76,6 @@ gghistostats <- function(
     centrality.plotting = TRUE,
     centrality.type = type,
     centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
-    normal.curve = FALSE,
-    normal.curve.args = list(linewidth = 2),
     ggplot.component = NULL,
     ...) {
   # data -----------------------------------
@@ -133,17 +127,6 @@ gghistostats <- function(
       )
     ) +
     guides(fill = "none")
-
-  # if normal curve overlay needs to be displayed
-  if (normal.curve) {
-    plot_hist <- plot_hist +
-      exec(
-        stat_function,
-        fun  = function(x, mean, sd, n, bw) stats::dnorm(x, mean, sd) * n * bw,
-        args = list(mean = mean(x_vec), sd = stats::sd(x_vec), n = length(x_vec), bw = binwidth %||% .binwidth(x_vec)),
-        !!!normal.curve.args
-      )
-  }
 
   # centrality plotting -------------------------------------
 

@@ -3,12 +3,12 @@
 #'
 #' @description
 #'
-#' Scatterplots from `{ggplot2}` combined with marginal densigram (density +
-#' histogram) plots with statistical details.
+#' Scatterplots from `{ggplot2}` combined with marginal distributions plots
+#' with statistical details.
 #'
 #' @section Summary of graphics:
 #'
-#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```{r child="man/rmd-fragments/ggscatterstats_graphics.Rmd"}
 #' ```
 #'
 #' @param ... Currently ignored.

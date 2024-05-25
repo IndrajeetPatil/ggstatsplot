@@ -40,10 +40,6 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link[=gghistostats]{gghistostats}}
   \describe{
-    \item{\code{normal.curve}}{A logical value that decides whether to super-impose a
-normal curve using \code{stats::dnorm(mean(x), stats::sd(x))}. Default is \code{FALSE}.}
-    \item{\code{normal.curve.args}}{A list of additional aesthetic arguments to be
-passed to the normal curve.}
     \item{\code{bin.args}}{A list of additional aesthetic arguments to be passed to the
 \code{stat_bin} used to display the bins. Do not specify \code{binwidth} argument in
 this list since it has already been specified using the dedicated argument.}

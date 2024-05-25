@@ -9,6 +9,7 @@ authors:
 
 template:
   bootstrap: 5
+  light-switch: true
   # includes:
   #   in-header: |
   #     <script defer data-domain="indrajeetpatil.github.io/ggstatsplot" src="https://plausible.io/js/plausible.js"></script>

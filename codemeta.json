@@ -349,7 +349,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/tidyverse/ggplot2"
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
     "7": {
       "@type": "SoftwareApplication",
@@ -532,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9347.226KB",
+  "fileSize": "9327.22KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

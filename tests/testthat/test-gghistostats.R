@@ -54,9 +54,7 @@ test_that(
         data = ggplot2::msleep,
         x = awake,
         binwidth = 1,
-        results.subtitle = FALSE,
-        normal.curve = TRUE,
-        normal.curve.args = list(color = "red", linewidth = 0.8)
+        results.subtitle = FALSE
       )
     )
   }
@@ -108,8 +106,7 @@ test_that(
       fig = grouped_gghistostats(
         data = ggplot2::msleep,
         x = brainwt,
-        grouping.var = vore,
-        normal.curve = TRUE
+        grouping.var = vore
       )
     )
 

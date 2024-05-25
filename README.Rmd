@@ -330,8 +330,6 @@ grouped_gghistostats(
   type              = "nonparametric",
   xlab              = "Movies budget (in million US$)",
   grouping.var      = genre,
-  normal.curve      = TRUE,
-  normal.curve.args = list(color = "red", size = 1),
   ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
   plotgrid.args     = list(nrow = 1),

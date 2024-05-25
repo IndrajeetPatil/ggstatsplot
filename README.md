@@ -3,10 +3,10 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-| Status                                                                                                                                            | Usage                                                                                                                                      | Miscellaneous                                                                                                                                                     |
-|---------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Status | Usage | Miscellaneous |
+|----|----|----|
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)                        | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)    | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)                                                       |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
 ## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
 
@@ -27,10 +27,10 @@ makes data exploration simpler and faster.
 
 ## Installation
 
-| Type        | Source                                                                                                             | Command                                  |
-|-------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| Release     | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")`        |
-| Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active)      | `pak::pak("IndrajeetPatil/ggstatsplot")` |
+| Type | Source | Command |
+|----|----|----|
+| Release | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")` |
+| Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active) | `pak::pak("IndrajeetPatil/ggstatsplot")` |
 
 ## Citation
 
@@ -95,17 +95,17 @@ To see the detailed documentation for each function in the stable
 
 ## Summary of available plots
 
-| Function           | Plot                      | Description                                     |
-|:-------------------|:--------------------------|:------------------------------------------------|
-| `ggbetweenstats()` | **violin plots**          | for comparisons *between* groups/conditions     |
-| `ggwithinstats()`  | **violin plots**          | for comparisons *within* groups/conditions      |
-| `gghistostats()`   | **histograms**            | for distribution about numeric variable         |
-| `ggdotplotstats()` | **dot plots/charts**      | for distribution about labeled numeric variable |
-| `ggscatterstats()` | **scatterplots**          | for correlation between two variables           |
-| `ggcorrmat()`      | **correlation matrices**  | for correlations between multiple variables     |
-| `ggpiestats()`     | **pie charts**            | for categorical data                            |
-| `ggbarstats()`     | **bar charts**            | for categorical data                            |
-| `ggcoefstats()`    | **dot-and-whisker plots** | for regression models and meta-analysis         |
+| Function | Plot | Description |
+|:---|:---|:---|
+| `ggbetweenstats()` | **violin plots** | for comparisons *between* groups/conditions |
+| `ggwithinstats()` | **violin plots** | for comparisons *within* groups/conditions |
+| `gghistostats()` | **histograms** | for distribution about numeric variable |
+| `ggdotplotstats()` | **dot plots/charts** | for distribution about labeled numeric variable |
+| `ggscatterstats()` | **scatterplots** | for correlation between two variables |
+| `ggcorrmat()` | **correlation matrices** | for correlations between multiple variables |
+| `ggpiestats()` | **pie charts** | for categorical data |
+| `ggbarstats()` | **bar charts** | for categorical data |
+| `ggcoefstats()` | **dot-and-whisker plots** | for regression models and meta-analysis |
 
 In addition to these basic plots, `{ggstatsplot}` also provides
 **`grouped_`** versions (see below) that makes it easy to repeat the
@@ -116,17 +116,17 @@ same analysis for any grouping variable.
 The table below summarizes all the different types of analyses currently
 supported in this package-
 
-| Functions                            | Description                                       | Parametric | Non-parametric | Robust | Bayesian |
-|:-------------------------------------|:--------------------------------------------------|:-----------|:---------------|:-------|:---------|
-| `ggbetweenstats()`                   | Between group/condition comparisons               | ✅         | ✅             | ✅     | ✅       |
-| `ggwithinstats()`                    | Within group/condition comparisons                | ✅         | ✅             | ✅     | ✅       |
-| `gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable                | ✅         | ✅             | ✅     | ✅       |
-| `ggcorrmat`                          | Correlation matrix                                | ✅         | ✅             | ✅     | ✅       |
-| `ggscatterstats()`                   | Correlation between two variables                 | ✅         | ✅             | ✅     | ✅       |
-| `ggpiestats()`, `ggbarstats()`       | Association between categorical variables         | ✅         | ✅             | ❌     | ✅       |
-| `ggpiestats()`, `ggbarstats()`       | Equal proportions for categorical variable levels | ✅         | ✅             | ❌     | ✅       |
-| `ggcoefstats()`                      | Regression model coefficients                     | ✅         | ✅             | ✅     | ✅       |
-| `ggcoefstats()`                      | Random-effects meta-analysis                      | ✅         | ❌             | ✅     | ✅       |
+| Functions | Description | Parametric | Non-parametric | Robust | Bayesian |
+|:---|:---|:---|:---|:---|:---|
+| `ggbetweenstats()` | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
+| `ggwithinstats()` | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
+| `gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅ |
+| `ggcorrmat` | Correlation matrix | ✅ | ✅ | ✅ | ✅ |
+| `ggscatterstats()` | Correlation between two variables | ✅ | ✅ | ✅ | ✅ |
+| `ggpiestats()`, `ggbarstats()` | Association between categorical variables | ✅ | ✅ | ❌ | ✅ |
+| `ggpiestats()`, `ggbarstats()` | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅ |
+| `ggcoefstats()` | Regression model coefficients | ✅ | ✅ | ✅ | ✅ |
+| `ggcoefstats()` | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅ |
 
 Summary of Bayesian analysis
 
@@ -315,8 +315,6 @@ grouped_gghistostats(
   type              = "nonparametric",
   xlab              = "Movies budget (in million US$)",
   grouping.var      = genre,
-  normal.curve      = TRUE,
-  normal.curve.args = list(color = "red", size = 1),
   ggtheme           = ggthemes::theme_tufte(),
   ## modify the defaults from `{ggstatsplot}` for each plot
   plotgrid.args     = list(nrow = 1),
@@ -699,12 +697,18 @@ extract_subtitle(p)
 #> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == 
 #>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ 
 #>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")
+```
+
+``` r
 
 # extracting expression present in the caption
 extract_caption(p)
 #> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == 
 #>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == 
 #>     "0.71")
+```
+
+``` r
 
 # a list of tibbles containing statistical analysis summaries
 extract_stats(p)

@@ -8,7 +8,7 @@
 #'
 #' @section Summary of graphics:
 #'
-#' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
+#' ```{r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}
 #' ```
 #'
 #' @param ... Currently ignored.
