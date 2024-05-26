@@ -47,6 +47,7 @@ Network Trash Folder
 Temporary Items
 
 # R Studio files
+*.pdf
 .RData
 .Rhistory
 .Rproj.user
