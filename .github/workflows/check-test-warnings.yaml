@@ -27,11 +27,16 @@ jobs:
           upgrade: 'TRUE'
           extra-packages: |
             local::.
-            any::devtools
           needs: check
 
       - name: Run Tests
         run: |
-          options(crayon.enabled = TRUE, warn = 2L)
-          devtools::test()
+            options(crayon.enabled = TRUE)
+            pkgload::load_all()
+            test_script_paths <- testthat::find_test_scripts("tests/testthat")
+            test_with_warning_as_error <- function(path) {
+              withr::local_options(list(warn = 2L))
+              testthat::test_file(path, stop_on_failure = TRUE, stop_on_warning = TRUE)
+            }
+            purrr::walk(test_script_paths, test_with_warning_as_error)
         shell: Rscript {0}
