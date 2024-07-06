@@ -1,168 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/404.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/additional.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/ggstatsplot.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/index.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/Titanic_full.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/bugs_long.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/bugs_wide.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/dot-grouped_list.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/dot-is_palette_sufficient.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggstatsplot-package.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbarstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbetweenstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggcorrmat.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggdotplotstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_gghistostats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggpiestats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggscatterstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggwithinstats.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/iris_long.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/movies_long.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/404.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/LICENSE-text.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/LICENSE.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/SUPPORT.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/additional.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/ggstatsplot.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/index.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/pairwise.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/principles.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/authors.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/index.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/news/index.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/Titanic_full.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/bugs_long.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/bugs_wide.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/dot-grouped_list.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/dot-is_palette_sufficient.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggstatsplot-package.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbarstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbetweenstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggcorrmat.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggdotplotstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_gghistostats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggpiestats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggscatterstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggwithinstats.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/index.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/iris_long.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/movies_long.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/reexports.html</loc></url>
+<url><loc>https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.html</loc></url>
 </urlset>
+

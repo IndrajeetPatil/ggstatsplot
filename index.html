@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Extension of ggplot2, ggstatsplot creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses. References: Patil (2021) &lt;doi:10.21105/joss.03236&gt;.">
 <title>ggplot2 Based Plots with Statistical Details • ggstatsplot</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -13,28 +12,35 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.9/font.css" rel="stylesheet">
 <link href="deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
-<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Based Plots with Statistical Details">
+<link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Based Plots with Statistical Details">
+<meta name="description" content="Extension of ggplot2, ggstatsplot creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses. References: Patil (2021) &lt;doi:10.21105/joss.03236&gt;.">
 <meta property="og:description" content="Extension of ggplot2, ggstatsplot creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses. References: Patil (2021) &lt;doi:10.21105/joss.03236&gt;.">
 <meta property="og:image" content="https://indrajeetpatil.github.io/ggstatsplot/reference/figures/card.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@patilindrajeets">
 <meta name="twitter:site" content="@patilindrajeets">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+
+
     <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.3.9000</small>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.4</small>
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="articles/ggstatsplot.html">Get started</a></li>
@@ -79,6 +85,8 @@
 </li>
       </ul>
 </div>
+
+
   </div>
 </nav><div class="container template-home">
 <div class="row">
@@ -92,18 +100,18 @@
 <col width="33%">
 <col width="33%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Status</th>
 <th>Usage</th>
 <th>Miscellaneous</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><a href="https://github.com/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue" alt="Total downloads"></a></td>
 <td><a href="https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8" alt="codecov"></a></td>
 </tr>
-<tr class="even">
+<tr>
 <td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue" alt="Daily downloads"></a></td>
 <td><a href="https://doi.org/10.21105/joss.03167" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.03167/status.svg" alt="DOI"></a></td>
@@ -128,18 +136,18 @@
 <col width="33%">
 <col width="33%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th>Type</th>
 <th>Source</th>
 <th>Command</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Release</td>
 <td><a href="https://cran.r-project.org/package=ggstatsplot" class="external-link"><img src="https://www.r-pkg.org/badges/version/ggstatsplot" alt="CRAN Status"></a></td>
 <td><code>install.packages("ggstatsplot")</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td>Development</td>
 <td><a href="https://www.repostatus.org/##active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status"></a></td>
 <td><code>pak::pak("IndrajeetPatil/ggstatsplot")</code></td>
@@ -199,53 +207,53 @@
 <col width="33%">
 <col width="33%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th align="left">Function</th>
 <th align="left">Plot</th>
 <th align="left">Description</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code></td>
 <td align="left"><strong>violin plots</strong></td>
 <td align="left">for comparisons <em>between</em> groups/conditions</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code></td>
 <td align="left"><strong>violin plots</strong></td>
 <td align="left">for comparisons <em>within</em> groups/conditions</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/gghistostats.html">gghistostats()</a></code></td>
 <td align="left"><strong>histograms</strong></td>
 <td align="left">for distribution about numeric variable</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/ggdotplotstats.html">ggdotplotstats()</a></code></td>
 <td align="left"><strong>dot plots/charts</strong></td>
 <td align="left">for distribution about labeled numeric variable</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code></td>
 <td align="left"><strong>scatterplots</strong></td>
 <td align="left">for correlation between two variables</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/ggcorrmat.html">ggcorrmat()</a></code></td>
 <td align="left"><strong>correlation matrices</strong></td>
 <td align="left">for correlations between multiple variables</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggpiestats.html">ggpiestats()</a></code></td>
 <td align="left"><strong>pie charts</strong></td>
 <td align="left">for categorical data</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/ggbarstats.html">ggbarstats()</a></code></td>
 <td align="left"><strong>bar charts</strong></td>
 <td align="left">for categorical data</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code></td>
 <td align="left"><strong>dot-and-whisker plots</strong></td>
 <td align="left">for regression models and meta-analysis</td>
@@ -267,7 +275,7 @@
 <col width="16%">
 <col width="16%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th align="left">Functions</th>
 <th align="left">Description</th>
 <th align="left">Parametric</th>
@@ -276,7 +284,7 @@
 <th align="left">Bayesian</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code></td>
 <td align="left">Between group/condition comparisons</td>
 <td align="left">✅</td>
@@ -284,7 +292,7 @@
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code></td>
 <td align="left">Within group/condition comparisons</td>
 <td align="left">✅</td>
@@ -292,7 +300,7 @@
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">
 <code><a href="reference/gghistostats.html">gghistostats()</a></code>, <code><a href="reference/ggdotplotstats.html">ggdotplotstats()</a></code>
 </td>
@@ -302,7 +310,7 @@
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>ggcorrmat</code></td>
 <td align="left">Correlation matrix</td>
 <td align="left">✅</td>
@@ -310,7 +318,7 @@
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code></td>
 <td align="left">Correlation between two variables</td>
 <td align="left">✅</td>
@@ -318,7 +326,7 @@
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">
 <code><a href="reference/ggpiestats.html">ggpiestats()</a></code>, <code><a href="reference/ggbarstats.html">ggbarstats()</a></code>
 </td>
@@ -328,7 +336,7 @@
 <td align="left">❌</td>
 <td align="left">✅</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">
 <code><a href="reference/ggpiestats.html">ggpiestats()</a></code>, <code><a href="reference/ggbarstats.html">ggbarstats()</a></code>
 </td>
@@ -338,7 +346,7 @@
 <td align="left">❌</td>
 <td align="left">✅</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code></td>
 <td align="left">Regression model coefficients</td>
 <td align="left">✅</td>
@@ -346,7 +354,7 @@
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code></td>
 <td align="left">Random-effects meta-analysis</td>
 <td align="left">✅</td>
@@ -358,33 +366,33 @@
 </table>
 <p>Summary of Bayesian analysis</p>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th align="left">Analysis</th>
 <th align="left">Hypothesis testing</th>
 <th align="left">Estimation</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">(one/two-sample) <em>t</em>-test</td>
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">one-way ANOVA</td>
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">correlation</td>
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">(one/two-way) contingency table</td>
 <td align="left">✅</td>
 <td align="left">✅</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">random-effects meta-analysis</td>
 <td align="left">✅</td>
 <td align="left">✅</td>
@@ -714,7 +722,7 @@
 <p>The function <code><a href="reference/ggcoefstats.html">ggcoefstats()</a></code> generates <strong>dot-and-whisker plots</strong> for regression models saved in a tidy data frame. The tidy data frames are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Additionally, if available, the model summary indices are also extracted from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
 <p>Although the statistical models displayed in the plot may differ based on the class of models being investigated, there are few aspects of the plot that will be invariant across models:</p>
 <ul>
-<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <span class="math inline">\(\chi^{2}\)</span>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
+<li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their <strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be effect sizes (for tests that depend on the <code>F</code>-statistic) or regression coefficients (for tests with <code>t</code>-, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^{2}</annotation></semantics></math>-, and <code>z</code>-statistic), etc. The function will, by default, display a helpful <code>x</code>-axis label that should clear up what estimates are being displayed. The confidence intervals can sometimes be asymmetric if bootstrapping was used.</p></li>
 <li><p>The label attached to dot will provide more details from the statistical test carried out and it will typically contain estimate, statistic, and <em>p</em>-value.e</p></li>
 <li><p>The caption will contain diagnostic information, if available, about models that can be useful for model selection: The smaller the Akaike’s Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the “better” the model is.</p></li>
 <li><p>The output of this function will be a <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> object and, thus, it can be further modified (e.g. change themes) with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> functions.</p></li>
@@ -890,14 +898,15 @@
 </ul>
 <p>Please note that this project is released with a <a href="https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://cloud.r-project.org/package=ggstatsplot" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
@@ -905,6 +914,7 @@
 <li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a> | file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
 <div class="community">
 <h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
@@ -913,12 +923,14 @@
 <li><a href="SUPPORT.html">Getting help</a></li>
 </ul>
 </div>
+
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
 <li><a href="authors.html#citation">Citing ggstatsplot</a></li>
 </ul>
 </div>
+
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
@@ -928,15 +940,26 @@
 </ul>
 </div>
 
+
+
   </aside>
 </div>
+
+
     <footer><div class="pkgdown-footer-left">
   <p>Developed by <a href="https://sites.google.com/site/indrajeetspatilmorality/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
+
 <div class="pkgdown-footer-right">
   <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
+
     </footer>
 </div>
+
+
+
+
+
   </body>
 </html>
