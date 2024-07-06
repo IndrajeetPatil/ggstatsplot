@@ -1,4 +1,4 @@
-# ggstatsplot 0.12.3.9000
+# ggstatsplot 0.12.4
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
@@ -10,6 +10,10 @@ read the `NEWS` for that package:
 - The feature to superimpose normality curve on a histogram (in `gghistostats()`) has been removed. 
   This feature always felt like an ad hoc addition to the plot, and has nothing to do with the key
   statistical analysis in question (which is not about checking the normality of the distribution).
+
+## MINOR CHANGES
+
+- Updates code to fix warnings coming via updates to easystats packages.
 
 ## BUG FIXES
 

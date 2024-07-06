@@ -62,7 +62,7 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{FALSE}).}
 
-\item{effectsize.type}{This is the same as \code{effectsize_type} argument of
+\item{effectsize.type}{This is the same as \code{es_type} argument of
 \code{parameters::model_parameters()}. Defaults to \code{"eta"}, and relevant for
 ANOVA-like objects.}
 
