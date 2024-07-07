@@ -153,7 +153,7 @@ ggpiestats <- function(
   descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
 
   # data frame containing all details needed for proportion test
-  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits)
+  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
 
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(package, palette, min_length = x_levels)

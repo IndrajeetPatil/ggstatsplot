@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.12.4",
+  "version": "0.12.4.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -203,6 +203,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rstantools"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
     },
     {
       "@type": "SoftwareApplication",
@@ -496,11 +501,6 @@
     },
     "18": {
       "@type": "SoftwareApplication",
-      "identifier": "stats",
-      "name": "stats"
-    },
-    "19": {
-      "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
       "version": ">= 1.5.5",
@@ -512,7 +512,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
-    "20": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -525,14 +525,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "21": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "9327.584KB",
+  "fileSize": "9314.806KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

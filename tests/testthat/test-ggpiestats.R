@@ -20,7 +20,7 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "checking one-way table - without NA",
-      fig = ggpiestats(mtcars, cyl)
+      fig = ggpiestats(mtcars, cyl, ratio = c(0.2, 0.2, 0.6))
     )
 
     set.seed(123)
@@ -32,7 +32,7 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
-      fig = ggpiestats(mtcars, am, cyl)
+      fig = ggpiestats(mtcars, am, vs, ratio = c(0.4, 0.6))
     )
 
     set.seed(123)
@@ -49,7 +49,8 @@ test_that(
         `1st survey`,
         `2nd survey`,
         counts = Counts,
-        paired = TRUE
+        paired = TRUE,
+        ratio = c(0.4, 0.6)
       )
     )
 
