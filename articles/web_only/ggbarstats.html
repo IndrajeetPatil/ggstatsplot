@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.12.4.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>ggbarstats</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/0.12.4/vignettes/web_only/ggbarstats.Rmd" class="external-link"><code>vignettes/web_only/ggbarstats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/main/vignettes/web_only/ggbarstats.Rmd" class="external-link"><code>vignettes/web_only/ggbarstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggbarstats.Rmd</code></div>
     </div>
 
@@ -170,9 +170,8 @@ status (class), sex, age, and survival.”</p>
 <span><span class="co">#&gt;   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"</span></span>
 <span><span class="co">#&gt;   ..$ Sex     : chr [1:2] "Male" "Female"</span></span>
 <span><span class="co">#&gt;   ..$ Age     : chr [1:2] "Child" "Adult"</span></span>
-<span><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt;   ..$ Survived: chr [1:2] "No" "Yes"</span></span>
+<span></span>
 <span><span class="co"># looking at the dataset as a tibble or data frame</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Titanic_full</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 2,201</span></span>
@@ -212,7 +211,7 @@ status (class), sex, age, and survival.”</p>
 of, or associated with, their survival status, i.e., we want to test
 whether the proportion of people who survived was different between the
 sexes.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -242,7 +241,7 @@ specified <strong>grouping variable</strong> and then combines the list
 of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span></span>
 <span>  <span class="co"># arguments relevant for `ggbarstats()`</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
@@ -286,7 +285,7 @@ unique observation. For example, consider the following notional
 fish they caught in the months of <code>February</code> and
 <code>March</code>. In this data frame, each row corresponds to a unique
 combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
 <span></span>
@@ -339,7 +338,7 @@ call to the <code><a href="../../reference/ggbarstats.html">ggbarstats()</a></co
 <code>counts</code> argument.</p>
 <p>If we want to investigate the relationship of type of fish by month
 (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">fishing</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Fish</span>,</span>
@@ -375,7 +374,7 @@ designs, you can set <code>paired = TRUE</code>, which will display
 results from <strong>McNemar test</strong> in the subtitle.</p>
 <p>(<strong>Note:</strong> If you forget to set
 <code>paired = TRUE</code>, the results will be inaccurate.)</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create imaginary data</span></span>
 <span><span class="va">clinical_trial</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">SickBefore</span>, <span class="op">~</span><span class="va">SickAfter</span>, <span class="op">~</span><span class="va">Counts</span>,</span>
@@ -424,7 +423,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggbarstats_files/figure-html/reporting-1.png" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
@@ -459,7 +458,7 @@ issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" 
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.9000.</p>
 </div>
 
     </footer>
