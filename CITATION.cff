@@ -439,16 +439,6 @@ references:
   year: '2024'
   version: '>= 1.1.4'
 - type: software
-  title: stats
-  abstract: 'R: A Language and Environment for Statistical Computing'
-  notes: Imports
-  authors:
-  - name: R Core Team
-  institution:
-    name: R Foundation for Statistical Computing
-    address: Vienna, Austria
-  year: '2024'
-- type: software
   title: statsExpressions
   abstract: 'statsExpressions: Tidy Dataframes and Expressions with Statistical Details'
   notes: Imports
@@ -704,6 +694,16 @@ references:
     email: mlysy@uwaterloo.ca
   - family-names: Johnson
     given-names: Andrew
+  year: '2024'
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Suggests
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
   year: '2024'
 - type: software
   title: survival

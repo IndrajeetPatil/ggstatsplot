@@ -206,6 +206,11 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "survival",
       "name": "survival",
       "provider": {
@@ -496,11 +501,6 @@
     },
     "18": {
       "@type": "SoftwareApplication",
-      "identifier": "stats",
-      "name": "stats"
-    },
-    "19": {
-      "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
       "version": ">= 1.5.5",
@@ -512,7 +512,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
-    "20": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -525,14 +525,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "21": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "9327.531KB",
+  "fileSize": "9314.806KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
