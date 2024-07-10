@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.3.9000
+version: 0.12.4.9000
 doi: 10.21105/joss.03167
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
@@ -76,7 +76,7 @@ references:
   abstract: 'correlation: Methods for Correlation Analysis'
   notes: Imports
   url: https://easystats.github.io/correlation/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=correlation
   authors:
   - family-names: Makowski
     given-names: Dominique
@@ -103,13 +103,13 @@ references:
     email: remi.theriault@mail.mcgill.ca
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
-  version: '>= 0.8.4'
+  version: '>= 0.8.5'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://CRAN.R-project.org/package=datawizard
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -136,7 +136,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.10.0'
+  version: '>= 0.11.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -313,7 +313,7 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2024'
-  version: '>= 0.19.11'
+  version: '>= 0.20.1'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -356,7 +356,7 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.21.7'
+  version: '>= 0.22.0'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -375,7 +375,7 @@ references:
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://CRAN.R-project.org/package=performance
+  repository: https://easystats.r-universe.dev
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -406,7 +406,7 @@ references:
     email: remi.theriault@mail.mcgill.ca
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
-  version: '>= 0.11.0'
+  version: '>= 0.12.0'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -437,17 +437,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2024'
-  version: '>= 1.1.3'
-- type: software
-  title: stats
-  abstract: 'R: A Language and Environment for Statistical Computing'
-  notes: Imports
-  authors:
-  - name: R Core Team
-  institution:
-    name: R Foundation for Statistical Computing
-    address: Vienna, Austria
-  year: '2024'
+  version: '>= 1.1.4'
 - type: software
   title: statsExpressions
   abstract: 'statsExpressions: Tidy Dataframes and Expressions with Statistical Details'
@@ -459,8 +449,8 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
+  version: '>= 1.5.5'
   year: '2024'
-  version: '>= 1.5.4'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -580,6 +570,8 @@ references:
   - family-names: Ripley
     given-names: Brian
     email: ripley@stats.ox.ac.uk
+  - family-names: Venables
+    given-names: Bill
   year: '2024'
 - type: software
   title: metaBMA
@@ -620,7 +612,7 @@ references:
   authors:
   - family-names: Beath
     given-names: Ken
-    email: ken@kjbeath.com.au
+    email: ken@kjbeath.id.au
   - family-names: Bolker
     given-names: Ben
     email: bolker@mcmaster.ca
@@ -638,6 +630,9 @@ references:
     email: revelle@northwestern.edu
     orcid: https://orcid.org/0000-0003-4880-9610
   year: '2024'
+  identifiers:
+  - type: url
+    value: https://personality-project.org/r/psych-manual.pdf
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -699,6 +694,16 @@ references:
     email: mlysy@uwaterloo.ca
   - family-names: Johnson
     given-names: Andrew
+  year: '2024'
+- type: software
+  title: stats
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Suggests
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
   year: '2024'
 - type: software
   title: survival

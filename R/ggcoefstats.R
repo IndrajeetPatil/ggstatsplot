@@ -19,7 +19,7 @@
 #'   estimates of coefficients or other quantities of interest).
 #' @param statistic Relevant statistic for the model (`"t"`, `"f"`, `"z"`, or
 #'   `"chi"`) in the label. Relevant only if `x` is a *data frame*.
-#' @param effectsize.type This is the same as `effectsize_type` argument of
+#' @param effectsize.type This is the same as `es_type` argument of
 #'   `parameters::model_parameters()`. Defaults to `"eta"`, and relevant for
 #'   ANOVA-like objects.
 #' @param bf.message Logical that decides whether results from running a
@@ -165,10 +165,10 @@ ggcoefstats <- function(
 
     # converting model object to a tidy data frame
     tidy_df <- tidy_model_parameters(
-      model           = x,
-      effectsize_type = effectsize.type,
-      ci              = conf.level,
-      table_wide      = TRUE,
+      model      = x,
+      es_type    = effectsize.type,
+      ci         = conf.level,
+      table_wide = TRUE,
       ...
     )
 

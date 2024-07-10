@@ -21,7 +21,7 @@ test_that(
     set.seed(123)
     expect_doppelganger(
       title = "checking unpaired two-way table - without NA",
-      fig = ggbarstats(mtcars, am, cyl)
+      fig = ggbarstats(mtcars, am, vs, ratio = c(0.4, 0.6))
     )
 
     set.seed(123)
@@ -38,7 +38,8 @@ test_that(
         `1st survey`,
         `2nd survey`,
         counts = Counts,
-        paired = TRUE
+        paired = TRUE,
+        ratio = c(0.4, 0.6)
       )
     )
 
