@@ -37,18 +37,15 @@ descriptive_data <- function(
 #' @autoglobal
 #' @noRd
 onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
-  full_join(
-    # descriptive summary
-    x = .cat_counter(data, {{ y }}) %>%
-      mutate(N = paste0("(n = ", .prettyNum(counts), ")")),
-    # proportion test results
-    y = group_by(data, {{ y }}) %>%
-      group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) %>%
-      ungroup(),
-    by = as_name(ensym(y))
-  ) %>%
+  grouped_chi_squared_summary <- group_by(data, {{ y }}) %>%
+    group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) %>%
+    ungroup()
+  descriptive_summary <- .cat_counter(data, {{ y }}) %>% mutate(N = paste0("(n = ", .prettyNum(counts), ")"))
+
+  full_join(descriptive_summary, grouped_chi_squared_summary, by = as_name(ensym(y))) %>%
     rowwise() %>%
     mutate(
+      # nolint next: line_length_linter.
       .label = glue("list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ~italic(p)=='{format_value(p.value, digits)}', ~italic(n)=='{.prettyNum(counts)}')"),
       .p.label = glue("list(~italic(p)=='{format_value(p.value, digits)}')")
     ) %>%
