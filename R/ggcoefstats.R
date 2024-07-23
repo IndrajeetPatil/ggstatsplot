@@ -173,33 +173,11 @@ ggcoefstats <- function(
     )
 
     # anova objects need further cleaning
+    # nolint next: line_length_linter.
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
   }
 
-  # tidy data frame cleanup -------------------------
-
-  if (is.null(tidy_df) || !"estimate" %in% names(tidy_df)) {
-    rlang::abort("The tidy data frame *must* contain 'estimate' column.")
-  }
-
-  # create a new term column if it's not present
-  if (!"term" %in% names(tidy_df)) tidy_df %<>% mutate(term = paste0("term_", row_number()))
-
-  # check for duplicate terms and columns -------------------------
-
-  # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
-  if (anyDuplicated(tidy_df$term)) {
-    tidy_df %<>%
-      tidyr::unite(
-        col    = "term",
-        matches("term|variable|parameter|method|curve|response|component|contrast|group"),
-        remove = TRUE,
-        sep    = "_"
-      )
-  }
-
-  # halt if there are still repeated terms
-  if (anyDuplicated(tidy_df$term)) rlang::abort("Elements in `term` column must be unique.")
+  tidy_df <- .preprocess_tidy_data(tidy_df, sort)
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
   if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
@@ -212,7 +190,6 @@ ggcoefstats <- function(
     conf.int <- FALSE
   }
 
-  # whether to show model intercept
   if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
 
   # label -------------------------
@@ -226,19 +203,12 @@ ggcoefstats <- function(
     }
   }
 
-  # sorting -------------------------
-
-  tidy_df %<>% parameters::sort_parameters(sort = sort, column = "estimate")
-
-  # `term` needs to be a factor column; otherwise, ggplot2 will sort the `x`-axis
-  # labels alphabetically and terms won't appear in the expected order
-  tidy_df %<>% dplyr::mutate(term = factor(term, tidy_df$term))
-
   # summary caption -------------------------
 
   glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
+    # nolint next: line_length_linter.
     glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
     caption <- .extract_expression(glance_df)
   }
@@ -248,11 +218,9 @@ ggcoefstats <- function(
   if (meta.analytic.effect) {
     meta.type <- stats_type_switch(meta.type)
 
-    # frequentist
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, digits = digits)
     subtitle <- .extract_expression(subtitle_df)
 
-    # Bayesian
     if (meta.type == "parametric" && bf.message) {
       caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", digits = digits))
       caption <- .extract_expression(caption_df)
@@ -275,7 +243,6 @@ ggcoefstats <- function(
       )
   }
 
-  # adding the vertical line
   if (vline) plot_coef <- plot_coef + exec(geom_vline, xintercept = 0, !!!vline.args)
 
   # ggrepel labels -------------------------
@@ -296,7 +263,7 @@ ggcoefstats <- function(
       )
   }
 
-  # annotations -------------------------
+  # annotations ---------------------------------------------
 
   plot_coef +
     labs(
@@ -308,4 +275,35 @@ ggcoefstats <- function(
     ) +
     ggtheme +
     theme(plot.caption = element_text(size = 10))
+}
+
+
+#' @noRd
+.preprocess_tidy_data <- function(data, sort) {
+  if (is.null(data) || !"estimate" %in% names(data)) {
+    rlang::abort("The tidy data frame *must* contain 'estimate' column.")
+  }
+
+  # create a new term column if it's not present
+  if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number()))
+
+  # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
+  if (anyDuplicated(data$term)) {
+    data %<>%
+      tidyr::unite(
+        col    = "term",
+        matches("term|variable|parameter|method|curve|response|component|contrast|group"),
+        remove = TRUE,
+        sep    = "_"
+      )
+  }
+
+  # halt if there are still repeated terms
+  if (anyDuplicated(data$term)) rlang::abort("Elements in `term` column must be unique.")
+
+  data %<>% parameters::sort_parameters(sort = sort, column = "estimate")
+
+  # `term` needs to be a factor column; otherwise, ggplot2 will sort the `x`-axis
+  # labels alphabetically and terms won't appear in the expected order
+  data %>% dplyr::mutate(term = factor(term, data$term))
 }
