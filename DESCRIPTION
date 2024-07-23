@@ -32,7 +32,7 @@ Depends:
     R (>= 4.1.0)
 Imports:
     correlation (>= 0.8.5),
-    datawizard (>= 0.11.0),
+    datawizard (>= 0.12.2),
     dplyr (>= 1.1.4),
     ggcorrplot (>= 0.1.4.1),
     ggplot2 (>= 3.5.1),
@@ -40,11 +40,11 @@ Imports:
     ggside (>= 0.3.1),
     ggsignif (>= 0.6.4),
     glue (>= 1.7.0),
-    insight (>= 0.20.1),
+    insight (>= 0.20.2),
     paletteer (>= 1.6.0),
-    parameters (>= 0.22.0),
+    parameters (>= 0.22.1),
     patchwork (>= 1.2.0),
-    performance (>= 0.12.0),
+    performance (>= 0.12.2),
     purrr (>= 1.0.2),
     rlang (>= 1.1.4),
     statsExpressions (>= 1.5.5),
