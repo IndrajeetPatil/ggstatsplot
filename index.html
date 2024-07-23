@@ -753,16 +753,14 @@
 <span><span class="fu"><a href="reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == </span></span>
 <span><span class="co">#&gt;     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ </span></span>
-<span><span class="co">#&gt;     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt;     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span></span>
+<span></span>
 <span><span class="co"># extracting expression present in the caption</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_caption</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == </span></span>
 <span><span class="co">#&gt;     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == </span></span>
-<span><span class="co">#&gt;     "0.71")</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt;     "0.71")</span></span>
+<span></span>
 <span><span class="co"># a list of tibbles containing statistical analysis summaries</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $subtitle_data</span></span>
@@ -835,7 +833,7 @@
 </h3>
 <p>Sometimes you may not like the default plots produced by <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> or other plotting packages) and still use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical test.</p>
 <p>For example, in the following chunk, we will create our own plot using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package, and use <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function for extracting expression:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## loading the needed libraries</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
