@@ -308,7 +308,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.11.0",
+      "version": ">= 0.12.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -412,7 +412,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.20.1",
+      "version": ">= 0.20.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -438,7 +438,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.22.0",
+      "version": ">= 0.22.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -464,7 +464,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.12.0",
+      "version": ">= 0.12.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",

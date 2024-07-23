@@ -10,6 +10,9 @@ license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
 version: 0.12.4.9000
 doi: 10.21105/joss.03167
+identifiers:
+- type: doi
+  value: 10.32614/CRAN.package.ggstatsplot
 abstract: 'Extension of ''ggplot2'', ''ggstatsplot'' creates graphics with details
   from statistical tests included in the plots themselves. It provides an easier syntax
   to generate information-rich plots for statistical analysis of continuous (violin
@@ -103,13 +106,14 @@ references:
     email: remi.theriault@mail.mcgill.ca
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
+  doi: 10.32614/CRAN.package.correlation
   version: '>= 0.8.5'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
   notes: Imports
   url: https://easystats.github.io/datawizard/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=datawizard
   authors:
   - family-names: Patil
     given-names: Indrajeet
@@ -136,7 +140,8 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.11.0'
+  doi: 10.32614/CRAN.package.datawizard
+  version: '>= 0.12.2'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -161,6 +166,7 @@ references:
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
   year: '2024'
+  doi: 10.32614/CRAN.package.dplyr
   version: '>= 1.1.4'
 - type: software
   title: ggcorrplot
@@ -173,6 +179,7 @@ references:
     given-names: Alboukadel
     email: alboukadel.kassambara@gmail.com
   year: '2024'
+  doi: 10.32614/CRAN.package.ggcorrplot
   version: '>= 0.1.4.1'
 - type: software
   title: ggplot2
@@ -213,6 +220,7 @@ references:
     name-particle: van den
     orcid: https://orcid.org/0000-0002-9335-7468
   year: '2024'
+  doi: 10.32614/CRAN.package.ggplot2
   version: '>= 3.5.1'
 - type: software
   title: ggrepel
@@ -226,6 +234,7 @@ references:
     email: kslowikowski@gmail.com
     orcid: https://orcid.org/0000-0002-2843-6370
   year: '2024'
+  doi: 10.32614/CRAN.package.ggrepel
   version: '>= 0.9.5'
 - type: software
   title: ggside
@@ -239,6 +248,7 @@ references:
     email: jtlandis314@gmail.com
     orcid: https://orcid.org/0000-0001-5501-4934
   year: '2024'
+  doi: 10.32614/CRAN.package.ggside
   version: '>= 0.3.1'
 - type: software
   title: ggsignif
@@ -256,6 +266,7 @@ references:
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
   year: '2024'
+  doi: 10.32614/CRAN.package.ggsignif
   version: '>= 0.6.4'
 - type: software
   title: glue
@@ -272,6 +283,7 @@ references:
     email: jenny@posit.co
     orcid: https://orcid.org/0000-0002-6983-2759
   year: '2024'
+  doi: 10.32614/CRAN.package.glue
   version: '>= 1.7.0'
 - type: software
   title: insight
@@ -313,7 +325,8 @@ references:
     email: etienne.bacher@protonmail.com
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2024'
-  version: '>= 0.20.1'
+  doi: 10.32614/CRAN.package.insight
+  version: '>= 0.20.2'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -324,6 +337,7 @@ references:
   - family-names: file.
     given-names: See AUTHORS
   year: '2024'
+  doi: 10.32614/CRAN.package.paletteer
   version: '>= 1.6.0'
 - type: software
   title: parameters
@@ -356,7 +370,8 @@ references:
     email: brenton@wiernik.org
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
-  version: '>= 0.22.0'
+  doi: 10.32614/CRAN.package.parameters
+  version: '>= 0.22.1'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -369,13 +384,14 @@ references:
     email: thomasp85@gmail.com
     orcid: https://orcid.org/0000-0002-5147-4711
   year: '2024'
+  doi: 10.32614/CRAN.package.patchwork
   version: '>= 1.2.0'
 - type: software
   title: performance
   abstract: 'performance: Assessment of Regression Models Performance'
   notes: Imports
   url: https://easystats.github.io/performance/
-  repository: https://easystats.r-universe.dev
+  repository: https://CRAN.R-project.org/package=performance
   authors:
   - family-names: Lüdecke
     given-names: Daniel
@@ -406,7 +422,8 @@ references:
     email: remi.theriault@mail.mcgill.ca
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
-  version: '>= 0.12.0'
+  doi: 10.32614/CRAN.package.performance
+  version: '>= 0.12.2'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -422,6 +439,7 @@ references:
     given-names: Lionel
     email: lionel@rstudio.com
   year: '2024'
+  doi: 10.32614/CRAN.package.purrr
   version: '>= 1.0.2'
 - type: software
   title: rlang
@@ -437,6 +455,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2024'
+  doi: 10.32614/CRAN.package.rlang
   version: '>= 1.1.4'
 - type: software
   title: statsExpressions
@@ -449,6 +468,7 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
+  doi: 10.32614/CRAN.package.statsExpressions
   version: '>= 1.5.5'
   year: '2024'
 - type: software
@@ -467,6 +487,7 @@ references:
   - family-names: Girlich
     given-names: Maximilian
   year: '2024'
+  doi: 10.32614/CRAN.package.tidyr
   version: '>= 1.3.1'
 - type: software
   title: utils
@@ -478,6 +499,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
+  doi: 10.32614/CRAN.package.utils
 - type: software
   title: afex
   abstract: 'afex: Analysis of Factorial Experiments'
@@ -499,6 +521,7 @@ references:
   - family-names: Ben-Shachar
     given-names: Mattan S.
   year: '2024'
+  doi: 10.32614/CRAN.package.afex
 - type: software
   title: BayesFactor
   abstract: 'BayesFactor: Computation of Bayes Factors for Common Designs'
@@ -513,6 +536,7 @@ references:
     given-names: Jeffrey N.
     email: jrouder@uci.edu
   year: '2024'
+  doi: 10.32614/CRAN.package.BayesFactor
   version: '>= 0.9.12-4.7'
 - type: software
   title: gapminder
@@ -526,6 +550,7 @@ references:
     email: jenny@posit.co
     orcid: https://orcid.org/0000-0002-6983-2759
   year: '2024'
+  doi: 10.32614/CRAN.package.gapminder
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -538,6 +563,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2024'
+  doi: 10.32614/CRAN.package.knitr
 - type: software
   title: lme4
   abstract: 'lme4: Linear Mixed-Effects Models using ''Eigen'' and S4'
@@ -559,6 +585,7 @@ references:
     given-names: Steven
     orcid: https://orcid.org/0000-0002-4394-9078
   year: '2024'
+  doi: 10.32614/CRAN.package.lme4
   version: '>= 1.1-35.2'
 - type: software
   title: MASS
@@ -573,6 +600,7 @@ references:
   - family-names: Venables
     given-names: Bill
   year: '2024'
+  doi: 10.32614/CRAN.package.MASS
 - type: software
   title: metaBMA
   abstract: 'metaBMA: Bayesian Model Averaging for Random and Fixed Effects Meta-Analysis'
@@ -585,6 +613,7 @@ references:
     email: daniel.heck@uni-marburg.de
     orcid: https://orcid.org/0000-0002-6302-9252
   year: '2024'
+  doi: 10.32614/CRAN.package.metaBMA
 - type: software
   title: metafor
   abstract: 'metafor: Meta-Analysis Package for R'
@@ -604,6 +633,7 @@ references:
     value: https://wviechtb.github.io/metafor/
   - type: url
     value: https://www.wvbauer.com
+  doi: 10.32614/CRAN.package.metafor
 - type: software
   title: metaplus
   abstract: 'metaplus: Robust Meta-Analysis and Meta-Regression'
@@ -618,6 +648,7 @@ references:
     email: bolker@mcmaster.ca
   - name: R Development Core Team
   year: '2024'
+  doi: 10.32614/CRAN.package.metaplus
 - type: software
   title: psych
   abstract: 'psych: Procedures for Psychological, Psychometric, and Personality Research'
@@ -633,6 +664,7 @@ references:
   identifiers:
   - type: url
     value: https://personality-project.org/r/psych-manual.pdf
+  doi: 10.32614/CRAN.package.psych
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -676,6 +708,7 @@ references:
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
   year: '2024'
+  doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: rstantools
   abstract: 'rstantools: Tools for Developing R Packages Interfacing with ''Stan'''
@@ -695,6 +728,7 @@ references:
   - family-names: Johnson
     given-names: Andrew
   year: '2024'
+  doi: 10.32614/CRAN.package.rstantools
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -705,6 +739,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
+  doi: 10.32614/CRAN.package.stats
 - type: software
   title: survival
   abstract: 'survival: Survival Analysis'
@@ -716,6 +751,7 @@ references:
     given-names: Terry M
     email: therneau.terry@mayo.edu
   year: '2024'
+  doi: 10.32614/CRAN.package.survival
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
@@ -727,6 +763,7 @@ references:
     given-names: Hadley
     email: hadley@posit.co
   year: '2024'
+  doi: 10.32614/CRAN.package.testthat
   version: '>= 3.2.1'
 - type: software
   title: tibble
@@ -743,6 +780,7 @@ references:
     given-names: Hadley
     email: hadley@rstudio.com
   year: '2024'
+  doi: 10.32614/CRAN.package.tibble
 - type: software
   title: vdiffr
   abstract: 'vdiffr: Visual Regression Testing and Graphical Diffing'
@@ -767,6 +805,7 @@ references:
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
   year: '2024'
+  doi: 10.32614/CRAN.package.vdiffr
   version: '>= 1.0.7'
 - type: software
   title: withr
@@ -792,6 +831,7 @@ references:
   - family-names: Chang
     given-names: Winston
   year: '2024'
+  doi: 10.32614/CRAN.package.withr
 - type: software
   title: WRS2
   abstract: 'WRS2: A Collection of Robust Statistical Methods'
@@ -806,3 +846,4 @@ references:
     given-names: Rand
     email: rwilcox@usc.edu
   year: '2024'
+  doi: 10.32614/CRAN.package.WRS2
