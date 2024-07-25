@@ -3,6 +3,7 @@
 export("%>%")
 export(combine_plots)
 export(extract_caption)
+export(extract_grouped_stats)
 export(extract_stats)
 export(extract_subtitle)
 export(ggbarstats)

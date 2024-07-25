@@ -4,6 +4,7 @@
 
 combine_plots(plotlist, plotgrid.args = list(), annotation.args = list(), guides = "collect", ...)
 extract_caption(p)
+extract_grouped_stats(p = NULL)
 extract_stats(p, ...)
 extract_subtitle(p)
 ggbarstats(data, x, y, counts = NULL, type = "parametric", paired = FALSE, results.subtitle = TRUE, label = "percentage", label.args = list(alpha = 1, fill = "white"), sample.size.label.args = list(size = 4), digits = 2L, proportion.test = results.subtitle, digits.perc = 0L, bf.message = TRUE, ratio = NULL, conf.level = 0.95, sampling.plan = "indepMulti", fixed.margin = "rows", prior.concentration = 1, title = NULL, subtitle = NULL, caption = NULL, legend.title = NULL, xlab = NULL, ylab = NULL, ggtheme = ggstatsplot::theme_ggstatsplot(), package = "RColorBrewer", palette = "Dark2", ggplot.component = NULL, ...)
