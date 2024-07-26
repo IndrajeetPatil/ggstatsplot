@@ -21,7 +21,7 @@ extract_grouped_stats <- function(p = NULL) {
     # with exporting functions as openxlsx::save_xlsx it must be converted to
     # a vector of chars
     table_i$expression <- as.character(table_i$expression)
-    stats_i <- data.frame(Group_i, table_i)
+    stats_i <- data.frame(Group = Group_i, table_i)
     stats_0 <- rbind(stats_0, stats_i)
   }
   tibble::tibble(stats_0)
