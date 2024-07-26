@@ -2,7 +2,7 @@ linters: all_linters(
     absolute_path_linter = NULL,
     assignment_linter = NULL,
     commented_code_linter = NULL,
-    cyclocomp_linter(25L),
+    cyclocomp_linter(20L),
     if_not_else_linter(exceptions = character(0L)),
     implicit_integer_linter = NULL,
     library_call_linter = NULL,
@@ -12,11 +12,9 @@ linters: all_linters(
     object_name_linter = NULL,
     object_length_linter(50L),
     object_usage_linter = NULL,
-    todo_comment_linter = NULL,
     string_boundary_linter = NULL,
-    strings_as_factors_linter = NULL,
+    strings_as_factors_linter = NULL, # since R > 4.0
     undesirable_function_linter = NULL,
-    undesirable_operator_linter = NULL,
     unnecessary_concatenation_linter(allow_single_expression = FALSE),
     unused_import_linter = NULL
   )

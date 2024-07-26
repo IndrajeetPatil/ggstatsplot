@@ -21,15 +21,13 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          upgrade: "TRUE"
+          upgrade: 'TRUE'
+          needs: check
           extra-packages: |
             any::gh
             any::purrr
             r-lib/lintr
-          needs: check
-
-      - name: Install package
-        run: R CMD INSTALL .
+            local::.
 
       - name: Extract and lint files changed by this PR
         run: |
@@ -39,28 +37,8 @@ jobs:
           changed_files <- purrr::map_chr(files, "filename")
           all_files <- list.files(recursive = TRUE)
           exclusions_list <- as.list(setdiff(all_files, changed_files))
-          lint_package(linters = all_linters(
-            absolute_path_linter = NULL,
-            assignment_linter = NULL,
-            commented_code_linter = NULL,
-            cyclocomp_linter(25L),
-            if_not_else_linter(exceptions = character(0L)),
-            implicit_integer_linter = NULL,
-            library_call_linter = NULL,
-            line_length_linter(120L),
-            namespace_linter = NULL,
-            nonportable_path_linter = NULL,
-            object_name_linter = NULL,
-            object_length_linter(50L),
-            object_usage_linter = NULL,
-            string_boundary_linter = NULL,
-            strings_as_factors_linter = NULL,
-            todo_comment_linter = NULL,
-            undesirable_function_linter = NULL,
-            undesirable_operator_linter = NULL,
-            unnecessary_concatenation_linter(allow_single_expression = FALSE),
-            unused_import_linter = NULL
-          ), exclusions = exclusions_list)
+          # lintr config in `.lintr` file
+          lint_package(exclusions = exclusions_list)
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true
