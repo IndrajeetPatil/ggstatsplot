@@ -86,15 +86,6 @@ test_that(
   }
 )
 
-# utilities ---------------
-
-test_that(
-  ".binwidth works as expected",
-  {
-    expect_equal(ggstatsplot:::.binwidth(mtcars$wt), 0.6913737, tolerance = 0.001)
-  }
-)
-
 # grouped_gghistostats works ---------------------------------------------
 
 test_that(

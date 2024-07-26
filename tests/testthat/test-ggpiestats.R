@@ -148,7 +148,6 @@ test_that(
     # dropped level dataset
     mtcars_small <- dplyr::filter(mtcars, am == "0")
 
-    # TODO: should one-way table results be shown in the subtitle?
     set.seed(123)
     expect_doppelganger(
       title = "works with dropped levels",
