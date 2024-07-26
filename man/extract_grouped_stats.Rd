@@ -7,11 +7,21 @@
 extract_grouped_stats(p = NULL)
 }
 \arguments{
-\item{p}{A grouped plot made with grouped_ggwithinstats()}
+\item{p}{A grouped ggstatsplot (made with any of the grouped_ functions)}
 }
 \value{
-A tibble summarising stats for a grouped plot made with ggstastplot
+A tibble summarizing stats for a grouped plot made with ggstastplot
 }
 \description{
 Get stats from grouped plots
+}
+\examples{
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+set.seed(123)
+
+# grouped plot
+p <- grouped_ggbarstats(Titanic_full, Survived, Sex, grouping.var = Age)
+
+extract_grouped_stats(p)
+\dontshow{\}) # examplesIf}
 }
