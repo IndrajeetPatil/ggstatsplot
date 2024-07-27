@@ -135,9 +135,9 @@
       extracted_data <- extract_stats(p8)
       summary(extracted_data)
     Output
-           Length Class  Mode
-      [1,] 7      -none- list
-      [2,] 7      -none- list
+           Length Class             Mode
+      [1,] 7      ggstatsplot_stats list
+      [2,] 7      ggstatsplot_stats list
     Code
       summary(extracted_data[[1L]])
     Output
@@ -160,4 +160,28 @@
       one_sample_data            0     -none-           NULL
       tidy_data                  0     -none-           NULL
       glance_data                0     -none-           NULL
+    Code
+      extract_subtitle(p8)
+    Output
+      [[1]]
+      list(chi["gof"]^2 * "(" * 2 * ")" == "7.68", italic(p) == "0.02", 
+          widehat(italic("C"))["Pearson"] == "0.54", CI["95%"] ~ "[" * 
+              "0.07", "0.73" * "]", italic("n")["obs"] == "19")
+      
+      [[2]]
+      list(chi["gof"]^2 * "(" * 2 * ")" == "4.77", italic(p) == "0.09", 
+          widehat(italic("C"))["Pearson"] == "0.52", CI["95%"] ~ "[" * 
+              "0.00", "0.74" * "]", italic("n")["obs"] == "13")
+      
+    Code
+      extract_caption(p8)
+    Output
+      [[1]]
+      list(log[e] * (BF["01"]) == "-0.16", italic("a")["Gunel-Dickey"] == 
+          "1.00")
+      
+      [[2]]
+      list(log[e] * (BF["01"]) == "0.82", italic("a")["Gunel-Dickey"] == 
+          "1.00")
+      
 

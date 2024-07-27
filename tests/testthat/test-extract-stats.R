@@ -86,6 +86,8 @@ test_that(
       summary(extracted_data)
       summary(extracted_data[[1L]])
       summary(extracted_data[[2L]])
+      extract_subtitle(p8)
+      extract_caption(p8)
     })
   }
 )

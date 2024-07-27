@@ -53,23 +53,31 @@ extract_stats <- function(p) {
 
 .extract_plots <- function(p) purrr::map(seq_along(p), ~ purrr::pluck(p, .x))
 
+.pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
+
 .extract_stats <- function(p) {
   # styler: off
-  list(
-    subtitle_data             = purrr::pluck(p, "plot_env", "subtitle_df"),
-    caption_data              = purrr::pluck(p, "plot_env", "caption_df"),
-    pairwise_comparisons_data = purrr::pluck(p, "plot_env", "mpc_df"),
-    descriptive_data          = purrr::pluck(p, "plot_env", "descriptive_df"),
-    one_sample_data           = purrr::pluck(p, "plot_env", "onesample_df"),
-    tidy_data                 = purrr::pluck(p, "plot_env", "tidy_df"),
-    glance_data               = purrr::pluck(p, "plot_env", "glance_df")
-  )
+  structure(list(
+    subtitle_data             = .pluck_plot_env(p, "subtitle_df"),
+    caption_data              = .pluck_plot_env(p, "caption_df"),
+    pairwise_comparisons_data = .pluck_plot_env(p, "mpc_df"),
+    descriptive_data          = .pluck_plot_env(p, "descriptive_df"),
+    one_sample_data           = .pluck_plot_env(p, "onesample_df"),
+    tidy_data                 = .pluck_plot_env(p, "tidy_df"),
+    glance_data               = .pluck_plot_env(p, "glance_df")
+  ), class = c("ggstatsplot_stats", "list"))
   # styler: on
 }
 
+
+
 # function factory to extract particular kind of stats data
-.extract_stats_data <- function(data) {
-  function(p) purrr::pluck(extract_stats(p), data, "expression", 1L)
+.extract_stats_data <- function(data_component) {
+  function(p) {
+    data <- extract_stats(p)
+    .pluck_expression <- function(x) purrr::pluck(x, data_component, "expression", 1L)
+    if (inherits(data, "ggstatsplot_stats")) .pluck_expression(data) else purrr::map(data, ~ .pluck_expression(.x))
+  }
 }
 
 #' @rdname extract_stats
