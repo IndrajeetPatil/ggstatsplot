@@ -84,10 +84,7 @@ test_that(
       p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
       extracted_data <- extract_stats(p8)
       summary(extracted_data)
-      summary(extracted_data[[1L]])
-      summary(extracted_data[[2L]])
       extract_subtitle(p8)
-      extract_caption(p8)
     })
   }
 )

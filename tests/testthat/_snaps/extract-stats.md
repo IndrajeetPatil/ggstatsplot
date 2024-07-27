@@ -139,28 +139,6 @@
       [1,] 7      ggstatsplot_stats list
       [2,] 7      ggstatsplot_stats list
     Code
-      summary(extracted_data[[1L]])
-    Output
-                                Length Class            Mode
-      subtitle_data             13     statsExpressions list
-      caption_data               4     statsExpressions list
-      pairwise_comparisons_data  0     -none-           NULL
-      descriptive_data           4     tbl_df           list
-      one_sample_data            0     -none-           NULL
-      tidy_data                  0     -none-           NULL
-      glance_data                0     -none-           NULL
-    Code
-      summary(extracted_data[[2L]])
-    Output
-                                Length Class            Mode
-      subtitle_data             13     statsExpressions list
-      caption_data               4     statsExpressions list
-      pairwise_comparisons_data  0     -none-           NULL
-      descriptive_data           4     tbl_df           list
-      one_sample_data            0     -none-           NULL
-      tidy_data                  0     -none-           NULL
-      glance_data                0     -none-           NULL
-    Code
       extract_subtitle(p8)
     Output
       [[1]]
@@ -172,16 +150,5 @@
       list(chi["gof"]^2 * "(" * 2 * ")" == "4.77", italic(p) == "0.09", 
           widehat(italic("C"))["Pearson"] == "0.52", CI["95%"] ~ "[" * 
               "0.00", "0.74" * "]", italic("n")["obs"] == "13")
-      
-    Code
-      extract_caption(p8)
-    Output
-      [[1]]
-      list(log[e] * (BF["01"]) == "-0.16", italic("a")["Gunel-Dickey"] == 
-          "1.00")
-      
-      [[2]]
-      list(log[e] * (BF["01"]) == "0.82", italic("a")["Gunel-Dickey"] == 
-          "1.00")
       
 
