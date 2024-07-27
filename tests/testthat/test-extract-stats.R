@@ -82,11 +82,17 @@ test_that(
   {
     expect_snapshot({
       p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
-      list(
-        length(extract_stats(p8))
-        # extract_subtitle(p7),
-        # extract_caption(p7)
-      )
+      extracted_data <- extract_stats(p8)
+      summary(extracted_data)
+      summary(extracted_data[[1L]])
+      summary(extracted_data[[2L]])
     })
+  }
+)
+
+test_that(
+  "checking if extract_stats produces NULL on supported objects",
+  {
+    expect_length(purrr::compact(extract_stats(iris)), 0L)
   }
 )

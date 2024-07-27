@@ -132,9 +132,32 @@
 
     Code
       p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
-      list(length(extract_stats(p8)))
+      extracted_data <- extract_stats(p8)
+      summary(extracted_data)
     Output
-      [[1]]
-      [1] 2
-      
+           Length Class  Mode
+      [1,] 7      -none- list
+      [2,] 7      -none- list
+    Code
+      summary(extracted_data[[1L]])
+    Output
+                                Length Class            Mode
+      subtitle_data             13     statsExpressions list
+      caption_data               4     statsExpressions list
+      pairwise_comparisons_data  0     -none-           NULL
+      descriptive_data           4     tbl_df           list
+      one_sample_data            0     -none-           NULL
+      tidy_data                  0     -none-           NULL
+      glance_data                0     -none-           NULL
+    Code
+      summary(extracted_data[[2L]])
+    Output
+                                Length Class            Mode
+      subtitle_data             13     statsExpressions list
+      caption_data               4     statsExpressions list
+      pairwise_comparisons_data  0     -none-           NULL
+      descriptive_data           4     tbl_df           list
+      one_sample_data            0     -none-           NULL
+      tidy_data                  0     -none-           NULL
+      glance_data                0     -none-           NULL
 

@@ -48,15 +48,12 @@
 #' extract_stats(p2)
 #' @export
 extract_stats <- function(p) {
-  if (inherits(p, "patchwork")) {
-    plots <- purrr::map(seq_along(p), ~ purrr::pluck(p, .x))
-    purrr::map(plots, .extract_stats_ggplot)
-  } else {
-    .extract_stats_ggplot(p)
-  }
+  if (inherits(p, "patchwork")) purrr::map(.extract_plots(p), .extract_stats) else .extract_stats(p)
 }
 
-.extract_stats_ggplot <- function(p) {
+.extract_plots <- function(p) purrr::map(seq_along(p), ~ purrr::pluck(p, .x))
+
+.extract_stats <- function(p) {
   # styler: off
   list(
     subtitle_data             = purrr::pluck(p, "plot_env", "subtitle_df"),
@@ -70,10 +67,15 @@ extract_stats <- function(p) {
   # styler: on
 }
 
-#' @rdname extract_stats
-#' @export
-extract_subtitle <- function(p) purrr::pluck(extract_stats(p), "subtitle_data", "expression", 1L)
+# function factory to extract particular kind of stats data
+.extract_stats_data <- function(data) {
+  function(p) purrr::pluck(extract_stats(p), data, "expression", 1L)
+}
 
 #' @rdname extract_stats
 #' @export
-extract_caption <- function(p) purrr::pluck(extract_stats(p), "caption_data", "expression", 1L)
+extract_subtitle <- .extract_stats_data("subtitle_data")
+
+#' @rdname extract_stats
+#' @export
+extract_caption <- .extract_stats_data("caption_data")
