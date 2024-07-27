@@ -63,6 +63,11 @@
 <h2 class="pkg-version" data-toc-text="0.12.4.9000" id="ggstatsplot-01249000">ggstatsplot 0.12.4.9000<a class="anchor" aria-label="anchor" href="#ggstatsplot-01249000"></a></h2>
 <p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
 <div class="section level3">
+<h3 id="major-changes-0-12-4-9000">MAJOR CHANGES<a class="anchor" aria-label="anchor" href="#major-changes-0-12-4-9000"></a></h3>
+<ul><li><p><code><a href="../reference/extract_stats.html">extract_stats()</a></code> returns a list of class <code>ggstatsplot_stats</code> which contains all the statistical summaries and expressions for a given plot.</p></li>
+<li><p><code><a href="../reference/extract_stats.html">extract_stats()</a></code>, <code><a href="../reference/extract_stats.html">extract_subtitle()</a></code>, <code><a href="../reference/extract_stats.html">extract_caption()</a></code> now works out of the box for the grouped plots as well.</p></li>
+</ul></div>
+<div class="section level3">
 <h3 id="bug-fixes-0-12-4-9000">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-0-12-4-9000"></a></h3>
 <ul><li>
 <code><a href="../reference/ggpiestats.html">ggpiestats()</a></code> and <code><a href="../reference/ggbarstats.html">ggbarstats()</a></code> now respect <code>ratio()</code> argument for proportion tests run in case of two-way contingency tables (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/818" class="external-link">#818</a>).</li>

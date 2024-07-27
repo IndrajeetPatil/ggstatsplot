@@ -66,7 +66,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">extract_subtitle</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span></span>
@@ -79,10 +79,6 @@
 
 <dl><dt id="arg-p">p<a class="anchor" aria-label="anchor" href="#arg-p"></a></dt>
 <dd><p>A plot from <code>{ggstatsplot}</code> package</p></dd>
-
-
-<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Ignored</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -127,13 +123,27 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "0.71")</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">extract_subtitle</span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(chi["Pearson"]^2 * "(" * 1 * ")" == "460.87", italic(p) == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "3.11e-102", widehat(italic("V"))["Cramer"] == "0.47", CI["95%"] ~ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "[" * "0.43", "0.51" * "]", italic("n")["obs"] == "2,092")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> list(chi["Pearson"]^2 * "(" * 1 * ")" == "3.03", italic(p) == </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "0.08", widehat(italic("V"))["Cramer"] == "0.14", CI["95%"] ~ </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "[" * "0.00", "0.34" * "]", italic("n")["obs"] == "109")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">extract_caption</span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> list(log[e] * (BF["01"]) == "-213.79", widehat(italic("V"))["Cramer"]^"posterior" == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "0.47", CI["95%"]^ETI ~ "[" * "0.43", "0.51" * "]", italic("a")["Gunel-Dickey"] == </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "1.00")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> list(log[e] * (BF["01"]) == "-0.03", widehat(italic("V"))["Cramer"]^"posterior" == </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "0.13", CI["95%"]^ETI ~ "[" * "0.00", "0.33" * "]", italic("a")["Gunel-Dickey"] == </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "1.00")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># extracting data frames -----------------------------</span></span></span>
 <span class="r-in"><span></span></span>
@@ -202,8 +212,11 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $glance_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ggstatsplot_stats" "list"             </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p2</span><span class="op">[[</span><span class="fl">1L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $subtitle_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>                     <span style="font-weight: bold;">effectsize</span>       </span>
@@ -256,7 +269,10 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $glance_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="fu">extract_stats</span><span class="op">(</span><span class="va">p2</span><span class="op">[[</span><span class="fl">2L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ggstatsplot_stats" "list"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $subtitle_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>                     <span style="font-weight: bold;">effectsize</span>        <span style="font-weight: bold;">estimate</span></span>
@@ -305,6 +321,9 @@ default.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $glance_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ggstatsplot_stats" "list"             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
