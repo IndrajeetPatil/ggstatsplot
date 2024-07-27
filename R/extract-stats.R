@@ -74,9 +74,9 @@ extract_stats <- function(p) {
 # function factory to extract particular kind of stats data
 .extract_stats_data <- function(data_component) {
   function(p) {
-    data <- extract_stats(p)
+    dat <- extract_stats(p)
     .pluck_expression <- function(x) purrr::pluck(x, data_component, "expression", 1L)
-    if (inherits(data, "ggstatsplot_stats")) .pluck_expression(data) else purrr::map(data, ~ .pluck_expression(.x))
+    if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
   }
 }
 
