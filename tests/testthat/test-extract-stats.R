@@ -75,3 +75,23 @@ test_that(
     })
   }
 )
+
+
+test_that(
+  "checking if extract_stats works for grouped plots",
+  {
+    expect_snapshot({
+      p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
+      extracted_data <- extract_stats(p8)
+      summary(extracted_data)
+      extract_subtitle(p8)
+    })
+  }
+)
+
+test_that(
+  "checking if extract_stats produces NULL on supported objects",
+  {
+    expect_length(purrr::compact(extract_stats(iris)), 0L)
+  }
+)

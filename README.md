@@ -769,6 +769,9 @@ extract_stats(p)
 #> 
 #> $glance_data
 #> NULL
+#> 
+#> attr(,"class")
+#> [1] "ggstatsplot_stats" "list"
 ```
 
 Note that all of this analysis is carried out by `{statsExpressions}`
