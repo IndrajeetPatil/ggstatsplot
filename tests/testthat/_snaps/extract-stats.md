@@ -128,3 +128,13 @@
       NULL
       
 
+# checking if extract_stats works for grouped plots
+
+    Code
+      p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
+      list(length(extract_stats(p8)))
+    Output
+      [[1]]
+      [1] 2
+      
+

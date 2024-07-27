@@ -21,7 +21,6 @@
 #' The exact details included will depend on the function.
 #'
 #' @param p A plot from `{ggstatsplot}` package
-#' @param ... Ignored
 #'
 #' @autoglobal
 #'
@@ -46,19 +45,27 @@
 #'
 #' extract_stats(p1)
 #'
-#' extract_stats(p2[[1L]])
-#' extract_stats(p2[[2L]])
+#' extract_stats(p2)
 #' @export
-extract_stats <- function(p, ...) {
+extract_stats <- function(p) {
+  if (inherits(p, "patchwork")) {
+    plots <- purrr::map(seq_along(p), ~ purrr::pluck(p, .x))
+    purrr::map(plots, .extract_stats_ggplot)
+  } else {
+    .extract_stats_ggplot(p)
+  }
+}
+
+.extract_stats_ggplot <- function(p) {
   # styler: off
   list(
-    subtitle_data             = tryCatch(p$plot_env$subtitle_df,    error = function(e) NULL),
-    caption_data              = tryCatch(p$plot_env$caption_df,     error = function(e) NULL),
-    pairwise_comparisons_data = tryCatch(p$plot_env$mpc_df,         error = function(e) NULL),
-    descriptive_data          = tryCatch(p$plot_env$descriptive_df, error = function(e) NULL),
-    one_sample_data           = tryCatch(p$plot_env$onesample_df,   error = function(e) NULL),
-    tidy_data                 = tryCatch(p$plot_env$tidy_df,        error = function(e) NULL),
-    glance_data               = tryCatch(p$plot_env$glance_df,      error = function(e) NULL)
+    subtitle_data             = purrr::pluck(p, "plot_env", "subtitle_df"),
+    caption_data              = purrr::pluck(p, "plot_env", "caption_df"),
+    pairwise_comparisons_data = purrr::pluck(p, "plot_env", "mpc_df"),
+    descriptive_data          = purrr::pluck(p, "plot_env", "descriptive_df"),
+    one_sample_data           = purrr::pluck(p, "plot_env", "onesample_df"),
+    tidy_data                 = purrr::pluck(p, "plot_env", "tidy_df"),
+    glance_data               = purrr::pluck(p, "plot_env", "glance_df")
   )
   # styler: on
 }

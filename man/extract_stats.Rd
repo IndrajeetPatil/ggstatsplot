@@ -6,7 +6,7 @@
 \alias{extract_caption}
 \title{Extracting data frames or expressions from \code{{ggstatsplot}} plots}
 \usage{
-extract_stats(p, ...)
+extract_stats(p)
 
 extract_subtitle(p)
 
@@ -14,8 +14,6 @@ extract_caption(p)
 }
 \arguments{
 \item{p}{A plot from \code{{ggstatsplot}} package}
-
-\item{...}{Ignored}
 }
 \value{
 A list of tibbles containing summaries of various statistical analyses.
@@ -60,7 +58,6 @@ extract_caption(p2)
 
 extract_stats(p1)
 
-extract_stats(p2[[1L]])
-extract_stats(p2[[2L]])
+extract_stats(p2)
 \dontshow{\}) # examplesIf}
 }
