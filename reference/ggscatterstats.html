@@ -181,19 +181,19 @@ the plot will be returned.</p></dd>
 <dt id="arg-label-expression">label.expression<a class="anchor" aria-label="anchor" href="#arg-label-expression"></a></dt>
 <dd><p>An expression evaluating to a logical vector that
 determines the subset of data points to label (e.g. <code>y &lt; 4 &amp; z &lt; 20</code>).
-While using this argument with <code><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">purrr::pmap()</a></code>, you will have to provide a
-quoted expression  (e.g. <code>quote(y &lt; 4 &amp; z &lt; 20)</code>).</p></dd>
+While using this argument with <code><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">purrr::pmap()</a></code>, you will have to provide
+a quoted expression  (e.g. <code>quote(y &lt; 4 &amp; z &lt; 20)</code>).</p></dd>
 
 
 <dt id="arg-marginal">marginal<a class="anchor" aria-label="anchor" href="#arg-marginal"></a></dt>
 <dd><p>Decides whether marginal distributions will be plotted on
-axes using <code>ggside</code> functions. The default is <code>TRUE</code>. The package
-<code>ggside</code> must already be installed by the user.</p></dd>
+axes using <code>{ggside}</code> functions. The default is <code>TRUE</code>. The package
+<code>{ggside}</code> must already be installed by the user.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed
-to <code>geom_point</code> geom used to display the raw data points.</p></dd>
+<dd><p>A list of additional aesthetic arguments to be passed to
+the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-point-width-jitter-point-height-jitter">point.width.jitter, point.height.jitter<a class="anchor" aria-label="anchor" href="#arg-point-width-jitter-point-height-jitter"></a></dt>
@@ -207,7 +207,7 @@ these points.</p></dd>
 
 <dt id="arg-point-label-args">point.label.args<a class="anchor" aria-label="anchor" href="#arg-point-label-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed
-to <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geom used to display the labels.</p></dd>
+to <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>geom used to display the labels.</p></dd>
 
 
 <dt id="arg-smooth-line-args">smooth.line.args<a class="anchor" aria-label="anchor" href="#arg-smooth-line-args"></a></dt>
@@ -247,13 +247,13 @@ if <code>bf.message = FALSE</code>.</p></dd>
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>), or themes from extension packages are allowed (e.g.,
-<code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>, etc.).
-But note that sometimes these themes will remove some of the details that
-<code>{ggstatsplot}</code> plots typically contains. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
+<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
+(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
+etc.). But note that sometimes these themes will remove some of the details
+that <code>{ggstatsplot}</code> plots typically contains. For example, if relevant,
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
 

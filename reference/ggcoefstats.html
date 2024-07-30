@@ -162,9 +162,9 @@ entered.</p></dd>
 
 <dt id="arg-meta-type">meta.type<a class="anchor" aria-label="anchor" href="#arg-meta-type"></a></dt>
 <dd><p>Type of statistics used to carry out random-effects
-meta-analysis. If <code>"parametric"</code> (default), <code><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">metafor::rma</a></code> function will be
-used. If <code>"robust"</code>, <code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus</a></code> function will be used. If
-<code>"bayes"</code>, <code><a href="https://danheck.github.io/metaBMA/reference/meta_random.html" class="external-link">metaBMA::meta_random</a></code> function will be used.</p></dd>
+meta-analysis. If <code>"parametric"</code> (default), <code><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">metafor::rma()</a></code> will be
+used. If <code>"robust"</code>, <code><a href="https://rdrr.io/pkg/metaplus/man/metaplus.html" class="external-link">metaplus::metaplus()</a></code> will be used. If <code>"bayes"</code>,
+<code><a href="https://danheck.github.io/metaBMA/reference/meta_random.html" class="external-link">metaBMA::meta_random()</a></code> will be used.</p></dd>
 
 
 <dt id="arg-bf-message">bf.message<a class="anchor" aria-label="anchor" href="#arg-bf-message"></a></dt>
@@ -211,14 +211,13 @@ regression coefficients are to be displayed in a single plot.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
-<dd><p>Additional arguments that will be passed to
-<code>geom_point</code> geom. Please see documentation for that function to
-know more about these arguments.</p></dd>
+<dd><p>A list of additional aesthetic arguments to be passed to
+the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-errorbar-args">errorbar.args<a class="anchor" aria-label="anchor" href="#arg-errorbar-args"></a></dt>
 <dd><p>Additional arguments that will be passed to
-<code>geom_errorbarh</code> geom. Please see documentation for that function
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">geom_errorbarh()</a></code> geom. Please see documentation for that function
 to know more about these arguments.</p></dd>
 
 
@@ -235,7 +234,7 @@ know more about these arguments.</p></dd>
 <dt id="arg-stats-labels">stats.labels<a class="anchor" aria-label="anchor" href="#arg-stats-labels"></a></dt>
 <dd><p>Logical. Decides whether the statistic and <em>p</em>-values for
 each coefficient are to be attached to each dot as a text label using
-<code>ggrepel</code> (Default: <code>TRUE</code>).</p></dd>
+<code>{ggrepel}</code> (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-stats-label-color">stats.label.color<a class="anchor" aria-label="anchor" href="#arg-stats-label-color"></a></dt>
@@ -246,8 +245,7 @@ be chosen from the specified <code>package</code> (Default: <code>"RColorBrewer"
 
 <dt id="arg-stats-label-args">stats.label.args<a class="anchor" aria-label="anchor" href="#arg-stats-label-args"></a></dt>
 <dd><p>Additional arguments that will be passed to
-<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>. Please see documentation for that
-function to know more about these arguments.</p></dd>
+<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>.</p></dd>
 
 
 <dt id="arg-package-palette">package, palette<a class="anchor" aria-label="anchor" href="#arg-package-palette"></a></dt>
@@ -258,20 +256,20 @@ be extracted. The available palettes and packages can be checked by running
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>), or themes from extension packages are allowed (e.g.,
-<code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>, etc.).
-But note that sometimes these themes will remove some of the details that
-<code>{ggstatsplot}</code> plots typically contains. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
+<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
+(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
+etc.). But note that sometimes these themes will remove some of the details
+that <code>{ggstatsplot}</code> plots typically contains. For example, if relevant,
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Additional arguments to tidying method. For more, see
-<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>.</p></dd>
+<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

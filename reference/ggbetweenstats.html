@@ -271,12 +271,12 @@ to be:</p><ul><li><p><code>"parameteric"</code> (for <strong>mean</strong>)</p><
 <dt id="arg-centrality-point-args-centrality-label-args">centrality.point.args, centrality.label.args<a class="anchor" aria-label="anchor" href="#arg-centrality-point-args-centrality-label-args"></a></dt>
 <dd><p>A list of additional aesthetic
 arguments to be passed to <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code> and
-<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel</a></code> geoms, which are involved in mean plotting.</p></dd>
+<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code> geoms, which are involved in mean plotting.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
-the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code> displaying the raw data.</p></dd>
+the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-boxplot-args">boxplot.args<a class="anchor" aria-label="anchor" href="#arg-boxplot-args"></a></dt>
@@ -291,18 +291,18 @@ the <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" cla
 
 <dt id="arg-ggsignif-args">ggsignif.args<a class="anchor" aria-label="anchor" href="#arg-ggsignif-args"></a></dt>
 <dd><p>A list of additional aesthetic
-arguments to be passed to <code><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">ggsignif::geom_signif</a></code>.</p></dd>
+arguments to be passed to <code><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">ggsignif::geom_signif()</a></code>.</p></dd>
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
 <dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">ggstatsplot::theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw()</a></code>), or themes from extension packages are allowed (e.g.,
-<code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>, etc.).
-But note that sometimes these themes will remove some of the details that
-<code>{ggstatsplot}</code> plots typically contains. For example, if relevant,
-<code>ggbetweenstats()</code> shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
+<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
+(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
+etc.). But note that sometimes these themes will remove some of the details
+that <code>{ggstatsplot}</code> plots typically contains. For example, if relevant,
+<code>ggbetweenstats()</code> shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 <code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
 thus the details as well.</p></dd>
 
