@@ -52,7 +52,7 @@ Please note that if there are empty factor levels in your variable, they
 will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
 appropriate association test will be run. This argument can not be \code{NULL}
-for \code{ggbarstats} function.}
+for \code{\link[=ggbarstats]{ggbarstats()}}.}
 
 \item{counts}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
@@ -79,10 +79,10 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{label.args}{Additional aesthetic arguments that will be passed to
-\code{ggplot2::geom_label()}.}
+\code{\link[ggplot2:geom_text]{ggplot2::geom_label()}}.}
 
-\item{sample.size.label.args}{Additional aesthetic arguments that will be passed to
-\code{ggplot2::geom_text()}.}
+\item{sample.size.label.args}{Additional aesthetic arguments that will be
+passed to \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
 \item{digits}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
@@ -93,10 +93,10 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 
 \item{proportion.test}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
-\code{ggbarstats}, only \emph{p}-values from this test will be displayed.}
+\code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
 
-\item{digits.perc}{Numeric that decides number of decimal places for percentage
-labels (Default: \code{0L}).}
+\item{digits.perc}{Numeric that decides number of decimal places for
+percentage labels (Default: \code{0L}).}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -142,13 +142,13 @@ variable name for \code{x} will be used.}
 variable name for \code{y} will be used.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.). But note that sometimes these themes will remove some of the details
+that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 

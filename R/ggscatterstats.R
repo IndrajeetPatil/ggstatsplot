@@ -16,17 +16,15 @@
 #'   `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label (e.g. `y < 4 & z < 20`).
-#'   While using this argument with `purrr::pmap()`, you will have to provide a
-#'   quoted expression  (e.g. `quote(y < 4 & z < 20)`).
+#'   While using this argument with [`purrr::pmap()`], you will have to provide
+#'   a quoted expression  (e.g. `quote(y < 4 & z < 20)`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
-#'   to `ggrepel::geom_label_repel` geom used to display the labels.
+#'   to [`ggrepel::geom_label_repel()`]geom used to display the labels.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed
 #'   to `geom_smooth` geom used to display the regression line.
-#' @param point.args A list of additional aesthetic arguments to be passed
-#'   to `geom_point` geom used to display the raw data points.
 #' @param marginal Decides whether marginal distributions will be plotted on
-#'   axes using `ggside` functions. The default is `TRUE`. The package
-#'   `ggside` must already be installed by the user.
+#'   axes using `{ggside}` functions. The default is `TRUE`. The package
+#'   `{ggside}` must already be installed by the user.
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data. Note that the jitter should not be specified in the `point.args`
@@ -52,7 +50,7 @@
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
-#' The plot uses `ggrepel::geom_label_repel()` to attempt to keep labels
+#' The plot uses [`ggrepel::geom_label_repel()`] to attempt to keep labels
 #' from over-lapping to the largest degree possible. As a consequence plot
 #' times will slow down massively (and the plot file will grow in size) if you
 #' have a lot of labels that overlap.
@@ -130,7 +128,6 @@ ggscatterstats <- function(
     subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
     subtitle <- .extract_expression(subtitle_df)
 
-    # BF message for null hypothesis support
     if (type == "parametric" && bf.message) {
       caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
       caption <- .extract_expression(caption_df)
@@ -139,10 +136,8 @@ ggscatterstats <- function(
 
   # basic plot ------------------------------------------
 
-  # creating jittered positions
   pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
 
-  # scatterplot
   plot_scatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
     exec(geom_smooth, level = conf.level, !!!smooth.line.args, na.rm = TRUE)

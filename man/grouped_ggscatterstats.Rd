@@ -26,17 +26,15 @@ ungrouped before they are entered as \code{data}.}
 \code{var1}).}
     \item{\code{label.expression}}{An expression evaluating to a logical vector that
 determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
-While using this argument with \code{purrr::pmap()}, you will have to provide a
-quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
+While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will have to provide
+a quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
-to \code{ggrepel::geom_label_repel} geom used to display the labels.}
+to \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
     \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
 to \code{geom_smooth} geom used to display the regression line.}
-    \item{\code{point.args}}{A list of additional aesthetic arguments to be passed
-to \code{geom_point} geom used to display the raw data points.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
-axes using \code{ggside} functions. The default is \code{TRUE}. The package
-\code{ggside} must already be installed by the user.}
+axes using \code{{ggside}} functions. The default is \code{TRUE}. The package
+\code{{ggside}} must already be installed by the user.}
     \item{\code{point.width.jitter,point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
@@ -91,18 +89,20 @@ the plot will be returned.}
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. This argument is relevant only
 if \code{bf.message = FALSE}.}
+    \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
+the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.). But note that sometimes these themes will remove some of the details
+that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
   }}
@@ -110,11 +110,11 @@ thus the details as well.}
 \item{grouping.var}{A single grouping variable.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots()}, except for \code{guides} argument which is already
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
 separately specified here.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation()}.}
+\code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
 Grouped scatterplots from \code{{ggplot2}} combined with marginal distribution

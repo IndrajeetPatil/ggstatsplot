@@ -48,7 +48,7 @@
 #'   - `ggcoefstats()` function to visualize results from regression analyses.
 #'
 #'   - `combine_plots()` helper function to combine multiple `{ggstatsplot}`
-#'   plots using `patchwork::wrap_plots()`.
+#'   plots using [`patchwork::wrap_plots()`].
 #'
 #' References: Patil (2021) \doi{10.21105/joss.03236}.
 #'

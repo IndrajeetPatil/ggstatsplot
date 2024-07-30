@@ -13,10 +13,9 @@
 #'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
-#' @param point.args A list of additional aesthetic arguments passed to
-#'   `geom_point`.
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
+#' @inheritParams ggbetweenstats
 #'
 #' @inheritSection statsExpressions::one_sample_test One-sample tests
 #'

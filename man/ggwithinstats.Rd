@@ -165,40 +165,40 @@ to be:
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point()} and
-\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
+arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
+\code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in mean plotting.}
 
 \item{centrality.path.args, point.path.args}{A list of additional aesthetic
-arguments passed on to \code{ggplot2::geom_path()} connecting raw data points
+arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting raw data points
 and mean points.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{ggplot2::geom_point()} displaying the raw data.}
+the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{point.path, centrality.path}{Logical that decides whether individual
 data points and means, respectively, should be connected using
-\code{ggplot2::geom_path()}. Both default to \code{TRUE}. Note that \code{point.path}
+\code{\link[ggplot2:geom_path]{ggplot2::geom_path()}}. Both default to \code{TRUE}. Note that \code{point.path}
 argument is relevant only when there are two groups (i.e., in case of a
 \emph{t}-test). In case of large number of data points, it is advisable to set
 \code{point.path = FALSE} as these lines can overwhelm the plot.}
 
 \item{boxplot.args}{A list of additional aesthetic arguments passed on to
-\code{ggplot2::geom_boxplot()}.}
+\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
-the \code{ggplot2::geom_violin()}.}
+the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
 
 \item{ggsignif.args}{A list of additional aesthetic
-arguments to be passed to \code{ggsignif::geom_signif}.}
+arguments to be passed to \code{\link[ggsignif:stat_signif]{ggsignif::geom_signif()}}.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.). But note that sometimes these themes will remove some of the details
+that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 

@@ -21,8 +21,8 @@
 #'   `stat_bin` used to display the bins. Do not specify `binwidth` argument in
 #'   this list since it has already been specified using the dedicated argument.
 #' @param centrality.line.args A list of additional aesthetic arguments to be
-#'   passed to the `geom_line` used to display the lines corresponding to the
-#'   centrality parameter.
+#'   passed to the [`ggplot2::geom_line()`] used to display the lines
+#'   corresponding to the centrality parameter.
 #' @inheritParams statsExpressions::one_sample_test
 #' @inheritParams ggbetweenstats
 #'

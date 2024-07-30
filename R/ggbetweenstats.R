@@ -61,11 +61,11 @@
 #'
 #'   Just as `type` argument, abbreviations are also accepted.
 #' @param point.args A list of additional aesthetic arguments to be passed to
-#'   the `ggplot2::geom_point()` displaying the raw data.
+#'   the [`ggplot2::geom_point()`].
 #' @param boxplot.args A list of additional aesthetic arguments passed on to
-#'   `ggplot2::geom_boxplot()`.
+#'   [`ggplot2::geom_boxplot()`].
 #' @param violin.args A list of additional aesthetic arguments to be passed to
-#'   the `ggplot2::geom_violin()`.
+#'   the [`ggplot2::geom_violin()`].
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
 #'   by `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
 #'   variants of all primary functions. Default is `NULL`. The argument should
@@ -76,18 +76,18 @@
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
-#'   arguments to be passed to `ggplot2::geom_point()` and
-#'   `ggrepel::geom_label_repel` geoms, which are involved in mean plotting.
+#'   arguments to be passed to [`ggplot2::geom_point()`] and
+#'   [`ggrepel::geom_label_repel()`] geoms, which are involved in mean plotting.
 #' @param  ggsignif.args A list of additional aesthetic
-#'   arguments to be passed to `ggsignif::geom_signif`.
+#'   arguments to be passed to [`ggsignif::geom_signif()`].
 #' @param ggtheme A `{ggplot2}` theme. Default value is
-#'   `ggstatsplot::theme_ggstatsplot()`. Any of the `{ggplot2}` themes (e.g.,
-#'   `theme_bw()`), or themes from extension packages are allowed (e.g.,
-#'   `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`, etc.).
-#'   But note that sometimes these themes will remove some of the details that
-#'   `{ggstatsplot}` plots typically contains. For example, if relevant,
-#'   `ggbetweenstats()` shows details about multiple comparison test as a label
-#'   on the secondary Y-axis. Some themes (e.g.
+#'   [`ggstatsplot::theme_ggstatsplot()`]. Any of the `{ggplot2}` themes (e.g.,
+#'   [`ggplot2::theme_bw()`]), or themes from extension packages are allowed
+#'   (e.g., `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
+#'   etc.). But note that sometimes these themes will remove some of the details
+#'   that `{ggstatsplot}` plots typically contains. For example, if relevant,
+#'   [`ggbetweenstats()`] shows details about multiple comparison test as a
+#'   label on the secondary Y-axis. Some themes (e.g.
 #'   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis and
 #'   thus the details as well.
 #' @inheritParams statsExpressions::oneway_anova

@@ -76,11 +76,11 @@ to be:
 
 Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
-the \code{ggplot2::geom_point()} displaying the raw data.}
+the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
     \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
-\code{ggplot2::geom_boxplot()}.}
+\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
-the \code{ggplot2::geom_violin()}.}
+the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
@@ -89,18 +89,18 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
     \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
-arguments to be passed to \code{ggplot2::geom_point()} and
-\code{ggrepel::geom_label_repel} geoms, which are involved in mean plotting.}
+arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
+\code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in mean plotting.}
     \item{\code{ggsignif.args}}{A list of additional aesthetic
-arguments to be passed to \code{ggsignif::geom_signif}.}
+arguments to be passed to \code{\link[ggsignif:stat_signif]{ggsignif::geom_signif()}}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.). But note that sometimes these themes will remove some of the details
+that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
     \item{\code{x}}{The grouping (or independent) variable from \code{data}. In case of a
@@ -153,11 +153,11 @@ for the effect size (Default: \code{100L}).}
 \item{grouping.var}{A single grouping variable.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{patchwork::wrap_plots()}, except for \code{guides} argument which is already
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
 separately specified here.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
-\code{patchwork::plot_annotation()}.}
+\code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
 Helper function for \code{ggstatsplot::ggbetweenstats} to apply this function

@@ -83,7 +83,7 @@
 #' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param mpc_df A data frame containing results from pairwise comparisons
-#'   (produced by `pairwise_comparisons()` function).
+#'   (produced by [`pairwise_comparisons()`] function).
 #' @inheritParams ggbetweenstats
 #'
 #' @autoglobal

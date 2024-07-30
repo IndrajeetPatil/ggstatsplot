@@ -18,19 +18,19 @@
 #'   will be dropped. Default is `NULL`. If `NULL`, one-sample proportion test
 #'   (a goodness of fit test) will be run for the `x` variable. Otherwise an
 #'   appropriate association test will be run. This argument can not be `NULL`
-#'   for `ggbarstats` function.
+#'   for [`ggbarstats()`].
 #' @param proportion.test Decides whether proportion test for `x` variable is to
 #'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
-#'   `ggbarstats`, only *p*-values from this test will be displayed.
-#' @param digits.perc Numeric that decides number of decimal places for percentage
-#'   labels (Default: `0L`).
+#'   [`ggbarstats()`], only *p*-values from this test will be displayed.
+#' @param digits.perc Numeric that decides number of decimal places for
+#'   percentage labels (Default: `0L`).
 #' @param label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
-#'   `ggplot2::geom_label()`.
-#' @param label.repel Whether labels should be repelled using `{ggrepel}` package.
-#'   This can be helpful in case the labels are overlapping.
+#'   [`ggplot2::geom_label()`].
+#' @param label.repel Whether labels should be repelled using `{ggrepel}`
+#'   package. This can be helpful in case of overlapping labels.
 #' @param legend.title Title text for the legend.
 #' @inheritParams ggbetweenstats
 #' @inheritParams statsExpressions::contingency_table
