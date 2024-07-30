@@ -42,7 +42,7 @@ displayed in the subtitle.
 \item \code{ggcorrmat()} function to visualize the correlation matrix.
 \item \code{ggcoefstats()} function to visualize results from regression analyses.
 \item \code{combine_plots()} helper function to combine multiple \code{{ggstatsplot}}
-plots using \code{patchwork::wrap_plots()}.
+plots using \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
 }
 
 References: Patil (2021) \doi{10.21105/joss.03236}.

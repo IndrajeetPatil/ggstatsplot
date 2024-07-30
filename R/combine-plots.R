@@ -3,8 +3,8 @@
 #'
 #' @description
 #'
-#' Wrapper around `patchwork::wrap_plots()` that will return a combined grid of
-#' plots with annotations. In case you want to create a grid of plots, it is
+#' Wrapper around [`patchwork::wrap_plots()`] that will return a combined grid
+#' of plots with annotations. In case you want to create a grid of plots, it is
 #' **highly recommended** that you use `{patchwork}` package directly and not
 #' this wrapper around it which is mostly useful with `{ggstatsplot}` plots. It
 #' is exported only for backward compatibility.
@@ -13,10 +13,10 @@
 #'
 #' @param plotlist A list containing `ggplot` objects.
 #' @param plotgrid.args A `list` of additional arguments passed to
-#'   `patchwork::wrap_plots()`, except for `guides` argument which is already
+#'   [`patchwork::wrap_plots()`], except for `guides` argument which is already
 #'   separately specified here.
 #' @param annotation.args A `list` of additional arguments passed to
-#'   `patchwork::plot_annotation()`.
+#'   [`patchwork::plot_annotation()`].
 #' @param ... Currently ignored.
 #' @inheritParams patchwork::wrap_plots
 #'

@@ -13,8 +13,8 @@
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams ggbetweenstats
-#' @param sample.size.label.args Additional aesthetic arguments that will be passed to
-#'   `ggplot2::geom_text()`.
+#' @param sample.size.label.args Additional aesthetic arguments that will be
+#'   passed to [`ggplot2::geom_text()`].
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'

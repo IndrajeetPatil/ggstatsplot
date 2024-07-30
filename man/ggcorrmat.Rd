@@ -92,10 +92,10 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
 
 \item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments that
-will be passed to \code{ggcorrplot::ggcorrplot()} function. The list should avoid
-any of the following arguments since they are already internally being
-used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{lab},
-\code{pch}, \code{legend.title}, \code{digits}.}
+will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} function. The list should
+avoid any of the following arguments since they are already internally
+being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors},
+\code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
 
 \item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
@@ -106,13 +106,13 @@ If set to \code{NULL}, manual specification of colors will be turned off and 3
 colors from the specified \code{palette} from \code{package} will be selected.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.). But note that sometimes these themes will remove some of the details
+that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
@@ -134,8 +134,8 @@ if \code{bf.message = FALSE}.}
 \description{
 Correlation matrix containing results from pairwise correlation tests.
 If you want a data frame of (grouped) correlation matrix, use
-\code{correlation::correlation()} instead. It can also do grouped analysis when
-used with output from \code{dplyr::group_by()}.
+\code{\link[correlation:correlation]{correlation::correlation()}} instead. It can also do grouped analysis when
+used with output from \code{\link[dplyr:group_by]{dplyr::group_by()}}.
 }
 \details{
 For details, see:

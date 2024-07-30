@@ -66,7 +66,8 @@
 #'   - id. Dummy identity number for each flower (150 flowers in total).
 #'   - Species. The species are *Iris setosa*, *versicolor*, and *virginica*.
 #'   - condition. Factor giving a detailed description of the attribute
-#'     (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`, `"Sepal.Width"`).
+#'     (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`,
+#'     `"Sepal.Width"`).
 #'   - attribute. What attribute is being measured (`"Sepal"` or `"Pepal"`).
 #'   - measure. What aspect of the attribute is being measured (`"Length"` or `"Width"`).
 #'   - value. Value of the measurement.

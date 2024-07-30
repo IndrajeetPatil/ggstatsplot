@@ -38,7 +38,7 @@ ggcoefstats(
 }
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame from a regression
-model. Function internally uses \code{parameters::model_parameters()} to get a
+model. Function internally uses \code{\link[parameters:model_parameters]{parameters::model_parameters()}} to get a
 tidy data frame. If a data frame, it \emph{must} contain at the minimum two
 columns named \code{term} (names of predictors) and \code{estimate} (corresponding
 estimates of coefficients or other quantities of interest).}
@@ -63,7 +63,7 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 excluded from the plot (Default: \code{FALSE}).}
 
 \item{effectsize.type}{This is the same as \code{es_type} argument of
-\code{parameters::model_parameters()}. Defaults to \code{"eta"}, and relevant for
+\code{\link[parameters:model_parameters]{parameters::model_parameters()}}. Defaults to \code{"eta"}, and relevant for
 ANOVA-like objects.}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
@@ -73,9 +73,9 @@ relevant if a data frame with estimates and their standard errors is
 entered.}
 
 \item{meta.type}{Type of statistics used to carry out random-effects
-meta-analysis. If \code{"parametric"} (default), \code{metafor::rma} function will be
-used. If \code{"robust"}, \code{metaplus::metaplus} function will be used. If
-\code{"bayes"}, \code{metaBMA::meta_random} function will be used.}
+meta-analysis. If \code{"parametric"} (default), \code{\link[metafor:rma.uni]{metafor::rma()}} will be
+used. If \code{"robust"}, \code{\link[metaplus:metaplus]{metaplus::metaplus()}} will be used. If \code{"bayes"},
+\code{\link[metaBMA:meta_random]{metaBMA::meta_random()}} will be used.}
 
 \item{bf.message}{Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size \emph{d} varies across
@@ -104,12 +104,11 @@ if \code{bf.message = FALSE}.}
 is shown (Default: \code{FALSE}). This can be helpful when a large number of
 regression coefficients are to be displayed in a single plot.}
 
-\item{point.args}{Additional arguments that will be passed to
-\code{geom_point} geom. Please see documentation for that function to
-know more about these arguments.}
+\item{point.args}{A list of additional aesthetic arguments to be passed to
+the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
-\code{geom_errorbarh} geom. Please see documentation for that function
+\code{geom_errorbarh()} geom. Please see documentation for that function
 to know more about these arguments.}
 
 \item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
@@ -120,33 +119,32 @@ know more about these arguments.}
 
 \item{stats.labels}{Logical. Decides whether the statistic and \emph{p}-values for
 each coefficient are to be attached to each dot as a text label using
-\code{ggrepel} (Default: \code{TRUE}).}
+\code{{ggrepel}} (Default: \code{TRUE}).}
 
 \item{stats.label.color}{Color for the labels. If set to \code{NULL}, colors will
 be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \code{palette} (Default: \code{"Dark2"}).}
 
 \item{stats.label.args}{Additional arguments that will be passed to
-\code{ggrepel::geom_label_repel()}. Please see documentation for that
-function to know more about these arguments.}
+\code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}.}
 
 \item{package, palette}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{ggstatsplot::theme_ggstatsplot()}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{theme_bw()}), or themes from extension packages are allowed (e.g.,
-\code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()}, etc.).
-But note that sometimes these themes will remove some of the details that
-\code{{ggstatsplot}} plots typically contains. For example, if relevant,
-\code{ggbetweenstats()} shows details about multiple comparison test as a label
-on the secondary Y-axis. Some themes (e.g.
+\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
+\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
+etc.). But note that sometimes these themes will remove some of the details
+that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
+label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
 \item{...}{Additional arguments to tidying method. For more, see
-\code{parameters::model_parameters}.}
+\code{\link[parameters:model_parameters]{parameters::model_parameters()}}.}
 }
 \description{
 Plot with the regression coefficients' point estimates as dots with

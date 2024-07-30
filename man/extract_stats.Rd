@@ -33,7 +33,7 @@ using that package.
 
 The only exception is the \code{ggcorrmat()} function. But, if a data frame is
 what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
-\code{correlation::correlation()} function which provides tidy data frames by
+\code{\link[correlation:correlation]{correlation::correlation()}} function which provides tidy data frames by
 default.
 }
 \examples{

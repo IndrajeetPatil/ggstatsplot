@@ -3,13 +3,13 @@
 #' @description
 #'
 #' Common theme used across all plots generated in `{ggstatsplot}` and *assumed*
-#' by the author to be aesthetically pleasing to the user/reader. The theme is a
-#' wrapper around `theme_bw()`.
+#' by the author to be aesthetically pleasing to the user. The theme is a
+#' wrapper around [`ggplot2::theme_bw()`].
 #'
 #' All `{ggstatsplot}` functions have a `ggtheme` parameter that let you choose
 #' a different theme.
 #'
-#' @returns A `ggplot` object with the `theme_ggstatsplot` theme overlaid.
+#' @returns A `ggplot` object.
 #'
 #' @examples
 #' library(ggplot2)

@@ -12,7 +12,7 @@
 #'
 #' The only exception is the `ggcorrmat()` function. But, if a data frame is
 #' what you want, you shouldn't be using `ggcorrmat()` anyway. You can use
-#' `correlation::correlation()` function which provides tidy data frames by
+#' [`correlation::correlation()`] function which provides tidy data frames by
 #' default.
 #'
 #' @returns

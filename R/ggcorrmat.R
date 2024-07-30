@@ -4,8 +4,8 @@
 #' @description
 #' Correlation matrix containing results from pairwise correlation tests.
 #' If you want a data frame of (grouped) correlation matrix, use
-#' `correlation::correlation()` instead. It can also do grouped analysis when
-#' used with output from `dplyr::group_by()`.
+#' [`correlation::correlation()`] instead. It can also do grouped analysis when
+#' used with output from [`dplyr::group_by()`].
 #'
 #' @section Summary of graphics:
 #'
@@ -34,10 +34,10 @@
 #' @param pch Decides the point shape to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
-#'   will be passed to `ggcorrplot::ggcorrplot()` function. The list should avoid
-#'   any of the following arguments since they are already internally being
-#'   used: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `lab`,
-#'   `pch`, `legend.title`, `digits`.
+#'   will be passed to [`ggcorrplot::ggcorrplot()`] function. The list should
+#'   avoid any of the following arguments since they are already internally
+#'   being used: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`,
+#'   `lab`, `pch`, `legend.title`, `digits`.
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams ggbetweenstats
 #' @inheritParams theme_ggstatsplot

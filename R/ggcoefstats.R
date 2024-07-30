@@ -13,14 +13,14 @@
 #' ```
 #'
 #' @param x A model object to be tidied, or a tidy data frame from a regression
-#'   model. Function internally uses `parameters::model_parameters()` to get a
+#'   model. Function internally uses [`parameters::model_parameters()`] to get a
 #'   tidy data frame. If a data frame, it *must* contain at the minimum two
 #'   columns named `term` (names of predictors) and `estimate` (corresponding
 #'   estimates of coefficients or other quantities of interest).
 #' @param statistic Relevant statistic for the model (`"t"`, `"f"`, `"z"`, or
 #'   `"chi"`) in the label. Relevant only if `x` is a *data frame*.
 #' @param effectsize.type This is the same as `es_type` argument of
-#'   `parameters::model_parameters()`. Defaults to `"eta"`, and relevant for
+#'   [`parameters::model_parameters()`]. Defaults to `"eta"`, and relevant for
 #'   ANOVA-like objects.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
@@ -28,9 +28,6 @@
 #'   should be displayed in caption. Defaults to `TRUE`.
 #' @param subtitle The text for the plot subtitle. The input to this argument
 #'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
-#' @param point.args Additional arguments that will be passed to
-#'   `geom_point` geom. Please see documentation for that function to
-#'   know more about these arguments.
 #' @param conf.int Logical. Decides whether to display confidence intervals as
 #'   error bars (Default: `TRUE`).
 #' @param conf.level Numeric deciding level of confidence or credible intervals
@@ -41,13 +38,13 @@
 #'   relevant if a data frame with estimates and their standard errors is
 #'   entered.
 #' @param meta.type Type of statistics used to carry out random-effects
-#'   meta-analysis. If `"parametric"` (default), `metafor::rma` function will be
-#'   used. If `"robust"`, `metaplus::metaplus` function will be used. If
-#'   `"bayes"`, `metaBMA::meta_random` function will be used.
+#'   meta-analysis. If `"parametric"` (default), [`metafor::rma()`] will be
+#'   used. If `"robust"`, [`metaplus::metaplus()`] will be used. If `"bayes"`,
+#'   [`metaBMA::meta_random()`] will be used.
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `FALSE`).
 #' @param errorbar.args Additional arguments that will be passed to
-#'   `geom_errorbarh` geom. Please see documentation for that function
+#'   `geom_errorbarh()` geom. Please see documentation for that function
 #'   to know more about these arguments.
 #' @param vline Decides whether to display a vertical line (Default: `"TRUE"`).
 #' @param vline.args Additional arguments that will be passed to
@@ -58,18 +55,17 @@
 #'   coefficient value.
 #' @param stats.labels Logical. Decides whether the statistic and *p*-values for
 #'   each coefficient are to be attached to each dot as a text label using
-#'   `ggrepel` (Default: `TRUE`).
+#'   `{ggrepel}` (Default: `TRUE`).
 #' @param stats.label.color Color for the labels. If set to `NULL`, colors will
 #'   be chosen from the specified `package` (Default: `"RColorBrewer"`) and
 #'   `palette` (Default: `"Dark2"`).
 #' @param stats.label.args Additional arguments that will be passed to
-#'   `ggrepel::geom_label_repel()`. Please see documentation for that
-#'   function to know more about these arguments.
+#'   [`ggrepel::geom_label_repel()`].
 #' @param only.significant If `TRUE`, only stats labels for significant effects
 #'   is shown (Default: `FALSE`). This can be helpful when a large number of
 #'   regression coefficients are to be displayed in a single plot.
 #' @param ... Additional arguments to tidying method. For more, see
-#'   `parameters::model_parameters`.
+#'   [`parameters::model_parameters()`].
 #' @inheritParams parameters::model_parameters
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams statsExpressions::meta_analysis

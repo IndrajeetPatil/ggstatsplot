@@ -15,12 +15,12 @@
 #' @inheritParams ggbetweenstats
 #' @param point.path,centrality.path Logical that decides whether individual
 #'   data points and means, respectively, should be connected using
-#'   `ggplot2::geom_path()`. Both default to `TRUE`. Note that `point.path`
+#'   [`ggplot2::geom_path()`]. Both default to `TRUE`. Note that `point.path`
 #'   argument is relevant only when there are two groups (i.e., in case of a
 #'   *t*-test). In case of large number of data points, it is advisable to set
 #'   `point.path = FALSE` as these lines can overwhelm the plot.
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
-#'   arguments passed on to `ggplot2::geom_path()` connecting raw data points
+#'   arguments passed on to [`ggplot2::geom_path()`] connecting raw data points
 #'   and mean points.
 #' @inheritParams statsExpressions::oneway_anova
 #'
