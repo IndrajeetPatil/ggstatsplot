@@ -67,7 +67,7 @@ Suggests:
     survival,
     testthat (>= 3.2.1),
     tibble,
-    vdiffr (>= 1.0.8),
+    vdiffr (>= 1.0.7),
     withr,
     WRS2
 VignetteBuilder: 
