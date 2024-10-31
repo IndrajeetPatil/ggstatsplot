@@ -802,7 +802,7 @@ references:
     email: lise.vaudor@ens-lyon.fr
   year: '2024'
   doi: 10.32614/CRAN.package.vdiffr
-  version: '>= 1.0.7'
+  version: '>= 1.0.8'
 - type: software
   title: withr
   abstract: 'withr: Run Code ''With'' Temporarily Modified Global State'
