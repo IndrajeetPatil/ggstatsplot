@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.4.9000
+version: 0.12.5
 doi: 10.21105/joss.03167
 identifiers:
 - type: doi
@@ -107,7 +107,7 @@ references:
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
   doi: 10.32614/CRAN.package.correlation
-  version: '>= 0.8.5'
+  version: '>= 0.8.6'
 - type: software
   title: datawizard
   abstract: 'datawizard: Easy Data Wrangling and Statistical Transformations'
@@ -141,7 +141,7 @@ references:
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
   doi: 10.32614/CRAN.package.datawizard
-  version: '>= 0.12.2'
+  version: '>= 0.13.0'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -235,7 +235,7 @@ references:
     orcid: https://orcid.org/0000-0002-2843-6370
   year: '2024'
   doi: 10.32614/CRAN.package.ggrepel
-  version: '>= 0.9.5'
+  version: '>= 0.9.6'
 - type: software
   title: ggside
   abstract: 'ggside: Side Grammar Graphics'
@@ -284,7 +284,7 @@ references:
     orcid: https://orcid.org/0000-0002-6983-2759
   year: '2024'
   doi: 10.32614/CRAN.package.glue
-  version: '>= 1.7.0'
+  version: '>= 1.8.0'
 - type: software
   title: insight
   abstract: 'insight: Easy Access to Model Information for Various Model Objects'
@@ -326,7 +326,7 @@ references:
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2024'
   doi: 10.32614/CRAN.package.insight
-  version: '>= 0.20.2'
+  version: '>= 0.20.5'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -371,7 +371,7 @@ references:
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
   doi: 10.32614/CRAN.package.parameters
-  version: '>= 0.22.1'
+  version: '>= 0.23.0'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -385,7 +385,7 @@ references:
     orcid: https://orcid.org/0000-0002-5147-4711
   year: '2024'
   doi: 10.32614/CRAN.package.patchwork
-  version: '>= 1.2.0'
+  version: '>= 1.3.0'
 - type: software
   title: performance
   abstract: 'performance: Assessment of Regression Models Performance'
@@ -423,7 +423,7 @@ references:
     orcid: https://orcid.org/0000-0003-4315-6788
   year: '2024'
   doi: 10.32614/CRAN.package.performance
-  version: '>= 0.12.2'
+  version: '>= 0.12.4'
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -468,9 +468,9 @@ references:
     given-names: Indrajeet
     email: patilindrajeet.science@gmail.com
     orcid: https://orcid.org/0000-0003-1995-6531
-  doi: 10.32614/CRAN.package.statsExpressions
-  version: '>= 1.5.5'
   year: '2024'
+  doi: 10.32614/CRAN.package.statsExpressions
+  version: '>= 1.6.1'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
@@ -499,7 +499,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.utils
 - type: software
   title: afex
   abstract: 'afex: Analysis of Factorial Experiments'
@@ -597,8 +596,6 @@ references:
   - family-names: Ripley
     given-names: Brian
     email: ripley@stats.ox.ac.uk
-  - family-names: Venables
-    given-names: Bill
   year: '2024'
   doi: 10.32614/CRAN.package.MASS
 - type: software
@@ -739,7 +736,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.stats
 - type: software
   title: survival
   abstract: 'survival: Survival Analysis'

@@ -639,7 +639,7 @@ plot that will be invariant across models:
   their **confidence intervals** (`95%` is the default). The estimate
   can either be effect sizes (for tests that depend on the
   `F`-statistic) or regression coefficients (for tests with `t`-,
-  $\chi^{2}$-, and `z`-statistic), etc. The function will, by default,
+  $`\chi^{2}`$-, and `z`-statistic), etc. The function will, by default,
   display a helpful `x`-axis label that should clear up what estimates
   are being displayed. The confidence intervals can sometimes be
   asymmetric if bootstrapping was used.

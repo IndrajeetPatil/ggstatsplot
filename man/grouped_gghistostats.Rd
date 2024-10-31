@@ -73,8 +73,8 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
 \code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
-of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
-corresponds to scale for fixed effects.}
+of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
+value corresponds to scale for fixed effects.}
     \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
@@ -139,7 +139,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
