@@ -1,4 +1,4 @@
-# ggstatsplot 0.12.4.9000
+# ggstatsplot 0.12.5
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
@@ -17,6 +17,10 @@ read the `NEWS` for that package:
 
 - `ggpiestats()` and `ggbarstats()` now respect `ratio()` argument for
   proportion tests run in case of two-way contingency tables (#818).
+
+## MINOR CHANGES
+
+- Unused dataset has been removed: `bugs_wide`.
 
 # ggstatsplot 0.12.4
 

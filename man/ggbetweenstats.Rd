@@ -55,7 +55,7 @@ data has already been sorted by such an id by the user and creates an
 internal identifier. So if your data is \strong{not} sorted, the results \emph{can}
 be inaccurate when there are more than two levels in \code{x} and there are
 \code{NA}s present. The data is expected to be sorted by user in
-subject-1,subject-2, ..., pattern.}
+subject-1, subject-2, ..., pattern.}
 
 \item{y}{The response (or outcome or dependent) variable from \code{data}.}
 
@@ -94,8 +94,8 @@ omega-squared).}
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
 \code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
-of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
-corresponds to scale for fixed effects.}
+of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
+value corresponds to scale for fixed effects.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -400,7 +400,7 @@ Not supported.
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 

@@ -2,7 +2,7 @@
 #' @name movies_long
 #' @details Modified dataset from `{ggplot2movies}` package.
 #'
-#' The internet movie database, <https://imdb.com/>, is a website devoted
+#' The internet movie database (IMDB) is a website devoted
 #' to collecting movie data supplied by studios and fans. It claims to be the
 #' biggest movie database on the web and is run by amazon.
 #'
@@ -99,40 +99,15 @@
 #'     disgustingness).
 #'   - desire. The desire to kill an arthropod was indicated on a scale from 0 to 10.
 #'
-#' @source <https://www.sciencedirect.com/science/article/pii/S0747563213000277>
+#' @references
+#' Ryan, R. S., Wilde, M., & Crist, S. (2013). Compared to a small, supervised
+#' lab experiment, a large, unsupervised web-based experiment on a previously
+#' unknown effect has benefits that outweigh its potential costs. _Computers in
+#' Human Behavior_, _29_(4), 1295-1301.
+
 #'
 #' @examples
 #' dim(bugs_long)
 #' head(bugs_long)
 #' dplyr::glimpse(bugs_long)
 "bugs_long"
-
-
-#' @title Wide-format version of the "Bugs" dataset.
-#' @name bugs_wide
-#' @details This data set, "Bugs", provides the extent to which men and women
-#'   want to kill arthropods that vary in freighteningness (low, high) and
-#'   disgustingness (low, high). Each participant rates their attitudes towards
-#'   all anthropods. Subset of the data reported by Ryan et al. (2013).
-#'
-#' @format A data frame with 93 rows and 6 variables
-#'
-#'   - subject. Dummy identity number for each participant.
-#'   - gender. Participant's gender (Female, Male).
-#'   - region. Region of the world the participant was from.
-#'   - education. Level of education.
-#'   - ldlf,ldhf,hdlf,hdhf. The desire to kill an arthropod was indicated on
-#'     a scale from 0 to 10 in each condition of the experiment (**LDLF**: low
-#'     freighteningness and low disgustingness; **LFHD**: low freighteningness and
-#'     high disgustingness; **HFHD**: high freighteningness and low
-#'     disgustingness; **HFHD**: high freighteningness and high disgustingness).
-#'
-#'
-#' @source
-#' <https://www.sciencedirect.com/science/article/pii/S0747563213000277>
-#'
-#' @examples
-#' dim(bugs_wide)
-#' head(bugs_wide)
-#' dplyr::glimpse(bugs_wide)
-"bugs_wide"

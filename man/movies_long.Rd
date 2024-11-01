@@ -30,7 +30,7 @@ Movie information and user ratings from IMDB.com (long format).
 \details{
 Modified dataset from \code{{ggplot2movies}} package.
 
-The internet movie database, \url{https://imdb.com/}, is a website devoted
+The internet movie database (IMDB) is a website devoted
 to collecting movie data supplied by studios and fans. It claims to be the
 biggest movie database on the web and is run by amazon.
 }

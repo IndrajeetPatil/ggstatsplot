@@ -97,10 +97,14 @@ proportion test (should sum to \code{1}). Default is \code{NULL}, which means th
 is equal theoretical proportions across the levels of the nominal variable.
 E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
-    \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options
-are \code{"indepMulti"} (independent multinomial; default), \code{"poisson"},
-\code{"jointMulti"} (joint multinomial), \code{"hypergeom"} (hypergeometric). For
-more, see \code{?BayesFactor::contingencyTableBF()}.}
+    \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options:
+\itemize{
+\item \code{"indepMulti"} (independent multinomial; default)
+\item \code{"poisson"}
+\item \code{"jointMulti"} (joint multinomial)
+\item \code{"hypergeom"} (hypergeometric).
+For more, see \code{\link[BayesFactor:contingencyTableBF]{BayesFactor::contingencyTableBF()}}.
+}}
     \item{\code{fixed.margin}}{For the independent multinomial sampling plan, which
 margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
     \item{\code{prior.concentration}}{Specifies the prior concentration parameter, set
@@ -132,7 +136,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(dplyr, warn.conflicts = FALSE)

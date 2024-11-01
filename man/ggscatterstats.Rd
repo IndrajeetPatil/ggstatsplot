@@ -66,8 +66,8 @@ will be computed.}
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
 \code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
-of 1/2, sqrt(2)/2, and 1, respectively. In case of an ANOVA, this value
-corresponds to scale for fixed effects.}
+of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
+value corresponds to scale for fixed effects.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for

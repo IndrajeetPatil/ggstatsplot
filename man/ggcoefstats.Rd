@@ -200,7 +200,7 @@ The table below provides summary about:
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(lme4)
