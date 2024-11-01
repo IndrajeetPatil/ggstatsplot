@@ -18,6 +18,10 @@ read the `NEWS` for that package:
 - `ggpiestats()` and `ggbarstats()` now respect `ratio()` argument for
   proportion tests run in case of two-way contingency tables (#818).
 
+## MINOR CHANGES
+
+- Unused dataset has been removed: `bugs_wide`.
+
 # ggstatsplot 0.12.4
 
 ## MAJOR CHANGES

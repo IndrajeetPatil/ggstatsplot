@@ -69,7 +69,6 @@ reference:
       - movies_long
       - Titanic_full
       - iris_long
-      - bugs_wide
       - bugs_long
 
 articles:
