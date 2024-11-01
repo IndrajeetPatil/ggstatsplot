@@ -150,6 +150,28 @@ thus the details as well.}
 Plot with the regression coefficients' point estimates as dots with
 confidence interval whiskers and other statistical details included as
 labels.
+
+Although the statistical models displayed in the plot may differ based on the
+class of models being investigated, there are few aspects of the plot that will
+be invariant across models:
+\itemize{
+\item The dot-whisker plot contains a dot representing the \strong{estimate} and their
+\strong{confidence intervals} (\verb{95\%} is the default). The estimate can either be
+effect sizes (for tests that depend on the \code{F}-statistic) or regression
+coefficients (for tests with \code{t}-, $\chi^{2}$-, and \code{z}-statistic), etc. The
+function will, by default, display a helpful \code{x}-axis label that should
+clear up what estimates are being displayed. The confidence intervals can
+sometimes be asymmetric if bootstrapping was used.
+\item The label attached to dot will provide more details from the statistical
+test carried out and it will typically contain estimate, statistic, and
+\emph{p}-value.
+\item The caption will contain diagnostic information, if available, about
+models that can be useful for model selection: The smaller the Akaike's
+Information Criterion (\strong{AIC}) and the Bayesian Information Criterion
+(\strong{BIC}) values, the "better" the model is.
+\item The output of this function will be a \code{{ggplot2}} object and, thus,
+it can be further modified (e.g. change themes) with \code{{ggplot2}}.
+}
 }
 \details{
 For details, see:
@@ -200,7 +222,7 @@ The table below provides summary about:
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(lme4)
