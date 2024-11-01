@@ -158,7 +158,7 @@ be invariant across models:
 \item The dot-whisker plot contains a dot representing the \strong{estimate} and their
 \strong{confidence intervals} (\verb{95\%} is the default). The estimate can either be
 effect sizes (for tests that depend on the \code{F}-statistic) or regression
-coefficients (for tests with \code{t}-, $\chi^{2}$-, and \code{z}-statistic), etc. The
+coefficients (for tests with \code{t}-, \code{chi^2}-, and \code{z}-statistic), etc. The
 function will, by default, display a helpful \code{x}-axis label that should
 clear up what estimates are being displayed. The confidence intervals can
 sometimes be asymmetric if bootstrapping was used.
