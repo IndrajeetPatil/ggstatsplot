@@ -56,6 +56,8 @@ jobs:
         with:
           pak-version: devel
           upgrade: 'TRUE'
+          extra-packages: |
+            any::rcmdcheck
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
