@@ -29,7 +29,7 @@ URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
-    R (>= 4.1.0)
+    R (>= 4.3.0)
 Imports:
     correlation (>= 0.8.6),
     datawizard (>= 0.13.0),
@@ -79,7 +79,7 @@ Roxygen: list(
     markdown = TRUE,
     roclets = c("collate", "namespace", "rd", "pkgapi::api_roclet", "roxyglobals::global_roclet")
   )
-RoxygenNote: 7.3.2.9000
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/Needs/check: anthonynorth/roxyglobals
