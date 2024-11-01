@@ -41,9 +41,9 @@ jobs:
           #- { os: ubuntu-latest, r: "next" }
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" }
-          #- { os: ubuntu-latest, r: "oldrel" }
-          #- { os: ubuntu-latest, r: "oldrel-2" }
-          #- { os: ubuntu-latest, r: "oldrel-3" }
+          - { os: ubuntu-latest, r: "oldrel" }
+          - { os: ubuntu-latest, r: "oldrel-2" }
+          - { os: ubuntu-latest, r: "oldrel-3" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
