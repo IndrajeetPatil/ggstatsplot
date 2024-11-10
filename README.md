@@ -27,10 +27,10 @@ makes data exploration simpler and faster.
 
 ## Installation
 
-| Type | Source | Command |
-|----|----|----|
-| Release | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")` |
-| Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active) | `pak::pak("IndrajeetPatil/ggstatsplot")` |
+| Type        | Command                                  |
+|:------------|:-----------------------------------------|
+| Release     | `install.packages("ggstatsplot")`        |
+| Development | `pak::pak("IndrajeetPatil/ggstatsplot")` |
 
 ## Citation
 
