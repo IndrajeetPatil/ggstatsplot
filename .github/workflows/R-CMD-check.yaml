@@ -25,25 +25,16 @@ jobs:
           #- {os: macOS-latest, r: 'devel'}
           - { os: macOS-latest, r: "release" }
           - { os: macOS-latest, r: "oldrel" }
-          #- {os: macOS-latest, r: 'oldrel-2'}
-          #- {os: macOS-latest, r: 'oldrel-3'}
 
-          #- { os: windows-latest, r: "next" }
           - { os: windows-latest, r: "devel" }
           - { os: windows-latest, r: "release" }
           - { os: windows-latest, r: "oldrel" }
-          #- {os: windows-latest, r: 'oldrel-2'}
-          #- {os: windows-latest, r: 'oldrel-3'}
-
-          # use 4.1 to check with rtools40's older compiler
-          #- { os: windows-latest, r: "4.1" }
 
           #- { os: ubuntu-latest, r: "next" }
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" }
-          #- { os: ubuntu-latest, r: "oldrel" }
+          - { os: ubuntu-latest, r: "oldrel" }
           #- { os: ubuntu-latest, r: "oldrel-2" }
-          #- { os: ubuntu-latest, r: "oldrel-3" }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -67,15 +58,7 @@ jobs:
           upgrade: 'TRUE'
           extra-packages: |
             any::rcmdcheck
-            Matrix=?ignore-before-r=100.0.0
-            lme4=?ignore-before-r=100.0.0
-            TMB=?ignore-before-r=100.0.0
           needs: check
-
-      - name: Install packages from source
-        run: |
-          utils::install.packages(c("Matrix", "lme4", "TMB"), type = "source")
-        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:

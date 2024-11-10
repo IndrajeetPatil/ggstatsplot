@@ -65,7 +65,7 @@ A journal articles describing philosophy and principles behind this package:
 
 In addition to these vignettes, another quick way to get an overview of this
 package is to go through the following slides:
-<https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1>
+<https://indrajeetpatil.github.io/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations>
 
 ## Statistical backend of `{ggstatsplot}`
 

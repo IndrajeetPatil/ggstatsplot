@@ -29,7 +29,7 @@ URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
-    R (>= 4.1.0)
+    R (>= 4.3.0)
 Imports:
     correlation (>= 0.8.6),
     datawizard (>= 0.13.0),

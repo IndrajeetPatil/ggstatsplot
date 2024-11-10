@@ -5,6 +5,10 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+## BREAKING CHANGES
+
+- The minimum needed R version is now bumped to `R 4.3`.
+
 # ggstatsplot 0.12.5
 
 ## MAJOR CHANGES

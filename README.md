@@ -27,10 +27,10 @@ makes data exploration simpler and faster.
 
 ## Installation
 
-| Type | Source | Command |
-|----|----|----|
-| Release | [![CRAN Status](https://www.r-pkg.org/badges/version/ggstatsplot)](https://cran.r-project.org/package=ggstatsplot) | `install.packages("ggstatsplot")` |
-| Development | [![Project Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/##active) | `pak::pak("IndrajeetPatil/ggstatsplot")` |
+| Type        | Command                                  |
+|:------------|:-----------------------------------------|
+| Release     | `install.packages("ggstatsplot")`        |
+| Development | `pak::pak("IndrajeetPatil/ggstatsplot")` |
 
 ## Citation
 
@@ -89,9 +89,9 @@ To see the detailed documentation for each function in the stable
 
 - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
-- [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
+- [Presentation](https://indrajeetpatil.github.io/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
 
-- [Presentation](https://indrajeetpatil.github.io/ggstatsplot_slides/slides/ggstatsplot_presentation.html#1)
+- [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
 
 ## Summary of available plots
 
