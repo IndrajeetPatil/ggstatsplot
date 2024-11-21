@@ -83,4 +83,5 @@ RoxygenNote: 7.3.2.9000
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/Needs/check: anthonynorth/roxyglobals
+Config/Needs/development: roxyglobals, r-lib/pkgapi
 Config/roxyglobals/unique: TRUE
