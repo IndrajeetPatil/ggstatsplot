@@ -2,12 +2,13 @@
 #' @autoglobal
 #' @noRd
 descriptive_data <- function(
-    data,
-    x,
-    y = NULL,
-    label.content = "percentage",
-    digits.perc = 1L,
-    ...) {
+  data,
+  x,
+  y = NULL,
+  label.content = "percentage",
+  digits.perc = 1L,
+  ...
+) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = case_when(

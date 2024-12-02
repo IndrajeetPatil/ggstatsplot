@@ -230,7 +230,6 @@ Here is an example-
 #| fig.height = 6
 
 
-
 # creating a list by splitting data frame by combination of two different
 # grouping variables
 df_list <- mpg %>%

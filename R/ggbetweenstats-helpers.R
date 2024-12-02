@@ -27,23 +27,24 @@
 #' )
 #' @noRd
 .centrality_ggrepel <- function(
-    plot,
-    data,
-    x,
-    y,
-    centrality.path = FALSE,
-    centrality.path.args = list(
-      linewidth = 1.0,
-      color = "red",
-      alpha = 0.5
-    ),
-    centrality.point.args = list(size = 5.0, color = "darkred"),
-    centrality.label.args = list(
-      size = 3.0,
-      nudge_x = 0.4,
-      segment.linetype = 4.0
-    ),
-    ...) {
+  plot,
+  data,
+  x,
+  y,
+  centrality.path = FALSE,
+  centrality.path.args = list(
+    linewidth = 1.0,
+    color = "red",
+    alpha = 0.5
+  ),
+  centrality.point.args = list(size = 5.0, color = "darkred"),
+  centrality.label.args = list(
+    size = 3.0,
+    nudge_x = 0.4,
+    segment.linetype = 4.0
+  ),
+  ...
+) {
   centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
   # lines connecting mean values across groups
@@ -113,14 +114,15 @@
 #' )
 #' @noRd
 .ggsignif_adder <- function(
-    plot,
-    data,
-    x,
-    y,
-    mpc_df,
-    pairwise.display = "significant",
-    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-    ...) {
+  plot,
+  data,
+  x,
+  y,
+  mpc_df,
+  pairwise.display = "significant",
+  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+  ...
+) {
   # creating a column for group combinations
   mpc_df %<>% mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
@@ -212,7 +214,6 @@
 }
 
 
-
 #' @title Making aesthetic modifications to the plot
 #' @name .aesthetic_addon
 #'
@@ -224,19 +225,20 @@
 #'
 #' @noRd
 .aesthetic_addon <- function(
-    plot,
-    x,
-    xlab = NULL,
-    ylab = NULL,
-    title = NULL,
-    subtitle = NULL,
-    caption = NULL,
-    seclabel = NULL,
-    ggtheme = ggstatsplot::theme_ggstatsplot(),
-    package = "RColorBrewer",
-    palette = "Dark2",
-    ggplot.component = NULL,
-    ...) {
+  plot,
+  x,
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  seclabel = NULL,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
+  package = "RColorBrewer",
+  palette = "Dark2",
+  ggplot.component = NULL,
+  ...
+) {
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(package, palette, nlevels(x))
 

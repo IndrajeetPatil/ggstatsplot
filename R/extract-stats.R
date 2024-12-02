@@ -70,7 +70,6 @@ extract_stats <- function(p) {
 }
 
 
-
 # function factory to extract particular kind of stats data
 .extract_stats_data <- function(data_component) {
   function(p) {

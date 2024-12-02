@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.5
+version: 0.12.5.9000
 doi: 10.21105/joss.03167
 identifiers:
 - type: doi
@@ -73,7 +73,7 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  version: '>= 4.1.0'
+  version: '>= 4.3.0'
 - type: software
   title: correlation
   abstract: 'correlation: Methods for Correlation Analysis'
@@ -326,7 +326,7 @@ references:
     orcid: https://orcid.org/0000-0002-9271-5075
   year: '2024'
   doi: 10.32614/CRAN.package.insight
-  version: '>= 0.20.5'
+  version: '>= 1.0.0'
 - type: software
   title: paletteer
   abstract: 'paletteer: Comprehensive Collection of Color Palettes'
@@ -371,7 +371,7 @@ references:
     orcid: https://orcid.org/0000-0001-9560-6336
   year: '2024'
   doi: 10.32614/CRAN.package.parameters
-  version: '>= 0.23.0'
+  version: '>= 0.24.0'
 - type: software
   title: patchwork
   abstract: 'patchwork: The Composer of Plots'
@@ -596,6 +596,8 @@ references:
   - family-names: Ripley
     given-names: Brian
     email: ripley@stats.ox.ac.uk
+  - family-names: Venables
+    given-names: Bill
   year: '2024'
   doi: 10.32614/CRAN.package.MASS
 - type: software

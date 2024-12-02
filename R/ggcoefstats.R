@@ -137,39 +137,40 @@
 #' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 #' @export
 ggcoefstats <- function(
-    x,
-    statistic = NULL,
-    conf.int = TRUE,
-    conf.level = 0.95,
-    digits = 2L,
-    exclude.intercept = FALSE,
-    effectsize.type = "eta",
-    meta.analytic.effect = FALSE,
-    meta.type = "parametric",
-    bf.message = TRUE,
-    sort = "none",
-    xlab = NULL,
-    ylab = NULL,
-    title = NULL,
-    subtitle = NULL,
-    caption = NULL,
-    only.significant = FALSE,
-    point.args = list(size = 3.0, color = "blue", na.rm = TRUE),
-    errorbar.args = list(height = 0, na.rm = TRUE),
-    vline = TRUE,
-    vline.args = list(linewidth = 1.0, linetype = "dashed"),
-    stats.labels = TRUE,
-    stats.label.color = NULL,
-    stats.label.args = list(
-      size = 3.0,
-      direction = "y",
-      min.segment.length = 0,
-      na.rm = TRUE
-    ),
-    package = "RColorBrewer",
-    palette = "Dark2",
-    ggtheme = ggstatsplot::theme_ggstatsplot(),
-    ...) {
+  x,
+  statistic = NULL,
+  conf.int = TRUE,
+  conf.level = 0.95,
+  digits = 2L,
+  exclude.intercept = FALSE,
+  effectsize.type = "eta",
+  meta.analytic.effect = FALSE,
+  meta.type = "parametric",
+  bf.message = TRUE,
+  sort = "none",
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  only.significant = FALSE,
+  point.args = list(size = 3.0, color = "blue", na.rm = TRUE),
+  errorbar.args = list(height = 0, na.rm = TRUE),
+  vline = TRUE,
+  vline.args = list(linewidth = 1.0, linetype = "dashed"),
+  stats.labels = TRUE,
+  stats.label.color = NULL,
+  stats.label.args = list(
+    size = 3.0,
+    direction = "y",
+    min.segment.length = 0,
+    na.rm = TRUE
+  ),
+  package = "RColorBrewer",
+  palette = "Dark2",
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
+  ...
+) {
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels
@@ -197,7 +198,7 @@ ggcoefstats <- function(
     if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
   }
 
-  tidy_df <- .preprocess_tidy_data(tidy_df, sort)
+  tidy_df <- .preprocess_tidy_data(tidy_df, sort) %>% dplyr::filter(!is.na(estimate))
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
   if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE

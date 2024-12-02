@@ -58,11 +58,12 @@
 #' )
 #' @export
 combine_plots <- function(
-    plotlist,
-    plotgrid.args = list(),
-    annotation.args = list(),
-    guides = "collect",
-    ...) {
+  plotlist,
+  plotgrid.args = list(),
+  annotation.args = list(),
+  guides = "collect",
+  ...
+) {
   exec(patchwork::wrap_plots, !!!plotlist, guides = guides, !!!plotgrid.args) +
     exec(patchwork::plot_annotation, !!!annotation.args)
 }

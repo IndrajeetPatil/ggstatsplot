@@ -4,17 +4,17 @@
   "identifier": "ggstatsplot",
   "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses. References: Patil (2021) <doi:10.21105/joss.03236>.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
-  "relatedLink": ["https://indrajeetpatil.github.io/ggstatsplot/", "https://CRAN.R-project.org/package=ggstatsplot"],
+  "relatedLink": "https://indrajeetpatil.github.io/ggstatsplot/",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.12.5",
+  "version": "0.12.5.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
+  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -289,7 +289,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 4.1.0"
+      "version": ">= 4.3.0"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -412,7 +412,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 0.20.5",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -438,7 +438,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.23.0",
+      "version": ">= 0.24.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -532,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9737.763KB",
+  "fileSize": "9319.857KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -565,6 +565,6 @@
   "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot",
-  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html", "https://www.repostatus.org/##active"],
+  "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html",
   "keywords": ["ggplot-extension", "dataviz", "r", "statistical-analysis", "datascience", "bayes-factors", "regression-models", "effect-size", "non-parametric-statistics", "hypothesis-testing"]
 }
