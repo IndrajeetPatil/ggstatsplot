@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.12.5.9000
+version: 0.13.0
 doi: 10.21105/joss.03167
 identifiers:
 - type: doi
@@ -470,7 +470,7 @@ references:
     orcid: https://orcid.org/0000-0003-1995-6531
   year: '2024'
   doi: 10.32614/CRAN.package.statsExpressions
-  version: '>= 1.6.1'
+  version: '>= 1.6.2'
 - type: software
   title: tidyr
   abstract: 'tidyr: Tidy Messy Data'
