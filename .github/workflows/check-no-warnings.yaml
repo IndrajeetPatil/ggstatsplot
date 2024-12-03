@@ -1,14 +1,14 @@
-# Run tests with `options(warn = 2)` to fail on test warnings
+# execute all examples, tests, and vignettes with warnings turned into errors
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
 
-name: check-test-warnings
+name: check-no-warnings
 
 jobs:
-  check-test-warnings:
+   check-no-warnings:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -18,25 +18,38 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "devel"
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          upgrade: 'TRUE'
           extra-packages: |
+            any::devtools
             local::.
-          needs: check
+
+      - name: Run examples
+        run: |
+          options(crayon.enabled = TRUE,  warn = 2L)
+          devtools::run_examples(fresh = TRUE, run_dontrun = TRUE, run_donttest = TRUE)
+        shell: Rscript {0}
 
       - name: Run Tests
         run: |
             options(crayon.enabled = TRUE)
             pkgload::load_all()
+            # this workaround needed to play nicely with parallel testing
+            # see: https://github.com/r-lib/testthat/issues/1912
             test_script_paths <- testthat::find_test_scripts("tests/testthat")
             test_with_warning_as_error <- function(path) {
               withr::local_options(list(warn = 2L))
               testthat::test_file(path, stop_on_failure = TRUE, stop_on_warning = TRUE)
             }
             purrr::walk(test_script_paths, test_with_warning_as_error)
+        shell: Rscript {0}
+
+      - name: Build vignettes
+        run: |
+          options(crayon.enabled = TRUE, warn = 2L)
+          vignettes <- fs::dir_ls("vignettes/", glob = "*.Rmd", recurse = TRUE)
+          purrr::walk(vignettes, rmarkdown::render)
         shell: Rscript {0}
