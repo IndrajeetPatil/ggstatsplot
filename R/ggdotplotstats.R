@@ -47,30 +47,31 @@
 #' extract_stats(p)
 #' @export
 ggdotplotstats <- function(
-    data,
-    x,
-    y,
-    xlab = NULL,
-    ylab = NULL,
-    title = NULL,
-    subtitle = NULL,
-    caption = NULL,
-    type = "parametric",
-    test.value = 0,
-    bf.prior = 0.707,
-    bf.message = TRUE,
-    effsize.type = "g",
-    conf.level = 0.95,
-    tr = 0.2,
-    digits = 2L,
-    results.subtitle = TRUE,
-    point.args = list(color = "black", size = 3, shape = 16),
-    centrality.plotting = TRUE,
-    centrality.type = type,
-    centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
-    ggplot.component = NULL,
-    ggtheme = ggstatsplot::theme_ggstatsplot(),
-    ...) {
+  data,
+  x,
+  y,
+  xlab = NULL,
+  ylab = NULL,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  type = "parametric",
+  test.value = 0,
+  bf.prior = 0.707,
+  bf.message = TRUE,
+  effsize.type = "g",
+  conf.level = 0.95,
+  tr = 0.2,
+  digits = 2L,
+  results.subtitle = TRUE,
+  point.args = list(color = "black", size = 3, shape = 16),
+  centrality.plotting = TRUE,
+  centrality.type = type,
+  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+  ggplot.component = NULL,
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
+  ...
+) {
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
@@ -194,11 +195,12 @@ ggdotplotstats <- function(
 #' )
 #' @export
 grouped_ggdotplotstats <- function(
-    data,
-    ...,
-    grouping.var,
-    plotgrid.args = list(),
-    annotation.args = list()) {
+  data,
+  ...,
+  grouping.var,
+  plotgrid.args = list(),
+  annotation.args = list()
+) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggdotplotstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)

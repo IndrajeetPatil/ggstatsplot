@@ -60,29 +60,30 @@
 #' ggcorrmat(iris)
 #' @export
 ggcorrmat <- function(
-    data,
-    cor.vars = NULL,
-    cor.vars.names = NULL,
-    matrix.type = "upper",
-    type = "parametric",
-    tr = 0.2,
-    partial = FALSE,
-    digits = 2L,
-    sig.level = 0.05,
-    conf.level = 0.95,
-    bf.prior = 0.707,
-    p.adjust.method = "holm",
-    pch = "cross",
-    ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-    package = "RColorBrewer",
-    palette = "Dark2",
-    colors = c("#E69F00", "white", "#009E73"),
-    ggtheme = ggstatsplot::theme_ggstatsplot(),
-    ggplot.component = NULL,
-    title = NULL,
-    subtitle = NULL,
-    caption = NULL,
-    ...) {
+  data,
+  cor.vars = NULL,
+  cor.vars.names = NULL,
+  matrix.type = "upper",
+  type = "parametric",
+  tr = 0.2,
+  partial = FALSE,
+  digits = 2L,
+  sig.level = 0.05,
+  conf.level = 0.95,
+  bf.prior = 0.707,
+  p.adjust.method = "holm",
+  pch = "cross",
+  ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
+  package = "RColorBrewer",
+  palette = "Dark2",
+  colors = c("#E69F00", "white", "#009E73"),
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
+  ggplot.component = NULL,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  ...
+) {
   type <- stats_type_switch(type)
   if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
 
@@ -215,11 +216,12 @@ ggcorrmat <- function(
 #' )
 #' @export
 grouped_ggcorrmat <- function(
-    data,
-    ...,
-    grouping.var,
-    plotgrid.args = list(),
-    annotation.args = list()) {
+  data,
+  ...,
+  grouping.var,
+  plotgrid.args = list(),
+  annotation.args = list()
+) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggcorrmat, ...) %>%
     # `guides = "keep"` because legends can be different across grouping levels

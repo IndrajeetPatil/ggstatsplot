@@ -140,50 +140,51 @@
 #' )
 #' @export
 ggbetweenstats <- function(
-    data,
-    x,
-    y,
-    type = "parametric",
-    pairwise.display = "significant",
-    p.adjust.method = "holm",
-    effsize.type = "unbiased",
-    bf.prior = 0.707,
-    bf.message = TRUE,
-    results.subtitle = TRUE,
-    xlab = NULL,
-    ylab = NULL,
-    caption = NULL,
-    title = NULL,
-    subtitle = NULL,
-    digits = 2L,
-    var.equal = FALSE,
-    conf.level = 0.95,
-    nboot = 100L,
-    tr = 0.2,
-    centrality.plotting = TRUE,
-    centrality.type = type,
-    centrality.point.args = list(size = 5, color = "darkred"),
-    centrality.label.args = list(
-      size = 3,
-      nudge_x = 0.4,
-      segment.linetype = 4,
-      min.segment.length = 0
-    ),
-    point.args = list(
-      position = ggplot2::position_jitterdodge(dodge.width = 0.60),
-      alpha = 0.4,
-      size = 3,
-      stroke = 0,
-      na.rm = TRUE
-    ),
-    boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
-    violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-    ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-    ggtheme = ggstatsplot::theme_ggstatsplot(),
-    package = "RColorBrewer",
-    palette = "Dark2",
-    ggplot.component = NULL,
-    ...) {
+  data,
+  x,
+  y,
+  type = "parametric",
+  pairwise.display = "significant",
+  p.adjust.method = "holm",
+  effsize.type = "unbiased",
+  bf.prior = 0.707,
+  bf.message = TRUE,
+  results.subtitle = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  caption = NULL,
+  title = NULL,
+  subtitle = NULL,
+  digits = 2L,
+  var.equal = FALSE,
+  conf.level = 0.95,
+  nboot = 100L,
+  tr = 0.2,
+  centrality.plotting = TRUE,
+  centrality.type = type,
+  centrality.point.args = list(size = 5, color = "darkred"),
+  centrality.label.args = list(
+    size = 3,
+    nudge_x = 0.4,
+    segment.linetype = 4,
+    min.segment.length = 0
+  ),
+  point.args = list(
+    position = ggplot2::position_jitterdodge(dodge.width = 0.60),
+    alpha = 0.4,
+    size = 3,
+    stroke = 0,
+    na.rm = TRUE
+  ),
+  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
+  violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
+  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
+  ggtheme = ggstatsplot::theme_ggstatsplot(),
+  package = "RColorBrewer",
+  palette = "Dark2",
+  ggplot.component = NULL,
+  ...
+) {
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
@@ -351,11 +352,12 @@ ggbetweenstats <- function(
 #' )
 #' @export
 grouped_ggbetweenstats <- function(
-    data,
-    ...,
-    grouping.var,
-    plotgrid.args = list(),
-    annotation.args = list()) {
+  data,
+  ...,
+  grouping.var,
+  plotgrid.args = list(),
+  annotation.args = list()
+) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggbetweenstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
