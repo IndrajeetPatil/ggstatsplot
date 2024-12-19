@@ -8,7 +8,7 @@ message: 'To cite package "ggstatsplot" in publications use:'
 type: software
 license: GPL-3.0-only
 title: 'ggstatsplot: ''ggplot2'' Based Plots with Statistical Details'
-version: 0.13.0
+version: 0.13.0.9000
 doi: 10.21105/joss.03167
 identifiers:
 - type: doi
