@@ -19,11 +19,11 @@ read the `NEWS` for that package:
 
 ## MAJOR CHANGES
 
-- `extract_stats()` returns a list of class `ggstatsplot_stats` which
-  contains all the statistical summaries and expressions for a given plot.
-  
-- `extract_stats()`, `extract_subtitle()`, `extract_caption()` now works 
-  out of the box for the grouped plots as well.
+- `extract_stats()` returns a list of class `ggstatsplot_stats` which contains
+  all the statistical summaries and expressions for a given plot.
+
+- `extract_stats()`, `extract_subtitle()`, `extract_caption()` now works out of
+  the box for the grouped plots as well.
 
 ## BUG FIXES
 
