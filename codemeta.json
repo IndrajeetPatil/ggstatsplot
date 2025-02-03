@@ -308,7 +308,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 0.13.0",
+      "version": ">= 1.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -412,7 +412,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -438,7 +438,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.24.0",
+      "version": ">= 0.24.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -464,7 +464,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.12.4",
+      "version": ">= 0.13.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -490,7 +490,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
-      "version": ">= 1.1.4",
+      "version": ">= 1.1.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -532,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9304.118KB",
+  "fileSize": "9304.773KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
