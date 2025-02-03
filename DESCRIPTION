@@ -24,7 +24,7 @@ Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with
     and Bayesian versions of t-test/ANOVA, correlation analyses,
     contingency table analysis, meta-analysis, and regression analyses.
     References: Patil (2021) <doi:10.21105/joss.03236>.
-License: GPL-3 | file LICENSE
+License: MIT + file LICENSE
 URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
@@ -32,7 +32,7 @@ Depends:
     R (>= 4.3.0)
 Imports:
     correlation (>= 0.8.6),
-    datawizard (>= 0.13.0),
+    datawizard (>= 1.0.0),
     dplyr (>= 1.1.4),
     ggcorrplot (>= 0.1.4.1),
     ggplot2 (>= 3.5.1),
@@ -40,13 +40,13 @@ Imports:
     ggside (>= 0.3.1),
     ggsignif (>= 0.6.4),
     glue (>= 1.8.0),
-    insight (>= 1.0.0),
+    insight (>= 1.0.1),
     paletteer (>= 1.6.0),
-    parameters (>= 0.24.0),
+    parameters (>= 0.24.1),
     patchwork (>= 1.3.0),
-    performance (>= 0.12.4),
+    performance (>= 0.13.0),
     purrr (>= 1.0.2),
-    rlang (>= 1.1.4),
+    rlang (>= 1.1.5),
     statsExpressions (>= 1.6.2),
     tidyr (>= 1.3.1),
     utils

@@ -5,6 +5,10 @@ N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
 
+## MAJOR CHANGES
+
+- The license for the package has been changed from `GPL-3` to `MIT`.
+
 # ggstatsplot 0.13.0
 
 ## BREAKING CHANGES
@@ -19,11 +23,11 @@ read the `NEWS` for that package:
 
 ## MAJOR CHANGES
 
-- `extract_stats()` returns a list of class `ggstatsplot_stats` which
-  contains all the statistical summaries and expressions for a given plot.
-  
-- `extract_stats()`, `extract_subtitle()`, `extract_caption()` now works 
-  out of the box for the grouped plots as well.
+- `extract_stats()` returns a list of class `ggstatsplot_stats` which contains
+  all the statistical summaries and expressions for a given plot.
+
+- `extract_stats()`, `extract_subtitle()`, `extract_caption()` now works out of
+  the box for the grouped plots as well.
 
 ## BUG FIXES
 

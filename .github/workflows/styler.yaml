@@ -24,17 +24,15 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          upgrade: 'TRUE'
+          upgrade: "TRUE"
           dependencies: '"hard"'
           extra-packages: |
             local::.
             r-lib/pkgapi
             r-lib/styler
-            r-lib/roxygen2
             anthonynorth/roxyglobals
           needs: |
-            styler
-            roxygen2
+            check
 
       - name: Enable styler cache
         run: |
@@ -66,12 +64,7 @@ jobs:
       - name: Style package
         run: |
           options(crayon.enabled = TRUE)
-          styler::style_pkg(filetype = c(".qmd", ".R", ".Rmd", ".Rmarkdown", ".Rnw"))
-        shell: Rscript {0}
-
-      - name: Document
-        run: |
-          roxygen2::roxygenise()
+          styler::style_pkg()
         shell: Rscript {0}
 
       - uses: stefanzweifel/git-auto-commit-action@v5
