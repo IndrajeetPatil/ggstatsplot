@@ -1,6 +1,6 @@
 # All available hooks: https://pre-commit.com/hooks.html
 # R specific hooks: https://github.com/lorenzwalthert/precommit
-default_stages: [pre-commit]
+default_stages: [pre-commit, pre-push, commit-msg]
 default_language_version:
   python: python3
 
@@ -11,6 +11,7 @@ repos:
       - id: no-browser-statement
       - id: no-debug-statement
       - id: parsable-R
+      - id: deps-in-desc
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
