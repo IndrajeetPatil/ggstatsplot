@@ -1,6 +1,6 @@
 # All available hooks: https://pre-commit.com/hooks.html
 # R specific hooks: https://github.com/lorenzwalthert/precommit
-default_stages: [pre-commit]
+default_stages: [pre-commit, pre-push, commit-msg]
 default_language_version:
   python: python3
 
