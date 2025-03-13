@@ -64,3 +64,49 @@ str(iris)
 
 summary(iris)
 
+
+set.seed(123)
+
+p <- ggbetweenstats(mtcars, am, mpg)
+p
+
+# extracting details from statistical tests
+extract_stats(p)
+
+# modifying defaults
+ggbetweenstats(
+  morley,
+  x    = Expt,
+  y    = Speed,
+  type = "robust",
+  xlab = "The experiment number",
+  ylab = "Speed-of-light measurement"
+)
+
+# you can remove a specific geom to reduce complexity of the plot
+ggbetweenstats(
+  mtcars,
+  am,
+  wt,
+  # to remove violin plot
+  violin.args = list(width = 0, linewidth = 0),
+  # to remove boxplot
+  boxplot.args = list(width = 0),
+  # to remove points
+  point.args = list(alpha = 0)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
