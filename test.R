@@ -18,7 +18,7 @@ library(performance)
 library(purrr)
 library(tidyr)
 library(utils)
-source("R/ggbetweenstats.R")
+
 
 fichiers_R <- list.files(path = "R", pattern = "\\.R$", full.names = TRUE)
 for (fichier in fichiers_R) {
@@ -26,4 +26,17 @@ for (fichier in fichiers_R) {
   source(fichier, echo = TRUE)  # echo = TRUE pour afficher les commandes exécutées
 }
 
-ggbetweenstats(iris, Species, Sepal.Length)
+iris_outlier <- iris %>%
+  add_row(Sepal.Length = 10, Sepal.Width = 3, Petal.Length = 5, Petal.Width = 1.5, Species = "setosa")
+
+
+source("R/ggbetweenstats.R")
+
+iris_outlier$Species <- as.factor(iris_outlier$Species)
+
+ggbetweenstats(
+  data = iris_outlier,
+  x = Species,
+  y = Sepal.Length,
+  point.args = list(alpha = 0)
+)

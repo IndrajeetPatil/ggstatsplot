@@ -176,6 +176,13 @@ ggbetweenstats <- function(
     stroke = 0,
     na.rm = TRUE
   ),
+  outliers.args = list(
+    position = ggplot2::position_jitterdodge(dodge.width = 0.60),
+    alpha = 0.4,
+    size = 3,
+    stroke = 0,
+    na.rm = TRUE
+  ),
   boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
@@ -228,9 +235,12 @@ ggbetweenstats <- function(
   # plot -----------------------------------
 
   plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
-    exec(geom_violin, !!!violin.args)
+    exec(geom_boxplot, !!!boxplot.args) +
+    exec(geom_violin, !!!violin.args) +
+    exec(geom_point, data = data %>% filter(!({{ y }}%in% boxplot.stats({{ y }})$out)),
+         aes(color = {{ x }}), !!!point.args) +
+    exec(geom_point, data = data %>% filter({{ y }} %in% boxplot.stats({{ y }})$out),
+         aes(color = {{ x }}), !!!outliers.args)
 
   # centrality tagging -------------------------------------
 
