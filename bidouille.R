@@ -35,15 +35,38 @@ for (fichier in fichiers_R){
   source(fichier, echo = TRUE)
 }
 
-test <- rbind(iris, data.frame(Sepal.Length = 19, Sepal.Width = 36, Petal.Length = 23, Petal.Width = 10, Species = "setosa"))
-ggstatsplot::ggbetweenstats(
-  data = test,
-  x = Species,
-  y = Sepal.Length,
-  plot.type = "boxviolin",
-  point.args = list(alpha=0)
-)
+# test <- rbind(iris, data.frame(Sepal.Length = 19, Sepal.Width = 36, Petal.Length = 23, Petal.Width = 10, Species = "setosa"))
+# ggstatsplot::ggbetweenstats(
+#   data = test,
+#   x = Species,
+#   y = Sepal.Length,
+#   plot.type = "boxviolin",
+#   point.args = list(alpha=0)
+# )
+#
 
+data(airquality)
+
+
+ggwithinstats(data = iris,
+              x = Species,
+              y = Sepal.Length,
+              type = "violin", # Vous pouvez changer le type (boxplot, point, etc.)
+              add = "mean", # Ajouter des statistiques comme la moyenne
+              color = "Species", # Couleur par espèce
+              point.args = list(alpha = 0),  # Désactiver les points
+              violin.args = list(alpha = 0),  # Désactiver les violins
+              palette = "Set1"
+              )
+
+ggbetweenstats(
+  data = airquality,
+  x = Month,
+  y = Ozone,
+  plot.type = "boxviolin",
+  point.args = list(alpha = 0),  # Désactiver les points
+  violin.args = list(alpha = 0)  # Désactiver les violins
+)
 
 
 ggbetweenstats(
@@ -52,6 +75,13 @@ ggbetweenstats(
   y = Sepal.Length,
   plot.type = "boxviolin"
 )
+
+
+str(iris)
+
+summary(iris)
+
+boxplot(airquality$Ozone, main = "Distribution de Ozone", ylab = "Ozone")
 
 ggstatsplot::ggbetweenstats(
   data = iris,
@@ -59,47 +89,6 @@ ggstatsplot::ggbetweenstats(
   y = Sepal.Length,
   plot.type = "boxviolin"
 )
-
-str(iris)
-
-summary(iris)
-
-
-set.seed(123)
-
-p <- ggbetweenstats(mtcars, am, mpg)
-p
-
-# extracting details from statistical tests
-extract_stats(p)
-
-# modifying defaults
-ggbetweenstats(
-  morley,
-  x    = Expt,
-  y    = Speed,
-  type = "robust",
-  xlab = "The experiment number",
-  ylab = "Speed-of-light measurement"
-)
-
-# you can remove a specific geom to reduce complexity of the plot
-ggbetweenstats(
-  mtcars,
-  am,
-  wt,
-  # to remove violin plot
-  violin.args = list(width = 0, linewidth = 0),
-  # to remove boxplot
-  boxplot.args = list(width = 0),
-  # to remove points
-  point.args = list(alpha = 0)
-)
-
-
-
-
-
 
 
 
