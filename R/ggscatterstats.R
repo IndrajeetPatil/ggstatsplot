@@ -96,6 +96,8 @@ ggscatterstats <- function(
   smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  xsidehistogram.scale = NULL,
+  ysidehistogram.scale = NULL,
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -178,15 +180,20 @@ ggscatterstats <- function(
 
   # marginal  ---------------------------------------------
 
-  if (isTRUE(marginal)) {
+  if (isTRUE(marginal)){
     plot_scatter <- plot_scatter +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
-      exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
-      ggside::scale_ysidex_continuous() +
-      ggside::scale_xsidey_continuous()
+      exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args)
+    
+    # Apply scaling if specified
+    if (!is.null(xsidehistogram.scale)) {
+      plot_scatter <- plot_scatter + ggside::scale_xsidey_continuous(limits = xsidehistogram.scale)
+    }
+    if (!is.null(ysidehistogram.scale)) {
+      plot_scatter <- plot_scatter + ggside::scale_ysidex_continuous(limits = ysidehistogram.scale)
+    }
+    plot_scatter
   }
-
-  plot_scatter
 }
 
 
@@ -257,8 +264,8 @@ grouped_ggscatterstats <- function(
   grouping.var,
   plotgrid.args = list(),
   annotation.args = list()
-) {
+){
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggscatterstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
-}
+  }
