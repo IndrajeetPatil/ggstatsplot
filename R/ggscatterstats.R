@@ -79,6 +79,7 @@ ggscatterstats <- function(
   data,
   x,
   y,
+  axis_text_size = 10,
   type = "parametric",
   conf.level = 0.95,
   bf.prior = 0.707,
@@ -185,6 +186,13 @@ ggscatterstats <- function(
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }
+  plot_scatter <- plot_scatter +
+    theme(
+      axis.text.x = element_text(size = axis_text_size),
+      axis.text.y = element_text(size = axis_text_size),
+      ggside.axis.text.x = element_text(size = axis_text_size),
+      ggside.axis.text.y = element_text(size = axis_text_size)
+    )
 
   plot_scatter
 }
