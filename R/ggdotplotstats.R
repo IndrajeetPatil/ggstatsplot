@@ -82,7 +82,11 @@ ggdotplotstats <- function(
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
     mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
-    summarise({{ x }} := mean({{ x }}), .by = {{ y }}) %>%
+    # modification à tester
+    summarise({{ x }} := mean({{ x }}),
+              lower_ci = mean_cl_normal({{ x }})$ymin,
+              upper_ci = mean_cl_normal({{ x }})$ymax,
+              .by = {{ y }}) %>%
     # rank ordering the data
     arrange({{ x }}) %>%
     mutate(
@@ -157,6 +161,11 @@ ggdotplotstats <- function(
     ) +
     ggtheme +
     ggplot.component
+  # modification à tester
+  plot_dot <- plot_dot +
+    geom_errorbar(aes(ymin = lower_ci, ymax = upper_ci), width = 0.2, color = "red")
+
+
 }
 
 
