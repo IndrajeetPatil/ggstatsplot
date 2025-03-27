@@ -143,6 +143,7 @@ ggbetweenstats <- function(
   data,
   x,
   y,
+  plot.type = "boxviolin",
   type = "parametric",
   pairwise.display = "significant",
   p.adjust.method = "holm",
