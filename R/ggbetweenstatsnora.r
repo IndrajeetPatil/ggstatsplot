@@ -1,4 +1,3 @@
-
 #' @title Box/Violin plots for between-subjects comparisons
 #' @name ggbetweenstats
 #'
@@ -74,6 +73,8 @@
 #' @param package,palette Name of the package from which the given palette is to
 #'   be extracted. The available palettes and packages can be checked by running
 #'   `View(paletteer::palettes_d_names)`.
+#' @param effsize.alternative Alternative hypothesis for the effect size’s confidence interval.
+#'   One of `"greater"`, `"less"` or `"two.sided"`. Default is `"greater"`, as in the `effectsize` package.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
@@ -184,11 +185,9 @@ ggbetweenstats <- function(
   package = "RColorBrewer",
   palette = "Dark2",
   ggplot.component = NULL,
+  effsize.alternative = "greater",
   ...
 ) {
-  # data -----------------------------------
-
-  # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
@@ -196,8 +195,6 @@ ggbetweenstats <- function(
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
     mutate({{ x }} := droplevels(as.factor({{ x }})))
-
-  # statistical analysis ------------------------------------------
 
   test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
@@ -213,7 +210,8 @@ ggbetweenstats <- function(
       tr = tr,
       paired = FALSE,
       bf.prior = bf.prior,
-      nboot = nboot
+      nboot = nboot,
+      alternative = effsize.alternative
     )
 
     .f <- .f_switch(test)
@@ -226,14 +224,10 @@ ggbetweenstats <- function(
     }
   }
 
-  # plot -----------------------------------
-
   plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, !!!violin.args)
-
-  # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
     plot_comparison <- suppressWarnings(.centrality_ggrepel(
@@ -248,8 +242,6 @@ ggbetweenstats <- function(
       centrality.label.args = centrality.label.args
     ))
   }
-
-  # ggsignif labels -------------------------------------
 
   seclabel <- NULL
 
@@ -266,7 +258,6 @@ ggbetweenstats <- function(
       digits = digits
     )
 
-    # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(
       plot             = plot_comparison,
       mpc_df           = mpc_df,
@@ -277,11 +268,8 @@ ggbetweenstats <- function(
       ggsignif.args    = ggsignif.args
     )
 
-    # secondary label axis to give pairwise comparisons test details
     seclabel <- .pairwise_seclabel(unique(mpc_df$test), ifelse(type == "bayes", "all", pairwise.display))
   }
-
-  # annotations ------------------------
 
   .aesthetic_addon(
     plot             = plot_comparison,
@@ -297,69 +285,4 @@ ggbetweenstats <- function(
     palette          = palette,
     ggplot.component = ggplot.component
   )
-}
-
-
-#' @title Violin plots for group or condition comparisons in between-subjects
-#'   designs repeated across all levels of a grouping variable.
-#' @name grouped_ggbetweenstats
-#'
-#' @description
-#'
-#' Helper function for `ggstatsplot::ggbetweenstats` to apply this function
-#' across multiple levels of a given factor and combining the resulting plots
-#' using `ggstatsplot::combine_plots`.
-#'
-#' @inheritParams ggbetweenstats
-#' @inheritParams .grouped_list
-#' @inheritParams combine_plots
-#' @inheritDotParams ggbetweenstats -title
-#'
-#' @autoglobal
-#'
-#' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
-#'  \code{\link{grouped_ggwithinstats}}
-#'
-#' @inherit ggbetweenstats return references
-#'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
-#' # for reproducibility
-#' set.seed(123)
-#'
-#' library(dplyr, warn.conflicts = FALSE)
-#' library(ggplot2)
-#'
-#' grouped_ggbetweenstats(
-#'   data = filter(ggplot2::mpg, drv != "4"),
-#'   x = year,
-#'   y = hwy,
-#'   grouping.var = drv
-#' )
-#'
-#' # modifying individual plots using `ggplot.component` argument
-#' grouped_ggbetweenstats(
-#'   data = filter(
-#'     movies_long,
-#'     genre %in% c("Action", "Comedy"),
-#'     mpaa %in% c("R", "PG")
-#'   ),
-#'   x = genre,
-#'   y = rating,
-#'   grouping.var = mpaa,
-#'   ggplot.component = scale_y_continuous(
-#'     breaks = seq(1, 9, 1),
-#'     limits = (c(1, 9))
-#'   )
-#' )
-#' @export
-grouped_ggbetweenstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggbetweenstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
 }
