@@ -20,10 +20,11 @@ tips <- data.frame(
 head(tips)
 
 # Attempt a ggstatsplot function
-grouped_ggbarstats(
+ggbetweenstats(
   data = tips,
   x = sex,
   y = tip,  # Ensure this is treated as a categorical variable
-  grouping.var = smoker,
-  plot.type = "box"
+  plot.type = "box",
+  type = "parametric",
+  pairwise.display = "all"
 )

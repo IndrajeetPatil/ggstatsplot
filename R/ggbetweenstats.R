@@ -228,10 +228,28 @@ ggbetweenstats <- function(
 
   # plot -----------------------------------
 
-  plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
-    exec(geom_violin, !!!violin.args)
+  # plot -----------------------------------
+
+  # Check plot type and choose the appropriate plot
+  if (plot.type == "boxviolin") {
+    # Plot with both box and violin plots
+    plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+      exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
+      exec(geom_violin, !!!violin.args)
+  } else if (plot.type == "box") {
+    # Only boxplot
+    plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+      exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA)
+  } else if (plot.type == "violin") {
+    # Only violin plot
+    plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+      exec(geom_violin, !!!violin.args)
+  } else {
+    stop("Invalid plot type. Please choose from 'boxviolin', 'box', or 'violin'.")
+  }
 
   # centrality tagging -------------------------------------
 
