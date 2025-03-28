@@ -185,7 +185,7 @@ ggscatterstats <- function(
     plot_scatter <- plot_scatter +
       exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
       exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args)
-    
+
     # Apply scaling if specified
     if (!is.null(xsidehistogram.scale)) {
       plot_scatter <- plot_scatter + ggside::scale_xsidey_continuous(limits = xsidehistogram.scale)
@@ -193,9 +193,8 @@ ggscatterstats <- function(
     if (!is.null(ysidehistogram.scale)) {
       plot_scatter <- plot_scatter + ggside::scale_ysidex_continuous(limits = ysidehistogram.scale)
     }
-    plot_scatter
   }
-<<<<<<< HEAD
+
   plot_scatter <- plot_scatter +
     theme(
       ggside.axis.text.x = element_text(size = marginal_axis_text_size),
@@ -203,8 +202,7 @@ ggscatterstats <- function(
     )
 
   plot_scatter
-=======
->>>>>>> leo
+
 }
 
 
