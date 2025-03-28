@@ -6,18 +6,45 @@
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test.
 #'
+#' @section Summary of graphics:
+#'
+#' ```{r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}
+#' ```
+#'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #' @inheritParams ggbetweenstats
 #'
-#' @param conf.plotting Logical; if TRUE, adds 95% confidence intervals around the mean points.
-#' @param conf.level Numeric; the confidence level for the intervals (default is 0.95).
-#' @param conf.plot.args List; additional arguments passed to `ggdist::stat_pointinterval()` for customizing the confidence intervals.
+#' @inheritSection statsExpressions::one_sample_test One-sample tests
 #'
-#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
-#'  \code{\link{gghistostats}}
+#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
+#'  \code{\link{grouped_ggdotplotstats}}
+#'
+#' @autoglobal
+#'
+#' @details For details, see:
+#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+#'
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
+#' # for reproducibility
+#' set.seed(123)
+#'
+#' # creating a plot
+#' p <- ggdotplotstats(
+#'   data = ggplot2::mpg,
+#'   x = cty,
+#'   y = manufacturer,
+#'   title = "Fuel economy data",
+#'   xlab = "city miles per gallon"
+#' )
+#'
+#' # looking at the plot
+#' p
+#'
+#' # extracting details from statistical tests
+#' extract_stats(p)
 #' @export
 ggdotplotstats <- function(
     data,
