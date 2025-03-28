@@ -6,45 +6,18 @@
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test.
 #'
-#' @section Summary of graphics:
-#'
-#' ```{r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}
-#' ```
-#'
 #' @param ... Currently ignored.
 #' @param y Label or grouping variable.
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #' @inheritParams ggbetweenstats
 #'
-#' @inheritSection statsExpressions::one_sample_test One-sample tests
+#' @param conf.plotting Logical; if TRUE, adds 95% confidence intervals around the mean points.
+#' @param conf.level Numeric; the confidence level for the intervals (default is 0.95).
+#' @param conf.plot.args List; additional arguments passed to `ggdist::stat_pointinterval()` for customizing the confidence intervals.
 #'
-#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
-#'  \code{\link{grouped_ggdotplotstats}}
-#'
-#' @autoglobal
-#'
-#' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
-#'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
-#' # for reproducibility
-#' set.seed(123)
-#'
-#' # creating a plot
-#' p <- ggdotplotstats(
-#'   data = ggplot2::mpg,
-#'   x = cty,
-#'   y = manufacturer,
-#'   title = "Fuel economy data",
-#'   xlab = "city miles per gallon"
-#' )
-#'
-#' # looking at the plot
-#' p
-#'
-#' # extracting details from statistical tests
-#' extract_stats(p)
+#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
+#'  \code{\link{gghistostats}}
 #' @export
 ggdotplotstats <- function(
     data,
@@ -60,21 +33,21 @@ ggdotplotstats <- function(
     bf.prior = 0.707,
     bf.message = TRUE,
     effsize.type = "g",
-    conf.level = 0.95,
+    conf.level = 0.95,  # Niveau de confiance pour l'intervalle
     tr = 0.2,
     digits = 2L,
     results.subtitle = TRUE,
     point.args = list(color = "black", size = 3, shape = 16),
     centrality.plotting = TRUE,
     centrality.type = type,
-    centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+    centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),  # Remplacement ici
     ggplot.component = NULL,
     ggtheme = ggstatsplot::theme_ggstatsplot(),
+    conf.plotting = TRUE,
+    conf.plot.args = list(),
     ...
 ) {
-  # data -----------------------------------
-
-  # make sure both quoted and unquoted arguments are allowed
+  # Data processing -----------------------------------
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
@@ -82,20 +55,20 @@ ggdotplotstats <- function(
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
     mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
-    # modification à tester
-    summarise({{ x }} := mean({{ x }}),
-              lower_ci = mean_cl_normal({{ x }})$ymin,
-              upper_ci = mean_cl_normal({{ x }})$ymax,
-              .by = {{ y }}) %>%
-    # rank ordering the data
-    arrange({{ x }}) %>%
+    summarise(
+      mean_x = mean({{ x }}),
+      se_x = sd({{ x }}) / sqrt(n()),  # Calcul de l'erreur standard
+      .by = {{ y }}
+    ) %>%
+    arrange(mean_x) %>%
     mutate(
-      percent_rank = percent_rank({{ x }}),
-      rank = row_number()
+      percent_rank = percent_rank(mean_x),
+      rank = row_number(),
+      ci_lower = mean_x - qnorm(1 - (1 - conf.level) / 2) * se_x,  # Calcul de la borne inférieure de l'intervalle de confiance
+      ci_upper = mean_x + qnorm(1 - (1 - conf.level) / 2) * se_x   # Calcul de la borne supérieure de l'intervalle de confiance
     )
 
-  # statistical analysis ------------------------------------------
-
+  # Statistical analysis ------------------------------------------
   if (results.subtitle) {
     .f.args <- list(
       data = data,
@@ -120,9 +93,8 @@ ggdotplotstats <- function(
     }
   }
 
-  # plot -----------------------------------
-
-  plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
+  # Plot -----------------------------------
+  plot_dot <- ggplot(data, mapping = aes(x = mean_x, y = rank)) +
     exec(geom_point, !!!point.args) +
     scale_y_continuous(
       name = ylab,
@@ -135,13 +107,25 @@ ggdotplotstats <- function(
       )
     )
 
-  # centrality plotting -------------------------------------
+  # Ajout des intervalles de confiance --------------------------
+  if (conf.plotting) {
+    plot_dot <- plot_dot +
+      # Ici cette fonction permet l'ajout de barres horizontales représentant
+      #les intervalles de confiance.
+      geom_errorbarh(
+        aes(xmin = ci_lower, xmax = ci_upper, y = rank),
+        color = "red",  # Personnalisation de la couleur des barres
+        linewidth = 1,  #Largeur des barres d'erreur
+        height = 0.2  # Largeur des barres d'erreur (verticale)
+      )
+  }
 
+  # Centrality plotting -------------------------------------
   if (isTRUE(centrality.plotting)) {
     #Idem pour "ggstatsplot:::"
     plot_dot <- ggstatsplot:::.histo_labeller(
       plot_dot,
-      x = pull(data, {{ x }}),
+      x = pull(data, mean_x),
       type = stats_type_switch(centrality.type),
       tr = tr,
       digits = digits,
@@ -149,23 +133,17 @@ ggdotplotstats <- function(
     )
   }
 
-  # annotations -------------------------
-
+  # Annotations -------------------------
   plot_dot +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = ylab %||% as_name(y),
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
-  # modification à tester
-  plot_dot <- plot_dot +
-    geom_errorbar(aes(ymin = lower_ci, ymax = upper_ci), width = 0.2, color = "red")
-
-
 }
 
 
