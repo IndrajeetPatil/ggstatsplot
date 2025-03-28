@@ -40,3 +40,10 @@ ggbetweenstats(
   y = Sepal.Length,
   point.args = list(alpha = 0)
 )
+
+ggbetweenstats(
+  data = iris_outlier,
+  x = Species,
+  y = Sepal.Length,
+  boxplot.outliers = TRUE
+)
