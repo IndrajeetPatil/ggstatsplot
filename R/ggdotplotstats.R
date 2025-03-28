@@ -47,34 +47,34 @@
 #' extract_stats(p)
 #' @export
 ggdotplotstats <- function(
-  data,
-  x,
-  y,
-  xlab = NULL,
-  ylab = NULL,
-  title = NULL,
-  subtitle = NULL,
-  caption = NULL,
-  type = "parametric",
-  test.value = 0,
-  bf.prior = 0.707,
-  bf.message = TRUE,
-  effsize.type = "g",
-  conf.level = 0.95,
-  tr = 0.2,
-  digits = 2L,
-  results.subtitle = TRUE,
-  point.args = list(color = "black", size = 3, shape = 16),
-  centrality.plotting = TRUE,
-  centrality.type = type,
-  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
-  ggplot.component = NULL,
-  ggtheme = ggstatsplot::theme_ggstatsplot(),
-  ...
+    data,
+    x,
+    y,
+    xlab = NULL,
+    ylab = NULL,
+    title = NULL,
+    subtitle = NULL,
+    caption = NULL,
+    type = "parametric",
+    test.value = 0,
+    bf.prior = 0.707,
+    bf.message = TRUE,
+    effsize.type = "g",
+    conf.level = 0.95,  # Niveau de confiance pour l'intervalle
+    tr = 0.2,
+    digits = 2L,
+    results.subtitle = TRUE,
+    point.args = list(color = "black", size = 3, shape = 16),
+    centrality.plotting = TRUE,
+    centrality.type = type,
+    centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),  # Remplacement ici
+    ggplot.component = NULL,
+    ggtheme = ggstatsplot::theme_ggstatsplot(),
+    conf.plotting = TRUE,
+    conf.plot.args = list(),
+    ...
 ) {
-  # data -----------------------------------
-
-  # make sure both quoted and unquoted arguments are allowed
+  # Data processing -----------------------------------
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
@@ -82,16 +82,20 @@ ggdotplotstats <- function(
     select({{ x }}, {{ y }}) %>%
     tidyr::drop_na() %>%
     mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
-    summarise({{ x }} := mean({{ x }}), .by = {{ y }}) %>%
-    # rank ordering the data
-    arrange({{ x }}) %>%
+    summarise(
+      mean_x = mean({{ x }}),
+      se_x = sd({{ x }}) / sqrt(n()),  # Calcul de l'erreur standard
+      .by = {{ y }}
+    ) %>%
+    arrange(mean_x) %>%
     mutate(
-      percent_rank = percent_rank({{ x }}),
-      rank = row_number()
+      percent_rank = percent_rank(mean_x),
+      rank = row_number(),
+      ci_lower = mean_x - qnorm(1 - (1 - conf.level) / 2) * se_x,  # Calcul de la borne inférieure de l'intervalle de confiance
+      ci_upper = mean_x + qnorm(1 - (1 - conf.level) / 2) * se_x   # Calcul de la borne supérieure de l'intervalle de confiance
     )
 
-  # statistical analysis ------------------------------------------
-
+  # Statistical analysis ------------------------------------------
   if (results.subtitle) {
     .f.args <- list(
       data = data,
@@ -103,19 +107,21 @@ ggdotplotstats <- function(
       tr = tr,
       bf.prior = bf.prior
     )
-
-    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
+    #On utilise "ggstatsplot:::" pour accéder à la fonction interne
+    #Attention l'implémentation peut changer dans les futures mises à jour du package
+    #peut être à modifier plus tard.
+    subtitle_df <- ggstatsplot:::.eval_f(one_sample_test, !!!.f.args, type = type)
+    subtitle <- ggstatsplot:::.extract_expression(subtitle_df)
 
     if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
+      #Idem pour "ggstatsplot:::"
+      caption_df <- ggstatsplot:::.eval_f(one_sample_test, !!!.f.args, type = "bayes")
+      caption <- ggstatsplot:::.extract_expression(caption_df)
     }
   }
 
-  # plot -----------------------------------
-
-  plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
+  # Plot -----------------------------------
+  plot_dot <- ggplot(data, mapping = aes(x = mean_x, y = rank)) +
     exec(geom_point, !!!point.args) +
     scale_y_continuous(
       name = ylab,
@@ -128,12 +134,25 @@ ggdotplotstats <- function(
       )
     )
 
-  # centrality plotting -------------------------------------
+  # Ajout des intervalles de confiance --------------------------
+  if (conf.plotting) {
+    plot_dot <- plot_dot +
+      # Ici cette fonction permet l'ajout de barres horizontales représentant
+      #les intervalles de confiance.
+      geom_errorbarh(
+        aes(xmin = ci_lower, xmax = ci_upper, y = rank),
+        color = "red",  # Personnalisation de la couleur des barres
+        linewidth = 1,  #Largeur des barres d'erreur
+        height = 0.2  # Largeur des barres d'erreur (verticale)
+      )
+  }
 
+  # Centrality plotting -------------------------------------
   if (isTRUE(centrality.plotting)) {
-    plot_dot <- .histo_labeller(
+    #Idem pour "ggstatsplot:::"
+    plot_dot <- ggstatsplot:::.histo_labeller(
       plot_dot,
-      x = pull(data, {{ x }}),
+      x = pull(data, mean_x),
       type = stats_type_switch(centrality.type),
       tr = tr,
       digits = digits,
@@ -141,15 +160,14 @@ ggdotplotstats <- function(
     )
   }
 
-  # annotations -------------------------
-
+  # Annotations -------------------------
   plot_dot +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = ylab %||% as_name(y),
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
@@ -195,11 +213,11 @@ ggdotplotstats <- function(
 #' )
 #' @export
 grouped_ggdotplotstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()
 ) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggdotplotstats, ...) %>%
