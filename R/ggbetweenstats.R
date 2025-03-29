@@ -139,7 +139,7 @@
 #'   point.args = list(alpha = 0)
 #' )
 #' @export
-ggbetweenstats <- function(
+ggbetweenstats_test <- function(
   data,
   x,
   y,
@@ -189,7 +189,7 @@ ggbetweenstats <- function(
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
+  c(x, y) <- c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
   data %<>%
@@ -381,3 +381,4 @@ grouped_ggbetweenstats <- function(
     purrr::pmap(.f = ggbetweenstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }
+

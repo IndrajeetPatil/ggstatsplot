@@ -1,14 +1,14 @@
 ### TEST ####
 # Install necessary packages if not installed
 
-# Load libraries
-library(ggstatsplot)
+# Load the custom function script
+source("R/ggbetweenstats.R")
 library(ggplot2)
 
 # Create a data frame to replicate the 'tips' dataset
 set.seed(123)  # For reproducibility
 
-tips <- data.frame(
+fake_data <- data.frame(
   total_bill = round(runif(200, 10, 50), 2),
   tip = round(runif(200, 1, 15), 2),
   sex = as.factor(sample(c("Male", "Female"), 200, replace = TRUE)),
@@ -17,14 +17,14 @@ tips <- data.frame(
 )
 
 # View the first few rows of the dataset
-head(tips)
+head(fake_data)
 
-# Attempt a ggstatsplot function
-ggbetweenstats(
-  data = tips,
-  x = sex,
-  y = tip,  # Ensure this is treated as a categorical variable
-  plot.type = "box",
-  type = "parametric",
-  pairwise.display = "all"
+# Use your custom ggbetweenstats function
+ggbetweenstats_test(
+  data = fake_data,
+  x = sex,   # Pass the variable as it is, without quotes
+  y = tip,   # Pass the variable as it is, without quotes
+  plot.type = "box",  # Specify plot type
+  type = "parametric",  # Specify the statistical test type
+  pairwise.display = "all"  # Display pairwise comparisons
 )
