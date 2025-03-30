@@ -189,7 +189,7 @@ ggbetweenstats_test <- function(
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) <- c(ensym(x), ensym(y))
+  c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
   data %<>%
