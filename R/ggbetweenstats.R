@@ -228,8 +228,6 @@ ggbetweenstats_test <- function(
 
   # plot -----------------------------------
 
-  # plot -----------------------------------
-
   # Check plot type and choose the appropriate plot
   if (plot.type == "boxviolin") {
     # Plot with both box and violin plots
