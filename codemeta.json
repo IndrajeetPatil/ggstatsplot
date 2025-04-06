@@ -7,7 +7,7 @@
   "relatedLink": "https://indrajeetpatil.github.io/ggstatsplot/",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
-  "license": "https://spdx.org/licenses/GPL-3.0",
+  "license": "https://spdx.org/licenses/MIT",
   "version": "0.13.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
@@ -295,7 +295,7 @@
       "@type": "SoftwareApplication",
       "identifier": "correlation",
       "name": "correlation",
-      "version": ">= 0.8.6",
+      "version": ">= 0.8.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -308,7 +308,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 1.0.0",
+      "version": ">= 1.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -412,7 +412,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.0.1",
+      "version": ">= 1.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -438,7 +438,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.24.1",
+      "version": ">= 0.24.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -477,7 +477,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.0.2",
+      "version": ">= 1.0.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -532,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9304.773KB",
+  "fileSize": "9269.759KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

@@ -31,8 +31,8 @@ BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends: 
     R (>= 4.3.0)
 Imports:
-    correlation (>= 0.8.6),
-    datawizard (>= 1.0.0),
+    correlation (>= 0.8.7),
+    datawizard (>= 1.0.2),
     dplyr (>= 1.1.4),
     ggcorrplot (>= 0.1.4.1),
     ggplot2 (>= 3.5.1),
@@ -40,12 +40,12 @@ Imports:
     ggside (>= 0.3.1),
     ggsignif (>= 0.6.4),
     glue (>= 1.8.0),
-    insight (>= 1.0.1),
+    insight (>= 1.1.0),
     paletteer (>= 1.6.0),
-    parameters (>= 0.24.1),
+    parameters (>= 0.24.2),
     patchwork (>= 1.3.0),
     performance (>= 0.13.0),
-    purrr (>= 1.0.2),
+    purrr (>= 1.0.4),
     rlang (>= 1.1.5),
     statsExpressions (>= 1.6.2),
     tidyr (>= 1.3.1),

@@ -25,5 +25,4 @@ update_deps:
 	-e 'options(repos = c(CRAN = "https://cran.r-project.org"))' \
 	-e 'usethis::use_latest_dependencies(source = "CRAN")' \
 	-e 'roxygen2::roxygenise()' \
-	-e 'codemetar::write_codemeta()' \
-	-e 'cffr::cff_write()'
+	-e 'codemetar::write_codemeta()'
