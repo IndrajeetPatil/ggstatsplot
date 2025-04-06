@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>ggbetweenstats • ggstatsplot</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="../../favicon-48x48.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
 <link rel="icon" sizes="any" href="../../favicon.ico">
@@ -151,12 +151,12 @@ have a look at the data-</p>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1,704</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
-<span><span class="co">#&gt; $ <span style="font-weight: bold;">country  </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …</span></span>
-<span><span class="co">#&gt; $ <span style="font-weight: bold;">continent</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …</span></span>
-<span><span class="co">#&gt; $ <span style="font-weight: bold;">year     </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …</span></span>
-<span><span class="co">#&gt; $ <span style="font-weight: bold;">lifeExp  </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…</span></span>
-<span><span class="co">#&gt; $ <span style="font-weight: bold;">pop      </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…</span></span>
-<span><span class="co">#&gt; $ <span style="font-weight: bold;">gdpPercap</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</span></span></code></pre></div>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">country  </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Afghanistan"<span style="color: #949494;">, </span>"Afghanistan"<span style="color: #949494;">, </span>"Afghanistan"<span style="color: #949494;">, </span>"Afghanistan"<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">continent</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>Asia<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">year     </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1952<span style="color: #949494;">, </span>1957<span style="color: #949494;">, </span>1962<span style="color: #949494;">, </span>1967<span style="color: #949494;">, </span>1972<span style="color: #949494;">, </span>1977<span style="color: #949494;">, </span>1982<span style="color: #949494;">, </span>1987<span style="color: #949494;">, </span>1992<span style="color: #949494;">, </span>1997<span style="color: #949494;">, </span>…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">lifeExp  </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 28.801<span style="color: #949494;">, </span>30.332<span style="color: #949494;">, </span>31.997<span style="color: #949494;">, </span>34.020<span style="color: #949494;">, </span>36.088<span style="color: #949494;">, </span>38.438<span style="color: #949494;">, </span>39.854<span style="color: #949494;">, </span>40.8…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">pop      </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 8425333<span style="color: #949494;">, </span>9240934<span style="color: #949494;">, </span>10267083<span style="color: #949494;">, </span>11537966<span style="color: #949494;">, </span>13079460<span style="color: #949494;">, </span>14880372<span style="color: #949494;">, </span>12…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">gdpPercap</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 779.4453<span style="color: #949494;">, </span>820.8530<span style="color: #949494;">, </span>853.1007<span style="color: #949494;">, </span>836.1971<span style="color: #949494;">, </span>739.9811<span style="color: #949494;">, </span>786.1134<span style="color: #949494;">, </span>…</span></span></code></pre></div>
 <p><strong>Note</strong>: For the remainder of the vignette, we’re going
 to exclude <em>Oceania</em> from the analysis simply because there are
 so few observations (countries).</p>
@@ -194,7 +194,7 @@ makes it easy to compare evidence in favor alternative
 versus null
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>)
 hypotheses (since
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">log_{e}(BF_{01}) = - log_{e}(BF_{10})</annotation></semantics></math>).</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">log_{e}(BF_{01}) = - log_{e}(BF_{10})</annotation></semantics></math>).</p>
 <p>We can make the output much more aesthetically pleasing as well as
 informative by making use of the many optional parameters in
 <code>ggbetweenstats</code>. We’ll add a title and caption, better
@@ -420,7 +420,7 @@ complement this plot either as a figure caption or in the main text-</p>
 although the tooth length was higher when the animal received vitamin C
 via orange juice as compared to via ascorbic acid, this effect was not
 statistically significant. The effect size
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>=</mo><mn>0.49</mn><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(g = 0.49)</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo>=</mo><mn>0.49</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(g = 0.49)</annotation></semantics></math>
 was medium, as per Cohen’s (1988) conventions. The Bayes Factor for the
 same analysis revealed that the data were 1.2 times more probable under
 the alternative hypothesis as compared to the null hypothesis. This can
