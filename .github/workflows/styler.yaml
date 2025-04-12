@@ -14,8 +14,6 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -67,4 +65,4 @@ jobs:
           styler::style_pkg()
         shell: Rscript {0}
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v5.1.0
