@@ -40,7 +40,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: devel
-          upgrade: 'TRUE'
+          upgrade: "TRUE"
           extra-packages: |
             deps::.
             any::ggstatsplot
