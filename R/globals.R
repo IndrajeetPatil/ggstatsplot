@@ -17,8 +17,10 @@ utils::globalVariables(c(
   # <.histo_labeller>
   ".x",
   # <ggcoefstats>
+  # <ggdotplotstats>
   "conf.high",
   # <ggcoefstats>
+  # <ggdotplotstats>
   "conf.low",
   # <descriptive_data>
   # <.cat_counter>

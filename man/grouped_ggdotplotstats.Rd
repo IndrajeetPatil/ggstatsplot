@@ -107,6 +107,11 @@ that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
+    \item{\code{conf.int}}{Logical. Decides whether to display confidence intervals as
+error bars (Default: \code{TRUE}).}
+    \item{\code{errorbar.args}}{Additional arguments that will be passed to
+\code{geom_errorbarh()} geom. Please see documentation for that function
+to know more about these arguments.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to

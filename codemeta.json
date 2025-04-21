@@ -111,7 +111,7 @@
       "@type": "SoftwareApplication",
       "identifier": "lme4",
       "name": "lme4",
-      "version": ">= 1.1-35.2",
+      "version": ">= 1.1-37",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -225,7 +225,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.2.1",
+      "version": ">= 3.2.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -532,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9269.759KB",
+  "fileSize": "9270.647KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
