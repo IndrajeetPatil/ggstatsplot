@@ -8,7 +8,7 @@ on:
 name: check-no-warnings
 
 jobs:
-   check-no-warnings:
+  check-no-warnings:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -37,16 +37,16 @@ jobs:
 
       - name: Run Tests
         run: |
-            options(crayon.enabled = TRUE)
-            pkgload::load_all()
-            # this workaround needed to play nicely with parallel testing
-            # see: https://github.com/r-lib/testthat/issues/1912
-            test_script_paths <- testthat::find_test_scripts("tests/testthat")
-            test_with_warning_as_error <- function(path) {
-              withr::local_options(list(warn = 2L))
-              testthat::test_file(path, stop_on_failure = TRUE, stop_on_warning = TRUE)
-            }
-            purrr::walk(test_script_paths, test_with_warning_as_error)
+          options(crayon.enabled = TRUE)
+          pkgload::load_all()
+          # this workaround needed to play nicely with parallel testing
+          # see: https://github.com/r-lib/testthat/issues/1912
+          test_script_paths <- testthat::find_test_scripts("tests/testthat")
+          test_with_warning_as_error <- function(path) {
+            withr::local_options(list(warn = 2L))
+            testthat::test_file(path, stop_on_failure = TRUE, stop_on_warning = TRUE)
+          }
+          purrr::walk(test_script_paths, test_with_warning_as_error)
         shell: Rscript {0}
 
       - name: Build vignettes
