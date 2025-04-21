@@ -4,49 +4,25 @@ on:
 
 name: pre-commit
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
-    if: >-
-      !contains(github.event.head_commit.message, 'ci skip') &&
-      (
-        startsWith(github.ref, 'refs/heads') ||
-        github.event.pull_request.draft == false
-      )
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ github.token }}
-
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5.5.0
+      - uses: actions/setup-python@v5.5.0
         with:
           python-version: "3.13"
 
       - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
 
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
 
-      - name: Commit files
-        if: failure() && startsWith(github.ref, 'refs/heads')
-        run: |
-          if [[ `git status --porcelain --untracked-files=no` ]]; then
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git checkout -- .github/workflows
-            git commit -m "pre-commit" -a
-          fi
-
-      - name: Push changes
-        if: failure() && startsWith(github.ref, 'refs/heads')
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
-    env:
-      RENV_CONFIG_CACHE_ENABLED: FALSE
+      - uses: stefanzweifel/git-auto-commit-action@v5.1.0

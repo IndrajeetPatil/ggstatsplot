@@ -3,6 +3,5 @@
 if (getRversion() >= "4.4.0") {
   library(testthat)
   suppressPackageStartupMessages(library(ggstatsplot))
-
   test_check("ggstatsplot")
 }
