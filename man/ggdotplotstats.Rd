@@ -164,6 +164,15 @@ thus the details as well.}
 \description{
 A dot chart (as described by William S. Cleveland) with statistical details
 from one-sample test.
+
+The point estimate (and associated uncertainty) displayed depends on
+the type of statistics selected:
+\itemize{
+\item \strong{mean} for parametric statistics
+\item \strong{median} for non-parametric statistics
+\item \strong{trimmed mean} for robust statistics
+\item \strong{MAP estimator} for Bayesian statistics
+}
 }
 \details{
 For details, see:

@@ -6,6 +6,14 @@
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test.
 #'
+#' The point estimate (and associated uncertainty) displayed depends on
+#' the type of statistics selected:
+#'
+#'  - **mean** for parametric statistics
+#'  - **median** for non-parametric statistics
+#'  - **trimmed mean** for robust statistics
+#'  - **MAP estimator** for Bayesian statistics
+#'
 #' @section Summary of graphics:
 #'
 #' ```{r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}

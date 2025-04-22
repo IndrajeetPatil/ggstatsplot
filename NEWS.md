@@ -9,6 +9,11 @@ read the `NEWS` for that package:
 
 - The license for the package has been changed from `GPL-3` to `MIT`.
 
+- `ggdotplotstats()` displays uncertainty (confidence intervals) for the
+  centrality measure estimates in the plot. This is controlled by the `conf.int`
+  argument. The default is `TRUE`, which means that the confidence intervals are
+  displayed. If you do not want to display them, set `conf.int = FALSE`.
+
 # ggstatsplot 0.13.0
 
 ## BREAKING CHANGES
