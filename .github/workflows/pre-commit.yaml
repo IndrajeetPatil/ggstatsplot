@@ -11,6 +11,8 @@ concurrency:
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+    env:
+      RENV_CONFIG_CACHE_ENABLED: FALSE
     steps:
       - uses: actions/checkout@v4
 
