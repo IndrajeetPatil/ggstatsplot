@@ -6,6 +6,14 @@
 #' A dot chart (as described by William S. Cleveland) with statistical details
 #' from one-sample test.
 #'
+#' The point estimate (and associated uncertainty) displayed depends on
+#' the type of statistics selected:
+#'
+#'  - **mean** for parametric statistics
+#'  - **median** for non-parametric statistics
+#'  - **trimmed mean** for robust statistics
+#'  - **MAP estimator** for Bayesian statistics
+#'
 #' @section Summary of graphics:
 #'
 #' ```{r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}
@@ -16,6 +24,7 @@
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
 #' @inheritParams ggbetweenstats
+#' @inheritParams ggcoefstats
 #'
 #' @inheritSection statsExpressions::one_sample_test One-sample tests
 #'
@@ -60,11 +69,13 @@ ggdotplotstats <- function(
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
+  conf.int = TRUE,
   conf.level = 0.95,
   tr = 0.2,
   digits = 2L,
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
+  errorbar.args = list(height = 0, na.rm = TRUE),
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
@@ -77,13 +88,19 @@ ggdotplotstats <- function(
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
+  .f.stats.args <- list(conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
 
   data %<>%
     select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na() %>%
-    mutate({{ y }} := droplevels(as.factor({{ y }}))) %>%
-    summarise({{ x }} := mean({{ x }}), .by = {{ y }}) %>%
-    # rank ordering the data
+    tidyr::drop_na()
+
+  data <-
+    suppressWarnings(centrality_description(
+      data, {{ y }}, {{ x }},
+      type = type, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior
+    ))
+
+  data %<>%
     arrange({{ x }}) %>%
     mutate(
       percent_rank = percent_rank({{ x }}),
@@ -93,22 +110,13 @@ ggdotplotstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
-      data = data,
-      x = {{ x }},
-      test.value = test.value,
-      effsize.type = effsize.type,
-      conf.level = conf.level,
-      digits = digits,
-      tr = tr,
-      bf.prior = bf.prior
-    )
+    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, effsize.type = effsize.type)
 
-    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
+    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = type)
     subtitle <- .extract_expression(subtitle_df)
 
     if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
+      caption_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = "bayes")
       caption <- .extract_expression(caption_df)
     }
   }
@@ -117,13 +125,14 @@ ggdotplotstats <- function(
 
   plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
     exec(geom_point, !!!point.args) +
+    exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args) +
     scale_y_continuous(
       name = ylab,
       labels = pull(data, {{ y }}),
       breaks = data$rank,
       sec.axis = dup_axis(
         name   = "percentile",
-        breaks = seq(1, nrow(data), (nrow(data) - 1) / 4),
+        breaks = seq(1L, nrow(data), (nrow(data) - 1L) / 4),
         labels = 25 * 0:4
       )
     )
@@ -161,9 +170,9 @@ ggdotplotstats <- function(
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::ggdotplotstats` to apply this function
+#' Helper function for `ggstatsplot::ggdotplotstats()` to apply this function
 #' across multiple levels of a given factor and combining the resulting plots
-#' using `ggstatsplot::combine_plots`.
+#' using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggdotplotstats
 #' @inheritParams grouped_ggbetweenstats

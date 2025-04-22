@@ -18,11 +18,13 @@ ggdotplotstats(
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
+  conf.int = TRUE,
   conf.level = 0.95,
   tr = 0.2,
   digits = 2L,
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
+  errorbar.args = list(height = 0, na.rm = TRUE),
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
@@ -82,6 +84,9 @@ parametric test} (Default: \code{TRUE}).}
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
 
+\item{conf.int}{Logical. Decides whether to display confidence intervals as
+error bars (Default: \code{TRUE}).}
+
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
@@ -103,6 +108,10 @@ the plot will be returned.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+
+\item{errorbar.args}{Additional arguments that will be passed to
+\code{geom_errorbarh()} geom. Please see documentation for that function
+to know more about these arguments.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -155,6 +164,15 @@ thus the details as well.}
 \description{
 A dot chart (as described by William S. Cleveland) with statistical details
 from one-sample test.
+
+The point estimate (and associated uncertainty) displayed depends on
+the type of statistics selected:
+\itemize{
+\item \strong{mean} for parametric statistics
+\item \strong{median} for non-parametric statistics
+\item \strong{trimmed mean} for robust statistics
+\item \strong{MAP estimator} for Bayesian statistics
+}
 }
 \details{
 For details, see:
@@ -164,6 +182,7 @@ For details, see:
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
    raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
    centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
 }
 }

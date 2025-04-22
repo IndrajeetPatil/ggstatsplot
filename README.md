@@ -355,9 +355,9 @@ ggdotplotstats(
 
 **Defaults** return<br>
 
-✅ descriptives (mean + sample size) <br> ✅ inferential statistics <br>
-✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅
-Bayesian estimation <br>
+✅descriptives (centrality measure + uncertainty + sample size)<br> ✅
+inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
+hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 As with the rest of the functions in this package, there is also a
 `grouped_` variant of this function to facilitate looping the same
@@ -370,7 +370,7 @@ grouped_ggdotplotstats(
   data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
   x               = cty,
   y               = manufacturer,
-  type            = "bayes",
+  type            = "np",
   xlab            = "city miles per gallon",
   ylab            = "car manufacturer",
   grouping.var    = cyl,

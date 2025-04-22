@@ -115,7 +115,7 @@ grouped_ggdotplotstats(
   y = manufacturer,
   xlab = "city miles per gallon",
   ylab = "car manufacturer",
-  type = "bayes", ## Bayesian test
+  type = "np",
   test.value = 15.5,
   ## arguments relevant for `combine_plots`
   annotation.args = list(title = "Fuel economy data"),
