@@ -12,7 +12,7 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     env:
-      RENV_CONFIG_CACHE_ENABLED: FALSE
+      RENV_CONFIG_CACHE_ENABLED: TRUE
     steps:
       - uses: actions/checkout@v4
 
