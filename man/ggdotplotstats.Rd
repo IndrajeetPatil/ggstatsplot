@@ -173,6 +173,7 @@ For details, see:
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
    raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
    centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
 }
 }

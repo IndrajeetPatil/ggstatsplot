@@ -83,9 +83,16 @@ ggdotplotstats <- function(
   .f.stats.args <- list(conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
 
   data %<>%
-    select(!!x, !!y) %>%
-    tidyr::drop_na() %>%
-    centrality_description({{ y }}, {{ x }}, type = type, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior) %>%
+    select({{ x }}, {{ y }}) %>%
+    tidyr::drop_na()
+
+  data <-
+    suppressWarnings(centrality_description(
+      data, {{ y }}, {{ x }},
+      type = type, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior
+    ))
+
+  data %<>%
     arrange({{ x }}) %>%
     mutate(
       percent_rank = percent_rank({{ x }}),
@@ -155,9 +162,9 @@ ggdotplotstats <- function(
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::ggdotplotstats` to apply this function
+#' Helper function for `ggstatsplot::ggdotplotstats()` to apply this function
 #' across multiple levels of a given factor and combining the resulting plots
-#' using `ggstatsplot::combine_plots`.
+#' using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggdotplotstats
 #' @inheritParams grouped_ggbetweenstats

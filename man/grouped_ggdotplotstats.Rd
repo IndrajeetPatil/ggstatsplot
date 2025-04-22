@@ -128,9 +128,9 @@ separately specified here.}
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
-Helper function for \code{ggstatsplot::ggdotplotstats} to apply this function
+Helper function for \code{ggstatsplot::ggdotplotstats()} to apply this function
 across multiple levels of a given factor and combining the resulting plots
-using \code{ggstatsplot::combine_plots}.
+using \code{ggstatsplot::combine_plots()}.
 }
 \details{
 For details, see:
