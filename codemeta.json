@@ -412,7 +412,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.1.0",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -532,7 +532,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9301.794KB",
+  "fileSize": "9298.608KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
