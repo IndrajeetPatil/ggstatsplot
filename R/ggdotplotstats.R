@@ -136,8 +136,9 @@ ggdotplotstats <- function(
       )
     )
 
-  # nolint next: line_length_linter
-  if (conf.int) plot_dot <- plot_dot + exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args)
+  if (conf.int) {
+    plot_dot <- plot_dot + exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args)
+  }
 
   # centrality plotting -------------------------------------
 

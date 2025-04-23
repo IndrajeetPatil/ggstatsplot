@@ -73,7 +73,8 @@ Suggests:
     WRS2
 Remotes:
     easystats/bayestestR,
-    easystats/datawizard
+    easystats/datawizard,
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
