@@ -52,6 +52,7 @@ Imports:
     utils
 Suggests:
     afex,
+    bayestestR,
     BayesFactor (>= 0.9.12-4.7),
     gapminder,
     knitr,

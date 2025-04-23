@@ -72,6 +72,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "bayestestR",
+      "name": "bayestestR",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://github.com/easystats/bayestestR"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "BayesFactor",
       "name": "BayesFactor",
       "version": ">= 0.9.12-4.7",
@@ -315,7 +327,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=datawizard"
+      "sameAs": "https://github.com/easystats/datawizard"
     },
     "4": {
       "@type": "SoftwareApplication",
@@ -532,7 +544,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9298.608KB",
+  "fileSize": "9298.684KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
