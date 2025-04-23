@@ -125,7 +125,9 @@ ggdotplotstats <- function(
 
   plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
     exec(geom_point, !!!point.args) +
-    exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args) +
+    {
+      if (conf.int) exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args)
+    } +
     scale_y_continuous(
       name = ylab,
       labels = pull(data, {{ y }}),

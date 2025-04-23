@@ -152,7 +152,7 @@ grouped_ggbarstats(
   x             = color,
   y             = clarity,
   grouping.var  = cut,
-  plotgrid.args = list(nrow = 2)
+  plotgrid.args = list(nrow = 2L)
 )
 \dontshow{\}) # examplesIf}
 }

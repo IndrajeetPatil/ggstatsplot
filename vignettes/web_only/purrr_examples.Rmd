@@ -349,7 +349,7 @@ combine_plots(
     title = "Relationship between diamond attributes and price across cut",
     caption = "Dataset: Diamonds from ggplot2 package"
   ),
-  plotgrid.args = list(nrow = 2)
+  plotgrid.args = list(nrow = 2L)
 )
 ```
 

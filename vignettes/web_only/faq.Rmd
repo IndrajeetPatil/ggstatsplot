@@ -253,7 +253,7 @@ plot_list <- purrr::pmap(
 # arrange the list in a single plot grid
 combine_plots(
   plotlist = plot_list,
-  plotgrid.args = list(nrow = 2),
+  plotgrid.args = list(nrow = 2L),
   annotation.args = list(tag_levels = "i")
 )
 ```

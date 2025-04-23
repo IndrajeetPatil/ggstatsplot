@@ -134,7 +134,7 @@ combine_plots(
         y = "fixed effects"
       )
   ),
-  plotgrid.args = list(nrow = 2),
+  plotgrid.args = list(nrow = 2L),
   annotation.args = list(title = "Relationship between movie budget and its IMDB rating")
 )
 ```

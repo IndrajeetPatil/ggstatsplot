@@ -46,6 +46,7 @@ test_that(
         data = morley_new,
         x = Speed,
         y = Expt,
+        conf.int = FALSE,
         results.subtitle = FALSE,
         title = "Michelson-Morley experiment",
         xlab = substitute(paste("Speed of light (", italic("c"), ")")),
