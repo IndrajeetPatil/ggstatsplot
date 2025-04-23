@@ -144,7 +144,7 @@ grouped_gghistostats(
     title = "Distribution of ACT scores across genders",
     caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
   ),
-  plotgrid.args = list(nrow = 2)
+  plotgrid.args = list(nrow = 2L)
 )
 ```
 

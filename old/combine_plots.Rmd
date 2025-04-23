@@ -198,7 +198,7 @@ plots <- plyr::dlply(
 combine_plots(
   plotlist = plots,
   annotation.args = list(title = "Relationship between GDP (per capita) and life expectancy"),
-  plotgrid.args = list(nrow = 2)
+  plotgrid.args = list(nrow = 2L)
 )
 ```
 

@@ -249,7 +249,7 @@ p4 <- ggbetweenstats(
 ## combining the individual plots into a single plot
 combine_plots(
   list(p1, p2, p3, p4),
-  plotgrid.args = list(nrow = 2),
+  plotgrid.args = list(nrow = 2L),
   annotation.args = list(
     title = "Comparison of life expectancy between 1957 and 2007",
     caption = "Source: Gapminder Foundation"

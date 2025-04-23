@@ -183,7 +183,7 @@ combine_plots(
   ),
   ## combine for comparison
   annotation.args = list(title = "Two ways to compare different aspects of data"),
-  plotgrid.args = list(nrow = 2)
+  plotgrid.args = list(nrow = 2L)
 )
 ```
 

@@ -218,7 +218,7 @@ ggbarstats <- function(
 #'   x             = color,
 #'   y             = clarity,
 #'   grouping.var  = cut,
-#'   plotgrid.args = list(nrow = 2)
+#'   plotgrid.args = list(nrow = 2L)
 #' )
 #' @export
 grouped_ggbarstats <- function(

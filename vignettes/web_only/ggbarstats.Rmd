@@ -159,7 +159,7 @@ grouped_ggbarstats(
   # arguments relevant for `combine_plots()`
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
-  plotgrid.args = list(nrow = 2)
+  plotgrid.args = list(nrow = 2L)
 )
 ```
 

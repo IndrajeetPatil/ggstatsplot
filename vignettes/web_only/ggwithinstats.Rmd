@@ -229,7 +229,7 @@ p4 <- ggwithinstats(
 ## combining the individual plots into a single plot
 combine_plots(
   plotlist = list(p1, p2, p3, p4),
-  plotgrid.args = list(nrow = 2),
+  plotgrid.args = list(nrow = 2L),
   annotation.args = list(
     title = "Effect of disgust on desire to kill bugs ",
     caption = "Source: Bugs dataset from `jmv` R package"

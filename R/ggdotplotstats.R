@@ -125,7 +125,6 @@ ggdotplotstats <- function(
 
   plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
     exec(geom_point, !!!point.args) +
-    exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args) +
     scale_y_continuous(
       name = ylab,
       labels = pull(data, {{ y }}),
@@ -136,6 +135,10 @@ ggdotplotstats <- function(
         labels = 25 * 0:4
       )
     )
+
+  if (conf.int) {
+    plot_dot <- plot_dot + exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args)
+  }
 
   # centrality plotting -------------------------------------
 
