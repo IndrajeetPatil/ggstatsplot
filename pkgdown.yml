@@ -14,10 +14,11 @@ articles:
   web_only/ggscatterstats: web_only/ggscatterstats.html
   ggstatsplot: ggstatsplot.html
   web_only/ggwithinstats: web_only/ggwithinstats.html
+  web_only/interpretation: web_only/interpretation.html
   web_only/pairwise: web_only/pairwise.html
   web_only/principles: web_only/principles.html
   web_only/purrr_examples: web_only/purrr_examples.html
-last_built: 2025-04-29T16:39Z
+last_built: 2025-05-01T14:33Z
 urls:
   reference: https://indrajeetpatil.github.io/ggstatsplot/reference
   article: https://indrajeetpatil.github.io/ggstatsplot/articles
