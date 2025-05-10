@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- No user-visible changes. Maintenance-only release.
+- The license for the package has been changed from `GPL-3` to `MIT`.
 
 ## revdepcheck results
 
