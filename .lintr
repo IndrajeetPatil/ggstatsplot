@@ -12,10 +12,13 @@ linters: all_linters(
     object_name_linter = NULL,
     object_length_linter(50L),
     object_usage_linter = NULL,
-    pipe_consistency_linter = NULL,
+    pipe_consistency_linter("%>%"),
     string_boundary_linter = NULL,
     strings_as_factors_linter = NULL, # since R > 4.0
     undesirable_function_linter = NULL,
     unnecessary_concatenation_linter(allow_single_expression = FALSE),
     unused_import_linter = NULL
+  )
+exclusions: list(
+    "data-raw"
   )
