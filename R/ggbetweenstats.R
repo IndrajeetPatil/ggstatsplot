@@ -226,11 +226,14 @@ ggbetweenstats <- function(
   }
 
   # plot -----------------------------------
+  # Transform the data to obtain sample sizes
+  centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
 
   plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
     exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
-    exec(geom_violin, !!!violin.args)
+    exec(geom_violin, !!!violin.args) + # adding sample size labels to the x axes
+    scale_x_discrete(labels = unique(centrality_df$n.expression))
 
   # centrality tagging -------------------------------------
 

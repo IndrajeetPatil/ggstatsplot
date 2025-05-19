@@ -74,8 +74,7 @@
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args
-    ) + # adding sample size labels to the x axes
-    scale_x_discrete(labels = unique(centrality_df$n.expression))
+    )
 }
 
 #' @title Adding `geom_signif` to `ggplot`
