@@ -36,21 +36,21 @@
 </defs>
 <g clip-path='url(#cpMTA4Ljg2fDU5NC43OXw0Ljk4fDQ5MC45MA==)'>
 <rect x='108.86' y='4.98' width='485.92' height='485.92' style='stroke-width: 0.97; stroke: none; fill: #FFFFFF;' />
-<rect x='118.21' y='388.11' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #5EB693;' />
-<rect x='118.21' y='294.67' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #FCCF91;' />
-<rect x='211.66' y='294.67' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFDEB5;' />
-<rect x='118.21' y='201.22' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #E69F00;' />
-<rect x='211.66' y='201.22' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #F2B554;' />
-<rect x='305.10' y='201.22' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #9AD0B8;' />
-<rect x='118.21' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #F9C57B;' />
-<rect x='211.66' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #FED6A3;' />
-<rect x='305.10' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #41AB84;' />
-<rect x='398.55' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #85C6AA;' />
-<rect x='118.21' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #FBCB88;' />
-<rect x='211.66' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #FDD39A;' />
-<rect x='305.10' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #47AD87;' />
-<rect x='398.55' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #91CCB2;' />
-<rect x='492.00' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.21; stroke-linecap: butt; stroke-linejoin: miter; fill: #20A278;' />
+<rect x='118.21' y='388.11' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #5EB693;' />
+<rect x='118.21' y='294.67' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #FCCF91;' />
+<rect x='211.66' y='294.67' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFDEB5;' />
+<rect x='118.21' y='201.22' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #E69F00;' />
+<rect x='211.66' y='201.22' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #F2B554;' />
+<rect x='305.10' y='201.22' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #9AD0B8;' />
+<rect x='118.21' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #F9C57B;' />
+<rect x='211.66' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #FED6A3;' />
+<rect x='305.10' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #41AB84;' />
+<rect x='398.55' y='107.77' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #85C6AA;' />
+<rect x='118.21' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #FBCB88;' />
+<rect x='211.66' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #FDD39A;' />
+<rect x='305.10' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #47AD87;' />
+<rect x='398.55' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #91CCB2;' />
+<rect x='492.00' y='14.33' width='93.45' height='93.45' style='stroke-width: 0.39; stroke-linecap: butt; stroke-linejoin: miter; fill: #20A278;' />
 <text x='164.93' y='438.75' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='22.15px' lengthAdjust='spacingAndGlyphs'>0.76</text>
 <text x='164.93' y='345.31' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='25.94px' lengthAdjust='spacingAndGlyphs'>-0.49</text>
 <text x='258.38' y='345.31' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='25.94px' lengthAdjust='spacingAndGlyphs'>-0.33</text>
@@ -66,8 +66,8 @@
 <text x='351.83' y='64.97' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='22.15px' lengthAdjust='spacingAndGlyphs'>0.85</text>
 <text x='445.27' y='64.97' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='22.15px' lengthAdjust='spacingAndGlyphs'>0.53</text>
 <text x='538.72' y='64.97' text-anchor='middle' style='font-size: 11.38px; font-family: sans;' textLength='22.15px' lengthAdjust='spacingAndGlyphs'>0.96</text>
-<line x1='243.09' y1='356.68' x2='273.67' y2='326.10' style='stroke-width: 0.71;' />
-<line x1='243.09' y1='326.10' x2='273.67' y2='356.68' style='stroke-width: 0.71;' />
+<line x1='243.12' y1='356.65' x2='273.64' y2='326.13' style='stroke-width: 0.64;' />
+<line x1='243.12' y1='326.13' x2='273.64' y2='356.65' style='stroke-width: 0.64;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <text x='104.38' y='438.97' text-anchor='end' style='font-size: 12.00px; fill: #4D4D4D; font-family: sans;' textLength='56.04px' lengthAdjust='spacingAndGlyphs'>sleep_rem</text>

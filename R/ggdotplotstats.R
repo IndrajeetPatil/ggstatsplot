@@ -137,7 +137,8 @@ ggdotplotstats <- function(
     )
 
   if (conf.int) {
-    plot_dot <- plot_dot + exec(geom_errorbarh, mapping = aes(xmin = conf.low, xmax = conf.high), !!!errorbar.args)
+    plot_dot <- plot_dot +
+      exec(geom_errorbar, mapping = aes(xmin = conf.low, xmax = conf.high), orientation = "y", !!!errorbar.args)
   }
 
   # centrality plotting -------------------------------------

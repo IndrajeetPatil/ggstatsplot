@@ -23,7 +23,7 @@ ggcoefstats(
   caption = NULL,
   only.significant = FALSE,
   point.args = list(size = 3, color = "blue", na.rm = TRUE),
-  errorbar.args = list(height = 0, na.rm = TRUE),
+  errorbar.args = list(na.rm = TRUE),
   vline = TRUE,
   vline.args = list(linewidth = 1, linetype = "dashed"),
   stats.labels = TRUE,
@@ -108,7 +108,7 @@ regression coefficients are to be displayed in a single plot.}
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
-\code{geom_errorbarh()} geom. Please see documentation for that function
+\code{geom_errorbar()} geom. Please see documentation for that function
 to know more about these arguments.}
 
 \item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
@@ -222,7 +222,7 @@ The table below provides summary about:
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(lme4)
