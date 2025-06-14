@@ -23,7 +23,7 @@ ggcoefstats(
   caption = NULL,
   only.significant = FALSE,
   point.args = list(size = 3, color = "blue", na.rm = TRUE),
-  errorbar.args = list(na.rm = TRUE),
+  errorbar.args = list(width = 0, na.rm = TRUE),
   vline = TRUE,
   vline.args = list(linewidth = 1, linetype = "dashed"),
   stats.labels = TRUE,

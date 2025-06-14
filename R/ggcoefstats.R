@@ -155,7 +155,7 @@ ggcoefstats <- function(
   caption = NULL,
   only.significant = FALSE,
   point.args = list(size = 3.0, color = "blue", na.rm = TRUE),
-  errorbar.args = list(na.rm = TRUE),
+  errorbar.args = list(width = 0, na.rm = TRUE),
   vline = TRUE,
   vline.args = list(linewidth = 1.0, linetype = "dashed"),
   stats.labels = TRUE,

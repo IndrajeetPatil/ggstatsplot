@@ -75,7 +75,7 @@ ggdotplotstats <- function(
   digits = 2L,
   results.subtitle = TRUE,
   point.args = list(color = "black", size = 3, shape = 16),
-  errorbar.args = list(height = 0, na.rm = TRUE),
+  errorbar.args = list(width = 0, na.rm = TRUE),
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
