@@ -72,7 +72,9 @@ Suggests:
     withr,
     WRS2
 Remotes:
-    tidyverse/ggplot2
+    tidyverse/ggplot2,
+    thomasp85/patchwork,
+    IndrajeetPatil/ggside@chore-64-remove-warning
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

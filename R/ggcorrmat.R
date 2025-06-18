@@ -174,8 +174,8 @@ ggcorrmat <- function(
       title    = title,
       subtitle = subtitle,
       caption  = caption,
-      xlab     = NULL,
-      ylab     = NULL
+      x        = NULL,
+      y        = NULL
     ) +
     ggplot.component
 }
