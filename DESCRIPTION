@@ -43,7 +43,7 @@ Imports:
     insight (>= 1.3.0),
     paletteer (>= 1.6.0),
     parameters (>= 0.26.0),
-    patchwork (>= 1.3.0),
+    patchwork (>= 1.3.1),
     performance (>= 0.14.0),
     purrr (>= 1.0.4),
     rlang (>= 1.1.6),
@@ -73,7 +73,6 @@ Suggests:
     WRS2
 Remotes:
     tidyverse/ggplot2,
-    thomasp85/patchwork,
     IndrajeetPatil/ggside@chore-64-remove-warning
 VignetteBuilder: 
     knitr
