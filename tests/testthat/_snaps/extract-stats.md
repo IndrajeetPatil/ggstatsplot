@@ -41,14 +41,6 @@
 
     Code
       p3 <- ggcorrmat(iris)
-    Condition
-      Warning:
-      `aes_string()` was deprecated in ggplot2 3.0.0.
-      i Please use tidy evaluation idioms with `aes()`.
-      i See also `vignette("ggplot2-in-packages")` for more information.
-      i The deprecated feature was likely used in the ggcorrplot package.
-        Please report the issue at <https://github.com/kassambara/ggcorrplot/issues>.
-    Code
       list(length(extract_stats(p3)), extract_subtitle(p3), extract_caption(p3))
     Output
       [[1]]
