@@ -32,7 +32,7 @@ Depends:
     R (>= 4.3.0)
 Imports:
     correlation (>= 0.8.8),
-    datawizard (>= 1.1.0),
+    datawizard (>= 1.2.0),
     dplyr (>= 1.1.4),
     ggcorrplot (>= 0.1.4.1),
     ggplot2 (>= 3.5.2),
