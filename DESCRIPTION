@@ -74,7 +74,6 @@ Suggests:
     WRS2
 Remotes:
     tidyverse/ggplot2,
-    IndrajeetPatil/ggside@chore-64-remove-warning,
     IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
