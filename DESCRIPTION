@@ -48,7 +48,7 @@ Imports:
     performance (>= 0.15.0),
     purrr (>= 1.1.0),
     rlang (>= 1.1.6),
-    statsExpressions (>= 1.7.0),
+    statsExpressions (>= 1.7.1),
     tidyr (>= 1.3.1),
     utils
 Suggests:
@@ -74,7 +74,8 @@ Suggests:
     WRS2
 Remotes:
     tidyverse/ggplot2,
-    IndrajeetPatil/ggside@chore-64-remove-warning
+    IndrajeetPatil/ggside@chore-64-remove-warning,
+    IndrajeetPatil/statsExpressions
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
