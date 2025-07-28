@@ -65,8 +65,8 @@
 #'   type = "robust"
 #' )
 #'
-#' # you can remove a specific geom by setting `width` to `0` for that geom
-#' ggbetweenstats(
+#' # you can remove a specific geom to reduce complexity of the plot
+#' ggwithinstats(
 #'   data = bugs_long,
 #'   x = condition,
 #'   y = desire,
