@@ -73,8 +73,7 @@ Suggests:
     withr,
     WRS2
 Remotes:
-    tidyverse/ggplot2,
-    IndrajeetPatil/statsExpressions
+    tidyverse/ggplot2
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
