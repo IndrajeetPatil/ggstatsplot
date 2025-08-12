@@ -110,7 +110,7 @@ test_that(
         grouping.var = vore,
         results.subtitle = FALSE,
         ggplot.component = ggplot2::scale_x_continuous(
-          sec.axis = ggplot2::dup_axis(name = ggplot2::element_blank())
+          sec.axis = ggplot2::dup_axis()
         )
       ))
     )

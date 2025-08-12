@@ -2,7 +2,8 @@ test_that(
   "checking if extract_stats works",
   {
     skip_if_not_installed("rstantools")
-    options(tibble.width = Inf)
+    skip_if_not_installed("withr")
+    withr::local_options(tibble.width = Inf)
 
     set.seed(123)
     expect_snapshot({
@@ -24,15 +25,21 @@ test_that(
       )
     })
 
-    set.seed(123)
-    expect_snapshot({
-      p3 <- ggcorrmat(iris)
-      list(
-        length(extract_stats(p3)),
-        extract_subtitle(p3),
-        extract_caption(p3)
-      )
-    })
+    # https://github.com/kassambara/ggcorrplot/issues/57
+    withr::with_options(
+      list(warn = -1L),
+      code = {
+        set.seed(123)
+        expect_snapshot({
+          p3 <- ggcorrmat(iris)
+          list(
+            length(extract_stats(p3)),
+            extract_subtitle(p3),
+            extract_caption(p3)
+          )
+        })
+      }
+    )
 
     set.seed(123)
     expect_snapshot({

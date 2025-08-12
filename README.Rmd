@@ -380,7 +380,7 @@ of a single grouping variable.
 ```{r}
 #| label = "ggdotplotstats2",
 #| fig.height = 6,
-#| fig.width = 12
+#| fig.width = 12,
 set.seed(123)
 
 grouped_ggdotplotstats(
@@ -410,7 +410,8 @@ axes and results from statistical tests in the subtitle:
 
 ```{r}
 #| label = "ggscatterstats1",
-#| fig.height = 6
+#| fig.height = 6,
+#| warning = FALSE,
 ggscatterstats(
   data  = ggplot2::msleep,
   x     = sleep_rem,
@@ -436,7 +437,8 @@ easy to repeat the same operation across a **single** grouping variable.
 ```{r}
 #| label = "ggscatterstats2",
 #| fig.height = 8,
-#| fig.width = 14
+#| fig.width = 14,
+#| warning = FALSE,
 set.seed(123)
 
 grouped_ggscatterstats(
@@ -470,7 +472,8 @@ aesthetics-related arguments can be modified to change the appearance of the
 correlation matrix.
 
 ```{r}
-#| label = "ggcorrmat1"
+#| label = "ggcorrmat1",
+#| warning = FALSE
 set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
@@ -496,7 +499,8 @@ easy to repeat the same operation across a **single** grouping variable:
 ```{r}
 #| label = "ggcorrmat2",
 #| fig.height = 6,
-#| fig.width = 10
+#| fig.width = 10,
+#| warning = FALSE
 set.seed(123)
 
 grouped_ggcorrmat(
