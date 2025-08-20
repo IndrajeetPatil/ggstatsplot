@@ -1,5 +1,0 @@
-| graphical element       | `geom` used                 | argument for further modification |
-| :---------------------- | :-------------------------- | :-------------------------------- |
-| raw data                | `ggplot2::geom_point()`     | `point.args`                      |
-| error bars              | `ggplot2::geom_errorbarh()` | `errorbar.args`                   |
-| centrality measure line | `ggplot2::geom_vline()`     | `centrality.line.args`            |

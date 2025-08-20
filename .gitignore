@@ -61,3 +61,7 @@ revdep/checks.noindex
 revdep/data.sqlite
 revdep/library
 revdep/library.noindex
+
+# R CMD build/check artifacts
+*.tar.gz
+*.Rcheck/
