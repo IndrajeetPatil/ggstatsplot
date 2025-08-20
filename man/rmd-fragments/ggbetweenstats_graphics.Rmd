@@ -6,3 +6,7 @@
 | centrality measure point | `ggplot2::geom_point()`       | `centrality.point.args`           |
 | centrality measure label | `ggrepel::geom_label_repel()` | `centrality.label.args`           |
 | pairwise comparisons     | `ggsignif::geom_signif()`     | `ggsignif.args`                   |
+
+**Note:** By default, the box plot whiskers extend to 1.5 times the interquartile 
+range (IQR) from the box, following the Tukey method. This can be customized 
+using the `coef` parameter in `boxplot.args`.
