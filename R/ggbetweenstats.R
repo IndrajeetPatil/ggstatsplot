@@ -142,16 +142,6 @@
 #'   # to remove points
 #'   point.args = list(alpha = 0)
 #' )
-#'
-#' # customizing whisker length in boxplot
-#' ggbetweenstats(
-#'   mtcars,
-#'   am,
-#'   wt,
-#'   # whiskers extend to 3 * IQR instead of default 1.5 * IQR
-#'   boxplot.args = list(coef = 3),
-#'   results.subtitle = FALSE
-#' )
 #' @export
 ggbetweenstats <- function(
   data,
