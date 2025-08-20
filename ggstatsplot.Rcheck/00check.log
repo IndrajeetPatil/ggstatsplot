@@ -1,0 +1,35 @@
+* using log directory ‘/home/runner/work/ggstatsplot/ggstatsplot/ggstatsplot.Rcheck’
+* using R version 4.3.3 (2024-02-29)
+* using platform: x86_64-pc-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 13.2.0-23ubuntu3) 13.2.0
+    GNU Fortran (Ubuntu 13.2.0-23ubuntu3) 13.2.0
+* running under: Ubuntu 24.04.2 LTS
+* using session charset: UTF-8
+* using options ‘--no-tests --no-manual --no-vignettes’
+* checking for file ‘ggstatsplot/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ggstatsplot’ version ‘0.13.1.9000’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... ERROR
+Packages required but not available:
+  'correlation', 'ggcorrplot', 'ggside', 'paletteer',
+  'statsExpressions'
+
+Packages suggested but not available:
+  'gapminder', 'metaBMA', 'metaplus', 'WRS2'
+
+Packages required and available but unsuitable versions:
+  'datawizard', 'ggplot2', 'ggrepel', 'glue', 'insight', 'parameters',
+  'patchwork', 'performance', 'purrr', 'rlang', 'lme4', 'testthat',
+  'vdiffr'
+
+The suggested packages are required for a complete check.
+Checking can be attempted without them by setting the environment
+variable _R_CHECK_FORCE_SUGGESTS_ to a false value.
+
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
+* DONE
+Status: 1 ERROR
