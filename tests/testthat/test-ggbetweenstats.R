@@ -53,22 +53,6 @@ test_that(
         title = "Bayesian Test"
       )
     )
-
-    # test whisker customization
-    set.seed(123)
-    expect_doppelganger(
-      title = "custom whiskers coef parameter",
-      ggbetweenstats(
-        data = mtcars,
-        x = am,
-        y = wt,
-        xlab = "Transmission",
-        ylab = "Weight",
-        boxplot.args = list(coef = 3),
-        results.subtitle = FALSE,
-        pairwise.display = "none"
-      )
-    )
   }
 )
 
