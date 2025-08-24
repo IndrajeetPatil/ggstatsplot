@@ -180,8 +180,8 @@ ggscatterstats <- function(
 
   if (isTRUE(marginal)) {
     plot_scatter <- plot_scatter +
-      exec(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
-      exec(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
+      .eval_f(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
+      .eval_f(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }

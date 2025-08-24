@@ -110,7 +110,7 @@ thus the details as well.}
     \item{\code{conf.int}}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
     \item{\code{errorbar.args}}{Additional arguments that will be passed to
-\code{geom_errorbarh()} geom. Please see documentation for that function
+\code{geom_errorbar()} geom. Please see documentation for that function
 to know more about these arguments.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
@@ -137,7 +137,7 @@ For details, see:
 \url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(dplyr, warn.conflicts = FALSE)

@@ -51,7 +51,7 @@ extract_stats <- function(p) {
   if (inherits(p, "patchwork")) purrr::map(.extract_plots(p), .extract_stats) else .extract_stats(p)
 }
 
-.extract_plots <- function(p) purrr::map(seq_along(p), ~ purrr::pluck(p, .x))
+.extract_plots <- function(p) purrr::map(seq_along(p), ~ magrittr::extract2(p, .x))
 
 .pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
 

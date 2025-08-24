@@ -165,7 +165,7 @@ across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
