@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -385,7 +385,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.3.1",
+      "version": ">= 0.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -424,7 +424,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.3.1",
+      "version": ">= 1.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -463,7 +463,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.27.0",
+      "version": ">= 0.28.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -557,7 +557,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9307.847KB",
+  "fileSize": "9307.883KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -587,7 +587,7 @@
       }
     }
   ],
-  "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/main/NEWS.md",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html",
