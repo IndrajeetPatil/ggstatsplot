@@ -400,7 +400,7 @@ Not supported.
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 
@@ -426,7 +426,7 @@ ggbetweenstats(
   am,
   wt,
   # to remove violin plot
-  violin.args = list(width = 0, linewidth = 0),
+  violin.args = list(width = 0, linewidth = 0, colour = NA),
   # to remove boxplot
   boxplot.args = list(width = 0),
   # to remove points

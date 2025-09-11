@@ -40,11 +40,11 @@
 <polyline points='242.15,547.92 242.15,4.98 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='408.07,547.92 408.07,4.98 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='573.99,547.92 573.99,4.98 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<circle cx='137.62' cy='485.27' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='211.73' cy='380.86' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='518.68' cy='276.45' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='684.60' cy='172.04' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
-<circle cx='92.83' cy='67.63' r='3.56' style='stroke-width: 0.71; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='137.62' cy='485.27' r='3.52' style='stroke-width: 0.64; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='211.73' cy='380.86' r='3.52' style='stroke-width: 0.64; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='518.68' cy='276.45' r='3.52' style='stroke-width: 0.64; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='684.60' cy='172.04' r='3.52' style='stroke-width: 0.64; stroke: #0000FF; fill: #0000FF;' />
+<circle cx='92.83' cy='67.63' r='3.52' style='stroke-width: 0.64; stroke: #0000FF; fill: #0000FF;' />
 <line x1='76.23' y1='547.92' x2='76.23' y2='4.98' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>

@@ -5,14 +5,8 @@ default_language_version:
   python: python3
 
 repos:
-  - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9009
-    hooks:
-      - id: no-browser-statement
-      - id: no-debug-statement
-
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-json
