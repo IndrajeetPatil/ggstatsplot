@@ -9,7 +9,7 @@ plots with statistical details added as a subtitle."><meta property="og:image" c
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -262,10 +262,10 @@ separately specified here.</p></dd>
 <span class="r-in"><span>  grouping.var     <span class="op">=</span> <span class="va">genre</span>,</span></span>
 <span class="r-in"><span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_rug.html" class="external-link">geom_rug</a></span><span class="op">(</span>sides <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="grouped_ggscatterstats-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># using labeling</span></span></span>
@@ -280,12 +280,12 @@ separately specified here.</p></dd>
 <span class="r-in"><span>  label.expression <span class="op">=</span> <span class="va">hwy</span> <span class="op">&gt;</span> <span class="fl">25</span> <span class="op">&amp;</span> <span class="va">displ</span> <span class="op">&gt;</span> <span class="fl">2.5</span>,</span></span>
 <span class="r-in"><span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>sec.axis <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html" class="external-link">dup_axis</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="grouped_ggscatterstats-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># labeling without expression</span></span></span>
@@ -298,10 +298,10 @@ separately specified here.</p></dd>
 <span class="r-in"><span>  label.var       <span class="op">=</span> <span class="st">"title"</span>,</span></span>
 <span class="r-in"><span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>tag_levels <span class="op">=</span> <span class="st">"a"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value with `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="grouped_ggscatterstats-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

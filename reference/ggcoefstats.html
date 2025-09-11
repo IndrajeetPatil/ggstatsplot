@@ -53,7 +53,7 @@ it can be further modified (e.g. change themes) with {ggplot2}.
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -152,7 +152,7 @@ it can be further modified (e.g. change themes) with <code>{ggplot2}</code>.</p>
 <span>  caption <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  only.significant <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3</span>, color <span class="op">=</span> <span class="st">"blue"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  errorbar.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  errorbar.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  vline <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  vline.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span>,</span>
 <span>  stats.labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -278,7 +278,7 @@ the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" clas
 
 <dt id="arg-errorbar-args">errorbar.args<a class="anchor" aria-label="anchor" href="#arg-errorbar-args"></a></dt>
 <dd><p>Additional arguments that will be passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">geom_errorbarh()</a></code> geom. Please see documentation for that function
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_errorbar()</a></code> geom. Please see documentation for that function
 to know more about these arguments.</p></dd>
 
 
@@ -354,7 +354,7 @@ packages using the <code>install_latest()</code> function from <code>{easystats}
     <div class="section level2">
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>
 
-<table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>regression estimate</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>error bars</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh()</a></code></td><td><code>errorbar.args</code></td></tr><tr><td>vertical line</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td><td><code>vline.args</code></td></tr><tr><td>label with statistical details</td><td><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td><td><code>stats.label.args</code></td></tr></table></div>
+<table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>regression estimate</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>error bars</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbarh()</a></code></td><td><code>errorbar.args</code></td></tr><tr><td>vertical line</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td><td><code>vline.args</code></td></tr><tr><td>label with statistical details</td><td><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td><td><code>stats.label.args</code></td></tr></table></div>
     <div class="section level2">
     <h2 id="random-effects-meta-analysis">Random-effects meta-analysis<a class="anchor" aria-label="anchor" href="#random-effects-meta-analysis"></a></h2>
 

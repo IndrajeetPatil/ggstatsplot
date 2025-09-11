@@ -25,7 +25,7 @@ MAP estimator for Bayesian statistics
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,7 +111,7 @@ the type of statistics selected:</p><ul><li><p><strong>mean</strong> for paramet
 <span>  digits <span class="op">=</span> <span class="fl">2L</span>,</span>
 <span>  results.subtitle <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, size <span class="op">=</span> <span class="fl">3</span>, shape <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,</span>
-<span>  errorbar.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">0</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  errorbar.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  centrality.plotting <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  centrality.type <span class="op">=</span> <span class="va">type</span>,</span>
 <span>  centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, linewidth <span class="op">=</span> <span class="fl">1</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span>,</span>
@@ -236,7 +236,7 @@ the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" clas
 
 <dt id="arg-errorbar-args">errorbar.args<a class="anchor" aria-label="anchor" href="#arg-errorbar-args"></a></dt>
 <dd><p>Additional arguments that will be passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">geom_errorbarh()</a></code> geom. Please see documentation for that function
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_errorbar()</a></code> geom. Please see documentation for that function
 to know more about these arguments.</p></dd>
 
 
@@ -300,7 +300,7 @@ thus the details as well.</p></dd>
     <div class="section level2">
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>
 
-<table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>raw data</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>error bars</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_errorbarh.html" class="external-link">ggplot2::geom_errorbarh()</a></code></td><td><code>errorbar.args</code></td></tr><tr><td>centrality measure line</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td><td><code>centrality.line.args</code></td></tr></table></div>
+<table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>raw data</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>error bars</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbarh()</a></code></td><td><code>errorbar.args</code></td></tr><tr><td>centrality measure line</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td><td><code>centrality.line.args</code></td></tr></table></div>
     <div class="section level2">
     <h2 id="one-sample-tests">One-sample tests<a class="anchor" aria-label="anchor" href="#one-sample-tests"></a></h2>
 
