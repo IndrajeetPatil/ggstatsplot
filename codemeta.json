@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
+  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -359,14 +359,14 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.5.2",
+      "version": ">= 4.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/tidyverse/ggplot2"
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
     "7": {
       "@type": "SoftwareApplication",
@@ -424,7 +424,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.4.0",
+      "version": ">= 1.4.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -463,7 +463,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.28.0",
+      "version": ">= 0.28.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -476,7 +476,7 @@
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
-      "version": ">= 1.3.1",
+      "version": ">= 1.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -489,7 +489,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.15.0",
+      "version": ">= 0.15.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -557,7 +557,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9307.883KB",
+  "fileSize": "9307.847KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
