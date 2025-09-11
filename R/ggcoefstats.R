@@ -68,7 +68,7 @@
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `FALSE`).
 #' @param errorbar.args Additional arguments that will be passed to
-#'   `geom_errorbarh()` geom. Please see documentation for that function
+#'   `geom_errorbar()` geom. Please see documentation for that function
 #'   to know more about these arguments.
 #' @param vline Decides whether to display a vertical line (Default: `"TRUE"`).
 #' @param vline.args Additional arguments that will be passed to
@@ -155,7 +155,7 @@ ggcoefstats <- function(
   caption = NULL,
   only.significant = FALSE,
   point.args = list(size = 3.0, color = "blue", na.rm = TRUE),
-  errorbar.args = list(height = 0, na.rm = TRUE),
+  errorbar.args = list(width = 0, na.rm = TRUE),
   vline = TRUE,
   vline.args = list(linewidth = 1.0, linetype = "dashed"),
   stats.labels = TRUE,
@@ -257,9 +257,10 @@ ggcoefstats <- function(
   if (conf.int) {
     plot_coef <- plot_coef +
       exec(
-        geom_errorbarh,
-        data    = tidy_df,
+        geom_errorbar,
+        data = tidy_df,
         mapping = aes(xmin = conf.low, xmax = conf.high),
+        orientation = "y",
         !!!errorbar.args
       )
   }

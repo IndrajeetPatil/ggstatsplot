@@ -47,8 +47,8 @@
 <polyline points='357.34,547.92 357.34,34.85 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='506.21,547.92 506.21,34.85 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='655.09,547.92 655.09,34.85 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<rect x='59.59' y='369.12' width='297.75' height='155.48' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFA500; fill-opacity: 0.70;' />
-<rect x='357.34' y='58.17' width='297.75' height='466.43' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFA500; fill-opacity: 0.70;' />
+<rect x='59.59' y='369.12' width='297.75' height='155.48' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFA500; fill-opacity: 0.70;' />
+<rect x='357.34' y='58.17' width='297.75' height='466.43' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #FFA500; fill-opacity: 0.70;' />
 <line x1='400.05' y1='547.92' x2='400.05' y2='34.85' style='stroke-width: 2.13; stroke: #0000FF; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
