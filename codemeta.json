@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.13.1.9000",
+  "version": "0.13.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -307,7 +307,7 @@
       "@type": "SoftwareApplication",
       "identifier": "correlation",
       "name": "correlation",
-      "version": ">= 0.8.7",
+      "version": ">= 0.8.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -320,7 +320,7 @@
       "@type": "SoftwareApplication",
       "identifier": "datawizard",
       "name": "datawizard",
-      "version": ">= 1.1.0",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -359,7 +359,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 3.5.2",
+      "version": ">= 4.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -385,7 +385,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.3.1",
+      "version": ">= 0.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -424,7 +424,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.2.0",
+      "version": ">= 1.4.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -434,6 +434,19 @@
       "sameAs": "https://CRAN.R-project.org/package=insight"
     },
     "12": {
+      "@type": "SoftwareApplication",
+      "identifier": "magrittr",
+      "name": "magrittr",
+      "version": ">= 2.0.3",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
+    },
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
@@ -446,11 +459,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=paletteer"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.25.0",
+      "version": ">= 0.28.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -459,11 +472,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
-      "version": ">= 1.3.0",
+      "version": ">= 1.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -472,11 +485,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=patchwork"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.13.0",
+      "version": ">= 0.15.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -485,11 +498,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=performance"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.0.4",
+      "version": ">= 1.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -498,7 +511,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "17": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -511,11 +524,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "18": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.7.0",
+      "version": ">= 1.7.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -524,7 +537,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
-    "19": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -537,14 +550,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "20": {
+    "21": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "9303.376KB",
+  "fileSize": "9307.847KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -574,7 +587,7 @@
       }
     }
   ],
-  "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/IndrajeetPatil/ggstatsplot/blob/main/NEWS.md",
   "readme": "https://github.com/IndrajeetPatil/ggstatsplot/blob/main/README.md",
   "contIntegration": "https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot",
   "developmentStatus": "https://lifecycle.r-lib.org/articles/stages.html",

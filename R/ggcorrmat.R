@@ -128,7 +128,7 @@ ggcorrmat <- function(
     ))
   }
 
-  plot_corr <- exec(
+  plot_corr <- .eval_f(
     ggcorrplot::ggcorrplot,
     corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
     p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
@@ -174,8 +174,8 @@ ggcorrmat <- function(
       title    = title,
       subtitle = subtitle,
       caption  = caption,
-      xlab     = NULL,
-      ylab     = NULL
+      x        = NULL,
+      y        = NULL
     ) +
     ggplot.component
 }
