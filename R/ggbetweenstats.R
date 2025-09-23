@@ -143,10 +143,11 @@
 #'   point.args = list(alpha = 0)
 #' )
 #' @export
-ggbetweenstats <- function(
+ggbetweenstats_test <- function(
   data,
   x,
   y,
+  plot.type = "boxviolin",
   type = "parametric",
   pairwise.display = "significant",
   p.adjust.method = "holm",
@@ -231,10 +232,26 @@ ggbetweenstats <- function(
 
   # plot -----------------------------------
 
-  plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
-    exec(geom_violin, !!!violin.args)
+  # Check plot type and choose the appropriate plot
+  if (plot.type == "boxviolin") {
+    # Plot with both box and violin plots
+    plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+      exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
+      exec(geom_violin, !!!violin.args)
+  } else if (plot.type == "box") {
+    # Only boxplot
+    plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+      exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA)
+  } else if (plot.type == "violin") {
+    # Only violin plot
+    plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args) +
+      exec(geom_violin, !!!violin.args)
+  } else {
+    stop("Invalid plot type. Please choose from 'boxviolin', 'box', or 'violin'.")
+  }
 
   # centrality tagging -------------------------------------
 
@@ -366,3 +383,4 @@ grouped_ggbetweenstats <- function(
     purrr::pmap(.f = ggbetweenstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
 }
+
