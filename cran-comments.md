@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- The license for the package has been changed from `GPL-3` to `MIT`.
+- Fixes a bug.
 
 ## revdepcheck results
 

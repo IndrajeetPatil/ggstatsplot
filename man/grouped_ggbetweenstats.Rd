@@ -78,7 +78,11 @@ Just as \code{type} argument, abbreviations are also accepted.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
     \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
-\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}.}
+\code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}. By default, the whiskers extend to 1.5 times
+the interquartile range (IQR) from the box (Tukey-style). To customize
+whisker length, you can use the \code{coef} parameter, e.g.,
+\code{boxplot.args = list(coef = 3)} for whiskers extending to 3 * IQR, or
+\code{boxplot.args = list(coef = 0)} to show only the range of the data.}
     \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared

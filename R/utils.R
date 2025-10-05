@@ -41,8 +41,8 @@
 
   if (!are_enough_colors_available) {
     rlang::warn(c(
-      "x" = "Number of labels is greater than default palette color count.",
-      "i" = "Select another color `palette` (and/or `package`)."
+      x = "Number of labels is greater than default palette color count.",
+      i = "Select another color `palette` (and/or `package`)."
     ))
   }
 
