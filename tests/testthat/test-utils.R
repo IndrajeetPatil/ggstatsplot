@@ -19,6 +19,8 @@ test_that(
   ".is_palette_sufficient is working",
   {
     expect_no_condition(.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
+
+    withr::local_options(list(warn = 0L))
     expect_snapshot(.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
   }
 )
