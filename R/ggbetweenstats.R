@@ -63,7 +63,11 @@
 #' @param point.args A list of additional aesthetic arguments to be passed to
 #'   the [`ggplot2::geom_point()`].
 #' @param boxplot.args A list of additional aesthetic arguments passed on to
-#'   [`ggplot2::geom_boxplot()`].
+#'   [`ggplot2::geom_boxplot()`]. By default, the whiskers extend to 1.5 times
+#'   the interquartile range (IQR) from the box (Tukey-style). To customize
+#'   whisker length, you can use the `coef` parameter, e.g.,
+#'   `boxplot.args = list(coef = 3)` for whiskers extending to 3 * IQR, or
+#'   `boxplot.args = list(coef = 0)` to show only the range of the data.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
 #'   the [`ggplot2::geom_violin()`].
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
@@ -132,7 +136,7 @@
 #'   am,
 #'   wt,
 #'   # to remove violin plot
-#'   violin.args = list(width = 0, linewidth = 0),
+#'   violin.args = list(width = 0, linewidth = 0, colour = NA),
 #'   # to remove boxplot
 #'   boxplot.args = list(width = 0),
 #'   # to remove points

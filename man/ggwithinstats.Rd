@@ -409,7 +409,7 @@ Not supported.
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
 library(dplyr, warn.conflicts = FALSE)
@@ -437,13 +437,13 @@ ggwithinstats(
   type = "robust"
 )
 
-# you can remove a specific geom by setting `width` to `0` for that geom
-ggbetweenstats(
+# you can remove a specific geom to reduce complexity of the plot
+ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire,
   # to remove violin plot
-  violin.args = list(width = 0, linewidth = 0),
+  violin.args = list(width = 0, linewidth = 0, colour = NA),
   # to remove boxplot
   boxplot.args = list(width = 0),
   # to remove points

@@ -671,6 +671,40 @@ ggwithinstats(
 )
 ```
 
+## 30. How to modify the whiskers in box plots from ggbetweenstats?
+
+By default, the whiskers in `ggbetweenstats()` box plots extend to 1.5 times the 
+interquartile range (IQR) from the box, following the Tukey method. You can 
+customize this using the `coef` parameter in `boxplot.args`:
+
+```{r}
+# Default whiskers (1.5 * IQR)
+ggbetweenstats(
+  data = mtcars,
+  x = am,
+  y = wt,
+  results.subtitle = FALSE
+)
+
+# Longer whiskers (3 * IQR)
+ggbetweenstats(
+  data = mtcars,
+  x = am,
+  y = wt,
+  boxplot.args = list(coef = 3),
+  results.subtitle = FALSE
+)
+
+# Whiskers only to data range (no multiplier)
+ggbetweenstats(
+  data = mtcars,
+  x = am,
+  y = wt,
+  boxplot.args = list(coef = 0),
+  results.subtitle = FALSE
+)
+```
+
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
