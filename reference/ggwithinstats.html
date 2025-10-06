@@ -11,7 +11,7 @@ a subtitle."><meta property="og:image" content="https://indrajeetpatil.github.io
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -291,7 +291,11 @@ argument is relevant only when there are two groups (i.e., in case of a
 
 <dt id="arg-boxplot-args">boxplot.args<a class="anchor" aria-label="anchor" href="#arg-boxplot-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments passed on to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code>.</p></dd>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code>. By default, the whiskers extend to 1.5 times
+the interquartile range (IQR) from the box (Tukey-style). To customize
+whisker length, you can use the <code>coef</code> parameter, e.g.,
+<code>boxplot.args = list(coef = 3)</code> for whiskers extending to 3 * IQR, or
+<code>boxplot.args = list(coef = 0)</code> to show only the range of the data.</p></dd>
 
 
 <dt id="arg-violin-args">violin.args<a class="anchor" aria-label="anchor" href="#arg-violin-args"></a></dt>

@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -836,6 +836,46 @@ installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/re
 <span>  digits <span class="op">=</span> <span class="fl">4L</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="faq_files/figure-html/unnamed-chunk-6-2.png" width="100%"></p>
+</div>
+<div class="section level2">
+<h2 id="how-to-modify-the-whiskers-in-box-plots-from-ggbetweenstats">30. How to modify the whiskers in box plots from
+ggbetweenstats?<a class="anchor" aria-label="anchor" href="#how-to-modify-the-whiskers-in-box-plots-from-ggbetweenstats"></a>
+</h2>
+<p>By default, the whiskers in <code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code> box plots
+extend to 1.5 times the interquartile range (IQR) from the box,
+following the Tukey method. You can customize this using the
+<code>coef</code> parameter in <code>boxplot.args</code>:</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Default whiskers (1.5 * IQR)</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">wt</span>,</span>
+<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># Longer whiskers (3 * IQR)</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">wt</span>,</span>
+<span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>coef <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/unnamed-chunk-7-2.png" width="100%"></p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># Whiskers only to data range (no multiplier)</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">wt</span>,</span>
+<span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>coef <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/unnamed-chunk-7-3.png" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>

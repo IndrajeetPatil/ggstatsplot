@@ -11,7 +11,7 @@ colors allowed by "Dark2" palette from the {RColorBrewer} package.'><meta proper
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,8 +82,8 @@ colors allowed by <code>"Dark2"</code> palette from the <code>{RColorBrewer}</co
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ggstatsplot</span><span class="fu">:::</span><span class="fu">.is_palette_sufficient</span><span class="op">(</span><span class="st">"RColorBrewer"</span>, <span class="st">"Dark2"</span>, <span class="fl">6L</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="fu">ggstatsplot</span><span class="fu">:::</span><span class="fu">.is_palette_sufficient</span><span class="op">(</span><span class="st">"RColorBrewer"</span>, <span class="st">"Dark2"</span>, <span class="fl">12L</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Number of labels is greater than default palette color count.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Select another color `palette` (and/or `package`).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BB0000;">✖</span> Number of labels is greater than default palette color count.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Select another color `palette` (and/or `package`).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

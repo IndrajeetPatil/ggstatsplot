@@ -27,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -192,11 +192,9 @@ working with categorical variables: <code>ggbarstats</code>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">movies_long</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">genre</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">mpaa</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Distribution of MPAA ratings by film genre"</span>,</span>
-<span>  legend.title <span class="op">=</span> <span class="st">"layout"</span></span>
+<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">vs</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
 <img src="principles_files/figure-html/fig2-1.png" alt="Pie charts don't follow Cleveland's paradigm to data display because they rely on
