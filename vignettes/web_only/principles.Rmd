@@ -125,11 +125,9 @@ in Cleveland's paradigm:
 #| percentages for pie slices, which makes angle judgments unnecessary."
 
 ggpiestats(
-  data = movies_long,
-  x = genre,
-  y = mpaa,
-  title = "Distribution of MPAA ratings by film genre",
-  legend.title = "layout"
+  data = mtcars,
+  x = am,
+  y = vs
 )
 ```
 

@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.13.2
+Version: 0.13.3
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -37,11 +37,11 @@ Imports:
     ggcorrplot (>= 0.1.4.1),
     ggplot2 (>= 4.0.0),
     ggrepel (>= 0.9.6),
-    ggside (>= 0.3.2),
+    ggside (>= 0.4.0),
     ggsignif (>= 0.6.4),
     glue (>= 1.8.0),
     insight (>= 1.4.2),
-    magrittr (>= 2.0.3),
+    magrittr (>= 2.0.4),
     paletteer (>= 1.6.0),
     parameters (>= 0.28.2),
     patchwork (>= 1.3.2),

@@ -38,7 +38,7 @@
       sec.axis = sec_axis(
         transform = ~.,
         name = NULL,
-        labels = parse(text = df_central$expression),
+        labels = as.expression(df_central$expression),
         breaks = df_central$var
       )
     )
