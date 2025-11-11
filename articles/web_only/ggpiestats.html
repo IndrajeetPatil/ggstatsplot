@@ -92,7 +92,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>ggpiestats</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/0.13.3/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/main/vignettes/web_only/ggpiestats.Rmd" class="external-link"><code>vignettes/web_only/ggpiestats.Rmd</code></a></small>
       <div class="d-none name"><code>ggpiestats.Rmd</code></div>
     </div>
 
@@ -201,7 +201,7 @@ surviving.</p>
 <span>  caption <span class="op">=</span> <span class="st">"Source: Titanic survival dataset"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Survived?"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" width="100%"></p>
+<p><img src="ggpiestats_files/figure-html/ggpiestats3-1.png" class="r-plt" width="100%"></p>
 <p><strong>Note:</strong> equal proportions per category are the
 default, e.g. 50/50, but you can specify any hypothesized ratio you like
 with <code>ratio</code> so if our hypothesis was that 80% died and 20%
@@ -228,7 +228,7 @@ people who survived was different between the sexes using
 <span>      hjust <span class="op">=</span> <span class="fl">0</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" width="100%"></p>
+<p><img src="ggpiestats_files/figure-html/ggpiestats1-1.png" class="r-plt" width="100%"></p>
 <p>The plot clearly shows that survival rates were very different
 between males and females. The Pearson’s
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>-test
@@ -267,7 +267,7 @@ different studies, etc.</p>
 <span>  caption.text <span class="op">=</span> <span class="st">"Asterisks denote results from proportion tests; \n***: p &lt; 0.001, ns: non-significant"</span>,</span>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" width="100%"></p>
+<p><img src="ggpiestats_files/figure-html/ggpiestats4-1.png" class="r-plt" width="100%"></p>
 <p>The resulting pie charts and statistics make the story clear. For
 adults gender very much matters. Women survived at much higher rates
 than men. For children gender is not significantly associated with
@@ -361,7 +361,7 @@ call to the <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></co
 <span>  caption <span class="op">=</span> <span class="st">"Source: completely made up"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Type fish caught: "</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" width="100%"></p>
+<p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" class="r-plt" width="100%"></p>
 <p>The results support our hypothesis that the type of fish caught is
 related to the month in which we’re fishing. The
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>
@@ -405,7 +405,7 @@ results from <strong>McNemar test</strong> in the subtitle.</p>
 <span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"default_ucscgb"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" width="100%"></p>
+<p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" class="r-plt" width="100%"></p>
 <p>The results bode well for our experimental wonder drug. Of the 96 who
 started out healthy only 4% were sick after a month. Ideally, we would
 have hoped for zero but reality is seldom perfect. On the other side of
@@ -435,7 +435,7 @@ interpretive context for the reported statistics.</p></li>
 <p>For example, let’s see the following example:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/reporting-1.png" width="100%"></p>
+<p><img src="ggpiestats_files/figure-html/reporting-1.png" class="r-plt" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
 complement this plot either as a figure caption or in the main text-</p>
 <blockquote>
@@ -470,7 +470,7 @@ issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" 
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
     </footer>

@@ -92,7 +92,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>Graphic design and statistical reporting principles</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/0.13.3/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/main/vignettes/web_only/principles.Rmd" class="external-link"><code>vignettes/web_only/principles.Rmd</code></a></small>
       <div class="d-none name"><code>principles.Rmd</code></div>
     </div>
 
@@ -169,7 +169,7 @@ scale:</p>
 <span>  ylab <span class="op">=</span> <span class="st">"IMDB rating (average)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig1-1.png" alt="Note that assessing differences in mean values between groups has been made easier
+<img src="principles_files/figure-html/fig1-1.png" class="r-plt" alt="Note that assessing differences in mean values between groups has been made easier
 with the help of \textit{position} of data points along a common scale (the Y-axis) and
 labels." width="100%"><p class="caption">
 Note that assessing differences in mean values between groups has been
@@ -197,7 +197,7 @@ working with categorical variables: <code>ggbarstats</code>.</li>
 <span>  y <span class="op">=</span> <span class="va">vs</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig2-1.png" alt="Pie charts don't follow Cleveland's paradigm to data display because they rely on
+<img src="principles_files/figure-html/fig2-1.png" class="r-plt" alt="Pie charts don't follow Cleveland's paradigm to data display because they rely on
 less accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labelling
 percentages for pie slices, which makes angle judgments unnecessary." width="100%"><p class="caption">
 Pie charts don’t follow Cleveland’s paradigm to data display because
@@ -254,7 +254,7 @@ data.</li>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig3-1.png" alt="Comparing different aspects of data is much more accurate in (\textit{a}) a
+<img src="principles_files/figure-html/fig3-1.png" class="r-plt" alt="Comparing different aspects of data is much more accurate in (\textit{a}) a
 \textit{superposed} plot, which is recommended in Cleveland's paradigm, than in (\textit{b})
 a \textit{juxtaposed} plot, which is how it is implemented in `{ggstatsplot}` package. This is
 because displaying detailed results from statistical tests would be difficult in a superposed
@@ -361,7 +361,7 @@ outliers (<span class="citation">(Cleveland, 1985)</span>, p.220).</li>
 <span>  caption <span class="op">=</span> <span class="st">"Note: Data collected across 5 experiments (20 measurements each)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig5-1.png" alt="Distribution of a variable shown using `gghistostats`." width="100%"><p class="caption">
+<img src="principles_files/figure-html/fig5-1.png" class="r-plt" alt="Distribution of a variable shown using `gghistostats`." width="100%"><p class="caption">
 Distribution of a variable shown using <code>gghistostats</code>.
 </p>
 </div>
@@ -383,7 +383,7 @@ not a particularly interesting interval (<span class="citation">(Cleveland, 1985
 <span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Random effect variances not available. Returned R2 does not account for random effects.</span></span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig6-1.png" alt="Sample-to-sample variation in regression estimates is displayed using confidence
+<img src="principles_files/figure-html/fig6-1.png" class="r-plt" alt="Sample-to-sample variation in regression estimates is displayed using confidence
 intervals in `ggcoefstats()`." width="100%"><p class="caption">
 Sample-to-sample variation in regression estimates is displayed using
 confidence intervals in <code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code>.
@@ -444,7 +444,7 @@ may vary.</p></li>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure">
-<img src="principles_files/figure-html/fig4-1.png" alt="`{ggstatsplot}` functions remove `NA`s from variables of interest and display total
+<img src="principles_files/figure-html/fig4-1.png" class="r-plt" alt="`{ggstatsplot}` functions remove `NA`s from variables of interest and display total
 sample size \textit{n}, but they can give more nuanced information about sample sizes when
 \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one
 total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum,
@@ -572,7 +572,7 @@ NY</span>: <span>Springer</span>.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
     </footer>

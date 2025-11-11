@@ -92,7 +92,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>ggcoefstats</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/0.13.3/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/main/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggcoefstats.Rmd</code></div>
     </div>
 
@@ -329,7 +329,7 @@ have removed it. The old version can be found <a href="https://github.com/Indraj
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span>,</span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie budget and its IMDB rating"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/lmer1-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/lmer1-1.png" class="r-plt" width="100%"></p>
 <p>Note that for mixed-effects models, only the <em>fixed</em> effects
 are shown because there are no confidence intervals for <em>random</em>
 effects terms. In case, you would like to see these terms, you can use
@@ -357,7 +357,7 @@ effects terms. In case, you would like to see these terms, you can use
 <span>  subtitle <span class="op">=</span> <span class="st">"(for censored data)"</span>,</span>
 <span>  digits <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/aareg-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/aareg-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="chi2-statistic">
@@ -387,7 +387,7 @@ effects terms. In case, you would like to see these terms, you can use
 <span>  x <span class="op">=</span> <span class="va">mod_coxph</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Cox proportional hazards regression model"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/coxph-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/coxph-1.png" class="r-plt" width="100%"></p>
 <p>Another example with <code>frailty</code> term.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
@@ -403,7 +403,7 @@ effects terms. In case, you would like to see these terms, you can use
 <span>  x <span class="op">=</span> <span class="va">mod_coxph</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Proportional Hazards Regression Model\nwith Frailty penalty function"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/coxph.penal-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/coxph.penal-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="f-statistic">
@@ -429,7 +429,7 @@ effects terms. In case, you would like to see these terms, you can use
 <span>  <span class="co"># note the order in which the labels are entered</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/aov1-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/aov1-1.png" class="r-plt" width="100%"></p>
 <p>Note that we can also use this function for model selection. You can
 try out different models with the code below and see how the AIC and BIC
 values change.</p>
@@ -459,7 +459,7 @@ values change.</p>
 <span>  <span class="op">)</span>,</span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Model selection using ggcoefstats"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/aov2-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/aov2-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="bayesian-models---no-statistic">Bayesian models - no statistic<a class="anchor" aria-label="anchor" href="#bayesian-models---no-statistic"></a>
@@ -523,7 +523,7 @@ values change.</p>
 <span>  <span class="op">)</span>,</span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Example from `{BayesFactor}` package"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/BFBayesFactor-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/BFBayesFactor-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="regression-models-with-list-outputs">Regression models with <code>list</code> outputs<a class="anchor" aria-label="anchor" href="#regression-models-with-list-outputs"></a>
@@ -605,7 +605,7 @@ errors</li>
 <span>  meta.type <span class="op">=</span> <span class="st">"parametric"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"parametric random-effects meta-analysis"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta1-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/meta1-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="robust">robust<a class="anchor" aria-label="anchor" href="#robust"></a>
@@ -622,7 +622,7 @@ errors</li>
 <span>  meta.type <span class="op">=</span> <span class="st">"robust"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"robust random-effects meta-analysis"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta2-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/meta2-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="bayesian">Bayesian<a class="anchor" aria-label="anchor" href="#bayesian"></a>
@@ -639,7 +639,7 @@ errors</li>
 <span>  meta.type <span class="op">=</span> <span class="st">"bayes"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Bayesian random-effects meta-analysis"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/meta3-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/meta3-1.png" class="r-plt" width="100%"></p>
 </div>
 </div>
 <div class="section level2">
@@ -677,7 +677,7 @@ information.</p>
 <span>  package <span class="op">=</span> <span class="st">"LaCroixColoR"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"paired"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcoefstats_files/figure-html/dataframe-1.png" width="100%"></p>
+<p><img src="ggcoefstats_files/figure-html/dataframe-1.png" class="r-plt" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="non-plot-outputs">Non-plot outputs<a class="anchor" aria-label="anchor" href="#non-plot-outputs"></a>
@@ -765,7 +765,7 @@ issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstats
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
     </footer>
