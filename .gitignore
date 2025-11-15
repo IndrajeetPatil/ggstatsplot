@@ -51,6 +51,7 @@ Temporary Items
 .Rhistory
 .Rproj.user
 .Ruserdata
+.claude/settings.local.json
 .httr-oauth
 /Meta/
 /doc/

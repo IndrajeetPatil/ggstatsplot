@@ -217,11 +217,6 @@ ggcoefstats <- function(
 
   if (stats.labels) {
     tidy_df %<>% tidy_model_expressions(statistic, digits, effectsize.type)
-
-    # only significant p-value labels are shown
-    if (only.significant && ("p.value" %in% names(tidy_df))) {
-      tidy_df %<>% mutate(expression = ifelse(p.value >= 0.05, list(NULL), expression))
-    }
   }
 
   # summary caption -------------------------
@@ -270,14 +265,23 @@ ggcoefstats <- function(
   # ggrepel labels -------------------------
 
   if (stats.labels) {
+    # filter data for labels if only significant results should be shown
+    tidy_df_labels <- tidy_df
+    if (only.significant && ("p.value" %in% names(tidy_df))) {
+      tidy_df_labels %<>% filter(p.value < 0.05)
+    }
+
     if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(tidy_df$term))) {
-      stats.label.color <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
+      # generate colors for all terms
+      all_colors <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
+      # subset colors to match filtered labels
+      stats.label.color <- all_colors[tidy_df$term %in% tidy_df_labels$term]
     }
 
     plot_coef <- plot_coef +
       exec(
         ggrepel::geom_label_repel,
-        data    = tidy_df,
+        data    = tidy_df_labels,
         mapping = aes(x = estimate, y = term, label = expression),
         parse   = TRUE,
         color   = stats.label.color %||% "black",
