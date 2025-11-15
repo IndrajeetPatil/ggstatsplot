@@ -27,5 +27,6 @@ jobs:
       - name: Run Tests in Random Order
         run: |
           options(crayon.enabled = TRUE)
+          withr::local_envvar(TESTTHAT_PARALLEL = "FALSE")
           testthat::test_dir("tests", shuffle = TRUE)
         shell: Rscript {0}
