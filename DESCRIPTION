@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.13.3
+Version: 0.13.3.9000
 Authors@R: 
     c(person(given = "Indrajeet",
              family = "Patil",
@@ -67,7 +67,7 @@ Suggests:
     rstantools,
     stats,
     survival,
-    testthat (>= 3.2.3),
+    testthat (>= 3.3.0),
     tibble,
     vdiffr (>= 1.0.8),
     withr,
