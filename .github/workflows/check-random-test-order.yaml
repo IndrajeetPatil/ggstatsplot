@@ -21,12 +21,14 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: |
-            local::.
+          extra-packages: local::.
 
       - name: Run Tests in Random Order
         run: |
           options(crayon.enabled = TRUE)
           withr::local_envvar(TESTTHAT_PARALLEL = "FALSE")
+          seed <- sample.int(1e6, 1L)
+          cli::cli_inform("Chosen seed for the current test run: {seed}")
+          set.seed(seed)
           testthat::test_dir("tests", shuffle = TRUE)
         shell: Rscript {0}
