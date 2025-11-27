@@ -352,7 +352,8 @@ ggbetweenstats <- function(
 #'   ggplot.component = scale_y_continuous(
 #'     breaks = seq(1, 9, 1),
 #'     limits = (c(1, 9))
-#'   )
+#'   ),
+#'   annotation.args = list(title = "Ratings by genre for different MPAA ratings")
 #' )
 #' @export
 grouped_ggbetweenstats <- function(

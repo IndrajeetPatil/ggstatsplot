@@ -385,7 +385,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
-      "version": ">= 0.4.0",
+      "version": ">= 0.4.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -424,7 +424,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.4.2",
+      "version": ">= 1.4.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -463,7 +463,7 @@
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
-      "version": ">= 0.28.2",
+      "version": ">= 0.28.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -557,7 +557,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9310.333KB",
+  "fileSize": "9311.344KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
