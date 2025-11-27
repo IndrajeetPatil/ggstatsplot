@@ -186,7 +186,8 @@ grouped_ggwithinstats(
   grouping.var     = gender,
   type             = "np",
   # additional modifications for **each** plot using `{ggplot2}` functions
-  ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
+  ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10)),
+  annotation.args  = list(title = "Desire ratings by condition for each gender")
 )
 \dontshow{\}) # examplesIf}
 }

@@ -200,11 +200,12 @@ ggdotplotstats <- function(
 #'
 #' # plot
 #' grouped_ggdotplotstats(
-#'   data         = df,
-#'   x            = cty,
-#'   y            = manufacturer,
-#'   grouping.var = cyl,
-#'   test.value   = 15.5
+#'   data            = df,
+#'   x               = cty,
+#'   y               = manufacturer,
+#'   grouping.var    = cyl,
+#'   test.value      = 15.5,
+#'   annotation.args = list(title = "City mileage by manufacturer for different cylinders")
 #' )
 #' @export
 grouped_ggdotplotstats <- function(

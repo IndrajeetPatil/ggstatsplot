@@ -152,7 +152,8 @@ grouped_ggbarstats(
   x             = color,
   y             = clarity,
   grouping.var  = cut,
-  plotgrid.args = list(nrow = 2L)
+  plotgrid.args = list(nrow = 2L),
+  annotation.args = list(title = "Diamond quality by color and clarity")
 )
 \dontshow{\}) # examplesIf}
 }
