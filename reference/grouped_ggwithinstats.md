@@ -309,7 +309,8 @@ grouped_ggwithinstats(
   grouping.var     = gender,
   type             = "np",
   # additional modifications for **each** plot using `{ggplot2}` functions
-  ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10))
+  ggplot.component = scale_y_continuous(breaks = seq(0, 10, 1), limits = c(0, 10)),
+  annotation.args  = list(title = "Desire ratings by condition for each gender")
 )
 #> Scale for y is already present.
 #> Adding another scale for y, which will replace the existing scale.

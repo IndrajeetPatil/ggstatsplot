@@ -238,5 +238,10 @@ For details, see:
 ``` r
 set.seed(123)
 # grouped one-sample proportion test
-grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
+grouped_ggpiestats(
+  data = mtcars,
+  x = cyl,
+  grouping.var = am,
+  annotation.args = list(title = "Cylinder distribution by transmission type")
+)
 ```
