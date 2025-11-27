@@ -148,10 +148,10 @@ diamonds_short <- ggplot2::diamonds \%>\%
   sample_frac(size = 0.05)
 
 grouped_ggbarstats(
-  data          = diamonds_short,
-  x             = color,
-  y             = clarity,
-  grouping.var  = cut,
+  data = diamonds_short,
+  x = color,
+  y = clarity,
+  grouping.var = cut,
   plotgrid.args = list(nrow = 2L),
   annotation.args = list(title = "Diamond quality by color and clarity")
 )
