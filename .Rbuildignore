@@ -41,6 +41,7 @@
 ^doc$
 ^docs$
 ^hextools/.
+^man-roxygen$
 ^old/.
 ^paper.*$
 ^pkgdown$
