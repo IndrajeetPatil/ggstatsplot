@@ -1,13 +1,10 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.13.3.9000
-Authors@R: c(
+Version: 0.13.4
+Authors@R:
     person("Indrajeet", "Patil", , "patilindrajeet.science@gmail.com", role = c("cre", "aut", "cph"),
-           comment = c(ORCID = "0000-0003-1995-6531")),
-    person("Chuck", "Powell", , "ibecav@gmail.com", role = "ctb",
-           comment = c(ORCID = "0000-0002-3606-2188"))
-  )
+           comment = c(ORCID = "0000-0003-1995-6531"))
 Maintainer: Indrajeet Patil <patilindrajeet.science@gmail.com>
 Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with
     details from statistical tests included in the plots themselves. It

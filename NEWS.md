@@ -1,9 +1,18 @@
-# ggstatsplot 0.13.3
+# ggstatsplot 0.13.4
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+## MINOR CHANGES
+
+- Removed Chuck Powell from the contributors list in `DESCRIPTION`. While Chuck
+  made significant contributions to early versions of the package (2018-2019),
+  all of his code was completely replaced during the 2019 refactoring when
+  statistical functionality was moved to the `{statsExpressions}` package.
+
+# ggstatsplot 0.13.3
 
 ## BUG FIXES
 
