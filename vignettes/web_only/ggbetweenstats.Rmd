@@ -192,7 +192,7 @@ p1 <- ggbetweenstats(
   xlab = "Year",
   ylab = "Life expectancy",
   # to remove violin plot
-  violin.args = list(width = 0),
+  violin.args = list(width = 0, linewidth = 0, colour = NA),
   type = "p",
   conf.level = 0.99,
   title = "Parametric test",
@@ -238,7 +238,7 @@ p4 <- ggbetweenstats(
   xlab = "Year",
   ylab = "Life expectancy",
   type = "bayes",
-  violin.args = list(width = 0),
+  violin.args = list(width = 0, linewidth = 0, colour = NA),
   boxplot.args = list(width = 0),
   point.args = list(alpha = 0),
   title = "Bayesian Test",
