@@ -23,8 +23,6 @@ journal: JOSS
 link-citations: yes
 ---
 
-
-
 # Summary
 
 Graphical displays can reveal problems in a statistical model that might not be
@@ -48,7 +46,6 @@ phases into one in the form of an informative graphic with statistical details.
 
 Before discussing benefits of this approach, we will show an example (Figure
 1).
-
 
 ```r
 library(palmerpenguins) # for 'penguins' dataset
@@ -84,21 +81,21 @@ implemented in the `{ggplot2}` package [@Wickham2016].
 In summary, the benefits of `{ggstatsplot}`'s approach are the following. It:
 
 a. produces charts displaying both raw data, and numerical plus graphical
-   summary indices,
+summary indices,
 
 b. avoids errors in and increases reproducibility of statistical reporting,
 
 c. highlights the importance of the effect by providing effect size measures by
-   default,
+default,
 
-d. provides an easy way to evaluate *absence* of an effect using Bayes factors,
+d. provides an easy way to evaluate _absence_ of an effect using Bayes factors,
 
 e. encourages researchers and readers to evaluate statistical assumptions of a
 model in the context of the underlying data (Figure 2),
 
 f. is easy and simple enough that someone with little to no coding experience
-   can use it without making an error and may even encourage beginners to
-   programmatically analyze data, instead of using GUI software.
+can use it without making an error and may even encourage beginners to
+programmatically analyze data, instead of using GUI software.
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{reporting} \caption{Comparing the 'Standard' approach of reporting statistical analysis in apublication/report with the 'ggstatsplot' approach of reporting the same analysis next to aninformative graphic. Note that the results described in the 'Standard' approach are about the'Dinosaur' dataset plotted on the right. Without the accompanying visualization, it is hard toevaluate the validity of the results. The ideal reporting practice will be a hybrid of thesetwo approaches where the plot contains both the visual and numerical summaries about astatistical model, while the narrative provides interpretative context for the reportedstatistics.}\label{fig:reporting}
@@ -108,7 +105,7 @@ f. is easy and simple enough that someone with little to no coding experience
 
 This package is an ambitious, ongoing, and long-term project. It currently
 supports common statistical tests (parametric, non-parametric, robust, or
-Bayesian *t*-test, one-way ANOVA, contingency table analysis, correlation
+Bayesian _t_-test, one-way ANOVA, contingency table analysis, correlation
 analysis, meta-analysis, regression analyses, etc.) and corresponding
 visualizations (box/violin plot, scatter plot, dot-and-whisker plot, pie chart,
 bar chart, etc.). It will continue expanding to support an increasing
@@ -121,9 +118,7 @@ source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/).
 In the spirit of honest and open science, requests and suggestions for fixes,
 feature updates, as well as general questions and concerns are encouraged via
 direct interaction with contributors and developers by filing an
-[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues) while respecting
-[*Contribution
-Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
+[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues).
 
 # Acknowledgements
 
