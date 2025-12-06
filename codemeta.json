@@ -72,18 +72,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "bayestestR",
-      "name": "bayestestR",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=bayestestR"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "BayesFactor",
       "name": "BayesFactor",
       "version": ">= 0.9.12-4.7",
@@ -94,6 +82,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=BayesFactor"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "bayestestR",
+      "name": "bayestestR",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=bayestestR"
     },
     {
       "@type": "SoftwareApplication",
@@ -489,7 +489,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.15.2",
+      "version": ">= 0.15.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -557,7 +557,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9311.344KB",
+  "fileSize": "13187.225KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

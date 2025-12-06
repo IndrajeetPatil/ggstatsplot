@@ -92,6 +92,7 @@ test_that(
       extracted_data <- extract_stats(p8)
       summary(extracted_data)
       extract_subtitle(p8)
+      extract_caption(p8)
     })
   }
 )
