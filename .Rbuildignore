@@ -1,7 +1,7 @@
+.claude
+.dev
 .ls-lint.yml
 ^.*\.Rproj$
-^.dev$
-^.gitlab-ci\.yml$
 ^API$
 ^CITATION\.cff$
 ^CODE_OF_CONDUCT\.md$
