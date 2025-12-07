@@ -40,7 +40,7 @@ Imports:
     performance (>= 0.15.3),
     purrr (>= 1.2.0),
     rlang (>= 1.1.6),
-    statsExpressions (>= 1.7.1),
+    statsExpressions (>= 1.7.2),
     tidyr (>= 1.3.1),
     utils
 Suggests:

@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.13.3.9000",
+  "version": "0.13.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -28,15 +28,6 @@
       "familyName": "Patil",
       "email": "patilindrajeet.science@gmail.com",
       "@id": "https://orcid.org/0000-0003-1995-6531"
-    }
-  ],
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Chuck",
-      "familyName": "Powell",
-      "email": "ibecav@gmail.com",
-      "@id": "https://orcid.org/0000-0002-3606-2188"
     }
   ],
   "copyrightHolder": [
@@ -557,7 +548,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "13187.225KB",
+  "fileSize": "43717.024KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
