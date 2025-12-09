@@ -30,8 +30,6 @@ jobs:
       # only download hard deps under active development
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          pak-version: devel
-          upgrade: "TRUE"
           needs: check
           cache: false
           extra-packages: |

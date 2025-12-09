@@ -151,4 +151,15 @@
           widehat(italic("C"))["Pearson"] == "0.52", CI["95%"] ~ "[" * 
               "0.00", "0.74" * "]", italic("n")["obs"] == "13")
       
+    Code
+      extract_caption(p8)
+    Output
+      [[1]]
+      list(log[e] * (BF["01"]) == "-0.16", italic("a")["Gunel-Dickey"] == 
+          "1.00")
+      
+      [[2]]
+      list(log[e] * (BF["01"]) == "0.82", italic("a")["Gunel-Dickey"] == 
+          "1.00")
+      
 

@@ -47,15 +47,19 @@ Network Trash Folder
 Temporary Items
 
 # R Studio files
+*.Rcheck/*
+*.tar.gz
 .RData
 .Rhistory
 .Rproj.user
 .Ruserdata
+.claude
 .claude/settings.local.json
 .httr-oauth
 /Meta/
 /doc/
 CRAN-SUBMISSION
+README.html
 inst/doc
 revdep/checks
 revdep/checks.noindex
