@@ -1,8 +1,6 @@
 # Changelog
 
-## ggstatsplot 0.13.3
-
-CRAN release: 2025-10-05
+## ggstatsplot 0.13.4
 
 N.B. All statistical analysis in
 [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is carried
@@ -11,6 +9,19 @@ out in
 Thus, to see changes related to statistical expressions, read the `NEWS`
 for that package:
 <https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+
+### MINOR CHANGES
+
+- Removed Chuck Powell from the contributors list in `DESCRIPTION`.
+  While Chuck made significant contributions to early versions of the
+  package (2018-2019), all of his code was completely replaced during
+  the 2019 refactoring when statistical functionality was moved to the
+  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+  package.
+
+## ggstatsplot 0.13.3
+
+CRAN release: 2025-10-05
 
 ### BUG FIXES
 
@@ -817,8 +828,7 @@ CRAN release: 2020-04-15
 
 - `ggbarstats` loses `x.axis.orientation` argument. This argument was
   supposed to help avoid overlapping *x*-axis label, but now
-  `ggplot2 3.3.0` has a better way to handle this:
-  <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
+  `ggplot2 3.3.0` has a better way to handle this.
 
 ### NEW FEATURES
 

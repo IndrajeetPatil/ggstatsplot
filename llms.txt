@@ -909,7 +909,7 @@ order of commitment):
   helpers for preparing subtitles)
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html).
+Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/).
 By participating in this project you agree to abide by its terms.
 
 # Package index

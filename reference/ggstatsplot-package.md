@@ -78,8 +78,3 @@ Useful links:
 
 **Maintainer**: Indrajeet Patil <patilindrajeet.science@gmail.com>
 ([ORCID](https://orcid.org/0000-0003-1995-6531)) \[copyright holder\]
-
-Other contributors:
-
-- Chuck Powell <ibecav@gmail.com>
-  ([ORCID](https://orcid.org/0000-0002-3606-2188)) \[contributor\]

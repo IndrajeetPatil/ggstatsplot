@@ -7,9 +7,6 @@
   Maintainer, author, copyright holder.
   [](https://orcid.org/0000-0003-1995-6531)
 
-- **Chuck Powell**. Contributor.
-  [](https://orcid.org/0000-0002-3606-2188)
-
 ## Citation
 
 Source:

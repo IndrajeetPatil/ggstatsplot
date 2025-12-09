@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,8 +61,15 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.13.3" id="ggstatsplot-0133">ggstatsplot 0.13.3<a class="anchor" aria-label="anchor" href="#ggstatsplot-0133"></a></h2><p class="text-muted">CRAN release: 2025-10-05</p>
+<h2 class="pkg-version" data-toc-text="0.13.4" id="ggstatsplot-0134">ggstatsplot 0.13.4<a class="anchor" aria-label="anchor" href="#ggstatsplot-0134"></a></h2>
 <p>N.B. All statistical analysis in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://indrajeetpatil.github.io/statsExpressions/news/index.html" class="external-link uri">https://indrajeetpatil.github.io/statsExpressions/news/index.html</a></p>
+<div class="section level3">
+<h3 id="minor-changes-0-13-4">MINOR CHANGES<a class="anchor" aria-label="anchor" href="#minor-changes-0-13-4"></a></h3>
+<ul><li>Removed Chuck Powell from the contributors list in <code>DESCRIPTION</code>. While Chuck made significant contributions to early versions of the package (2018-2019), all of his code was completely replaced during the 2019 refactoring when statistical functionality was moved to the <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.13.3" id="ggstatsplot-0133">ggstatsplot 0.13.3<a class="anchor" aria-label="anchor" href="#ggstatsplot-0133"></a></h2><p class="text-muted">CRAN release: 2025-10-05</p>
 <div class="section level3">
 <h3 id="bug-fixes-0-13-3">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-0-13-3"></a></h3>
 <ul><li>Updates <code><a href="../reference/gghistostats.html">gghistostats()</a></code> to fix parsing issues on secondary axis labels due to changes in upstream dependencies.</li>
@@ -470,7 +477,7 @@
 <div class="section level3">
 <h3 id="breaking-changes-0-4-0">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-4-0"></a></h3>
 <ul><li><p><code>ggcorrmat</code> no longer returns matrices of correlation coefficients or other details. It now returns either a plot or a data frame and this can data frame can then be used to create matrices.</p></li>
-<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this: <a href="https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code" class="external-link uri">https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code</a></p></li>
+<li><p><code>ggbarstats</code> loses <code>x.axis.orientation</code> argument. This argument was supposed to help avoid overlapping <em>x</em>-axis label, but now <code>ggplot2 3.3.0</code> has a better way to handle this.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-0-4-0">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-0-4-0"></a></h3>
