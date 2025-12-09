@@ -666,8 +666,7 @@ read the `NEWS` for that package:
 
   - `ggbarstats` loses `x.axis.orientation` argument. This argument was supposed
     to help avoid overlapping *x*-axis label, but now `ggplot2 3.3.0` has a
-    better way to handle this:
-    <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
+    better way to handle this.
 
 ## NEW FEATURES
 
