@@ -143,52 +143,56 @@
 #'   point.args = list(alpha = 0)
 #' )
 #' @export
-ggbetweenstats <- function(
-  data,
-  x,
-  y,
-  type = "parametric",
-  pairwise.display = "significant",
-  p.adjust.method = "holm",
-  effsize.type = "unbiased",
-  bf.prior = 0.707,
-  bf.message = TRUE,
-  results.subtitle = TRUE,
-  xlab = NULL,
-  ylab = NULL,
-  caption = NULL,
-  title = NULL,
-  subtitle = NULL,
-  digits = 2L,
-  var.equal = FALSE,
-  conf.level = 0.95,
-  nboot = 100L,
-  tr = 0.2,
-  centrality.plotting = TRUE,
-  centrality.type = type,
-  centrality.point.args = list(size = 5, color = "darkred"),
-  centrality.label.args = list(
-    size = 3,
-    nudge_x = 0.4,
-    segment.linetype = 4,
-    min.segment.length = 0
-  ),
-  point.args = list(
-    position = ggplot2::position_jitterdodge(dodge.width = 0.60),
-    alpha = 0.4,
-    size = 3,
-    stroke = 0,
-    na.rm = TRUE
-  ),
-  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
-  violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
-  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-  ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
-  ggplot.component = NULL,
-  ...
-) {
+ggbetweenstats <- function(data,
+                           x,
+                           y,
+                           type = "parametric",
+                           pairwise.display = "significant",
+                           p.adjust.method = "holm",
+                           effsize.type = "unbiased",
+                           bf.prior = 0.707,
+                           bf.message = TRUE,
+                           results.subtitle = TRUE,
+                           xlab = NULL,
+                           ylab = NULL,
+                           caption = NULL,
+                           title = NULL,
+                           subtitle = NULL,
+                           digits = 2L,
+                           var.equal = FALSE,
+                           conf.level = 0.95,
+                           nboot = 100L,
+                           tr = 0.2,
+                           centrality.plotting = TRUE,
+                           centrality.type = type,
+                           centrality.point.args = list(size = 5, color = "darkred"),
+                           centrality.label.args = list(
+                             size = 3,
+                             nudge_x = 0.4,
+                             segment.linetype = 4,
+                             min.segment.length = 0
+                           ),
+                           point.args = list(size = 3,
+                                             alpha = 0.5,
+                                             na.rm = TRUE),
+                           boxplot.outliers = FALSE,
+                           outliers.args = list(size = 3,
+                                                alpha = 0.5,
+                                                na.rm = TRUE),
+                           boxplot.args = list(width = 0.3,
+                                               alpha = 0.2,
+                                               na.rm = TRUE),
+                           violin.args = list(width = 0.5,
+                                              alpha = 0.2,
+                                              na.rm = TRUE),
+                           ggsignif.args = list(textsize = 3,
+                                                tip_length = 0.01,
+                                                na.rm = TRUE),
+                           ggtheme = ggstatsplot::theme_ggstatsplot(),
+                           package = "RColorBrewer",
+                           palette = "Dark2",
+                           ggplot.component = NULL,
+                           ...) {
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
@@ -232,24 +236,36 @@ ggbetweenstats <- function(
   # plot -----------------------------------
 
   plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
-    exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
+    exec(geom_boxplot, !!!boxplot.args) +
     exec(geom_violin, !!!violin.args)
+
+  if (boxplot.outliers) {
+    outliers <- data %>%
+      group_by({{ x }}) %>%
+      filter({{ y }} %in% boxplot.stats({{ y }})$out)
+    plot_comparison <- plot_comparison +
+      exec(geom_point, data = outliers, aes(color = {{ x }}), !!!outliers.args)
+  } else {
+    plot_comparison <- plot_comparison +
+      exec(geom_point, aes(color = {{ x }}), !!!point.args)
+  }
 
   # centrality tagging -------------------------------------
 
   if (isTRUE(centrality.plotting)) {
-    plot_comparison <- suppressWarnings(.centrality_ggrepel(
-      plot = plot_comparison,
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      digits = digits,
-      type = stats_type_switch(centrality.type),
-      tr = tr,
-      centrality.point.args = centrality.point.args,
-      centrality.label.args = centrality.label.args
-    ))
+    plot_comparison <- suppressWarnings(
+      .centrality_ggrepel(
+        plot = plot_comparison,
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        digits = digits,
+        type = stats_type_switch(centrality.type),
+        tr = tr,
+        centrality.point.args = centrality.point.args,
+        centrality.label.args = centrality.label.args
+      )
+    )
   }
 
   # ggsignif labels -------------------------------------
@@ -281,7 +297,8 @@ ggbetweenstats <- function(
     )
 
     # secondary label axis to give pairwise comparisons test details
-    seclabel <- .pairwise_seclabel(unique(mpc_df$test), ifelse(type == "bayes", "all", pairwise.display))
+    seclabel <- .pairwise_seclabel(unique(mpc_df$test),
+                                   ifelse(type == "bayes", "all", pairwise.display))
   }
 
   # annotations ------------------------
@@ -356,13 +373,11 @@ ggbetweenstats <- function(
 #'   annotation.args = list(title = "Ratings by genre for different MPAA ratings")
 #' )
 #' @export
-grouped_ggbetweenstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
+grouped_ggbetweenstats <- function(data,
+                                   ...,
+                                   grouping.var,
+                                   plotgrid.args = list(),
+                                   annotation.args = list()) {
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggbetweenstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
