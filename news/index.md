@@ -2,6 +2,8 @@
 
 ## ggstatsplot 0.13.4
 
+CRAN release: 2025-12-09
+
 N.B. All statistical analysis in
 [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is carried
 out in

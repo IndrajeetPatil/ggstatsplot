@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/IndrajeetPatil/ggstatsplot/blob/0.13.4/inst/CITATION)
+[`inst/CITATION`](https://github.com/IndrajeetPatil/ggstatsplot/blob/main/inst/CITATION)
 
 Patil, I. (2021). Visualizations with statistical details: The
 'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
