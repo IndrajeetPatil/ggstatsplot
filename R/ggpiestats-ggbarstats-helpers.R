@@ -60,10 +60,12 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
 .chisq_test_safe <- function(data, x_col, ratio) {
   tryCatch(
     suppressWarnings(contingency_table(data, .data[[x_col]], ratio = ratio)),
-    error = \(e) tibble(
-      statistic = NA_real_, p.value = NA_real_, df = NA_real_,
-      method = "Chi-squared test for given probabilities"
-    )
+    error = \(e) {
+      tibble(
+        statistic = NA_real_, p.value = NA_real_, df = NA_real_,
+        method = "Chi-squared test for given probabilities"
+      )
+    }
   )
 }
 
