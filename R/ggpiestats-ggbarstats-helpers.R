@@ -26,11 +26,9 @@ descriptive_data <- function(
 #' @noRd
 .cat_counter <- function(data, x, y = NULL, ...) {
   data %>%
-    group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
-    tally(name = "counts") %>%
-    mutate(perc = (counts / sum(counts)) * 100) %>%
-    ungroup() %>%
-    arrange(desc({{ x }})) %>%
+    summarise(counts = n(), .by = c({{ y }}, {{ x }})) %>%
+    mutate(perc = (counts / sum(counts)) * 100, .by = {{ y }}) %>%
+    arrange(desc({{ x }}), {{ y }}) %>%
     filter(counts != 0L)
 }
 
@@ -38,8 +36,9 @@ descriptive_data <- function(
 #' @autoglobal
 #' @noRd
 onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
+  x_col <- as_name(ensym(x))
   grouped_chi_squared_summary <- group_by(data, {{ y }}) %>%
-    group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) %>%
+    group_modify(.f = ~ .chisq_test_safe(., x_col, ratio)) %>%
     ungroup()
   descriptive_summary <- .cat_counter(data, {{ y }}) %>% mutate(N = paste0("(n = ", .prettyNum(counts), ")"))
 
@@ -58,10 +57,10 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
 #' Needed to work with `dplyr::group_modify()` since it will not work when `NULL` is returned.
 #' @autoglobal
 #' @noRd
-.chisq_test_safe <- function(data, x, ratio) {
+.chisq_test_safe <- function(data, x_col, ratio) {
   tryCatch(
-    suppressWarnings(contingency_table(data, x, ratio = ratio)),
-    error = function(e) {
+    suppressWarnings(contingency_table(data, .data[[x_col]], ratio = ratio)),
+    error = \(e) {
       tibble(
         statistic = NA_real_, p.value = NA_real_, df = NA_real_,
         method = "Chi-squared test for given probabilities"

@@ -262,4 +262,4 @@
 
 #' @title Switch expression making function
 #' @noRd
-.f_switch <- function(test) ifelse(test == "t", two_sample_test, oneway_anova)
+.f_switch <- function(test) if (test == "t") two_sample_test else oneway_anova
