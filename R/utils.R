@@ -54,7 +54,7 @@
 .eval_f <- function(.f, ...) {
   tryCatch(
     suppressWarnings(suppressMessages(exec(.f, ...))),
-    error = function(e) NULL
+    error = \(e) NULL
   )
 }
 
