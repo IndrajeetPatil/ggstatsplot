@@ -177,7 +177,7 @@ defaults-</p>
 <span>  data <span class="op">=</span> <span class="va">gapminder_2007</span>, <span class="co">## data from which variable is to be taken</span></span>
 <span>  cor.vars <span class="op">=</span> <span class="va">lifeExp</span><span class="op">:</span><span class="va">gdpPercap</span> <span class="co">## specifying correlation matrix variables</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat1-1.png" class="r-plt" alt="" width="100%"></p>
 <p>This plot can be further modified with additional arguments-</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span></span>
@@ -199,7 +199,7 @@ defaults-</p>
 <span>  title <span class="op">=</span> <span class="st">"Gapminder correlation matrix"</span>, <span class="co">## custom title</span></span>
 <span>  subtitle <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co">## custom subtitle</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat2-1.png" class="r-plt" alt="" width="100%"></p>
 <p>As seen from this correlation matrix, although there is no
 relationship between population and life expectancy worldwide, at least
 in 2007, there is a strong positive relationship between GDP, a
@@ -244,7 +244,7 @@ diamond and the price.</p>
 <span>  <span class="op">)</span>,</span>
 <span>  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>outline.color <span class="op">=</span> <span class="st">"black"</span>, hc.order <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat3-1.png" class="r-plt" alt="" width="100%"></p>
 <p>We can make a number of changes to this basic correlation matrix. For
 example, since we were interested in relationship between price and
 other attributes, let’s make the <code>price</code> column to the the
@@ -282,7 +282,7 @@ first column.</p>
 <span>      margin <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">margin</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.15</span>, r <span class="op">=</span> <span class="fl">0.15</span>, b <span class="op">=</span> <span class="fl">0.15</span>, l <span class="op">=</span> <span class="fl">0.15</span>, unit <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat4-1.png" class="r-plt" alt="" width="100%"></p>
 <p>As seen here, and unsurprisingly, the strongest predictor of the
 diamond price is its carat value, which a unit of mass equal to 200 mg.
 In other words, the heavier the diamond, the more expensive it is going
@@ -314,7 +314,7 @@ individual plots into a single plot.</p>
 <span>    caption <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat7-1.png" class="r-plt" alt="" width="100%"></p>
 <p>Note that this function also makes it easy to run the same
 correlation matrix across different levels of a factor/grouping
 variable.</p>

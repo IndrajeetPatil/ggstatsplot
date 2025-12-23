@@ -172,7 +172,7 @@ continents is statistically significant.</p>
 <span>  x <span class="op">=</span> <span class="va">continent</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">lifeExp</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats1-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats1-1.png" class="r-plt" alt="" width="100%"></p>
 <p><strong>Note</strong>:</p>
 <ul>
 <li><p>The function automatically decides whether an independent samples
@@ -220,7 +220,7 @@ the overall theme as well as the color palette in use.</p>
 <span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">85</span><span class="op">)</span>,</span>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">35</span>, to <span class="op">=</span> <span class="fl">85</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" class="r-plt" alt="" width="100%"></p>
 <p>As can be appreciated from the effect size (partial eta squared) of
 0.635, there are large differences in the mean life expectancy across
 continents. Importantly, this plot also helps us appreciate the
@@ -323,7 +323,7 @@ to make each plot have different colors or themes.</p>
 <span>    caption <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggbetweenstats_files/figure-html/ggbetweenstats3-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="grouped-analysis-with-grouped_ggbetweenstats">Grouped analysis with <code>grouped_ggbetweenstats</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggbetweenstats"></a>
@@ -361,7 +361,7 @@ differences between every pair of continents.</p>
 <span>    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,</span>
 <span>    plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggbetweenstats_files/figure-html/grouped1-1.png" class="r-plt" alt="" width="100%"></p>
 <p>As seen from the plot, although the life expectancy has been
 improving steadily across all continents as we go from 1967 to 2007,
 this improvement has not been happening at the same rate for all
@@ -413,7 +413,7 @@ interpretive context for the reported statistics.</p></li>
 <p>For example, let’s see the following example:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="va">supp</span>, <span class="va">len</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggbetweenstats_files/figure-html/reporting-1.png" class="r-plt" width="100%"></p>
+<p><img src="ggbetweenstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
 complement this plot either as a figure caption or in the main text-</p>
 <blockquote>
