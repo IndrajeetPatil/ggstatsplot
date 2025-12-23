@@ -25,4 +25,4 @@ jobs:
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
 
-      - uses: stefanzweifel/git-auto-commit-action@v7.0.0
+      - uses: stefanzweifel/git-auto-commit-action@v7.1.0
