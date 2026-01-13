@@ -977,7 +977,7 @@ now expect a list of such arguments for the respective geom (e.g.,
   `package`. Since this function requires only two colors, it didn’t
   make much sense to use color palettes to specify this. They can be
   instead specified using `xfill` and `yfill`. You can always use
-  [`paletteer::paletteer_d`](https://rdrr.io/pkg/paletteer/man/paletteer_d.html)
+  [`paletteer::paletteer_d`](https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html)
   to get a vector of color values and then provide values of your
   choosing to `xfill` and `yfill`.
 
