@@ -1,3 +1,9 @@
+# ggstatsplot 0.13.5
+
+## MINOR CHANGES
+
+- Maintenance release to adapt to API changes in `{dplyr}` (v1.2.0) and `{purrr}` (v1.2.1).
+
 # ggstatsplot 0.13.4
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in

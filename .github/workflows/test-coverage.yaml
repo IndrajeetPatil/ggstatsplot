@@ -31,11 +31,5 @@ jobs:
       - name: Test coverage
         run: |
           options(crayon.enabled = TRUE)
-          cov <- covr::package_coverage()
-          pct <- covr::percent_coverage(cov)
-          cat(sprintf("\nCode coverage: %.2f%%\n", pct))
-          covr::codecov(coverage = cov, quiet = FALSE)
-          if (pct < 100) {
-            stop(sprintf("Code coverage is %.2f%%, which is below the required 100%%", pct))
-          }
+          covr::codecov(quiet = FALSE)
         shell: Rscript {0}

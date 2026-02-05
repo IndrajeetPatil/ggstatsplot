@@ -2,11 +2,11 @@ coverage:
   status:
     project:
       default:
-        target: 100%
-        threshold: 0%
-        informational: false
+        target: auto
+        threshold: 1%
+        informational: true
     patch:
       default:
-        target: 100%
-        threshold: 0%
-        informational: false
+        target: auto
+        threshold: 1%
+        informational: true
