@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -228,7 +228,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.3.0",
+      "version": ">= 3.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -526,7 +526,7 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
     "20": {
       "@type": "SoftwareApplication",
@@ -548,7 +548,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "13467.802KB",
+  "fileSize": "37480.426KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
