@@ -519,7 +519,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.7.2",
+      "version": ">= 1.7.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -548,7 +548,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "37480.426KB",
+  "fileSize": "37480.234KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

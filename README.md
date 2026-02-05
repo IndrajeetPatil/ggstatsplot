@@ -8,7 +8,7 @@
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
-## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
+## Raison d’être <img src="man/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360" />
 
 > “What is to be sought in designs for the display of information is the
 > clear portrayal of complexity. Not the complication of the simple;
@@ -145,7 +145,7 @@ template abides by the gold standard for statistical reporting. For
 example, here are results from Yuen’s test for trimmed means (robust
 *t*-test):
 
-<img src="man/figures/stats_reporting_format.png" align="center" />
+<img src="man/figures/stats_reporting_format.png" alt="Example of statistical reporting format showing Yuen's test results with test statistic, degrees of freedom, p-value, effect size, and confidence interval" align="center" />
 
 ## Summary of statistical tests and effect sizes
 
@@ -174,7 +174,7 @@ ggbetweenstats(
 )
 ```
 
-<img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
+<img src="man/figures/README-ggbetweenstats1-1.png" alt="Violin plot with boxplot overlay showing distribution of sepal length across three Iris species with statistical test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -205,7 +205,7 @@ grouped_ggbetweenstats(
 )
 ```
 
-<img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
+<img src="man/figures/README-ggbetweenstats2-1.png" alt="Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -238,7 +238,7 @@ ggwithinstats(
 )
 ```
 
-<img src="man/figures/README-ggwithinstats1-1.png" width="100%" />
+<img src="man/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%" />
 
 **Defaults** return<br>
 
@@ -266,7 +266,7 @@ grouped_ggwithinstats(
 )
 ```
 
-<img src="man/figures/README-ggwithinstats2-1.png" width="100%" />
+<img src="man/figures/README-ggwithinstats2-1.png" alt="Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -294,7 +294,7 @@ gghistostats(
 )
 ```
 
-<img src="man/figures/README-gghistostats1-1.png" width="100%" />
+<img src="man/figures/README-gghistostats1-1.png" alt="Histogram showing distribution of time spent awake in mammals with one-sample test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -322,7 +322,7 @@ grouped_gghistostats(
 )
 ```
 
-<img src="man/figures/README-gghistostats2-1.png" width="100%" />
+<img src="man/figures/README-gghistostats2-1.png" alt="Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -351,7 +351,7 @@ ggdotplotstats(
 )
 ```
 
-<img src="man/figures/README-ggdotplotstats1-1.png" width="100%" />
+<img src="man/figures/README-ggdotplotstats1-1.png" alt="Dot plot showing life expectancy distribution across Asian countries with robust one-sample test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -380,7 +380,7 @@ grouped_ggdotplotstats(
 )
 ```
 
-<img src="man/figures/README-ggdotplotstats2-1.png" width="100%" />
+<img src="man/figures/README-ggdotplotstats2-1.png" alt="Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -406,7 +406,7 @@ ggscatterstats(
 )
 ```
 
-<img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
+<img src="man/figures/README-ggscatterstats1-1.png" alt="Scatterplot with marginal distributions showing relationship between REM sleep and time awake in mammals with correlation results" width="100%" />
 
 **Defaults** return<br>
 
@@ -435,7 +435,7 @@ grouped_ggscatterstats(
 )
 ```
 
-<img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
+<img src="man/figures/README-ggscatterstats2-1.png" alt="Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -466,7 +466,7 @@ ggcorrmat(
 )
 ```
 
-<img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
+<img src="man/figures/README-ggcorrmat1-1.png" alt="Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators" width="100%" />
 
 **Defaults** return<br>
 
@@ -491,7 +491,7 @@ grouped_ggcorrmat(
 )
 ```
 
-<img src="man/figures/README-ggcorrmat2-1.png" width="100%" />
+<img src="man/figures/README-ggcorrmat2-1.png" alt="Grouped correlation matrices for Action and Comedy movie genres showing robust correlations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -527,7 +527,7 @@ ggpiestats(
 )
 ```
 
-<img src="man/figures/README-ggpiestats1-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats1-1.png" alt="Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis" width="100%" />
 
 **Defaults** return<br>
 
@@ -553,7 +553,7 @@ grouped_ggpiestats(
 )
 ```
 
-<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats2-1.png" alt="Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -587,7 +587,7 @@ ggbarstats(
 )
 ```
 
-<img src="man/figures/README-ggbarstats1-1.png" width="100%" />
+<img src="man/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -613,7 +613,7 @@ grouped_ggbarstats(
 )
 ```
 
-<img src="man/figures/README-ggbarstats2-1.png" width="100%" />
+<img src="man/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -640,7 +640,7 @@ mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 ggcoefstats(mod)
 ```
 
-<img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
+<img src="man/figures/README-ggcoefstats1-1.png" alt="Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals" width="100%" />
 
 **Defaults** return<br>
 
@@ -781,7 +781,7 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
   )
 ```
 
-<img src="man/figures/README-customplot-1.png" width="100%" />
+<img src="man/figures/README-customplot-1.png" alt="Custom boxplot of Michelson-Morley experiment data with ggstatsplot-generated statistical subtitle" width="100%" />
 
 ## Summary of benefits of using `{ggstatsplot}`
 
