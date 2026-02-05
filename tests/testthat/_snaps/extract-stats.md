@@ -77,30 +77,6 @@
 
     Code
       p5 <- ggpiestats(mtcars, cyl)
-    Condition
-      Warning:
-      There was 1 warning in `mutate()`.
-      i In argument: `.label = case_when(...)`.
-      Caused by warning:
-      ! Calling `case_when()` with size 1 LHS inputs and size >1 RHS inputs was deprecated in dplyr 1.2.0.
-      i This `case_when()` statement can result in subtle silent bugs and is very inefficient.
-      
-        Please use a series of if statements instead:
-      
-        ```
-        # Previously
-        case_when(scalar_lhs1 ~ rhs1, scalar_lhs2 ~ rhs2, .default = default)
-      
-        # Now
-        if (scalar_lhs1) {
-          rhs1
-        } else if (scalar_lhs2) {
-          rhs2
-        } else {
-          default
-        }
-        ```
-    Code
       list(length(extract_stats(p5)), extract_subtitle(p5), extract_caption(p5))
     Output
       [[1]]
@@ -120,30 +96,6 @@
 
     Code
       p6 <- ggbarstats(mtcars, cyl, am)
-    Condition
-      Warning:
-      There was 1 warning in `mutate()`.
-      i In argument: `.label = case_when(...)`.
-      Caused by warning:
-      ! Calling `case_when()` with size 1 LHS inputs and size >1 RHS inputs was deprecated in dplyr 1.2.0.
-      i This `case_when()` statement can result in subtle silent bugs and is very inefficient.
-      
-        Please use a series of if statements instead:
-      
-        ```
-        # Previously
-        case_when(scalar_lhs1 ~ rhs1, scalar_lhs2 ~ rhs2, .default = default)
-      
-        # Now
-        if (scalar_lhs1) {
-          rhs1
-        } else if (scalar_lhs2) {
-          rhs2
-        } else {
-          default
-        }
-        ```
-    Code
       list(length(extract_stats(p6)), extract_subtitle(p6), extract_caption(p6))
     Output
       [[1]]
@@ -180,52 +132,6 @@
 
     Code
       p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
-    Condition
-      Warning:
-      There was 1 warning in `mutate()`.
-      i In argument: `.label = case_when(...)`.
-      Caused by warning:
-      ! Calling `case_when()` with size 1 LHS inputs and size >1 RHS inputs was deprecated in dplyr 1.2.0.
-      i This `case_when()` statement can result in subtle silent bugs and is very inefficient.
-      
-        Please use a series of if statements instead:
-      
-        ```
-        # Previously
-        case_when(scalar_lhs1 ~ rhs1, scalar_lhs2 ~ rhs2, .default = default)
-      
-        # Now
-        if (scalar_lhs1) {
-          rhs1
-        } else if (scalar_lhs2) {
-          rhs2
-        } else {
-          default
-        }
-        ```
-      Warning:
-      There was 1 warning in `mutate()`.
-      i In argument: `.label = case_when(...)`.
-      Caused by warning:
-      ! Calling `case_when()` with size 1 LHS inputs and size >1 RHS inputs was deprecated in dplyr 1.2.0.
-      i This `case_when()` statement can result in subtle silent bugs and is very inefficient.
-      
-        Please use a series of if statements instead:
-      
-        ```
-        # Previously
-        case_when(scalar_lhs1 ~ rhs1, scalar_lhs2 ~ rhs2, .default = default)
-      
-        # Now
-        if (scalar_lhs1) {
-          rhs1
-        } else if (scalar_lhs2) {
-          rhs2
-        } else {
-          default
-        }
-        ```
-    Code
       extracted_data <- extract_stats(p8)
       summary(extracted_data)
     Output

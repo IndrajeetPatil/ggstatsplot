@@ -120,32 +120,31 @@ test_that(
   {
     # Test the factory function directly to ensure coverage of factory internals
     # The factory creates a closure that needs to be executed to cover lines 75-79
-    
+
     # Create custom extractors using the factory
-    subtitle_extractor <- ggstatsplot:::.extract_stats_data("subtitle_data")
-    caption_extractor <- ggstatsplot:::.extract_stats_data("caption_data")
-    
+    subtitle_extractor <- ggstatsplot:::.extract_stats_data("subtitle_data") # nolint: undesirable_operator_linter.
+    caption_extractor <- ggstatsplot:::.extract_stats_data("caption_data") # nolint: undesirable_operator_linter.
+
     # Test subtitle extractor on non-grouped plot (cover if branch on line 78)
     set.seed(123)
     p_single <- ggbetweenstats(mtcars, am, mpg)
     result_single_sub <- subtitle_extractor(p_single)
     expect_type(result_single_sub, "language")
-    
-    # Test caption extractor on non-grouped plot  
+
+    # Test caption extractor on non-grouped plot
     result_single_cap <- caption_extractor(p_single)
     expect_type(result_single_cap, "language")
-    
+
     # Test subtitle extractor on grouped plot (cover else branch on line 78)
     set.seed(123)
     p_grouped <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
     result_grouped_sub <- subtitle_extractor(p_grouped)
     expect_type(result_grouped_sub, "list")
     expect_length(result_grouped_sub, 2L)
-    
+
     # Test caption extractor on grouped plot
     result_grouped_cap <- caption_extractor(p_grouped)
     expect_type(result_grouped_cap, "list")
     expect_length(result_grouped_cap, 2L)
   }
 )
-
