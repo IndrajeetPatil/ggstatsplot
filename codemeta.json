@@ -324,7 +324,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 1.1.4",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -350,7 +350,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
-      "version": ">= 4.0.1",
+      "version": ">= 4.0.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -415,7 +415,7 @@
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.4.3",
+      "version": ">= 1.4.6",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -441,7 +441,7 @@
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
-      "version": ">= 1.6.0",
+      "version": ">= 1.7.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -480,7 +480,7 @@
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
-      "version": ">= 0.15.3",
+      "version": ">= 0.16.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -493,7 +493,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.2.0",
+      "version": ">= 1.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -506,7 +506,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
-      "version": ">= 1.1.6",
+      "version": ">= 1.1.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -519,20 +519,20 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.7.1",
+      "version": ">= 1.7.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
     "20": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
-      "version": ">= 1.3.1",
+      "version": ">= 1.3.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -548,7 +548,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "43717.024KB",
+  "fileSize": "13467.802KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
