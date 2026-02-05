@@ -37,7 +37,7 @@ Status | Usage | Miscellaneous
 [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)
 
-## Raison d'être <img src="man/figures/logo.png" align="right" width="360" />
+## Raison d'être <img src="man/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360" />
 
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
@@ -153,7 +153,7 @@ For **all** statistical tests reported in the plots, the default template abides
 by the gold standard for statistical reporting. For example, here are results
 from Yuen's test for trimmed means (robust *t*-test):
 
-<img src="man/figures/stats_reporting_format.png" align="center" />
+<img src="man/figures/stats_reporting_format.png" alt="Example of statistical reporting format showing Yuen's test results with test statistic, degrees of freedom, p-value, effect size, and confidence interval" align="center" />
 
 ## Summary of statistical tests and effect sizes
 
@@ -171,7 +171,8 @@ This function creates either a violin plot, a box plot, or a mix of two for
 statistical tests in the subtitle. The simplest function call looks like this-
 
 ```{r}
-#| label = "ggbetweenstats1"
+#| label = "ggbetweenstats1",
+#| fig.alt = "Violin plot with boxplot overlay showing distribution of sepal length across three Iris species with statistical test results"
 set.seed(123)
 
 ggbetweenstats(
@@ -200,7 +201,8 @@ operation across a **single** grouping variable:
 ```{r}
 #| label = "ggbetweenstats2",
 #| fig.height = 8,
-#| fig.width = 12
+#| fig.width = 12,
+#| fig.alt = "Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations"
 set.seed(123)
 
 grouped_ggbetweenstats(
@@ -235,7 +237,8 @@ data are paired with each other.
 ```{r}
 #| label = "ggwithinstats1",
 #| fig.width = 8,
-#| fig.height = 6
+#| fig.height = 6,
+#| fig.alt = "Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results"
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run ANOVA
@@ -265,7 +268,8 @@ will see an example with only repeated measurements-
 ```{r}
 #| label = "ggwithinstats2",
 #| fig.height = 6,
-#| fig.width = 14
+#| fig.width = 14,
+#| fig.alt = "Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America"
 set.seed(123)
 
 grouped_ggwithinstats(
@@ -293,7 +297,8 @@ significantly different from a specified value with a one-sample test,
 
 ```{r}
 #| label = "gghistostats1",
-#| fig.width = 8
+#| fig.width = 8,
+#| fig.alt = "Histogram showing distribution of time spent awake in mammals with one-sample test results"
 set.seed(123)
 
 gghistostats(
@@ -320,7 +325,8 @@ easy to repeat the same operation across a **single** grouping variable:
 ```{r}
 #| label = "gghistostats2",
 #| fig.height = 6,
-#| fig.width = 12
+#| fig.width = 12,
+#| fig.alt = "Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests"
 set.seed(123)
 
 grouped_gghistostats(
@@ -351,7 +357,8 @@ numeric variable also has a label.
 ```{r}
 #| label = "ggdotplotstats1",
 #| fig.height = 10,
-#| fig.width = 8
+#| fig.width = 8,
+#| fig.alt = "Dot plot showing life expectancy distribution across Asian countries with robust one-sample test results"
 set.seed(123)
 
 ggdotplotstats(
@@ -381,6 +388,7 @@ of a single grouping variable.
 #| label = "ggdotplotstats2",
 #| fig.height = 6,
 #| fig.width = 12,
+#| fig.alt = "Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles"
 set.seed(123)
 
 grouped_ggdotplotstats(
@@ -412,6 +420,7 @@ axes and results from statistical tests in the subtitle:
 #| label = "ggscatterstats1",
 #| fig.height = 6,
 #| warning = FALSE,
+#| fig.alt = "Scatterplot with marginal distributions showing relationship between REM sleep and time awake in mammals with correlation results"
 ggscatterstats(
   data  = ggplot2::msleep,
   x     = sleep_rem,
@@ -439,6 +448,7 @@ easy to repeat the same operation across a **single** grouping variable.
 #| fig.height = 8,
 #| fig.width = 14,
 #| warning = FALSE,
+#| fig.alt = "Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations"
 set.seed(123)
 
 grouped_ggscatterstats(
@@ -473,7 +483,8 @@ correlation matrix.
 
 ```{r}
 #| label = "ggcorrmat1",
-#| warning = FALSE
+#| warning = FALSE,
+#| fig.alt = "Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators"
 set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
@@ -500,7 +511,8 @@ easy to repeat the same operation across a **single** grouping variable:
 #| label = "ggcorrmat2",
 #| fig.height = 6,
 #| fig.width = 10,
-#| warning = FALSE
+#| warning = FALSE,
+#| fig.alt = "Grouped correlation matrices for Action and Comedy movie genres showing robust correlations"
 set.seed(123)
 
 grouped_ggcorrmat(
@@ -532,7 +544,8 @@ To study an interaction between two categorical variables:
 ```{r}
 #| label = "ggpiestats1",
 #| fig.height = 4,
-#| fig.width = 8
+#| fig.width = 8,
+#| fig.alt = "Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis"
 set.seed(123)
 
 ggpiestats(
@@ -563,7 +576,8 @@ for different levels of a single nominal variable:
 ```{r}
 #| label = "ggpiestats2",
 #| fig.height = 6,
-#| fig.width = 10
+#| fig.width = 10,
+#| fig.alt = "Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles"
 set.seed(123)
 
 grouped_ggpiestats(
@@ -593,7 +607,8 @@ bar.
 ```{r}
 #| label = "ggbarstats1",
 #| fig.height = 8,
-#| fig.width = 10
+#| fig.width = 10,
+#| fig.alt = "Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results"
 set.seed(123)
 library(ggplot2)
 
@@ -623,7 +638,8 @@ And, needless to say, there is also a `grouped_` variant of this function-
 ```{r}
 #| label = "ggbarstats2",
 #| fig.height = 6,
-#| fig.width = 12
+#| fig.width = 12,
+#| fig.alt = "Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations"
 ## setup
 set.seed(123)
 
@@ -654,7 +670,8 @@ summary indices are also extracted from `performance::model_performance()`.
 ```{r}
 #| label = "ggcoefstats1",
 #| fig.height = 5,
-#| fig.width = 6
+#| fig.width = 6,
+#| fig.alt = "Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals"
 set.seed(123)
 
 ## model
@@ -713,7 +730,8 @@ For example, in the following chunk, we will create our own plot using
 ```{r}
 #| label = "customplot",
 #| fig.height = 5,
-#| fig.width = 6
+#| fig.width = 6,
+#| fig.alt = "Custom boxplot of Michelson-Morley experiment data with ggstatsplot-generated statistical subtitle"
 ## loading the needed libraries
 set.seed(123)
 library(ggplot2)
