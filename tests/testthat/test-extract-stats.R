@@ -119,7 +119,6 @@ test_that(
   "checking .extract_stats_data function factory",
   {
     # Test the factory function directly to ensure coverage of factory internals
-    # The factory creates a closure that needs to be executed to cover lines 75-79
 
     # Create custom extractors using the factory
     subtitle_extractor <- ggstatsplot:::.extract_stats_data("subtitle_data") # nolint: undesirable_operator_linter.
