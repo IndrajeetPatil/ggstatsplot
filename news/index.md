@@ -2,6 +2,8 @@
 
 ## ggstatsplot 0.13.5
 
+CRAN release: 2026-02-06
+
 ### MINOR CHANGES
 
 - Maintenance release to adapt to API changes in
