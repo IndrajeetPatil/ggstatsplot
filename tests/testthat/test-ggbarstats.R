@@ -260,5 +260,46 @@ test_that(
         proportion.test = FALSE
       )
     )
+
+    # Issue #868: groups with different observed x-levels produce double legend
+    dt_issue <- data.frame(
+      school = factor(
+        c(rep("School 1", 27L), rep("School 2", 153L)),
+        levels = c("School 1", "School 2")
+      ),
+      subject = factor(
+        c(
+          rep("Chemistry", 27L),
+          rep("Biology", 50L), rep("Chemistry", 51L), rep("Physics", 52L)
+        ),
+        levels = c("Biology", "Chemistry", "Physics")
+      ),
+      GenderIdentity = factor(
+        c(
+          rep("Man", 10L), rep("Woman", 10L), rep("Non-binary", 2L),
+          rep("Not listed", 2L), rep(NA, 3L),
+          rep("Man", 10L), rep("Woman", 10L), rep("Non-binary", 10L),
+          rep("Prefer not to answer", 10L), rep(NA, 10L),
+          rep("Man", 10L), rep("Woman", 10L), rep("Non-binary", 10L),
+          rep("Prefer not to answer", 10L), rep(NA, 11L),
+          rep("Man", 10L), rep("Woman", 10L), rep("Non-binary", 10L),
+          rep("Not listed", 3L), rep("Prefer not to answer", 10L), rep(NA, 9L)
+        ),
+        levels = c("Man", "Woman", "Non-binary", "Not listed", "Prefer not to answer")
+      )
+    )
+
+    set.seed(123)
+    expect_doppelganger(
+      title = "groups with different x-levels share single legend",
+      fig = grouped_ggbarstats(
+        data = dt_issue,
+        x = GenderIdentity,
+        y = subject,
+        grouping.var = school,
+        results.subtitle = FALSE,
+        proportion.test = FALSE
+      )
+    )
   }
 )

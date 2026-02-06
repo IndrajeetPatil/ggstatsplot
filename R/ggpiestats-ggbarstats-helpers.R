@@ -9,7 +9,13 @@ descriptive_data <- function(
   digits.perc = 1L,
   ...
 ) {
-  .cat_counter(data, {{ x }}, {{ y }}) %>%
+  # retain all original factor levels so grouped plots share a single legend;
+  # without this, patchwork::guides("collect") can't merge legends across
+
+  # grouped sub-plots when groups have different observed levels (#868)
+  all_lvls <- levels(dplyr::pull(data, {{ x }}))
+
+  result <- .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = if (grepl("perc|prop", label.content)) {
         paste0(round(perc, digits.perc), "%")
@@ -17,9 +23,20 @@ descriptive_data <- function(
         .prettyNum(counts)
       } else {
         paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
-      }, # reorder the category factor levels to order the legend
-      {{ x }} := factor({{ x }}, unique({{ x }}))
+      },
+      {{ x }} := factor({{ x }}, union(rev(all_lvls), unique({{ x }})))
     )
+
+  # Inject zero-count rows for unobserved factor levels so that every layer
+  # (geom_bar / geom_col) can draw a proper legend key glyph for every level.
+  # Without this, patchwork sees structurally different guide grobs and
+  # refuses to collect them into a single shared legend (#868).
+  result <- tidyr::complete(
+    result, {{ x }}, {{ y }},
+    fill = list(counts = 0L, perc = 0, .label = NA_character_)
+  )
+
+  result
 }
 
 

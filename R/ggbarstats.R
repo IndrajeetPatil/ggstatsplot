@@ -136,14 +136,16 @@ ggbarstats <- function(
     ) +
     exec(
       geom_label,
-      mapping  = aes(label = .label, group = {{ x }}),
-      position = position_fill(vjust = 0.5),
+      mapping     = aes(label = .label, group = {{ x }}),
+      position    = position_fill(vjust = 0.5),
+      show.legend = FALSE,
+      na.rm       = TRUE,
       !!!label.args
     ) +
     ggtheme +
     theme(panel.grid.major.x = element_blank()) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "", drop = FALSE)
 
   # proportion test ------------------------------------------
 

@@ -77,9 +77,11 @@
 <polyline points='35.41,180.12 331.20,180.12 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='35.41,142.06 331.20,142.06 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='35.41,104.00 331.20,104.00 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
+<rect x='55.57' y='104.00' width='121.01' height='0.00' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77;' />
 <rect x='190.03' y='104.00' width='121.01' height='210.33' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77;' />
 <rect x='55.57' y='104.00' width='121.01' height='380.59' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #D95F02;' />
 <rect x='190.03' y='314.33' width='121.01' height='130.20' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #D95F02;' />
+<rect x='55.57' y='484.59' width='121.01' height='0.00' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #7570B3;' />
 <rect x='190.03' y='444.53' width='121.01' height='40.06' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #7570B3;' />
 <polygon points='239.32,215.61 261.74,215.61 261.67,215.60 261.96,215.59 262.24,215.53 262.51,215.43 262.76,215.29 262.99,215.10 263.18,214.89 263.33,214.64 263.45,214.38 263.52,214.09 263.54,213.81 263.54,213.81 263.54,204.52 263.54,204.52 263.52,204.23 263.45,203.95 263.33,203.69 263.18,203.44 262.99,203.23 262.76,203.04 262.51,202.90 262.24,202.79 261.96,202.74 261.74,202.72 239.32,202.72 239.54,202.74 239.25,202.72 238.96,202.76 238.68,202.84 238.42,202.96 238.18,203.13 237.98,203.33 237.80,203.56 237.67,203.82 237.58,204.09 237.53,204.38 237.52,204.52 237.52,213.81 237.53,213.66 237.53,213.95 237.58,214.24 237.67,214.51 237.80,214.77 237.98,215.00 238.18,215.20 238.42,215.36 238.68,215.49 238.96,215.57 239.25,215.60 ' style='stroke-width: 0.48; fill: #FFFFFF;' />
 <text x='250.53' y='212.61' text-anchor='middle' style='font-size: 10.00px; font-family: sans;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>55%</text>

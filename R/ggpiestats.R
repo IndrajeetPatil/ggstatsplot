@@ -181,6 +181,8 @@ ggpiestats <- function(
         min.segment.length = 0,
         fill               = "white",
         alpha              = 1.0,
+        show.legend        = FALSE,
+        na.rm              = TRUE,
         !!!label.args
       )
   }))
@@ -192,7 +194,7 @@ ggpiestats <- function(
   plotPie <- plotPie +
     coord_polar(theta = "y") +
     scale_y_continuous(breaks = NULL) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "", drop = FALSE) +
     ggtheme +
     theme(panel.grid = element_blank(), axis.ticks = element_blank()) +
     guides(fill = guide_legend(override.aes = list(color = NA)))

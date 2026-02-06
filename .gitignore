@@ -56,6 +56,8 @@ Temporary Items
 .claude
 .claude/settings.local.json
 .httr-oauth
+.vscode
+Rplots.pdf
 /Meta/
 /doc/
 CRAN-SUBMISSION
