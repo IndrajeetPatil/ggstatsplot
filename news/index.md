@@ -1,5 +1,13 @@
 # Changelog
 
+## ggstatsplot 0.13.5
+
+### MINOR CHANGES
+
+- Maintenance release to adapt to API changes in
+  [dplyr](https://dplyr.tidyverse.org) (v1.2.0) and
+  [purrr](https://purrr.tidyverse.org/) (v1.2.1).
+
 ## ggstatsplot 0.13.4
 
 CRAN release: 2025-12-09

@@ -33,7 +33,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,7 +120,7 @@
 </table>
 </div>
 <div class="section level2">
-<h2 id="raison-dêtre-">Raison d’être <img src="reference/figures/logo.png" align="right" width="360"><a class="anchor" aria-label="anchor" href="#raison-d%C3%AAtre-"></a>
+<h2 id="raison-dêtre-">Raison d’être <img src="reference/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360"><a class="anchor" aria-label="anchor" href="#raison-d%C3%AAtre-"></a>
 </h2>
 <blockquote>
 <p>“What is to be sought in designs for the display of information is the clear portrayal of complexity. Not the complication of the simple; rather … the revelation of the complex.” - Edward R. Tufte</p>
@@ -396,7 +396,7 @@
 <h2 id="statistical-reporting">Statistical reporting<a class="anchor" aria-label="anchor" href="#statistical-reporting"></a>
 </h2>
 <p>For <strong>all</strong> statistical tests reported in the plots, the default template abides by the gold standard for statistical reporting. For example, here are results from Yuen’s test for trimmed means (robust <em>t</em>-test):</p>
-<p><img src="reference/figures/stats_reporting_format.png" align="center"></p>
+<p><img src="reference/figures/stats_reporting_format.png" alt="Example of statistical reporting format showing Yuen's test results with test statistic, degrees of freedom, p-value, effect size, and confidence interval" align="center"></p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-statistical-tests-and-effect-sizes">Summary of statistical tests and effect sizes<a class="anchor" aria-label="anchor" href="#summary-of-statistical-tests-and-effect-sizes"></a>
@@ -420,7 +420,7 @@
 <span>  y     <span class="op">=</span> <span class="va">Sepal.Length</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Distribution of sepal length across Iris species"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggbetweenstats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggbetweenstats1-1.png" alt="Violin plot with boxplot overlay showing distribution of sepal length across three Iris species with statistical test results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>A number of other arguments can be specified to make this plot even more informative or change some of the default options. Additionally, there is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
@@ -439,7 +439,7 @@
 <span>  plotgrid.args    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggbetweenstats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggbetweenstats2-1.png" alt="Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
 </div>
@@ -459,7 +459,7 @@
 <span>  y       <span class="op">=</span> <span class="va">Taste</span>,</span>
 <span>  title   <span class="op">=</span> <span class="st">"Wine tasting"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggwithinstats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the <code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
@@ -475,7 +475,7 @@
 <span>  ylab            <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>,</span>
 <span>  grouping.var    <span class="op">=</span> <span class="va">region</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggwithinstats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggwithinstats2-1.png" alt="Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
 </div>
@@ -494,7 +494,7 @@
 <span>  test.value <span class="op">=</span> <span class="fl">12</span>,</span>
 <span>  binwidth   <span class="op">=</span> <span class="fl">1</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-gghistostats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-gghistostats1-1.png" alt="Histogram showing distribution of time spent awake in mammals with one-sample test results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
@@ -513,7 +513,7 @@
 <span>  plotgrid.args     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  annotation.args   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-gghistostats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-gghistostats2-1.png" alt="Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html</a></p>
 </div>
@@ -534,7 +534,7 @@
 <span>  title      <span class="op">=</span> <span class="st">"Distribution of life expectancy in Asian continent"</span>,</span>
 <span>  xlab       <span class="op">=</span> <span class="st">"Life expectancy"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggdotplotstats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggdotplotstats1-1.png" alt="Dot plot showing life expectancy distribution across Asian countries with robust one-sample test results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅descriptives (centrality measure + uncertainty + sample size)<br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>As with the rest of the functions in this package, there is also a <code>grouped_</code> variant of this function to facilitate looping the same operation for all levels of a single grouping variable.</p>
@@ -553,7 +553,7 @@
 <span>  point.args      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">5</span>, shape <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,</span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Fuel economy data"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggdotplotstats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggdotplotstats2-1.png" alt="Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html</a></p>
 </div>
@@ -571,7 +571,7 @@
 <span>  ylab  <span class="op">=</span> <span class="st">"Amount of time spent awake (in hours)"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Understanding mammalian sleep"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggscatterstats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggscatterstats1-1.png" alt="Scatterplot with marginal distributions showing relationship between REM sleep and time awake in mammals with correlation results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ raw data + distributions <br> ✅ marginal distributions <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable.</p>
@@ -591,7 +591,7 @@
 <span>  plotgrid.args    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie length and IMDB ratings"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggscatterstats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggscatterstats2-1.png" alt="Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
 </div>
@@ -610,7 +610,7 @@
 <span>  title    <span class="op">=</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggcorrmat1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggcorrmat1-1.png" alt="Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ effect size + significance<br> ✅ careful handling of <code>NA</code>s</p>
 <p>If there are <code>NA</code>s present in the selected variables, the legend will display minimum, median, and maximum number of pairs used for correlation tests.</p>
@@ -625,7 +625,7 @@
 <span>  grouping.var <span class="op">=</span> <span class="va">genre</span>,</span>
 <span>  matrix.type  <span class="op">=</span> <span class="st">"lower"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggcorrmat2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggcorrmat2-1.png" alt="Grouped correlation matrices for Action and Comedy movie genres showing robust correlations" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>
 </div>
@@ -647,7 +647,7 @@
 <span>  title        <span class="op">=</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Transmission"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggpiestats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggpiestats1-1.png" alt="Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
@@ -662,7 +662,7 @@
 <span>  package      <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
 <span>  palette      <span class="op">=</span> <span class="st">"default_ucscgb"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggpiestats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggpiestats2-1.png" alt="Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
 </div>
@@ -686,7 +686,7 @@
 <span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_x_discrete</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html" class="external-link">guide_axis</a></span><span class="op">(</span>n.dodge <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  palette          <span class="op">=</span> <span class="st">"Set2"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggbarstats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅ effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian estimation <br></p>
 <p>And, needless to say, there is also a <code>grouped_</code> variant of this function-</p>
@@ -703,7 +703,7 @@
 <span>  palette      <span class="op">=</span> <span class="st">"Darjeeling2"</span> <span class="co"># ,</span></span>
 <span>  <span class="co"># ggtheme      = ggthemes::theme_tufte(base_size = 12)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggbarstats2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html</a></p>
 <p>For more, also read the following vignette: <a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html</a></p>
 </div>
@@ -719,7 +719,7 @@
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-ggcoefstats1-1.png" width="100%"></p>
+<p><img src="reference/figures/README-ggcoefstats1-1.png" alt="Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
 <p>✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary (AIC and BIC) <br></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html" class="uri">https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html</a></p>
@@ -838,7 +838,7 @@
 <span>    x <span class="op">=</span> <span class="st">"Speed of light"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Experiment number"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-customplot-1.png" width="100%"></p>
+<p><img src="reference/figures/README-customplot-1.png" alt="Custom boxplot of Michelson-Morley experiment data with ggstatsplot-generated statistical subtitle" width="100%"></p>
 </div>
 </div>
 <div class="section level2">

@@ -3,7 +3,7 @@
 ## Additional vignettes
 
 Due to size constraints, all available vignettes are only available on
-the website for this package:  
+the website for this package:\
 <https://indrajeetpatil.github.io/ggstatsplot/articles/>
 
 ### Vignettes for individual functions

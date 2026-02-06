@@ -172,9 +172,7 @@ at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/). In the
 spirit of honest and open science, requests and suggestions for fixes,
 feature updates, as well as general questions and concerns are
 encouraged via direct interaction with contributors and developers by
-filing an [issue](https://github.com/IndrajeetPatil/ggstatsplot/issues)
-while respecting [*Contribution
-Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
+filing an [issue](https://github.com/IndrajeetPatil/ggstatsplot/issues).
 
 ## Acknowledgements
 

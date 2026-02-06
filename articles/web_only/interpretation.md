@@ -115,16 +115,16 @@ inference easier to interpret, communicate, and compute:
 ## References
 
 - Jeffreys, H. (1961). *Theory of Probability* (3rd ed.). Oxford
-  University Press.  
+  University Press.\
 - Kass, R. E., & Raftery, A. E. (1995). Bayes Factors. *Journal of the
   American Statistical Association*, 90(430), 773–795.
-  <https://doi.org/10.2307/2291091>  
+  <https://doi.org/10.2307/2291091>\
 - Lee, M. D., & Wagenmakers, E.-J. (2014). *Bayesian Cognitive Modeling:
-  A Practical Course*. Cambridge University Press.  
+  A Practical Course*. Cambridge University Press.\
 - Morey, R. D., & Wagenmakers, E.-J. (2014). Simple Relation Between
   Bayesian Order-Restricted and Point-Null Hypothesis Tests. *Statistics
   & Probability Letters*, 92, 121–124.
-  <https://doi.org/10.1016/j.spl.2014.05.010>  
+  <https://doi.org/10.1016/j.spl.2014.05.010>\
 - van Doorn, J., van den Bergh, D., Bohm, U., et al. (2021). The JASP
   Guidelines for Conducting and Reporting a Bayesian Analysis.
   *Psychonomic Bulletin & Review*, 28(3), 813–826.

@@ -5,7 +5,7 @@
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
-## Raison d’être ![](reference/figures/logo.png)
+## Raison d’être ![ggstatsplot package logo](reference/figures/logo.png)
 
 > “What is to be sought in designs for the display of information is the
 > clear portrayal of complexity. Not the complication of the simple;
@@ -145,7 +145,9 @@ template abides by the gold standard for statistical reporting. For
 example, here are results from Yuen’s test for trimmed means (robust
 *t*-test):
 
-![](reference/figures/stats_reporting_format.png)
+![Example of statistical reporting format showing Yuen's test results
+with test statistic, degrees of freedom, p-value, effect size, and
+confidence interval](reference/figures/stats_reporting_format.png)
 
 ## Summary of statistical tests and effect sizes
 
@@ -177,17 +179,19 @@ ggbetweenstats(
 )
 ```
 
-![](reference/figures/README-ggbetweenstats1-1.png)
+![Violin plot with boxplot overlay showing distribution of sepal length
+across three Iris species with statistical test
+results](reference/figures/README-ggbetweenstats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ raw data + distributions  
-✅ descriptive statistics  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ pairwise comparisons  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅ raw data + distributions\
+✅ descriptive statistics\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ pairwise comparisons\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. Additionally, there
@@ -212,7 +216,9 @@ grouped_ggbetweenstats(
 )
 ```
 
-![](reference/figures/README-ggbetweenstats2-1.png)
+![Grouped violin plots comparing movie length by MPAA rating for Action
+and Comedy genres with statistical
+annotations](reference/figures/README-ggbetweenstats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -247,17 +253,19 @@ ggwithinstats(
 )
 ```
 
-![](reference/figures/README-ggwithinstats1-1.png)
+![Within-subjects violin plot showing wine taste ratings by wine type
+with paired data paths and statistical
+results](reference/figures/README-ggwithinstats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ raw data + distributions  
-✅ descriptive statistics  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ pairwise comparisons  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅ raw data + distributions\
+✅ descriptive statistics\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ pairwise comparisons\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 As with the
 [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md),
@@ -280,7 +288,9 @@ grouped_ggwithinstats(
 )
 ```
 
-![](reference/figures/README-ggwithinstats2-1.png)
+![Grouped within-subjects violin plots showing desire to kill arthropods
+by condition for Europe and North
+America](reference/figures/README-ggwithinstats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -311,16 +321,17 @@ gghistostats(
 )
 ```
 
-![](reference/figures/README-gghistostats1-1.png)
+![Histogram showing distribution of time spent awake in mammals with
+one-sample test results](reference/figures/README-gghistostats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ counts + proportion for bins  
-✅ descriptive statistics  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅ counts + proportion for bins\
+✅ descriptive statistics\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -343,7 +354,9 @@ grouped_gghistostats(
 )
 ```
 
-![](reference/figures/README-gghistostats2-1.png)
+![Grouped histograms showing movie budget distributions for Action and
+Comedy genres with statistical
+tests](reference/figures/README-gghistostats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -374,15 +387,17 @@ ggdotplotstats(
 )
 ```
 
-![](reference/figures/README-ggdotplotstats1-1.png)
+![Dot plot showing life expectancy distribution across Asian countries
+with robust one-sample test
+results](reference/figures/README-ggdotplotstats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅descriptives (centrality measure + uncertainty + sample size)  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅descriptives (centrality measure + uncertainty + sample size)\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 As with the rest of the functions in this package, there is also a
 `grouped_` variant of this function to facilitate looping the same
@@ -406,7 +421,9 @@ grouped_ggdotplotstats(
 )
 ```
 
-![](reference/figures/README-ggdotplotstats2-1.png)
+![Grouped dot plots showing city miles per gallon by car manufacturer
+for 4 and 6 cylinder
+vehicles](reference/figures/README-ggdotplotstats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -433,16 +450,18 @@ ggscatterstats(
 )
 ```
 
-![](reference/figures/README-ggscatterstats1-1.png)
+![Scatterplot with marginal distributions showing relationship between
+REM sleep and time awake in mammals with correlation
+results](reference/figures/README-ggscatterstats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ raw data + distributions  
-✅ marginal distributions  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅ raw data + distributions\
+✅ marginal distributions\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -466,7 +485,9 @@ grouped_ggscatterstats(
 )
 ```
 
-![](reference/figures/README-ggscatterstats2-1.png)
+![Grouped scatterplots showing IMDB rating vs movie length for Action
+and Comedy genres with correlation
+annotations](reference/figures/README-ggscatterstats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -498,11 +519,13 @@ ggcorrmat(
 )
 ```
 
-![](reference/figures/README-ggcorrmat1-1.png)
+![Correlation matrix heatmap for mammals sleep dataset showing pairwise
+correlations with significance
+indicators](reference/figures/README-ggcorrmat1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ effect size + significance  
+✅ effect size + significance\
 ✅ careful handling of `NA`s
 
 If there are `NA`s present in the selected variables, the legend will
@@ -525,7 +548,8 @@ grouped_ggcorrmat(
 )
 ```
 
-![](reference/figures/README-ggcorrmat2-1.png)
+![Grouped correlation matrices for Action and Comedy movie genres
+showing robust correlations](reference/figures/README-ggcorrmat2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -562,16 +586,18 @@ ggpiestats(
 )
 ```
 
-![](reference/figures/README-ggpiestats1-1.png)
+![Pie charts showing transmission type distribution across cylinder
+groups in mtcars data with contingency table
+analysis](reference/figures/README-ggpiestats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ descriptives (frequency + %s)  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ Goodness-of-fit tests  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅ descriptives (frequency + %s)\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ Goodness-of-fit tests\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -592,7 +618,9 @@ grouped_ggpiestats(
 )
 ```
 
-![](reference/figures/README-ggpiestats2-1.png)
+![Grouped pie charts showing cylinder distribution for automatic and
+manual transmission
+vehicles](reference/figures/README-ggpiestats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -629,16 +657,18 @@ ggbarstats(
 )
 ```
 
-![](reference/figures/README-ggbarstats1-1.png)
+![Stacked bar chart showing MPAA ratings distribution by movie genre
+with chi-squared test
+results](reference/figures/README-ggbarstats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ descriptives (frequency + %s)  
-✅ inferential statistics  
-✅ effect size + CIs  
-✅ Goodness-of-fit tests  
-✅ Bayesian hypothesis-testing  
-✅ Bayesian estimation  
+✅ descriptives (frequency + %s)\
+✅ inferential statistics\
+✅ effect size + CIs\
+✅ Goodness-of-fit tests\
+✅ Bayesian hypothesis-testing\
+✅ Bayesian estimation\
 
 And, needless to say, there is also a `grouped_` variant of this
 function-
@@ -659,7 +689,9 @@ grouped_ggbarstats(
 )
 ```
 
-![](reference/figures/README-ggbarstats2-1.png)
+![Grouped bar charts showing transmission and cylinder association for
+straight and V-shaped engine
+configurations](reference/figures/README-ggbarstats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -690,13 +722,14 @@ mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 ggcoefstats(mod)
 ```
 
-![](reference/figures/README-ggcoefstats1-1.png)
+![Dot-and-whisker plot showing regression coefficients for mpg model
+with confidence intervals](reference/figures/README-ggcoefstats1-1.png)
 
-**Defaults** return  
+**Defaults** return\
 
-✅ inferential statistics  
-✅ estimate + CIs  
-✅ model summary (AIC and BIC)  
+✅ inferential statistics\
+✅ estimate + CIs\
+✅ model summary (AIC and BIC)\
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -839,7 +872,9 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
   )
 ```
 
-![](reference/figures/README-customplot-1.png)
+![Custom boxplot of Michelson-Morley experiment data with
+ggstatsplot-generated statistical
+subtitle](reference/figures/README-customplot-1.png)
 
 ## Summary of benefits of using `{ggstatsplot}`
 
@@ -869,16 +904,16 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
 
 This package is…
 
-❌ an alternative to learning [ggplot2](https://ggplot2.tidyverse.org)  
+❌ an alternative to learning [ggplot2](https://ggplot2.tidyverse.org)\
 ✅ (The better you know [ggplot2](https://ggplot2.tidyverse.org), the
 more you can modify the defaults to your liking.)
 
-❌ meant to be used in talks/presentations  
+❌ meant to be used in talks/presentations\
 ✅ (Default plots can be too complicated for effectively communicating
 results in time-constrained presentation settings, e.g. conference
 talks.)
 
-❌ the only game in town  
+❌ the only game in town\
 ✅ (GUI software alternatives: [JASP](https://jasp-stats.org/) and
 [jamovi](https://www.jamovi.org/)).
 
