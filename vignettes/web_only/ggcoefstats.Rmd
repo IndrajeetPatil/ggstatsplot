@@ -462,11 +462,14 @@ library(metaplus)
 # renaming to what the function expects
 df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
-ggcoefstats(
-  x = df,
-  meta.analytic.effect = TRUE,
-  meta.type = "bayes",
-  title = "Bayesian random-effects meta-analysis"
+# suppress Stan's divergent transitions warning (not under our control)
+suppressWarnings(
+  ggcoefstats(
+    x = df,
+    meta.analytic.effect = TRUE,
+    meta.type = "bayes",
+    title = "Bayesian random-effects meta-analysis"
+  )
 )
 ```
 
