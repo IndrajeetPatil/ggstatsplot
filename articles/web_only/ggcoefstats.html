@@ -92,7 +92,7 @@
       <img src="../../logo.png" class="logo" alt=""><h1>ggcoefstats</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/0.13.5/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/main/vignettes/web_only/ggcoefstats.Rmd" class="external-link"><code>vignettes/web_only/ggcoefstats.Rmd</code></a></small>
       <div class="d-none name"><code>ggcoefstats.Rmd</code></div>
     </div>
 
@@ -637,11 +637,14 @@ errors</li>
 <span><span class="co"># renaming to what the function expects</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="va">mag</span>, estimate <span class="op">=</span> <span class="va">yi</span>, std.error <span class="op">=</span> <span class="va">sei</span>, term <span class="op">=</span> <span class="va">study</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="va">df</span>,</span>
-<span>  meta.analytic.effect <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  meta.type <span class="op">=</span> <span class="st">"bayes"</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Bayesian random-effects meta-analysis"</span></span>
+<span><span class="co"># suppress Stan's divergent transitions warning (not under our control)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">df</span>,</span>
+<span>    meta.analytic.effect <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    meta.type <span class="op">=</span> <span class="st">"bayes"</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Bayesian random-effects meta-analysis"</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/meta3-1.png" class="r-plt" alt="" width="100%"></p>
 </div>

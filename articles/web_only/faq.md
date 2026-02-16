@@ -717,7 +717,7 @@ grouped_ggbetweenstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-3-1.png)
+![](faq_files/figure-html/faq3-1.png)
 
 ## 24. How to change size of text in the subtitle?
 
@@ -731,7 +731,7 @@ ggbetweenstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-4-1.png)
+![](faq_files/figure-html/faq4-1.png)
 
 ## 25. How to display pairwise comparison letter in a plot?
 
@@ -786,7 +786,7 @@ ggbetweenstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-5-1.png)
+![](faq_files/figure-html/faq5-1.png)
 
 ## 29. How to turn off scientific notation in expressions?
 
@@ -804,7 +804,7 @@ ggwithinstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-6-1.png)
+![](faq_files/figure-html/faq6-1.png)
 
 ``` r
 
@@ -818,7 +818,7 @@ ggwithinstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-6-2.png)
+![](faq_files/figure-html/faq6-2.png)
 
 ## 30. How to modify the whiskers in box plots from ggbetweenstats?
 
@@ -839,7 +839,7 @@ ggbetweenstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-7-1.png)
+![](faq_files/figure-html/faq7-1.png)
 
 ``` r
 
@@ -854,7 +854,7 @@ ggbetweenstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-7-2.png)
+![](faq_files/figure-html/faq7-2.png)
 
 ``` r
 
@@ -869,7 +869,7 @@ ggbetweenstats(
 )
 ```
 
-![](faq_files/figure-html/unnamed-chunk-7-3.png)
+![](faq_files/figure-html/faq7-3.png)
 
 ## Suggestions
 

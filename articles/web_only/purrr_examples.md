@@ -294,8 +294,16 @@ plot_list <- purrr::pmap(
       quote(rating > 8 & budget < 10)
     ),
     type = list("r", "np", "bf"),
-    xfill = list("#009E73", "#999999", "#0072B2"),
-    yfill = list("#CC79A7", "#F0E442", "#D55E00"),
+    xsidehistogram.args = list(
+      list(fill = "#009E73"),
+      list(fill = "#999999"),
+      list(fill = "#0072B2")
+    ),
+    ysidehistogram.args = list(
+      list(fill = "#CC79A7"),
+      list(fill = "#F0E442"),
+      list(fill = "#D55E00")
+    ),
     ggtheme = list(
       ggthemes::theme_tufte(),
       ggplot2::theme_classic(),
