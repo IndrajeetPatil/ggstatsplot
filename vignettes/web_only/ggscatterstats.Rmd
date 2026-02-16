@@ -83,8 +83,8 @@ ggscatterstats(
   label.var = title, ## variable to use for labeling data points
   label.expression = rating < 5 & budget > 100, ## expression for deciding which points to label
   point.label.args = list(alpha = 0.7, size = 4, color = "grey50"),
-  xfill = "#CC79A7", ## fill for marginals on the x-axis
-  yfill = "#009E73", ## fill for marginals on the y-axis
+  xsidehistogram.args = list(fill = "#CC79A7"), ## fill for marginals on the x-axis
+  ysidehistogram.args = list(fill = "#009E73"), ## fill for marginals on the y-axis
   title = "Relationship between movie budget and IMDB rating",
   caption = "Source: www.imdb.com"
 )
