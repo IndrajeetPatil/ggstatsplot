@@ -31,13 +31,14 @@ jobs:
 
       - name: Test coverage
         run: |
-          cov <- covr::package_coverage(
-            quiet = FALSE,
-            clean = FALSE,
-            install_path = file.path(normalizePath(Sys.getenv("RUNNER_TEMP"), winslash = "/"), "package")
-          )
-          print(cov)
-          covr::to_cobertura(cov)
+          options(crayon.enabled = TRUE)
+          cov <- covr::package_coverage()
+          pct <- covr::percent_coverage(cov)
+          cat(sprintf("\nCode coverage: %.2f%%\n", pct))
+          covr::codecov(coverage = cov, quiet = FALSE)
+          if (pct < 100) {
+            stop(sprintf("Code coverage is %.2f%%, which is below the required 100%%", pct))
+          }
         shell: Rscript {0}
 
       - uses: codecov/codecov-action@v5

@@ -204,11 +204,13 @@
   test <- sub("'", "\\'", test.description, fixed = TRUE)
 
   # which comparisons were displayed?
-  display <- case_when(
-    startsWith(pairwise.display, "s") ~ "significant",
-    startsWith(pairwise.display, "n") ~ "non-significant",
-    .default = "all"
-  )
+  display <- if (startsWith(pairwise.display, "s")) {
+    "significant"
+  } else if (startsWith(pairwise.display, "n")) {
+    "non-significant"
+  } else {
+    "all"
+  }
 
   parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
 }

@@ -114,7 +114,7 @@ ggscatterstats(df, x, y, type = "robust")
 To see why the statistical analysis failed, you can look at the error from the
 underlying function:
 
-```{r}
+```{r faq1}
 #| error = TRUE
 library(statsExpressions)
 df <- data.frame(x = 1, y = 2)
@@ -318,7 +318,7 @@ Behind the scenes, `{ggstatsplot}` uses `statsExpressions::pairwise_comparisons(
 
 You can use it to extract actual data frames used in `{ggstatsplot}` functions.
 
-```{r}
+```{r faq2}
 library(ggplot2)
 
 pairwise_comparisons(mtcars, cyl, wt)
@@ -569,7 +569,7 @@ shinyApp(ui, server)
 
 ## 23. How to change size of annotations for combined plot in `grouped_*` functions?
 
-```{r}
+```{r faq3}
 library(ggplot2)
 
 grouped_ggbetweenstats(
@@ -592,7 +592,7 @@ grouped_ggbetweenstats(
 
 ## 24. How to change size of text in the subtitle?
 
-```{r}
+```{r faq4}
 ggbetweenstats(
   data = iris,
   x = Species,
@@ -639,7 +639,7 @@ For MacOS, have a look at this [post](https://stackoverflow.com/questions/353608
 
 ## 28. How to modify the secondary Y-axis title?
 
-```{r}
+```{r faq5}
 ggbetweenstats(
   mtcars, cyl, wt,
   ggplot.component = list(
@@ -650,7 +650,7 @@ ggbetweenstats(
 
 ## 29. How to turn off scientific notation in expressions?
 
-```{r}
+```{r faq6}
 set.seed(123)
 library(ggstatsplot)
 library(WRS2)
@@ -677,7 +677,7 @@ By default, the whiskers in `ggbetweenstats()` box plots extend to 1.5 times the
 interquartile range (IQR) from the box, following the Tukey method. You can 
 customize this using the `coef` parameter in `boxplot.args`:
 
-```{r}
+```{r faq7}
 # Default whiskers (1.5 * IQR)
 ggbetweenstats(
   data = mtcars,
