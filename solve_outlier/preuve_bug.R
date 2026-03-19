@@ -1,17 +1,40 @@
 getwd()
+#install.packages("vdiffr")
+rm(list = ls())
 devtools::load_all()
 
 # Preuve du bug
 
-# Default graph (points are visible, so no duplicate outliers)
-ggbetweenstats(mtcars, cyl, mpg)
+# Graphique par défaut :
+# les points sont visibles, donc les outliers ne semblent pas "disparaître"
+ggbetweenstats(
+  data = mtcars,
+  x = cyl,
+  y = mpg
+)
 
-# The disappearance of dots and violins is forced : this plot should show outliers for the '8' cylinder group, but it doesn't.
+# On rend les points et les violons invisibles :
+# les outliers du boxplot devraient encore apparaître pour le groupe 8,
+# mais ils disparaissent.
 ggbetweenstats(
   data = mtcars,
   x = cyl,
   y = mpg,
   point.args = list(alpha = 0),
-  violin.args = list(width = 0, linewidth = 0, colour = NA),
+  violin.args = list(width = 0, linewidth = 0, colour = NA)
+)
+###### avec iris
+
+ggbetweenstats(
+  data = iris,
+  x = Species,
+  y = Sepal.Length
 )
 
+ggbetweenstats(
+  data = iris,
+  x = Species,
+  y = Sepal.Length,
+  point.args = list(alpha = 0),
+  violin.args = list(width = 0, linewidth = 0, colour = NA)
+)
