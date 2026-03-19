@@ -231,9 +231,17 @@ ggbetweenstats <- function(
 
   # plot -----------------------------------
 
+  # par défaut, pas d'outlier
+  outlier_shape_to_use <- NA
+
+  # Si l'utilisateur a caché les points (donc si 'alpha'= 0 dans point.args)
+  if (!is.null(point.args$alpha) && point.args$alpha == 0) {
+    outlier_shape_to_use <- 19  # 19 est le point standard par défaut dans ggplot2
+  }
+
   plot_comparison <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
+    exec(geom_boxplot, !!!boxplot.args, outlier.shape = outlier_shape_to_use) +
     exec(geom_violin, !!!violin.args)
 
   # centrality tagging -------------------------------------
