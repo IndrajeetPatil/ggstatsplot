@@ -49,12 +49,12 @@
 <polyline points='685.45,283.30 94.06,283.30 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
 <polyline points='94.06,283.30 94.06,283.30 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
 <polyline points='685.45,127.89 685.45,127.89 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
-<polyline points='685.45,127.89 139.16,127.89 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
-<polyline points='139.16,127.89 139.16,127.89 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
+<polyline points='685.45,127.89 139.13,127.89 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
+<polyline points='139.13,127.89 139.13,127.89 ' style='stroke-width: 0.97; stroke-linecap: butt;' />
 <line x1='94.06' y1='531.95' x2='94.06' y2='34.65' style='stroke-width: 2.13; stroke-dasharray: 11.38,11.38; stroke-linecap: butt;' />
-<line x1='113.76' y1='443.19' x2='108.88' y2='439.42' style='stroke-width: 1.07; stroke: #FAD510;' />
-<line x1='196.76' y1='278.65' x2='196.76' y2='282.29' style='stroke-width: 1.07; stroke: #CB2314;' />
-<line x1='276.38' y1='123.43' x2='276.38' y2='126.88' style='stroke-width: 1.07; stroke: #273046;' />
+<line x1='113.76' y1='443.19' x2='108.79' y2='439.36' style='stroke-width: 1.07; stroke: #FAD510;' />
+<line x1='196.76' y1='278.65' x2='196.76' y2='282.23' style='stroke-width: 1.07; stroke: #CB2314;' />
+<line x1='276.38' y1='123.43' x2='276.38' y2='126.83' style='stroke-width: 1.07; stroke: #273046;' />
 <polygon points='70.25,465.68 223.50,465.68 223.41,465.67 223.76,465.66 224.10,465.59 224.42,465.47 224.72,465.29 224.99,465.07 225.22,464.81 225.41,464.52 225.55,464.20 225.63,463.86 225.66,463.52 225.66,463.52 225.66,445.35 225.66,445.35 225.63,445.01 225.55,444.67 225.41,444.35 225.22,444.06 224.99,443.80 224.72,443.58 224.42,443.40 224.10,443.28 223.76,443.21 223.50,443.19 70.25,443.19 70.51,443.21 70.17,443.20 69.82,443.24 69.49,443.34 69.17,443.48 68.89,443.68 68.64,443.92 68.43,444.20 68.27,444.51 68.16,444.84 68.10,445.18 68.09,445.35 68.09,463.52 68.10,463.34 68.10,463.69 68.16,464.03 68.27,464.36 68.43,464.67 68.64,464.95 68.89,465.19 69.17,465.39 69.49,465.54 69.82,465.63 70.17,465.67 ' style='stroke-width: 0.53; stroke: #FAD510; fill: #FFFFFF;' />
 <text x='71.69' y='458.19' style='font-size: 8.54px; fill: #FAD510; font-family: sans;' textLength='5.53px' lengthAdjust='spacingAndGlyphs'>ω</text>
 <text x='77.22' y='460.84' style='font-size: 5.98px; fill: #FAD510; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>p</text>

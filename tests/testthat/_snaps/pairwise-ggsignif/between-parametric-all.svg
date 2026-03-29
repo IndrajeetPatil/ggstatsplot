@@ -115,10 +115,10 @@
 <circle cx='283.71' cy='476.56' r='5.66' style='stroke-width: 0.64; stroke: #8B0000; fill: #8B0000;' />
 <circle cx='445.18' cy='513.67' r='5.66' style='stroke-width: 0.64; stroke: #8B0000; fill: #8B0000;' />
 <circle cx='606.64' cy='505.99' r='5.66' style='stroke-width: 0.64; stroke: #8B0000; fill: #8B0000;' />
-<line x1='157.45' y1='510.10' x2='123.55' y2='510.10' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
-<line x1='318.92' y1='476.56' x2='285.01' y2='476.56' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
-<line x1='480.38' y1='513.67' x2='446.48' y2='513.67' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
-<line x1='641.17' y1='505.99' x2='607.95' y2='505.99' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='157.45' y1='510.10' x2='123.31' y2='510.10' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='318.92' y1='476.56' x2='284.78' y2='476.56' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='480.38' y1='513.67' x2='446.24' y2='513.67' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='641.17' y1='505.99' x2='607.71' y2='505.99' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
 <polygon points='159.61,517.96 214.05,517.96 213.96,517.96 214.31,517.95 214.65,517.88 214.97,517.76 215.27,517.58 215.54,517.36 215.77,517.10 215.96,516.81 216.10,516.49 216.18,516.15 216.21,515.80 216.21,515.80 216.21,504.40 216.21,504.40 216.18,504.05 216.10,503.72 215.96,503.40 215.77,503.10 215.54,502.84 215.27,502.62 214.97,502.45 214.65,502.33 214.31,502.26 214.05,502.24 159.61,502.24 159.87,502.26 159.52,502.24 159.18,502.28 158.84,502.38 158.53,502.53 158.24,502.73 157.99,502.97 157.78,503.25 157.62,503.55 157.51,503.88 157.46,504.23 157.45,504.40 157.45,515.80 157.46,515.63 157.46,515.98 157.51,516.32 157.62,516.65 157.78,516.96 157.99,517.24 158.24,517.48 158.53,517.68 158.84,517.82 159.18,517.92 159.52,517.96 ' style='stroke-width: 0.53; fill: #FFFFFF;' />
 <text x='161.05' y='512.62' style='font-size: 8.54px; font-family: sans;' textLength='4.67px' lengthAdjust='spacingAndGlyphs'>μ</text>
 <polyline points='161.05,507.60 163.38,505.84 165.72,507.60 ' style='stroke-width: 0.75;' />
@@ -155,75 +155,75 @@
 <text x='661.06' y='510.09' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>n</text>
 <text x='666.36' y='508.51' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='674.96' y='508.51' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.146</text>
-<text x='171.01' y='127.08' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='171.01' y='126.86' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='176.44' y='128.66' style='font-size: 5.98px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='188.73' y='128.66' style='font-size: 5.98px; font-family: sans;' textLength='4.64px' lengthAdjust='spacingAndGlyphs'>−</text>
 <text x='193.37' y='128.66' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='196.69' y='128.66' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>d</text>
 <text x='200.02' y='128.66' style='font-size: 5.98px; font-family: sans;' textLength='1.33px' lengthAdjust='spacingAndGlyphs'>j</text>
 <text x='201.34' y='128.66' style='font-size: 5.98px; font-family: sans;' textLength='1.66px' lengthAdjust='spacingAndGlyphs'>.</text>
-<text x='204.98' y='127.08' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
-<text x='213.58' y='127.08' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
+<text x='204.98' y='126.86' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text x='213.58' y='126.86' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
 <line x1='122.24' y1='138.78' x2='122.24' y2='135.24' style='stroke-width: 1.07;' />
 <line x1='122.24' y1='135.24' x2='283.71' y2='135.24' style='stroke-width: 1.07;' />
 <line x1='283.71' y1='135.24' x2='283.71' y2='138.78' style='stroke-width: 1.07;' />
-<text x='251.74' y='105.89' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='251.74' y='105.66' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='257.18' y='107.47' style='font-size: 5.98px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='269.46' y='107.47' style='font-size: 5.98px; font-family: sans;' textLength='4.64px' lengthAdjust='spacingAndGlyphs'>−</text>
 <text x='274.10' y='107.47' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='277.43' y='107.47' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>d</text>
 <text x='280.75' y='107.47' style='font-size: 5.98px; font-family: sans;' textLength='1.33px' lengthAdjust='spacingAndGlyphs'>j</text>
 <text x='282.08' y='107.47' style='font-size: 5.98px; font-family: sans;' textLength='1.66px' lengthAdjust='spacingAndGlyphs'>.</text>
-<text x='285.71' y='105.89' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
-<text x='294.32' y='105.89' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
+<text x='285.71' y='105.66' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text x='294.32' y='105.66' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
 <line x1='122.24' y1='117.58' x2='122.24' y2='114.05' style='stroke-width: 1.07;' />
 <line x1='122.24' y1='114.05' x2='445.18' y2='114.05' style='stroke-width: 1.07;' />
 <line x1='445.18' y1='114.05' x2='445.18' y2='117.58' style='stroke-width: 1.07;' />
-<text x='332.48' y='84.69' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='332.48' y='84.47' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='337.91' y='86.27' style='font-size: 5.98px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='350.19' y='86.27' style='font-size: 5.98px; font-family: sans;' textLength='4.64px' lengthAdjust='spacingAndGlyphs'>−</text>
 <text x='354.84' y='86.27' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='358.16' y='86.27' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>d</text>
 <text x='361.48' y='86.27' style='font-size: 5.98px; font-family: sans;' textLength='1.33px' lengthAdjust='spacingAndGlyphs'>j</text>
 <text x='362.81' y='86.27' style='font-size: 5.98px; font-family: sans;' textLength='1.66px' lengthAdjust='spacingAndGlyphs'>.</text>
-<text x='366.45' y='84.69' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
-<text x='375.05' y='84.69' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.865</text>
+<text x='366.45' y='84.47' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text x='375.05' y='84.47' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.865</text>
 <line x1='122.24' y1='96.39' x2='122.24' y2='92.85' style='stroke-width: 1.07;' />
 <line x1='122.24' y1='92.85' x2='606.64' y2='92.85' style='stroke-width: 1.07;' />
 <line x1='606.64' y1='92.85' x2='606.64' y2='96.39' style='stroke-width: 1.07;' />
-<text x='332.48' y='63.50' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='332.48' y='63.27' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='337.91' y='65.07' style='font-size: 5.98px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='350.19' y='65.07' style='font-size: 5.98px; font-family: sans;' textLength='4.64px' lengthAdjust='spacingAndGlyphs'>−</text>
 <text x='354.84' y='65.07' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='358.16' y='65.07' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>d</text>
 <text x='361.48' y='65.07' style='font-size: 5.98px; font-family: sans;' textLength='1.33px' lengthAdjust='spacingAndGlyphs'>j</text>
 <text x='362.81' y='65.07' style='font-size: 5.98px; font-family: sans;' textLength='1.66px' lengthAdjust='spacingAndGlyphs'>.</text>
-<text x='366.45' y='63.50' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
-<text x='375.05' y='63.50' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
+<text x='366.45' y='63.27' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text x='375.05' y='63.27' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
 <line x1='283.71' y1='75.19' x2='283.71' y2='71.66' style='stroke-width: 1.07;' />
 <line x1='283.71' y1='71.66' x2='445.18' y2='71.66' style='stroke-width: 1.07;' />
 <line x1='445.18' y1='71.66' x2='445.18' y2='75.19' style='stroke-width: 1.07;' />
-<text x='413.21' y='42.30' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='413.21' y='42.08' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='418.64' y='43.88' style='font-size: 5.98px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='430.93' y='43.88' style='font-size: 5.98px; font-family: sans;' textLength='4.64px' lengthAdjust='spacingAndGlyphs'>−</text>
 <text x='435.57' y='43.88' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='438.89' y='43.88' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>d</text>
 <text x='442.22' y='43.88' style='font-size: 5.98px; font-family: sans;' textLength='1.33px' lengthAdjust='spacingAndGlyphs'>j</text>
 <text x='443.54' y='43.88' style='font-size: 5.98px; font-family: sans;' textLength='1.66px' lengthAdjust='spacingAndGlyphs'>.</text>
-<text x='447.18' y='42.30' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
-<text x='455.78' y='42.30' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
+<text x='447.18' y='42.08' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text x='455.78' y='42.08' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
 <line x1='283.71' y1='54.00' x2='283.71' y2='50.46' style='stroke-width: 1.07;' />
 <line x1='283.71' y1='50.46' x2='606.64' y2='50.46' style='stroke-width: 1.07;' />
 <line x1='606.64' y1='50.46' x2='606.64' y2='54.00' style='stroke-width: 1.07;' />
-<text x='493.94' y='21.11' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='493.94' y='20.88' style='font-size: 8.54px; font-style: italic; font-family: sans;' textLength='4.75px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='499.38' y='22.68' style='font-size: 5.98px; font-family: sans;' textLength='12.28px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='511.66' y='22.68' style='font-size: 5.98px; font-family: sans;' textLength='4.64px' lengthAdjust='spacingAndGlyphs'>−</text>
 <text x='516.30' y='22.68' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>a</text>
 <text x='519.63' y='22.68' style='font-size: 5.98px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>d</text>
 <text x='522.95' y='22.68' style='font-size: 5.98px; font-family: sans;' textLength='1.33px' lengthAdjust='spacingAndGlyphs'>j</text>
 <text x='524.28' y='22.68' style='font-size: 5.98px; font-family: sans;' textLength='1.66px' lengthAdjust='spacingAndGlyphs'>.</text>
-<text x='527.91' y='21.11' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
-<text x='536.52' y='21.11' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
+<text x='527.91' y='20.88' style='font-size: 8.54px; font-family: sans;' textLength='6.63px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text x='536.52' y='20.88' style='font-size: 8.54px; font-family: sans;' textLength='21.36px' lengthAdjust='spacingAndGlyphs'>0.672</text>
 <line x1='445.18' y1='32.80' x2='445.18' y2='29.27' style='stroke-width: 1.07;' />
 <line x1='445.18' y1='29.27' x2='606.64' y2='29.27' style='stroke-width: 1.07;' />
 <line x1='606.64' y1='29.27' x2='606.64' y2='32.80' style='stroke-width: 1.07;' />
