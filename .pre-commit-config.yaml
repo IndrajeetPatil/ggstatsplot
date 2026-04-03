@@ -5,7 +5,7 @@ minimum_prek_version: "0.3.8"
 default_stages: [pre-commit, pre-push]
 
 default_language_version:
-  python: "3.14"
+  python: python3
 
 repos:
   - repo: builtin

@@ -39,5 +39,5 @@ lint:
 hooks:
 	prek run --all-files
 
-hooks-install:
+hooks_install:
 	prek install
