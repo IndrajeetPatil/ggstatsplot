@@ -12,7 +12,7 @@ exclude: >
   (?x)^(
   man/.*|
   tests/testthat/_snaps/.*|
-  README\.md|
+  README\.md
   )$
 
 repos:
