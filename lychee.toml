@@ -1,0 +1,3 @@
+# Exclude data: URIs (e.g. data:font/woff;base64,...) — these are inline binary
+# blobs, not real links, and make CI logs unscrollable when reported.
+exclude = ["^data:"]

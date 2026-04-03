@@ -69,7 +69,7 @@ Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 Type | Test | *p*-value adjustment? | Function used
 ----------- | ---------------------------- | --- | -----
 Parametric | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest` 
+Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
 Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 

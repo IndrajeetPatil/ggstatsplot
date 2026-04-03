@@ -35,3 +35,9 @@ format:
 
 lint:
 	Rscript -e 'lintr::lint_package()'
+
+hooks:
+	prek run --all-files
+
+hooks_install:
+	prek install

@@ -1057,7 +1057,7 @@ This uncoupling is designed to achieve two things:
     was retained for a while for backward compatibility.
 
 # ggstatsplot 0.0.11
- 
+
 ## BREAKING CHANGES
 
   - Instead of having two separate functions that dealt with repeated measures

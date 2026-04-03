@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: paper.bib
-csl: apa.csl  
+csl: apa.csl
 ---
 
 ```{r}
@@ -193,7 +193,7 @@ computer monitors today, saving `grouped_` plots with appropriate resolution
 ensures no loss in legibility with reduced graphics area.
 
 ### Graphical excellence
-   
+
 Graphical excellence consists of communicating complex ideas with clarity and in
 a way that the viewer understands the greatest number of ideas in a short amount
 of time all the while not quoting the data out of context. The package follows
@@ -399,7 +399,7 @@ details:
   - With the exception of *p*-values, most statistics are rounded to two decimal
     places by default.
 
-### Dealing with **null results**: 
+### Dealing with **null results**:
 
 All functions therefore by default return Bayesian in favor of the null
 hypothesis by default. If the null hypothesis can't be rejected with the null

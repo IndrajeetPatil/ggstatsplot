@@ -51,7 +51,7 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggwithinstats` is designed to facilitate 
+The function `ggwithinstats` is designed to facilitate
 **data exploration**, and for making highly customizable **publication-ready plots**,
 with relevant statistical details included in the plot itself if desired. We
 will see examples of how to use this function in this vignette.
@@ -73,7 +73,7 @@ To illustrate how this function can be used, we will use the `bugs` dataset
 throughout this vignette. This data set, "Bugs", provides the extent to which
 men and women want to kill arthropods that vary in freighteningness (low, high)
 and disgustingness (low, high). Each participant rates their attitudes towards
-all anthropods. Subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277). 
+all anthropods. Subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277).
 Note that this is a repeated measures design because the same participant gave
 four different ratings across four different conditions (LDLF, LDHF, HDLF,
 HDHF).
@@ -102,7 +102,7 @@ ggwithinstats(
   - The function automatically decides whether a dependent samples test is
     preferred (for 2 groups) or an ANOVA (3 or more groups). based on the number
     of levels in the grouping variable.
-    
+
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `{ggplot2}` functions.
 
@@ -147,7 +147,7 @@ ggwithinstats(
 As can be appreciated from the effect size (partial eta squared) of 0.18, there
 are small differences in the mean desire to kill across conditions.
 Importantly, this plot also helps us appreciate the distributions within any
-given condition. 
+given condition.
 
 So far we have only used a classic parametric test, but we can also use other
 available options: The `type` (of test) argument also accepts the following
@@ -250,7 +250,7 @@ in a given study, groups in a study sample, different studies, etc.
 
 Let's focus on the two regions and for years: 1967, 1987, 2007. Also,
 let's carry out pairwise comparisons to see if there differences between every
-pair of continents. 
+pair of continents.
 
 ```{r}
 #| label = "grouped1",
@@ -278,7 +278,7 @@ grouped_ggwithinstats(
 )
 ```
 
-## Grouped analysis with `ggwithinstats` + `{purrr}` 
+## Grouped analysis with `ggwithinstats` + `{purrr}`
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of test and theme is

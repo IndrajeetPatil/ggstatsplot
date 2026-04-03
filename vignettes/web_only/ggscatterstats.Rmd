@@ -65,7 +65,7 @@ dplyr::glimpse(movies_long)
 Now that we have a clean dataset, we can start asking some interesting
 questions. For example, let's see if the average IMDB rating for a movie has any
 relationship to its budget. Additionally, let's also see which movies had a high
-budget but low IMDB rating by labeling those data points. 
+budget but low IMDB rating by labeling those data points.
 
 To reduce the processing time, let's only work with 30% of the dataset.
 
@@ -98,14 +98,14 @@ audiences.
 
 What if we want to do the same analysis do the same analysis for movies with
 different MPAA (Motion Picture Association of America) film ratings (NC-17, PG,
-PG-13, R)? 
+PG-13, R)?
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggstatsplot`. This is merely a wrapper function around
 `combine_plots`. It applies `{ggstatsplot}` across all **levels** of
 a specified **grouping variable** and then combines list of individual plots
 into a single plot. Note that the grouping variable can be anything: conditions
-in a given study, groups in a study sample, different studies, etc. 
+in a given study, groups in a study sample, different studies, etc.
 
 Let's see how we can use this function to apply `ggscatterstats` for all MPAA
 ratings. Also, let's run a robust test this time.
@@ -136,7 +136,7 @@ grouped_ggscatterstats(
 
 As seen from the plot, this analysis has revealed something interesting: The
 relationship we found between budget and IMDB rating holds only for PG-13 and
-R-rated movies. 
+R-rated movies.
 
 ## Grouped analysis with `ggscatterstats` + `{purrr}`
 
@@ -146,7 +146,7 @@ For example, if we wanted to add, let's say, a separate type of marginal
 distribution plot for each MPAA rating or if we wanted to use different types of
 correlations across different levels of MPAA ratings (NC-17 has only 6 movies,
 so a robust correlation would be a good idea), this is not possible. But this
-can be easily done using `{purrr}`.  
+can be easily done using `{purrr}`.
 
 See the associated vignette here:
 <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
@@ -183,5 +183,5 @@ variables).
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
