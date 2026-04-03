@@ -91,7 +91,7 @@ be invariant across models:
 ## Supported models
 
 Most of the regression models that are supported in the underlying packages are
-also supported by `ggcoefstats()`. 
+also supported by `ggcoefstats()`.
 
 ```{r}
 #| label = "supported"
@@ -169,7 +169,7 @@ ggcoefstats(
 )
 ```
 
-### $\chi^2$-statistic 
+### $\chi^2$-statistic
 
 Cox proportional hazards regression model (`coxph`)
 

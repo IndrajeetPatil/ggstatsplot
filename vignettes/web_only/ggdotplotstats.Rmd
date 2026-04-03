@@ -51,7 +51,7 @@ on <http://fueleconomy.gov>.
 dplyr::glimpse(ggplot2::mpg)
 ```
 
-Let's say we want to visualize the distribution of mileage by car manufacturer. 
+Let's say we want to visualize the distribution of mileage by car manufacturer.
 
 ```{r}
 #| label = "mpg2",
@@ -94,10 +94,10 @@ different numbers of cylinders?
 `grouped_ggdotplotstats`. This is merely a wrapper function around
 `combine_plots`. It applies `ggdotplotstats` across all **levels** of
 a specified **grouping variable** and then combines the individual plots into a
-single plot. 
+single plot.
 
 Let's see how we can use this function to apply `ggdotplotstats` to accomplish our
-task. 
+task.
 
 ```{r}
 #| label = "grouped1",
@@ -166,5 +166,5 @@ hypothesis.
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>

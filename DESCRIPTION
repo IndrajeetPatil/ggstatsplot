@@ -20,7 +20,7 @@ License: MIT + file LICENSE
 URL: https://indrajeetpatil.github.io/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
-Depends: 
+Depends:
     R (>= 4.3.0)
 Imports:
     correlation (>= 0.8.8),
@@ -64,7 +64,7 @@ Suggests:
     vdiffr (>= 1.0.8),
     withr,
     WRS2
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/unique: TRUE

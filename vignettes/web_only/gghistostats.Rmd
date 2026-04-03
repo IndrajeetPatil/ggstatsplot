@@ -111,7 +111,7 @@ that this sample is different.
 
 ## Grouped analysis with `grouped_gghistostats`
 
-What if we want to do the same analysis separately for each gender? 
+What if we want to do the same analysis separately for each gender?
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_gghistostats`. This is merely a wrapper function around
 `combine_plots`. It applies `gghistostats` across all **levels** of
@@ -120,7 +120,7 @@ single plot. Note that the grouping variable can be anything: conditions in a
 given study, groups in a study sample, different studies, etc.
 
 Let's see how we can use this function to apply `gghistostats` to accomplish our
-task. 
+task.
 
 ```{r}
 #| label = "grouped1",
@@ -157,7 +157,7 @@ each gender. We can *see* the differences in distributions.
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
 For example, if we wanted to add, let's say, a separate `test.value` argument
-for each gender, this is not possible with `grouped_gghistostats`. 
+for each gender, this is not possible with `grouped_gghistostats`.
 
 For cases like these, or to run separate  kinds of tests (robust for some,
 parametric for other, while Bayesian for some other levels of the group) it
@@ -196,5 +196,5 @@ moderate evidence (Jeffreys, 1961) in favor of the null hypothesis.
 
 ## Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on GitHub: 
+If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
