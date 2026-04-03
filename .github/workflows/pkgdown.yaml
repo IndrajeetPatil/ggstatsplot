@@ -11,6 +11,6 @@ name: pkgdown
 
 jobs:
   pkgdown:
-    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@consolidate-r-package-workflows
     permissions:
       contents: write

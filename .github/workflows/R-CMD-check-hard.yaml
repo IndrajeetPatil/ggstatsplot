@@ -8,6 +8,6 @@ name: R-CMD-check-hard
 
 jobs:
   R-CMD-check-hard:
-    uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check-hard.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check-hard.yaml@consolidate-r-package-workflows
     with:
       extra-packages: any::vdiffr

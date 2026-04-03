@@ -8,6 +8,6 @@ name: R-CMD-check
 
 jobs:
   R-CMD-check:
-    uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@consolidate-r-package-workflows
     with:
       error-on: 'ifelse(getRversion() > "4.3", "note", "warning")'
