@@ -12,34 +12,4 @@ name: check-spelling
 
 jobs:
   check-spelling:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      R_KEEP_PKG_SOURCE: yes
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          dependencies: '"hard"'
-          extra-packages: |
-            any::rcmdcheck
-            any::spelling
-
-      - name: Spell check
-        run: |
-          options(crayon.enabled = TRUE)
-          spelling_mistakes <- spelling::spell_check_package()
-          cli::cli_rule()
-          if (length(spelling_mistakes$word) > 0L) {
-            print(spelling_mistakes)
-            cli::cli_abort("Spelling errors found. Either correct them or update `inst/WORDLIST` file.")
-          } else {
-            cli::cli_alert_success("No spelling errors found.")
-          }
-          cli::cli_rule()
-        shell: Rscript {0}
+    uses: IndrajeetPatil/workflows/.github/workflows/check-spelling.yaml@main
