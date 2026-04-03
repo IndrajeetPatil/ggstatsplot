@@ -7,17 +7,19 @@ default_stages: [pre-commit, pre-push]
 default_language_version:
   python: python3
 
+# Exclude auto-generated and snapshot files from all hooks
+exclude: >
+  (?x)^(
+  man/.*|
+  tests/testthat/_snaps/.*|
+  )$
+
 repos:
   - repo: builtin
     hooks:
       # File formatting
       - id: trailing-whitespace
       - id: end-of-file-fixer
-        exclude: >
-          (?x)^(
-          man/.*|
-          tests/testthat/_snaps/.*\.md|
-          )$
       - id: mixed-line-ending
       - id: fix-byte-order-marker
       # File validation
