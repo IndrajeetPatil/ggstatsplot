@@ -1,5 +1,3 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     branches: [main, master]
@@ -14,29 +12,4 @@ name: lint
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: |
-            r-lib/lintr
-            local::.
-          needs: lint
-
-      - name: Lint
-        run: |
-          options(crayon.enabled = TRUE)
-          library(lintr)
-          # lintr config in `.lintr` file
-          lint_package()
-        shell: Rscript {0}
-        env:
-          LINTR_ERROR_ON_LINT: true
+    uses: IndrajeetPatil/workflows/.github/workflows/lint.yaml@main
