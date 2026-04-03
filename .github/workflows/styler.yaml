@@ -6,7 +6,7 @@ on:
 name: Style
 
 jobs:
-  styler:
+  style:
     uses: IndrajeetPatil/workflows/.github/workflows/styler.yaml@main
     permissions:
       contents: write

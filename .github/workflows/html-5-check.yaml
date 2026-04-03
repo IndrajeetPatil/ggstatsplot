@@ -7,5 +7,5 @@ on:
 name: HTML5 check
 
 jobs:
-  html-5-check:
+  HTML5-check:
     uses: IndrajeetPatil/workflows/.github/workflows/html-5-check.yaml@main
