@@ -10,7 +10,7 @@ name: check-extra
 
 jobs:
   check-extra:
-    uses: IndrajeetPatil/workflows/.github/workflows/check-extra.yaml@consolidate-r-package-workflows
+    uses: IndrajeetPatil/workflows/.github/workflows/check-extra.yaml@main
     with:
       extra-packages: |
         any::ggstatsplot

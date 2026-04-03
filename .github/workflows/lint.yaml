@@ -12,4 +12,4 @@ name: lint
 
 jobs:
   lint:
-    uses: IndrajeetPatil/workflows/.github/workflows/lint.yaml@consolidate-r-package-workflows
+    uses: IndrajeetPatil/workflows/.github/workflows/lint.yaml@main

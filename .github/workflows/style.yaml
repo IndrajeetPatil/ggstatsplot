@@ -7,6 +7,6 @@ name: style
 
 jobs:
   style:
-    uses: IndrajeetPatil/workflows/.github/workflows/style.yaml@consolidate-r-package-workflows
+    uses: IndrajeetPatil/workflows/.github/workflows/style.yaml@main
     permissions:
       contents: write

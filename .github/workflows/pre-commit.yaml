@@ -6,6 +6,6 @@ name: pre-commit
 
 jobs:
   pre-commit:
-    uses: IndrajeetPatil/workflows/.github/workflows/pre-commit.yaml@consolidate-r-package-workflows
+    uses: IndrajeetPatil/workflows/.github/workflows/pre-commit.yaml@main
     permissions:
       contents: write
