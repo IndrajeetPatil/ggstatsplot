@@ -1,9 +1,0 @@
-on:
-  pull_request:
-    branches: [main, master]
-
-name: lint-changed-files
-
-jobs:
-  lint-changed-files:
-    uses: IndrajeetPatil/workflows/.github/workflows/lint-changed-files.yaml@main

@@ -3,10 +3,10 @@ on:
     branches: [main, master]
     paths: ["**.[rR]", "**.[qrR]md", "**.[rR]markdown", "**.[rR]nw"]
 
-name: Style
+name: style
 
 jobs:
   style:
-    uses: IndrajeetPatil/workflows/.github/workflows/styler.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/style.yaml@main
     permissions:
       contents: write

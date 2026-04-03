@@ -8,6 +8,7 @@ name: pkgdown-no-suggests
 
 jobs:
   pkgdown-no-suggests:
-    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown-no-suggests.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@main
     with:
+      no-suggests: true
       pkgdown-source: r-lib/pkgdown
