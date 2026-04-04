@@ -65,6 +65,12 @@
 #' # with repelled labels to avoid overlapping
 #' ggpiestats(mtcars, vs, label.repel = TRUE)
 #'
+#' # show counts instead of percentages
+#' ggpiestats(mtcars, vs, label = "counts")
+#'
+#' # show both counts and percentages
+#' ggpiestats(mtcars, vs, label = "both")
+#'
 #' @export
 ggpiestats <- function(
   data,

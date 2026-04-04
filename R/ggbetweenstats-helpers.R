@@ -141,7 +141,9 @@
     if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= 0.05) # non-sig
 
     # proceed only if there are any significant comparisons to display
-    if (nrow(mpc_df) == 0L) return(plot) # nocov
+    if (nrow(mpc_df) == 0L) {
+      return(plot)
+    } # nocov
   }
 
   # arrange the data frame so that annotations are properly aligned
@@ -202,7 +204,7 @@
 #'   comparisons being displayed.
 #'
 #' @examples
-#' .pairwise_seclabel("my caption", "Student's t-test")
+#' .pairwise_seclabel("Student's t-test")
 #'
 #' # non-significant pairwise comparisons
 #' .pairwise_seclabel("Student's t-test", pairwise.display = "non-significant")

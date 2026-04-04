@@ -116,10 +116,9 @@
 #' @details For details, see:
 #' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#' library(lme4)
 #'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -133,9 +132,6 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
-#' # further arguments can be passed to `parameters::model_parameters()`
-#' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
-#'
 #' # exclude intercept from the plot
 #' ggcoefstats(mod, exclude.intercept = TRUE)
 #'
@@ -144,6 +140,14 @@
 #'
 #' # ANOVA model (F-statistic)
 #' ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
+#'
+#' # a tidy data frame can also be passed directly (model-free use)
+#' ggcoefstats(data.frame(term = c("a", "b", "c"), estimate = c(0.5, -0.2, 1.1)))
+#'
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
+#' # further arguments can be passed to `parameters::model_parameters()`
+#' library(lme4)
+#' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 #' @export
 ggcoefstats <- function(
   x,
@@ -183,12 +187,10 @@ ggcoefstats <- function(
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels
-  # nocov start
   if (!insight::is_model(x)) {
     tidy_df <- as_tibble(x)
     if (is.null(statistic)) stats.labels <- FALSE
   }
-  # nocov end
 
   # tidy data frame -------------------------
 
@@ -212,17 +214,15 @@ ggcoefstats <- function(
   tidy_df <- .preprocess_tidy_data(tidy_df, sort) %>% dplyr::filter(!is.na(estimate))
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
-  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE # nocov
+  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
 
   # CIs and intercepts -------------------------
 
   # if tidy data frame doesn't contain CIs, show only the estimate dots
-  # nocov start
   if (!"conf.low" %in% names(tidy_df)) {
     tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
     conf.int <- FALSE
   }
-  # nocov end
 
   if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
 
@@ -328,7 +328,7 @@ ggcoefstats <- function(
   # nocov end
 
   # create a new term column if it's not present
-  if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number())) # nocov
+  if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number()))
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
   # nocov start

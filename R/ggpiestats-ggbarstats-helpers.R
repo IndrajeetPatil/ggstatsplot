@@ -13,10 +13,10 @@ descriptive_data <- function(
     mutate(
       .label = if (grepl("perc|prop", label.content)) {
         paste0(round(perc, digits.perc), "%")
-      } else if (grepl("count|n|N", label.content)) { # nocov
-        .prettyNum(counts) # nocov
-      } else { # nocov
-        paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)") # nocov
+      } else if (grepl("count|n|N", label.content)) {
+        .prettyNum(counts)
+      } else {
+        paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
       }, # reorder the category factor levels to order the legend
       {{ x }} := factor({{ x }}, unique({{ x }}))
     )
