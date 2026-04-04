@@ -241,6 +241,9 @@ extract_stats(p)
 
 # association test (or contingency table analysis)
 ggpiestats(mtcars, vs, cyl)
+
+# with repelled labels to avoid overlapping
+ggpiestats(mtcars, vs, label.repel = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

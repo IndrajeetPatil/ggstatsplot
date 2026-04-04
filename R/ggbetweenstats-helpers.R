@@ -141,9 +141,7 @@
     if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= 0.05) # non-sig
 
     # proceed only if there are any significant comparisons to display
-    if (nrow(mpc_df) == 0L) {
-      return(plot)
-    }
+    if (nrow(mpc_df) == 0L) return(plot) # nocov
   }
 
   # arrange the data frame so that annotations are properly aligned

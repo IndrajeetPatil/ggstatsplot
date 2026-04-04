@@ -247,6 +247,9 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
+
+# Bayesian analysis
+ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
 \dontshow{\}) # examplesIf}
 }
 \seealso{

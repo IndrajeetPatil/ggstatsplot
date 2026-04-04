@@ -70,19 +70,18 @@ extract_stats <- function(p) {
 }
 
 
-# function factory to extract particular kind of stats data
-.extract_stats_data <- function(data_component) {
-  function(p) {
-    dat <- extract_stats(p)
-    .pluck_expression <- function(x) purrr::pluck(x, data_component, "expression", 1L)
-    if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
-  }
+#' @rdname extract_stats
+#' @export
+extract_subtitle <- function(p) {
+  dat <- extract_stats(p)
+  .pluck_expression <- function(x) purrr::pluck(x, "subtitle_data", "expression", 1L)
+  if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
 }
 
 #' @rdname extract_stats
 #' @export
-extract_subtitle <- .extract_stats_data("subtitle_data")
-
-#' @rdname extract_stats
-#' @export
-extract_caption <- .extract_stats_data("caption_data")
+extract_caption <- function(p) {
+  dat <- extract_stats(p)
+  .pluck_expression <- function(x) purrr::pluck(x, "caption_data", "expression", 1L)
+  if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
+}

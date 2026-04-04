@@ -241,5 +241,14 @@ extract_stats(p)
 
 # further arguments can be passed to `parameters::model_parameters()`
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
+
+# exclude intercept from the plot
+ggcoefstats(mod, exclude.intercept = TRUE)
+
+# only show significant labels
+ggcoefstats(mod, only.significant = TRUE)
+
+# ANOVA model (F-statistic)
+ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
 \dontshow{\}) # examplesIf}
 }

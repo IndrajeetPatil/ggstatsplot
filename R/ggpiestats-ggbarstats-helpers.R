@@ -16,7 +16,7 @@ descriptive_data <- function(
       } else if (grepl("count|n|N", label.content)) { # nocov
         .prettyNum(counts) # nocov
       } else { # nocov
-        paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")  # nocov
+        paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)") # nocov
       }, # reorder the category factor levels to order the legend
       {{ x }} := factor({{ x }}, unique({{ x }}))
     )

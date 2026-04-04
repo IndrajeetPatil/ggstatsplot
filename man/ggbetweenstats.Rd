@@ -414,6 +414,9 @@ p
 # extracting details from statistical tests
 extract_stats(p)
 
+# show non-significant pairwise comparisons
+ggbetweenstats(mtcars, am, mpg, pairwise.display = "non-significant")
+
 # modifying defaults
 ggbetweenstats(
   morley,
