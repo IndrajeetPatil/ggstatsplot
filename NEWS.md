@@ -1,3 +1,9 @@
+# ggstatsplot 0.13.6
+
+## MINOR CHANGES
+
+- No user-facing changes (internal maintenance: dependency updates, CI/CD improvements).
+
 # ggstatsplot 0.13.5
 
 ## MINOR CHANGES
