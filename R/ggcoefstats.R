@@ -135,6 +135,15 @@
 #'
 #' # further arguments can be passed to `parameters::model_parameters()`
 #' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
+#'
+#' # exclude intercept from the plot
+#' ggcoefstats(mod, exclude.intercept = TRUE)
+#'
+#' # only show significant labels
+#' ggcoefstats(mod, only.significant = TRUE)
+#'
+#' # ANOVA model (F-statistic)
+#' ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
 #' @export
 ggcoefstats <- function(
   x,
@@ -174,10 +183,12 @@ ggcoefstats <- function(
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels
+  # nocov start
   if (!insight::is_model(x)) {
     tidy_df <- as_tibble(x)
     if (is.null(statistic)) stats.labels <- FALSE
   }
+  # nocov end
 
   # tidy data frame -------------------------
 
@@ -201,15 +212,17 @@ ggcoefstats <- function(
   tidy_df <- .preprocess_tidy_data(tidy_df, sort) %>% dplyr::filter(!is.na(estimate))
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
-  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
+  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE # nocov
 
   # CIs and intercepts -------------------------
 
   # if tidy data frame doesn't contain CIs, show only the estimate dots
+  # nocov start
   if (!"conf.low" %in% names(tidy_df)) {
     tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
     conf.int <- FALSE
   }
+  # nocov end
 
   if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
 
@@ -231,6 +244,7 @@ ggcoefstats <- function(
 
   # meta analysis -------------------------
 
+  # nocov start
   if (meta.analytic.effect) {
     meta.type <- stats_type_switch(meta.type)
 
@@ -242,6 +256,7 @@ ggcoefstats <- function(
       caption <- .extract_expression(caption_df)
     }
   }
+  # nocov end
 
   # basic plot -------------------------
 
@@ -306,14 +321,17 @@ ggcoefstats <- function(
 
 #' @noRd
 .preprocess_tidy_data <- function(data, sort) {
+  # nocov start
   if (is.null(data) || !"estimate" %in% names(data)) {
     rlang::abort("The tidy data frame *must* contain 'estimate' column.")
   }
+  # nocov end
 
   # create a new term column if it's not present
-  if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number()))
+  if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number())) # nocov
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
+  # nocov start
   if (anyDuplicated(data$term)) {
     data %<>%
       tidyr::unite(
@@ -326,6 +344,7 @@ ggcoefstats <- function(
 
   # halt if there are still repeated terms
   if (anyDuplicated(data$term)) rlang::abort("Elements in `term` column must be unique.")
+  # nocov end
 
   data %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 

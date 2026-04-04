@@ -37,6 +37,9 @@
 #'
 #' # extracting details from statistical tests
 #' extract_stats(p)
+#'
+#' # Bayesian analysis
+#' ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
 #' @export
 ggbarstats <- function(
   data,

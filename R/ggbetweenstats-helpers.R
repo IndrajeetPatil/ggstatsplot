@@ -25,6 +25,15 @@
 #'   x = Species,
 #'   y = Sepal.Length
 #' )
+#'
+#' # with path connecting centrality values
+#' ggstatsplot:::.centrality_ggrepel(
+#'   data = iris,
+#'   plot = p,
+#'   x = Species,
+#'   y = Sepal.Length,
+#'   centrality.path = TRUE
+#' )
 #' @noRd
 .centrality_ggrepel <- function(
   plot,
@@ -196,6 +205,12 @@
 #'
 #' @examples
 #' .pairwise_seclabel("my caption", "Student's t-test")
+#'
+#' # non-significant pairwise comparisons
+#' .pairwise_seclabel("Student's t-test", pairwise.display = "non-significant")
+#'
+#' # all pairwise comparisons
+#' .pairwise_seclabel("Student's t-test", pairwise.display = "all")
 #' @keywords internal
 #' @autoglobal
 #' @noRd

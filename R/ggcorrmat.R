@@ -58,6 +58,9 @@
 #' set.seed(123)
 #' library(ggcorrplot)
 #' ggcorrmat(iris)
+#'
+#' # with data containing NAs (uses pairwise complete observations)
+#' ggcorrmat(airquality)
 #' @export
 ggcorrmat <- function(
   data,
