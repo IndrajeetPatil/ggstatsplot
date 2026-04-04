@@ -61,6 +61,9 @@
 #'
 #' # with data containing NAs (uses pairwise complete observations)
 #' ggcorrmat(airquality)
+#'
+#' # selecting specific variables
+#' ggcorrmat(iris, cor.vars = c(Sepal.Length, Petal.Length, Petal.Width))
 #' @export
 ggcorrmat <- function(
   data,

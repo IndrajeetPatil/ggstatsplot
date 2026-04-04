@@ -249,6 +249,9 @@ ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
 
 # a tidy data frame can also be passed directly (model-free use)
 ggcoefstats(data.frame(term = c("a", "b", "c"), estimate = c(0.5, -0.2, 1.1)))
+
+# without a `term` column (auto-generated)
+ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
 \dontshow{\}) # examplesIf}
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # further arguments can be passed to `parameters::model_parameters()`

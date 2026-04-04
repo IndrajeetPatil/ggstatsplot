@@ -242,6 +242,9 @@ extract_stats(p)
 # association test (or contingency table analysis)
 ggpiestats(mtcars, vs, cyl)
 
+# Bayesian test
+ggpiestats(mtcars, vs, cyl, type = "bayes")
+
 # with repelled labels to avoid overlapping
 ggpiestats(mtcars, vs, label.repel = TRUE)
 
@@ -250,6 +253,9 @@ ggpiestats(mtcars, vs, label = "counts")
 
 # show both counts and percentages
 ggpiestats(mtcars, vs, label = "both")
+
+# using pre-aggregated data with counts
+ggpiestats(as.data.frame(Titanic), Survived, counts = Freq)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

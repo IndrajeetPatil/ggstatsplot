@@ -62,6 +62,9 @@
 #' # association test (or contingency table analysis)
 #' ggpiestats(mtcars, vs, cyl)
 #'
+#' # Bayesian test
+#' ggpiestats(mtcars, vs, cyl, type = "bayes")
+#'
 #' # with repelled labels to avoid overlapping
 #' ggpiestats(mtcars, vs, label.repel = TRUE)
 #'
@@ -70,6 +73,9 @@
 #'
 #' # show both counts and percentages
 #' ggpiestats(mtcars, vs, label = "both")
+#'
+#' # using pre-aggregated data with counts
+#' ggpiestats(as.data.frame(Titanic), Survived, counts = Freq)
 #'
 #' @export
 ggpiestats <- function(
@@ -125,7 +131,7 @@ ggpiestats <- function(
   y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
 
   # one-way table not supported in `BayesFactor` ATM (richarddmorey/BayesFactor#159)
-  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
+  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE # nocov
 
   # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
