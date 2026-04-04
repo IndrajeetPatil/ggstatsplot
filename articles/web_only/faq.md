@@ -32,10 +32,10 @@ on social media platforms.
 
 ## 1. I just want the plot, not the statistical details. How can I turn them off?
 
-All functions in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) that
-display results from statistical analysis in a subtitle have argument
-`results.subtitle`. Setting it to `FALSE` will return only the plot.
+All functions in [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+that display results from statistical analysis in a subtitle have
+argument `results.subtitle`. Setting it to `FALSE` will return only the
+plot.
 
 ## 2. How can I customize the details contained in the subtitle?
 
@@ -84,8 +84,8 @@ pane.
 
 In order to prevent the entire plotting function from failing when
 statistical analysis fails, functions in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) default to
-first attempting to run the analysis and if they fail, then return empty
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) default to first
+attempting to run the analysis and if they fail, then return empty
 (`NULL`) subtitle/caption. In such cases, if you wish to diagnose why
 the analysis is failing, you will have to do so using the underlying
 function used to carry out statistical analysis.
@@ -134,7 +134,7 @@ Summary of all analysis is handily available in `README`:
 ## 6. How can I use `{ggstatsplot}` functions in a `for` loop?
 
 Given that all functions in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) use tidy
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) use tidy
 evaluation, running these functions in a `for` loop requires minor
 adjustment to how inputs are entered:
 
@@ -156,8 +156,7 @@ That said, if repeating function execution across multiple columns in a
 data frame in what you want to do, I will recommend
 [purrr](https://purrr.tidyverse.org/)-based solution:
 
-\<<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data>
-frame-1\>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame>
 
 This solution would work for `x` and `y` arguments, but not for
 `grouping.var` argument, which first needs to be converted to a symbol:
@@ -204,8 +203,8 @@ grouped_ggscatterstats(
 The `plotly` R graphing library makes it easy to produce interactive web
 graphics via `plotly.js`.
 
-The [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-functions are compatible with `plotly`.
+The [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions are
+compatible with `plotly`.
 
 ``` r
 
@@ -319,12 +318,12 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
 ## 12. How to access data frame with results from pairwise comparisons?
 
 Behind the scenes,
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) uses
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) uses
 [`statsExpressions::pairwise_comparisons()`](https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html)
 function.
 
 You can use it to extract actual data frames used in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) functions.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions.
 
 ``` r
 
@@ -346,7 +345,7 @@ pairwise_comparisons(mtcars, cyl, wt)
 
 ## 13. How can I change annotation in pairwise comparisons?
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) defaults to
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) defaults to
 displaying exact p-values or logged Bayes Factor values for pairwise
 comparisons. But what if you wish to adopt a different annotation
 labels?
@@ -400,7 +399,7 @@ p +
 ## 14. How to access data frame containing statistical analyses?
 
 You can use the
-[`extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
 helper function for this.
 
 ``` r
@@ -556,10 +555,10 @@ grouped_ggpiestats(
 
 ## 17. How can I modify `grouped_` outputs using `{ggplot2}` functions?
 
-All [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) are
-`ggplot` objects, which can be further modified, just like any other
-`ggplot` object. But exception to these are all plots returned by
-`grouped_` functions, but there is a way to tackle this.
+All [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) are `ggplot`
+objects, which can be further modified, just like any other `ggplot`
+object. But exception to these are all plots returned by `grouped_`
+functions, but there is a way to tackle this.
 
 ``` r
 
@@ -585,19 +584,19 @@ grouped_ggbetweenstats(
 
 ## 18. How can I extract data frame containing results from `{ggstatsplot}`?
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) can return
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) can return
 expressions in the subtitle and caption, but what if you want to
 actually get back data frame containing the results?
 
 You have two options:
 
 - Use
-  [`ggstatsplot::extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+  [`ggstatsplot::extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   function
 - Or go to the source package
   [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
   (see
-  [examples](https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html))
+  [examples](https://www.indrapatil.com/statsExpressions/articles/dataframe_outputs.html))
 
 ## 19. How can I remove sample size labels for `ggbarstats`?
 
@@ -611,12 +610,11 @@ You have two options:
 
 ## 20. Statistical analysis I want to carry out is not available. What can I do?
 
-By default, since
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) always
-allows just **one** type of test per statistical approach, sometimes
-your favorite test might not be available. For example,
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) provides
-only Spearman’s $`\rho`$, but not Kendall’s $`\tau`$ as a non-parametric
+By default, since [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+always allows just **one** type of test per statistical approach,
+sometimes your favorite test might not be available. For example,
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides only
+Spearman’s $`\rho`$, but not Kendall’s $`\tau`$ as a non-parametric
 correlation test.
 
 In such cases, you can override the defaults and use
@@ -741,9 +739,9 @@ comment.
 
 ## 26. Does `{ggstatsplot}` carry out assumption checks?
 
-No, [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) does
-not carry out any analysis of whether assumptions are met or not. It
-will just carry out whatever test you ask it to carry out.
+No, [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) does not
+carry out any analysis of whether assumptions are met or not. It will
+just carry out whatever test you ask it to carry out.
 
 To check these assumptions, you can use a different package called
 [performance](https://easystats.github.io/performance/):
@@ -753,8 +751,8 @@ To check these assumptions, you can use a different package called
 ## 27. I am on Ubuntu and have trouble installing `{PMCMRplus}`?
 
 Linux users may encounter some installation problems. In particular, the
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package
-depends on the `{PMCMRplus}` package.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package depends
+on the `{PMCMRplus}` package.
 
 ``` r
 ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
@@ -823,7 +821,7 @@ ggwithinstats(
 ## 30. How to modify the whiskers in box plots from ggbetweenstats?
 
 By default, the whiskers in
-[`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
 box plots extend to 1.5 times the interquartile range (IQR) from the
 box, following the Tukey method. You can customize this using the `coef`
 parameter in `boxplot.args`:

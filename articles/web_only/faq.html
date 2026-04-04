@@ -129,7 +129,7 @@ and on social media platforms.</p>
 <h2 id="i-just-want-the-plot-not-the-statistical-details--how-can-i-turn-them-off">1. I just want the plot, not the statistical details. How can I turn
 them off?<a class="anchor" aria-label="anchor" href="#i-just-want-the-plot-not-the-statistical-details--how-can-i-turn-them-off"></a>
 </h2>
-<p>All functions in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> that display results from
+<p>All functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> that display results from
 statistical analysis in a subtitle have argument
 <code>results.subtitle</code>. Setting it to <code>FALSE</code> will
 return only the plot.</p>
@@ -176,7 +176,7 @@ pane.</p>
 subtitle/caption?<a class="anchor" aria-label="anchor" href="#why-do-i-get-only-plot-in-return-but-not-the-subtitlecaption"></a>
 </h2>
 <p>In order to prevent the entire plotting function from failing when
-statistical analysis fails, functions in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
+statistical analysis fails, functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>
 default to first attempting to run the analysis and if they fail, then
 return empty (<code>NULL</code>) subtitle/caption. In such cases, if you
 wish to diagnose why the analysis is failing, you will have to do so
@@ -219,7 +219,7 @@ or check out the associated vignette.</p>
 <h2 id="how-can-i-use-ggstatsplot-functions-in-a-for-loop">6. How can I use <code>{ggstatsplot}</code> functions in a
 <code>for</code> loop?<a class="anchor" aria-label="anchor" href="#how-can-i-use-ggstatsplot-functions-in-a-for-loop"></a>
 </h2>
-<p>Given that all functions in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> use tidy
+<p>Given that all functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> use tidy
 evaluation, running these functions in a <code>for</code> loop requires
 minor adjustment to how inputs are entered:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -236,8 +236,7 @@ minor adjustment to how inputs are entered:</p>
 <p>That said, if repeating function execution across multiple columns in
 a data frame in what you want to do, I will recommend
 <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>-based solution:</p>
-<p>&lt;<a href="https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data" class="uri">https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data</a>
-frame-1&gt;</p>
+<p><a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame</a></p>
 <p>This solution would work for <code>x</code> and <code>y</code>
 arguments, but not for <code>grouping.var</code> argument, which first
 needs to be converted to a symbol:</p>
@@ -281,7 +280,7 @@ have the same scale across the individual plots:</p>
 </h2>
 <p>The <code>plotly</code> R graphing library makes it easy to produce
 interactive web graphics via <code>plotly.js</code>.</p>
-<p>The <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions are compatible with
+<p>The <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions are compatible with
 <code>plotly</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span></span>
@@ -387,10 +386,10 @@ comparison?</p>
 <h2 id="how-to-access-data-frame-with-results-from-pairwise-comparisons">12. How to access data frame with results from pairwise
 comparisons?<a class="anchor" aria-label="anchor" href="#how-to-access-data-frame-with-results-from-pairwise-comparisons"></a>
 </h2>
-<p>Behind the scenes, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> uses
+<p>Behind the scenes, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> uses
 <code><a href="https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html" class="external-link">statsExpressions::pairwise_comparisons()</a></code> function.</p>
 <p>You can use it to extract actual data frames used in
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions.</p>
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -410,7 +409,7 @@ comparisons?<a class="anchor" aria-label="anchor" href="#how-to-access-data-fram
 <div class="section level2">
 <h2 id="how-can-i-change-annotation-in-pairwise-comparisons">13. How can I change annotation in pairwise comparisons?<a class="anchor" aria-label="anchor" href="#how-can-i-change-annotation-in-pairwise-comparisons"></a>
 </h2>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> defaults to displaying exact p-values or
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> defaults to displaying exact p-values or
 logged Bayes Factor values for pairwise comparisons. But what if you
 wish to adopt a different annotation labels?</p>
 <p>You will have to customize them yourself:</p>
@@ -598,7 +597,7 @@ specifying these values.</p>
 <h2 id="how-can-i-modify-grouped_-outputs-using-ggplot2-functions">17. How can I modify <code>grouped_</code> outputs using
 <code>{ggplot2}</code> functions?<a class="anchor" aria-label="anchor" href="#how-can-i-modify-grouped_-outputs-using-ggplot2-functions"></a>
 </h2>
-<p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> are <code>ggplot</code> objects, which
+<p>All <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> are <code>ggplot</code> objects, which
 can be further modified, just like any other <code>ggplot</code> object.
 But exception to these are all plots returned by <code>grouped_</code>
 functions, but there is a way to tackle this.</p>
@@ -625,13 +624,13 @@ functions, but there is a way to tackle this.</p>
 <h2 id="how-can-i-extract-data-frame-containing-results-from-ggstatsplot">18. How can I extract data frame containing results from
 <code>{ggstatsplot}</code>?<a class="anchor" aria-label="anchor" href="#how-can-i-extract-data-frame-containing-results-from-ggstatsplot"></a>
 </h2>
-<p><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> can return expressions in the subtitle and
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> can return expressions in the subtitle and
 caption, but what if you want to actually get back data frame containing
 the results?</p>
 <p>You have two options:</p>
 <ul>
 <li>Use <code><a href="../../reference/extract_stats.html">ggstatsplot::extract_stats()</a></code> function</li>
-<li>Or go to the source package <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> (see <a href="https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html" class="external-link">examples</a>)</li>
+<li>Or go to the source package <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> (see <a href="https://www.indrapatil.com/statsExpressions/articles/dataframe_outputs.html" class="external-link">examples</a>)</li>
 </ul>
 </div>
 <div class="section level2">
@@ -650,10 +649,10 @@ the results?</p>
 <h2 id="statistical-analysis-i-want-to-carry-out-is-not-available--what-can-i-do">20. Statistical analysis I want to carry out is not available. What
 can I do?<a class="anchor" aria-label="anchor" href="#statistical-analysis-i-want-to-carry-out-is-not-available--what-can-i-do"></a>
 </h2>
-<p>By default, since <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> always allows just
+<p>By default, since <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> always allows just
 <strong>one</strong> type of test per statistical approach, sometimes
 your favorite test might not be available. For example,
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> provides only Spearman’s
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> provides only Spearman’s
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>,
 but not Kendall’s
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
@@ -774,7 +773,7 @@ comment.</p>
 <h2 id="does-ggstatsplot-carry-out-assumption-checks">26. Does <code>{ggstatsplot}</code> carry out assumption
 checks?<a class="anchor" aria-label="anchor" href="#does-ggstatsplot-carry-out-assumption-checks"></a>
 </h2>
-<p>No, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> does not carry out any analysis of
+<p>No, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> does not carry out any analysis of
 whether assumptions are met or not. It will just carry out whatever test
 you ask it to carry out.</p>
 <p>To check these assumptions, you can use a different package called
@@ -786,7 +785,7 @@ you ask it to carry out.</p>
 <code>{PMCMRplus}</code>?<a class="anchor" aria-label="anchor" href="#i-am-on-ubuntu-and-have-trouble-installing-pmcmrplus"></a>
 </h2>
 <p>Linux users may encounter some installation problems. In particular,
-the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package depends on the
+the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package depends on the
 <code>{PMCMRplus}</code> package.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>ERROR<span class="sc">:</span> dependencies ‘gmp’, ‘Rmpfr’ are not available <span class="cf">for</span> package ‘PMCMRplus’</span></code></pre></div>
 <p>This means that your operating system lacks <code>gmp</code> and
@@ -816,7 +815,7 @@ installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/re
 </h2>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
@@ -890,7 +889,7 @@ issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstats
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://indrajeetpatil.github.io/" class="external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://www.indrapatil.com/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

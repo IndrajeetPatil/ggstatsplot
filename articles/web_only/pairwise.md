@@ -30,7 +30,7 @@ You can cite this package/vignette as:
 ## Introduction
 
 Pairwise comparisons with
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/).
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/).
 
 ## Summary of types of statistical analyses
 
@@ -59,7 +59,7 @@ pairwise comparison tests-
 ## Data frame outputs
 
 See data frame outputs
-[here](https://indrajeetpatil.github.io/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
+[here](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
 
 ## Using `pairwise_comparisons()` with `ggsignif`
 

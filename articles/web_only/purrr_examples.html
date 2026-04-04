@@ -129,9 +129,9 @@ your own <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> 
 <div class="section level2">
 <h2 id="why-use-purrr">Why use <code>{purrr}</code>?<a class="anchor" aria-label="anchor" href="#why-use-purrr"></a>
 </h2>
-<p>Most of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions have
+<p>Most of the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions have
 <code>grouped_</code> variants, which are designed to quickly run the
-same <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function across multiple levels of a
+same <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> function across multiple levels of a
 <strong>single</strong> grouping variable. Although this function is
 useful for data exploration, it has two strong weaknesses-</p>
 <ul>
@@ -144,7 +144,7 @@ when in reality there can be a combination of grouping variables and the
 operation needs to be repeated for all resulting combinations.</p></li>
 </ul>
 <p>We will see how to overcome this limitation by combining
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> with the <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> with the <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><p>While using <code><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">purrr::pmap()</a></code>, we <strong>must</strong>
@@ -166,7 +166,7 @@ be passed to <code>combine_plots</code>. As the name implies
 <code>combine_plots</code> merges the individual plots into one bigger
 plot with common labeling and aesthetics.</p>
 <p>What are these <code>lists</code> that we are building? The lists
-correspond to the parameters in our <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> function
+correspond to the parameters in our <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> function
 like <code>ggbetweenstats</code>. If you look at the help file for
 <code><a href="../../reference/ggbetweenstats.html">?ggbetweenstats</a></code> for example the very first parameter it
 wants is the <code>data</code> file we’ll be using. We can also pass it
@@ -336,7 +336,7 @@ provided in ANT dataset in <code>ez</code> package.</p>
 and using <code>ggscatterstats</code> to produce scatterplots combined
 with marginal histograms/boxplots/density plots with statistical details
 added as a subtitle. For data we’ll use <code>movies_long</code> which
-is from IMDB and part of the <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. Since
+is from IMDB and part of the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package. Since
 it’s a large dataset with some relatively small categories like
 <strong>NC-17</strong> we’ll sample only one quarter of the data and
 completely drop NC-17 using <code>dplyr</code>.</p>
@@ -750,7 +750,7 @@ issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstats
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://indrajeetpatil.github.io/" class="external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://www.indrapatil.com/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

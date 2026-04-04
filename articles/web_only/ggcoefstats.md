@@ -75,7 +75,7 @@ plot that will be invariant across models:
 
 Most of the regression models that are supported in the underlying
 packages are also supported by
-[`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md).
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md).
 
 ``` r
 
@@ -676,7 +676,7 @@ ggcoefstats(nlmod) %>% extract_stats()
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
 
 ## Not supported
 
@@ -687,7 +687,7 @@ keep expanding as additional tidiers are added to the `parameters` and
 
 Note that not **all** models supported in these packages will be
 supported by
-[`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md).
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md).
 In particular, classes of objects for which there is no column for
 `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.)
 are not supported.

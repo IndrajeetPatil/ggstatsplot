@@ -15,12 +15,11 @@ CRAN release: 2026-02-06
 CRAN release: 2025-12-09
 
 N.B. All statistical analysis in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is carried
-out in
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is carried out in
 [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/).
 Thus, to see changes related to statistical expressions, read the `NEWS`
 for that package:
-<https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+<https://www.indrapatil.com/statsExpressions/news/index.html>
 
 ### MINOR CHANGES
 
@@ -38,7 +37,7 @@ CRAN release: 2025-10-05
 ### BUG FIXES
 
 - Updates
-  [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md)
+  [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
   to fix parsing issues on secondary axis labels due to changes in
   upstream dependencies.
 
@@ -59,7 +58,7 @@ CRAN release: 2025-05-09
 
 - The license for the package has been changed from `GPL-3` to `MIT`.
 
-- [`ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md)
+- [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
   displays uncertainty (confidence intervals) for the centrality measure
   estimates in the plot. This is controlled by the `conf.int` argument.
   The default is `TRUE`, which means that the confidence intervals are
@@ -84,20 +83,20 @@ CRAN release: 2024-11-01
 
 ### MAJOR CHANGES
 
-- [`extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+- [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   returns a list of class `ggstatsplot_stats` which contains all the
   statistical summaries and expressions for a given plot.
 
-- [`extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md),
-  [`extract_subtitle()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md),
-  [`extract_caption()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+- [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md),
+  [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md),
+  [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   now works out of the box for the grouped plots as well.
 
 ### BUG FIXES
 
-- [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md)
+- [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   and
-  [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   now respect `ratio()` argument for proportion tests run in case of
   two-way contingency tables
   ([\#818](https://github.com/IndrajeetPatil/ggstatsplot/issues/818)).
@@ -113,7 +112,7 @@ CRAN release: 2024-07-06
 ### MAJOR CHANGES
 
 - The feature to superimpose normality curve on a histogram (in
-  [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md))
+  [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md))
   has been removed. This feature always felt like an ad hoc addition to
   the plot, and has nothing to do with the key statistical analysis in
   question (which is not about checking the normality of the
@@ -126,9 +125,9 @@ CRAN release: 2024-07-06
 ### BUG FIXES
 
 - Empty groups in factors are no longer dropped in
-  [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md)
+  [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   and
-  [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   ([\#935](https://github.com/IndrajeetPatil/ggstatsplot/issues/935)).
 
 ## ggstatsplot 0.12.3
@@ -141,9 +140,9 @@ CRAN release: 2024-04-06
   to improve its discoverability.
 
 - To be consistent with other functions,
-  [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md)
+  [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   and
-  [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   now default to two-sided alternative hypothesis.
 
 ## ggstatsplot 0.12.2
@@ -160,7 +159,7 @@ CRAN release: 2023-09-20
 
 - Maintenance updates for changes in upstream dependencies.
 
-- [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+- [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   gains `sample.size.label.args` parameter to pass additional arguments
   to
   [`ggplot2::geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
@@ -173,23 +172,23 @@ CRAN release: 2023-08-07
 
 - To be internally consistent, the `plot.type` argument has been removed
   from
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md),
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
   since no such argument exists for
-  [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md).
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md).
   This argument was also redundant. Since removing a specific geom is
   straightforward using `*.args` arguments. Examples for these two
   functions illustrate how.
 
-- [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   and
-  [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   retire `pairwise.comparisons` argument since it was redundant. In
   order to turn off showing pairwise comparisons, you can now use
   `pairwise.display = "none"`.
 
 ### NEW FEATURES
 
-- [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   gets `boxplot.args` argument to pass additional arguments to the
   underlying geom function. This also fixes regression introduced in
   `0.11.1` release where outlier points were displayed along with box
@@ -202,9 +201,9 @@ CRAN release: 2023-04-14
 ### BREAKING CHANGES
 
 - The outlier tagging functionality in
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   and
-  [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   has been removed. It was too crude to be useful or reliable, and users
   should instead prefer more informative methods (e.g.
   [`performance::check_outliers()`](https://easystats.github.io/performance/reference/check_outliers.html)).
@@ -242,16 +241,16 @@ CRAN release: 2022-11-27
   necessary details that were previously extracted using the `output`
   argument. You can extract all the necessary details (including
   expressions containing statistical details) from a plot using
-  [`extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+  [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   function. There are two additional helpers to get expressions:
-  [`extract_subtitle()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+  [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   and
-  [`extract_caption()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md).
+  [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
 
 ### MAJOR CHANGES
 
 - `xfill` and `yfill` arguments for
-  [`ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.md)
+  [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
   have been removed. You can specify all aesthetic modifications for
   side histograms in scatter plot using `xsidehistogram.args` and
   `ysidehistogram.args` arguments.
@@ -301,12 +300,12 @@ CRAN release: 2022-05-21
 - The `pairwise_comparions()` function implementation now lives in
   [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
   package, although it will continue to be exported from
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package.
 
 - The details about pairwise test for
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   and
-  [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   functions are now displayed as a label for the secondary axis.
   Previously, this information was displayed in the caption. Given that
   caption already contained Bayesian test details, it was becoming
@@ -325,9 +324,9 @@ CRAN release: 2022-01-14
 
 - Moves `{PMCMRplus}` package from Imports to Suggests. So, if, as a
   user, you wish to use pairwise comparisons in
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   and
-  [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md),
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
   you will need to download this package.
 
 ### MINOR CHANGES
@@ -345,7 +344,7 @@ CRAN release: 2021-10-19
 - The
   [`pairwise_comparisons()`](https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html)
   function for carrying out one-way pairwise comparisons has now moved
-  in [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) from
+  in [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) from
   `{pairwiseComparisons}` package.
 
 ### BREAKING CHANGES
@@ -362,11 +361,11 @@ CRAN release: 2021-10-19
 ### MAJOR CHANGES
 
 - For plotting marginal distributions in `ggscatterstats`,
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) now
-  relies on [ggside](https://github.com/jtlandis/ggside) package instead
-  of [ggExtra](https://github.com/daattali/ggExtra). This was done to
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) now relies on
+  [ggside](https://github.com/jtlandis/ggside) package instead of
+  [ggExtra](https://github.com/daattali/ggExtra). This was done to
   remove a glaring inconsistency in the API. All functions in
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) produced
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) produced
   `ggplot` objects and could be further modified with `ggplot2`
   functions, except `ggscatterstats`, which led to a lot of confusion
   among users (e.g. #28). This change gets rid of this inconsistency.
@@ -385,13 +384,13 @@ CRAN release: 2021-10-19
   want to create a grid of plots, it is highly recommended that you use
   `patchwork` package directly and not this wrapper around it which is
   mostly useful with
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) plots.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots.
 
 - `ggscatterstats` labeling arguments accept only unquoted inputs now,
   and not quoted or string inputs. Allowing this was a bad design choice
   in the past since most functions in
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/), inspired
-  by `tidyverse`, expect unquoted (`x`) - and not quoted (`"x"`) -
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/), inspired by
+  `tidyverse`, expect unquoted (`x`) - and not quoted (`"x"`) -
   arguments. So this function was the odd one out.
 
 - Gets rid of `ipmisc` dependency.
@@ -412,7 +411,7 @@ CRAN release: 2021-06-09
 ### MAJOR CHANGES
 
 - There is finally a publication for
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package!
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package!
   <https://joss.theoj.org/papers/10.21105/joss.03167>
 
 - The `ggcoefstats` function defaults to `NULL` for `xlab` and `ylab`
@@ -432,8 +431,8 @@ CRAN release: 2021-06-09
 
 - `ggstatsplot.layer` argument has been retired. If the user *chooses* a
   certain `ggplot2` theme, it means they *want* that theme, and not
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)’s varnish
-  on it. So the previous behavior was undesirable. This is a backward
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)’s varnish on
+  it. So the previous behavior was undesirable. This is a backward
   compatible change, so the plots should not look different.
 
 ### MINOR CHANGES
@@ -606,10 +605,10 @@ CRAN release: 2021-01-19
 
 - `mean.ci` argument is retired for `ggbetweenstats` and
   `ggwithinstats`. Future
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) releases
-  will be providing different centrality measures depending on the
-  `type` argument and it is not guaranteed that all of them will have
-  CIs available. So, for the sake of consistency, this argument is just
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) releases will
+  be providing different centrality measures depending on the `type`
+  argument and it is not guaranteed that all of them will have CIs
+  available. So, for the sake of consistency, this argument is just
   going to be retired.
 
 ### MINOR CHANGES
@@ -676,7 +675,7 @@ CRAN release: 2020-12-03
 
 - `ggpiestats` and `ggbarstats` don’t support returning dataframes. See
   FAQ vignette on how to get these dataframes:
-  <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1>
+  <https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#faq-1>
 
 - `ggpiestats` and `ggbarstats` were not supposed to support returning
   Bayes Factor for paired contingency table analysis, which is not
@@ -818,7 +817,7 @@ CRAN release: 2020-05-30
 - `factor.levels` (for `ggpiestats`) and `labels.legend` (for
   `ggbarstats`) are deprecated. If users would like to changes the names
   for factor levels, this should be done outside of
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/).
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/).
 
 - The non-parametric post hoc test for between-subjects design has been
   changed from Dwass-Steel-Crichtlow-Fligner test to Dunn test.
@@ -873,12 +872,12 @@ CRAN release: 2020-04-15
   [`ggplot2::ggplot_build()`](https://ggplot2.tidyverse.org/reference/ggplot_build.html)
   function or use the `pairwiseComparisons::pairwise_comparisons()`
   function used in the background by
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) to carry
-  out this analysis.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) to carry out
+  this analysis.
 
 - Due to changes in one of the downstream dependencies,
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) now
-  expects the minimum R version to be `3.6.0`.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) now expects the
+  minimum R version to be `3.6.0`.
 
 ### MINOR CHANGES
 
@@ -928,14 +927,14 @@ CRAN release: 2020-03-01
 
 To give users more flexibility in terms of modifying the aesthetic
 defaults for **all** `geoms` included in the
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) plots (each
-plot typically has multiple geoms), the package now uses a new form of
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots (each plot
+typically has multiple geoms), the package now uses a new form of
 syntax. Previously, each `geom` had a separate argument to specify each
 aesthetic (e.g., `geom_point` would get arguments like `point.size`,
 `point.color`, etc.), which resulted in functions with a massive number
 of arguments and was unsustainable in the long run. Instead,
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) functions
-now expect a list of such arguments for the respective geom (e.g.,
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions now
+expect a list of such arguments for the respective geom (e.g.,
 `geom_point` will have `point.args` argument where a list of arguments
 `list(size = 5, color = "darkgreen", alpha = 0.8)` can be supplied).
 
@@ -1000,8 +999,8 @@ now expect a list of such arguments for the respective geom (e.g.,
 - `ggcorrmat` was never supposed to work with Kendall’s correlation
   coefficient but it accidentally did. This is no longer the case.
 
-- [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) now has a
-  logo, thanks to Sarah! :)
+- [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) now has a logo,
+  thanks to Sarah! :)
 
 - The default `theme_ggstatsplot` changes slightly. The biggest change
   is that the title and the subtitle for plots are now aligned to the
@@ -1030,8 +1029,8 @@ CRAN release: 2020-02-03
   `geom_vline` can be provided via `vline.args`, for `geom_errorbarh`
   via `errorbar.args`, etc.
 
-- [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) continues
-  with its conscious uncoupling that started in `0.1.0` release: The
+- [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) continues with
+  its conscious uncoupling that started in `0.1.0` release: The
   following functions have now been moved to
   [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
   package: `subtitle_meta_parametric` and `bf_meta_message` and follow a
@@ -1073,8 +1072,8 @@ CRAN release: 2019-12-18
 
 - `pairwise_p` has been reintroduced as a number of users found it
   useful to call the function from
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) itself
-  rather than using `pairwiseComparisons` package.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) itself rather
+  than using `pairwiseComparisons` package.
 
 ### MINOR CHANGES
 
@@ -1153,15 +1152,14 @@ CRAN release: 2019-08-30
 
 ANNOUNCEMENTS
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is
-undergoing *conscious uncoupling* whereby all the statistical processing
-functions that make stats subtitles are being moved to a new package
-called
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is undergoing
+*conscious uncoupling* whereby all the statistical processing functions
+that make stats subtitles are being moved to a new package called
 [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/).
 This new package will act as a backend that handles all things
 statistical processing. This **will not** affect the end users of
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) unless you
-have been using the helper functions.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) unless you have
+been using the helper functions.
 
 Additionally, multiple pairwise comparison tests are being moved to an
 independent package called `pairwiseComparisons`.
@@ -1169,15 +1167,15 @@ independent package called `pairwiseComparisons`.
 This uncoupling is designed to achieve two things:
 
 - Make the code base of more manageable size in
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/), which
-  will make package development a bit easier.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/), which will
+  make package development a bit easier.
 
 - Make the workflow more customizable since now you can prepare your own
   plots and then use
   [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
   to display results in the plot rather than relying on
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) default
-  plots which are heavily opinionated and not appealing to everyone.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) default plots
+  which are heavily opinionated and not appealing to everyone.
 
 ### BREAKING CHANGES
 
@@ -1218,7 +1216,7 @@ This uncoupling is designed to achieve two things:
 - New dataset included: `bugs_long`, for repeated measures designs with
   `NA`s present in the data.
 
-- [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) now uses
+- [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) now uses
   `rcompanion` to compute Spearman’s *rho* and Kendall’s *W*. Therefore,
   `DescTools` is removed from dependencies.
 
@@ -1359,8 +1357,8 @@ CRAN release: 2019-06-14
   instead used `SpearmanRho` function from `DescTools` package. This was
   done to reduce number of custom internal functions used to compute CIs
   for various effect sizes.
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) therefore
-  gains `DescTools` as a dependency.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) therefore gains
+  `DescTools` as a dependency.
 
 - The `sampling.plan` argument default for `ggbarstats` function has
   been changed from `"indepMulti"` to `"jointMulti"` to be consistent
@@ -1393,13 +1391,13 @@ CRAN release: 2019-03-17
 - The internal function `outlier_df` to add a column specifying outlier
   status of any given data point is now exported.
 
-- [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-  previously relied on an internal function `chisq_v_ci` to compute
-  confidence intervals for Cramer’s *V* using bootstrapping but it was
-  pretty slow. It now instead relies on `rcompanion` package to compute
-  confidence intervals for *V*.
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/),
-  therefore, gains a new dependency.
+- [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) previously
+  relied on an internal function `chisq_v_ci` to compute confidence
+  intervals for Cramer’s *V* using bootstrapping but it was pretty slow.
+  It now instead relies on `rcompanion` package to compute confidence
+  intervals for *V*.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/), therefore,
+  gains a new dependency.
 
 - `subtitle_mann_nonparametric` and `subtitle_t_onesample` now computes
   effect size *r* and its confidence intervals as
@@ -1439,8 +1437,8 @@ CRAN release: 2019-02-18
   `ggplot` class objects.
 
 - Instead of using `effsize` to compute Cohen’s *d* and Hedge’s *g*,
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) now
-  relies on a new
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) now relies on a
+  new
   ([\#159](https://github.com/IndrajeetPatil/ggstatsplot/issues/159))
   internal function `effect_t_parametric` to compute them. This removes
   `effsize` from dependencies.
@@ -1599,9 +1597,9 @@ CRAN release: 2018-12-08
   names made users suspect if they could use these functions for
   within-subjects designs.
 
-- [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) now
-  depends on `R 3.5.0`. This is because some of its dependencies require
-  3.5.0 to work (e.g., `broom.mixed`).
+- [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) now depends on
+  `R 3.5.0`. This is because some of its dependencies require 3.5.0 to
+  work (e.g., `broom.mixed`).
 
 - All `theme_` functions are now exported (`theme_pie()`,
   `theme_corrmat()`).
@@ -1630,14 +1628,14 @@ CRAN release: 2018-12-08
 
 - All vignettes have been removed from `CRAN` to reduce the size of the
   package. They are now available on the package website:
-  <https://indrajeetpatil.github.io/ggstatsplot/articles/>.
+  <https://www.indrapatil.com/ggstatsplot/articles/>.
 
 - `subtitle_t_robust` function can now handle dependent samples and
   gains `paired` argument.
 
 - A number of tidyverse operators are now reexported by
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/): `%>%`,
-  `%<>%`, `%$%`.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/): `%>%`, `%<>%`,
+  `%$%`.
 
 ### MINOR CHANGES
 
@@ -1692,7 +1690,7 @@ CRAN release: 2018-09-30
   with results. This makes it easy for people to use these results in
   their own plots at any location they want (and not just in `subtitle`,
   the current default for
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)).
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)).
 
 - `ggcorrmat` gains `p.adjust.method` argument which allows *p*-values
   for correlations to be corrected for multiple comparisons.
@@ -1841,7 +1839,7 @@ CRAN release: 2018-07-05
   done to be consistent across different functions. `ggcorrmat` also
   uses percentage bend correlation as the robust correlation measure.
   This also means that
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) no longer
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) no longer
   imports `MASS` and `sfsmisc`.
 
 - The `data` argument is no longer `NULL` for all functions, except
@@ -1918,7 +1916,7 @@ CRAN release: 2018-05-22
 ### MAJOR CHANGES
 
 - To be internally consistent, all functions in
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) use the
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) use the
   spelling `color`, rather than `colour` in some functions, while
   `color` in others.
 

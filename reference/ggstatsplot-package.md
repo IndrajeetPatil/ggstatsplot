@@ -16,45 +16,45 @@ contingency table analysis, meta-analysis, and regression analyses.
 
 The main functions are:
 
-- [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   function to produce information-rich comparison plot *between*
   different groups or conditions with `{ggplot2}` and details from the
   statistical tests in the subtitle.
 
-- [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+- [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   function to produce information-rich comparison plot *within*
   different groups or conditions with `{ggplot2}` and details from the
   statistical tests in the subtitle.
 
-- [`ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.md)
+- [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
   function to produce `{ggplot2}` scatterplots along with a marginal
   distribution plots from `{ggside}` package and details from the
   statistical tests in the subtitle.
 
-- [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md)
+- [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   function to produce pie chart with details from the statistical tests
   in the subtitle.
 
-- [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+- [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   function to produce stacked bar chart with details from the
   statistical tests in the subtitle.
 
-- [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md)
+- [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
   function to produce histogram for a single variable with results from
   one sample test displayed in the subtitle.
 
-- [`ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md)
+- [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
   function to produce Cleveland-style dot plots/charts for a single
   variable with labels and results from one sample test displayed in the
   subtitle.
 
-- [`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md)
+- [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
   function to visualize the correlation matrix.
 
-- [`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md)
+- [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
   function to visualize results from regression analyses.
 
-- [`combine_plots()`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md)
+- [`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)
   helper function to combine multiple `{ggstatsplot}` plots using
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html).
 
@@ -62,13 +62,13 @@ References: Patil (2021)
 [doi:10.21105/joss.03236](https://doi.org/10.21105/joss.03236) .
 
 For more documentation, see the dedicated
-[Website](https://indrajeetpatil.github.io/ggstatsplot/).
+[Website](https://www.indrapatil.com/ggstatsplot/).
 
 ## See also
 
 Useful links:
 
-- <https://indrajeetpatil.github.io/ggstatsplot/>
+- <https://www.indrapatil.com/ggstatsplot/>
 
 - <https://github.com/IndrajeetPatil/ggstatsplot>
 

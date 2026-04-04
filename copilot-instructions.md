@@ -11,17 +11,17 @@ visualization frontend for `statsExpressions`.
 ### Main Functions (R/)
 
 - **Visualization functions**:
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md),
-  [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md),
-  [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md),
-  [`ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md),
-  [`ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.md),
-  [`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md),
-  [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md),
-  [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md),
-  [`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md)
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+  [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
+  [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md),
+  [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md),
+  [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
+  [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md),
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
+  [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
 - **Grouped variants**:
-  [`grouped_ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbetweenstats.md),
+  [`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md),
   etc. - repeat same analysis across grouping variable
 - **Each function supports 4 types** via `type` parameter:
   `"parametric"`, `"nonparametric"`, `"robust"`, `"bayes"`
@@ -30,15 +30,15 @@ visualization frontend for `statsExpressions`.
 
 ### Key Helper Functions
 
-- [`extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md):
+- [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md):
   Extract statistical details from a ggstatsplot object
-- [`extract_subtitle()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md):
+- [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md):
   Extract expression from subtitle
-- [`extract_caption()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md):
+- [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md):
   Extract expression from caption
-- [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md):
+- [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md):
   Default theme for plots
-- [`combine_plots()`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md):
+- [`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md):
   Combine multiple plots using patchwork
 
 ### Dependencies

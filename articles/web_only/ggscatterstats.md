@@ -27,8 +27,7 @@ To illustrate how this function can be used, we will rely on the
 `ggplot2movies` dataset. This dataset provides information about movies
 scraped from [IMDB](https://www.imdb.com/). Specifically, we will be
 using cleaned version of this dataset included in the
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package
-itself.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package itself.
 
 ``` r
 
@@ -84,10 +83,10 @@ What if we want to do the same analysis do the same analysis for movies
 with different MPAA (Motion Picture Association of America) film ratings
 (NC-17, PG, PG-13, R)?
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) provides a
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides a
 special helper function for such instances: `grouped_ggstatsplot`. This
 is merely a wrapper function around `combine_plots`. It applies
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) across all
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) across all
 **levels** of a specified **grouping variable** and then combines list
 of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
@@ -135,14 +134,14 @@ good idea), this is not possible. But this can be easily done using
 [purrr](https://purrr.tidyverse.org/).
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
 
 ## Reporting
 
@@ -150,9 +149,9 @@ If you wish to include statistical analysis results in a
 publication/report, the ideal reporting practice will be a hybrid of two
 approaches:
 
-- the [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-  approach, where the plot contains both the visual and numerical
-  summaries about a statistical model, and
+- the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) approach,
+  where the plot contains both the visual and numerical summaries about
+  a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.

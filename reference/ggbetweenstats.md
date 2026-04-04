@@ -258,7 +258,7 @@ ggbetweenstats(
 - ggtheme:
 
   A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md).
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
   Any of the `{ggplot2}` themes (e.g.,
   [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
   or themes from extension packages are allowed (e.g.,
@@ -291,7 +291,7 @@ ggbetweenstats(
 ## Details
 
 For details, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ## Summary of graphics
 
@@ -480,9 +480,9 @@ Not supported.
 
 ## See also
 
-[`grouped_ggbetweenstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbetweenstats.md),
-[`ggwithinstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md),
-[`grouped_ggwithinstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggwithinstats.md)
+[`grouped_ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md),
+[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+[`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
 
 ## Examples
 

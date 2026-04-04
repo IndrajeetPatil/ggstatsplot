@@ -2,56 +2,56 @@
 
 ## Hypothesis about group differences
 
-- [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   : Box/Violin plots for between-subjects comparisons
-- [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+- [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   : Box/Violin plots for repeated measures comparisons
-- [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md)
+- [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
   : Histogram for distribution of a numeric variable
-- [`ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md)
+- [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
   : Dot plot/chart for labeled numeric data.
 
 ## Hypothesis about correlation
 
-- [`ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.md)
+- [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
   : Scatterplot with marginal distributions and statistical results
-- [`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md)
+- [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
   : Visualization of a correlation matrix
 
 ## Hypothesis about composition of categorical variables
 
-- [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md)
+- [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   : Pie charts with statistical tests
-- [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+- [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   : Stacked bar charts with statistical tests
 
 ## Hypothesis about regression coefficients
 
-- [`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md)
+- [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
   : Dot-and-whisker plots for regression analyses
 
 ## Grouped variants of primary functions
 
 Convenience functions to repeat analysis across a single grouping
 
-- [`grouped_ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbarstats.md)
+- [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
   : Grouped bar charts with statistical tests
-- [`grouped_ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbetweenstats.md)
+- [`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)
   : Violin plots for group or condition comparisons in between-subjects
   designs repeated across all levels of a grouping variable.
-- [`grouped_ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggcorrmat.md)
+- [`grouped_ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)
   : Visualization of a correlalogram (or correlation matrix) for all
   levels of a grouping variable
-- [`grouped_ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggdotplotstats.md)
+- [`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
   : Grouped histograms for distribution of a labeled numeric variable
-- [`grouped_gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_gghistostats.md)
+- [`grouped_gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)
   : Grouped histograms for distribution of a numeric variable
-- [`grouped_ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggpiestats.md)
+- [`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
   : Grouped pie charts with statistical tests
-- [`grouped_ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggscatterstats.md)
+- [`grouped_ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)
   : Scatterplot with marginal distributions for all levels of a grouping
   variable
-- [`grouped_ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggwithinstats.md)
+- [`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
   : Violin plots for group or condition comparisons in within-subjects
   designs repeated across all levels of a grouping variable.
 
@@ -59,37 +59,37 @@ Convenience functions to repeat analysis across a single grouping
 
 Statistics and graphics-related helpers
 
-- [`reexports`](https://indrajeetpatil.github.io/ggstatsplot/reference/reexports.md)
-  [`%>%`](https://indrajeetpatil.github.io/ggstatsplot/reference/reexports.md)
-  [`pairwise_comparisons`](https://indrajeetpatil.github.io/ggstatsplot/reference/reexports.md)
+- [`reexports`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
+  [`%>%`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
+  [`pairwise_comparisons`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
   : Objects exported from other packages
 
-- [`extract_stats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
-  [`extract_subtitle()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
-  [`extract_caption()`](https://indrajeetpatil.github.io/ggstatsplot/reference/extract_stats.md)
+- [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+  [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+  [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   :
 
   Extracting data frames or expressions from
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) plots
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots
 
-- [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md)
+- [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)
   :
 
   Default theme used in
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 
-- [`combine_plots()`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md)
+- [`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)
   : Combining and arranging multiple plots in a grid
 
 ## Data
 
 Datasets included in the package.
 
-- [`movies_long`](https://indrajeetpatil.github.io/ggstatsplot/reference/movies_long.md)
+- [`movies_long`](https://www.indrapatil.com/ggstatsplot/reference/movies_long.md)
   : Movie information and user ratings from IMDB.com (long format).
-- [`Titanic_full`](https://indrajeetpatil.github.io/ggstatsplot/reference/Titanic_full.md)
+- [`Titanic_full`](https://www.indrapatil.com/ggstatsplot/reference/Titanic_full.md)
   : Titanic dataset.
-- [`iris_long`](https://indrajeetpatil.github.io/ggstatsplot/reference/iris_long.md)
+- [`iris_long`](https://www.indrapatil.com/ggstatsplot/reference/iris_long.md)
   : Edgar Anderson's Iris Data in long format.
-- [`bugs_long`](https://indrajeetpatil.github.io/ggstatsplot/reference/bugs_long.md)
+- [`bugs_long`](https://www.indrapatil.com/ggstatsplot/reference/bugs_long.md)
   : Tidy version of the "Bugs" dataset.

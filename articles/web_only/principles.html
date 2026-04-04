@@ -131,7 +131,7 @@ A BibTeX entry for LaTeX users is
 <h3 id="graphical-perception">Graphical perception<a class="anchor" aria-label="anchor" href="#graphical-perception"></a>
 </h3>
 <p>Graphical perception involves visual decoding of the encoded
-information in graphs. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> incorporates the
+information in graphs. <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> incorporates the
 paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>,
 Chapter 4) to facilitate making visual judgments about quantitative
 information effortless and almost instantaneous. Based on experiments,
@@ -177,10 +177,10 @@ made easier with the help of of data points along a common scale (the
 Y-axis) and labels.
 </p>
 </div>
-<p>There are few instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> diverges
+<p>There are few instances where <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> diverges
 from recommendations made in Cleveland’s paradigm:</p>
 <ul>
-<li>For the categorical/nominal data, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> uses
+<li>For the categorical/nominal data, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> uses
 pie charts which rely on <em>angle</em> judgments, which are less
 accurate (as compared to bar graphs, e.g., which require
 <em>position</em> judgments). This shortcoming is assuaged to some
@@ -201,7 +201,7 @@ working with categorical variables: <code>ggbarstats</code>.</li>
 less accurate angle judgments. `{ggstatsplot}` sidesteps this issue by always labelling
 percentages for pie slices, which makes angle judgments unnecessary." width="100%"><p class="caption">
 Pie charts don’t follow Cleveland’s paradigm to data display because
-they rely on less accurate angle judgments. <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
+they rely on less accurate angle judgments. <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>
 sidesteps this issue by always labelling percentages for pie slices,
 which makes angle judgments unnecessary.
 </p>
@@ -220,7 +220,7 @@ comparison, easier. But the goal of <code>grouped_</code> variants of
 functions is to not only show different aspects of the data but also to
 run statistical tests and showing detailed results for all aspects of
 the data in a superposed plot is difficult. Therefore, this is a
-compromise <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is comfortable with, at least to
+compromise <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is comfortable with, at least to
 produce plots for quick exploration of different aspects of the
 data.</li>
 </ul>
@@ -261,7 +261,7 @@ because displaying detailed results from statistical tests would be difficult in
 plot." width="100%"><p class="caption">
 Comparing different aspects of data is much more accurate in () a plot,
 which is recommended in Cleveland’s paradigm, than in () a plot, which
-is how it is implemented in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> package. This is
+is how it is implemented in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package. This is
 because displaying detailed results from statistical tests would be
 difficult in a superposed plot.
 </p>
@@ -309,7 +309,7 @@ one-dimensional data).</p></li>
 <li><p>All plots are designed to have no <strong>chartjunk</strong>
 (like moiré vibrations, fake perspective, dark grid lines, etc.) (<span class="citation">(Tufte, 2001)</span>, Chapter 5).</p></li>
 </ul>
-<p>There are some instances where <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> graphs
+<p>There are some instances where <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> graphs
 don’t follow principles of clean graphics, as formulated in the Tufte
 theory of data graphics (<span class="citation">(Tufte, 2001)</span>,
 Chapter 4). The theory has four key principles:</p>
@@ -319,7 +319,7 @@ Chapter 4). The theory has four key principles:</p>
 <li><p>Erase non-data-ink.</p></li>
 <li><p>Erase redundant data-ink, within reason.</p></li>
 </ol>
-<p>In particular, default plots in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> can
+<p>In particular, default plots in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> can
 sometimes violate one of the principles from 2-4. According to these
 principles, every bit of ink should have reason for its inclusion in the
 graphic and should convey some new information to the viewer. If not,
@@ -343,7 +343,7 @@ relevant as they were.</p>
 the data, which comes in two forms:</p>
 <ul>
 <li>
-<strong>Measurement noise</strong>: In <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>,
+<strong>Measurement noise</strong>: In <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>,
 the actual variation in measurements is shown by plotting a combination
 of (jittered) raw data points with a boxplot laid on top or a histogram.
 None of the plots, where empirical distribution of the data is
@@ -369,7 +369,7 @@ Distribution of a variable shown using <code>gghistostats</code>.
 <li>
 <strong>Sample-to-sample statistic variation</strong>: Although,
 traditionally, this variation has been shown using the standard error of
-the mean (SEM) of the statistic, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> plots
+the mean (SEM) of the statistic, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> plots
 instead use 95% confidence intervals. This is because the interval
 formed by error bars correspond to a 68% confidence interval, which is
 not a particularly interesting interval (<span class="citation">(Cleveland, 1985)</span>, p.222-225).</li>
@@ -397,7 +397,7 @@ confidence intervals in <code><a href="../../reference/ggcoefstats.html">ggcoefs
 <div class="section level3">
 <h3 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a>
 </h3>
-<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a>
+<p>As an extension of <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>
 has the same expectations about the structure of the data. More
 specifically,</p>
 <ul>
@@ -407,14 +407,14 @@ data</em>, which specify how statistical structure of a data frame
 (columns and rows). More specifically, tidy data means all variables
 have their own columns and each row corresponds to a unique observation
 (<span class="citation">(Wickham, 2014)</span>).</p></li>
-<li><p>All <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s
+<li><p>All <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s
 from variables of interest (similar to <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>; <span class="citation">(Wickham, 2016)</span>, p.207) in the data and display
 total sample size (<em>n</em>, either observations for between-subjects
 or pairs for within-subjects designs) in the subtitle to inform the
 user/reader about the number of observations included for both the
 statistical analysis and the visualization. But, when sample sizes
 differ <em>across</em> tests in the same function,
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> makes an effort to inform the user of this
 aspect. For example, <code>ggcorrmat</code> features several correlation
 test pairs and, depending on variables in a given pair, the sample sizes
 may vary.</p></li>
@@ -450,7 +450,7 @@ sample size \textit{n}, but they can give more nuanced information about sample 
 total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum,
 median, and maximum sample sizes across all correlation tests when `NA`s are present across
 correlation variables." width="100%"><p class="caption">
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from
 variables of interest and display total sample size , but they can give
 more nuanced information about sample sizes when differs across tests.
 For example, <code>ggcorrmat</code> will display () only one total
@@ -470,13 +470,13 @@ be helpful? We list few reasons below-</p>
 Wicherts</span>, 2016)</span> revealed that one in eight papers in major
 psychology journals contained a grossly inconsistent <em>p</em>-value
 that may have affected the statistical conclusion.
-<a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> helps avoid such reporting errors: Since the
 plot and the statistical analysis are yoked together, the chances of
 making an error in reporting the results are minimized. One need not
 write the results manually or copy-paste them from a different
 statistics software program (like SPSS, SAS, and so on).</li>
 </ul>
-<p>The default setting in <a href="https://indrajeetpatil.github.io/ggstatsplot/">ggstatsplot</a> is to produce plots
+<p>The default setting in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is to produce plots
 with statistical details included. Most often than not, these results
 are displayed as a <code>subtitle</code> in the plot. Great care has
 been taken into which details are included in statistical reporting and
@@ -568,7 +568,7 @@ NY</span>: <span>Springer</span>.
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://indrajeetpatil.github.io/" class="external-link">Indrajeet Patil</a>.</p>
+  <p>Developed by <a href="https://www.indrapatil.com/" class="external-link">Indrajeet Patil</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

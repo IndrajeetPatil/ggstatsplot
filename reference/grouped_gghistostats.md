@@ -1,10 +1,10 @@
 # Grouped histograms for distribution of a numeric variable
 
 Helper function for
-[`ggstatsplot::gghistostats`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md)
+[`ggstatsplot::gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
 to apply this function across multiple levels of a given factor and
 combining the resulting plots using
-[`ggstatsplot::combine_plots`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md).
+[`ggstatsplot::combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -60,7 +60,7 @@ grouped_gghistostats(
 - ...:
 
   Arguments passed on to
-  [`gghistostats`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md)
+  [`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
 
   `bin.args`
 
@@ -203,7 +203,7 @@ grouped_gghistostats(
   `ggtheme`
 
   :   A `{ggplot2}` theme. Default value is
-      [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md).
+      [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
       Any of the `{ggplot2}` themes (e.g.,
       [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
       or themes from extension packages are allowed (e.g.,
@@ -211,7 +211,7 @@ grouped_gghistostats(
       `hrbrthemes::theme_ipsum_ps()`, etc.). But note that sometimes
       these themes will remove some of the details that `{ggstatsplot}`
       plots typically contains. For example, if relevant,
-      [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+      [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
       shows details about multiple comparison test as a label on the
       secondary Y-axis. Some themes (e.g.
       `ggthemes::theme_fivethirtyeight()`) will remove the secondary
@@ -220,13 +220,13 @@ grouped_gghistostats(
 ## Details
 
 For details, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
 
 ## See also
 
-[`gghistostats`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md),
-[`ggdotplotstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md),
-[`grouped_ggdotplotstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggdotplotstats.md)
+[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
+[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md),
+[`grouped_ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
 
 ## Examples
 

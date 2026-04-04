@@ -29,14 +29,14 @@ These are convenience functions to extract data frames or expressions
 with statistical details that are used to create expressions displayed
 in `{ggstatsplot}` plots as subtitle, caption, etc. Note that all of
 this analysis is carried out by the `{statsExpressions}`
-[package](https://indrajeetpatil.github.io/statsExpressions/). And so if
-you are using these functions only to extract data frames, you are
-better off using that package.
+[package](https://www.indrapatil.com/statsExpressions/). And so if you
+are using these functions only to extract data frames, you are better
+off using that package.
 
 The only exception is the
-[`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md)
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
 function. But, if a data frame is what you want, you shouldn't be using
-[`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md)
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
 anyway. You can use
 [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)
 function which provides tidy data frames by default.

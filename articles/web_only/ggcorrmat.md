@@ -31,7 +31,7 @@ Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function
-[`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md)
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
 provides a quick way to produce **publication-ready correlation matrix**
 (aka *correlalogram*) plot. The function can also be used for quick
 **data exploration**. In addition to the plot, it can also be used to
@@ -232,13 +232,13 @@ words, the heavier the diamond, the more expensive it is going to be.
 What if we want to do the same analysis separately for each quality of
 the diamond `cut` (Fair, Good, Very Good, Premium, Ideal)?
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) provides a
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides a
 special helper function for such instances:
-[`grouped_ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggcorrmat.md).
+[`grouped_ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md).
 This is merely a wrapper function around
-[`combine_plots()`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md).
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 It applies
-[`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md)
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
 across all **levels** of a specified **grouping variable** and then
 combines list of individual plots into a single plot.
 
@@ -282,14 +282,14 @@ variable. We will see how this can be done using the
 [purrr](https://purrr.tidyverse.org/) package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 ## Suggestions
 

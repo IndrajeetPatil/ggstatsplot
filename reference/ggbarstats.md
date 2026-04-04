@@ -206,7 +206,7 @@ ggbarstats(
 - ggtheme:
 
   A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md).
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
   Any of the `{ggplot2}` themes (e.g.,
   [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
   or themes from extension packages are allowed (e.g.,
@@ -214,7 +214,7 @@ ggbarstats(
   etc.). But note that sometimes these themes will remove some of the
   details that `{ggstatsplot}` plots typically contains. For example, if
   relevant,
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   shows details about multiple comparison test as a label on the
   secondary Y-axis. Some themes (e.g.
   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis
@@ -241,7 +241,7 @@ ggbarstats(
 ## Details
 
 For details, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ## Summary of graphics
 
@@ -305,9 +305,9 @@ The table below provides summary about:
 
 ## See also
 
-[`grouped_ggbarstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggbarstats.md),
-[`ggpiestats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md),
-[`grouped_ggpiestats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggpiestats.md)
+[`grouped_ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md),
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md),
+[`grouped_ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
 
 ## Examples
 

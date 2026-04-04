@@ -11,7 +11,7 @@
 > clear portrayal of complexity. Not the complication of the simple;
 > rather … the revelation of the complex.” - Edward R. Tufte
 
-[`{ggstatsplot}`](https://indrajeetpatil.github.io/ggstatsplot/) is an
+[`{ggstatsplot}`](https://www.indrapatil.com/ggstatsplot/) is an
 extension of [`{ggplot2}`](https://github.com/tidyverse/ggplot2) package
 for creating graphics with details from statistical tests included in
 the information-rich plots themselves. In a typical exploratory data
@@ -19,7 +19,7 @@ analysis workflow, data visualization and statistical modeling are two
 different phases: visualization informs modeling, and modeling in its
 turn can suggest a different visualization method, and so on and so
 forth. The central idea of
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is simple:
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is simple:
 combine these two phases into one in the form of graphics with
 statistical details, which makes data exploration simpler and faster.
 
@@ -62,12 +62,12 @@ A BibTeX entry for LaTeX users is
 ## Acknowledgments
 
 I would like to thank all the contributors to
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) who pointed
-out bugs or requested features I hadn’t considered. I would especially
-like to thank other package developers (especially Daniel Lüdecke,
-Dominique Makowski, Mattan S. Ben-Shachar, Brenton Wiernik, Patrick
-Mair, Salvatore Mangiafico, etc.) who have patiently and diligently
-answered my relentless questions and supported feature requests in their
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) who pointed out
+bugs or requested features I hadn’t considered. I would especially like
+to thank other package developers (especially Daniel Lüdecke, Dominique
+Makowski, Mattan S. Ben-Shachar, Brenton Wiernik, Patrick Mair,
+Salvatore Mangiafico, etc.) who have patiently and diligently answered
+my relentless questions and supported feature requests in their
 projects. I also want to thank Chuck Powell for his initial
 contributions to the package.
 
@@ -88,28 +88,28 @@ To see the detailed documentation for each function in the stable
 
 - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
-- [Presentation](https://indrajeetpatil.github.io/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
+- [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
 
-- [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
+- [Vignettes](https://www.indrapatil.com/ggstatsplot/articles/)
 
 ## Summary of available plots
 
 | Function | Plot | Description |
 |:---|:---|:---|
-| [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md) | **violin plots** | for comparisons *between* groups/conditions |
-| [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md) | **violin plots** | for comparisons *within* groups/conditions |
-| [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md) | **histograms** | for distribution about numeric variable |
-| [`ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md) | **dot plots/charts** | for distribution about labeled numeric variable |
-| [`ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.md) | **scatterplots** | for correlation between two variables |
-| [`ggcorrmat()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.md) | **correlation matrices** | for correlations between multiple variables |
-| [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md) | **pie charts** | for categorical data |
-| [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md) | **bar charts** | for categorical data |
-| [`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md) | **dot-and-whisker plots** | for regression models and meta-analysis |
+| [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md) | **violin plots** | for comparisons *between* groups/conditions |
+| [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md) | **violin plots** | for comparisons *within* groups/conditions |
+| [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md) | **histograms** | for distribution about numeric variable |
+| [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md) | **dot plots/charts** | for distribution about labeled numeric variable |
+| [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md) | **scatterplots** | for correlation between two variables |
+| [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md) | **correlation matrices** | for correlations between multiple variables |
+| [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md) | **pie charts** | for categorical data |
+| [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md) | **bar charts** | for categorical data |
+| [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md) | **dot-and-whisker plots** | for regression models and meta-analysis |
 
 In addition to these basic plots,
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) also
-provides **`grouped_`** versions (see below) that makes it easy to
-repeat the same analysis for any grouping variable.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) also provides
+**`grouped_`** versions (see below) that makes it easy to repeat the
+same analysis for any grouping variable.
 
 ## Summary of types of statistical analyses
 
@@ -118,15 +118,15 @@ supported in this package-
 
 | Functions | Description | Parametric | Non-parametric | Robust | Bayesian |
 |:---|:---|:---|:---|:---|:---|
-| [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md) | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
-| [`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md) | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
-| [`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md), [`ggdotplotstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.md) | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅ |
+| [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md) | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
+| [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md) | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
+| [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md), [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md) | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅ |
 | `ggcorrmat` | Correlation matrix | ✅ | ✅ | ✅ | ✅ |
-| [`ggscatterstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.md) | Correlation between two variables | ✅ | ✅ | ✅ | ✅ |
-| [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md), [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md) | Association between categorical variables | ✅ | ✅ | ❌ | ✅ |
-| [`ggpiestats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md), [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md) | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅ |
-| [`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md) | Regression model coefficients | ✅ | ✅ | ✅ | ✅ |
-| [`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md) | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅ |
+| [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md) | Correlation between two variables | ✅ | ✅ | ✅ | ✅ |
+| [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md), [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md) | Association between categorical variables | ✅ | ✅ | ❌ | ✅ |
+| [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md), [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md) | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅ |
+| [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md) | Regression model coefficients | ✅ | ✅ | ✅ | ✅ |
+| [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md) | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅ |
 
 Summary of Bayesian analysis
 
@@ -156,7 +156,7 @@ Statistical analysis is carried out by
 package, and thus a summary table of all the statistical tests currently
 supported across various functions can be found in article for that
 package:
-<https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
+<https://www.indrapatil.com/statsExpressions/articles/stats_details.html>
 
 ## Primary functions
 
@@ -223,16 +223,16 @@ annotations](reference/figures/README-ggbetweenstats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ### `ggwithinstats()`
 
-[`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
 function has an identical twin function
-[`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
 for repeated measures designs that behaves in the same fashion with a
 few minor tweaks introduced to properly visualize the repeated measures
 design. As can be seen from an example below, the only difference
@@ -268,7 +268,7 @@ results](reference/figures/README-ggwithinstats1-1.png)
 ✅ Bayesian estimation\
 
 As with the
-[`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md),
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
 this function also has a `grouped_` variant that makes repeating the
 same analysis across a single grouping variable quicker. We will see an
 example with only repeated measurements-
@@ -295,17 +295,17 @@ America](reference/figures/README-ggwithinstats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 ### `gghistostats()`
 
 To visualize the distribution of a single variable and check if its mean
 is significantly different from a specified value with a one-sample
 test,
-[`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md)
+[`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
 can be used.
 
 ``` r
@@ -361,15 +361,15 @@ tests](reference/figures/README-gghistostats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
 
 ### `ggdotplotstats()`
 
 This function is similar to
-[`gghistostats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md),
+[`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
 but is intended to be used when the numeric variable also has a label.
 
 ``` r
@@ -428,10 +428,10 @@ vehicles](reference/figures/README-ggdotplotstats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
 
 ### `ggscatterstats()`
 
@@ -492,10 +492,10 @@ annotations](reference/figures/README-ggscatterstats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 
 ### `ggcorrmat`
 
@@ -554,10 +554,10 @@ showing robust correlations](reference/figures/README-ggcorrmat2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
 
 ### `ggpiestats()`
 
@@ -625,16 +625,16 @@ vehicles](reference/figures/README-ggpiestats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ### `ggbarstats()`
 
 In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use
-[`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
 function which has a similar syntax.
 
 N.B. The *p*-values from one-sample proportion test are displayed on top
@@ -696,15 +696,15 @@ configurations](reference/figures/README-ggbarstats2-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ### `ggcoefstats()`
 
 The function
-[`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md)
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
 generates **dot-and-whisker plots** for regression models. The tidy data
 frames are prepared using
 [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
@@ -734,17 +734,17 @@ with confidence intervals](reference/figures/README-ggcoefstats1-1.png)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ### Extracting expressions and data frames with statistical details
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) also offers
-a convenience function to extract data frames with statistical details
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) also offers a
+convenience function to extract data frames with statistical details
 that are used to create expressions displayed in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) plots.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots.
 
 ``` r
 
@@ -836,21 +836,21 @@ extract_stats(p)
 
 Note that all of this analysis is carried out by
 [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
-package: <https://indrajeetpatil.github.io/statsExpressions/>
+package: <https://www.indrapatil.com/statsExpressions/>
 
 ### Using `{ggstatsplot}` statistical details with custom plots
 
 Sometimes you may not like the default plots produced by
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/). In such
-cases, you can use other **custom** plots (from
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/). In such cases,
+you can use other **custom** plots (from
 [ggplot2](https://ggplot2.tidyverse.org) or other plotting packages) and
-still use [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
+still use [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 functions to display results from relevant statistical test.
 
 For example, in the following chunk, we will create our own plot using
 [ggplot2](https://ggplot2.tidyverse.org) package, and use
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) function
-for extracting expression:
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) function for
+extracting expression:
 
 ``` r
 
@@ -922,8 +922,7 @@ talks.)
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/),
 you can install a module called
 [`jjstatsplot`](https://github.com/sbalci/jjstatsplot), which is a
-wrapper around
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/).
+wrapper around [ggstatsplot](https://www.indrapatil.com/ggstatsplot/).
 
 ## Contributing
 
@@ -937,7 +936,7 @@ Here are some simple ways in which you can contribute (in the increasing
 order of commitment):
 
 - Read and correct any inconsistencies in the
-  [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
+  [documentation](https://www.indrapatil.com/ggstatsplot/)
 - Raise issues about bugs or wanted features
 - Review code
 - Add new functionality (in the form of new plotting functions or

@@ -62,11 +62,11 @@ counts. This vignette provides examples of both (see examples below).
 To help demonstrate how `ggbarstats` can be used with categorical (also
 known as nominal) data, a modified version of the original `Titanic`
 dataset (from the `datasets` library) has been provided in the
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package
-with the name `Titanic_full`. The Titanic Passenger Survival Dataset
-provides information “on the fate of passengers on the fatal maiden
-voyage of the ocean liner *Titanic*, including economic status (class),
-sex, age, and survival.”
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package with the
+name `Titanic_full`. The Titanic Passenger Survival Dataset provides
+information “on the fate of passengers on the fatal maiden voyage of the
+ocean liner *Titanic*, including economic status (class), sex, age, and
+survival.”
 
 Let’s have a look at the structure of both.
 
@@ -124,7 +124,7 @@ passenger’s age (Age)? We have information that classifies the
 passengers as Child or Adult, perhaps that makes a difference to their
 survival rate?
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) provides a
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides a
 special helper function for such instances: `grouped_ggbarstats`. It is
 a convenient wrapper function around `combine_plots`. It applies
 `ggbarstats` across all **levels** of a specified **grouping variable**
@@ -167,7 +167,7 @@ variable, etc. For cases like these, it would be better to use
 [purrr](https://purrr.tidyverse.org/) package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Working with data organized by `counts`
 
@@ -232,7 +232,7 @@ fishing
 
 When the data is organized this way, we make a slightly different call
 to the
-[`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
 function: we use the `counts` argument.
 
 If we want to investigate the relationship of type of fish by month (a
@@ -315,7 +315,7 @@ which is a marked improvement.
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
 
 ## Reporting
 
@@ -323,9 +323,9 @@ If you wish to include statistical analysis results in a
 publication/report, the ideal reporting practice will be a hybrid of two
 approaches:
 
-- the [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-  approach, where the plot contains both the visual and numerical
-  summaries about a statistical model, and
+- the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) approach,
+  where the plot contains both the visual and numerical summaries about
+  a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.

@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **[Indrajeet Patil](https://indrajeetpatil.github.io/)**. Maintainer,
+- **[Indrajeet Patil](https://www.indrapatil.com/)**. Maintainer,
   author, copyright holder. [](https://orcid.org/0000-0003-1995-6531)
 
 ## Citation

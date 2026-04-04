@@ -1,10 +1,10 @@
 # Grouped bar charts with statistical tests
 
 Helper function for
-[`ggstatsplot::ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+[`ggstatsplot::ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
 to apply this function across multiple levels of a given factor and
 combining the resulting plots using
-[`ggstatsplot::combine_plots()`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md).
+[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -30,7 +30,7 @@ grouped_ggbarstats(
 - ...:
 
   Arguments passed on to
-  [`ggbarstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md)
+  [`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
 
   `sample.size.label.args`
 
@@ -51,13 +51,13 @@ grouped_ggbarstats(
       one-sample proportion test (a goodness of fit test) will be run
       for the `x` variable. Otherwise an appropriate association test
       will be run. This argument can not be `NULL` for
-      [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md).
+      [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md).
 
   `proportion.test`
 
   :   Decides whether proportion test for `x` variable is to be carried
       out for each level of `y`. Defaults to `results.subtitle`. In
-      [`ggbarstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md),
+      [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
       only *p*-values from this test will be displayed.
 
   `digits.perc`
@@ -119,7 +119,7 @@ grouped_ggbarstats(
   `ggtheme`
 
   :   A `{ggplot2}` theme. Default value is
-      [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md).
+      [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
       Any of the `{ggplot2}` themes (e.g.,
       [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
       or themes from extension packages are allowed (e.g.,
@@ -127,7 +127,7 @@ grouped_ggbarstats(
       `hrbrthemes::theme_ipsum_ps()`, etc.). But note that sometimes
       these themes will remove some of the details that `{ggstatsplot}`
       plots typically contains. For example, if relevant,
-      [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+      [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
       shows details about multiple comparison test as a label on the
       secondary Y-axis. Some themes (e.g.
       `ggthemes::theme_fivethirtyeight()`) will remove the secondary
@@ -235,13 +235,13 @@ grouped_ggbarstats(
 ## Details
 
 For details, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ## See also
 
-[`ggbarstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.md),
-[`ggpiestats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.md),
-[`grouped_ggpiestats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggpiestats.md)
+[`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md),
+[`grouped_ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
 
 ## Examples
 

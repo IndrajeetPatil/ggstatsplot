@@ -37,12 +37,11 @@ here. You can still use the code as a reference for writing your own
 
 ## Why use `{purrr}`?
 
-Most of the [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
+Most of the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 functions have `grouped_` variants, which are designed to quickly run
-the same [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-function across multiple levels of a **single** grouping variable.
-Although this function is useful for data exploration, it has two strong
-weaknesses-
+the same [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) function
+across multiple levels of a **single** grouping variable. Although this
+function is useful for data exploration, it has two strong weaknesses-
 
 - The arguments applied to `grouped_` function call are applied
   uniformly to all levels of the grouping variable when we might want to
@@ -53,7 +52,7 @@ weaknesses-
   operation needs to be repeated for all resulting combinations.
 
 We will see how to overcome this limitation by combining
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) with the
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) with the
 [purrr](https://purrr.tidyverse.org/) package.
 
 **Note:**
@@ -79,10 +78,9 @@ individual plots into one bigger plot with common labeling and
 aesthetics.
 
 What are these `lists` that we are building? The lists correspond to the
-parameters in our
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) function
-like `ggbetweenstats`. If you look at the help file for
-[`?ggbetweenstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+parameters in our [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+function like `ggbetweenstats`. If you look at the help file for
+[`?ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
 for example the very first parameter it wants is the `data` file we’ll
 be using. We can also pass it different `titles` of even `ggtheme`
 themes.
@@ -259,10 +257,10 @@ For the next example lets use the same methodology on different data and
 using `ggscatterstats` to produce scatterplots combined with marginal
 histograms/boxplots/density plots with statistical details added as a
 subtitle. For data we’ll use `movies_long` which is from IMDB and part
-of the [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-package. Since it’s a large dataset with some relatively small
-categories like **NC-17** we’ll sample only one quarter of the data and
-completely drop NC-17 using `dplyr`.
+of the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package.
+Since it’s a large dataset with some relatively small categories like
+**NC-17** we’ll sample only one quarter of the data and completely drop
+NC-17 using `dplyr`.
 
 This time we’ll put all the code in one block-
 

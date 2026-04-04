@@ -220,7 +220,7 @@ ggdotplotstats(
 - ggtheme:
 
   A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md).
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
   Any of the `{ggplot2}` themes (e.g.,
   [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
   or themes from extension packages are allowed (e.g.,
@@ -228,7 +228,7 @@ ggdotplotstats(
   etc.). But note that sometimes these themes will remove some of the
   details that `{ggstatsplot}` plots typically contains. For example, if
   relevant,
-  [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   shows details about multiple comparison test as a label on the
   secondary Y-axis. Some themes (e.g.
   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis
@@ -241,7 +241,7 @@ ggdotplotstats(
 ## Details
 
 For details, see:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
 
 ## Summary of graphics
 
@@ -285,9 +285,9 @@ The table below provides summary about:
 
 ## See also
 
-[`grouped_gghistostats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_gghistostats.md),
-[`gghistostats`](https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.md),
-[`grouped_ggdotplotstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggdotplotstats.md)
+[`grouped_gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md),
+[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
+[`grouped_ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
 
 ## Examples
 

@@ -1,10 +1,10 @@
 # Violin plots for group or condition comparisons in between-subjects designs repeated across all levels of a grouping variable.
 
 Helper function for
-[`ggstatsplot::ggbetweenstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+[`ggstatsplot::ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
 to apply this function across multiple levels of a given factor and
 combining the resulting plots using
-[`ggstatsplot::combine_plots`](https://indrajeetpatil.github.io/ggstatsplot/reference/combine_plots.md).
+[`ggstatsplot::combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -30,7 +30,7 @@ grouped_ggbetweenstats(
 - ...:
 
   Arguments passed on to
-  [`ggbetweenstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+  [`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
 
   `xlab`
 
@@ -171,7 +171,7 @@ grouped_ggbetweenstats(
   `ggtheme`
 
   :   A `{ggplot2}` theme. Default value is
-      [`theme_ggstatsplot()`](https://indrajeetpatil.github.io/ggstatsplot/reference/theme_ggstatsplot.md).
+      [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
       Any of the `{ggplot2}` themes (e.g.,
       [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
       or themes from extension packages are allowed (e.g.,
@@ -179,7 +179,7 @@ grouped_ggbetweenstats(
       `hrbrthemes::theme_ipsum_ps()`, etc.). But note that sometimes
       these themes will remove some of the details that `{ggstatsplot}`
       plots typically contains. For example, if relevant,
-      [`ggbetweenstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md)
+      [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
       shows details about multiple comparison test as a label on the
       secondary Y-axis. Some themes (e.g.
       `ggthemes::theme_fivethirtyeight()`) will remove the secondary
@@ -283,9 +283,9 @@ grouped_ggbetweenstats(
 
 ## See also
 
-[`ggbetweenstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.md),
-[`ggwithinstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md),
-[`grouped_ggwithinstats`](https://indrajeetpatil.github.io/ggstatsplot/reference/grouped_ggwithinstats.md)
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
+[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+[`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
 
 ## Examples
 

@@ -34,7 +34,7 @@ You can cite this package/vignette as:
 ### Graphical perception
 
 Graphical perception involves visual decoding of the encoded information
-in graphs. [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
+in graphs. [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 incorporates the paradigm proposed in ((Cleveland, 1985), Chapter 4) to
 facilitate making visual judgments about quantitative information
 effortless and almost instantaneous. Based on experiments, Cleveland
@@ -89,15 +89,15 @@ made easier with the help of of data points along a common scale (the
 Y-axis) and labels.
 
 There are few instances where
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) diverges
-from recommendations made in Cleveland’s paradigm:
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) diverges from
+recommendations made in Cleveland’s paradigm:
 
 - For the categorical/nominal data,
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) uses pie
-  charts which rely on *angle* judgments, which are less accurate (as
-  compared to bar graphs, e.g., which require *position* judgments).
-  This shortcoming is assuaged to some degree by using plenty of labels
-  that describe percentages for all slices. This makes angle judgment
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) uses pie charts
+  which rely on *angle* judgments, which are less accurate (as compared
+  to bar graphs, e.g., which require *position* judgments). This
+  shortcoming is assuaged to some degree by using plenty of labels that
+  describe percentages for all slices. This makes angle judgment
   unnecessary and pre-vacates any concerns about inaccurate judgments
   about percentages. Additionally, it also provides alternative function
   to `ggpiestats` for working with categorical variables: `ggbarstats`.
@@ -118,9 +118,9 @@ angle judgments unnecessary.](principles_files/figure-html/fig2-1.png)
 
 Pie charts don’t follow Cleveland’s paradigm to data display because
 they rely on less accurate angle judgments.
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) sidesteps
-this issue by always labelling percentages for pie slices, which makes
-angle judgments unnecessary.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) sidesteps this
+issue by always labelling percentages for pie slices, which makes angle
+judgments unnecessary.
 
 - Cleveland’s paradigm also emphasizes that *superposition* of data is
   better than *juxtaposition* ((Cleveland, 1985), p.201) because this
@@ -136,9 +136,9 @@ angle judgments unnecessary.
   data but also to run statistical tests and showing detailed results
   for all aspects of the data in a superposed plot is difficult.
   Therefore, this is a compromise
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is
-  comfortable with, at least to produce plots for quick exploration of
-  different aspects of the data.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is comfortable
+  with, at least to produce plots for quick exploration of different
+  aspects of the data.
 
 ``` r
 
@@ -183,9 +183,9 @@ plot.](principles_files/figure-html/fig3-1.png)
 Comparing different aspects of data is much more accurate in () a plot,
 which is recommended in Cleveland’s paradigm, than in () a plot, which
 is how it is implemented in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package.
-This is because displaying detailed results from statistical tests would
-be difficult in a superposed plot.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package. This is
+because displaying detailed results from statistical tests would be
+difficult in a superposed plot.
 
 The `grouped_` plots follow the *Shrink Principle* ((Tufte, 2001),
 p.166-7) for high-information graphics, which dictates that the data
@@ -232,10 +232,10 @@ a way that reduces their visual prominence.
   Chapter 5).
 
 There are some instances where
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) graphs
-don’t follow principles of clean graphics, as formulated in the Tufte
-theory of data graphics ((Tufte, 2001), Chapter 4). The theory has four
-key principles:
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) graphs don’t
+follow principles of clean graphics, as formulated in the Tufte theory
+of data graphics ((Tufte, 2001), Chapter 4). The theory has four key
+principles:
 
 1.  Above all else show the data.
 
@@ -246,14 +246,14 @@ key principles:
 4.  Erase redundant data-ink, within reason.
 
 In particular, default plots in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) can
-sometimes violate one of the principles from 2-4. According to these
-principles, every bit of ink should have reason for its inclusion in the
-graphic and should convey some new information to the viewer. If not,
-such ink should be removed. One instance of this is bilateral symmetry
-of data measures. For example, in the figure below, we can see that both
-the box and violin plots are mirrored, which consumes twice the space in
-the graphic without adding any new information. But this redundancy is
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) can sometimes
+violate one of the principles from 2-4. According to these principles,
+every bit of ink should have reason for its inclusion in the graphic and
+should convey some new information to the viewer. If not, such ink
+should be removed. One instance of this is bilateral symmetry of data
+measures. For example, in the figure below, we can see that both the box
+and violin plots are mirrored, which consumes twice the space in the
+graphic without adding any new information. But this redundancy is
 tolerated for the sake of beauty that such symmetrical shapes can bring
 to the graphic. Even Tufte admits that efficiency is but one
 consideration in the design of statistical graphics ((Tufte, 2001),
@@ -270,8 +270,8 @@ One of the important functions of a plot is to show the variation in the
 data, which comes in two forms:
 
 - **Measurement noise**: In
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/), the
-  actual variation in measurements is shown by plotting a combination of
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/), the actual
+  variation in measurements is shown by plotting a combination of
   (jittered) raw data points with a boxplot laid on top or a histogram.
   None of the plots, where empirical distribution of the data is
   concerned, show the sample standard deviation because they are poor at
@@ -298,11 +298,10 @@ Distribution of a variable shown using `gghistostats`.
 - **Sample-to-sample statistic variation**: Although, traditionally,
   this variation has been shown using the standard error of the mean
   (SEM) of the statistic,
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) plots
-  instead use 95% confidence intervals. This is because the interval
-  formed by error bars correspond to a 68% confidence interval, which is
-  not a particularly interesting interval ((Cleveland, 1985),
-  p.222-225).
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots instead
+  use 95% confidence intervals. This is because the interval formed by
+  error bars correspond to a 68% confidence interval, which is not a
+  particularly interesting interval ((Cleveland, 1985), p.222-225).
 
 ``` r
 
@@ -321,15 +320,15 @@ confidence intervals in
 
 Sample-to-sample variation in regression estimates is displayed using
 confidence intervals in
-[`ggcoefstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.md).
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md).
 
 ## Statistical analysis
 
 ### Data requirements
 
 As an extension of [ggplot2](https://ggplot2.tidyverse.org),
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) has the
-same expectations about the structure of the data. More specifically,
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) has the same
+expectations about the structure of the data. More specifically,
 
 - The data should be organized following the principles of *tidy data*,
   which specify how statistical structure of a data frame (variables and
@@ -338,18 +337,18 @@ same expectations about the structure of the data. More specifically,
   columns and each row corresponds to a unique observation ((Wickham,
   2014)).
 
-- All [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-  functions remove `NA`s from variables of interest (similar to
+- All [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions
+  remove `NA`s from variables of interest (similar to
   [ggplot2](https://ggplot2.tidyverse.org); (Wickham, 2016), p.207) in
   the data and display total sample size (*n*, either observations for
   between-subjects or pairs for within-subjects designs) in the subtitle
   to inform the user/reader about the number of observations included
   for both the statistical analysis and the visualization. But, when
   sample sizes differ *across* tests in the same function,
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) makes an
-  effort to inform the user of this aspect. For example, `ggcorrmat`
-  features several correlation test pairs and, depending on variables in
-  a given pair, the sample sizes may vary.
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) makes an effort
+  to inform the user of this aspect. For example, `ggcorrmat` features
+  several correlation test pairs and, depending on variables in a given
+  pair, the sample sizes may vary.
 
 ``` r
 
@@ -387,11 +386,11 @@ minimum, median, and maximum sample sizes across all correlation tests
 when \`NA\`s are present across correlation
 variables.](principles_files/figure-html/fig4-1.png)
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) functions
-remove `NA`s from variables of interest and display total sample size ,
-but they can give more nuanced information about sample sizes when
-differs across tests. For example, `ggcorrmat` will display () only one
-total sample size once when no `NA`s present, but () will instead show
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions remove
+`NA`s from variables of interest and display total sample size , but
+they can give more nuanced information about sample sizes when differs
+across tests. For example, `ggcorrmat` will display () only one total
+sample size once when no `NA`s present, but () will instead show
 minimum, median, and maximum sample sizes across all correlation tests
 when `NA`s are present across correlation variables.
 
@@ -404,19 +403,18 @@ helpful? We list few reasons below-
   Wicherts, 2016) revealed that one in eight papers in major psychology
   journals contained a grossly inconsistent *p*-value that may have
   affected the statistical conclusion.
-  [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) helps
-  avoid such reporting errors: Since the plot and the statistical
-  analysis are yoked together, the chances of making an error in
-  reporting the results are minimized. One need not write the results
-  manually or copy-paste them from a different statistics software
-  program (like SPSS, SAS, and so on).
+  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) helps avoid
+  such reporting errors: Since the plot and the statistical analysis are
+  yoked together, the chances of making an error in reporting the
+  results are minimized. One need not write the results manually or
+  copy-paste them from a different statistics software program (like
+  SPSS, SAS, and so on).
 
 The default setting in
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is to
-produce plots with statistical details included. Most often than not,
-these results are displayed as a `subtitle` in the plot. Great care has
-been taken into which details are included in statistical reporting and
-why.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is to produce
+plots with statistical details included. Most often than not, these
+results are displayed as a `subtitle` in the plot. Great care has been
+taken into which details are included in statistical reporting and why.
 
 ![Template for reporting statistical
 details](../../reference/figures/stats_reporting_format.png)

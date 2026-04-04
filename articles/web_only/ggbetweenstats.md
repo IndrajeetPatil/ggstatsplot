@@ -259,7 +259,7 @@ combine_plots(
 What if we want to analyze both by continent and between 1957 and 2007?
 A combination of our two previous efforts.
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) provides a
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides a
 special helper function for such instances: `grouped_ggbetweenstats`.
 This is merely a wrapper function around `combine_plots`. It applies
 `ggbetweenstats` across all **levels** of a specified **grouping
@@ -316,21 +316,21 @@ this can be easily achieved using the
 [purrr](https://purrr.tidyverse.org/) package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Within-subjects designs
 
 For repeated measures designs,
-[`ggwithinstats()`](https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.md)
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
 function can be used:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
 
 ## Reporting
 
@@ -338,9 +338,9 @@ If you wish to include statistical analysis results in a
 publication/report, the ideal reporting practice will be a hybrid of two
 approaches:
 
-- the [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)
-  approach, where the plot contains both the visual and numerical
-  summaries about a statistical model, and
+- the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) approach,
+  where the plot contains both the visual and numerical summaries about
+  a statistical model, and
 
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.

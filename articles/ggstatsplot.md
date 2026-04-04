@@ -31,10 +31,9 @@ also be helpful for the reader to evaluate the validity of a model if it
 is reported in a scholarly publication or report. But, given the onerous
 costs involved, researchers often avoid preparing information-rich
 graphics and exploring several statistical approaches or tests
-available. The
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package in
-the R programming language ([R Core Team, 2021](#ref-base2021)) provides
-a one-line syntax to enrich
+available. The [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+package in the R programming language ([R Core Team,
+2021](#ref-base2021)) provides a one-line syntax to enrich
 [ggplot2](https://ggplot2.tidyverse.org)-based visualizations with the
 results from statistical analysis embedded in the visualization itself.
 In doing so, the package helps researchers adopt a rigorous, reliable,
@@ -46,10 +45,9 @@ In a typical data analysis workflow, data visualization and statistical
 modeling are two different phases: visualization informs modeling, and
 in turn, modeling can suggest a different visualization method, and so
 on and so forth ([Wickham & Grolemund, 2016](#ref-wickham2016r)). The
-central idea of
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is simple:
-combine these two phases into one in the form of an informative graphic
-with statistical details.
+central idea of [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+is simple: combine these two phases into one in the form of an
+informative graphic with statistical details.
 
 Before discussing benefits of this approach, we will show an example
 (Figure 1).
@@ -64,10 +62,10 @@ ggbetweenstats(iris, Species, Sepal.Length)
 philosophy of juxtaposing informative visualizations with details from
 statistical analysis. To see all supported plots and statistical
 analyses, see the package website:
-\url{https://indrajeetpatil.github.io/ggstatsplot/}](ggstatsplot_files/figure-html/iris-1.png)
+\url{https://www.indrapatil.com/ggstatsplot/}](ggstatsplot_files/figure-html/iris-1.png)
 
 Example plot from the
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) package
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package
 illustrating its philosophy of juxtaposing informative visualizations
 with details from statistical analysis. To see all supported plots and
 statistical analyses, see the package website:
@@ -84,12 +82,11 @@ both data visualization ([Cleveland, 1985](#ref-cleveland1985); [Grant,
 (frequentist/Bayesian) statistical reporting ([American Psychological
 Association, 2019](#ref-apa2019); [van Doorn et al.,
 2020](#ref-van2020jasp)). Without
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/), getting
-these statistical details and customizing a plot would require
-significant amount of time and effort. In other words, this package
-removes the trade-off often faced by researchers between ease and
-thoroughness of data exploration and further cements good data
-exploration habits.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/), getting these
+statistical details and customizing a plot would require significant
+amount of time and effort. In other words, this package removes the
+trade-off often faced by researchers between ease and thoroughness of
+data exploration and further cements good data exploration habits.
 
 Internally, data cleaning is carried out using the `tidyverse` ([Wickham
 et al., 2019](#ref-Wickham2019)), while statistical analysis is carried
@@ -108,8 +105,8 @@ visualizations are constructed using the grammar of graphics framework
 ## Benefits
 
 In summary, the benefits of
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/)’s approach
-are the following. It:
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/)’s approach are
+the following. It:
 
 1.  produces charts displaying both raw data, and numerical plus
     graphical summary indices,
@@ -166,27 +163,26 @@ and visualizations.
 
 ## Licensing and Availability
 
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) is licensed
-under the GNU General Public License (v3.0), with all source code stored
-at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/). In the
-spirit of honest and open science, requests and suggestions for fixes,
-feature updates, as well as general questions and concerns are
-encouraged via direct interaction with contributors and developers by
-filing an [issue](https://github.com/IndrajeetPatil/ggstatsplot/issues).
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is licensed under
+the GNU General Public License (v3.0), with all source code stored at
+[GitHub](https://github.com/IndrajeetPatil/ggstatsplot/). In the spirit
+of honest and open science, requests and suggestions for fixes, feature
+updates, as well as general questions and concerns are encouraged via
+direct interaction with contributors and developers by filing an
+[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues).
 
 ## Acknowledgements
 
 I would like to acknowledge the support of Mina Cikara, Fiery Cushman,
 and Iyad Rahwan during the development of this project.
-[ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) relies
-heavily on the [`easystats`](https://github.com/easystats/easystats)
-ecosystem, a collaborative project created to facilitate the usage of
-`R` for statistical analyses. Thus, I would like to thank the
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) relies heavily on
+the [`easystats`](https://github.com/easystats/easystats) ecosystem, a
+collaborative project created to facilitate the usage of `R` for
+statistical analyses. Thus, I would like to thank the
 [members](https://github.com/orgs/easystats/people) of `easystats` as
 well as the users. I would additionally like to thank the contributors
-to [ggstatsplot](https://indrajeetpatil.github.io/ggstatsplot/) for
-reporting bugs, providing helpful feedback, or helping with
-enhancements.
+to [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) for reporting
+bugs, providing helpful feedback, or helping with enhancements.
 
 ## References
 
