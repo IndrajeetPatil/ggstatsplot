@@ -5,5 +5,5 @@ to see their documentation.
 
 - statsExpressions:
 
-  [`%>%`](https://indrajeetpatil.github.io/statsExpressions/reference/reexports.html),
-  [`pairwise_comparisons`](https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html)
+  [`%>%`](https://www.indrapatil.com/statsExpressions/reference/reexports.html),
+  [`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)

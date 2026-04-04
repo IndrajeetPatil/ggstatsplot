@@ -296,8 +296,6 @@ The table below provides summary about:
 ``` r
 # for reproducibility
 set.seed(123)
-library(lme4)
-#> Loading required package: Matrix
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -350,6 +348,27 @@ extract_stats(p)
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"             
 
+# exclude intercept from the plot
+ggcoefstats(mod, exclude.intercept = TRUE)
+
+
+# only show significant labels
+ggcoefstats(mod, only.significant = TRUE)
+
+
+# ANOVA model (F-statistic)
+ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
+
+
+# a tidy data frame can also be passed directly (model-free use)
+ggcoefstats(data.frame(term = c("a", "b", "c"), estimate = c(0.5, -0.2, 1.1)))
+
+
+# without a `term` column (auto-generated)
+ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
+
 # further arguments can be passed to `parameters::model_parameters()`
+library(lme4)
+#> Loading required package: Matrix
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 ```

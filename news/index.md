@@ -342,7 +342,7 @@ CRAN release: 2021-10-19
 ### NEW FEATURES
 
 - The
-  [`pairwise_comparisons()`](https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html)
+  [`pairwise_comparisons()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)
   function for carrying out one-way pairwise comparisons has now moved
   in [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) from
   `{pairwiseComparisons}` package.

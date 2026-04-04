@@ -372,6 +372,26 @@ be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</co
 <span class="r-in"><span><span class="co"># association test (or contingency table analysis)</span></span></span>
 <span class="r-in"><span><span class="fu">ggpiestats</span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">vs</span>, <span class="va">cyl</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggpiestats-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian test</span></span></span>
+<span class="r-in"><span><span class="fu">ggpiestats</span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">vs</span>, <span class="va">cyl</span>, type <span class="op">=</span> <span class="st">"bayes"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggpiestats-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># with repelled labels to avoid overlapping</span></span></span>
+<span class="r-in"><span><span class="fu">ggpiestats</span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">vs</span>, label.repel <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggpiestats-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># show counts instead of percentages</span></span></span>
+<span class="r-in"><span><span class="fu">ggpiestats</span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">vs</span>, label <span class="op">=</span> <span class="st">"counts"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggpiestats-5.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># show both counts and percentages</span></span></span>
+<span class="r-in"><span><span class="fu">ggpiestats</span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">vs</span>, label <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggpiestats-6.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># using pre-aggregated data with counts</span></span></span>
+<span class="r-in"><span><span class="fu">ggpiestats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span>, <span class="va">Survived</span>, counts <span class="op">=</span> <span class="va">Freq</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggpiestats-7.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

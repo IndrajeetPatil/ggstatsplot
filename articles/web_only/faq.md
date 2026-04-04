@@ -319,7 +319,7 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
 
 Behind the scenes,
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) uses
-[`statsExpressions::pairwise_comparisons()`](https://indrajeetpatil.github.io/statsExpressions/reference/pairwise_comparisons.html)
+[`statsExpressions::pairwise_comparisons()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)
 function.
 
 You can use it to extract actual data frames used in
