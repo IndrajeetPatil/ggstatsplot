@@ -535,7 +535,7 @@ ggcoefstats(nlmod) %>% extract_stats()
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
 
 ## Not supported
 

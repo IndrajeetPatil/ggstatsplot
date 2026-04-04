@@ -154,7 +154,7 @@ for (i in 3:length(col.name)) {
 That said, if repeating function execution across multiple columns in a
 data frame in what you want to do, I will recommend `{purrr}`-based solution:
 
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data frame-1>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame>
 
 This solution would work for `x` and `y` arguments, but not for `grouping.var` argument, which first needs to be converted to a symbol:
 

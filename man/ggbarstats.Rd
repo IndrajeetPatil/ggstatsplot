@@ -173,7 +173,7 @@ as a subtitle.
 }
 \details{
 For details, see:
-\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
