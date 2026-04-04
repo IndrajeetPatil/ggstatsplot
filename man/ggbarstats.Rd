@@ -247,6 +247,12 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
+
+# Bayesian analysis
+ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
+
+# using pre-aggregated data with counts
+ggbarstats(as.data.frame(Titanic), x = Survived, y = Sex, counts = Freq)
 \dontshow{\}) # examplesIf}
 }
 \seealso{

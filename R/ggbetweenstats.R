@@ -120,6 +120,12 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
+#' # show non-significant pairwise comparisons (needs 3+ groups for ggsignif)
+#' ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "non-significant")
+#'
+#' # show all pairwise comparisons
+#' ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
+#'
 #' # modifying defaults
 #' ggbetweenstats(
 #'   morley,
