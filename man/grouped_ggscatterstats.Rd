@@ -122,7 +122,7 @@ plots with statistical details added as a subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

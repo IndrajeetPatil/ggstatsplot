@@ -34,7 +34,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility

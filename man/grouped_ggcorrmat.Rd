@@ -112,7 +112,7 @@ multiple levels of a given factor and combining the resulting plots using
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \examples{
 set.seed(123)

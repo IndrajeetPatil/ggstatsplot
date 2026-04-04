@@ -159,7 +159,7 @@ as a subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{

@@ -35,7 +35,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)
 #' # for reproducibility

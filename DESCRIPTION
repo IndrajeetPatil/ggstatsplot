@@ -17,7 +17,7 @@ Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with
     contingency table analysis, meta-analysis, and regression analyses.
     References: Patil (2021) <doi:10.21105/joss.03236>.
 License: MIT + file LICENSE
-URL: https://indrajeetpatil.github.io/ggstatsplot/,
+URL: https://www.indrapatil.com/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
 Depends:

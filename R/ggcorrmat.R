@@ -52,7 +52,7 @@
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
 #' @examples
 #' set.seed(123)

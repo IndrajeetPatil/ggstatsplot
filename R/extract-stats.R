@@ -6,7 +6,7 @@
 #' statistical details that are used to create expressions displayed in
 #' `{ggstatsplot}` plots as subtitle, caption, etc. Note that all of this
 #' analysis is carried out by the `{statsExpressions}`
-#' [package](https://indrajeetpatil.github.io/statsExpressions/). And so if you
+#' [package](https://www.indrapatil.com/statsExpressions/). And so if you
 #' are using these functions only to extract data frames, you are better off
 #' using that package.
 #'
