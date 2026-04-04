@@ -64,6 +64,8 @@ Suggests:
     vdiffr (>= 1.0.8),
     withr,
     WRS2
+Remotes:
+    IndrajeetPatil/statsExpressions@chore/bump-examples-coverage-threshold
 VignetteBuilder:
     knitr
 Config/Needs/check: anthonynorth/roxyglobals
