@@ -60,7 +60,7 @@ Before discussing benefits of this approach, we will show an example (Figure
 #| fig.cap = "Example plot from the `{ggstatsplot}` package illustrating its philosophy of
 #| juxtaposing informative visualizations with details from statistical analysis. To see all
 #| supported plots and statistical analyses, see the package website:
-#| \\url{https://indrajeetpatil.github.io/ggstatsplot/}"
+#| \\url{https://www.indrapatil.com/ggstatsplot/}"
 
 
 ggbetweenstats(iris, Species, Sepal.Length)

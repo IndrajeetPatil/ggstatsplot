@@ -176,7 +176,7 @@ titles, themes, or palettes for each level of the grouping variable, etc. For
 cases like these, it would be better to use `{purrr}` package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Working with data organized by `counts`
 
@@ -301,7 +301,7 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
 
 ## Reporting
 

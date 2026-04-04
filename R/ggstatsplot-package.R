@@ -53,7 +53,7 @@
 #' References: Patil (2021) \doi{10.21105/joss.03236}.
 #'
 #' For more documentation, see the dedicated
-#' \href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.
+#' \href{https://www.indrapatil.com/ggstatsplot/}{Website}.
 #'
 #' @docType package
 #' @keywords internal

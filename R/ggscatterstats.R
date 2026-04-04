@@ -47,7 +47,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
 #' The plot uses [`ggrepel::geom_label_repel()`] to attempt to keep labels

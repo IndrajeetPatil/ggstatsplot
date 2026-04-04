@@ -175,7 +175,7 @@ it can be further modified (e.g. change themes) with \code{{ggplot2}}.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \note{
 \enumerate{

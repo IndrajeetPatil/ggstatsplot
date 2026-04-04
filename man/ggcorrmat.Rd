@@ -139,7 +139,7 @@ used with output from \code{\link[dplyr:group_by]{dplyr::group_by()}}.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{

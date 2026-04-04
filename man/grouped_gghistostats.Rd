@@ -136,7 +136,7 @@ using \code{ggstatsplot::combine_plots}.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html}
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

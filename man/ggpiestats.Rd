@@ -165,7 +165,7 @@ as a subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{

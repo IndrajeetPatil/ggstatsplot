@@ -114,7 +114,7 @@
 #'   packages using the `install_latest()` function from `{easystats}`.
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
 #' # for reproducibility

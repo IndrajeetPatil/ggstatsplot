@@ -154,7 +154,7 @@ for (i in 3:length(col.name)) {
 That said, if repeating function execution across multiple columns in a
 data frame in what you want to do, I will recommend `{purrr}`-based solution:
 
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data frame-1>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data frame-1>
 
 This solution would work for `x` and `y` arguments, but not for `grouping.var` argument, which first needs to be converted to a symbol:
 
@@ -475,7 +475,7 @@ you want to actually get back data frame containing the results?
 You have two options:
 
 - Use `ggstatsplot::extract_stats()` function
-- Or go to the source package `{statsExpressions}` (see [examples](https://indrajeetpatil.github.io/statsExpressions/articles/dataframe_outputs.html))
+- Or go to the source package `{statsExpressions}` (see [examples](https://www.indrapatil.com/statsExpressions/articles/dataframe_outputs.html))
 
 ## 19. How can I remove sample size labels for `ggbarstats`?
 

@@ -27,7 +27,7 @@ These are convenience functions to extract data frames or expressions with
 statistical details that are used to create expressions displayed in
 \code{{ggstatsplot}} plots as subtitle, caption, etc. Note that all of this
 analysis is carried out by the \code{{statsExpressions}}
-\href{https://indrajeetpatil.github.io/statsExpressions/}{package}. And so if you
+\href{https://www.indrapatil.com/statsExpressions/}{package}. And so if you
 are using these functions only to extract data frames, you are better off
 using that package.
 

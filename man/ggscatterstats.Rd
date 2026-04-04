@@ -158,7 +158,7 @@ with statistical details.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \note{
 The plot uses \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} to attempt to keep labels

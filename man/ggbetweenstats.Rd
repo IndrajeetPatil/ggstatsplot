@@ -217,7 +217,7 @@ subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
