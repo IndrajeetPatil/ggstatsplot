@@ -241,7 +241,7 @@ ggbarstats(
 ## Details
 
 For details, see:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ## Summary of graphics
 

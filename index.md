@@ -152,7 +152,7 @@ confidence interval](reference/figures/stats_reporting_format.png)
 ## Summary of statistical tests and effect sizes
 
 Statistical analysis is carried out by
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+[statsExpressions](https://www.indrapatil.com/statsExpressions/)
 package, and thus a summary table of all the statistical tests currently
 supported across various functions can be found in article for that
 package:
@@ -835,7 +835,7 @@ extract_stats(p)
 ```
 
 Note that all of this analysis is carried out by
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+[statsExpressions](https://www.indrapatil.com/statsExpressions/)
 package: <https://www.indrapatil.com/statsExpressions/>
 
 ### Using `{ggstatsplot}` statistical details with custom plots

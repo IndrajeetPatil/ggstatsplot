@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,6 +61,13 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.13.6" id="ggstatsplot-0136">ggstatsplot 0.13.6<a class="anchor" aria-label="anchor" href="#ggstatsplot-0136"></a></h2>
+<div class="section level3">
+<h3 id="minor-changes-0-13-6">MINOR CHANGES<a class="anchor" aria-label="anchor" href="#minor-changes-0-13-6"></a></h3>
+<ul><li>No user-facing changes (internal maintenance: dependency updates, CI/CD improvements).</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.13.5" id="ggstatsplot-0135">ggstatsplot 0.13.5<a class="anchor" aria-label="anchor" href="#ggstatsplot-0135"></a></h2><p class="text-muted">CRAN release: 2026-02-06</p>
 <div class="section level3">
 <h3 id="minor-changes-0-13-5">MINOR CHANGES<a class="anchor" aria-label="anchor" href="#minor-changes-0-13-5"></a></h3>
@@ -69,10 +76,10 @@
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.13.4" id="ggstatsplot-0134">ggstatsplot 0.13.4<a class="anchor" aria-label="anchor" href="#ggstatsplot-0134"></a></h2><p class="text-muted">CRAN release: 2025-12-09</p>
-<p>N.B. All statistical analysis in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://www.indrapatil.com/statsExpressions/news/index.html" class="external-link uri">https://www.indrapatil.com/statsExpressions/news/index.html</a></p>
+<p>N.B. All statistical analysis in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is carried out in <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>. Thus, to see changes related to statistical expressions, read the <code>NEWS</code> for that package: <a href="https://www.indrapatil.com/statsExpressions/news/index.html" class="external-link uri">https://www.indrapatil.com/statsExpressions/news/index.html</a></p>
 <div class="section level3">
 <h3 id="minor-changes-0-13-4">MINOR CHANGES<a class="anchor" aria-label="anchor" href="#minor-changes-0-13-4"></a></h3>
-<ul><li>Removed Chuck Powell from the contributors list in <code>DESCRIPTION</code>. While Chuck made significant contributions to early versions of the package (2018-2019), all of his code was completely replaced during the 2019 refactoring when statistical functionality was moved to the <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package.</li>
+<ul><li>Removed Chuck Powell from the contributors list in <code>DESCRIPTION</code>. While Chuck made significant contributions to early versions of the package (2018-2019), all of his code was completely replaced during the 2019 refactoring when statistical functionality was moved to the <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package.</li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -237,7 +244,7 @@
 <h2 class="pkg-version" data-toc-text="0.9.2" id="ggstatsplot-092">ggstatsplot 0.9.2<a class="anchor" aria-label="anchor" href="#ggstatsplot-092"></a></h2><p class="text-muted">CRAN release: 2022-05-21</p>
 <div class="section level3">
 <h3 id="major-changes-0-9-2">MAJOR CHANGES<a class="anchor" aria-label="anchor" href="#major-changes-0-9-2"></a></h3>
-<ul><li><p>The <code>pairwise_comparions()</code> function implementation now lives in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package, although it will continue to be exported from <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package.</p></li>
+<ul><li><p>The <code>pairwise_comparions()</code> function implementation now lives in <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package, although it will continue to be exported from <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package.</p></li>
 <li><p>The details about pairwise test for <code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> functions are now displayed as a label for the secondary axis. Previously, this information was displayed in the caption. Given that caption already contained Bayesian test details, it was becoming difficult to stack different expressions on top of each other. To avoid unnecessary code complexity and also to avoid crowded caption, this decision was made. Additionally, the pairwise test label has been slightly abbreviated, and so is the label for significance bars. This is done to not let the text overwhelm the numeric values, the latter being more important.</p></li>
 </ul></div>
 </div>
@@ -365,7 +372,7 @@
 <h3 id="minor-changes-0-6-8">MINOR CHANGES<a class="anchor" aria-label="anchor" href="#minor-changes-0-6-8"></a></h3>
 <ul><li><p><code>ggcorrmat</code> uses pretty formatting to display sample size information.</p></li>
 <li><p><code>ggcoefstats</code> now also displays degrees of freedom for chi-squared tests.</p></li>
-<li><p>Expects minor changes in some of the effect sizes and their confidence intervals due to changes in <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>.</p></li>
+<li><p>Expects minor changes in some of the effect sizes and their confidence intervals due to changes in <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-0-6-8">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-0-6-8"></a></h3>
@@ -555,7 +562,7 @@
 <div class="section level3">
 <h3 id="breaking-changes-0-2-0">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-2-0"></a></h3>
 <ul><li><p>To have a more manageable length of function arguments, additional aesthetic specifications for any given geom can be provided via a dedicated <code>*.args</code> argument. For example, all aesthetic arguments for <code>geom_vline</code> can be provided via <code>vline.args</code>, for <code>geom_errorbarh</code> via <code>errorbar.args</code>, etc.</p></li>
-<li><p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code> and follow a more logical nomenclature. For the same reason, <code>lm_effsize_ci</code> function is also no longer exported and lives in the <code>groupedstats</code> package.</p></li>
+<li><p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> continues with its conscious uncoupling that started in <code>0.1.0</code> release: The following functions have now been moved to <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package: <code>subtitle_meta_parametric</code> and <code>bf_meta_message</code> and follow a more logical nomenclature. For the same reason, <code>lm_effsize_ci</code> function is also no longer exported and lives in the <code>groupedstats</code> package.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="major-changes-0-2-0">MAJOR CHANGES<a class="anchor" aria-label="anchor" href="#major-changes-0-2-0"></a></h3>
@@ -614,14 +621,14 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="ggstatsplot-011">ggstatsplot 0.1.1<a class="anchor" aria-label="anchor" href="#ggstatsplot-011"></a></h2><p class="text-muted">CRAN release: 2019-08-30</p>
 <p>ANNOUNCEMENTS</p>
-<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions that make stats subtitles are being moved to a new package called <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> unless you have been using the helper functions.</p>
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is undergoing <em>conscious uncoupling</em> whereby all the statistical processing functions that make stats subtitles are being moved to a new package called <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>. This new package will act as a backend that handles all things statistical processing. This <strong>will not</strong> affect the end users of <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> unless you have been using the helper functions.</p>
 <p>Additionally, multiple pairwise comparison tests are being moved to an independent package called <code>pairwiseComparisons</code>.</p>
 <p>This uncoupling is designed to achieve two things:</p>
 <ul><li><p>Make the code base of more manageable size in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>, which will make package development a bit easier.</p></li>
-<li><p>Make the workflow more customizable since now you can prepare your own plots and then use <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> to display results in the plot rather than relying on <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> default plots which are heavily opinionated and not appealing to everyone.</p></li>
+<li><p>Make the workflow more customizable since now you can prepare your own plots and then use <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> to display results in the plot rather than relying on <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> default plots which are heavily opinionated and not appealing to everyone.</p></li>
 </ul><div class="section level3">
 <h3 id="breaking-changes-0-1-1">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-1"></a></h3>
-<ul><li><p>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <a href="https://indrajeetpatil.github.io/statsExpressions/" class="external-link">statsExpressions</a> package.</p></li>
+<ul><li><p>All helper functions <code>subtitle_*</code> and <code>bf_*</code> have been moved to the new <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package.</p></li>
 <li><p>To be consistent with all the other <code>subtitle_</code> and <code>bf_</code> functions, <code>subtitle_contingency_tab</code> and <code>bf_contingency_tab</code> now use the arguments <code>x</code> and <code>y</code> instead of <code>main</code> and <code>condition</code>.</p></li>
 </ul></div>
 <div class="section level3">

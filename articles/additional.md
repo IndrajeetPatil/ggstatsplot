@@ -63,8 +63,7 @@ this package is to go through the following slides:
 
 ## Statistical backend of `{ggstatsplot}`
 
-The
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+The [statsExpressions](https://www.indrapatil.com/statsExpressions/)
 package forms the statistical backend that processes data and creates
 data frames and expressions containing results from statistical tests.
 

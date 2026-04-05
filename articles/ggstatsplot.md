@@ -91,7 +91,7 @@ data exploration and further cements good data exploration habits.
 Internally, data cleaning is carried out using the `tidyverse` ([Wickham
 et al., 2019](#ref-Wickham2019)), while statistical analysis is carried
 out via the
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+[statsExpressions](https://www.indrapatil.com/statsExpressions/)
 ([Patil, 2021](#ref-Patil2021)) and `easystats` ([Ben-Shachar et al.,
 2020](#ref-Ben-Shachar2020); [Lüdecke et al.,
 2019](#ref-L%C3%BCdecke2019), [2020](#ref-L%C3%BCdecke2020parameters),

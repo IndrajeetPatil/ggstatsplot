@@ -594,8 +594,7 @@ You have two options:
   [`ggstatsplot::extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   function
 - Or go to the source package
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
-  (see
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/) (see
   [examples](https://www.indrapatil.com/statsExpressions/articles/dataframe_outputs.html))
 
 ## 19. How can I remove sample size labels for `ggbarstats`?
@@ -618,11 +617,11 @@ Spearman’s $`\rho`$, but not Kendall’s $`\tau`$ as a non-parametric
 correlation test.
 
 In such cases, you can override the defaults and use
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
-to create custom expressions to display in the plot. But be forewarned
-that the expression building function in
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
-is not stable yet.
+[statsExpressions](https://www.indrapatil.com/statsExpressions/) to
+create custom expressions to display in the plot. But be forewarned that
+the expression building function in
+[statsExpressions](https://www.indrapatil.com/statsExpressions/) is not
+stable yet.
 
 ``` r
 

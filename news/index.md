@@ -1,5 +1,12 @@
 # Changelog
 
+## ggstatsplot 0.13.6
+
+### MINOR CHANGES
+
+- No user-facing changes (internal maintenance: dependency updates,
+  CI/CD improvements).
+
 ## ggstatsplot 0.13.5
 
 CRAN release: 2026-02-06
@@ -16,9 +23,9 @@ CRAN release: 2025-12-09
 
 N.B. All statistical analysis in
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is carried out in
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/).
-Thus, to see changes related to statistical expressions, read the `NEWS`
-for that package:
+[statsExpressions](https://www.indrapatil.com/statsExpressions/). Thus,
+to see changes related to statistical expressions, read the `NEWS` for
+that package:
 <https://www.indrapatil.com/statsExpressions/news/index.html>
 
 ### MINOR CHANGES
@@ -27,7 +34,7 @@ for that package:
   While Chuck made significant contributions to early versions of the
   package (2018-2019), all of his code was completely replaced during
   the 2019 refactoring when statistical functionality was moved to the
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/)
   package.
 
 ## ggstatsplot 0.13.3
@@ -298,7 +305,7 @@ CRAN release: 2022-05-21
 ### MAJOR CHANGES
 
 - The `pairwise_comparions()` function implementation now lives in
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/)
   package, although it will continue to be exported from
   [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package.
 
@@ -620,7 +627,7 @@ CRAN release: 2021-01-19
 
 - Expects minor changes in some of the effect sizes and their confidence
   intervals due to changes in
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/).
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/).
 
 ### NEW FEATURES
 
@@ -1032,7 +1039,7 @@ CRAN release: 2020-02-03
 - [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) continues with
   its conscious uncoupling that started in `0.1.0` release: The
   following functions have now been moved to
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/)
   package: `subtitle_meta_parametric` and `bf_meta_message` and follow a
   more logical nomenclature. For the same reason, `lm_effsize_ci`
   function is also no longer exported and lives in the `groupedstats`
@@ -1155,9 +1162,9 @@ ANNOUNCEMENTS
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is undergoing
 *conscious uncoupling* whereby all the statistical processing functions
 that make stats subtitles are being moved to a new package called
-[statsExpressions](https://indrajeetpatil.github.io/statsExpressions/).
-This new package will act as a backend that handles all things
-statistical processing. This **will not** affect the end users of
+[statsExpressions](https://www.indrapatil.com/statsExpressions/). This
+new package will act as a backend that handles all things statistical
+processing. This **will not** affect the end users of
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) unless you have
 been using the helper functions.
 
@@ -1172,16 +1179,15 @@ This uncoupling is designed to achieve two things:
 
 - Make the workflow more customizable since now you can prepare your own
   plots and then use
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
-  to display results in the plot rather than relying on
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/) to
+  display results in the plot rather than relying on
   [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) default plots
   which are heavily opinionated and not appealing to everyone.
 
 ### BREAKING CHANGES
 
 - All helper functions `subtitle_*` and `bf_*` have been moved to the
-  new
-  [statsExpressions](https://indrajeetpatil.github.io/statsExpressions/)
+  new [statsExpressions](https://www.indrapatil.com/statsExpressions/)
   package.
 
 - To be consistent with all the other `subtitle_` and `bf_` functions,
