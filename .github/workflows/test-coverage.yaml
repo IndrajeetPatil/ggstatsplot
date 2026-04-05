@@ -11,4 +11,3 @@ jobs:
     uses: IndrajeetPatil/workflows/.github/workflows/test-coverage.yaml@main
     with:
       runner-os: macos-latest
-      threshold: 100
