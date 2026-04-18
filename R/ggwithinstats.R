@@ -129,10 +129,15 @@ ggwithinstats <- function(
   # capture subject.id as string (NULL if not provided)
   sid_str <- tryCatch(as_string(ensym(subject.id)), error = function(e) NULL)
 
+  if (is.null(sid_str)) {
+    data <- select(data, {{ x }}, {{ y }})
+  } else {
+    data <- select(data, {{ x }}, {{ y }}, .data[[sid_str]])
+  }
+
   data %<>%
-    {if (!is.null(sid_str)) select(., {{ x }}, {{ y }}, .data[[sid_str]]) else select(., {{ x }}, {{ y }})} %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    mutate(.rowid = row_number(), .by = {{ x }}) %>%
+    mutate(.rowid = if (is.null(sid_str)) row_number() else .data[[sid_str]], .by = {{ x }}) %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
 
   # statistical analysis ------------------------------------------
