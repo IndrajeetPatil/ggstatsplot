@@ -231,10 +231,11 @@ library(WRS2) ## for data
 library(afex) ## to run ANOVA
 
 ggwithinstats(
-  data    = WineTasting,
-  x       = Wine,
-  y       = Taste,
-  title   = "Wine tasting"
+  data       = WineTasting,
+  x          = Wine,
+  y          = Taste,
+  subject.id = Taster,
+  title      = "Wine tasting"
 )
 ```
 
@@ -259,6 +260,7 @@ grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
   y               = desire,
+  subject.id      = subject,
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
