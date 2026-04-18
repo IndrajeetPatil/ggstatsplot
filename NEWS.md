@@ -1,11 +1,14 @@
 # ggstatsplot 0.13.6.9000
 
-## NEW FEATURES
+## BREAKING CHANGES
 
 - `ggwithinstats()` (and `grouped_ggwithinstats()`) gains a `subject.id`
   parameter. When provided, the subject identifier column is used to correctly
-  pair observations across conditions, replacing fragile positional row
-  numbering for within-subjects path plots and NA removal.
+  pair observations across conditions and to remove NA observations by subject
+  key rather than by positional row number. Plots and statistical results for
+  unsorted repeated-measures data will differ from previous versions once
+  `subject.id` is supplied. All examples and vignettes have been updated to
+  pass `subject.id` explicitly, which is now the recommended practice.
 
 # ggstatsplot 0.13.6
 
