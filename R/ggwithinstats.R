@@ -44,10 +44,11 @@
 #'
 #' # create a plot
 #' p <- ggwithinstats(
-#'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-#'   x    = condition,
-#'   y    = desire,
-#'   type = "np"
+#'   data       = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x          = condition,
+#'   y          = desire,
+#'   subject.id = subject,
+#'   type       = "np"
 #' )
 #'
 #'
@@ -59,17 +60,19 @@
 #'
 #' # modifying defaults
 #' ggwithinstats(
-#'   data = bugs_long,
-#'   x    = condition,
-#'   y    = desire,
-#'   type = "robust"
+#'   data       = bugs_long,
+#'   x          = condition,
+#'   y          = desire,
+#'   subject.id = subject,
+#'   type       = "robust"
 #' )
 #'
 #' # you can remove a specific geom to reduce complexity of the plot
 #' ggwithinstats(
-#'   data = bugs_long,
-#'   x = condition,
-#'   y = desire,
+#'   data       = bugs_long,
+#'   x          = condition,
+#'   y          = desire,
+#'   subject.id = subject,
 #'   # to remove violin plot
 #'   violin.args = list(width = 0, linewidth = 0, colour = NA),
 #'   # to remove boxplot
@@ -82,6 +85,7 @@ ggwithinstats <- function(
   data,
   x,
   y,
+  subject.id = NULL,
   type = "parametric",
   pairwise.display = "significant",
   p.adjust.method = "holm",
@@ -122,8 +126,11 @@ ggwithinstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
+  # capture subject.id as string (NULL if not provided)
+  sid_str <- tryCatch(as_string(ensym(subject.id)), error = function(e) NULL)
+
   data %<>%
-    select({{ x }}, {{ y }}) %>%
+    {if (!is.null(sid_str)) select(., {{ x }}, {{ y }}, .data[[sid_str]]) else select(., {{ x }}, {{ y }})} %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     mutate(.rowid = row_number(), .by = {{ x }}) %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
@@ -137,6 +144,7 @@ ggwithinstats <- function(
       data = data,
       x = as_string(x),
       y = as_string(y),
+      subject.id = sid_str,
       effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,
@@ -198,6 +206,7 @@ ggwithinstats <- function(
       data = data,
       x = {{ x }},
       y = {{ y }},
+      subject.id = sid_str,
       type = type,
       tr = tr,
       paired = TRUE,
@@ -269,6 +278,7 @@ ggwithinstats <- function(
 #'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x                = condition,
 #'   y                = desire,
+#'   subject.id       = subject,
 #'   grouping.var     = gender,
 #'   type             = "np",
 #'   # additional modifications for **each** plot using `{ggplot2}` functions
