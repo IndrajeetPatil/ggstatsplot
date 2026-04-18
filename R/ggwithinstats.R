@@ -127,7 +127,7 @@ ggwithinstats <- function(
   type <- stats_type_switch(type)
 
   subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
-  sid_str    <- if (!is.null(subject.id)) as_string(subject.id)
+  sid_str <- if (!is.null(subject.id)) as_string(subject.id)
 
   data %<>%
     select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
