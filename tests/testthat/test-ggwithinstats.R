@@ -15,16 +15,16 @@ test_that(
     expect_doppelganger(
       title = "defaults plots - two groups",
       fig = ggwithinstats(
-        data           = data_bugs_2,
-        x              = condition,
-        y              = desire,
-        subject.id     = subject,
+        data = data_bugs_2,
+        x = condition,
+        y = desire,
+        subject.id = subject,
         pairwise.display = "none",
-        ggsignif.args  = list(textsize = 6, tip_length = 0.01),
+        ggsignif.args = list(textsize = 6, tip_length = 0.01),
         point.path.args = list(color = "red"),
         centrality.path.args = list(color = "blue", size = 2, alpha = 0.8),
         centrality.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
-        title          = "bugs dataset"
+        title = "bugs dataset"
       )
     )
 
@@ -32,12 +32,12 @@ test_that(
     expect_doppelganger(
       title = "defaults plots - more than two groups",
       fig = ggwithinstats(
-        data       = WRS2::WineTasting,
-        x          = Wine,
-        y          = Taste,
+        data = WRS2::WineTasting,
+        x = Wine,
+        y = Taste,
         subject.id = Taster,
         pairwise.display = "none",
-        title      = "wine tasting data"
+        title = "wine tasting data"
       )
     )
   }
@@ -96,5 +96,48 @@ test_that(
         type         = "np"
       )
     )
+  }
+)
+
+test_that(
+  "type remains the fourth positional argument",
+  {
+    expect_no_error(
+      ggwithinstats(
+        data_bugs_2,
+        condition,
+        desire,
+        "np",
+        subject.id = subject,
+        pairwise.display = "none",
+        results.subtitle = FALSE
+      )
+    )
+  }
+)
+
+test_that(
+  "subject.id keeps partially observed subjects in the plotting data",
+  {
+    df_missing <- data.frame(
+      condition = c("A", "B", "A", "B", "A", "B"),
+      score = c(1, 2, 3, NA, 4, 5),
+      id = c(1, 1, 2, 2, 3, 3)
+    )
+
+    point_data <- ggplot2::ggplot_build(
+      ggwithinstats(
+        data = df_missing,
+        x = condition,
+        y = score,
+        type = "p",
+        subject.id = id,
+        pairwise.display = "none",
+        results.subtitle = FALSE
+      )
+    )$data[[1L]]
+
+    expect_equal(nrow(point_data), 5L)
+    expect_equal(length(unique(point_data$group)), 3L)
   }
 )

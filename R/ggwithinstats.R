@@ -22,6 +22,15 @@
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
 #'   arguments passed on to [`ggplot2::geom_path()`] connecting raw data points
 #'   and mean points.
+#' @param subject.id Across repeated measures conditions, each row in the
+#'   dataset must correspond to a unique unit (e.g., subject or participant).
+#'   If your data frame is already in such a format, you can ignore the
+#'   `subject.id` argument (the function will use row number to pair
+#'   observations). **But if you are not sure, it is always better to specify
+#'   this argument.** Note that if there are any missing values (i.e., `NA`) in
+#'   the dependent variable and the `subject.id` is not specified, they will be
+#'   dropped using a list-wise approach. If you specify `subject.id`, only the
+#'   subjects with `NA`s across *all* conditions will be removed.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
@@ -69,9 +78,9 @@
 #'
 #' # you can remove a specific geom to reduce complexity of the plot
 #' ggwithinstats(
-#'   data       = bugs_long,
-#'   x          = condition,
-#'   y          = desire,
+#'   data = bugs_long,
+#'   x = condition,
+#'   y = desire,
 #'   subject.id = subject,
 #'   # to remove violin plot
 #'   violin.args = list(width = 0, linewidth = 0, colour = NA),
@@ -85,8 +94,8 @@ ggwithinstats <- function(
   data,
   x,
   y,
-  subject.id = NULL,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -131,9 +140,17 @@ ggwithinstats <- function(
 
   data %<>%
     select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
-    mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    mutate(.rowid = if (is.null(sid_str)) row_number() else .data[[sid_str]], .by = {{ x }}) %>%
-    anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
+    mutate({{ x }} := droplevels(as.factor({{ x }})))
+
+  if (is.null(sid_str)) {
+    data %<>%
+      mutate(.rowid = row_number(), .by = {{ x }}) %>%
+      anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
+  } else {
+    data %<>%
+      mutate(.rowid = .data[[sid_str]]) %>%
+      filter(!is.na({{ y }}))
+  }
 
   # statistical analysis ------------------------------------------
 

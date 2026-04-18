@@ -8,8 +8,8 @@ ggwithinstats(
   data,
   x,
   y,
-  subject.id = NULL,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -61,17 +61,6 @@ subject-1, subject-2, ..., pattern.}
 
 \item{y}{The response (or outcome or dependent) variable from \code{data}.}
 
-\item{subject.id}{Across repeated measures conditions, each row in the
-dataset must correspond to a unique unit (e.g., subject or participant).
-If your data frame is already in such a format, you can ignore the
-\code{subject.id} argument (the function will use row number to pair
-observations). \strong{But if you are not sure, it is always better to
-specify this argument.} Note that if there are any missing values (i.e.,
-\code{NA}) in the dependent variable and the \code{subject.id} is not specified,
-they will be dropped using a list-wise approach. If you specify
-\code{subject.id}, only the subjects with \code{NA}s across \emph{all} conditions will
-be removed.}
-
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}
@@ -81,6 +70,16 @@ be removed.}
 }
 
 You can specify just the initial letter.}
+
+\item{subject.id}{Across repeated measures conditions, each row in the
+dataset must correspond to a unique unit (e.g., subject or participant).
+If your data frame is already in such a format, you can ignore the
+\code{subject.id} argument (the function will use row number to pair
+observations). \strong{But if you are not sure, it is always better to specify
+this argument.} Note that if there are any missing values (i.e., \code{NA}) in
+the dependent variable and the \code{subject.id} is not specified, they will be
+dropped using a list-wise approach. If you specify \code{subject.id}, only the
+subjects with \code{NA}s across \emph{all} conditions will be removed.}
 
 \item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
@@ -457,9 +456,9 @@ ggwithinstats(
 
 # you can remove a specific geom to reduce complexity of the plot
 ggwithinstats(
-  data       = bugs_long,
-  x          = condition,
-  y          = desire,
+  data = bugs_long,
+  x = condition,
+  y = desire,
   subject.id = subject,
   # to remove violin plot
   violin.args = list(width = 0, linewidth = 0, colour = NA),

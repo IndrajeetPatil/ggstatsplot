@@ -176,16 +176,16 @@ df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
 
 ## parametric t-test
 p1 <- ggwithinstats(
-  data       = df_disgust,
-  x          = condition,
-  y          = desire,
+  data = df_disgust,
+  x = condition,
+  y = desire,
   subject.id = subject,
-  type       = "p",
+  type = "p",
   effsize.type = "d",
   conf.level = 0.99,
-  title      = "Parametric test",
-  package    = "ggsci",
-  palette    = "nrc_npg"
+  title = "Parametric test",
+  package = "ggsci",
+  palette = "nrc_npg"
 )
 
 ## Mann-Whitney U test (nonparametric test)
