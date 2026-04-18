@@ -126,16 +126,11 @@ ggwithinstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
-  # capture subject.id as string (NULL if not provided)
-  sid_str <- tryCatch(as_string(ensym(subject.id)), error = function(e) NULL)
-
-  if (is.null(sid_str)) {
-    data <- select(data, {{ x }}, {{ y }})
-  } else {
-    data <- select(data, {{ x }}, {{ y }}, .data[[sid_str]])
-  }
+  subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
+  sid_str    <- if (!is.null(subject.id)) as_string(subject.id)
 
   data %<>%
+    select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
     mutate(.rowid = if (is.null(sid_str)) row_number() else .data[[sid_str]], .by = {{ x }}) %>%
     anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
