@@ -295,6 +295,8 @@ ggcoefstats <- function(
       all_colors <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
       # subset colors to match filtered labels
       stats.label.color <- all_colors[tidy_df$term %in% tidy_df_labels$term]
+    } else if (length(stats.label.color) > 1L) {
+      stats.label.color <- stats.label.color[tidy_df$term %in% tidy_df_labels$term]
     }
 
     plot_coef <- plot_coef +

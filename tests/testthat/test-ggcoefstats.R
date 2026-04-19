@@ -181,7 +181,14 @@ test_that("mixed-model stats labels drop rows with empty expressions", {
     title = "mixed-model fixed-effects labels",
     fig = suppressWarnings(ggcoefstats(
       lme4::lmer(Reaction ~ Days + (Days | Subject), lme4::sleepstudy),
-      effects = "fixed"
+      effects = "fixed",
+      stats.label.args = list(
+        size = 3.0,
+        direction = "y",
+        min.segment.length = 0,
+        na.rm = TRUE,
+        seed = 123
+      )
     ))
   )
 })
