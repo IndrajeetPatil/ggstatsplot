@@ -25,6 +25,10 @@
 - `combine_plots()` now renders the overall annotation title in bold by
   default, matching the styling used for individual plot titles.
 
+- `ggcoefstats()` now preserves the model term order in the default top-to-bottom
+  plot layout and in estimate-sorted displays, instead of showing terms in the
+  reverse order (#642).
+
 # ggstatsplot 0.13.6
 
 ## MINOR CHANGES
