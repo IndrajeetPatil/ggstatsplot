@@ -38,8 +38,9 @@ If your data frame is already in such a format, you can ignore the
 observations). \strong{But if you are not sure, it is always better to specify
 this argument.} Note that if there are any missing values (i.e., \code{NA}) in
 the dependent variable and the \code{subject.id} is not specified, they will be
-dropped using a list-wise approach. If you specify \code{subject.id}, only the
-subjects with \code{NA}s across \emph{all} conditions will be removed.}
+dropped using a list-wise approach. If you specify \code{subject.id}, partially
+observed subjects will still be shown in the plot, but inferential
+statistics will be computed using only complete repeated-measures pairs.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),

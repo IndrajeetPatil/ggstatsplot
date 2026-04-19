@@ -29,8 +29,9 @@
 #'   observations). **But if you are not sure, it is always better to specify
 #'   this argument.** Note that if there are any missing values (i.e., `NA`) in
 #'   the dependent variable and the `subject.id` is not specified, they will be
-#'   dropped using a list-wise approach. If you specify `subject.id`, only the
-#'   subjects with `NA`s across *all* conditions will be removed.
+#'   dropped using a list-wise approach. If you specify `subject.id`, partially
+#'   observed subjects will still be shown in the plot, but inferential
+#'   statistics will be computed using only complete repeated-measures pairs.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
@@ -56,8 +57,8 @@
 #'   data       = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x          = condition,
 #'   y          = desire,
-#'   subject.id = subject,
-#'   type       = "np"
+#'   type       = "np",
+#'   subject.id = subject
 #' )
 #'
 #'
@@ -72,8 +73,8 @@
 #'   data       = bugs_long,
 #'   x          = condition,
 #'   y          = desire,
-#'   subject.id = subject,
-#'   type       = "robust"
+#'   type       = "robust",
+#'   subject.id = subject
 #' )
 #'
 #' # you can remove a specific geom to reduce complexity of the plot
@@ -95,6 +96,7 @@ ggwithinstats <- function(
   x,
   y,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -126,7 +128,6 @@ ggwithinstats <- function(
   package = "RColorBrewer",
   palette = "Dark2",
   ggplot.component = NULL,
-  subject.id = NULL,
   ...
 ) {
   # data -----------------------------------
@@ -141,6 +142,8 @@ ggwithinstats <- function(
   data %<>%
     select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }})))
+
+  stats_data <- data
 
   if (is.null(sid_str)) {
     data %<>%
@@ -158,7 +161,7 @@ ggwithinstats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data = data,
+      data = stats_data,
       x = as_string(x),
       y = as_string(y),
       subject.id = sid_str,
@@ -220,7 +223,7 @@ ggwithinstats <- function(
 
   if (pairwise.display != "none" && test == "anova") {
     mpc_df <- pairwise_comparisons(
-      data = data,
+      data = stats_data,
       x = {{ x }},
       y = {{ y }},
       subject.id = sid_str,

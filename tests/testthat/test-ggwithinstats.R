@@ -117,18 +117,13 @@ test_that(
 )
 
 test_that(
-  "pairwise.display remains the fifth positional argument",
+  "subject.id follows type in the function signature",
   {
-    expect_no_error(
-      ggwithinstats(
-        data_bugs_2,
-        condition,
-        desire,
-        "np",
-        "none",
-        subject.id = subject,
-        results.subtitle = FALSE
-      )
+    arg_names <- names(formals(ggwithinstats))
+
+    expect_identical(
+      arg_names[seq_len(6L)],
+      c("data", "x", "y", "type", "subject.id", "pairwise.display")
     )
   }
 )
