@@ -170,6 +170,12 @@ ggwithinstats <- function(
       filter(!is.na({{ y }}))
   }
 
+  data %<>%
+    mutate({{ x }} := droplevels({{ x }}))
+
+  stats_data %<>%
+    mutate({{ x }} := droplevels({{ x }}))
+
   # statistical analysis ------------------------------------------
 
   test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")

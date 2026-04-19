@@ -180,3 +180,32 @@ test_that(
     expect_setequal(unique(point_data$group), c(1, 2))
   }
 )
+
+test_that(
+  "empty condition levels are dropped after filtering missing subject.id values",
+  {
+    df_missing_id_levels <- data.frame(
+      condition = factor(c("A", "B", "C", "A", "B", "C"), levels = c("A", "B", "C")),
+      score = c(1, 2, 3, 4, 5, 6),
+      id = c(1, 1, NA, 2, 2, NA)
+    )
+
+    built_plot <- ggplot2::ggplot_build(
+      ggwithinstats(
+        data = df_missing_id_levels,
+        x = condition,
+        y = score,
+        type = "p",
+        subject.id = id,
+        pairwise.display = "none",
+        results.subtitle = FALSE,
+        centrality.plotting = FALSE
+      )
+    )
+
+    expect_identical(
+      sum(vapply(built_plot$plot$layers, \(layer) inherits(layer$geom, "GeomPath"), logical(1))),
+      1L
+    )
+  }
+)
