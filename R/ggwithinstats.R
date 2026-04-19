@@ -95,7 +95,6 @@ ggwithinstats <- function(
   x,
   y,
   type = "parametric",
-  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -127,6 +126,7 @@ ggwithinstats <- function(
   package = "RColorBrewer",
   palette = "Dark2",
   ggplot.component = NULL,
+  subject.id = NULL,
   ...
 ) {
   # data -----------------------------------

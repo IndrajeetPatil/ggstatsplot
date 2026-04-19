@@ -117,6 +117,23 @@ test_that(
 )
 
 test_that(
+  "pairwise.display remains the fifth positional argument",
+  {
+    expect_no_error(
+      ggwithinstats(
+        data_bugs_2,
+        condition,
+        desire,
+        "np",
+        "none",
+        subject.id = subject,
+        results.subtitle = FALSE
+      )
+    )
+  }
+)
+
+test_that(
   "subject.id keeps partially observed subjects in the plotting data",
   {
     df_missing <- data.frame(
@@ -137,7 +154,7 @@ test_that(
       )
     )$data[[1L]]
 
-    expect_equal(nrow(point_data), 5L)
-    expect_equal(length(unique(point_data$group)), 3L)
+    expect_identical(nrow(point_data), 5L)
+    expect_length(unique(point_data$group), 3L)
   }
 )
