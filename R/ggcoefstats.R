@@ -351,7 +351,7 @@ ggcoefstats <- function(
 
   data %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 
-  # `term` needs to be a factor column; otherwise, ggplot2 will sort the `x`-axis
-  # labels alphabetically and terms won't appear in the expected order
-  data %>% dplyr::mutate(term = factor(term, data$term))
+  # `ggplot2` draws discrete y-axis levels from bottom to top, so reverse the
+  # factor levels to preserve the data order in the plotted top-to-bottom order.
+  data %>% dplyr::mutate(term = factor(term, rev(data$term)))
 }
