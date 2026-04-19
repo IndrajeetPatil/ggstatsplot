@@ -2,6 +2,15 @@
 
 ## ggstatsplot 0.13.6.9000
 
+### NEW FEATURES
+
+- All top-level plotting functions now include an `alternative`
+  argument, which is passed down to
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/) to
+  specify the alternative hypothesis for effect size confidence
+  intervals
+  ([\#794](https://github.com/IndrajeetPatil/ggstatsplot/issues/794)).
+
 ### BREAKING CHANGES
 
 - [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)

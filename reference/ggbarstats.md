@@ -22,6 +22,7 @@ ggbarstats(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
@@ -143,6 +144,12 @@ ggbarstats(
   equal theoretical proportions across the levels of the nominal
   variable. E.g., `ratio = c(0.5, 0.5)` for two levels,
   `ratio = c(0.25, 0.25, 0.25, 0.25)` for four levels, etc.
+
+- alternative:
+
+  a character string specifying the alternative hypothesis, must be one
+  of `"two.sided"` (default), `"greater"` or `"less"`. You can specify
+  just the initial letter.
 
 - conf.level:
 

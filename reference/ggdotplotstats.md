@@ -28,6 +28,7 @@ ggdotplotstats(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
@@ -105,6 +106,12 @@ ggdotplotstats(
 - test.value:
 
   A number indicating the true value of the mean (Default: `0`).
+
+- alternative:
+
+  a character string specifying the alternative hypothesis, must be one
+  of `"two.sided"` (default), `"greater"` or `"less"`. You can specify
+  just the initial letter.
 
 - bf.prior:
 

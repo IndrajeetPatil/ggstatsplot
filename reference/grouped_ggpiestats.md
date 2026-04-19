@@ -163,6 +163,12 @@ grouped_ggpiestats(
       intervals, `0.95`). If `NULL`, no confidence intervals will be
       computed.
 
+  `alternative`
+
+  :   a character string specifying the alternative hypothesis, must be
+      one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+      specify just the initial letter.
+
   `paired`
 
   :   Logical indicating whether data came from a within-subjects or

@@ -86,6 +86,7 @@ as a subtitle.</p>
 <span>  digits.perc <span class="op">=</span> <span class="fl">0L</span>,</span>
 <span>  bf.message <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  ratio <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  sampling.plan <span class="op">=</span> <span class="st">"indepMulti"</span>,</span>
 <span>  fixed.margin <span class="op">=</span> <span class="st">"rows"</span>,</span>
@@ -200,6 +201,13 @@ proportion test (should sum to <code>1</code>). Default is <code>NULL</code>, wh
 is equal theoretical proportions across the levels of the nominal variable.
 E.g., <code>ratio = c(0.5, 0.5)</code> for two levels,
 <code>ratio = c(0.25, 0.25, 0.25, 0.25)</code> for four levels, etc.</p></dd>
+
+
+<dt id="arg-alternative">alternative<a class="anchor" aria-label="anchor" href="#arg-alternative"></a></dt>
+<dd><p>a character string specifying the alternative
+    hypothesis, must be one of <code>"two.sided"</code> (default),
+    <code>"greater"</code> or <code>"less"</code>.  You can specify just the initial
+    letter.</p></dd>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>

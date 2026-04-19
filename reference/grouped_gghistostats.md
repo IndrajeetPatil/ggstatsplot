@@ -94,6 +94,12 @@ grouped_gghistostats(
 
   :   A number indicating the true value of the mean (Default: `0`).
 
+  `alternative`
+
+  :   a character string specifying the alternative hypothesis, must be
+      one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+      specify just the initial letter.
+
   `digits`
 
   :   Number of digits for rounding or significant figures. May also be

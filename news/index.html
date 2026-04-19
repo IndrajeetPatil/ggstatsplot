@@ -63,6 +63,10 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.13.6.9000" id="ggstatsplot-01369000">ggstatsplot 0.13.6.9000<a class="anchor" aria-label="anchor" href="#ggstatsplot-01369000"></a></h2>
 <div class="section level3">
+<h3 id="new-features-0-13-6-9000">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-0-13-6-9000"></a></h3>
+<ul><li>All top-level plotting functions now include an <code>alternative</code> argument, which is passed down to <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> to specify the alternative hypothesis for effect size confidence intervals (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/794" class="external-link">#794</a>).</li>
+</ul></div>
+<div class="section level3">
 <h3 id="breaking-changes-0-13-6-9000">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-13-6-9000"></a></h3>
 <ul><li>
 <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> (and <code><a href="../reference/grouped_ggwithinstats.html">grouped_ggwithinstats()</a></code>) gains a <code>subject.id</code> parameter. When provided, the subject identifier column is used to correctly pair observations across conditions and to remove NA observations by subject key rather than by positional row number. Plots and statistical results for unsorted repeated-measures data will differ from previous versions once <code>subject.id</code> is supplied. All examples and vignettes have been updated to pass <code>subject.id</code> explicitly, which is now the recommended practice.</li>

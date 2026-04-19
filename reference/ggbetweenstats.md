@@ -28,6 +28,7 @@ ggbetweenstats(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -188,6 +189,12 @@ ggbetweenstats(
   Trim level for the mean when carrying out `robust` tests. In case of
   an error, try reducing the value of `tr`, which is by default set to
   `0.2`. Lowering the value might help.
+
+- alternative:
+
+  a character string specifying the alternative hypothesis, must be one
+  of `"two.sided"` (default), `"greater"` or `"less"`. You can specify
+  just the initial letter.
 
 - centrality.plotting:
 

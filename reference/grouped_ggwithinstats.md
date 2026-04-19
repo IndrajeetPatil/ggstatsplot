@@ -285,6 +285,12 @@ grouped_ggwithinstats(
   :   Number of bootstrap samples for computing confidence interval for
       the effect size (Default: `100L`).
 
+  `alternative`
+
+  :   a character string specifying the alternative hypothesis, must be
+      one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+      specify just the initial letter.
+
 - grouping.var:
 
   A single grouping variable.
