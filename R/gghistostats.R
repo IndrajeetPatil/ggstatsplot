@@ -93,6 +93,7 @@ gghistostats <- function(
       data = data,
       x = {{ x }},
       test.value = test.value,
+      alternative = alternative,
       effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,

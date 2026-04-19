@@ -187,6 +187,7 @@ ggwithinstats <- function(
       y = as_string(y),
       subject.id = subject.id,
       effsize.type = effsize.type,
+      alternative = alternative,
       conf.level = conf.level,
       digits = digits,
       tr = tr,

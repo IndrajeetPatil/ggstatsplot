@@ -71,6 +71,7 @@ ggcorrmat <- function(
   cor.vars.names = NULL,
   matrix.type = "upper",
   type = "parametric",
+  alternative = "two.sided",
   tr = 0.2,
   partial = FALSE,
   digits = 2L,
@@ -232,4 +233,6 @@ grouped_ggcorrmat <- function(
     purrr::pmap(.f = ggcorrmat, ...) %>%
     # `guides = "keep"` because legends can be different across grouping levels
     combine_plots(guides = "keep", plotgrid.args, annotation.args)
+}
+rgs)
 }

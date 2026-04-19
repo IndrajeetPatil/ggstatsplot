@@ -216,6 +216,7 @@ ggbetweenstats <- function(
       x = as_string(x),
       y = as_string(y),
       effsize.type = effsize.type,
+      alternative = alternative,
       conf.level = conf.level,
       var.equal = var.equal,
       digits = digits,

@@ -120,6 +120,7 @@ ggscatterstats <- function(
       data = data,
       x = {{ x }},
       y = {{ y }},
+      alternative = alternative,
       conf.level = conf.level,
       digits = digits,
       tr = tr,
