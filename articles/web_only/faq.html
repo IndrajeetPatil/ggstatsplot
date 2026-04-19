@@ -877,6 +877,41 @@ following the Tukey method. You can customize this using the
 <p><img src="faq_files/figure-html/faq7-3.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level2">
+<h2 id="why-do-pairwise-comparison-brackets-disappear-when-i-restrict-the-y-axis">31. Why do pairwise comparison brackets disappear when I restrict
+the Y-axis?<a class="anchor" aria-label="anchor" href="#why-do-pairwise-comparison-brackets-disappear-when-i-restrict-the-y-axis"></a>
+</h2>
+<p>This is a common <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> footgun. There are two ways
+to restrict the visible y-range, and they behave very differently:</p>
+<ul>
+<li>
+<code>scale_y_continuous(limits = c(a, b))</code> — <strong>modifies
+the data</strong>, setting any values outside <code>[a, b]</code> to
+<code>NA</code> before rendering. Because pairwise comparison brackets
+from <a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a> are positioned <em>above</em> the maximum
+observed value, they often fall outside a tight limit and are silently
+dropped.</li>
+<li>
+<code>coord_cartesian(ylim = c(a, b))</code> — <strong>zooms the
+viewport</strong> without touching the underlying data. The brackets are
+still computed from the full data range and remain fully intact.</li>
+</ul>
+<p>The fix is to replace <code>scale_y_continuous(limits = ...)</code>
+with <code>coord_cartesian(ylim = ...)</code>:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># BAD: pairwise brackets disappear because values above 4 are set to NA</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/coord_cartesian_pairwise-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="co"># GOOD: brackets survive because coord_cartesian only zooms the viewport</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/coord_cartesian_pairwise-2.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
