@@ -29,6 +29,10 @@
   plot layout and in estimate-sorted displays, instead of showing terms in the
   reverse order (#642).
 
+- `ggcoefstats()` no longer draws empty `stats.labels` boxes for model terms
+  whose label expression is absent, which affected mixed-model coefficient
+  plots such as the documented `lmer()` example.
+
 # ggstatsplot 0.13.6
 
 ## MINOR CHANGES

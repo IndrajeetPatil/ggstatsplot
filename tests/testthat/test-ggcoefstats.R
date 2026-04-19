@@ -173,6 +173,22 @@ test_that("term ordering is preserved in the plotted top-to-bottom order", {
   )
 })
 
+test_that("mixed-model stats labels drop rows with empty expressions", {
+  skip_if_not_installed("lme4")
+
+  fig <- suppressWarnings(
+    ggcoefstats(
+      lme4::lmer(Reaction ~ Days + (Days | Subject), lme4::sleepstudy),
+      effects = "fixed"
+    )
+  )
+
+  label_data <- ggplot2::ggplot_build(fig)$data[[4L]]
+
+  expect_equal(nrow(label_data), 2L)
+  expect_true(all(nzchar(label_data$label)))
+})
+
 # meta subtitle and caption -------------------------------------
 
 test_that(
