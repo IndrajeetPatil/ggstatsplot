@@ -263,7 +263,7 @@ ggbetweenstats <- function(
   seclabel <- NULL
 
   if (pairwise.display != "none" && test == "anova") {
-    mpc_df <- pairwise_comparisons(
+    mpc_df <- suppressWarnings(pairwise_comparisons(
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -273,7 +273,7 @@ ggbetweenstats <- function(
       var.equal = var.equal,
       p.adjust.method = p.adjust.method,
       digits = digits
-    )
+    ))
 
     # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(

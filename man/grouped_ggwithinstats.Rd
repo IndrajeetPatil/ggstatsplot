@@ -31,6 +31,16 @@ argument is relevant only when there are two groups (i.e., in case of a
     \item{\code{centrality.path.args,point.path.args}}{A list of additional aesthetic
 arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting raw data points
 and mean points.}
+    \item{\code{subject.id}}{Across repeated measures conditions, each row in the
+dataset must correspond to a unique unit (e.g., subject or participant).
+If your data frame is already in such a format, you can ignore the
+\code{subject.id} argument (the function will use row number to pair
+observations). \strong{But if you are not sure, it is always better to specify
+this argument.} Note that if there are any missing values (i.e., \code{NA}) in
+the dependent variable and the \code{subject.id} is not specified, they will be
+dropped using a list-wise approach. If you specify \code{subject.id}, partially
+observed subjects will still be shown in the plot, but inferential
+statistics will be computed using only complete repeated-measures pairs.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
@@ -183,6 +193,7 @@ grouped_ggwithinstats(
   data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
   x                = condition,
   y                = desire,
+  subject.id       = subject,
   grouping.var     = gender,
   type             = "np",
   # additional modifications for **each** plot using `{ggplot2}` functions

@@ -18,6 +18,7 @@ test_that(
         data = data_bugs_2,
         x = condition,
         y = desire,
+        subject.id = subject,
         pairwise.display = "none",
         ggsignif.args = list(textsize = 6, tip_length = 0.01),
         point.path.args = list(color = "red"),
@@ -34,6 +35,7 @@ test_that(
         data = WRS2::WineTasting,
         x = Wine,
         y = Taste,
+        subject.id = Taster,
         pairwise.display = "none",
         title = "wine tasting data"
       )
@@ -50,9 +52,10 @@ test_that(
     expect_doppelganger(
       title = "ggplot2 commands work",
       fig = ggwithinstats(
-        data = WRS2::WineTasting,
-        x = Wine,
-        y = Taste,
+        data             = WRS2::WineTasting,
+        x                = Wine,
+        y                = Taste,
+        subject.id       = Taster,
         results.subtitle = FALSE,
         pairwise.display = "none",
         ggplot.component = ggplot2::labs(y = "Taste rating")
@@ -66,10 +69,11 @@ test_that(
         iris_long,
         condition,
         value,
+        subject.id            = id,
         centrality.point.args = list(size = 5, alpha = 0.5, color = "darkred"),
-        centrality.path = FALSE,
-        results.subtitle = FALSE,
-        pairwise.display = "none"
+        centrality.path       = FALSE,
+        results.subtitle      = FALSE,
+        pairwise.display      = "none"
       )
     )
   }
@@ -87,9 +91,65 @@ test_that(
         data         = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
         x            = condition,
         y            = desire,
+        subject.id   = subject,
         grouping.var = gender,
         type         = "np"
       )
     )
+  }
+)
+
+test_that(
+  "type remains the fourth positional argument",
+  {
+    expect_no_error(
+      ggwithinstats(
+        data_bugs_2,
+        condition,
+        desire,
+        "np",
+        subject.id = subject,
+        pairwise.display = "none",
+        results.subtitle = FALSE
+      )
+    )
+  }
+)
+
+test_that(
+  "subject.id follows type in the function signature",
+  {
+    arg_names <- names(formals(ggwithinstats))
+
+    expect_identical(
+      arg_names[seq_len(6L)],
+      c("data", "x", "y", "type", "subject.id", "pairwise.display")
+    )
+  }
+)
+
+test_that(
+  "subject.id keeps partially observed subjects in the plotting data",
+  {
+    df_missing <- data.frame(
+      condition = c("A", "B", "A", "B", "A", "B"),
+      score = c(1, 2, 3, NA, 4, 5),
+      id = c(1, 1, 2, 2, 3, 3)
+    )
+
+    point_data <- ggplot2::ggplot_build(
+      ggwithinstats(
+        data = df_missing,
+        x = condition,
+        y = score,
+        type = "p",
+        subject.id = id,
+        pairwise.display = "none",
+        results.subtitle = FALSE
+      )
+    )$data[[1L]]
+
+    expect_identical(nrow(point_data), 5L)
+    expect_length(unique(point_data$group), 3L)
   }
 )

@@ -22,6 +22,16 @@
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
 #'   arguments passed on to [`ggplot2::geom_path()`] connecting raw data points
 #'   and mean points.
+#' @param subject.id Across repeated measures conditions, each row in the
+#'   dataset must correspond to a unique unit (e.g., subject or participant).
+#'   If your data frame is already in such a format, you can ignore the
+#'   `subject.id` argument (the function will use row number to pair
+#'   observations). **But if you are not sure, it is always better to specify
+#'   this argument.** Note that if there are any missing values (i.e., `NA`) in
+#'   the dependent variable and the `subject.id` is not specified, they will be
+#'   dropped using a list-wise approach. If you specify `subject.id`, partially
+#'   observed subjects will still be shown in the plot, but inferential
+#'   statistics will be computed using only complete repeated-measures pairs.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
@@ -44,25 +54,37 @@
 #'
 #' # create a plot
 #' p <- ggwithinstats(
-#'   data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-#'   x    = condition,
-#'   y    = desire,
-#'   type = "np"
+#'   data       = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x          = condition,
+#'   y          = desire,
+#'   type       = "np",
+#'   subject.id = subject
 #' )
 #'
 #'
 #' # looking at the plot
 #' p
 #'
+#' # if the data are already arranged in repeated-measures order, `subject.id`
+#' # can be omitted
+#' ggwithinstats(
+#'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x                = condition,
+#'   y                = desire,
+#'   pairwise.display = "none",
+#'   results.subtitle = FALSE
+#' )
+#'
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
 #' # modifying defaults
 #' ggwithinstats(
-#'   data = bugs_long,
-#'   x    = condition,
-#'   y    = desire,
-#'   type = "robust"
+#'   data       = bugs_long,
+#'   x          = condition,
+#'   y          = desire,
+#'   type       = "robust",
+#'   subject.id = subject
 #' )
 #'
 #' # you can remove a specific geom to reduce complexity of the plot
@@ -70,6 +92,7 @@
 #'   data = bugs_long,
 #'   x = condition,
 #'   y = desire,
+#'   subject.id = subject,
 #'   # to remove violin plot
 #'   violin.args = list(width = 0, linewidth = 0, colour = NA),
 #'   # to remove boxplot
@@ -83,6 +106,7 @@ ggwithinstats <- function(
   x,
   y,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -122,11 +146,24 @@ ggwithinstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
+  subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
+  sid_str <- if (!is.null(subject.id)) as_string(subject.id)
+
   data %<>%
-    select({{ x }}, {{ y }}) %>%
-    mutate({{ x }} := droplevels(as.factor({{ x }}))) %>%
-    mutate(.rowid = row_number(), .by = {{ x }}) %>%
-    anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
+    select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
+    mutate({{ x }} := droplevels(as.factor({{ x }})))
+
+  stats_data <- data
+
+  if (is.null(sid_str)) {
+    data %<>%
+      mutate(.rowid = row_number(), .by = {{ x }}) %>%
+      anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
+  } else {
+    data %<>%
+      mutate(.rowid = .data[[sid_str]]) %>%
+      filter(!is.na({{ y }}))
+  }
 
   # statistical analysis ------------------------------------------
 
@@ -134,9 +171,10 @@ ggwithinstats <- function(
 
   if (results.subtitle) {
     .f.args <- list(
-      data = data,
+      data = stats_data,
       x = as_string(x),
       y = as_string(y),
+      subject.id = subject.id,
       effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,
@@ -194,16 +232,17 @@ ggwithinstats <- function(
   seclabel <- NULL
 
   if (pairwise.display != "none" && test == "anova") {
-    mpc_df <- pairwise_comparisons(
-      data = data,
+    mpc_df <- suppressWarnings(pairwise_comparisons(
+      data = stats_data,
       x = {{ x }},
       y = {{ y }},
+      subject.id = subject.id,
       type = type,
       tr = tr,
       paired = TRUE,
       p.adjust.method = p.adjust.method,
       digits = digits
-    )
+    ))
 
     # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(
@@ -269,6 +308,7 @@ ggwithinstats <- function(
 #'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x                = condition,
 #'   y                = desire,
+#'   subject.id       = subject,
 #'   grouping.var     = gender,
 #'   type             = "np",
 #'   # additional modifications for **each** plot using `{ggplot2}` functions
