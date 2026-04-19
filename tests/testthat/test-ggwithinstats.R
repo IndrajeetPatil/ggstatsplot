@@ -129,6 +129,37 @@ test_that(
 )
 
 test_that(
+  "pairwise.alpha controls displayed pairwise comparisons",
+  {
+    fig <- ggwithinstats(
+      data = bugs_long,
+      x = condition,
+      y = desire,
+      type = "p",
+      subject.id = subject,
+      pairwise.display = "non-significant",
+      pairwise.alpha = 0.001,
+      p.adjust.method = "fdr",
+      results.subtitle = FALSE
+    )
+
+    layer_params <- fig$layers[[length(fig$layers)]]$stat_params
+    sec_axis_name <- paste(deparse(fig$scales$get_scales("y")$secondary.axis$name), collapse = " ")
+
+    expect_identical(
+      layer_params$comparisons,
+      list(
+        c("HDHF", "HDLF"),
+        c("HDHF", "LDHF"),
+        c("HDLF", "LDHF"),
+        c("HDLF", "LDLF")
+      )
+    )
+    expect_match(sec_axis_name, "alpha == 0\\.001")
+  }
+)
+
+test_that(
   "subject.id keeps partially observed subjects in the plotting data",
   {
     df_missing <- data.frame(

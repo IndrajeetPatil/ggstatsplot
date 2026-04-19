@@ -150,6 +150,22 @@ test_that(
         digits = 3L
       )
     )
+
+    set.seed(123)
+    expect_doppelganger(
+      title = "between - parametric - stricter alpha",
+      fig = ggbetweenstats(
+        mtcars,
+        cyl,
+        mpg,
+        type = "p",
+        results.subtitle = FALSE,
+        p.adjust.method = "holm",
+        pairwise.display = "s",
+        pairwise.alpha = 0.001,
+        digits = 3L
+      )
+    )
   }
 )
 
@@ -302,6 +318,23 @@ test_that(
         desire,
         type = "bayes",
         results.subtitle = FALSE,
+        digits = 3L
+      )
+    )
+
+    set.seed(123)
+    expect_doppelganger(
+      title = "within - parametric - stricter alpha",
+      fig = ggwithinstats(
+        bugs_long,
+        condition,
+        desire,
+        type = "p",
+        subject.id = subject,
+        results.subtitle = FALSE,
+        p.adjust.method = "fdr",
+        pairwise.display = "s",
+        pairwise.alpha = 0.001,
         digits = 3L
       )
     )
