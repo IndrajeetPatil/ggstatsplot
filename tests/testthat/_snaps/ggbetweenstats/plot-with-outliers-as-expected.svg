@@ -334,14 +334,19 @@
 <text x='286.47' y='531.47' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 99)</text>
 <text x='191.57' y='542.50' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>mpaa</text>
 <text transform='translate(17.34,290.65) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='27.25px' lengthAdjust='spacingAndGlyphs'>length</text>
-<text transform='translate(349.22,196.82) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(349.22,244.39) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(349.22,246.39) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='52.47px' lengthAdjust='spacingAndGlyphs'>Games-Howell</text>
-<text transform='translate(349.22,298.86) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(349.22,300.87) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(349.22,302.87) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(349.22,346.90) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(349.22,348.90) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(349.22,179.67) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(349.22,227.25) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(349.22,229.25) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='52.47px' lengthAdjust='spacingAndGlyphs'>Games-Howell</text>
+<text transform='translate(349.22,281.72) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(349.22,283.72) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(349.22,285.72) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(349.22,329.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(349.22,331.75) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(349.22,367.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(349.22,369.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(349.22,371.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='4.80px' lengthAdjust='spacingAndGlyphs'>α</text>
+<text transform='translate(349.22,377.99) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text transform='translate(349.22,386.05) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.05</text>
 <text x='39.74' y='56.85' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='6.11px' lengthAdjust='spacingAndGlyphs'>F</text>
 <text x='46.88' y='58.96' style='font-size: 7.00px; font-family: sans;' textLength='19.45px' lengthAdjust='spacingAndGlyphs'>Welch</text>
 <text x='66.33' y='56.85' style='font-size: 12.50px; font-family: sans;' textLength='4.16px' lengthAdjust='spacingAndGlyphs'>(</text>
@@ -776,14 +781,19 @@
 <text x='640.99' y='531.47' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='32.25px' lengthAdjust='spacingAndGlyphs'>(n = 119)</text>
 <text x='546.10' y='542.50' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>mpaa</text>
 <text transform='translate(371.86,290.65) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='27.25px' lengthAdjust='spacingAndGlyphs'>length</text>
-<text transform='translate(703.74,196.82) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(703.74,244.39) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(703.74,246.39) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='52.47px' lengthAdjust='spacingAndGlyphs'>Games-Howell</text>
-<text transform='translate(703.74,298.86) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(703.74,300.87) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(703.74,302.87) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(703.74,346.90) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(703.74,348.90) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(703.74,179.67) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(703.74,227.25) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(703.74,229.25) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='52.47px' lengthAdjust='spacingAndGlyphs'>Games-Howell</text>
+<text transform='translate(703.74,281.72) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(703.74,283.72) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(703.74,285.72) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(703.74,329.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(703.74,331.75) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(703.74,367.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(703.74,369.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(703.74,371.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='4.80px' lengthAdjust='spacingAndGlyphs'>α</text>
+<text transform='translate(703.74,377.99) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text transform='translate(703.74,386.05) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.05</text>
 <text x='394.26' y='56.85' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='6.11px' lengthAdjust='spacingAndGlyphs'>F</text>
 <text x='401.40' y='58.96' style='font-size: 7.00px; font-family: sans;' textLength='19.45px' lengthAdjust='spacingAndGlyphs'>Welch</text>
 <text x='420.85' y='56.85' style='font-size: 12.50px; font-family: sans;' textLength='4.16px' lengthAdjust='spacingAndGlyphs'>(</text>

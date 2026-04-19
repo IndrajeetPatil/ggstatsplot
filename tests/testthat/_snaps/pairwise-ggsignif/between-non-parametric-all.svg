@@ -1725,13 +1725,18 @@
 <text x='576.37' y='557.91' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='32.25px' lengthAdjust='spacingAndGlyphs'>(n = 876)</text>
 <text x='364.44' y='568.94' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.02px' lengthAdjust='spacingAndGlyphs'>mpaa</text>
 <text transform='translate(11.86,272.13) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.01px' lengthAdjust='spacingAndGlyphs'>rating</text>
-<text transform='translate(709.22,208.76) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(709.22,256.34) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,258.34) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='19.13px' lengthAdjust='spacingAndGlyphs'>Dunn</text>
-<text transform='translate(709.22,277.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(709.22,279.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,281.47) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(709.22,325.50) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,327.50) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='8.00px' lengthAdjust='spacingAndGlyphs'>all</text>
+<text transform='translate(709.22,191.61) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(709.22,239.19) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,241.19) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='19.13px' lengthAdjust='spacingAndGlyphs'>Dunn</text>
+<text transform='translate(709.22,260.32) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,262.32) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,264.32) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(709.22,308.35) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,310.36) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='8.00px' lengthAdjust='spacingAndGlyphs'>all</text>
+<text transform='translate(709.22,318.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,320.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,322.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='4.80px' lengthAdjust='spacingAndGlyphs'>α</text>
+<text transform='translate(709.22,329.01) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text transform='translate(709.22,337.08) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.05</text>
 </g>
 </svg>

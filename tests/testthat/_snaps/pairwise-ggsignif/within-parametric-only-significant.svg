@@ -527,13 +527,18 @@
 <text x='607.18' y='557.91' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 88)</text>
 <text x='366.61' y='568.94' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='40.03px' lengthAdjust='spacingAndGlyphs'>condition</text>
 <text transform='translate(11.86,272.13) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='27.24px' lengthAdjust='spacingAndGlyphs'>desire</text>
-<text transform='translate(709.22,185.76) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(709.22,233.33) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,235.34) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='37.56px' lengthAdjust='spacingAndGlyphs'>Student's t</text>
-<text transform='translate(709.22,272.89) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(709.22,274.89) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,276.89) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(709.22,320.93) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,322.93) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(709.22,168.61) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(709.22,216.19) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,218.19) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='37.56px' lengthAdjust='spacingAndGlyphs'>Student's t</text>
+<text transform='translate(709.22,255.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,257.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,259.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(709.22,303.78) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,305.78) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(709.22,341.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,343.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,345.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='4.80px' lengthAdjust='spacingAndGlyphs'>α</text>
+<text transform='translate(709.22,352.01) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text transform='translate(709.22,360.08) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.05</text>
 </g>
 </svg>
