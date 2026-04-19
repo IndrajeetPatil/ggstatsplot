@@ -15,6 +15,12 @@
   All examples and vignettes have been updated to pass `subject.id`
   explicitly, which is now the recommended practice.
 
+### BUG FIXES
+
+- [`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)
+  now renders the overall annotation title in bold by default, matching
+  the styling used for individual plot titles.
+
 ## ggstatsplot 0.13.6
 
 CRAN release: 2026-04-06

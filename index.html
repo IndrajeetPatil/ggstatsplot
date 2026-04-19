@@ -448,6 +448,7 @@
 <code>ggwithinstats()</code><a class="anchor" aria-label="anchor" href="#ggwithinstats"></a>
 </h3>
 <p><code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code> function has an identical twin function <code><a href="reference/ggwithinstats.html">ggwithinstats()</a></code> for repeated measures designs that behaves in the same fashion with a few minor tweaks introduced to properly visualize the repeated measures design. As can be seen from an example below, the only difference between the plot structure is that now the group means are connected by paths to highlight the fact that these data are paired with each other.</p>
+<p>If your repeated-measures data include an explicit subject identifier, it is recommended that you pass it via <code>subject.id</code>; rows with missing identifiers are ignored for paired grouping and repeated-measures statistics.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co">## for data</span></span>
@@ -738,14 +739,14 @@
 <span></span>
 <span><span class="co"># extracting expression present in the subtitle</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) ==</span></span>
-<span><span class="co">#&gt;     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~</span></span>
+<span><span class="co">#&gt; list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == </span></span>
+<span><span class="co">#&gt;     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ </span></span>
 <span><span class="co">#&gt;     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")</span></span>
 <span></span>
 <span><span class="co"># extracting expression present in the caption</span></span>
 <span><span class="fu"><a href="reference/extract_stats.html">extract_caption</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt; list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" ==</span></span>
-<span><span class="co">#&gt;     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" ==</span></span>
+<span><span class="co">#&gt; list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == </span></span>
+<span><span class="co">#&gt;     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == </span></span>
 <span><span class="co">#&gt;     "0.71")</span></span>
 <span></span>
 <span><span class="co"># a list of tibbles containing statistical analysis summaries</span></span>
@@ -759,9 +760,9 @@
 <span><span class="co">#&gt;   &lt;chr&gt;                                                    &lt;chr&gt;         &lt;dbl&gt;</span></span>
 <span><span class="co">#&gt; 1 One-way analysis of means (not assuming equal variances) Omega2        0.744</span></span>
 <span><span class="co">#&gt;   conf.level conf.low conf.high conf.method conf.distribution n.obs expression</span></span>
-<span><span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;int&gt; &lt;list&gt;</span></span>
+<span><span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;             &lt;int&gt; &lt;list&gt;    </span></span>
 <span><span class="co">#&gt; 1       0.95    0.531         1 ncp         F                    32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $caption_data</span></span>
 <span><span class="co">#&gt; # A tibble: 6 × 17</span></span>
 <span><span class="co">#&gt;   term     pd prior.distribution prior.location prior.scale     bf10</span></span>
@@ -781,39 +782,39 @@
 <span><span class="co">#&gt; 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
 <span><span class="co">#&gt; 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503</span></span>
 <span><span class="co">#&gt;   conf.level conf.low conf.high conf.method n.obs expression</span></span>
-<span><span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;list&gt;</span></span>
+<span><span class="co">#&gt;        &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt; &lt;list&gt;    </span></span>
 <span><span class="co">#&gt; 1       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 2       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 3       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 4       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 5       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 6       0.95    0.574     0.788 HDI            32 &lt;language&gt;</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $pairwise_comparisons_data</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 9</span></span>
 <span><span class="co">#&gt;   group1 group2 statistic   p.value alternative distribution p.adjust.method</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;</span></span>
-<span><span class="co">#&gt; 1 4      6          -6.67 0.00110   two.sided   q            Holm</span></span>
-<span><span class="co">#&gt; 2 4      8         -10.7  0.0000140 two.sided   q            Holm</span></span>
-<span><span class="co">#&gt; 3 6      8          -7.48 0.000257  two.sided   q            Holm</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;          </span></span>
+<span><span class="co">#&gt; 1 4      6          -6.67 0.00110   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; 2 4      8         -10.7  0.0000140 two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; 3 6      8          -7.48 0.000257  two.sided   q            Holm           </span></span>
 <span><span class="co">#&gt;   test         expression</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;        &lt;list&gt;</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;        &lt;list&gt;    </span></span>
 <span><span class="co">#&gt; 1 Games-Howell &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 2 Games-Howell &lt;language&gt;</span></span>
 <span><span class="co">#&gt; 3 Games-Howell &lt;language&gt;</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $descriptive_data</span></span>
 <span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $one_sample_data</span></span>
 <span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $tidy_data</span></span>
 <span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $glance_data</span></span>
 <span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attr(,"class")</span></span>
 <span><span class="co">#&gt; [1] "ggstatsplot_stats" "list"</span></span></code></pre></div>
 <p>Note that all of this analysis is carried out by <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package: <a href="https://www.indrapatil.com/statsExpressions/" class="external-link uri">https://www.indrapatil.com/statsExpressions/</a></p>

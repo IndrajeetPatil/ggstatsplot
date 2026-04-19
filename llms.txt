@@ -239,6 +239,11 @@ design. As can be seen from an example below, the only difference
 between the plot structure is that now the group means are connected by
 paths to highlight the fact that these data are paired with each other.
 
+If your repeated-measures data include an explicit subject identifier,
+it is recommended that you pass it via `subject.id`; rows with missing
+identifiers are ignored for paired grouping and repeated-measures
+statistics.
+
 ``` r
 
 set.seed(123)
@@ -756,14 +761,14 @@ p <- ggbetweenstats(mtcars, cyl, mpg)
 
 # extracting expression present in the subtitle
 extract_subtitle(p)
-#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) ==
-#>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~
+#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == 
+#>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ 
 #>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")
 
 # extracting expression present in the caption
 extract_caption(p)
-#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" ==
-#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" ==
+#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == 
+#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == 
 #>     "0.71")
 
 # a list of tibbles containing statistical analysis summaries
@@ -777,9 +782,9 @@ extract_stats(p)
 #>   <chr>                                                    <chr>         <dbl>
 #> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
 #>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>
+#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>    
 #> 1       0.95    0.531         1 ncp         F                    32 <language>
-#>
+#> 
 #> $caption_data
 #> # A tibble: 6 × 17
 #>   term     pd prior.distribution prior.location prior.scale     bf10
@@ -799,39 +804,39 @@ extract_stats(p)
 #> 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
 #> 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
 #>   conf.level conf.low conf.high conf.method n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>
+#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
 #> 1       0.95    0.574     0.788 HDI            32 <language>
 #> 2       0.95    0.574     0.788 HDI            32 <language>
 #> 3       0.95    0.574     0.788 HDI            32 <language>
 #> 4       0.95    0.574     0.788 HDI            32 <language>
 #> 5       0.95    0.574     0.788 HDI            32 <language>
 #> 6       0.95    0.574     0.788 HDI            32 <language>
-#>
+#> 
 #> $pairwise_comparisons_data
 #> # A tibble: 3 × 9
 #>   group1 group2 statistic   p.value alternative distribution p.adjust.method
-#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>
-#> 1 4      6          -6.67 0.00110   two.sided   q            Holm
-#> 2 4      8         -10.7  0.0000140 two.sided   q            Holm
-#> 3 6      8          -7.48 0.000257  two.sided   q            Holm
+#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>          
+#> 1 4      6          -6.67 0.00110   two.sided   q            Holm           
+#> 2 4      8         -10.7  0.0000140 two.sided   q            Holm           
+#> 3 6      8          -7.48 0.000257  two.sided   q            Holm           
 #>   test         expression
-#>   <chr>        <list>
+#>   <chr>        <list>    
 #> 1 Games-Howell <language>
 #> 2 Games-Howell <language>
 #> 3 Games-Howell <language>
-#>
+#> 
 #> $descriptive_data
 #> NULL
-#>
+#> 
 #> $one_sample_data
 #> NULL
-#>
+#> 
 #> $tidy_data
 #> NULL
-#>
+#> 
 #> $glance_data
 #> NULL
-#>
+#> 
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"
 ```
