@@ -396,6 +396,6 @@
 <text transform='translate(487.07,300.04) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='58.93px' lengthAdjust='spacingAndGlyphs'>manufacturer</text>
 <text transform='translate(704.03,300.04) rotate(90)' text-anchor='middle' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='56.48px' lengthAdjust='spacingAndGlyphs'>percentile score</text>
 <text x='505.02' y='36.02' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>8</text>
-<text x='10.46' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='217.18px' lengthAdjust='spacingAndGlyphs'>further modification with ggplot works</text>
+<text x='10.46' y='14.56' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='217.18px' lengthAdjust='spacingAndGlyphs'>further modification with ggplot works</text>
 </g>
 </svg>

@@ -245,6 +245,6 @@
 <text x='555.30' y='379.57' style='font-size: 8.00px; font-family: sans;' textLength='49.36px' lengthAdjust='spacingAndGlyphs'> (Adjustment: </text>
 <text x='604.65' y='379.57' style='font-size: 8.00px; font-family: sans;' textLength='18.67px' lengthAdjust='spacingAndGlyphs'>Holm</text>
 <text x='623.33' y='379.57' style='font-size: 8.00px; font-family: sans;' textLength='2.66px' lengthAdjust='spacingAndGlyphs'>)</text>
-<text x='10.46' y='197.22' style='font-size: 13.20px; font-family: sans;' textLength='70.44px' lengthAdjust='spacingAndGlyphs'>without NAs</text>
+<text x='10.46' y='197.22' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='70.44px' lengthAdjust='spacingAndGlyphs'>without NAs</text>
 </g>
 </svg>

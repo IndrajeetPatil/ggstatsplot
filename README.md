@@ -225,6 +225,11 @@ difference between the plot structure is that now the group means are
 connected by paths to highlight the fact that these data are paired with
 each other.
 
+If your repeated-measures data include an explicit subject identifier,
+it is recommended that you pass it via `subject.id`; rows with missing
+identifiers are ignored for paired grouping and repeated-measures
+statistics.
+
 ``` r
 set.seed(123)
 library(WRS2) ## for data
