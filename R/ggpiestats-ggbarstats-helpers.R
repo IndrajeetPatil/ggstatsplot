@@ -9,6 +9,8 @@ descriptive_data <- function(
   digits.perc = 1L,
   ...
 ) {
+  all_lvls <- levels(pull(data, {{ x }}))
+
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
       .label = if (grepl("perc|prop", label.content)) {
@@ -18,7 +20,7 @@ descriptive_data <- function(
       } else {
         paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
       }, # reorder the category factor levels to order the legend
-      {{ x }} := factor({{ x }}, unique({{ x }}))
+      {{ x }} := factor({{ x }}, if (length(all_lvls)) all_lvls else unique({{ x }}))
     )
 }
 

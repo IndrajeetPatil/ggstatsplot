@@ -149,7 +149,7 @@ ggbarstats <- function(
     ggtheme +
     theme(panel.grid.major.x = element_blank()) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "", drop = FALSE)
 
   # proportion test ------------------------------------------
 
@@ -235,6 +235,12 @@ grouped_ggbarstats <- function(
   plotgrid.args = list(),
   annotation.args = list()
 ) {
+  dots_q <- rlang::enquos(...)
+  if ("x" %in% names(dots_q)) {
+    x_name <- rlang::as_name(rlang::quo_get_expr(dots_q[["x"]]))
+    x_lvls <- if (is.factor(data[[x_name]])) levels(data[[x_name]]) else sort(unique(data[[x_name]]))
+    data[[x_name]] <- factor(data[[x_name]], x_lvls)
+  }
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggbarstats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
