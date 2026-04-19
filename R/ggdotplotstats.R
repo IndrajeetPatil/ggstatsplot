@@ -20,9 +20,6 @@
 #' ```
 #'
 #' @param ... Currently ignored.
-#' @param alternative A character string specifying the alternative hypothesis,
-#'   must be one of `"two.sided"` (default), `"greater"` or `"less"`. You can
-#'   specify just the initial letter.
 #' @param y Label or grouping variable.
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats

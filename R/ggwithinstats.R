@@ -32,9 +32,7 @@
 #'   dropped using a list-wise approach. If you specify `subject.id`, partially
 #'   observed subjects will still be shown in the plot, but inferential
 #'   statistics will be computed using only complete repeated-measures pairs.
-#' @param alternative a character string specifying the alternative hypothesis,
-#'   must be one of `"two.sided"` (default), `"greater"` or `"less"`. You can
-#'   specify just the initial letter.
+#' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests

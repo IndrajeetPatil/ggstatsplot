@@ -40,9 +40,6 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link[=gghistostats]{gghistostats}}
   \describe{
-    \item{\code{alternative}}{A character string specifying the alternative hypothesis,
-must be one of \code{"two.sided"} (default), \code{"greater"} or \code{"less"}. You can
-specify just the initial letter.}
     \item{\code{bin.args}}{A list of additional aesthetic arguments to be passed to the
 \code{stat_bin} used to display the bins. Do not specify \code{binwidth} argument in
 this list since it has already been specified using the dedicated argument.}
@@ -60,6 +57,10 @@ corresponding to the centrality parameter.}
 You can specify just the initial letter.}
     \item{\code{test.value}}{A number indicating the true value of the mean (Default:
 \code{0}).}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
     \item{\code{digits}}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
 to return scientific notation. Control the number of digits by adding the

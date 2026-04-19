@@ -12,9 +12,6 @@
 #' ```
 #'
 #' @param ... Currently ignored.
-#' @param alternative A character string specifying the alternative hypothesis,
-#'   must be one of `"two.sided"` (default), `"greater"` or `"less"`. You can
-#'   specify just the initial letter.
 #' @param binwidth The width of the histogram bins. Can be specified as a
 #'   numeric value, or a function that calculates width from `x`. The default is
 #'   to use the `max(x) - min(x) / sqrt(N)`. You should always check this value

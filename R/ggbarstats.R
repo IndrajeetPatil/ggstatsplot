@@ -15,11 +15,6 @@
 #' @inheritParams ggbetweenstats
 #' @param sample.size.label.args Additional aesthetic arguments that will be
 #'   passed to [`ggplot2::geom_text()`].
-#' @param alternative A character string specifying the alternative hypothesis;
-#'   Controls the type of CI returned: `"two.sided"` (default, two-sided CI),
-#'   `"greater"` or `"less"` (one-sided CI). Partial matching is allowed
-#'   (e.g., `"g"`, `"l"`, `"two"`...). See section *One-Sided CIs* in the
-#'   `effectsize_CIs` vignette.
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'

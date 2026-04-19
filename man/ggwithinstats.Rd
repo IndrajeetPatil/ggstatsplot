@@ -46,12 +46,19 @@ ggwithinstats(
 )
 }
 \arguments{
-\item{data}{A data frame (or a tibble) from which variables specified are
-to be taken. Other data types (e.g., matrix, table, array, etc.) will \emph{not}
+\item{data}{A data frame (or a tibble) from which variables specified are to
+be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
-\item{x}{The grouping (or independent) variable from \code{data}.}
+\item{x}{The grouping (or independent) variable from \code{data}. In case of a
+repeated measures or within-subjects design, if \code{subject.id} argument is
+not available or not explicitly specified, the function assumes that the
+data has already been sorted by such an id by the user and creates an
+internal identifier. So if your data is \strong{not} sorted, the results \emph{can}
+be inaccurate when there are more than two levels in \code{x} and there are
+\code{NA}s present. The data is expected to be sorted by user in
+subject-1, subject-2, ..., pattern.}
 
 \item{y}{The response (or outcome or dependent) variable from \code{data}.}
 
@@ -95,8 +102,14 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 
 \item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
 argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared) for ANOVA or \code{"d"} (Cohen's \emph{d}) or \code{"g"} (Hedge's \emph{g}) for
-\emph{t}-test.}
+omega-squared).}
+
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
+of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
+value corresponds to scale for fixed effects.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
@@ -121,26 +134,27 @@ if \code{bf.message = FALSE}.}
 \code{results.subtitle = FALSE}.}
 
 \item{digits}{Number of digits for rounding or significant figures. May also
-be \code{"signif"} to return significant figures or \code{"scientific"} to return
-scientific notation. Control the number of digits by adding the value as
-suffix, e.g. \code{digits = "scientific4"} to have scientific notation with 4
-decimal places, or \code{digits = "signif5"} for 5 significant figures (see also
-\code{signif()}).}
+be \code{"signif"} to return significant figures or \code{"scientific"}
+to return scientific notation. Control the number of digits by adding the
+value as suffix, e.g. \code{digits = "scientific4"} to have scientific
+notation with 4 decimal places, or \code{digits = "signif5"} for 5
+significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{conf.level}{Scalar between \code{0} and \code{1} (default: 95\%
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
 
 \item{nboot}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100L}).}
 
-\item{tr}{Trim level for the mean when carrying out robust tests. In case of
-an error, try reducing the value of \code{tr}, which is by default set to \code{0.2}.
-Lowering the value might help.}
+\item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
+of an error, try reducing the value of \code{tr}, which is by default set to
+\code{0.2}. Lowering the value might help.}
 
-\item{alternative}{a character string specifying the alternative hypothesis,
-must be one of \code{"two.sided"} (default), \code{"greater"} or \code{"less"}. You can
-specify just the initial letter.}
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).

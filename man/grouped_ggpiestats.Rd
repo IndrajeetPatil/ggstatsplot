@@ -13,8 +13,8 @@ grouped_ggpiestats(
 )
 }
 \arguments{
-\item{data}{A data frame (or a tibble) from which variables specified are
-to be taken. Other data types (e.g., matrix, table, array, etc.) will \emph{not}
+\item{data}{A data frame (or a tibble) from which variables specified are to
+be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
@@ -35,11 +35,6 @@ be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. 
 \code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
     \item{\code{digits.perc}}{Numeric that decides number of decimal places for
 percentage labels (Default: \code{0L}).}
-    \item{\code{alternative}}{A character string specifying the alternative hypothesis;
-Controls the type of CI returned: \code{"two.sided"} (default, two-sided CI),
-\code{"greater"} or \code{"less"} (one-sided CI). Partial matching is allowed
-(e.g., \code{"g"}, \code{"l"}, \code{"two"}...). See section \emph{One-Sided CIs} in the
-\code{effectsize_CIs} vignette.}
     \item{\code{label}}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
@@ -65,24 +60,6 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
     \item{\code{package,palette}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
-    \item{\code{type}}{A character specifying the type of statistical approach:
-\itemize{
-\item \code{"parametric"}
-\item \code{"nonparametric"}
-\item \code{"robust"}
-\item \code{"bayes"}
-}
-
-You can specify just the initial letter.}
-    \item{\code{digits}}{Number of digits for rounding or significant figures. May also
-be \code{"signif"} to return significant figures or \code{"scientific"} to return
-scientific notation. Control the number of digits by adding the value as
-suffix, e.g. \code{digits = "scientific4"} to have scientific notation with 4
-decimal places, or \code{digits = "signif5"} for 5 significant figures (see also
-\code{signif()}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: 95\%
-confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
-will be computed.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
@@ -93,6 +70,28 @@ that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
+    \item{\code{type}}{A character specifying the type of statistical approach:
+\itemize{
+\item \code{"parametric"}
+\item \code{"nonparametric"}
+\item \code{"robust"}
+\item \code{"bayes"}
+}
+
+You can specify just the initial letter.}
+    \item{\code{digits}}{Number of digits for rounding or significant figures. May also
+be \code{"signif"} to return significant figures or \code{"scientific"}
+to return scientific notation. Control the number of digits by adding the
+value as suffix, e.g. \code{digits = "scientific4"} to have scientific
+notation with 4 decimal places, or \code{digits = "signif5"} for 5
+significant figures (see also \code{\link[=signif]{signif()}}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}).}
     \item{\code{counts}}{The variable in data containing counts, or \code{NULL} if each row
