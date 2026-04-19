@@ -153,13 +153,18 @@ ggwithinstats <- function(
     select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
     mutate({{ x }} := droplevels(as.factor({{ x }})))
 
-  stats_data <- data
-
   if (is.null(sid_str)) {
+    stats_data <- data
+
     data %<>%
       mutate(.rowid = row_number(), .by = {{ x }}) %>%
       anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
   } else {
+    data %<>%
+      filter(!is.na(.data[[sid_str]]))
+
+    stats_data <- data
+
     data %<>%
       mutate(.rowid = .data[[sid_str]]) %>%
       filter(!is.na({{ y }}))

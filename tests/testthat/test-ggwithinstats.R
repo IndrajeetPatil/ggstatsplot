@@ -153,3 +153,30 @@ test_that(
     expect_length(unique(point_data$group), 3L)
   }
 )
+
+test_that(
+  "missing subject.id values are excluded from paired grouping",
+  {
+    df_missing_id <- data.frame(
+      condition = c("A", "B", "A", "B", "A", "B"),
+      score = c(1, 2, 3, 4, 5, 6),
+      id = c(1, 1, NA, NA, 2, 2)
+    )
+
+    point_data <- ggplot2::ggplot_build(
+      ggwithinstats(
+        data = df_missing_id,
+        x = condition,
+        y = score,
+        type = "p",
+        subject.id = id,
+        pairwise.display = "none",
+        results.subtitle = FALSE
+      )
+    )$data[[1L]]
+
+    expect_identical(nrow(point_data), 4L)
+    expect_false(anyNA(point_data$group))
+    expect_setequal(unique(point_data$group), c(1, 2))
+  }
+)
