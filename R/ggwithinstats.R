@@ -122,6 +122,7 @@ ggwithinstats <- function(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -194,6 +195,8 @@ ggwithinstats <- function(
       bf.prior = bf.prior,
       nboot = nboot
     )
+
+    if (test == "t") .f.args$alternative <- alternative
 
     # styler: off
     .f          <- .f_switch(test)

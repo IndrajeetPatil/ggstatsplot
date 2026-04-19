@@ -170,6 +170,7 @@ ggbetweenstats <- function(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -224,6 +225,8 @@ ggbetweenstats <- function(
       bf.prior = bf.prior,
       nboot = nboot
     )
+
+    if (test == "t") .f.args$alternative <- alternative
 
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
