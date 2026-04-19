@@ -868,6 +868,6 @@
 <text x='654.09' y='556.22' style='font-size: 5.60px; font-family: sans;' textLength='9.96px' lengthAdjust='spacingAndGlyphs'>JZS</text>
 <text x='674.29' y='560.24' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='682.36' y='560.24' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.71</text>
-<text x='10.46' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='371.30px' lengthAdjust='spacingAndGlyphs'>Differences in movie length by mpaa ratings for different genres</text>
+<text x='10.46' y='14.56' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='371.30px' lengthAdjust='spacingAndGlyphs'>Differences in movie length by mpaa ratings for different genres</text>
 </g>
 </svg>

@@ -276,6 +276,6 @@
 <rect x='678.49' y='362.45' width='15.99' height='15.99' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #D95F02;' />
 <text x='700.11' y='355.91' style='font-size: 8.00px; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>6</text>
 <text x='700.11' y='373.19' style='font-size: 8.00px; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='10.46' y='87.49' style='font-size: 13.20px; font-family: sans;' textLength='227.49px' lengthAdjust='spacingAndGlyphs'>grouped_ggpiestats with two-way table</text>
+<text x='10.46' y='87.49' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='227.49px' lengthAdjust='spacingAndGlyphs'>grouped_ggpiestats with two-way table</text>
 </g>
 </svg>

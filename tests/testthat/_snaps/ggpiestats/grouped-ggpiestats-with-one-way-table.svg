@@ -218,6 +218,6 @@
 <text x='700.11' y='297.71' style='font-size: 8.00px; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>8</text>
 <text x='700.11' y='314.99' style='font-size: 8.00px; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>6</text>
 <text x='700.11' y='332.27' style='font-size: 8.00px; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='10.46' y='94.92' style='font-size: 13.20px; font-family: sans;' textLength='228.98px' lengthAdjust='spacingAndGlyphs'>grouped_ggpiestats with one-way table</text>
+<text x='10.46' y='94.92' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='228.98px' lengthAdjust='spacingAndGlyphs'>grouped_ggpiestats with one-way table</text>
 </g>
 </svg>

@@ -18,7 +18,7 @@ install: build
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 
 clean:
-	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
+	@rm -rf $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck .local-lib README.html
 
 update_deps:
 	Rscript -e 'options(repos = c(CRAN = "https://packagemanager.posit.co/cran/latest")); usethis::use_tidy_description()'
@@ -26,9 +26,10 @@ update_deps:
 	Rscript -e 'roxygen2::roxygenise()'
 	Rscript -e 'codemetar::write_codemeta()'
 
-document:
-	Rscript -e 'roxygen2::roxygenise()'
-	Rscript -e 'rmarkdown::render("README.Rmd")'
+document: build
+	mkdir -p .local-lib
+	R CMD INSTALL -l .local-lib $(PKGNAME)_$(PKGVERS).tar.gz
+	Rscript -e '.libPaths(c(normalizePath(".local-lib"), .libPaths())); rmarkdown::render("README.Rmd")'
 
 format:
 	Rscript -e 'styler::style_pkg()'

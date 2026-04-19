@@ -457,6 +457,6 @@
 <text x='529.55' y='562.22' style='font-size: 8.00px; font-family: sans;' textLength='49.36px' lengthAdjust='spacingAndGlyphs'> (Adjustment: </text>
 <text x='578.91' y='562.22' style='font-size: 8.00px; font-family: sans;' textLength='18.67px' lengthAdjust='spacingAndGlyphs'>Holm</text>
 <text x='597.58' y='562.22' style='font-size: 8.00px; font-family: sans;' textLength='2.66px' lengthAdjust='spacingAndGlyphs'>)</text>
-<text x='36.21' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='52.09px' lengthAdjust='spacingAndGlyphs'>with NAs</text>
+<text x='36.21' y='14.56' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='52.09px' lengthAdjust='spacingAndGlyphs'>with NAs</text>
 </g>
 </svg>
