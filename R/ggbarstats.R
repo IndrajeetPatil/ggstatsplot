@@ -60,6 +60,7 @@ ggbarstats <- function(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",

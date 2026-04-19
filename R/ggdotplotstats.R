@@ -89,7 +89,7 @@ ggdotplotstats <- function(
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
-  .f.stats.args <- list(conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
+  .f.stats.args <- list(alternative = alternative, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
 
   data %<>%
     select({{ x }}, {{ y }}) %>%
@@ -111,7 +111,7 @@ ggdotplotstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, effsize.type = effsize.type)
+    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, alternative = alternative, effsize.type = effsize.type)
 
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = type)
     subtitle <- .extract_expression(subtitle_df)

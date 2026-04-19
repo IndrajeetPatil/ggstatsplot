@@ -80,6 +80,7 @@ ggscatterstats <- function(
   x,
   y,
   type = "parametric",
+  alternative = "two.sided",
   conf.level = 0.95,
   bf.prior = 0.707,
   bf.message = TRUE,

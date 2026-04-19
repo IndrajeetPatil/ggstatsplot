@@ -157,6 +157,7 @@ ggbetweenstats <- function(
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,

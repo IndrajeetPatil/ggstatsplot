@@ -234,5 +234,3 @@ grouped_ggcorrmat <- function(
     # `guides = "keep"` because legends can be different across grouping levels
     combine_plots(guides = "keep", plotgrid.args, annotation.args)
 }
-rgs)
-}

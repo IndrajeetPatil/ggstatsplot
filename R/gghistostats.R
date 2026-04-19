@@ -64,6 +64,7 @@ gghistostats <- function(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
