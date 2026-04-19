@@ -77,6 +77,44 @@
 #' @param package,palette Name of the package from which the given palette is to
 #'   be extracted. The available palettes and packages can be checked by running
 #'   `View(paletteer::palettes_d_names)`.
+#' @param data A data frame (or a tibble) from which variables specified are
+#'   to be taken. Other data types (e.g., matrix, table, array, etc.) will *not*
+#'   be accepted. Additionally, grouped data frames from `{dplyr}` should be
+#'   ungrouped before they are entered as `data`.
+#' @param x The grouping (or independent) variable from `data`.
+#' @param y The response (or outcome or dependent) variable from `data`.
+#' @param type A character specifying the type of statistical approach:
+#'   - `"parametric"`
+#'   - `"nonparametric"`
+#'   - `"robust"`
+#'   - `"bayes"`
+#'
+#'   You can specify just the initial letter.
+#' @param effsize.type Type of effect size needed for *parametric* tests. The
+#'   argument can be `"eta"` (partial eta-squared) or `"omega"` (partial
+#'   omega-squared) for ANOVA or `"d"` (Cohen's *d*) or `"g"` (Hedge's *g*) for
+#'   *t*-test.
+#' @param alternative a character string specifying the alternative hypothesis,
+#'   must be one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+#'   specify just the initial letter.
+#' @param digits Number of digits for rounding or significant figures. May also
+#'   be `"signif"` to return significant figures or `"scientific"` to return
+#'   scientific notation. Control the number of digits by adding the value as
+#'   suffix, e.g. `digits = "scientific4"` to have scientific notation with 4
+#'   decimal places, or `digits = "signif5"` for 5 significant figures (see also
+#'   `signif()`).
+#' @param var.equal a logical variable indicating whether to treat the two
+#'   variances as being equal. If `TRUE` then the pooled variance is used to
+#'   estimate the variance otherwise the Welch (or Satterthwaite) approximation
+#'   to the degrees of freedom is used.
+#' @param conf.level Scalar between `0` and `1` (default: 95%
+#'   confidence/credible intervals, `0.95`). If `NULL`, no confidence intervals
+#'   will be computed.
+#' @param nboot Number of bootstrap samples for computing confidence interval
+#'   for the effect size (Default: `100L`).
+#' @param tr Trim level for the mean when carrying out robust tests. In case of
+#'   an error, try reducing the value of `tr`, which is by default set to `0.2`.
+#'   Lowering the value might help.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
@@ -94,8 +132,6 @@
 #'   label on the secondary Y-axis. Some themes (e.g.
 #'   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis and
 #'   thus the details as well.
-#' @inheritParams statsExpressions::oneway_anova
-#' @inheritParams statsExpressions::two_sample_test
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
@@ -157,7 +193,6 @@ ggbetweenstats <- function(
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
-  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -171,6 +206,7 @@ ggbetweenstats <- function(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -217,7 +253,6 @@ ggbetweenstats <- function(
       x = as_string(x),
       y = as_string(y),
       effsize.type = effsize.type,
-      alternative = alternative,
       conf.level = conf.level,
       var.equal = var.equal,
       digits = digits,
@@ -226,6 +261,8 @@ ggbetweenstats <- function(
       bf.prior = bf.prior,
       nboot = nboot
     )
+
+    if (test == "t") .f.args$alternative <- alternative
 
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)

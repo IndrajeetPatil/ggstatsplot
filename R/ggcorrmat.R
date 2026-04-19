@@ -71,7 +71,6 @@ ggcorrmat <- function(
   cor.vars.names = NULL,
   matrix.type = "upper",
   type = "parametric",
-  alternative = "two.sided",
   tr = 0.2,
   partial = FALSE,
   digits = 2L,

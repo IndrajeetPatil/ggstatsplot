@@ -20,6 +20,9 @@
 #' ```
 #'
 #' @param ... Currently ignored.
+#' @param alternative A character string specifying the alternative hypothesis,
+#'   must be one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+#'   specify just the initial letter.
 #' @param y Label or grouping variable.
 #' @inheritParams gghistostats
 #' @inheritParams ggcoefstats
@@ -89,7 +92,7 @@ ggdotplotstats <- function(
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
-  .f.stats.args <- list(alternative = alternative, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
+  .f.stats.args <- list(conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
 
   data %<>%
     select({{ x }}, {{ y }}) %>%

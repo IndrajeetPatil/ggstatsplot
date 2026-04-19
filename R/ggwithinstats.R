@@ -32,7 +32,9 @@
 #'   dropped using a list-wise approach. If you specify `subject.id`, partially
 #'   observed subjects will still be shown in the plot, but inferential
 #'   statistics will be computed using only complete repeated-measures pairs.
-#' @inheritParams statsExpressions::oneway_anova
+#' @param alternative a character string specifying the alternative hypothesis,
+#'   must be one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+#'   specify just the initial letter.
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
@@ -110,7 +112,6 @@ ggwithinstats <- function(
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
-  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -123,6 +124,7 @@ ggwithinstats <- function(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -188,7 +190,6 @@ ggwithinstats <- function(
       y = as_string(y),
       subject.id = subject.id,
       effsize.type = effsize.type,
-      alternative = alternative,
       conf.level = conf.level,
       digits = digits,
       tr = tr,
@@ -196,6 +197,8 @@ ggwithinstats <- function(
       bf.prior = bf.prior,
       nboot = nboot
     )
+
+    if (test == "t") .f.args$alternative <- alternative
 
     # styler: off
     .f          <- .f_switch(test)

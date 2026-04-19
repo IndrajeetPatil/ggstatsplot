@@ -24,6 +24,11 @@
 #'   [`ggbarstats()`], only *p*-values from this test will be displayed.
 #' @param digits.perc Numeric that decides number of decimal places for
 #'   percentage labels (Default: `0L`).
+#' @param alternative A character string specifying the alternative hypothesis;
+#'   Controls the type of CI returned: `"two.sided"` (default, two-sided CI),
+#'   `"greater"` or `"less"` (one-sided CI). Partial matching is allowed
+#'   (e.g., `"g"`, `"l"`, `"two"`...). See section *One-Sided CIs* in the
+#'   `effectsize_CIs` vignette.
 #' @param label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
