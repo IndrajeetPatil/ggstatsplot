@@ -20,6 +20,7 @@ ggbarstats(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
@@ -38,8 +39,8 @@ ggbarstats(
 )
 }
 \arguments{
-\item{data}{A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
+\item{data}{A data frame (or a tibble) from which variables specified are
+to be taken. Other data types (e.g., matrix, table, array, etc.) will \emph{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
@@ -85,11 +86,11 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 passed to \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
 \item{digits}{Number of digits for rounding or significant figures. May also
-be \code{"signif"} to return significant figures or \code{"scientific"}
-to return scientific notation. Control the number of digits by adding the
-value as suffix, e.g. \code{digits = "scientific4"} to have scientific
-notation with 4 decimal places, or \code{digits = "signif5"} for 5
-significant figures (see also \code{\link[=signif]{signif()}}).}
+be \code{"signif"} to return significant figures or \code{"scientific"} to return
+scientific notation. Control the number of digits by adding the value as
+suffix, e.g. \code{digits = "scientific4"} to have scientific notation with 4
+decimal places, or \code{digits = "signif5"} for 5 significant figures (see also
+\code{signif()}).}
 
 \item{proportion.test}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
@@ -108,7 +109,13 @@ is equal theoretical proportions across the levels of the nominal variable.
 E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
 
-\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+\item{alternative}{A character string specifying the alternative hypothesis;
+Controls the type of CI returned: \code{"two.sided"} (default, two-sided CI),
+\code{"greater"} or \code{"less"} (one-sided CI). Partial matching is allowed
+(e.g., \code{"g"}, \code{"l"}, \code{"two"}...). See section \emph{One-Sided CIs} in the
+\code{effectsize_CIs} vignette.}
+
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: 95\%
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
 

@@ -21,6 +21,9 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link[=ggdotplotstats]{ggdotplotstats}}
   \describe{
+    \item{\code{alternative}}{A character string specifying the alternative hypothesis,
+must be one of \code{"two.sided"} (default), \code{"greater"} or \code{"less"}. You can
+specify just the initial letter.}
     \item{\code{y}}{Label or grouping variable.}
     \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
 passed to the \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}} used to display the lines

@@ -15,6 +15,7 @@ ggdotplotstats(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
@@ -69,6 +70,10 @@ You can specify just the initial letter.}
 
 \item{test.value}{A number indicating the true value of the mean (Default:
 \code{0}).}
+
+\item{alternative}{A character string specifying the alternative hypothesis,
+must be one of \code{"two.sided"} (default), \code{"greater"} or \code{"less"}. You can
+specify just the initial letter.}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In

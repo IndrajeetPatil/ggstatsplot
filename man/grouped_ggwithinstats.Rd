@@ -14,8 +14,8 @@ grouped_ggwithinstats(
 )
 }
 \arguments{
-\item{data}{A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
+\item{data}{A data frame (or a tibble) from which variables specified are
+to be taken. Other data types (e.g., matrix, table, array, etc.) will \emph{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
@@ -41,6 +41,9 @@ the dependent variable and the \code{subject.id} is not specified, they will be
 dropped using a list-wise approach. If you specify \code{subject.id}, partially
 observed subjects will still be shown in the plot, but inferential
 statistics will be computed using only complete repeated-measures pairs.}
+    \item{\code{alternative}}{a character string specifying the alternative hypothesis,
+must be one of \code{"two.sided"} (default), \code{"greater"} or \code{"less"}. You can
+specify just the initial letter.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
@@ -111,6 +114,35 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
     \item{\code{package,palette}}{Name of the package from which the given palette is to
 be extracted. The available palettes and packages can be checked by running
 \code{View(paletteer::palettes_d_names)}.}
+    \item{\code{x}}{The grouping (or independent) variable from \code{data}.}
+    \item{\code{y}}{The response (or outcome or dependent) variable from \code{data}.}
+    \item{\code{type}}{A character specifying the type of statistical approach:
+\itemize{
+\item \code{"parametric"}
+\item \code{"nonparametric"}
+\item \code{"robust"}
+\item \code{"bayes"}
+}
+
+You can specify just the initial letter.}
+    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
+argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
+omega-squared) for ANOVA or \code{"d"} (Cohen's \emph{d}) or \code{"g"} (Hedge's \emph{g}) for
+\emph{t}-test.}
+    \item{\code{digits}}{Number of digits for rounding or significant figures. May also
+be \code{"signif"} to return significant figures or \code{"scientific"} to return
+scientific notation. Control the number of digits by adding the value as
+suffix, e.g. \code{digits = "scientific4"} to have scientific notation with 4
+decimal places, or \code{digits = "signif5"} for 5 significant figures (see also
+\code{signif()}).}
+    \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: 95\%
+confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
+will be computed.}
+    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
+for the effect size (Default: \code{100L}).}
+    \item{\code{tr}}{Trim level for the mean when carrying out robust tests. In case of
+an error, try reducing the value of \code{tr}, which is by default set to \code{0.2}.
+Lowering the value might help.}
     \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
 arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
 \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in mean plotting.}
@@ -126,47 +158,6 @@ that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{x}}{The grouping (or independent) variable from \code{data}. In case of a
-repeated measures or within-subjects design, if \code{subject.id} argument is
-not available or not explicitly specified, the function assumes that the
-data has already been sorted by such an id by the user and creates an
-internal identifier. So if your data is \strong{not} sorted, the results \emph{can}
-be inaccurate when there are more than two levels in \code{x} and there are
-\code{NA}s present. The data is expected to be sorted by user in
-subject-1, subject-2, ..., pattern.}
-    \item{\code{y}}{The response (or outcome or dependent) variable from \code{data}.}
-    \item{\code{type}}{A character specifying the type of statistical approach:
-\itemize{
-\item \code{"parametric"}
-\item \code{"nonparametric"}
-\item \code{"robust"}
-\item \code{"bayes"}
-}
-
-You can specify just the initial letter.}
-    \item{\code{digits}}{Number of digits for rounding or significant figures. May also
-be \code{"signif"} to return significant figures or \code{"scientific"}
-to return scientific notation. Control the number of digits by adding the
-value as suffix, e.g. \code{digits = "scientific4"} to have scientific
-notation with 4 decimal places, or \code{digits = "signif5"} for 5
-significant figures (see also \code{\link[=signif]{signif()}}).}
-    \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
-confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
-will be computed.}
-    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
-    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors and posterior estimates. In
-addition to numeric arguments, several named values are also recognized:
-\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
-of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
-value corresponds to scale for fixed effects.}
-    \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
-of an error, try reducing the value of \code{tr}, which is by default set to
-\code{0.2}. Lowering the value might help.}
-    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
   }}
 
 \item{grouping.var}{A single grouping variable.}
