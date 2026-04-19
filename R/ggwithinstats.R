@@ -142,7 +142,7 @@ ggwithinstats <- function(
   point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
   point.path = TRUE,
   point.path.args = list(alpha = 0.5, linetype = "dashed"),
-  boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
+  boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE, outlier.shape = NA),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),

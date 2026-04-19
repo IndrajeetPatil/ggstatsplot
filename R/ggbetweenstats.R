@@ -70,9 +70,11 @@
 #'   the interquartile range (IQR) from the box (Tukey-style). To customize
 #'   whisker length, you can use the `coef` parameter, e.g.,
 #'   `boxplot.args = list(coef = 3)` for whiskers extending to 3 * IQR, or
-#'   `boxplot.args = list(coef = 0)` to show only the range of the data. You
-#'   can also control outlier display using this argument, e.g.,
-#'   `boxplot.args = list(outlier.shape = NA)` to hide outliers.
+#'   `boxplot.args = list(coef = 0)` to show only the range of the data. By
+#'   default, this list also includes `outlier.shape = NA` to avoid duplicating
+#'   raw points. If you turn off the point or violin layers and want boxplot
+#'   outliers to be shown, remove `outlier.shape = NA` from the default
+#'   `boxplot.args` list you pass to the function.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
 #'   the [`ggplot2::geom_violin()`].
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
@@ -196,7 +198,7 @@ ggbetweenstats <- function(
     stroke = 0,
     na.rm = TRUE
   ),
-  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE),
+  boxplot.args = list(width = 0.3, alpha = 0.2, na.rm = TRUE, outlier.shape = NA),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),

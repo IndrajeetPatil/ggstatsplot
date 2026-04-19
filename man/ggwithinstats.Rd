@@ -36,7 +36,7 @@ ggwithinstats(
   point.args = list(size = 3, alpha = 0.5, na.rm = TRUE),
   point.path = TRUE,
   point.path.args = list(alpha = 0.5, linetype = "dashed"),
-  boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE),
+  boxplot.args = list(width = 0.2, alpha = 0.5, na.rm = TRUE, outlier.shape = NA),
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -210,9 +210,11 @@ argument is relevant only when there are two groups (i.e., in case of a
 the interquartile range (IQR) from the box (Tukey-style). To customize
 whisker length, you can use the \code{coef} parameter, e.g.,
 \code{boxplot.args = list(coef = 3)} for whiskers extending to 3 * IQR, or
-\code{boxplot.args = list(coef = 0)} to show only the range of the data. You
-can also control outlier display using this argument, e.g.,
-\code{boxplot.args = list(outlier.shape = NA)} to hide outliers.}
+\code{boxplot.args = list(coef = 0)} to show only the range of the data. By
+default, this list also includes \code{outlier.shape = NA} to avoid duplicating
+raw points. If you turn off the point or violin layers and want boxplot
+outliers to be shown, remove \code{outlier.shape = NA} from the default
+\code{boxplot.args} list you pass to the function.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
