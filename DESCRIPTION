@@ -20,6 +20,8 @@ License: MIT + file LICENSE
 URL: https://www.indrapatil.com/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
+Remotes:
+    IndrajeetPatil/statsExpressions
 Depends:
     R (>= 4.3.0)
 Imports:

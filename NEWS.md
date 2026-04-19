@@ -1,5 +1,15 @@
 # ggstatsplot 0.13.6.9000
 
+## NEW FEATURES
+
+- All top-level plotting functions now include an `alternative` argument, which
+  is passed down to `{statsExpressions}` to specify the alternative hypothesis for
+  effect size confidence intervals (#794).
+
+- `ggbetweenstats()` and `ggwithinstats()` now include a `pairwise.alpha`
+  argument to control the alpha cutoff used for filtering displayed pairwise
+  comparisons, and the secondary-axis label now reports the chosen `alpha`.
+
 ## BREAKING CHANGES
 
 - `ggwithinstats()` (and `grouped_ggwithinstats()`) gains a `subject.id`
