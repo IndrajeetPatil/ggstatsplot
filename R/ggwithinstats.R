@@ -164,7 +164,7 @@ ggwithinstats <- function(
       data = stats_data,
       x = as_string(x),
       y = as_string(y),
-      subject.id = sid_str,
+      subject.id = subject.id,
       effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,
@@ -222,17 +222,17 @@ ggwithinstats <- function(
   seclabel <- NULL
 
   if (pairwise.display != "none" && test == "anova") {
-    mpc_df <- pairwise_comparisons(
+    mpc_df <- suppressWarnings(pairwise_comparisons(
       data = stats_data,
       x = {{ x }},
       y = {{ y }},
-      subject.id = sid_str,
+      subject.id = subject.id,
       type = type,
       tr = tr,
       paired = TRUE,
       p.adjust.method = p.adjust.method,
       digits = digits
-    )
+    ))
 
     # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(
