@@ -13,6 +13,7 @@ ggbetweenstats(
   y,
   type = "parametric",
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
   effsize.type = "unbiased",
   bf.prior = 0.707,
@@ -100,6 +101,12 @@ ggbetweenstats(
   uber-cluttered when you have multiple groups being compared and scores
   of pairwise comparisons being displayed. If set to `"none"`, no
   pairwise comparisons will be displayed.
+
+- pairwise.alpha:
+
+  Numeric alpha threshold used to decide which pairwise comparisons are
+  displayed when `pairwise.display = "significant"` or
+  `pairwise.display = "non-significant"` (Default: `0.05`).
 
 - p.adjust.method:
 
@@ -551,6 +558,10 @@ ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "non-significant")
 
 # show all pairwise comparisons
 ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
+
+
+# use a stricter alpha threshold for significant pairwise comparisons
+ggbetweenstats(mtcars, cyl, mpg, pairwise.alpha = 0.001)
 
 
 # modifying defaults

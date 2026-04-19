@@ -284,6 +284,7 @@ gapminder::gapminder %>%
     xlab = "Continent",
     ylab = "Life expectancy",
     pairwise.display = "significant", ## display only significant pairwise comparisons
+    pairwise.alpha = 0.01, ## use a stricter alpha threshold to reduce clutter
     p.adjust.method = "fdr", ## adjust p-values for multiple tests using this method
     # ggtheme = ggthemes::theme_tufte(),
     package = "ggsci",

@@ -14,6 +14,7 @@ ggwithinstats(
   type = "parametric",
   subject.id = NULL,
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
   effsize.type = "unbiased",
   bf.prior = 0.707,
@@ -116,6 +117,12 @@ ggwithinstats(
   uber-cluttered when you have multiple groups being compared and scores
   of pairwise comparisons being displayed. If set to `"none"`, no
   pairwise comparisons will be displayed.
+
+- pairwise.alpha:
+
+  Numeric alpha threshold used to decide which pairwise comparisons are
+  displayed when `pairwise.display = "significant"` or
+  `pairwise.display = "non-significant"` (Default: `0.05`).
 
 - p.adjust.method:
 
@@ -586,6 +593,16 @@ extract_stats(p)
 #> 
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"             
+
+# use a stricter alpha threshold for significant pairwise comparisons
+ggwithinstats(
+  data = bugs_long,
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  pairwise.alpha = 0.001
+)
+
 
 # modifying defaults
 ggwithinstats(

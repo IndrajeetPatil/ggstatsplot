@@ -91,6 +91,12 @@ grouped_ggwithinstats(
       scores of pairwise comparisons being displayed. If set to
       `"none"`, no pairwise comparisons will be displayed.
 
+  `pairwise.alpha`
+
+  :   Numeric alpha threshold used to decide which pairwise comparisons
+      are displayed when `pairwise.display = "significant"` or
+      `pairwise.display = "non-significant"` (Default: `0.05`).
+
   `bf.message`
 
   :   Logical that decides whether to display Bayes Factor in favor of

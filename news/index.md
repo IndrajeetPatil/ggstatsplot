@@ -11,6 +11,13 @@
   intervals
   ([\#794](https://github.com/IndrajeetPatil/ggstatsplot/issues/794)).
 
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+  and
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  now include a `pairwise.alpha` argument to control the alpha cutoff
+  used for filtering displayed pairwise comparisons, and the
+  secondary-axis label now reports the chosen `alpha`.
+
 ### BREAKING CHANGES
 
 - [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
