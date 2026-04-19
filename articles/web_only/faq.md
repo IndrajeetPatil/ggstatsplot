@@ -797,7 +797,7 @@ ggwithinstats(
   WineTasting,
   Wine,
   Taste,
-  paired = TRUE
+  subject.id = Taster
 )
 ```
 
@@ -810,7 +810,7 @@ ggwithinstats(
   WineTasting,
   Wine,
   Taste,
-  paired = TRUE,
+  subject.id = Taster,
   digits = 4L
 )
 ```

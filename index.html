@@ -454,10 +454,11 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://afex.singmann.science/" class="external-link">afex</a></span><span class="op">)</span> <span class="co">## to run ANOVA</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
-<span>  data    <span class="op">=</span> <span class="va">WineTasting</span>,</span>
-<span>  x       <span class="op">=</span> <span class="va">Wine</span>,</span>
-<span>  y       <span class="op">=</span> <span class="va">Taste</span>,</span>
-<span>  title   <span class="op">=</span> <span class="st">"Wine tasting"</span></span>
+<span>  data       <span class="op">=</span> <span class="va">WineTasting</span>,</span>
+<span>  x          <span class="op">=</span> <span class="va">Wine</span>,</span>
+<span>  y          <span class="op">=</span> <span class="va">Taste</span>,</span>
+<span>  subject.id <span class="op">=</span> <span class="va">Taster</span>,</span>
+<span>  title      <span class="op">=</span> <span class="st">"Wine tasting"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
@@ -470,6 +471,7 @@
 <span>  data            <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">region</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Europe"</span>, <span class="st">"North America"</span><span class="op">)</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDLF"</span>, <span class="st">"LDHF"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  x               <span class="op">=</span> <span class="va">condition</span>,</span>
 <span>  y               <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  subject.id      <span class="op">=</span> <span class="va">subject</span>,</span>
 <span>  type            <span class="op">=</span> <span class="st">"np"</span>,</span>
 <span>  xlab            <span class="op">=</span> <span class="st">"Condition"</span>,</span>
 <span>  ylab            <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>,</span>

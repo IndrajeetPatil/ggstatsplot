@@ -101,6 +101,18 @@ argument is relevant only when there are two groups (i.e., in case of a
 arguments passed on to <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code> connecting raw data points
 and mean points.</p></dd>
 
+    <dt><code>subject.id</code></dt>
+<dd><p>Across repeated measures conditions, each row in the
+dataset must correspond to a unique unit (e.g., subject or participant).
+If your data frame is already in such a format, you can ignore the
+<code>subject.id</code> argument (the function will use row number to pair
+observations). <strong>But if you are not sure, it is always better to specify
+this argument.</strong> Note that if there are any missing values (i.e., <code>NA</code>) in
+the dependent variable and the <code>subject.id</code> is not specified, they will be
+dropped using a list-wise approach. If you specify <code>subject.id</code>, partially
+observed subjects will still be shown in the plot, but inferential
+statistics will be computed using only complete repeated-measures pairs.</p></dd>
+
     <dt><code>xlab</code></dt>
 <dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>x</code> will be used.</p></dd>
@@ -302,6 +314,7 @@ separately specified here.</p></dd>
 <span class="r-in"><span>  data             <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HDHF"</span>, <span class="st">"HDLF"</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  x                <span class="op">=</span> <span class="va">condition</span>,</span></span>
 <span class="r-in"><span>  y                <span class="op">=</span> <span class="va">desire</span>,</span></span>
+<span class="r-in"><span>  subject.id       <span class="op">=</span> <span class="va">subject</span>,</span></span>
 <span class="r-in"><span>  grouping.var     <span class="op">=</span> <span class="va">gender</span>,</span></span>
 <span class="r-in"><span>  type             <span class="op">=</span> <span class="st">"np"</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># additional modifications for **each** plot using `{ggplot2}` functions</span></span></span>

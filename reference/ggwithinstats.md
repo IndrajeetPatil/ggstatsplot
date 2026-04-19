@@ -12,6 +12,7 @@ ggwithinstats(
   x,
   y,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -84,6 +85,20 @@ ggwithinstats(
   - `"bayes"`
 
   You can specify just the initial letter.
+
+- subject.id:
+
+  Across repeated measures conditions, each row in the dataset must
+  correspond to a unique unit (e.g., subject or participant). If your
+  data frame is already in such a format, you can ignore the
+  `subject.id` argument (the function will use row number to pair
+  observations). **But if you are not sure, it is always better to
+  specify this argument.** Note that if there are any missing values
+  (i.e., `NA`) in the dependent variable and the `subject.id` is not
+  specified, they will be dropped using a list-wise approach. If you
+  specify `subject.id`, partially observed subjects will still be shown
+  in the plot, but inferential statistics will be computed using only
+  complete repeated-measures pairs.
 
 - pairwise.display:
 
@@ -507,15 +522,27 @@ library(dplyr, warn.conflicts = FALSE)
 
 # create a plot
 p <- ggwithinstats(
-  data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-  x    = condition,
-  y    = desire,
-  type = "np"
+  data       = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+  x          = condition,
+  y          = desire,
+  type       = "np",
+  subject.id = subject
 )
 
 
 # looking at the plot
 p
+
+
+# if the data are already arranged in repeated-measures order, `subject.id`
+# can be omitted
+ggwithinstats(
+  data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+  x                = condition,
+  y                = desire,
+  pairwise.display = "none",
+  results.subtitle = FALSE
+)
 
 
 # extracting details from statistical tests
@@ -555,10 +582,11 @@ extract_stats(p)
 
 # modifying defaults
 ggwithinstats(
-  data = bugs_long,
-  x    = condition,
-  y    = desire,
-  type = "robust"
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  type       = "robust",
+  subject.id = subject
 )
 
 
@@ -567,6 +595,7 @@ ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire,
+  subject.id = subject,
   # to remove violin plot
   violin.args = list(width = 0, linewidth = 0, colour = NA),
   # to remove boxplot

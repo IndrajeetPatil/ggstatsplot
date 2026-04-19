@@ -45,6 +45,20 @@ grouped_ggwithinstats(
       [`ggplot2::geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
       connecting raw data points and mean points.
 
+  `subject.id`
+
+  :   Across repeated measures conditions, each row in the dataset must
+      correspond to a unique unit (e.g., subject or participant). If
+      your data frame is already in such a format, you can ignore the
+      `subject.id` argument (the function will use row number to pair
+      observations). **But if you are not sure, it is always better to
+      specify this argument.** Note that if there are any missing values
+      (i.e., `NA`) in the dependent variable and the `subject.id` is not
+      specified, they will be dropped using a list-wise approach. If you
+      specify `subject.id`, partially observed subjects will still be
+      shown in the plot, but inferential statistics will be computed
+      using only complete repeated-measures pairs.
+
   `xlab`
 
   :   Label for `x` axis variable. If `NULL` (default), variable name
@@ -306,6 +320,7 @@ grouped_ggwithinstats(
   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
   x                = condition,
   y                = desire,
+  subject.id       = subject,
   grouping.var     = gender,
   type             = "np",
   # additional modifications for **each** plot using `{ggplot2}` functions

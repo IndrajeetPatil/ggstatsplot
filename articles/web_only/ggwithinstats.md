@@ -71,9 +71,10 @@ The simplest form of the function call is-
 ``` r
 
 ggwithinstats(
-  data = bugs_long,
-  x = condition,
-  y = desire
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  subject.id = subject
 )
 ```
 
@@ -110,16 +111,17 @@ palette in use.
 ``` r
 
 ggwithinstats(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  type = "nonparametric", ## type of statistical test
-  xlab = "Condition", ## label for the x-axis
-  ylab = "Desire to kill an artrhopod", ## label for the y-axis
-  package = "yarrr", ## package from which color palette is to be taken
-  palette = "info2", ## choosing a different color palette
-  title = "Comparison of desire to kill bugs",
-  caption = "Source: Ryan et al., 2013"
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  type       = "nonparametric", ## type of statistical test
+  xlab       = "Condition", ## label for the x-axis
+  ylab       = "Desire to kill an artrhopod", ## label for the y-axis
+  package    = "yarrr", ## package from which color palette is to be taken
+  palette    = "info2", ## choosing a different color palette
+  title      = "Comparison of desire to kill bugs",
+  caption    = "Source: Ryan et al., 2013"
 ) + ## modifying the plot further
   ggplot2::scale_y_continuous(
     limits = c(0, 10),
@@ -160,6 +162,7 @@ p1 <- ggwithinstats(
   data = df_disgust,
   x = condition,
   y = desire,
+  subject.id = subject,
   type = "p",
   effsize.type = "d",
   conf.level = 0.99,
@@ -170,43 +173,46 @@ p1 <- ggwithinstats(
 
 ## Mann-Whitney U test (nonparametric test)
 p2 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "np",
+  data       = df_disgust,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  xlab       = "Condition",
+  ylab       = "Desire to kill bugs",
+  type       = "np",
   conf.level = 0.99,
-  title = "Non-parametric Test",
-  package = "ggsci",
-  palette = "uniform_startrek"
+  title      = "Non-parametric Test",
+  package    = "ggsci",
+  palette    = "uniform_startrek"
 )
 
 ## robust t-test
 p3 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "r",
+  data       = df_disgust,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  xlab       = "Condition",
+  ylab       = "Desire to kill bugs",
+  type       = "r",
   conf.level = 0.99,
-  title = "Robust Test",
-  package = "wesanderson",
-  palette = "Royal2"
+  title      = "Robust Test",
+  package    = "wesanderson",
+  palette    = "Royal2"
 )
 
 ## Bayes Factor for parametric t-test
 p4 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "bayes",
-  title = "Bayesian Test",
-  package = "ggsci",
-  palette = "nrc_npg"
+  data       = df_disgust,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  xlab       = "Condition",
+  ylab       = "Desire to kill bugs",
+  type       = "bayes",
+  title      = "Bayesian Test",
+  package    = "ggsci",
+  palette    = "nrc_npg"
 )
 
 ## combining the individual plots into a single plot
@@ -243,22 +249,23 @@ every pair of continents.
 
 grouped_ggwithinstats(
   ## arguments relevant for ggwithinstats
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  grouping.var = gender,
-  xlab = "Continent",
-  ylab = "Desire to kill bugs",
-  type = "nonparametric", ## type of test
+  data             = bugs_long,
+  x                = condition,
+  y                = desire,
+  subject.id       = subject,
+  grouping.var     = gender,
+  xlab             = "Continent",
+  ylab             = "Desire to kill bugs",
+  type             = "nonparametric", ## type of test
   pairwise.display = "significant", ## display only significant pairwise comparisons
-  p.adjust.method = "BH", ## adjust p-values for multiple tests using this method
+  p.adjust.method  = "BH", ## adjust p-values for multiple tests using this method
   # ggtheme = ggthemes::theme_tufte(),
-  package = "ggsci",
-  palette = "default_jco",
-  digits = 3,
+  package          = "ggsci",
+  palette          = "default_jco",
+  digits           = 3,
   ## arguments relevant for combine_plots
-  annotation.args = list(title = "Desire to kill bugs across genders"),
-  plotgrid.args = list(ncol = 1)
+  annotation.args  = list(title = "Desire to kill bugs across genders"),
+  plotgrid.args    = list(ncol = 1)
 )
 ```
 
@@ -308,7 +315,7 @@ For example, let’s see the following example:
 ``` r
 
 library(WRS2) # for data
-ggwithinstats(WineTasting, Wine, Taste)
+ggwithinstats(WineTasting, Wine, Taste, subject.id = Taster)
 ```
 
 ![](ggwithinstats_files/figure-html/reporting-1.png)
