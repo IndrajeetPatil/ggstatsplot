@@ -122,9 +122,9 @@
 <circle cx='160.09' cy='308.04' r='5.66' style='stroke-width: 0.64; stroke: #8B0000; fill: #8B0000;' />
 <circle cx='373.53' cy='310.93' r='5.66' style='stroke-width: 0.64; stroke: #8B0000; fill: #8B0000;' />
 <circle cx='586.96' cy='334.80' r='5.66' style='stroke-width: 0.64; stroke: #8B0000; fill: #8B0000;' />
-<line x1='218.46' y1='308.03' x2='161.48' y2='308.04' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
-<line x1='431.89' y1='310.93' x2='374.91' y2='310.93' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
-<line x1='645.33' y1='334.80' x2='588.34' y2='334.80' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='218.46' y1='308.03' x2='161.16' y2='308.04' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='431.89' y1='310.93' x2='374.59' y2='310.93' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
+<line x1='645.33' y1='334.80' x2='588.03' y2='334.80' style='stroke-width: 1.07; stroke-dasharray: 1.42,4.27,5.69,4.27;' />
 <polygon points='220.62,315.90 270.31,315.90 270.23,315.90 270.57,315.88 270.91,315.81 271.24,315.69 271.54,315.51 271.81,315.29 272.04,315.03 272.22,314.74 272.36,314.42 272.44,314.08 272.47,313.74 272.47,313.74 272.47,302.33 272.47,302.33 272.44,301.99 272.36,301.65 272.22,301.33 272.04,301.03 271.81,300.77 271.54,300.55 271.24,300.38 270.91,300.26 270.57,300.19 270.31,300.17 220.62,300.17 220.88,300.19 220.54,300.17 220.19,300.22 219.86,300.31 219.54,300.46 219.26,300.66 219.01,300.90 218.80,301.18 218.64,301.49 218.53,301.82 218.47,302.16 218.46,302.33 218.46,313.74 218.47,313.56 218.47,313.91 218.53,314.25 218.64,314.58 218.80,314.89 219.01,315.17 219.26,315.41 219.54,315.61 219.86,315.76 220.19,315.85 220.54,315.90 ' style='stroke-width: 0.53; fill: #FFFFFF;' />
 <text x='222.06' y='310.56' style='font-size: 8.54px; font-family: sans;' textLength='4.67px' lengthAdjust='spacingAndGlyphs'>μ</text>
 <polyline points='222.06,305.53 224.40,303.77 226.73,305.53 ' style='stroke-width: 0.75;' />
@@ -172,7 +172,7 @@
 <text x='373.53' y='547.98' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='22.78px' lengthAdjust='spacingAndGlyphs'>Wine</text>
 <text transform='translate(11.86,281.99) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='25.01px' lengthAdjust='spacingAndGlyphs'>Taste</text>
 <text x='32.03' y='34.06' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='6.11px' lengthAdjust='spacingAndGlyphs'>F</text>
-<text x='39.18' y='35.91' style='font-size: 7.00px; font-family: sans;' textLength='19.45px' lengthAdjust='spacingAndGlyphs'>Fisher</text>
+<text x='39.18' y='36.18' style='font-size: 7.00px; font-family: sans;' textLength='19.45px' lengthAdjust='spacingAndGlyphs'>Fisher</text>
 <text x='58.63' y='34.06' style='font-size: 12.50px; font-family: sans;' textLength='4.16px' lengthAdjust='spacingAndGlyphs'>(</text>
 <text x='62.79' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>1.55</text>
 <text x='82.25' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.50px' lengthAdjust='spacingAndGlyphs'>,</text>
@@ -198,7 +198,7 @@
 <text x='261.28' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.50px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='263.78' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='7.22px' lengthAdjust='spacingAndGlyphs'>C</text>
 <text x='271.00' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.78px' lengthAdjust='spacingAndGlyphs'>I</text>
-<text x='273.78' y='35.91' style='font-size: 7.00px; font-family: sans;' textLength='14.01px' lengthAdjust='spacingAndGlyphs'>95%</text>
+<text x='273.78' y='35.99' style='font-size: 7.00px; font-family: sans;' textLength='14.01px' lengthAdjust='spacingAndGlyphs'>95%</text>
 <text x='287.79' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.50px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='290.30' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.78px' lengthAdjust='spacingAndGlyphs'>[</text>
 <text x='293.07' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='19.46px' lengthAdjust='spacingAndGlyphs'>0.00</text>
@@ -209,7 +209,7 @@
 <text x='339.78' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.50px' lengthAdjust='spacingAndGlyphs'>,</text>
 <text x='342.29' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='2.50px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='344.79' y='34.06' style='font-size: 10.00px; font-style: italic; font-family: sans;' textLength='5.56px' lengthAdjust='spacingAndGlyphs'>n</text>
-<text x='351.16' y='35.91' style='font-size: 7.00px; font-family: sans;' textLength='15.17px' lengthAdjust='spacingAndGlyphs'>pairs</text>
+<text x='351.16' y='36.18' style='font-size: 7.00px; font-family: sans;' textLength='15.17px' lengthAdjust='spacingAndGlyphs'>pairs</text>
 <text x='368.65' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='7.76px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='378.73' y='34.06' style='font-size: 10.00px; font-family: sans;' textLength='11.12px' lengthAdjust='spacingAndGlyphs'>22</text>
 <text x='32.03' y='13.24' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='90.06px' lengthAdjust='spacingAndGlyphs'>wine tasting data</text>
@@ -220,7 +220,7 @@
 <text x='484.32' y='565.72' style='font-size: 10.00px; font-family: sans;' textLength='3.33px' lengthAdjust='spacingAndGlyphs'>(</text>
 <text x='487.65' y='565.72' style='font-size: 8.00px; font-family: sans;' textLength='5.34px' lengthAdjust='spacingAndGlyphs'>B</text>
 <text x='492.99' y='565.72' style='font-size: 8.00px; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>F</text>
-<text x='497.88' y='567.20' style='font-size: 5.60px; font-family: sans;' textLength='6.23px' lengthAdjust='spacingAndGlyphs'>01</text>
+<text x='497.88' y='567.26' style='font-size: 5.60px; font-family: sans;' textLength='6.23px' lengthAdjust='spacingAndGlyphs'>01</text>
 <text x='504.11' y='565.72' style='font-size: 10.00px; font-family: sans;' textLength='3.32px' lengthAdjust='spacingAndGlyphs'>)</text>
 <text x='509.28' y='565.72' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
 <text x='517.35' y='565.72' style='font-size: 8.00px; font-family: sans;' textLength='18.24px' lengthAdjust='spacingAndGlyphs'>-2.12</text>

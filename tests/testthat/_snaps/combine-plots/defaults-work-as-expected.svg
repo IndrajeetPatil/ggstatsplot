@@ -242,6 +242,6 @@
 <text x='369.15' y='54.05' text-anchor='middle' style='font-size: 13.20px; font-family: sans;' textLength='7.34px' lengthAdjust='spacingAndGlyphs'>b</text>
 <text x='709.04' y='568.69' text-anchor='end' style='font-size: 8.80px; font-family: sans;' textLength='180.51px' lengthAdjust='spacingAndGlyphs'>Note: Only two species of flower are displayed</text>
 <text x='10.96' y='30.35' style='font-size: 11.00px; font-family: sans;' textLength='170.63px' lengthAdjust='spacingAndGlyphs'>Edgar Anderson collected this data</text>
-<text x='10.96' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='160.68px' lengthAdjust='spacingAndGlyphs'>Dataset: Iris Flower dataset</text>
+<text x='10.96' y='14.56' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='160.68px' lengthAdjust='spacingAndGlyphs'>Dataset: Iris Flower dataset</text>
 </g>
 </svg>

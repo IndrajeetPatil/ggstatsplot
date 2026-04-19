@@ -44,7 +44,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
@@ -61,6 +61,21 @@
 #'
 #' # association test (or contingency table analysis)
 #' ggpiestats(mtcars, vs, cyl)
+#'
+#' # Bayesian test
+#' ggpiestats(mtcars, vs, cyl, type = "bayes")
+#'
+#' # with repelled labels to avoid overlapping
+#' ggpiestats(mtcars, vs, label.repel = TRUE)
+#'
+#' # show counts instead of percentages
+#' ggpiestats(mtcars, vs, label = "counts")
+#'
+#' # show both counts and percentages
+#' ggpiestats(mtcars, vs, label = "both")
+#'
+#' # using pre-aggregated data with counts
+#' ggpiestats(as.data.frame(Titanic), Survived, counts = Freq)
 #'
 #' @export
 ggpiestats <- function(
@@ -79,6 +94,7 @@ ggpiestats <- function(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
@@ -116,7 +132,7 @@ ggpiestats <- function(
   y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
 
   # one-way table not supported in `BayesFactor` ATM (richarddmorey/BayesFactor#159)
-  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE
+  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE # nocov
 
   # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
@@ -129,6 +145,7 @@ ggpiestats <- function(
       data = data,
       x = {{ x }},
       y = {{ y }},
+      alternative = alternative,
       conf.level = conf.level,
       digits = digits,
       paired = paired,

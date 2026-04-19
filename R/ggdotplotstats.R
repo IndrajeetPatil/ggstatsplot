@@ -34,7 +34,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
@@ -66,6 +66,7 @@ ggdotplotstats <- function(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
@@ -110,7 +111,7 @@ ggdotplotstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, effsize.type = effsize.type)
+    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, alternative = alternative, effsize.type = effsize.type)
 
     subtitle_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = type)
     subtitle <- .extract_expression(subtitle_df)

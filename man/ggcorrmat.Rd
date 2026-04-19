@@ -139,7 +139,7 @@ used with output from \code{\link[dplyr:group_by]{dplyr::group_by()}}.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
@@ -173,6 +173,12 @@ The table below provides summary about:
 set.seed(123)
 library(ggcorrplot)
 ggcorrmat(iris)
+
+# with data containing NAs (uses pairwise complete observations)
+ggcorrmat(airquality)
+
+# selecting specific variables
+ggcorrmat(iris, cor.vars = c(Sepal.Length, Petal.Length, Petal.Width))
 }
 \seealso{
 \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}

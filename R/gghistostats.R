@@ -34,7 +34,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
@@ -64,6 +64,7 @@ gghistostats <- function(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
   effsize.type = "g",
@@ -93,6 +94,7 @@ gghistostats <- function(
       data = data,
       x = {{ x }},
       test.value = test.value,
+      alternative = alternative,
       effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,

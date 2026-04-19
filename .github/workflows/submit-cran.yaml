@@ -1,0 +1,10 @@
+on:
+  workflow_dispatch:
+
+name: submit-cran
+
+jobs:
+  submit-cran:
+    uses: IndrajeetPatil/workflows/.github/workflows/submit-cran.yaml@main
+    permissions:
+      contents: write

@@ -1,0 +1,17 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: "0 0 * * SUN"
+
+name: check-extra
+
+jobs:
+  check-extra:
+    uses: IndrajeetPatil/workflows/.github/workflows/check-extra.yaml@main
+    with:
+      extra-packages: |
+        any::ggstatsplot
+        any::ggthemes

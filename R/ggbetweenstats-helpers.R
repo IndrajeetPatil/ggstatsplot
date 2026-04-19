@@ -25,6 +25,15 @@
 #'   x = Species,
 #'   y = Sepal.Length
 #' )
+#'
+#' # with path connecting centrality values
+#' ggstatsplot:::.centrality_ggrepel(
+#'   data = iris,
+#'   plot = p,
+#'   x = Species,
+#'   y = Sepal.Length,
+#'   centrality.path = TRUE
+#' )
 #' @noRd
 .centrality_ggrepel <- function(
   plot,
@@ -134,7 +143,7 @@
     # proceed only if there are any significant comparisons to display
     if (nrow(mpc_df) == 0L) {
       return(plot)
-    }
+    } # nocov
   }
 
   # arrange the data frame so that annotations are properly aligned
@@ -195,7 +204,13 @@
 #'   comparisons being displayed.
 #'
 #' @examples
-#' .pairwise_seclabel("my caption", "Student's t-test")
+#' .pairwise_seclabel("Student's t-test")
+#'
+#' # non-significant pairwise comparisons
+#' .pairwise_seclabel("Student's t-test", pairwise.display = "non-significant")
+#'
+#' # all pairwise comparisons
+#' .pairwise_seclabel("Student's t-test", pairwise.display = "all")
 #' @keywords internal
 #' @autoglobal
 #' @noRd
@@ -204,11 +219,13 @@
   test <- sub("'", "\\'", test.description, fixed = TRUE)
 
   # which comparisons were displayed?
-  display <- case_when(
-    startsWith(pairwise.display, "s") ~ "significant",
-    startsWith(pairwise.display, "n") ~ "non-significant",
-    .default = "all"
-  )
+  display <- if (startsWith(pairwise.display, "s")) {
+    "significant"
+  } else if (startsWith(pairwise.display, "n")) {
+    "non-significant"
+  } else {
+    "all"
+  }
 
   parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
 }

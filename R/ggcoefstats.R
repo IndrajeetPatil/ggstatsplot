@@ -114,12 +114,11 @@
 #'   packages using the `install_latest()` function from `{easystats}`.
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
 #'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
 #' set.seed(123)
-#' library(lme4)
 #'
 #' # model object
 #' mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -133,7 +132,24 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
+#' # exclude intercept from the plot
+#' ggcoefstats(mod, exclude.intercept = TRUE)
+#'
+#' # only show significant labels
+#' ggcoefstats(mod, only.significant = TRUE)
+#'
+#' # ANOVA model (F-statistic)
+#' ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
+#'
+#' # a tidy data frame can also be passed directly (model-free use)
+#' ggcoefstats(data.frame(term = c("a", "b", "c"), estimate = c(0.5, -0.2, 1.1)))
+#'
+#' # without a `term` column (auto-generated)
+#' ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
+#'
+#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
 #' # further arguments can be passed to `parameters::model_parameters()`
+#' library(lme4)
 #' ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 #' @export
 ggcoefstats <- function(
@@ -231,6 +247,7 @@ ggcoefstats <- function(
 
   # meta analysis -------------------------
 
+  # nocov start
   if (meta.analytic.effect) {
     meta.type <- stats_type_switch(meta.type)
 
@@ -242,6 +259,7 @@ ggcoefstats <- function(
       caption <- .extract_expression(caption_df)
     }
   }
+  # nocov end
 
   # basic plot -------------------------
 
@@ -306,14 +324,17 @@ ggcoefstats <- function(
 
 #' @noRd
 .preprocess_tidy_data <- function(data, sort) {
+  # nocov start
   if (is.null(data) || !"estimate" %in% names(data)) {
     rlang::abort("The tidy data frame *must* contain 'estimate' column.")
   }
+  # nocov end
 
   # create a new term column if it's not present
   if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number()))
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
+  # nocov start
   if (anyDuplicated(data$term)) {
     data %<>%
       tidyr::unite(
@@ -326,6 +347,7 @@ ggcoefstats <- function(
 
   # halt if there are still repeated terms
   if (anyDuplicated(data$term)) rlang::abort("Elements in `term` column must be unique.")
+  # nocov end
 
   data %<>% parameters::sort_parameters(sort = sort, column = "estimate")
 

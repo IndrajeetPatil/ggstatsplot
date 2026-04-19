@@ -143,7 +143,7 @@ each gender.
 
 What if we want to do the same analysis of gender but also factor in the
 passenger's age (Age)? We have information that classifies the passengers as
-Child or Adult, perhaps that makes a difference to their survival rate? 
+Child or Adult, perhaps that makes a difference to their survival rate?
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggpiestats`. It is a convenient wrapper function around
@@ -178,17 +178,17 @@ very much matters. Women survived at much higher rates than men. For children
 gender is not significantly associated with survival and both male and female
 children have a survival rate that is not significantly different from 50/50.
 
-## Grouped analysis with `ggpiestats` + `{purrr}` 
+## Grouped analysis with `ggpiestats` + `{purrr}`
 
 Although `grouped_ggpiestats` provides a quick way to explore the data, it
 leaves much to be desired. For example, we may want to add different captions,
 titles, themes, or palettes for each level of the grouping variable, etc. For
-cases like these, it would be better to use `{purrr}` package.  
+cases like these, it would be better to use `{purrr}` package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
-## Working with data organized by `counts` 
+## Working with data organized by `counts`
 
 `ggpiestats` can also work with data frame containing counts (aka tabled data),
 i.e., when each row doesn't correspond to a unique observation. For example,
@@ -232,7 +232,7 @@ fishing
 ```
 
 When the data is organized this way, we make a slightly different call to the
-`ggpiestats()` function: we use the `counts` argument. 
+`ggpiestats()` function: we use the `counts` argument.
 
 If we want to investigate the relationship of type of fish by month (a test of
 independence), our command would be:
@@ -311,7 +311,7 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
 
 ## Reporting
 

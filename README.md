@@ -8,13 +8,13 @@
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
-## Raison d’être <img src="man/figures/logo.png" align="right" width="360" />
+## Raison d’être <img src="man/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360" />
 
 > “What is to be sought in designs for the display of information is the
 > clear portrayal of complexity. Not the complication of the simple;
 > rather … the revelation of the complex.” - Edward R. Tufte
 
-[`{ggstatsplot}`](https://indrajeetpatil.github.io/ggstatsplot/) is an
+[`{ggstatsplot}`](https://www.indrapatil.com/ggstatsplot/) is an
 extension of [`{ggplot2}`](https://github.com/tidyverse/ggplot2) package
 for creating graphics with details from statistical tests included in
 the information-rich plots themselves. In a typical exploratory data
@@ -89,9 +89,9 @@ To see the detailed documentation for each function in the stable
 
 - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
-- [Presentation](https://indrajeetpatil.github.io/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
+- [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
 
-- [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
+- [Vignettes](https://www.indrapatil.com/ggstatsplot/articles/)
 
 ## Summary of available plots
 
@@ -145,14 +145,14 @@ template abides by the gold standard for statistical reporting. For
 example, here are results from Yuen’s test for trimmed means (robust
 *t*-test):
 
-<img src="man/figures/stats_reporting_format.png" align="center" />
+<img src="man/figures/stats_reporting_format.png" alt="Example of statistical reporting format showing Yuen's test results with test statistic, degrees of freedom, p-value, effect size, and confidence interval" align="center" />
 
 ## Summary of statistical tests and effect sizes
 
 Statistical analysis is carried out by `{statsExpressions}` package, and
 thus a summary table of all the statistical tests currently supported
 across various functions can be found in article for that package:
-<https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
+<https://www.indrapatil.com/statsExpressions/articles/stats_details.html>
 
 ## Primary functions
 
@@ -174,7 +174,7 @@ ggbetweenstats(
 )
 ```
 
-<img src="man/figures/README-ggbetweenstats1-1.png" width="100%" />
+<img src="man/figures/README-ggbetweenstats1-1.png" alt="Violin plot with boxplot overlay showing distribution of sepal length across three Iris species with statistical test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -205,15 +205,15 @@ grouped_ggbetweenstats(
 )
 ```
 
-<img src="man/figures/README-ggbetweenstats2-1.png" width="100%" />
+<img src="man/figures/README-ggbetweenstats2-1.png" alt="Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ### `ggwithinstats()`
 
@@ -225,20 +225,26 @@ difference between the plot structure is that now the group means are
 connected by paths to highlight the fact that these data are paired with
 each other.
 
+If your repeated-measures data include an explicit subject identifier,
+it is recommended that you pass it via `subject.id`; rows with missing
+identifiers are ignored for paired grouping and repeated-measures
+statistics.
+
 ``` r
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run ANOVA
 
 ggwithinstats(
-  data    = WineTasting,
-  x       = Wine,
-  y       = Taste,
-  title   = "Wine tasting"
+  data       = WineTasting,
+  x          = Wine,
+  y          = Taste,
+  subject.id = Taster,
+  title      = "Wine tasting"
 )
 ```
 
-<img src="man/figures/README-ggwithinstats1-1.png" width="100%" />
+<img src="man/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%" />
 
 **Defaults** return<br>
 
@@ -259,6 +265,7 @@ grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
   y               = desire,
+  subject.id      = subject,
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
@@ -266,15 +273,15 @@ grouped_ggwithinstats(
 )
 ```
 
-<img src="man/figures/README-ggwithinstats2-1.png" width="100%" />
+<img src="man/figures/README-ggwithinstats2-1.png" alt="Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 ### `gghistostats()`
 
@@ -294,7 +301,7 @@ gghistostats(
 )
 ```
 
-<img src="man/figures/README-gghistostats1-1.png" width="100%" />
+<img src="man/figures/README-gghistostats1-1.png" alt="Histogram showing distribution of time spent awake in mammals with one-sample test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -322,15 +329,15 @@ grouped_gghistostats(
 )
 ```
 
-<img src="man/figures/README-gghistostats2-1.png" width="100%" />
+<img src="man/figures/README-gghistostats2-1.png" alt="Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
 
 ### `ggdotplotstats()`
 
@@ -351,7 +358,7 @@ ggdotplotstats(
 )
 ```
 
-<img src="man/figures/README-ggdotplotstats1-1.png" width="100%" />
+<img src="man/figures/README-ggdotplotstats1-1.png" alt="Dot plot showing life expectancy distribution across Asian countries with robust one-sample test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -380,15 +387,15 @@ grouped_ggdotplotstats(
 )
 ```
 
-<img src="man/figures/README-ggdotplotstats2-1.png" width="100%" />
+<img src="man/figures/README-ggdotplotstats2-1.png" alt="Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
 
 ### `ggscatterstats()`
 
@@ -406,7 +413,7 @@ ggscatterstats(
 )
 ```
 
-<img src="man/figures/README-ggscatterstats1-1.png" width="100%" />
+<img src="man/figures/README-ggscatterstats1-1.png" alt="Scatterplot with marginal distributions showing relationship between REM sleep and time awake in mammals with correlation results" width="100%" />
 
 **Defaults** return<br>
 
@@ -435,15 +442,15 @@ grouped_ggscatterstats(
 )
 ```
 
-<img src="man/figures/README-ggscatterstats2-1.png" width="100%" />
+<img src="man/figures/README-ggscatterstats2-1.png" alt="Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 
 ### `ggcorrmat`
 
@@ -466,7 +473,7 @@ ggcorrmat(
 )
 ```
 
-<img src="man/figures/README-ggcorrmat1-1.png" width="100%" />
+<img src="man/figures/README-ggcorrmat1-1.png" alt="Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators" width="100%" />
 
 **Defaults** return<br>
 
@@ -491,15 +498,15 @@ grouped_ggcorrmat(
 )
 ```
 
-<img src="man/figures/README-ggcorrmat2-1.png" width="100%" />
+<img src="man/figures/README-ggcorrmat2-1.png" alt="Grouped correlation matrices for Action and Comedy movie genres showing robust correlations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
 
 ### `ggpiestats()`
 
@@ -527,7 +534,7 @@ ggpiestats(
 )
 ```
 
-<img src="man/figures/README-ggpiestats1-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats1-1.png" alt="Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis" width="100%" />
 
 **Defaults** return<br>
 
@@ -553,15 +560,15 @@ grouped_ggpiestats(
 )
 ```
 
-<img src="man/figures/README-ggpiestats2-1.png" width="100%" />
+<img src="man/figures/README-ggpiestats2-1.png" alt="Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ### `ggbarstats()`
 
@@ -587,7 +594,7 @@ ggbarstats(
 )
 ```
 
-<img src="man/figures/README-ggbarstats1-1.png" width="100%" />
+<img src="man/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%" />
 
 **Defaults** return<br>
 
@@ -613,15 +620,15 @@ grouped_ggbarstats(
 )
 ```
 
-<img src="man/figures/README-ggbarstats2-1.png" width="100%" />
+<img src="man/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ### `ggcoefstats()`
 
@@ -640,7 +647,7 @@ mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 ggcoefstats(mod)
 ```
 
-<img src="man/figures/README-ggcoefstats1-1.png" width="100%" />
+<img src="man/figures/README-ggcoefstats1-1.png" alt="Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals" width="100%" />
 
 **Defaults** return<br>
 
@@ -650,10 +657,10 @@ ggcoefstats(mod)
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
 documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ### Extracting expressions and data frames with statistical details
 
@@ -749,7 +756,7 @@ extract_stats(p)
 ```
 
 Note that all of this analysis is carried out by `{statsExpressions}`
-package: <https://indrajeetpatil.github.io/statsExpressions/>
+package: <https://www.indrapatil.com/statsExpressions/>
 
 ### Using `{ggstatsplot}` statistical details with custom plots
 
@@ -781,7 +788,7 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
   )
 ```
 
-<img src="man/figures/README-customplot-1.png" width="100%" />
+<img src="man/figures/README-customplot-1.png" alt="Custom boxplot of Michelson-Morley experiment data with ggstatsplot-generated statistical subtitle" width="100%" />
 
 ## Summary of benefits of using `{ggstatsplot}`
 
@@ -840,12 +847,12 @@ Here are some simple ways in which you can contribute (in the increasing
 order of commitment):
 
 - Read and correct any inconsistencies in the
-  [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
+  [documentation](https://www.indrapatil.com/ggstatsplot/)
 - Raise issues about bugs or wanted features
 - Review code
 - Add new functionality (in the form of new plotting functions or
   helpers for preparing subtitles)
 
 Please note that this project is released with a [Contributor Code of
-Conduct](https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html).
+Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/).
 By participating in this project you agree to abide by its terms.

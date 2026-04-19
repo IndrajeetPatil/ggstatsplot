@@ -52,12 +52,18 @@
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
 #' @examples
 #' set.seed(123)
 #' library(ggcorrplot)
 #' ggcorrmat(iris)
+#'
+#' # with data containing NAs (uses pairwise complete observations)
+#' ggcorrmat(airquality)
+#'
+#' # selecting specific variables
+#' ggcorrmat(iris, cor.vars = c(Sepal.Length, Petal.Length, Petal.Width))
 #' @export
 ggcorrmat <- function(
   data,

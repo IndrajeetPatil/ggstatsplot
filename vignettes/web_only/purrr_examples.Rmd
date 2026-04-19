@@ -241,7 +241,7 @@ histograms/boxplots/density plots with statistical details added as a subtitle.
 For data we'll use `movies_long` which is from IMDB and part of the
 `{ggstatsplot}` package. Since it's a large dataset with some relatively small
 categories like **NC-17** we'll sample only one quarter of the data and
-completely drop NC-17 using `dplyr`. 
+completely drop NC-17 using `dplyr`.
 
 This time we'll put all the code in one block-
 
@@ -272,8 +272,16 @@ plot_list <- purrr::pmap(
       quote(rating > 8 & budget < 10)
     ),
     type = list("r", "np", "bf"),
-    xfill = list("#009E73", "#999999", "#0072B2"),
-    yfill = list("#CC79A7", "#F0E442", "#D55E00"),
+    xsidehistogram.args = list(
+      list(fill = "#009E73"),
+      list(fill = "#999999"),
+      list(fill = "#0072B2")
+    ),
+    ysidehistogram.args = list(
+      list(fill = "#CC79A7"),
+      list(fill = "#F0E442"),
+      list(fill = "#D55E00")
+    ),
     ggtheme = list(
       ggthemes::theme_tufte(),
       ggplot2::theme_classic(),
@@ -405,7 +413,7 @@ combine_plots(
   ),
   plotgrid.args = list(nrow = 4)
 )
-```  
+```
 
 ## `ggdotplotstats`
 
@@ -466,7 +474,7 @@ combine_plots(
   plotgrid.args = list(nrow = 4),
   guides = "keep"
 )
-```  
+```
 
 ## `ggpiestats`
 
@@ -521,7 +529,7 @@ combine_plots(
   plotgrid.args = list(ncol = 1),
   guides = "keep"
 )
-``` 
+```
 
 ## `ggbarstats`
 
@@ -578,7 +586,7 @@ combine_plots(
   plotgrid.args = list(ncol = 1),
   guides = "keep"
 )
-``` 
+```
 
 ## `grouped_` variants
 

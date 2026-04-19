@@ -48,12 +48,12 @@ plots using \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
 References: Patil (2021) \doi{10.21105/joss.03236}.
 
 For more documentation, see the dedicated
-\href{https://indrajeetpatil.github.io/ggstatsplot/}{Website}.
+\href{https://www.indrapatil.com/ggstatsplot/}{Website}.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://indrajeetpatil.github.io/ggstatsplot/}
+  \item \url{https://www.indrapatil.com/ggstatsplot/}
   \item \url{https://github.com/IndrajeetPatil/ggstatsplot}
   \item Report bugs at \url{https://github.com/IndrajeetPatil/ggstatsplot/issues}
 }
@@ -61,11 +61,6 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Indrajeet Patil \email{patilindrajeet.science@gmail.com} (\href{https://orcid.org/0000-0003-1995-6531}{ORCID}) [copyright holder]
-
-Other contributors:
-\itemize{
-  \item Chuck Powell \email{ibecav@gmail.com} (\href{https://orcid.org/0000-0002-3606-2188}{ORCID}) [contributor]
-}
 
 }
 \keyword{internal}

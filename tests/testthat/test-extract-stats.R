@@ -92,7 +92,19 @@ test_that(
       extracted_data <- extract_stats(p8)
       summary(extracted_data)
       extract_subtitle(p8)
+      extract_caption(p8)
     })
+
+    # Explicitly test that extract functions return list for grouped plots
+    set.seed(123)
+    p9 <- grouped_gghistostats(iris, Sepal.Length, grouping.var = Species)
+    subtitle_result <- extract_subtitle(p9)
+    caption_result <- extract_caption(p9)
+
+    expect_type(subtitle_result, "list")
+    expect_type(caption_result, "list")
+    expect_length(subtitle_result, 3L) # 3 species groups
+    expect_length(caption_result, 3L)
   }
 )
 

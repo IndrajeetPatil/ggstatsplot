@@ -2,7 +2,7 @@
 
 0 errors | 0 warnings | 0 note
 
-- Fixes a bug.
+- Maintenance release to adapt to API changes in `{dplyr}` (v1.2.0) and `{purrr}` (v1.2.1).
 
 ## revdepcheck results
 

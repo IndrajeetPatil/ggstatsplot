@@ -1,5 +1,3 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   push:
     branches: [main, master]
@@ -10,28 +8,6 @@ name: test-coverage
 
 jobs:
   test-coverage:
-    runs-on: macos-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          #r-version: "devel"
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          pak-version: devel
-          upgrade: "TRUE"
-          extra-packages: |
-            any::covr
-          needs: coverage
-
-      - name: Test coverage
-        run: |
-          options(crayon.enabled = TRUE)
-          covr::codecov(quiet = FALSE)
-        shell: Rscript {0}
+    uses: IndrajeetPatil/workflows/.github/workflows/test-coverage.yaml@main
+    with:
+      runner-os: macos-latest

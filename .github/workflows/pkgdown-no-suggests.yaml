@@ -1,9 +1,3 @@
-# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
-# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
-#
-#  NOTE: The {pkgdown} workflow in "noSuggests" mode makes sure that the vignettes or
-# examples evaluated only on the website are also using soft dependencies conditionally.
-
 on:
   push:
     branches: [main, master]
@@ -14,38 +8,7 @@ name: pkgdown-no-suggests
 
 jobs:
   pkgdown-no-suggests:
-    runs-on: ubuntu-latest
-
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      R_KEEP_PKG_SOURCE: yes
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: "latest"
-
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          pak-version: devel
-          upgrade: "TRUE"
-          dependencies: '"hard"'
-          cache: false
-          extra-packages: |
-            any::knitr
-            any::rmarkdown
-            r-lib/pkgdown
-            local::.
-          needs: website
-
-      - name: Build site
-        run: |
-          options(crayon.enabled = TRUE)
-          pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
-        shell: Rscript {0}
+    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@main
+    with:
+      no-suggests: true
+      pkgdown-source: r-lib/pkgdown

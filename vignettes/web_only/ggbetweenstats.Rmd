@@ -103,11 +103,11 @@ ggbetweenstats(
 ```
 
 **Note**:
-  
+
   - The function automatically decides whether an independent samples *t*-test
     is preferred (for 2 groups) or a Oneway ANOVA (3 or more groups). based on
     the number of levels in the grouping variable.
-    
+
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `{ggplot2}` functions.
 
@@ -119,7 +119,7 @@ evidence in favor of the null hypothesis (i.e., $BF_{01}$).
 By default, natural logarithms are shown because Bayes Factor values can
 sometimes be pretty large. Having values on logarithmic scale also makes it easy
 to compare evidence in favor alternative ($BF_{10}$) versus null ($BF_{01}$)
-hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{10})$). 
+hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{10})$).
 
 We can make the output much more aesthetically pleasing as well as informative
 by making use of the many optional parameters in `ggbetweenstats`. We'll add a
@@ -157,12 +157,12 @@ given continent. For example, although Asian countries are doing much better
 than African countries, on average, Afghanistan has a particularly grim average
 for the Asian continent, possibly reflecting the war and the political turmoil.
 
-So far we have only used a classic parametric test and a boxviolin plot, 
+So far we have only used a classic parametric test and a boxviolin plot,
 but we can also use other available options:
 
   - The `type` (of test) argument also accepts the following abbreviations:
     `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for
-    *robust*), `"bf"` (for *Bayes Factor*). 
+    *robust*), `"bf"` (for *Bayes Factor*).
 
   - The type of plot to be displayed can also be modified (`"box"`, `"violin"`,
   or `"boxviolin"`).
@@ -260,7 +260,7 @@ combine_plots(
 ## Grouped analysis with `grouped_ggbetweenstats`
 
 What if we want to analyze both by continent and between 1957 and 2007? A
-combination of our two previous efforts. 
+combination of our two previous efforts.
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggbetweenstats`. This is merely a wrapper function around
@@ -306,7 +306,7 @@ which year we look at, we still find significant differences in life expectancy
 across continents which have been surprisingly consistent across five decades
 (based on the observed effect sizes).
 
-## Grouped analysis with `ggbetweenstats` + `{purrr}` 
+## Grouped analysis with `ggbetweenstats` + `{purrr}`
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of plot and test is
@@ -314,20 +314,20 @@ applied for all years, but maybe we want to change this for different years, or
 maybe we want to gave different effect sizes for different years. This type of
 customization for different levels of a grouping variable is not possible with
 `grouped_ggbetweenstats`, but this can be easily achieved using the `{purrr}`
-package. 
+package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Within-subjects designs
 
 For repeated measures designs, `ggwithinstats()` function can be used:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
 
 ## Reporting
 

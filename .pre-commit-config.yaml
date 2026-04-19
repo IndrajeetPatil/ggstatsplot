@@ -1,30 +1,49 @@
-# All available hooks: https://pre-commit.com/hooks.html
+# All available hooks: https://prek.j178.dev/builtin/
 # R specific hooks: https://github.com/lorenzwalthert/precommit
-default_stages: [pre-commit, pre-push, commit-msg]
+minimum_prek_version: "0.3.8"
+
+default_stages: [pre-commit, pre-push]
+
 default_language_version:
   python: python3
 
+# Exclude auto-generated and snapshot files from all hooks
+exclude: >
+  (?x)^(
+  man/.*|
+  tests/testthat/_snaps/.*|
+  README\.md
+  )$
+
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  - repo: builtin
     hooks:
-      - id: check-added-large-files
-      - id: check-json
-      - id: check-yaml
+      # File formatting
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
       - id: mixed-line-ending
+      - id: fix-byte-order-marker
+      # File validation
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-illegal-windows-names
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: destroyed-symlinks
+      # Security
+      - id: detect-private-key
+      # Git hygiene
+      - id: no-commit-to-branch
+        args: [--branch, main, --branch, master]
+      # Sorting
       - id: file-contents-sorter
         files: "\\.Rbuildignore$"
-      - id: end-of-file-fixer
-        exclude: >
-          (?x)^(
-          man/.*|
-          tests/testthat/_snaps/.*\.md|
-          )$
 
   - repo: https://github.com/lorenzwalthert/gitignore-tidy
     rev: "0.1.3"
     hooks:
       - id: tidy-gitignore
-
-ci:
-  autoupdate_schedule: monthly

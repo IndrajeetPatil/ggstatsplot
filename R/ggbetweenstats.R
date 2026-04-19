@@ -108,7 +108,7 @@
 #' @autoglobal
 #'
 #' @details For details, see:
-#' <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
+#' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility
@@ -119,6 +119,12 @@
 #'
 #' # extracting details from statistical tests
 #' extract_stats(p)
+#'
+#' # show non-significant pairwise comparisons (needs 3+ groups for ggsignif)
+#' ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "non-significant")
+#'
+#' # show all pairwise comparisons
+#' ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
 #'
 #' # modifying defaults
 #' ggbetweenstats(
@@ -164,6 +170,7 @@ ggbetweenstats <- function(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -219,6 +226,8 @@ ggbetweenstats <- function(
       nboot = nboot
     )
 
+    if (test == "t") .f.args$alternative <- alternative
+
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
     subtitle <- .extract_expression(subtitle_df)
@@ -257,7 +266,7 @@ ggbetweenstats <- function(
   seclabel <- NULL
 
   if (pairwise.display != "none" && test == "anova") {
-    mpc_df <- pairwise_comparisons(
+    mpc_df <- suppressWarnings(pairwise_comparisons(
       data = data,
       x = {{ x }},
       y = {{ y }},
@@ -267,7 +276,7 @@ ggbetweenstats <- function(
       var.equal = var.equal,
       p.adjust.method = p.adjust.method,
       digits = digits
-    )
+    ))
 
     # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(

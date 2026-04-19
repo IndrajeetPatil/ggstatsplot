@@ -221,13 +221,13 @@ heavier the diamond, the more expensive it is going to be.
 ## Grouped analysis with `grouped_ggcorrmat`
 
 What if we want to do the same analysis separately for each quality of the
-diamond `cut` (Fair, Good, Very Good, Premium, Ideal)? 
+diamond `cut` (Fair, Good, Very Good, Premium, Ideal)?
 
 `{ggstatsplot}` provides a special helper function for such instances:
 `grouped_ggcorrmat()`. This is merely a wrapper function around
 `combine_plots()`. It applies `ggcorrmat()` across all **levels** of
 a specified **grouping variable** and then combines list of individual plots
-into a single plot. 
+into a single plot.
 
 ```{r}
 #| label = "ggcorrmat7",
@@ -255,7 +255,7 @@ across different levels of a factor/grouping variable.
 ## Data frame
 
 If you want a data frame of (grouped) correlation matrix, use
-`correlation::correlation()` instead. It can also do grouped analysis when 
+`correlation::correlation()` instead. It can also do grouped analysis when
 used with output from `dplyr::group_by()`.
 
 ## Grouped analysis with `ggcorrmat()` + `{purrr}`
@@ -268,12 +268,12 @@ levels of the grouping variable. We will see how this can be done using the
 `{purrr}` package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 ## Suggestions
 

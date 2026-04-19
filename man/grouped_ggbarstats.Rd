@@ -88,6 +88,10 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}).}
     \item{\code{counts}}{The variable in data containing counts, or \code{NULL} if each row
@@ -133,7 +137,7 @@ multiple levels of a given factor and combining the resulting plots using
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

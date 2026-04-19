@@ -25,6 +25,7 @@ ggbetweenstats(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -142,6 +143,11 @@ for the effect size (Default: \code{100L}).}
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
 
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
+
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
@@ -217,7 +223,7 @@ subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
@@ -413,6 +419,12 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
+
+# show non-significant pairwise comparisons (needs 3+ groups for ggsignif)
+ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "non-significant")
+
+# show all pairwise comparisons
+ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
 
 # modifying defaults
 ggbetweenstats(

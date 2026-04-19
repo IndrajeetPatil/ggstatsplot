@@ -175,7 +175,7 @@ it can be further modified (e.g. change themes) with \code{{ggplot2}}.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html}
 }
 \note{
 \enumerate{
@@ -222,10 +222,9 @@ The table below provides summary about:
 }
 
 \examples{
-\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 # for reproducibility
 set.seed(123)
-library(lme4)
 
 # model object
 mod <- lm(formula = mpg ~ cyl * am, data = mtcars)
@@ -239,7 +238,24 @@ p
 # extracting details from statistical tests
 extract_stats(p)
 
+# exclude intercept from the plot
+ggcoefstats(mod, exclude.intercept = TRUE)
+
+# only show significant labels
+ggcoefstats(mod, only.significant = TRUE)
+
+# ANOVA model (F-statistic)
+ggcoefstats(aov(mpg ~ cyl * am, data = mtcars))
+
+# a tidy data frame can also be passed directly (model-free use)
+ggcoefstats(data.frame(term = c("a", "b", "c"), estimate = c(0.5, -0.2, 1.1)))
+
+# without a `term` column (auto-generated)
+ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
+\dontshow{\}) # examplesIf}
+\dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # further arguments can be passed to `parameters::model_parameters()`
+library(lme4)
 ggcoefstats(lmer(Reaction ~ Days + (Days | Subject), sleepstudy), effects = "fixed")
 \dontshow{\}) # examplesIf}
 }

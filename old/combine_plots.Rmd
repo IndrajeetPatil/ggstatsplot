@@ -50,7 +50,7 @@ annotation texts with suitable defaults.
 
 **Note Before**: If you have just one grouping variable and you'd like a plot
 for each `factor` of this variable the `grouped_` variants
-(<https://indrajeetpatil.github.io/ggstatsplot/reference/index.html>) of all
+(<https://www.indrapatil.com/ggstatsplot/reference/index.html>) of all
 `{ggstatsplot}` functions will allow you do to this. They specifically use the
 `combine_plots` function under the covers.
 
@@ -261,10 +261,10 @@ combine_plots(
 
 # Suggestions
 
-If you find any bugs or have any suggestions/remarks, please file an issue on `GitHub`: 
+If you find any bugs or have any suggestions/remarks, please file an issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 # Session Information
 
 For details, see-
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/session_info.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/session_info.html>

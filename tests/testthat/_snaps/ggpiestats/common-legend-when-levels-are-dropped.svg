@@ -163,6 +163,6 @@
 <rect x='644.05' y='343.94' width='15.99' height='15.99' style='stroke-width: 0.97; stroke-linecap: butt; stroke-linejoin: miter; fill: #D95F02;' />
 <text x='665.67' y='337.41' style='font-size: 8.00px; font-family: sans;' textLength='10.68px' lengthAdjust='spacingAndGlyphs'>old</text>
 <text x='665.67' y='354.69' style='font-size: 8.00px; font-family: sans;' textLength='14.68px' lengthAdjust='spacingAndGlyphs'>new</text>
-<text x='10.46' y='167.67' style='font-size: 13.20px; font-family: sans;' textLength='241.45px' lengthAdjust='spacingAndGlyphs'>common legend when levels are dropped</text>
+<text x='10.46' y='167.67' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='241.45px' lengthAdjust='spacingAndGlyphs'>common legend when levels are dropped</text>
 </g>
 </svg>

@@ -6,7 +6,7 @@
 #' statistical details that are used to create expressions displayed in
 #' `{ggstatsplot}` plots as subtitle, caption, etc. Note that all of this
 #' analysis is carried out by the `{statsExpressions}`
-#' [package](https://indrajeetpatil.github.io/statsExpressions/). And so if you
+#' [package](https://www.indrapatil.com/statsExpressions/). And so if you
 #' are using these functions only to extract data frames, you are better off
 #' using that package.
 #'
@@ -51,7 +51,7 @@ extract_stats <- function(p) {
   if (inherits(p, "patchwork")) purrr::map(.extract_plots(p), .extract_stats) else .extract_stats(p)
 }
 
-.extract_plots <- function(p) purrr::map(seq_along(p), ~ magrittr::extract2(p, .x))
+.extract_plots <- function(p) purrr::map(seq_along(p), \(i) magrittr::extract2(p, i))
 
 .pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
 
@@ -70,19 +70,18 @@ extract_stats <- function(p) {
 }
 
 
-# function factory to extract particular kind of stats data
-.extract_stats_data <- function(data_component) {
-  function(p) {
-    dat <- extract_stats(p)
-    .pluck_expression <- function(x) purrr::pluck(x, data_component, "expression", 1L)
-    if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
-  }
+#' @rdname extract_stats
+#' @export
+extract_subtitle <- function(p) {
+  dat <- extract_stats(p)
+  .pluck_expression <- function(x) purrr::pluck(x, "subtitle_data", "expression", 1L)
+  if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
 }
 
 #' @rdname extract_stats
 #' @export
-extract_subtitle <- .extract_stats_data("subtitle_data")
-
-#' @rdname extract_stats
-#' @export
-extract_caption <- .extract_stats_data("caption_data")
+extract_caption <- function(p) {
+  dat <- extract_stats(p)
+  .pluck_expression <- function(x) purrr::pluck(x, "caption_data", "expression", 1L)
+  if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
+}

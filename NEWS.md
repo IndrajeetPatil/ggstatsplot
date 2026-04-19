@@ -1,9 +1,53 @@
-# ggstatsplot 0.13.3
+# ggstatsplot 0.13.6.9000
+
+## NEW FEATURES
+
+- All top-level plotting functions now include an `alternative` argument, which
+  is passed down to `{statsExpressions}` to specify the alternative hypothesis for
+  effect size confidence intervals (#794).
+
+## BREAKING CHANGES
+
+- `ggwithinstats()` (and `grouped_ggwithinstats()`) gains a `subject.id`
+  parameter. When provided, the subject identifier column is used to correctly
+  pair observations across conditions and to remove NA observations by subject
+  key rather than by positional row number. Plots and statistical results for
+  unsorted repeated-measures data will differ from previous versions once
+  `subject.id` is supplied. All examples and vignettes have been updated to
+  pass `subject.id` explicitly, which is now the recommended practice.
+
+## BUG FIXES
+
+- `combine_plots()` now renders the overall annotation title in bold by
+  default, matching the styling used for individual plot titles.
+
+# ggstatsplot 0.13.6
+
+## MINOR CHANGES
+
+- No user-facing changes (internal maintenance: dependency updates, CI/CD improvements).
+
+# ggstatsplot 0.13.5
+
+## MINOR CHANGES
+
+- Maintenance release to adapt to API changes in `{dplyr}` (v1.2.0) and `{purrr}` (v1.2.1).
+
+# ggstatsplot 0.13.4
 
 N.B. All statistical analysis in `{ggstatsplot}` is carried out in
 `{statsExpressions}`. Thus, to see changes related to statistical expressions,
 read the `NEWS` for that package:
-<https://indrajeetpatil.github.io/statsExpressions/news/index.html>
+<https://www.indrapatil.com/statsExpressions/news/index.html>
+
+## MINOR CHANGES
+
+- Removed Chuck Powell from the contributors list in `DESCRIPTION`. While Chuck
+  made significant contributions to early versions of the package (2018-2019),
+  all of his code was completely replaced during the 2019 refactoring when
+  statistical functionality was moved to the `{statsExpressions}` package.
+
+# ggstatsplot 0.13.3
 
 ## BUG FIXES
 
@@ -509,7 +553,7 @@ read the `NEWS` for that package:
 
   - `ggpiestats` and `ggbarstats` don't support returning dataframes. See FAQ
     vignette on how to get these dataframes:
-    <https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/faq.html#faq-1>
+    <https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#faq-1>
 
   - `ggpiestats` and `ggbarstats` were not supposed to support returning Bayes
     Factor for paired contingency table analysis, which is not supported in
@@ -657,8 +701,7 @@ read the `NEWS` for that package:
 
   - `ggbarstats` loses `x.axis.orientation` argument. This argument was supposed
     to help avoid overlapping *x*-axis label, but now `ggplot2 3.3.0` has a
-    better way to handle this:
-    <https://www.tidyverse.org/blog/2020/03/ggplot2-3-3-0/#rewrite-of-axis-code>
+    better way to handle this.
 
 ## NEW FEATURES
 
@@ -1043,7 +1086,7 @@ This uncoupling is designed to achieve two things:
     was retained for a while for backward compatibility.
 
 # ggstatsplot 0.0.11
- 
+
 ## BREAKING CHANGES
 
   - Instead of having two separate functions that dealt with repeated measures
@@ -1341,7 +1384,7 @@ This uncoupling is designed to achieve two things:
 
   - All vignettes have been removed from `CRAN` to reduce the size of the
     package. They are now available on the package website:
-    <https://indrajeetpatil.github.io/ggstatsplot/articles/>.
+    <https://www.indrapatil.com/ggstatsplot/articles/>.
 
   - `subtitle_t_robust` function can now handle dependent samples and gains
     `paired` argument.

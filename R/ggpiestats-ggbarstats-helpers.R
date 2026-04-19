@@ -11,11 +11,13 @@ descriptive_data <- function(
 ) {
   .cat_counter(data, {{ x }}, {{ y }}) %>%
     mutate(
-      .label = case_when(
-        grepl("perc|prop", label.content) ~ paste0(round(perc, digits.perc), "%"),
-        grepl("count|n|N", label.content) ~ .prettyNum(counts),
-        .default = paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
-      ), # reorder the category factor levels to order the legend
+      .label = if (grepl("perc|prop", label.content)) {
+        paste0(round(perc, digits.perc), "%")
+      } else if (grepl("count|n|N", label.content)) {
+        .prettyNum(counts)
+      } else {
+        paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
+      }, # reorder the category factor levels to order the legend
       {{ x }} := factor({{ x }}, unique({{ x }}))
     )
 }
@@ -61,12 +63,12 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
 .chisq_test_safe <- function(data, x, ratio) {
   tryCatch(
     suppressWarnings(contingency_table(data, x, ratio = ratio)),
-    error = function(e) {
+    error = function(e) { # nocov start
       tibble(
         statistic = NA_real_, p.value = NA_real_, df = NA_real_,
         method = "Chi-squared test for given probabilities"
       )
-    }
+    } # nocov end
   )
 }
 

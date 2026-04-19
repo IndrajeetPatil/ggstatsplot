@@ -69,14 +69,14 @@ Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 Type | Test | *p*-value adjustment? | Function used
 ----------- | ---------------------------- | --- | -----
 Parametric | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest` 
+Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
 Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
 Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
 
 
 ## Data frame outputs
 
-See data frame outputs [here](https://indrajeetpatil.github.io/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
+See data frame outputs [here](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
 
 ## Using `pairwise_comparisons()` with `ggsignif`
 

@@ -51,7 +51,7 @@ citation("ggstatsplot")
 
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggwithinstats` is designed to facilitate 
+The function `ggwithinstats` is designed to facilitate
 **data exploration**, and for making highly customizable **publication-ready plots**,
 with relevant statistical details included in the plot itself if desired. We
 will see examples of how to use this function in this vignette.
@@ -73,7 +73,7 @@ To illustrate how this function can be used, we will use the `bugs` dataset
 throughout this vignette. This data set, "Bugs", provides the extent to which
 men and women want to kill arthropods that vary in freighteningness (low, high)
 and disgustingness (low, high). Each participant rates their attitudes towards
-all anthropods. Subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277). 
+all anthropods. Subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277).
 Note that this is a repeated measures design because the same participant gave
 four different ratings across four different conditions (LDLF, LDHF, HDLF,
 HDHF).
@@ -91,9 +91,10 @@ The simplest form of the function call is-
 #| fig.width = 8
 
 ggwithinstats(
-  data = bugs_long,
-  x = condition,
-  y = desire
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  subject.id = subject
 )
 ```
 
@@ -102,7 +103,7 @@ ggwithinstats(
   - The function automatically decides whether a dependent samples test is
     preferred (for 2 groups) or an ANOVA (3 or more groups). based on the number
     of levels in the grouping variable.
-    
+
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `{ggplot2}` functions.
 
@@ -127,16 +128,17 @@ color palette in use.
 #| fig.width = 8
 
 ggwithinstats(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  type = "nonparametric", ## type of statistical test
-  xlab = "Condition", ## label for the x-axis
-  ylab = "Desire to kill an artrhopod", ## label for the y-axis
-  package = "yarrr", ## package from which color palette is to be taken
-  palette = "info2", ## choosing a different color palette
-  title = "Comparison of desire to kill bugs",
-  caption = "Source: Ryan et al., 2013"
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  type       = "nonparametric", ## type of statistical test
+  xlab       = "Condition", ## label for the x-axis
+  ylab       = "Desire to kill an artrhopod", ## label for the y-axis
+  package    = "yarrr", ## package from which color palette is to be taken
+  palette    = "info2", ## choosing a different color palette
+  title      = "Comparison of desire to kill bugs",
+  caption    = "Source: Ryan et al., 2013"
 ) + ## modifying the plot further
   ggplot2::scale_y_continuous(
     limits = c(0, 10),
@@ -147,7 +149,7 @@ ggwithinstats(
 As can be appreciated from the effect size (partial eta squared) of 0.18, there
 are small differences in the mean desire to kill across conditions.
 Importantly, this plot also helps us appreciate the distributions within any
-given condition. 
+given condition.
 
 So far we have only used a classic parametric test, but we can also use other
 available options: The `type` (of test) argument also accepts the following
@@ -177,6 +179,7 @@ p1 <- ggwithinstats(
   data = df_disgust,
   x = condition,
   y = desire,
+  subject.id = subject,
   type = "p",
   effsize.type = "d",
   conf.level = 0.99,
@@ -187,43 +190,46 @@ p1 <- ggwithinstats(
 
 ## Mann-Whitney U test (nonparametric test)
 p2 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "np",
+  data       = df_disgust,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  xlab       = "Condition",
+  ylab       = "Desire to kill bugs",
+  type       = "np",
   conf.level = 0.99,
-  title = "Non-parametric Test",
-  package = "ggsci",
-  palette = "uniform_startrek"
+  title      = "Non-parametric Test",
+  package    = "ggsci",
+  palette    = "uniform_startrek"
 )
 
 ## robust t-test
 p3 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "r",
+  data       = df_disgust,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  xlab       = "Condition",
+  ylab       = "Desire to kill bugs",
+  type       = "r",
   conf.level = 0.99,
-  title = "Robust Test",
-  package = "wesanderson",
-  palette = "Royal2"
+  title      = "Robust Test",
+  package    = "wesanderson",
+  palette    = "Royal2"
 )
 
 ## Bayes Factor for parametric t-test
 p4 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  xlab = "Condition",
-  ylab = "Desire to kill bugs",
-  type = "bayes",
-  title = "Bayesian Test",
-  package = "ggsci",
-  palette = "nrc_npg"
+  data       = df_disgust,
+  x          = condition,
+  y          = desire,
+  subject.id = subject,
+  xlab       = "Condition",
+  ylab       = "Desire to kill bugs",
+  type       = "bayes",
+  title      = "Bayesian Test",
+  package    = "ggsci",
+  palette    = "nrc_npg"
 )
 
 ## combining the individual plots into a single plot
@@ -250,7 +256,7 @@ in a given study, groups in a study sample, different studies, etc.
 
 Let's focus on the two regions and for years: 1967, 1987, 2007. Also,
 let's carry out pairwise comparisons to see if there differences between every
-pair of continents. 
+pair of continents.
 
 ```{r}
 #| label = "grouped1",
@@ -259,26 +265,27 @@ pair of continents.
 
 grouped_ggwithinstats(
   ## arguments relevant for ggwithinstats
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  grouping.var = gender,
-  xlab = "Continent",
-  ylab = "Desire to kill bugs",
-  type = "nonparametric", ## type of test
+  data             = bugs_long,
+  x                = condition,
+  y                = desire,
+  subject.id       = subject,
+  grouping.var     = gender,
+  xlab             = "Continent",
+  ylab             = "Desire to kill bugs",
+  type             = "nonparametric", ## type of test
   pairwise.display = "significant", ## display only significant pairwise comparisons
-  p.adjust.method = "BH", ## adjust p-values for multiple tests using this method
+  p.adjust.method  = "BH", ## adjust p-values for multiple tests using this method
   # ggtheme = ggthemes::theme_tufte(),
-  package = "ggsci",
-  palette = "default_jco",
-  digits = 3,
+  package          = "ggsci",
+  palette          = "default_jco",
+  digits           = 3,
   ## arguments relevant for combine_plots
-  annotation.args = list(title = "Desire to kill bugs across genders"),
-  plotgrid.args = list(ncol = 1)
+  annotation.args  = list(title = "Desire to kill bugs across genders"),
+  plotgrid.args    = list(ncol = 1)
 )
 ```
 
-## Grouped analysis with `ggwithinstats` + `{purrr}` 
+## Grouped analysis with `ggwithinstats` + `{purrr}`
 
 Although this grouping function provides a quick way to explore the data, it
 leaves much to be desired. For example, the same type of test and theme is
@@ -289,17 +296,17 @@ with `grouped_ggwithinstats`, but this can be easily achieved using the `{purrr}
 package.
 
 See the associated vignette here:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/purrr_examples.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Between-subjects designs
 
 For independent measures designs, `ggbetweenstats` function can be used:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ## Summary of graphics and tests
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html>
 
 ## Reporting
 
@@ -313,7 +320,7 @@ For example, let's see the following example:
 #| fig.height = 6,
 #| fig.width = 8
 library(WRS2) # for data
-ggwithinstats(WineTasting, Wine, Taste)
+ggwithinstats(WineTasting, Wine, Taste, subject.id = Taster)
 ```
 
 The narrative context (assuming `type = "parametric"`) can complement this plot

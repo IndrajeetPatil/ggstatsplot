@@ -30,21 +30,21 @@ knitr::opts_chunk$set(
 library(ggstatsplot)
 ```
 
-## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details 
+## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
 Status | Usage | Miscellaneous
------------------ | ----------------- | ----------------- 
+----------------- | ----------------- | -----------------
 [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)
 
-## Raison d'être <img src="man/figures/logo.png" align="right" width="360" />
+## Raison d'être <img src="man/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360" />
 
 > "What is to be sought in designs for the display of information is the clear
 portrayal of complexity. Not the complication of the simple; rather ... the
 revelation of the complex."
 - Edward R. Tufte
 
-[`{ggstatsplot}`](https://indrajeetpatil.github.io/ggstatsplot/) is an extension
+[`{ggstatsplot}`](https://www.indrapatil.com/ggstatsplot/) is an extension
 of [`{ggplot2}`](https://github.com/tidyverse/ggplot2) package for creating
 graphics with details from statistical tests included in the information-rich
 plots themselves. In a typical exploratory data analysis workflow, data
@@ -98,9 +98,9 @@ version of the package, see:
 
   - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
-  - [Presentation](https://indrajeetpatil.github.io/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
-  
-  - [Vignettes](https://indrajeetpatil.github.io/ggstatsplot/articles/)
+  - [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
+
+  - [Vignettes](https://www.indrapatil.com/ggstatsplot/articles/)
 
 ## Summary of available plots
 
@@ -153,14 +153,14 @@ For **all** statistical tests reported in the plots, the default template abides
 by the gold standard for statistical reporting. For example, here are results
 from Yuen's test for trimmed means (robust *t*-test):
 
-<img src="man/figures/stats_reporting_format.png" align="center" />
+<img src="man/figures/stats_reporting_format.png" alt="Example of statistical reporting format showing Yuen's test results with test statistic, degrees of freedom, p-value, effect size, and confidence interval" align="center" />
 
 ## Summary of statistical tests and effect sizes
 
 Statistical analysis is carried out by `{statsExpressions}` package, and thus
 a summary table of all the statistical tests currently supported across
 various functions can be found in article for that package:
-<https://indrajeetpatil.github.io/statsExpressions/articles/stats_details.html>
+<https://www.indrapatil.com/statsExpressions/articles/stats_details.html>
 
 ## Primary functions
 
@@ -171,7 +171,8 @@ This function creates either a violin plot, a box plot, or a mix of two for
 statistical tests in the subtitle. The simplest function call looks like this-
 
 ```{r}
-#| label = "ggbetweenstats1"
+#| label = "ggbetweenstats1",
+#| fig.alt = "Violin plot with boxplot overlay showing distribution of sepal length across three Iris species with statistical test results"
 set.seed(123)
 
 ggbetweenstats(
@@ -200,7 +201,8 @@ operation across a **single** grouping variable:
 ```{r}
 #| label = "ggbetweenstats2",
 #| fig.height = 8,
-#| fig.width = 12
+#| fig.width = 12,
+#| fig.alt = "Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations"
 set.seed(123)
 
 grouped_ggbetweenstats(
@@ -218,10 +220,10 @@ grouped_ggbetweenstats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbetweenstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 
 ### `ggwithinstats()`
 
@@ -232,19 +234,25 @@ seen from an example below, the only difference between the plot structure is
 that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
+If your repeated-measures data include an explicit subject identifier, it is
+recommended that you pass it via `subject.id`; rows with missing identifiers
+are ignored for paired grouping and repeated-measures statistics.
+
 ```{r}
 #| label = "ggwithinstats1",
 #| fig.width = 8,
-#| fig.height = 6
+#| fig.height = 6,
+#| fig.alt = "Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results"
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run ANOVA
 
 ggwithinstats(
-  data    = WineTasting,
-  x       = Wine,
-  y       = Taste,
-  title   = "Wine tasting"
+  data       = WineTasting,
+  x          = Wine,
+  y          = Taste,
+  subject.id = Taster,
+  title      = "Wine tasting"
 )
 ```
 
@@ -265,13 +273,15 @@ will see an example with only repeated measurements-
 ```{r}
 #| label = "ggwithinstats2",
 #| fig.height = 6,
-#| fig.width = 14
+#| fig.width = 14,
+#| fig.alt = "Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America"
 set.seed(123)
 
 grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
   y               = desire,
+  subject.id      = subject,
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
@@ -280,10 +290,10 @@ grouped_ggwithinstats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
 
 ### `gghistostats()`
 
@@ -293,7 +303,8 @@ significantly different from a specified value with a one-sample test,
 
 ```{r}
 #| label = "gghistostats1",
-#| fig.width = 8
+#| fig.width = 8,
+#| fig.alt = "Histogram showing distribution of time spent awake in mammals with one-sample test results"
 set.seed(123)
 
 gghistostats(
@@ -320,7 +331,8 @@ easy to repeat the same operation across a **single** grouping variable:
 ```{r}
 #| label = "gghistostats2",
 #| fig.height = 6,
-#| fig.width = 12
+#| fig.width = 12,
+#| fig.alt = "Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests"
 set.seed(123)
 
 grouped_gghistostats(
@@ -338,10 +350,10 @@ grouped_gghistostats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/gghistostats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
 
 ### `ggdotplotstats()`
 
@@ -351,7 +363,8 @@ numeric variable also has a label.
 ```{r}
 #| label = "ggdotplotstats1",
 #| fig.height = 10,
-#| fig.width = 8
+#| fig.width = 8,
+#| fig.alt = "Dot plot showing life expectancy distribution across Asian countries with robust one-sample test results"
 set.seed(123)
 
 ggdotplotstats(
@@ -381,6 +394,7 @@ of a single grouping variable.
 #| label = "ggdotplotstats2",
 #| fig.height = 6,
 #| fig.width = 12,
+#| fig.alt = "Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles"
 set.seed(123)
 
 grouped_ggdotplotstats(
@@ -398,10 +412,10 @@ grouped_ggdotplotstats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggdotplotstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
 
 ### `ggscatterstats()`
 
@@ -412,6 +426,7 @@ axes and results from statistical tests in the subtitle:
 #| label = "ggscatterstats1",
 #| fig.height = 6,
 #| warning = FALSE,
+#| fig.alt = "Scatterplot with marginal distributions showing relationship between REM sleep and time awake in mammals with correlation results"
 ggscatterstats(
   data  = ggplot2::msleep,
   x     = sleep_rem,
@@ -439,6 +454,7 @@ easy to repeat the same operation across a **single** grouping variable.
 #| fig.height = 8,
 #| fig.width = 14,
 #| warning = FALSE,
+#| fig.alt = "Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations"
 set.seed(123)
 
 grouped_ggscatterstats(
@@ -457,10 +473,10 @@ grouped_ggscatterstats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggscatterstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 
 ### `ggcorrmat`
 
@@ -473,7 +489,8 @@ correlation matrix.
 
 ```{r}
 #| label = "ggcorrmat1",
-#| warning = FALSE
+#| warning = FALSE,
+#| fig.alt = "Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators"
 set.seed(123)
 
 ## as a default this function outputs a correlation matrix plot
@@ -500,7 +517,8 @@ easy to repeat the same operation across a **single** grouping variable:
 #| label = "ggcorrmat2",
 #| fig.height = 6,
 #| fig.width = 10,
-#| warning = FALSE
+#| warning = FALSE,
+#| fig.alt = "Grouped correlation matrices for Action and Comedy movie genres showing robust correlations"
 set.seed(123)
 
 grouped_ggcorrmat(
@@ -513,10 +531,10 @@ grouped_ggcorrmat(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcorrmat.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcorrmat.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
 
 ### `ggpiestats()`
 
@@ -532,7 +550,8 @@ To study an interaction between two categorical variables:
 ```{r}
 #| label = "ggpiestats1",
 #| fig.height = 4,
-#| fig.width = 8
+#| fig.width = 8,
+#| fig.alt = "Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis"
 set.seed(123)
 
 ggpiestats(
@@ -563,7 +582,8 @@ for different levels of a single nominal variable:
 ```{r}
 #| label = "ggpiestats2",
 #| fig.height = 6,
-#| fig.width = 10
+#| fig.width = 10,
+#| fig.alt = "Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles"
 set.seed(123)
 
 grouped_ggpiestats(
@@ -577,10 +597,10 @@ grouped_ggpiestats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
 
 ### `ggbarstats()`
 
@@ -593,7 +613,8 @@ bar.
 ```{r}
 #| label = "ggbarstats1",
 #| fig.height = 8,
-#| fig.width = 10
+#| fig.width = 10,
+#| fig.alt = "Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results"
 set.seed(123)
 library(ggplot2)
 
@@ -623,7 +644,8 @@ And, needless to say, there is also a `grouped_` variant of this function-
 ```{r}
 #| label = "ggbarstats2",
 #| fig.height = 6,
-#| fig.width = 12
+#| fig.width = 12,
+#| fig.alt = "Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations"
 ## setup
 set.seed(123)
 
@@ -639,10 +661,10 @@ grouped_ggbarstats(
 ```
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggbarstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ### `ggcoefstats()`
 
@@ -654,7 +676,8 @@ summary indices are also extracted from `performance::model_performance()`.
 ```{r}
 #| label = "ggcoefstats1",
 #| fig.height = 5,
-#| fig.width = 6
+#| fig.width = 6,
+#| fig.alt = "Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals"
 set.seed(123)
 
 ## model
@@ -670,10 +693,10 @@ ggcoefstats(mod)
 ✅ model summary (AIC and BIC) <br>
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
-<https://indrajeetpatil.github.io/ggstatsplot/reference/ggcoefstats.html>
+<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
 
 For more, also read the following vignette:
-<https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggcoefstats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
 
 ### Extracting expressions and data frames with statistical details
 
@@ -698,7 +721,7 @@ extract_stats(p)
 ```
 
 Note that all of this analysis is carried out by `{statsExpressions}`
-package: <https://indrajeetpatil.github.io/statsExpressions/>
+package: <https://www.indrapatil.com/statsExpressions/>
 
 ### Using `{ggstatsplot}` statistical details with custom plots
 
@@ -713,7 +736,8 @@ For example, in the following chunk, we will create our own plot using
 ```{r}
 #| label = "customplot",
 #| fig.height = 5,
-#| fig.width = 6
+#| fig.width = 6,
+#| fig.alt = "Custom boxplot of Michelson-Morley experiment data with ggstatsplot-generated statistical subtitle"
 ## loading the needed libraries
 set.seed(123)
 library(ggplot2)
@@ -740,7 +764,7 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
 
 - Minimal amount of code needed for all functions (typically only `data`, `x`,
   and `y`), which minimizes chances of error and makes for tidy scripts.
-  
+
 - Conveniently toggle between statistical approaches.
 
 - Truly makes your figures worth a thousand words.
@@ -755,7 +779,7 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
 
 ## Misconceptions about `{ggstatsplot}`
 
-This package is... 
+This package is...
 
 ❌ an alternative to learning `{ggplot2}`<br>
 ✅ (The better you know `{ggplot2}`, the more you can modify the defaults to your
@@ -785,11 +809,11 @@ Here are some simple ways in which you can contribute (in the increasing order
 of commitment):
 
   - Read and correct any inconsistencies in the
-    [documentation](https://indrajeetpatil.github.io/ggstatsplot/)
+    [documentation](https://www.indrapatil.com/ggstatsplot/)
   - Raise issues about bugs or wanted features
   - Review code
   - Add new functionality (in the form of new plotting functions or helpers for
     preparing subtitles)
 
-Please note that this project is released with a 
-[Contributor Code of Conduct](https://indrajeetpatil.github.io/ggstatsplot/CODE_OF_CONDUCT.html). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a
+[Contributor Code of Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/). By participating in this project you agree to abide by its terms.

@@ -60,7 +60,7 @@ Before discussing benefits of this approach, we will show an example (Figure
 #| fig.cap = "Example plot from the `{ggstatsplot}` package illustrating its philosophy of
 #| juxtaposing informative visualizations with details from statistical analysis. To see all
 #| supported plots and statistical analyses, see the package website:
-#| \\url{https://indrajeetpatil.github.io/ggstatsplot/}"
+#| \\url{https://www.indrapatil.com/ggstatsplot/}"
 
 
 ggbetweenstats(iris, Species, Sepal.Length)
@@ -139,9 +139,7 @@ source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/).
 In the spirit of honest and open science, requests and suggestions for fixes,
 feature updates, as well as general questions and concerns are encouraged via
 direct interaction with contributors and developers by filing an
-[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues) while respecting
-[*Contribution
-Guidelines*](https://indrajeetpatil.github.io/ggstatsplot/CONTRIBUTING.html).
+[issue](https://github.com/IndrajeetPatil/ggstatsplot/issues).
 
 # Acknowledgements
 

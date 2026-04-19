@@ -9,6 +9,7 @@ ggwithinstats(
   x,
   y,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
   p.adjust.method = "holm",
   effsize.type = "unbiased",
@@ -24,6 +25,7 @@ ggwithinstats(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -69,6 +71,17 @@ subject-1, subject-2, ..., pattern.}
 }
 
 You can specify just the initial letter.}
+
+\item{subject.id}{Across repeated measures conditions, each row in the
+dataset must correspond to a unique unit (e.g., subject or participant).
+If your data frame is already in such a format, you can ignore the
+\code{subject.id} argument (the function will use row number to pair
+observations). \strong{But if you are not sure, it is always better to specify
+this argument.} Note that if there are any missing values (i.e., \code{NA}) in
+the dependent variable and the \code{subject.id} is not specified, they will be
+dropped using a list-wise approach. If you specify \code{subject.id}, partially
+observed subjects will still be shown in the plot, but inferential
+statistics will be computed using only complete repeated-measures pairs.}
 
 \item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
@@ -137,6 +150,11 @@ for the effect size (Default: \code{100L}).}
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
+
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -224,7 +242,7 @@ a subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggwithinstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
@@ -420,25 +438,37 @@ library(dplyr, warn.conflicts = FALSE)
 
 # create a plot
 p <- ggwithinstats(
-  data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-  x    = condition,
-  y    = desire,
-  type = "np"
+  data       = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x          = condition,
+  y          = desire,
+  type       = "np",
+  subject.id = subject
 )
 
 
 # looking at the plot
 p
 
+# if the data are already arranged in repeated-measures order, `subject.id`
+# can be omitted
+ggwithinstats(
+  data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x                = condition,
+  y                = desire,
+  pairwise.display = "none",
+  results.subtitle = FALSE
+)
+
 # extracting details from statistical tests
 extract_stats(p)
 
 # modifying defaults
 ggwithinstats(
-  data = bugs_long,
-  x    = condition,
-  y    = desire,
-  type = "robust"
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  type       = "robust",
+  subject.id = subject
 )
 
 # you can remove a specific geom to reduce complexity of the plot
@@ -446,6 +476,7 @@ ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire,
+  subject.id = subject,
   # to remove violin plot
   violin.args = list(width = 0, linewidth = 0, colour = NA),
   # to remove boxplot

@@ -20,6 +20,7 @@ ggbarstats(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
@@ -108,6 +109,11 @@ is equal theoretical proportions across the levels of the nominal variable.
 E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
 
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
+
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
@@ -173,7 +179,7 @@ as a subtitle.
 }
 \details{
 For details, see:
-\url{https://indrajeetpatil.github.io/ggstatsplot/articles/web_only/ggpiestats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
@@ -247,6 +253,12 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
+
+# Bayesian analysis
+ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
+
+# using pre-aggregated data with counts
+ggbarstats(as.data.frame(Titanic), x = Survived, y = Sex, counts = Freq)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
