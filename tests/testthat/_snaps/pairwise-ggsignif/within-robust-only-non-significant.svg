@@ -516,13 +516,18 @@
 <text x='606.54' y='557.91' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 88)</text>
 <text x='364.39' y='568.94' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='40.03px' lengthAdjust='spacingAndGlyphs'>condition</text>
 <text transform='translate(11.86,272.13) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='27.24px' lengthAdjust='spacingAndGlyphs'>desire</text>
-<text transform='translate(709.22,155.74) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(709.22,203.32) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,205.32) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='81.58px' lengthAdjust='spacingAndGlyphs'>Yuen's trimmed means</text>
-<text transform='translate(709.22,286.90) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(709.22,288.90) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,290.90) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(709.22,334.93) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,336.93) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='51.59px' lengthAdjust='spacingAndGlyphs'>non-significant</text>
+<text transform='translate(709.22,138.60) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(709.22,186.17) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,188.17) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='81.58px' lengthAdjust='spacingAndGlyphs'>Yuen's trimmed means</text>
+<text transform='translate(709.22,269.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,271.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,273.75) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(709.22,317.78) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,319.79) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='51.59px' lengthAdjust='spacingAndGlyphs'>non-significant</text>
+<text transform='translate(709.22,371.38) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,373.38) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,375.38) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='4.80px' lengthAdjust='spacingAndGlyphs'>α</text>
+<text transform='translate(709.22,382.03) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text transform='translate(709.22,390.09) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.05</text>
 </g>
 </svg>

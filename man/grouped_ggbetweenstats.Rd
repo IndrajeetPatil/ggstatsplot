@@ -41,6 +41,9 @@ You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
 will be displayed.}
+    \item{\code{pairwise.alpha}}{Numeric alpha threshold used to decide which pairwise
+comparisons are displayed when \code{pairwise.display = "significant"} or
+\code{pairwise.display = "non-significant"} (Default: \code{0.05}).}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
@@ -152,6 +155,10 @@ of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
     \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
 for the effect size (Default: \code{100L}).}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
   }}
 
 \item{grouping.var}{A single grouping variable.}

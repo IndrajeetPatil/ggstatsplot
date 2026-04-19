@@ -129,6 +129,7 @@
   y,
   mpc_df,
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ...
 ) {
@@ -137,8 +138,8 @@
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
-    if (startsWith(pairwise.display, "s")) mpc_df %<>% filter(p.value < 0.05) # sig
-    if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= 0.05) # non-sig
+    if (startsWith(pairwise.display, "s")) mpc_df %<>% filter(p.value < pairwise.alpha) # sig
+    if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= pairwise.alpha) # non-sig
 
     # proceed only if there are any significant comparisons to display
     if (nrow(mpc_df) == 0L) {
@@ -202,6 +203,8 @@
 #'   You can use this argument to make sure that your plot is not uber-cluttered
 #'   when you have multiple groups being compared and scores of pairwise
 #'   comparisons being displayed.
+#' @param pairwise.alpha Numeric alpha threshold used to decide which pairwise
+#'   comparisons are displayed.
 #'
 #' @examples
 #' .pairwise_seclabel("Student's t-test")
@@ -211,12 +214,20 @@
 #'
 #' # all pairwise comparisons
 #' .pairwise_seclabel("Student's t-test", pairwise.display = "all")
+#'
+#' # custom alpha threshold
+#' .pairwise_seclabel("Student's t-test", pairwise.alpha = 0.01)
 #' @keywords internal
 #' @autoglobal
 #' @noRd
-.pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
+.pairwise_seclabel <- function(
+  test.description,
+  pairwise.display = "significant",
+  pairwise.alpha = 0.05
+) {
   # single quote (') needs to be escaped inside glue expressions
   test <- sub("'", "\\'", test.description, fixed = TRUE)
+  alpha_label <- format(pairwise.alpha, scientific = FALSE, trim = TRUE)
 
   # which comparisons were displayed?
   display <- if (startsWith(pairwise.display, "s")) {
@@ -227,7 +238,9 @@
     "all"
   }
 
-  parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
+  parse(text = glue(
+    "list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'), alpha == {alpha_label})"
+  ))
 }
 
 

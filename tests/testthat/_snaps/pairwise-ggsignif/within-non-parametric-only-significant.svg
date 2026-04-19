@@ -535,13 +535,18 @@
 <text x='607.18' y='557.91' text-anchor='middle' style='font-size: 8.00px; fill: #4D4D4D; font-family: sans;' textLength='27.80px' lengthAdjust='spacingAndGlyphs'>(n = 88)</text>
 <text x='366.61' y='568.94' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='40.03px' lengthAdjust='spacingAndGlyphs'>condition</text>
 <text transform='translate(11.86,272.13) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='27.24px' lengthAdjust='spacingAndGlyphs'>desire</text>
-<text transform='translate(709.22,176.30) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
-<text transform='translate(709.22,223.87) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,225.88) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='56.48px' lengthAdjust='spacingAndGlyphs'>Durbin-Conover</text>
-<text transform='translate(709.22,282.35) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
-<text transform='translate(709.22,284.35) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,286.36) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
-<text transform='translate(709.22,330.39) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
-<text transform='translate(709.22,332.39) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(709.22,159.15) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='47.58px' lengthAdjust='spacingAndGlyphs'>Pairwise test:</text>
+<text transform='translate(709.22,206.73) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,208.73) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='56.48px' lengthAdjust='spacingAndGlyphs'>Durbin-Conover</text>
+<text transform='translate(709.22,265.21) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,267.21) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,269.21) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='44.03px' lengthAdjust='spacingAndGlyphs'>Bars shown:</text>
+<text transform='translate(709.22,313.24) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,315.24) rotate(90)' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='35.58px' lengthAdjust='spacingAndGlyphs'>significant</text>
+<text transform='translate(709.22,350.82) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'>,</text>
+<text transform='translate(709.22,352.82) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text transform='translate(709.22,354.82) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='4.80px' lengthAdjust='spacingAndGlyphs'>α</text>
+<text transform='translate(709.22,361.48) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='6.21px' lengthAdjust='spacingAndGlyphs'>=</text>
+<text transform='translate(709.22,369.54) rotate(90)' style='font-size: 8.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>0.05</text>
 </g>
 </svg>

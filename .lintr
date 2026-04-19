@@ -6,7 +6,7 @@ linters: all_linters(
     if_not_else_linter(exceptions = character(0L)),
     implicit_integer_linter = NULL,
     library_call_linter = NULL,
-    line_length_linter(120L),
+    line_length_linter(140L),
     namespace_linter = NULL,
     nonportable_path_linter = NULL,
     object_name_linter = NULL,

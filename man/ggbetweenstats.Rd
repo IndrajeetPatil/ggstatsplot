@@ -10,6 +10,7 @@ ggbetweenstats(
   y,
   type = "parametric",
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
   effsize.type = "unbiased",
   bf.prior = 0.707,
@@ -25,6 +26,7 @@ ggbetweenstats(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -81,6 +83,10 @@ You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
 will be displayed.}
+
+\item{pairwise.alpha}{Numeric alpha threshold used to decide which pairwise
+comparisons are displayed when \code{pairwise.display = "significant"} or
+\code{pairwise.display = "non-significant"} (Default: \code{0.05}).}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
@@ -141,6 +147,11 @@ for the effect size (Default: \code{100L}).}
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
+
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -419,6 +430,9 @@ ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "non-significant")
 
 # show all pairwise comparisons
 ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
+
+# use a stricter alpha threshold for significant pairwise comparisons
+ggbetweenstats(mtcars, cyl, mpg, pairwise.alpha = 0.001)
 
 # modifying defaults
 ggbetweenstats(

@@ -78,6 +78,15 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
+#' # use a stricter alpha threshold for significant pairwise comparisons
+#' ggwithinstats(
+#'   data = bugs_long,
+#'   x = condition,
+#'   y = desire,
+#'   subject.id = subject,
+#'   pairwise.alpha = 0.001
+#' )
+#'
 #' # modifying defaults
 #' ggwithinstats(
 #'   data       = bugs_long,
@@ -108,6 +117,7 @@ ggwithinstats <- function(
   type = "parametric",
   subject.id = NULL,
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
   effsize.type = "unbiased",
   bf.prior = 0.707,
@@ -122,6 +132,7 @@ ggwithinstats <- function(
   conf.level = 0.95,
   nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -195,6 +206,8 @@ ggwithinstats <- function(
       nboot = nboot
     )
 
+    if (test == "t") .f.args$alternative <- alternative
+
     # styler: off
     .f          <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
@@ -263,11 +276,16 @@ ggwithinstats <- function(
       x                = {{ x }},
       y                = {{ y }},
       pairwise.display = pairwise.display,
+      pairwise.alpha   = pairwise.alpha,
       ggsignif.args    = ggsignif.args
     )
 
     # secondary label axis to give pairwise comparisons test details
-    seclabel <- .pairwise_seclabel(unique(mpc_df$test), ifelse(type == "bayes", "all", pairwise.display))
+    seclabel <- .pairwise_seclabel(
+      test.description = unique(mpc_df$test),
+      pairwise.display = ifelse(type == "bayes", "all", pairwise.display),
+      pairwise.alpha = pairwise.alpha
+    )
   }
 
   # annotations -------------------------
