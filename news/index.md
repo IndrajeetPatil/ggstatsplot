@@ -37,6 +37,12 @@
   now renders the overall annotation title in bold by default, matching
   the styling used for individual plot titles.
 
+- [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
+  now preserves the model term order in the default top-to-bottom plot
+  layout and in estimate-sorted displays, instead of showing terms in
+  the reverse order
+  ([\#642](https://github.com/IndrajeetPatil/ggstatsplot/issues/642)).
+
 ## ggstatsplot 0.13.6
 
 CRAN release: 2026-04-06
