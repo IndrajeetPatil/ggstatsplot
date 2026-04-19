@@ -705,6 +705,38 @@ ggbetweenstats(
 )
 ```
 
+## 31. Why do pairwise comparison brackets disappear when I restrict the Y-axis?
+
+This is a common `{ggplot2}` footgun. There are two ways to restrict the visible
+y-range, and they behave very differently:
+
+- `scale_y_continuous(limits = c(a, b))` — **modifies the data**, setting any
+  values outside `[a, b]` to `NA` before rendering. Because pairwise comparison
+  brackets from `{ggsignif}` are positioned *above* the maximum observed value,
+  they often fall outside a tight limit and are silently dropped.
+- `coord_cartesian(ylim = c(a, b))` — **zooms the viewport** without touching
+  the underlying data. The brackets are still computed from the full data range
+  and remain fully intact.
+
+The fix is to replace `scale_y_continuous(limits = ...)` with
+`coord_cartesian(ylim = ...)`:
+
+```{r}
+#| label = "coord_cartesian_pairwise",
+#| fig.width = 7,
+#| fig.height = 6
+
+library(ggplot2)
+
+# BAD: pairwise brackets disappear because values above 4 are set to NA
+ggbetweenstats(mtcars, cyl, wt) +
+  scale_y_continuous(limits = c(1, 4))
+
+# GOOD: brackets survive because coord_cartesian only zooms the viewport
+ggbetweenstats(mtcars, cyl, wt) +
+  coord_cartesian(ylim = c(1, 4))
+```
+
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
