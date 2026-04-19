@@ -210,7 +210,9 @@ argument is relevant only when there are two groups (i.e., in case of a
 the interquartile range (IQR) from the box (Tukey-style). To customize
 whisker length, you can use the \code{coef} parameter, e.g.,
 \code{boxplot.args = list(coef = 3)} for whiskers extending to 3 * IQR, or
-\code{boxplot.args = list(coef = 0)} to show only the range of the data.}
+\code{boxplot.args = list(coef = 0)} to show only the range of the data. You
+can also control outlier display using this argument, e.g.,
+\code{boxplot.args = list(outlier.shape = NA)} to hide outliers.}
 
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}

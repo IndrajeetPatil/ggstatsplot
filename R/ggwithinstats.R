@@ -226,7 +226,7 @@ ggwithinstats <- function(
 
   plot_comparison <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args, outlier.shape = NA) +
+    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args) +
     exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
 
   # add a connecting path only if there are only two groups
