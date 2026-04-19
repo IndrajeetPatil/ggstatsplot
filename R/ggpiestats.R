@@ -196,6 +196,8 @@ ggpiestats <- function(
         min.segment.length = 0,
         fill               = "white",
         alpha              = 1.0,
+        na.rm              = TRUE,
+        show.legend        = FALSE,
         !!!label.args
       )
   }))

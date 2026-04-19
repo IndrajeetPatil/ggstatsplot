@@ -142,8 +142,10 @@ ggbarstats <- function(
     ) +
     exec(
       geom_label,
-      mapping  = aes(label = .label, group = {{ x }}),
-      position = position_fill(vjust = 0.5),
+      mapping     = aes(label = .label, group = {{ x }}),
+      position    = position_fill(vjust = 0.5),
+      na.rm       = TRUE,
+      show.legend = FALSE,
       !!!label.args
     ) +
     ggtheme +

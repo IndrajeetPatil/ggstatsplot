@@ -12,14 +12,21 @@ descriptive_data <- function(
   all_lvls <- levels(pull(data, {{ x }}))
 
   .cat_counter(data, {{ x }}, {{ y }}) %>%
+    # Fill in zero-count rows for missing (y, x) combinations so all panels
+    # produce structurally identical data; patchwork can then deduplicate guides.
+    tidyr::complete({{ y }}, {{ x }} := factor(all_lvls, all_lvls), fill = list(counts = 0L, perc = 0)) %>%
     mutate(
-      .label = if (grepl("perc|prop", label.content)) {
-        paste0(round(perc, digits.perc), "%")
-      } else if (grepl("count|n|N", label.content)) {
-        .prettyNum(counts)
-      } else {
-        paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
-      }, # reorder the category factor levels to order the legend
+      .label = if_else(
+        counts == 0L,
+        NA_character_,
+        if (grepl("perc|prop", label.content)) {
+          paste0(round(perc, digits.perc), "%")
+        } else if (grepl("count|n|N", label.content)) {
+          .prettyNum(counts)
+        } else {
+          paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
+        }
+      ),
       {{ x }} := factor({{ x }}, if (length(all_lvls)) all_lvls else unique({{ x }}))
     )
 }
