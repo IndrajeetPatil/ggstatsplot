@@ -156,6 +156,23 @@ test_that(
   }
 )
 
+test_that("term ordering is preserved in the plotted top-to-bottom order", {
+  df <- tibble::tibble(
+    term = c("first", "second", "third"),
+    estimate = c(0.3, -0.4, 1.1)
+  )
+
+  expect_identical(
+    levels(.preprocess_tidy_data(df, sort = "none")$term),
+    rev(df$term)
+  )
+
+  expect_identical(
+    levels(.preprocess_tidy_data(df, sort = "ascending")$term),
+    rev(df$term[c(2L, 1L, 3L)])
+  )
+})
+
 # meta subtitle and caption -------------------------------------
 
 test_that(
