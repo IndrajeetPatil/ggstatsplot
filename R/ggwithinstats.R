@@ -65,6 +65,16 @@
 #' # looking at the plot
 #' p
 #'
+#' # if the data are already arranged in repeated-measures order, `subject.id`
+#' # can be omitted
+#' ggwithinstats(
+#'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+#'   x                = condition,
+#'   y                = desire,
+#'   pairwise.display = "none",
+#'   results.subtitle = FALSE
+#' )
+#'
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
