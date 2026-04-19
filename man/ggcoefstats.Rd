@@ -252,6 +252,17 @@ ggcoefstats(data.frame(term = c("a", "b", "c"), estimate = c(0.5, -0.2, 1.1)))
 
 # without a `term` column (auto-generated)
 ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
+
+# tidy data frames can also include stats-label inputs directly
+df_tidy <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
+df_tidy$p.value[2L] <- 0.42
+
+ggcoefstats(
+  df_tidy,
+  statistic = "t",
+  only.significant = TRUE,
+  stats.label.color = c("firebrick", "grey50", "forestgreen", "navy")
+)
 \dontshow{\}) # examplesIf}
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # further arguments can be passed to `parameters::model_parameters()`

@@ -193,6 +193,21 @@ test_that("mixed-model stats labels drop rows with empty expressions", {
   )
 })
 
+test_that("stats label colors stay aligned after filtering labels", {
+  df_tidy <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
+  df_tidy$p.value[2L] <- 0.42
+
+  plot <- ggcoefstats(
+    df_tidy,
+    statistic = "t",
+    only.significant = TRUE,
+    stats.label.color = c("firebrick", "grey50", "forestgreen", "navy")
+  )
+
+  expect_equal(as.character(plot$layers[[4L]]$data$term), c("(Intercept)", "cyl"))
+  expect_identical(plot$layers[[4L]]$aes_params$colour, c("firebrick", "forestgreen"))
+})
+
 # meta subtitle and caption -------------------------------------
 
 test_that(
