@@ -288,8 +288,7 @@ ggcoefstats <- function(
     if (only.significant && ("p.value" %in% names(tidy_df))) {
       tidy_df_labels %<>% filter(p.value < 0.05)
     }
-    tidy_df_labels %<>%
-      filter(lengths(expression) > 0L)
+    tidy_df_labels %<>% filter(lengths(expression) > 0L)
 
     if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(tidy_df$term))) {
       # generate colors for all terms
