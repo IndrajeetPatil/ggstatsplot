@@ -125,8 +125,7 @@ test_that(
         effectsize.type = "omega",
         title = "mammalian sleep",
         subtitle = "Source: `{ggplot2}` package",
-        package = "wesanderson",
-        palette = "BottleRocket2",
+        palette = "wesanderson::BottleRocket2",
         digits = 3L
       )
     )
@@ -237,10 +236,10 @@ test_that("stats label helpers cover filtering and color branches", {
   )
 
   label_data <- tibble::tibble(term = "a", expression = list("alpha"))
-  expected_color <- unname(as.character(paletteer::paletteer_d("RColorBrewer::Dark2", 3L)[1L]))
+  expected_color <- unname(as.character(paletteer::paletteer_d("ggthemes::gdoc", 3L)[1L]))
 
   expect_identical(
-    unname(as.character(.prepare_stats_label_colors(df_labels, label_data, NULL, "RColorBrewer", "Dark2"))),
+    unname(as.character(.prepare_stats_label_colors(df_labels, label_data, NULL, "ggthemes::gdoc"))),
     expected_color
   )
 
@@ -249,25 +248,23 @@ test_that("stats label helpers cover filtering and color branches", {
       df_labels,
       label_data,
       c("firebrick", "grey50", "forestgreen"),
-      "RColorBrewer",
-      "Dark2"
+      "ggthemes::gdoc"
     ),
     "firebrick"
   )
 
   expect_identical(
-    .prepare_stats_label_colors(df_labels, label_data, "firebrick", "RColorBrewer", "Dark2"),
+    .prepare_stats_label_colors(df_labels, label_data, "firebrick", "ggthemes::gdoc"),
     "firebrick"
   )
 
-  expect_null(
-    suppressWarnings(.prepare_stats_label_colors(
-      tibble::tibble(term = letters[1:12], expression = rep(list("alpha"), 12L)),
+  expect_error(
+    .prepare_stats_label_colors(
+      tibble::tibble(term = letters[1:30], expression = rep(list("alpha"), 30L)),
       label_data,
       NULL,
-      "RColorBrewer",
-      "Dark2"
-    ))
+      "ggthemes::gdoc"
+    )
   )
 })
 

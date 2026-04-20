@@ -40,8 +40,7 @@ ggwithinstats(
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 )
@@ -229,9 +228,9 @@ label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+\item{palette}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}

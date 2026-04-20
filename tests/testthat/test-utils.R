@@ -52,10 +52,9 @@ if (requireNamespace("patrick", quietly = TRUE)) {
 test_that(
   ".is_palette_sufficient is working",
   {
-    expect_no_condition(.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
+    expect_no_condition(.is_palette_sufficient("ggthemes::gdoc", 2L))
 
-    withr::local_options(list(warn = 0L))
-    expect_snapshot(.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
+    expect_snapshot(.is_palette_sufficient("ggthemes::gdoc", 30L), error = TRUE)
   }
 )
 

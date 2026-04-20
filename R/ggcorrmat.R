@@ -80,8 +80,7 @@ ggcorrmat <- function(
   p.adjust.method = "holm",
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
@@ -90,6 +89,7 @@ ggcorrmat <- function(
   caption = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
   type <- stats_type_switch(type)
   if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
 
@@ -140,7 +140,7 @@ ggcorrmat <- function(
     p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level    = ifelse(type == "bayes", Inf, sig.level),
     ggtheme      = ggtheme,
-    colors       = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
+    colors       = colors %||% paletteer::paletteer_d(palette, 3L),
     type         = matrix.type,
     lab          = TRUE,
     pch          = pch,

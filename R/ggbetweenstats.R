@@ -77,9 +77,9 @@
 #'   by `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
 #'   variants of all primary functions. Default is `NULL`. The argument should
 #'   be entered as a `{ggplot2}` function or a list of `{ggplot2}` functions.
-#' @param package,palette Name of the package from which the given palette is to
-#'   be extracted. The available palettes and packages can be checked by running
-#'   `View(paletteer::palettes_d_names)`.
+#' @param palette Name of the palette in `"package::palette"` format to be used
+#'   for coloring. Passed to [paletteer::scale_color_paletteer_d()]. Run
+#'   `View(paletteer::palettes_d_names)` to see all available options.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
@@ -198,11 +198,12 @@ ggbetweenstats <- function(
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
@@ -317,7 +318,6 @@ ggbetweenstats <- function(
     caption          = caption,
     seclabel         = seclabel,
     ggtheme          = ggtheme,
-    package          = package,
     palette          = palette,
     ggplot.component = ggplot.component
   )

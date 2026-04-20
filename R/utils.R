@@ -28,34 +28,45 @@
 }
 
 
+#' @noRd
+.validate_palette <- function(palette, default = "ggthemes::gdoc") {
+  if (!grepl("::", palette, fixed = TRUE)) {
+    rlang::warn(c(
+      "!" = paste0("Palette '", palette, "' is not in the required 'package::palette' format."),
+      "i" = paste0("Ignoring it and using the default palette '", default, "' instead."),
+      "i" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
+    ))
+    return(default)
+  }
+  palette
+}
+
 #' @title Check if palette has enough number of colors
 #'
 #' @description
-#' Informs the user about not using the default color palette
-#'   when the number of factor levels is greater than 8, the maximum number of
-#'   colors allowed by `"Dark2"` palette from the `{RColorBrewer}` package.
+#' Aborts with an informative error if the number of factor levels exceeds the
+#'   number of colors available in the specified palette.
 #'
 #' @examples
-#' ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 6L)
-#' ggstatsplot:::.is_palette_sufficient("RColorBrewer", "Dark2", 12L)
+#' ggstatsplot:::.is_palette_sufficient("ggthemes::gdoc", 6L)
+#' try(ggstatsplot:::.is_palette_sufficient("ggthemes::gdoc", 30L))
 #'
 #' @autoglobal
 #' @keywords internal
-.is_palette_sufficient <- function(package, palette, min_length) {
-  palette_length <- paletteer::palettes_d_names %>%
-    filter(package == !!package, palette == !!palette) %>%
-    purrr::pluck("length")
+.is_palette_sufficient <- function(palette, min_length) {
+  parts <- strsplit(palette, "::")[[1L]]
+  d <- paletteer::palettes_d_names
+  palette_length <- d[d$package == parts[[1L]] & d$palette == parts[[2L]], "length", drop = TRUE]
+  n_available <- if (length(palette_length) == 0L) 0L else palette_length
 
-  are_enough_colors_available <- palette_length > min_length
-
-  if (!are_enough_colors_available) {
-    rlang::warn(c(
-      x = "Number of labels is greater than default palette color count.",
-      i = "Select another color `palette` (and/or `package`)."
+  if (n_available < min_length) {
+    rlang::abort(c(
+      x = paste0("Palette '", palette, "' has only ", n_available, " colors, but ", min_length, " are needed."),
+      i = "Select a `palette` with enough colors. Run `View(paletteer::palettes_d_names)` to see options."
     ))
   }
 
-  are_enough_colors_available
+  invisible(TRUE)
 }
 
 

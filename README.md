@@ -198,8 +198,7 @@ grouped_ggbetweenstats(
   grouping.var     = genre,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
   p.adjust.method  = "bonferroni",
-  palette          = "default_jama",
-  package          = "ggsci",
+  palette          = "ggsci::default_jama",
   plotgrid.args    = list(nrow = 1),
   annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
 )
@@ -527,8 +526,7 @@ ggpiestats(
   data         = mtcars,
   x            = am,
   y            = cyl,
-  package      = "wesanderson",
-  palette      = "Royal1",
+  palette      = "wesanderson::Royal1",
   title        = "Dataset: Motor Trend Car Road Tests",
   legend.title = "Transmission"
 )
@@ -555,8 +553,7 @@ grouped_ggpiestats(
   x            = cyl,
   grouping.var = am,
   label.repel  = TRUE,
-  package      = "ggsci",
-  palette      = "default_ucscgb"
+  palette      = "ggsci::default_ucscgb"
 )
 ```
 
@@ -590,7 +587,7 @@ ggbarstats(
   xlab             = "movie genre",
   legend.title     = "MPAA rating",
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
-  palette          = "Set2"
+  palette          = "RColorBrewer::Set2"
 )
 ```
 
@@ -614,8 +611,7 @@ grouped_ggbarstats(
   x            = am,
   y            = cyl,
   grouping.var = vs,
-  package      = "wesanderson",
-  palette      = "Darjeeling2" # ,
+  palette      = "wesanderson::Darjeeling2" # ,
   # ggtheme      = ggthemes::theme_tufte(base_size = 12)
 )
 ```

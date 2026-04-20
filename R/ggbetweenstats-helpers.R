@@ -264,13 +264,12 @@
   caption = NULL,
   seclabel = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
   # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(package, palette, nlevels(x))
+  .is_palette_sufficient(palette, nlevels(x))
 
   plot +
     labs(
@@ -284,7 +283,7 @@
     ggtheme +
     # no matter the theme, the following ought to be part of a ggstatsplot plot
     theme(legend.position = "none") +
-    paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
+    paletteer::scale_color_paletteer_d(palette) +
     scale_y_continuous(sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)) +
     # this is the hail mary way for users to override these defaults
     ggplot.component

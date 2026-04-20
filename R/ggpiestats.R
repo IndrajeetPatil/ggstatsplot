@@ -104,11 +104,12 @@ ggpiestats <- function(
   caption = NULL,
   legend.title = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # data frame ------------------------------------------
 
   # ensure the variables work quoted or unquoted
@@ -174,7 +175,7 @@ ggpiestats <- function(
   if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
 
   # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(package, palette, min_length = x_levels)
+  .is_palette_sufficient(palette, min_length = x_levels)
 
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
@@ -211,7 +212,7 @@ ggpiestats <- function(
   plotPie <- plotPie +
     coord_polar(theta = "y") +
     scale_y_continuous(breaks = NULL) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "", drop = FALSE) +
+    paletteer::scale_fill_paletteer_d(palette, name = "", drop = FALSE) +
     ggtheme +
     theme(panel.grid = element_blank(), axis.ticks = element_blank()) +
     guides(fill = guide_legend(override.aes = list(color = NA)))

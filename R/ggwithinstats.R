@@ -146,11 +146,12 @@ ggwithinstats <- function(
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
@@ -300,7 +301,6 @@ ggwithinstats <- function(
     caption          = caption,
     seclabel         = seclabel,
     ggtheme          = ggtheme,
-    package          = package,
     palette          = palette,
     ggplot.component = ggplot.component
   )
