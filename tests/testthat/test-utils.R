@@ -47,6 +47,20 @@ if (requireNamespace("patrick", quietly = TRUE)) {
   )
 }
 
+# .validate_palette ------------------------------------
+
+test_that(
+  ".validate_palette warns and returns default for old-style palette",
+  {
+    expect_warning(
+      result <- .validate_palette("Dark2"),
+      regexp = "not in the required"
+    )
+    expect_identical(result, "ggthemes::gdoc")
+    expect_identical(.validate_palette("ggthemes::gdoc"), "ggthemes::gdoc")
+  }
+)
+
 # .is_palette_sufficient ------------------------------------
 
 test_that(
