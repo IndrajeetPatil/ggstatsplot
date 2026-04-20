@@ -175,6 +175,25 @@ test_that("expression output", {
   expect_identical(p_sub, stats_output)
 })
 
+# pairwise comparisons --------------------------------------------------
+
+test_that("pairwise comparisons data is returned for 3+ groups", {
+  set.seed(123)
+  stats_data <- extract_stats(ggpiestats(mtcars, cyl, am))
+  expect_s3_class(stats_data$pairwise_comparisons_data, "tbl_df")
+  expect_identical(nrow(stats_data$pairwise_comparisons_data), 3L)
+
+  # 2 levels: no pairwise data
+  set.seed(123)
+  stats_data2 <- extract_stats(ggpiestats(mtcars, am, vs))
+  expect_null(stats_data2$pairwise_comparisons_data)
+
+  # one-way test: no pairwise data
+  set.seed(123)
+  stats_data3 <- extract_stats(ggpiestats(mtcars, cyl))
+  expect_null(stats_data3$pairwise_comparisons_data)
+})
+
 # grouped_ggpiestats works as expected ---------------------
 
 test_that("grouped_ggpiestats produces error when grouping variable not provided", {

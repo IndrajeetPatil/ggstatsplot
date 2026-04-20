@@ -18,6 +18,8 @@
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
+#' @inheritSection ggpiestats Pairwise comparisons
+#'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
@@ -62,6 +64,7 @@ ggbarstats <- function(
   ratio = NULL,
   alternative = "two.sided",
   conf.level = 0.95,
+  p.adjust.method = "holm",
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
   prior.concentration = 1.0,
@@ -95,6 +98,8 @@ ggbarstats <- function(
 
   # x and y need to be a factor
   data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
+  x_levels <- nlevels(pull(data, {{ x }}))
+  y_levels <- nlevels(pull(data, {{ y }}))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   # nocov start
@@ -131,6 +136,20 @@ ggbarstats <- function(
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       caption <- .extract_expression(caption_df)
     }
+
+    # pairwise comparisons
+    mpc_df <- .pairwise_contingency(
+      data,
+      {{ x }},
+      {{ y }},
+      x_levels,
+      y_levels,
+      paired,
+      digits,
+      conf.level,
+      alternative,
+      p.adjust.method
+    )
   }
 
   # plot ------------------------------------------

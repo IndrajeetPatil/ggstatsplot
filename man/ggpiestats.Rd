@@ -22,6 +22,7 @@ ggpiestats(
   ratio = NULL,
   alternative = "two.sided",
   conf.level = 0.95,
+  p.adjust.method = "holm",
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
   prior.concentration = 1,
@@ -115,6 +116,10 @@ E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
 
+\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
+
 \item{sampling.plan}{Character describing the sampling plan. Possible options:
 \itemize{
 \item \code{"indepMulti"} (independent multinomial; default)
@@ -178,6 +183,20 @@ For details, see:
    pie slices \tab \code{ggplot2::geom_col()} \tab \code{NA} \cr
    labels \tab \code{ggplot2::geom_label()}/\code{ggrepel::geom_label_repel()} \tab \code{label.args} \cr
 }
+}
+
+\section{Pairwise comparisons}{
+
+When there is a two-way table and \code{x} has more than two levels, pairwise
+contingency table analyses (Fisher's exact tests) are computed using
+\code{\link[=pairwise_contingency_table]{pairwise_contingency_table()}}. These pairwise results are \strong{not}
+displayed in the plot because bar and pie charts lack a natural visual
+representation for pairwise significance annotations (unlike box/violin
+plots, which use bracket annotations). Additionally, there is no
+established convention for overlaying pairwise comparisons on pie charts,
+and both \code{ggpiestats()} and \code{ggbarstats()} are designed to remain visually
+congruent. The pairwise results are available as a data frame via
+\code{extract_stats(plot)$pairwise_comparisons_data}.
 }
 
 \section{Contingency table analyses}{

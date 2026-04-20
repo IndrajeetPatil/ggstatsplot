@@ -109,3 +109,36 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
 
 #' @noRd
 .prettyNum <- function(x) prettyNum(x, big.mark = ",", scientific = FALSE)
+
+
+#' @autoglobal
+#' @noRd
+.pairwise_contingency <- function(
+  data,
+  x,
+  y,
+  x_levels,
+  y_levels,
+  paired,
+  digits,
+  conf.level,
+  alternative,
+  p.adjust.method
+) {
+  if (x_levels < 3L || y_levels < 2L || isTRUE(paired)) {
+    return(NULL)
+  }
+
+  tryCatch(
+    suppressWarnings(pairwise_contingency_table(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      digits = digits,
+      conf.level = conf.level,
+      alternative = alternative,
+      p.adjust.method = p.adjust.method
+    )),
+    error = function(e) NULL
+  )
+}
