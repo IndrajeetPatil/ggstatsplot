@@ -30,14 +30,14 @@
 
 #' @noRd
 .validate_palette <- function(palette, default = "ggthemes::gdoc") {
-  if (!grepl("::", palette, fixed = TRUE)) {
+  if (!grepl("::", palette, fixed = TRUE)) { # nocov start
     rlang::warn(c(
       "!" = paste0("Palette '", palette, "' is not in the required 'package::palette' format."),
       i = paste0("Ignoring it and using the default palette '", default, "' instead."),
       "*" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
     ))
     return(default)
-  }
+  } # nocov end
   palette
 }
 
