@@ -31,13 +31,13 @@ patrick::with_parameters_test_that(
     expect_identical(.grouped_list(df, grouping.var = grp)$title, expected)
   },
   .cases = tibble::tibble(
-    type          = c("character (appearance order)", "integer (sorted)", "factor (level order)"),
-    grp_vals      = list(
+    type = c("character (appearance order)", "integer (sorted)", "factor (level order)"),
+    grp_vals = list(
       c(rep("3", 3L), rep("1", 3L), rep("2", 3L)),
-      c(rep(3L,  3L), rep(1L,  3L), rep(2L,  3L)),
+      c(rep(3L, 3L), rep(1L, 3L), rep(2L, 3L)),
       factor(c(rep("3", 3L), rep("1", 3L), rep("2", 3L)), levels = c("3", "1", "2"))
     ),
-    expected      = list(
+    expected = list(
       c("3", "1", "2"),
       c("1", "2", "3"),
       c("3", "1", "2")
