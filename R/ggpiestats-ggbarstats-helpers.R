@@ -17,7 +17,9 @@ descriptive_data <- function(
     mutate({{ x }} := factor({{ x }}, all_lvls, ordered = FALSE)) %>%
     # Fill in zero-count rows for missing (y, x) combinations so all panels
     # produce structurally identical data; patchwork can then deduplicate guides.
-    tidyr::complete({{ y }}, {{ x }} := factor(all_lvls, all_lvls), fill = list(counts = 0L, perc = 0)) %>%
+    # nesting() restricts y to observed levels only, preventing empty bars for
+    # factor levels that are defined but absent in this data subset.
+    tidyr::complete(tidyr::nesting({{ y }}), {{ x }} := factor(all_lvls, all_lvls), fill = list(counts = 0L, perc = 0)) %>%
     mutate(
       .label = if_else(
         counts == 0L,

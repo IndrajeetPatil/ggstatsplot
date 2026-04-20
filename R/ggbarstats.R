@@ -240,8 +240,9 @@ grouped_ggbarstats <- function(
   annotation.args = list()
 ) {
   dots_q <- rlang::enquos(...)
-  if ("x" %in% names(dots_q)) {
-    x_name <- rlang::as_name(rlang::quo_get_expr(dots_q[["x"]]))
+  x_q <- dots_q[["x"]] %||% dots_q[[1L]]
+  if (!is.null(x_q) && rlang::is_symbol(rlang::quo_get_expr(x_q))) {
+    x_name <- rlang::as_name(rlang::quo_get_expr(x_q))
     x_lvls <- if (is.factor(data[[x_name]])) levels(data[[x_name]]) else sort(unique(data[[x_name]]))
     data[[x_name]] <- factor(data[[x_name]], x_lvls)
   }

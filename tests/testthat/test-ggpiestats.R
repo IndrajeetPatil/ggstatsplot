@@ -218,8 +218,9 @@ test_that(
         trans %in% c("auto(l4)", "auto(l5)")
       )
 
-    # arm64 macOS produces sub-pixel SVG coordinate differences vs x86_64 Linux
-    skip_on_os("mac")
+    # arm64 macOS and x86_64 Linux produce sub-pixel SVG coordinate differences
+    # for this specific plot; use platform-specific snapshot variants.
+    testthat::local_snapshot_variant(tolower(Sys.info()[["sysname"]]))
 
     # when arguments are entered as bare expressions
     set.seed(123)
