@@ -97,11 +97,9 @@ ggbarstats <- function(
   data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
 
   # TO DO: until one-way table is supported by `BayesFactor`
-  # nocov start
-  if (nlevels(pull(data, {{ y }})) == 1L) {
+  if (nlevels(pull(data, {{ y }})) == 1L) { # nocov start
     c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
-  }
-  # nocov end
+  } # nocov end
   if (type == "bayes") {
     proportion.test <- FALSE
   }
