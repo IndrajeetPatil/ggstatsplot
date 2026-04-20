@@ -10,4 +10,4 @@ jobs:
   R-CMD-check-hard:
     uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check-hard.yaml@main
     with:
-      extra-packages: any::vdiffr
+      extra-packages: any::vdiffr any::patrick
