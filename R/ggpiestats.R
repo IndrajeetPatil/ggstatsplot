@@ -198,6 +198,8 @@ ggpiestats <- function(
         min.segment.length = 0,
         fill               = "white",
         alpha              = 1.0,
+        na.rm              = TRUE,
+        show.legend        = FALSE,
         !!!label.args
       )
   }))
@@ -209,7 +211,7 @@ ggpiestats <- function(
   plotPie <- plotPie +
     coord_polar(theta = "y") +
     scale_y_continuous(breaks = NULL) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "") +
+    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "", drop = FALSE) +
     ggtheme +
     theme(panel.grid = element_blank(), axis.ticks = element_blank()) +
     guides(fill = guide_legend(override.aes = list(color = NA)))
@@ -279,6 +281,13 @@ grouped_ggpiestats <- function(
   plotgrid.args = list(),
   annotation.args = list()
 ) {
+  dots_q <- rlang::enquos(...)
+  x_q <- dots_q[["x"]] %||% dots_q[[1L]]
+  if (!is.null(x_q) && rlang::is_symbol(rlang::quo_get_expr(x_q))) {
+    x_name <- rlang::as_name(rlang::quo_get_expr(x_q))
+    x_lvls <- if (is.factor(data[[x_name]])) levels(data[[x_name]]) else sort(unique(data[[x_name]]))
+    data[[x_name]] <- factor(data[[x_name]], x_lvls)
+  }
   .grouped_list(data, {{ grouping.var }}) %>%
     purrr::pmap(.f = ggpiestats, ...) %>%
     combine_plots(plotgrid.args, annotation.args)
