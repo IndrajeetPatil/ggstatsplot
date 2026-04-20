@@ -23,11 +23,9 @@
 # .is_palette_sufficient is working
 
     Code
-      .is_palette_sufficient("RColorBrewer", "Dark2", 20L)
+      .is_palette_sufficient("ggthemes::gdoc", 30L)
     Condition
-      Warning:
-      x Number of labels is greater than default palette color count.
-      i Select another color `palette` (and/or `package`).
-    Output
-      [1] FALSE
+      Error in `.is_palette_sufficient()`:
+      ! x Palette 'ggthemes::gdoc' has only 24 colors, but 30 are needed.
+      i Select a `palette` with enough colors. Run `View(paletteer::palettes_d_names)` to see options.
 

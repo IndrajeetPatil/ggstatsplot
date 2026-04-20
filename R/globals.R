@@ -2,7 +2,6 @@
 
 utils::globalVariables(c(
   # <ggwithinstats>
-  # <.grouped_list>
   ".",
   # <ggbarstats>
   # <ggpiestats>

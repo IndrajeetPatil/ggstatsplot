@@ -30,8 +30,7 @@ ggcoefstats(
   stats.label.color = NULL,
   stats.label.args = list(size = 3, direction = "y", min.segment.length = 0, na.rm =
     TRUE),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ...
 )
@@ -128,9 +127,9 @@ be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \item{stats.label.args}{Additional arguments that will be passed to
 \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}.}
 
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+\item{palette}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,

@@ -197,11 +197,12 @@ ggcoefstats <- function(
     min.segment.length = 0,
     na.rm = TRUE
   ),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # model check -------------------------
 
   # if a data frame is entered then `statistic` is necessary to create labels
@@ -299,7 +300,7 @@ ggcoefstats <- function(
 
   if (stats.labels) {
     tidy_df_labels <- .prepare_stats_label_data(tidy_df, only.significant)
-    stats.label.color <- .prepare_stats_label_colors(tidy_df, tidy_df_labels, stats.label.color, package, palette)
+    stats.label.color <- .prepare_stats_label_colors(tidy_df, tidy_df_labels, stats.label.color, palette)
 
     plot_coef <- plot_coef +
       exec(
@@ -375,12 +376,13 @@ ggcoefstats <- function(
 }
 
 #' @noRd
-.prepare_stats_label_colors <- function(data, label_data, stats.label.color, package, palette) {
+.prepare_stats_label_colors <- function(data, label_data, stats.label.color, palette) {
   label_rows <- data$term %in% label_data$term
+  n_labels <- sum(label_rows)
 
-  if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(data$term))) {
-    all_colors <- paletteer::paletteer_d(paste0(package, "::", palette), length(data$term))
-    return(all_colors[label_rows])
+  if (is.null(stats.label.color)) {
+    .is_palette_sufficient(palette, n_labels)
+    return(paletteer::paletteer_d(palette, n_labels))
   }
 
   if (length(stats.label.color) > 1L) {

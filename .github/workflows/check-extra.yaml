@@ -13,5 +13,5 @@ jobs:
     uses: IndrajeetPatil/workflows/.github/workflows/check-extra.yaml@main
     with:
       extra-packages: |
-        any::ggstatsplot
+        local::.
         any::ggthemes

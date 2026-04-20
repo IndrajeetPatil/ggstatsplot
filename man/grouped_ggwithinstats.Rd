@@ -111,9 +111,9 @@ the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{package,palette}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+    \item{\code{palette}}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
     \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
 arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
 \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in mean plotting.}

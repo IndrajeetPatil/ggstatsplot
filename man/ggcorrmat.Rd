@@ -19,8 +19,7 @@ ggcorrmat(
   p.adjust.method = "holm",
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
@@ -97,9 +96,9 @@ avoid any of the following arguments since they are already internally
 being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors},
 \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
 
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+\item{palette}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{colors}{A vector of 3 colors for low, mid, and high correlation values.
 If set to \code{NULL}, manual specification of colors will be turned off and 3

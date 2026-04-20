@@ -72,11 +72,12 @@ ggbarstats <- function(
   xlab = NULL,
   ylab = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # data frame ------------------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
@@ -133,7 +134,7 @@ ggbarstats <- function(
   onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
 
   # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(package, palette, nlevels(pull(data, {{ x }})))
+  .is_palette_sufficient(palette, nlevels(pull(data, {{ x }})))
 
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
@@ -153,7 +154,7 @@ ggbarstats <- function(
     ggtheme +
     theme(panel.grid.major.x = element_blank()) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "", drop = FALSE)
+    paletteer::scale_fill_paletteer_d(palette, name = "", drop = FALSE)
 
   # proportion test ------------------------------------------
 

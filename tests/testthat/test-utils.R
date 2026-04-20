@@ -47,15 +47,26 @@ if (requireNamespace("patrick", quietly = TRUE)) {
   )
 }
 
+# .validate_palette ------------------------------------
+
+test_that(
+  ".validate_palette warns and returns default for old-style palette",
+  {
+    result <- suppressWarnings(.validate_palette("Dark2"))
+    expect_warning(.validate_palette("Dark2"), regexp = "not in the required")
+    expect_identical(result, "ggthemes::gdoc")
+    expect_identical(.validate_palette("ggthemes::gdoc"), "ggthemes::gdoc")
+  }
+)
+
 # .is_palette_sufficient ------------------------------------
 
 test_that(
   ".is_palette_sufficient is working",
   {
-    expect_no_condition(.is_palette_sufficient("RColorBrewer", "Dark2", 2L))
+    expect_no_condition(.is_palette_sufficient("ggthemes::gdoc", 2L))
 
-    withr::local_options(list(warn = 0L))
-    expect_snapshot(.is_palette_sufficient("RColorBrewer", "Dark2", 20L))
+    expect_snapshot(.is_palette_sufficient("ggthemes::gdoc", 30L), error = TRUE)
   }
 )
 

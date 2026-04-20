@@ -120,8 +120,7 @@ ggcorrmat(
   ## turn off default ggestatsplot theme overlay
   matrix.type = "lower", ## correlation matrix structure
   colors = NULL, ## turning off manual specification of colors
-  palette = "category10_d3", ## choosing a color palette
-  package = "ggsci", ## package to which color palette belongs
+  palette = "ggsci::category10_d3", ## choosing a color palette
   title = "Gapminder correlation matrix", ## custom title
   subtitle = "Source: Gapminder Foundation" ## custom subtitle
 )
