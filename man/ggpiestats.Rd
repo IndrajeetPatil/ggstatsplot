@@ -177,24 +177,26 @@ as a subtitle.
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
-\note{
-When \code{y} is provided and \code{x} has more than two levels, pairwise
-contingency table analyses (Fisher's exact tests) are computed using
-\code{\link[=pairwise_contingency_table]{pairwise_contingency_table()}}. These pairwise results are \strong{not}
-displayed in the plot because bar and pie charts lack a natural visual
-representation for pairwise significance annotations (unlike box/violin
-plots, which use bracket annotations). Additionally, there is no
-established convention for overlaying pairwise comparisons on pie charts,
-and \code{ggpiestats()} and \code{ggbarstats()} are designed to remain visually
-congruent. The pairwise results are available as a data frame via
-\code{extract_stats(plot)$pairwise_comparisons_data}.
-}
 \section{Summary of graphics}{
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
    pie slices \tab \code{ggplot2::geom_col()} \tab \code{NA} \cr
    labels \tab \code{ggplot2::geom_label()}/\code{ggrepel::geom_label_repel()} \tab \code{label.args} \cr
 }
+}
+
+\section{Pairwise comparisons}{
+
+When there is a two-way table and \code{x} has more than two levels, pairwise
+contingency table analyses (Fisher's exact tests) are computed using
+\code{\link[=pairwise_contingency_table]{pairwise_contingency_table()}}. These pairwise results are \strong{not}
+displayed in the plot because bar and pie charts lack a natural visual
+representation for pairwise significance annotations (unlike box/violin
+plots, which use bracket annotations). Additionally, there is no
+established convention for overlaying pairwise comparisons on pie charts,
+and both \code{ggpiestats()} and \code{ggbarstats()} are designed to remain visually
+congruent. The pairwise results are available as a data frame via
+\code{extract_stats(plot)$pairwise_comparisons_data}.
 }
 
 \section{Contingency table analyses}{

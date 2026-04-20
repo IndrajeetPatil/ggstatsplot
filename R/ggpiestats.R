@@ -38,15 +38,15 @@
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
-#' @note
-#' When `y` is provided and `x` has more than two levels, pairwise
+#' @section Pairwise comparisons:
+#' When there is a two-way table and `x` has more than two levels, pairwise
 #' contingency table analyses (Fisher's exact tests) are computed using
 #' [pairwise_contingency_table()]. These pairwise results are **not**
 #' displayed in the plot because bar and pie charts lack a natural visual
 #' representation for pairwise significance annotations (unlike box/violin
 #' plots, which use bracket annotations). Additionally, there is no
 #' established convention for overlaying pairwise comparisons on pie charts,
-#' and `ggpiestats()` and `ggbarstats()` are designed to remain visually
+#' and both `ggpiestats()` and `ggbarstats()` are designed to remain visually
 #' congruent. The pairwise results are available as a data frame via
 #' `extract_stats(plot)$pairwise_comparisons_data`.
 #'
@@ -189,7 +189,13 @@ ggpiestats <- function(
 
   # pairwise comparisons ------------------------------------------
 
-  if (test == "two.way" && x_levels > 2L && y_levels > 1L && results.subtitle && isFALSE(paired)) {
+  if (
+    test == "two.way" &&
+      x_levels > 2L &&
+      y_levels > 1L &&
+      results.subtitle &&
+      isFALSE(paired)
+  ) {
     mpc_df <- tryCatch(
       suppressWarnings(pairwise_contingency_table(
         data = data,

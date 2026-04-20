@@ -18,16 +18,7 @@
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
-#' @note
-#' When `x` has more than two levels, pairwise contingency table analyses
-#' (Fisher's exact tests) are computed using [pairwise_contingency_table()].
-#' These pairwise results are **not** displayed in the plot because bar and
-#' pie charts lack a natural visual representation for pairwise significance
-#' annotations (unlike box/violin plots, which use bracket annotations).
-#' Additionally, there is no established convention for overlaying pairwise
-#' comparisons on pie charts, and `ggbarstats()` and `ggpiestats()` are
-#' designed to remain visually congruent. The pairwise results are available
-#' as a data frame via `extract_stats(plot)$pairwise_comparisons_data`.
+#' @inheritSection ggpiestats Pairwise comparisons
 #'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
