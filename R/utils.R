@@ -13,8 +13,9 @@
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
 .grouped_list <- function(data, grouping.var) {
-  data <- as_tibble(data) %>%
-    mutate({{ grouping.var }} := if (is.factor({{ grouping.var }})) {{ grouping.var }} else forcats::fct_inorder({{ grouping.var }})) %>%
+  data <- as_tibble(data)
+  grp_col <- pull(data, {{ grouping.var }})
+  data <- mutate(data, {{ grouping.var }} := if (is.factor(grp_col)) grp_col else forcats::fct_inorder(grp_col)) %>%
     group_by({{ grouping.var }})
   list(data = group_split(data), title = as.character(pull(group_keys(data), 1L)))
 }
