@@ -2,6 +2,14 @@
 
 ## NEW FEATURES
 
+- `ggpiestats()` and `ggbarstats()` now compute pairwise contingency table
+  analyses (Fisher's exact tests via `pairwise_contingency_table()`) when `x`
+  has more than two levels. These are available via
+  `extract_stats(plot)$pairwise_comparisons_data`. A new `p.adjust.method`
+  parameter controls the *p*-value adjustment method (default: `"holm"`).
+  Pairwise results are not displayed on the plots since bar and pie charts lack
+  a natural visual representation for pairwise significance annotations (#554).
+
 - All top-level plotting functions now include an `alternative` argument, which
   is passed down to `{statsExpressions}` to specify the alternative hypothesis for
   effect size confidence intervals (#794).

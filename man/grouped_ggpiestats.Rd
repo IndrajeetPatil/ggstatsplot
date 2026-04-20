@@ -43,6 +43,9 @@ on the label in each pie slice. Possible options are \code{"percentage"}
     \item{\code{label.repel}}{Whether labels should be repelled using \code{{ggrepel}}
 package. This can be helpful in case of overlapping labels.}
     \item{\code{legend.title}}{Title text for the legend.}
+    \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}

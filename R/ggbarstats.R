@@ -18,6 +18,17 @@
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
+#' @note
+#' When `x` has more than two levels, pairwise contingency table analyses
+#' (Fisher's exact tests) are computed using [pairwise_contingency_table()].
+#' These pairwise results are **not** displayed in the plot because bar and
+#' pie charts lack a natural visual representation for pairwise significance
+#' annotations (unlike box/violin plots, which use bracket annotations).
+#' Additionally, there is no established convention for overlaying pairwise
+#' comparisons on pie charts, and `ggbarstats()` and `ggpiestats()` are
+#' designed to remain visually congruent. The pairwise results are available
+#' as a data frame via `extract_stats(plot)$pairwise_comparisons_data`.
+#'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
@@ -62,6 +73,7 @@ ggbarstats <- function(
   ratio = NULL,
   alternative = "two.sided",
   conf.level = 0.95,
+  p.adjust.method = "holm",
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
   prior.concentration = 1.0,
@@ -95,6 +107,8 @@ ggbarstats <- function(
 
   # x and y need to be a factor
   data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
+  x_levels <- nlevels(pull(data, {{ x }}))
+  y_levels <- nlevels(pull(data, {{ y }}))
 
   # TO DO: until one-way table is supported by `BayesFactor`
   # nocov start
@@ -131,6 +145,23 @@ ggbarstats <- function(
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       caption <- .extract_expression(caption_df)
     }
+  }
+
+  # pairwise comparisons ------------------------------------------
+
+  if (x_levels > 2L && y_levels > 1L && results.subtitle && isFALSE(paired)) {
+    mpc_df <- tryCatch(
+      suppressWarnings(pairwise_contingency_table(
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        digits = digits,
+        conf.level = conf.level,
+        alternative = alternative,
+        p.adjust.method = p.adjust.method
+      )),
+      error = function(e) NULL
+    )
   }
 
   # plot ------------------------------------------
