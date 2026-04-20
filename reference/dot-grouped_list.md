@@ -27,10 +27,25 @@ list equal to the factor levels of the grouping variable.
 ``` r
 ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #> $data
-#> $data$carni
+#> <list_of<
+#>   tbl_df<
+#>     name        : character
+#>     genus       : character
+#>     vore        : factor<0f172>
+#>     order       : character
+#>     conservation: character
+#>     sleep_total : double
+#>     sleep_rem   : double
+#>     sleep_cycle : double
+#>     awake       : double
+#>     brainwt     : double
+#>     bodywt      : double
+#>   >
+#> >[4]>
+#> [[1]]
 #> # A tibble: 19 × 11
 #>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-#>    <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+#>    <chr>  <chr> <fct> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
 #>  1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
 #>  2 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
 #>  3 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
@@ -52,38 +67,10 @@ ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #> 19 Red f… Vulp… carni Carn… NA                   9.8       2.4       0.35   14.2
 #> # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
 #> 
-#> $data$herbi
-#> # A tibble: 32 × 11
-#>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-#>    <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
-#>  1 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
-#>  2 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
-#>  3 Three… Brad… herbi Pilo… NA                  14.4       2.2       0.767   9.6
-#>  4 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
-#>  5 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7
-#>  6 Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6
-#>  7 Chinc… Chin… herbi Rode… domesticated        12.5       1.5       0.117  11.5
-#>  8 Tree … Dend… herbi Hyra… lc                   5.3       0.5      NA      18.7
-#>  9 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1
-#> 10 Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1
-#> # ℹ 22 more rows
-#> # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
-#> 
-#> $data$insecti
-#> # A tibble: 5 × 11
-#>   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-#>   <chr>   <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
-#> 1 Big br… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3
-#> 2 Little… Myot… inse… Chir… NA                  19.9       2         0.2     4.1
-#> 3 Giant … Prio… inse… Cing… en                  18.1       6.1      NA       5.9
-#> 4 Easter… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6
-#> 5 Short-… Tach… inse… Mono… NA                   8.6      NA        NA      15.4
-#> # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
-#> 
-#> $data$omni
+#> [[2]]
 #> # A tibble: 20 × 11
 #>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
-#>    <chr>  <chr> <chr> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+#>    <chr>  <chr> <fct> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
 #>  1 Owl m… Aotus omni  Prim… NA                  17         1.8      NA       7  
 #>  2 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
 #>  3 Grivet Cerc… omni  Prim… lc                  10         0.7      NA      14  
@@ -106,8 +93,36 @@ ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #> 20 Tree … Tupa… omni  Scan… NA                   8.9       2.6       0.233  15.1
 #> # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
 #> 
+#> [[3]]
+#> # A tibble: 32 × 11
+#>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+#>    <chr>  <chr> <fct> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+#>  1 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+#>  2 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+#>  3 Three… Brad… herbi Pilo… NA                  14.4       2.2       0.767   9.6
+#>  4 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+#>  5 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7
+#>  6 Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6
+#>  7 Chinc… Chin… herbi Rode… domesticated        12.5       1.5       0.117  11.5
+#>  8 Tree … Dend… herbi Hyra… lc                   5.3       0.5      NA      18.7
+#>  9 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1
+#> 10 Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+#> # ℹ 22 more rows
+#> # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
+#> 
+#> [[4]]
+#> # A tibble: 5 × 11
+#>   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+#>   <chr>   <chr> <fct> <chr> <chr>              <dbl>     <dbl>       <dbl> <dbl>
+#> 1 Big br… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3
+#> 2 Little… Myot… inse… Chir… NA                  19.9       2         0.2     4.1
+#> 3 Giant … Prio… inse… Cing… en                  18.1       6.1      NA       5.9
+#> 4 Easter… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6
+#> 5 Short-… Tach… inse… Mono… NA                   8.6      NA        NA      15.4
+#> # ℹ 2 more variables: brainwt <dbl>, bodywt <dbl>
+#> 
 #> 
 #> $title
-#> [1] "carni"   "herbi"   "insecti" "omni"   
+#> [1] "carni"   "omni"    "herbi"   "insecti"
 #> 
 ```

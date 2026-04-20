@@ -93,10 +93,25 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">ggstatsplot</span><span class="fu">:::</span><span class="fu">.grouped_list</span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>, grouping.var <span class="op">=</span> <span class="va">vore</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data$carni</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;list_of&lt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   tbl_df&lt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     name        : character</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     genus       : character</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     vore        : factor&lt;0f172&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     order       : character</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     conservation: character</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     sleep_total : double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     sleep_rem   : double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     sleep_cycle : double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     awake       : double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     brainwt     : double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     bodywt      : double</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   &gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;[4]&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 19 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Cheet… Acin… carni Carn… lc                  12.1      <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      11.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9</span>
@@ -118,38 +133,10 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> Red f… Vulp… carni Carn… <span style="color: #BB0000;">NA</span>                   9.8       2.4       0.35   14.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data$herbi</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Mount… Aplo… herbi Rode… nt                  14.4       2.4      <span style="color: #BB0000;">NA</span>       9.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Three… Brad… herbi Pilo… <span style="color: #BB0000;">NA</span>                  14.4       2.2       0.767   9.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Roe d… Capr… herbi Arti… lc                   3        <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      21  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Goat   Capri herbi Arti… lc                   5.3       0.6      <span style="color: #BB0000;">NA</span>      18.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Chinc… Chin… herbi Rode… domesticated        12.5       1.5       0.117  11.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Tree … Dend… herbi Hyra… lc                   5.3       0.5      <span style="color: #BB0000;">NA</span>      18.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Asian… Elep… herbi Prob… en                   3.9      <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      20.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 22 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data$insecti</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Big br… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Little… Myot… inse… Chir… <span style="color: #BB0000;">NA</span>                  19.9       2         0.2     4.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Giant … Prio… inse… Cing… en                  18.1       6.1      <span style="color: #BB0000;">NA</span>       5.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Easter… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Short-… Tach… inse… Mono… <span style="color: #BB0000;">NA</span>                   8.6      <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      15.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data$omni</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Owl m… Aotus omni  Prim… <span style="color: #BB0000;">NA</span>                  17         1.8      <span style="color: #BB0000;">NA</span>       7  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Grivet Cerc… omni  Prim… lc                  10         0.7      <span style="color: #BB0000;">NA</span>      14  </span>
@@ -172,9 +159,37 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> Tree … Tupa… omni  Scan… <span style="color: #BB0000;">NA</span>                   8.9       2.6       0.233  15.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 32 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Mount… Aplo… herbi Rode… nt                  14.4       2.4      <span style="color: #BB0000;">NA</span>       9.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Three… Brad… herbi Pilo… <span style="color: #BB0000;">NA</span>                  14.4       2.2       0.767   9.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Roe d… Capr… herbi Arti… lc                   3        <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      21  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Goat   Capri herbi Arti… lc                   5.3       0.6      <span style="color: #BB0000;">NA</span>      18.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Chinc… Chin… herbi Rode… domesticated        12.5       1.5       0.117  11.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Tree … Dend… herbi Hyra… lc                   5.3       0.5      <span style="color: #BB0000;">NA</span>      18.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Asian… Elep… herbi Prob… en                   3.9      <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      20.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 22 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Big br… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Little… Myot… inse… Chir… <span style="color: #BB0000;">NA</span>                  19.9       2         0.2     4.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Giant … Prio… inse… Cing… en                  18.1       6.1      <span style="color: #BB0000;">NA</span>       5.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Easter… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Short-… Tach… inse… Mono… <span style="color: #BB0000;">NA</span>                   8.6      <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>      15.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "carni"   "herbi"   "insecti" "omni"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "carni"   "omni"    "herbi"   "insecti"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
