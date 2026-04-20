@@ -127,7 +127,8 @@ Now that we have the data divided into the three relevant years in a
 list we’ll turn to
 [`purrr::pmap`](https://purrr.tidyverse.org/reference/pmap.html) to
 create a list of `ggplot` objects that we’ll make use of stored in
-`plot_list`. When you look at the documentation for `?pmap` it will
+`plot_list`. When you look at the documentation for
+[`?pmap`](https://purrr.tidyverse.org/reference/pmap.html) it will
 accept `.l` which is a list of lists. The length of `.l` determines the
 number of arguments that `.f` will be called with. List names will be
 used if present. `.f` is the function we want to apply (here,

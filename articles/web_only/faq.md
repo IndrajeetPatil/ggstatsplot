@@ -908,6 +908,44 @@ ggbetweenstats(mtcars, cyl, wt) +
 
 ![](faq_files/figure-html/coord_cartesian_pairwise-2.png)
 
+## 32. How can I create group-specific titles or subtitles in grouped plots?
+
+Not directly with the current grouped helper APIs.
+
+Functions like
+[`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)
+internally split the data by the grouping variable and use those split
+names while constructing the individual plots. This means the grouping
+labels are not exposed as a placeholder you can interpolate inside
+`title = ...`, `subtitle = ...`, or `ggplot.component = ...`.
+
+So if you need panel-specific text such as custom titles, subtitles, or
+captions derived from the grouping level, the current workaround is to
+split the data yourself, map over the groups, build the annotation from
+the group name, and then combine the plots:
+
+``` r
+
+library(dplyr)
+library(purrr)
+
+filter(ggplot2::mpg, drv != "4") %>%
+  split(.$drv) %>%
+  imap(~ ggbetweenstats(
+    data = .x,
+    x = year,
+    y = hwy,
+    title = paste0("Drive type: ", .y),
+    subtitle = paste0("Subset size: n = ", nrow(.x))
+  )) %>%
+  combine_plots()
+```
+
+![](faq_files/figure-html/grouped_dynamic_titles-1.png)
+
+If this ever needs to be supported directly in grouped helpers, that
+would require a dedicated feature addition rather than a small bug fix.
+
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an

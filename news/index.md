@@ -37,11 +37,26 @@
   now renders the overall annotation title in bold by default, matching
   the styling used for individual plot titles.
 
+- [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
+  and
+  [`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
+  now display a single unified legend when different groups have
+  different observed factor levels for the `x` variable. Previously,
+  `patchwork` could not merge the per-panel fill scales, producing
+  duplicate legends
+  ([\#868](https://github.com/IndrajeetPatil/ggstatsplot/issues/868)).
+
 - [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
   now preserves the model term order in the default top-to-bottom plot
   layout and in estimate-sorted displays, instead of showing terms in
   the reverse order
   ([\#642](https://github.com/IndrajeetPatil/ggstatsplot/issues/642)).
+
+- [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
+  no longer draws empty `stats.labels` boxes for model terms whose label
+  expression is absent, which affected mixed-model coefficient plots
+  such as the documented
+  [`lmer()`](https://rdrr.io/pkg/lme4/man/lmer.html) example.
 
 ## ggstatsplot 0.13.6
 

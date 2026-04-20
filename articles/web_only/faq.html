@@ -912,6 +912,40 @@ with <code>coord_cartesian(ylim = ...)</code>:</p>
 <p><img src="faq_files/figure-html/coord_cartesian_pairwise-2.png" class="r-plt" alt="" width="100%"></p>
 </div>
 <div class="section level2">
+<h2 id="how-can-i-create-group-specific-titles-or-subtitles-in-grouped-plots">32. How can I create group-specific titles or subtitles in grouped
+plots?<a class="anchor" aria-label="anchor" href="#how-can-i-create-group-specific-titles-or-subtitles-in-grouped-plots"></a>
+</h2>
+<p>Not directly with the current grouped helper APIs.</p>
+<p>Functions like <code><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats()</a></code> internally split
+the data by the grouping variable and use those split names while
+constructing the individual plots. This means the grouping labels are
+not exposed as a placeholder you can interpolate inside
+<code>title = ...</code>, <code>subtitle = ...</code>, or
+<code>ggplot.component = ...</code>.</p>
+<p>So if you need panel-specific text such as custom titles, subtitles,
+or captions derived from the grouping level, the current workaround is
+to split the data yourself, map over the groups, build the annotation
+from the group name, and then combine the plots:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">drv</span> <span class="op">!=</span> <span class="st">"4"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">drv</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html" class="external-link">imap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">.x</span>,</span>
+<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
+<span>    y <span class="op">=</span> <span class="va">hwy</span>,</span>
+<span>    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Drive type: "</span>, <span class="va">.y</span><span class="op">)</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Subset size: n = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/grouped_dynamic_titles-1.png" class="r-plt" alt="" width="100%"></p>
+<p>If this ever needs to be supported directly in grouped helpers, that
+would require a dedicated feature addition rather than a small bug
+fix.</p>
+</div>
+<div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
