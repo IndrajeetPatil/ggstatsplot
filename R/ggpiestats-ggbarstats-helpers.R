@@ -76,9 +76,10 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
   ) %>%
     rowwise() %>%
     mutate(
-      # nolint next: line_length_linter.
       .label = glue(
-        "list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ~italic(p)=='{format_value(p.value, digits)}', ~italic(n)=='{.prettyNum(counts)}')"
+        "list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ",
+        "~italic(p)=='{format_value(p.value, digits)}', ",
+        "~italic(n)=='{.prettyNum(counts)}')"
       ),
       .p.label = glue("list(~italic(p)=='{format_value(p.value, digits)}')")
     ) %>%
