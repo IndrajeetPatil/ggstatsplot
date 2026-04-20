@@ -195,7 +195,7 @@ test_that("pairwise comparisons data is returned for 3+ groups", {
   set.seed(123)
   stats_data <- extract_stats(ggbarstats(mtcars, cyl, am))
   expect_s3_class(stats_data$pairwise_comparisons_data, "tbl_df")
-  expect_equal(nrow(stats_data$pairwise_comparisons_data), 3L)
+  expect_identical(nrow(stats_data$pairwise_comparisons_data), 3L)
 
   # 2 levels: no pairwise data
   set.seed(123)
