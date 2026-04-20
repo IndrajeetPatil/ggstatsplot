@@ -345,8 +345,8 @@ extract_stats(p)
 #> # A tibble: 2 × 4
 #>   vs    counts  perc .label
 #>   <fct>  <int> <dbl> <chr> 
-#> 1 1         14  43.8 44%   
-#> 2 0         18  56.2 56%   
+#> 1 0         18  56.2 56%   
+#> 2 1         14  43.8 44%   
 #> 
 #> $one_sample_data
 #> NULL

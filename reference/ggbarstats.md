@@ -359,14 +359,15 @@ extract_stats(p)
 #> NULL
 #> 
 #> $descriptive_data
-#> # A tibble: 5 × 5
+#> # A tibble: 6 × 5
 #>   cyl   vs    counts   perc .label
 #>   <fct> <fct>  <int>  <dbl> <chr> 
-#> 1 4     1         10  90.9  91%   
-#> 2 6     1          4  57.1  57%   
-#> 3 4     0          1   9.09 9%    
-#> 4 6     0          3  42.9  43%   
+#> 1 4     0          1   9.09 9%    
+#> 2 4     1         10  90.9  91%   
+#> 3 6     0          3  42.9  43%   
+#> 4 6     1          4  57.1  57%   
 #> 5 8     0         14 100    100%  
+#> 6 8     1          0   0    NA    
 #> 
 #> $one_sample_data
 #> # A tibble: 3 × 19

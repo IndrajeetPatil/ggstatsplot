@@ -189,10 +189,10 @@ extract_stats(p2)
 #> # A tibble: 4 × 5
 #>   Sex    Survived counts  perc .label
 #>   <fct>  <fct>     <int> <dbl> <chr> 
-#> 1 Female Yes         316  74.4 74%   
-#> 2 Male   Yes         338  20.3 20%   
-#> 3 Female No          109  25.6 26%   
-#> 4 Male   No         1329  79.7 80%   
+#> 1 Female No          109  25.6 26%   
+#> 2 Female Yes         316  74.4 74%   
+#> 3 Male   No         1329  79.7 80%   
+#> 4 Male   Yes         338  20.3 20%   
 #> 
 #> $one_sample_data
 #> # A tibble: 2 × 19
@@ -242,10 +242,10 @@ extract_stats(p2)
 #> # A tibble: 4 × 5
 #>   Sex    Survived counts  perc .label
 #>   <fct>  <fct>     <int> <dbl> <chr> 
-#> 1 Female Yes          28  62.2 62%   
-#> 2 Male   Yes          29  45.3 45%   
-#> 3 Female No           17  37.8 38%   
-#> 4 Male   No           35  54.7 55%   
+#> 1 Female No           17  37.8 38%   
+#> 2 Female Yes          28  62.2 62%   
+#> 3 Male   No           35  54.7 55%   
+#> 4 Male   Yes          29  45.3 45%   
 #> 
 #> $one_sample_data
 #> # A tibble: 2 × 19
