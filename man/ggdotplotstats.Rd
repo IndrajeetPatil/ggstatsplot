@@ -185,12 +185,9 @@ For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \section{Summary of graphics}{
-\tabular{lll}{
-   graphical element \tab \code{geom} used \tab argument for further modification \cr
-   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
-   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
-   centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
-}
+
+
+\if{html}{\out{<div class="sourceCode {r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}">}}\preformatted{}\if{html}{\out{</div>}}
 }
 
 \section{One-sample tests}{

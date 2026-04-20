@@ -293,7 +293,7 @@
     ) +
     ggtheme +
     # no matter the theme, the following ought to be part of a ggstatsplot plot
-    theme(legend.position = "none") +
+    theme(legend.position = "none", panel.grid.major.x = element_blank()) +
     paletteer::scale_color_paletteer_d(palette) +
     scale_y_continuous(
       sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)

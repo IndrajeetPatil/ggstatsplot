@@ -167,13 +167,9 @@ times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.
 }
 \section{Summary of graphics}{
-\tabular{lll}{
-   graphical element \tab \code{geom} used \tab argument for further modification \cr
-   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
-   labels for raw data \tab \code{ggrepel::geom_label_repel()} \tab \code{point.label.args} \cr
-   smooth line \tab \code{ggplot2::geom_smooth()} \tab \code{smooth.line.args} \cr
-   marginal histograms \tab \code{ggside::geom_xsidehistogram()}, \code{ggside::geom_ysidehistogram()} \tab \code{xsidehistogram.args}, \code{ysidehistogram.args} \cr
-}
+
+
+\if{html}{\out{<div class="sourceCode {r child="man/rmd-fragments/ggscatterstats_graphics.Rmd"}">}}\preformatted{}\if{html}{\out{</div>}}
 }
 
 \section{Correlation analyses}{
