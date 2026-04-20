@@ -234,7 +234,9 @@ ggbetweenstats <- function(
       nboot = nboot
     )
 
-    if (test == "t") .f.args$alternative <- alternative
+    if (test == "t") {
+      .f.args$alternative <- alternative
+    }
 
     .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
@@ -288,14 +290,14 @@ ggbetweenstats <- function(
 
     # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(
-      plot             = plot_comparison,
-      mpc_df           = mpc_df,
-      data             = data,
-      x                = {{ x }},
-      y                = {{ y }},
+      plot = plot_comparison,
+      mpc_df = mpc_df,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       pairwise.display = pairwise.display,
-      pairwise.alpha   = pairwise.alpha,
-      ggsignif.args    = ggsignif.args
+      pairwise.alpha = pairwise.alpha,
+      ggsignif.args = ggsignif.args
     )
 
     # secondary label axis to give pairwise comparisons test details
@@ -309,16 +311,16 @@ ggbetweenstats <- function(
   # annotations ------------------------
 
   .aesthetic_addon(
-    plot             = plot_comparison,
-    x                = pull(data, {{ x }}),
-    xlab             = xlab %||% as_name(x),
-    ylab             = ylab %||% as_name(y),
-    title            = title,
-    subtitle         = subtitle,
-    caption          = caption,
-    seclabel         = seclabel,
-    ggtheme          = ggtheme,
-    palette          = palette,
+    plot = plot_comparison,
+    x = pull(data, {{ x }}),
+    xlab = xlab %||% as_name(x),
+    ylab = ylab %||% as_name(y),
+    title = title,
+    subtitle = subtitle,
+    caption = caption,
+    seclabel = seclabel,
+    ggtheme = ggtheme,
+    palette = palette,
     ggplot.component = ggplot.component
   )
 }

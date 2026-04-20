@@ -9,5 +9,3 @@ name: test-coverage
 jobs:
   test-coverage:
     uses: IndrajeetPatil/workflows/.github/workflows/test-coverage.yaml@main
-    with:
-      runner-os: macos-latest

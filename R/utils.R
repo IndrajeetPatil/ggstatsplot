@@ -24,16 +24,28 @@
   }
   data <- mutate(data, {{ grouping.var }} := grp_fct) %>%
     group_by({{ grouping.var }})
-  list(data = group_split(data), title = as.character(pull(group_keys(data), 1L)))
+  list(
+    data = group_split(data),
+    title = as.character(pull(group_keys(data), 1L))
+  )
 }
 
 
 #' @noRd
 .validate_palette <- function(palette, default = "ggthemes::gdoc") {
-  if (!grepl("::", palette, fixed = TRUE)) { # nocov start
+  if (!grepl("::", palette, fixed = TRUE)) {
+    # nocov start
     rlang::warn(c(
-      "!" = paste0("Palette '", palette, "' is not in the required 'package::palette' format."),
-      i = paste0("Ignoring it and using the default palette '", default, "' instead."),
+      "!" = paste0(
+        "Palette '",
+        palette,
+        "' is not in the required 'package::palette' format."
+      ),
+      i = paste0(
+        "Ignoring it and using the default palette '",
+        default,
+        "' instead."
+      ),
       "*" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
     ))
     return(default)
@@ -56,12 +68,24 @@
 .is_palette_sufficient <- function(palette, min_length) {
   parts <- strsplit(palette, "::", fixed = TRUE)[[1L]]
   d <- paletteer::palettes_d_names
-  palette_length <- d[d$package == parts[[1L]] & d$palette == parts[[2L]], "length", drop = TRUE]
+  palette_length <- d[
+    d$package == parts[[1L]] & d$palette == parts[[2L]],
+    "length",
+    drop = TRUE
+  ]
   n_available <- if (length(palette_length) == 0L) 0L else palette_length
 
   if (n_available < min_length) {
     rlang::abort(c(
-      x = paste0("Palette '", palette, "' has only ", n_available, " colors, but ", min_length, " are needed."),
+      x = paste0(
+        "Palette '",
+        palette,
+        "' has only ",
+        n_available,
+        " colors, but ",
+        min_length,
+        " are needed."
+      ),
       i = "Select a `palette` with enough colors. Run `View(paletteer::palettes_d_names)` to see options."
     ))
   }
@@ -80,4 +104,6 @@
 
 
 #' @noRd
-.extract_expression <- function(data) purrr::pluck(data, "expression", 1L, .default = NULL)
+.extract_expression <- function(data) {
+  purrr::pluck(data, "expression", 1L, .default = NULL)
+}

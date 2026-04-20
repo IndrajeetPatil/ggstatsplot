@@ -4,7 +4,12 @@ library(magrittr)
 movies_wide <-
   ggplot2movies::movies %>%
   dplyr::select(c(title:votes, mpaa:Short)) %>%
-  dplyr::filter(nzchar(mpaa), mpaa != "NC-17", Short != 1L, Documentary != 1L) %>%
+  dplyr::filter(
+    nzchar(mpaa),
+    mpaa != "NC-17",
+    Short != 1L,
+    Documentary != 1L
+  ) %>%
   dplyr::select(-c(Short, Documentary)) %>%
   tidyr::drop_na() %>%
   dplyr::mutate(

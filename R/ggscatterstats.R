@@ -93,7 +93,12 @@ ggscatterstats <- function(
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e6),
-  smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
+  smooth.line.args = list(
+    linewidth = 1.5,
+    color = "blue",
+    method = "lm",
+    formula = y ~ x
+  ),
   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
   xlab = NULL,
@@ -137,7 +142,10 @@ ggscatterstats <- function(
 
   # basic plot ------------------------------------------
 
-  pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
+  pos <- position_jitter(
+    width = point.width.jitter,
+    height = point.height.jitter
+  )
 
   plot_scatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
@@ -149,7 +157,9 @@ ggscatterstats <- function(
     label.var <- ensym(label.var)
 
     # select data based on expression
-    if (!quo_is_null(enquo(label.expression))) data %<>% filter(!!enexpr(label.expression))
+    if (!quo_is_null(enquo(label.expression))) {
+      data %<>% filter(!!enexpr(label.expression))
+    }
 
     # display points labels using `geom_repel_label`
     plot_scatter <- plot_scatter +
@@ -167,11 +177,11 @@ ggscatterstats <- function(
 
   plot_scatter <- plot_scatter +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = ylab %||% as_name(y),
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
@@ -180,8 +190,16 @@ ggscatterstats <- function(
 
   if (isTRUE(marginal)) {
     plot_scatter <- plot_scatter +
-      .eval_f(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
-      .eval_f(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
+      .eval_f(
+        ggside::geom_xsidehistogram,
+        mapping = aes(y = after_stat(count)),
+        !!!xsidehistogram.args
+      ) +
+      .eval_f(
+        ggside::geom_ysidehistogram,
+        mapping = aes(x = after_stat(count)),
+        !!!ysidehistogram.args
+      ) +
       ggside::scale_ysidex_continuous() +
       ggside::scale_xsidey_continuous()
   }

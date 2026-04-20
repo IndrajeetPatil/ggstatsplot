@@ -76,7 +76,11 @@ gghistostats <- function(
   bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+  centrality.line.args = list(
+    color = "blue",
+    linewidth = 1,
+    linetype = "dashed"
+  ),
   ggplot.component = NULL,
   ...
 ) {
@@ -118,7 +122,7 @@ gghistostats <- function(
   plot_hist <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
-      mapping  = aes(y = after_stat(count), fill = after_stat(count)),
+      mapping = aes(y = after_stat(count), fill = after_stat(count)),
       binwidth = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
@@ -148,11 +152,11 @@ gghistostats <- function(
 
   plot_hist +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = "count",
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = "count",
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
@@ -160,7 +164,9 @@ gghistostats <- function(
 
 
 #' @noRd
-.binwidth <- function(x) (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) / sqrt(length(x))
+.binwidth <- function(x) {
+  (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) / sqrt(length(x))
+}
 
 
 #' @title Grouped histograms for distribution of a numeric variable

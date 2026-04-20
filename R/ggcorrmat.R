@@ -79,7 +79,11 @@ ggcorrmat <- function(
   bf.prior = 0.707,
   p.adjust.method = "holm",
   pch = "cross",
-  ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
+  ggcorrplot.args = list(
+    method = "square",
+    outline.color = "black",
+    pch.cex = 14
+  ),
   palette = "ggthemes::gdoc",
   colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -91,22 +95,24 @@ ggcorrmat <- function(
 ) {
   palette <- .validate_palette(palette)
   type <- stats_type_switch(type)
-  if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
+  if (!missing(cor.vars)) {
+    data <- select(data, {{ cor.vars }})
+  }
 
   # statistical analysis ------------------------------------------
 
   mpc_df <- correlation::correlation(
-    data             = data,
-    rename           = cor.vars.names,
-    method           = ifelse(type == "nonparametric", "spearman", "pearson"),
-    p_adjust         = p.adjust.method,
-    ci               = conf.level,
-    bayesian         = type == "bayes",
-    bayesian_prior   = bf.prior,
-    tr               = tr,
-    partial          = partial,
+    data = data,
+    rename = cor.vars.names,
+    method = ifelse(type == "nonparametric", "spearman", "pearson"),
+    p_adjust = p.adjust.method,
+    ci = conf.level,
+    bayesian = type == "bayes",
+    bayesian_prior = bf.prior,
+    tr = tr,
+    partial = partial,
     partial_bayesian = type == "bayes" && partial,
-    winsorize        = ifelse(type == "robust", tr, FALSE)
+    winsorize = ifelse(type == "robust", tr, FALSE)
   )
 
   # type of correlation and if it is a partial correlation
@@ -118,15 +124,23 @@ ggcorrmat <- function(
   # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
-      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))),
+      atop(
+        scriptstyle(bold("sample sizes:")),
+        italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))
+      ),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
     legend.title <- bquote(atop(
       atop(
-        atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
         atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(mpc_df$n_Obs))),
+          scriptstyle(bold("sample sizes:")),
+          italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))
+        ),
+        atop(
+          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(
+            mpc_df$n_Obs
+          ))),
           italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
         )
       ),
@@ -136,16 +150,16 @@ ggcorrmat <- function(
 
   plot_corr <- .eval_f(
     ggcorrplot::ggcorrplot,
-    corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
-    p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
-    sig.level    = ifelse(type == "bayes", Inf, sig.level),
-    ggtheme      = ggtheme,
-    colors       = colors %||% paletteer::paletteer_d(palette, 3L),
-    type         = matrix.type,
-    lab          = TRUE,
-    pch          = pch,
+    corr = as.matrix(select(mpc_df, matches("^parameter|^r"))),
+    p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
+    sig.level = ifelse(type == "bayes", Inf, sig.level),
+    ggtheme = ggtheme,
+    colors = colors %||% paletteer::paletteer_d(palette, 3L),
+    type = matrix.type,
+    lab = TRUE,
+    pch = pch,
     legend.title = legend.title,
-    digits       = digits,
+    digits = digits,
     !!!ggcorrplot.args
   )
 
@@ -156,8 +170,14 @@ ggcorrmat <- function(
       atop(
         displaystyle(top.text),
         expr = paste(
-          bold("X"), " = non-significant at ",
-          italic("p"), " < ", sig.level, " (Adjustment: ", adj.text, ")"
+          bold("X"),
+          " = non-significant at ",
+          italic("p"),
+          " < ",
+          sig.level,
+          " (Adjustment: ",
+          adj.text,
+          ")"
         )
       ),
       env = list(
@@ -174,14 +194,14 @@ ggcorrmat <- function(
     theme(
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.title     = element_text(size = 15)
+      legend.title = element_text(size = 15)
     ) +
     labs(
-      title    = title,
+      title = title,
       subtitle = subtitle,
-      caption  = caption,
-      x        = NULL,
-      y        = NULL
+      caption = caption,
+      x = NULL,
+      y = NULL
     ) +
     ggplot.component
 }

@@ -34,6 +34,7 @@ README.html
 ^\cache$
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
+^air\.toml$
 ^appveyor\.yml$
 ^codecov\.yaml$
 ^codemeta\.json$

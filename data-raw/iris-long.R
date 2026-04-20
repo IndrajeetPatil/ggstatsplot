@@ -15,7 +15,10 @@ iris_long <- datasets::iris |>
     sep = "\\.",
     convert = TRUE
   ) |>
-  dplyr::mutate(across(where(purrr::is_bare_character, ~ droplevels(as.factor(.x))))) |>
+  dplyr::mutate(across(where(
+    purrr::is_bare_character,
+    ~ droplevels(as.factor(.x))
+  ))) |>
   dplyr::select(id, dplyr::everything()) |>
   tibble::as_tibble()
 

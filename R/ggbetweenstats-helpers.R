@@ -54,7 +54,12 @@
   ),
   ...
 ) {
-  centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
+  centrality_df <- suppressWarnings(centrality_description(
+    data,
+    {{ x }},
+    {{ y }},
+    ...
+  ))
 
   # lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
@@ -138,8 +143,12 @@
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
-    if (startsWith(pairwise.display, "s")) mpc_df %<>% filter(p.value < pairwise.alpha) # sig
-    if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= pairwise.alpha) # non-sig
+    if (startsWith(pairwise.display, "s")) {
+      mpc_df %<>% filter(p.value < pairwise.alpha)
+    } # sig
+    if (startsWith(pairwise.display, "n")) {
+      mpc_df %<>% filter(p.value >= pairwise.alpha)
+    } # non-sig
 
     # proceed only if there are any significant comparisons to display
     if (nrow(mpc_df) == 0L) {
@@ -238,9 +247,11 @@
     "all"
   }
 
-  parse(text = glue(
-    "list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'), alpha == {alpha_label})"
-  ))
+  parse(
+    text = glue(
+      "list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'), alpha == {alpha_label})"
+    )
+  )
 }
 
 
@@ -273,18 +284,20 @@
 
   plot +
     labs(
-      x        = xlab,
-      y        = ylab,
-      title    = title,
+      x = xlab,
+      y = ylab,
+      title = title,
       subtitle = subtitle,
-      caption  = caption,
-      color    = xlab
+      caption = caption,
+      color = xlab
     ) +
     ggtheme +
     # no matter the theme, the following ought to be part of a ggstatsplot plot
     theme(legend.position = "none") +
     paletteer::scale_color_paletteer_d(palette) +
-    scale_y_continuous(sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)) +
+    scale_y_continuous(
+      sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)
+    ) +
     # this is the hail mary way for users to override these defaults
     ggplot.component
 }
