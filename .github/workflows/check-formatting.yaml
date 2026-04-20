@@ -5,4 +5,4 @@ on:
 
 jobs:
   format:
-    uses: IndrajeetPatil/workflows/.github/workflows/check-formatting.yaml@feature/generic-formatting
+    uses: IndrajeetPatil/workflows/.github/workflows/check-formatting.yaml@main
