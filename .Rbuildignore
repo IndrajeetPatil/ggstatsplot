@@ -34,6 +34,7 @@ README.html
 ^\cache$
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
+^air\.toml$
 ^appveyor\.yml$
 ^codecov\.yaml$
 ^codemeta\.json$
@@ -42,7 +43,6 @@ README.html
 ^doc$
 ^docs$
 ^hextools/.
-^air\.toml$
 ^lychee\.toml$
 ^man-roxygen$
 ^old/.

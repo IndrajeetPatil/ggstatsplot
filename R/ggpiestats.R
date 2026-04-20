@@ -135,15 +135,19 @@ ggpiestats <- function(
   y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
 
   # one-way table not supported in `BayesFactor` ATM (richarddmorey/BayesFactor#159)
-  if (test == "two.way" && y_levels == 1L) { # nocov start
+  # nocov start
+  if (test == "two.way" && y_levels == 1L) {
     bf.message <- FALSE
-  } # nocov end
+  }
+  # nocov end
 
   # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
-  if ((x_levels == 1L && facet) || type == "bayes") { # nocov start
+  # nocov start
+  if ((x_levels == 1L && facet) || type == "bayes") {
     proportion.test <- FALSE
-  } # nocov end
+  }
+  # nocov end
 
   # statistical analysis ------------------------------------------
 
