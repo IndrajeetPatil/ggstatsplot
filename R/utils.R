@@ -16,9 +16,8 @@
   grp_var <- enquo(grouping.var)
   grp_name <- as_name(grp_var)
   data <- as_tibble(data)
-  grp_col <- data[[grp_name]]
-  if (!is.factor(grp_col)) {
-    data[[grp_name]] <- factor(grp_col, levels = unique(grp_col))
+  if (!is.factor(data[[grp_name]])) {
+    data[[grp_name]] <- forcats::fct_inorder(data[[grp_name]])
   }
   data %>%
     split(f = new_formula(NULL, grp_var), drop = TRUE) %>%
