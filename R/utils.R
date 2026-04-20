@@ -13,15 +13,10 @@
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
 .grouped_list <- function(data, grouping.var) {
-  grp_var <- enquo(grouping.var)
-  grp_name <- as_name(grp_var)
-  data <- as_tibble(data)
-  if (!is.factor(data[[grp_name]])) {
-    data[[grp_name]] <- forcats::fct_inorder(data[[grp_name]])
-  }
-  data %>%
-    split(f = new_formula(NULL, grp_var), drop = TRUE) %>%
-    list(data = ., title = names(.))
+  data <- as_tibble(data) %>%
+    mutate({{ grouping.var }} := if (is.factor({{ grouping.var }})) {{ grouping.var }} else forcats::fct_inorder({{ grouping.var }})) %>%
+    group_by({{ grouping.var }})
+  list(data = group_split(data), title = as.character(pull(group_keys(data), 1L)))
 }
 
 

@@ -21,7 +21,7 @@ test_that(
       val = 1:15
     )
     result <- .grouped_list(df, grouping.var = grp)
-    expect_equal(result$title, c("c", "a", "b"))
+    expect_identical(result$title, c("c", "a", "b"))
   }
 )
 
