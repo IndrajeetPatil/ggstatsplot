@@ -12,14 +12,16 @@ descriptive_data <- function(
   all_lvls <- levels(pull(data, {{ x }}))
 
   .cat_counter(data, {{ x }}, {{ y }}) %>%
+    # Drop unused factor levels (including any absent y levels after filtering)
+    # before complete() so it only expands to observed y groups, not all
+    # factor levels defined on y that happen to have no data in this subset.
+    droplevels() %>%
     # Normalize x to a plain (unordered) factor so tidyr::complete()'s internal
     # full_join does not fail when the original x was an ordered factor.
     mutate({{ x }} := factor({{ x }}, all_lvls, ordered = FALSE)) %>%
     # Fill in zero-count rows for missing (y, x) combinations so all panels
     # produce structurally identical data; patchwork can then deduplicate guides.
-    # nesting() restricts y to observed levels only, preventing empty bars for
-    # factor levels that are defined but absent in this data subset.
-    tidyr::complete(tidyr::nesting({{ y }}), {{ x }} := factor(all_lvls, all_lvls), fill = list(counts = 0L, perc = 0)) %>%
+    tidyr::complete({{ y }}, {{ x }} := factor(all_lvls, all_lvls), fill = list(counts = 0L, perc = 0)) %>%
     mutate(
       .label = if_else(
         counts == 0L,
