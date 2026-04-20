@@ -34,6 +34,11 @@
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
 #'   respective `geom_`s from the `{ggside}` package to change the marginal
 #'   distribution histograms plots.
+#' @param xsidehistogram.scale,ysidehistogram.scale A list of arguments passed
+#'   to `ggside::scale_xsidey_continuous()` and
+#'   `ggside::scale_ysidex_continuous()`, respectively, to control the
+#'   scale of marginal histograms (e.g., `breaks`, `limits`, `transform`).
+#'   Default is `list()` (no modifications).
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
@@ -101,6 +106,8 @@ ggscatterstats <- function(
   ),
   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  xsidehistogram.scale = list(),
+  ysidehistogram.scale = list(),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -189,6 +196,13 @@ ggscatterstats <- function(
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
+    if (!any(c("bins", "binwidth") %in% names(xsidehistogram.args))) {
+      xsidehistogram.args[["bins"]] <- nclass.Sturges(data[[as_name(x)]])
+    }
+    if (!any(c("bins", "binwidth") %in% names(ysidehistogram.args))) {
+      ysidehistogram.args[["bins"]] <- nclass.Sturges(data[[as_name(y)]])
+    }
+
     plot_scatter <- plot_scatter +
       .eval_f(
         ggside::geom_xsidehistogram,
@@ -200,8 +214,8 @@ ggscatterstats <- function(
         mapping = aes(x = after_stat(count)),
         !!!ysidehistogram.args
       ) +
-      ggside::scale_ysidex_continuous() +
-      ggside::scale_xsidey_continuous()
+      exec(ggside::scale_ysidex_continuous, !!!ysidehistogram.scale) +
+      exec(ggside::scale_xsidey_continuous, !!!xsidehistogram.scale)
   }
 
   plot_scatter

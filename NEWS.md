@@ -10,6 +10,14 @@
   Pairwise results are not displayed on the plots since bar and pie charts lack
   a natural visual representation for pairwise significance annotations (#554).
 
+- `ggscatterstats()` now sets a default number of bins for marginal
+  histograms, suppressing the `stat_bin()` message about picking a better
+  binwidth (#810).
+
+- `ggscatterstats()` gains `xsidehistogram.scale` and `ysidehistogram.scale`
+  parameters to control the scale (e.g., `breaks`, `limits`, `transform`) of
+  the marginal distribution histograms (#898).
+
 - All top-level plotting functions now include an `alternative` argument, which
   is passed down to `{statsExpressions}` to specify the alternative hypothesis for
   effect size confidence intervals (#794).
