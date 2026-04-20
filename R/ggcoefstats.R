@@ -387,5 +387,5 @@ ggcoefstats <- function(
     return(stats.label.color[label_rows])
   }
 
-  stats.label.color
+  stats.label.color # nocov
 }

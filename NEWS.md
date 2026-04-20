@@ -25,6 +25,11 @@
 - `combine_plots()` now renders the overall annotation title in bold by
   default, matching the styling used for individual plot titles.
 
+- `grouped_ggbarstats()` and `grouped_ggpiestats()` now display a single
+  unified legend when different groups have different observed factor levels for
+  the `x` variable. Previously, `patchwork` could not merge the per-panel fill
+  scales, producing duplicate legends (#868).
+
 - `ggcoefstats()` now preserves the model term order in the default top-to-bottom
   plot layout and in estimate-sorted displays, instead of showing terms in the
   reverse order (#642).
