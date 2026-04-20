@@ -218,6 +218,9 @@ test_that(
         trans %in% c("auto(l4)", "auto(l5)")
       )
 
+    # arm64 macOS produces sub-pixel SVG coordinate differences vs x86_64 Linux
+    skip_on_os("mac")
+
     # when arguments are entered as bare expressions
     set.seed(123)
     expect_doppelganger(
