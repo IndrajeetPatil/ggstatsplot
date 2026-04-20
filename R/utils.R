@@ -13,7 +13,7 @@
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
 .grouped_list <- function(data, grouping.var) {
-  data <- as_tibble(data)
+  data <- as_tibble(data) %>% tidyr::drop_na({{ grouping.var }})
   grp_col <- pull(data, {{ grouping.var }})
   grp_fct <- if (is.factor(grp_col)) {
     grp_col

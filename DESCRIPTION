@@ -55,6 +55,7 @@ Suggests:
     metaBMA,
     metafor,
     metaplus,
+    patrick,
     psych,
     rmarkdown,
     rstantools,
