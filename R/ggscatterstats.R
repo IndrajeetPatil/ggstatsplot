@@ -79,6 +79,18 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
+#' # customize marginal histogram bins and scales
+#' ggscatterstats(
+#'   mtcars,
+#'   x = wt,
+#'   y = mpg,
+#'   results.subtitle = FALSE,
+#'   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, binwidth = 0.5),
+#'   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, bins = 15),
+#'   xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
+#'   ysidehistogram.scale = list(breaks = seq(0, 15, 5))
+#' )
+#'
 #' @export
 ggscatterstats <- function(
   data,
@@ -197,10 +209,10 @@ ggscatterstats <- function(
 
   if (isTRUE(marginal)) {
     if (!any(c("bins", "binwidth") %in% names(xsidehistogram.args))) {
-      xsidehistogram.args[["bins"]] <- nclass.Sturges(data[[as_name(x)]])
+      xsidehistogram.args[["bins"]] <- 30L
     }
     if (!any(c("bins", "binwidth") %in% names(ysidehistogram.args))) {
-      ysidehistogram.args[["bins"]] <- nclass.Sturges(data[[as_name(y)]])
+      ysidehistogram.args[["bins"]] <- 30L
     }
 
     plot_scatter <- plot_scatter +

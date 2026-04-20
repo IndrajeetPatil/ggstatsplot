@@ -2,9 +2,9 @@
 
 ## NEW FEATURES
 
-- `ggscatterstats()` now computes a default number of bins for marginal
-  histograms using Sturges' rule, suppressing the `stat_bin()` message about
-  picking a better binwidth (#810).
+- `ggscatterstats()` now sets a default number of bins for marginal
+  histograms, suppressing the `stat_bin()` message about picking a better
+  binwidth (#810).
 
 - `ggscatterstats()` gains `xsidehistogram.scale` and `ysidehistogram.scale`
   parameters to control the scale (e.g., `breaks`, `limits`, `transform`) of
