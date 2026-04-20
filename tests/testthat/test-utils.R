@@ -13,6 +13,18 @@ test_that(
   }
 )
 
+test_that(
+  ".grouped_list preserves original order of grouping variable (issue #792)",
+  {
+    df <- tibble::tibble(
+      grp = c(rep("c", 5L), rep("a", 5L), rep("b", 5L)),
+      val = 1:15
+    )
+    result <- .grouped_list(df, grouping.var = grp)
+    expect_equal(result$title, c("c", "a", "b"))
+  }
+)
+
 # .is_palette_sufficient ------------------------------------
 
 test_that(
