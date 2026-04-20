@@ -102,8 +102,7 @@ test_that(
         conf.level = 0.99,
         exclude.intercept = TRUE,
         only.significant = TRUE,
-        package = "ggsci",
-        palette = "category20c_d3",
+        palette = "ggsci::category20c_d3",
         digits = 3L
       ))
     )
@@ -236,7 +235,7 @@ test_that("stats label helpers cover filtering and color branches", {
   )
 
   label_data <- tibble::tibble(term = "a", expression = list("alpha"))
-  expected_color <- unname(as.character(paletteer::paletteer_d("ggthemes::gdoc", 3L)[1L]))
+  expected_color <- unname(as.character(paletteer::paletteer_d("ggthemes::gdoc", 1L)))
 
   expect_identical(
     unname(as.character(.prepare_stats_label_colors(df_labels, label_data, NULL, "ggthemes::gdoc"))),
@@ -258,12 +257,23 @@ test_that("stats label helpers cover filtering and color branches", {
     "firebrick"
   )
 
+  # 30 total terms but only 1 labeled — no error even with small palette
+  expect_no_error(
+    .prepare_stats_label_colors(
+      tibble::tibble(term = letters[1:30], expression = rep(list("alpha"), 30L)),
+      label_data, # label_data has only term "a"
+      NULL,
+      "ggthemes::gdoc"
+    )
+  )
+
+  # error only when labeled terms exceed palette size
   expect_error(
     .prepare_stats_label_colors(
       tibble::tibble(term = letters[1:30], expression = rep(list("alpha"), 30L)),
-      label_data,
+      tibble::tibble(term = letters[1:30], expression = rep(list("alpha"), 30L)),
       NULL,
-      "ggthemes::gdoc"
+      "ggthemes::gdoc" # 24 colors, not enough for 30 labeled terms
     )
   )
 })

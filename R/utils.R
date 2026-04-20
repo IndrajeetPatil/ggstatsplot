@@ -33,8 +33,8 @@
   if (!grepl("::", palette, fixed = TRUE)) {
     rlang::warn(c(
       "!" = paste0("Palette '", palette, "' is not in the required 'package::palette' format."),
-      "i" = paste0("Ignoring it and using the default palette '", default, "' instead."),
-      "i" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
+      i = paste0("Ignoring it and using the default palette '", default, "' instead."),
+      "*" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
     ))
     return(default)
   }
@@ -54,7 +54,7 @@
 #' @autoglobal
 #' @keywords internal
 .is_palette_sufficient <- function(palette, min_length) {
-  parts <- strsplit(palette, "::")[[1L]]
+  parts <- strsplit(palette, "::", fixed = TRUE)[[1L]]
   d <- paletteer::palettes_d_names
   palette_length <- d[d$package == parts[[1L]] & d$palette == parts[[2L]], "length", drop = TRUE]
   n_available <- if (length(palette_length) == 0L) 0L else palette_length

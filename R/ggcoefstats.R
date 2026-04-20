@@ -378,11 +378,11 @@ ggcoefstats <- function(
 #' @noRd
 .prepare_stats_label_colors <- function(data, label_data, stats.label.color, palette) {
   label_rows <- data$term %in% label_data$term
+  n_labels <- sum(label_rows)
 
   if (is.null(stats.label.color)) {
-    .is_palette_sufficient(palette, length(data$term))
-    all_colors <- paletteer::paletteer_d(palette, length(data$term))
-    return(all_colors[label_rows])
+    .is_palette_sufficient(palette, n_labels)
+    return(paletteer::paletteer_d(palette, n_labels))
   }
 
   if (length(stats.label.color) > 1L) {

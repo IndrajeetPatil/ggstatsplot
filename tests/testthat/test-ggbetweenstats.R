@@ -148,8 +148,7 @@ test_that(
         grouping.var     = genre,
         ggsignif.args    = list(textsize = 4, tip_length = 0.01),
         p.adjust.method  = "bonferroni",
-        palette          = "default_jama",
-        package          = "ggsci",
+        palette          = "ggsci::default_jama",
         plotgrid.args    = list(nrow = 1),
         annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
       )
