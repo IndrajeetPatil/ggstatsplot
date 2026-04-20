@@ -39,11 +39,9 @@ context, run the following code in your `R` console:
 
 ``` r
 citation("ggstatsplot")
-To cite package 'ggstatsplot' in publications use:
-
-  Patil, I. (2021). Visualizations with statistical details: The
-  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-  doi:10.21105/joss.03167
+Patil, I. (2021). Visualizations with statistical details: The
+'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 

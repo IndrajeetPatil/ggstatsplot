@@ -65,8 +65,6 @@
 <polyline points='41.96,299.01 355.02,299.01 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='41.96,192.28 355.02,192.28 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='41.96,85.56 355.02,85.56 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='127.34,533.80 127.34,64.21 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='269.64,533.80 269.64,64.21 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='269.64' cy='128.25' r='3.52' style='stroke-width: 0.64; stroke: #EA4335; stroke-opacity: 0.50; fill: #EA4335; fill-opacity: 0.50;' />
 <circle cx='269.64' cy='85.56' r='3.52' style='stroke-width: 0.64; stroke: #EA4335; stroke-opacity: 0.50; fill: #EA4335; fill-opacity: 0.50;' />
 <circle cx='269.64' cy='85.56' r='3.52' style='stroke-width: 0.64; stroke: #EA4335; stroke-opacity: 0.50; fill: #EA4335; fill-opacity: 0.50;' />
@@ -360,8 +358,6 @@
 <polyline points='396.48,299.01 709.54,299.01 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='396.48,192.28 709.54,192.28 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='396.48,85.56 709.54,85.56 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='481.86,533.80 481.86,64.21 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='624.16,533.80 624.16,64.21 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='624.16' cy='512.46' r='3.52' style='stroke-width: 0.64; stroke: #EA4335; stroke-opacity: 0.50; fill: #EA4335; fill-opacity: 0.50;' />
 <circle cx='624.16' cy='149.59' r='3.52' style='stroke-width: 0.64; stroke: #EA4335; stroke-opacity: 0.50; fill: #EA4335; fill-opacity: 0.50;' />
 <circle cx='624.16' cy='256.32' r='3.52' style='stroke-width: 0.64; stroke: #EA4335; stroke-opacity: 0.50; fill: #EA4335; fill-opacity: 0.50;' />

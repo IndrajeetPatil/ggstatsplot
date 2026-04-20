@@ -62,8 +62,6 @@
 <polyline points='30.84,487.03 355.02,487.03 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='30.84,340.28 355.02,340.28 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='30.84,193.54 355.02,193.54 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='119.25,514.91 119.25,62.93 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='266.61,514.91 266.61,62.93 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='265.40' cy='171.52' r='3.20' style='stroke-width: 0.00; stroke: #EA4335; stroke-opacity: 0.40; fill: #EA4335; fill-opacity: 0.40;' />
 <circle cx='248.69' cy='193.54' r='3.20' style='stroke-width: 0.00; stroke: #EA4335; stroke-opacity: 0.40; fill: #EA4335; fill-opacity: 0.40;' />
 <circle cx='262.41' cy='149.51' r='3.20' style='stroke-width: 0.00; stroke: #EA4335; stroke-opacity: 0.40; fill: #EA4335; fill-opacity: 0.40;' />
@@ -254,8 +252,6 @@
 <polyline points='385.36,285.19 709.54,285.19 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='385.36,210.48 709.54,210.48 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='385.36,135.77 709.54,135.77 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='473.77,514.91 473.77,62.93 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='621.13,514.91 621.13,62.93 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='607.57' cy='240.36' r='3.20' style='stroke-width: 0.00; stroke: #EA4335; stroke-opacity: 0.40; fill: #EA4335; fill-opacity: 0.40;' />
 <circle cx='607.21' cy='300.13' r='3.20' style='stroke-width: 0.00; stroke: #EA4335; stroke-opacity: 0.40; fill: #EA4335; fill-opacity: 0.40;' />
 <circle cx='608.43' cy='374.84' r='3.20' style='stroke-width: 0.00; stroke: #EA4335; stroke-opacity: 0.40; fill: #EA4335; fill-opacity: 0.40;' />

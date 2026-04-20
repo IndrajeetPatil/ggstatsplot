@@ -65,9 +65,6 @@
 <polyline points='39.74,340.46 343.41,340.46 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='39.74,231.76 343.41,231.76 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='39.74,123.06 343.41,123.06 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='96.68,512.84 96.68,68.45 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='191.57,512.84 191.57,68.45 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='286.47,512.84 286.47,68.45 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='199.52' cy='120.88' r='3.20' style='stroke-width: 0.00; stroke: #DF8F44; stroke-opacity: 0.40; fill: #DF8F44; fill-opacity: 0.40;' />
 <circle cx='183.53' cy='214.37' r='3.20' style='stroke-width: 0.00; stroke: #DF8F44; stroke-opacity: 0.40; fill: #DF8F44; fill-opacity: 0.40;' />
 <circle cx='190.60' cy='181.76' r='3.20' style='stroke-width: 0.00; stroke: #DF8F44; stroke-opacity: 0.40; fill: #DF8F44; fill-opacity: 0.40;' />
@@ -448,9 +445,6 @@
 <polyline points='394.26,278.18 697.93,278.18 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='394.26,178.43 697.93,178.43 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='394.26,78.68 697.93,78.68 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='451.20,512.84 451.20,68.45 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='546.10,512.84 546.10,68.45 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='640.99,512.84 640.99,68.45 ' style='stroke-width: 0.97; stroke: #EBEBEB; stroke-linecap: butt;' />
 <circle cx='453.95' cy='412.84' r='3.20' style='stroke-width: 0.00; stroke: #374E55; stroke-opacity: 0.40; fill: #374E55; fill-opacity: 0.40;' />
 <circle cx='634.22' cy='293.14' r='3.20' style='stroke-width: 0.00; stroke: #00A1D5; stroke-opacity: 0.40; fill: #00A1D5; fill-opacity: 0.40;' />
 <circle cx='643.07' cy='382.91' r='3.20' style='stroke-width: 0.00; stroke: #00A1D5; stroke-opacity: 0.40; fill: #00A1D5; fill-opacity: 0.40;' />
