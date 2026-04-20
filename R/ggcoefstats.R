@@ -147,6 +147,21 @@
 #' # without a `term` column (auto-generated)
 #' ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
 #'
+#' # tidy data frames can also include stats-label inputs directly
+#' df_tidy <- parameters::model_parameters(stats::lm(wt ~ am * cyl, mtcars), ci = 0.95)
+#' names(df_tidy) <- c(
+#'   "term", "estimate", "std.error", "conf.level", "conf.low",
+#'   "conf.high", "statistic", "df.error", "p.value"
+#' )
+#' df_tidy$p.value[2L] <- 0.42
+#'
+#' ggcoefstats(
+#'   df_tidy,
+#'   statistic = "t",
+#'   only.significant = TRUE,
+#'   stats.label.color = c("firebrick", "grey50", "forestgreen", "navy")
+#' )
+#'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("lme4", quietly = TRUE)
 #' # further arguments can be passed to `parameters::model_parameters()`
 #' library(lme4)
@@ -283,18 +298,8 @@ ggcoefstats <- function(
   # ggrepel labels -------------------------
 
   if (stats.labels) {
-    # filter data for labels if only significant results should be shown
-    tidy_df_labels <- tidy_df
-    if (only.significant && ("p.value" %in% names(tidy_df))) {
-      tidy_df_labels %<>% filter(p.value < 0.05)
-    }
-
-    if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(tidy_df$term))) {
-      # generate colors for all terms
-      all_colors <- paletteer::paletteer_d(paste0(package, "::", palette), length(tidy_df$term))
-      # subset colors to match filtered labels
-      stats.label.color <- all_colors[tidy_df$term %in% tidy_df_labels$term]
-    }
+    tidy_df_labels <- .prepare_stats_label_data(tidy_df, only.significant)
+    stats.label.color <- .prepare_stats_label_colors(tidy_df, tidy_df_labels, stats.label.color, package, palette)
 
     plot_coef <- plot_coef +
       exec(
@@ -354,4 +359,33 @@ ggcoefstats <- function(
   # `ggplot2` draws discrete y-axis levels from bottom to top, so reverse the
   # factor levels to preserve the data order in the plotted top-to-bottom order.
   data %>% dplyr::mutate(term = factor(term, rev(data$term)))
+}
+
+#' @noRd
+.prepare_stats_label_data <- function(data, only.significant) {
+  label_data <- data
+
+  if (only.significant && "p.value" %in% names(data)) {
+    label_data %<>% filter(p.value < 0.05)
+  }
+
+  label_data %<>% filter(lengths(expression) > 0L)
+
+  label_data
+}
+
+#' @noRd
+.prepare_stats_label_colors <- function(data, label_data, stats.label.color, package, palette) {
+  label_rows <- data$term %in% label_data$term
+
+  if (is.null(stats.label.color) && .is_palette_sufficient(package, palette, length(data$term))) {
+    all_colors <- paletteer::paletteer_d(paste0(package, "::", palette), length(data$term))
+    return(all_colors[label_rows])
+  }
+
+  if (length(stats.label.color) > 1L) {
+    return(stats.label.color[label_rows])
+  }
+
+  stats.label.color # nocov
 }

@@ -171,6 +171,104 @@ test_that("term ordering is preserved in the plotted top-to-bottom order", {
     levels(.preprocess_tidy_data(df, sort = "ascending")$term),
     rev(df$term[c(2L, 1L, 3L)])
   )
+
+  expect_identical(
+    as.character(.preprocess_tidy_data(tibble::tibble(estimate = c(0.3, -0.4)), sort = "none")$term),
+    c("term_1", "term_2")
+  )
+})
+
+test_that("mixed-model stats labels drop rows with empty expressions", {
+  skip_if_not_installed("lme4")
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "mixed-model fixed-effects labels",
+    fig = suppressWarnings(ggcoefstats(
+      lme4::lmer(Reaction ~ Days + (Days | Subject), lme4::sleepstudy),
+      effects = "fixed",
+      stats.label.args = list(
+        size = 3.0,
+        direction = "y",
+        min.segment.length = 0,
+        na.rm = TRUE,
+        seed = 123
+      )
+    ))
+  )
+})
+
+test_that("stats label colors stay aligned after filtering labels", {
+  df_tidy <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
+  df_tidy$p.value[2L] <- 0.42
+
+  plot <- ggcoefstats(
+    df_tidy,
+    statistic = "t",
+    only.significant = TRUE,
+    stats.label.color = c("firebrick", "grey50", "forestgreen", "navy")
+  )
+
+  expect_identical(as.character(plot$layers[[4L]]$data$term), c("(Intercept)", "cyl"))
+  expect_identical(plot$layers[[4L]]$aes_params$colour, c("firebrick", "forestgreen"))
+})
+
+test_that("tidy data without statistic inputs disables stats labels", {
+  plot <- ggcoefstats(tibble::tibble(term = c("a", "b"), estimate = c(0.5, -0.2)), stats.labels = TRUE)
+
+  expect_length(plot$layers, 2L)
+  expect_true(all(vapply(plot$layers, function(x) !inherits(x$geom, "GeomLabelRepel"), logical(1L))))
+})
+
+test_that("stats label helpers cover filtering and color branches", {
+  df_labels <- tibble::tibble(
+    term = c("a", "b", "c"),
+    p.value = c(0.01, 0.03, 0.02),
+    expression = list("alpha", character(0), "gamma")
+  )
+
+  expect_identical(.prepare_stats_label_data(df_labels, only.significant = TRUE)$term, c("a", "c"))
+
+  expect_identical(.prepare_stats_label_data(df_labels, only.significant = FALSE)$term, c("a", "c"))
+
+  expect_identical(
+    .prepare_stats_label_data(dplyr::select(df_labels, -p.value), only.significant = TRUE)$term,
+    c("a", "c")
+  )
+
+  label_data <- tibble::tibble(term = "a", expression = list("alpha"))
+  expected_color <- unname(as.character(paletteer::paletteer_d("RColorBrewer::Dark2", 3L)[1L]))
+
+  expect_identical(
+    unname(as.character(.prepare_stats_label_colors(df_labels, label_data, NULL, "RColorBrewer", "Dark2"))),
+    expected_color
+  )
+
+  expect_identical(
+    .prepare_stats_label_colors(
+      df_labels,
+      label_data,
+      c("firebrick", "grey50", "forestgreen"),
+      "RColorBrewer",
+      "Dark2"
+    ),
+    "firebrick"
+  )
+
+  expect_identical(
+    .prepare_stats_label_colors(df_labels, label_data, "firebrick", "RColorBrewer", "Dark2"),
+    "firebrick"
+  )
+
+  expect_null(
+    suppressWarnings(.prepare_stats_label_colors(
+      tibble::tibble(term = letters[1:12], expression = rep(list("alpha"), 12L)),
+      label_data,
+      NULL,
+      "RColorBrewer",
+      "Dark2"
+    ))
+  )
 })
 
 # meta subtitle and caption -------------------------------------
