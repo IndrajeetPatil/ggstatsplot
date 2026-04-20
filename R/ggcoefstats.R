@@ -358,7 +358,7 @@ ggcoefstats <- function(
 
   # `ggplot2` draws discrete y-axis levels from bottom to top, so reverse the
   # factor levels to preserve the data order in the plotted top-to-bottom order.
-  data %>% dplyr::mutate(term = factor(term, rev(data$term)))
+  data %>% dplyr::mutate(term = forcats::fct_rev(forcats::fct_inorder(term)))
 }
 
 #' @noRd

@@ -335,6 +335,19 @@
     },
     "5": {
       "@type": "SoftwareApplication",
+      "identifier": "forcats",
+      "name": "forcats",
+      "version": ">= 1.0.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=forcats"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
       "version": ">= 0.1.4.1",
@@ -346,7 +359,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggcorrplot"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
@@ -359,7 +372,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "ggrepel",
       "name": "ggrepel",
@@ -372,7 +385,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggrepel"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
@@ -385,7 +398,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggside"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "ggsignif",
       "name": "ggsignif",
@@ -398,11 +411,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggsignif"
     },
-    "10": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
-      "version": ">= 1.8.0",
+      "version": ">= 1.8.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -411,11 +424,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=glue"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.4.6",
+      "version": ">= 1.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -424,11 +437,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=insight"
     },
-    "12": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
-      "version": ">= 2.0.4",
+      "version": ">= 2.0.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -437,7 +450,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "13": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
@@ -450,7 +463,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=paletteer"
     },
-    "14": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
@@ -463,7 +476,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
-    "15": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
@@ -476,7 +489,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=patchwork"
     },
-    "16": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
@@ -489,11 +502,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=performance"
     },
-    "17": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.2.1",
+      "version": ">= 1.2.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -502,11 +515,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "18": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
-      "version": ">= 1.1.7",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -515,7 +528,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "19": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
@@ -526,9 +539,9 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
+      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
     },
-    "20": {
+    "21": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -541,14 +554,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "21": {
+    "22": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "9317.863KB",
+  "fileSize": "13898.227KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
