@@ -202,7 +202,6 @@ ggdotplotstats <- function(
       caption = caption
     ) +
     ggtheme +
-    theme(panel.grid.major.y = element_blank()) +
     ggplot.component
 }
 

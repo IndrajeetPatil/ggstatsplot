@@ -351,10 +351,7 @@ ggcoefstats <- function(
       title = title
     ) +
     ggtheme +
-    theme(
-      plot.caption = element_text(size = 10),
-      panel.grid.major.y = element_blank()
-    )
+    theme(plot.caption = element_text(size = 10))
 }
 
 

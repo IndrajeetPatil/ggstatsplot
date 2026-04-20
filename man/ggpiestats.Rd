@@ -173,9 +173,11 @@ For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \section{Summary of graphics}{
-
-
-\if{html}{\out{<div class="sourceCode {r child="man/rmd-fragments/ggpiestats_graphics.Rmd"}">}}\preformatted{}\if{html}{\out{</div>}}
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   pie slices \tab \code{ggplot2::geom_col()} \tab \code{NA} \cr
+   labels \tab \code{ggplot2::geom_label()}/\code{ggrepel::geom_label_repel()} \tab \code{label.args} \cr
+}
 }
 
 \section{Contingency table analyses}{

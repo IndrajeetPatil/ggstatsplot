@@ -160,12 +160,7 @@ ggbarstats <- function(
       !!!label.args
     ) +
     ggtheme +
-    theme(
-      panel.grid.major.x = element_blank(),
-      panel.grid.major.y = element_blank(),
-      axis.text.y = element_blank(),
-      axis.ticks.y = element_blank()
-    ) +
+    theme(panel.grid.major.x = element_blank()) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
     paletteer::scale_fill_paletteer_d(palette, name = "", drop = FALSE)
 

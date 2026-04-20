@@ -141,9 +141,10 @@ For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html}
 }
 \section{Summary of graphics}{
-
-
-\if{html}{\out{<div class="sourceCode {r child="man/rmd-fragments/ggcorrmat_graphics.Rmd"}">}}\preformatted{}\if{html}{\out{</div>}}
+\tabular{lll}{
+   graphical element \tab \code{geom} used \tab argument for further modification \cr
+   correlation matrix \tab \code{ggcorrplot::ggcorrplot()} \tab \code{ggcorrplot.args} \cr
+}
 }
 
 \section{Correlation analyses}{
