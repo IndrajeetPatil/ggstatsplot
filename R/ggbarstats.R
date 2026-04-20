@@ -89,14 +89,20 @@ ggbarstats <- function(
     tidyr::drop_na()
 
   # untable the data frame based on the count for each observation
-  if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
+  if (".counts" %in% names(data)) {
+    data %<>% tidyr::uncount(weights = .counts)
+  }
 
   # x and y need to be a factor
   data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
 
   # TO DO: until one-way table is supported by `BayesFactor`
-  if (nlevels(pull(data, {{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE) # nocov
-  if (type == "bayes") proportion.test <- FALSE
+  if (nlevels(pull(data, {{ y }})) == 1L) {
+    c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
+  } # nocov
+  if (type == "bayes") {
+    proportion.test <- FALSE
+  }
 
   # statistical analysis ------------------------------------------
 
@@ -139,15 +145,15 @@ ggbarstats <- function(
   plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
-      labels       = ~ insight::format_percent(., digits = 0L),
-      breaks       = seq(from = 0.0, to = 1.0, by = 0.10),
+      labels = ~ insight::format_percent(., digits = 0L),
+      breaks = seq(from = 0.0, to = 1.0, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     exec(
       geom_label,
-      mapping     = aes(label = .label, group = {{ x }}),
-      position    = position_fill(vjust = 0.5),
-      na.rm       = TRUE,
+      mapping = aes(label = .label, group = {{ x }}),
+      position = position_fill(vjust = 0.5),
+      na.rm = TRUE,
       show.legend = FALSE,
       !!!label.args
     ) +
@@ -161,10 +167,10 @@ ggbarstats <- function(
   if (isTRUE(proportion.test)) {
     plotBar <- plotBar +
       geom_text(
-        data    = onesample_df,
+        data = onesample_df,
         mapping = aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
-        size    = 2.8,
-        parse   = TRUE
+        size = 2.8,
+        parse = TRUE
       )
   }
 
@@ -173,7 +179,7 @@ ggbarstats <- function(
   plotBar <- plotBar +
     exec(
       geom_text,
-      data    = onesample_df,
+      data = onesample_df,
       mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
       !!!sample.size.label.args
     )
@@ -182,11 +188,11 @@ ggbarstats <- function(
 
   plotBar +
     labs(
-      x        = xlab %||% as_name(y),
-      y        = ylab,
+      x = xlab %||% as_name(y),
+      y = ylab,
       subtitle = subtitle,
-      title    = title,
-      caption  = caption
+      title = title,
+      caption = caption
     ) +
     ggplot.component
 }
@@ -244,7 +250,11 @@ grouped_ggbarstats <- function(
   x_q <- dots_q[["x"]] %||% dots_q[[1L]]
   if (!is.null(x_q) && rlang::is_symbol(rlang::quo_get_expr(x_q))) {
     x_name <- rlang::as_name(rlang::quo_get_expr(x_q))
-    x_lvls <- if (is.factor(data[[x_name]])) levels(data[[x_name]]) else sort(unique(data[[x_name]]))
+    x_lvls <- if (is.factor(data[[x_name]])) {
+      levels(data[[x_name]])
+    } else {
+      sort(unique(data[[x_name]]))
+    }
     data[[x_name]] <- factor(data[[x_name]], x_lvls)
   }
   .grouped_list(data, {{ grouping.var }}) %>%

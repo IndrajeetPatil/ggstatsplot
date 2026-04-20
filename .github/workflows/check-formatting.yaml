@@ -1,0 +1,10 @@
+name: format-suggest
+
+on:
+  pull_request_target:
+
+jobs:
+  format:
+    uses: IndrajeetPatil/workflows/.github/workflows/check-formatting.yaml@feature/generic-formatting
+    permissions:
+      pull-requests: write

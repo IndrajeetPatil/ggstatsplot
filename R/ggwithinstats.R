@@ -207,18 +207,20 @@ ggwithinstats <- function(
       nboot = nboot
     )
 
-    if (test == "t") .f.args$alternative <- alternative
+    if (test == "t") {
+      .f.args$alternative <- alternative
+    }
 
     # styler: off
-    .f          <- .f_switch(test)
+    .f <- .f_switch(test)
     subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle    <- .extract_expression(subtitle_df)
+    subtitle <- .extract_expression(subtitle_df)
     # styler: on
 
     if (type == "parametric" && bf.message) {
       # styler: off
       caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption    <- .extract_expression(caption_df)
+      caption <- .extract_expression(caption_df)
       # styler: on
     }
   }
@@ -227,11 +229,24 @@ ggwithinstats <- function(
 
   plot_comparison <- ggplot(data, aes({{ x }}, {{ y }}, group = .rowid)) +
     exec(geom_point, aes(color = {{ x }}), !!!point.args) +
-    exec(geom_boxplot, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!boxplot.args, outlier.shape = NA) +
-    exec(geom_violin, aes({{ x }}, {{ y }}), inherit.aes = FALSE, !!!violin.args)
+    exec(
+      geom_boxplot,
+      aes({{ x }}, {{ y }}),
+      inherit.aes = FALSE,
+      !!!boxplot.args,
+      outlier.shape = NA
+    ) +
+    exec(
+      geom_violin,
+      aes({{ x }}, {{ y }}),
+      inherit.aes = FALSE,
+      !!!violin.args
+    )
 
   # add a connecting path only if there are only two groups
-  if (test == "t" && point.path) plot_comparison <- plot_comparison + exec(geom_path, !!!point.path.args)
+  if (test == "t" && point.path) {
+    plot_comparison <- plot_comparison + exec(geom_path, !!!point.path.args)
+  }
 
   # centrality tagging -------------------------------------
 
@@ -271,14 +286,14 @@ ggwithinstats <- function(
 
     # adding the layer for pairwise comparisons
     plot_comparison <- .ggsignif_adder(
-      plot             = plot_comparison,
-      mpc_df           = mpc_df,
-      data             = data,
-      x                = {{ x }},
-      y                = {{ y }},
+      plot = plot_comparison,
+      mpc_df = mpc_df,
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
       pairwise.display = pairwise.display,
-      pairwise.alpha   = pairwise.alpha,
-      ggsignif.args    = ggsignif.args
+      pairwise.alpha = pairwise.alpha,
+      ggsignif.args = ggsignif.args
     )
 
     # secondary label axis to give pairwise comparisons test details
@@ -292,16 +307,16 @@ ggwithinstats <- function(
   # annotations -------------------------
 
   .aesthetic_addon(
-    plot             = plot_comparison,
-    x                = pull(data, {{ x }}),
-    xlab             = xlab %||% as_name(x),
-    ylab             = ylab %||% as_name(y),
-    title            = title,
-    subtitle         = subtitle,
-    caption          = caption,
-    seclabel         = seclabel,
-    ggtheme          = ggtheme,
-    palette          = palette,
+    plot = plot_comparison,
+    x = pull(data, {{ x }}),
+    xlab = xlab %||% as_name(x),
+    ylab = ylab %||% as_name(y),
+    title = title,
+    subtitle = subtitle,
+    caption = caption,
+    seclabel = seclabel,
+    ggtheme = ggtheme,
+    palette = palette,
     ggplot.component = ggplot.component
   )
 }

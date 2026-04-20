@@ -218,22 +218,28 @@ ggcoefstats <- function(
 
     # converting model object to a tidy data frame
     tidy_df <- tidy_model_parameters(
-      model      = x,
-      es_type    = effectsize.type,
-      ci         = conf.level,
+      model = x,
+      es_type = effectsize.type,
+      ci = conf.level,
       table_wide = TRUE,
       ...
     )
 
     # anova objects need further cleaning
     # nolint next: line_length_linter.
-    if (all(c("df", "df.error") %in% names(tidy_df))) tidy_df %<>% mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
+    if (all(c("df", "df.error") %in% names(tidy_df))) {
+      tidy_df %<>%
+        mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
+    }
   }
 
-  tidy_df <- .preprocess_tidy_data(tidy_df, sort) %>% dplyr::filter(!is.na(estimate))
+  tidy_df <- .preprocess_tidy_data(tidy_df, sort) %>%
+    dplyr::filter(!is.na(estimate))
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
-  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) stats.labels <- FALSE
+  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) {
+    stats.labels <- FALSE
+  }
 
   # CIs and intercepts -------------------------
 
@@ -243,7 +249,9 @@ ggcoefstats <- function(
     conf.int <- FALSE
   }
 
-  if (exclude.intercept) tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
+  if (exclude.intercept) {
+    tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
+  }
 
   # label -------------------------
 
@@ -253,11 +261,19 @@ ggcoefstats <- function(
 
   # summary caption -------------------------
 
-  glance_df <- performance::model_performance(x, verbose = FALSE) %>% as_tibble()
+  glance_df <- performance::model_performance(x, verbose = FALSE) %>%
+    as_tibble()
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     # nolint next: line_length_linter.
-    glance_df %<>% mutate(expression = list(parse(text = glue("list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"))))
+    glance_df %<>%
+      mutate(
+        expression = list(parse(
+          text = glue(
+            "list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"
+          )
+        ))
+      )
     caption <- .extract_expression(glance_df)
   }
 
@@ -271,7 +287,11 @@ ggcoefstats <- function(
     subtitle <- .extract_expression(subtitle_df)
 
     if (meta.type == "parametric" && bf.message) {
-      caption_df <- suppressWarnings(meta_analysis(tidy_df, type = "bayes", digits = digits))
+      caption_df <- suppressWarnings(meta_analysis(
+        tidy_df,
+        type = "bayes",
+        digits = digits
+      ))
       caption <- .extract_expression(caption_df)
     }
   }
@@ -294,21 +314,28 @@ ggcoefstats <- function(
       )
   }
 
-  if (vline) plot_coef <- plot_coef + exec(geom_vline, xintercept = 0, !!!vline.args)
+  if (vline) {
+    plot_coef <- plot_coef + exec(geom_vline, xintercept = 0, !!!vline.args)
+  }
 
   # ggrepel labels -------------------------
 
   if (stats.labels) {
     tidy_df_labels <- .prepare_stats_label_data(tidy_df, only.significant)
-    stats.label.color <- .prepare_stats_label_colors(tidy_df, tidy_df_labels, stats.label.color, palette)
+    stats.label.color <- .prepare_stats_label_colors(
+      tidy_df,
+      tidy_df_labels,
+      stats.label.color,
+      palette
+    )
 
     plot_coef <- plot_coef +
       exec(
         ggrepel::geom_label_repel,
-        data    = tidy_df_labels,
+        data = tidy_df_labels,
         mapping = aes(x = estimate, y = term, label = expression),
-        parse   = TRUE,
-        color   = stats.label.color %||% "black",
+        parse = TRUE,
+        color = stats.label.color %||% "black",
         !!!stats.label.args
       )
   }
@@ -317,11 +344,11 @@ ggcoefstats <- function(
 
   plot_coef +
     labs(
-      x        = xlab %||% "estimate",
-      y        = ylab %||% "term",
-      caption  = caption,
+      x = xlab %||% "estimate",
+      y = ylab %||% "term",
+      caption = caption,
       subtitle = subtitle,
-      title    = title
+      title = title
     ) +
     ggtheme +
     theme(plot.caption = element_text(size = 10))
@@ -337,22 +364,28 @@ ggcoefstats <- function(
   # nocov end
 
   # create a new term column if it's not present
-  if (!"term" %in% names(data)) data %<>% mutate(term = paste0("term_", row_number()))
+  if (!"term" %in% names(data)) {
+    data %<>% mutate(term = paste0("term_", row_number()))
+  }
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
   # nocov start
   if (anyDuplicated(data$term)) {
     data %<>%
       tidyr::unite(
-        col    = "term",
-        matches("term|variable|parameter|method|curve|response|component|contrast|group"),
+        col = "term",
+        matches(
+          "term|variable|parameter|method|curve|response|component|contrast|group"
+        ),
         remove = TRUE,
-        sep    = "_"
+        sep = "_"
       )
   }
 
   # halt if there are still repeated terms
-  if (anyDuplicated(data$term)) rlang::abort("Elements in `term` column must be unique.")
+  if (anyDuplicated(data$term)) {
+    rlang::abort("Elements in `term` column must be unique.")
+  }
   # nocov end
 
   data %<>% parameters::sort_parameters(sort = sort, column = "estimate")
@@ -376,7 +409,12 @@ ggcoefstats <- function(
 }
 
 #' @noRd
-.prepare_stats_label_colors <- function(data, label_data, stats.label.color, palette) {
+.prepare_stats_label_colors <- function(
+  data,
+  label_data,
+  stats.label.color,
+  palette
+) {
   label_rows <- data$term %in% label_data$term
   n_labels <- sum(label_rows)
 

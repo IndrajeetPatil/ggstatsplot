@@ -21,7 +21,11 @@ descriptive_data <- function(
     mutate({{ x }} := factor({{ x }}, all_lvls, ordered = FALSE)) %>%
     # Fill in zero-count rows for missing (y, x) combinations so all panels
     # produce structurally identical data; patchwork can then deduplicate guides.
-    tidyr::complete({{ y }}, {{ x }} := factor(all_lvls, all_lvls), fill = list(counts = 0L, perc = 0)) %>%
+    tidyr::complete(
+      {{ y }},
+      {{ x }} := factor(all_lvls, all_lvls),
+      fill = list(counts = 0L, perc = 0)
+    ) %>%
     mutate(
       .label = if_else(
         counts == 0L,
@@ -34,7 +38,10 @@ descriptive_data <- function(
           paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
         }
       ),
-      {{ x }} := factor({{ x }}, if (length(all_lvls)) all_lvls else unique({{ x }}))
+      {{ x }} := factor(
+        {{ x }},
+        if (length(all_lvls)) all_lvls else unique({{ x }})
+      )
     )
 }
 
@@ -59,13 +66,20 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
   grouped_chi_squared_summary <- group_by(data, {{ y }}) %>%
     group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) %>%
     ungroup()
-  descriptive_summary <- .cat_counter(data, {{ y }}) %>% mutate(N = paste0("(n = ", .prettyNum(counts), ")"))
+  descriptive_summary <- .cat_counter(data, {{ y }}) %>%
+    mutate(N = paste0("(n = ", .prettyNum(counts), ")"))
 
-  full_join(descriptive_summary, grouped_chi_squared_summary, by = as_name(ensym(y))) %>%
+  full_join(
+    descriptive_summary,
+    grouped_chi_squared_summary,
+    by = as_name(ensym(y))
+  ) %>%
     rowwise() %>%
     mutate(
       # nolint next: line_length_linter.
-      .label = glue("list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ~italic(p)=='{format_value(p.value, digits)}', ~italic(n)=='{.prettyNum(counts)}')"),
+      .label = glue(
+        "list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ~italic(p)=='{format_value(p.value, digits)}', ~italic(n)=='{.prettyNum(counts)}')"
+      ),
       .p.label = glue("list(~italic(p)=='{format_value(p.value, digits)}')")
     ) %>%
     ungroup()
@@ -79,9 +93,12 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
 .chisq_test_safe <- function(data, x, ratio) {
   tryCatch(
     suppressWarnings(contingency_table(data, x, ratio = ratio)),
-    error = function(e) { # nocov start
+    error = function(e) {
+      # nocov start
       tibble(
-        statistic = NA_real_, p.value = NA_real_, df = NA_real_,
+        statistic = NA_real_,
+        p.value = NA_real_,
+        df = NA_real_,
         method = "Chi-squared test for given probabilities"
       )
     } # nocov end

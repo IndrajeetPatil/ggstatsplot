@@ -79,7 +79,11 @@ ggdotplotstats <- function(
   errorbar.args = list(width = 0, na.rm = TRUE),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+  centrality.line.args = list(
+    color = "blue",
+    linewidth = 1,
+    linetype = "dashed"
+  ),
   ggplot.component = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ...
@@ -89,7 +93,12 @@ ggdotplotstats <- function(
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
-  .f.stats.args <- list(conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
+  .f.stats.args <- list(
+    conf.level = conf.level,
+    digits = digits,
+    tr = tr,
+    bf.prior = bf.prior
+  )
 
   data %<>%
     select({{ x }}, {{ y }}) %>%
@@ -97,8 +106,14 @@ ggdotplotstats <- function(
 
   data <-
     suppressWarnings(centrality_description(
-      data, {{ y }}, {{ x }},
-      type = type, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior
+      data,
+      {{ y }},
+      {{ x }},
+      type = type,
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior
     ))
 
   data %<>%
@@ -111,13 +126,29 @@ ggdotplotstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, alternative = alternative, effsize.type = effsize.type)
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
+      alternative = alternative,
+      effsize.type = effsize.type
+    )
 
-    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = type)
+    subtitle_df <- .eval_f(
+      one_sample_test,
+      !!!.f.args,
+      !!!.f.stats.args,
+      type = type
+    )
     subtitle <- .extract_expression(subtitle_df)
 
     if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = "bayes")
+      caption_df <- .eval_f(
+        one_sample_test,
+        !!!.f.args,
+        !!!.f.stats.args,
+        type = "bayes"
+      )
       caption <- .extract_expression(caption_df)
     }
   }
@@ -131,7 +162,7 @@ ggdotplotstats <- function(
       labels = pull(data, {{ y }}),
       breaks = data$rank,
       sec.axis = dup_axis(
-        name   = "percentile",
+        name = "percentile",
         breaks = seq(1L, nrow(data), (nrow(data) - 1L) / 4),
         labels = 25 * 0:4
       )
@@ -139,7 +170,12 @@ ggdotplotstats <- function(
 
   if (conf.int) {
     plot_dot <- plot_dot +
-      exec(geom_errorbar, mapping = aes(xmin = conf.low, xmax = conf.high), orientation = "y", !!!errorbar.args)
+      exec(
+        geom_errorbar,
+        mapping = aes(xmin = conf.low, xmax = conf.high),
+        orientation = "y",
+        !!!errorbar.args
+      )
   }
 
   # centrality plotting -------------------------------------
@@ -159,11 +195,11 @@ ggdotplotstats <- function(
 
   plot_dot +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = ylab %||% as_name(y),
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component

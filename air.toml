@@ -1,0 +1,7 @@
+[format]
+line-width = 80
+indent-width = 2
+indent-style = "space"
+line-ending = "lf"
+persistent-line-breaks = true
+skip = ["tribble"]

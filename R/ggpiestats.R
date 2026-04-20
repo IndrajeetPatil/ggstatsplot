@@ -125,7 +125,9 @@ ggpiestats <- function(
     tidyr::drop_na()
 
   # untable the data frame based on the count for each observation
-  if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
+  if (".counts" %in% names(data)) {
+    data %<>% tidyr::uncount(weights = .counts)
+  }
 
   # x and y need to be a factor
   data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
@@ -133,11 +135,15 @@ ggpiestats <- function(
   y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
 
   # one-way table not supported in `BayesFactor` ATM (richarddmorey/BayesFactor#159)
-  if (test == "two.way" && y_levels == 1L) bf.message <- FALSE # nocov
+  if (test == "two.way" && y_levels == 1L) {
+    bf.message <- FALSE
+  } # nocov
 
   # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
-  if ((x_levels == 1L && facet) || type == "bayes") proportion.test <- FALSE
+  if ((x_levels == 1L && facet) || type == "bayes") {
+    proportion.test <- FALSE
+  }
 
   # statistical analysis ------------------------------------------
 
@@ -172,7 +178,9 @@ ggpiestats <- function(
   descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
 
   # data frame containing all details needed for proportion test
-  if (test == "two.way") onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
+  if (test == "two.way") {
+    onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
+  }
 
   # if no. of factor levels is greater than the default palette color count
   .is_palette_sufficient(palette, min_length = x_levels)
@@ -180,10 +188,10 @@ ggpiestats <- function(
   # creating the basic plot
   plotPie <- ggplot(descriptive_df, mapping = aes(x = "", y = perc)) +
     geom_col(
-      mapping  = aes(fill = {{ x }}),
+      mapping = aes(fill = {{ x }}),
       position = "fill",
-      color    = "black",
-      width    = 1.0
+      color = "black",
+      width = 1.0
     )
 
   # whether labels need to be repelled
@@ -194,19 +202,21 @@ ggpiestats <- function(
     plotPie <- plotPie +
       exec(
         .fn,
-        mapping            = aes(label = .label, group = {{ x }}),
-        position           = position_fill(vjust = 0.5),
+        mapping = aes(label = .label, group = {{ x }}),
+        position = position_fill(vjust = 0.5),
         min.segment.length = 0,
-        fill               = "white",
-        alpha              = 1.0,
-        na.rm              = TRUE,
-        show.legend        = FALSE,
+        fill = "white",
+        alpha = 1.0,
+        na.rm = TRUE,
+        show.legend = FALSE,
         !!!label.args
       )
   }))
 
   # if facet_wrap *is* happening
-  if (facet) plotPie <- plotPie + facet_wrap(facets = vars({{ y }}))
+  if (facet) {
+    plotPie <- plotPie + facet_wrap(facets = vars({{ y }}))
+  }
 
   # polar coordinates plus formatting
   plotPie <- plotPie +
@@ -223,11 +233,11 @@ ggpiestats <- function(
     plotPie <- plotPie +
       exec(
         geom_text,
-        data     = onesample_df,
-        mapping  = aes(label = .label, x = 1.65, y = 0.5),
+        data = onesample_df,
+        mapping = aes(label = .label, x = 1.65, y = 0.5),
         position = position_fill(vjust = 1.0),
-        size     = 2.8,
-        parse    = TRUE
+        size = 2.8,
+        parse = TRUE
       )
   }
 
@@ -235,11 +245,11 @@ ggpiestats <- function(
 
   plotPie +
     labs(
-      x        = NULL,
-      y        = NULL,
+      x = NULL,
+      y = NULL,
       subtitle = subtitle,
-      title    = title,
-      caption  = caption
+      title = title,
+      caption = caption
     ) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
     ggplot.component
@@ -286,7 +296,11 @@ grouped_ggpiestats <- function(
   x_q <- dots_q[["x"]] %||% dots_q[[1L]]
   if (!is.null(x_q) && rlang::is_symbol(rlang::quo_get_expr(x_q))) {
     x_name <- rlang::as_name(rlang::quo_get_expr(x_q))
-    x_lvls <- if (is.factor(data[[x_name]])) levels(data[[x_name]]) else sort(unique(data[[x_name]]))
+    x_lvls <- if (is.factor(data[[x_name]])) {
+      levels(data[[x_name]])
+    } else {
+      sort(unique(data[[x_name]]))
+    }
     data[[x_name]] <- factor(data[[x_name]], x_lvls)
   }
   .grouped_list(data, {{ grouping.var }}) %>%
