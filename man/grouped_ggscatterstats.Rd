@@ -44,6 +44,11 @@ these points.}
     \item{\code{xsidehistogram.args,ysidehistogram.args}}{A list of arguments passed to
 respective \code{geom_}s from the \code{{ggside}} package to change the marginal
 distribution histograms plots.}
+    \item{\code{xsidehistogram.scale,ysidehistogram.scale}}{A list of arguments passed
+to \code{ggside::scale_xsidey_continuous()} and
+\code{ggside::scale_ysidex_continuous()}, respectively, to control the
+scale of marginal histograms (e.g., \code{breaks}, \code{limits}, \code{transform}).
+Default is \code{list()} (no modifications).}
     \item{\code{x}}{The column in \code{data} containing the explanatory variable to be
 plotted on the \code{x}-axis.}
     \item{\code{y}}{The column in \code{data} containing the response (outcome) variable to
