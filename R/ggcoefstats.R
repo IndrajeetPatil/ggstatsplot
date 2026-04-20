@@ -148,7 +148,11 @@
 #' ggcoefstats(data.frame(estimate = c(0.5, -0.2, 1.1)))
 #'
 #' # tidy data frames can also include stats-label inputs directly
-#' df_tidy <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
+#' df_tidy <- parameters::model_parameters(stats::lm(wt ~ am * cyl, mtcars), ci = 0.95)
+#' names(df_tidy) <- c(
+#'   "term", "estimate", "std.error", "conf.level", "conf.low",
+#'   "conf.high", "statistic", "df.error", "p.value"
+#' )
 #' df_tidy$p.value[2L] <- 0.42
 #'
 #' ggcoefstats(

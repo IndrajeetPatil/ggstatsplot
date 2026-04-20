@@ -743,8 +743,8 @@ Not directly with the current grouped helper APIs.
 
 Functions like `grouped_ggbetweenstats()` internally split the data by the
 grouping variable and use those split names while constructing the individual
-plots. This means the grouping labels are not exposed as a templating variable
-that you can interpolate inside `title = ...`, `subtitle = ...`, or
+plots. This means the grouping labels are not exposed as a placeholder you can
+interpolate inside `title = ...`, `subtitle = ...`, or
 `ggplot.component = ...`.
 
 So if you need panel-specific text such as custom titles, subtitles, or

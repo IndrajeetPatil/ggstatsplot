@@ -35,7 +35,6 @@ utils::globalVariables(c(
   # <ggbarstats>
   "N",
   # <.ggsignif_adder>
-  # <ggcoefstats>
   "p.value",
   # <ggbarstats>
   # <descriptive_data>
