@@ -434,8 +434,7 @@
 <span>  grouping.var     <span class="op">=</span> <span class="va">genre</span>,</span>
 <span>  ggsignif.args    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>textsize <span class="op">=</span> <span class="fl">4</span>, tip_length <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>,</span>
 <span>  p.adjust.method  <span class="op">=</span> <span class="st">"bonferroni"</span>,</span>
-<span>  palette          <span class="op">=</span> <span class="st">"default_jama"</span>,</span>
-<span>  package          <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
+<span>  palette          <span class="op">=</span> <span class="st">"ggsci::default_jama"</span>,</span>
 <span>  plotgrid.args    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -645,8 +644,7 @@
 <span>  data         <span class="op">=</span> <span class="va">mtcars</span>,</span>
 <span>  x            <span class="op">=</span> <span class="va">am</span>,</span>
 <span>  y            <span class="op">=</span> <span class="va">cyl</span>,</span>
-<span>  package      <span class="op">=</span> <span class="st">"wesanderson"</span>,</span>
-<span>  palette      <span class="op">=</span> <span class="st">"Royal1"</span>,</span>
+<span>  palette      <span class="op">=</span> <span class="st">"wesanderson::Royal1"</span>,</span>
 <span>  title        <span class="op">=</span> <span class="st">"Dataset: Motor Trend Car Road Tests"</span>,</span>
 <span>  legend.title <span class="op">=</span> <span class="st">"Transmission"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -662,8 +660,7 @@
 <span>  x            <span class="op">=</span> <span class="va">cyl</span>,</span>
 <span>  grouping.var <span class="op">=</span> <span class="va">am</span>,</span>
 <span>  label.repel  <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  package      <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette      <span class="op">=</span> <span class="st">"default_ucscgb"</span></span>
+<span>  palette      <span class="op">=</span> <span class="st">"ggsci::default_ucscgb"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" alt="Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html</a></p>
@@ -687,7 +684,7 @@
 <span>  xlab             <span class="op">=</span> <span class="st">"movie genre"</span>,</span>
 <span>  legend.title     <span class="op">=</span> <span class="st">"MPAA rating"</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_x_discrete</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_axis.html" class="external-link">guide_axis</a></span><span class="op">(</span>n.dodge <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  palette          <span class="op">=</span> <span class="st">"Set2"</span></span>
+<span>  palette          <span class="op">=</span> <span class="st">"RColorBrewer::Set2"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%"></p>
 <p><strong>Defaults</strong> return<br></p>
@@ -702,8 +699,7 @@
 <span>  x            <span class="op">=</span> <span class="va">am</span>,</span>
 <span>  y            <span class="op">=</span> <span class="va">cyl</span>,</span>
 <span>  grouping.var <span class="op">=</span> <span class="va">vs</span>,</span>
-<span>  package      <span class="op">=</span> <span class="st">"wesanderson"</span>,</span>
-<span>  palette      <span class="op">=</span> <span class="st">"Darjeeling2"</span> <span class="co"># ,</span></span>
+<span>  palette      <span class="op">=</span> <span class="st">"wesanderson::Darjeeling2"</span> <span class="co"># ,</span></span>
 <span>  <span class="co"># ggtheme      = ggthemes::theme_tufte(base_size = 12)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations" width="100%"></p>

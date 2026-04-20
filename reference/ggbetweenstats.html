@@ -107,8 +107,7 @@ subtitle.</p>
 <span>  violin.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  ggsignif.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>textsize <span class="op">=</span> <span class="fl">3</span>, tip_length <span class="op">=</span> <span class="fl">0.01</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="theme_ggstatsplot.html">theme_ggstatsplot</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"RColorBrewer"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"Dark2"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"ggthemes::gdoc"</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -327,10 +326,10 @@ label on the secondary Y-axis. Some themes (e.g.
 thus the details as well.</p></dd>
 
 
-<dt id="arg-package-palette">package, palette<a class="anchor" aria-label="anchor" href="#arg-package-palette"></a></dt>
-<dd><p>Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-<code>View(paletteer::palettes_d_names)</code>.</p></dd>
+<dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
+<dd><p>Name of the palette in <code>"package::palette"</code> format to be used
+for coloring. Passed to <code><a href="https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html" class="external-link">paletteer::scale_color_paletteer_d()</a></code>. Run
+<code>View(paletteer::palettes_d_names)</code> to see all available options.</p></dd>
 
 
 <dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>

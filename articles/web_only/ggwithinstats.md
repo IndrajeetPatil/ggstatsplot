@@ -118,8 +118,7 @@ ggwithinstats(
   type       = "nonparametric", ## type of statistical test
   xlab       = "Condition", ## label for the x-axis
   ylab       = "Desire to kill an artrhopod", ## label for the y-axis
-  package    = "yarrr", ## package from which color palette is to be taken
-  palette    = "info2", ## choosing a different color palette
+  palette    = "yarrr::info2", ## choosing a different color palette
   title      = "Comparison of desire to kill bugs",
   caption    = "Source: Ryan et al., 2013"
 ) + ## modifying the plot further
@@ -167,8 +166,7 @@ p1 <- ggwithinstats(
   effsize.type = "d",
   conf.level = 0.99,
   title = "Parametric test",
-  package = "ggsci",
-  palette = "nrc_npg"
+  palette = "ggsci::nrc_npg"
 )
 
 ## Mann-Whitney U test (nonparametric test)
@@ -182,8 +180,7 @@ p2 <- ggwithinstats(
   type       = "np",
   conf.level = 0.99,
   title      = "Non-parametric Test",
-  package    = "ggsci",
-  palette    = "uniform_startrek"
+  palette    = "ggsci::uniform_startrek"
 )
 
 ## robust t-test
@@ -197,8 +194,7 @@ p3 <- ggwithinstats(
   type       = "r",
   conf.level = 0.99,
   title      = "Robust Test",
-  package    = "wesanderson",
-  palette    = "Royal2"
+  palette    = "wesanderson::Royal2"
 )
 
 ## Bayes Factor for parametric t-test
@@ -211,8 +207,7 @@ p4 <- ggwithinstats(
   ylab       = "Desire to kill bugs",
   type       = "bayes",
   title      = "Bayesian Test",
-  package    = "ggsci",
-  palette    = "nrc_npg"
+  palette    = "ggsci::nrc_npg"
 )
 
 ## combining the individual plots into a single plot
@@ -261,8 +256,7 @@ grouped_ggwithinstats(
   pairwise.alpha   = 0.01, ## use a stricter alpha threshold to reduce clutter
   p.adjust.method  = "BH", ## adjust p-values for multiple tests using this method
   # ggtheme = ggthemes::theme_tufte(),
-  package          = "ggsci",
-  palette          = "default_jco",
+  palette          = "ggsci::default_jco",
   digits           = 3,
   ## arguments relevant for combine_plots
   annotation.args  = list(title = "Desire to kill bugs across genders"),

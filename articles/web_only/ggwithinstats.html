@@ -199,8 +199,7 @@ the overall theme as well as the color palette in use.</p>
 <span>  type       <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of statistical test</span></span>
 <span>  xlab       <span class="op">=</span> <span class="st">"Condition"</span>, <span class="co">## label for the x-axis</span></span>
 <span>  ylab       <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>, <span class="co">## label for the y-axis</span></span>
-<span>  package    <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span></span>
-<span>  palette    <span class="op">=</span> <span class="st">"info2"</span>, <span class="co">## choosing a different color palette</span></span>
+<span>  palette    <span class="op">=</span> <span class="st">"yarrr::info2"</span>, <span class="co">## choosing a different color palette</span></span>
 <span>  title      <span class="op">=</span> <span class="st">"Comparison of desire to kill bugs"</span>,</span>
 <span>  caption    <span class="op">=</span> <span class="st">"Source: Ryan et al., 2013"</span></span>
 <span><span class="op">)</span> <span class="op">+</span> <span class="co">## modifying the plot further</span></span>
@@ -242,8 +241,7 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  effsize.type <span class="op">=</span> <span class="st">"d"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Parametric test"</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Mann-Whitney U test (nonparametric test)</span></span>
@@ -257,8 +255,7 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  type       <span class="op">=</span> <span class="st">"np"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title      <span class="op">=</span> <span class="st">"Non-parametric Test"</span>,</span>
-<span>  package    <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette    <span class="op">=</span> <span class="st">"uniform_startrek"</span></span>
+<span>  palette    <span class="op">=</span> <span class="st">"ggsci::uniform_startrek"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## robust t-test</span></span>
@@ -272,8 +269,7 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  type       <span class="op">=</span> <span class="st">"r"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title      <span class="op">=</span> <span class="st">"Robust Test"</span>,</span>
-<span>  package    <span class="op">=</span> <span class="st">"wesanderson"</span>,</span>
-<span>  palette    <span class="op">=</span> <span class="st">"Royal2"</span></span>
+<span>  palette    <span class="op">=</span> <span class="st">"wesanderson::Royal2"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Bayes Factor for parametric t-test</span></span>
@@ -286,8 +282,7 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  ylab       <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
 <span>  type       <span class="op">=</span> <span class="st">"bayes"</span>,</span>
 <span>  title      <span class="op">=</span> <span class="st">"Bayesian Test"</span>,</span>
-<span>  package    <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette    <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
+<span>  palette    <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## combining the individual plots into a single plot</span></span>
@@ -332,8 +327,7 @@ every pair of continents.</p>
 <span>  pairwise.alpha   <span class="op">=</span> <span class="fl">0.01</span>, <span class="co">## use a stricter alpha threshold to reduce clutter</span></span>
 <span>  p.adjust.method  <span class="op">=</span> <span class="st">"BH"</span>, <span class="co">## adjust p-values for multiple tests using this method</span></span>
 <span>  <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
-<span>  package          <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette          <span class="op">=</span> <span class="st">"default_jco"</span>,</span>
+<span>  palette          <span class="op">=</span> <span class="st">"ggsci::default_jco"</span>,</span>
 <span>  digits           <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  <span class="co">## arguments relevant for combine_plots</span></span>
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Desire to kill bugs across genders"</span><span class="op">)</span>,</span>

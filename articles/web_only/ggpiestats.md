@@ -176,8 +176,7 @@ grouped_ggpiestats(
   y = Sex,
   grouping.var = Age,
   digits.perc = 1,
-  package = "ggsci",
-  palette = "category10_d3",
+  palette = "ggsci::category10_d3",
   # arguments relevant for `combine_plots()`
   title.text = "Passenger survival on the Titanic by gender and age",
   caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
@@ -280,8 +279,7 @@ ggpiestats(
   y = Month,
   counts = SumOfCaught,
   label = "both",
-  package = "ggsci",
-  palette = "default_jama",
+  palette = "ggsci::default_jama",
   title = "Type fish caught by month",
   caption = "Source: completely made up",
   legend.title = "Type fish caught: "
@@ -331,8 +329,7 @@ ggpiestats(
   paired = TRUE,
   label = "both",
   title = "Results from imaginary clinical trial",
-  package = "ggsci",
-  palette = "default_ucscgb"
+  palette = "ggsci::default_ucscgb"
 )
 ```
 

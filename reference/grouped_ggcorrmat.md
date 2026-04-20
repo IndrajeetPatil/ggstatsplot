@@ -152,11 +152,13 @@ grouped_ggcorrmat(
       should be entered as a `{ggplot2}` function or a list of
       `{ggplot2}` functions.
 
-  `package,palette`
+  `palette`
 
-  :   Name of the package from which the given palette is to be
-      extracted. The available palettes and packages can be checked by
-      running `View(paletteer::palettes_d_names)`.
+  :   Name of the palette in `"package::palette"` format to be used for
+      coloring. Passed to
+      [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
+      Run `View(paletteer::palettes_d_names)` to see all available
+      options.
 
   `ggtheme`
 

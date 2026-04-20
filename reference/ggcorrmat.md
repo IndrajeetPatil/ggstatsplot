@@ -24,8 +24,7 @@ ggcorrmat(
   p.adjust.method = "holm",
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
@@ -138,11 +137,12 @@ ggcorrmat(
   `sig.level`, `ggtheme`, `colors`, `lab`, `pch`, `legend.title`,
   `digits`.
 
-- package, palette:
+- palette:
 
-  Name of the package from which the given palette is to be extracted.
-  The available palettes and packages can be checked by running
-  `View(paletteer::palettes_d_names)`.
+  Name of the palette in `"package::palette"` format to be used for
+  coloring. Passed to
+  [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
+  Run `View(paletteer::palettes_d_names)` to see all available options.
 
 - colors:
 

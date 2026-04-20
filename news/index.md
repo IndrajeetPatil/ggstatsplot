@@ -31,7 +31,30 @@
   All examples and vignettes have been updated to pass `subject.id`
   explicitly, which is now the recommended practice.
 
+### BREAKING CHANGES
+
+- The `package` argument has been removed from all plotting functions.
+  The `palette` argument now accepts a single `"package::palette"`
+  string (e.g., `palette = "ggthemes::gdoc"`), matching the convention
+  used by [paletteer](https://emilhvitfeldt.github.io/paletteer/)
+  itself.
+
+- The default `palette` has been changed from `"RColorBrewer::Dark2"` (8
+  colors) to `"ggthemes::gdoc"` (24 qualitative colors), which
+  accommodates categorical variables with up to 24 levels without errors
+  ([\#1015](https://github.com/IndrajeetPatil/ggstatsplot/issues/1015)).
+
+- When the chosen palette does not have enough colors for the number of
+  levels in the data, an error is now thrown (previously a warning was
+  issued that was silently ignored until ggplot2 crashed anyway).
+
 ### BUG FIXES
+
+- Grouped plot functions (e.g.,
+  [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md))
+  now preserve the order of groups as they appear in the data rather
+  than sorting them alphabetically
+  ([\#792](https://github.com/IndrajeetPatil/ggstatsplot/issues/792)).
 
 - [`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)
   now renders the overall annotation title in bold by default, matching

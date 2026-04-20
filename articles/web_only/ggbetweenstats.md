@@ -132,8 +132,7 @@ ggbetweenstats(
   ylab = "Life expectancy", ## label for the y-axis
   ## turn off messages
   ggtheme = ggplot2::theme_gray(), ## a different theme
-  package = "yarrr", ## package from which color palette is to be taken
-  palette = "info2", ## choosing a different color palette
+  palette = "yarrr::info2", ## choosing a different color palette
   title = "Comparison of life expectancy across continents (Year: 2007)",
   caption = "Source: Gapminder Foundation"
 ) + ## modifying the plot further
@@ -191,8 +190,7 @@ p1 <- ggbetweenstats(
   type = "p",
   conf.level = 0.99,
   title = "Parametric test",
-  package = "ggsci",
-  palette = "nrc_npg"
+  palette = "ggsci::nrc_npg"
 )
 
 p2 <- ggbetweenstats(
@@ -206,8 +204,7 @@ p2 <- ggbetweenstats(
   type = "np",
   conf.level = 0.99,
   title = "Non-parametric Test",
-  package = "ggsci",
-  palette = "uniform_startrek"
+  palette = "ggsci::uniform_startrek"
 )
 
 p3 <- ggbetweenstats(
@@ -220,8 +217,7 @@ p3 <- ggbetweenstats(
   conf.level = 0.99,
   title = "Robust Test",
   tr = 0.005,
-  package = "wesanderson",
-  palette = "Royal2",
+  palette = "wesanderson::Royal2",
   digits = 3
 )
 
@@ -237,8 +233,7 @@ p4 <- ggbetweenstats(
   boxplot.args = list(width = 0),
   point.args = list(alpha = 0),
   title = "Bayesian Test",
-  package = "ggsci",
-  palette = "nrc_npg"
+  palette = "ggsci::nrc_npg"
 )
 
 ## combining the individual plots into a single plot
@@ -287,8 +282,7 @@ gapminder::gapminder %>%
     pairwise.alpha = 0.01, ## use a stricter alpha threshold to reduce clutter
     p.adjust.method = "fdr", ## adjust p-values for multiple tests using this method
     # ggtheme = ggthemes::theme_tufte(),
-    package = "ggsci",
-    palette = "default_jco",
+    palette = "ggsci::default_jco",
     ## arguments relevant for combine_plots
     annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
     plotgrid.args = list(nrow = 3)

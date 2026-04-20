@@ -347,8 +347,7 @@ ggcoefstats(
   x = mod_aov,
   effectsize.type = "omega", # changing the effect size estimate being displayed
   point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
-  package = "dutchmasters", # package from which color palette is to be taken
-  palette = "milkmaid", # color palette for labels
+  palette = "dutchmasters::milkmaid", # color palette for labels
   title = "omnibus ANOVA", # title for the plot
   exclude.intercept = TRUE
 ) +
@@ -612,8 +611,7 @@ ggcoefstats(
   x = df_full,
   meta.analytic.effect = TRUE,
   statistic = "t",
-  package = "LaCroixColoR",
-  palette = "paired"
+  palette = "LaCroixColoR::paired"
 )
 ```
 

@@ -211,8 +211,7 @@ the overall theme as well as the color palette in use.</p>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>, <span class="co">## label for the y-axis</span></span>
 <span>  <span class="co">## turn off messages</span></span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray</a></span><span class="op">(</span><span class="op">)</span>, <span class="co">## a different theme</span></span>
-<span>  package <span class="op">=</span> <span class="st">"yarrr"</span>, <span class="co">## package from which color palette is to be taken</span></span>
-<span>  palette <span class="op">=</span> <span class="st">"info2"</span>, <span class="co">## choosing a different color palette</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"yarrr::info2"</span>, <span class="co">## choosing a different color palette</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</span>
 <span>  caption <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span></span>
 <span><span class="op">)</span> <span class="op">+</span> <span class="co">## modifying the plot further</span></span>
@@ -264,8 +263,7 @@ to make each plot have different colors or themes.</p>
 <span>  type <span class="op">=</span> <span class="st">"p"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Parametric test"</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
@@ -279,8 +277,7 @@ to make each plot have different colors or themes.</p>
 <span>  type <span class="op">=</span> <span class="st">"np"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Non-parametric Test"</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"uniform_startrek"</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"ggsci::uniform_startrek"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
@@ -293,8 +290,7 @@ to make each plot have different colors or themes.</p>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Robust Test"</span>,</span>
 <span>  tr <span class="op">=</span> <span class="fl">0.005</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"wesanderson"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"Royal2"</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"wesanderson::Royal2"</span>,</span>
 <span>  digits <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -310,8 +306,7 @@ to make each plot have different colors or themes.</p>
 <span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Bayesian Test"</span>,</span>
-<span>  package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"nrc_npg"</span></span>
+<span>  palette <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## combining the individual plots into a single plot</span></span>
@@ -356,8 +351,7 @@ differences between every pair of continents.</p>
 <span>    pairwise.alpha <span class="op">=</span> <span class="fl">0.01</span>, <span class="co">## use a stricter alpha threshold to reduce clutter</span></span>
 <span>    p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>, <span class="co">## adjust p-values for multiple tests using this method</span></span>
 <span>    <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
-<span>    package <span class="op">=</span> <span class="st">"ggsci"</span>,</span>
-<span>    palette <span class="op">=</span> <span class="st">"default_jco"</span>,</span>
+<span>    palette <span class="op">=</span> <span class="st">"ggsci::default_jco"</span>,</span>
 <span>    <span class="co">## arguments relevant for combine_plots</span></span>
 <span>    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,</span>
 <span>    plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
