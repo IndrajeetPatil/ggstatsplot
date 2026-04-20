@@ -185,28 +185,19 @@ ggpiestats <- function(
       caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
       caption <- .extract_expression(caption_df)
     }
-  }
 
-  # pairwise comparisons ------------------------------------------
-
-  if (
-    test == "two.way" &&
-      x_levels > 2L &&
-      y_levels > 1L &&
-      results.subtitle &&
-      isFALSE(paired)
-  ) {
-    mpc_df <- tryCatch(
-      suppressWarnings(pairwise_contingency_table(
-        data = data,
-        x = {{ x }},
-        y = {{ y }},
-        digits = digits,
-        conf.level = conf.level,
-        alternative = alternative,
-        p.adjust.method = p.adjust.method
-      )),
-      error = function(e) NULL
+    # pairwise comparisons
+    mpc_df <- .pairwise_contingency(
+      data,
+      {{ x }},
+      {{ y }},
+      x_levels,
+      y_levels,
+      paired,
+      digits,
+      conf.level,
+      alternative,
+      p.adjust.method
     )
   }
 
