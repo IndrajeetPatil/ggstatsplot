@@ -30,7 +30,7 @@ test_that(
   {
     df <- tibble::tibble(grp = c(2L, 2L, 1L, 1L, 3L, 3L), val = 1:6)
     result <- .grouped_list(df, grouping.var = grp)
-    expect_identical(result$title, c("2", "1", "3"))
+    expect_identical(result$title, c("1", "2", "3"))
   }
 )
 

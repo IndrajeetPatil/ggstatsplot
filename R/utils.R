@@ -15,7 +15,14 @@
 .grouped_list <- function(data, grouping.var) {
   data <- as_tibble(data)
   grp_col <- pull(data, {{ grouping.var }})
-  data <- mutate(data, {{ grouping.var }} := if (is.factor(grp_col)) grp_col else forcats::fct_inorder(as.character(grp_col))) %>%
+  grp_fct <- if (is.factor(grp_col)) {
+    grp_col
+  } else if (is.character(grp_col)) {
+    forcats::fct_inorder(grp_col)
+  } else {
+    factor(grp_col)
+  }
+  data <- mutate(data, {{ grouping.var }} := grp_fct) %>%
     group_by({{ grouping.var }})
   list(data = group_split(data), title = as.character(pull(group_keys(data), 1L)))
 }

@@ -3,6 +3,6 @@
     Code
       grouped_ggcorrmat(iris)
     Condition
-      Error in `list()`:
-      ! argument 1 is empty
+      Error in `pull()`:
+      ! `var` is absent but must be supplied.
 
