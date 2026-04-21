@@ -94,9 +94,7 @@ ggdotplotstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
-  data %<>%
-    select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na()
+  data %<>% .prep_data({{ x }}, {{ y }})
 
   data <-
     suppressWarnings(centrality_description(

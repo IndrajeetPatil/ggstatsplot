@@ -121,29 +121,30 @@
   x <- ensym(x)
   y <- ensym(y)
 
+  centrality_df <- suppressWarnings(centrality_description(
+    data,
+    !!x,
+    !!y,
+    type = stats_type_switch(centrality.type),
+    digits = digits,
+    tr = tr
+  ))
+
   # centrality tagging
   if (isTRUE(centrality.plotting)) {
-    plot <- suppressWarnings(.centrality_ggrepel(
+    plot <- .centrality_ggrepel(
       plot = plot,
-      data = data,
+      centrality_df = centrality_df,
       x = !!x,
       y = !!y,
-      digits = digits,
-      type = stats_type_switch(centrality.type),
-      tr = tr,
       centrality.path = centrality.path,
       centrality.path.args = centrality.path.args,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
-    ))
+    )
   }
 
   # sample size labels on x-axis
-  centrality_df <- suppressWarnings(centrality_description(
-    data,
-    !!x,
-    !!y
-  ))
   plot <- plot +
     scale_x_discrete(labels = unique(centrality_df$n.expression))
 
@@ -198,42 +199,17 @@
 #' @name .centrality_ggrepel
 #'
 #' @param plot A `ggplot` object for which means are to be displayed.
-#' @param ... Additional arguments.
+#' @param centrality_df A data frame produced by
+#'   [statsExpressions::centrality_description()].
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggwithinstats
 #' @inheritParams ggrepel::geom_label_repel
 #'
 #' @autoglobal
-#'
-#' @examples
-#' # this internal function may not have much utility outside of the package
-#' set.seed(123)
-#' library(ggplot2)
-#'
-#' # make a plot
-#' p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
-#'   geom_boxplot()
-#'
-#' # add means
-#' ggstatsplot:::.centrality_ggrepel(
-#'   data = iris,
-#'   plot = p,
-#'   x = Species,
-#'   y = Sepal.Length
-#' )
-#'
-#' # with path connecting centrality values
-#' ggstatsplot:::.centrality_ggrepel(
-#'   data = iris,
-#'   plot = p,
-#'   x = Species,
-#'   y = Sepal.Length,
-#'   centrality.path = TRUE
-#' )
 #' @noRd
 .centrality_ggrepel <- function(
   plot,
-  data,
+  centrality_df,
   x,
   y,
   centrality.path = FALSE,
@@ -247,16 +223,8 @@
     size = 3.0,
     nudge_x = 0.4,
     segment.linetype = 4.0
-  ),
-  ...
+  )
 ) {
-  centrality_df <- suppressWarnings(centrality_description(
-    data,
-    {{ x }},
-    {{ y }},
-    ...
-  ))
-
   # lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
     plot <- plot +
