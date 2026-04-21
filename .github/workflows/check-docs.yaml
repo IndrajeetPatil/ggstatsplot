@@ -1,0 +1,13 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    - cron: "0 0 * * SUN"
+
+name: check-docs
+
+jobs:
+  check-docs:
+    uses: IndrajeetPatil/workflows/.github/workflows/check-docs.yaml@main
