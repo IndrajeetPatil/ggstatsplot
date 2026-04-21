@@ -111,13 +111,14 @@ ggbarstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    sc <- .pie_bar_subtitle_caption(
+    stats_output <- .pie_bar_subtitle_caption(
       data,
       {{ x }},
       {{ y }},
       type,
       paired,
       bf.message,
+      caption,
       alternative,
       conf.level,
       digits,
@@ -129,11 +130,11 @@ ggbarstats <- function(
       y_levels,
       p.adjust.method
     )
-    subtitle <- sc$subtitle
-    caption <- sc$caption
-    subtitle_df <- sc$subtitle_df
-    caption_df <- sc$caption_df
-    mpc_df <- sc$mpc_df
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
+    mpc_df <- stats_output$mpc_df
   }
 
   # plot ------------------------------------------

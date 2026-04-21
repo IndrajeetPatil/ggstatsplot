@@ -55,6 +55,7 @@
   type,
   paired,
   bf.message,
+  caption,
   alternative,
   conf.level,
   digits,
@@ -83,7 +84,6 @@
   subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
   subtitle <- .extract_expression(subtitle_df)
   caption_df <- NULL
-  caption <- NULL
 
   if (type != "bayes" && bf.message && isFALSE(paired)) {
     caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
