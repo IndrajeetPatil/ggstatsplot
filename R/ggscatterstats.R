@@ -155,7 +155,7 @@ ggscatterstats <- function(
       bf.message
     )
     subtitle <- stats_output$subtitle
-    caption <- stats_output$caption
+    caption <- stats_output$caption %||% caption
     subtitle_df <- stats_output$subtitle_df
     caption_df <- stats_output$caption_df
   }
