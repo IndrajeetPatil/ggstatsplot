@@ -92,6 +92,8 @@ with statistical details.</p>
 <span>    <span class="va">x</span><span class="op">)</span>,</span>
 <span>  xsidehistogram.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#009E73"</span>, color <span class="op">=</span> <span class="st">"black"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  ysidehistogram.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#D55E00"</span>, color <span class="op">=</span> <span class="st">"black"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  xsidehistogram.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  ysidehistogram.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -222,6 +224,14 @@ respective <code>geom_</code>s from the <code>{ggside}</code> package to change 
 distribution histograms plots.</p></dd>
 
 
+<dt id="arg-xsidehistogram-scale-ysidehistogram-scale">xsidehistogram.scale, ysidehistogram.scale<a class="anchor" aria-label="anchor" href="#arg-xsidehistogram-scale-ysidehistogram-scale"></a></dt>
+<dd><p>A list of arguments passed
+to <code><a href="https://rdrr.io/pkg/ggside/man/ggside-scales-continuous.html" class="external-link">ggside::scale_xsidey_continuous()</a></code> and
+<code><a href="https://rdrr.io/pkg/ggside/man/ggside-scales-continuous.html" class="external-link">ggside::scale_ysidex_continuous()</a></code>, respectively, to control the
+scale of marginal histograms (e.g., <code>breaks</code>, <code>limits</code>, <code>transform</code>).
+Default is <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> (no modifications).</p></dd>
+
+
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
 <dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
 variable name for <code>x</code> will be used.</p></dd>
@@ -318,8 +328,6 @@ have a lot of labels that overlap.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># looking at the plot</span></span></span>
 <span class="r-in"><span><span class="va">p</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.</span>
 <span class="r-plt img"><img src="ggscatterstats-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># extracting details from statistical tests</span></span></span>
@@ -365,6 +373,19 @@ have a lot of labels that overlap.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ggstatsplot_stats" "list"             </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># customize marginal histogram bins and scales</span></span></span>
+<span class="r-in"><span><span class="fu">ggscatterstats</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">mtcars</span>,</span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="va">wt</span>,</span></span>
+<span class="r-in"><span>  y <span class="op">=</span> <span class="va">mpg</span>,</span></span>
+<span class="r-in"><span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  xsidehistogram.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#009E73"</span>, color <span class="op">=</span> <span class="st">"black"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, binwidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ysidehistogram.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#D55E00"</span>, color <span class="op">=</span> <span class="st">"black"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, bins <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  xsidehistogram.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ysidehistogram.scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggscatterstats-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

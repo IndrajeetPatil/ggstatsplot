@@ -18,6 +18,19 @@
   pairwise significance annotations
   ([\#554](https://github.com/IndrajeetPatil/ggstatsplot/issues/554)).
 
+- [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
+  now sets a default number of bins for marginal histograms, suppressing
+  the
+  [`stat_bin()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html)
+  message about picking a better binwidth
+  ([\#810](https://github.com/IndrajeetPatil/ggstatsplot/issues/810)).
+
+- [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
+  gains `xsidehistogram.scale` and `ysidehistogram.scale` parameters to
+  control the scale (e.g., `breaks`, `limits`, `transform`) of the
+  marginal distribution histograms
+  ([\#898](https://github.com/IndrajeetPatil/ggstatsplot/issues/898)).
+
 - All top-level plotting functions now include an `alternative`
   argument, which is passed down to
   [statsExpressions](https://www.indrapatil.com/statsExpressions/) to

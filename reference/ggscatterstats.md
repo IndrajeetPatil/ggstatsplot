@@ -28,6 +28,8 @@ ggscatterstats(
     x),
   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  xsidehistogram.scale = list(),
+  ysidehistogram.scale = list(),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -162,6 +164,16 @@ ggscatterstats(
   A list of arguments passed to respective `geom_`s from the `{ggside}`
   package to change the marginal distribution histograms plots.
 
+- xsidehistogram.scale, ysidehistogram.scale:
+
+  A list of arguments passed to
+  [`ggside::scale_xsidey_continuous()`](https://rdrr.io/pkg/ggside/man/ggside-scales-continuous.html)
+  and
+  [`ggside::scale_ysidex_continuous()`](https://rdrr.io/pkg/ggside/man/ggside-scales-continuous.html),
+  respectively, to control the scale of marginal histograms (e.g.,
+  `breaks`, `limits`, `transform`). Default is
+  [`list()`](https://rdrr.io/r/base/list.html) (no modifications).
+
 - xlab:
 
   Label for `x` axis variable. If `NULL` (default), variable name for
@@ -282,8 +294,6 @@ p <- ggscatterstats(
 
 # looking at the plot
 p
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
 
 
 # extracting details from statistical tests
@@ -329,4 +339,17 @@ extract_stats(p)
 #> 
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"             
+
+# customize marginal histogram bins and scales
+ggscatterstats(
+  mtcars,
+  x = wt,
+  y = mpg,
+  results.subtitle = FALSE,
+  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, binwidth = 0.5),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, bins = 15),
+  xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
+  ysidehistogram.scale = list(breaks = seq(0, 15, 5))
+)
+
 ```

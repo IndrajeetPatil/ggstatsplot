@@ -75,6 +75,16 @@ grouped_ggscatterstats(
       `{ggside}` package to change the marginal distribution histograms
       plots.
 
+  `xsidehistogram.scale,ysidehistogram.scale`
+
+  :   A list of arguments passed to
+      [`ggside::scale_xsidey_continuous()`](https://rdrr.io/pkg/ggside/man/ggside-scales-continuous.html)
+      and
+      [`ggside::scale_ysidex_continuous()`](https://rdrr.io/pkg/ggside/man/ggside-scales-continuous.html),
+      respectively, to control the scale of marginal histograms (e.g.,
+      `breaks`, `limits`, `transform`). Default is
+      [`list()`](https://rdrr.io/r/base/list.html) (no modifications).
+
   `x`
 
   :   The column in `data` containing the explanatory variable to be
@@ -237,10 +247,6 @@ grouped_ggscatterstats(
   grouping.var     = genre,
   ggplot.component = list(geom_rug(sides = "b"))
 )
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
 
 
 # using labeling
@@ -255,12 +261,6 @@ grouped_ggscatterstats(
   label.expression = hwy > 25 & displ > 2.5,
   ggplot.component = scale_y_continuous(sec.axis = dup_axis())
 )
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
 
 
 # labeling without expression
@@ -273,8 +273,18 @@ grouped_ggscatterstats(
   label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_xsidebin()` using `bins = 30`. Pick better value `binwidth`.
-#> `stat_ysidebin()` using `bins = 30`. Pick better value `binwidth`.
+
+
+# customize marginal histogram bins and scales
+grouped_ggscatterstats(
+  data                = filter(movies_long, genre %in% c("Drama", "Comedy")),
+  x                   = rating,
+  y                   = length,
+  grouping.var        = genre,
+  results.subtitle    = FALSE,
+  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, bins = 20),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, binwidth = 10),
+  xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
+  ysidehistogram.scale = list(breaks = seq(0, 200, 50))
+)
 ```
