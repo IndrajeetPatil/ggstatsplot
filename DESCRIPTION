@@ -69,7 +69,7 @@ Suggests:
 VignetteBuilder:
     knitr
 Remotes:
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions@refactor/reduce-codebase-size
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
