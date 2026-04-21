@@ -143,7 +143,7 @@
       centrality.label.args = centrality.label.args
     )
   } else {
-    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y))
+    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y)) # nocov
   }
 
   # sample size labels on x-axis
