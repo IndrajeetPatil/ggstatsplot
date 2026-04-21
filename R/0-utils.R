@@ -1,3 +1,22 @@
+#' @noRd
+.make_grouped_fn <- function(.fn, .pre = NULL, guides = "collect") {
+  function(
+    data,
+    ...,
+    grouping.var,
+    plotgrid.args = list(),
+    annotation.args = list()
+  ) {
+    if (!is.null(.pre)) {
+      data <- .pre(data, ...)
+    }
+    .grouped_list(data, {{ grouping.var }}) %>%
+      purrr::pmap(.f = .fn, ...) %>%
+      combine_plots(plotgrid.args, annotation.args, guides = guides)
+  }
+}
+
+
 #' @title Split data frame into a list by grouping variable
 #'
 #' @description

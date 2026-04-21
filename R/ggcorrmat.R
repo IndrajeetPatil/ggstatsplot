@@ -241,15 +241,4 @@ ggcorrmat <- function(
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export
-grouped_ggcorrmat <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggcorrmat, ...) %>%
-    # `guides = "keep"` because legends can be different across grouping levels
-    combine_plots(guides = "keep", plotgrid.args, annotation.args)
-}
+grouped_ggcorrmat <- .make_grouped_fn(ggcorrmat, guides = "keep")

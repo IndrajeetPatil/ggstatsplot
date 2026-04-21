@@ -309,14 +309,4 @@ ggscatterstats <- function(
 #'   ysidehistogram.scale = list(breaks = seq(0, 200, 50))
 #' )
 #' @export
-grouped_ggscatterstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggscatterstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggscatterstats <- .make_grouped_fn(ggscatterstats)

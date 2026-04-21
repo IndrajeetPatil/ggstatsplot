@@ -339,14 +339,4 @@ ggbetweenstats <- function(
 #'   annotation.args = list(title = "Ratings by genre for different MPAA ratings")
 #' )
 #' @export
-grouped_ggbetweenstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggbetweenstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggbetweenstats <- .make_grouped_fn(ggbetweenstats)
