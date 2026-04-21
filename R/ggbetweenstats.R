@@ -220,29 +220,22 @@ ggbetweenstats <- function(
   test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
-    .f.args <- list(
-      data = data,
-      x = as_string(x),
-      y = as_string(y),
-      effsize.type = effsize.type,
-      conf.level = conf.level,
-      var.equal = var.equal,
-      digits = digits,
-      tr = tr,
-      paired = FALSE,
-      bf.prior = bf.prior,
-      nboot = nboot
-    )
-
-    if (test == "t") {
-      .f.args$alternative <- alternative
-    }
-
     stats_output <- .bw_subtitle_caption(
+      data = data,
+      x = x,
+      y = y,
       test = test,
       type = type,
       bf.message = bf.message,
-      .f.args = .f.args
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior,
+      nboot = nboot,
+      alternative = alternative,
+      paired = FALSE,
+      var.equal = var.equal
     )
     subtitle <- stats_output$subtitle
     caption <- stats_output$caption

@@ -193,29 +193,22 @@ ggwithinstats <- function(
   test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
-    .f.args <- list(
+    stats_output <- .bw_subtitle_caption(
       data = stats_data,
-      x = as_string(x),
-      y = as_string(y),
-      subject.id = subject.id,
+      x = x,
+      y = y,
+      test = test,
+      type = type,
+      bf.message = bf.message,
       effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,
       tr = tr,
-      paired = TRUE,
       bf.prior = bf.prior,
-      nboot = nboot
-    )
-
-    if (test == "t") {
-      .f.args$alternative <- alternative
-    }
-
-    stats_output <- .bw_subtitle_caption(
-      test = test,
-      type = type,
-      bf.message = bf.message,
-      .f.args = .f.args
+      nboot = nboot,
+      alternative = alternative,
+      paired = TRUE,
+      subject.id = subject.id
     )
     subtitle <- stats_output$subtitle
     caption <- stats_output$caption

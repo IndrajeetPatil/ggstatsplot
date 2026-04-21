@@ -3,19 +3,68 @@
 #'
 #' @description
 #'
-#' Shared helper for `ggbetweenstats()` and `ggwithinstats()` that runs the
-#' appropriate statistical test and optionally computes a Bayes Factor caption.
+#' Shared helper for `ggbetweenstats()` and `ggwithinstats()` that builds the
+#' argument list for the statistical test function and optionally computes a
+#' Bayes Factor caption.
 #'
+#' @param data Data frame for the statistical test.
+#' @param x,y Column name symbols for the grouping and response variables.
 #' @param test Character: `"t"` or `"anova"`.
 #' @param type Character: statistical test type (e.g. `"parametric"`).
 #' @param bf.message Logical: include Bayes Factor caption?
-#' @param .f.args A named list of arguments forwarded to the test function.
+#' @param paired Logical: whether the test is paired (within-subjects).
+#' @param var.equal Logical: assume equal variances? Only used for
+#'   between-subjects tests (`NULL` by default, omitted when `NULL`).
+#' @param subject.id Optional symbol for the subject identifier column
+#'   (within-subjects designs only; `NULL` by default, omitted when `NULL`).
+#' @inheritParams ggbetweenstats
 #'
-#' @return A list with elements `subtitle` and `caption`.
+#' @return A list with elements `subtitle`, `caption`, `subtitle_df`, and
+#'   `caption_df`.
 #'
 #' @autoglobal
 #' @noRd
-.bw_subtitle_caption <- function(test, type, bf.message, .f.args) {
+.bw_subtitle_caption <- function(
+  data,
+  x,
+  y,
+  test,
+  type,
+  bf.message,
+  effsize.type,
+  conf.level,
+  digits,
+  tr,
+  bf.prior,
+  nboot,
+  alternative,
+  paired,
+  var.equal = NULL,
+  subject.id = NULL
+) {
+  .f.args <- list(
+    data = data,
+    x = as_string(x),
+    y = as_string(y),
+    effsize.type = effsize.type,
+    conf.level = conf.level,
+    digits = digits,
+    tr = tr,
+    paired = paired,
+    bf.prior = bf.prior,
+    nboot = nboot
+  )
+
+  if (!is.null(var.equal)) {
+    .f.args$var.equal <- var.equal
+  }
+  if (!is.null(subject.id)) {
+    .f.args$subject.id <- subject.id
+  }
+  if (test == "t") {
+    .f.args$alternative <- alternative
+  }
+
   .f <- .f_switch(test)
   subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
   subtitle <- .extract_expression(subtitle_df)
