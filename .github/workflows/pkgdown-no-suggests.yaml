@@ -11,4 +11,3 @@ jobs:
     uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@main
     with:
       no-suggests: true
-      pkgdown-source: r-lib/pkgdown

@@ -16,22 +16,7 @@
 #' @autoglobal
 #' @noRd
 .one_sample_subtitle_caption <- function(type, bf.message, .f.args) {
-  subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-  subtitle <- .extract_expression(subtitle_df)
-  caption_df <- NULL
-  caption <- NULL
-
-  if (type == "parametric" && bf.message) {
-    caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-    caption <- .extract_expression(caption_df)
-  }
-
-  list(
-    subtitle = subtitle,
-    caption = caption,
-    subtitle_df = subtitle_df,
-    caption_df = caption_df
-  )
+  .subtitle_caption(one_sample_test, .f.args, type, bf.message)
 }
 
 

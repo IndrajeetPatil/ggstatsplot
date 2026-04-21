@@ -123,7 +123,6 @@ ggbarstats <- function(
       type = type,
       paired = paired,
       bf.message = bf.message,
-      caption = caption,
       alternative = alternative,
       conf.level = conf.level,
       digits = digits,
@@ -136,7 +135,7 @@ ggbarstats <- function(
       p.adjust.method = p.adjust.method
     )
     subtitle <- stats_output$subtitle
-    caption <- stats_output$caption
+    caption <- stats_output$caption %||% caption
     subtitle_df <- stats_output$subtitle_df
     caption_df <- stats_output$caption_df
     mpc_df <- stats_output$mpc_df

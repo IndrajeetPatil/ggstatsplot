@@ -140,23 +140,24 @@ ggscatterstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      conf.level = conf.level,
-      digits = digits,
-      tr = tr,
-      bf.prior = bf.prior
+    stats_output <- .subtitle_caption(
+      corr_test,
+      list(
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        conf.level = conf.level,
+        digits = digits,
+        tr = tr,
+        bf.prior = bf.prior
+      ),
+      type,
+      bf.message
     )
-
-    subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption %||% caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
   }
 
   # basic plot ------------------------------------------
