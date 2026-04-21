@@ -9,3 +9,4 @@ name: test-coverage
 jobs:
   test-coverage:
     uses: IndrajeetPatil/workflows/.github/workflows/test-coverage.yaml@main
+    secrets: inherit
