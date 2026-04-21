@@ -211,18 +211,11 @@ ggwithinstats <- function(
       .f.args$alternative <- alternative
     }
 
-    # styler: off
-    .f <- .f_switch(test)
-    subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-    # styler: on
-
-    if (type == "parametric" && bf.message) {
-      # styler: off
-      caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-      # styler: on
-    }
+    sc <- .bw_subtitle_caption(test, type, bf.message, .f.args)
+    subtitle <- sc$subtitle
+    caption <- sc$caption
+    subtitle_df <- sc$subtitle_df
+    caption_df <- sc$caption_df
   }
 
   # plot -------------------------------------------
@@ -248,82 +241,37 @@ ggwithinstats <- function(
     plot_comparison <- plot_comparison + exec(geom_path, !!!point.path.args)
   }
 
-  # centrality tagging -------------------------------------
+  # decorate and return -------------------------
 
-  if (isTRUE(centrality.plotting)) {
-    plot_comparison <- suppressWarnings(.centrality_ggrepel(
-      plot = plot_comparison,
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      digits = digits,
-      type = stats_type_switch(centrality.type),
-      tr = tr,
-      centrality.path = centrality.path,
-      centrality.path.args = centrality.path.args,
-      centrality.point.args = centrality.point.args,
-      centrality.label.args = centrality.label.args
-    ))
-  }
-
-  # sample size labels on x-axis
-  centrality_df <- suppressWarnings(centrality_description(
-    data,
-    {{ x }},
-    {{ y }}
-  ))
-  plot_comparison <- plot_comparison +
-    scale_x_discrete(labels = unique(centrality_df$n.expression))
-
-  # ggsignif labels -------------------------------------
-
-  # initialize
-  seclabel <- NULL
-
-  if (pairwise.display != "none" && test == "anova") {
-    mpc_df <- suppressWarnings(pairwise_comparisons(
-      data = stats_data,
-      x = {{ x }},
-      y = {{ y }},
-      subject.id = subject.id,
-      type = type,
-      tr = tr,
-      paired = TRUE,
-      p.adjust.method = p.adjust.method,
-      digits = digits
-    ))
-
-    # adding the layer for pairwise comparisons
-    plot_comparison <- .ggsignif_adder(
-      plot = plot_comparison,
-      mpc_df = mpc_df,
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      pairwise.display = pairwise.display,
-      pairwise.alpha = pairwise.alpha,
-      ggsignif.args = ggsignif.args
-    )
-
-    # secondary label axis to give pairwise comparisons test details
-    seclabel <- .pairwise_seclabel(
-      test.description = unique(mpc_df$test),
-      pairwise.display = ifelse(type == "bayes", "all", pairwise.display),
-      pairwise.alpha = pairwise.alpha
-    )
-  }
-
-  # annotations -------------------------
-
-  .aesthetic_addon(
+  .bw_decorate(
     plot = plot_comparison,
-    x = pull(data, {{ x }}),
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    type = type,
+    test = test,
+    centrality.plotting = centrality.plotting,
+    centrality.type = centrality.type,
+    digits = digits,
+    tr = tr,
+    centrality.point.args = centrality.point.args,
+    centrality.label.args = centrality.label.args,
+    centrality.path = centrality.path,
+    centrality.path.args = centrality.path.args,
+    pairwise.display = pairwise.display,
+    pairwise.alpha = pairwise.alpha,
+    pairwise_args = list(
+      data = stats_data,
+      paired = TRUE,
+      subject.id = subject.id,
+      p.adjust.method = p.adjust.method
+    ),
+    ggsignif.args = ggsignif.args,
     xlab = xlab %||% as_name(x),
     ylab = ylab %||% as_name(y),
     title = title,
     subtitle = subtitle,
     caption = caption,
-    seclabel = seclabel,
     ggtheme = ggtheme,
     palette = palette,
     ggplot.component = ggplot.component

@@ -1,3 +1,166 @@
+#' @title Compute subtitle and caption for box/violin plots
+#' @name .bw_subtitle_caption
+#'
+#' @description
+#'
+#' Shared helper for `ggbetweenstats()` and `ggwithinstats()` that runs the
+#' appropriate statistical test and optionally computes a Bayes Factor caption.
+#'
+#' @param test Character: `"t"` or `"anova"`.
+#' @param type Character: statistical test type (e.g. `"parametric"`).
+#' @param bf.message Logical: include Bayes Factor caption?
+#' @param .f.args A named list of arguments forwarded to the test function.
+#'
+#' @return A list with elements `subtitle` and `caption`.
+#'
+#' @autoglobal
+#' @noRd
+.bw_subtitle_caption <- function(test, type, bf.message, .f.args) {
+  .f <- .f_switch(test)
+  subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
+  subtitle <- .extract_expression(subtitle_df)
+  caption_df <- NULL
+  caption <- NULL
+
+  if (type == "parametric" && bf.message) {
+    caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
+    caption <- .extract_expression(caption_df)
+  }
+
+  list(
+    subtitle = subtitle,
+    caption = caption,
+    subtitle_df = subtitle_df,
+    caption_df = caption_df
+  )
+}
+
+
+#' @title Decorate a box/violin comparison plot
+#' @name .bw_decorate
+#'
+#' @description
+#'
+#' Adds centrality labels, sample-size x-axis labels, pairwise-comparison
+#' annotations (ggsignif), and final aesthetic theming shared by
+#' `ggbetweenstats()` and `ggwithinstats()`.
+#'
+#' @param plot A `ggplot` object to decorate.
+#' @param data Data frame used for plotting.
+#' @param pairwise_args A named list of extra arguments forwarded to
+#'   [pairwise_comparisons()], typically containing `data`, `paired`,
+#'   `p.adjust.method`, and optionally `var.equal` or `subject.id`.
+#' @inheritParams ggbetweenstats
+#' @inheritParams ggwithinstats
+#'
+#' @return A decorated `ggplot` object.
+#'
+#' @autoglobal
+#' @noRd
+.bw_decorate <- function(
+  plot,
+  data,
+  x,
+  y,
+  type,
+  test,
+  centrality.plotting,
+  centrality.type,
+  digits,
+  tr,
+  centrality.point.args,
+  centrality.label.args,
+  pairwise.display,
+  pairwise.alpha,
+  pairwise_args,
+  ggsignif.args,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  ggtheme,
+  palette,
+  ggplot.component,
+  centrality.path = FALSE,
+  centrality.path.args = list()
+) {
+  x <- ensym(x)
+  y <- ensym(y)
+
+  # centrality tagging
+  if (isTRUE(centrality.plotting)) {
+    plot <- suppressWarnings(.centrality_ggrepel(
+      plot = plot,
+      data = data,
+      x = !!x,
+      y = !!y,
+      digits = digits,
+      type = stats_type_switch(centrality.type),
+      tr = tr,
+      centrality.path = centrality.path,
+      centrality.path.args = centrality.path.args,
+      centrality.point.args = centrality.point.args,
+      centrality.label.args = centrality.label.args
+    ))
+  }
+
+  # sample size labels on x-axis
+  centrality_df <- suppressWarnings(centrality_description(
+    data,
+    !!x,
+    !!y
+  ))
+  plot <- plot +
+    scale_x_discrete(labels = unique(centrality_df$n.expression))
+
+  # ggsignif labels
+  seclabel <- NULL
+
+  if (pairwise.display != "none" && test == "anova") {
+    pw_args <- c(
+      list(x = x, y = y, type = type, tr = tr, digits = digits),
+      pairwise_args
+    )
+    mpc_df <- suppressWarnings(inject(pairwise_comparisons(!!!pw_args)))
+
+    assign("mpc_df", mpc_df, envir = plot$plot_env)
+
+    plot <- .ggsignif_adder(
+      plot = plot,
+      mpc_df = mpc_df,
+      data = data,
+      x = !!x,
+      y = !!y,
+      pairwise.display = pairwise.display,
+      pairwise.alpha = pairwise.alpha,
+      ggsignif.args = ggsignif.args
+    )
+
+    seclabel <- .pairwise_seclabel(
+      test.description = unique(mpc_df$test),
+      pairwise.display = ifelse(type == "bayes", "all", pairwise.display),
+      pairwise.alpha = pairwise.alpha
+    )
+  }
+
+  # annotations
+  .aesthetic_addon(
+    plot = plot,
+    x = pull(data, !!x),
+    xlab = xlab,
+    ylab = ylab,
+    title = title,
+    subtitle = subtitle,
+    caption = caption,
+    seclabel = seclabel,
+    ggtheme = ggtheme,
+    palette = palette,
+    ggplot.component = ggplot.component
+  )
+}
+
+
 #' @title Adding labels for mean values.
 #' @name .centrality_ggrepel
 #'
