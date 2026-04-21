@@ -1,5 +1,33 @@
 utils::globalVariables(".pre")
 
+
+#' @title Shared data-preparation step for two-variable plot functions
+#' @name .prep_data
+#'
+#' @description
+#'
+#' Selects the specified columns from the data frame, drops rows with missing
+#' values, and optionally converts `x` to a factor with unused levels dropped.
+#'
+#' @inheritParams ggbetweenstats
+#'
+#' @return A data frame.
+#'
+#' @autoglobal
+#' @noRd
+.prep_data <- function(data, x, y, x_as_factor = FALSE) {
+  data %<>%
+    select({{ x }}, {{ y }}) %>%
+    tidyr::drop_na()
+
+  if (x_as_factor) {
+    data %<>% mutate({{ x }} := droplevels(as.factor({{ x }})))
+  }
+
+  data
+}
+
+
 # nocov start
 #' @noRd
 .make_grouped_fn <- function(.fn, .pre = NULL, guides = "collect") {
