@@ -138,7 +138,7 @@ ggdotplotstats <- function(
       .f.args = .f.args
     )
     subtitle <- stats$subtitle
-    caption <- stats$caption
+    caption <- stats$caption %||% caption
     subtitle_df <- stats$subtitle_df
     caption_df <- stats$caption_df
   }
