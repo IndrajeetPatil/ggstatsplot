@@ -93,12 +93,6 @@ ggdotplotstats <- function(
   # make sure both quoted and unquoted arguments are allowed
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
-  .f.stats.args <- list(
-    conf.level = conf.level,
-    digits = digits,
-    tr = tr,
-    bf.prior = bf.prior
-  )
 
   data %<>%
     select({{ x }}, {{ y }}) %>%
@@ -131,26 +125,22 @@ ggdotplotstats <- function(
       x = {{ x }},
       test.value = test.value,
       alternative = alternative,
-      effsize.type = effsize.type
+      effsize.type = effsize.type,
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior
     )
 
-    subtitle_df <- .eval_f(
-      one_sample_test,
-      !!!.f.args,
-      !!!.f.stats.args,
-      type = type
+    stats <- .one_sample_subtitle_caption(
+      type = type,
+      bf.message = bf.message,
+      .f.args = .f.args
     )
-    subtitle <- .extract_expression(subtitle_df)
-
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(
-        one_sample_test,
-        !!!.f.args,
-        !!!.f.stats.args,
-        type = "bayes"
-      )
-      caption <- .extract_expression(caption_df)
-    }
+    subtitle <- stats$subtitle
+    caption <- stats$caption
+    subtitle_df <- stats$subtitle_df
+    caption_df <- stats$caption_df
   }
 
   # plot -----------------------------------
