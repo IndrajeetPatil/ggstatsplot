@@ -291,15 +291,4 @@ ggpiestats <- function(
 #'   annotation.args = list(title = "Cylinder distribution by transmission type")
 #' )
 #' @export
-grouped_ggpiestats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  data <- .stabilize_x_factor(data, ...)
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggpiestats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggpiestats <- .make_grouped_fn(ggpiestats, .pre = .stabilize_x_factor)

@@ -235,14 +235,4 @@ ggdotplotstats <- function(
 #'   annotation.args = list(title = "City mileage by manufacturer for different cylinders")
 #' )
 #' @export
-grouped_ggdotplotstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggdotplotstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggdotplotstats <- .make_grouped_fn(ggdotplotstats)

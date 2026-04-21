@@ -315,14 +315,4 @@ ggwithinstats <- function(
 #'   annotation.args  = list(title = "Desire ratings by condition for each gender")
 #' )
 #' @export
-grouped_ggwithinstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggwithinstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggwithinstats <- .make_grouped_fn(ggwithinstats)
