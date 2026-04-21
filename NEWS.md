@@ -294,7 +294,7 @@ read the `NEWS` for that package:
 
 ## MAJOR CHANGES
 
-  - The `pairwise_comparions()` function implementation now lives in
+  - The `pairwise_comparisons()` function implementation now lives in
     `{statsExpressions}` package, although it will continue to be exported from
     `{ggstatsplot}` package.
 
@@ -1143,7 +1143,7 @@ This uncoupling is designed to achieve two things:
     `grouped_` cousin (`grouped_gghistostats`).
 
   - `outlier_df` function is no longer exported since it was always meant to be
-    an internal function and was accidently exported during initial release and
+    an internal function and was accidentally exported during initial release and
     was retained for a while for backward compatibility.
 
 # ggstatsplot 0.0.11
@@ -1357,7 +1357,7 @@ This uncoupling is designed to achieve two things:
 ## MAJOR CHANGES
 
   - `ggscatterstats` and its `grouped_` variant accept both character and bare
-    exressions as input to arguments `label.var` and `labe.expression` (#110).
+    expressions as input to arguments `label.var` and `labe.expression` (#110).
 
   - To be consistent with rest of the functions in the package, both Pearson's
     *r*, Spearman's *rho*, and robust percentage bend correlations also display
