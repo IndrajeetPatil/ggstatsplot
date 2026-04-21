@@ -121,17 +121,17 @@
   x <- ensym(x)
   y <- ensym(y)
 
-  centrality_df <- suppressWarnings(centrality_description(
-    data,
-    !!x,
-    !!y,
-    type = stats_type_switch(centrality.type),
-    digits = digits,
-    tr = tr
-  ))
-
   # centrality tagging
   if (isTRUE(centrality.plotting)) {
+    centrality_df <- suppressWarnings(centrality_description(
+      data,
+      !!x,
+      !!y,
+      type = stats_type_switch(centrality.type),
+      digits = digits,
+      tr = tr
+    ))
+
     plot <- .centrality_ggrepel(
       plot = plot,
       centrality_df = centrality_df,
@@ -142,6 +142,8 @@
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
     )
+  } else {
+    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y))
   }
 
   # sample size labels on x-axis
