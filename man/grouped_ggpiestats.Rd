@@ -28,8 +28,7 @@ dropped.}
 Please note that if there are empty factor levels in your variable, they
 will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{\link[=ggbarstats]{ggbarstats()}}.}
+appropriate association test will be run.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
