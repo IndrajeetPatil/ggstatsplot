@@ -88,6 +88,7 @@ as a subtitle.</p>
 <span>  ratio <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>,</span>
 <span>  sampling.plan <span class="op">=</span> <span class="st">"indepMulti"</span>,</span>
 <span>  fixed.margin <span class="op">=</span> <span class="st">"rows"</span>,</span>
 <span>  prior.concentration <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -217,6 +218,12 @@ confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no conf
 will be computed.</p></dd>
 
 
+<dt id="arg-p-adjust-method">p.adjust.method<a class="anchor" aria-label="anchor" href="#arg-p-adjust-method"></a></dt>
+<dd><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
+
+
 <dt id="arg-sampling-plan">sampling.plan<a class="anchor" aria-label="anchor" href="#arg-sampling-plan"></a></dt>
 <dd><p>Character describing the sampling plan. Possible options:</p><ul><li><p><code>"indepMulti"</code> (independent multinomial; default)</p></li>
 <li><p><code>"poisson"</code></p></li>
@@ -327,6 +334,21 @@ be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</co
 <p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Goodness of fit chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test()</a></code></td></tr><tr><td>Bayesian</td><td>Bayesian Goodness of fit chi-squared test</td><td>(custom)</td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Pearson's <em>C</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::pearsons_c()</a></code></td></tr><tr><td>Bayesian</td><td>No</td><td>No</td><td>No</td></tr></table></div>
 
 
+    </div>
+    <div class="section level2">
+    <h2 id="pairwise-comparisons">Pairwise comparisons<a class="anchor" aria-label="anchor" href="#pairwise-comparisons"></a></h2>
+
+
+<p>When there is a two-way table and <code>x</code> has more than two levels, pairwise
+contingency table analyses (Fisher's exact tests) are computed using
+<code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html" class="external-link">pairwise_contingency_table()</a></code>. These pairwise results are <strong>not</strong>
+displayed in the plot because bar and pie charts lack a natural visual
+representation for pairwise significance annotations (unlike box/violin
+plots, which use bracket annotations). Additionally, there is no
+established convention for overlaying pairwise comparisons on pie charts,
+and both <code><a href="ggpiestats.html">ggpiestats()</a></code> and <code>ggbarstats()</code> are designed to remain visually
+congruent. The pairwise results are available as a data frame via
+<code>extract_stats(plot)$pairwise_comparisons_data</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

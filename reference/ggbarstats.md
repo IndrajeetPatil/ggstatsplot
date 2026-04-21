@@ -24,6 +24,7 @@ ggbarstats(
   ratio = NULL,
   alternative = "two.sided",
   conf.level = 0.95,
+  p.adjust.method = "holm",
   sampling.plan = "indepMulti",
   fixed.margin = "rows",
   prior.concentration = 1,
@@ -155,6 +156,12 @@ ggbarstats(
   Scalar between `0` and `1` (default: `95%` confidence/credible
   intervals, `0.95`). If `NULL`, no confidence intervals will be
   computed.
+
+- p.adjust.method:
+
+  Adjustment method for *p*-values for multiple comparisons. Possible
+  methods are: `"holm"` (default), `"hochberg"`, `"hommel"`,
+  `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 
 - sampling.plan:
 
@@ -309,6 +316,21 @@ The table below provides summary about:
 | Type | Effect size | CI available? | Function used |
 | Parametric/Non-parametric | Pearson's *C* | Yes | [`effectsize::pearsons_c()`](https://easystats.github.io/effectsize/reference/phi.html) |
 | Bayesian | No | No | No |
+
+## Pairwise comparisons
+
+When there is a two-way table and `x` has more than two levels, pairwise
+contingency table analyses (Fisher's exact tests) are computed using
+[`pairwise_contingency_table()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html).
+These pairwise results are **not** displayed in the plot because bar and
+pie charts lack a natural visual representation for pairwise
+significance annotations (unlike box/violin plots, which use bracket
+annotations). Additionally, there is no established convention for
+overlaying pairwise comparisons on pie charts, and both
+[`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+and `ggbarstats()` are designed to remain visually congruent. The
+pairwise results are available as a data frame via
+`extract_stats(plot)$pairwise_comparisons_data`.
 
 ## See also
 

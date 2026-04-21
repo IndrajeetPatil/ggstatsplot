@@ -4,6 +4,20 @@
 
 ### NEW FEATURES
 
+- [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+  and
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+  now compute pairwise contingency table analyses (Fisher’s exact tests
+  via
+  [`pairwise_contingency_table()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html))
+  when `x` has more than two levels. These are available via
+  `extract_stats(plot)$pairwise_comparisons_data`. A new
+  `p.adjust.method` parameter controls the *p*-value adjustment method
+  (default: `"holm"`). Pairwise results are not displayed on the plots
+  since bar and pie charts lack a natural visual representation for
+  pairwise significance annotations
+  ([\#554](https://github.com/IndrajeetPatil/ggstatsplot/issues/554)).
+
 - All top-level plotting functions now include an `alternative`
   argument, which is passed down to
   [statsExpressions](https://www.indrapatil.com/statsExpressions/) to

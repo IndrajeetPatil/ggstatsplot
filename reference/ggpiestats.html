@@ -88,6 +88,7 @@ as a subtitle.</p>
 <span>  ratio <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>,</span>
 <span>  sampling.plan <span class="op">=</span> <span class="st">"indepMulti"</span>,</span>
 <span>  fixed.margin <span class="op">=</span> <span class="st">"rows"</span>,</span>
 <span>  prior.concentration <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -215,6 +216,12 @@ confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no conf
 will be computed.</p></dd>
 
 
+<dt id="arg-p-adjust-method">p.adjust.method<a class="anchor" aria-label="anchor" href="#arg-p-adjust-method"></a></dt>
+<dd><p>Adjustment method for <em>p</em>-values for multiple
+comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochberg"</code>,
+<code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
+
+
 <dt id="arg-sampling-plan">sampling.plan<a class="anchor" aria-label="anchor" href="#arg-sampling-plan"></a></dt>
 <dd><p>Character describing the sampling plan. Possible options:</p><ul><li><p><code>"indepMulti"</code> (independent multinomial; default)</p></li>
 <li><p><code>"poisson"</code></p></li>
@@ -293,6 +300,21 @@ be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</co
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>
 
 <table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>pie slices</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">ggplot2::geom_col()</a></code></td><td><code>NA</code></td></tr><tr><td>labels</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html" class="external-link">ggplot2::geom_label()</a></code>/<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td><td><code>label.args</code></td></tr></table></div>
+    <div class="section level2">
+    <h2 id="pairwise-comparisons">Pairwise comparisons<a class="anchor" aria-label="anchor" href="#pairwise-comparisons"></a></h2>
+
+
+<p>When there is a two-way table and <code>x</code> has more than two levels, pairwise
+contingency table analyses (Fisher's exact tests) are computed using
+<code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html" class="external-link">pairwise_contingency_table()</a></code>. These pairwise results are <strong>not</strong>
+displayed in the plot because bar and pie charts lack a natural visual
+representation for pairwise significance annotations (unlike box/violin
+plots, which use bracket annotations). Additionally, there is no
+established convention for overlaying pairwise comparisons on pie charts,
+and both <code>ggpiestats()</code> and <code><a href="ggbarstats.html">ggbarstats()</a></code> are designed to remain visually
+congruent. The pairwise results are available as a data frame via
+<code>extract_stats(plot)$pairwise_comparisons_data</code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="contingency-table-analyses">Contingency table analyses<a class="anchor" aria-label="anchor" href="#contingency-table-analyses"></a></h2>
 

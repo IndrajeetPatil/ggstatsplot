@@ -6,4 +6,5 @@ to see their documentation.
 - statsExpressions:
 
   [`%>%`](https://www.indrapatil.com/statsExpressions/reference/reexports.html),
-  [`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)
+  [`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html),
+  [`pairwise_contingency_table`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html)

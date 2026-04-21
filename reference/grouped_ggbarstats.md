@@ -80,6 +80,12 @@ grouped_ggbarstats(
 
   :   Title text for the legend.
 
+  `p.adjust.method`
+
+  :   Adjustment method for *p*-values for multiple comparisons.
+      Possible methods are: `"holm"` (default), `"hochberg"`,
+      `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
+
   `bf.message`
 
   :   Logical that decides whether to display Bayes Factor in favor of
