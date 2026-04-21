@@ -169,6 +169,19 @@ grouped_ggscatterstats(
   label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
+
+# customize marginal histogram bins and scales
+grouped_ggscatterstats(
+  data                = filter(movies_long, genre \%in\% c("Drama", "Comedy")),
+  x                   = rating,
+  y                   = length,
+  grouping.var        = genre,
+  results.subtitle    = FALSE,
+  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, bins = 20),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, binwidth = 10),
+  xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
+  ysidehistogram.scale = list(breaks = seq(0, 200, 50))
+)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
