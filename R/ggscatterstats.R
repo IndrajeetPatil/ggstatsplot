@@ -34,6 +34,11 @@
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
 #'   respective `geom_`s from the `{ggside}` package to change the marginal
 #'   distribution histograms plots.
+#' @param xsidehistogram.scale,ysidehistogram.scale A list of arguments passed
+#'   to `ggside::scale_xsidey_continuous()` and
+#'   `ggside::scale_ysidex_continuous()`, respectively, to control the
+#'   scale of marginal histograms (e.g., `breaks`, `limits`, `transform`).
+#'   Default is `list()` (no modifications).
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
@@ -74,6 +79,18 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
+#' # customize marginal histogram bins and scales
+#' ggscatterstats(
+#'   mtcars,
+#'   x = wt,
+#'   y = mpg,
+#'   results.subtitle = FALSE,
+#'   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, binwidth = 0.5),
+#'   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, bins = 15),
+#'   xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
+#'   ysidehistogram.scale = list(breaks = seq(0, 15, 5))
+#' )
+#'
 #' @export
 ggscatterstats <- function(
   data,
@@ -101,6 +118,8 @@ ggscatterstats <- function(
   ),
   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  xsidehistogram.scale = list(),
+  ysidehistogram.scale = list(),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -189,6 +208,13 @@ ggscatterstats <- function(
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
+    if (!any(c("bins", "binwidth") %in% names(xsidehistogram.args))) {
+      xsidehistogram.args[["bins"]] <- 30L
+    }
+    if (!any(c("bins", "binwidth") %in% names(ysidehistogram.args))) {
+      ysidehistogram.args[["bins"]] <- 30L
+    }
+
     plot_scatter <- plot_scatter +
       .eval_f(
         ggside::geom_xsidehistogram,
@@ -200,8 +226,8 @@ ggscatterstats <- function(
         mapping = aes(x = after_stat(count)),
         !!!ysidehistogram.args
       ) +
-      ggside::scale_ysidex_continuous() +
-      ggside::scale_xsidey_continuous()
+      exec(ggside::scale_ysidex_continuous, !!!ysidehistogram.scale) +
+      exec(ggside::scale_xsidey_continuous, !!!xsidehistogram.scale)
   }
 
   plot_scatter
@@ -267,6 +293,19 @@ ggscatterstats <- function(
 #'   bf.message      = FALSE,
 #'   label.var       = "title",
 #'   annotation.args = list(tag_levels = "a")
+#' )
+#'
+#' # customize marginal histogram bins and scales
+#' grouped_ggscatterstats(
+#'   data                = filter(movies_long, genre %in% c("Drama", "Comedy")),
+#'   x                   = rating,
+#'   y                   = length,
+#'   grouping.var        = genre,
+#'   results.subtitle    = FALSE,
+#'   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, bins = 20),
+#'   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, binwidth = 10),
+#'   xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
+#'   ysidehistogram.scale = list(breaks = seq(0, 200, 50))
 #' )
 #' @export
 grouped_ggscatterstats <- function(

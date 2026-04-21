@@ -26,6 +26,8 @@ ggscatterstats(
     x),
   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  xsidehistogram.scale = list(),
+  ysidehistogram.scale = list(),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -119,6 +121,12 @@ to \code{geom_smooth} geom used to display the regression line.}
 \item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
 respective \code{geom_}s from the \code{{ggside}} package to change the marginal
 distribution histograms plots.}
+
+\item{xsidehistogram.scale, ysidehistogram.scale}{A list of arguments passed
+to \code{ggside::scale_xsidey_continuous()} and
+\code{ggside::scale_ysidex_continuous()}, respectively, to control the
+scale of marginal histograms (e.g., \code{breaks}, \code{limits}, \code{transform}).
+Default is \code{list()} (no modifications).}
 
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
@@ -215,6 +223,18 @@ p
 
 # extracting details from statistical tests
 extract_stats(p)
+
+# customize marginal histogram bins and scales
+ggscatterstats(
+  mtcars,
+  x = wt,
+  y = mpg,
+  results.subtitle = FALSE,
+  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, binwidth = 0.5),
+  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, bins = 15),
+  xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
+  ysidehistogram.scale = list(breaks = seq(0, 15, 5))
+)
 
 }
 \seealso{
