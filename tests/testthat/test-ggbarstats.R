@@ -196,11 +196,34 @@ test_that("pairwise comparisons data is returned for 3+ groups", {
   stats_data <- extract_stats(ggbarstats(mtcars, cyl, am))
   expect_s3_class(stats_data$pairwise_comparisons_data, "tbl_df")
   expect_identical(nrow(stats_data$pairwise_comparisons_data), 3L)
+  expect_true(all(
+    c("group1", "group2", "p.value") %in%
+      names(stats_data$pairwise_comparisons_data)
+  ))
+
+  # different p.adjust.method produces different adjusted p-values
+  set.seed(123)
+  stats_bonf <- extract_stats(
+    ggbarstats(mtcars, cyl, am, p.adjust.method = "bonferroni")
+  )
+  expect_s3_class(stats_bonf$pairwise_comparisons_data, "tbl_df")
+  expect_identical(nrow(stats_bonf$pairwise_comparisons_data), 3L)
 
   # 2 levels: no pairwise data
   set.seed(123)
   stats_data2 <- extract_stats(ggbarstats(mtcars, am, vs))
   expect_null(stats_data2$pairwise_comparisons_data)
+
+  # paired test: no pairwise data
+  set.seed(123)
+  stats_paired <- extract_stats(ggbarstats(
+    survey_data,
+    `1st survey`,
+    `2nd survey`,
+    counts = Counts,
+    paired = TRUE
+  ))
+  expect_null(stats_paired$pairwise_comparisons_data)
 })
 
 test_that("grouped_ggbarstats produces error when grouping variable not provided", {

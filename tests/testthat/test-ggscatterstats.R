@@ -124,6 +124,51 @@ test_that("grouped_ggscatterstats plotting works as expected", {
   )
 })
 
+# marginal histogram bins and scales ----------------------------------------
+
+test_that("custom marginal histogram bins and scales", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "custom bins and scale for marginal histograms",
+    fig = ggscatterstats(
+      mtcars,
+      wt,
+      mpg,
+      results.subtitle = FALSE,
+      xsidehistogram.args = list(
+        fill = "#009E73",
+        color = "black",
+        na.rm = TRUE,
+        binwidth = 0.5
+      ),
+      ysidehistogram.args = list(
+        fill = "#D55E00",
+        color = "black",
+        na.rm = TRUE,
+        bins = 15
+      ),
+      xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
+      ysidehistogram.scale = list(breaks = seq(0, 15, 5))
+    )
+  )
+})
+
+test_that("marginal histograms work without user-specified bins", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "default bins suppresses stat_bin message",
+    fig = ggscatterstats(
+      mtcars,
+      wt,
+      mpg,
+      results.subtitle = FALSE,
+      marginal = TRUE
+    )
+  )
+})
+
+# grouped_ggscatterstats -------------------------------------------------
+
 test_that("grouped_ggscatterstats errors when no grouping is present", {
   expect_snapshot_error(
     grouped_ggscatterstats(
