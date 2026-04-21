@@ -423,7 +423,7 @@ extract_stats(p)
 #> # A tibble: 1 × 15
 #>   term  conf.level effectsize estimate conf.low conf.high
 #>   <chr>      <dbl> <chr>         <dbl>    <dbl>     <dbl>
-#> 1 Ratio       0.95 Cramers_v     0.412        0     0.665
+#> 1 Ratio       0.95 Cramers_v     0.415        0     0.669
 #>   prior.distribution      prior.location prior.scale  bf10
 #>   <chr>                            <dbl>       <dbl> <dbl>
 #> 1 independent multinomial              0           1  16.8
