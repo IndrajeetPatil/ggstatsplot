@@ -266,6 +266,11 @@ ggwithinstats <- function(
     ))
   }
 
+  # sample size labels on x-axis
+  centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}))
+  plot_comparison <- plot_comparison +
+    scale_x_discrete(labels = unique(centrality_df$n.expression))
+
   # ggsignif labels -------------------------------------
 
   # initialize

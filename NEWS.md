@@ -57,6 +57,9 @@
   the `x` variable. Previously, `patchwork` could not merge the per-panel fill
   scales, producing duplicate legends (#868).
 
+- `ggbetweenstats()` and `ggwithinstats()` now correctly display sample size
+  labels on the x-axis even when `centrality.plotting = FALSE` (#695).
+
 - `ggcoefstats()` now preserves the model term order in the default top-to-bottom
   plot layout and in estimate-sorted displays, instead of showing terms in the
   reverse order (#642).
