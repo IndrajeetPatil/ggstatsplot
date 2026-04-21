@@ -1,3 +1,5 @@
+utils::globalVariables(".pre")
+
 #' @noRd
 .make_grouped_fn <- function(.fn, .pre = NULL, guides = "collect") {
   function(
