@@ -174,7 +174,7 @@ extract_stats(p2)
 #> # A tibble: 1 × 15
 #>   term  conf.level effectsize estimate conf.low conf.high
 #>   <chr>      <dbl> <chr>         <dbl>    <dbl>     <dbl>
-#> 1 Ratio       0.95 Cramers_v     0.468    0.426     0.509
+#> 1 Ratio       0.95 Cramers_v     0.468    0.426     0.510
 #>   prior.distribution      prior.location prior.scale    bf10
 #>   <chr>                            <dbl>       <dbl>   <dbl>
 #> 1 independent multinomial              0           1 7.02e92
@@ -227,7 +227,7 @@ extract_stats(p2)
 #> # A tibble: 1 × 15
 #>   term  conf.level effectsize estimate conf.low conf.high
 #>   <chr>      <dbl> <chr>         <dbl>    <dbl>     <dbl>
-#> 1 Ratio       0.95 Cramers_v     0.130        0     0.329
+#> 1 Ratio       0.95 Cramers_v     0.133        0     0.328
 #>   prior.distribution      prior.location prior.scale  bf10
 #>   <chr>                            <dbl>       <dbl> <dbl>
 #> 1 independent multinomial              0           1  1.03

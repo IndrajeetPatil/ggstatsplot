@@ -96,6 +96,13 @@
   duplicate legends
   ([\#868](https://github.com/IndrajeetPatil/ggstatsplot/issues/868)).
 
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+  and
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  now correctly display sample size labels on the x-axis even when
+  `centrality.plotting = FALSE`
+  ([\#695](https://github.com/IndrajeetPatil/ggstatsplot/issues/695)).
+
 - [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
   now preserves the model term order in the default top-to-bottom plot
   layout and in estimate-sorted displays, instead of showing terms in
