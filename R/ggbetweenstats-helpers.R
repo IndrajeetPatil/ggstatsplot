@@ -132,7 +132,7 @@
       tr = tr
     ))
 
-    plot <- .centrality_ggrepel(
+    plot <- suppressWarnings(.centrality_ggrepel(
       plot = plot,
       centrality_df = centrality_df,
       x = !!x,
@@ -141,7 +141,7 @@
       centrality.path.args = centrality.path.args,
       centrality.point.args = centrality.point.args,
       centrality.label.args = centrality.label.args
-    )
+    ))
   } else {
     centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y)) # nocov
   }
