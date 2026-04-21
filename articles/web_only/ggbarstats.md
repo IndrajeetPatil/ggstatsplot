@@ -94,6 +94,36 @@ dplyr::glimpse(Titanic_full)
 #> $ Survived <fct> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…
 ```
 
+## Goodness of Fit with `ggbarstats`
+
+The simplest use case for `ggbarstats` is that we want to display
+information about **one** categorical or nominal variable. As part of
+that display or plot, we may also choose to execute a chi-squared
+goodness of fit test to see whether the proportions (or percentages) in
+categories of the single variable appear to line up with our hypothesis
+or model. To start simple and then expand, let’s say that we’d like to
+display a bar chart with the percentages of passengers who did or did
+not survive. Our initial hypothesis is that it was no different than
+flipping a coin. People had a 50/50 chance of surviving.
+
+``` r
+
+ggbarstats(
+  data = Titanic_full,
+  x = Survived,
+  title = "Passenger survival on the Titanic",
+  caption = "Source: Titanic survival dataset",
+  legend.title = "Survived?"
+)
+```
+
+![](ggbarstats_files/figure-html/ggbarstats3-1.png)
+
+**Note:** Equal proportions per category are the default, e.g. 50/50,
+but you can specify any hypothesized ratio you like with `ratio` so if
+our hypothesis was that 80% died and 20% survived we would add
+`ratio = c(.80,.20)` when we entered the code.
+
 ## Independence (or association) with `ggbarstats`
 
 Let’s next investigate whether the passenger’s sex was independent of,
@@ -346,6 +376,9 @@ this plot either as a figure caption or in the main text-
 > under the alternative hypothesis as compared to the null hypothesis.
 > This can be considered strong evidence (Jeffreys, 1961) in favor of
 > the alternative hypothesis.
+
+Similar reporting style can be followed when the function performs
+one-sample goodness-of-fit test instead of a $`\chi^2`$-test.
 
 ## Suggestions
 

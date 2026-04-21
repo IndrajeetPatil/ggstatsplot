@@ -4,6 +4,17 @@
 
 ### NEW FEATURES
 
+- [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+  (and
+  [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md))
+  now supports one-sample goodness-of-fit tests when only `x` is
+  specified (with `y = NULL` as the new default). This produces a single
+  stacked bar chart with chi-squared GOF test results in the subtitle,
+  mirroring the existing one-sample support in
+  [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+  ([\#532](https://github.com/IndrajeetPatil/ggstatsplot/issues/532),
+  [\#697](https://github.com/IndrajeetPatil/ggstatsplot/issues/697)).
+
 - [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   and
   [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)

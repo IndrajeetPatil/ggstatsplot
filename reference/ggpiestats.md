@@ -60,9 +60,7 @@ ggpiestats(
   Please note that if there are empty factor levels in your variable,
   they will be dropped. Default is `NULL`. If `NULL`, one-sample
   proportion test (a goodness of fit test) will be run for the `x`
-  variable. Otherwise an appropriate association test will be run. This
-  argument can not be `NULL` for
-  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md).
+  variable. Otherwise an appropriate association test will be run.
 
 - counts:
 

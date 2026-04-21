@@ -9,7 +9,7 @@ plot as a subtitle.
 ggbarstats(
   data,
   x,
-  y,
+  y = NULL,
   counts = NULL,
   type = "parametric",
   paired = FALSE,
@@ -62,8 +62,7 @@ ggbarstats(
   Please note that if there are empty factor levels in your variable,
   they will be dropped. Default is `NULL`. If `NULL`, one-sample
   proportion test (a goodness of fit test) will be run for the `x`
-  variable. Otherwise an appropriate association test will be run. This
-  argument can not be `NULL` for `ggbarstats()`.
+  variable. Otherwise an appropriate association test will be run.
 
 - counts:
 
@@ -344,8 +343,8 @@ pairwise results are available as a data frame via
 # for reproducibility
 set.seed(123)
 
-# creating a plot
-p <- ggbarstats(mtcars, x = vs, y = cyl)
+# one sample goodness of fit proportion test
+p <- ggbarstats(mtcars, vs)
 
 # looking at the plot
 p
@@ -355,52 +354,34 @@ p
 extract_stats(p)
 #> $subtitle_data
 #> # A tibble: 1 × 13
-#>   statistic    df   p.value method                     effectsize       
-#>       <dbl> <int>     <dbl> <chr>                      <chr>            
-#> 1      21.3     2 0.0000232 Pearson's Chi-squared test Cramer's V (adj.)
+#>   statistic    df p.value method                                   effectsize 
+#>       <dbl> <dbl>   <dbl> <chr>                                    <chr>      
+#> 1       0.5     1   0.480 Chi-squared test for given probabilities Pearson's C
 #>   estimate conf.level conf.low conf.high conf.method conf.distribution n.obs
 #>      <dbl>      <dbl>    <dbl>     <dbl> <chr>       <chr>             <int>
-#> 1    0.789       0.95    0.371         1 ncp         chisq                32
+#> 1    0.124       0.95        0     0.426 ncp         chisq                32
 #>   expression
 #>   <list>    
 #> 1 <language>
 #> 
 #> $caption_data
-#> # A tibble: 1 × 15
-#>   term  conf.level effectsize estimate conf.low conf.high
-#>   <chr>      <dbl> <chr>         <dbl>    <dbl>     <dbl>
-#> 1 Ratio       0.95 Cramers_v     0.683    0.436     0.840
-#>   prior.distribution      prior.location prior.scale   bf10
-#>   <chr>                            <dbl>       <dbl>  <dbl>
-#> 1 independent multinomial              0           1 30129.
-#>   method                              conf.method log_e_bf10 n.obs expression
-#>   <chr>                               <chr>            <dbl> <int> <list>    
-#> 1 Bayesian contingency table analysis ETI               10.3    32 <language>
+#> # A tibble: 1 × 4
+#>    bf10 prior.scale method                                      expression
+#>   <dbl>       <dbl> <chr>                                       <list>    
+#> 1 0.180           1 Bayesian one-way contingency table analysis <language>
 #> 
 #> $pairwise_comparisons_data
 #> NULL
 #> 
 #> $descriptive_data
-#> # A tibble: 6 × 5
-#>   cyl   vs    counts   perc .label
-#>   <fct> <fct>  <int>  <dbl> <chr> 
-#> 1 4     0          1   9.09 9%    
-#> 2 4     1         10  90.9  91%   
-#> 3 6     0          3  42.9  43%   
-#> 4 6     1          4  57.1  57%   
-#> 5 8     0         14 100    100%  
-#> 6 8     1          0   0    NA    
+#> # A tibble: 2 × 4
+#>   vs    counts  perc .label
+#>   <fct>  <int> <dbl> <chr> 
+#> 1 0         18  56.2 56%   
+#> 2 1         14  43.8 44%   
 #> 
 #> $one_sample_data
-#> # A tibble: 3 × 19
-#>   cyl   counts  perc N        statistic    df p.value method effectsize estimate
-#>   <fct>  <int> <dbl> <chr>        <dbl> <dbl>   <dbl> <chr>  <chr>         <dbl>
-#> 1 8         14  43.8 (n = 14)    14         1 1.83e-4 Chi-s… Pearson's…    0.707
-#> 2 6          7  21.9 (n = 7)      0.143     1 7.05e-1 Chi-s… Pearson's…    0.141
-#> 3 4         11  34.4 (n = 11)     7.36      1 6.66e-3 Chi-s… Pearson's…    0.633
-#> # ℹ 9 more variables: conf.level <dbl>, conf.low <dbl>, conf.high <dbl>,
-#> #   conf.method <chr>, conf.distribution <chr>, n.obs <int>, expression <list>,
-#> #   .label <glue>, .p.label <glue>
+#> NULL
 #> 
 #> $tidy_data
 #> NULL
@@ -411,8 +392,16 @@ extract_stats(p)
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"             
 
-# Bayesian analysis
-ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
+# association test (or contingency table analysis)
+ggbarstats(mtcars, vs, cyl)
+
+
+# with 3+ x levels, pairwise comparisons are available
+ggbarstats(mtcars, cyl, am)
+
+
+# Bayesian test
+ggbarstats(mtcars, vs, cyl, type = "bayes")
 
 
 # using pre-aggregated data with counts

@@ -37,9 +37,11 @@ context, run the following code in your `R` console:
 
 ``` r
 citation("ggstatsplot")
-Patil, I. (2021). Visualizations with statistical details: The
-'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-doi:10.21105/joss.03167
+To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
 
 A BibTeX entry for LaTeX users is
 
@@ -637,10 +639,10 @@ For more, also read the following vignette:
 In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use
 [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
-function which has a similar syntax.
+function which has a similar syntax—including support for one-sample
+goodness-of-fit tests.
 
-N.B. The *p*-values from one-sample proportion test are displayed on top
-of each bar.
+To study an interaction between two categorical variables:
 
 ``` r
 
@@ -672,27 +674,27 @@ results](reference/figures/README-ggbarstats1-1.png)
 ✅ Bayesian hypothesis-testing\
 ✅ Bayesian estimation\
 
-And, needless to say, there is also a `grouped_` variant of this
-function-
+There is also a `grouped_` variant of this function that makes it easy
+to repeat the same operation across a **single** grouping variable.
+Following example is a case where the theoretical question is about
+proportions for different levels of a single nominal variable:
 
 ``` r
 
-## setup
 set.seed(123)
 
 grouped_ggbarstats(
   data         = mtcars,
-  x            = am,
-  y            = cyl,
-  grouping.var = vs,
-  palette      = "wesanderson::Darjeeling2" # ,
-  # ggtheme      = ggthemes::theme_tufte(base_size = 12)
+  x            = cyl,
+  grouping.var = am,
+  label.repel  = TRUE,
+  palette      = "ggsci::default_ucscgb"
 )
 ```
 
-![Grouped bar charts showing transmission and cylinder association for
-straight and V-shaped engine
-configurations](reference/figures/README-ggbarstats2-1.png)
+![Grouped bar charts showing cylinder distribution for automatic and
+manual transmission
+vehicles](reference/figures/README-ggbarstats2-1.png)
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function

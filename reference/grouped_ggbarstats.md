@@ -50,8 +50,7 @@ grouped_ggbarstats(
       variable, they will be dropped. Default is `NULL`. If `NULL`,
       one-sample proportion test (a goodness of fit test) will be run
       for the `x` variable. Otherwise an appropriate association test
-      will be run. This argument can not be `NULL` for
-      [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md).
+      will be run.
 
   `proportion.test`
 
@@ -260,22 +259,12 @@ For details, see:
 ## Examples
 
 ``` r
-# for reproducibility
 set.seed(123)
-library(dplyr, warn.conflicts = FALSE)
-
-# let's create a smaller data frame first
-diamonds_short <- ggplot2::diamonds %>%
-  filter(cut %in% c("Very Good", "Ideal")) %>%
-  filter(clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
-  sample_frac(size = 0.05)
-
+# grouped one-sample proportion test
 grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(title = "Diamond quality by color and clarity")
+  data = mtcars,
+  x = cyl,
+  grouping.var = am,
+  annotation.args = list(title = "Cylinder distribution by transmission type")
 )
 ```
