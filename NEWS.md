@@ -2,6 +2,12 @@
 
 ## NEW FEATURES
 
+- `ggbarstats()` (and `grouped_ggbarstats()`) now supports one-sample
+  goodness-of-fit tests when only `x` is specified (with `y = NULL` as the new
+  default). This produces a single stacked bar chart with chi-squared GOF test
+  results in the subtitle, mirroring the existing one-sample support in
+  `ggpiestats()` (#532, #697).
+
 - `ggpiestats()` and `ggbarstats()` now compute pairwise contingency table
   analyses (Fisher's exact tests via `pairwise_contingency_table()`) when `x`
   has more than two levels. These are available via

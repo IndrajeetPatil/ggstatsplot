@@ -7,7 +7,7 @@
 ggbarstats(
   data,
   x,
-  y,
+  y = NULL,
   counts = NULL,
   type = "parametric",
   paired = FALSE,
@@ -52,8 +52,7 @@ dropped.}
 Please note that if there are empty factor levels in your variable, they
 will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{\link[=ggbarstats]{ggbarstats()}}.}
+appropriate association test will be run.}
 
 \item{counts}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
@@ -263,8 +262,8 @@ congruent. The pairwise results are available as a data frame via
 # for reproducibility
 set.seed(123)
 
-# creating a plot
-p <- ggbarstats(mtcars, x = vs, y = cyl)
+# one sample goodness of fit proportion test
+p <- ggbarstats(mtcars, vs)
 
 # looking at the plot
 p
@@ -272,8 +271,14 @@ p
 # extracting details from statistical tests
 extract_stats(p)
 
-# Bayesian analysis
-ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
+# association test (or contingency table analysis)
+ggbarstats(mtcars, vs, cyl)
+
+# with 3+ x levels, pairwise comparisons are available
+ggbarstats(mtcars, cyl, am)
+
+# Bayesian test
+ggbarstats(mtcars, vs, cyl, type = "bayes")
 
 # using pre-aggregated data with counts
 ggbarstats(as.data.frame(Titanic), x = Survived, y = Sex, counts = Freq)
