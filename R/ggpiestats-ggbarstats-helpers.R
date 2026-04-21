@@ -55,7 +55,6 @@
   type,
   paired,
   bf.message,
-  caption,
   alternative,
   conf.level,
   digits,
@@ -81,14 +80,13 @@
     prior.concentration = prior.concentration
   )
 
-  subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-  subtitle <- .extract_expression(subtitle_df)
-  caption_df <- NULL
-
-  if (type != "bayes" && bf.message && isFALSE(paired)) {
-    caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-    caption <- .extract_expression(caption_df)
-  }
+  stats <- .subtitle_caption(
+    contingency_table,
+    .f.args,
+    type,
+    bf.message,
+    bf.condition = type != "bayes" && isFALSE(paired)
+  )
 
   mpc_df <- .pairwise_contingency(
     data,
@@ -103,13 +101,7 @@
     p.adjust.method
   )
 
-  list(
-    subtitle = subtitle,
-    caption = caption,
-    subtitle_df = subtitle_df,
-    caption_df = caption_df,
-    mpc_df = mpc_df
-  )
+  c(stats, list(mpc_df = mpc_df))
 }
 
 

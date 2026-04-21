@@ -127,3 +127,30 @@
 .extract_expression <- function(data) {
   purrr::pluck(data, "expression", 1L, .default = NULL)
 }
+
+
+#' @noRd
+.subtitle_caption <- function(
+  .f,
+  .f.args,
+  type,
+  bf.message,
+  bf.condition = type == "parametric"
+) {
+  subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
+  subtitle <- .extract_expression(subtitle_df)
+  caption_df <- NULL
+  caption <- NULL
+
+  if (bf.condition && bf.message) {
+    caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
+    caption <- .extract_expression(caption_df)
+  }
+
+  list(
+    subtitle = subtitle,
+    caption = caption,
+    subtitle_df = subtitle_df,
+    caption_df = caption_df
+  )
+}

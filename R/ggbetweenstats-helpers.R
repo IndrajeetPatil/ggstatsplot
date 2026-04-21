@@ -65,23 +65,7 @@
     .f.args$alternative <- alternative
   }
 
-  .f <- .f_switch(test)
-  subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-  subtitle <- .extract_expression(subtitle_df)
-  caption_df <- NULL
-  caption <- NULL
-
-  if (type == "parametric" && bf.message) {
-    caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-    caption <- .extract_expression(caption_df)
-  }
-
-  list(
-    subtitle = subtitle,
-    caption = caption,
-    subtitle_df = subtitle_df,
-    caption_df = caption_df
-  )
+  .subtitle_caption(.f_switch(test), .f.args, type, bf.message)
 }
 
 
