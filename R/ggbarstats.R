@@ -112,10 +112,22 @@ ggbarstats <- function(
 
   if (results.subtitle) {
     sc <- .pie_bar_subtitle_caption(
-      data, {{ x }}, {{ y }}, type, paired, bf.message,
-      alternative, conf.level, digits, ratio,
-      sampling.plan, fixed.margin, prior.concentration,
-      x_levels, y_levels, p.adjust.method
+      data,
+      {{ x }},
+      {{ y }},
+      type,
+      paired,
+      bf.message,
+      alternative,
+      conf.level,
+      digits,
+      ratio,
+      sampling.plan,
+      fixed.margin,
+      prior.concentration,
+      x_levels,
+      y_levels,
+      p.adjust.method
     )
     subtitle <- sc$subtitle
     caption <- sc$caption
