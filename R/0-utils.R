@@ -1,5 +1,6 @@
 utils::globalVariables(".pre")
 
+# nocov start
 #' @noRd
 .make_grouped_fn <- function(.fn, .pre = NULL, guides = "collect") {
   function(
@@ -17,7 +18,7 @@ utils::globalVariables(".pre")
       combine_plots(plotgrid.args, annotation.args, guides = guides)
   }
 }
-
+# nocov end
 
 #' @title Split data frame into a list by grouping variable
 #'
