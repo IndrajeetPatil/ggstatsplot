@@ -106,15 +106,15 @@ gghistostats <- function(
       bf.prior = bf.prior
     )
 
-    # subtitle with statistical results
-    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    # BF message
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    stats <- .one_sample_subtitle_caption(
+      type = type,
+      bf.message = bf.message,
+      .f.args = .f.args
+    )
+    subtitle <- stats$subtitle
+    caption <- stats$caption %||% caption
+    subtitle_df <- stats$subtitle_df
+    caption_df <- stats$caption_df
   }
 
   # plot -----------------------------------

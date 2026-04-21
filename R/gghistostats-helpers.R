@@ -1,3 +1,40 @@
+#' @title Compute subtitle and caption for one-sample test plots
+#' @name .one_sample_subtitle_caption
+#'
+#' @description
+#'
+#' Shared helper for `gghistostats()` and `ggdotplotstats()` that runs the
+#' one-sample test and optionally computes a Bayes Factor caption.
+#'
+#' @param type Character: statistical test type (e.g. `"parametric"`).
+#' @param bf.message Logical: include Bayes Factor caption?
+#' @param .f.args A named list of arguments forwarded to
+#'   [statsExpressions::one_sample_test()].
+#'
+#' @return A list with elements `subtitle` and `caption`.
+#'
+#' @autoglobal
+#' @noRd
+.one_sample_subtitle_caption <- function(type, bf.message, .f.args) {
+  subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
+  subtitle <- .extract_expression(subtitle_df)
+  caption_df <- NULL
+  caption <- NULL
+
+  if (type == "parametric" && bf.message) {
+    caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
+    caption <- .extract_expression(caption_df)
+  }
+
+  list(
+    subtitle = subtitle,
+    caption = caption,
+    subtitle_df = subtitle_df,
+    caption_df = caption_df
+  )
+}
+
+
 #' @title Custom function for adding labeled lines for `x`-axis variable.
 #' @name .histo_labeller
 #'
