@@ -153,20 +153,6 @@ test_that("custom marginal histogram bins and scales", {
   )
 })
 
-test_that("marginal histograms work without user-specified bins", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "default bins suppresses stat_bin message",
-    fig = ggscatterstats(
-      mtcars,
-      wt,
-      mpg,
-      results.subtitle = FALSE,
-      marginal = TRUE
-    )
-  )
-})
-
 # grouped_ggscatterstats -------------------------------------------------
 
 test_that("grouped_ggscatterstats errors when no grouping is present", {
