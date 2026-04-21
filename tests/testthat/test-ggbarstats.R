@@ -18,6 +18,18 @@ survey_data_NA <- dplyr::tibble(
 test_that("checking default outputs", {
   set.seed(123)
   expect_doppelganger(
+    title = "checking one-way table - without NA",
+    fig = ggbarstats(mtcars, cyl, ratio = c(0.2, 0.2, 0.6))
+  )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "checking one-way table - with NA",
+    fig = ggbarstats(ggplot2::msleep, vore)
+  )
+
+  set.seed(123)
+  expect_doppelganger(
     title = "checking unpaired two-way table - without NA",
     fig = ggbarstats(mtcars, am, vs, ratio = c(0.4, 0.6))
   )
@@ -189,6 +201,19 @@ test_that("expression output", {
   expect_identical(p_sub, stats_output)
 })
 
+test_that("one-sample expression output", {
+  set.seed(123)
+  p_sub <- ggbarstats(mtcars, x = cyl) %>% extract_subtitle()
+
+  set.seed(123)
+  stats_output <- contingency_table(
+    data = mtcars,
+    x = cyl
+  )$expression[[1L]]
+
+  expect_identical(p_sub, stats_output)
+})
+
 # pairwise comparisons --------------------------------------------------
 
 test_that("pairwise comparisons data is returned for 3+ groups", {
@@ -201,6 +226,11 @@ test_that("pairwise comparisons data is returned for 3+ groups", {
   set.seed(123)
   stats_data2 <- extract_stats(ggbarstats(mtcars, am, vs))
   expect_null(stats_data2$pairwise_comparisons_data)
+
+  # one-way test: no pairwise data
+  set.seed(123)
+  stats_data3 <- extract_stats(ggbarstats(mtcars, cyl))
+  expect_null(stats_data3$pairwise_comparisons_data)
 })
 
 test_that("grouped_ggbarstats produces error when grouping variable not provided", {
@@ -208,6 +238,16 @@ test_that("grouped_ggbarstats produces error when grouping variable not provided
 })
 
 test_that("grouped_ggbarstats works", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "grouped_ggbarstats with one-way table",
+    fig = grouped_ggbarstats(
+      mtcars,
+      grouping.var = am,
+      x = cyl
+    )
+  )
+
   # creating a smaller data frame
   mpg_short <- ggplot2::mpg %>%
     dplyr::filter(

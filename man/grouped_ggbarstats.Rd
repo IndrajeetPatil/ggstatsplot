@@ -30,8 +30,7 @@ dropped.}
 Please note that if there are empty factor levels in your variable, they
 will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{\link[=ggbarstats]{ggbarstats()}}.}
+appropriate association test will be run.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
@@ -144,23 +143,13 @@ For details, see:
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
-# for reproducibility
 set.seed(123)
-library(dplyr, warn.conflicts = FALSE)
-
-# let's create a smaller data frame first
-diamonds_short <- ggplot2::diamonds \%>\%
-  filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
-  filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
-  sample_frac(size = 0.05)
-
+# grouped one-sample proportion test
 grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(title = "Diamond quality by color and clarity")
+  data = mtcars,
+  x = cyl,
+  grouping.var = am,
+  annotation.args = list(title = "Cylinder distribution by transmission type")
 )
 \dontshow{\}) # examplesIf}
 }
