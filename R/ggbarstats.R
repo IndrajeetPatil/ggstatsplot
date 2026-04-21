@@ -93,7 +93,12 @@ ggbarstats <- function(
   y <- if (!quo_is_null(enquo(y))) ensym(y)
   type <- stats_type_switch(type)
 
-  prep <- .pie_bar_data_prep(data, {{ x }}, {{ y }}, {{ counts }})
+  prep <- .pie_bar_data_prep(
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    counts = {{ counts }}
+  )
   data <- prep$data
   test <- prep$test
   x_levels <- prep$x_levels
@@ -112,23 +117,23 @@ ggbarstats <- function(
 
   if (results.subtitle) {
     stats_output <- .pie_bar_subtitle_caption(
-      data,
-      {{ x }},
-      {{ y }},
-      type,
-      paired,
-      bf.message,
-      caption,
-      alternative,
-      conf.level,
-      digits,
-      ratio,
-      sampling.plan,
-      fixed.margin,
-      prior.concentration,
-      x_levels,
-      y_levels,
-      p.adjust.method
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      type = type,
+      paired = paired,
+      bf.message = bf.message,
+      caption = caption,
+      alternative = alternative,
+      conf.level = conf.level,
+      digits = digits,
+      ratio = ratio,
+      sampling.plan = sampling.plan,
+      fixed.margin = fixed.margin,
+      prior.concentration = prior.concentration,
+      x_levels = x_levels,
+      y_levels = y_levels,
+      p.adjust.method = p.adjust.method
     )
     subtitle <- stats_output$subtitle
     caption <- stats_output$caption
