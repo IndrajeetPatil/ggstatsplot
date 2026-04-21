@@ -53,6 +53,23 @@ test_that("plotting features work as expected", {
   )
 })
 
+# sample size labels with centrality.plotting = FALSE (#695) ----------
+
+test_that("sample size labels visible when centrality.plotting is FALSE", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "n labels visible without centrality",
+    fig = ggbetweenstats(
+      data = mtcars,
+      x = am,
+      y = wt,
+      centrality.plotting = FALSE,
+      pairwise.display = "none",
+      results.subtitle = FALSE
+    )
+  )
+})
+
 # subtitle output works ------------------------------------------------
 
 test_that("subtitle output works", {
