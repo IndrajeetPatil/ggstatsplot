@@ -432,7 +432,9 @@ CRAN release: 2022-05-21
 
 ### MAJOR CHANGES
 
-- The `pairwise_comparions()` function implementation now lives in
+- The
+  [`pairwise_comparisons()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)
+  function implementation now lives in
   [statsExpressions](https://www.indrapatil.com/statsExpressions/)
   package, although it will continue to be exported from
   [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package.
@@ -1419,8 +1421,9 @@ CRAN release: 2019-07-12
   `NULL` for its `grouped_` cousin (`grouped_gghistostats`).
 
 - `outlier_df` function is no longer exported since it was always meant
-  to be an internal function and was accidently exported during initial
-  release and was retained for a while for backward compatibility.
+  to be an internal function and was accidentally exported during
+  initial release and was retained for a while for backward
+  compatibility.
 
 ## ggstatsplot 0.0.11
 
@@ -1661,7 +1664,7 @@ CRAN release: 2019-01-07
 ### MAJOR CHANGES
 
 - `ggscatterstats` and its `grouped_` variant accept both character and
-  bare exressions as input to arguments `label.var` and
+  bare expressions as input to arguments `label.var` and
   `labe.expression`
   ([\#110](https://github.com/IndrajeetPatil/ggstatsplot/issues/110)).
 

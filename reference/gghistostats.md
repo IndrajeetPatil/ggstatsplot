@@ -192,7 +192,7 @@ gghistostats(
   Decides which centrality parameter is to be displayed. The default is
   to choose the same as `type` argument. You can specify this to be:
 
-  - `"parameteric"` (for **mean**)
+  - `"parametric"` (for **mean**)
 
   - `"nonparametric"` (for **median**)
 

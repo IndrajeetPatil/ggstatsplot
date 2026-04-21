@@ -276,7 +276,7 @@
 <h2 class="pkg-version" data-toc-text="0.9.2" id="ggstatsplot-092">ggstatsplot 0.9.2<a class="anchor" aria-label="anchor" href="#ggstatsplot-092"></a></h2><p class="text-muted">CRAN release: 2022-05-21</p>
 <div class="section level3">
 <h3 id="major-changes-0-9-2">MAJOR CHANGES<a class="anchor" aria-label="anchor" href="#major-changes-0-9-2"></a></h3>
-<ul><li><p>The <code>pairwise_comparions()</code> function implementation now lives in <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package, although it will continue to be exported from <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package.</p></li>
+<ul><li><p>The <code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons()</a></code> function implementation now lives in <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> package, although it will continue to be exported from <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package.</p></li>
 <li><p>The details about pairwise test for <code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> functions are now displayed as a label for the secondary axis. Previously, this information was displayed in the caption. Given that caption already contained Bayesian test details, it was becoming difficult to stack different expressions on top of each other. To avoid unnecessary code complexity and also to avoid crowded caption, this decision was made. Additionally, the pairwise test label has been slightly abbreviated, and so is the label for significance bars. This is done to not let the text overwhelm the numeric values, the latter being more important.</p></li>
 </ul></div>
 </div>
@@ -702,7 +702,7 @@
 <h3 id="breaking-changes-0-0-12">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-0-12"></a></h3>
 <ul><li><p>The vestigial arguments <code>axis.text.x.margin.t</code>, <code>axis.text.x.margin.r</code>, <code>axis.text.x.margin.b</code>, <code>axis.text.x.margin.l</code> for <code>ggcorrmat</code> have been removed. The margins can be adjusted using <code><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">ggplot2::margin()</a></code>.</p></li>
 <li><p><code>gghistostats</code> no longer allows <code>data</code> argument to be <code>NULL</code>. This is to make this function’s syntax consistent with rest of the functions in this package (none of which allow <code>data</code> to be <code>NULL</code>). This also removes confusion that arose for some users when <code>data</code> couldn’t be <code>NULL</code> for its <code>grouped_</code> cousin (<code>grouped_gghistostats</code>).</p></li>
-<li><p><code>outlier_df</code> function is no longer exported since it was always meant to be an internal function and was accidently exported during initial release and was retained for a while for backward compatibility.</p></li>
+<li><p><code>outlier_df</code> function is no longer exported since it was always meant to be an internal function and was accidentally exported during initial release and was retained for a while for backward compatibility.</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -804,7 +804,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="major-changes-0-0-8">MAJOR CHANGES<a class="anchor" aria-label="anchor" href="#major-changes-0-0-8"></a></h3>
-<ul><li><p><code>ggscatterstats</code> and its <code>grouped_</code> variant accept both character and bare exressions as input to arguments <code>label.var</code> and <code>labe.expression</code> (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/110" class="external-link">#110</a>).</p></li>
+<ul><li><p><code>ggscatterstats</code> and its <code>grouped_</code> variant accept both character and bare expressions as input to arguments <code>label.var</code> and <code>labe.expression</code> (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/110" class="external-link">#110</a>).</p></li>
 <li><p>To be consistent with rest of the functions in the package, both Pearson’s <em>r</em>, Spearman’s <em>rho</em>, and robust percentage bend correlations also display information about statistic associated with these tests.</p></li>
 <li><p><code>ggscatterstats</code>, by default, showed jittered data points (because it relied on <code>position_jitter</code> defaults). This could be visually inaccurate and, therefore, <code>ggscatterstats</code> now displays points without any jitter. The user can introduce jitter if they wish to using <code>point.width.jitter</code> and <code>point.height.jitter</code> arguments. For similar reasons, for <code>ggbetweenstats</code> and its <code>grouped_</code> variant, <code>point.jitter.height</code> default has been changed from <code>0.1</code> to <code>0</code> (no vertical jitter, i.e.).</p></li>
 </ul></div>

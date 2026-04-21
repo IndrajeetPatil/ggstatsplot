@@ -188,7 +188,7 @@ grouped_gghistostats(
       is to choose the same as `type` argument. You can specify this to
       be:
 
-      - `"parameteric"` (for **mean**)
+      - `"parametric"` (for **mean**)
 
       - `"nonparametric"` (for **median**)
 
