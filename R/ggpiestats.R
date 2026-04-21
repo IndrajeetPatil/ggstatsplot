@@ -124,36 +124,22 @@ ggpiestats <- function(
 
   # data frame ------------------------------------------
 
-  # ensure the variables work quoted or unquoted
   x <- ensym(x)
   y <- if (!quo_is_null(enquo(y))) ensym(y)
   type <- stats_type_switch(type)
 
-  # one-way or two-way table?
-  test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
+  prep <- .pie_bar_data_prep(data, {{ x }}, {{ y }}, {{ counts }})
+  data <- prep$data
+  test <- prep$test
+  x_levels <- prep$x_levels
+  y_levels <- prep$y_levels
 
-  data %<>%
-    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na()
-
-  # untable the data frame based on the count for each observation
-  if (".counts" %in% names(data)) {
-    data %<>% tidyr::uncount(weights = .counts)
-  }
-
-  # x and y need to be a factor
-  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
-  x_levels <- nlevels(pull(data, {{ x }}))
-  y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
-
-  # one-way table not supported in `BayesFactor` ATM (richarddmorey/BayesFactor#159)
   # nocov start
   if (test == "two.way" && y_levels == 1L) {
     bf.message <- FALSE
   }
   # nocov end
 
-  # faceting is possible only if both vars have more than one level
   facet <- as.logical(y_levels > 1L)
   if ((x_levels == 1L && facet) || type == "bayes") {
     proportion.test <- FALSE
@@ -162,42 +148,17 @@ ggpiestats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      alternative = alternative,
-      conf.level = conf.level,
-      digits = digits,
-      paired = paired,
-      ratio = ratio,
-      sampling.plan = sampling.plan,
-      fixed.margin = fixed.margin,
-      prior.concentration = prior.concentration
+    sc <- .pie_bar_subtitle_caption(
+      data, {{ x }}, {{ y }}, type, paired, bf.message,
+      alternative, conf.level, digits, ratio,
+      sampling.plan, fixed.margin, prior.concentration,
+      x_levels, y_levels, p.adjust.method
     )
-
-    subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    # Bayes Factor caption
-    if (type != "bayes" && bf.message && isFALSE(paired)) {
-      caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
-
-    # pairwise comparisons
-    mpc_df <- .pairwise_contingency(
-      data,
-      {{ x }},
-      {{ y }},
-      x_levels,
-      y_levels,
-      paired,
-      digits,
-      conf.level,
-      alternative,
-      p.adjust.method
-    )
+    subtitle <- sc$subtitle
+    caption <- sc$caption
+    subtitle_df <- sc$subtitle_df
+    caption_df <- sc$caption_df
+    mpc_df <- sc$mpc_df
   }
 
   # plot ------------------------------------------

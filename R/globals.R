@@ -3,8 +3,7 @@
 utils::globalVariables(c(
   # <ggwithinstats>
   ".",
-  # <ggbarstats>
-  # <ggpiestats>
+  # <.pie_bar_data_prep>
   ".counts",
   # <ggbarstats>
   # <ggpiestats>
