@@ -89,29 +89,21 @@ ggbarstats <- function(
 
   # data frame ------------------------------------------
 
-  # ensure the variables work quoted or unquoted
   x <- ensym(x)
   y <- if (!quo_is_null(enquo(y))) ensym(y)
   type <- stats_type_switch(type)
 
-  # one-way or two-way table?
-  test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
+  prep <- .pie_bar_data_prep(
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    counts = {{ counts }}
+  )
+  data <- prep$data
+  test <- prep$test
+  x_levels <- prep$x_levels
+  y_levels <- prep$y_levels
 
-  data %<>%
-    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na()
-
-  # untable the data frame based on the count for each observation
-  if (".counts" %in% names(data)) {
-    data %<>% tidyr::uncount(weights = .counts)
-  }
-
-  # x and y need to be a factor
-  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
-  x_levels <- nlevels(pull(data, {{ x }}))
-  y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
-
-  # one-way table not supported in `BayesFactor` ATM (richarddmorey/BayesFactor#159)
   # nocov start
   if (test == "two.way" && y_levels == 1L) {
     c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
@@ -124,42 +116,30 @@ ggbarstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
+    stats_output <- .pie_bar_subtitle_caption(
       data = data,
       x = {{ x }},
       y = {{ y }},
+      type = type,
+      paired = paired,
+      bf.message = bf.message,
+      caption = caption,
       alternative = alternative,
       conf.level = conf.level,
       digits = digits,
-      paired = paired,
       ratio = ratio,
       sampling.plan = sampling.plan,
       fixed.margin = fixed.margin,
-      prior.concentration = prior.concentration
+      prior.concentration = prior.concentration,
+      x_levels = x_levels,
+      y_levels = y_levels,
+      p.adjust.method = p.adjust.method
     )
-
-    subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    # Bayes Factor caption
-    if (type != "bayes" && bf.message && isFALSE(paired)) {
-      caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
-
-    # pairwise comparisons
-    mpc_df <- .pairwise_contingency(
-      data,
-      {{ x }},
-      {{ y }},
-      x_levels,
-      y_levels,
-      paired,
-      digits,
-      conf.level,
-      alternative,
-      p.adjust.method
-    )
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
+    mpc_df <- stats_output$mpc_df
   }
 
   # plot ------------------------------------------

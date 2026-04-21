@@ -1,3 +1,118 @@
+#' @title Prepare data for pie/bar chart functions
+#' @name .pie_bar_data_prep
+#'
+#' @description
+#'
+#' Shared data-preparation step for `ggpiestats()` and `ggbarstats()`:
+#' selects relevant columns, drops missing values, untables counts, converts
+#' to factors, and computes the number of levels for each variable.
+#'
+#' @inheritParams ggpiestats
+#'
+#' @return A named list with elements `data`, `test`, `x_levels`, `y_levels`.
+#'
+#' @autoglobal
+#' @noRd
+.pie_bar_data_prep <- function(data, x, y, counts) {
+  data %<>%
+    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
+    tidyr::drop_na()
+
+  if (".counts" %in% names(data)) {
+    data %<>% tidyr::uncount(weights = .counts)
+  }
+
+  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
+
+  test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
+  x_levels <- nlevels(pull(data, {{ x }}))
+  y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
+
+  list(data = data, test = test, x_levels = x_levels, y_levels = y_levels)
+}
+
+
+#' @title Compute subtitle, caption, and pairwise comparisons for pie/bar charts
+#' @name .pie_bar_subtitle_caption
+#'
+#' @description
+#'
+#' Shared helper for `ggpiestats()` and `ggbarstats()` that runs the
+#' contingency table test, optionally computes a Bayes Factor caption, and
+#' performs pairwise comparisons when applicable.
+#'
+#' @inheritParams ggpiestats
+#'
+#' @return A named list with elements `subtitle`, `caption`, `subtitle_df`,
+#'   `caption_df`, and `mpc_df`.
+#'
+#' @autoglobal
+#' @noRd
+.pie_bar_subtitle_caption <- function(
+  data,
+  x,
+  y,
+  type,
+  paired,
+  bf.message,
+  caption,
+  alternative,
+  conf.level,
+  digits,
+  ratio,
+  sampling.plan,
+  fixed.margin,
+  prior.concentration,
+  x_levels,
+  y_levels,
+  p.adjust.method
+) {
+  .f.args <- list(
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    alternative = alternative,
+    conf.level = conf.level,
+    digits = digits,
+    paired = paired,
+    ratio = ratio,
+    sampling.plan = sampling.plan,
+    fixed.margin = fixed.margin,
+    prior.concentration = prior.concentration
+  )
+
+  subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
+  subtitle <- .extract_expression(subtitle_df)
+  caption_df <- NULL
+
+  if (type != "bayes" && bf.message && isFALSE(paired)) {
+    caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
+    caption <- .extract_expression(caption_df)
+  }
+
+  mpc_df <- .pairwise_contingency(
+    data,
+    {{ x }},
+    {{ y }},
+    x_levels,
+    y_levels,
+    paired,
+    digits,
+    conf.level,
+    alternative,
+    p.adjust.method
+  )
+
+  list(
+    subtitle = subtitle,
+    caption = caption,
+    subtitle_df = subtitle_df,
+    caption_df = caption_df,
+    mpc_df = mpc_df
+  )
+}
+
+
 #' @title A data frame with descriptive labels
 #' @autoglobal
 #' @noRd

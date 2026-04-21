@@ -211,11 +211,16 @@ ggwithinstats <- function(
       .f.args$alternative <- alternative
     }
 
-    sc <- .bw_subtitle_caption(test, type, bf.message, .f.args)
-    subtitle <- sc$subtitle
-    caption <- sc$caption
-    subtitle_df <- sc$subtitle_df
-    caption_df <- sc$caption_df
+    stats_output <- .bw_subtitle_caption(
+      test = test,
+      type = type,
+      bf.message = bf.message,
+      .f.args = .f.args
+    )
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
   }
 
   # plot -------------------------------------------
