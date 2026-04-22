@@ -34,7 +34,6 @@ Imports:
     ggsignif (>= 0.6.4),
     glue (>= 1.8.1),
     insight (>= 1.5.0),
-    magrittr (>= 2.0.5),
     paletteer (>= 1.7.0),
     parameters (>= 0.28.3),
     patchwork (>= 1.3.2),

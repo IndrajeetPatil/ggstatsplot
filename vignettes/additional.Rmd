@@ -9,8 +9,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## Additional vignettes
-
 Due to size constraints, all available vignettes are only available on the
 website for this package: <br>
 <https://www.indrapatil.com/ggstatsplot/articles/>

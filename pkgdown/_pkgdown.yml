@@ -59,6 +59,7 @@ reference:
     desc: Statistics and graphics-related helpers
     contents:
       - pairwise_comparisons
+      - pairwise_contingency_table
       - starts_with("extract_")
       - starts_with("theme_")
       - starts_with("combine")
