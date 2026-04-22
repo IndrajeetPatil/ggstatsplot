@@ -172,12 +172,7 @@ ggcorrmat <- function(
         expr = paste(
           bold("X"),
           " = non-significant at ",
-          italic("p"),
-          " < ",
-          sig.level,
-          " (Adjustment: ",
-          adj.text,
-          ")"
+          italic(p)[adj.text - adj.] ~ "< " ~ sig.level
         )
       ),
       env = list(

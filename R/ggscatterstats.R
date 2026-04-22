@@ -85,8 +85,8 @@
 #'   x = wt,
 #'   y = mpg,
 #'   results.subtitle = FALSE,
-#'   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, binwidth = 0.5),
-#'   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, bins = 15),
+#'   xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, binwidth = 0.5),
+#'   ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, bins = 15),
 #'   xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
 #'   ysidehistogram.scale = list(breaks = seq(0, 15, 5))
 #' )
@@ -116,8 +116,8 @@ ggscatterstats <- function(
     method = "lm",
     formula = y ~ x
   ),
-  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
-  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE),
+  ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE),
   xsidehistogram.scale = list(),
   ysidehistogram.scale = list(),
   xlab = NULL,
@@ -304,8 +304,8 @@ ggscatterstats <- function(
 #'   y = length,
 #'   grouping.var = genre,
 #'   results.subtitle = FALSE,
-#'   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, bins = 20),
-#'   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, binwidth = 10),
+#'   xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, bins = 20),
+#'   ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, binwidth = 10),
 #'   xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
 #'   ysidehistogram.scale = list(breaks = seq(0, 200, 50))
 #' )
