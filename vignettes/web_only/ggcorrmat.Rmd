@@ -215,6 +215,25 @@ As seen here, and unsurprisingly, the strongest predictor of the diamond price
 is its carat value, which a unit of mass equal to 200 mg. In other words, the
 heavier the diamond, the more expensive it is going to be.
 
+## Custom gradient colors
+
+By default, the gradient colors are derived from the `palette` parameter.
+To use your own custom gradient, pass a `scale_fill_gradient2()` via
+`ggplot.component`:
+
+```{r}
+#| label = "ggcorrmat_custom_colors",
+#| fig.height = 8,
+#| fig.width = 8
+
+ggcorrmat(
+  iris,
+  ggplot.component = ggplot2::scale_fill_gradient2(
+    low = "#0072B2", mid = "white", high = "#D55E00"
+  )
+)
+```
+
 ## Grouped analysis with `grouped_ggcorrmat`
 
 What if we want to do the same analysis separately for each quality of the

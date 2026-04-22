@@ -1,3 +1,4 @@
+^\.git$
 .claude
 .dev
 .ls-lint.yml
