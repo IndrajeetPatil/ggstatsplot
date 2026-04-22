@@ -33,9 +33,6 @@ display full matrix, lower triangular or upper triangular matrix.}
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot.}
-    \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
-If set to \code{NULL}, manual specification of colors will be turned off and 3
-colors from the specified \code{palette} from \code{package} will be selected.}
     \item{\code{pch}}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that

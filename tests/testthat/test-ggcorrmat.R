@@ -26,7 +26,6 @@ test_that("ggcorrmat works as expected with changed defaults", {
       sig.level = 0.001,
       matrix.type = "full",
       p.adjust.method = "fdr",
-      colors = NULL,
       digits = 4L,
       ggcorrplot.args = list(
         lab_col = "white",

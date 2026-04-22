@@ -20,7 +20,6 @@ ggcorrmat(
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
   palette = "ggthemes::gdoc",
-  colors = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -99,10 +98,6 @@ being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{gg
 \item{palette}{Name of the palette in \code{"package::palette"} format to be used
 for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
-
-\item{colors}{A vector of 3 colors for low, mid, and high correlation values.
-If set to \code{NULL}, manual specification of colors will be turned off and 3
-colors from the specified \code{palette} from \code{package} will be selected.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,

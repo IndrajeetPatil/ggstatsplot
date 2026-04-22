@@ -28,9 +28,6 @@
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
 #'   the plot.
-#' @param colors A vector of 3 colors for low, mid, and high correlation values.
-#'   If set to `NULL`, manual specification of colors will be turned off and 3
-#'   colors from the specified `palette` from `package` will be selected.
 #' @param pch Decides the point shape to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
@@ -85,7 +82,6 @@ ggcorrmat <- function(
     pch.cex = 14
   ),
   palette = "ggthemes::gdoc",
-  colors = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -154,7 +150,7 @@ ggcorrmat <- function(
     p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level = ifelse(type == "bayes", Inf, sig.level),
     ggtheme = ggtheme,
-    colors = colors %||% paletteer::paletteer_d(palette, 3L),
+    colors = paletteer::paletteer_d(palette, 3L),
     type = matrix.type,
     lab = TRUE,
     pch = pch,
