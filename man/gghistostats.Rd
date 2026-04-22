@@ -17,7 +17,6 @@ gghistostats(
   alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
-  effsize.type = "g",
   conf.level = 0.95,
   tr = 0.2,
   digits = 2L,
@@ -84,9 +83,6 @@ value corresponds to scale for fixed effects.}
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
-
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
 
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals

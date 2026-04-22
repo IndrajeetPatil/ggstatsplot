@@ -116,7 +116,6 @@ test_that("grouped_ggdotplotstats works", {
       grouping.var = cyl,
       test.value = 15.5,
       results.subtitle = FALSE,
-      effsize.type = "d",
       ggplot.component = ggplot2::scale_y_continuous(
         sec.axis = ggplot2::dup_axis(name = "percentile score"),
         breaks = seq(0, 12, 2)

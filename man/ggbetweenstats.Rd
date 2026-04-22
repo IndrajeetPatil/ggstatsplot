@@ -12,7 +12,6 @@ ggbetweenstats(
   pairwise.display = "significant",
   pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -22,9 +21,7 @@ ggbetweenstats(
   title = NULL,
   subtitle = NULL,
   digits = 2L,
-  var.equal = FALSE,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
   alternative = "two.sided",
   centrality.plotting = TRUE,
@@ -91,10 +88,6 @@ comparisons are displayed when \code{pairwise.display = "significant"} or
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
-
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -131,17 +124,9 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{var.equal}{a logical variable indicating whether to treat the
-    two variances as being equal. If \code{TRUE} then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.}
-
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
-
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
@@ -239,6 +224,26 @@ For details, see:
    centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
    pairwise comparisons \tab \code{ggsignif::geom_signif()} \tab \code{ggsignif.args} \cr
 }
+}
+
+\section{Statistical defaults}{
+
+
+This function uses statistically justified defaults that are not
+user-configurable:
+\itemize{
+\item \strong{Effect sizes} are always \emph{unbiased} (Hedges' \emph{g} instead of Cohen's
+\emph{d}, omega-squared instead of eta-squared). Unbiased estimators correct
+for the positive bias present in their biased counterparts, especially in
+small samples, and are recommended for meta-analytic work.
+\item \strong{Welch's \emph{t}-test and one-way test} are used instead of Student's
+versions (i.e., equal variances are not assumed). Welch's test performs as
+well as Student's when variances \emph{are} equal and is substantially more
+accurate when they are not, making it the unconditionally better default.
+}
+
+Users who need non-default values for these settings can call
+\code{{statsExpressions}} directly.
 }
 
 \section{Centrality measures}{

@@ -34,6 +34,24 @@
 
 ## BREAKING CHANGES
 
+- The following expert-level statistical parameters have been removed from all
+  function signatures because their defaults are the universally recommended
+  values and changing them requires specialist knowledge (#1087):
+
+    - `var.equal` (from `ggbetweenstats()`): Welch's test (`var.equal = FALSE`)
+      is uniformly recommended over Student's *t*-test.
+    - `nboot` (from `ggbetweenstats()`, `ggwithinstats()`): 100 bootstrap
+      resamples is adequate for trimmed-mean CIs.
+    - `sampling.plan`, `fixed.margin`, `prior.concentration` (from
+      `ggpiestats()`, `ggbarstats()`): Technical BayesFactor settings that
+      virtually no one changes.
+    - `effsize.type` (from `ggbetweenstats()`, `ggwithinstats()`,
+      `gghistostats()`, `ggdotplotstats()`): The unbiased effect size estimator
+      is now always used.
+
+  Users who need non-default values for these parameters should call
+  `{statsExpressions}` directly.
+
 - `ggwithinstats()` (and `grouped_ggwithinstats()`) gains a `subject.id`
   parameter. When provided, the subject identifier column is used to correctly
   pair observations across conditions and to remove NA observations by subject
