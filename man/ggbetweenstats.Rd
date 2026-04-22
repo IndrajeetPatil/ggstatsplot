@@ -226,6 +226,26 @@ For details, see:
 }
 }
 
+\section{Statistical defaults}{
+
+
+This function uses statistically justified defaults that are not
+user-configurable:
+\itemize{
+\item \strong{Effect sizes} are always \emph{unbiased} (Hedges' \emph{g} instead of Cohen's
+\emph{d}, omega-squared instead of eta-squared). Unbiased estimators correct
+for the positive bias present in their biased counterparts, especially in
+small samples, and are recommended for meta-analytic work.
+\item \strong{Welch's \emph{t}-test and one-way test} are used instead of Student's
+versions (i.e., equal variances are not assumed). Welch's test performs as
+well as Student's when variances \emph{are} equal and is substantially more
+accurate when they are not, making it the unconditionally better default.
+}
+
+Users who need non-default values for these settings can call
+\code{{statsExpressions}} directly.
+}
+
 \section{Centrality measures}{
 
 

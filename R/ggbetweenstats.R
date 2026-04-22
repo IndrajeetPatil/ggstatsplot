@@ -100,6 +100,24 @@
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
 #'
+#' @section Statistical defaults:
+#'
+#' This function uses statistically justified defaults that are not
+#' user-configurable:
+#'
+#' - **Effect sizes** are always *unbiased* (Hedges' *g* instead of Cohen's
+#'   *d*, omega-squared instead of eta-squared). Unbiased estimators correct
+#'   for the positive bias present in their biased counterparts, especially in
+#'   small samples, and are recommended for meta-analytic work.
+#'
+#' - **Welch's *t*-test and one-way test** are used instead of Student's
+#'   versions (i.e., equal variances are not assumed). Welch's test performs as
+#'   well as Student's when variances *are* equal and is substantially more
+#'   accurate when they are not, making it the unconditionally better default.
+#'
+#' Users who need non-default values for these settings can call
+#' \code{{statsExpressions}} directly.
+#'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
 #' @inheritSection statsExpressions::oneway_anova One-way ANOVA

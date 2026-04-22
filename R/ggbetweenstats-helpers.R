@@ -41,7 +41,6 @@
     data = data,
     x = as_string(x),
     y = as_string(y),
-    effsize.type = "unbiased",
     conf.level = conf.level,
     digits = digits,
     tr = tr,

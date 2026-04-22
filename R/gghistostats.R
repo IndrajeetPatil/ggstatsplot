@@ -98,7 +98,6 @@ gghistostats <- function(
       x = {{ x }},
       test.value = test.value,
       alternative = alternative,
-      effsize.type = "unbiased",
       conf.level = conf.level,
       digits = digits,
       tr = tr,
