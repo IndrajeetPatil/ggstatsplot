@@ -16,8 +16,8 @@ To begin with, here are some instances where you would want to use
 - to check linear association between two continuous variables
 - to check distribution of two continuous variables
 
-**Note before**: The following demo uses the pipe operator (`%>%`), so
-in case you are not familiar with this operator, here is a good
+**Note before**: The following demo uses the pipe operator (`|>`), so in
+case you are not familiar with this operator, here is a good
 explanation:
 [http://r4ds.had.co.nz/pipes.html](http://r4ds.had.co.nz/pipes.md)
 

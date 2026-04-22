@@ -232,9 +232,9 @@ Here is an example-
 
 # creating a list by splitting data frame by combination of two different
 # grouping variables
-df_list <- mpg %>%
-  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) %>%
-  split(f = list(.$drv, .$fl), drop = TRUE)
+df_list <- mpg |>
+  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) |>
+  (\(d) split(d, f = list(d$drv, d$fl), drop = TRUE))()
 
 # checking if the length of the list is 4
 length(df_list)
@@ -282,7 +282,7 @@ expr2 <- extract_subtitle(p[[2L]])
 
 mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = c(expr1, expr2))
 
-mtcars1 %>%
+mtcars1 |>
   ggplot(aes(x = cyl, y = mpg)) +
   geom_jitter() +
   facet_wrap(
@@ -364,9 +364,9 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
 # using `pairwise_comparisons()` function to create a data frame with results
-df <- pairwise_comparisons(mtcars, cyl, wt) %>%
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
-  dplyr::arrange(group1) %>%
+df <- pairwise_comparisons(mtcars, cyl, wt) |>
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
+  dplyr::arrange(group1) |>
   dplyr::mutate(asterisk_label = c("**", "***", "**"))
 
 df
@@ -633,7 +633,7 @@ library(ggplot2)
 df <- dplyr::select(mtcars, wt, mpg)
 
 # correlation results
-results <- correlation(df, method = "kendall") %>%
+results <- correlation(df, method = "kendall") |>
   insight::standardize_names(style = "broom")
 
 # creating expression out of these results
@@ -929,15 +929,15 @@ the group name, and then combine the plots:
 library(dplyr)
 library(purrr)
 
-filter(ggplot2::mpg, drv != "4") %>%
-  split(.$drv) %>%
+filter(ggplot2::mpg, drv != "4") |>
+  (\(d) split(d, d$drv))() |>
   imap(~ ggbetweenstats(
     data = .x,
     x = year,
     y = hwy,
     title = paste0("Drive type: ", .y),
     subtitle = paste0("Subset size: n = ", nrow(.x))
-  )) %>%
+  )) |>
   combine_plots()
 ```
 

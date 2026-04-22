@@ -114,9 +114,9 @@ We’ll make a 3 item `list` called `year_list` using
 
 
 ## let's split the data frame and create a list by years of interest
-year_list <- gapminder::gapminder %>%
-  dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") %>%
-  split(f = .$year, drop = TRUE)
+year_list <- gapminder::gapminder |>
+  dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") |>
+  (\(d) split(d, f = d$year, drop = TRUE))()
 
 ## checking the length of the list and the names of each element
 length(year_list)
@@ -202,7 +202,7 @@ library(ez)
 data("ANT") ## loading data from `ez` package
 
 ## let's split the data frame and create a list by years of interest
-cue_list <- ANT %>% split(f = .$cue, drop = TRUE)
+cue_list <- ANT |> (\(d) split(d, f = d$cue, drop = TRUE))()
 
 ## checking the length of the list and the names of each element
 length(cue_list)
@@ -267,10 +267,10 @@ This time we’ll put all the code in one block-
 
 ``` r
 
-mpaa_list <- movies_long %>%
-  dplyr::filter(mpaa != "NC-17") %>%
-  dplyr::sample_frac(size = 0.25) %>%
-  split(f = .$mpaa, drop = TRUE)
+mpaa_list <- movies_long |>
+  dplyr::filter(mpaa != "NC-17") |>
+  dplyr::sample_frac(size = 0.25) |>
+  (\(d) split(d, f = d$mpaa, drop = TRUE))()
 
 ## creating a list of plots
 plot_list <- purrr::pmap(
@@ -333,10 +333,10 @@ methodology as the earlier examples.
 ## splitting the data frame by cut and creating a list
 ## let's leave out "fair" cut
 ## also, to make this fast, let's only use 5% of the sample
-cut_list <- ggplot2::diamonds %>%
-  dplyr::sample_frac(size = 0.05) %>%
-  dplyr::filter(cut != "Fair") %>%
-  split(f = .$cut, drop = TRUE)
+cut_list <- ggplot2::diamonds |>
+  dplyr::sample_frac(size = 0.05) |>
+  dplyr::filter(cut != "Fair") |>
+  (\(d) split(d, f = d$cut, drop = TRUE))()
 
 ## checking the length and names of each element
 length(cut_list)
@@ -390,9 +390,9 @@ combine_plots(
 ## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
 continent_list <-
-  gapminder::gapminder %>%
-  dplyr::filter(year == 2007, continent != "Oceania") %>%
-  split(f = .$continent, drop = TRUE)
+  gapminder::gapminder |>
+  dplyr::filter(year == 2007, continent != "Oceania") |>
+  (\(d) split(d, f = d$continent, drop = TRUE))()
 
 ## checking the length and names of each element
 length(continent_list)
@@ -448,9 +448,9 @@ library(hrbrthemes)
 ## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
 continent_list <-
-  gapminder::gapminder %>%
-  dplyr::filter(continent != "Oceania") %>%
-  split(f = .$continent, drop = TRUE)
+  gapminder::gapminder |>
+  dplyr::filter(continent != "Oceania") |>
+  (\(d) split(d, f = d$continent, drop = TRUE))()
 
 ## checking the length and names of each element
 length(continent_list)
@@ -505,7 +505,7 @@ combine_plots(
 ``` r
 
 ## let's split the data frame and create a list by passenger class
-class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
+class_list <- Titanic_full |> (\(d) split(d, f = d$Class, drop = TRUE))()
 
 ## checking the length and names of each element
 length(class_list)
@@ -561,7 +561,7 @@ combine_plots(
 ``` r
 
 ## let's split the data frame and create a list by passenger class
-class_list <- Titanic_full %>% split(f = .$Class, drop = TRUE)
+class_list <- Titanic_full |> (\(d) split(d, f = d$Class, drop = TRUE))()
 
 ## checking the length and names of each element
 length(class_list)

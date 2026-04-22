@@ -633,7 +633,7 @@ DNase1 <- subset(DNase, Run == 1)
 nlmod <- stats::nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
 
 # data frames
-ggcoefstats(nlmod) %>% extract_stats()
+ggcoefstats(nlmod) |> extract_stats()
 #> $subtitle_data
 #> NULL
 #> 

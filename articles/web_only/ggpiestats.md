@@ -49,7 +49,7 @@ To begin with, here are some instances where you would want to use
 - to check if the proportion of observations at each level of a
   categorical variable is equal
 
-**Note:** The following demo uses the pipe operator (`%>%`), if you are
+**Note:** The following demo uses the pipe operator (`|>`), if you are
 not familiar with this operator, here is a good explanation:
 [http://r4ds.had.co.nz/pipes.html](http://r4ds.had.co.nz/pipes.md).
 

@@ -79,8 +79,8 @@ p <- ggplot(mtcars, aes(cyl, wt)) +
 
 ## using `pairwise_comparisons()` package to create a data frame with results
 df <-
-  pairwise_comparisons(mtcars, cyl, wt) %>%
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
+  pairwise_comparisons(mtcars, cyl, wt) |>
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
   dplyr::arrange(group1)
 
 df
@@ -130,8 +130,8 @@ df <-
     subject.id = Taster,
     type = "bayes",
     paired = TRUE
-  ) %>%
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
+  ) |>
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
   dplyr::arrange(group1)
 
 df
