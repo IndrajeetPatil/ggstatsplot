@@ -161,7 +161,7 @@ test_that("expression output", {
     x = conservation,
     y = vore,
     digits = 4L
-  ) %>%
+  ) |>
     extract_subtitle()
 
   set.seed(123)
@@ -235,7 +235,7 @@ test_that("grouped_ggpiestats works", {
   )
 
   # creating a smaller data frame
-  mpg_short <- ggplot2::mpg %>%
+  mpg_short <- ggplot2::mpg |>
     dplyr::filter(
       drv %in% c("4", "f"),
       class %in% c("suv", "midsize"),

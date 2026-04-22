@@ -161,32 +161,28 @@ ggwithinstats <- function(
   subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
   sid_str <- if (!is.null(subject.id)) as_string(subject.id)
 
-  data %<>%
-    select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) %>%
+  data <- data |>
+    select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) |>
     mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   if (is.null(sid_str)) {
     stats_data <- data
 
-    data %<>%
-      mutate(.rowid = row_number(), .by = {{ x }}) %>%
-      anti_join(x = ., y = filter(., is.na({{ y }})), by = ".rowid")
+    data <- mutate(data, .rowid = row_number(), .by = {{ x }})
+    data <- anti_join(x = data, y = filter(data, is.na({{ y }})), by = ".rowid")
   } else {
-    data %<>%
-      filter(!is.na(.data[[sid_str]]))
+    data <- filter(data, !is.na(.data[[sid_str]]))
 
     stats_data <- data
 
-    data %<>%
-      mutate(.rowid = .data[[sid_str]]) %>%
+    data <- data |>
+      mutate(.rowid = .data[[sid_str]]) |>
       filter(!is.na({{ y }}))
   }
 
-  data %<>%
-    mutate({{ x }} := droplevels({{ x }}))
+  data <- mutate(data, {{ x }} := droplevels({{ x }}))
 
-  stats_data %<>%
-    mutate({{ x }} := droplevels({{ x }}))
+  stats_data <- mutate(stats_data, {{ x }} := droplevels({{ x }}))
 
   # statistical analysis ------------------------------------------
 

@@ -304,15 +304,15 @@
   ...
 ) {
   # creating a column for group combinations
-  mpc_df %<>% mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
+  mpc_df <- mutate(mpc_df, groups = purrr::pmap(.l = list(group1, group2), .f = c))
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
     if (startsWith(pairwise.display, "s")) {
-      mpc_df %<>% filter(p.value < pairwise.alpha)
+      mpc_df <- filter(mpc_df, p.value < pairwise.alpha)
     } # sig
     if (startsWith(pairwise.display, "n")) {
-      mpc_df %<>% filter(p.value >= pairwise.alpha)
+      mpc_df <- filter(mpc_df, p.value >= pairwise.alpha)
     } # non-sig
 
     # proceed only if there are any significant comparisons to display
@@ -322,7 +322,7 @@
   }
 
   # arrange the data frame so that annotations are properly aligned
-  mpc_df %<>% arrange(group1, group2)
+  mpc_df <- arrange(mpc_df, group1, group2)
 
   # adding ggsignif comparisons to the plot
   plot +

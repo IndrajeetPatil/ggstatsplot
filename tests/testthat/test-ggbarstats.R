@@ -187,7 +187,7 @@ test_that("expression output", {
     x = conservation,
     y = vore,
     digits = 4L
-  ) %>%
+  ) |>
     extract_subtitle()
 
   set.seed(123)
@@ -203,7 +203,7 @@ test_that("expression output", {
 
 test_that("one-sample expression output", {
   set.seed(123)
-  p_sub <- ggbarstats(mtcars, x = cyl) %>% extract_subtitle()
+  p_sub <- ggbarstats(mtcars, x = cyl) |> extract_subtitle()
 
   set.seed(123)
   stats_output <- contingency_table(
@@ -272,7 +272,7 @@ test_that("grouped_ggbarstats works", {
   )
 
   # creating a smaller data frame
-  mpg_short <- ggplot2::mpg %>%
+  mpg_short <- ggplot2::mpg |>
     dplyr::filter(
       drv %in% c("4", "f"),
       class %in% c("suv", "midsize"),

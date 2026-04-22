@@ -84,7 +84,7 @@ test_that("subtitle output works", {
     data = df,
     x = am,
     y = wt
-  ) %>%
+  ) |>
     extract_subtitle()
 
   set.seed(123)
@@ -129,7 +129,7 @@ test_that("grouped_ggbetweenstats defaults", {
 
   # creating a smaller data frame
   set.seed(123)
-  dat <- dplyr::sample_frac(movies_long, size = 0.25) %>%
+  dat <- dplyr::sample_frac(movies_long, size = 0.25) |>
     dplyr::filter(
       mpaa %in% c("R", "PG-13"),
       genre %in% c("Drama", "Comedy")

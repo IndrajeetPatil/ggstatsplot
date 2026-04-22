@@ -228,12 +228,11 @@ ggcoefstats <- function(
     # anova objects need further cleaning
     # nolint next: line_length_linter.
     if (all(c("df", "df.error") %in% names(tidy_df))) {
-      tidy_df %<>%
-        mutate(effectsize = paste0("partial ", effectsize.type, "-squared"))
+      tidy_df <- mutate(tidy_df, effectsize = paste0("partial ", effectsize.type, "-squared"))
     }
   }
 
-  tidy_df <- .preprocess_tidy_data(tidy_df, sort) %>%
+  tidy_df <- .preprocess_tidy_data(tidy_df, sort) |>
     dplyr::filter(!is.na(estimate))
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
@@ -245,35 +244,34 @@ ggcoefstats <- function(
 
   # if tidy data frame doesn't contain CIs, show only the estimate dots
   if (!"conf.low" %in% names(tidy_df)) {
-    tidy_df %<>% mutate(conf.low = NA, conf.high = NA)
+    tidy_df <- mutate(tidy_df, conf.low = NA, conf.high = NA)
     conf.int <- FALSE
   }
 
   if (exclude.intercept) {
-    tidy_df %<>% filter(!grepl("(Intercept)", term, TRUE))
+    tidy_df <- filter(tidy_df, !grepl("(Intercept)", term, TRUE))
   }
 
   # label -------------------------
 
   if (stats.labels) {
-    tidy_df %<>% tidy_model_expressions(statistic, digits, effectsize.type)
+    tidy_df <- tidy_model_expressions(tidy_df, statistic, digits, effectsize.type)
   }
 
   # summary caption -------------------------
 
-  glance_df <- performance::model_performance(x, verbose = FALSE) %>%
+  glance_df <- performance::model_performance(x, verbose = FALSE) |>
     as_tibble()
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     # nolint next: line_length_linter.
-    glance_df %<>%
-      mutate(
-        expression = list(parse(
-          text = glue(
-            "list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"
-          )
-        ))
-      )
+    glance_df <- mutate(glance_df,
+      expression = list(parse(
+        text = glue(
+          "list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"
+        )
+      ))
+    )
     caption <- .extract_expression(glance_df)
   }
 
@@ -365,21 +363,20 @@ ggcoefstats <- function(
 
   # create a new term column if it's not present
   if (!"term" %in% names(data)) {
-    data %<>% mutate(term = paste0("term_", row_number()))
+    data <- mutate(data, term = paste0("term_", row_number()))
   }
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
   # nocov start
   if (anyDuplicated(data$term)) {
-    data %<>%
-      tidyr::unite(
-        col = "term",
-        matches(
-          "term|variable|parameter|method|curve|response|component|contrast|group"
-        ),
-        remove = TRUE,
-        sep = "_"
-      )
+    data <- tidyr::unite(data,
+      col = "term",
+      matches(
+        "term|variable|parameter|method|curve|response|component|contrast|group"
+      ),
+      remove = TRUE,
+      sep = "_"
+    )
   }
 
   # halt if there are still repeated terms
@@ -388,11 +385,11 @@ ggcoefstats <- function(
   }
   # nocov end
 
-  data %<>% parameters::sort_parameters(sort = sort, column = "estimate")
+  data <- parameters::sort_parameters(data, sort = sort, column = "estimate")
 
   # `ggplot2` draws discrete y-axis levels from bottom to top, so reverse the
   # factor levels to preserve the data order in the plotted top-to-bottom order.
-  data %>% dplyr::mutate(term = forcats::fct_rev(forcats::fct_inorder(term)))
+  data |> dplyr::mutate(term = forcats::fct_rev(forcats::fct_inorder(term)))
 }
 
 #' @noRd
@@ -400,10 +397,10 @@ ggcoefstats <- function(
   label_data <- data
 
   if (only.significant && "p.value" %in% names(data)) {
-    label_data %<>% filter(p.value < 0.05)
+    label_data <- filter(label_data, p.value < 0.05)
   }
 
-  label_data %<>% filter(lengths(expression) > 0L)
+  label_data <- filter(label_data, lengths(expression) > 0L)
 
   label_data
 }

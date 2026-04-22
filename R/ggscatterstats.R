@@ -135,7 +135,7 @@ ggscatterstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
-  data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
+  data <- filter(data, !is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
 
@@ -178,7 +178,7 @@ ggscatterstats <- function(
 
     # select data based on expression
     if (!quo_is_null(enquo(label.expression))) {
-      data %<>% filter(!!enexpr(label.expression))
+      data <- filter(data, !!enexpr(label.expression))
     }
 
     # display points labels using `geom_repel_label`
@@ -298,11 +298,11 @@ ggscatterstats <- function(
 #'
 #' # customize marginal histogram bins and scales
 #' grouped_ggscatterstats(
-#'   data                = filter(movies_long, genre %in% c("Drama", "Comedy")),
-#'   x                   = rating,
-#'   y                   = length,
-#'   grouping.var        = genre,
-#'   results.subtitle    = FALSE,
+#'   data = filter(movies_long, genre %in% c("Drama", "Comedy")),
+#'   x = rating,
+#'   y = length,
+#'   grouping.var = genre,
+#'   results.subtitle = FALSE,
 #'   xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE, bins = 20),
 #'   ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE, binwidth = 10),
 #'   xsidehistogram.scale = list(breaks = seq(0, 200, 50)),

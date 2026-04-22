@@ -7,7 +7,7 @@ morley_new <- dplyr::mutate(
     Expt == 4L ~ "4th",
     Expt == 5L ~ "5th"
   )
-) %>%
+) |>
   tibble::as_tibble()
 
 morley_new[3L, 3L] <- NA_integer_
@@ -64,19 +64,19 @@ test_that("subtitle output", {
     y = Expt,
     test.value = 800,
     type = "np"
-  ) %>%
+  ) |>
     extract_subtitle()
 
   set.seed(123)
   p_sub_gghist <-
-    morley %>%
-    dplyr::group_by(Expt) %>%
-    dplyr::summarise(mean = mean(Speed), .groups = "drop") %>%
+    morley |>
+    dplyr::group_by(Expt) |>
+    dplyr::summarise(mean = mean(Speed), .groups = "drop") |>
     gghistostats(
       x = mean,
       test.value = 800,
       type = "np"
-    ) %>%
+    ) |>
     extract_subtitle()
 
   set.seed(123)

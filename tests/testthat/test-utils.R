@@ -3,9 +3,9 @@
 test_that(".grouped_list works with non-syntactic group names", {
   set.seed(123)
   expect_snapshot({
-    sleep %>%
-      rename("my non-syntactic name" = group) %>%
-      .grouped_list(grouping.var = `my non-syntactic name`) %>%
+    sleep |>
+      rename("my non-syntactic name" = group) |>
+      .grouped_list(grouping.var = `my non-syntactic name`) |>
       str()
   })
 })
