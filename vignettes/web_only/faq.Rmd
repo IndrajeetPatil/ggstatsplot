@@ -803,29 +803,21 @@ ggbetweenstats(
 )
 ```
 
-If you need full control over annotation placement (e.g., inside the
-plot area), extract the expression and add it as a text geom:
+If you need the statistical expression on a *different* plot entirely,
+extract it with `extract_subtitle()` and pass it to `labs()`:
 
 ```{r}
 #| label = "annotation_manual",
 #| fig.width = 7,
 #| fig.height = 5
 
-# create the plot
-p <- ggbetweenstats(mtcars, am, mpg, results.subtitle = FALSE)
-
-# extract subtitle expression from a separate call
+# extract subtitle expression
 expr <- extract_subtitle(ggbetweenstats(mtcars, am, mpg))
 
-# place it wherever you like using annotate()
-p + annotate(
-  "text",
-  x = 1.5,
-  y = 35,
-  label = deparse(expr),
-  parse = TRUE,
-  size = 3
-)
+# use it on a completely custom plot
+ggplot(mtcars, aes(factor(am), mpg)) +
+  geom_boxplot() +
+  labs(subtitle = expr)
 ```
 
 ## Suggestions
