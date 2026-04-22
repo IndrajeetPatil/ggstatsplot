@@ -16,7 +16,6 @@ ggwithinstats(
   pairwise.display = "significant",
   pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -27,7 +26,6 @@ ggwithinstats(
   subtitle = NULL,
   digits = 2L,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
   alternative = "two.sided",
   centrality.plotting = TRUE,
@@ -129,11 +127,6 @@ ggwithinstats(
   methods are: `"holm"` (default), `"hochberg"`, `"hommel"`,
   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 
-- effsize.type:
-
-  Type of effect size needed for *parametric* tests. The argument can be
-  `"eta"` (partial eta-squared) or `"omega"` (partial omega-squared).
-
 - bf.prior:
 
   A number between `0.5` and `2` (default `0.707`), the prior width to
@@ -193,11 +186,6 @@ ggwithinstats(
   Scalar between `0` and `1` (default: `95%` confidence/credible
   intervals, `0.95`). If `NULL`, no confidence intervals will be
   computed.
-
-- nboot:
-
-  Number of bootstrap samples for computing confidence interval for the
-  effect size (Default: `100L`).
 
 - tr:
 

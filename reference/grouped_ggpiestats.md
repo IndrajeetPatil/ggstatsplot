@@ -194,31 +194,6 @@ grouped_ggpiestats(
       of the nominal variable. E.g., `ratio = c(0.5, 0.5)` for two
       levels, `ratio = c(0.25, 0.25, 0.25, 0.25)` for four levels, etc.
 
-  `sampling.plan`
-
-  :   Character describing the sampling plan. Possible options:
-
-      - `"indepMulti"` (independent multinomial; default)
-
-      - `"poisson"`
-
-      - `"jointMulti"` (joint multinomial)
-
-      - `"hypergeom"` (hypergeometric). For more, see
-        [`BayesFactor::contingencyTableBF()`](https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html).
-
-  `fixed.margin`
-
-  :   For the independent multinomial sampling plan, which margin is
-      fixed (`"rows"` or `"cols"`). Defaults to `"rows"`.
-
-  `prior.concentration`
-
-  :   Specifies the prior concentration parameter, set to `1` by
-      default. It indexes the expected deviation from the null
-      hypothesis under the alternative, and corresponds to Gunel and
-      Dickey's (1974) `"a"` parameter.
-
 - grouping.var:
 
   A single grouping variable.

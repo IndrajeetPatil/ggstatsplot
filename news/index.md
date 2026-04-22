@@ -58,6 +58,35 @@
 
 ### BREAKING CHANGES
 
+- The following expert-level statistical parameters have been removed
+  from all function signatures because their defaults are the
+  universally recommended values and changing them requires specialist
+  knowledge
+  ([\#1087](https://github.com/IndrajeetPatil/ggstatsplot/issues/1087)):
+
+  - `var.equal` (from
+    [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)):
+    Welch’s test (`var.equal = FALSE`) is uniformly recommended over
+    Student’s *t*-test.
+  - `nboot` (from
+    [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
+    [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)):
+    100 bootstrap resamples is adequate for trimmed-mean CIs.
+  - `sampling.plan`, `fixed.margin`, `prior.concentration` (from
+    [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md),
+    [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)):
+    Technical BayesFactor settings that virtually no one changes.
+  - `effsize.type` (from
+    [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
+    [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+    [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
+    [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)):
+    The unbiased effect size estimator is now always used.
+
+  Users who need non-default values for these parameters should call
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/)
+  directly.
+
 - [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   (and
   [`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md))

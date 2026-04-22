@@ -74,7 +74,18 @@
 <div class="section level3">
 <h3 id="breaking-changes-0-13-6-9000">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-13-6-9000"></a></h3>
 <ul><li>
-<code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> (and <code><a href="../reference/grouped_ggwithinstats.html">grouped_ggwithinstats()</a></code>) gains a <code>subject.id</code> parameter. When provided, the subject identifier column is used to correctly pair observations across conditions and to remove NA observations by subject key rather than by positional row number. Plots and statistical results for unsorted repeated-measures data will differ from previous versions once <code>subject.id</code> is supplied. All examples and vignettes have been updated to pass <code>subject.id</code> explicitly, which is now the recommended practice.</li>
+<p>The following expert-level statistical parameters have been removed from all function signatures because their defaults are the universally recommended values and changing them requires specialist knowledge (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/1087" class="external-link">#1087</a>):</p>
+<ul><li>
+<code>var.equal</code> (from <code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code>): Welch’s test (<code>var.equal = FALSE</code>) is uniformly recommended over Student’s <em>t</em>-test.</li>
+<li>
+<code>nboot</code> (from <code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code>, <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code>): 100 bootstrap resamples is adequate for trimmed-mean CIs.</li>
+<li>
+<code>sampling.plan</code>, <code>fixed.margin</code>, <code>prior.concentration</code> (from <code><a href="../reference/ggpiestats.html">ggpiestats()</a></code>, <code><a href="../reference/ggbarstats.html">ggbarstats()</a></code>): Technical BayesFactor settings that virtually no one changes.</li>
+<li>
+<code>effsize.type</code> (from <code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code>, <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code>, <code><a href="../reference/gghistostats.html">gghistostats()</a></code>, <code><a href="../reference/ggdotplotstats.html">ggdotplotstats()</a></code>): The unbiased effect size estimator is now always used.</li>
+</ul><p>Users who need non-default values for these parameters should call <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> directly.</p>
+</li>
+<li><p><code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> (and <code><a href="../reference/grouped_ggwithinstats.html">grouped_ggwithinstats()</a></code>) gains a <code>subject.id</code> parameter. When provided, the subject identifier column is used to correctly pair observations across conditions and to remove NA observations by subject key rather than by positional row number. Plots and statistical results for unsorted repeated-measures data will differ from previous versions once <code>subject.id</code> is supplied. All examples and vignettes have been updated to pass <code>subject.id</code> explicitly, which is now the recommended practice.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="breaking-changes-0-13-6-9000-1">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-13-6-9000-1"></a></h3>

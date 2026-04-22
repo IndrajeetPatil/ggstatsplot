@@ -82,7 +82,6 @@ a subtitle.</p>
 <span>  pairwise.display <span class="op">=</span> <span class="st">"significant"</span>,</span>
 <span>  pairwise.alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>,</span>
-<span>  effsize.type <span class="op">=</span> <span class="st">"unbiased"</span>,</span>
 <span>  bf.prior <span class="op">=</span> <span class="fl">0.707</span>,</span>
 <span>  bf.message <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  results.subtitle <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -93,7 +92,6 @@ a subtitle.</p>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  digits <span class="op">=</span> <span class="fl">2L</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  nboot <span class="op">=</span> <span class="fl">100L</span>,</span>
 <span>  tr <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
 <span>  centrality.plotting <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -185,12 +183,6 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
 
 
-<dt id="arg-effsize-type">effsize.type<a class="anchor" aria-label="anchor" href="#arg-effsize-type"></a></dt>
-<dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code> (partial
-omega-squared).</p></dd>
-
-
 <dt id="arg-bf-prior">bf.prior<a class="anchor" aria-label="anchor" href="#arg-bf-prior"></a></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors and posterior estimates. In
@@ -249,11 +241,6 @@ significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" 
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
 confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
 will be computed.</p></dd>
-
-
-<dt id="arg-nboot">nboot<a class="anchor" aria-label="anchor" href="#arg-nboot"></a></dt>
-<dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></dd>
 
 
 <dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>

@@ -15,7 +15,6 @@ ggbetweenstats(
   pairwise.display = "significant",
   pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -25,9 +24,7 @@ ggbetweenstats(
   title = NULL,
   subtitle = NULL,
   digits = 2L,
-  var.equal = FALSE,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
   alternative = "two.sided",
   centrality.plotting = TRUE,
@@ -113,11 +110,6 @@ ggbetweenstats(
   methods are: `"holm"` (default), `"hochberg"`, `"hommel"`,
   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 
-- effsize.type:
-
-  Type of effect size needed for *parametric* tests. The argument can be
-  `"eta"` (partial eta-squared) or `"omega"` (partial omega-squared).
-
 - bf.prior:
 
   A number between `0.5` and `2` (default `0.707`), the prior width to
@@ -172,23 +164,11 @@ ggbetweenstats(
   with 4 decimal places, or `digits = "signif5"` for 5 significant
   figures (see also [`signif()`](https://rdrr.io/r/base/Round.html)).
 
-- var.equal:
-
-  a logical variable indicating whether to treat the two variances as
-  being equal. If `TRUE` then the pooled variance is used to estimate
-  the variance otherwise the Welch (or Satterthwaite) approximation to
-  the degrees of freedom is used.
-
 - conf.level:
 
   Scalar between `0` and `1` (default: `95%` confidence/credible
   intervals, `0.95`). If `NULL`, no confidence intervals will be
   computed.
-
-- nboot:
-
-  Number of bootstrap samples for computing confidence interval for the
-  effect size (Default: `100L`).
 
 - tr:
 
@@ -318,6 +298,26 @@ For details, see:
 | centrality measure point | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `centrality.point.args` |
 | centrality measure label | [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html) | `centrality.label.args` |
 | pairwise comparisons | [`ggsignif::geom_signif()`](https://const-ae.github.io/ggsignif/reference/stat_signif.html) | `ggsignif.args` |
+
+## Statistical defaults
+
+This function uses statistically justified defaults that are not
+user-configurable:
+
+- **Effect sizes** are always *unbiased* (Hedges' *g* instead of Cohen's
+  *d*, omega-squared instead of eta-squared). Unbiased estimators
+  correct for the positive bias present in their biased counterparts,
+  especially in small samples, and are recommended for meta-analytic
+  work.
+
+- **Welch's *t*-test and one-way test** are used instead of Student's
+  versions (i.e., equal variances are not assumed). Welch's test
+  performs as well as Student's when variances *are* equal and is
+  substantially more accurate when they are not, making it the
+  unconditionally better default.
+
+Users who need non-default values for these settings can call
+`{statsExpressions}` directly.
 
 ## Centrality measures
 

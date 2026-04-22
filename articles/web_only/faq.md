@@ -50,11 +50,11 @@ library(ggplot2)
 library(statsExpressions)
 
 # extracting detailed expression
-data_results <- oneway_anova(iris, Species, Sepal.Length, var.equal = TRUE)
+data_results <- oneway_anova(iris, Species, Sepal.Length)
 data_results$expression[[1]]
-#> list(italic("F")["Fisher"](2, 147) == "119.26", italic(p) == 
-#>     "1.67e-31", widehat(omega["p"]^2) == "0.61", CI["95%"] ~ 
-#>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "150")
+#> list(italic("F")["Welch"](2, 92.21) == "138.91", italic(p) == 
+#>     "1.51e-28", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ 
+#>     "[" * "0.67", "1.00" * "]", italic("n")["obs"] == "150")
 
 # adapting the details to your liking
 ggplot(iris, aes(x = Species, y = Sepal.Length)) +
@@ -945,6 +945,60 @@ filter(ggplot2::mpg, drv != "4") |>
 
 If this ever needs to be supported directly in grouped helpers, that
 would require a dedicated feature addition rather than a small bug fix.
+
+## 33. How can I adjust the position of the statistical annotation to prevent overlap?
+
+The statistical results appear as a standard
+[ggplot2](https://ggplot2.tidyverse.org) subtitle (and, when Bayes
+Factor is shown, as a caption). You can reposition them using
+[`theme()`](https://ggplot2.tidyverse.org/reference/theme.html) via the
+`ggplot.component` argument:
+
+``` r
+
+library(ggplot2)
+
+# default position
+ggbetweenstats(mtcars, am, mpg)
+```
+
+![](faq_files/figure-html/annotation_position-1.png)
+
+``` r
+
+
+# move the subtitle to avoid overlapping with data points
+ggbetweenstats(
+  mtcars, am, mpg,
+  ggplot.component = list(
+    theme(
+      plot.subtitle = element_text(size = 10, hjust = 0),
+      plot.caption = element_text(size = 8, hjust = 0)
+    )
+  )
+)
+```
+
+![](faq_files/figure-html/annotation_position-2.png)
+
+If you need the statistical expression on a *different* plot entirely,
+extract it with
+[`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+and pass it to
+[`labs()`](https://ggplot2.tidyverse.org/reference/labs.html):
+
+``` r
+
+# extract subtitle expression
+expr <- extract_subtitle(ggbetweenstats(mtcars, am, mpg))
+
+# use it on a completely custom plot
+ggplot(mtcars, aes(factor(am), mpg)) +
+  geom_boxplot() +
+  labs(subtitle = expr)
+```
+
+![](faq_files/figure-html/annotation_manual-1.png)
 
 ## Suggestions
 

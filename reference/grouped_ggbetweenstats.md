@@ -239,19 +239,6 @@ grouped_ggbetweenstats(
       intervals, `0.95`). If `NULL`, no confidence intervals will be
       computed.
 
-  `effsize.type`
-
-  :   Type of effect size needed for *parametric* tests. The argument
-      can be `"eta"` (partial eta-squared) or `"omega"` (partial
-      omega-squared).
-
-  `var.equal`
-
-  :   a logical variable indicating whether to treat the two variances
-      as being equal. If `TRUE` then the pooled variance is used to
-      estimate the variance otherwise the Welch (or Satterthwaite)
-      approximation to the degrees of freedom is used.
-
   `bf.prior`
 
   :   A number between `0.5` and `2` (default `0.707`), the prior width
@@ -267,11 +254,6 @@ grouped_ggbetweenstats(
   :   Trim level for the mean when carrying out `robust` tests. In case
       of an error, try reducing the value of `tr`, which is by default
       set to `0.2`. Lowering the value might help.
-
-  `nboot`
-
-  :   Number of bootstrap samples for computing confidence interval for
-      the effect size (Default: `100L`).
 
   `alternative`
 

@@ -241,17 +241,6 @@ significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" 
 confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
 will be computed.</p></dd>
 
-    <dt><code>effsize.type</code></dt>
-<dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code> (partial
-omega-squared).</p></dd>
-
-    <dt><code>var.equal</code></dt>
-<dd><p>a logical variable indicating whether to treat the
-    two variances as being equal. If <code>TRUE</code> then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.</p></dd>
-
     <dt><code>bf.prior</code></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors and posterior estimates. In
@@ -264,10 +253,6 @@ value corresponds to scale for fixed effects.</p></dd>
 <dd><p>Trim level for the mean when carrying out <code>robust</code> tests. In case
 of an error, try reducing the value of <code>tr</code>, which is by default set to
 <code>0.2</code>. Lowering the value might help.</p></dd>
-
-    <dt><code>nboot</code></dt>
-<dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></dd>
 
     <dt><code>alternative</code></dt>
 <dd><p>a character string specifying the alternative

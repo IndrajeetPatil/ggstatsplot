@@ -25,9 +25,6 @@ ggbarstats(
   alternative = "two.sided",
   conf.level = 0.95,
   p.adjust.method = "holm",
-  sampling.plan = "indepMulti",
-  fixed.margin = "rows",
-  prior.concentration = 1,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -161,31 +158,6 @@ ggbarstats(
   Adjustment method for *p*-values for multiple comparisons. Possible
   methods are: `"holm"` (default), `"hochberg"`, `"hommel"`,
   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
-
-- sampling.plan:
-
-  Character describing the sampling plan. Possible options:
-
-  - `"indepMulti"` (independent multinomial; default)
-
-  - `"poisson"`
-
-  - `"jointMulti"` (joint multinomial)
-
-  - `"hypergeom"` (hypergeometric). For more, see
-    [`BayesFactor::contingencyTableBF()`](https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html).
-
-- fixed.margin:
-
-  For the independent multinomial sampling plan, which margin is fixed
-  (`"rows"` or `"cols"`). Defaults to `"rows"`.
-
-- prior.concentration:
-
-  Specifies the prior concentration parameter, set to `1` by default. It
-  indexes the expected deviation from the null hypothesis under the
-  alternative, and corresponds to Gunel and Dickey's (1974) `"a"`
-  parameter.
 
 - title:
 

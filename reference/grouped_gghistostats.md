@@ -132,11 +132,6 @@ grouped_gghistostats(
       In case of an ANOVA, this value corresponds to scale for fixed
       effects.
 
-  `effsize.type`
-
-  :   Type of effect size needed for *parametric* tests. The argument
-      can be `"d"` (for Cohen's *d*) or `"g"` (for Hedge's *g*).
-
   `xlab`
 
   :   Label for `x` axis variable. If `NULL` (default), variable name

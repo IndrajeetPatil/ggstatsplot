@@ -81,7 +81,6 @@ subtitle.</p>
 <span>  pairwise.display <span class="op">=</span> <span class="st">"significant"</span>,</span>
 <span>  pairwise.alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>,</span>
-<span>  effsize.type <span class="op">=</span> <span class="st">"unbiased"</span>,</span>
 <span>  bf.prior <span class="op">=</span> <span class="fl">0.707</span>,</span>
 <span>  bf.message <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  results.subtitle <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -91,9 +90,7 @@ subtitle.</p>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  digits <span class="op">=</span> <span class="fl">2L</span>,</span>
-<span>  var.equal <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>  nboot <span class="op">=</span> <span class="fl">100L</span>,</span>
 <span>  tr <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>,</span>
 <span>  centrality.plotting <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -170,12 +167,6 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
 
 
-<dt id="arg-effsize-type">effsize.type<a class="anchor" aria-label="anchor" href="#arg-effsize-type"></a></dt>
-<dd><p>Type of effect size needed for <em>parametric</em> tests. The
-argument can be <code>"eta"</code> (partial eta-squared) or <code>"omega"</code> (partial
-omega-squared).</p></dd>
-
-
 <dt id="arg-bf-prior">bf.prior<a class="anchor" aria-label="anchor" href="#arg-bf-prior"></a></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior
 width to use in calculating Bayes factors and posterior estimates. In
@@ -230,22 +221,10 @@ notation with 4 decimal places, or <code>digits = "signif5"</code> for 5
 significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif()</a></code>).</p></dd>
 
 
-<dt id="arg-var-equal">var.equal<a class="anchor" aria-label="anchor" href="#arg-var-equal"></a></dt>
-<dd><p>a logical variable indicating whether to treat the
-    two variances as being equal. If <code>TRUE</code> then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.</p></dd>
-
-
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
 confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
 will be computed.</p></dd>
-
-
-<dt id="arg-nboot">nboot<a class="anchor" aria-label="anchor" href="#arg-nboot"></a></dt>
-<dd><p>Number of bootstrap samples for computing confidence interval
-for the effect size (Default: <code>100L</code>).</p></dd>
 
 
 <dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
@@ -352,6 +331,23 @@ be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</co
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>
 
 <table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>raw data</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>box plot</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code></td><td><code>boxplot.args</code></td></tr><tr><td>density plot</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin()</a></code></td><td><code>violin.args</code></td></tr><tr><td>centrality measure point</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>centrality.point.args</code></td></tr><tr><td>centrality measure label</td><td><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td><td><code>centrality.label.args</code></td></tr><tr><td>pairwise comparisons</td><td><code><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">ggsignif::geom_signif()</a></code></td><td><code>ggsignif.args</code></td></tr></table></div>
+    <div class="section level2">
+    <h2 id="statistical-defaults">Statistical defaults<a class="anchor" aria-label="anchor" href="#statistical-defaults"></a></h2>
+
+
+
+<p>This function uses statistically justified defaults that are not
+user-configurable:</p><ul><li><p><strong>Effect sizes</strong> are always <em>unbiased</em> (Hedges' <em>g</em> instead of Cohen's
+<em>d</em>, omega-squared instead of eta-squared). Unbiased estimators correct
+for the positive bias present in their biased counterparts, especially in
+small samples, and are recommended for meta-analytic work.</p></li>
+<li><p><strong>Welch's <em>t</em>-test and one-way test</strong> are used instead of Student's
+versions (i.e., equal variances are not assumed). Welch's test performs as
+well as Student's when variances <em>are</em> equal and is substantially more
+accurate when they are not, making it the unconditionally better default.</p></li>
+</ul><p>Users who need non-default values for these settings can call
+<code>{statsExpressions}</code> directly.</p>
+    </div>
     <div class="section level2">
     <h2 id="centrality-measures">Centrality measures<a class="anchor" aria-label="anchor" href="#centrality-measures"></a></h2>
 

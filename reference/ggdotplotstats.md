@@ -31,7 +31,6 @@ ggdotplotstats(
   alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
-  effsize.type = "g",
   conf.int = TRUE,
   conf.level = 0.95,
   tr = 0.2,
@@ -127,11 +126,6 @@ ggdotplotstats(
   Logical that decides whether to display Bayes Factor in favor of the
   *null* hypothesis. This argument is relevant only **for parametric
   test** (Default: `TRUE`).
-
-- effsize.type:
-
-  Type of effect size needed for *parametric* tests. The argument can be
-  `"d"` (for Cohen's *d*) or `"g"` (for Hedge's *g*).
 
 - conf.int:
 
