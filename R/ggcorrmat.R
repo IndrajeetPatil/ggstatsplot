@@ -81,7 +81,6 @@ ggcorrmat <- function(
     outline.color = "black",
     pch.cex = 14
   ),
-  palette = "ggthemes::gdoc",
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -89,7 +88,6 @@ ggcorrmat <- function(
   caption = NULL,
   ...
 ) {
-  palette <- .validate_palette(palette)
   type <- extract_stats_type(type)
   if (!missing(cor.vars)) {
     data <- select(data, {{ cor.vars }})
@@ -150,7 +148,7 @@ ggcorrmat <- function(
     p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level = ifelse(type == "bayes", Inf, sig.level),
     ggtheme = ggtheme,
-    colors = paletteer::paletteer_d(palette, 3L),
+    colors = c("#EA4335", "white", "#4285F4"),
     type = matrix.type,
     lab = TRUE,
     pch = pch,
@@ -162,17 +160,24 @@ ggcorrmat <- function(
   # p-value adjustment message ------------------------------------------
 
   if ((pch == "cross" || pch == 4L) && type != "bayes") {
+    p_label <- if (p.adjust.method == "none") {
+      substitute(
+        italic(p)[unadj.] ~ "< " ~ sig.level,
+        list(sig.level = sig.level)
+      )
+    } else {
+      substitute(
+        italic(p)[adj.text - adj.] ~ "< " ~ sig.level,
+        list(sig.level = sig.level, adj.text = .p_adjust_text(p.adjust.method))
+      )
+    }
+
     caption <- substitute(
       atop(
         displaystyle(top.text),
-        expr = bold("X") ~ "= non-significant at" ~
-          italic(p)[adj.text - adj.] ~ "< " ~ sig.level
+        expr = bold("X") ~ "= non-significant at" ~ p_label
       ),
-      env = list(
-        sig.level = sig.level,
-        adj.text = .p_adjust_text(p.adjust.method),
-        top.text = caption
-      )
+      env = list(p_label = p_label, top.text = caption)
     )
   }
 

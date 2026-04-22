@@ -19,7 +19,6 @@ ggcorrmat(
   p.adjust.method = "holm",
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  palette = "ggthemes::gdoc",
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -94,10 +93,6 @@ will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} 
 avoid any of the following arguments since they are already internally
 being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors},
 \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
-
-\item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
-\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,

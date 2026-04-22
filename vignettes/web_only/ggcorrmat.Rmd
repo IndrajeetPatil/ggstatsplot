@@ -119,7 +119,6 @@ ggcorrmat(
   ggtheme = ggplot2::theme_light(), ## selected ggplot2 theme
   ## turn off default ggestatsplot theme overlay
   matrix.type = "lower", ## correlation matrix structure
-  palette = "ggsci::category10_d3", ## choosing a color palette
   title = "Gapminder correlation matrix", ## custom title
   subtitle = "Source: Gapminder Foundation" ## custom subtitle
 )
