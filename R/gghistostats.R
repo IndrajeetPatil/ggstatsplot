@@ -65,9 +65,7 @@ gghistostats <- function(
   type = "parametric",
   test.value = 0,
   alternative = "two.sided",
-  bf.prior = 0.707,
   bf.message = TRUE,
-  effsize.type = "g",
   conf.level = 0.95,
   tr = 0.2,
   digits = 2L,
@@ -99,11 +97,10 @@ gghistostats <- function(
       x = {{ x }},
       test.value = test.value,
       alternative = alternative,
-      effsize.type = effsize.type,
+      effsize.type = "unbiased",
       conf.level = conf.level,
       digits = digits,
-      tr = tr,
-      bf.prior = bf.prior
+      tr = tr
     )
 
     stats <- .one_sample_subtitle_caption(

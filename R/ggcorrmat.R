@@ -76,7 +76,6 @@ ggcorrmat <- function(
   digits = 2L,
   sig.level = 0.05,
   conf.level = 0.95,
-  bf.prior = 0.707,
   p.adjust.method = "holm",
   pch = "cross",
   ggcorrplot.args = list(
@@ -108,7 +107,7 @@ ggcorrmat <- function(
     p_adjust = p.adjust.method,
     ci = conf.level,
     bayesian = type == "bayes",
-    bayesian_prior = bf.prior,
+    bayesian_prior = 0.707,
     tr = tr,
     partial = partial,
     partial_bayesian = type == "bayes" && partial,

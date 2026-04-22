@@ -15,7 +15,6 @@ ggcorrmat(
   digits = 2L,
   sig.level = 0.05,
   conf.level = 0.95,
-  bf.prior = 0.707,
   p.adjust.method = "holm",
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
@@ -75,13 +74,6 @@ the plot.}
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
-
-\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors and posterior estimates. In
-addition to numeric arguments, several named values are also recognized:
-\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
-of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
-value corresponds to scale for fixed effects.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},

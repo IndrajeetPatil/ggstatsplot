@@ -23,9 +23,6 @@ ggpiestats(
   alternative = "two.sided",
   conf.level = 0.95,
   p.adjust.method = "holm",
-  sampling.plan = "indepMulti",
-  fixed.margin = "rows",
-  prior.concentration = 1,
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -118,23 +115,6 @@ will be computed.}
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-
-\item{sampling.plan}{Character describing the sampling plan. Possible options:
-\itemize{
-\item \code{"indepMulti"} (independent multinomial; default)
-\item \code{"poisson"}
-\item \code{"jointMulti"} (joint multinomial)
-\item \code{"hypergeom"} (hypergeometric).
-For more, see \code{\link[BayesFactor:contingencyTableBF]{BayesFactor::contingencyTableBF()}}.
-}}
-
-\item{fixed.margin}{For the independent multinomial sampling plan, which
-margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
-
-\item{prior.concentration}{Specifies the prior concentration parameter, set
-to \code{1} by default. It indexes the expected deviation from the null
-hypothesis under the alternative, and corresponds to Gunel and Dickey's
-(1974) \code{"a"} parameter.}
 
 \item{title}{The text for the plot title.}
 

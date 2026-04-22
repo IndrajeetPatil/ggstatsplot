@@ -13,8 +13,6 @@
 #' @param type Character: statistical test type (e.g. `"parametric"`).
 #' @param bf.message Logical: include Bayes Factor caption?
 #' @param paired Logical: whether the test is paired (within-subjects).
-#' @param var.equal Logical: assume equal variances? Only used for
-#'   between-subjects tests (`NULL` by default, omitted when `NULL`).
 #' @param subject.id Optional symbol for the subject identifier column
 #'   (within-subjects designs only; `NULL` by default, omitted when `NULL`).
 #' @inheritParams ggbetweenstats
@@ -31,33 +29,24 @@
   test,
   type,
   bf.message,
-  effsize.type,
   conf.level,
   digits,
   tr,
-  bf.prior,
-  nboot,
   alternative,
   paired,
-  var.equal = NULL,
   subject.id = NULL
 ) {
   .f.args <- list(
     data = data,
     x = as_string(x),
     y = as_string(y),
-    effsize.type = effsize.type,
+    effsize.type = "unbiased",
     conf.level = conf.level,
     digits = digits,
     tr = tr,
-    paired = paired,
-    bf.prior = bf.prior,
-    nboot = nboot
+    paired = paired
   )
 
-  if (!is.null(var.equal)) {
-    .f.args$var.equal <- var.equal
-  }
   if (!is.null(subject.id)) {
     .f.args$subject.id <- subject.id
   }
@@ -82,7 +71,7 @@
 #' @param data Data frame used for plotting.
 #' @param pairwise_args A named list of extra arguments forwarded to
 #'   [pairwise_comparisons()], typically containing `data`, `paired`,
-#'   `p.adjust.method`, and optionally `var.equal` or `subject.id`.
+#'   `p.adjust.method`, and optionally `subject.id`.
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggwithinstats
 #'

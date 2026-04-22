@@ -103,20 +103,6 @@ proportion test (should sum to \code{1}). Default is \code{NULL}, which means th
 is equal theoretical proportions across the levels of the nominal variable.
 E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
-    \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options:
-\itemize{
-\item \code{"indepMulti"} (independent multinomial; default)
-\item \code{"poisson"}
-\item \code{"jointMulti"} (joint multinomial)
-\item \code{"hypergeom"} (hypergeometric).
-For more, see \code{\link[BayesFactor:contingencyTableBF]{BayesFactor::contingencyTableBF()}}.
-}}
-    \item{\code{fixed.margin}}{For the independent multinomial sampling plan, which
-margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
-    \item{\code{prior.concentration}}{Specifies the prior concentration parameter, set
-to \code{1} by default. It indexes the expected deviation from the null
-hypothesis under the alternative, and corresponds to Gunel and Dickey's
-(1974) \code{"a"} parameter.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),

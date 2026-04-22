@@ -163,8 +163,6 @@ ggbetweenstats <- function(
   pairwise.display = "significant",
   pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
-  bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
   xlab = NULL,
@@ -173,9 +171,7 @@ ggbetweenstats <- function(
   title = NULL,
   subtitle = NULL,
   digits = 2L,
-  var.equal = FALSE,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
   alternative = "two.sided",
   centrality.plotting = TRUE,
@@ -224,15 +220,11 @@ ggbetweenstats <- function(
       test = test,
       type = type,
       bf.message = bf.message,
-      effsize.type = effsize.type,
       conf.level = conf.level,
       digits = digits,
       tr = tr,
-      bf.prior = bf.prior,
-      nboot = nboot,
       alternative = alternative,
-      paired = FALSE,
-      var.equal = var.equal
+      paired = FALSE
     )
     subtitle <- stats_output$subtitle
     caption <- stats_output$caption
@@ -267,7 +259,6 @@ ggbetweenstats <- function(
     pairwise_args = list(
       data = data,
       paired = FALSE,
-      var.equal = var.equal,
       p.adjust.method = p.adjust.method
     ),
     ggsignif.args = ggsignif.args,

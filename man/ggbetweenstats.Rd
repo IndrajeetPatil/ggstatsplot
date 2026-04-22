@@ -12,8 +12,6 @@ ggbetweenstats(
   pairwise.display = "significant",
   pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
-  bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
   xlab = NULL,
@@ -22,9 +20,7 @@ ggbetweenstats(
   title = NULL,
   subtitle = NULL,
   digits = 2L,
-  var.equal = FALSE,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
   alternative = "two.sided",
   centrality.plotting = TRUE,
@@ -91,17 +87,6 @@ comparisons are displayed when \code{pairwise.display = "significant"} or
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
-
-\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
-width to use in calculating Bayes factors and posterior estimates. In
-addition to numeric arguments, several named values are also recognized:
-\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
-of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
-value corresponds to scale for fixed effects.}
-
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
@@ -131,17 +116,9 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{var.equal}{a logical variable indicating whether to treat the
-    two variances as being equal. If \code{TRUE} then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.}
-
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
-
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
