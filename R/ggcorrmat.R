@@ -182,10 +182,7 @@ ggcorrmat <- function(
       ),
       env = list(
         sig.level = sig.level,
-        adj.text = paste0(
-          toupper(substr(p.adjust.method, 1L, 1L)),
-          substr(p.adjust.method, 2L, nchar(p.adjust.method))
-        ),
+        adj.text = .p_adjust_text(p.adjust.method),
         top.text = caption
       )
     )
