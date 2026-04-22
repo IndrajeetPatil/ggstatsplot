@@ -51,6 +51,12 @@ test_that("ggcorrmat works as expected with changed defaults", {
 })
 
 
+test_that("ggcorrmat with p.adjust.method = 'none' shows unadjusted label", {
+  p <- ggcorrmat(iris, p.adjust.method = "none")
+  caption_expr <- deparse(p$labels$caption)
+  expect_true(any(grepl("unadj", caption_expr)))
+})
+
 # grouped_ggcorrmat output: plot ---------------------------------------------------------------
 
 test_that("grouped_ggcorrmat plots are as expected", {
