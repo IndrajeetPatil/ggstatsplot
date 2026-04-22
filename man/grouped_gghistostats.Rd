@@ -73,6 +73,12 @@ will be computed.}
     \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
+    \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
+of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
+value corresponds to scale for fixed effects.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in

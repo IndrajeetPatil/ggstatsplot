@@ -42,9 +42,6 @@
       is uniformly recommended over Student's *t*-test.
     - `nboot` (from `ggbetweenstats()`, `ggwithinstats()`): 100 bootstrap
       resamples is adequate for trimmed-mean CIs.
-    - `bf.prior` (from `ggbetweenstats()`, `ggwithinstats()`, `gghistostats()`,
-      `ggdotplotstats()`, `ggscatterstats()`, `ggcorrmat()`): The medium Cauchy
-      prior width (0.707) is the standard default.
     - `sampling.plan`, `fixed.margin`, `prior.concentration` (from
       `ggpiestats()`, `ggbarstats()`): Technical BayesFactor settings that
       virtually no one changes.

@@ -16,6 +16,7 @@ ggdotplotstats(
   type = "parametric",
   test.value = 0,
   alternative = "two.sided",
+  bf.prior = 0.707,
   bf.message = TRUE,
   conf.int = TRUE,
   conf.level = 0.95,
@@ -73,6 +74,13 @@ You can specify just the initial letter.}
     hypothesis, must be one of \code{"two.sided"} (default),
     \code{"greater"} or \code{"less"}.  You can specify just the initial
     letter.}
+
+\item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
+width to use in calculating Bayes factors and posterior estimates. In
+addition to numeric arguments, several named values are also recognized:
+\code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
+of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
+value corresponds to scale for fixed effects.}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for

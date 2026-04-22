@@ -98,6 +98,7 @@ ggscatterstats <- function(
   y,
   type = "parametric",
   conf.level = 0.95,
+  bf.prior = 0.707,
   bf.message = TRUE,
   tr = 0.2,
   digits = 2L,
@@ -147,7 +148,8 @@ ggscatterstats <- function(
         y = {{ y }},
         conf.level = conf.level,
         digits = digits,
-        tr = tr
+        tr = tr,
+        bf.prior = bf.prior
       ),
       type,
       bf.message

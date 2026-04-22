@@ -29,6 +29,7 @@
   test,
   type,
   bf.message,
+  bf.prior,
   conf.level,
   digits,
   tr,
@@ -44,7 +45,8 @@
     conf.level = conf.level,
     digits = digits,
     tr = tr,
-    paired = paired
+    paired = paired,
+    bf.prior = bf.prior
   )
 
   if (!is.null(subject.id)) {
