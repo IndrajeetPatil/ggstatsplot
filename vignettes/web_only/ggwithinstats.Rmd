@@ -63,7 +63,7 @@ To begin with, here are some instances where you would want to use
 
  - to compare distributions visually
 
-**Note**: This vignette uses the pipe operator (`%>%`), if you are not
+**Note**: This vignette uses the pipe operator (`|>`), if you are not
 familiar with this operator, here is a good explanation:
 <http://r4ds.had.co.nz/pipes.html>
 

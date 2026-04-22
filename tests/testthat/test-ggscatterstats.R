@@ -81,7 +81,7 @@ test_that("subtitle output - ggscatterstats", {
     y = bodywt,
     conf.level = 0.90,
     type = "r"
-  ) %>%
+  ) |>
     extract_subtitle()
 
   set.seed(123)

@@ -14,15 +14,15 @@
 #' @autoglobal
 #' @noRd
 .pie_bar_data_prep <- function(data, x, y, counts) {
-  data %<>%
-    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
+  data <- data |>
+    select({{ x }}, {{ y }}, .counts = {{ counts }}) |>
     tidyr::drop_na()
 
   if (".counts" %in% names(data)) {
-    data %<>% tidyr::uncount(weights = .counts)
+    data <- tidyr::uncount(data, weights = .counts)
   }
 
-  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
+  data <- mutate(data, across(.cols = everything(), .fns = ~ as.factor(.x)))
 
   test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
   x_levels <- nlevels(pull(data, {{ x }}))
@@ -118,21 +118,21 @@ descriptive_data <- function(
 ) {
   all_lvls <- levels(pull(data, {{ x }}))
 
-  .cat_counter(data, {{ x }}, {{ y }}) %>%
+  .cat_counter(data, {{ x }}, {{ y }}) |>
     # Drop unused factor levels (including any absent y levels after filtering)
     # before complete() so it only expands to observed y groups, not all
     # factor levels defined on y that happen to have no data in this subset.
-    droplevels() %>%
+    droplevels() |>
     # Normalize x to a plain (unordered) factor so tidyr::complete()'s internal
     # full_join does not fail when the original x was an ordered factor.
-    mutate({{ x }} := factor({{ x }}, all_lvls, ordered = FALSE)) %>%
+    mutate({{ x }} := factor({{ x }}, all_lvls, ordered = FALSE)) |>
     # Fill in zero-count rows for missing (y, x) combinations so all panels
     # produce structurally identical data; patchwork can then deduplicate guides.
     tidyr::complete(
       {{ y }},
       {{ x }} := factor(all_lvls, all_lvls),
       fill = list(counts = 0L, perc = 0)
-    ) %>%
+    ) |>
     mutate(
       .label = if_else(
         counts == 0L,
@@ -157,12 +157,12 @@ descriptive_data <- function(
 #' @autoglobal
 #' @noRd
 .cat_counter <- function(data, x, y = NULL, ...) {
-  data %>%
-    group_by({{ y }}, {{ x }}, .drop = TRUE) %>%
-    tally(name = "counts") %>%
-    mutate(perc = (counts / sum(counts)) * 100) %>%
-    ungroup() %>%
-    arrange(desc({{ x }})) %>%
+  data |>
+    group_by({{ y }}, {{ x }}, .drop = TRUE) |>
+    tally(name = "counts") |>
+    mutate(perc = (counts / sum(counts)) * 100) |>
+    ungroup() |>
+    arrange(desc({{ x }})) |>
     filter(counts != 0L)
 }
 
@@ -170,18 +170,18 @@ descriptive_data <- function(
 #' @autoglobal
 #' @noRd
 onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
-  grouped_chi_squared_summary <- group_by(data, {{ y }}) %>%
-    group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) %>%
+  grouped_chi_squared_summary <- group_by(data, {{ y }}) |>
+    group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) |>
     ungroup()
-  descriptive_summary <- .cat_counter(data, {{ y }}) %>%
+  descriptive_summary <- .cat_counter(data, {{ y }}) |>
     mutate(N = paste0("(n = ", .prettyNum(counts), ")"))
 
   full_join(
     descriptive_summary,
     grouped_chi_squared_summary,
     by = as_name(ensym(y))
-  ) %>%
-    rowwise() %>%
+  ) |>
+    rowwise() |>
     mutate(
       .label = glue(
         "list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ",
@@ -189,7 +189,7 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
         "~italic(n)=='{.prettyNum(counts)}')"
       ),
       .p.label = glue("list(~italic(p)=='{format_value(p.value, digits)}')")
-    ) %>%
+    ) |>
     ungroup()
 }
 

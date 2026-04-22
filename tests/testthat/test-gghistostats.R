@@ -65,7 +65,7 @@ test_that("subtitle output", {
     x = brainwt,
     type = "np",
     test.value = 0.25
-  ) %>%
+  ) |>
     extract_subtitle()
 
   set.seed(123)

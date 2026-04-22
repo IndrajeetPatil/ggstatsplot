@@ -210,7 +210,7 @@ ggbetweenstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
-  data %<>% .prep_data({{ x }}, {{ y }}, x_as_factor = TRUE)
+  data <- .prep_data(data, {{ x }}, {{ y }}, x_as_factor = TRUE)
 
   # statistical analysis ------------------------------------------
 

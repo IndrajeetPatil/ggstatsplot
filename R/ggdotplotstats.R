@@ -94,7 +94,7 @@ ggdotplotstats <- function(
   c(x, y) %<-% c(ensym(x), ensym(y))
   type <- stats_type_switch(type)
 
-  data %<>% .prep_data({{ x }}, {{ y }})
+  data <- .prep_data(data, {{ x }}, {{ y }})
 
   data <-
     suppressWarnings(centrality_description(
@@ -108,8 +108,8 @@ ggdotplotstats <- function(
       bf.prior = bf.prior
     ))
 
-  data %<>%
-    arrange({{ x }}) %>%
+  data <- data |>
+    arrange({{ x }}) |>
     mutate(
       percent_rank = percent_rank({{ x }}),
       rank = row_number()

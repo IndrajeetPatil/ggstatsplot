@@ -16,12 +16,12 @@ utils::globalVariables(".pre")
 #' @autoglobal
 #' @noRd
 .prep_data <- function(data, x, y, x_as_factor = FALSE) {
-  data %<>%
-    select({{ x }}, {{ y }}) %>%
+  data <- data |>
+    select({{ x }}, {{ y }}) |>
     tidyr::drop_na()
 
   if (x_as_factor) {
-    data %<>% mutate({{ x }} := droplevels(as.factor({{ x }})))
+    data <- mutate(data, {{ x }} := droplevels(as.factor({{ x }})))
   }
 
   data
@@ -41,8 +41,8 @@ utils::globalVariables(".pre")
     if (!is.null(.pre)) {
       data <- .pre(data, ...)
     }
-    .grouped_list(data, {{ grouping.var }}) %>%
-      purrr::pmap(.f = .fn, ...) %>%
+    .grouped_list(data, {{ grouping.var }}) |>
+      purrr::pmap(.f = .fn, ...) |>
       combine_plots(plotgrid.args, annotation.args, guides = guides)
   }
 }
@@ -63,7 +63,7 @@ utils::globalVariables(".pre")
 #' ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #' @keywords internal
 .grouped_list <- function(data, grouping.var) {
-  data <- as_tibble(data) %>% tidyr::drop_na({{ grouping.var }})
+  data <- as_tibble(data) |> tidyr::drop_na({{ grouping.var }})
   grp_col <- pull(data, {{ grouping.var }})
   grp_fct <- if (is.factor(grp_col)) {
     grp_col
@@ -72,7 +72,7 @@ utils::globalVariables(".pre")
   } else {
     factor(grp_col)
   }
-  data <- mutate(data, {{ grouping.var }} := grp_fct) %>%
+  data <- mutate(data, {{ grouping.var }} := grp_fct) |>
     group_by({{ grouping.var }})
   list(
     data = group_split(data),

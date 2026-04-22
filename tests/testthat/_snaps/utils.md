@@ -1,8 +1,7 @@
 # .grouped_list works with non-syntactic group names
 
     Code
-      sleep %>% rename(`my non-syntactic name` = group) %>% .grouped_list(
-        grouping.var = `my non-syntactic name`) %>% str()
+      str(.grouped_list(rename(sleep, `my non-syntactic name` = group), grouping.var = `my non-syntactic name`))
     Output
       List of 2
        $ data : list<tibble[,3]> [1:2] 
