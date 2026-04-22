@@ -20,7 +20,7 @@ ggcorrmat(
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
   palette = "ggthemes::gdoc",
-  colors = c("#E69F00", "white", "#009E73"),
+  colors = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,

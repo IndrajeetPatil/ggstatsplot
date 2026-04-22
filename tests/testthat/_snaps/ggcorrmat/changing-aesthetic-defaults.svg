@@ -81,8 +81,10 @@
 <text x='617.35' y='248.30' style='font-size: 8.00px; font-family: sans;' textLength='11.12px' lengthAdjust='spacingAndGlyphs'>1.0</text>
 <text x='128.18' y='27.59' style='font-size: 10.00px; font-family: sans;' textLength='86.74px' lengthAdjust='spacingAndGlyphs'>By Edgar Anderson</text>
 <text x='128.18' y='13.24' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='58.70px' lengthAdjust='spacingAndGlyphs'>Iris dataset</text>
-<text x='442.07' y='566.72' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='5.34px' lengthAdjust='spacingAndGlyphs'>X</text>
-<text x='447.41' y='566.72' style='font-size: 8.00px; font-family: sans;' textLength='71.83px' lengthAdjust='spacingAndGlyphs'> = non-significant at </text>
+<text x='442.52' y='566.72' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='5.34px' lengthAdjust='spacingAndGlyphs'>X</text>
+<text x='447.85' y='566.72' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='449.86' y='566.72' style='font-size: 8.00px; font-family: sans;' textLength='67.38px' lengthAdjust='spacingAndGlyphs'>= non-significant at</text>
+<text x='517.24' y='566.72' style='font-size: 8.00px; font-family: sans;' textLength='2.00px' lengthAdjust='spacingAndGlyphs'> </text>
 <text x='519.24' y='566.72' style='font-size: 8.00px; font-style: italic; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>p</text>
 <text x='524.33' y='568.20' style='font-size: 5.60px; font-family: sans;' textLength='11.51px' lengthAdjust='spacingAndGlyphs'>FDR</text>
 <text x='535.85' y='568.20' style='font-size: 5.60px; font-family: sans;' textLength='4.35px' lengthAdjust='spacingAndGlyphs'>−</text>

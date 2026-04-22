@@ -85,7 +85,7 @@ ggcorrmat <- function(
     pch.cex = 14
   ),
   palette = "ggthemes::gdoc",
-  colors = c("#E69F00", "white", "#009E73"),
+  colors = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -169,11 +169,8 @@ ggcorrmat <- function(
     caption <- substitute(
       atop(
         displaystyle(top.text),
-        expr = paste(
-          bold("X"),
-          " = non-significant at ",
+        expr = bold("X") ~ "= non-significant at" ~
           italic(p)[adj.text - adj.] ~ "< " ~ sig.level
-        )
       ),
       env = list(
         sig.level = sig.level,
