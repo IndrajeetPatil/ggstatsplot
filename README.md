@@ -130,13 +130,14 @@ supported in this package-
 
 Summary of Bayesian analysis
 
-| Analysis                        | Hypothesis testing | Estimation |
-|:--------------------------------|:-------------------|:-----------|
-| (one/two-sample) *t*-test       | ✅                 | ✅         |
-| one-way ANOVA                   | ✅                 | ✅         |
-| correlation                     | ✅                 | ✅         |
-| (one/two-way) contingency table | ✅                 | ✅         |
-| random-effects meta-analysis    | ✅                 | ✅         |
+| Analysis                     | Hypothesis testing | Estimation |
+|:-----------------------------|:-------------------|:-----------|
+| (one/two-sample) *t*-test    | ✅                 | ✅         |
+| one-way ANOVA                | ✅                 | ✅         |
+| correlation                  | ✅                 | ✅         |
+| (unpaired) contingency table | ✅                 | ✅         |
+| (paired) contingency table   | ✅                 | ❌         |
+| random-effects meta-analysis | ✅                 | ✅         |
 
 ## Statistical reporting
 

@@ -144,7 +144,8 @@ Summary of Bayesian analysis
 | (one/two-sample) *t*-test       | ✅                 | ✅         |
 | one-way ANOVA                   | ✅                 | ✅         |
 | correlation                     | ✅                 | ✅         |
-| (one/two-way) contingency table | ✅                 | ✅         |
+| (unpaired) contingency table    | ✅                 | ✅         |
+| (paired) contingency table      | ✅                 | ❌         |
 | random-effects meta-analysis    | ✅                 | ✅         |
 
 ## Statistical reporting
