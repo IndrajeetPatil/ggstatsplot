@@ -81,13 +81,13 @@
 <text x='617.84' y='248.79' style='font-size: 8.00px; font-family: sans;' textLength='11.12px' lengthAdjust='spacingAndGlyphs'>1.0</text>
 <text x='127.69' y='27.59' style='font-size: 10.00px; font-family: sans;' textLength='86.74px' lengthAdjust='spacingAndGlyphs'>By Edgar Anderson</text>
 <text x='127.69' y='13.24' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='58.70px' lengthAdjust='spacingAndGlyphs'>Iris dataset</text>
-<text x='400.77' y='567.70' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='5.34px' lengthAdjust='spacingAndGlyphs'>X</text>
-<text x='406.11' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='71.83px' lengthAdjust='spacingAndGlyphs'> = non-significant at </text>
-<text x='477.93' y='567.70' style='font-size: 8.00px; font-style: italic; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>p</text>
-<text x='483.03' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='9.12px' lengthAdjust='spacingAndGlyphs'> &lt; </text>
-<text x='492.15' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>0.001</text>
-<text x='512.17' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='49.36px' lengthAdjust='spacingAndGlyphs'> (Adjustment: </text>
-<text x='561.53' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='16.44px' lengthAdjust='spacingAndGlyphs'>FDR</text>
+<text x='405.21' y='567.70' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='5.34px' lengthAdjust='spacingAndGlyphs'>X</text>
+<text x='410.55' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='71.83px' lengthAdjust='spacingAndGlyphs'> = non-significant at </text>
+<text x='482.38' y='567.70' style='font-size: 8.00px; font-style: italic; font-family: sans;' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>p</text>
+<text x='487.47' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='9.12px' lengthAdjust='spacingAndGlyphs'> &lt; </text>
+<text x='496.59' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>0.001</text>
+<text x='516.62' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='49.36px' lengthAdjust='spacingAndGlyphs'> (Adjustment: </text>
+<text x='565.97' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='12.00px' lengthAdjust='spacingAndGlyphs'>Fdr</text>
 <text x='577.97' y='567.70' style='font-size: 8.00px; font-family: sans;' textLength='2.66px' lengthAdjust='spacingAndGlyphs'>)</text>
 </g>
 </svg>
