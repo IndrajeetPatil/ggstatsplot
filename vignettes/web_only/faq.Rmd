@@ -70,7 +70,7 @@ library(ggplot2)
 library(statsExpressions)
 
 # extracting detailed expression
-data_results <- oneway_anova(iris, Species, Sepal.Length, var.equal = TRUE)
+data_results <- oneway_anova(iris, Species, Sepal.Length)
 data_results$expression[[1]]
 
 # adapting the details to your liking
@@ -774,6 +774,59 @@ filter(ggplot2::mpg, drv != "4") |>
 
 If this ever needs to be supported directly in grouped helpers, that would
 require a dedicated feature addition rather than a small bug fix.
+
+## 33. How can I adjust the position of the statistical annotation to prevent overlap?
+
+The statistical results appear as a standard `{ggplot2}` subtitle (and,
+when Bayes Factor is shown, as a caption). You can reposition them using
+`theme()` via the `ggplot.component` argument:
+
+```{r}
+#| label = "annotation_position",
+#| fig.width = 7,
+#| fig.height = 5
+
+library(ggplot2)
+
+# default position
+ggbetweenstats(mtcars, am, mpg)
+
+# move the subtitle to avoid overlapping with data points
+ggbetweenstats(
+  mtcars, am, mpg,
+  ggplot.component = list(
+    theme(
+      plot.subtitle = element_text(size = 10, hjust = 0),
+      plot.caption = element_text(size = 8, hjust = 0)
+    )
+  )
+)
+```
+
+If you need full control over annotation placement (e.g., inside the
+plot area), extract the expression and add it as a text geom:
+
+```{r}
+#| label = "annotation_manual",
+#| fig.width = 7,
+#| fig.height = 5
+
+# create the plot
+p <- ggbetweenstats(mtcars, am, mpg, results.subtitle = FALSE)
+
+# extract subtitle expression from a separate call
+expr <- extract_subtitle(ggbetweenstats(mtcars, am, mpg))
+
+# place it wherever you like using annotate()
+p + annotate(
+  "text",
+  x = 1.5,
+  y = 35,
+  label = deparse(expr),
+  parse = TRUE,
+  size = 3
+)
+```
 
 ## Suggestions
 
