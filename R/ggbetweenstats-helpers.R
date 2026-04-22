@@ -304,7 +304,10 @@
   ...
 ) {
   # creating a column for group combinations
-  mpc_df <- mutate(mpc_df, groups = purrr::pmap(.l = list(group1, group2), .f = c))
+  mpc_df <- mutate(
+    mpc_df,
+    groups = purrr::pmap(.l = list(group1, group2), .f = c)
+  )
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {

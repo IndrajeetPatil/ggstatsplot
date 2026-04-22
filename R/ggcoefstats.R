@@ -228,7 +228,10 @@ ggcoefstats <- function(
     # anova objects need further cleaning
     # nolint next: line_length_linter.
     if (all(c("df", "df.error") %in% names(tidy_df))) {
-      tidy_df <- mutate(tidy_df, effectsize = paste0("partial ", effectsize.type, "-squared"))
+      tidy_df <- mutate(
+        tidy_df,
+        effectsize = paste0("partial ", effectsize.type, "-squared")
+      )
     }
   }
 
@@ -255,7 +258,12 @@ ggcoefstats <- function(
   # label -------------------------
 
   if (stats.labels) {
-    tidy_df <- tidy_model_expressions(tidy_df, statistic, digits, effectsize.type)
+    tidy_df <- tidy_model_expressions(
+      tidy_df,
+      statistic,
+      digits,
+      effectsize.type
+    )
   }
 
   # summary caption -------------------------
@@ -265,7 +273,8 @@ ggcoefstats <- function(
 
   if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
     # nolint next: line_length_linter.
-    glance_df <- mutate(glance_df,
+    glance_df <- mutate(
+      glance_df,
       expression = list(parse(
         text = glue(
           "list(AIC=='{format_value(AIC, 0L)}', BIC=='{format_value(BIC, 0L)}')"
@@ -369,7 +378,8 @@ ggcoefstats <- function(
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
   # nocov start
   if (anyDuplicated(data$term)) {
-    data <- tidyr::unite(data,
+    data <- tidyr::unite(
+      data,
       col = "term",
       matches(
         "term|variable|parameter|method|curve|response|component|contrast|group"
