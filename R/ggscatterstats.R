@@ -132,8 +132,9 @@ ggscatterstats <- function(
   # data ---------------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
   data <- filter(data, !is.na({{ x }}), !is.na({{ y }}))
 

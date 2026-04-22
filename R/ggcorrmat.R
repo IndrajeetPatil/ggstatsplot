@@ -94,7 +94,7 @@ ggcorrmat <- function(
   ...
 ) {
   palette <- .validate_palette(palette)
-  type <- stats_type_switch(type)
+  type <- extract_stats_type(type)
   if (!missing(cor.vars)) {
     data <- select(data, {{ cor.vars }})
   }
@@ -182,7 +182,7 @@ ggcorrmat <- function(
       ),
       env = list(
         sig.level = sig.level,
-        adj.text = p_adjust_text(p.adjust.method),
+        adj.text = paste0(toupper(substr(p.adjust.method, 1L, 1L)), substr(p.adjust.method, 2L, nchar(p.adjust.method))),
         top.text = caption
       )
     )

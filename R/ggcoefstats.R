@@ -288,7 +288,7 @@ ggcoefstats <- function(
 
   # nocov start
   if (meta.analytic.effect) {
-    meta.type <- stats_type_switch(meta.type)
+    meta.type <- extract_stats_type(meta.type)
 
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, digits = digits)
     subtitle <- .extract_expression(subtitle_df)

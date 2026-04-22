@@ -68,7 +68,7 @@ Suggests:
 VignetteBuilder:
     knitr
 Remotes:
-    IndrajeetPatil/statsExpressions
+    IndrajeetPatil/statsExpressions@fix/2.0-release-cleanup
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3

@@ -88,7 +88,7 @@ ggbarstats <- function(
 
   x <- ensym(x)
   y <- if (!quo_is_null(enquo(y))) ensym(y)
-  type <- stats_type_switch(type)
+  type <- extract_stats_type(type)
 
   prep <- .pie_bar_data_prep(
     data = data,
@@ -103,7 +103,8 @@ ggbarstats <- function(
 
   # nocov start
   if (test == "two.way" && y_levels == 1L) {
-    c(bf.message, proportion.test) %<-% c(FALSE, FALSE)
+    bf.message <- FALSE
+    proportion.test <- FALSE
   }
   # nocov end
   if (type == "bayes" || test == "one.way") {

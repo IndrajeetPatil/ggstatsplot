@@ -3,7 +3,6 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{\%>\%}
 \alias{pairwise_comparisons}
 \alias{pairwise_contingency_table}
 \title{Objects exported from other packages}
@@ -13,6 +12,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{statsExpressions}{\code{\link[statsExpressions:reexports]{\%>\%}}, \code{\link[statsExpressions]{pairwise_comparisons}}, \code{\link[statsExpressions]{pairwise_contingency_table}}}
+  \item{statsExpressions}{\code{\link[statsExpressions]{pairwise_comparisons}}, \code{\link[statsExpressions]{pairwise_contingency_table}}}
 }}
 

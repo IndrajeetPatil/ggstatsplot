@@ -123,7 +123,7 @@ ggpiestats <- function(
 
   x <- ensym(x)
   y <- if (!quo_is_null(enquo(y))) ensym(y)
-  type <- stats_type_switch(type)
+  type <- extract_stats_type(type)
 
   prep <- .pie_bar_data_prep(
     data = data,

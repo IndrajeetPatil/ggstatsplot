@@ -27,6 +27,5 @@ theme_ggstatsplot()
 
 ## Reexported objects
 
-magrittr::%>%
 statsExpressions::pairwise_comparisons
 statsExpressions::pairwise_contingency_table

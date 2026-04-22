@@ -88,7 +88,7 @@ gghistostats <- function(
   x <- ensym(x)
   data <- tidyr::drop_na(select(data, {{ x }}))
   x_vec <- pull(data, {{ x }})
-  type <- stats_type_switch(type)
+  type <- extract_stats_type(type)
 
   # statistical analysis ------------------------------------------
 
@@ -139,7 +139,7 @@ gghistostats <- function(
     plot_hist <- .histo_labeller(
       plot_hist,
       x = x_vec,
-      type = stats_type_switch(centrality.type),
+      type = extract_stats_type(centrality.type),
       tr = tr,
       digits = digits,
       centrality.line.args = centrality.line.args

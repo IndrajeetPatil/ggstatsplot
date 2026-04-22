@@ -153,8 +153,9 @@ ggwithinstats <- function(
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
   subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
   sid_str <- if (!is.null(subject.id)) as_string(subject.id)

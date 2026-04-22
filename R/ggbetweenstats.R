@@ -222,8 +222,9 @@ ggbetweenstats <- function(
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
   data <- .prep_data(data, {{ x }}, {{ y }}, x_as_factor = TRUE)
 

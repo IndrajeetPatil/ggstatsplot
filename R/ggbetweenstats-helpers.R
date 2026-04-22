@@ -117,7 +117,7 @@
       data,
       !!x,
       !!y,
-      type = stats_type_switch(centrality.type),
+      type = extract_stats_type(centrality.type),
       digits = digits,
       tr = tr
     ))
