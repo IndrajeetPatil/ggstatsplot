@@ -214,7 +214,7 @@ The table below provides summary about:
    Parametric \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
    Non-parametric \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
    Robust \tab trimmed mean \tab Yes \tab \code{WRS2::trimcibt()} \cr
-   Bayes Factor \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
+   Bayesian \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
 }
 
 }

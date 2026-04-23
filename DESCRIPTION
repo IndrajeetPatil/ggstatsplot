@@ -1,7 +1,7 @@
 Type: Package
 Package: ggstatsplot
 Title: 'ggplot2' Based Plots with Statistical Details
-Version: 0.13.6
+Version: 1.0.0
 Authors@R:
     person("Indrajeet", "Patil", , "patilindrajeet.science@gmail.com", role = c("cre", "aut", "cph"),
            comment = c(ORCID = "0000-0003-1995-6531"))
@@ -40,7 +40,7 @@ Imports:
     performance (>= 0.16.0),
     purrr (>= 1.2.2),
     rlang (>= 1.2.0),
-    statsExpressions (>= 1.7.4),
+    statsExpressions (>= 2.0.0),
     tidyr (>= 1.3.2),
     utils
 Suggests:
@@ -67,8 +67,6 @@ Suggests:
     WRS2
 VignetteBuilder:
     knitr
-Remotes:
-    IndrajeetPatil/statsExpressions
 Config/Needs/check: anthonynorth/roxyglobals
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
