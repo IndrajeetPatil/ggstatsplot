@@ -161,10 +161,12 @@ ggcorrmat <- function(
 
   if ((pch == "cross" || pch == 4L) && type != "bayes") {
     p_label <- if (p.adjust.method == "none") {
+      # nocov start
       substitute(
         italic(p)[unadj.] ~ "< " ~ sig.level,
         list(sig.level = sig.level)
       )
+      # nocov end
     } else {
       substitute(
         italic(p)[adj.text - adj.] ~ "< " ~ sig.level,
