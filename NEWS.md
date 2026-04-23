@@ -60,8 +60,6 @@
   `subject.id` is supplied. All examples and vignettes have been updated to
   pass `subject.id` explicitly, which is now the recommended practice.
 
-## BREAKING CHANGES
-
 - The `package` argument has been removed from all plotting functions. The
   `palette` argument now accepts a single `"package::palette"` string (e.g.,
   `palette = "ggthemes::gdoc"`), matching the convention used by

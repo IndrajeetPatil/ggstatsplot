@@ -56,7 +56,7 @@ extract_stats <- function(p) {
 }
 
 .extract_plots <- function(p) {
-  purrr::map(seq_along(p), \(i) magrittr::extract2(p, i))
+  purrr::map(seq_along(p), \(i) p[[i]])
 }
 
 .pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)

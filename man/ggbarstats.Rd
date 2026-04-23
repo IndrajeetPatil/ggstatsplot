@@ -227,7 +227,7 @@ The table below provides summary about:
 
 When there is a two-way table and \code{x} has more than two levels, pairwise
 contingency table analyses (Fisher's exact tests) are computed using
-\code{\link[=pairwise_contingency_table]{pairwise_contingency_table()}}. These pairwise results are \strong{not}
+\code{\link[statsExpressions:pairwise_contingency_table]{statsExpressions::pairwise_contingency_table()}}. These pairwise results are \strong{not}
 displayed in the plot because bar and pie charts lack a natural visual
 representation for pairwise significance annotations (unlike box/violin
 plots, which use bracket annotations). Additionally, there is no

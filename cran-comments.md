@@ -1,8 +1,9 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 0 notes
 
-- Maintenance release to adapt to API changes in `{dplyr}` (v1.2.0) and `{purrr}` (v1.2.1).
+- This is a major release (1.0.0) with new features, breaking changes, and bug fixes.
+  See `NEWS.md` for a detailed changelog.
 
 ## revdepcheck results
 

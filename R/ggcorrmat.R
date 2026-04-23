@@ -28,11 +28,13 @@
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
 #'   the plot.
-#' @param colors A vector of 3 colors for low, mid, and high correlation values.
-#'   If set to `NULL`, manual specification of colors will be turned off and 3
-#'   colors from the specified `palette` from `package` will be selected.
 #' @param pch Decides the point shape to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
+#' @param colors A character vector of exactly three colors for the gradient:
+#'   low (negative correlations), mid (zero), and high (positive correlations).
+#'   Must be a **diverging** palette so that the sign of the correlation is
+#'   visually obvious.
+#'   Default: `c("#EA4335", "white", "#4285F4")` (red–white–blue).
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
 #'   will be passed to [`ggcorrplot::ggcorrplot()`] function. The list should
 #'   avoid any of the following arguments since they are already internally
@@ -78,14 +80,13 @@ ggcorrmat <- function(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "holm",
+  colors = c("#EA4335", "white", "#4285F4"),
   pch = "cross",
   ggcorrplot.args = list(
     method = "square",
     outline.color = "black",
     pch.cex = 14
   ),
-  palette = "ggthemes::gdoc",
-  colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -93,8 +94,7 @@ ggcorrmat <- function(
   caption = NULL,
   ...
 ) {
-  palette <- .validate_palette(palette)
-  type <- stats_type_switch(type)
+  type <- extract_stats_type(type)
   if (!missing(cor.vars)) {
     data <- select(data, {{ cor.vars }})
   }
@@ -154,7 +154,7 @@ ggcorrmat <- function(
     p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level = ifelse(type == "bayes", Inf, sig.level),
     ggtheme = ggtheme,
-    colors = colors %||% paletteer::paletteer_d(palette, 3L),
+    colors = colors,
     type = matrix.type,
     lab = TRUE,
     pch = pch,
@@ -166,25 +166,26 @@ ggcorrmat <- function(
   # p-value adjustment message ------------------------------------------
 
   if ((pch == "cross" || pch == 4L) && type != "bayes") {
+    p_label <- if (p.adjust.method == "none") {
+      # nocov start
+      substitute(
+        italic(p)[unadj.] ~ "< " ~ sig.level,
+        list(sig.level = sig.level)
+      )
+      # nocov end
+    } else {
+      substitute(
+        italic(p)[adj.text - adj.] ~ "< " ~ sig.level,
+        list(sig.level = sig.level, adj.text = .p_adjust_text(p.adjust.method))
+      )
+    }
+
     caption <- substitute(
       atop(
         displaystyle(top.text),
-        expr = paste(
-          bold("X"),
-          " = non-significant at ",
-          italic("p"),
-          " < ",
-          sig.level,
-          " (Adjustment: ",
-          adj.text,
-          ")"
-        )
+        expr = bold("X") ~ "= non-significant at" ~ p_label
       ),
-      env = list(
-        sig.level = sig.level,
-        adj.text = p_adjust_text(p.adjust.method),
-        top.text = caption
-      )
+      env = list(p_label = p_label, top.text = caption)
     )
   }
 
@@ -236,6 +237,7 @@ ggcorrmat <- function(
 #'   data = iris,
 #'   grouping.var = Species,
 #'   type = "robust",
+#'   colors = c("#0072B2", "white", "#D55E00"),
 #'   p.adjust.method = "holm",
 #'   plotgrid.args = list(ncol = 1L),
 #'   annotation.args = list(tag_levels = "i")

@@ -25,8 +25,8 @@ test_that("ggcorrmat works as expected with changed defaults", {
       subtitle = "By Edgar Anderson",
       sig.level = 0.001,
       matrix.type = "full",
+      colors = c("#0072B2", "white", "#D55E00"),
       p.adjust.method = "fdr",
-      colors = NULL,
       digits = 4L,
       ggcorrplot.args = list(
         lab_col = "white",
@@ -52,6 +52,12 @@ test_that("ggcorrmat works as expected with changed defaults", {
 })
 
 
+test_that("ggcorrmat with p.adjust.method = 'none' shows unadjusted label", {
+  p <- ggcorrmat(iris, p.adjust.method = "none")
+  caption_expr <- deparse(p$labels$caption)
+  expect_true(any(grepl("unadj", caption_expr, fixed = TRUE)))
+})
+
 # grouped_ggcorrmat output: plot ---------------------------------------------------------------
 
 test_that("grouped_ggcorrmat plots are as expected", {
@@ -61,7 +67,8 @@ test_that("grouped_ggcorrmat plots are as expected", {
     fig = grouped_ggcorrmat(
       iris,
       grouping.var = Species,
-      cor.vars = Sepal.Length:Petal.Length
+      cor.vars = Sepal.Length:Petal.Length,
+      colors = c("purple", "white", "orange")
     )
   )
 

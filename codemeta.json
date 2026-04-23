@@ -173,6 +173,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "patrick",
+      "name": "patrick",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=patrick"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "psych",
       "name": "psych",
       "provider": {
@@ -439,19 +451,6 @@
     },
     "13": {
       "@type": "SoftwareApplication",
-      "identifier": "magrittr",
-      "name": "magrittr",
-      "version": ">= 2.0.5",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    },
-    "14": {
-      "@type": "SoftwareApplication",
       "identifier": "paletteer",
       "name": "paletteer",
       "version": ">= 1.7.0",
@@ -463,7 +462,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=paletteer"
     },
-    "15": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "parameters",
       "name": "parameters",
@@ -476,7 +475,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=parameters"
     },
-    "16": {
+    "15": {
       "@type": "SoftwareApplication",
       "identifier": "patchwork",
       "name": "patchwork",
@@ -489,7 +488,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=patchwork"
     },
-    "17": {
+    "16": {
       "@type": "SoftwareApplication",
       "identifier": "performance",
       "name": "performance",
@@ -502,7 +501,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=performance"
     },
-    "18": {
+    "17": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -515,7 +514,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "19": {
+    "18": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -528,7 +527,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "20": {
+    "19": {
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
@@ -539,9 +538,9 @@
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://github.com/IndrajeetPatil/statsExpressions"
+      "sameAs": "https://CRAN.R-project.org/package=statsExpressions"
     },
-    "21": {
+    "20": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -554,14 +553,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "22": {
+    "21": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "13898.227KB",
+  "fileSize": "18816.068KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

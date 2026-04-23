@@ -44,8 +44,8 @@
 #' @param statistic Relevant statistic for the model (`"t"`, `"f"`, `"z"`, or
 #'   `"chi"`) in the label. Relevant only if `x` is a *data frame*.
 #' @param effectsize.type This is the same as `es_type` argument of
-#'   [`parameters::model_parameters()`]. Defaults to `"eta"`, and relevant for
-#'   ANOVA-like objects.
+#'   [`parameters::model_parameters()`]. Defaults to `"omega"` (the unbiased
+#'   estimator), and relevant for ANOVA-like objects.
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
@@ -174,7 +174,7 @@ ggcoefstats <- function(
   conf.level = 0.95,
   digits = 2L,
   exclude.intercept = FALSE,
-  effectsize.type = "eta",
+  effectsize.type = "omega",
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   bf.message = TRUE,
@@ -288,7 +288,7 @@ ggcoefstats <- function(
 
   # nocov start
   if (meta.analytic.effect) {
-    meta.type <- stats_type_switch(meta.type)
+    meta.type <- extract_stats_type(meta.type)
 
     subtitle_df <- meta_analysis(tidy_df, type = meta.type, digits = digits)
     subtitle <- .extract_expression(subtitle_df)

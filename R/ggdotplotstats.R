@@ -90,8 +90,9 @@ ggdotplotstats <- function(
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
   data <- .prep_data(data, {{ x }}, {{ y }})
 
@@ -170,7 +171,7 @@ ggdotplotstats <- function(
     plot_dot <- .histo_labeller(
       plot_dot,
       x = pull(data, {{ x }}),
-      type = stats_type_switch(centrality.type),
+      type = extract_stats_type(centrality.type),
       tr = tr,
       digits = digits,
       centrality.line.args = centrality.line.args

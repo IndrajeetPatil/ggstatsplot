@@ -1,5 +1,14 @@
 utils::globalVariables(".pre")
 
+# nocov start
+.p_adjust_text <- function(method) {
+  if (grepl("^BH|^f", method)) {
+    "FDR"
+  } else {
+    paste0(toupper(substr(method, 1L, 1L)), substr(method, 2L, nchar(method)))
+  }
+}
+# nocov end
 
 #' @title Shared data-preparation step for two-variable plot functions
 #' @name .prep_data

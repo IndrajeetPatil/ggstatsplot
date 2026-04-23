@@ -17,10 +17,9 @@ ggcorrmat(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "holm",
+  colors = c("#EA4335", "white", "#4285F4"),
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  palette = "ggthemes::gdoc",
-  colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -87,6 +86,12 @@ value corresponds to scale for fixed effects.}
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
+\item{colors}{A character vector of exactly three colors for the gradient:
+low (negative correlations), mid (zero), and high (positive correlations).
+Must be a \strong{diverging} palette so that the sign of the correlation is
+visually obvious.
+Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
+
 \item{pch}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
 
@@ -95,14 +100,6 @@ will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} 
 avoid any of the following arguments since they are already internally
 being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors},
 \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
-
-\item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
-\code{View(paletteer::palettes_d_names)} to see all available options.}
-
-\item{colors}{A vector of 3 colors for low, mid, and high correlation values.
-If set to \code{NULL}, manual specification of colors will be turned off and 3
-colors from the specified \code{palette} from \code{package} will be selected.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,

@@ -11,7 +11,7 @@ ggcoefstats(
   conf.level = 0.95,
   digits = 2L,
   exclude.intercept = FALSE,
-  effectsize.type = "eta",
+  effectsize.type = "omega",
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   bf.message = TRUE,
@@ -62,8 +62,8 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 excluded from the plot (Default: \code{FALSE}).}
 
 \item{effectsize.type}{This is the same as \code{es_type} argument of
-\code{\link[parameters:model_parameters]{parameters::model_parameters()}}. Defaults to \code{"eta"}, and relevant for
-ANOVA-like objects.}
+\code{\link[parameters:model_parameters]{parameters::model_parameters()}}. Defaults to \code{"omega"} (the unbiased
+estimator), and relevant for ANOVA-like objects.}
 
 \item{meta.analytic.effect}{Logical that decides whether subtitle for
 meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If

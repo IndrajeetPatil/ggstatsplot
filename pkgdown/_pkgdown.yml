@@ -58,7 +58,6 @@ reference:
   - title: Helper functions
     desc: Statistics and graphics-related helpers
     contents:
-      - pairwise_comparisons
       - starts_with("extract_")
       - starts_with("theme_")
       - starts_with("combine")

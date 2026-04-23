@@ -23,6 +23,7 @@ README.html
 ^\.circleci$
 ^\.coveralls\.yml$
 ^\.covrignore$
+^\.git$
 ^\.github$
 ^\.github/ISSUE_TEMPLATE$
 ^\.github/workflows/R\.yaml$
