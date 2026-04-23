@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.13.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,9 +61,9 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.13.6.9000" id="ggstatsplot-01369000">ggstatsplot 0.13.6.9000<a class="anchor" aria-label="anchor" href="#ggstatsplot-01369000"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.0.0" id="ggstatsplot-100">ggstatsplot 1.0.0<a class="anchor" aria-label="anchor" href="#ggstatsplot-100"></a></h2>
 <div class="section level3">
-<h3 id="new-features-0-13-6-9000">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-0-13-6-9000"></a></h3>
+<h3 id="new-features-1-0-0">NEW FEATURES<a class="anchor" aria-label="anchor" href="#new-features-1-0-0"></a></h3>
 <ul><li><p><code><a href="../reference/ggbarstats.html">ggbarstats()</a></code> (and <code><a href="../reference/grouped_ggbarstats.html">grouped_ggbarstats()</a></code>) now supports one-sample goodness-of-fit tests when only <code>x</code> is specified (with <code>y = NULL</code> as the new default). This produces a single stacked bar chart with chi-squared GOF test results in the subtitle, mirroring the existing one-sample support in <code><a href="../reference/ggpiestats.html">ggpiestats()</a></code> (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/532" class="external-link">#532</a>, <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/697" class="external-link">#697</a>).</p></li>
 <li><p><code><a href="../reference/ggpiestats.html">ggpiestats()</a></code> and <code><a href="../reference/ggbarstats.html">ggbarstats()</a></code> now compute pairwise contingency table analyses (Fisher’s exact tests via <code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html" class="external-link">pairwise_contingency_table()</a></code>) when <code>x</code> has more than two levels. These are available via <code>extract_stats(plot)$pairwise_comparisons_data</code>. A new <code>p.adjust.method</code> parameter controls the <em>p</em>-value adjustment method (default: <code>"holm"</code>). Pairwise results are not displayed on the plots since bar and pie charts lack a natural visual representation for pairwise significance annotations (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/554" class="external-link">#554</a>).</p></li>
 <li><p><code><a href="../reference/ggscatterstats.html">ggscatterstats()</a></code> now sets a default number of bins for marginal histograms, suppressing the <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">stat_bin()</a></code> message about picking a better binwidth (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/810" class="external-link">#810</a>).</p></li>
@@ -72,7 +72,7 @@
 <li><p><code><a href="../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and <code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> now include a <code>pairwise.alpha</code> argument to control the alpha cutoff used for filtering displayed pairwise comparisons, and the secondary-axis label now reports the chosen <code>alpha</code>.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="breaking-changes-0-13-6-9000">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-0-13-6-9000"></a></h3>
+<h3 id="breaking-changes-1-0-0">BREAKING CHANGES<a class="anchor" aria-label="anchor" href="#breaking-changes-1-0-0"></a></h3>
 <ul><li>
 <p>The following expert-level statistical parameters have been removed from all function signatures because their defaults are the universally recommended values and changing them requires specialist knowledge (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/1087" class="external-link">#1087</a>):</p>
 <ul><li>
@@ -91,7 +91,7 @@
 <li><p>When the chosen palette does not have enough colors for the number of levels in the data, an error is now thrown (previously a warning was issued that was silently ignored until ggplot2 crashed anyway).</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-0-13-6-9000">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-0-13-6-9000"></a></h3>
+<h3 id="bug-fixes-1-0-0">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
 <ul><li><p>Grouped plot functions (e.g., <code><a href="../reference/grouped_ggbarstats.html">grouped_ggbarstats()</a></code>) now preserve the order of groups as they appear in the data rather than sorting them alphabetically (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/792" class="external-link">#792</a>).</p></li>
 <li><p><code><a href="../reference/combine_plots.html">combine_plots()</a></code> now renders the overall annotation title in bold by default, matching the styling used for individual plot titles.</p></li>
 <li><p><code><a href="../reference/grouped_ggbarstats.html">grouped_ggbarstats()</a></code> and <code><a href="../reference/grouped_ggpiestats.html">grouped_ggpiestats()</a></code> now display a single unified legend when different groups have different observed factor levels for the <code>x</code> variable. Previously, <code>patchwork</code> could not merge the per-panel fill scales, producing duplicate legends (<a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/868" class="external-link">#868</a>).</p></li>
