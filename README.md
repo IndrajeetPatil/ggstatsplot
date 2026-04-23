@@ -490,11 +490,12 @@ to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 grouped_ggcorrmat(
-  data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type         = "robust",
-  colors       = c("#cbac43", "white", "#550000"),
-  grouping.var = genre,
-  matrix.type  = "lower"
+  data            = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  type            = "robust",
+  colors          = c("#cbac43", "white", "#550000"),
+  grouping.var    = genre,
+  p.adjust.method = "fdr",
+  matrix.type     = "lower"
 )
 ```
 
