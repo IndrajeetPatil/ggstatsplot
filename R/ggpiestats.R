@@ -40,7 +40,7 @@
 #' @section Pairwise comparisons:
 #' When there is a two-way table and `x` has more than two levels, pairwise
 #' contingency table analyses (Fisher's exact tests) are computed using
-#' [pairwise_contingency_table()]. These pairwise results are **not**
+#' [statsExpressions::pairwise_contingency_table()]. These pairwise results are **not**
 #' displayed in the plot because bar and pie charts lack a natural visual
 #' representation for pairwise significance annotations (unlike box/violin
 #' plots, which use bracket annotations). Additionally, there is no

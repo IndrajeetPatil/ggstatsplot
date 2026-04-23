@@ -216,9 +216,9 @@ heavier the diamond, the more expensive it is going to be.
 
 ## Custom gradient colors
 
-By default, the gradient colors are derived from the `palette` parameter.
-To use your own custom gradient, pass a `scale_fill_gradient2()` via
-`ggplot.component`:
+The `colors` argument accepts a character vector of three colors — for
+negative, zero, and positive correlations. Choose a **diverging** palette
+so that the sign of the correlation is immediately visible:
 
 ```{r}
 #| label = "ggcorrmat_custom_colors",
@@ -227,9 +227,7 @@ To use your own custom gradient, pass a `scale_fill_gradient2()` via
 
 ggcorrmat(
   iris,
-  ggplot.component = ggplot2::scale_fill_gradient2(
-    low = "#0072B2", mid = "white", high = "#D55E00"
-  )
+  colors = c("#0072B2", "white", "#D55E00")
 )
 ```
 

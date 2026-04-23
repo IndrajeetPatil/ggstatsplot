@@ -35,6 +35,11 @@ correlation coefficient is regarded as insignificant and flagged as such in
 the plot.}
     \item{\code{pch}}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
+    \item{\code{colors}}{A character vector of exactly three colors for the gradient:
+low (negative correlations), mid (zero), and high (positive correlations).
+Must be a \strong{diverging} palette so that the sign of the correlation is
+visually obvious.
+Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} function. The list should
 avoid any of the following arguments since they are already internally
@@ -115,6 +120,7 @@ grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
   type = "robust",
+  colors = c("#0072B2", "white", "#D55E00"),
   p.adjust.method = "holm",
   plotgrid.args = list(ncol = 1L),
   annotation.args = list(tag_levels = "i")

@@ -71,7 +71,7 @@
 #' @param plot A `ggplot` object to decorate.
 #' @param data Data frame used for plotting.
 #' @param pairwise_args A named list of extra arguments forwarded to
-#'   [pairwise_comparisons()], typically containing `data`, `paired`,
+#'   [statsExpressions::pairwise_comparisons()], typically containing `data`, `paired`,
 #'   `p.adjust.method`, and optionally `subject.id`.
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggwithinstats

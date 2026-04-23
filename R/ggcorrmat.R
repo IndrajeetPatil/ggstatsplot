@@ -30,6 +30,11 @@
 #'   the plot.
 #' @param pch Decides the point shape to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
+#' @param colors A character vector of exactly three colors for the gradient:
+#'   low (negative correlations), mid (zero), and high (positive correlations).
+#'   Must be a **diverging** palette so that the sign of the correlation is
+#'   visually obvious.
+#'   Default: `c("#EA4335", "white", "#4285F4")` (red–white–blue).
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
 #'   will be passed to [`ggcorrplot::ggcorrplot()`] function. The list should
 #'   avoid any of the following arguments since they are already internally
@@ -75,6 +80,7 @@ ggcorrmat <- function(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "holm",
+  colors = c("#EA4335", "white", "#4285F4"),
   pch = "cross",
   ggcorrplot.args = list(
     method = "square",
@@ -148,7 +154,7 @@ ggcorrmat <- function(
     p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
     sig.level = ifelse(type == "bayes", Inf, sig.level),
     ggtheme = ggtheme,
-    colors = c("#EA4335", "white", "#4285F4"),
+    colors = colors,
     type = matrix.type,
     lab = TRUE,
     pch = pch,
@@ -231,6 +237,7 @@ ggcorrmat <- function(
 #'   data = iris,
 #'   grouping.var = Species,
 #'   type = "robust",
+#'   colors = c("#0072B2", "white", "#D55E00"),
 #'   p.adjust.method = "holm",
 #'   plotgrid.args = list(ncol = 1L),
 #'   annotation.args = list(tag_levels = "i")

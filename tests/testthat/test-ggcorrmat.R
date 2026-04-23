@@ -25,6 +25,7 @@ test_that("ggcorrmat works as expected with changed defaults", {
       subtitle = "By Edgar Anderson",
       sig.level = 0.001,
       matrix.type = "full",
+      colors = c("#0072B2", "white", "#D55E00"),
       p.adjust.method = "fdr",
       digits = 4L,
       ggcorrplot.args = list(
@@ -66,7 +67,8 @@ test_that("grouped_ggcorrmat plots are as expected", {
     fig = grouped_ggcorrmat(
       iris,
       grouping.var = Species,
-      cor.vars = Sepal.Length:Petal.Length
+      cor.vars = Sepal.Length:Petal.Length,
+      colors = c("purple", "white", "orange")
     )
   )
 

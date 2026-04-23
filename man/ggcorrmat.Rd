@@ -17,6 +17,7 @@ ggcorrmat(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "holm",
+  colors = c("#EA4335", "white", "#4285F4"),
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
@@ -84,6 +85,12 @@ value corresponds to scale for fixed effects.}
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
+
+\item{colors}{A character vector of exactly three colors for the gradient:
+low (negative correlations), mid (zero), and high (positive correlations).
+Must be a \strong{diverging} palette so that the sign of the correlation is
+visually obvious.
+Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
 
 \item{pch}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
