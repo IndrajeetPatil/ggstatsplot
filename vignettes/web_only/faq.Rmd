@@ -314,14 +314,14 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
 
 ## 12. How to access data frame with results from pairwise comparisons?
 
-Behind the scenes, `{ggstatsplot}` uses `statsExpressions::pairwise_comparisons()` function.
+Behind the scenes, `{ggstatsplot}` uses `statsExpressions::statsExpressions::pairwise_comparisons()` function.
 
 You can use it to extract actual data frames used in `{ggstatsplot}` functions.
 
 ```{r faq2}
 library(ggplot2)
 
-pairwise_comparisons(mtcars, cyl, wt)
+statsExpressions::pairwise_comparisons(mtcars, cyl, wt)
 ```
 
 ## 13. How can I change annotation in pairwise comparisons?
@@ -344,8 +344,8 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 # creating the base plot
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
-# using `pairwise_comparisons()` function to create a data frame with results
-df <- pairwise_comparisons(mtcars, cyl, wt) |>
+# using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
+df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
   dplyr::arrange(group1) |>
   dplyr::mutate(asterisk_label = c("**", "***", "**"))
