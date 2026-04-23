@@ -178,8 +178,10 @@ grouped_ggpiestats(
   digits.perc = 1,
   palette = "ggsci::category10_d3",
   # arguments relevant for `combine_plots()`
-  title.text = "Passenger survival on the Titanic by gender and age",
-  caption.text = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant",
+  annotation.args = list(
+    title = "Passenger survival on the Titanic by gender and age",
+    caption = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant"
+  ),
   plotgrid.args = list(nrow = 2L)
 )
 ```

@@ -59,12 +59,6 @@ Convenience functions to repeat analysis across a single grouping
 
 Statistics and graphics-related helpers
 
-- [`reexports`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  [`%>%`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  [`pairwise_comparisons`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  [`pairwise_contingency_table`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  : Objects exported from other packages
-
 - [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)

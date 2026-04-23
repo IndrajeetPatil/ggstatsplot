@@ -1,7 +1,5 @@
 # Additional vignettes
 
-## Additional vignettes
-
 Due to size constraints, all available vignettes are only available on
 the website for this package:\
 <https://www.indrapatil.com/ggstatsplot/articles/>

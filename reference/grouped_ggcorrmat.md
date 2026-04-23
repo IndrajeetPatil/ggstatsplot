@@ -59,18 +59,19 @@ grouped_ggcorrmat(
       corresponding correlation coefficient is regarded as insignificant
       and flagged as such in the plot.
 
-  `colors`
-
-  :   A vector of 3 colors for low, mid, and high correlation values. If
-      set to `NULL`, manual specification of colors will be turned off
-      and 3 colors from the specified `palette` from `package` will be
-      selected.
-
   `pch`
 
   :   Decides the point shape to be used for insignificant correlation
       coefficients (only valid when `insig = "pch"`). Default:
       `pch = "cross"`.
+
+  `colors`
+
+  :   A character vector of exactly three colors for the gradient: low
+      (negative correlations), mid (zero), and high (positive
+      correlations). Must be a **diverging** palette so that the sign of
+      the correlation is visually obvious. Default:
+      `c("#EA4335", "white", "#4285F4")` (red–white–blue).
 
   `ggcorrplot.args`
 
@@ -152,14 +153,6 @@ grouped_ggcorrmat(
       should be entered as a `{ggplot2}` function or a list of
       `{ggplot2}` functions.
 
-  `palette`
-
-  :   Name of the palette in `"package::palette"` format to be used for
-      coloring. Passed to
-      [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-      Run `View(paletteer::palettes_d_names)` to see all available
-      options.
-
   `ggtheme`
 
   :   A `{ggplot2}` theme. Default value is
@@ -213,6 +206,7 @@ grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
   type = "robust",
+  colors = c("#0072B2", "white", "#D55E00"),
   p.adjust.method = "holm",
   plotgrid.args = list(ncol = 1L),
   annotation.args = list(tag_levels = "i")

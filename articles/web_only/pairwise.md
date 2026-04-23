@@ -61,7 +61,7 @@ pairwise comparison tests-
 See data frame outputs
 [here](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
 
-## Using `pairwise_comparisons()` with `ggsignif`
+## Using `statsExpressions::pairwise_comparisons()` with `ggsignif`
 
 ### Example-1: between-subjects
 
@@ -77,9 +77,9 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggplot(mtcars, aes(cyl, wt)) +
   geom_boxplot()
 
-## using `pairwise_comparisons()` package to create a data frame with results
+## using `statsExpressions::pairwise_comparisons()` package to create a data frame with results
 df <-
-  pairwise_comparisons(mtcars, cyl, wt) |>
+  statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
   dplyr::arrange(group1)
 
@@ -121,9 +121,9 @@ library(ggsignif)
 p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
   geom_boxplot()
 
-## using `pairwise_comparisons()` package to create a data frame with results
+## using `statsExpressions::pairwise_comparisons()` package to create a data frame with results
 df <-
-  pairwise_comparisons(
+  statsExpressions::pairwise_comparisons(
     WRS2::WineTasting,
     Wine,
     Taste,

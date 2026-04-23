@@ -450,7 +450,7 @@ $`BF_{01}`$). By default, natural logarithms are shown because Bayesian
 values can sometimes be pretty large. Having values on logarithmic scale
 also makes it easy to compare evidence in favor alternative
 ($`BF_{10}`$) versus null ($`BF_{01}`$) hypotheses (since
-$`log_{e}(BF_{01}) = - log_{e}(BF_{01})`$).
+$`log_{e}(BF_{01}) = - log_{e}(BF_{10})`$).
 
 ## Suggestions
 

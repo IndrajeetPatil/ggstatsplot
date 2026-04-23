@@ -22,10 +22,9 @@ ggcorrmat(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "holm",
+  colors = c("#EA4335", "white", "#4285F4"),
   pch = "cross",
   ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  palette = "ggthemes::gdoc",
-  colors = c("#E69F00", "white", "#009E73"),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -121,6 +120,14 @@ ggcorrmat(
   methods are: `"holm"` (default), `"hochberg"`, `"hommel"`,
   `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
 
+- colors:
+
+  A character vector of exactly three colors for the gradient: low
+  (negative correlations), mid (zero), and high (positive correlations).
+  Must be a **diverging** palette so that the sign of the correlation is
+  visually obvious. Default: `c("#EA4335", "white", "#4285F4")`
+  (red–white–blue).
+
 - pch:
 
   Decides the point shape to be used for insignificant correlation
@@ -136,19 +143,6 @@ ggcorrmat(
   they are already internally being used: `corr`, `method`, `p.mat`,
   `sig.level`, `ggtheme`, `colors`, `lab`, `pch`, `legend.title`,
   `digits`.
-
-- palette:
-
-  Name of the palette in `"package::palette"` format to be used for
-  coloring. Passed to
-  [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-  Run `View(paletteer::palettes_d_names)` to see all available options.
-
-- colors:
-
-  A vector of 3 colors for low, mid, and high correlation values. If set
-  to `NULL`, manual specification of colors will be turned off and 3
-  colors from the specified `palette` from `package` will be selected.
 
 - ggtheme:
 

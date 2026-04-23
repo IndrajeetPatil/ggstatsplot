@@ -319,8 +319,7 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
 
 Behind the scenes,
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) uses
-[`statsExpressions::pairwise_comparisons()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)
-function.
+`statsExpressions::statsExpressions::pairwise_comparisons()` function.
 
 You can use it to extract actual data frames used in
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions.
@@ -329,7 +328,7 @@ You can use it to extract actual data frames used in
 
 library(ggplot2)
 
-pairwise_comparisons(mtcars, cyl, wt)
+statsExpressions::pairwise_comparisons(mtcars, cyl, wt)
 #> # A tibble: 3 × 9
 #>   group1 group2 statistic   p.value alternative distribution p.adjust.method
 #>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>          
@@ -363,8 +362,8 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 # creating the base plot
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
-# using `pairwise_comparisons()` function to create a data frame with results
-df <- pairwise_comparisons(mtcars, cyl, wt) |>
+# using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
+df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
   dplyr::arrange(group1) |>
   dplyr::mutate(asterisk_label = c("**", "***", "**"))

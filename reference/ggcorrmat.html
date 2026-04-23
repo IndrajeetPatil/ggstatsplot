@@ -89,10 +89,9 @@ used with output from <code><a href="https://dplyr.tidyverse.org/reference/group
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
 <span>  bf.prior <span class="op">=</span> <span class="fl">0.707</span>,</span>
 <span>  p.adjust.method <span class="op">=</span> <span class="st">"holm"</span>,</span>
+<span>  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#EA4335"</span>, <span class="st">"white"</span>, <span class="st">"#4285F4"</span><span class="op">)</span>,</span>
 <span>  pch <span class="op">=</span> <span class="st">"cross"</span>,</span>
 <span>  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"square"</span>, outline.color <span class="op">=</span> <span class="st">"black"</span>, pch.cex <span class="op">=</span> <span class="fl">14</span><span class="op">)</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"ggthemes::gdoc"</span>,</span>
-<span>  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"white"</span>, <span class="st">"#009E73"</span><span class="op">)</span>,</span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggstatsplot</span><span class="fu">::</span><span class="fu"><a href="theme_ggstatsplot.html">theme_ggstatsplot</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -183,6 +182,14 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
 <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, <code>"none"</code>.</p></dd>
 
 
+<dt id="arg-colors">colors<a class="anchor" aria-label="anchor" href="#arg-colors"></a></dt>
+<dd><p>A character vector of exactly three colors for the gradient:
+low (negative correlations), mid (zero), and high (positive correlations).
+Must be a <strong>diverging</strong> palette so that the sign of the correlation is
+visually obvious.
+Default: <code>c("#EA4335", "white", "#4285F4")</code> (red–white–blue).</p></dd>
+
+
 <dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
 <dd><p>Decides the point shape to be used for insignificant correlation
 coefficients (only valid when <code>insig = "pch"</code>). Default: <code>pch = "cross"</code>.</p></dd>
@@ -194,18 +201,6 @@ will be passed to <code><a href="https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.h
 avoid any of the following arguments since they are already internally
 being used: <code>corr</code>, <code>method</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>,
 <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
-
-
-<dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
-<dd><p>Name of the palette in <code>"package::palette"</code> format to be used
-for coloring. Passed to <code><a href="https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html" class="external-link">paletteer::scale_color_paletteer_d()</a></code>. Run
-<code>View(paletteer::palettes_d_names)</code> to see all available options.</p></dd>
-
-
-<dt id="arg-colors">colors<a class="anchor" aria-label="anchor" href="#arg-colors"></a></dt>
-<dd><p>A vector of 3 colors for low, mid, and high correlation values.
-If set to <code>NULL</code>, manual specification of colors will be turned off and 3
-colors from the specified <code>palette</code> from <code>package</code> will be selected.</p></dd>
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>

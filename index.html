@@ -112,7 +112,7 @@
 <td><a href="https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot" class="external-link"><img src="https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8" alt="codecov"></a></td>
 </tr>
 <tr>
-<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></td>
+<td><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></td>
 <td><a href="https://CRAN.R-project.org/package=ggstatsplot" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue" alt="Daily downloads"></a></td>
 <td><a href="https://doi.org/10.21105/joss.03167" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.03167/status.svg" alt="DOI"></a></td>
 </tr>
@@ -380,9 +380,14 @@
 <td align="left">✅</td>
 </tr>
 <tr>
-<td align="left">(one/two-way) contingency table</td>
+<td align="left">(unpaired) contingency table</td>
 <td align="left">✅</td>
 <td align="left">✅</td>
+</tr>
+<tr>
+<td align="left">(paired) contingency table</td>
+<td align="left">✅</td>
+<td align="left">❌</td>
 </tr>
 <tr>
 <td align="left">random-effects meta-analysis</td>
@@ -621,11 +626,12 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span></span>
-<span>  data         <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Comedy"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  type         <span class="op">=</span> <span class="st">"robust"</span>,</span>
-<span>  colors       <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span><span class="op">)</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="va">genre</span>,</span>
-<span>  matrix.type  <span class="op">=</span> <span class="st">"lower"</span></span>
+<span>  data            <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Action"</span>, <span class="st">"Comedy"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  type            <span class="op">=</span> <span class="st">"robust"</span>,</span>
+<span>  colors          <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#cbac43"</span>, <span class="st">"white"</span>, <span class="st">"#550000"</span><span class="op">)</span>,</span>
+<span>  grouping.var    <span class="op">=</span> <span class="va">genre</span>,</span>
+<span>  p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>,</span>
+<span>  matrix.type     <span class="op">=</span> <span class="st">"lower"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat2-1.png" alt="Grouped correlation matrices for Action and Comedy movie genres showing robust correlations" width="100%"></p>
 <p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html</a></p>

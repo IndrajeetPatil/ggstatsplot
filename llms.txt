@@ -3,7 +3,7 @@
 | Status | Usage | Miscellaneous |
 |----|----|----|
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
 ## Raison d’être ![ggstatsplot package logo](reference/figures/logo.png)
 
@@ -130,13 +130,14 @@ supported in this package-
 
 Summary of Bayesian analysis
 
-| Analysis                        | Hypothesis testing | Estimation |
-|:--------------------------------|:-------------------|:-----------|
-| (one/two-sample) *t*-test       | ✅                 | ✅         |
-| one-way ANOVA                   | ✅                 | ✅         |
-| correlation                     | ✅                 | ✅         |
-| (one/two-way) contingency table | ✅                 | ✅         |
-| random-effects meta-analysis    | ✅                 | ✅         |
+| Analysis                     | Hypothesis testing | Estimation |
+|:-----------------------------|:-------------------|:-----------|
+| (one/two-sample) *t*-test    | ✅                 | ✅         |
+| one-way ANOVA                | ✅                 | ✅         |
+| correlation                  | ✅                 | ✅         |
+| (unpaired) contingency table | ✅                 | ✅         |
+| (paired) contingency table   | ✅                 | ❌         |
+| random-effects meta-analysis | ✅                 | ✅         |
 
 ## Statistical reporting
 
@@ -546,11 +547,12 @@ to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 grouped_ggcorrmat(
-  data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type         = "robust",
-  colors       = c("#cbac43", "white", "#550000"),
-  grouping.var = genre,
-  matrix.type  = "lower"
+  data            = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  type            = "robust",
+  colors          = c("#cbac43", "white", "#550000"),
+  grouping.var    = genre,
+  p.adjust.method = "fdr",
+  matrix.type     = "lower"
 )
 ```
 
@@ -1009,12 +1011,6 @@ Convenience functions to repeat analysis across a single grouping
 ## Helper functions
 
 Statistics and graphics-related helpers
-
-- [`reexports`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  [`%>%`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  [`pairwise_comparisons`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  [`pairwise_contingency_table`](https://www.indrapatil.com/ggstatsplot/reference/reexports.md)
-  : Objects exported from other packages
 
 - [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
   [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)

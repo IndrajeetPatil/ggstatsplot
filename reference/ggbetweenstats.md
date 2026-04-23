@@ -373,6 +373,10 @@ The table below provides summary about:
 
 ### within-subjects
 
+**Data requirement**: Paired tests assume exactly **one observation per
+subject per condition**. If your data has multiple trials per cell,
+aggregate first (e.g., take the mean).
+
 **Hypothesis testing**
 
 |  |  |  |  |
@@ -428,6 +432,12 @@ The table below provides summary about:
 
 ### within-subjects
 
+**Data requirement**: Repeated measures tests assume a *complete* design
+with exactly **one observation per subject per condition**. If your data
+has multiple trials per cell, aggregate first (e.g., take the mean).
+Verify with `table(data$subject, data$condition)` — every cell should
+equal `1`.
+
 **Hypothesis testing**
 
 |  |  |  |  |
@@ -477,6 +487,10 @@ The table below provides summary about:
 Not supported.
 
 ### within-subjects
+
+**Data requirement**: Paired pairwise tests assume exactly **one
+observation per subject per condition**. If your data has multiple
+trials per cell, aggregate first (e.g., take the mean).
 
 **Hypothesis testing**
 

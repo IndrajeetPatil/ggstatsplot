@@ -39,7 +39,7 @@ ggcoefstats(
   conf.level = 0.95,
   digits = 2L,
   exclude.intercept = FALSE,
-  effectsize.type = "eta",
+  effectsize.type = "omega",
   meta.analytic.effect = FALSE,
   meta.type = "parametric",
   bf.message = TRUE,
@@ -109,7 +109,8 @@ ggcoefstats(
 
   This is the same as `es_type` argument of
   [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
-  Defaults to `"eta"`, and relevant for ANOVA-like objects.
+  Defaults to `"omega"` (the unbiased estimator), and relevant for
+  ANOVA-like objects.
 
 - meta.analytic.effect:
 

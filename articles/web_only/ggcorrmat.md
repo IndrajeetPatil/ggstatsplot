@@ -114,8 +114,6 @@ ggcorrmat(
   ggtheme = ggplot2::theme_light(), ## selected ggplot2 theme
   ## turn off default ggestatsplot theme overlay
   matrix.type = "lower", ## correlation matrix structure
-  colors = NULL, ## turning off manual specification of colors
-  palette = "ggsci::category10_d3", ## choosing a color palette
   title = "Gapminder correlation matrix", ## custom title
   subtitle = "Source: Gapminder Foundation" ## custom subtitle
 )
@@ -202,7 +200,6 @@ ggcorrmat(
   type = "np",
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
-  colors = c("#0072B2", "#D55E00", "#CC79A7"),
   pch = "square cross",
   ## additional aesthetic arguments passed to `ggcorrmat()`
   ggcorrplot.args = list(
@@ -225,6 +222,22 @@ ggcorrmat(
 As seen here, and unsurprisingly, the strongest predictor of the diamond
 price is its carat value, which a unit of mass equal to 200 mg. In other
 words, the heavier the diamond, the more expensive it is going to be.
+
+## Custom gradient colors
+
+The `colors` argument accepts a character vector of three colors — for
+negative, zero, and positive correlations. Choose a **diverging**
+palette so that the sign of the correlation is immediately visible:
+
+``` r
+
+ggcorrmat(
+  iris,
+  colors = c("#0072B2", "white", "#D55E00")
+)
+```
+
+![](ggcorrmat_files/figure-html/ggcorrmat_custom_colors-1.png)
 
 ## Grouped analysis with `grouped_ggcorrmat`
 

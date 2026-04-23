@@ -229,7 +229,7 @@ For details, see:
 
 When there is a two-way table and `x` has more than two levels, pairwise
 contingency table analyses (Fisher's exact tests) are computed using
-[`pairwise_contingency_table()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html).
+[`statsExpressions::pairwise_contingency_table()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html).
 These pairwise results are **not** displayed in the plot because bar and
 pie charts lack a natural visual representation for pairwise
 significance annotations (unlike box/violin plots, which use bracket

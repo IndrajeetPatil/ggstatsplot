@@ -193,8 +193,6 @@ defaults-</p>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_light</a></span><span class="op">(</span><span class="op">)</span>, <span class="co">## selected ggplot2 theme</span></span>
 <span>  <span class="co">## turn off default ggestatsplot theme overlay</span></span>
 <span>  matrix.type <span class="op">=</span> <span class="st">"lower"</span>, <span class="co">## correlation matrix structure</span></span>
-<span>  colors <span class="op">=</span> <span class="cn">NULL</span>, <span class="co">## turning off manual specification of colors</span></span>
-<span>  palette <span class="op">=</span> <span class="st">"ggsci::category10_d3"</span>, <span class="co">## choosing a color palette</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Gapminder correlation matrix"</span>, <span class="co">## custom title</span></span>
 <span>  subtitle <span class="op">=</span> <span class="st">"Source: Gapminder Foundation"</span> <span class="co">## custom subtitle</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -265,7 +263,6 @@ first column.</p>
 <span>  type <span class="op">=</span> <span class="st">"np"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Relationship between diamond attributes and price"</span>,</span>
 <span>  subtitle <span class="op">=</span> <span class="st">"Dataset: Diamonds from ggplot2 package"</span>,</span>
-<span>  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#0072B2"</span>, <span class="st">"#D55E00"</span>, <span class="st">"#CC79A7"</span><span class="op">)</span>,</span>
 <span>  pch <span class="op">=</span> <span class="st">"square cross"</span>,</span>
 <span>  <span class="co">## additional aesthetic arguments passed to `ggcorrmat()`</span></span>
 <span>  ggcorrplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -288,6 +285,20 @@ In other words, the heavier the diamond, the more expensive it is going
 to be.</p>
 </div>
 <div class="section level2">
+<h2 id="custom-gradient-colors">Custom gradient colors<a class="anchor" aria-label="anchor" href="#custom-gradient-colors"></a>
+</h2>
+<p>The <code>colors</code> argument accepts a character vector of three
+colors — for negative, zero, and positive correlations. Choose a
+<strong>diverging</strong> palette so that the sign of the correlation
+is immediately visible:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span></span>
+<span>  <span class="va">iris</span>,</span>
+<span>  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#0072B2"</span>, <span class="st">"white"</span>, <span class="st">"#D55E00"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggcorrmat_files/figure-html/ggcorrmat_custom_colors-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level2">
 <h2 id="grouped-analysis-with-grouped_ggcorrmat">Grouped analysis with <code>grouped_ggcorrmat</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggcorrmat"></a>
 </h2>
 <p>What if we want to do the same analysis separately for each quality
@@ -299,7 +310,7 @@ wrapper function around <code><a href="../../reference/combine_plots.html">combi
 <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code> across all <strong>levels</strong> of a
 specified <strong>grouping variable</strong> and then combines list of
 individual plots into a single plot.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggcorrmat.html">grouped_ggcorrmat</a></span><span class="op">(</span></span>
 <span>  <span class="co">## arguments relevant for `ggcorrmat()`</span></span>
 <span>  data <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/diamonds.html" class="external-link">diamonds</a></span>,</span>
