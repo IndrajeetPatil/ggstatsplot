@@ -57,9 +57,6 @@ template:
   opengraph:
     image:
       src: man/figures/card.png
-    twitter:
-      creator: "@patilindrajeets"
-      card: summary_large_image
 
 reference:
   - title: Hypothesis about group differences
