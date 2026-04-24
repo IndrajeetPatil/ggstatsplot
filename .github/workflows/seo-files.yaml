@@ -1,0 +1,72 @@
+on:
+  workflow_run:
+    workflows: ["pkgdown"]
+    types: [completed]
+    branches: [main]
+
+name: Deploy SEO and agentic discovery files
+
+jobs:
+  deploy-seo-files:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Create robots.txt
+        run: |
+          cat > robots.txt << 'EOF'
+          User-agent: *
+          Allow: /
+
+          # Explicitly allow AI crawlers for GEO and agentic access
+          User-agent: GPTBot
+          Allow: /
+
+          User-agent: OAI-SearchBot
+          Allow: /
+
+          User-agent: ChatGPT-User
+          Allow: /
+
+          User-agent: ClaudeBot
+          Allow: /
+
+          User-agent: Claude-SearchBot
+          Allow: /
+
+          User-agent: anthropic-ai
+          Allow: /
+
+          User-agent: PerplexityBot
+          Allow: /
+
+          User-agent: Google-Extended
+          Allow: /
+
+          Sitemap: https://www.indrapatil.com/ggstatsplot/sitemap.xml
+          EOF
+
+      - name: Create .well-known/llms.txt
+        run: |
+          mkdir -p .well-known
+          cat > .well-known/llms.txt << 'EOF'
+          # LLM Documentation Index for ggstatsplot
+          # Machine-readable package documentation for AI assistants
+          # See https://llmstxt.org/ for the specification
+
+          /llms.txt: Concise package overview optimised for AI assistants
+          /llms-full.txt: Complete package documentation for AI assistants
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add robots.txt .well-known/
+          git diff --staged --quiet || git commit -m "chore: update SEO and agentic discovery files"
+          git push
