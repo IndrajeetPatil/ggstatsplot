@@ -11,7 +11,7 @@ template:
   bootstrap: 5
   light-switch: true
   includes:
-    in-header: |
+    in_header: |
       <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BQ49J7KYH"></script>
       <script>
@@ -56,6 +56,9 @@ template:
   opengraph:
     image:
       src: man/figures/card.png
+    twitter:
+      creator: "@patilindrajeets"
+      card: summary_large_image
 
 reference:
   - title: Hypothesis about group differences
