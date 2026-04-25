@@ -11,7 +11,7 @@ template:
   bootstrap: 5
   light-switch: true
   includes:
-    in_header: |
+    in-header: |
       <!-- Google tag (gtag.js) -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BQ49J7KYH"></script>
       <script>
@@ -49,7 +49,6 @@ template:
       <meta name="citation_doi" content="10.21105/joss.03236" />
       <meta name="citation_journal_title" content="Journal of Open Source Software" />
       <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary" />
-      <link rel="alternate" type="text/plain" href="/ggstatsplot/llms-full.txt" title="Full LLM documentation" />
   bslib:
     base_font: { google: "Roboto" }
     heading_font: { google: "Roboto" }
@@ -57,9 +56,6 @@ template:
   opengraph:
     image:
       src: man/figures/card.png
-    twitter:
-      creator: "@patilindrajeets"
-      card: summary_large_image
 
 reference:
   - title: Hypothesis about group differences
