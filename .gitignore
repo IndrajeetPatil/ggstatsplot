@@ -48,6 +48,7 @@ Temporary Items
 
 # R Studio files
 *.Rcheck/*
+*.Rproj
 *.tar.gz
 .RData
 .Rhistory

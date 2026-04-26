@@ -796,23 +796,3 @@ time-constrained presentation settings, e.g. conference talks.)
 In case you use the GUI software [`jamovi`](https://www.jamovi.org/), you can
 install a module called [`jjstatsplot`](https://github.com/sbalci/jjstatsplot),
 which is a wrapper around `{ggstatsplot}`.
-
-## Contributing
-
-I'm happy to receive bug reports, suggestions, questions, and (most of all)
-contributions to fix problems and add features. I personally prefer using the
-`GitHub` issues system over trying to reach out to me in other ways (personal
-e-mail, Twitter, etc.). Pull Requests for contributions are encouraged.
-
-Here are some simple ways in which you can contribute (in the increasing order
-of commitment):
-
-  - Read and correct any inconsistencies in the
-    [documentation](https://www.indrapatil.com/ggstatsplot/)
-  - Raise issues about bugs or wanted features
-  - Review code
-  - Add new functionality (in the form of new plotting functions or helpers for
-    preparing subtitles)
-
-Please note that this project is released with a
-[Contributor Code of Conduct](https://www.contributor-covenant.org/version/3/0/code_of_conduct/). By participating in this project you agree to abide by its terms.
