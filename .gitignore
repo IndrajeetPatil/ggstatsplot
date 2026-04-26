@@ -51,6 +51,7 @@ Temporary Items
 *.tar.gz
 .RData
 .Rhistory
+*.Rproj
 .Rproj.user
 .Ruserdata
 .claude
