@@ -48,10 +48,10 @@ Temporary Items
 
 # R Studio files
 *.Rcheck/*
+*.Rproj
 *.tar.gz
 .RData
 .Rhistory
-*.Rproj
 .Rproj.user
 .Ruserdata
 .claude
