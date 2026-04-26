@@ -1,6 +1,4 @@
 on:
-  push:
-    branches: [main, master]
   pull_request:
     branches: [main, master]
 
@@ -8,6 +6,7 @@ name: R-CMD-check-hard
 
 jobs:
   R-CMD-check-hard:
-    uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check-hard.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@main
     with:
+      hard: true
       extra-packages: any::vdiffr any::patrick
