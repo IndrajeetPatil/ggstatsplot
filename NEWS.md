@@ -1,3 +1,109 @@
+# ggstatsplot 1.0.0
+
+## NEW FEATURES
+
+- `ggbarstats()` (and `grouped_ggbarstats()`) now supports one-sample
+  goodness-of-fit tests when only `x` is specified (with `y = NULL` as the new
+  default). This produces a single stacked bar chart with chi-squared GOF test
+  results in the subtitle, mirroring the existing one-sample support in
+  `ggpiestats()` (#532, #697).
+
+- `ggpiestats()` and `ggbarstats()` now compute pairwise contingency table
+  analyses (Fisher's exact tests via `pairwise_contingency_table()`) when `x`
+  has more than two levels. These are available via
+  `extract_stats(plot)$pairwise_comparisons_data`. A new `p.adjust.method`
+  parameter controls the *p*-value adjustment method (default: `"holm"`).
+  Pairwise results are not displayed on the plots since bar and pie charts lack
+  a natural visual representation for pairwise significance annotations (#554).
+
+- `ggscatterstats()` now sets a default number of bins for marginal
+  histograms, suppressing the `stat_bin()` message about picking a better
+  binwidth (#810).
+
+- `ggscatterstats()` gains `xsidehistogram.scale` and `ysidehistogram.scale`
+  parameters to control the scale (e.g., `breaks`, `limits`, `transform`) of
+  the marginal distribution histograms (#898).
+
+- All top-level plotting functions now include an `alternative` argument, which
+  is passed down to `{statsExpressions}` to specify the alternative hypothesis for
+  effect size confidence intervals (#794).
+
+- `ggbetweenstats()` and `ggwithinstats()` now include a `pairwise.alpha`
+  argument to control the alpha cutoff used for filtering displayed pairwise
+  comparisons, and the secondary-axis label now reports the chosen `alpha`.
+
+## BREAKING CHANGES
+
+- The following expert-level statistical parameters have been removed from all
+  function signatures because their defaults are the universally recommended
+  values and changing them requires specialist knowledge (#1087):
+
+    - `var.equal` (from `ggbetweenstats()`): Welch's test (`var.equal = FALSE`)
+      is uniformly recommended over Student's *t*-test.
+    - `nboot` (from `ggbetweenstats()`, `ggwithinstats()`): 100 bootstrap
+      resamples is adequate for trimmed-mean CIs.
+    - `sampling.plan`, `fixed.margin`, `prior.concentration` (from
+      `ggpiestats()`, `ggbarstats()`): Technical BayesFactor settings that
+      virtually no one changes.
+    - `effsize.type` (from `ggbetweenstats()`, `ggwithinstats()`,
+      `gghistostats()`, `ggdotplotstats()`): The unbiased effect size estimator
+      is now always used.
+
+  Users who need non-default values for these parameters should call
+  `{statsExpressions}` directly.
+
+- `ggwithinstats()` (and `grouped_ggwithinstats()`) gains a `subject.id`
+  parameter. When provided, the subject identifier column is used to correctly
+  pair observations across conditions and to remove NA observations by subject
+  key rather than by positional row number. Plots and statistical results for
+  unsorted repeated-measures data will differ from previous versions once
+  `subject.id` is supplied. All examples and vignettes have been updated to
+  pass `subject.id` explicitly, which is now the recommended practice.
+
+- The `package` argument has been removed from all plotting functions. The
+  `palette` argument now accepts a single `"package::palette"` string (e.g.,
+  `palette = "ggthemes::gdoc"`), matching the convention used by
+  `{paletteer}` itself.
+
+- The default `palette` has been changed from `"RColorBrewer::Dark2"` (8
+  colors) to `"ggthemes::gdoc"` (24 qualitative colors), which accommodates
+  categorical variables with up to 24 levels without errors (#1015).
+
+- When the chosen palette does not have enough colors for the number of levels
+  in the data, an error is now thrown (previously a warning was issued that
+  was silently ignored until ggplot2 crashed anyway).
+
+## BUG FIXES
+
+- Grouped plot functions (e.g., `grouped_ggbarstats()`) now preserve the order
+  of groups as they appear in the data rather than sorting them alphabetically
+  (#792).
+
+- `combine_plots()` now renders the overall annotation title in bold by
+  default, matching the styling used for individual plot titles.
+
+- `grouped_ggbarstats()` and `grouped_ggpiestats()` now display a single
+  unified legend when different groups have different observed factor levels for
+  the `x` variable. Previously, `patchwork` could not merge the per-panel fill
+  scales, producing duplicate legends (#868).
+
+- `ggbetweenstats()` and `ggwithinstats()` now correctly display sample size
+  labels on the x-axis even when `centrality.plotting = FALSE` (#695).
+
+- `ggcoefstats()` now preserves the model term order in the default top-to-bottom
+  plot layout and in estimate-sorted displays, instead of showing terms in the
+  reverse order (#642).
+
+- `ggcoefstats()` no longer draws empty `stats.labels` boxes for model terms
+  whose label expression is absent, which affected mixed-model coefficient
+  plots such as the documented `lmer()` example.
+
+# ggstatsplot 0.13.6
+
+## MINOR CHANGES
+
+- No user-facing changes (internal maintenance: dependency updates, CI/CD improvements).
+
 # ggstatsplot 0.13.5
 
 ## MINOR CHANGES
@@ -204,7 +310,7 @@ read the `NEWS` for that package:
 
 ## MAJOR CHANGES
 
-  - The `pairwise_comparions()` function implementation now lives in
+  - The `pairwise_comparisons()` function implementation now lives in
     `{statsExpressions}` package, although it will continue to be exported from
     `{ggstatsplot}` package.
 
@@ -1053,7 +1159,7 @@ This uncoupling is designed to achieve two things:
     `grouped_` cousin (`grouped_gghistostats`).
 
   - `outlier_df` function is no longer exported since it was always meant to be
-    an internal function and was accidently exported during initial release and
+    an internal function and was accidentally exported during initial release and
     was retained for a while for backward compatibility.
 
 # ggstatsplot 0.0.11
@@ -1267,7 +1373,7 @@ This uncoupling is designed to achieve two things:
 ## MAJOR CHANGES
 
   - `ggscatterstats` and its `grouped_` variant accept both character and bare
-    exressions as input to arguments `label.var` and `labe.expression` (#110).
+    expressions as input to arguments `label.var` and `labe.expression` (#110).
 
   - To be consistent with rest of the functions in the package, both Pearson's
     *r*, Spearman's *rho*, and robust percentage bend correlations also display

@@ -70,7 +70,7 @@ library(ggplot2)
 library(statsExpressions)
 
 # extracting detailed expression
-data_results <- oneway_anova(iris, Species, Sepal.Length, var.equal = TRUE)
+data_results <- oneway_anova(iris, Species, Sepal.Length)
 data_results$expression[[1]]
 
 # adapting the details to your liking
@@ -232,9 +232,9 @@ Here is an example-
 
 # creating a list by splitting data frame by combination of two different
 # grouping variables
-df_list <- mpg %>%
-  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) %>%
-  split(f = list(.$drv, .$fl), drop = TRUE)
+df_list <- mpg |>
+  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) |>
+  (\(d) split(d, f = list(d$drv, d$fl), drop = TRUE))()
 
 # checking if the length of the list is 4
 length(df_list)
@@ -282,7 +282,7 @@ expr2 <- extract_subtitle(p[[2L]])
 
 mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = c(expr1, expr2))
 
-mtcars1 %>%
+mtcars1 |>
   ggplot(aes(x = cyl, y = mpg)) +
   geom_jitter() +
   facet_wrap(
@@ -314,14 +314,14 @@ ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
 
 ## 12. How to access data frame with results from pairwise comparisons?
 
-Behind the scenes, `{ggstatsplot}` uses `statsExpressions::pairwise_comparisons()` function.
+Behind the scenes, `{ggstatsplot}` uses `statsExpressions::statsExpressions::pairwise_comparisons()` function.
 
 You can use it to extract actual data frames used in `{ggstatsplot}` functions.
 
 ```{r faq2}
 library(ggplot2)
 
-pairwise_comparisons(mtcars, cyl, wt)
+statsExpressions::pairwise_comparisons(mtcars, cyl, wt)
 ```
 
 ## 13. How can I change annotation in pairwise comparisons?
@@ -344,10 +344,10 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 # creating the base plot
 p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
-# using `pairwise_comparisons()` function to create a data frame with results
-df <- pairwise_comparisons(mtcars, cyl, wt) %>%
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) %>%
-  dplyr::arrange(group1) %>%
+# using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
+df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
+  dplyr::arrange(group1) |>
   dplyr::mutate(asterisk_label = c("**", "***", "**"))
 
 df
@@ -513,7 +513,7 @@ library(ggplot2)
 df <- dplyr::select(mtcars, wt, mpg)
 
 # correlation results
-results <- correlation(df, method = "kendall") %>%
+results <- correlation(df, method = "kendall") |>
   insight::standardize_names(style = "broom")
 
 # creating expression out of these results
@@ -659,14 +659,14 @@ ggwithinstats(
   WineTasting,
   Wine,
   Taste,
-  paired = TRUE
+  subject.id = Taster
 )
 
 ggwithinstats(
   WineTasting,
   Wine,
   Taste,
-  paired = TRUE,
+  subject.id = Taster,
   digits = 4L
 )
 ```
@@ -703,6 +703,121 @@ ggbetweenstats(
   boxplot.args = list(coef = 0),
   results.subtitle = FALSE
 )
+```
+
+## 31. Why do pairwise comparison brackets disappear when I restrict the Y-axis?
+
+This is a common `{ggplot2}` footgun. There are two ways to restrict the visible
+y-range, and they behave very differently:
+
+- `scale_y_continuous(limits = c(a, b))` — **modifies the data**, setting any
+  values outside `[a, b]` to `NA` before rendering. Because pairwise comparison
+  brackets from `{ggsignif}` are positioned *above* the maximum observed value,
+  they often fall outside a tight limit and are silently dropped.
+- `coord_cartesian(ylim = c(a, b))` — **zooms the viewport** without touching
+  the underlying data. The brackets are still computed from the full data range
+  and remain fully intact.
+
+The fix is to replace `scale_y_continuous(limits = ...)` with
+`coord_cartesian(ylim = ...)`:
+
+```{r}
+#| label = "coord_cartesian_pairwise",
+#| fig.width = 7,
+#| fig.height = 6
+
+library(ggplot2)
+
+# BAD: pairwise brackets disappear because values above 4 are set to NA
+ggbetweenstats(mtcars, cyl, wt) +
+  scale_y_continuous(limits = c(1, 4))
+
+# GOOD: brackets survive because coord_cartesian only zooms the viewport
+ggbetweenstats(mtcars, cyl, wt) +
+  coord_cartesian(ylim = c(1, 4))
+```
+
+## 32. How can I create group-specific titles or subtitles in grouped plots?
+
+Not directly with the current grouped helper APIs.
+
+Functions like `grouped_ggbetweenstats()` internally split the data by the
+grouping variable and use those split names while constructing the individual
+plots. This means the grouping labels are not exposed as a placeholder you can
+interpolate inside `title = ...`, `subtitle = ...`, or
+`ggplot.component = ...`.
+
+So if you need panel-specific text such as custom titles, subtitles, or
+captions derived from the grouping level, the current workaround is to split
+the data yourself, map over the groups, build the annotation from the group
+name, and then combine the plots:
+
+```{r}
+#| label = "grouped_dynamic_titles",
+#| fig.width = 7,
+#| fig.height = 6
+
+library(dplyr)
+library(purrr)
+
+filter(ggplot2::mpg, drv != "4") |>
+  (\(d) split(d, d$drv))() |>
+  imap(~ ggbetweenstats(
+    data = .x,
+    x = year,
+    y = hwy,
+    title = paste0("Drive type: ", .y),
+    subtitle = paste0("Subset size: n = ", nrow(.x))
+  )) |>
+  combine_plots()
+```
+
+If this ever needs to be supported directly in grouped helpers, that would
+require a dedicated feature addition rather than a small bug fix.
+
+## 33. How can I adjust the position of the statistical annotation to prevent overlap?
+
+The statistical results appear as a standard `{ggplot2}` subtitle (and,
+when Bayes Factor is shown, as a caption). You can reposition them using
+`theme()` via the `ggplot.component` argument:
+
+```{r}
+#| label = "annotation_position",
+#| fig.width = 7,
+#| fig.height = 5
+
+library(ggplot2)
+
+# default position
+ggbetweenstats(mtcars, am, mpg)
+
+# move the subtitle to avoid overlapping with data points
+ggbetweenstats(
+  mtcars, am, mpg,
+  ggplot.component = list(
+    theme(
+      plot.subtitle = element_text(size = 10, hjust = 0),
+      plot.caption = element_text(size = 8, hjust = 0)
+    )
+  )
+)
+```
+
+If you need the statistical expression on a *different* plot entirely,
+extract it with `extract_subtitle()` and pass it to `labs()`:
+
+```{r}
+#| label = "annotation_manual",
+#| fig.width = 7,
+#| fig.height = 5
+
+# extract subtitle expression
+expr <- extract_subtitle(ggbetweenstats(mtcars, am, mpg))
+
+# use it on a completely custom plot
+ggplot(mtcars, aes(factor(am), mpg)) +
+  geom_boxplot() +
+  labs(subtitle = expr)
 ```
 
 ## Suggestions

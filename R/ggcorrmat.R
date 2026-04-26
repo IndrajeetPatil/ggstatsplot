@@ -28,11 +28,13 @@
 #'   *p*-value matrix is bigger than `sig.level`, then the corresponding
 #'   correlation coefficient is regarded as insignificant and flagged as such in
 #'   the plot.
-#' @param colors A vector of 3 colors for low, mid, and high correlation values.
-#'   If set to `NULL`, manual specification of colors will be turned off and 3
-#'   colors from the specified `palette` from `package` will be selected.
 #' @param pch Decides the point shape to be used for insignificant correlation
 #'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
+#' @param colors A character vector of exactly three colors for the gradient:
+#'   low (negative correlations), mid (zero), and high (positive correlations).
+#'   Must be a **diverging** palette so that the sign of the correlation is
+#'   visually obvious.
+#'   Default: `c("#EA4335", "white", "#4285F4")` (red–white–blue).
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
 #'   will be passed to [`ggcorrplot::ggcorrplot()`] function. The list should
 #'   avoid any of the following arguments since they are already internally
@@ -78,11 +80,13 @@ ggcorrmat <- function(
   conf.level = 0.95,
   bf.prior = 0.707,
   p.adjust.method = "holm",
+  colors = c("#EA4335", "white", "#4285F4"),
   pch = "cross",
-  ggcorrplot.args = list(method = "square", outline.color = "black", pch.cex = 14),
-  package = "RColorBrewer",
-  palette = "Dark2",
-  colors = c("#E69F00", "white", "#009E73"),
+  ggcorrplot.args = list(
+    method = "square",
+    outline.color = "black",
+    pch.cex = 14
+  ),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ggplot.component = NULL,
   title = NULL,
@@ -90,23 +94,25 @@ ggcorrmat <- function(
   caption = NULL,
   ...
 ) {
-  type <- stats_type_switch(type)
-  if (!missing(cor.vars)) data <- select(data, {{ cor.vars }})
+  type <- extract_stats_type(type)
+  if (!missing(cor.vars)) {
+    data <- select(data, {{ cor.vars }})
+  }
 
   # statistical analysis ------------------------------------------
 
   mpc_df <- correlation::correlation(
-    data             = data,
-    rename           = cor.vars.names,
-    method           = ifelse(type == "nonparametric", "spearman", "pearson"),
-    p_adjust         = p.adjust.method,
-    ci               = conf.level,
-    bayesian         = type == "bayes",
-    bayesian_prior   = bf.prior,
-    tr               = tr,
-    partial          = partial,
+    data = data,
+    rename = cor.vars.names,
+    method = ifelse(type == "nonparametric", "spearman", "pearson"),
+    p_adjust = p.adjust.method,
+    ci = conf.level,
+    bayesian = type == "bayes",
+    bayesian_prior = bf.prior,
+    tr = tr,
+    partial = partial,
     partial_bayesian = type == "bayes" && partial,
-    winsorize        = ifelse(type == "robust", tr, FALSE)
+    winsorize = ifelse(type == "robust", tr, FALSE)
   )
 
   # type of correlation and if it is a partial correlation
@@ -118,15 +124,23 @@ ggcorrmat <- function(
   # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
     legend.title <- bquote(atop(
-      atop(scriptstyle(bold("sample sizes:")), italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))),
+      atop(
+        scriptstyle(bold("sample sizes:")),
+        italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))
+      ),
       atop(scriptstyle(bold(.(r.type))), .(r.method.text))
     ))
   } else {
     legend.title <- bquote(atop(
       atop(
-        atop(scriptstyle(bold("sample sizes:")), italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))),
         atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(mpc_df$n_Obs))),
+          scriptstyle(bold("sample sizes:")),
+          italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))
+        ),
+        atop(
+          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(
+            mpc_df$n_Obs
+          ))),
           italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
         )
       ),
@@ -136,35 +150,42 @@ ggcorrmat <- function(
 
   plot_corr <- .eval_f(
     ggcorrplot::ggcorrplot,
-    corr         = as.matrix(select(mpc_df, matches("^parameter|^r"))),
-    p.mat        = as.matrix(select(mpc_df, matches("^parameter|^p"))),
-    sig.level    = ifelse(type == "bayes", Inf, sig.level),
-    ggtheme      = ggtheme,
-    colors       = colors %||% paletteer::paletteer_d(paste0(package, "::", palette), 3L),
-    type         = matrix.type,
-    lab          = TRUE,
-    pch          = pch,
+    corr = as.matrix(select(mpc_df, matches("^parameter|^r"))),
+    p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
+    sig.level = ifelse(type == "bayes", Inf, sig.level),
+    ggtheme = ggtheme,
+    colors = colors,
+    type = matrix.type,
+    lab = TRUE,
+    pch = pch,
     legend.title = legend.title,
-    digits       = digits,
+    digits = digits,
     !!!ggcorrplot.args
   )
 
   # p-value adjustment message ------------------------------------------
 
   if ((pch == "cross" || pch == 4L) && type != "bayes") {
+    p_label <- if (p.adjust.method == "none") {
+      # nocov start
+      substitute(
+        italic(p)[unadj.] ~ "< " ~ sig.level,
+        list(sig.level = sig.level)
+      )
+      # nocov end
+    } else {
+      substitute(
+        italic(p)[adj.text - adj.] ~ "< " ~ sig.level,
+        list(sig.level = sig.level, adj.text = .p_adjust_text(p.adjust.method))
+      )
+    }
+
     caption <- substitute(
       atop(
         displaystyle(top.text),
-        expr = paste(
-          bold("X"), " = non-significant at ",
-          italic("p"), " < ", sig.level, " (Adjustment: ", adj.text, ")"
-        )
+        expr = bold("X") ~ "= non-significant at" ~ p_label
       ),
-      env = list(
-        sig.level = sig.level,
-        adj.text = p_adjust_text(p.adjust.method),
-        top.text = caption
-      )
+      env = list(p_label = p_label, top.text = caption)
     )
   }
 
@@ -174,14 +195,14 @@ ggcorrmat <- function(
     theme(
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
-      legend.title     = element_text(size = 15)
+      legend.title = element_text(size = 15)
     ) +
     labs(
-      title    = title,
+      title = title,
       subtitle = subtitle,
-      caption  = caption,
-      x        = NULL,
-      y        = NULL
+      caption = caption,
+      x = NULL,
+      y = NULL
     ) +
     ggplot.component
 }
@@ -216,20 +237,10 @@ ggcorrmat <- function(
 #'   data = iris,
 #'   grouping.var = Species,
 #'   type = "robust",
+#'   colors = c("#0072B2", "white", "#D55E00"),
 #'   p.adjust.method = "holm",
 #'   plotgrid.args = list(ncol = 1L),
 #'   annotation.args = list(tag_levels = "i")
 #' )
 #' @export
-grouped_ggcorrmat <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggcorrmat, ...) %>%
-    # `guides = "keep"` because legends can be different across grouping levels
-    combine_plots(guides = "keep", plotgrid.args, annotation.args)
-}
+grouped_ggcorrmat <- .make_grouped_fn(ggcorrmat, guides = "keep")

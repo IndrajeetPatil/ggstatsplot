@@ -29,6 +29,9 @@
 #'   when you have multiple groups being compared and scores of pairwise
 #'   comparisons being displayed. If set to `"none"`, no pairwise comparisons
 #'   will be displayed.
+#' @param pairwise.alpha Numeric alpha threshold used to decide which pairwise
+#'   comparisons are displayed when `pairwise.display = "significant"` or
+#'   `pairwise.display = "non-significant"` (Default: `0.05`).
 #' @param bf.message Logical that decides whether to display Bayes Factor in
 #'   favor of the *null* hypothesis. This argument is relevant only **for
 #'   parametric test** (Default: `TRUE`).
@@ -54,7 +57,7 @@
 #' @param centrality.type Decides which centrality parameter is to be displayed.
 #'   The default is to choose the same as `type` argument. You can specify this
 #'   to be:
-#'   - `"parameteric"` (for **mean**)
+#'   - `"parametric"` (for **mean**)
 #'   - `"nonparametric"` (for **median**)
 #'   - `robust` (for **trimmed mean**)
 #'   - `bayes` (for **MAP estimator**)
@@ -74,9 +77,9 @@
 #'   by `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
 #'   variants of all primary functions. Default is `NULL`. The argument should
 #'   be entered as a `{ggplot2}` function or a list of `{ggplot2}` functions.
-#' @param package,palette Name of the package from which the given palette is to
-#'   be extracted. The available palettes and packages can be checked by running
-#'   `View(paletteer::palettes_d_names)`.
+#' @param palette Name of the palette in `"package::palette"` format to be used
+#'   for coloring. Passed to [paletteer::scale_color_paletteer_d()]. Run
+#'   `View(paletteer::palettes_d_names)` to see all available options.
 #' @param ... Currently ignored.
 #' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
@@ -96,6 +99,24 @@
 #'   thus the details as well.
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
+#'
+#' @section Statistical defaults:
+#'
+#' This function uses statistically justified defaults that are not
+#' user-configurable:
+#'
+#' - **Effect sizes** are always *unbiased* (Hedges' *g* instead of Cohen's
+#'   *d*, omega-squared instead of eta-squared). Unbiased estimators correct
+#'   for the positive bias present in their biased counterparts, especially in
+#'   small samples, and are recommended for meta-analytic work.
+#'
+#' - **Welch's *t*-test and one-way test** are used instead of Student's
+#'   versions (i.e., equal variances are not assumed). Welch's test performs as
+#'   well as Student's when variances *are* equal and is substantially more
+#'   accurate when they are not, making it the unconditionally better default.
+#'
+#' Users who need non-default values for these settings can call
+#' \code{{statsExpressions}} directly.
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
@@ -126,6 +147,9 @@
 #' # show all pairwise comparisons
 #' ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
 #'
+#' # use a stricter alpha threshold for significant pairwise comparisons
+#' ggbetweenstats(mtcars, cyl, mpg, pairwise.alpha = 0.001)
+#'
 #' # modifying defaults
 #' ggbetweenstats(
 #'   morley,
@@ -155,8 +179,8 @@ ggbetweenstats <- function(
   y,
   type = "parametric",
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -166,10 +190,9 @@ ggbetweenstats <- function(
   title = NULL,
   subtitle = NULL,
   digits = 2L,
-  var.equal = FALSE,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -190,49 +213,44 @@ ggbetweenstats <- function(
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
-  data %<>%
-    select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na() %>%
-    mutate({{ x }} := droplevels(as.factor({{ x }})))
+  data <- .prep_data(data, {{ x }}, {{ y }}, x_as_factor = TRUE)
 
   # statistical analysis ------------------------------------------
 
   test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
 
   if (results.subtitle) {
-    .f.args <- list(
+    stats_output <- .bw_subtitle_caption(
       data = data,
-      x = as_string(x),
-      y = as_string(y),
-      effsize.type = effsize.type,
+      x = x,
+      y = y,
+      test = test,
+      type = type,
+      bf.message = bf.message,
+      bf.prior = bf.prior,
       conf.level = conf.level,
-      var.equal = var.equal,
       digits = digits,
       tr = tr,
-      paired = FALSE,
-      bf.prior = bf.prior,
-      nboot = nboot
+      alternative = alternative,
+      paired = FALSE
     )
-
-    .f <- .f_switch(test)
-    subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
   }
 
   # plot -----------------------------------
@@ -242,68 +260,36 @@ ggbetweenstats <- function(
     exec(geom_boxplot, !!!boxplot.args, outlier.shape = NA) +
     exec(geom_violin, !!!violin.args)
 
-  # centrality tagging -------------------------------------
+  # decorate and return -----------------------------------
 
-  if (isTRUE(centrality.plotting)) {
-    plot_comparison <- suppressWarnings(.centrality_ggrepel(
-      plot = plot_comparison,
+  .bw_decorate(
+    plot = plot_comparison,
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    type = type,
+    test = test,
+    centrality.plotting = centrality.plotting,
+    centrality.type = centrality.type,
+    digits = digits,
+    tr = tr,
+    centrality.point.args = centrality.point.args,
+    centrality.label.args = centrality.label.args,
+    pairwise.display = pairwise.display,
+    pairwise.alpha = pairwise.alpha,
+    pairwise_args = list(
       data = data,
-      x = {{ x }},
-      y = {{ y }},
-      digits = digits,
-      type = stats_type_switch(centrality.type),
-      tr = tr,
-      centrality.point.args = centrality.point.args,
-      centrality.label.args = centrality.label.args
-    ))
-  }
-
-  # ggsignif labels -------------------------------------
-
-  seclabel <- NULL
-
-  if (pairwise.display != "none" && test == "anova") {
-    mpc_df <- pairwise_comparisons(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      type = type,
-      tr = tr,
       paired = FALSE,
-      var.equal = var.equal,
-      p.adjust.method = p.adjust.method,
-      digits = digits
-    )
-
-    # adding the layer for pairwise comparisons
-    plot_comparison <- .ggsignif_adder(
-      plot             = plot_comparison,
-      mpc_df           = mpc_df,
-      data             = data,
-      x                = {{ x }},
-      y                = {{ y }},
-      pairwise.display = pairwise.display,
-      ggsignif.args    = ggsignif.args
-    )
-
-    # secondary label axis to give pairwise comparisons test details
-    seclabel <- .pairwise_seclabel(unique(mpc_df$test), ifelse(type == "bayes", "all", pairwise.display))
-  }
-
-  # annotations ------------------------
-
-  .aesthetic_addon(
-    plot             = plot_comparison,
-    x                = pull(data, {{ x }}),
-    xlab             = xlab %||% as_name(x),
-    ylab             = ylab %||% as_name(y),
-    title            = title,
-    subtitle         = subtitle,
-    caption          = caption,
-    seclabel         = seclabel,
-    ggtheme          = ggtheme,
-    package          = package,
-    palette          = palette,
+      p.adjust.method = p.adjust.method
+    ),
+    ggsignif.args = ggsignif.args,
+    xlab = xlab %||% as_name(x),
+    ylab = ylab %||% as_name(y),
+    title = title,
+    subtitle = subtitle,
+    caption = caption,
+    ggtheme = ggtheme,
+    palette = palette,
     ggplot.component = ggplot.component
   )
 }
@@ -362,14 +348,4 @@ ggbetweenstats <- function(
 #'   annotation.args = list(title = "Ratings by genre for different MPAA ratings")
 #' )
 #' @export
-grouped_ggbetweenstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggbetweenstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggbetweenstats <- .make_grouped_fn(ggbetweenstats)

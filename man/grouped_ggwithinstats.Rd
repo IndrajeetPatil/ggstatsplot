@@ -31,6 +31,16 @@ argument is relevant only when there are two groups (i.e., in case of a
     \item{\code{centrality.path.args,point.path.args}}{A list of additional aesthetic
 arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting raw data points
 and mean points.}
+    \item{\code{subject.id}}{Across repeated measures conditions, each row in the
+dataset must correspond to a unique unit (e.g., subject or participant).
+If your data frame is already in such a format, you can ignore the
+\code{subject.id} argument (the function will use row number to pair
+observations). \strong{But if you are not sure, it is always better to specify
+this argument.} Note that if there are any missing values (i.e., \code{NA}) in
+the dependent variable and the \code{subject.id} is not specified, they will be
+dropped using a list-wise approach. If you specify \code{subject.id}, partially
+observed subjects will still be shown in the plot, but inferential
+statistics will be computed using only complete repeated-measures pairs.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
@@ -50,6 +60,9 @@ You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
 comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
 will be displayed.}
+    \item{\code{pairwise.alpha}}{Numeric alpha threshold used to decide which pairwise
+comparisons are displayed when \code{pairwise.display = "significant"} or
+\code{pairwise.display = "non-significant"} (Default: \code{0.05}).}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
@@ -77,7 +90,7 @@ If you want default centrality parameter, you can specify this using
 The default is to choose the same as \code{type} argument. You can specify this
 to be:
 \itemize{
-\item \code{"parameteric"} (for \strong{mean})
+\item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
 \item \code{robust} (for \strong{trimmed mean})
 \item \code{bayes} (for \strong{MAP estimator})
@@ -98,9 +111,9 @@ the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{package,palette}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+    \item{\code{palette}}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
     \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
 arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
 \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in mean plotting.}
@@ -143,9 +156,6 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
-    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
     \item{\code{bf.prior}}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -155,8 +165,10 @@ value corresponds to scale for fixed effects.}
     \item{\code{tr}}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
-    \item{\code{nboot}}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
   }}
 
 \item{grouping.var}{A single grouping variable.}
@@ -183,6 +195,7 @@ grouped_ggwithinstats(
   data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
   x                = condition,
   y                = desire,
+  subject.id       = subject,
   grouping.var     = gender,
   type             = "np",
   # additional modifications for **each** plot using `{ggplot2}` functions

@@ -64,9 +64,9 @@ gghistostats <- function(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
-  effsize.type = "g",
   conf.level = 0.95,
   tr = 0.2,
   digits = 2L,
@@ -75,7 +75,11 @@ gghistostats <- function(
   bin.args = list(color = "black", fill = "grey50", alpha = 0.7),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+  centrality.line.args = list(
+    color = "blue",
+    linewidth = 1,
+    linetype = "dashed"
+  ),
   ggplot.component = NULL,
   ...
 ) {
@@ -84,7 +88,7 @@ gghistostats <- function(
   x <- ensym(x)
   data <- tidyr::drop_na(select(data, {{ x }}))
   x_vec <- pull(data, {{ x }})
-  type <- stats_type_switch(type)
+  type <- extract_stats_type(type)
 
   # statistical analysis ------------------------------------------
 
@@ -93,22 +97,22 @@ gghistostats <- function(
       data = data,
       x = {{ x }},
       test.value = test.value,
-      effsize.type = effsize.type,
+      alternative = alternative,
       conf.level = conf.level,
       digits = digits,
       tr = tr,
       bf.prior = bf.prior
     )
 
-    # subtitle with statistical results
-    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    # BF message
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(one_sample_test, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    stats <- .one_sample_subtitle_caption(
+      type = type,
+      bf.message = bf.message,
+      .f.args = .f.args
+    )
+    subtitle <- stats$subtitle
+    caption <- stats$caption %||% caption
+    subtitle_df <- stats$subtitle_df
+    caption_df <- stats$caption_df
   }
 
   # plot -----------------------------------
@@ -116,7 +120,7 @@ gghistostats <- function(
   plot_hist <- ggplot(data, mapping = aes(x = {{ x }})) +
     exec(
       stat_bin,
-      mapping  = aes(y = after_stat(count), fill = after_stat(count)),
+      mapping = aes(y = after_stat(count), fill = after_stat(count)),
       binwidth = binwidth %||% .binwidth(x_vec),
       !!!bin.args
     ) +
@@ -135,7 +139,7 @@ gghistostats <- function(
     plot_hist <- .histo_labeller(
       plot_hist,
       x = x_vec,
-      type = stats_type_switch(centrality.type),
+      type = extract_stats_type(centrality.type),
       tr = tr,
       digits = digits,
       centrality.line.args = centrality.line.args
@@ -146,11 +150,11 @@ gghistostats <- function(
 
   plot_hist +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = "count",
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = "count",
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
@@ -158,7 +162,9 @@ gghistostats <- function(
 
 
 #' @noRd
-.binwidth <- function(x) (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) / sqrt(length(x))
+.binwidth <- function(x) {
+  (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) / sqrt(length(x))
+}
 
 
 #' @title Grouped histograms for distribution of a numeric variable
@@ -205,12 +211,12 @@ grouped_gghistostats <- function(
   annotation.args = list(),
   ...
 ) {
-  .grouped_list(data, {{ grouping.var }}) %>%
+  .grouped_list(data, {{ grouping.var }}) |>
     purrr::pmap(
       .f = gghistostats,
       x = {{ x }},
       binwidth = binwidth %||% .binwidth(pull(data, {{ x }})),
       ...
-    ) %>%
+    ) |>
     combine_plots(plotgrid.args, annotation.args)
 }

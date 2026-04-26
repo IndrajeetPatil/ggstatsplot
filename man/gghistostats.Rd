@@ -14,9 +14,9 @@ gghistostats(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
-  effsize.type = "g",
   conf.level = 0.95,
   tr = 0.2,
   digits = 2L,
@@ -68,6 +68,11 @@ You can specify just the initial letter.}
 \item{test.value}{A number indicating the true value of the mean (Default:
 \code{0}).}
 
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
+
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
 addition to numeric arguments, several named values are also recognized:
@@ -78,9 +83,6 @@ value corresponds to scale for fixed effects.}
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
-
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
 
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
@@ -134,7 +136,7 @@ If you want default centrality parameter, you can specify this using
 The default is to choose the same as \code{type} argument. You can specify this
 to be:
 \itemize{
-\item \code{"parameteric"} (for \strong{mean})
+\item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
 \item \code{robust} (for \strong{trimmed mean})
 \item \code{bayes} (for \strong{MAP estimator})
@@ -194,7 +196,7 @@ The table below provides summary about:
    Parametric \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
    Non-parametric \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
    Robust \tab trimmed mean \tab Yes \tab \code{WRS2::trimcibt()} \cr
-   Bayes Factor \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
+   Bayesian \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
 }
 
 }

@@ -66,9 +66,9 @@ ggdotplotstats <- function(
   caption = NULL,
   type = "parametric",
   test.value = 0,
+  alternative = "two.sided",
   bf.prior = 0.707,
   bf.message = TRUE,
-  effsize.type = "g",
   conf.int = TRUE,
   conf.level = 0.95,
   tr = 0.2,
@@ -78,7 +78,11 @@ ggdotplotstats <- function(
   errorbar.args = list(width = 0, na.rm = TRUE),
   centrality.plotting = TRUE,
   centrality.type = type,
-  centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed"),
+  centrality.line.args = list(
+    color = "blue",
+    linewidth = 1,
+    linetype = "dashed"
+  ),
   ggplot.component = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
   ...
@@ -86,22 +90,26 @@ ggdotplotstats <- function(
   # data -----------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
-  .f.stats.args <- list(conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
-  data %<>%
-    select({{ x }}, {{ y }}) %>%
-    tidyr::drop_na()
+  data <- .prep_data(data, {{ x }}, {{ y }})
 
   data <-
     suppressWarnings(centrality_description(
-      data, {{ y }}, {{ x }},
-      type = type, conf.level = conf.level, digits = digits, tr = tr, bf.prior = bf.prior
+      data,
+      {{ y }},
+      {{ x }},
+      type = type,
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior
     ))
 
-  data %<>%
-    arrange({{ x }}) %>%
+  data <- data |>
+    arrange({{ x }}) |>
     mutate(
       percent_rank = percent_rank({{ x }}),
       rank = row_number()
@@ -110,15 +118,26 @@ ggdotplotstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(data = data, x = {{ x }}, test.value = test.value, effsize.type = effsize.type)
+    .f.args <- list(
+      data = data,
+      x = {{ x }},
+      test.value = test.value,
+      alternative = alternative,
+      conf.level = conf.level,
+      digits = digits,
+      tr = tr,
+      bf.prior = bf.prior
+    )
 
-    subtitle_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(one_sample_test, !!!.f.args, !!!.f.stats.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    stats <- .one_sample_subtitle_caption(
+      type = type,
+      bf.message = bf.message,
+      .f.args = .f.args
+    )
+    subtitle <- stats$subtitle
+    caption <- stats$caption %||% caption
+    subtitle_df <- stats$subtitle_df
+    caption_df <- stats$caption_df
   }
 
   # plot -----------------------------------
@@ -130,7 +149,7 @@ ggdotplotstats <- function(
       labels = pull(data, {{ y }}),
       breaks = data$rank,
       sec.axis = dup_axis(
-        name   = "percentile",
+        name = "percentile",
         breaks = seq(1L, nrow(data), (nrow(data) - 1L) / 4),
         labels = 25 * 0:4
       )
@@ -138,7 +157,12 @@ ggdotplotstats <- function(
 
   if (conf.int) {
     plot_dot <- plot_dot +
-      exec(geom_errorbar, mapping = aes(xmin = conf.low, xmax = conf.high), orientation = "y", !!!errorbar.args)
+      exec(
+        geom_errorbar,
+        mapping = aes(xmin = conf.low, xmax = conf.high),
+        orientation = "y",
+        !!!errorbar.args
+      )
   }
 
   # centrality plotting -------------------------------------
@@ -147,7 +171,7 @@ ggdotplotstats <- function(
     plot_dot <- .histo_labeller(
       plot_dot,
       x = pull(data, {{ x }}),
-      type = stats_type_switch(centrality.type),
+      type = extract_stats_type(centrality.type),
       tr = tr,
       digits = digits,
       centrality.line.args = centrality.line.args
@@ -158,11 +182,11 @@ ggdotplotstats <- function(
 
   plot_dot +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = ylab %||% as_name(y),
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
@@ -208,14 +232,4 @@ ggdotplotstats <- function(
 #'   annotation.args = list(title = "City mileage by manufacturer for different cylinders")
 #' )
 #' @export
-grouped_ggdotplotstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggdotplotstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggdotplotstats <- .make_grouped_fn(ggdotplotstats)

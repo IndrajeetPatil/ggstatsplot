@@ -4,11 +4,11 @@
   "identifier": "ggstatsplot",
   "description": "Extension of 'ggplot2', 'ggstatsplot' creates graphics with details from statistical tests included in the plots themselves. It provides an easier syntax to generate information-rich plots for statistical analysis of continuous (violin plots, scatterplots, histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar charts) data. Currently, it supports the most common types of statistical approaches and tests: parametric, nonparametric, robust, and Bayesian versions of t-test/ANOVA, correlation analyses, contingency table analysis, meta-analysis, and regression analyses. References: Patil (2021) <doi:10.21105/joss.03236>.",
   "name": "ggstatsplot: 'ggplot2' Based Plots with Statistical Details",
-  "relatedLink": "https://indrajeetpatil.github.io/ggstatsplot/",
+  "relatedLink": "https://www.indrapatil.com/ggstatsplot/",
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.13.5",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,6 +173,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "patrick",
+      "name": "patrick",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=patrick"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "psych",
       "name": "psych",
       "provider": {
@@ -324,7 +336,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
-      "version": ">= 1.2.0",
+      "version": ">= 1.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -334,6 +346,19 @@
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
     "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "forcats",
+      "name": "forcats",
+      "version": ">= 1.0.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=forcats"
+    },
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
@@ -346,7 +371,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggcorrplot"
     },
-    "6": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
       "name": "ggplot2",
@@ -359,11 +384,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggplot2"
     },
-    "7": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "ggrepel",
       "name": "ggrepel",
-      "version": ">= 0.9.6",
+      "version": ">= 0.9.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -372,7 +397,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggrepel"
     },
-    "8": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "ggside",
       "name": "ggside",
@@ -385,7 +410,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggside"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "ggsignif",
       "name": "ggsignif",
@@ -398,11 +423,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ggsignif"
     },
-    "10": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
-      "version": ">= 1.8.0",
+      "version": ">= 1.8.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -411,11 +436,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=glue"
     },
-    "11": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "insight",
       "name": "insight",
-      "version": ">= 1.4.6",
+      "version": ">= 1.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -423,19 +448,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=insight"
-    },
-    "12": {
-      "@type": "SoftwareApplication",
-      "identifier": "magrittr",
-      "name": "magrittr",
-      "version": ">= 2.0.4",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
     "13": {
       "@type": "SoftwareApplication",
@@ -493,7 +505,7 @@
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
-      "version": ">= 1.2.1",
+      "version": ">= 1.2.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -506,7 +518,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
-      "version": ">= 1.1.7",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -519,7 +531,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 1.7.3",
+      "version": ">= 2.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -548,7 +560,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "37480.234KB",
+  "fileSize": "14088.41KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

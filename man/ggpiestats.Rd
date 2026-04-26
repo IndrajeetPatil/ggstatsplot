@@ -20,17 +20,15 @@ ggpiestats(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
-  sampling.plan = "indepMulti",
-  fixed.margin = "rows",
-  prior.concentration = 1,
+  p.adjust.method = "holm",
   title = NULL,
   subtitle = NULL,
   caption = NULL,
   legend.title = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 )
@@ -49,8 +47,7 @@ dropped.}
 Please note that if there are empty factor levels in your variable, they
 will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{\link[=ggbarstats]{ggbarstats()}}.}
+appropriate association test will be run.}
 
 \item{counts}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
@@ -106,26 +103,18 @@ is equal theoretical proportions across the levels of the nominal variable.
 E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
 
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
+
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
 
-\item{sampling.plan}{Character describing the sampling plan. Possible options:
-\itemize{
-\item \code{"indepMulti"} (independent multinomial; default)
-\item \code{"poisson"}
-\item \code{"jointMulti"} (joint multinomial)
-\item \code{"hypergeom"} (hypergeometric).
-For more, see \code{\link[BayesFactor:contingencyTableBF]{BayesFactor::contingencyTableBF()}}.
-}}
-
-\item{fixed.margin}{For the independent multinomial sampling plan, which
-margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
-
-\item{prior.concentration}{Specifies the prior concentration parameter, set
-to \code{1} by default. It indexes the expected deviation from the null
-hypothesis under the alternative, and corresponds to Gunel and Dickey's
-(1974) \code{"a"} parameter.}
+\item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
 
 \item{title}{The text for the plot title.}
 
@@ -148,9 +137,9 @@ label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+\item{palette}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
@@ -173,6 +162,20 @@ For details, see:
    pie slices \tab \code{ggplot2::geom_col()} \tab \code{NA} \cr
    labels \tab \code{ggplot2::geom_label()}/\code{ggrepel::geom_label_repel()} \tab \code{label.args} \cr
 }
+}
+
+\section{Pairwise comparisons}{
+
+When there is a two-way table and \code{x} has more than two levels, pairwise
+contingency table analyses (Fisher's exact tests) are computed using
+\code{\link[statsExpressions:pairwise_contingency_table]{statsExpressions::pairwise_contingency_table()}}. These pairwise results are \strong{not}
+displayed in the plot because bar and pie charts lack a natural visual
+representation for pairwise significance annotations (unlike box/violin
+plots, which use bracket annotations). Additionally, there is no
+established convention for overlaying pairwise comparisons on pie charts,
+and both \code{ggpiestats()} and \code{ggbarstats()} are designed to remain visually
+congruent. The pairwise results are available as a data frame via
+\code{extract_stats(plot)$pairwise_comparisons_data}.
 }
 
 \section{Contingency table analyses}{

@@ -4,131 +4,164 @@ skip_if_not_installed("rstantools")
 
 # checking labels and data from plot -------------------------------------
 
-test_that(
-  "plotting features work as expected",
-  {
-    set.seed(123)
-    expect_doppelganger(
-      title = "modification with ggplot2 works as expected",
-      fig = ggbetweenstats(
-        data = mtcars,
-        x = am,
-        y = wt,
-        pairwise.display = "none",
-        results.subtitle = FALSE
-      ) +
-        ggplot2::labs(x = "Transmission", y = "Weight")
-    )
+test_that("plotting features work as expected", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "modification with ggplot2 works as expected",
+    fig = ggbetweenstats(
+      data = mtcars,
+      x = am,
+      y = wt,
+      pairwise.display = "none",
+      results.subtitle = FALSE
+    ) +
+      ggplot2::labs(x = "Transmission", y = "Weight")
+  )
 
-    # edge case
-    df_small <- data.frame(
-      centrality.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
-      group = c("a", "a", "a", "b", "b", "b")
-    )
+  # edge case
+  df_small <- data.frame(
+    centrality.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
+    group = c("a", "a", "a", "b", "b", "b")
+  )
 
-    set.seed(123)
-    expect_doppelganger(
-      title = "mean shown with scarce data",
-      fig = suppressWarnings(ggbetweenstats(
-        data = df_small,
-        x = group,
-        y = centrality.a,
-        pairwise.display = "none",
-        results.subtitle = FALSE
-      ))
-    )
+  set.seed(123)
+  expect_doppelganger(
+    title = "mean shown with scarce data",
+    fig = suppressWarnings(ggbetweenstats(
+      data = df_small,
+      x = group,
+      y = centrality.a,
+      pairwise.display = "none",
+      results.subtitle = FALSE
+    ))
+  )
 
-    set.seed(123)
-    expect_doppelganger(
-      title = "specific geoms removed",
-      ggbetweenstats(
-        data = mtcars,
-        x = am,
-        y = wt,
-        xlab = "Transmission",
-        ylab = "Weight",
-        violin.args = list(width = 0, linewidth = 0),
-        boxplot.args = list(width = 0),
-        point.args = list(alpha = 0),
-        title = "Bayesian Test"
-      )
+  set.seed(123)
+  expect_doppelganger(
+    title = "specific geoms removed",
+    ggbetweenstats(
+      data = mtcars,
+      x = am,
+      y = wt,
+      xlab = "Transmission",
+      ylab = "Weight",
+      violin.args = list(width = 0, linewidth = 0),
+      boxplot.args = list(width = 0),
+      point.args = list(alpha = 0),
+      title = "Bayesian Test"
     )
-  }
-)
+  )
+})
+
+# sample size labels with centrality.plotting = FALSE (#695) ----------
+
+test_that("sample size labels visible when centrality.plotting is FALSE", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "n labels visible without centrality",
+    fig = ggbetweenstats(
+      data = mtcars,
+      x = am,
+      y = wt,
+      centrality.plotting = FALSE,
+      pairwise.display = "none",
+      results.subtitle = FALSE
+    )
+  )
+})
 
 # subtitle output works ------------------------------------------------
 
-test_that(
-  "subtitle output works",
-  {
-    skip_on_cran()
+test_that("subtitle output works", {
+  skip_on_cran()
 
-    df <- mtcars
-    df$wt[3] <- NA
+  df <- mtcars
+  df$wt[3] <- NA
 
-    # plot
-    set.seed(123)
-    subtitle_exp <- ggbetweenstats(
-      data = df,
-      x = am,
-      y = wt
-    ) %>%
-      extract_subtitle()
+  # plot
+  set.seed(123)
+  subtitle_exp <- ggbetweenstats(
+    data = df,
+    x = am,
+    y = wt
+  ) |>
+    extract_subtitle()
 
-    set.seed(123)
-    sub <- two_sample_test(
-      data = df,
-      x = am,
-      y = wt
-    )$expression[[1L]]
+  set.seed(123)
+  sub <- two_sample_test(
+    data = df,
+    x = am,
+    y = wt
+  )$expression[[1L]]
 
-    expect_identical(as.character(subtitle_exp), as.character(sub))
-  }
-)
+  expect_identical(as.character(subtitle_exp), as.character(sub))
+})
+
+test_that("pairwise.alpha controls displayed pairwise comparisons", {
+  fig <- ggbetweenstats(
+    data = mtcars,
+    x = cyl,
+    y = mpg,
+    pairwise.display = "significant",
+    pairwise.alpha = 0.001,
+    p.adjust.method = "holm",
+    results.subtitle = FALSE
+  )
+
+  layer_params <- fig$layers[[length(fig$layers)]]$stat_params
+  sec_axis_name <- paste(
+    deparse(fig$scales$get_scales("y")$secondary.axis$name),
+    collapse = " "
+  )
+
+  expect_identical(
+    layer_params$comparisons,
+    list(c("4", "8"), c("6", "8"))
+  )
+  expect_match(sec_axis_name, "alpha == 0\\.001")
+})
 
 # grouped_ggbetweenstats defaults --------------------------------------------------
 
-test_that(
-  "grouped_ggbetweenstats defaults",
-  {
-    # expect error when no grouping.var is specified
-    expect_snapshot_error(grouped_ggbetweenstats(mtcars, x = am, y = wt))
+test_that("grouped_ggbetweenstats defaults", {
+  # expect error when no grouping.var is specified
+  expect_snapshot_error(grouped_ggbetweenstats(mtcars, x = am, y = wt))
 
-    # creating a smaller data frame
-    set.seed(123)
-    dat <- dplyr::sample_frac(movies_long, size = 0.25) %>%
-      dplyr::filter(
-        mpaa %in% c("R", "PG-13"),
-        genre %in% c("Drama", "Comedy")
-      )
-
-    set.seed(123)
-    expect_doppelganger(
-      title = "default plot as expected",
-      fig = grouped_ggbetweenstats(
-        data = dat,
-        x = genre,
-        y = rating,
-        grouping.var = mpaa,
-        ggplot.component = ggplot2::labs(x = "Movie Genre")
-      )
+  # creating a smaller data frame
+  set.seed(123)
+  dat <- dplyr::sample_frac(movies_long, size = 0.25) |>
+    dplyr::filter(
+      mpaa %in% c("R", "PG-13"),
+      genre %in% c("Drama", "Comedy")
     )
 
-    set.seed(123)
-    expect_doppelganger(
-      title = "plot with outliers as expected",
-      fig = grouped_ggbetweenstats(
-        data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-        x                = mpaa,
-        y                = length,
-        grouping.var     = genre,
-        ggsignif.args    = list(textsize = 4, tip_length = 0.01),
-        p.adjust.method  = "bonferroni",
-        palette          = "default_jama",
-        package          = "ggsci",
-        plotgrid.args    = list(nrow = 1),
-        annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
+  set.seed(123)
+  expect_doppelganger(
+    title = "default plot as expected",
+    fig = grouped_ggbetweenstats(
+      data = dat,
+      x = genre,
+      y = rating,
+      grouping.var = mpaa,
+      ggplot.component = ggplot2::labs(x = "Movie Genre")
+    )
+  )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "plot with outliers as expected",
+    fig = grouped_ggbetweenstats(
+      data = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+      x = mpaa,
+      y = length,
+      grouping.var = genre,
+      ggsignif.args = list(textsize = 4, tip_length = 0.01),
+      p.adjust.method = "bonferroni",
+      palette = "ggsci::default_jama",
+      plotgrid.args = list(nrow = 1),
+      annotation.args = list(
+        title = "Differences in movie length by mpaa ratings for different genres"
       )
     )
-  }
-)
+  )
+})

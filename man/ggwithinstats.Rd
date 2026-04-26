@@ -9,9 +9,10 @@ ggwithinstats(
   x,
   y,
   type = "parametric",
+  subject.id = NULL,
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -22,8 +23,8 @@ ggwithinstats(
   subtitle = NULL,
   digits = 2L,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -37,8 +38,7 @@ ggwithinstats(
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 )
@@ -70,6 +70,17 @@ subject-1, subject-2, ..., pattern.}
 
 You can specify just the initial letter.}
 
+\item{subject.id}{Across repeated measures conditions, each row in the
+dataset must correspond to a unique unit (e.g., subject or participant).
+If your data frame is already in such a format, you can ignore the
+\code{subject.id} argument (the function will use row number to pair
+observations). \strong{But if you are not sure, it is always better to specify
+this argument.} Note that if there are any missing values (i.e., \code{NA}) in
+the dependent variable and the \code{subject.id} is not specified, they will be
+dropped using a list-wise approach. If you specify \code{subject.id}, partially
+observed subjects will still be shown in the plot, but inferential
+statistics will be computed using only complete repeated-measures pairs.}
+
 \item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
 Available options are:
 \itemize{
@@ -83,13 +94,13 @@ when you have multiple groups being compared and scores of pairwise
 comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
 will be displayed.}
 
+\item{pairwise.alpha}{Numeric alpha threshold used to decide which pairwise
+comparisons are displayed when \code{pairwise.display = "significant"} or
+\code{pairwise.display = "non-significant"} (Default: \code{0.05}).}
+
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
@@ -131,12 +142,14 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
 
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
-
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
+
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -156,7 +169,7 @@ If you want default centrality parameter, you can specify this using
 The default is to choose the same as \code{type} argument. You can specify this
 to be:
 \itemize{
-\item \code{"parameteric"} (for \strong{mean})
+\item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
 \item \code{robust} (for \strong{trimmed mean})
 \item \code{bayes} (for \strong{MAP estimator})
@@ -206,9 +219,9 @@ label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+\item{palette}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
@@ -292,6 +305,10 @@ The table below provides summary about:
 
 \subsection{within-subjects}{
 
+\strong{Data requirement}: Paired tests assume exactly \strong{one observation per subject
+per condition}. If your data has multiple trials per cell, aggregate first
+(e.g., take the mean).
+
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
    Parametric \tab 2 \tab Student's \emph{t}-test \tab \code{stats::t.test()} \cr
@@ -330,7 +347,7 @@ The table below provides summary about:
    Parametric \tab > 2 \tab Fisher's or Welch's one-way ANOVA \tab \code{stats::oneway.test()} \cr
    Non-parametric \tab > 2 \tab Kruskal-Wallis one-way ANOVA \tab \code{stats::kruskal.test()} \cr
    Robust \tab > 2 \tab Heteroscedastic one-way ANOVA for trimmed means \tab \code{WRS2::t1way()} \cr
-   Bayes Factor \tab > 2 \tab Fisher's ANOVA \tab \code{BayesFactor::anovaBF()} \cr
+   Bayesian \tab > 2 \tab Fisher's ANOVA \tab \code{BayesFactor::anovaBF()} \cr
 }
 
 
@@ -339,19 +356,24 @@ The table below provides summary about:
    Parametric \tab > 2 \tab partial eta-squared, partial omega-squared \tab Yes \tab \code{effectsize::omega_squared()}, \code{effectsize::eta_squared()} \cr
    Non-parametric \tab > 2 \tab rank epsilon squared \tab Yes \tab \code{effectsize::rank_epsilon_squared()} \cr
    Robust \tab > 2 \tab Explanatory measure of effect size \tab Yes \tab \code{WRS2::t1way()} \cr
-   Bayes Factor \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
+   Bayesian \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
 }
 
 }
 
 \subsection{within-subjects}{
 
+\strong{Data requirement}: Repeated measures tests assume a \emph{complete} design with
+exactly \strong{one observation per subject per condition}. If your data has multiple
+trials per cell, aggregate first (e.g., take the mean). Verify with
+\code{table(data$subject, data$condition)} — every cell should equal \code{1}.
+
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
    Parametric \tab > 2 \tab One-way repeated measures ANOVA \tab \code{afex::aov_ez()} \cr
    Non-parametric \tab > 2 \tab Friedman rank sum test \tab \code{stats::friedman.test()} \cr
    Robust \tab > 2 \tab Heteroscedastic one-way repeated measures ANOVA for trimmed means \tab \code{WRS2::rmanova()} \cr
-   Bayes Factor \tab > 2 \tab One-way repeated measures ANOVA \tab \code{BayesFactor::anovaBF()} \cr
+   Bayesian \tab > 2 \tab One-way repeated measures ANOVA \tab \code{BayesFactor::anovaBF()} \cr
 }
 
 
@@ -360,7 +382,7 @@ The table below provides summary about:
    Parametric \tab > 2 \tab partial eta-squared, partial omega-squared \tab Yes \tab \code{effectsize::omega_squared()}, \code{effectsize::eta_squared()} \cr
    Non-parametric \tab > 2 \tab Kendall's coefficient of concordance \tab Yes \tab \code{effectsize::kendalls_w()} \cr
    Robust \tab > 2 \tab Algina-Keselman-Penfield robust standardized difference average \tab Yes \tab \code{WRS2::wmcpAKP()} \cr
-   Bayes Factor \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
+   Bayesian \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
 }
 
 }
@@ -396,6 +418,10 @@ Not supported.
 
 \subsection{within-subjects}{
 
+\strong{Data requirement}: Paired pairwise tests assume exactly \strong{one observation per
+subject per condition}. If your data has multiple trials per cell, aggregate
+first (e.g., take the mean).
+
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab Test \tab \emph{p}-value adjustment? \tab Function used \cr
    Parametric \tab Student's \emph{t}-test \tab Yes \tab \code{stats::pairwise.t.test()} \cr
@@ -420,25 +446,46 @@ library(dplyr, warn.conflicts = FALSE)
 
 # create a plot
 p <- ggwithinstats(
-  data = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
-  x    = condition,
-  y    = desire,
-  type = "np"
+  data       = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x          = condition,
+  y          = desire,
+  type       = "np",
+  subject.id = subject
 )
 
 
 # looking at the plot
 p
 
+# if the data are already arranged in repeated-measures order, `subject.id`
+# can be omitted
+ggwithinstats(
+  data             = filter(bugs_long, condition \%in\% c("HDHF", "HDLF")),
+  x                = condition,
+  y                = desire,
+  pairwise.display = "none",
+  results.subtitle = FALSE
+)
+
 # extracting details from statistical tests
 extract_stats(p)
 
-# modifying defaults
+# use a stricter alpha threshold for significant pairwise comparisons
 ggwithinstats(
   data = bugs_long,
-  x    = condition,
-  y    = desire,
-  type = "robust"
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  pairwise.alpha = 0.001
+)
+
+# modifying defaults
+ggwithinstats(
+  data       = bugs_long,
+  x          = condition,
+  y          = desire,
+  type       = "robust",
+  subject.id = subject
 )
 
 # you can remove a specific geom to reduce complexity of the plot
@@ -446,6 +493,7 @@ ggwithinstats(
   data = bugs_long,
   x = condition,
   y = desire,
+  subject.id = subject,
   # to remove violin plot
   violin.args = list(width = 0, linewidth = 0, colour = NA),
   # to remove boxplot

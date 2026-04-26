@@ -23,6 +23,7 @@ README.html
 ^\.circleci$
 ^\.coveralls\.yml$
 ^\.covrignore$
+^\.git$
 ^\.github$
 ^\.github/ISSUE_TEMPLATE$
 ^\.github/workflows/R\.yaml$
@@ -34,6 +35,8 @@ README.html
 ^\cache$
 ^_pkgdown\.yaml$
 ^_pkgdown\.yml$
+^_typos\.toml$
+^air\.toml$
 ^appveyor\.yml$
 ^codecov\.yaml$
 ^codemeta\.json$
@@ -48,6 +51,7 @@ README.html
 ^paper.*$
 ^pkgdown$
 ^revdep$
+^robots\.txt$
 ^tests/manual$
 publication/*
 references.bib

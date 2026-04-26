@@ -6,7 +6,7 @@
 | Status | Usage | Miscellaneous |
 |----|----|----|
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
+| [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
 ## Raison d’être <img src="man/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360" />
 
@@ -130,13 +130,14 @@ supported in this package-
 
 Summary of Bayesian analysis
 
-| Analysis                        | Hypothesis testing | Estimation |
-|:--------------------------------|:-------------------|:-----------|
-| (one/two-sample) *t*-test       | ✅                 | ✅         |
-| one-way ANOVA                   | ✅                 | ✅         |
-| correlation                     | ✅                 | ✅         |
-| (one/two-way) contingency table | ✅                 | ✅         |
-| random-effects meta-analysis    | ✅                 | ✅         |
+| Analysis                     | Hypothesis testing | Estimation |
+|:-----------------------------|:-------------------|:-----------|
+| (one/two-sample) *t*-test    | ✅                 | ✅         |
+| one-way ANOVA                | ✅                 | ✅         |
+| correlation                  | ✅                 | ✅         |
+| (unpaired) contingency table | ✅                 | ✅         |
+| (paired) contingency table   | ✅                 | ❌         |
+| random-effects meta-analysis | ✅                 | ✅         |
 
 ## Statistical reporting
 
@@ -198,8 +199,7 @@ grouped_ggbetweenstats(
   grouping.var     = genre,
   ggsignif.args    = list(textsize = 4, tip_length = 0.01),
   p.adjust.method  = "bonferroni",
-  palette          = "default_jama",
-  package          = "ggsci",
+  palette          = "ggsci::default_jama",
   plotgrid.args    = list(nrow = 1),
   annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
 )
@@ -225,16 +225,22 @@ difference between the plot structure is that now the group means are
 connected by paths to highlight the fact that these data are paired with
 each other.
 
+If your repeated-measures data include an explicit subject identifier,
+it is recommended that you pass it via `subject.id`; rows with missing
+identifiers are ignored for paired grouping and repeated-measures
+statistics.
+
 ``` r
 set.seed(123)
 library(WRS2) ## for data
 library(afex) ## to run ANOVA
 
 ggwithinstats(
-  data    = WineTasting,
-  x       = Wine,
-  y       = Taste,
-  title   = "Wine tasting"
+  data       = WineTasting,
+  x          = Wine,
+  y          = Taste,
+  subject.id = Taster,
+  title      = "Wine tasting"
 )
 ```
 
@@ -259,6 +265,7 @@ grouped_ggwithinstats(
   data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
   x               = condition,
   y               = desire,
+  subject.id      = subject,
   type            = "np",
   xlab            = "Condition",
   ylab            = "Desire to kill an artrhopod",
@@ -483,11 +490,12 @@ to repeat the same operation across a **single** grouping variable:
 set.seed(123)
 
 grouped_ggcorrmat(
-  data         = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type         = "robust",
-  colors       = c("#cbac43", "white", "#550000"),
-  grouping.var = genre,
-  matrix.type  = "lower"
+  data            = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
+  type            = "robust",
+  colors          = c("#cbac43", "white", "#550000"),
+  grouping.var    = genre,
+  p.adjust.method = "fdr",
+  matrix.type     = "lower"
 )
 ```
 
@@ -520,8 +528,7 @@ ggpiestats(
   data         = mtcars,
   x            = am,
   y            = cyl,
-  package      = "wesanderson",
-  palette      = "Royal1",
+  palette      = "wesanderson::Royal1",
   title        = "Dataset: Motor Trend Car Road Tests",
   legend.title = "Transmission"
 )
@@ -548,8 +555,7 @@ grouped_ggpiestats(
   x            = cyl,
   grouping.var = am,
   label.repel  = TRUE,
-  package      = "ggsci",
-  palette      = "default_ucscgb"
+  palette      = "ggsci::default_ucscgb"
 )
 ```
 
@@ -566,10 +572,10 @@ For more, also read the following vignette:
 ### `ggbarstats()`
 
 In case you are not a fan of pie charts (for very good reasons), you can
-alternatively use `ggbarstats()` function which has a similar syntax.
+alternatively use `ggbarstats()` function which has a similar
+syntax—including support for one-sample goodness-of-fit tests.
 
-N.B. The *p*-values from one-sample proportion test are displayed on top
-of each bar.
+To study an interaction between two categorical variables:
 
 ``` r
 set.seed(123)
@@ -583,7 +589,7 @@ ggbarstats(
   xlab             = "movie genre",
   legend.title     = "MPAA rating",
   ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
-  palette          = "Set2"
+  palette          = "RColorBrewer::Set2"
 )
 ```
 
@@ -595,25 +601,24 @@ ggbarstats(
 effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
-And, needless to say, there is also a `grouped_` variant of this
-function-
+There is also a `grouped_` variant of this function that makes it easy
+to repeat the same operation across a **single** grouping variable.
+Following example is a case where the theoretical question is about
+proportions for different levels of a single nominal variable:
 
 ``` r
-## setup
 set.seed(123)
 
 grouped_ggbarstats(
   data         = mtcars,
-  x            = am,
-  y            = cyl,
-  grouping.var = vs,
-  package      = "wesanderson",
-  palette      = "Darjeeling2" # ,
-  # ggtheme      = ggthemes::theme_tufte(base_size = 12)
+  x            = cyl,
+  grouping.var = am,
+  label.repel  = TRUE,
+  palette      = "ggsci::default_ucscgb"
 )
 ```
 
-<img src="man/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing transmission and cylinder association for straight and V-shaped engine configurations" width="100%" />
+<img src="man/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%" />
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function
@@ -668,14 +673,14 @@ p <- ggbetweenstats(mtcars, cyl, mpg)
 
 # extracting expression present in the subtitle
 extract_subtitle(p)
-#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) ==
-#>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~
+#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == 
+#>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ 
 #>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")
 
 # extracting expression present in the caption
 extract_caption(p)
-#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" ==
-#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" ==
+#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == 
+#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == 
 #>     "0.71")
 
 # a list of tibbles containing statistical analysis summaries
@@ -689,9 +694,9 @@ extract_stats(p)
 #>   <chr>                                                    <chr>         <dbl>
 #> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
 #>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>
+#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>    
 #> 1       0.95    0.531         1 ncp         F                    32 <language>
-#>
+#> 
 #> $caption_data
 #> # A tibble: 6 × 17
 #>   term     pd prior.distribution prior.location prior.scale     bf10
@@ -711,39 +716,39 @@ extract_stats(p)
 #> 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
 #> 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
 #>   conf.level conf.low conf.high conf.method n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>
+#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
 #> 1       0.95    0.574     0.788 HDI            32 <language>
 #> 2       0.95    0.574     0.788 HDI            32 <language>
 #> 3       0.95    0.574     0.788 HDI            32 <language>
 #> 4       0.95    0.574     0.788 HDI            32 <language>
 #> 5       0.95    0.574     0.788 HDI            32 <language>
 #> 6       0.95    0.574     0.788 HDI            32 <language>
-#>
+#> 
 #> $pairwise_comparisons_data
 #> # A tibble: 3 × 9
 #>   group1 group2 statistic   p.value alternative distribution p.adjust.method
-#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>
-#> 1 4      6          -6.67 0.00110   two.sided   q            Holm
-#> 2 4      8         -10.7  0.0000140 two.sided   q            Holm
-#> 3 6      8          -7.48 0.000257  two.sided   q            Holm
+#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>          
+#> 1 4      6          -6.67 0.00110   two.sided   q            Holm           
+#> 2 4      8         -10.7  0.0000140 two.sided   q            Holm           
+#> 3 6      8          -7.48 0.000257  two.sided   q            Holm           
 #>   test         expression
-#>   <chr>        <list>
+#>   <chr>        <list>    
 #> 1 Games-Howell <language>
 #> 2 Games-Howell <language>
 #> 3 Games-Howell <language>
-#>
+#> 
 #> $descriptive_data
 #> NULL
-#>
+#> 
 #> $one_sample_data
 #> NULL
-#>
+#> 
 #> $tidy_data
 #> NULL
-#>
+#> 
 #> $glance_data
 #> NULL
-#>
+#> 
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"
 ```
@@ -768,7 +773,7 @@ set.seed(123)
 library(ggplot2)
 
 ## using `{ggstatsplot}` to get expression with statistical results
-stats_results <- ggbetweenstats(morley, Expt, Speed) %>% extract_subtitle()
+stats_results <- ggbetweenstats(morley, Expt, Speed) |> extract_subtitle()
 
 ## creating a custom plot of our choosing
 ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +

@@ -10,8 +10,8 @@ ggbetweenstats(
   y,
   type = "parametric",
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   p.adjust.method = "holm",
-  effsize.type = "unbiased",
   bf.prior = 0.707,
   bf.message = TRUE,
   results.subtitle = TRUE,
@@ -21,10 +21,9 @@ ggbetweenstats(
   title = NULL,
   subtitle = NULL,
   digits = 2L,
-  var.equal = FALSE,
   conf.level = 0.95,
-  nboot = 100L,
   tr = 0.2,
+  alternative = "two.sided",
   centrality.plotting = TRUE,
   centrality.type = type,
   centrality.point.args = list(size = 5, color = "darkred"),
@@ -36,8 +35,7 @@ ggbetweenstats(
   violin.args = list(width = 0.5, alpha = 0.2, na.rm = TRUE),
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 )
@@ -82,13 +80,13 @@ when you have multiple groups being compared and scores of pairwise
 comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
 will be displayed.}
 
+\item{pairwise.alpha}{Numeric alpha threshold used to decide which pairwise
+comparisons are displayed when \code{pairwise.display = "significant"} or
+\code{pairwise.display = "non-significant"} (Default: \code{0.05}).}
+
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-
-\item{effsize.type}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"eta"} (partial eta-squared) or \code{"omega"} (partial
-omega-squared).}
 
 \item{bf.prior}{A number between \code{0.5} and \code{2} (default \code{0.707}), the prior
 width to use in calculating Bayes factors and posterior estimates. In
@@ -126,21 +124,18 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{var.equal}{a logical variable indicating whether to treat the
-    two variances as being equal. If \code{TRUE} then the pooled
-    variance is used to estimate the variance otherwise the Welch
-    (or Satterthwaite) approximation to the degrees of freedom is used.}
-
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
 
-\item{nboot}{Number of bootstrap samples for computing confidence interval
-for the effect size (Default: \code{100L}).}
-
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
 \code{0.2}. Lowering the value might help.}
+
+\item{alternative}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -160,7 +155,7 @@ If you want default centrality parameter, you can specify this using
 The default is to choose the same as \code{type} argument. You can specify this
 to be:
 \itemize{
-\item \code{"parameteric"} (for \strong{mean})
+\item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
 \item \code{robust} (for \strong{trimmed mean})
 \item \code{bayes} (for \strong{MAP estimator})
@@ -199,9 +194,9 @@ label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{package, palette}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+\item{palette}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
@@ -229,6 +224,26 @@ For details, see:
    centrality measure label \tab \code{ggrepel::geom_label_repel()} \tab \code{centrality.label.args} \cr
    pairwise comparisons \tab \code{ggsignif::geom_signif()} \tab \code{ggsignif.args} \cr
 }
+}
+
+\section{Statistical defaults}{
+
+
+This function uses statistically justified defaults that are not
+user-configurable:
+\itemize{
+\item \strong{Effect sizes} are always \emph{unbiased} (Hedges' \emph{g} instead of Cohen's
+\emph{d}, omega-squared instead of eta-squared). Unbiased estimators correct
+for the positive bias present in their biased counterparts, especially in
+small samples, and are recommended for meta-analytic work.
+\item \strong{Welch's \emph{t}-test and one-way test} are used instead of Student's
+versions (i.e., equal variances are not assumed). Welch's test performs as
+well as Student's when variances \emph{are} equal and is substantially more
+accurate when they are not, making it the unconditionally better default.
+}
+
+Users who need non-default values for these settings can call
+\code{{statsExpressions}} directly.
 }
 
 \section{Centrality measures}{
@@ -283,6 +298,10 @@ The table below provides summary about:
 
 \subsection{within-subjects}{
 
+\strong{Data requirement}: Paired tests assume exactly \strong{one observation per subject
+per condition}. If your data has multiple trials per cell, aggregate first
+(e.g., take the mean).
+
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
    Parametric \tab 2 \tab Student's \emph{t}-test \tab \code{stats::t.test()} \cr
@@ -321,7 +340,7 @@ The table below provides summary about:
    Parametric \tab > 2 \tab Fisher's or Welch's one-way ANOVA \tab \code{stats::oneway.test()} \cr
    Non-parametric \tab > 2 \tab Kruskal-Wallis one-way ANOVA \tab \code{stats::kruskal.test()} \cr
    Robust \tab > 2 \tab Heteroscedastic one-way ANOVA for trimmed means \tab \code{WRS2::t1way()} \cr
-   Bayes Factor \tab > 2 \tab Fisher's ANOVA \tab \code{BayesFactor::anovaBF()} \cr
+   Bayesian \tab > 2 \tab Fisher's ANOVA \tab \code{BayesFactor::anovaBF()} \cr
 }
 
 
@@ -330,19 +349,24 @@ The table below provides summary about:
    Parametric \tab > 2 \tab partial eta-squared, partial omega-squared \tab Yes \tab \code{effectsize::omega_squared()}, \code{effectsize::eta_squared()} \cr
    Non-parametric \tab > 2 \tab rank epsilon squared \tab Yes \tab \code{effectsize::rank_epsilon_squared()} \cr
    Robust \tab > 2 \tab Explanatory measure of effect size \tab Yes \tab \code{WRS2::t1way()} \cr
-   Bayes Factor \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
+   Bayesian \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
 }
 
 }
 
 \subsection{within-subjects}{
 
+\strong{Data requirement}: Repeated measures tests assume a \emph{complete} design with
+exactly \strong{one observation per subject per condition}. If your data has multiple
+trials per cell, aggregate first (e.g., take the mean). Verify with
+\code{table(data$subject, data$condition)} — every cell should equal \code{1}.
+
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
    Parametric \tab > 2 \tab One-way repeated measures ANOVA \tab \code{afex::aov_ez()} \cr
    Non-parametric \tab > 2 \tab Friedman rank sum test \tab \code{stats::friedman.test()} \cr
    Robust \tab > 2 \tab Heteroscedastic one-way repeated measures ANOVA for trimmed means \tab \code{WRS2::rmanova()} \cr
-   Bayes Factor \tab > 2 \tab One-way repeated measures ANOVA \tab \code{BayesFactor::anovaBF()} \cr
+   Bayesian \tab > 2 \tab One-way repeated measures ANOVA \tab \code{BayesFactor::anovaBF()} \cr
 }
 
 
@@ -351,7 +375,7 @@ The table below provides summary about:
    Parametric \tab > 2 \tab partial eta-squared, partial omega-squared \tab Yes \tab \code{effectsize::omega_squared()}, \code{effectsize::eta_squared()} \cr
    Non-parametric \tab > 2 \tab Kendall's coefficient of concordance \tab Yes \tab \code{effectsize::kendalls_w()} \cr
    Robust \tab > 2 \tab Algina-Keselman-Penfield robust standardized difference average \tab Yes \tab \code{WRS2::wmcpAKP()} \cr
-   Bayes Factor \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
+   Bayesian \tab > 2 \tab Bayesian R-squared \tab Yes \tab \code{performance::r2_bayes()} \cr
 }
 
 }
@@ -387,6 +411,10 @@ Not supported.
 
 \subsection{within-subjects}{
 
+\strong{Data requirement}: Paired pairwise tests assume exactly \strong{one observation per
+subject per condition}. If your data has multiple trials per cell, aggregate
+first (e.g., take the mean).
+
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab Test \tab \emph{p}-value adjustment? \tab Function used \cr
    Parametric \tab Student's \emph{t}-test \tab Yes \tab \code{stats::pairwise.t.test()} \cr
@@ -419,6 +447,9 @@ ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "non-significant")
 
 # show all pairwise comparisons
 ggbetweenstats(mtcars, cyl, mpg, pairwise.display = "all")
+
+# use a stricter alpha threshold for significant pairwise comparisons
+ggbetweenstats(mtcars, cyl, mpg, pairwise.alpha = 0.001)
 
 # modifying defaults
 ggbetweenstats(

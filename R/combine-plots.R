@@ -64,6 +64,17 @@ combine_plots <- function(
   guides = "collect",
   ...
 ) {
+  annotation.args$theme <- Reduce(
+    f = `+`,
+    x = Filter(
+      Negate(is.null),
+      list(
+        ggplot2::theme(plot.title = ggplot2::element_text(face = "bold")),
+        annotation.args$theme
+      )
+    )
+  )
+
   exec(patchwork::wrap_plots, !!!plotlist, guides = guides, !!!plotgrid.args) +
     exec(patchwork::plot_annotation, !!!annotation.args)
 }

@@ -1,4 +1,4 @@
 # grouped_ggbetweenstats defaults
 
-    argument 1 is empty
+    `var` is absent but must be supplied.
 

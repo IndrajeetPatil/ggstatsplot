@@ -57,6 +57,10 @@ corresponding to the centrality parameter.}
 You can specify just the initial letter.}
     \item{\code{test.value}}{A number indicating the true value of the mean (Default:
 \code{0}).}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
     \item{\code{digits}}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
 to return scientific notation. Control the number of digits by adding the
@@ -75,8 +79,6 @@ addition to numeric arguments, several named values are also recognized:
 \code{"medium"}, \code{"wide"}, and \code{"ultrawide"}, corresponding to \emph{r} scale values
 of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
 value corresponds to scale for fixed effects.}
-    \item{\code{effsize.type}}{Type of effect size needed for \emph{parametric} tests. The
-argument can be \code{"d"} (for Cohen's \emph{d}) or \code{"g"} (for Hedge's \emph{g}).}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
@@ -106,7 +108,7 @@ If you want default centrality parameter, you can specify this using
 The default is to choose the same as \code{type} argument. You can specify this
 to be:
 \itemize{
-\item \code{"parameteric"} (for \strong{mean})
+\item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
 \item \code{robust} (for \strong{trimmed mean})
 \item \code{bayes} (for \strong{MAP estimator})

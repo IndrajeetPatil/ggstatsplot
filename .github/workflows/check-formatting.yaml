@@ -1,0 +1,8 @@
+name: check-formatting
+
+on:
+  pull_request:
+
+jobs:
+  format:
+    uses: IndrajeetPatil/workflows/.github/workflows/check-formatting.yaml@main

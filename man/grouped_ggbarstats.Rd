@@ -30,8 +30,7 @@ dropped.}
 Please note that if there are empty factor levels in your variable, they
 will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
 (a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run. This argument can not be \code{NULL}
-for \code{\link[=ggbarstats]{ggbarstats()}}.}
+appropriate association test will be run.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
@@ -43,6 +42,9 @@ on the label in each pie slice. Possible options are \code{"percentage"}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
 \code{\link[ggplot2:geom_text]{ggplot2::geom_label()}}.}
     \item{\code{legend.title}}{Title text for the legend.}
+    \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
+comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
+\code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
     \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
 favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
 parametric test} (Default: \code{TRUE}).}
@@ -57,9 +59,9 @@ if \code{bf.message = FALSE}.}
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{package,palette}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
+    \item{\code{palette}}{Name of the palette in \code{"package::palette"} format to be used
+for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+\code{View(paletteer::palettes_d_names)} to see all available options.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
@@ -88,6 +90,10 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
 will be computed.}
+    \item{\code{alternative}}{a character string specifying the alternative
+    hypothesis, must be one of \code{"two.sided"} (default),
+    \code{"greater"} or \code{"less"}.  You can specify just the initial
+    letter.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
 repeated measures design study (Default: \code{FALSE}).}
     \item{\code{counts}}{The variable in data containing counts, or \code{NULL} if each row
@@ -97,20 +103,6 @@ proportion test (should sum to \code{1}). Default is \code{NULL}, which means th
 is equal theoretical proportions across the levels of the nominal variable.
 E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
-    \item{\code{sampling.plan}}{Character describing the sampling plan. Possible options:
-\itemize{
-\item \code{"indepMulti"} (independent multinomial; default)
-\item \code{"poisson"}
-\item \code{"jointMulti"} (joint multinomial)
-\item \code{"hypergeom"} (hypergeometric).
-For more, see \code{\link[BayesFactor:contingencyTableBF]{BayesFactor::contingencyTableBF()}}.
-}}
-    \item{\code{fixed.margin}}{For the independent multinomial sampling plan, which
-margin is fixed (\code{"rows"} or \code{"cols"}). Defaults to \code{"rows"}.}
-    \item{\code{prior.concentration}}{Specifies the prior concentration parameter, set
-to \code{1} by default. It indexes the expected deviation from the null
-hypothesis under the alternative, and corresponds to Gunel and Dickey's
-(1974) \code{"a"} parameter.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
@@ -133,27 +125,17 @@ multiple levels of a given factor and combining the resulting plots using
 }
 \details{
 For details, see:
-\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html}
+\url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
-# for reproducibility
 set.seed(123)
-library(dplyr, warn.conflicts = FALSE)
-
-# let's create a smaller data frame first
-diamonds_short <- ggplot2::diamonds \%>\%
-  filter(cut \%in\% c("Very Good", "Ideal")) \%>\%
-  filter(clarity \%in\% c("SI1", "SI2", "VS1", "VS2")) \%>\%
-  sample_frac(size = 0.05)
-
+# grouped one-sample proportion test
 grouped_ggbarstats(
-  data = diamonds_short,
-  x = color,
-  y = clarity,
-  grouping.var = cut,
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(title = "Diamond quality by color and clarity")
+  data = mtcars,
+  x = cyl,
+  grouping.var = am,
+  annotation.args = list(title = "Cylinder distribution by transmission type")
 )
 \dontshow{\}) # examplesIf}
 }

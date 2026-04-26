@@ -1,0 +1,9 @@
+[default.extend-words]
+Gam = "Gam"
+Raison = "Raison"
+gam = "gam"
+iif = "iif"
+ttest = "ttest"
+
+[files]
+extend-exclude = ["*.bib", "*.csl", "*.csv", "*.html", "*.svg"]

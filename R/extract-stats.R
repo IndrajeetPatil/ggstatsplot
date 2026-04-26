@@ -48,24 +48,33 @@
 #' extract_stats(p2)
 #' @export
 extract_stats <- function(p) {
-  if (inherits(p, "patchwork")) purrr::map(.extract_plots(p), .extract_stats) else .extract_stats(p)
+  if (inherits(p, "patchwork")) {
+    purrr::map(.extract_plots(p), .extract_stats)
+  } else {
+    .extract_stats(p)
+  }
 }
 
-.extract_plots <- function(p) purrr::map(seq_along(p), \(i) magrittr::extract2(p, i))
+.extract_plots <- function(p) {
+  purrr::map(seq_along(p), \(i) p[[i]])
+}
 
 .pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
 
 .extract_stats <- function(p) {
   # styler: off
-  structure(list(
-    subtitle_data             = .pluck_plot_env(p, "subtitle_df"),
-    caption_data              = .pluck_plot_env(p, "caption_df"),
-    pairwise_comparisons_data = .pluck_plot_env(p, "mpc_df"),
-    descriptive_data          = .pluck_plot_env(p, "descriptive_df"),
-    one_sample_data           = .pluck_plot_env(p, "onesample_df"),
-    tidy_data                 = .pluck_plot_env(p, "tidy_df"),
-    glance_data               = .pluck_plot_env(p, "glance_df")
-  ), class = c("ggstatsplot_stats", "list"))
+  structure(
+    list(
+      subtitle_data = .pluck_plot_env(p, "subtitle_df"),
+      caption_data = .pluck_plot_env(p, "caption_df"),
+      pairwise_comparisons_data = .pluck_plot_env(p, "mpc_df"),
+      descriptive_data = .pluck_plot_env(p, "descriptive_df"),
+      one_sample_data = .pluck_plot_env(p, "onesample_df"),
+      tidy_data = .pluck_plot_env(p, "tidy_df"),
+      glance_data = .pluck_plot_env(p, "glance_df")
+    ),
+    class = c("ggstatsplot_stats", "list")
+  )
   # styler: on
 }
 
@@ -74,14 +83,26 @@ extract_stats <- function(p) {
 #' @export
 extract_subtitle <- function(p) {
   dat <- extract_stats(p)
-  .pluck_expression <- function(x) purrr::pluck(x, "subtitle_data", "expression", 1L)
-  if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
+  .pluck_expression <- function(x) {
+    purrr::pluck(x, "subtitle_data", "expression", 1L)
+  }
+  if (inherits(dat, "ggstatsplot_stats")) {
+    .pluck_expression(dat)
+  } else {
+    purrr::map(dat, .pluck_expression)
+  }
 }
 
 #' @rdname extract_stats
 #' @export
 extract_caption <- function(p) {
   dat <- extract_stats(p)
-  .pluck_expression <- function(x) purrr::pluck(x, "caption_data", "expression", 1L)
-  if (inherits(dat, "ggstatsplot_stats")) .pluck_expression(dat) else purrr::map(dat, .pluck_expression)
+  .pluck_expression <- function(x) {
+    purrr::pluck(x, "caption_data", "expression", 1L)
+  }
+  if (inherits(dat, "ggstatsplot_stats")) {
+    .pluck_expression(dat)
+  } else {
+    purrr::map(dat, .pluck_expression)
+  }
 }

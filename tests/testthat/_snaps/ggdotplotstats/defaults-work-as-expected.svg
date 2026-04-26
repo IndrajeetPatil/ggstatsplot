@@ -448,6 +448,6 @@
 <text transform='translate(495.80,300.37) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='83.16px' lengthAdjust='spacingAndGlyphs'>car manufacturer</text>
 <text transform='translate(701.47,300.37) rotate(90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='47.70px' lengthAdjust='spacingAndGlyphs'>percentile</text>
 <text x='544.89' y='37.35' style='font-size: 13.20px; font-family: sans;' textLength='7.34px' lengthAdjust='spacingAndGlyphs'>8</text>
-<text x='10.96' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='152.65px' lengthAdjust='spacingAndGlyphs'>defaults work as expected</text>
+<text x='10.96' y='14.56' style='font-size: 13.20px; font-weight: bold; font-family: sans;' textLength='152.65px' lengthAdjust='spacingAndGlyphs'>defaults work as expected</text>
 </g>
 </svg>

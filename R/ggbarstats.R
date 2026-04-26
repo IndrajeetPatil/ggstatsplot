@@ -18,6 +18,8 @@
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
+#' @inheritSection ggpiestats Pairwise comparisons
+#'
 #' @seealso \code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
@@ -29,8 +31,8 @@
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # creating a plot
-#' p <- ggbarstats(mtcars, x = vs, y = cyl)
+#' # one sample goodness of fit proportion test
+#' p <- ggbarstats(mtcars, vs)
 #'
 #' # looking at the plot
 #' p
@@ -38,8 +40,14 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
-#' # Bayesian analysis
-#' ggbarstats(mtcars, x = vs, y = cyl, type = "bayes")
+#' # association test (or contingency table analysis)
+#' ggbarstats(mtcars, vs, cyl)
+#'
+#' # with 3+ x levels, pairwise comparisons are available
+#' ggbarstats(mtcars, cyl, am)
+#'
+#' # Bayesian test
+#' ggbarstats(mtcars, vs, cyl, type = "bayes")
 #'
 #' # using pre-aggregated data with counts
 #' ggbarstats(as.data.frame(Titanic), x = Survived, y = Sex, counts = Freq)
@@ -47,7 +55,7 @@
 ggbarstats <- function(
   data,
   x,
-  y,
+  y = NULL,
   counts = NULL,
   type = "parametric",
   paired = FALSE,
@@ -60,10 +68,9 @@ ggbarstats <- function(
   digits.perc = 0L,
   bf.message = TRUE,
   ratio = NULL,
+  alternative = "two.sided",
   conf.level = 0.95,
-  sampling.plan = "indepMulti",
-  fixed.margin = "rows",
-  prior.concentration = 1.0,
+  p.adjust.method = "holm",
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -71,55 +78,65 @@ ggbarstats <- function(
   xlab = NULL,
   ylab = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
+  palette <- .validate_palette(palette)
+
   # data frame ------------------------------------------
 
-  # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- if (!quo_is_null(enquo(y))) ensym(y)
+  type <- extract_stats_type(type)
 
-  data %<>%
-    select({{ x }}, {{ y }}, .counts = {{ counts }}) %>%
-    tidyr::drop_na()
+  prep <- .pie_bar_data_prep(
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    counts = {{ counts }}
+  )
+  data <- prep$data
+  test <- prep$test
+  x_levels <- prep$x_levels
+  y_levels <- prep$y_levels
 
-  # untable the data frame based on the count for each observation
-  if (".counts" %in% names(data)) data %<>% tidyr::uncount(weights = .counts)
-
-  # x and y need to be a factor
-  data %<>% mutate(across(.cols = everything(), .fns = ~ as.factor(.x)))
-
-  # TO DO: until one-way table is supported by `BayesFactor`
-  if (nlevels(pull(data, {{ y }})) == 1L) c(bf.message, proportion.test) %<-% c(FALSE, FALSE) # nocov
-  if (type == "bayes") proportion.test <- FALSE
+  # nocov start
+  if (test == "two.way" && y_levels == 1L) {
+    bf.message <- FALSE
+    proportion.test <- FALSE
+  }
+  # nocov end
+  if (type == "bayes" || test == "one.way") {
+    proportion.test <- FALSE
+  }
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
+    stats_output <- .pie_bar_subtitle_caption(
       data = data,
       x = {{ x }},
       y = {{ y }},
+      type = type,
+      paired = paired,
+      bf.message = bf.message,
+      alternative = alternative,
       conf.level = conf.level,
       digits = digits,
-      paired = paired,
       ratio = ratio,
-      sampling.plan = sampling.plan,
-      fixed.margin = fixed.margin,
-      prior.concentration = prior.concentration
+      sampling.plan = "indepMulti",
+      fixed.margin = "rows",
+      prior.concentration = 1,
+      x_levels = x_levels,
+      y_levels = y_levels,
+      p.adjust.method = p.adjust.method
     )
-
-    subtitle_df <- .eval_f(contingency_table, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    # Bayes Factor caption
-    if (type != "bayes" && bf.message && isFALSE(paired)) {
-      caption_df <- .eval_f(contingency_table, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption %||% caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
+    mpc_df <- stats_output$mpc_df
   }
 
   # plot ------------------------------------------
@@ -127,61 +144,84 @@ ggbarstats <- function(
   # data frame with summary labels
   descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
 
-  # data frame containing all details needed for prop test
-  onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
+  # data frame containing all details needed for proportion test
+  if (test == "two.way") {
+    onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
+  }
 
   # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(package, palette, nlevels(pull(data, {{ x }})))
+  .is_palette_sufficient(palette, nlevels(pull(data, {{ x }})))
 
-  plotBar <- ggplot(descriptive_df, aes({{ y }}, perc, fill = {{ x }})) +
+  plotBar <- ggplot(
+    descriptive_df,
+    if (test == "one.way") {
+      aes(x = "", y = perc, fill = {{ x }})
+    } else {
+      aes({{ y }}, perc, fill = {{ x }})
+    }
+  ) +
     geom_bar(stat = "identity", position = "fill", color = "black") +
     scale_y_continuous(
-      labels       = ~ insight::format_percent(., digits = 0L),
-      breaks       = seq(from = 0.0, to = 1.0, by = 0.10),
+      labels = ~ insight::format_percent(., digits = 0L),
+      breaks = seq(from = 0.0, to = 1.0, by = 0.10),
       minor_breaks = seq(from = 0.05, to = 0.95, by = 0.10)
     ) +
     exec(
       geom_label,
-      mapping  = aes(label = .label, group = {{ x }}),
+      mapping = aes(label = .label, group = {{ x }}),
       position = position_fill(vjust = 0.5),
+      na.rm = TRUE,
+      show.legend = FALSE,
       !!!label.args
     ) +
     ggtheme +
     theme(panel.grid.major.x = element_blank()) +
     guides(fill = guide_legend(title = legend.title %||% as_name(x))) +
-    paletteer::scale_fill_paletteer_d(paste0(package, "::", palette), name = "")
+    paletteer::scale_fill_paletteer_d(palette, name = "", drop = FALSE)
 
   # proportion test ------------------------------------------
 
   if (isTRUE(proportion.test)) {
     plotBar <- plotBar +
       geom_text(
-        data    = onesample_df,
+        data = onesample_df,
         mapping = aes(x = {{ y }}, y = 1.05, label = .p.label, fill = NULL),
-        size    = 2.8,
-        parse   = TRUE
+        size = 2.8,
+        parse = TRUE
       )
   }
 
   # sample size -------------------------------------------------
 
-  plotBar <- plotBar +
-    exec(
-      geom_text,
-      data    = onesample_df,
-      mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
-      !!!sample.size.label.args
-    )
+  if (test == "two.way") {
+    plotBar <- plotBar +
+      exec(
+        geom_text,
+        data = onesample_df,
+        mapping = aes(x = {{ y }}, y = -0.05, label = N, fill = NULL),
+        !!!sample.size.label.args
+      )
+  } else {
+    plotBar <- plotBar +
+      exec(
+        annotate,
+        geom = "text",
+        x = "",
+        y = -0.05,
+        label = paste0("(n = ", .prettyNum(nrow(data)), ")"),
+        !!!sample.size.label.args
+      )
+  }
 
   # annotations ------------------------------------------
 
   plotBar +
     labs(
-      x        = xlab %||% as_name(y),
-      y        = ylab,
+      x = if (test == "two.way") (xlab %||% as_name(y)) else xlab,
+      y = ylab,
       subtitle = subtitle,
-      title    = title,
-      caption  = caption
+      title = title,
+      caption = caption
     ) +
     ggplot.component
 }
@@ -209,33 +249,13 @@ ggbarstats <- function(
 #' @autoglobal
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
-#' # for reproducibility
 #' set.seed(123)
-#' library(dplyr, warn.conflicts = FALSE)
-#'
-#' # let's create a smaller data frame first
-#' diamonds_short <- ggplot2::diamonds %>%
-#'   filter(cut %in% c("Very Good", "Ideal")) %>%
-#'   filter(clarity %in% c("SI1", "SI2", "VS1", "VS2")) %>%
-#'   sample_frac(size = 0.05)
-#'
+#' # grouped one-sample proportion test
 #' grouped_ggbarstats(
-#'   data = diamonds_short,
-#'   x = color,
-#'   y = clarity,
-#'   grouping.var = cut,
-#'   plotgrid.args = list(nrow = 2L),
-#'   annotation.args = list(title = "Diamond quality by color and clarity")
+#'   data = mtcars,
+#'   x = cyl,
+#'   grouping.var = am,
+#'   annotation.args = list(title = "Cylinder distribution by transmission type")
 #' )
 #' @export
-grouped_ggbarstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggbarstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggbarstats <- .make_grouped_fn(ggbarstats, .pre = .stabilize_x_factor)

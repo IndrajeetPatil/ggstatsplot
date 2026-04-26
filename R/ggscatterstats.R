@@ -34,6 +34,11 @@
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
 #'   respective `geom_`s from the `{ggside}` package to change the marginal
 #'   distribution histograms plots.
+#' @param xsidehistogram.scale,ysidehistogram.scale A list of arguments passed
+#'   to `ggside::scale_xsidey_continuous()` and
+#'   `ggside::scale_ysidex_continuous()`, respectively, to control the
+#'   scale of marginal histograms (e.g., `breaks`, `limits`, `transform`).
+#'   Default is `list()` (no modifications).
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
@@ -74,6 +79,18 @@
 #' # extracting details from statistical tests
 #' extract_stats(p)
 #'
+#' # customize marginal histogram bins and scales
+#' ggscatterstats(
+#'   mtcars,
+#'   x = wt,
+#'   y = mpg,
+#'   results.subtitle = FALSE,
+#'   xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, binwidth = 0.5),
+#'   ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, bins = 15),
+#'   xsidehistogram.scale = list(breaks = seq(0, 15, 5)),
+#'   ysidehistogram.scale = list(breaks = seq(0, 15, 5))
+#' )
+#'
 #' @export
 ggscatterstats <- function(
   data,
@@ -93,9 +110,16 @@ ggscatterstats <- function(
   point.width.jitter = 0,
   point.height.jitter = 0,
   point.label.args = list(size = 3, max.overlaps = 1e6),
-  smooth.line.args = list(linewidth = 1.5, color = "blue", method = "lm", formula = y ~ x),
-  xsidehistogram.args = list(fill = "#009E73", color = "black", na.rm = TRUE),
-  ysidehistogram.args = list(fill = "#D55E00", color = "black", na.rm = TRUE),
+  smooth.line.args = list(
+    linewidth = 1.5,
+    color = "blue",
+    method = "lm",
+    formula = y ~ x
+  ),
+  xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE),
+  ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE),
+  xsidehistogram.scale = list(),
+  ysidehistogram.scale = list(),
   xlab = NULL,
   ylab = NULL,
   title = NULL,
@@ -108,36 +132,41 @@ ggscatterstats <- function(
   # data ---------------------------------------
 
   # make sure both quoted and unquoted arguments are allowed
-  c(x, y) %<-% c(ensym(x), ensym(y))
-  type <- stats_type_switch(type)
+  x <- ensym(x)
+  y <- ensym(y)
+  type <- extract_stats_type(type)
 
-  data %<>% filter(!is.na({{ x }}), !is.na({{ y }}))
+  data <- filter(data, !is.na({{ x }}), !is.na({{ y }}))
 
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      conf.level = conf.level,
-      digits = digits,
-      tr = tr,
-      bf.prior = bf.prior
+    stats_output <- .subtitle_caption(
+      corr_test,
+      list(
+        data = data,
+        x = {{ x }},
+        y = {{ y }},
+        conf.level = conf.level,
+        digits = digits,
+        tr = tr,
+        bf.prior = bf.prior
+      ),
+      type,
+      bf.message
     )
-
-    subtitle_df <- .eval_f(corr_test, !!!.f.args, type = type)
-    subtitle <- .extract_expression(subtitle_df)
-
-    if (type == "parametric" && bf.message) {
-      caption_df <- .eval_f(corr_test, !!!.f.args, type = "bayes")
-      caption <- .extract_expression(caption_df)
-    }
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption %||% caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
   }
 
   # basic plot ------------------------------------------
 
-  pos <- position_jitter(width = point.width.jitter, height = point.height.jitter)
+  pos <- position_jitter(
+    width = point.width.jitter,
+    height = point.height.jitter
+  )
 
   plot_scatter <- ggplot(data, mapping = aes({{ x }}, {{ y }})) +
     exec(geom_point, position = pos, !!!point.args) +
@@ -149,7 +178,9 @@ ggscatterstats <- function(
     label.var <- ensym(label.var)
 
     # select data based on expression
-    if (!quo_is_null(enquo(label.expression))) data %<>% filter(!!enexpr(label.expression))
+    if (!quo_is_null(enquo(label.expression))) {
+      data <- filter(data, !!enexpr(label.expression))
+    }
 
     # display points labels using `geom_repel_label`
     plot_scatter <- plot_scatter +
@@ -167,11 +198,11 @@ ggscatterstats <- function(
 
   plot_scatter <- plot_scatter +
     labs(
-      x        = xlab %||% as_name(x),
-      y        = ylab %||% as_name(y),
-      title    = title,
+      x = xlab %||% as_name(x),
+      y = ylab %||% as_name(y),
+      title = title,
       subtitle = subtitle,
-      caption  = caption
+      caption = caption
     ) +
     ggtheme +
     ggplot.component
@@ -179,11 +210,26 @@ ggscatterstats <- function(
   # marginal  ---------------------------------------------
 
   if (isTRUE(marginal)) {
+    if (!any(c("bins", "binwidth") %in% names(xsidehistogram.args))) {
+      xsidehistogram.args[["bins"]] <- 30L
+    }
+    if (!any(c("bins", "binwidth") %in% names(ysidehistogram.args))) {
+      ysidehistogram.args[["bins"]] <- 30L
+    }
+
     plot_scatter <- plot_scatter +
-      .eval_f(ggside::geom_xsidehistogram, mapping = aes(y = after_stat(count)), !!!xsidehistogram.args) +
-      .eval_f(ggside::geom_ysidehistogram, mapping = aes(x = after_stat(count)), !!!ysidehistogram.args) +
-      ggside::scale_ysidex_continuous() +
-      ggside::scale_xsidey_continuous()
+      .eval_f(
+        ggside::geom_xsidehistogram,
+        mapping = aes(y = after_stat(count)),
+        !!!xsidehistogram.args
+      ) +
+      .eval_f(
+        ggside::geom_ysidehistogram,
+        mapping = aes(x = after_stat(count)),
+        !!!ysidehistogram.args
+      ) +
+      exec(ggside::scale_ysidex_continuous, !!!ysidehistogram.scale) +
+      exec(ggside::scale_xsidey_continuous, !!!xsidehistogram.scale)
   }
 
   plot_scatter
@@ -250,15 +296,18 @@ ggscatterstats <- function(
 #'   label.var       = "title",
 #'   annotation.args = list(tag_levels = "a")
 #' )
+#'
+#' # customize marginal histogram bins and scales
+#' grouped_ggscatterstats(
+#'   data = filter(movies_long, genre %in% c("Drama", "Comedy")),
+#'   x = rating,
+#'   y = length,
+#'   grouping.var = genre,
+#'   results.subtitle = FALSE,
+#'   xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, bins = 20),
+#'   ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, binwidth = 10),
+#'   xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
+#'   ysidehistogram.scale = list(breaks = seq(0, 200, 50))
+#' )
 #' @export
-grouped_ggscatterstats <- function(
-  data,
-  ...,
-  grouping.var,
-  plotgrid.args = list(),
-  annotation.args = list()
-) {
-  .grouped_list(data, {{ grouping.var }}) %>%
-    purrr::pmap(.f = ggscatterstats, ...) %>%
-    combine_plots(plotgrid.args, annotation.args)
-}
+grouped_ggscatterstats <- .make_grouped_fn(ggscatterstats)

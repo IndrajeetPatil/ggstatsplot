@@ -1,43 +1,207 @@
+#' @title Compute subtitle and caption for box/violin plots
+#' @name .bw_subtitle_caption
+#'
+#' @description
+#'
+#' Shared helper for `ggbetweenstats()` and `ggwithinstats()` that builds the
+#' argument list for the statistical test function and optionally computes a
+#' Bayes Factor caption.
+#'
+#' @param data Data frame for the statistical test.
+#' @param x,y Column name symbols for the grouping and response variables.
+#' @param test Character: `"t"` or `"anova"`.
+#' @param type Character: statistical test type (e.g. `"parametric"`).
+#' @param bf.message Logical: include Bayes Factor caption?
+#' @param paired Logical: whether the test is paired (within-subjects).
+#' @param subject.id Optional symbol for the subject identifier column
+#'   (within-subjects designs only; `NULL` by default, omitted when `NULL`).
+#' @inheritParams ggbetweenstats
+#'
+#' @return A list with elements `subtitle`, `caption`, `subtitle_df`, and
+#'   `caption_df`.
+#'
+#' @autoglobal
+#' @noRd
+.bw_subtitle_caption <- function(
+  data,
+  x,
+  y,
+  test,
+  type,
+  bf.message,
+  bf.prior,
+  conf.level,
+  digits,
+  tr,
+  alternative,
+  paired,
+  subject.id = NULL
+) {
+  .f.args <- list(
+    data = data,
+    x = as_string(x),
+    y = as_string(y),
+    conf.level = conf.level,
+    digits = digits,
+    tr = tr,
+    paired = paired,
+    bf.prior = bf.prior
+  )
+
+  if (!is.null(subject.id)) {
+    .f.args$subject.id <- subject.id
+  }
+  if (test == "t") {
+    .f.args$alternative <- alternative
+  }
+
+  .subtitle_caption(.f_switch(test), .f.args, type, bf.message)
+}
+
+
+#' @title Decorate a box/violin comparison plot
+#' @name .bw_decorate
+#'
+#' @description
+#'
+#' Adds centrality labels, sample-size x-axis labels, pairwise-comparison
+#' annotations (ggsignif), and final aesthetic theming shared by
+#' `ggbetweenstats()` and `ggwithinstats()`.
+#'
+#' @param plot A `ggplot` object to decorate.
+#' @param data Data frame used for plotting.
+#' @param pairwise_args A named list of extra arguments forwarded to
+#'   [statsExpressions::pairwise_comparisons()], typically containing `data`, `paired`,
+#'   `p.adjust.method`, and optionally `subject.id`.
+#' @inheritParams ggbetweenstats
+#' @inheritParams ggwithinstats
+#'
+#' @return A decorated `ggplot` object.
+#'
+#' @autoglobal
+#' @noRd
+.bw_decorate <- function(
+  plot,
+  data,
+  x,
+  y,
+  type,
+  test,
+  centrality.plotting,
+  centrality.type,
+  digits,
+  tr,
+  centrality.point.args,
+  centrality.label.args,
+  pairwise.display,
+  pairwise.alpha,
+  pairwise_args,
+  ggsignif.args,
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  ggtheme,
+  palette,
+  ggplot.component,
+  centrality.path = FALSE,
+  centrality.path.args = list()
+) {
+  x <- ensym(x)
+  y <- ensym(y)
+
+  # centrality tagging
+  if (isTRUE(centrality.plotting)) {
+    centrality_df <- suppressWarnings(centrality_description(
+      data,
+      !!x,
+      !!y,
+      type = extract_stats_type(centrality.type),
+      digits = digits,
+      tr = tr
+    ))
+
+    plot <- suppressWarnings(.centrality_ggrepel(
+      plot = plot,
+      centrality_df = centrality_df,
+      x = !!x,
+      y = !!y,
+      centrality.path = centrality.path,
+      centrality.path.args = centrality.path.args,
+      centrality.point.args = centrality.point.args,
+      centrality.label.args = centrality.label.args
+    ))
+  } else {
+    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y)) # nocov
+  }
+
+  # sample size labels on x-axis
+  plot <- plot +
+    scale_x_discrete(labels = unique(centrality_df$n.expression))
+
+  # ggsignif labels
+  seclabel <- NULL
+
+  if (pairwise.display != "none" && test == "anova") {
+    pw_args <- c(
+      list(x = x, y = y, type = type, tr = tr, digits = digits),
+      pairwise_args
+    )
+    mpc_df <- suppressWarnings(inject(pairwise_comparisons(!!!pw_args)))
+
+    assign("mpc_df", mpc_df, envir = plot$plot_env)
+
+    plot <- .ggsignif_adder(
+      plot = plot,
+      mpc_df = mpc_df,
+      data = data,
+      x = !!x,
+      y = !!y,
+      pairwise.display = pairwise.display,
+      pairwise.alpha = pairwise.alpha,
+      ggsignif.args = ggsignif.args
+    )
+
+    seclabel <- .pairwise_seclabel(
+      test.description = unique(mpc_df$test),
+      pairwise.display = ifelse(type == "bayes", "all", pairwise.display),
+      pairwise.alpha = pairwise.alpha
+    )
+  }
+
+  # annotations
+  .aesthetic_addon(
+    plot = plot,
+    x = pull(data, !!x),
+    xlab = xlab,
+    ylab = ylab,
+    title = title,
+    subtitle = subtitle,
+    caption = caption,
+    seclabel = seclabel,
+    ggtheme = ggtheme,
+    palette = palette,
+    ggplot.component = ggplot.component
+  )
+}
+
+
 #' @title Adding labels for mean values.
 #' @name .centrality_ggrepel
 #'
 #' @param plot A `ggplot` object for which means are to be displayed.
-#' @param ... Additional arguments.
+#' @param centrality_df A data frame produced by
+#'   [statsExpressions::centrality_description()].
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggwithinstats
 #' @inheritParams ggrepel::geom_label_repel
 #'
 #' @autoglobal
-#'
-#' @examples
-#' # this internal function may not have much utility outside of the package
-#' set.seed(123)
-#' library(ggplot2)
-#'
-#' # make a plot
-#' p <- ggplot(data = iris, aes(x = Species, y = Sepal.Length)) +
-#'   geom_boxplot()
-#'
-#' # add means
-#' ggstatsplot:::.centrality_ggrepel(
-#'   data = iris,
-#'   plot = p,
-#'   x = Species,
-#'   y = Sepal.Length
-#' )
-#'
-#' # with path connecting centrality values
-#' ggstatsplot:::.centrality_ggrepel(
-#'   data = iris,
-#'   plot = p,
-#'   x = Species,
-#'   y = Sepal.Length,
-#'   centrality.path = TRUE
-#' )
 #' @noRd
 .centrality_ggrepel <- function(
   plot,
-  data,
+  centrality_df,
   x,
   y,
   centrality.path = FALSE,
@@ -51,11 +215,8 @@
     size = 3.0,
     nudge_x = 0.4,
     segment.linetype = 4.0
-  ),
-  ...
+  )
 ) {
-  centrality_df <- suppressWarnings(centrality_description(data, {{ x }}, {{ y }}, ...))
-
   # lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
     plot <- plot +
@@ -83,8 +244,7 @@
       inherit.aes = FALSE,
       parse = TRUE,
       !!!centrality.label.args
-    ) + # adding sample size labels to the x axes
-    scale_x_discrete(labels = unique(centrality_df$n.expression))
+    )
 }
 
 #' @title Adding `geom_signif` to `ggplot`
@@ -129,16 +289,24 @@
   y,
   mpc_df,
   pairwise.display = "significant",
+  pairwise.alpha = 0.05,
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
   ...
 ) {
   # creating a column for group combinations
-  mpc_df %<>% mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c))
+  mpc_df <- mutate(
+    mpc_df,
+    groups = purrr::pmap(.l = list(group1, group2), .f = c)
+  )
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
-    if (startsWith(pairwise.display, "s")) mpc_df %<>% filter(p.value < 0.05) # sig
-    if (startsWith(pairwise.display, "n")) mpc_df %<>% filter(p.value >= 0.05) # non-sig
+    if (startsWith(pairwise.display, "s")) {
+      mpc_df <- filter(mpc_df, p.value < pairwise.alpha)
+    } # sig
+    if (startsWith(pairwise.display, "n")) {
+      mpc_df <- filter(mpc_df, p.value >= pairwise.alpha)
+    } # non-sig
 
     # proceed only if there are any significant comparisons to display
     if (nrow(mpc_df) == 0L) {
@@ -147,7 +315,7 @@
   }
 
   # arrange the data frame so that annotations are properly aligned
-  mpc_df %<>% arrange(group1, group2)
+  mpc_df <- arrange(mpc_df, group1, group2)
 
   # adding ggsignif comparisons to the plot
   plot +
@@ -202,6 +370,8 @@
 #'   You can use this argument to make sure that your plot is not uber-cluttered
 #'   when you have multiple groups being compared and scores of pairwise
 #'   comparisons being displayed.
+#' @param pairwise.alpha Numeric alpha threshold used to decide which pairwise
+#'   comparisons are displayed.
 #'
 #' @examples
 #' .pairwise_seclabel("Student's t-test")
@@ -211,12 +381,20 @@
 #'
 #' # all pairwise comparisons
 #' .pairwise_seclabel("Student's t-test", pairwise.display = "all")
+#'
+#' # custom alpha threshold
+#' .pairwise_seclabel("Student's t-test", pairwise.alpha = 0.01)
 #' @keywords internal
 #' @autoglobal
 #' @noRd
-.pairwise_seclabel <- function(test.description, pairwise.display = "significant") {
+.pairwise_seclabel <- function(
+  test.description,
+  pairwise.display = "significant",
+  pairwise.alpha = 0.05
+) {
   # single quote (') needs to be escaped inside glue expressions
   test <- sub("'", "\\'", test.description, fixed = TRUE)
+  alpha_label <- format(pairwise.alpha, scientific = FALSE, trim = TRUE)
 
   # which comparisons were displayed?
   display <- if (startsWith(pairwise.display, "s")) {
@@ -227,7 +405,11 @@
     "all"
   }
 
-  parse(text = glue("list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'))"))
+  parse(
+    text = glue(
+      "list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'), alpha == {alpha_label})"
+    )
+  )
 }
 
 
@@ -251,28 +433,29 @@
   caption = NULL,
   seclabel = NULL,
   ggtheme = ggstatsplot::theme_ggstatsplot(),
-  package = "RColorBrewer",
-  palette = "Dark2",
+  palette = "ggthemes::gdoc",
   ggplot.component = NULL,
   ...
 ) {
   # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(package, palette, nlevels(x))
+  .is_palette_sufficient(palette, nlevels(x))
 
   plot +
     labs(
-      x        = xlab,
-      y        = ylab,
-      title    = title,
+      x = xlab,
+      y = ylab,
+      title = title,
       subtitle = subtitle,
-      caption  = caption,
-      color    = xlab
+      caption = caption,
+      color = xlab
     ) +
     ggtheme +
     # no matter the theme, the following ought to be part of a ggstatsplot plot
-    theme(legend.position = "none") +
-    paletteer::scale_color_paletteer_d(paste0(package, "::", palette)) +
-    scale_y_continuous(sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)) +
+    theme(legend.position = "none", panel.grid.major.x = element_blank()) +
+    paletteer::scale_color_paletteer_d(palette) +
+    scale_y_continuous(
+      sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)
+    ) +
     # this is the hail mary way for users to override these defaults
     ggplot.component
 }

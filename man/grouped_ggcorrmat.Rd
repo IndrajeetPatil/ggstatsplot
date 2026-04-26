@@ -33,11 +33,13 @@ display full matrix, lower triangular or upper triangular matrix.}
 \emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
 correlation coefficient is regarded as insignificant and flagged as such in
 the plot.}
-    \item{\code{colors}}{A vector of 3 colors for low, mid, and high correlation values.
-If set to \code{NULL}, manual specification of colors will be turned off and 3
-colors from the specified \code{palette} from \code{package} will be selected.}
     \item{\code{pch}}{Decides the point shape to be used for insignificant correlation
 coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
+    \item{\code{colors}}{A character vector of exactly three colors for the gradient:
+low (negative correlations), mid (zero), and high (positive correlations).
+Must be a \strong{diverging} palette so that the sign of the correlation is
+visually obvious.
+Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} function. The list should
 avoid any of the following arguments since they are already internally
@@ -81,9 +83,6 @@ if \code{bf.message = FALSE}.}
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{package,palette}}{Name of the package from which the given palette is to
-be extracted. The available palettes and packages can be checked by running
-\code{View(paletteer::palettes_d_names)}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
@@ -121,6 +120,7 @@ grouped_ggcorrmat(
   data = iris,
   grouping.var = Species,
   type = "robust",
+  colors = c("#0072B2", "white", "#D55E00"),
   p.adjust.method = "holm",
   plotgrid.args = list(ncol = 1L),
   annotation.args = list(tag_levels = "i")
