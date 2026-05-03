@@ -19,7 +19,7 @@ be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=ggpiestats]{ggpiestats}}
+  Arguments passed on to \code{\link{ggpiestats}}
   \describe{
     \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Please
 note that if there are empty factor levels in your variable, they will be
@@ -38,7 +38,7 @@ percentage labels (Default: \code{0L}).}
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
-\code{\link[ggplot2:geom_text]{ggplot2::geom_label()}}.}
+\code{\link[ggplot2:geom_label]{ggplot2::geom_label()}}.}
     \item{\code{label.repel}}{Whether labels should be repelled using \code{{ggrepel}}
 package. This can be helpful in case of overlapping labels.}
     \item{\code{legend.title}}{Title text for the legend.}
@@ -60,11 +60,11 @@ by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{palette}}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
