@@ -64,7 +64,9 @@ make install_deps # Install/update dependencies
 ### Testing
 
 - Framework: `testthat` (edition 3) with parallel execution
-- Run tests: `devtools::test()` or `make check`
+- Run tests:
+  [`devtools::test()`](https://devtools.r-lib.org/reference/test.html)
+  or `make check`
 - **Snapshot tests**: Used for plot output verification via `vdiffr`
 - Test files mirror source files: `R/ggbetweenstats.R` -\>
   `tests/testthat/test-ggbetweenstats.R`
@@ -86,7 +88,9 @@ test_that("descriptive name", {
 
 ### Style
 
-- **Linting**: Uses `lintr::all_linters()` with exceptions in `.lintr`
+- **Linting**: Uses
+  [`lintr::all_linters()`](https://lintr.r-lib.org/reference/all_linters.html)
+  with exceptions in `.lintr`
 - **Formatting**: `styler::style_pkg()` (run via `make format`)
 - **Naming**: snake_case for functions and variables
 - **Pipes**: Use base R `|>` pipe (NOT magrittr `%>%`)
