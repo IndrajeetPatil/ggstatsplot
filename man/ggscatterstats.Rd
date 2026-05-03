@@ -113,7 +113,7 @@ displaying the \strong{points} and the other displaying the *\strong{labels} for
 these points.}
 
 \item{point.label.args}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
+to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
 
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
 to \code{geom_smooth} geom used to display the regression line.}
@@ -144,7 +144,7 @@ if \code{bf.message = FALSE}.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
@@ -169,7 +169,7 @@ For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \note{
-The plot uses \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}} to attempt to keep labels
+The plot uses \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} to attempt to keep labels
 from over-lapping to the largest degree possible. As a consequence plot
 times will slow down massively (and the plot file will grow in size) if you
 have a lot of labels that overlap.

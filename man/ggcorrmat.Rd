@@ -103,7 +103,7 @@ being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{gg
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,

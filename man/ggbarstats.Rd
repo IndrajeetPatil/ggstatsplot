@@ -76,7 +76,7 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{label.args}{Additional aesthetic arguments that will be passed to
-\code{\link[ggplot2:geom_text]{ggplot2::geom_label()}}.}
+\code{\link[ggplot2:geom_label]{ggplot2::geom_label()}}.}
 
 \item{sample.size.label.args}{Additional aesthetic arguments that will be
 passed to \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
@@ -136,7 +136,7 @@ variable name for \code{y} will be used.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
@@ -146,7 +146,7 @@ label on the secondary Y-axis. Some themes (e.g.
 thus the details as well.}
 
 \item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared

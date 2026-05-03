@@ -12,7 +12,7 @@ A \code{ggplot} object.
 \description{
 Common theme used across all plots generated in \code{{ggstatsplot}} and \emph{assumed}
 by the author to be aesthetically pleasing to the user. The theme is a
-wrapper around \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}.
+wrapper around \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}.
 
 All \code{{ggstatsplot}} functions have a \code{ggtheme} parameter that let you choose
 a different theme.

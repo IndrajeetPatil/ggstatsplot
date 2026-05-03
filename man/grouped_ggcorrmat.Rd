@@ -17,7 +17,7 @@ grouped_ggcorrmat(
 \item{data}{A data frame from which variables specified are to be taken.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=ggcorrmat]{ggcorrmat}}
+  Arguments passed on to \code{\link{ggcorrmat}}
   \describe{
     \item{\code{cor.vars}}{List of variables for which the correlation matrix is to be
 computed and visualized. If \code{NULL} (default), all numeric variables from
@@ -85,7 +85,7 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,

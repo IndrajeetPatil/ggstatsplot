@@ -20,7 +20,7 @@ be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=ggscatterstats]{ggscatterstats}}
+  Arguments passed on to \code{\link{ggscatterstats}}
   \describe{
     \item{\code{label.var}}{Variable to use for points labels entered as a symbol (e.g.
 \code{var1}).}
@@ -29,7 +29,7 @@ determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
 While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will have to provide
 a quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
+to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
     \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
 to \code{geom_smooth} geom used to display the regression line.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
@@ -102,7 +102,7 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,

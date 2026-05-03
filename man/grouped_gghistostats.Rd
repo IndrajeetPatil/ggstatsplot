@@ -38,13 +38,13 @@ separately specified here.}
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 
 \item{...}{
-  Arguments passed on to \code{\link[=gghistostats]{gghistostats}}
+  Arguments passed on to \code{\link{gghistostats}}
   \describe{
     \item{\code{bin.args}}{A list of additional aesthetic arguments to be passed to the
 \code{stat_bin} used to display the bins. Do not specify \code{binwidth} argument in
 this list since it has already been specified using the dedicated argument.}
     \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
-passed to the \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}} used to display the lines
+passed to the \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}} used to display the lines
 corresponding to the centrality parameter.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
@@ -121,7 +121,7 @@ variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,

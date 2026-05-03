@@ -72,7 +72,7 @@ relevant if a data frame with estimates and their standard errors is
 entered.}
 
 \item{meta.type}{Type of statistics used to carry out random-effects
-meta-analysis. If \code{"parametric"} (default), \code{\link[metafor:rma.uni]{metafor::rma()}} will be
+meta-analysis. If \code{"parametric"} (default), \code{\link[metafor:rma]{metafor::rma()}} will be
 used. If \code{"robust"}, \code{\link[metaplus:metaplus]{metaplus::metaplus()}} will be used. If \code{"bayes"},
 \code{\link[metaBMA:meta_random]{metaBMA::meta_random()}} will be used.}
 
@@ -125,15 +125,15 @@ be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
 \code{palette} (Default: \code{"Dark2"}).}
 
 \item{stats.label.args}{Additional arguments that will be passed to
-\code{\link[ggrepel:geom_text_repel]{ggrepel::geom_label_repel()}}.}
+\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}.}
 
 \item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:ggplot2-scales-discrete]{paletteer::scale_color_paletteer_d()}}. Run
+for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
 that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
