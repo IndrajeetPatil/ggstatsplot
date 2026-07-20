@@ -3,6 +3,7 @@
 .ls-lint.yml
 README.html
 ^.*\.Rproj$
+^AGENTS\.md$
 ^API$
 ^CITATION\.cff$
 ^CODE_OF_CONDUCT\.md$
