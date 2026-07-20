@@ -64,159 +64,157 @@ grouped_gghistostats(
 
   `bin.args`
 
-  :   A list of additional aesthetic arguments to be passed to the
-      `stat_bin` used to display the bins. Do not specify `binwidth`
-      argument in this list since it has already been specified using
-      the dedicated argument.
+  : A list of additional aesthetic arguments to be passed to the
+    `stat_bin` used to display the bins. Do not specify `binwidth`
+    argument in this list since it has already been specified using the
+    dedicated argument.
 
   `centrality.line.args`
 
-  :   A list of additional aesthetic arguments to be passed to the
-      [`ggplot2::geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
-      used to display the lines corresponding to the centrality
-      parameter.
+  : A list of additional aesthetic arguments to be passed to the
+    [`ggplot2::geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+    used to display the lines corresponding to the centrality parameter.
 
   `type`
 
-  :   A character specifying the type of statistical approach:
+  : A character specifying the type of statistical approach:
 
-      - `"parametric"`
+    - `"parametric"`
 
-      - `"nonparametric"`
+    - `"nonparametric"`
 
-      - `"robust"`
+    - `"robust"`
 
-      - `"bayes"`
+    - `"bayes"`
 
-      You can specify just the initial letter.
+    You can specify just the initial letter.
 
   `test.value`
 
-  :   A number indicating the true value of the mean (Default: `0`).
+  : A number indicating the true value of the mean (Default: `0`).
 
   `alternative`
 
-  :   a character string specifying the alternative hypothesis, must be
-      one of `"two.sided"` (default), `"greater"` or `"less"`. You can
-      specify just the initial letter.
+  : a character string specifying the alternative hypothesis, must be
+    one of `"two.sided"` (default), `"greater"` or `"less"`. You can
+    specify just the initial letter.
 
   `digits`
 
-  :   Number of digits for rounding or significant figures. May also be
-      `"signif"` to return significant figures or `"scientific"` to
-      return scientific notation. Control the number of digits by adding
-      the value as suffix, e.g. `digits = "scientific4"` to have
-      scientific notation with 4 decimal places, or `digits = "signif5"`
-      for 5 significant figures (see also
-      [`signif()`](https://rdrr.io/r/base/Round.html)).
+  : Number of digits for rounding or significant figures. May also be
+    `"signif"` to return significant figures or `"scientific"` to return
+    scientific notation. Control the number of digits by adding the
+    value as suffix, e.g. `digits = "scientific4"` to have scientific
+    notation with 4 decimal places, or `digits = "signif5"` for 5
+    significant figures (see also
+    [`signif()`](https://rdrr.io/r/base/Round.html)).
 
   `conf.level`
 
-  :   Scalar between `0` and `1` (default: `95%` confidence/credible
-      intervals, `0.95`). If `NULL`, no confidence intervals will be
-      computed.
+  : Scalar between `0` and `1` (default: `95%` confidence/credible
+    intervals, `0.95`). If `NULL`, no confidence intervals will be
+    computed.
 
   `tr`
 
-  :   Trim level for the mean when carrying out `robust` tests. In case
-      of an error, try reducing the value of `tr`, which is by default
-      set to `0.2`. Lowering the value might help.
+  : Trim level for the mean when carrying out `robust` tests. In case of
+    an error, try reducing the value of `tr`, which is by default set to
+    `0.2`. Lowering the value might help.
 
   `bf.prior`
 
-  :   A number between `0.5` and `2` (default `0.707`), the prior width
-      to use in calculating Bayes factors and posterior estimates. In
-      addition to numeric arguments, several named values are also
-      recognized: `"medium"`, `"wide"`, and `"ultrawide"`, corresponding
-      to *r* scale values of `1/2`, `sqrt(2)/2`, and `1`, respectively.
-      In case of an ANOVA, this value corresponds to scale for fixed
-      effects.
+  : A number between `0.5` and `2` (default `0.707`), the prior width to
+    use in calculating Bayes factors and posterior estimates. In
+    addition to numeric arguments, several named values are also
+    recognized: `"medium"`, `"wide"`, and `"ultrawide"`, corresponding
+    to *r* scale values of `1/2`, `sqrt(2)/2`, and `1`, respectively. In
+    case of an ANOVA, this value corresponds to scale for fixed effects.
 
   `xlab`
 
-  :   Label for `x` axis variable. If `NULL` (default), variable name
-      for `x` will be used.
+  : Label for `x` axis variable. If `NULL` (default), variable name for
+    `x` will be used.
 
   `bf.message`
 
-  :   Logical that decides whether to display Bayes Factor in favor of
-      the *null* hypothesis. This argument is relevant only **for
-      parametric test** (Default: `TRUE`).
+  : Logical that decides whether to display Bayes Factor in favor of the
+    *null* hypothesis. This argument is relevant only **for parametric
+    test** (Default: `TRUE`).
 
   `results.subtitle`
 
-  :   Decides whether the results of statistical tests are to be
-      displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
-      the plot will be returned.
+  : Decides whether the results of statistical tests are to be displayed
+    as a subtitle (Default: `TRUE`). If set to `FALSE`, only the plot
+    will be returned.
 
   `subtitle`
 
-  :   The text for the plot subtitle. Will work only if
-      `results.subtitle = FALSE`.
+  : The text for the plot subtitle. Will work only if
+    `results.subtitle = FALSE`.
 
   `caption`
 
-  :   The text for the plot caption. This argument is relevant only if
-      `bf.message = FALSE`.
+  : The text for the plot caption. This argument is relevant only if
+    `bf.message = FALSE`.
 
   `centrality.plotting`
 
-  :   Logical that decides whether centrality tendency measure is to be
-      displayed as a point with a label (Default: `TRUE`). Function
-      decides which central tendency measure to show depending on the
-      `type` argument.
+  : Logical that decides whether centrality tendency measure is to be
+    displayed as a point with a label (Default: `TRUE`). Function
+    decides which central tendency measure to show depending on the
+    `type` argument.
 
-      - **mean** for parametric statistics
+    - **mean** for parametric statistics
 
-      - **median** for non-parametric statistics
+    - **median** for non-parametric statistics
 
-      - **trimmed mean** for robust statistics
+    - **trimmed mean** for robust statistics
 
-      - **MAP estimator** for Bayesian statistics
+    - **MAP estimator** for Bayesian statistics
 
-      If you want default centrality parameter, you can specify this
-      using `centrality.type` argument.
+    If you want default centrality parameter, you can specify this using
+    `centrality.type` argument.
 
   `centrality.type`
 
-  :   Decides which centrality parameter is to be displayed. The default
-      is to choose the same as `type` argument. You can specify this to
-      be:
+  : Decides which centrality parameter is to be displayed. The default
+    is to choose the same as `type` argument. You can specify this to
+    be:
 
-      - `"parametric"` (for **mean**)
+    - `"parametric"` (for **mean**)
 
-      - `"nonparametric"` (for **median**)
+    - `"nonparametric"` (for **median**)
 
-      - `robust` (for **trimmed mean**)
+    - `robust` (for **trimmed mean**)
 
-      - `bayes` (for **MAP estimator**)
+    - `bayes` (for **MAP estimator**)
 
-      Just as `type` argument, abbreviations are also accepted.
+    Just as `type` argument, abbreviations are also accepted.
 
   `ggplot.component`
 
-  :   A `ggplot` component to be added to the plot prepared by
-      `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-      variants of all primary functions. Default is `NULL`. The argument
-      should be entered as a `{ggplot2}` function or a list of
-      `{ggplot2}` functions.
+  : A `ggplot` component to be added to the plot prepared by
+    `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
+    variants of all primary functions. Default is `NULL`. The argument
+    should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
+    functions.
 
   `ggtheme`
 
-  :   A `{ggplot2}` theme. Default value is
-      [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-      Any of the `{ggplot2}` themes (e.g.,
-      [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-      or themes from extension packages are allowed (e.g.,
-      `ggthemes::theme_fivethirtyeight()`,
-      `hrbrthemes::theme_ipsum_ps()`, etc.). But note that sometimes
-      these themes will remove some of the details that `{ggstatsplot}`
-      plots typically contains. For example, if relevant,
-      [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-      shows details about multiple comparison test as a label on the
-      secondary Y-axis. Some themes (e.g.
-      `ggthemes::theme_fivethirtyeight()`) will remove the secondary
-      Y-axis and thus the details as well.
+  : A `{ggplot2}` theme. Default value is
+    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
+    Any of the `{ggplot2}` themes (e.g.,
+    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
+    or themes from extension packages are allowed (e.g.,
+    `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
+    etc.). But note that sometimes these themes will remove some of the
+    details that `{ggstatsplot}` plots typically contains. For example,
+    if relevant,
+    [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+    shows details about multiple comparison test as a label on the
+    secondary Y-axis. Some themes (e.g.
+    `ggthemes::theme_fivethirtyeight()`) will remove the secondary
+    Y-axis and thus the details as well.
 
 ## Details
 

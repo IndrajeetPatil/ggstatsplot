@@ -31,7 +31,7 @@ ggstatsplot:::.grouped_list(ggplot2::msleep, grouping.var = vore)
 #>   tbl_df<
 #>     name        : character
 #>     genus       : character
-#>     vore        : factor<0f172>
+#>     vore        : factor<7e9e3>
 #>     order       : character
 #>     conservation: character
 #>     sleep_total : double
