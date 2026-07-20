@@ -157,8 +157,8 @@ test_that("pairwise.alpha controls displayed pairwise comparisons", {
   )
 
   layer_params <- fig$layers[[length(fig$layers)]]$stat_params
-  sec_axis_name <- paste(
-    deparse(fig$scales$get_scales("y")$secondary.axis$name),
+  sec_axis_name <- deparse1(
+    fig$scales$get_scales("y")$secondary.axis$name,
     collapse = " "
   )
 
