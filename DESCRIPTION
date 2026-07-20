@@ -27,19 +27,19 @@ Imports:
     datawizard (>= 1.3.1),
     dplyr (>= 1.2.1),
     forcats (>= 1.0.1),
-    ggcorrplot (>= 0.1.4.1),
+    ggcorrplot (>= 0.2.0),
     ggplot2 (>= 4.0.3),
     ggrepel (>= 0.9.8),
     ggside (>= 0.4.1),
     ggsignif (>= 0.6.4),
     glue (>= 1.8.1),
-    insight (>= 1.5.0),
+    insight (>= 1.5.2),
     paletteer (>= 1.7.0),
-    parameters (>= 0.28.3),
+    parameters (>= 0.29.2),
     patchwork (>= 1.3.2),
-    performance (>= 0.16.0),
+    performance (>= 0.17.1),
     purrr (>= 1.2.2),
-    rlang (>= 1.2.0),
+    rlang (>= 1.3.0),
     statsExpressions (>= 2.0.0),
     tidyr (>= 1.3.2),
     utils
@@ -68,6 +68,7 @@ Suggests:
 VignetteBuilder:
     knitr
 Config/Needs/check: anthonynorth/roxyglobals
+Config/roxygen2/version: 8.0.0
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
 Config/testthat/parallel: true
@@ -76,4 +77,3 @@ Language: en-US
 LazyData: true
 Roxygen: list( markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "pkgapi::api_roclet", "roxyglobals::global_roclet") )
-Config/roxygen2/version: 8.0.0
