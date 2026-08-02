@@ -68,6 +68,7 @@ Suggests:
 VignetteBuilder:
     knitr
 Config/Needs/check: anthonynorth/roxyglobals
+Config/Needs/website: RfastOfficial/Rfast
 Config/roxygen2/version: 8.0.0
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
