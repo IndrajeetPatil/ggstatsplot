@@ -1,3 +1,17 @@
+# ggstatsplot 1.0.0.9000
+
+## MINOR CHANGES
+
+- The minimum supported R version is now 4.5. The project supports R-devel,
+  the current R release, and the previous R release.
+
+- Dependency requirements have been refreshed, including `ggcorrplot >= 0.3.0`.
+
+- Internal tests now use dedicated shape expectations to comply with current
+  `{lintr}` rules.
+
+- CI now rebuilds `{Rfast}` against the active `{RcppParallel}` TBB ABI.
+
 # ggstatsplot 1.0.0
 
 ## NEW FEATURES
