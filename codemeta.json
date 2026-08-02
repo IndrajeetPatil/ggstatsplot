@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/IndrajeetPatil/ggstatsplot",
   "issueTracker": "https://github.com/IndrajeetPatil/ggstatsplot/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.0.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -304,7 +304,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 4.3.0"
+      "version": ">= 4.5.0"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -362,7 +362,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ggcorrplot",
       "name": "ggcorrplot",
-      "version": ">= 0.2.0",
+      "version": ">= 0.3.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -560,7 +560,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "9833.866KB",
+  "fileSize": "9833.854KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

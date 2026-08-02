@@ -1,3 +1,10 @@
+# ggstatsplot 1.0.0.9000
+
+## MINOR CHANGES
+
+- The minimum supported R version is now 4.5. The project supports R-devel,
+  the current R release, and the previous R release.
+
 # ggstatsplot 1.0.0
 
 ## NEW FEATURES

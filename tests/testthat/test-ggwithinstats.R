@@ -193,7 +193,7 @@ test_that("subject.id keeps partially observed subjects in the plotting data", {
     )
   )$data[[1L]]
 
-  expect_identical(nrow(point_data), 5L)
+  expect_shape(point_data, nrow = 5L)
   expect_length(unique(point_data$group), 3L)
 })
 
@@ -216,7 +216,7 @@ test_that("missing subject.id values are excluded from paired grouping", {
     )
   )$data[[1L]]
 
-  expect_identical(nrow(point_data), 4L)
+  expect_shape(point_data, nrow = 4L)
   expect_false(anyNA(point_data$group))
   expect_setequal(unique(point_data$group), c(1, 2))
 })
