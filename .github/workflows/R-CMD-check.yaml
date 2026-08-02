@@ -11,5 +11,4 @@ jobs:
     uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@main
     with:
       extra-packages: |
-        Deriv@4.2.0
         RfastOfficial/Rfast
