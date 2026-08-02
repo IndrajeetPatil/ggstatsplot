@@ -73,7 +73,8 @@ dependency set.
 - Development versions use a fourth-component `.9000` suffix.
 - Keep the version in `DESCRIPTION`, `codemeta.json`, and the first `NEWS.md`
   heading synchronized.
-- Record dependency, compatibility, and CI maintenance changes in `NEWS.md`.
+- Record user-facing compatibility changes in `NEWS.md`; omit routine
+  dependency updates and internal lint or CI maintenance.
 
 ## Testing
 
