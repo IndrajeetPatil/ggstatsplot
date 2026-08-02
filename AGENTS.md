@@ -175,3 +175,7 @@ workflows into this repository.
 
 The shared R CMD check matrix intentionally covers R-devel, release, and
 oldrel. Do not reintroduce `oldrel-2` unless the package support policy changes.
+
+Open pull requests as ready for review rather than as drafts. Unless explicitly
+requested, do not wait for CI/CD checks to finish after pushing; report that the
+checks were triggered and include the pull request or workflow link.
