@@ -29,21 +29,7 @@ scraped from [IMDB](https://www.imdb.com/). Specifically, we will be
 using cleaned version of this dataset included in the
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package itself.
 
-``` r
-
-## see the selected data (we have data from 1813 movies)
-dplyr::glimpse(movies_long)
-#> Rows: 1,579
-#> Columns: 8
-#> $ title  <chr> "Shawshank Redemption, The", "Lord of the Rings: The Return of …
-#> $ year   <int> 1994, 2003, 2001, 2002, 1994, 1993, 1977, 1980, 1968, 2002, 196…
-#> $ length <int> 142, 251, 208, 223, 168, 195, 125, 129, 158, 135, 93, 113, 108,…
-#> $ budget <dbl> 25.0, 94.0, 93.0, 94.0, 8.0, 25.0, 11.0, 18.0, 5.0, 3.3, 1.8, 5…
-#> $ rating <dbl> 9.1, 9.0, 8.8, 8.8, 8.8, 8.8, 8.8, 8.8, 8.7, 8.7, 8.7, 8.7, 8.6…
-#> $ votes  <int> 149494, 103631, 157608, 114797, 132745, 97667, 134640, 103706, …
-#> $ mpaa   <fct> R, PG-13, PG-13, PG-13, R, R, PG, PG, PG-13, R, PG, R, R, R, R,…
-#> $ genre  <fct> Drama, Action, Action, Action, Drama, Drama, Action, Action, Dr…
-```
+`## see the selected data (we have data from 1813 movies)`` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``movies_long``)`` ``#> Rows: 1,579`` ``#> Columns: 8`` ``#> $ ``title `` ``<chr>`` "Shawshank Redemption, The"``, ``"Lord of the Rings: The Return of …`` ``#> $ ``year `` ``<int>`` 1994``, ``2003``, ``2001``, ``2002``, ``1994``, ``1993``, ``1977``, ``1980``, ``1968``, ``2002``, ``196…`` ``#> $ ``length`` ``<int>`` 142``, ``251``, ``208``, ``223``, ``168``, ``195``, ``125``, ``129``, ``158``, ``135``, ``93``, ``113``, ``108``,``…`` ``#> $ ``budget`` ``<dbl>`` 25.0``, ``94.0``, ``93.0``, ``94.0``, ``8.0``, ``25.0``, ``11.0``, ``18.0``, ``5.0``, ``3.3``, ``1.8``, ``5…`` ``#> $ ``rating`` ``<dbl>`` 9.1``, ``9.0``, ``8.8``, ``8.8``, ``8.8``, ``8.8``, ``8.8``, ``8.8``, ``8.7``, ``8.7``, ``8.7``, ``8.7``, ``8.6…`` ``#> $ ``votes `` ``<int>`` 149494``, ``103631``, ``157608``, ``114797``, ``132745``, ``97667``, ``134640``, ``103706``, ``…`` ``#> $ ``mpaa `` ``<fct>`` R``, ``PG-13``, ``PG-13``, ``PG-13``, ``R``, ``R``, ``PG``, ``PG``, ``PG-13``, ``R``, ``PG``, ``R``, ``R``, ``R``, ``R``,``…`` ``#> $ ``genre `` ``<fct>`` Drama``, ``Action``, ``Action``, ``Action``, ``Drama``, ``Drama``, ``Action``, ``Action``, ``Dr…`
 
 Now that we have a clean dataset, we can start asking some interesting
 questions. For example, let’s see if the average IMDB rating for a movie
@@ -53,23 +39,7 @@ points.
 
 To reduce the processing time, let’s only work with 30% of the dataset.
 
-``` r
-
-ggscatterstats(
-  data = movies_long, ## data frame from which variables are taken
-  x = budget, ## predictor/independent variable
-  y = rating, ## dependent variable
-  xlab = "Budget (in millions of US dollars)", ## label for the x-axis
-  ylab = "Rating on IMDB", ## label for the y-axis
-  label.var = title, ## variable to use for labeling data points
-  label.expression = rating < 5 & budget > 100, ## expression for deciding which points to label
-  point.label.args = list(alpha = 0.7, size = 4, color = "grey50"),
-  xsidehistogram.args = list(fill = "#CC79A7"), ## fill for marginals on the x-axis
-  ysidehistogram.args = list(fill = "#009E73"), ## fill for marginals on the y-axis
-  title = "Relationship between movie budget and IMDB rating",
-  caption = "Source: www.imdb.com"
-)
-```
+[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(`` `` data ``=`` ``movies_long``, ``## data frame from which variables are taken`` `` x ``=`` ``budget``, ``## predictor/independent variable`` `` y ``=`` ``rating``, ``## dependent variable`` `` xlab ``=`` ``"Budget (in millions of US dollars)"``, ``## label for the x-axis`` `` ylab ``=`` ``"Rating on IMDB"``, ``## label for the y-axis`` `` label.var ``=`` ``title``, ``## variable to use for labeling data points`` `` label.expression ``=`` ``rating`` ``<`` ``5`` ``&`` ``budget`` ``>`` ``100``, ``## expression for deciding which points to label`` `` point.label.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``alpha ``=`` ``0.7``, size ``=`` ``4``, color ``=`` ``"grey50"``)``,`` `` xsidehistogram.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#CC79A7"``)``, ``## fill for marginals on the x-axis`` `` ysidehistogram.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#009E73"``)``, ``## fill for marginals on the y-axis`` `` title ``=`` ``"Relationship between movie budget and IMDB rating"``,`` `` caption ``=`` ``"Source: www.imdb.com"`` ``)`
 
 ![](ggscatterstats_files/figure-html/ggscatterstats1-1.png)
 
@@ -95,26 +65,7 @@ different studies, etc.
 Let’s see how we can use this function to apply `ggscatterstats` for all
 MPAA ratings. Also, let’s run a robust test this time.
 
-``` r
-
-grouped_ggscatterstats(
-  ## arguments relevant for ggscatterstats
-  data = movies_long,
-  x = budget,
-  y = rating,
-  grouping.var = mpaa,
-  label.var = title,
-  label.expression = rating < 5 & budget > 80,
-  type = "r",
-  # ggtheme = ggthemes::theme_tufte(),
-  ## arguments relevant for combine_plots
-  annotation.args = list(
-    title = "Relationship between movie budget and IMDB rating",
-    caption = "Source: www.imdb.com"
-  ),
-  plotgrid.args = list(nrow = 3, ncol = 1)
-)
-```
+[`grouped_ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)`(`` `` ``## arguments relevant for ggscatterstats`` `` data ``=`` ``movies_long``,`` `` x ``=`` ``budget``,`` `` y ``=`` ``rating``,`` `` grouping.var ``=`` ``mpaa``,`` `` label.var ``=`` ``title``,`` `` label.expression ``=`` ``rating`` ``<`` ``5`` ``&`` ``budget`` ``>`` ``80``,`` `` type ``=`` ``"r"``,`` `` ``# ggtheme = ggthemes::theme_tufte(),`` `` ``## arguments relevant for combine_plots`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Relationship between movie budget and IMDB rating"``,`` `` caption ``=`` ``"Source: www.imdb.com"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``3``, ncol ``=`` ``1``)`` ``)`
 
 ![](ggscatterstats_files/figure-html/grouped1-1.png)
 
@@ -158,10 +109,7 @@ approaches:
 
 For example, let’s see the following example:
 
-``` r
-
-ggscatterstats(mtcars, qsec, drat)
-```
+[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(``mtcars``, ``qsec``, ``drat``)`
 
 ![](ggscatterstats_files/figure-html/reporting-1.png)
 

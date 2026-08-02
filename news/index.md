@@ -1,5 +1,12 @@
 # Changelog
 
+## ggstatsplot 1.0.0.9000
+
+### MINOR CHANGES
+
+- The minimum supported R version is now 4.5. The project supports
+  R-devel, the current R release, and the previous R release.
+
 ## ggstatsplot 1.0.0
 
 CRAN release: 2026-04-23
@@ -1125,7 +1132,7 @@ expect a list of such arguments for the respective geom (e.g.,
   should be specified using `type` argument. Additional, it gains a new
   argument `ggcorrplot.args`, which can be used to pass additional
   arguments to the underlying plotting function
-  ([`ggcorrplot::ggcorrplot`](https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html)).
+  ([`ggcorrplot::ggcorrplot`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)).
 
 - Both `gghistostats` and `ggdotplotstats` now use the following
   arguments to modify `geom`s corresponding to the lines and labels:

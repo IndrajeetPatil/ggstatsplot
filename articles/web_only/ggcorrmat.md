@@ -37,7 +37,7 @@ provides a quick way to produce **publication-ready correlation matrix**
 **data exploration**. In addition to the plot, it can also be used to
 get a correlation coefficient matrix or the associated *p*-value matrix.
 This function is a convenient wrapper around
-[`ggcorrplot::ggcorrplot()`](https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html)
+[`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)
 function with some additional functionality.
 
 We will see examples of how to use this function in this vignette with
@@ -60,21 +60,7 @@ per capita, and population, every five years, from 1952 to 2007, for
 each of 142 countries and was collected by the Gapminder Foundation.
 Let’s have a look at the data-
 
-``` r
-
-library(gapminder)
-library(dplyr)
-
-dplyr::glimpse(gapminder)
-#> Rows: 1,704
-#> Columns: 6
-#> $ country   <fct> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
-#> $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
-#> $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
-#> $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
-#> $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
-#> $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`gapminder`](https://github.com/jennybc/gapminder)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`` `` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``gapminder``)`` ``#> Rows: 1,704`` ``#> Columns: 6`` ``#> $ ``country `` ``<fct>`` "Afghanistan"``, ``"Afghanistan"``, ``"Afghanistan"``, ``"Afghanistan"``, ``…`` ``#> $ ``continent`` ``<fct>`` Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``…`` ``#> $ ``year `` ``<int>`` 1952``, ``1957``, ``1962``, ``1967``, ``1972``, ``1977``, ``1982``, ``1987``, ``1992``, ``1997``, ``…`` ``#> $ ``lifeExp `` ``<dbl>`` 28.801``, ``30.332``, ``31.997``, ``34.020``, ``36.088``, ``38.438``, ``39.854``, ``40.8…`` ``#> $ ``pop `` ``<int>`` 8425333``, ``9240934``, ``10267083``, ``11537966``, ``13079460``, ``14880372``, ``12…`` ``#> $ ``gdpPercap`` ``<dbl>`` 779.4453``, ``820.8530``, ``853.1007``, ``836.1971``, ``739.9811``, ``786.1134``, ``…`
 
 Let’s say we are interested in studying correlation between population
 of a country, average life expectancy, and GDP per capita across
@@ -83,41 +69,13 @@ countries only for the year 2007.
 The simplest way to get a correlation matrix is to stick to the
 defaults-
 
-``` r
-
-## select data only from the year 2007
-gapminder_2007 <- dplyr::filter(gapminder::gapminder, year == 2007)
-
-## producing the correlation matrix
-ggcorrmat(
-  data = gapminder_2007, ## data from which variable is to be taken
-  cor.vars = lifeExp:gdpPercap ## specifying correlation matrix variables
-)
-```
+`## select data only from the year 2007`` ``gapminder_2007`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`, ``year`` ``==`` ``2007``)`` `` ``## producing the correlation matrix`` `[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`` `` data ``=`` ``gapminder_2007``, ``## data from which variable is to be taken`` `` cor.vars ``=`` ``lifeExp``:``gdpPercap`` ``## specifying correlation matrix variables`` ``)`
 
 ![](ggcorrmat_files/figure-html/ggcorrmat1-1.png)
 
 This plot can be further modified with additional arguments-
 
-``` r
-
-ggcorrmat(
-  data = gapminder_2007, ## data from which variable is to be taken
-  cor.vars = lifeExp:gdpPercap, ## specifying correlation matrix variables
-  cor.vars.names = c(
-    "Life Expectancy",
-    "population",
-    "GDP (per capita)"
-  ),
-  type = "np", ## which correlation coefficient is to be computed
-  lab.col = "red", ## label color
-  ggtheme = ggplot2::theme_light(), ## selected ggplot2 theme
-  ## turn off default ggestatsplot theme overlay
-  matrix.type = "lower", ## correlation matrix structure
-  title = "Gapminder correlation matrix", ## custom title
-  subtitle = "Source: Gapminder Foundation" ## custom subtitle
-)
-```
+[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`` `` data ``=`` ``gapminder_2007``, ``## data from which variable is to be taken`` `` cor.vars ``=`` ``lifeExp``:``gdpPercap``, ``## specifying correlation matrix variables`` `` cor.vars.names ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`` `` ``"Life Expectancy"``,`` `` ``"population"``,`` `` ``"GDP (per capita)"`` `` ``)``,`` `` type ``=`` ``"np"``, ``## which correlation coefficient is to be computed`` `` lab.col ``=`` ``"red"``, ``## label color`` `` ggtheme ``=`` ``ggplot2``::`[`theme_light`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``, ``## selected ggplot2 theme`` `` ``## turn off default ggestatsplot theme overlay`` `` matrix.type ``=`` ``"lower"``, ``## correlation matrix structure`` `` title ``=`` ``"Gapminder correlation matrix"``, ``## custom title`` `` subtitle ``=`` ``"Source: Gapminder Foundation"`` ``## custom subtitle`` ``)`
 
 ![](ggcorrmat_files/figure-html/ggcorrmat2-1.png)
 
@@ -135,46 +93,12 @@ diamonds.
 
 Let’s have a look at the data-
 
-``` r
-
-library(ggplot2)
-
-dplyr::glimpse(ggplot2::diamonds)
-#> Rows: 53,940
-#> Columns: 10
-#> $ carat   <dbl> 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23, 0.…
-#> $ cut     <ord> Ideal, Premium, Good, Premium, Good, Very Good, Very Good, Ver…
-#> $ color   <ord> E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J, I,…
-#> $ clarity <ord> SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS1, …
-#> $ depth   <dbl> 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4, 64…
-#> $ table   <dbl> 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62, 58…
-#> $ price   <int> 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340, 34…
-#> $ x       <dbl> 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, 4.…
-#> $ y       <dbl> 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, 4.…
-#> $ z       <dbl> 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2.…
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`` `` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`)`` ``#> Rows: 53,940`` ``#> Columns: 10`` ``#> $ ``carat `` ``<dbl>`` 0.23``, ``0.21``, ``0.23``, ``0.29``, ``0.31``, ``0.24``, ``0.24``, ``0.26``, ``0.22``, ``0.23``, ``0.…`` ``#> $ ``cut `` ``<ord>`` Ideal``, ``Premium``, ``Good``, ``Premium``, ``Good``, ``Very Good``, ``Very Good``, ``Ver…`` ``#> $ ``color `` ``<ord>`` E``, ``E``, ``E``, ``I``, ``J``, ``J``, ``I``, ``H``, ``E``, ``H``, ``J``, ``J``, ``F``, ``J``, ``E``, ``E``, ``I``, ``J``, ``J``, ``J``, ``I``,``…`` ``#> $ ``clarity`` ``<ord>`` SI2``, ``SI1``, ``VS1``, ``VS2``, ``SI2``, ``VVS2``, ``VVS1``, ``SI1``, ``VS2``, ``VS1``, ``SI1``, ``VS1``, ``…`` ``#> $ ``depth `` ``<dbl>`` 61.5``, ``59.8``, ``56.9``, ``62.4``, ``63.3``, ``62.8``, ``62.3``, ``61.9``, ``65.1``, ``59.4``, ``64…`` ``#> $ ``table `` ``<dbl>`` 55``, ``61``, ``65``, ``58``, ``58``, ``57``, ``57``, ``55``, ``61``, ``61``, ``55``, ``56``, ``61``, ``54``, ``62``, ``58…`` ``#> $ ``price `` ``<int>`` 326``, ``326``, ``327``, ``334``, ``335``, ``336``, ``336``, ``337``, ``337``, ``338``, ``339``, ``340``, ``34…`` ``#> $ ``x `` ``<dbl>`` 3.95``, ``3.89``, ``4.05``, ``4.20``, ``4.34``, ``3.94``, ``3.95``, ``4.07``, ``3.87``, ``4.00``, ``4.…`` ``#> $ ``y `` ``<dbl>`` 3.98``, ``3.84``, ``4.07``, ``4.23``, ``4.35``, ``3.96``, ``3.98``, ``4.11``, ``3.78``, ``4.05``, ``4.…`` ``#> $ ``z `` ``<dbl>`` 2.43``, ``2.31``, ``2.31``, ``2.63``, ``2.75``, ``2.48``, ``2.47``, ``2.53``, ``2.49``, ``2.39``, ``2.…`
 
 Let’s see the correlation matrix between different attributes of the
 diamond and the price.
 
-``` r
-
-## let's use just 5% of the data to speed it up
-ggcorrmat(
-  data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
-  cor.vars = c(carat, depth:z), ## note how the variables are getting selected
-  cor.vars.names = c(
-    "carat",
-    "total depth",
-    "table",
-    "price",
-    "length (in mm)",
-    "width (in mm)",
-    "depth (in mm)"
-  ),
-  ggcorrplot.args = list(outline.color = "black", hc.order = TRUE)
-)
-```
+`## let's use just 5% of the data to speed it up`` `[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`` `` data ``=`` ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`, size ``=`` ``0.05``)``,`` `` cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``carat``, ``depth``:``z``)``, ``## note how the variables are getting selected`` `` cor.vars.names ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`` `` ``"carat"``,`` `` ``"total depth"``,`` `` ``"table"``,`` `` ``"price"``,`` `` ``"length (in mm)"``,`` `` ``"width (in mm)"``,`` `` ``"depth (in mm)"`` `` ``)``,`` `` ggcorrplot.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``outline.color ``=`` ``"black"``, hc.order ``=`` ``TRUE``)`` ``)`
 
 ![](ggcorrmat_files/figure-html/ggcorrmat3-1.png)
 
@@ -182,40 +106,7 @@ We can make a number of changes to this basic correlation matrix. For
 example, since we were interested in relationship between price and
 other attributes, let’s make the `price` column to the the first column.
 
-``` r
-
-## let's use just 5% of the data to speed it up
-ggcorrmat(
-  data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
-  cor.vars = c(price, carat, depth:table, x:z), ## note how the variables are getting selected
-  cor.vars.names = c(
-    "price",
-    "carat",
-    "total depth",
-    "table",
-    "length (in mm)",
-    "width (in mm)",
-    "depth (in mm)"
-  ),
-  type = "np",
-  title = "Relationship between diamond attributes and price",
-  subtitle = "Dataset: Diamonds from ggplot2 package",
-  pch = "square cross",
-  ## additional aesthetic arguments passed to `ggcorrmat()`
-  ggcorrplot.args = list(
-    lab_col = "yellow",
-    lab_size = 6,
-    tl.srt = 90,
-    pch.col = "white",
-    pch.cex = 14
-  )
-) + ## modification outside `{ggstatsplot}` using `{ggplot2}` functions
-  ggplot2::theme(
-    axis.text.x = ggplot2::element_text(
-      margin = ggplot2::margin(t = 0.15, r = 0.15, b = 0.15, l = 0.15, unit = "cm")
-    )
-  )
-```
+`## let's use just 5% of the data to speed it up`` `[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`` `` data ``=`` ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`, size ``=`` ``0.05``)``,`` `` cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``price``, ``carat``, ``depth``:``table``, ``x``:``z``)``, ``## note how the variables are getting selected`` `` cor.vars.names ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`` `` ``"price"``,`` `` ``"carat"``,`` `` ``"total depth"``,`` `` ``"table"``,`` `` ``"length (in mm)"``,`` `` ``"width (in mm)"``,`` `` ``"depth (in mm)"`` `` ``)``,`` `` type ``=`` ``"np"``,`` `` title ``=`` ``"Relationship between diamond attributes and price"``,`` `` subtitle ``=`` ``"Dataset: Diamonds from ggplot2 package"``,`` `` pch ``=`` ``"square cross"``,`` `` ``` ## additional aesthetic arguments passed to `ggcorrmat()` ``` `` ggcorrplot.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` lab_col ``=`` ``"yellow"``,`` `` lab_size ``=`` ``6``,`` `` tl.srt ``=`` ``90``,`` `` pch.col ``=`` ``"white"``,`` `` pch.cex ``=`` ``14`` `` ``)`` ``)`` ``+`` ``` ## modification outside `{ggstatsplot}` using `{ggplot2}` functions ``` `` ``ggplot2``::`[`theme`](https://ggplot2.tidyverse.org/reference/theme.html)`(`` `` axis.text.x ``=`` ``ggplot2``::`[`element_text`](https://ggplot2.tidyverse.org/reference/element.html)`(`` `` margin ``=`` ``ggplot2``::`[`margin`](https://ggplot2.tidyverse.org/reference/element.html)`(``t ``=`` ``0.15``, r ``=`` ``0.15``, b ``=`` ``0.15``, l ``=`` ``0.15``, unit ``=`` ``"cm"``)`` `` ``)`` `` ``)`
 
 ![](ggcorrmat_files/figure-html/ggcorrmat4-1.png)
 
@@ -229,13 +120,7 @@ The `colors` argument accepts a character vector of three colors — for
 negative, zero, and positive correlations. Choose a **diverging**
 palette so that the sign of the correlation is immediately visible:
 
-``` r
-
-ggcorrmat(
-  iris,
-  colors = c("#0072B2", "white", "#D55E00")
-)
-```
+[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`` `` ``iris``,`` `` colors ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#0072B2"``, ``"white"``, ``"#D55E00"``)`` ``)`
 
 ![](ggcorrmat_files/figure-html/ggcorrmat_custom_colors-1.png)
 
@@ -254,22 +139,7 @@ It applies
 across all **levels** of a specified **grouping variable** and then
 combines list of individual plots into a single plot.
 
-``` r
-
-grouped_ggcorrmat(
-  ## arguments relevant for `ggcorrmat()`
-  data = ggplot2::diamonds,
-  cor.vars = c(price, carat, depth),
-  grouping.var = cut,
-  ## arguments relevant for `combine_plots()`
-  plotgrid.args = list(nrow = 3),
-  annotation.args = list(
-    tag_levels = "a",
-    title = "Relationship between diamond attributes and price across cut",
-    caption = "Dataset: Diamonds from ggplot2 package"
-  )
-)
-```
+[`grouped_ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)`(`` `` ``` ## arguments relevant for `ggcorrmat()` ``` `` data ``=`` ``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`,`` `` cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``price``, ``carat``, ``depth``)``,`` `` grouping.var ``=`` ``cut``,`` `` ``` ## arguments relevant for `combine_plots()` ``` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``3``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` tag_levels ``=`` ``"a"``,`` `` title ``=`` ``"Relationship between diamond attributes and price across cut"``,`` `` caption ``=`` ``"Dataset: Diamonds from ggplot2 package"`` `` ``)`` ``)`
 
 ![](ggcorrmat_files/figure-html/ggcorrmat7-1.png)
 

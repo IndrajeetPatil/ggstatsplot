@@ -108,20 +108,7 @@ We’ll make a 3 item `list` called `year_list` using
 [`dplyr::filter`](https://dplyr.tidyverse.org/reference/filter.html) and
 `split`.
 
-``` r
-
-
-
-
-## let's split the data frame and create a list by years of interest
-year_list <- gapminder::gapminder |>
-  dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") |>
-  (\(d) split(d, f = d$year, drop = TRUE))()
-
-## checking the length of the list and the names of each element
-length(year_list)
-names(year_list)
-```
+` `` `` ``## let's split the data frame and create a list by years of interest`` ``year_list`` ``<-`` ``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)` ``|>`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``year`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``1967``, ``1987``, ``2007``)``, ``continent`` ``!=`` ``"Oceania"``)`` ``|>`` `` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``year``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length of the list and the names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``year_list``)`` `[`names`](https://rdrr.io/r/base/names.html)`(``year_list``)`
 
 Now that we have the data divided into the three relevant years in a
 list we’ll turn to
@@ -138,119 +125,21 @@ Let’s keep building the list of arguments, `.l`. First is
 `data = year_list`, the `x` and `y` axes are constant in all three plots
 so we pass the variable name as a string `x = "continent"`.
 
-``` r
-
-## creating a list of plots
-plot_list <- purrr::pmap(
-  .l = list(
-    data = year_list,
-    x = "continent",
-    y = "lifeExp",
-    xlab = "Continent",
-    ylab = "Life expectancy",
-    title = list(
-      "Year: 1967",
-      "Year: 1987",
-      "Year: 2007"
-    ),
-    type = list("r", "bf", "np"),
-    pairwise.display = list("s", "ns", "all"),
-    p.adjust.method = list("hommel", "bonferroni", "BH"),
-    conf.level = list(0.99, 0.95, 0.90),
-    digits = list(1, 2, 3),
-    effsize.type = list(
-      NULL,
-      "partial_omega",
-      "partial_eta"
-    ),
-    package = list("nord", "ochRe", "awtools"),
-    palette = list("aurora", "parliament", "bpalette"),
-    ggtheme = list(
-      ggthemes::theme_stata(),
-      ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight()
-    )
-  ),
-  .f = ggbetweenstats
-)
-```
+`## creating a list of plots`` ``plot_list`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``year_list``,`` `` x ``=`` ``"continent"``,`` `` y ``=`` ``"lifeExp"``,`` `` xlab ``=`` ``"Continent"``,`` `` ylab ``=`` ``"Life expectancy"``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Year: 1967"``,`` `` ``"Year: 1987"``,`` `` ``"Year: 2007"`` `` ``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"r"``, ``"bf"``, ``"np"``)``,`` `` pairwise.display ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"s"``, ``"ns"``, ``"all"``)``,`` `` p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"hommel"``, ``"bonferroni"``, ``"BH"``)``,`` `` conf.level ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``0.99``, ``0.95``, ``0.90``)``,`` `` digits ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``1``, ``2``, ``3``)``,`` `` effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``NULL``,`` `` ``"partial_omega"``,`` `` ``"partial_eta"`` `` ``)``,`` `` package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"nord"``, ``"ochRe"``, ``"awtools"``)``,`` `` palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"aurora"``, ``"parliament"``, ``"bpalette"``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggthemes``::``theme_stata``(``)``,`` `` ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggthemes``::``theme_fivethirtyeight``(``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``ggbetweenstats`` ``)`
 
 The final step is to pass the `plot_list` object we just created to the
 `combine_plots` function. While each of the 3 plots already has labeling
 information `combine_plots` gives us an opportunity to add additional
 details to the merged plots and specify the layout in rows and columns.
 
-``` r
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
-  plotgrid.args = list(ncol = 1)
-)
-```
+`## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Changes in life expectancy across continents (1967-2007)"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)`` ``)`
 
 ## `ggwithinstats`
 
 We will be using simulated data from then Attention Network Test
 provided in ANT dataset in `ez` package.
 
-``` r
-
-
-library(ez)
-data("ANT") ## loading data from `ez` package
-
-## let's split the data frame and create a list by years of interest
-cue_list <- ANT |> (\(d) split(d, f = d$cue, drop = TRUE))()
-
-## checking the length of the list and the names of each element
-length(cue_list)
-
-## creating a list of plots by applying the same function for elements of the list
-plot_list <- purrr::pmap(
-  .l = list(
-    data = cue_list,
-    x = "flank",
-    y = "rt",
-    xlab = "Flank",
-    ylab = "Response time",
-    title = list(
-      "Cue: None",
-      "Cue: Center",
-      "Cue: Double",
-      "Cue: Spatial"
-    ),
-    type = list("p", "r", "bf", "np"),
-    pairwise.display = list("ns", "s", "ns", "all"),
-    p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
-    conf.level = list(0.99, 0.99, 0.95, 0.90),
-    digits = list(3, 2, 2, 3),
-    effsize.type = list(
-      "omega",
-      "eta",
-      "partial_omega",
-      "partial_eta"
-    ),
-    package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
-    palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
-    ggtheme = list(
-      ggplot2::theme_linedraw(),
-      hrbrthemes::theme_ft_rc(),
-      ggthemes::theme_solarized(),
-      ggthemes::theme_gdocs()
-    )
-  ),
-  .f = ggwithinstats
-)
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(title = "Response times across flank conditions for each type of cue"),
-  plotgrid.args = list(ncol = 1)
-)
-```
+` `[`library`](https://rdrr.io/r/base/library.html)`(`[`ez`](https://github.com/bucky2177/ez)`)`` `[`data`](https://rdrr.io/r/utils/data.html)`(``"ANT"``)`` ``` ## loading data from `ez` package ``` `` ``## let's split the data frame and create a list by years of interest`` ``cue_list`` ``<-`` ``ANT`` ``|>`` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``cue``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length of the list and the names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``cue_list``)`` `` ``## creating a list of plots by applying the same function for elements of the list`` ``plot_list`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``cue_list``,`` `` x ``=`` ``"flank"``,`` `` y ``=`` ``"rt"``,`` `` xlab ``=`` ``"Flank"``,`` `` ylab ``=`` ``"Response time"``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Cue: None"``,`` `` ``"Cue: Center"``,`` `` ``"Cue: Double"``,`` `` ``"Cue: Spatial"`` `` ``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"p"``, ``"r"``, ``"bf"``, ``"np"``)``,`` `` pairwise.display ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"ns"``, ``"s"``, ``"ns"``, ``"all"``)``,`` `` p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"fdr"``, ``"hommel"``, ``"bonferroni"``, ``"BH"``)``,`` `` conf.level ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``0.99``, ``0.99``, ``0.95``, ``0.90``)``,`` `` digits ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``3``, ``2``, ``2``, ``3``)``,`` `` effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"omega"``,`` `` ``"eta"``,`` `` ``"partial_omega"``,`` `` ``"partial_eta"`` `` ``)``,`` `` package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"ggsci"``, ``"palettetown"``, ``"palettetown"``, ``"wesanderson"``)``,`` `` palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"lanonc_lancet"``, ``"venomoth"``, ``"blastoise"``, ``"GrandBudapest1"``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggplot2``::`[`theme_linedraw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``hrbrthemes``::``theme_ft_rc``(``)``,`` `` ``ggthemes``::``theme_solarized``(``)``,`` `` ``ggthemes``::``theme_gdocs``(``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``ggwithinstats`` ``)`` `` ``## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Response times across flank conditions for each type of cue"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)`` ``)`
 
 ## `ggscatterstats`
 
@@ -265,354 +154,30 @@ NC-17 using `dplyr`.
 
 This time we’ll put all the code in one block-
 
-``` r
-
-mpaa_list <- movies_long |>
-  dplyr::filter(mpaa != "NC-17") |>
-  dplyr::sample_frac(size = 0.25) |>
-  (\(d) split(d, f = d$mpaa, drop = TRUE))()
-
-## creating a list of plots
-plot_list <- purrr::pmap(
-  .l = list(
-    data = mpaa_list,
-    x = "budget",
-    y = "rating",
-    xlab = "Budget (in millions of US dollars)",
-    ylab = "Rating on IMDB",
-    title = list(
-      "MPAA Rating: PG",
-      "MPAA Rating: PG-13",
-      "MPAA Rating: R"
-    ),
-    label.var = list("title"),
-    ## note that you need to quote the expressions
-    label.expression = list(
-      quote(rating > 7.5 & budget < 100),
-      quote(rating > 8 & budget < 50),
-      quote(rating > 8 & budget < 10)
-    ),
-    type = list("r", "np", "bf"),
-    xsidehistogram.args = list(
-      list(fill = "#009E73"),
-      list(fill = "#999999"),
-      list(fill = "#0072B2")
-    ),
-    ysidehistogram.args = list(
-      list(fill = "#CC79A7"),
-      list(fill = "#F0E442"),
-      list(fill = "#D55E00")
-    ),
-    ggtheme = list(
-      ggthemes::theme_tufte(),
-      ggplot2::theme_classic(),
-      ggplot2::theme_light()
-    )
-  ),
-  .f = ggscatterstats
-)
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(
-    title = "Relationship between movie budget and IMDB rating",
-    caption = "Source: www.imdb.com"
-  ),
-  plotgrid.args = list(ncol = 1)
-)
-```
+`mpaa_list`` ``<-`` ``movies_long`` ``|>`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``mpaa`` ``!=`` ``"NC-17"``)`` ``|>`` `` ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``size ``=`` ``0.25``)`` ``|>`` `` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``mpaa``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## creating a list of plots`` ``plot_list`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``mpaa_list``,`` `` x ``=`` ``"budget"``,`` `` y ``=`` ``"rating"``,`` `` xlab ``=`` ``"Budget (in millions of US dollars)"``,`` `` ylab ``=`` ``"Rating on IMDB"``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"MPAA Rating: PG"``,`` `` ``"MPAA Rating: PG-13"``,`` `` ``"MPAA Rating: R"`` `` ``)``,`` `` label.var ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"title"``)``,`` `` ``## note that you need to quote the expressions`` `` label.expression ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`quote`](https://rdrr.io/r/base/substitute.html)`(``rating`` ``>`` ``7.5`` ``&`` ``budget`` ``<`` ``100``)``,`` `` `[`quote`](https://rdrr.io/r/base/substitute.html)`(``rating`` ``>`` ``8`` ``&`` ``budget`` ``<`` ``50``)``,`` `` `[`quote`](https://rdrr.io/r/base/substitute.html)`(``rating`` ``>`` ``8`` ``&`` ``budget`` ``<`` ``10``)`` `` ``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"r"``, ``"np"``, ``"bf"``)``,`` `` xsidehistogram.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#009E73"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#999999"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#0072B2"``)`` `` ``)``,`` `` ysidehistogram.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#CC79A7"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#F0E442"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#D55E00"``)`` `` ``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggthemes``::``theme_tufte``(``)``,`` `` ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggplot2``::`[`theme_light`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``ggscatterstats`` ``)`` `` ``## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Relationship between movie budget and IMDB rating"``,`` `` caption ``=`` ``"Source: www.imdb.com"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)`` ``)`
 
 The remainder of the examples vary in content but follow the exact same
 methodology as the earlier examples.
 
 ## `ggcorrmat`
 
-``` r
-
-## splitting the data frame by cut and creating a list
-## let's leave out "fair" cut
-## also, to make this fast, let's only use 5% of the sample
-cut_list <- ggplot2::diamonds |>
-  dplyr::sample_frac(size = 0.05) |>
-  dplyr::filter(cut != "Fair") |>
-  (\(d) split(d, f = d$cut, drop = TRUE))()
-
-## checking the length and names of each element
-length(cut_list)
-names(cut_list)
-
-## running function on every element of this list note that if you want the same
-## value for a given argument across all elements of the list, you need to
-## specify it just once
-plot_list <- purrr::pmap(
-  .l = list(
-    data = cut_list,
-    cor.vars = list(c("carat", "depth", "table", "price")),
-    type = list("pearson", "np", "robust", "bf"),
-    partial = list(TRUE, FALSE, TRUE, FALSE),
-    title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
-    p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
-    lab.size = 3.5,
-    colors = list(
-      c("#56B4E9", "white", "#999999"),
-      c("#CC79A7", "white", "#F0E442"),
-      c("#56B4E9", "white", "#D55E00"),
-      c("#999999", "white", "#0072B2")
-    ),
-    ggtheme = list(
-      ggplot2::theme_linedraw(),
-      ggplot2::theme_classic(),
-      ggthemes::theme_fivethirtyeight(),
-      ggthemes::theme_tufte()
-    )
-  ),
-  .f = ggcorrmat
-)
-
-## combining all individual plots from the list into a single plot using
-## `combine_plots` function
-combine_plots(
-  plotlist = plot_list,
-  guides = "keep",
-  annotation.args = list(
-    title = "Relationship between diamond attributes and price across cut",
-    caption = "Dataset: Diamonds from ggplot2 package"
-  ),
-  plotgrid.args = list(nrow = 2L)
-)
-```
+`## splitting the data frame by cut and creating a list`` ``## let's leave out "fair" cut`` ``## also, to make this fast, let's only use 5% of the sample`` ``cut_list`` ``<-`` ``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)` ``|>`` `` ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``size ``=`` ``0.05``)`` ``|>`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``cut`` ``!=`` ``"Fair"``)`` ``|>`` `` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``cut``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length and names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``cut_list``)`` `[`names`](https://rdrr.io/r/base/names.html)`(``cut_list``)`` `` ``## running function on every element of this list note that if you want the same`` ``## value for a given argument across all elements of the list, you need to`` ``## specify it just once`` ``plot_list`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``cut_list``,`` `` cor.vars ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"carat"``, ``"depth"``, ``"table"``, ``"price"``)``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"pearson"``, ``"np"``, ``"robust"``, ``"bf"``)``,`` `` partial ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``TRUE``, ``FALSE``, ``TRUE``, ``FALSE``)``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Cut: Good"``, ``"Cut: Very Good"``, ``"Cut: Premium"``, ``"Cut: Ideal"``)``,`` `` p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"hommel"``, ``"fdr"``, ``"BY"``, ``"hochberg"``)``,`` `` lab.size ``=`` ``3.5``,`` `` colors ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`c`](https://rdrr.io/r/base/c.html)`(``"#56B4E9"``, ``"white"``, ``"#999999"``)``,`` `` `[`c`](https://rdrr.io/r/base/c.html)`(``"#CC79A7"``, ``"white"``, ``"#F0E442"``)``,`` `` `[`c`](https://rdrr.io/r/base/c.html)`(``"#56B4E9"``, ``"white"``, ``"#D55E00"``)``,`` `` `[`c`](https://rdrr.io/r/base/c.html)`(``"#999999"``, ``"white"``, ``"#0072B2"``)`` `` ``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggplot2``::`[`theme_linedraw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggthemes``::``theme_fivethirtyeight``(``)``,`` `` ``ggthemes``::``theme_tufte``(``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``ggcorrmat`` ``)`` `` ``## combining all individual plots from the list into a single plot using`` ``` ## `combine_plots` function ``` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` guides ``=`` ``"keep"``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Relationship between diamond attributes and price across cut"``,`` `` caption ``=`` ``"Dataset: Diamonds from ggplot2 package"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)`` ``)`
 
 ## `gghistostats`
 
-``` r
-
-## let's split the data frame and create a list by continent
-## let's leave out Oceania because it has just two data points
-continent_list <-
-  gapminder::gapminder |>
-  dplyr::filter(year == 2007, continent != "Oceania") |>
-  (\(d) split(d, f = d$continent, drop = TRUE))()
-
-## checking the length and names of each element
-length(continent_list)
-names(continent_list)
-
-## running function on every element of this list note that if you want the same
-## value for a given argument across all elements of the list, you need to
-## specify it just once
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = continent_list,
-      x = "lifeExp",
-      xlab = "Life expectancy",
-      test.value = list(35.6, 58.4, 41.6, 64.7),
-      type = list("p", "np", "r", "bf"),
-      bf.message = list(TRUE, FALSE, FALSE, FALSE),
-      title = list(
-        "Continent: Africa",
-        "Continent: Americas",
-        "Continent: Asia",
-        "Continent: Europe"
-      ),
-      effsize.type = list("d", "d", "g", "g"),
-      ggtheme = list(
-        ggplot2::theme_classic(),
-        hrbrthemes::theme_ipsum_tw(),
-        ggplot2::theme_minimal(),
-        hrbrthemes::theme_modern_rc()
-      )
-    ),
-    .f = gghistostats
-  )
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(
-    title = "Improvement in life expectancy worldwide since 1950",
-    caption = "Note: black line - 1950; blue line - 2007"
-  ),
-  plotgrid.args = list(nrow = 4)
-)
-```
+`## let's split the data frame and create a list by continent`` ``## let's leave out Oceania because it has just two data points`` ``continent_list`` ``<-`` `` ``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)` ``|>`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``year`` ``==`` ``2007``, ``continent`` ``!=`` ``"Oceania"``)`` ``|>`` `` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``continent``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length and names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``continent_list``)`` `[`names`](https://rdrr.io/r/base/names.html)`(``continent_list``)`` `` ``## running function on every element of this list note that if you want the same`` ``## value for a given argument across all elements of the list, you need to`` ``## specify it just once`` ``plot_list`` ``<-`` `` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``continent_list``,`` `` x ``=`` ``"lifeExp"``,`` `` xlab ``=`` ``"Life expectancy"``,`` `` test.value ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``35.6``, ``58.4``, ``41.6``, ``64.7``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"p"``, ``"np"``, ``"r"``, ``"bf"``)``,`` `` bf.message ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``TRUE``, ``FALSE``, ``FALSE``, ``FALSE``)``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Continent: Africa"``,`` `` ``"Continent: Americas"``,`` `` ``"Continent: Asia"``,`` `` ``"Continent: Europe"`` `` ``)``,`` `` effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"d"``, ``"d"``, ``"g"``, ``"g"``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``hrbrthemes``::``theme_ipsum_tw``(``)``,`` `` ``ggplot2``::`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``hrbrthemes``::``theme_modern_rc``(``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``gghistostats`` `` ``)`` `` ``## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Improvement in life expectancy worldwide since 1950"``,`` `` caption ``=`` ``"Note: black line - 1950; blue line - 2007"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``4``)`` ``)`
 
 ## `ggdotplotstats`
 
-``` r
-
-library(ggthemes)
-library(hrbrthemes)
-
-## let's split the data frame and create a list by continent
-## let's leave out Oceania because it has just two data points
-continent_list <-
-  gapminder::gapminder |>
-  dplyr::filter(continent != "Oceania") |>
-  (\(d) split(d, f = d$continent, drop = TRUE))()
-
-## checking the length and names of each element
-length(continent_list)
-names(continent_list)
-
-## running function on every element of this list note that if you want the same
-## value for a given argument across all elements of the list, you need to
-## specify it just once
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = continent_list,
-      x = "gdpPercap",
-      y = "year",
-      xlab = "GDP per capita (US$, inflation-adjusted)",
-      test.value = list(2500, 9000, 9500, 10000),
-      type = list("p", "np", "r", "bf"),
-      title = list(
-        "Continent: Africa",
-        "Continent: Americas",
-        "Continent: Asia",
-        "Continent: Europe"
-      ),
-      effsize.type = list("d", "d", "g", "g"),
-      centrality.line.args = list(
-        list(color = "red"),
-        list(color = "#0072B2"),
-        list(color = "#D55E00"),
-        list(color = "#CC79A7")
-      ),
-      ggtheme = list(
-        ggplot2::theme_minimal(base_family = "serif"),
-        ggthemes::theme_tufte(),
-        hrbrthemes::theme_ipsum_rc(axis_title_size = 10),
-        ggthemes::theme_hc(bgcolor = "darkunica")
-      )
-    ),
-    .f = ggdotplotstats
-  )
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(title = "Improvement in GDP per capita from 1952-2007"),
-  plotgrid.args = list(nrow = 4),
-  guides = "keep"
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggthemes`](https://jrnold.github.io/ggthemes/)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(``hrbrthemes``)`` `` ``## let's split the data frame and create a list by continent`` ``## let's leave out Oceania because it has just two data points`` ``continent_list`` ``<-`` `` ``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)` ``|>`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``continent`` ``!=`` ``"Oceania"``)`` ``|>`` `` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``continent``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length and names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``continent_list``)`` `[`names`](https://rdrr.io/r/base/names.html)`(``continent_list``)`` `` ``## running function on every element of this list note that if you want the same`` ``## value for a given argument across all elements of the list, you need to`` ``## specify it just once`` ``plot_list`` ``<-`` `` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``continent_list``,`` `` x ``=`` ``"gdpPercap"``,`` `` y ``=`` ``"year"``,`` `` xlab ``=`` ``"GDP per capita (US$, inflation-adjusted)"``,`` `` test.value ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``2500``, ``9000``, ``9500``, ``10000``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"p"``, ``"np"``, ``"r"``, ``"bf"``)``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Continent: Africa"``,`` `` ``"Continent: Americas"``,`` `` ``"Continent: Asia"``,`` `` ``"Continent: Europe"`` `` ``)``,`` `` effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"d"``, ``"d"``, ``"g"``, ``"g"``)``,`` `` centrality.line.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"red"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"#0072B2"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"#D55E00"``)``,`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"#CC79A7"``)`` `` ``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggplot2``::`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``base_family ``=`` ``"serif"``)``,`` `` ``ggthemes``::``theme_tufte``(``)``,`` `` ``hrbrthemes``::``theme_ipsum_rc``(``axis_title_size ``=`` ``10``)``,`` `` ``ggthemes``::``theme_hc``(``bgcolor ``=`` ``"darkunica"``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``ggdotplotstats`` `` ``)`` `` ``## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Improvement in GDP per capita from 1952-2007"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``4``)``,`` `` guides ``=`` ``"keep"`` ``)`
 
 ## `ggpiestats`
 
-``` r
-
-## let's split the data frame and create a list by passenger class
-class_list <- Titanic_full |> (\(d) split(d, f = d$Class, drop = TRUE))()
-
-## checking the length and names of each element
-length(class_list)
-names(class_list)
-
-## running function on every element of this list note that if you want the same
-## value for a given argument across all elements of the list, you need to
-## specify it just once
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = class_list,
-      x = "Survived",
-      y = "Sex",
-      label = list("both", "count", "percentage", "both"),
-      title = list(
-        "Passenger class: 1st",
-        "Passenger class: 2nd",
-        "Passenger class: 3rd",
-        "Passenger class: Crew"
-      ),
-      caption = list(
-        "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
-        "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
-        "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
-        "Data not available for crew passengers"
-      ),
-      package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
-      palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
-      ggtheme = list(
-        ggplot2::theme_grey(),
-        ggplot2::theme_bw(),
-        ggthemes::theme_tufte(),
-        ggthemes::theme_economist()
-      ),
-      proportion.test = list(TRUE, FALSE, TRUE, FALSE),
-      type = list("p", "p", "bf", "p")
-    ),
-    .f = ggpiestats
-  )
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(title = "Survival in Titanic disaster by gender for all passenger classes"),
-  plotgrid.args = list(ncol = 1),
-  guides = "keep"
-)
-```
+`## let's split the data frame and create a list by passenger class`` ``class_list`` ``<-`` ``Titanic_full`` ``|>`` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``Class``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length and names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``class_list``)`` `[`names`](https://rdrr.io/r/base/names.html)`(``class_list``)`` `` ``## running function on every element of this list note that if you want the same`` ``## value for a given argument across all elements of the list, you need to`` ``## specify it just once`` ``plot_list`` ``<-`` `` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``class_list``,`` `` x ``=`` ``"Survived"``,`` `` y ``=`` ``"Sex"``,`` `` label ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"both"``, ``"count"``, ``"percentage"``, ``"both"``)``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Passenger class: 1st"``,`` `` ``"Passenger class: 2nd"``,`` `` ``"Passenger class: 3rd"``,`` `` ``"Passenger class: Crew"`` `` ``)``,`` `` caption ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Total: 319, Died: 120, Survived: 199, % Survived: 62%"``,`` `` ``"Total: 272, Died: 155, Survived: 117, % Survived: 43%"``,`` `` ``"Total: 709, Died: 537, Survived: 172, % Survived: 25%"``,`` `` ``"Data not available for crew passengers"`` `` ``)``,`` `` package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"RColorBrewer"``, ``"ghibli"``, ``"palettetown"``, ``"yarrr"``)``,`` `` palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Accent"``, ``"MarnieMedium1"``, ``"pikachu"``, ``"nemo"``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggthemes``::``theme_tufte``(``)``,`` `` ``ggthemes``::``theme_economist``(``)`` `` ``)``,`` `` proportion.test ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``TRUE``, ``FALSE``, ``TRUE``, ``FALSE``)``,`` `` type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"p"``, ``"p"``, ``"bf"``, ``"p"``)`` `` ``)``,`` `` .f ``=`` ``ggpiestats`` `` ``)`` `` ``## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Survival in Titanic disaster by gender for all passenger classes"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)``,`` `` guides ``=`` ``"keep"`` ``)`
 
 ## `ggbarstats`
 
-``` r
-
-## let's split the data frame and create a list by passenger class
-class_list <- Titanic_full |> (\(d) split(d, f = d$Class, drop = TRUE))()
-
-## checking the length and names of each element
-length(class_list)
-names(class_list)
-
-## running function on every element of this list note that if you want the same
-## value for a given argument across all elements of the list, you need to
-## specify it just once
-plot_list <-
-  purrr::pmap(
-    .l = list(
-      data = class_list,
-      x = "Survived",
-      y = "Sex",
-      type = "bayes",
-      label = list("both", "count", "percentage", "both"),
-      title = list(
-        "Passenger class: 1st",
-        "Passenger class: 2nd",
-        "Passenger class: 3rd",
-        "Passenger class: Crew"
-      ),
-      caption = list(
-        "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
-        "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
-        "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
-        "Data not available for crew passengers"
-      ),
-      package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
-      palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
-      ggtheme = list(
-        ggplot2::theme_grey(),
-        ggplot2::theme_bw(),
-        ggthemes::theme_tufte(),
-        ggthemes::theme_economist()
-      )
-    ),
-    .f = ggbarstats
-  )
-
-## combining all individual plots from the list into a single plot using combine_plots function
-combine_plots(
-  plotlist = plot_list,
-  annotation.args = list(
-    title = "Survival in Titanic disaster by gender for all passenger classes",
-    caption = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant"
-  ),
-  plotgrid.args = list(ncol = 1),
-  guides = "keep"
-)
-```
+`## let's split the data frame and create a list by passenger class`` ``class_list`` ``<-`` ``Titanic_full`` ``|>`` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``Class``, drop ``=`` ``TRUE``)``)``(``)`` `` ``## checking the length and names of each element`` `[`length`](https://rdrr.io/r/base/length.html)`(``class_list``)`` `[`names`](https://rdrr.io/r/base/names.html)`(``class_list``)`` `` ``## running function on every element of this list note that if you want the same`` ``## value for a given argument across all elements of the list, you need to`` ``## specify it just once`` ``plot_list`` ``<-`` `` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` ``class_list``,`` `` x ``=`` ``"Survived"``,`` `` y ``=`` ``"Sex"``,`` `` type ``=`` ``"bayes"``,`` `` label ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"both"``, ``"count"``, ``"percentage"``, ``"both"``)``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Passenger class: 1st"``,`` `` ``"Passenger class: 2nd"``,`` `` ``"Passenger class: 3rd"``,`` `` ``"Passenger class: Crew"`` `` ``)``,`` `` caption ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"Total: 319, Died: 120, Survived: 199, % Survived: 62%"``,`` `` ``"Total: 272, Died: 155, Survived: 117, % Survived: 43%"``,`` `` ``"Total: 709, Died: 537, Survived: 172, % Survived: 25%"``,`` `` ``"Data not available for crew passengers"`` `` ``)``,`` `` package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"RColorBrewer"``, ``"ghibli"``, ``"palettetown"``, ``"yarrr"``)``,`` `` palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Accent"``, ``"MarnieMedium1"``, ``"pikachu"``, ``"nemo"``)``,`` `` ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ``ggthemes``::``theme_tufte``(``)``,`` `` ``ggthemes``::``theme_economist``(``)`` `` ``)`` `` ``)``,`` `` .f ``=`` ``ggbarstats`` `` ``)`` `` ``## combining all individual plots from the list into a single plot using combine_plots function`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``plot_list``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Survival in Titanic disaster by gender for all passenger classes"``,`` `` caption ``=`` ``"Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)``,`` `` guides ``=`` ``"keep"`` ``)`
 
 ## `grouped_` variants
 
@@ -627,45 +192,11 @@ function. For the sake of brevity, the plots are not displayed here, but
 you can run the following code and check the individual `grouped_` plots
 (e.g., `plotlist[[1]]`).
 
-``` r
-
-## create a list of plots
-plotlist <- purrr::pmap(
-    .l = list(
-      data = list(mtcars, iris, ToothGrowth),
-      x = alist(wt, Sepal.Length, len),
-      results.subtitle = list(FALSE),
-      grouping.var = alist(am, Species, supp)
-    ),
-    .f = grouped_gghistostats
-  )
-
-## given that we had three different datasets, we expect a list of length 3
-## (each of which contains a `grouped_` plot)
-length(plotlist)
-```
+`## create a list of plots`` ``plotlist`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``mtcars``, ``iris``, ``ToothGrowth``)``,`` `` x ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``wt``, ``Sepal.Length``, ``len``)``,`` `` results.subtitle ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``FALSE``)``,`` `` grouping.var ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``am``, ``Species``, ``supp``)`` `` ``)``,`` `` .f ``=`` ``grouped_gghistostats`` `` ``)`` `` ``## given that we had three different datasets, we expect a list of length 3`` ``` ## (each of which contains a `grouped_` plot) ``` `[`length`](https://rdrr.io/r/base/length.html)`(``plotlist``)`
 
 ## Repeating function execution across multiple columns in a data frame
 
-``` r
-
-
-library(patchwork)
-
-## running the same analysis on two different columns (creates a list of plots)
-plotlist <- purrr::pmap(
-    .l = list(
-      data = list(movies_long),
-      x = "mpaa",
-      y = list("rating", "length"),
-      title = list("IMDB score by MPAA rating", "Movie length by MPAA rating")
-    ),
-    .f = ggbetweenstats
-  )
-
-## combine plots using `patchwork`
-plotlist[[1]] + plotlist[[2]]
-```
+` `[`library`](https://rdrr.io/r/base/library.html)`(`[`patchwork`](https://patchwork.data-imaginist.com)`)`` `` ``## running the same analysis on two different columns (creates a list of plots)`` ``plotlist`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``movies_long``)``,`` `` x ``=`` ``"mpaa"``,`` `` y ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"rating"``, ``"length"``)``,`` `` title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"IMDB score by MPAA rating"``, ``"Movie length by MPAA rating"``)`` `` ``)``,`` `` .f ``=`` ``ggbetweenstats`` `` ``)`` `` ``` ## combine plots using `patchwork` ``` ``plotlist``[[``1``]``]`` ``+`` ``plotlist``[[``2``]``]`
 
 ## Suggestions
 

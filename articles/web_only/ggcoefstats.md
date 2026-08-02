@@ -77,136 +77,7 @@ Most of the regression models that are supported in the underlying
 packages are also supported by
 [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md).
 
-``` r
-
-insight::supported_models()
-#>   [1] "aareg"                   "afex_aov"               
-#>   [3] "AKP"                     "Anova.mlm"              
-#>   [5] "anova.rms"               "aov"                    
-#>   [7] "aovlist"                 "Arima"                  
-#>   [9] "asym"                    "averaging"              
-#>  [11] "bamlss"                  "bamlss.frame"           
-#>  [13] "bayesQR"                 "bayesx"                 
-#>  [15] "BBmm"                    "BBreg"                  
-#>  [17] "bcplm"                   "betamfx"                
-#>  [19] "betaor"                  "betareg"                
-#>  [21] "BFBayesFactor"           "bfsl"                   
-#>  [23] "BGGM"                    "bife"                   
-#>  [25] "bifeAPEs"                "bigglm"                 
-#>  [27] "biglm"                   "blavaan"                
-#>  [29] "blrm"                    "bracl"                  
-#>  [31] "brglm"                   "brmsfit"                
-#>  [33] "brmultinom"              "btergm"                 
-#>  [35] "censReg"                 "cgam"                   
-#>  [37] "cgamm"                   "cglm"                   
-#>  [39] "clm"                     "clm2"                   
-#>  [41] "clmm"                    "clmm2"                  
-#>  [43] "clogit"                  "coeftest"               
-#>  [45] "complmrob"               "confusionMatrix"        
-#>  [47] "coxme"                   "coxph"                  
-#>  [49] "coxph_weightit"          "coxph.penal"            
-#>  [51] "coxr"                    "cpglm"                  
-#>  [53] "cpglmm"                  "crch"                   
-#>  [55] "crq"                     "crqs"                   
-#>  [57] "crr"                     "dep.effect"             
-#>  [59] "DirichletRegModel"       "draws"                  
-#>  [61] "drc"                     "eglm"                   
-#>  [63] "elm"                     "emmGrid"                
-#>  [65] "epi.2by2"                "ergm"                   
-#>  [67] "estimate_contrasts"      "estimate_means"         
-#>  [69] "estimate_slopes"         "externVar"              
-#>  [71] "externX"                 "fdm"                    
-#>  [73] "feglm"                   "feis"                   
-#>  [75] "felm"                    "fitdistr"               
-#>  [77] "fixest"                  "flac"                   
-#>  [79] "flexsurvreg"             "flic"                   
-#>  [81] "gam"                     "Gam"                    
-#>  [83] "gamlss"                  "gamm"                   
-#>  [85] "gamm4"                   "garch"                  
-#>  [87] "gbm"                     "gee"                    
-#>  [89] "geeglm"                  "ggcomparisons"          
-#>  [91] "glht"                    "glimML"                 
-#>  [93] "glm"                     "Glm"                    
-#>  [95] "glm_weightit"            "glmerMod"               
-#>  [97] "glmgee"                  "glmm"                   
-#>  [99] "glmmadmb"                "glmmPQL"                
-#> [101] "glmmTMB"                 "glmrob"                 
-#> [103] "glmRob"                  "glmx"                   
-#> [105] "gls"                     "gmnl"                   
-#> [107] "hglm"                    "HLfit"                  
-#> [109] "htest"                   "hurdle"                 
-#> [111] "iv_robust"               "ivFixed"                
-#> [113] "ivprobit"                "ivreg"                  
-#> [115] "joint"                   "lavaan"                 
-#> [117] "lcmm"                    "lm"                     
-#> [119] "lm_robust"               "lme"                    
-#> [121] "lmerMod"                 "lmerModLmerTest"        
-#> [123] "lmodel2"                 "lmrob"                  
-#> [125] "lmRob"                   "logistf"                
-#> [127] "logitmfx"                "logitor"                
-#> [129] "logitr"                  "LORgee"                 
-#> [131] "lqm"                     "lqmm"                   
-#> [133] "lrm"                     "manova"                 
-#> [135] "MANOVA"                  "marginaleffects"        
-#> [137] "marginaleffects.summary" "margins"                
-#> [139] "maxLik"                  "mblogit"                
-#> [141] "mclogit"                 "mcmc"                   
-#> [143] "mcmc.list"               "MCMCglmm"               
-#> [145] "mcp1"                    "mcp12"                  
-#> [147] "mcp2"                    "med1way"                
-#> [149] "mediate"                 "merMod"                 
-#> [151] "merModList"              "meta_bma"               
-#> [153] "meta_fixed"              "meta_random"            
-#> [155] "metaplus"                "mhurdle"                
-#> [157] "mipo"                    "mira"                   
-#> [159] "mixed"                   "MixMod"                 
-#> [161] "mixor"                   "mjoint"                 
-#> [163] "mle"                     "mle2"                   
-#> [165] "mlm"                     "mlogit"                 
-#> [167] "mmclogit"                "mmlogit"                
-#> [169] "mmrm"                    "mmrm_fit"               
-#> [171] "mmrm_tmb"                "model_fit"              
-#> [173] "multinom"                "multinom_weightit"      
-#> [175] "mvord"                   "negbinirr"              
-#> [177] "negbinmfx"               "nestedLogit"            
-#> [179] "ols"                     "onesampb"               
-#> [181] "oohbchoice"              "ordinal_weightit"       
-#> [183] "orm"                     "pgmm"                   
-#> [185] "phyloglm"                "phylolm"                
-#> [187] "plm"                     "PMCMR"                  
-#> [189] "poissonirr"              "poissonmfx"             
-#> [191] "polr"                    "probitmfx"              
-#> [193] "psm"                     "Rchoice"                
-#> [195] "ridgelm"                 "riskRegression"         
-#> [197] "rjags"                   "rlm"                    
-#> [199] "rlmerMod"                "RM"                     
-#> [201] "rma"                     "rma.uni"                
-#> [203] "rms"                     "robmixglm"              
-#> [205] "robtab"                  "rq"                     
-#> [207] "rqs"                     "rqss"                   
-#> [209] "rvar"                    "Sarlm"                  
-#> [211] "scam"                    "sdmTMB"                 
-#> [213] "selection"               "sem"                    
-#> [215] "SemiParBIV"              "semLm"                  
-#> [217] "semLme"                  "seqanova.svyglm"        
-#> [219] "serp"                    "slm"                    
-#> [221] "speedglm"                "speedlm"                
-#> [223] "stanfit"                 "stanmvreg"              
-#> [225] "stanreg"                 "summary.lm"             
-#> [227] "survfit"                 "survreg"                
-#> [229] "svy_vglm"                "svy2lme"                
-#> [231] "svychisq"                "svycoxph"               
-#> [233] "svyglm"                  "svyolr"                 
-#> [235] "svysurvreg"              "systemfit"              
-#> [237] "t1way"                   "tobit"                  
-#> [239] "trimcibt"                "truncreg"               
-#> [241] "vgam"                    "vglm"                   
-#> [243] "wbgee"                   "wblm"                   
-#> [245] "wbm"                     "wmcpAKP"                
-#> [247] "yuen"                    "yuend"                  
-#> [249] "zcpglm"                  "zeroinfl"               
-#> [251] "zerotrunc"
-```
+`insight``::`[`supported_models`](https://easystats.github.io/insight/reference/is_model_supported.html)`(``)`` ``#> [1] "aareg" "afex_aov" `` ``#> [3] "AKP" "Anova.mlm" `` ``#> [5] "anova.rms" "aov" `` ``#> [7] "aovlist" "Arima" `` ``#> [9] "asym" "averaging" `` ``#> [11] "bamlss" "bamlss.frame" `` ``#> [13] "bayesQR" "bayesx" `` ``#> [15] "BBmm" "BBreg" `` ``#> [17] "bcplm" "betamfx" `` ``#> [19] "betaor" "betareg" `` ``#> [21] "BFBayesFactor" "bfsl" `` ``#> [23] "BGGM" "bife" `` ``#> [25] "bifeAPEs" "bigglm" `` ``#> [27] "biglm" "blavaan" `` ``#> [29] "blrm" "bracl" `` ``#> [31] "brglm" "brmsfit" `` ``#> [33] "brmultinom" "btergm" `` ``#> [35] "censReg" "cgam" `` ``#> [37] "cgamm" "cglm" `` ``#> [39] "clm" "clm2" `` ``#> [41] "clmm" "clmm2" `` ``#> [43] "clogit" "coeftest" `` ``#> [45] "complmrob" "confusionMatrix" `` ``#> [47] "coxme" "coxph" `` ``#> [49] "coxph_weightit" "coxph.penal" `` ``#> [51] "coxr" "cpglm" `` ``#> [53] "cpglmm" "crch" `` ``#> [55] "crq" "crqs" `` ``#> [57] "crr" "dep.effect" `` ``#> [59] "DirichletRegModel" "draws" `` ``#> [61] "drc" "eglm" `` ``#> [63] "elm" "emmGrid" `` ``#> [65] "epi.2by2" "ergm" `` ``#> [67] "estimate_contrasts" "estimate_means" `` ``#> [69] "estimate_slopes" "externVar" `` ``#> [71] "externX" "fdm" `` ``#> [73] "feglm" "feis" `` ``#> [75] "felm" "fitdistr" `` ``#> [77] "fixest" "flac" `` ``#> [79] "flexsurvreg" "flic" `` ``#> [81] "gam" "Gam" `` ``#> [83] "gamlss" "gamm" `` ``#> [85] "gamm4" "garch" `` ``#> [87] "gbm" "gee" `` ``#> [89] "geeglm" "ggcomparisons" `` ``#> [91] "glht" "glimML" `` ``#> [93] "glm" "Glm" `` ``#> [95] "glm_weightit" "glmerMod" `` ``#> [97] "glmgee" "glmm" `` ``#> [99] "glmmadmb" "glmmPQL" `` ``#> [101] "glmmTMB" "glmrob" `` ``#> [103] "glmRob" "glmx" `` ``#> [105] "gls" "gmnl" `` ``#> [107] "hglm" "HLfit" `` ``#> [109] "htest" "hurdle" `` ``#> [111] "iv_robust" "ivFixed" `` ``#> [113] "ivprobit" "ivreg" `` ``#> [115] "joint" "lavaan" `` ``#> [117] "lcmm" "lm" `` ``#> [119] "lm_robust" "lme" `` ``#> [121] "lmerMod" "lmerModLmerTest" `` ``#> [123] "lmodel2" "lmrob" `` ``#> [125] "lmRob" "logistf" `` ``#> [127] "logitmfx" "logitor" `` ``#> [129] "logitr" "LORgee" `` ``#> [131] "lqm" "lqmm" `` ``#> [133] "lrm" "manova" `` ``#> [135] "MANOVA" "marginaleffects" `` ``#> [137] "marginaleffects.summary" "margins" `` ``#> [139] "maxLik" "mblogit" `` ``#> [141] "mclogit" "mcmc" `` ``#> [143] "mcmc.list" "MCMCglmm" `` ``#> [145] "mcp1" "mcp12" `` ``#> [147] "mcp2" "med1way" `` ``#> [149] "mediate" "merMod" `` ``#> [151] "merModList" "meta_bma" `` ``#> [153] "meta_fixed" "meta_random" `` ``#> [155] "metaplus" "mhurdle" `` ``#> [157] "mipo" "mira" `` ``#> [159] "mixed" "MixMod" `` ``#> [161] "mixor" "mjoint" `` ``#> [163] "mle" "mle2" `` ``#> [165] "mlm" "mlogit" `` ``#> [167] "mmclogit" "mmlogit" `` ``#> [169] "mmrm" "mmrm_fit" `` ``#> [171] "mmrm_tmb" "model_fit" `` ``#> [173] "multinom" "multinom_weightit" `` ``#> [175] "mvord" "negbinirr" `` ``#> [177] "negbinmfx" "nestedLogit" `` ``#> [179] "ols" "onesampb" `` ``#> [181] "oohbchoice" "ordinal_weightit" `` ``#> [183] "orm" "pgmm" `` ``#> [185] "phyloglm" "phylolm" `` ``#> [187] "plm" "PMCMR" `` ``#> [189] "poissonirr" "poissonmfx" `` ``#> [191] "polr" "probitmfx" `` ``#> [193] "psm" "Rchoice" `` ``#> [195] "ridgelm" "riskRegression" `` ``#> [197] "rjags" "rlm" `` ``#> [199] "rlmerMod" "RM" `` ``#> [201] "rma" "rma.uni" `` ``#> [203] "rms" "robmixglm" `` ``#> [205] "robtab" "rq" `` ``#> [207] "rqs" "rqss" `` ``#> [209] "rvar" "Sarlm" `` ``#> [211] "scam" "sdmTMB" `` ``#> [213] "selection" "sem" `` ``#> [215] "SemiParBIV" "semLm" `` ``#> [217] "semLme" "seqanova.svyglm" `` ``#> [219] "serp" "slm" `` ``#> [221] "speedglm" "speedlm" `` ``#> [223] "stanfit" "stanmvreg" `` ``#> [225] "stanreg" "summary.lm" `` ``#> [227] "survfit" "survreg" `` ``#> [229] "svy_vglm" "svy2lme" `` ``#> [231] "svychisq" "svycoxph" `` ``#> [233] "svyglm" "svyolr" `` ``#> [235] "svysurvreg" "systemfit" `` ``#> [237] "t1way" "tobit" `` ``#> [239] "trimcibt" "truncreg" `` ``#> [241] "vgam" "vglm" `` ``#> [243] "wbgee" "wblm" `` ``#> [245] "wbm" "wmcpAKP" `` ``#> [247] "yuen" "yuend" `` ``#> [249] "zcpglm" "zeroinfl" `` ``#> [251] "zerotrunc"`
 
 ## Examples of supported models
 
@@ -221,31 +92,7 @@ have removed it. The old version can be found
 
 linear model (`lm`) and linear mixed-effects model (`lmer`/`lmerMod`)
 
-``` r
-
-library(lme4)
-
-# lm model
-mod1 <- stats::lm(formula = Reaction ~ Days, data = sleepstudy)
-
-# merMod model
-mod2 <- lme4::lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
-
-# combining the two different plots
-combine_plots(
-  plotlist = list(
-    ggcoefstats(mod1) +
-      ggplot2::labs(x = parse(text = "'regression coefficient' ~italic(beta)")),
-    ggcoefstats(mod2) +
-      ggplot2::labs(
-        x = parse(text = "'regression coefficient' ~italic(beta)"),
-        y = "fixed effects"
-      )
-  ),
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(title = "Relationship between movie budget and its IMDB rating")
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`lme4`](https://github.com/lme4/lme4/)`)`` `` ``# lm model`` ``mod1`` ``<-`` ``stats``::`[`lm`](https://rdrr.io/r/stats/lm.html)`(``formula ``=`` ``Reaction`` ``~`` ``Days``, data ``=`` ``sleepstudy``)`` `` ``# merMod model`` ``mod2`` ``<-`` ``lme4``::`[`lmer`](https://rdrr.io/pkg/lme4/man/lmer.html)`(``Reaction`` ``~`` ``Days`` ``+`` ``(``Days`` ``|`` ``Subject``)``, ``sleepstudy``)`` `` ``# combining the two different plots`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod1``)`` ``+`` `` ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``x ``=`` `[`parse`](https://rdrr.io/r/base/parse.html)`(``text ``=`` ``"'regression coefficient' ~italic(beta)"``)``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod2``)`` ``+`` `` ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(`` `` x ``=`` `[`parse`](https://rdrr.io/r/base/parse.html)`(``text ``=`` ``"'regression coefficient' ~italic(beta)"``)``,`` `` y ``=`` ``"fixed effects"`` `` ``)`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Relationship between movie budget and its IMDB rating"``)`` ``)`
 
 ![](ggcoefstats_files/figure-html/lmer1-1.png)
 
@@ -258,24 +105,7 @@ case, you would like to see these terms, you can use
 
 Aalen’s additive regression model for censored data (`aareg`)
 
-``` r
-
-library(survival)
-
-# model
-afit <- survival::aareg(
-  formula = Surv(time, status) ~ age + sex + ph.ecog,
-  data = lung,
-  dfbeta = TRUE
-)
-
-ggcoefstats(
-  x = afit,
-  title = "Aalen's additive regression model",
-  subtitle = "(for censored data)",
-  digits = 3
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`survival`](https://github.com/therneau/survival)`)`` `` ``# model`` ``afit`` ``<-`` ``survival``::`[`aareg`](https://rdrr.io/pkg/survival/man/aareg.html)`(`` `` formula ``=`` `[`Surv`](https://rdrr.io/pkg/survival/man/Surv.html)`(``time``, ``status``)`` ``~`` ``age`` ``+`` ``sex`` ``+`` ``ph.ecog``,`` `` data ``=`` ``lung``,`` `` dfbeta ``=`` ``TRUE`` ``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``afit``,`` `` title ``=`` ``"Aalen's additive regression model"``,`` `` subtitle ``=`` ``"(for censored data)"``,`` `` digits ``=`` ``3`` ``)`
 
 ![](ggcoefstats_files/figure-html/aareg-1.png)
 
@@ -283,52 +113,13 @@ ggcoefstats(
 
 Cox proportional hazards regression model (`coxph`)
 
-``` r
-
-library(survival)
-
-# create the simplest-test data set
-test1 <- list(
-  time = c(4, 3, 1, 1, 2, 2, 3),
-  status = c(1, 1, 1, 0, 1, 1, 0),
-  x = c(0, 2, 1, 1, 1, 0, 0),
-  sex = c(0, 0, 0, 0, 1, 1, 1)
-)
-
-# fit a stratified model
-mod_coxph <-
-  survival::coxph(
-    formula = Surv(time, status) ~ x + strata(sex),
-    data = test1
-  )
-
-
-ggcoefstats(
-  x = mod_coxph,
-  title = "Cox proportional hazards regression model"
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`survival`](https://github.com/therneau/survival)`)`` `` ``# create the simplest-test data set`` ``test1`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` time ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``4``, ``3``, ``1``, ``1``, ``2``, ``2``, ``3``)``,`` `` status ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``, ``1``, ``1``, ``0``, ``1``, ``1``, ``0``)``,`` `` x ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0``, ``2``, ``1``, ``1``, ``1``, ``0``, ``0``)``,`` `` sex ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0``, ``0``, ``0``, ``0``, ``1``, ``1``, ``1``)`` ``)`` `` ``# fit a stratified model`` ``mod_coxph`` ``<-`` `` ``survival``::`[`coxph`](https://rdrr.io/pkg/survival/man/coxph.html)`(`` `` formula ``=`` `[`Surv`](https://rdrr.io/pkg/survival/man/Surv.html)`(``time``, ``status``)`` ``~`` ``x`` ``+`` `[`strata`](https://rdrr.io/pkg/survival/man/strata.html)`(``sex``)``,`` `` data ``=`` ``test1`` `` ``)`` `` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``mod_coxph``,`` `` title ``=`` ``"Cox proportional hazards regression model"`` ``)`
 
 ![](ggcoefstats_files/figure-html/coxph-1.png)
 
 Another example with `frailty` term.
 
-``` r
-
-library(survival)
-
-# model
-mod_coxph <- survival::coxph(
-  formula = Surv(time, status) ~ age + sex + frailty(inst),
-  data = lung
-)
-
-
-ggcoefstats(
-  x = mod_coxph,
-  title = "Proportional Hazards Regression Model\nwith Frailty penalty function"
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`survival`](https://github.com/therneau/survival)`)`` `` ``# model`` ``mod_coxph`` ``<-`` ``survival``::`[`coxph`](https://rdrr.io/pkg/survival/man/coxph.html)`(`` `` formula ``=`` `[`Surv`](https://rdrr.io/pkg/survival/man/Surv.html)`(``time``, ``status``)`` ``~`` ``age`` ``+`` ``sex`` ``+`` `[`frailty`](https://rdrr.io/pkg/survival/man/frailty.html)`(``inst``)``,`` `` data ``=`` ``lung`` ``)`` `` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``mod_coxph``,`` `` title ``=`` ``"Proportional Hazards Regression Model\nwith Frailty penalty function"`` ``)`
 
 ![](ggcoefstats_files/figure-html/coxph.penal-1.png)
 
@@ -336,26 +127,7 @@ ggcoefstats(
 
 omnibus ANOVA (`aov`)
 
-``` r
-
-library(ggplot2)
-
-# model
-mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
-
-ggcoefstats(
-  x = mod_aov,
-  effectsize.type = "omega", # changing the effect size estimate being displayed
-  point.args = list(color = "red", size = 4, shape = 15), # changing the point geom
-  palette = "dutchmasters::milkmaid", # color palette for labels
-  title = "omnibus ANOVA", # title for the plot
-  exclude.intercept = TRUE
-) +
-  # further modification with the ggplot2 commands
-  # note the order in which the labels are entered
-  ggplot2::scale_y_discrete(labels = c("MPAA", "Genre", "Interaction term")) +
-  ggplot2::labs(x = "effect size estimate (eta-squared)", y = NULL)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`` `` ``# model`` ``mod_aov`` ``<-`` ``stats``::`[`aov`](https://rdrr.io/r/stats/aov.html)`(``formula ``=`` ``rating`` ``~`` ``mpaa`` ``*`` ``genre``, data ``=`` ``movies_long``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``mod_aov``,`` `` effectsize.type ``=`` ``"omega"``, ``# changing the effect size estimate being displayed`` `` point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"red"``, size ``=`` ``4``, shape ``=`` ``15``)``, ``# changing the point geom`` `` palette ``=`` ``"dutchmasters::milkmaid"``, ``# color palette for labels`` `` title ``=`` ``"omnibus ANOVA"``, ``# title for the plot`` `` exclude.intercept ``=`` ``TRUE`` ``)`` ``+`` `` ``# further modification with the ggplot2 commands`` `` ``# note the order in which the labels are entered`` `` ``ggplot2``::`[`scale_y_discrete`](https://ggplot2.tidyverse.org/reference/scale_discrete.html)`(``labels ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"MPAA"``, ``"Genre"``, ``"Interaction term"``)``)`` ``+`` `` ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``x ``=`` ``"effect size estimate (eta-squared)"``, y ``=`` ``NULL``)`
 
 ![](ggcoefstats_files/figure-html/aov1-1.png)
 
@@ -363,100 +135,13 @@ Note that we can also use this function for model selection. You can try
 out different models with the code below and see how the AIC and BIC
 values change.
 
-``` r
-
-combine_plots(
-  plotlist = list(
-    # model 1
-    ggcoefstats(
-      x = stats::aov(formula = rating ~ mpaa, data = movies_long),
-      title = "1. Only MPAA ratings"
-    ),
-    # model 2
-    ggcoefstats(
-      x = stats::aov(formula = rating ~ genre, data = movies_long),
-      title = "2. Only genre"
-    ),
-    # model 3
-    ggcoefstats(
-      x = stats::aov(formula = rating ~ mpaa + genre, data = movies_long),
-      title = "3. Additive effect of MPAA and genre"
-    ),
-    # model 4
-    ggcoefstats(
-      x = stats::aov(formula = rating ~ mpaa * genre, data = movies_long),
-      title = "4. Multiplicative effect of MPAA and genre"
-    )
-  ),
-  annotation.args = list(title = "Model selection using ggcoefstats")
-)
-```
+[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``# model 1`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``stats``::`[`aov`](https://rdrr.io/r/stats/aov.html)`(``formula ``=`` ``rating`` ``~`` ``mpaa``, data ``=`` ``movies_long``)``,`` `` title ``=`` ``"1. Only MPAA ratings"`` `` ``)``,`` `` ``# model 2`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``stats``::`[`aov`](https://rdrr.io/r/stats/aov.html)`(``formula ``=`` ``rating`` ``~`` ``genre``, data ``=`` ``movies_long``)``,`` `` title ``=`` ``"2. Only genre"`` `` ``)``,`` `` ``# model 3`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``stats``::`[`aov`](https://rdrr.io/r/stats/aov.html)`(``formula ``=`` ``rating`` ``~`` ``mpaa`` ``+`` ``genre``, data ``=`` ``movies_long``)``,`` `` title ``=`` ``"3. Additive effect of MPAA and genre"`` `` ``)``,`` `` ``# model 4`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``stats``::`[`aov`](https://rdrr.io/r/stats/aov.html)`(``formula ``=`` ``rating`` ``~`` ``mpaa`` ``*`` ``genre``, data ``=`` ``movies_long``)``,`` `` title ``=`` ``"4. Multiplicative effect of MPAA and genre"`` `` ``)`` `` ``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Model selection using ggcoefstats"``)`` ``)`
 
 ![](ggcoefstats_files/figure-html/aov2-1.png)
 
 ### Bayesian models - no statistic
 
-``` r
-
-library(BayesFactor)
-
-# one sample t-test
-mod1 <- ttestBF(mtcars$wt, mu = 3)
-
-# independent t-test
-mod2 <- ttestBF(formula = wt ~ am, data = mtcars)
-
-# paired t-test
-mod3 <- ttestBF(x = sleep$extra[1:10], y = sleep$extra[11:20], paired = TRUE)
-
-# correlation
-mod4 <- correlationBF(y = iris$Sepal.Length, x = iris$Sepal.Width)
-
-# contingency tabs (not supported)
-data("raceDolls")
-mod5 <- contingencyTableBF(
-  raceDolls,
-  sampleType = "indepMulti",
-  fixedMargin = "cols"
-)
-
-# anova
-data("puzzles")
-mod6 <- anovaBF(
-  formula = RT ~ shape * color + ID,
-  data = puzzles,
-  whichRandom = "ID",
-  whichModels = "top",
-  progress = FALSE
-)
-
-# regression-1
-mod7 <- regressionBF(rating ~ ., data = attitude, progress = FALSE)
-
-# meta-analysis
-t <- c(-0.15, 2.39, 2.42, 2.43, -0.15, 2.39, 2.42, 2.43)
-N <- c(100, 150, 97, 99, 99, 97, 100, 150)
-mod8 <- meta.ttestBF(t, N, rscale = 1, nullInterval = c(0, Inf))
-
-# proportion test
-mod9 <- proportionBF(y = 15, N = 25, p = 0.5)
-
-# list of plots
-combine_plots(
-  plotlist = list(
-    ggcoefstats(mod1, title = "one sample t-test"),
-    ggcoefstats(mod2, title = "independent t-test"),
-    ggcoefstats(mod3, title = "paired t-test"),
-    ggcoefstats(mod4, title = "correlation"),
-    ggcoefstats(mod5, title = "contingency table", effectsize.type = "cramers_v"),
-    ggcoefstats(mod6, title = "anova"),
-    ggcoefstats(mod7, title = "regression-1"),
-    ggcoefstats(mod8, title = "meta-analysis"),
-    ggcoefstats(mod9, title = "proportion test")
-  ),
-  annotation.args = list(title = "Example from `{BayesFactor}` package")
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`BayesFactor`](https://richarddmorey.github.io/BayesFactor/)`)`` `` ``# one sample t-test`` ``mod1`` ``<-`` `[`ttestBF`](https://rdrr.io/pkg/BayesFactor/man/ttestBF.html)`(``mtcars``$``wt``, mu ``=`` ``3``)`` `` ``# independent t-test`` ``mod2`` ``<-`` `[`ttestBF`](https://rdrr.io/pkg/BayesFactor/man/ttestBF.html)`(``formula ``=`` ``wt`` ``~`` ``am``, data ``=`` ``mtcars``)`` `` ``# paired t-test`` ``mod3`` ``<-`` `[`ttestBF`](https://rdrr.io/pkg/BayesFactor/man/ttestBF.html)`(``x ``=`` ``sleep``$``extra``[``1``:``10``]``, y ``=`` ``sleep``$``extra``[``11``:``20``]``, paired ``=`` ``TRUE``)`` `` ``# correlation`` ``mod4`` ``<-`` `[`correlationBF`](https://rdrr.io/pkg/BayesFactor/man/correlationBF.html)`(``y ``=`` ``iris``$``Sepal.Length``, x ``=`` ``iris``$``Sepal.Width``)`` `` ``# contingency tabs (not supported)`` `[`data`](https://rdrr.io/r/utils/data.html)`(``"raceDolls"``)`` ``mod5`` ``<-`` `[`contingencyTableBF`](https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html)`(`` `` ``raceDolls``,`` `` sampleType ``=`` ``"indepMulti"``,`` `` fixedMargin ``=`` ``"cols"`` ``)`` `` ``# anova`` `[`data`](https://rdrr.io/r/utils/data.html)`(``"puzzles"``)`` ``mod6`` ``<-`` `[`anovaBF`](https://rdrr.io/pkg/BayesFactor/man/anovaBF.html)`(`` `` formula ``=`` ``RT`` ``~`` ``shape`` ``*`` ``color`` ``+`` ``ID``,`` `` data ``=`` ``puzzles``,`` `` whichRandom ``=`` ``"ID"``,`` `` whichModels ``=`` ``"top"``,`` `` progress ``=`` ``FALSE`` ``)`` `` ``# regression-1`` ``mod7`` ``<-`` `[`regressionBF`](https://rdrr.io/pkg/BayesFactor/man/regressionBF.html)`(``rating`` ``~`` ``.``, data ``=`` ``attitude``, progress ``=`` ``FALSE``)`` `` ``# meta-analysis`` ``t`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``-``0.15``, ``2.39``, ``2.42``, ``2.43``, ``-``0.15``, ``2.39``, ``2.42``, ``2.43``)`` ``N`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``100``, ``150``, ``97``, ``99``, ``99``, ``97``, ``100``, ``150``)`` ``mod8`` ``<-`` `[`meta.ttestBF`](https://rdrr.io/pkg/BayesFactor/man/meta.ttestBF.html)`(``t``, ``N``, rscale ``=`` ``1``, nullInterval ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0``, ``Inf``)``)`` `` ``# proportion test`` ``mod9`` ``<-`` `[`proportionBF`](https://rdrr.io/pkg/BayesFactor/man/proportionBF.html)`(``y ``=`` ``15``, N ``=`` ``25``, p ``=`` ``0.5``)`` `` ``# list of plots`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod1``, title ``=`` ``"one sample t-test"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod2``, title ``=`` ``"independent t-test"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod3``, title ``=`` ``"paired t-test"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod4``, title ``=`` ``"correlation"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod5``, title ``=`` ``"contingency table"``, effectsize.type ``=`` ``"cramers_v"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod6``, title ``=`` ``"anova"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod7``, title ``=`` ``"regression-1"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod8``, title ``=`` ``"meta-analysis"``)``,`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod9``, title ``=`` ``"proportion test"``)`` `` ``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``` "Example from `{BayesFactor}` package" ```)`` ``)`
 
 ![](ggcoefstats_files/figure-html/BFBayesFactor-1.png)
 
@@ -467,45 +152,7 @@ Note that a number of regression models will return an object of class
 the object of interest from this list and use it to plot the regression
 coefficients.
 
-``` r
-
-library(gamm4)
-
-# data
-dat <- gamSim(1, n = 400, scale = 2)
-
-# now add 20 level random effect `fac'...
-dat$fac <- fac <- as.factor(sample(1:20, 400, replace = TRUE))
-dat$y <- dat$y + model.matrix(~ fac - 1) %*% rnorm(20) * .5
-
-# model object
-br <- gamm4::gamm4(
-    formula = y ~ s(x0) + x1 + s(x2),
-    data = dat,
-    random = ~ (1 | fac)
-  )
-
-# looking at the classes of the objects contained in the list
-purrr::map(br, class)
-
-combine_plots(
-  plotlist = list(
-    # first object plot (only parametric terms are shown)
-    ggcoefstats(
-      x = br$gam,
-      title = "generalized additive model (parametric terms)",
-      digits = 3
-    ),
-    # second object plot
-    ggcoefstats(
-      x = br$mer,
-      title = "linear mixed-effects model",
-      digits = 3
-    )
-  ),
-  plotgrid.args = list(nrow = 1)
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(``gamm4``)`` `` ``# data`` ``dat`` ``<-`` ``gamSim``(``1``, n ``=`` ``400``, scale ``=`` ``2``)`` `` ``` # now add 20 level random effect `fac'... ``` ``dat``$``fac`` ``<-`` ``fac`` ``<-`` `[`as.factor`](https://rdrr.io/r/base/factor.html)`(`[`sample`](https://rdrr.io/r/base/sample.html)`(``1``:``20``, ``400``, replace ``=`` ``TRUE``)``)`` ``dat``$``y`` ``<-`` ``dat``$``y`` ``+`` `[`model.matrix`](https://rdrr.io/r/stats/model.matrix.html)`(``~`` ``fac`` ``-`` ``1``)`` `[`%*%`](https://rdrr.io/r/base/matmult.html)` `[`rnorm`](https://rdrr.io/r/stats/Normal.html)`(``20``)`` ``*`` ``.5`` `` ``# model object`` ``br`` ``<-`` ``gamm4``::``gamm4``(`` `` formula ``=`` ``y`` ``~`` ``s``(``x0``)`` ``+`` ``x1`` ``+`` ``s``(``x2``)``,`` `` data ``=`` ``dat``,`` `` random ``=`` ``~`` ``(``1`` ``|`` ``fac``)`` `` ``)`` `` ``# looking at the classes of the objects contained in the list`` ``purrr``::`[`map`](https://purrr.tidyverse.org/reference/map.html)`(``br``, ``class``)`` `` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``# first object plot (only parametric terms are shown)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``br``$``gam``,`` `` title ``=`` ``"generalized additive model (parametric terms)"``,`` `` digits ``=`` ``3`` `` ``)``,`` `` ``# second object plot`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``br``$``mer``,`` `` title ``=`` ``"linear mixed-effects model"``,`` `` digits ``=`` ``3`` `` ``)`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)`` ``)`
 
 ## Meta-analysis
 
@@ -520,62 +167,19 @@ three columns-
 
 ### parametric
 
-``` r
-
-library(metaplus)
-
-# renaming to what the function expects
-df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
-
-ggcoefstats(
-  x = df,
-  meta.analytic.effect = TRUE,
-  bf.message = TRUE,
-  meta.type = "parametric",
-  title = "parametric random-effects meta-analysis"
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(``metaplus``)`` `` ``# renaming to what the function expects`` ``df`` ``<-`` ``dplyr``::`[`rename`](https://dplyr.tidyverse.org/reference/rename.html)`(``mag``, estimate ``=`` ``yi``, std.error ``=`` ``sei``, term ``=`` ``study``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``df``,`` `` meta.analytic.effect ``=`` ``TRUE``,`` `` bf.message ``=`` ``TRUE``,`` `` meta.type ``=`` ``"parametric"``,`` `` title ``=`` ``"parametric random-effects meta-analysis"`` ``)`
 
 ![](ggcoefstats_files/figure-html/meta1-1.png)
 
 ### robust
 
-``` r
-
-library(metaplus)
-
-# renaming to what the function expects
-df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
-
-ggcoefstats(
-  x = df,
-  meta.analytic.effect = TRUE,
-  meta.type = "robust",
-  title = "robust random-effects meta-analysis"
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(``metaplus``)`` `` ``# renaming to what the function expects`` ``df`` ``<-`` ``dplyr``::`[`rename`](https://dplyr.tidyverse.org/reference/rename.html)`(``mag``, estimate ``=`` ``yi``, std.error ``=`` ``sei``, term ``=`` ``study``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``df``,`` `` meta.analytic.effect ``=`` ``TRUE``,`` `` meta.type ``=`` ``"robust"``,`` `` title ``=`` ``"robust random-effects meta-analysis"`` ``)`
 
 ![](ggcoefstats_files/figure-html/meta2-1.png)
 
 ### Bayesian
 
-``` r
-
-library(metaplus)
-
-# renaming to what the function expects
-df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
-
-# suppress Stan's divergent transitions warning (not under our control)
-suppressWarnings(
-  ggcoefstats(
-    x = df,
-    meta.analytic.effect = TRUE,
-    meta.type = "bayes",
-    title = "Bayesian random-effects meta-analysis"
-  )
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(``metaplus``)`` `` ``# renaming to what the function expects`` ``df`` ``<-`` ``dplyr``::`[`rename`](https://dplyr.tidyverse.org/reference/rename.html)`(``mag``, estimate ``=`` ``yi``, std.error ``=`` ``sei``, term ``=`` ``study``)`` `` ``# suppress Stan's divergent transitions warning (not under our control)`` `[`suppressWarnings`](https://rdrr.io/r/base/warning.html)`(`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``df``,`` `` meta.analytic.effect ``=`` ``TRUE``,`` `` meta.type ``=`` ``"bayes"``,`` `` title ``=`` ``"Bayesian random-effects meta-analysis"`` `` ``)`` ``)`
 
 ![](ggcoefstats_files/figure-html/meta3-1.png)
 
@@ -594,26 +198,7 @@ You can also provide a data frame containing all the other relevant
 information for additionally displaying labels with statistical
 information.
 
-``` r
-
-# let's create a data frame
-df_full <- tibble::tribble(
-  ~term, ~statistic, ~estimate, ~std.error, ~p.value, ~df.error,
-  "study1", 0.158, 0.0665, 0.778, 0.875, 5L,
-  "study2", 1.33, 0.542, 0.280, 0.191, 10L,
-  "study3", 1.24, 0.045, 0.030, 0.001, 12L,
-  "study4", 0.156, 0.500, 0.708, 0.885, 8L,
-  "study5", 0.33, 0.032, 0.280, 0.101, 2L,
-  "study6", 1.04, 0.085, 0.030, 0.001, 3L
-)
-
-ggcoefstats(
-  x = df_full,
-  meta.analytic.effect = TRUE,
-  statistic = "t",
-  palette = "LaCroixColoR::paired"
-)
-```
+`# let's create a data frame`` ``df_full`` ``<-`` ``tibble``::`[`tribble`](https://tibble.tidyverse.org/reference/tribble.html)`(`` `` ``~``term``, ``~``statistic``, ``~``estimate``, ``~``std.error``, ``~``p.value``, ``~``df.error``,`` `` ``"study1"``, ``0.158``, ``0.0665``, ``0.778``, ``0.875``, ``5L``,`` `` ``"study2"``, ``1.33``, ``0.542``, ``0.280``, ``0.191``, ``10L``,`` `` ``"study3"``, ``1.24``, ``0.045``, ``0.030``, ``0.001``, ``12L``,`` `` ``"study4"``, ``0.156``, ``0.500``, ``0.708``, ``0.885``, ``8L``,`` `` ``"study5"``, ``0.33``, ``0.032``, ``0.280``, ``0.101``, ``2L``,`` `` ``"study6"``, ``1.04``, ``0.085``, ``0.030``, ``0.001``, ``3L`` ``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`` `` x ``=`` ``df_full``,`` `` meta.analytic.effect ``=`` ``TRUE``,`` `` statistic ``=`` ``"t"``,`` `` palette ``=`` ``"LaCroixColoR::paired"`` ``)`
 
 ![](ggcoefstats_files/figure-html/dataframe-1.png)
 
@@ -624,50 +209,7 @@ although it is much more preferable to use the underlying functions
 instead
 ([`parameters::model_parameters`](https://easystats.github.io/parameters/reference/model_parameters.html)).
 
-``` r
-
-# data
-DNase1 <- subset(DNase, Run == 1)
-
-# using a selfStart model
-nlmod <- stats::nls(density ~ SSlogis(log(conc), Asym, xmid, scal), DNase1)
-
-# data frames
-ggcoefstats(nlmod) |> extract_stats()
-#> $subtitle_data
-#> NULL
-#> 
-#> $caption_data
-#> NULL
-#> 
-#> $pairwise_comparisons_data
-#> NULL
-#> 
-#> $descriptive_data
-#> NULL
-#> 
-#> $one_sample_data
-#> NULL
-#> 
-#> $tidy_data
-#> # A tibble: 3 × 11
-#>   term  estimate std.error conf.level conf.low conf.high statistic df.error
-#>   <fct>    <dbl>     <dbl>      <dbl>    <dbl>     <dbl>     <dbl>    <int>
-#> 1 Asym      2.35    0.0782       0.95    2.18       2.51      30.0       13
-#> 2 xmid      1.48    0.0814       0.95    1.31       1.66      18.2       13
-#> 3 scal      1.04    0.0323       0.95    0.972      1.11      32.3       13
-#>    p.value conf.method expression
-#>      <dbl> <chr>       <list>    
-#> 1 2.17e-13 Wald        <language>
-#> 2 1.22e-10 Wald        <language>
-#> 3 8.51e-14 Wald        <language>
-#> 
-#> $glance_data
-#> # A tibble: 0 × 0
-#> 
-#> attr(,"class")
-#> [1] "ggstatsplot_stats" "list"
-```
+`# data`` ``DNase1`` ``<-`` `[`subset`](https://rdrr.io/r/base/subset.html)`(``DNase``, ``Run`` ``==`` ``1``)`` `` ``# using a selfStart model`` ``nlmod`` ``<-`` ``stats``::`[`nls`](https://rdrr.io/r/stats/nls.html)`(``density`` ``~`` `[`SSlogis`](https://rdrr.io/r/stats/SSlogis.html)`(`[`log`](https://rdrr.io/r/base/Log.html)`(``conc``)``, ``Asym``, ``xmid``, ``scal``)``, ``DNase1``)`` `` ``# data frames`` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``nlmod``)`` ``|>`` `[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``)`` ``#> $subtitle_data`` ``#> NULL`` ``#> `` ``#> $caption_data`` ``#> NULL`` ``#> `` ``#> $pairwise_comparisons_data`` ``#> NULL`` ``#> `` ``#> $descriptive_data`` ``#> NULL`` ``#> `` ``#> $one_sample_data`` ``#> NULL`` ``#> `` ``#> $tidy_data`` ``#> ``# A tibble: 3 × 11`` ``#> ``term`` ``estimate`` ``std.error`` ``conf.level`` ``conf.low`` ``conf.high`` ``statistic`` ``df.error`` ``#> ``<fct>`` ``<dbl>`` ``<dbl>`` ``<dbl>`` ``<dbl>`` ``<dbl>`` ``<dbl>`` ``<int>`` ``#> ``1`` Asym 2.35 ``0.0``78``2`` ``0.``95 2.18 2.51 30.0 13`` ``#> ``2`` xmid 1.48 ``0.0``81``4`` ``0.``95 1.31 1.66 18.2 13`` ``#> ``3`` scal 1.04 ``0.0``32``3`` ``0.``95 ``0.``972 1.11 32.3 13`` ``#> ``p.value`` ``conf.method`` ``expression`` ``#> ``<dbl>`` ``<chr>`` ``<list>`` `` ``#> ``1`` 2.17``e``-13`` Wald ``<language>`` ``#> ``2`` 1.22``e``-10`` Wald ``<language>`` ``#> ``3`` 8.51``e``-14`` Wald ``<language>`` ``#> `` ``#> $glance_data`` ``#> ``# A tibble: 0 × 0`` ``#> `` ``#> attr(,"class")`` ``#> [1] "ggstatsplot_stats" "list"`
 
 ## Summary of graphics and tests
 

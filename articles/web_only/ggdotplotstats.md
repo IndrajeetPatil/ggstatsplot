@@ -47,56 +47,12 @@ Let’s begin with a very simple example from the
 subset of the fuel economy data that the EPA makes available on
 <http://fueleconomy.gov>.
 
-``` r
-
-## looking at the structure of the data using glimpse
-dplyr::glimpse(ggplot2::mpg)
-#> Rows: 234
-#> Columns: 11
-#> $ manufacturer <chr> "audi", "audi", "audi", "audi", "audi", "audi", "audi", "…
-#> $ model        <chr> "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "…
-#> $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…
-#> $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…
-#> $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …
-#> $ trans        <chr> "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto…
-#> $ drv          <chr> "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4…
-#> $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…
-#> $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…
-#> $ fl           <chr> "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p…
-#> $ class        <chr> "compact", "compact", "compact", "compact", "compact", "c…
-```
+`## looking at the structure of the data using glimpse`` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`)`` ``#> Rows: 234`` ``#> Columns: 11`` ``#> $ ``manufacturer`` ``<chr>`` "audi"``, ``"audi"``, ``"audi"``, ``"audi"``, ``"audi"``, ``"audi"``, ``"audi"``, ``"…`` ``#> $ ``model `` ``<chr>`` "a4"``, ``"a4"``, ``"a4"``, ``"a4"``, ``"a4"``, ``"a4"``, ``"a4"``, ``"a4 quattro"``, ``"…`` ``#> $ ``displ `` ``<dbl>`` 1.8``, ``1.8``, ``2.0``, ``2.0``, ``2.8``, ``2.8``, ``3.1``, ``1.8``, ``1.8``, ``2.0``, ``2.0``, ``2.…`` ``#> $ ``year `` ``<int>`` 1999``, ``1999``, ``2008``, ``2008``, ``1999``, ``1999``, ``2008``, ``1999``, ``1999``, ``200…`` ``#> $ ``cyl `` ``<int>`` 4``, ``4``, ``4``, ``4``, ``6``, ``6``, ``6``, ``4``, ``4``, ``4``, ``4``, ``6``, ``6``, ``6``, ``6``, ``6``, ``6``, ``8``, ``8``, ``…`` ``#> $ ``trans `` ``<chr>`` "auto(l5)"``, ``"manual(m5)"``, ``"manual(m6)"``, ``"auto(av)"``, ``"auto…`` ``#> $ ``drv `` ``<chr>`` "f"``, ``"f"``, ``"f"``, ``"f"``, ``"f"``, ``"f"``, ``"f"``, ``"4"``, ``"4"``, ``"4"``, ``"4"``, ``"4…`` ``#> $ ``cty `` ``<int>`` 18``, ``21``, ``20``, ``21``, ``16``, ``18``, ``18``, ``18``, ``16``, ``20``, ``19``, ``15``, ``17``, ``17``, ``1…`` ``#> $ ``hwy `` ``<int>`` 29``, ``29``, ``31``, ``30``, ``26``, ``26``, ``27``, ``26``, ``25``, ``28``, ``27``, ``25``, ``25``, ``25``, ``2…`` ``#> $ ``fl `` ``<chr>`` "p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p"``, ``"p…`` ``#> $ ``class `` ``<chr>`` "compact"``, ``"compact"``, ``"compact"``, ``"compact"``, ``"compact"``, ``"c…`
 
 Let’s say we want to visualize the distribution of mileage by car
 manufacturer.
 
-``` r
-
-## removing factor level with very few no. of observations
-df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
-
-## creating a vector of colors using `paletteer` package
-paletter_vector <- paletteer::paletteer_d(
-  palette = "palettetown::venusaur",
-  n = nlevels(as.factor(df$manufacturer)),
-  type = "discrete"
-)
-
-ggdotplotstats(
-  data = df,
-  x = cty,
-  y = manufacturer,
-  xlab = "city miles per gallon",
-  ylab = "car manufacturer",
-  test.value = 15.5,
-  point.args = list(
-    shape = 16,
-    color = paletter_vector,
-    size = 5
-  ),
-  title = "Distribution of mileage of cars",
-  ggtheme = ggplot2::theme_dark()
-)
-```
+`## removing factor level with very few no. of observations`` ``df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`, ``cyl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"6"``)``)`` `` ``` ## creating a vector of colors using `paletteer` package ``` ``paletter_vector`` ``<-`` ``paletteer``::`[`paletteer_d`](https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html)`(`` `` palette ``=`` ``"palettetown::venusaur"``,`` `` n ``=`` `[`nlevels`](https://rdrr.io/r/base/nlevels.html)`(`[`as.factor`](https://rdrr.io/r/base/factor.html)`(``df``$``manufacturer``)``)``,`` `` type ``=`` ``"discrete"`` ``)`` `` `[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(`` `` data ``=`` ``df``,`` `` x ``=`` ``cty``,`` `` y ``=`` ``manufacturer``,`` `` xlab ``=`` ``"city miles per gallon"``,`` `` ylab ``=`` ``"car manufacturer"``,`` `` test.value ``=`` ``15.5``,`` `` point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` shape ``=`` ``16``,`` `` color ``=`` ``paletter_vector``,`` `` size ``=`` ``5`` `` ``)``,`` `` title ``=`` ``"Distribution of mileage of cars"``,`` `` ggtheme ``=`` ``ggplot2``::`[`theme_dark`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)`` ``)`
 
 ![](ggdotplotstats_files/figure-html/mpg2-1.png)
 
@@ -114,26 +70,7 @@ variable** and then combines the individual plots into a single plot.
 Let’s see how we can use this function to apply `ggdotplotstats` to
 accomplish our task.
 
-``` r
-
-## removing factor level with very few no. of observations
-df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
-
-grouped_ggdotplotstats(
-  ## arguments relevant for ggdotplotstats
-  data = df,
-  grouping.var = cyl, ## grouping variable
-  x = cty,
-  y = manufacturer,
-  xlab = "city miles per gallon",
-  ylab = "car manufacturer",
-  type = "bayes",
-  test.value = 15.5,
-  ## arguments relevant for `combine_plots`
-  annotation.args = list(title = "Fuel economy data"),
-  plotgrid.args = list(nrow = 2L)
-)
-```
+`## removing factor level with very few no. of observations`` ``df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`, ``cyl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"6"``)``)`` `` `[`grouped_ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)`(`` `` ``## arguments relevant for ggdotplotstats`` `` data ``=`` ``df``,`` `` grouping.var ``=`` ``cyl``, ``## grouping variable`` `` x ``=`` ``cty``,`` `` y ``=`` ``manufacturer``,`` `` xlab ``=`` ``"city miles per gallon"``,`` `` ylab ``=`` ``"car manufacturer"``,`` `` type ``=`` ``"bayes"``,`` `` test.value ``=`` ``15.5``,`` `` ``` ## arguments relevant for `combine_plots` ``` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Fuel economy data"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)`` ``)`
 
 ![](ggdotplotstats_files/figure-html/grouped1-1.png)
 
@@ -173,10 +110,7 @@ approaches:
 
 For example, let’s see the following example:
 
-``` r
-
-ggdotplotstats(morley, Speed, Expt, test.value = 800)
-```
+[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(``morley``, ``Speed``, ``Expt``, test.value ``=`` ``800``)`
 
 ![](ggdotplotstats_files/figure-html/reporting-1.png)
 

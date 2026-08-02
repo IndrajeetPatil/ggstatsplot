@@ -56,20 +56,7 @@ expectancy, GDP per capita, and population, at 5 year intervals, from
 1952 to 2007, for each of 142 countries (courtesy [Gapminder
 Foundation](https://www.gapminder.org/)). Let’s have a look at the data-
 
-``` r
-
-library(gapminder)
-
-dplyr::glimpse(gapminder::gapminder)
-#> Rows: 1,704
-#> Columns: 6
-#> $ country   <fct> "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
-#> $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
-#> $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
-#> $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
-#> $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
-#> $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`gapminder`](https://github.com/jennybc/gapminder)`)`` `` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`)`` ``#> Rows: 1,704`` ``#> Columns: 6`` ``#> $ ``country `` ``<fct>`` "Afghanistan"``, ``"Afghanistan"``, ``"Afghanistan"``, ``"Afghanistan"``, ``…`` ``#> $ ``continent`` ``<fct>`` Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``Asia``, ``…`` ``#> $ ``year `` ``<int>`` 1952``, ``1957``, ``1962``, ``1967``, ``1972``, ``1977``, ``1982``, ``1987``, ``1992``, ``1997``, ``…`` ``#> $ ``lifeExp `` ``<dbl>`` 28.801``, ``30.332``, ``31.997``, ``34.020``, ``36.088``, ``38.438``, ``39.854``, ``40.8…`` ``#> $ ``pop `` ``<int>`` 8425333``, ``9240934``, ``10267083``, ``11537966``, ``13079460``, ``14880372``, ``12…`` ``#> $ ``gdpPercap`` ``<dbl>`` 779.4453``, ``820.8530``, ``853.1007``, ``836.1971``, ``739.9811``, ``786.1134``, ``…`
 
 **Note**: For the remainder of the vignette, we’re going to exclude
 *Oceania* from the analysis simply because there are so few observations
@@ -82,14 +69,7 @@ is statistically significant.
 
 The simplest form of the function call is-
 
-``` r
-
-ggbetweenstats(
-  data = dplyr::filter(gapminder::gapminder, year == 2007, continent != "Oceania"),
-  x = continent,
-  y = lifeExp
-)
-```
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`, ``year`` ``==`` ``2007``, ``continent`` ``!=`` ``"Oceania"``)``,`` `` x ``=`` ``continent``,`` `` y ``=`` ``lifeExp`` ``)`
 
 ![](ggbetweenstats_files/figure-html/ggbetweenstats1-1.png)
 
@@ -121,26 +101,7 @@ informative by making use of the many optional parameters in
 labels. We can and will change the overall theme as well as the color
 palette in use.
 
-``` r
-
-ggbetweenstats(
-  data = dplyr::filter(gapminder, year == 2007, continent != "Oceania"),
-  x = continent, ## grouping/independent variable
-  y = lifeExp, ## dependent variables
-  type = "robust", ## type of statistics
-  xlab = "Continent", ## label for the x-axis
-  ylab = "Life expectancy", ## label for the y-axis
-  ## turn off messages
-  ggtheme = ggplot2::theme_gray(), ## a different theme
-  palette = "yarrr::info2", ## choosing a different color palette
-  title = "Comparison of life expectancy across continents (Year: 2007)",
-  caption = "Source: Gapminder Foundation"
-) + ## modifying the plot further
-  ggplot2::scale_y_continuous(
-    limits = c(35, 85),
-    breaks = seq(from = 35, to = 85, by = 5)
-  )
-```
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``, ``year`` ``==`` ``2007``, ``continent`` ``!=`` ``"Oceania"``)``,`` `` x ``=`` ``continent``, ``## grouping/independent variable`` `` y ``=`` ``lifeExp``, ``## dependent variables`` `` type ``=`` ``"robust"``, ``## type of statistics`` `` xlab ``=`` ``"Continent"``, ``## label for the x-axis`` `` ylab ``=`` ``"Life expectancy"``, ``## label for the y-axis`` `` ``## turn off messages`` `` ggtheme ``=`` ``ggplot2``::`[`theme_gray`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``, ``## a different theme`` `` palette ``=`` ``"yarrr::info2"``, ``## choosing a different color palette`` `` title ``=`` ``"Comparison of life expectancy across continents (Year: 2007)"``,`` `` caption ``=`` ``"Source: Gapminder Foundation"`` ``)`` ``+`` ``## modifying the plot further`` `` ``ggplot2``::`[`scale_y_continuous`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)`(`` `` limits ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``35``, ``85``)``,`` `` breaks ``=`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``from ``=`` ``35``, to ``=`` ``85``, by ``=`` ``5``)`` `` ``)`
 
 ![](ggbetweenstats_files/figure-html/ggbetweenstats2-1.png)
 
@@ -174,78 +135,7 @@ plot have different colors or themes.
 
 For example,
 
-``` r
-
-## selecting subset of the data
-df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
-
-p1 <- ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  # to remove violin plot
-  violin.args = list(width = 0),
-  type = "p",
-  conf.level = 0.99,
-  title = "Parametric test",
-  palette = "ggsci::nrc_npg"
-)
-
-p2 <- ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  # to remove box plot
-  boxplot.args = list(width = 0),
-  type = "np",
-  conf.level = 0.99,
-  title = "Non-parametric Test",
-  palette = "ggsci::uniform_startrek"
-)
-
-p3 <- ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  type = "r",
-  conf.level = 0.99,
-  title = "Robust Test",
-  tr = 0.005,
-  palette = "wesanderson::Royal2",
-  digits = 3
-)
-
-## Bayes Factor for parametric t-test and boxviolin plot
-p4 <- ggbetweenstats(
-  data = df_year,
-  x = year,
-  y = lifeExp,
-  xlab = "Year",
-  ylab = "Life expectancy",
-  type = "bayes",
-  violin.args = list(width = 0),
-  boxplot.args = list(width = 0),
-  point.args = list(alpha = 0),
-  title = "Bayesian Test",
-  palette = "ggsci::nrc_npg"
-)
-
-## combining the individual plots into a single plot
-combine_plots(
-  list(p1, p2, p3, p4),
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(
-    title = "Comparison of life expectancy between 1957 and 2007",
-    caption = "Source: Gapminder Foundation"
-  )
-)
-```
+`## selecting subset of the data`` ``df_year`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`, ``year`` ``==`` ``2007`` ``|`` ``year`` ``==`` ``1957``)`` `` ``p1`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``df_year``,`` `` x ``=`` ``year``,`` `` y ``=`` ``lifeExp``,`` `` xlab ``=`` ``"Year"``,`` `` ylab ``=`` ``"Life expectancy"``,`` `` ``# to remove violin plot`` `` violin.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``width ``=`` ``0``)``,`` `` type ``=`` ``"p"``,`` `` conf.level ``=`` ``0.99``,`` `` title ``=`` ``"Parametric test"``,`` `` palette ``=`` ``"ggsci::nrc_npg"`` ``)`` `` ``p2`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``df_year``,`` `` x ``=`` ``year``,`` `` y ``=`` ``lifeExp``,`` `` xlab ``=`` ``"Year"``,`` `` ylab ``=`` ``"Life expectancy"``,`` `` ``# to remove box plot`` `` boxplot.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``width ``=`` ``0``)``,`` `` type ``=`` ``"np"``,`` `` conf.level ``=`` ``0.99``,`` `` title ``=`` ``"Non-parametric Test"``,`` `` palette ``=`` ``"ggsci::uniform_startrek"`` ``)`` `` ``p3`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``df_year``,`` `` x ``=`` ``year``,`` `` y ``=`` ``lifeExp``,`` `` xlab ``=`` ``"Year"``,`` `` ylab ``=`` ``"Life expectancy"``,`` `` type ``=`` ``"r"``,`` `` conf.level ``=`` ``0.99``,`` `` title ``=`` ``"Robust Test"``,`` `` tr ``=`` ``0.005``,`` `` palette ``=`` ``"wesanderson::Royal2"``,`` `` digits ``=`` ``3`` ``)`` `` ``## Bayes Factor for parametric t-test and boxviolin plot`` ``p4`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``df_year``,`` `` x ``=`` ``year``,`` `` y ``=`` ``lifeExp``,`` `` xlab ``=`` ``"Year"``,`` `` ylab ``=`` ``"Life expectancy"``,`` `` type ``=`` ``"bayes"``,`` `` violin.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``width ``=`` ``0``)``,`` `` boxplot.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``width ``=`` ``0``)``,`` `` point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``alpha ``=`` ``0``)``,`` `` title ``=`` ``"Bayesian Test"``,`` `` palette ``=`` ``"ggsci::nrc_npg"`` ``)`` `` ``## combining the individual plots into a single plot`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` `[`list`](https://rdrr.io/r/base/list.html)`(``p1``, ``p2``, ``p3``, ``p4``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Comparison of life expectancy between 1957 and 2007"``,`` `` caption ``=`` ``"Source: Gapminder Foundation"`` `` ``)`` ``)`
 
 ![](ggbetweenstats_files/figure-html/ggbetweenstats3-1.png)
 
@@ -266,28 +156,7 @@ Let’s focus on the same 4 continents for the following years: 1967,
 1987, 2007. Also, let’s carry out pairwise comparisons to see if there
 differences between every pair of continents.
 
-``` r
-
-## select part of the dataset and use it for plotting
-gapminder::gapminder |>
-  dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") |>
-  grouped_ggbetweenstats(
-    ## arguments relevant for ggbetweenstats
-    x = continent,
-    y = lifeExp,
-    grouping.var = year,
-    xlab = "Continent",
-    ylab = "Life expectancy",
-    pairwise.display = "significant", ## display only significant pairwise comparisons
-    pairwise.alpha = 0.01, ## use a stricter alpha threshold to reduce clutter
-    p.adjust.method = "fdr", ## adjust p-values for multiple tests using this method
-    # ggtheme = ggthemes::theme_tufte(),
-    palette = "ggsci::default_jco",
-    ## arguments relevant for combine_plots
-    annotation.args = list(title = "Changes in life expectancy across continents (1967-2007)"),
-    plotgrid.args = list(nrow = 3)
-  )
-```
+`## select part of the dataset and use it for plotting`` ``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)` ``|>`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``year`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``1967``, ``1987``, ``2007``)``, ``continent`` ``!=`` ``"Oceania"``)`` ``|>`` `` `[`grouped_ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)`(`` `` ``## arguments relevant for ggbetweenstats`` `` x ``=`` ``continent``,`` `` y ``=`` ``lifeExp``,`` `` grouping.var ``=`` ``year``,`` `` xlab ``=`` ``"Continent"``,`` `` ylab ``=`` ``"Life expectancy"``,`` `` pairwise.display ``=`` ``"significant"``, ``## display only significant pairwise comparisons`` `` pairwise.alpha ``=`` ``0.01``, ``## use a stricter alpha threshold to reduce clutter`` `` p.adjust.method ``=`` ``"fdr"``, ``## adjust p-values for multiple tests using this method`` `` ``# ggtheme = ggthemes::theme_tufte(),`` `` palette ``=`` ``"ggsci::default_jco"``,`` `` ``## arguments relevant for combine_plots`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Changes in life expectancy across continents (1967-2007)"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``3``)`` `` ``)`
 
 ![](ggbetweenstats_files/figure-html/grouped1-1.png)
 
@@ -342,10 +211,7 @@ approaches:
 
 For example, let’s see the following example:
 
-``` r
-
-ggbetweenstats(ToothGrowth, supp, len)
-```
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``ToothGrowth``, ``supp``, ``len``)`
 
 ![](ggbetweenstats_files/figure-html/reporting-1.png)
 

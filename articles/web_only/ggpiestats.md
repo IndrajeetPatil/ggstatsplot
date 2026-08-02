@@ -70,27 +70,7 @@ survival.”
 
 Let’s have a look at the structure of both.
 
-``` r
-
-# looking at the original data in tabular format
-dplyr::glimpse(Titanic)
-#>  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...
-#>  - attr(*, "dimnames")=List of 4
-#>   ..$ Class   : chr [1:4] "1st" "2nd" "3rd" "Crew"
-#>   ..$ Sex     : chr [1:2] "Male" "Female"
-#>   ..$ Age     : chr [1:2] "Child" "Adult"
-#>   ..$ Survived: chr [1:2] "No" "Yes"
-
-# looking at the dataset as a tibble or data frame
-dplyr::glimpse(Titanic_full)
-#> Rows: 2,201
-#> Columns: 5
-#> $ id       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…
-#> $ Class    <ord> 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3rd, 3…
-#> $ Sex      <fct> Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, M…
-#> $ Age      <fct> Child, Child, Child, Child, Child, Child, Child, Child, Child…
-#> $ Survived <fct> No, No, No, No, No, No, No, No, No, No, No, No, No, No, No, N…
-```
+`# looking at the original data in tabular format`` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``Titanic``)`` ``#> 'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...`` ``#> - attr(*, "dimnames")=List of 4`` ``#> ..$ Class : chr [1:4] "1st" "2nd" "3rd" "Crew"`` ``#> ..$ Sex : chr [1:2] "Male" "Female"`` ``#> ..$ Age : chr [1:2] "Child" "Adult"`` ``#> ..$ Survived: chr [1:2] "No" "Yes"`` `` ``# looking at the dataset as a tibble or data frame`` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``Titanic_full``)`` ``#> Rows: 2,201`` ``#> Columns: 5`` ``#> $ ``id `` ``<dbl>`` 1``, ``2``, ``3``, ``4``, ``5``, ``6``, ``7``, ``8``, ``9``, ``10``, ``11``, ``12``, ``13``, ``14``, ``15``, ``16``, ``17``, ``18…`` ``#> $ ``Class `` ``<ord>`` 3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3rd``, ``3…`` ``#> $ ``Sex `` ``<fct>`` Male``, ``Male``, ``Male``, ``Male``, ``Male``, ``Male``, ``Male``, ``Male``, ``Male``, ``Male``, ``M…`` ``#> $ ``Age `` ``<fct>`` Child``, ``Child``, ``Child``, ``Child``, ``Child``, ``Child``, ``Child``, ``Child``, ``Child…`` ``#> $ ``Survived`` ``<fct>`` No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``No``, ``N…`
 
 ## Goodness of Fit with `ggpiestats`
 
@@ -104,16 +84,7 @@ display a piechart with the percentages of passengers who did or did not
 survive. Our initial hypothesis is that it was no different than
 flipping a coin. People had a 50/50 chance of surviving.
 
-``` r
-
-ggpiestats(
-  data = Titanic_full,
-  x = Survived,
-  title = "Passenger survival on the Titanic",
-  caption = "Source: Titanic survival dataset",
-  legend.title = "Survived?"
-)
-```
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`` `` data ``=`` ``Titanic_full``,`` `` x ``=`` ``Survived``,`` `` title ``=`` ``"Passenger survival on the Titanic"``,`` `` caption ``=`` ``"Source: Titanic survival dataset"``,`` `` legend.title ``=`` ``"Survived?"`` ``)`
 
 ![](ggpiestats_files/figure-html/ggpiestats3-1.png)
 
@@ -128,21 +99,7 @@ Let’s next investigate whether the passenger’s gender was independent
 of, or associated with, gender. The test is whether the proportion of
 people who survived was different between the sexes using `ggpiestats`.
 
-``` r
-
-ggpiestats(
-  data = Titanic_full,
-  x = Survived,
-  y = Sex
-) + # further modification with `{ggplot2}` commands
-  ggplot2::theme(
-    plot.title = ggplot2::element_text(
-      color = "black",
-      size = 14,
-      hjust = 0
-    )
-  )
-```
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`` `` data ``=`` ``Titanic_full``,`` `` x ``=`` ``Survived``,`` `` y ``=`` ``Sex`` ``)`` ``+`` ``` # further modification with `{ggplot2}` commands ``` `` ``ggplot2``::`[`theme`](https://ggplot2.tidyverse.org/reference/theme.html)`(`` `` plot.title ``=`` ``ggplot2``::`[`element_text`](https://ggplot2.tidyverse.org/reference/element.html)`(`` `` color ``=`` ``"black"``,`` `` size ``=`` ``14``,`` `` hjust ``=`` ``0`` `` ``)`` `` ``)`
 
 ![](ggpiestats_files/figure-html/ggpiestats1-1.png)
 
@@ -167,24 +124,7 @@ and then combines the list of individual plots into a single plot. Note
 that the grouping variable can be anything: conditions in a given study,
 groups in a study sample, different studies, etc.
 
-``` r
-
-grouped_ggpiestats(
-  # arguments relevant for `ggpiestats()`
-  data = Titanic_full,
-  x = Survived,
-  y = Sex,
-  grouping.var = Age,
-  digits.perc = 1,
-  palette = "ggsci::category10_d3",
-  # arguments relevant for `combine_plots()`
-  annotation.args = list(
-    title = "Passenger survival on the Titanic by gender and age",
-    caption = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant"
-  ),
-  plotgrid.args = list(nrow = 2L)
-)
-```
+[`grouped_ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)`(`` `` ``` # arguments relevant for `ggpiestats()` ``` `` data ``=`` ``Titanic_full``,`` `` x ``=`` ``Survived``,`` `` y ``=`` ``Sex``,`` `` grouping.var ``=`` ``Age``,`` `` digits.perc ``=`` ``1``,`` `` palette ``=`` ``"ggsci::category10_d3"``,`` `` ``` # arguments relevant for `combine_plots()` ``` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Passenger survival on the Titanic by gender and age"``,`` `` caption ``=`` ``"Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)`` ``)`
 
 ![](ggpiestats_files/figure-html/ggpiestats4-1.png)
 
@@ -215,55 +155,7 @@ different types fish they caught in the months of `February` and
 `March`. In this data frame, each row corresponds to a unique
 combination of `Boat` and `Month`.
 
-``` r
-
-# (this is completely fictional; I don't know first thing about fishing!)
-
-fishing <- tibble::as_tibble(data.frame(
-  Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
-  Month = c(rep("February", 2), rep("March", 2), rep("February", 2), rep("March", 2)),
-  Fish = c(
-    "Bass",
-    "Catfish",
-    "Cod",
-    "Haddock",
-    "Cod",
-    "Haddock",
-    "Bass",
-    "Catfish",
-    "Bass",
-    "Catfish",
-    "Cod",
-    "Haddock",
-    "Cod",
-    "Haddock",
-    "Bass",
-    "Catfish"
-  ),
-  SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
-))
-
-fishing
-#> # A tibble: 16 × 4
-#>    Boat  Month    Fish    SumOfCaught
-#>    <chr> <chr>    <chr>         <dbl>
-#>  1 B     February Bass             25
-#>  2 B     February Catfish          20
-#>  3 B     March    Cod              35
-#>  4 B     March    Haddock          40
-#>  5 A     February Cod              40
-#>  6 A     February Haddock          25
-#>  7 A     March    Bass             30
-#>  8 A     March    Catfish          42
-#>  9 A     February Bass             40
-#> 10 A     February Catfish          30
-#> 11 A     March    Cod              33
-#> 12 A     March    Haddock          26
-#> 13 B     February Cod             100
-#> 14 B     February Haddock          30
-#> 15 B     March    Bass             20
-#> 16 B     March    Catfish          20
-```
+`# (this is completely fictional; I don't know first thing about fishing!)`` `` ``fishing`` ``<-`` ``tibble``::`[`as_tibble`](https://tibble.tidyverse.org/reference/as_tibble.html)`(`[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`` `` Boat ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``"B"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"A"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"A"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"B"``, ``4``)``)``,`` `` Month ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``"February"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"March"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"February"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"March"``, ``2``)``)``,`` `` Fish ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`` `` ``"Bass"``,`` `` ``"Catfish"``,`` `` ``"Cod"``,`` `` ``"Haddock"``,`` `` ``"Cod"``,`` `` ``"Haddock"``,`` `` ``"Bass"``,`` `` ``"Catfish"``,`` `` ``"Bass"``,`` `` ``"Catfish"``,`` `` ``"Cod"``,`` `` ``"Haddock"``,`` `` ``"Cod"``,`` `` ``"Haddock"``,`` `` ``"Bass"``,`` `` ``"Catfish"`` `` ``)``,`` `` SumOfCaught ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``25``, ``20``, ``35``, ``40``, ``40``, ``25``, ``30``, ``42``, ``40``, ``30``, ``33``, ``26``, ``100``, ``30``, ``20``, ``20``)`` ``)``)`` `` ``fishing`` ``#> ``# A tibble: 16 × 4`` ``#> ``Boat`` ``Month`` ``Fish`` ``SumOfCaught`` ``#> ``<chr>`` ``<chr>`` ``<chr>`` ``<dbl>`` ``#> `` 1`` B February Bass 25`` ``#> `` 2`` B February Catfish 20`` ``#> `` 3`` B March Cod 35`` ``#> `` 4`` B March Haddock 40`` ``#> `` 5`` A February Cod 40`` ``#> `` 6`` A February Haddock 25`` ``#> `` 7`` A March Bass 30`` ``#> `` 8`` A March Catfish 42`` ``#> `` 9`` A February Bass 40`` ``#> ``10`` A February Catfish 30`` ``#> ``11`` A March Cod 33`` ``#> ``12`` A March Haddock 26`` ``#> ``13`` B February Cod 100`` ``#> ``14`` B February Haddock 30`` ``#> ``15`` B March Bass 20`` ``#> ``16`` B March Catfish 20`
 
 When the data is organized this way, we make a slightly different call
 to the
@@ -273,20 +165,7 @@ function: we use the `counts` argument.
 If we want to investigate the relationship of type of fish by month (a
 test of independence), our command would be:
 
-``` r
-
-ggpiestats(
-  data = fishing,
-  x = Fish,
-  y = Month,
-  counts = SumOfCaught,
-  label = "both",
-  palette = "ggsci::default_jama",
-  title = "Type fish caught by month",
-  caption = "Source: completely made up",
-  legend.title = "Type fish caught: "
-)
-```
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`` `` data ``=`` ``fishing``,`` `` x ``=`` ``Fish``,`` `` y ``=`` ``Month``,`` `` counts ``=`` ``SumOfCaught``,`` `` label ``=`` ``"both"``,`` `` palette ``=`` ``"ggsci::default_jama"``,`` `` title ``=`` ``"Type fish caught by month"``,`` `` caption ``=`` ``"Source: completely made up"``,`` `` legend.title ``=`` ``"Type fish caught: "`` ``)`
 
 ![](ggpiestats_files/figure-html/ggpiestats8-1.png)
 
@@ -312,28 +191,7 @@ subtitle.
 (**Note:** If you forget to set `paired = TRUE`, the results will be
 inaccurate.)
 
-``` r
-
-# create imaginary data
-clinical_trial <- tibble::tribble(
-  ~SickBefore, ~SickAfter, ~Counts,
-  "No", "Yes", 4,
-  "Yes", "No", 25,
-  "Yes", "Yes", 13,
-  "No", "No", 92
-)
-
-ggpiestats(
-  data = clinical_trial,
-  x = SickAfter,
-  y = SickBefore,
-  counts = Counts,
-  paired = TRUE,
-  label = "both",
-  title = "Results from imaginary clinical trial",
-  palette = "ggsci::default_ucscgb"
-)
-```
+`# create imaginary data`` ``clinical_trial`` ``<-`` ``tibble``::`[`tribble`](https://tibble.tidyverse.org/reference/tribble.html)`(`` `` ``~``SickBefore``, ``~``SickAfter``, ``~``Counts``,`` `` ``"No"``, ``"Yes"``, ``4``,`` `` ``"Yes"``, ``"No"``, ``25``,`` `` ``"Yes"``, ``"Yes"``, ``13``,`` `` ``"No"``, ``"No"``, ``92`` ``)`` `` `[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`` `` data ``=`` ``clinical_trial``,`` `` x ``=`` ``SickAfter``,`` `` y ``=`` ``SickBefore``,`` `` counts ``=`` ``Counts``,`` `` paired ``=`` ``TRUE``,`` `` label ``=`` ``"both"``,`` `` title ``=`` ``"Results from imaginary clinical trial"``,`` `` palette ``=`` ``"ggsci::default_ucscgb"`` ``)`
 
 ![](ggpiestats_files/figure-html/ggpiestats9-1.png)
 
@@ -365,10 +223,7 @@ approaches:
 
 For example, let’s see the following example:
 
-``` r
-
-ggpiestats(mtcars, am, cyl)
-```
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(``mtcars``, ``am``, ``cyl``)`
 
 ![](ggpiestats_files/figure-html/reporting-1.png)
 

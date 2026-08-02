@@ -5,6 +5,9 @@
 | [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
 | [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
 
+> \[!NOTE\] This package supports R-devel, the current R release, and
+> the previous R release.
+
 ## Raison d’être ![ggstatsplot package logo](reference/figures/logo.png)
 
 > “What is to be sought in designs for the display of information is the
@@ -168,17 +171,7 @@ for **between**-group or **between**-condition comparisons with results
 from statistical tests in the subtitle. The simplest function call looks
 like this-
 
-``` r
-
-set.seed(123)
-
-ggbetweenstats(
-  data  = iris,
-  x     = Species,
-  y     = Sepal.Length,
-  title = "Distribution of sepal length across Iris species"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``iris``,`` `` x ``=`` ``Species``,`` `` y ``=`` ``Sepal.Length``,`` `` title ``=`` ``"Distribution of sepal length across Iris species"`` ``)`
 
 ![Violin plot with boxplot overlay showing distribution of sepal length
 across three Iris species with statistical test
@@ -199,22 +192,7 @@ informative or change some of the default options. Additionally, there
 is also a `grouped_` variant of this function that makes it easy to
 repeat the same operation across a **single** grouping variable:
 
-``` r
-
-set.seed(123)
-
-grouped_ggbetweenstats(
-  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x                = mpaa,
-  y                = length,
-  grouping.var     = genre,
-  ggsignif.args    = list(textsize = 4, tip_length = 0.01),
-  p.adjust.method  = "bonferroni",
-  palette          = "ggsci::default_jama",
-  plotgrid.args    = list(nrow = 1),
-  annotation.args  = list(title = "Differences in movie length by mpaa ratings for different genres")
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``movies_long``, ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Action"``, ``"Comedy"``)``)``,`` `` x ``=`` ``mpaa``,`` `` y ``=`` ``length``,`` `` grouping.var ``=`` ``genre``,`` `` ggsignif.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``textsize ``=`` ``4``, tip_length ``=`` ``0.01``)``,`` `` p.adjust.method ``=`` ``"bonferroni"``,`` `` palette ``=`` ``"ggsci::default_jama"``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Differences in movie length by mpaa ratings for different genres"``)`` ``)`
 
 ![Grouped violin plots comparing movie length by MPAA rating for Action
 and Comedy genres with statistical
@@ -244,20 +222,7 @@ it is recommended that you pass it via `subject.id`; rows with missing
 identifiers are ignored for paired grouping and repeated-measures
 statistics.
 
-``` r
-
-set.seed(123)
-library(WRS2) ## for data
-library(afex) ## to run ANOVA
-
-ggwithinstats(
-  data       = WineTasting,
-  x          = Wine,
-  y          = Taste,
-  subject.id = Taster,
-  title      = "Wine tasting"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`WRS2`](https://r-forge.r-project.org/projects/psychor/)`)`` ``## for data`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`afex`](https://afex.singmann.science/)`)`` ``## to run ANOVA`` `` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``WineTasting``,`` `` x ``=`` ``Wine``,`` `` y ``=`` ``Taste``,`` `` subject.id ``=`` ``Taster``,`` `` title ``=`` ``"Wine tasting"`` ``)`
 
 ![Within-subjects violin plot showing wine taste ratings by wine type
 with paired data paths and statistical
@@ -279,21 +244,7 @@ this function also has a `grouped_` variant that makes repeating the
 same analysis across a single grouping variable quicker. We will see an
 example with only repeated measurements-
 
-``` r
-
-set.seed(123)
-
-grouped_ggwithinstats(
-  data            = dplyr::filter(bugs_long, region %in% c("Europe", "North America"), condition %in% c("LDLF", "LDHF")),
-  x               = condition,
-  y               = desire,
-  subject.id      = subject,
-  type            = "np",
-  xlab            = "Condition",
-  ylab            = "Desire to kill an artrhopod",
-  grouping.var    = region
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``bugs_long``, ``region`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Europe"``, ``"North America"``)``, ``condition`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"LDLF"``, ``"LDHF"``)``)``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` type ``=`` ``"np"``,`` `` xlab ``=`` ``"Condition"``,`` `` ylab ``=`` ``"Desire to kill an artrhopod"``,`` `` grouping.var ``=`` ``region`` ``)`
 
 ![Grouped within-subjects violin plots showing desire to kill arthropods
 by condition for Europe and North
@@ -315,18 +266,7 @@ test,
 [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
 can be used.
 
-``` r
-
-set.seed(123)
-
-gghistostats(
-  data       = ggplot2::msleep,
-  x          = awake,
-  title      = "Amount of time spent awake",
-  test.value = 12,
-  binwidth   = 1
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(`` `` data ``=`` ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`,`` `` x ``=`` ``awake``,`` `` title ``=`` ``"Amount of time spent awake"``,`` `` test.value ``=`` ``12``,`` `` binwidth ``=`` ``1`` ``)`
 
 ![Histogram showing distribution of time spent awake in mammals with
 one-sample test results](reference/figures/README-gghistostats1-1.png)
@@ -343,23 +283,7 @@ one-sample test results](reference/figures/README-gghistostats1-1.png)
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
 
-``` r
-
-set.seed(123)
-
-grouped_gghistostats(
-  data              = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x                 = budget,
-  test.value        = 50,
-  type              = "nonparametric",
-  xlab              = "Movies budget (in million US$)",
-  grouping.var      = genre,
-  ggtheme           = ggthemes::theme_tufte(),
-  ## modify the defaults from `{ggstatsplot}` for each plot
-  plotgrid.args     = list(nrow = 1),
-  annotation.args   = list(title = "Movies budgets for different genres")
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``movies_long``, ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Action"``, ``"Comedy"``)``)``,`` `` x ``=`` ``budget``,`` `` test.value ``=`` ``50``,`` `` type ``=`` ``"nonparametric"``,`` `` xlab ``=`` ``"Movies budget (in million US$)"``,`` `` grouping.var ``=`` ``genre``,`` `` ggtheme ``=`` ``ggthemes``::``theme_tufte``(``)``,`` `` ``` ## modify the defaults from `{ggstatsplot}` for each plot ``` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Movies budgets for different genres"``)`` ``)`
 
 ![Grouped histograms showing movie budget distributions for Action and
 Comedy genres with statistical
@@ -379,20 +303,7 @@ This function is similar to
 [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
 but is intended to be used when the numeric variable also has a label.
 
-``` r
-
-set.seed(123)
-
-ggdotplotstats(
-  data       = dplyr::filter(gapminder::gapminder, continent == "Asia"),
-  y          = country,
-  x          = lifeExp,
-  test.value = 55,
-  type       = "robust",
-  title      = "Distribution of life expectancy in Asian continent",
-  xlab       = "Life expectancy"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`, ``continent`` ``==`` ``"Asia"``)``,`` `` y ``=`` ``country``,`` `` x ``=`` ``lifeExp``,`` `` test.value ``=`` ``55``,`` `` type ``=`` ``"robust"``,`` `` title ``=`` ``"Distribution of life expectancy in Asian continent"``,`` `` xlab ``=`` ``"Life expectancy"`` ``)`
 
 ![Dot plot showing life expectancy distribution across Asian countries
 with robust one-sample test
@@ -410,23 +321,7 @@ As with the rest of the functions in this package, there is also a
 `grouped_` variant of this function to facilitate looping the same
 operation for all levels of a single grouping variable.
 
-``` r
-
-set.seed(123)
-
-grouped_ggdotplotstats(
-  data            = dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6")),
-  x               = cty,
-  y               = manufacturer,
-  type            = "bayes",
-  xlab            = "city miles per gallon",
-  ylab            = "car manufacturer",
-  grouping.var    = cyl,
-  test.value      = 15.5,
-  point.args      = list(color = "red", size = 5, shape = 13),
-  annotation.args = list(title = "Fuel economy data")
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`, ``cyl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"6"``)``)``,`` `` x ``=`` ``cty``,`` `` y ``=`` ``manufacturer``,`` `` type ``=`` ``"bayes"``,`` `` xlab ``=`` ``"city miles per gallon"``,`` `` ylab ``=`` ``"car manufacturer"``,`` `` grouping.var ``=`` ``cyl``,`` `` test.value ``=`` ``15.5``,`` `` point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"red"``, size ``=`` ``5``, shape ``=`` ``13``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Fuel economy data"``)`` ``)`
 
 ![Grouped dot plots showing city miles per gallon by car manufacturer
 for 4 and 6 cylinder
@@ -445,17 +340,7 @@ For more, also read the following vignette:
 This function creates a scatterplot with marginal distributions overlaid
 on the axes and results from statistical tests in the subtitle:
 
-``` r
-
-ggscatterstats(
-  data  = ggplot2::msleep,
-  x     = sleep_rem,
-  y     = awake,
-  xlab  = "REM sleep (in hours)",
-  ylab  = "Amount of time spent awake (in hours)",
-  title = "Understanding mammalian sleep"
-)
-```
+[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(`` `` data ``=`` ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`,`` `` x ``=`` ``sleep_rem``,`` `` y ``=`` ``awake``,`` `` xlab ``=`` ``"REM sleep (in hours)"``,`` `` ylab ``=`` ``"Amount of time spent awake (in hours)"``,`` `` title ``=`` ``"Understanding mammalian sleep"`` ``)`
 
 ![Scatterplot with marginal distributions showing relationship between
 REM sleep and time awake in mammals with correlation
@@ -473,24 +358,7 @@ results](reference/figures/README-ggscatterstats1-1.png)
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
 
-``` r
-
-set.seed(123)
-
-grouped_ggscatterstats(
-  data             = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  x                = rating,
-  y                = length,
-  grouping.var     = genre,
-  label.var        = title,
-  label.expression = length > 200,
-  xlab             = "IMDB rating",
-  ggtheme          = ggplot2::theme_grey(),
-  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))),
-  plotgrid.args    = list(nrow = 1),
-  annotation.args  = list(title = "Relationship between movie length and IMDB ratings")
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``movies_long``, ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Action"``, ``"Comedy"``)``)``,`` `` x ``=`` ``rating``,`` `` y ``=`` ``length``,`` `` grouping.var ``=`` ``genre``,`` `` label.var ``=`` ``title``,`` `` label.expression ``=`` ``length`` ``>`` ``200``,`` `` xlab ``=`` ``"IMDB rating"``,`` `` ggtheme ``=`` ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`` `` ggplot.component ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ggplot2``::`[`scale_x_continuous`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)`(``breaks ``=`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``2``, ``9``, ``1``)``, limits ``=`` ``(`[`c`](https://rdrr.io/r/base/c.html)`(``2``, ``9``)``)``)``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Relationship between movie length and IMDB ratings"``)`` ``)`
 
 ![Grouped scatterplots showing IMDB rating vs movie length for Action
 and Comedy genres with correlation
@@ -513,18 +381,7 @@ exploring the available options, let’s change some of the defaults. For
 example, multiple aesthetics-related arguments can be modified to change
 the appearance of the correlation matrix.
 
-``` r
-
-set.seed(123)
-
-## as a default this function outputs a correlation matrix plot
-ggcorrmat(
-  data     = ggplot2::msleep,
-  colors   = c("#B2182B", "white", "#4D4D4D"),
-  title    = "Correlalogram for mammals sleep dataset",
-  subtitle = "sleep units: hours; weight units: kilograms"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` ``## as a default this function outputs a correlation matrix plot`` `[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`` `` data ``=`` ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`,`` `` colors ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#B2182B"``, ``"white"``, ``"#4D4D4D"``)``,`` `` title ``=`` ``"Correlalogram for mammals sleep dataset"``,`` `` subtitle ``=`` ``"sleep units: hours; weight units: kilograms"`` ``)`
 
 ![Correlation matrix heatmap for mammals sleep dataset showing pairwise
 correlations with significance
@@ -542,19 +399,7 @@ correlation tests.
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
 
-``` r
-
-set.seed(123)
-
-grouped_ggcorrmat(
-  data            = dplyr::filter(movies_long, genre %in% c("Action", "Comedy")),
-  type            = "robust",
-  colors          = c("#cbac43", "white", "#550000"),
-  grouping.var    = genre,
-  p.adjust.method = "fdr",
-  matrix.type     = "lower"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``movies_long``, ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Action"``, ``"Comedy"``)``)``,`` `` type ``=`` ``"robust"``,`` `` colors ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#cbac43"``, ``"white"``, ``"#550000"``)``,`` `` grouping.var ``=`` ``genre``,`` `` p.adjust.method ``=`` ``"fdr"``,`` `` matrix.type ``=`` ``"lower"`` ``)`
 
 ![Grouped correlation matrices for Action and Comedy movie genres
 showing robust correlations](reference/figures/README-ggcorrmat2-1.png)
@@ -579,19 +424,7 @@ subtitle.
 
 To study an interaction between two categorical variables:
 
-``` r
-
-set.seed(123)
-
-ggpiestats(
-  data         = mtcars,
-  x            = am,
-  y            = cyl,
-  palette      = "wesanderson::Royal1",
-  title        = "Dataset: Motor Trend Car Road Tests",
-  legend.title = "Transmission"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`` `` data ``=`` ``mtcars``,`` `` x ``=`` ``am``,`` `` y ``=`` ``cyl``,`` `` palette ``=`` ``"wesanderson::Royal1"``,`` `` title ``=`` ``"Dataset: Motor Trend Car Road Tests"``,`` `` legend.title ``=`` ``"Transmission"`` ``)`
 
 ![Pie charts showing transmission type distribution across cylinder
 groups in mtcars data with contingency table
@@ -611,18 +444,7 @@ to repeat the same operation across a **single** grouping variable.
 Following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
-``` r
-
-set.seed(123)
-
-grouped_ggpiestats(
-  data         = mtcars,
-  x            = cyl,
-  grouping.var = am,
-  label.repel  = TRUE,
-  palette      = "ggsci::default_ucscgb"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)`(`` `` data ``=`` ``mtcars``,`` `` x ``=`` ``cyl``,`` `` grouping.var ``=`` ``am``,`` `` label.repel ``=`` ``TRUE``,`` `` palette ``=`` ``"ggsci::default_ucscgb"`` ``)`
 
 ![Grouped pie charts showing cylinder distribution for automatic and
 manual transmission
@@ -646,22 +468,7 @@ goodness-of-fit tests.
 
 To study an interaction between two categorical variables:
 
-``` r
-
-set.seed(123)
-library(ggplot2)
-
-ggbarstats(
-  data             = movies_long,
-  x                = mpaa,
-  y                = genre,
-  title            = "MPAA Ratings by Genre",
-  xlab             = "movie genre",
-  legend.title     = "MPAA rating",
-  ggplot.component = list(ggplot2::scale_x_discrete(guide = ggplot2::guide_axis(n.dodge = 2))),
-  palette          = "RColorBrewer::Set2"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`` `` `[`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)`(`` `` data ``=`` ``movies_long``,`` `` x ``=`` ``mpaa``,`` `` y ``=`` ``genre``,`` `` title ``=`` ``"MPAA Ratings by Genre"``,`` `` xlab ``=`` ``"movie genre"``,`` `` legend.title ``=`` ``"MPAA rating"``,`` `` ggplot.component ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ggplot2``::`[`scale_x_discrete`](https://ggplot2.tidyverse.org/reference/scale_discrete.html)`(``guide ``=`` ``ggplot2``::`[`guide_axis`](https://ggplot2.tidyverse.org/reference/guide_axis.html)`(``n.dodge ``=`` ``2``)``)``)``,`` `` palette ``=`` ``"RColorBrewer::Set2"`` ``)`
 
 ![Stacked bar chart showing MPAA ratings distribution by movie genre
 with chi-squared test
@@ -681,18 +488,7 @@ to repeat the same operation across a **single** grouping variable.
 Following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
-``` r
-
-set.seed(123)
-
-grouped_ggbarstats(
-  data         = mtcars,
-  x            = cyl,
-  grouping.var = am,
-  label.repel  = TRUE,
-  palette      = "ggsci::default_ucscgb"
-)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` `[`grouped_ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)`(`` `` data ``=`` ``mtcars``,`` `` x ``=`` ``cyl``,`` `` grouping.var ``=`` ``am``,`` `` label.repel ``=`` ``TRUE``,`` `` palette ``=`` ``"ggsci::default_ucscgb"`` ``)`
 
 ![Grouped bar charts showing cylinder distribution for automatic and
 manual transmission
@@ -717,15 +513,7 @@ Additionally, if available, the model summary indices are also extracted
 from
 [`performance::model_performance()`](https://easystats.github.io/performance/reference/model_performance.html).
 
-``` r
-
-set.seed(123)
-
-## model
-mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
-
-ggcoefstats(mod)
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` ``## model`` ``mod`` ``<-`` ``stats``::`[`lm`](https://rdrr.io/r/stats/lm.html)`(``formula ``=`` ``mpg`` ``~`` ``am`` ``*`` ``cyl``, data ``=`` ``mtcars``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod``)`
 
 ![Dot-and-whisker plot showing regression coefficients for mpg model
 with confidence intervals](reference/figures/README-ggcoefstats1-1.png)
@@ -751,93 +539,7 @@ convenience function to extract data frames with statistical details
 that are used to create expressions displayed in
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots.
 
-``` r
-
-set.seed(123)
-
-p <- ggbetweenstats(mtcars, cyl, mpg)
-
-# extracting expression present in the subtitle
-extract_subtitle(p)
-#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == 
-#>     "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ 
-#>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")
-
-# extracting expression present in the caption
-extract_caption(p)
-#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == 
-#>     "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == 
-#>     "0.71")
-
-# a list of tibbles containing statistical analysis summaries
-extract_stats(p)
-#> $subtitle_data
-#> # A tibble: 1 × 14
-#>   statistic    df df.error    p.value
-#>       <dbl> <dbl>    <dbl>      <dbl>
-#> 1      31.6     2     18.0 0.00000127
-#>   method                                                   effectsize estimate
-#>   <chr>                                                    <chr>         <dbl>
-#> 1 One-way analysis of means (not assuming equal variances) Omega2        0.744
-#>   conf.level conf.low conf.high conf.method conf.distribution n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <chr>             <int> <list>    
-#> 1       0.95    0.531         1 ncp         F                    32 <language>
-#> 
-#> $caption_data
-#> # A tibble: 6 × 17
-#>   term     pd prior.distribution prior.location prior.scale     bf10
-#>   <chr> <dbl> <chr>                       <dbl>       <dbl>    <dbl>
-#> 1 mu    1     cauchy                          0       0.707 3008850.
-#> 2 cyl-4 1     cauchy                          0       0.707 3008850.
-#> 3 cyl-6 0.780 cauchy                          0       0.707 3008850.
-#> 4 cyl-8 1     cauchy                          0       0.707 3008850.
-#> 5 sig2  1     cauchy                          0       0.707 3008850.
-#> 6 g_cyl 1     cauchy                          0       0.707 3008850.
-#>   method                          log_e_bf10 effectsize         estimate std.dev
-#>   <chr>                                <dbl> <chr>                 <dbl>   <dbl>
-#> 1 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 2 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 3 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 4 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 5 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#> 6 Bayes factors for linear models       14.9 Bayesian R-squared    0.714  0.0503
-#>   conf.level conf.low conf.high conf.method n.obs expression
-#>        <dbl>    <dbl>     <dbl> <chr>       <int> <list>    
-#> 1       0.95    0.574     0.788 HDI            32 <language>
-#> 2       0.95    0.574     0.788 HDI            32 <language>
-#> 3       0.95    0.574     0.788 HDI            32 <language>
-#> 4       0.95    0.574     0.788 HDI            32 <language>
-#> 5       0.95    0.574     0.788 HDI            32 <language>
-#> 6       0.95    0.574     0.788 HDI            32 <language>
-#> 
-#> $pairwise_comparisons_data
-#> # A tibble: 3 × 9
-#>   group1 group2 statistic   p.value alternative distribution p.adjust.method
-#>   <chr>  <chr>      <dbl>     <dbl> <chr>       <chr>        <chr>          
-#> 1 4      6          -6.67 0.00110   two.sided   q            Holm           
-#> 2 4      8         -10.7  0.0000140 two.sided   q            Holm           
-#> 3 6      8          -7.48 0.000257  two.sided   q            Holm           
-#>   test         expression
-#>   <chr>        <list>    
-#> 1 Games-Howell <language>
-#> 2 Games-Howell <language>
-#> 3 Games-Howell <language>
-#> 
-#> $descriptive_data
-#> NULL
-#> 
-#> $one_sample_data
-#> NULL
-#> 
-#> $tidy_data
-#> NULL
-#> 
-#> $glance_data
-#> NULL
-#> 
-#> attr(,"class")
-#> [1] "ggstatsplot_stats" "list"
-```
+[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` ``p`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``mtcars``, ``cyl``, ``mpg``)`` `` ``# extracting expression present in the subtitle`` `[`extract_subtitle`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)`` ``#> list(italic("F")["Welch"](2, 18.03) == "31.62", italic(p) == `` ``#> "1.27e-06", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ `` ``#> "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "32")`` `` ``# extracting expression present in the caption`` `[`extract_caption`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)`` ``#> list(log[e] * (BF["01"]) == "-14.92", widehat(italic(R^"2"))["Bayesian"]^"posterior" == `` ``#> "0.71", CI["95%"]^HDI ~ "[" * "0.57", "0.79" * "]", italic("r")["Cauchy"]^"JZS" == `` ``#> "0.71")`` `` ``# a list of tibbles containing statistical analysis summaries`` `[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)`` ``#> $subtitle_data`` ``#> # A tibble: 1 × 14`` ``#> statistic df df.error p.value`` ``#> <dbl> <dbl> <dbl> <dbl>`` ``#> 1 31.6 2 18.0 0.00000127`` ``#> method effectsize estimate`` ``#> <chr> <chr> <dbl>`` ``#> 1 One-way analysis of means (not assuming equal variances) Omega2 0.744`` ``#> conf.level conf.low conf.high conf.method conf.distribution n.obs expression`` ``#> <dbl> <dbl> <dbl> <chr> <chr> <int> <list> `` ``#> 1 0.95 0.531 1 ncp F 32 <language>`` ``#> `` ``#> $caption_data`` ``#> # A tibble: 6 × 17`` ``#> term pd prior.distribution prior.location prior.scale bf10`` ``#> <chr> <dbl> <chr> <dbl> <dbl> <dbl>`` ``#> 1 mu 1 cauchy 0 0.707 3008850.`` ``#> 2 cyl-4 1 cauchy 0 0.707 3008850.`` ``#> 3 cyl-6 0.780 cauchy 0 0.707 3008850.`` ``#> 4 cyl-8 1 cauchy 0 0.707 3008850.`` ``#> 5 sig2 1 cauchy 0 0.707 3008850.`` ``#> 6 g_cyl 1 cauchy 0 0.707 3008850.`` ``#> method log_e_bf10 effectsize estimate std.dev`` ``#> <chr> <dbl> <chr> <dbl> <dbl>`` ``#> 1 Bayes factors for linear models 14.9 Bayesian R-squared 0.714 0.0503`` ``#> 2 Bayes factors for linear models 14.9 Bayesian R-squared 0.714 0.0503`` ``#> 3 Bayes factors for linear models 14.9 Bayesian R-squared 0.714 0.0503`` ``#> 4 Bayes factors for linear models 14.9 Bayesian R-squared 0.714 0.0503`` ``#> 5 Bayes factors for linear models 14.9 Bayesian R-squared 0.714 0.0503`` ``#> 6 Bayes factors for linear models 14.9 Bayesian R-squared 0.714 0.0503`` ``#> conf.level conf.low conf.high conf.method n.obs expression`` ``#> <dbl> <dbl> <dbl> <chr> <int> <list> `` ``#> 1 0.95 0.574 0.788 HDI 32 <language>`` ``#> 2 0.95 0.574 0.788 HDI 32 <language>`` ``#> 3 0.95 0.574 0.788 HDI 32 <language>`` ``#> 4 0.95 0.574 0.788 HDI 32 <language>`` ``#> 5 0.95 0.574 0.788 HDI 32 <language>`` ``#> 6 0.95 0.574 0.788 HDI 32 <language>`` ``#> `` ``#> $pairwise_comparisons_data`` ``#> # A tibble: 3 × 9`` ``#> group1 group2 statistic p.value alternative distribution p.adjust.method`` ``#> <chr> <chr> <dbl> <dbl> <chr> <chr> <chr> `` ``#> 1 4 6 -6.67 0.00110 two.sided q Holm `` ``#> 2 4 8 -10.7 0.0000140 two.sided q Holm `` ``#> 3 6 8 -7.48 0.000257 two.sided q Holm `` ``#> test expression`` ``#> <chr> <list> `` ``#> 1 Games-Howell <language>`` ``#> 2 Games-Howell <language>`` ``#> 3 Games-Howell <language>`` ``#> `` ``#> $descriptive_data`` ``#> NULL`` ``#> `` ``#> $one_sample_data`` ``#> NULL`` ``#> `` ``#> $tidy_data`` ``#> NULL`` ``#> `` ``#> $glance_data`` ``#> NULL`` ``#> `` ``#> attr(,"class")`` ``#> [1] "ggstatsplot_stats" "list"`
 
 Note that all of this analysis is carried out by
 [statsExpressions](https://www.indrapatil.com/statsExpressions/)
@@ -857,25 +559,7 @@ For example, in the following chunk, we will create our own plot using
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) function for
 extracting expression:
 
-``` r
-
-## loading the needed libraries
-set.seed(123)
-library(ggplot2)
-
-## using `{ggstatsplot}` to get expression with statistical results
-stats_results <- ggbetweenstats(morley, Expt, Speed) |> extract_subtitle()
-
-## creating a custom plot of our choosing
-ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
-  geom_boxplot() +
-  labs(
-    title = "Michelson-Morley experiments",
-    subtitle = stats_results,
-    x = "Speed of light",
-    y = "Experiment number"
-  )
-```
+`## loading the needed libraries`` `[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`` `` ``` ## using `{ggstatsplot}` to get expression with statistical results ``` ``stats_results`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``morley``, ``Expt``, ``Speed``)`` ``|>`` `[`extract_subtitle`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``)`` `` ``## creating a custom plot of our choosing`` `[`ggplot`](https://ggplot2.tidyverse.org/reference/ggplot.html)`(``morley``, `[`aes`](https://ggplot2.tidyverse.org/reference/aes.html)`(``x ``=`` `[`as.factor`](https://rdrr.io/r/base/factor.html)`(``Expt``)``, y ``=`` ``Speed``)``)`` ``+`` `` `[`geom_boxplot`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)`(``)`` ``+`` `` `[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(`` `` title ``=`` ``"Michelson-Morley experiments"``,`` `` subtitle ``=`` ``stats_results``,`` `` x ``=`` ``"Speed of light"``,`` `` y ``=`` ``"Experiment number"`` `` ``)`
 
 ![Custom boxplot of Michelson-Morley experiment data with
 ggstatsplot-generated statistical

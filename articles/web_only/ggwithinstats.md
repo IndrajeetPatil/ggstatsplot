@@ -68,15 +68,7 @@ desire across conditions is statistically significant.
 
 The simplest form of the function call is-
 
-``` r
-
-ggwithinstats(
-  data       = bugs_long,
-  x          = condition,
-  y          = desire,
-  subject.id = subject
-)
-```
+[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``bugs_long``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject`` ``)`
 
 ![](ggwithinstats_files/figure-html/ggwithinstats1-1.png)
 
@@ -108,25 +100,7 @@ informative by making use of the many optional parameters in
 labels. We can and will change the overall theme as well as the color
 palette in use.
 
-``` r
-
-ggwithinstats(
-  data       = bugs_long,
-  x          = condition,
-  y          = desire,
-  subject.id = subject,
-  type       = "nonparametric", ## type of statistical test
-  xlab       = "Condition", ## label for the x-axis
-  ylab       = "Desire to kill an artrhopod", ## label for the y-axis
-  palette    = "yarrr::info2", ## choosing a different color palette
-  title      = "Comparison of desire to kill bugs",
-  caption    = "Source: Ryan et al., 2013"
-) + ## modifying the plot further
-  ggplot2::scale_y_continuous(
-    limits = c(0, 10),
-    breaks = seq(from = 0, to = 10, by = 1)
-  )
-```
+[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``bugs_long``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` type ``=`` ``"nonparametric"``, ``## type of statistical test`` `` xlab ``=`` ``"Condition"``, ``## label for the x-axis`` `` ylab ``=`` ``"Desire to kill an artrhopod"``, ``## label for the y-axis`` `` palette ``=`` ``"yarrr::info2"``, ``## choosing a different color palette`` `` title ``=`` ``"Comparison of desire to kill bugs"``,`` `` caption ``=`` ``"Source: Ryan et al., 2013"`` ``)`` ``+`` ``## modifying the plot further`` `` ``ggplot2``::`[`scale_y_continuous`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)`(`` `` limits ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``0``, ``10``)``,`` `` breaks ``=`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``from ``=`` ``0``, to ``=`` ``10``, by ``=`` ``1``)`` `` ``)`
 
 ![](ggwithinstats_files/figure-html/ggwithinstats2-1.png)
 
@@ -151,75 +125,7 @@ make each plot have different colors or themes.
 
 For example,
 
-``` r
-
-## selecting subset of the data
-df_disgust <- dplyr::filter(bugs_long, condition %in% c("LDHF", "HDHF"))
-
-## parametric t-test
-p1 <- ggwithinstats(
-  data = df_disgust,
-  x = condition,
-  y = desire,
-  subject.id = subject,
-  type = "p",
-  effsize.type = "d",
-  conf.level = 0.99,
-  title = "Parametric test",
-  palette = "ggsci::nrc_npg"
-)
-
-## Mann-Whitney U test (nonparametric test)
-p2 <- ggwithinstats(
-  data       = df_disgust,
-  x          = condition,
-  y          = desire,
-  subject.id = subject,
-  xlab       = "Condition",
-  ylab       = "Desire to kill bugs",
-  type       = "np",
-  conf.level = 0.99,
-  title      = "Non-parametric Test",
-  palette    = "ggsci::uniform_startrek"
-)
-
-## robust t-test
-p3 <- ggwithinstats(
-  data       = df_disgust,
-  x          = condition,
-  y          = desire,
-  subject.id = subject,
-  xlab       = "Condition",
-  ylab       = "Desire to kill bugs",
-  type       = "r",
-  conf.level = 0.99,
-  title      = "Robust Test",
-  palette    = "wesanderson::Royal2"
-)
-
-## Bayes Factor for parametric t-test
-p4 <- ggwithinstats(
-  data       = df_disgust,
-  x          = condition,
-  y          = desire,
-  subject.id = subject,
-  xlab       = "Condition",
-  ylab       = "Desire to kill bugs",
-  type       = "bayes",
-  title      = "Bayesian Test",
-  palette    = "ggsci::nrc_npg"
-)
-
-## combining the individual plots into a single plot
-combine_plots(
-  plotlist = list(p1, p2, p3, p4),
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(
-    title = "Effect of disgust on desire to kill bugs ",
-    caption = "Source: Bugs dataset from `jmv` R package"
-  )
-)
-```
+`## selecting subset of the data`` ``df_disgust`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``bugs_long``, ``condition`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"LDHF"``, ``"HDHF"``)``)`` `` ``## parametric t-test`` ``p1`` ``<-`` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``df_disgust``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` type ``=`` ``"p"``,`` `` effsize.type ``=`` ``"d"``,`` `` conf.level ``=`` ``0.99``,`` `` title ``=`` ``"Parametric test"``,`` `` palette ``=`` ``"ggsci::nrc_npg"`` ``)`` `` ``## Mann-Whitney U test (nonparametric test)`` ``p2`` ``<-`` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``df_disgust``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` xlab ``=`` ``"Condition"``,`` `` ylab ``=`` ``"Desire to kill bugs"``,`` `` type ``=`` ``"np"``,`` `` conf.level ``=`` ``0.99``,`` `` title ``=`` ``"Non-parametric Test"``,`` `` palette ``=`` ``"ggsci::uniform_startrek"`` ``)`` `` ``## robust t-test`` ``p3`` ``<-`` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``df_disgust``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` xlab ``=`` ``"Condition"``,`` `` ylab ``=`` ``"Desire to kill bugs"``,`` `` type ``=`` ``"r"``,`` `` conf.level ``=`` ``0.99``,`` `` title ``=`` ``"Robust Test"``,`` `` palette ``=`` ``"wesanderson::Royal2"`` ``)`` `` ``## Bayes Factor for parametric t-test`` ``p4`` ``<-`` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`` `` data ``=`` ``df_disgust``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` xlab ``=`` ``"Condition"``,`` `` ylab ``=`` ``"Desire to kill bugs"``,`` `` type ``=`` ``"bayes"``,`` `` title ``=`` ``"Bayesian Test"``,`` `` palette ``=`` ``"ggsci::nrc_npg"`` ``)`` `` ``## combining the individual plots into a single plot`` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``p1``, ``p2``, ``p3``, ``p4``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Effect of disgust on desire to kill bugs "``,`` `` caption ``=`` ``` "Source: Bugs dataset from `jmv` R package" ``` `` ``)`` ``)`
 
 ![](ggwithinstats_files/figure-html/ggwithinstats3-1.png)
 
@@ -240,29 +146,7 @@ Let’s focus on the two regions and for years: 1967, 1987, 2007. Also,
 let’s carry out pairwise comparisons to see if there differences between
 every pair of continents.
 
-``` r
-
-grouped_ggwithinstats(
-  ## arguments relevant for ggwithinstats
-  data             = bugs_long,
-  x                = condition,
-  y                = desire,
-  subject.id       = subject,
-  grouping.var     = gender,
-  xlab             = "Continent",
-  ylab             = "Desire to kill bugs",
-  type             = "nonparametric", ## type of test
-  pairwise.display = "significant", ## display only significant pairwise comparisons
-  pairwise.alpha   = 0.01, ## use a stricter alpha threshold to reduce clutter
-  p.adjust.method  = "BH", ## adjust p-values for multiple tests using this method
-  # ggtheme = ggthemes::theme_tufte(),
-  palette          = "ggsci::default_jco",
-  digits           = 3,
-  ## arguments relevant for combine_plots
-  annotation.args  = list(title = "Desire to kill bugs across genders"),
-  plotgrid.args    = list(ncol = 1)
-)
-```
+[`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)`(`` `` ``## arguments relevant for ggwithinstats`` `` data ``=`` ``bugs_long``,`` `` x ``=`` ``condition``,`` `` y ``=`` ``desire``,`` `` subject.id ``=`` ``subject``,`` `` grouping.var ``=`` ``gender``,`` `` xlab ``=`` ``"Continent"``,`` `` ylab ``=`` ``"Desire to kill bugs"``,`` `` type ``=`` ``"nonparametric"``, ``## type of test`` `` pairwise.display ``=`` ``"significant"``, ``## display only significant pairwise comparisons`` `` pairwise.alpha ``=`` ``0.01``, ``## use a stricter alpha threshold to reduce clutter`` `` p.adjust.method ``=`` ``"BH"``, ``## adjust p-values for multiple tests using this method`` `` ``# ggtheme = ggthemes::theme_tufte(),`` `` palette ``=`` ``"ggsci::default_jco"``,`` `` digits ``=`` ``3``,`` `` ``## arguments relevant for combine_plots`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Desire to kill bugs across genders"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)`` ``)`
 
 ![](ggwithinstats_files/figure-html/grouped1-1.png)
 
@@ -307,11 +191,7 @@ approaches:
 
 For example, let’s see the following example:
 
-``` r
-
-library(WRS2) # for data
-ggwithinstats(WineTasting, Wine, Taste, subject.id = Taster)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`WRS2`](https://r-forge.r-project.org/projects/psychor/)`)`` ``# for data`` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(``WineTasting``, ``Wine``, ``Taste``, subject.id ``=`` ``Taster``)`
 
 ![](ggwithinstats_files/figure-html/reporting-1.png)
 

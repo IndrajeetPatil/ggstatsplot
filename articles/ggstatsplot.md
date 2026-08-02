@@ -52,11 +52,7 @@ informative graphic with statistical details.
 Before discussing benefits of this approach, we will show an example
 (Figure 1).
 
-``` r
-
-
-ggbetweenstats(iris, Species, Sepal.Length)
-```
+` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``iris``, ``Species``, ``Sepal.Length``)`
 
 ![Example plot from the \`{ggstatsplot}\` package illustrating its
 philosophy of juxtaposing informative visualizations with details from

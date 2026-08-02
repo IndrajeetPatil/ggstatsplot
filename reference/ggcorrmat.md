@@ -138,7 +138,7 @@ ggcorrmat(
 
   A list of additional (mostly aesthetic) arguments that will be passed
   to
-  [`ggcorrplot::ggcorrplot()`](https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html)
+  [`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)
   function. The list should avoid any of the following arguments since
   they are already internally being used: `corr`, `method`, `p.mat`,
   `sig.level`, `ggtheme`, `colors`, `lab`, `pch`, `legend.title`,
@@ -197,7 +197,7 @@ For details, see:
 |  |  |  |
 |----|----|----|
 | graphical element | `geom` used | argument for further modification |
-| correlation matrix | [`ggcorrplot::ggcorrplot()`](https://rdrr.io/pkg/ggcorrplot/man/ggcorrplot.html) | `ggcorrplot.args` |
+| correlation matrix | [`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html) | `ggcorrplot.args` |
 
 ## Correlation analyses
 

@@ -50,24 +50,7 @@ sample of 700 self-reported scores on the SAT Verbal, SAT Quantitative
 and ACT tests. ACT composite scores may range from 1 - 36. National
 norms have a mean of 20.
 
-``` r
-
-## loading needed libraries
-
-library(psych)
-library(dplyr)
-
-## looking at the structure of the data using glimpse
-dplyr::glimpse(psych::sat.act)
-#> Rows: 700
-#> Columns: 6
-#> $ gender    <int> 2, 2, 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, …
-#> $ education <int> 3, 3, 3, 4, 2, 5, 5, 3, 4, 5, 3, 4, 4, 4, 3, 4, 3, 4, 4, 4, …
-#> $ age       <int> 19, 23, 20, 27, 33, 26, 30, 19, 23, 40, 23, 34, 32, 41, 20, …
-#> $ ACT       <int> 24, 35, 21, 26, 31, 28, 36, 22, 22, 35, 32, 29, 21, 35, 27, …
-#> $ SATV      <int> 500, 600, 480, 550, 600, 640, 610, 520, 400, 730, 760, 710, …
-#> $ SATQ      <int> 500, 500, 470, 520, 550, 640, 500, 560, 600, 800, 710, 600, …
-```
+`## loading needed libraries`` `` `[`library`](https://rdrr.io/r/base/library.html)`(`[`psych`](https://personality-project.org/r/psych/)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`` `` ``## looking at the structure of the data using glimpse`` ``dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`)`` ``#> Rows: 700`` ``#> Columns: 6`` ``#> $ ``gender `` ``<int>`` 2``, ``2``, ``2``, ``1``, ``1``, ``1``, ``2``, ``1``, ``2``, ``2``, ``1``, ``2``, ``1``, ``2``, ``2``, ``2``, ``2``, ``2``, ``1``, ``2``, ``…`` ``#> $ ``education`` ``<int>`` 3``, ``3``, ``3``, ``4``, ``2``, ``5``, ``5``, ``3``, ``4``, ``5``, ``3``, ``4``, ``4``, ``4``, ``3``, ``4``, ``3``, ``4``, ``4``, ``4``, ``…`` ``#> $ ``age `` ``<int>`` 19``, ``23``, ``20``, ``27``, ``33``, ``26``, ``30``, ``19``, ``23``, ``40``, ``23``, ``34``, ``32``, ``41``, ``20``, ``…`` ``#> $ ``ACT `` ``<int>`` 24``, ``35``, ``21``, ``26``, ``31``, ``28``, ``36``, ``22``, ``22``, ``35``, ``32``, ``29``, ``21``, ``35``, ``27``, ``…`` ``#> $ ``SATV `` ``<int>`` 500``, ``600``, ``480``, ``550``, ``600``, ``640``, ``610``, ``520``, ``400``, ``730``, ``760``, ``710``, ``…`` ``#> $ ``SATQ `` ``<int>`` 500``, ``500``, ``470``, ``520``, ``550``, ``640``, ``500``, ``560``, ``600``, ``800``, ``710``, ``600``, ``…`
 
 To get a simple histogram with no statistics and no special information.
 `gghistostats` will by default choose a binwidth
@@ -79,18 +62,7 @@ Let’s display the national norms (labeled as “Test”) and test the
 hypothesis that our sample mean is the same as our national population
 mean of 20 using a parametric one sample *t*-test (`type = "p"`).
 
-``` r
-
-
-gghistostats(
-  data = psych::sat.act, ## data from which variable is to be taken
-  x = ACT, ## numeric variable
-  xlab = "ACT Score", ## x-axis label
-  title = "Distribution of ACT Scores", ## title for the plot
-  test.value = 20, ## test value
-  caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-)
-```
+` `[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(`` `` data ``=`` ``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`, ``## data from which variable is to be taken`` `` x ``=`` ``ACT``, ``## numeric variable`` `` xlab ``=`` ``"ACT Score"``, ``## x-axis label`` `` title ``=`` ``"Distribution of ACT Scores"``, ``## title for the plot`` `` test.value ``=`` ``20``, ``## test value`` `` caption ``=`` ``"Data courtesy of: SAPA project (https://sapa-project.org)"`` ``)`
 
 ![](gghistostats_files/figure-html/psychact3-1.png)
 
@@ -117,28 +89,7 @@ study, groups in a study sample, different studies, etc.
 Let’s see how we can use this function to apply `gghistostats` to
 accomplish our task.
 
-``` r
-
-
-grouped_gghistostats(
-  ## arguments relevant for gghistostats
-  data = psych::sat.act,
-  x = ACT, ## same outcome variable
-  xlab = "ACT Score",
-  grouping.var = gender, ## grouping variable males = 1, females = 2
-  type = "robust", ## robust test: one-sample percentile bootstrap
-  test.value = 20, ## test value against which sample mean is to be compared
-  centrality.line.args = list(color = "#D55E00", linetype = "dashed"),
-  # ggtheme = ggthemes::theme_stata(), ## changing default theme
-  ## turn off ggstatsplot theme layer
-  ## arguments relevant for combine_plots
-  annotation.args = list(
-    title = "Distribution of ACT scores across genders",
-    caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-  ),
-  plotgrid.args = list(nrow = 2L)
-)
-```
+` `[`grouped_gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)`(`` `` ``## arguments relevant for gghistostats`` `` data ``=`` ``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`,`` `` x ``=`` ``ACT``, ``## same outcome variable`` `` xlab ``=`` ``"ACT Score"``,`` `` grouping.var ``=`` ``gender``, ``## grouping variable males = 1, females = 2`` `` type ``=`` ``"robust"``, ``## robust test: one-sample percentile bootstrap`` `` test.value ``=`` ``20``, ``## test value against which sample mean is to be compared`` `` centrality.line.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"#D55E00"``, linetype ``=`` ``"dashed"``)``,`` `` ``# ggtheme = ggthemes::theme_stata(), ## changing default theme`` `` ``## turn off ggstatsplot theme layer`` `` ``## arguments relevant for combine_plots`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` title ``=`` ``"Distribution of ACT scores across genders"``,`` `` caption ``=`` ``"Data courtesy of: SAPA project (https://sapa-project.org)"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)`` ``)`
 
 ![](gghistostats_files/figure-html/grouped1-1.png)
 
@@ -184,10 +135,7 @@ approaches:
 
 For example, let’s see the following example:
 
-``` r
-
-gghistostats(trees, Height, test.value = 75)
-```
+[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(``trees``, ``Height``, test.value ``=`` ``75``)`
 
 ![](gghistostats_files/figure-html/reporting-1.png)
 

@@ -64,20 +64,7 @@ So the key principle of Cleveland’s paradigm for data display is-
 For example, decoding the data point values in `ggbetweenstats` requires
 position judgments along a common scale:
 
-``` r
-
-ggbetweenstats(
-  data = dplyr::filter(
-    movies_long,
-    genre %in% c("Action", "Action Comedy", "Action Drama", "Comedy")
-  ),
-  x = genre,
-  y = rating,
-  title = "IMDB rating by film genre",
-  xlab = "Genre",
-  ylab = "IMDB rating (average)"
-)
-```
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`` `` data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(`` `` ``movies_long``,`` `` ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Action"``, ``"Action Comedy"``, ``"Action Drama"``, ``"Comedy"``)`` `` ``)``,`` `` x ``=`` ``genre``,`` `` y ``=`` ``rating``,`` `` title ``=`` ``"IMDB rating by film genre"``,`` `` xlab ``=`` ``"Genre"``,`` `` ylab ``=`` ``"IMDB rating (average)"`` ``)`
 
 ![Note that assessing differences in mean values between groups has been
 made easier with the help of \textit{position} of data points along a
@@ -102,14 +89,7 @@ recommendations made in Cleveland’s paradigm:
   about percentages. Additionally, it also provides alternative function
   to `ggpiestats` for working with categorical variables: `ggbarstats`.
 
-``` r
-
-ggpiestats(
-  data = mtcars,
-  x = am,
-  y = vs
-)
-```
+[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`` `` data ``=`` ``mtcars``,`` `` x ``=`` ``am``,`` `` y ``=`` ``vs`` ``)`
 
 ![Pie charts don't follow Cleveland's paradigm to data display because
 they rely on less accurate angle judgments. \`{ggstatsplot}\` sidesteps
@@ -140,37 +120,7 @@ judgments unnecessary.
   with, at least to produce plots for quick exploration of different
   aspects of the data.
 
-``` r
-
-library(ggplot2)
-
-
-## creating a smaller data frame
-df <- dplyr::filter(movies_long, genre %in% c("Comedy", "Drama"))
-
-combine_plots(
-  plotlist = list(
-    # superposition
-    ggplot(data = df, mapping = aes(x = length, y = rating, color = genre)) +
-      geom_jitter(size = 3, alpha = 0.5) +
-      geom_smooth(method = "lm") +
-      labs(title = "superposition (recommended in Cleveland's paradigm)") +
-      theme_ggstatsplot(),
-    # juxtaposition
-    grouped_ggscatterstats(
-      data = df,
-      x = length,
-      y = rating,
-      grouping.var = genre,
-      marginal = FALSE,
-      annotation.args = list(title = "juxtaposition (`{ggstatsplot}` implementation in `grouped_` functions)")
-    )
-  ),
-  ## combine for comparison
-  annotation.args = list(title = "Two ways to compare different aspects of data"),
-  plotgrid.args = list(nrow = 2L)
-)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`` `` `` ``## creating a smaller data frame`` ``df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``movies_long``, ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Comedy"``, ``"Drama"``)``)`` `` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``# superposition`` `` `[`ggplot`](https://ggplot2.tidyverse.org/reference/ggplot.html)`(``data ``=`` ``df``, mapping ``=`` `[`aes`](https://ggplot2.tidyverse.org/reference/aes.html)`(``x ``=`` ``length``, y ``=`` ``rating``, color ``=`` ``genre``)``)`` ``+`` `` `[`geom_jitter`](https://ggplot2.tidyverse.org/reference/geom_jitter.html)`(``size ``=`` ``3``, alpha ``=`` ``0.5``)`` ``+`` `` `[`geom_smooth`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)`(``method ``=`` ``"lm"``)`` ``+`` `` `[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``title ``=`` ``"superposition (recommended in Cleveland's paradigm)"``)`` ``+`` `` `[`theme_ggstatsplot`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)`(``)``,`` `` ``# juxtaposition`` `` `[`grouped_ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)`(`` `` data ``=`` ``df``,`` `` x ``=`` ``length``,`` `` y ``=`` ``rating``,`` `` grouping.var ``=`` ``genre``,`` `` marginal ``=`` ``FALSE``,`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``` "juxtaposition (`{ggstatsplot}` implementation in `grouped_` functions)" ```)`` `` ``)`` `` ``)``,`` `` ``## combine for comparison`` `` annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Two ways to compare different aspects of data"``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)`` ``)`
 
 ![Comparing different aspects of data is much more accurate in
 (\textit{a}) a \textit{superposed} plot, which is recommended in
@@ -278,17 +228,7 @@ data, which comes in two forms:
   conveying information about limits of the sample and presence of
   outliers ((Cleveland, 1985), p.220).
 
-``` r
-
-gghistostats(
-  data = morley,
-  x = Speed,
-  test.value = 792,
-  xlab = "Speed of light (km/sec, with 299000 subtracted)",
-  title = "Distribution of measured Speed of light",
-  caption = "Note: Data collected across 5 experiments (20 measurements each)"
-)
-```
+[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(`` `` data ``=`` ``morley``,`` `` x ``=`` ``Speed``,`` `` test.value ``=`` ``792``,`` `` xlab ``=`` ``"Speed of light (km/sec, with 299000 subtracted)"``,`` `` title ``=`` ``"Distribution of measured Speed of light"``,`` `` caption ``=`` ``"Note: Data collected across 5 experiments (20 measurements each)"`` ``)`
 
 ![Distribution of a variable shown using
 \`gghistostats\`.](principles_files/figure-html/fig5-1.png)
@@ -303,16 +243,7 @@ Distribution of a variable shown using `gghistostats`.
   error bars correspond to a 68% confidence interval, which is not a
   particularly interesting interval ((Cleveland, 1985), p.222-225).
 
-``` r
-
-model <- lme4::lmer(
-  formula = total.fruits ~ nutrient + rack + (nutrient | gen),
-  data = lme4::Arabidopsis
-)
-
-ggcoefstats(model)
-#> Random effect variances not available. Returned R2 does not account for random effects.
-```
+`model`` ``<-`` ``lme4``::`[`lmer`](https://rdrr.io/pkg/lme4/man/lmer.html)`(`` `` formula ``=`` ``total.fruits`` ``~`` ``nutrient`` ``+`` ``rack`` ``+`` ``(``nutrient`` ``|`` ``gen``)``,`` `` data ``=`` ``lme4``::`[`Arabidopsis`](https://rdrr.io/pkg/lme4/man/Arabidopsis.html)` ``)`` `` `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``model``)`` ``#> Random effect variances not available. Returned R2 does not account for random effects.`
 
 ![Sample-to-sample variation in regression estimates is displayed using
 confidence intervals in
@@ -350,32 +281,7 @@ expectations about the structure of the data. More specifically,
   several correlation test pairs and, depending on variables in a given
   pair, the sample sizes may vary.
 
-``` r
-
-## creating a new dataset without any NAs in variables of interest
-msleep_no_na <-
-  dplyr::filter(
-    ggplot2::msleep,
-    !is.na(sleep_rem), !is.na(awake), !is.na(brainwt), !is.na(bodywt)
-  )
-
-## variable names vector
-var_names <- c("REM sleep", "time awake", "brain weight", "body weight")
-
-## combining two plots using helper function in `{ggstatsplot}`
-combine_plots(
-  plotlist = purrr::pmap(
-    .l = list(data = list(msleep_no_na, ggplot2::msleep)),
-    .f = ggcorrmat,
-    cor.vars = c(sleep_rem, awake:bodywt),
-    cor.vars.names = var_names,
-    colors = c("#B2182B", "white", "#4D4D4D"),
-    title = "Correlalogram for mammals sleep dataset",
-    subtitle = "sleep units: hours; weight units: kilograms"
-  ),
-  plotgrid.args = list(nrow = 1)
-)
-```
+`## creating a new dataset without any NAs in variables of interest`` ``msleep_no_na`` ``<-`` `` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(`` `` ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`,`` `` ``!`[`is.na`](https://rdrr.io/r/base/NA.html)`(``sleep_rem``)``, ``!`[`is.na`](https://rdrr.io/r/base/NA.html)`(``awake``)``, ``!`[`is.na`](https://rdrr.io/r/base/NA.html)`(``brainwt``)``, ``!`[`is.na`](https://rdrr.io/r/base/NA.html)`(``bodywt``)`` `` ``)`` `` ``## variable names vector`` ``var_names`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``"REM sleep"``, ``"time awake"``, ``"brain weight"``, ``"body weight"``)`` `` ``` ## combining two plots using helper function in `{ggstatsplot}` ``` `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`` `` plotlist ``=`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`` `` .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``msleep_no_na``, ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`)``)``,`` `` .f ``=`` ``ggcorrmat``,`` `` cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``sleep_rem``, ``awake``:``bodywt``)``,`` `` cor.vars.names ``=`` ``var_names``,`` `` colors ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#B2182B"``, ``"white"``, ``"#4D4D4D"``)``,`` `` title ``=`` ``"Correlalogram for mammals sleep dataset"``,`` `` subtitle ``=`` ``"sleep units: hours; weight units: kilograms"`` `` ``)``,`` `` plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)`` ``)`
 
 ![\`{ggstatsplot}\` functions remove \`NA\`s from variables of interest
 and display total sample size \textit{n}, but they can give more nuanced
