@@ -2,7 +2,8 @@
 
 0 errors | 0 warnings | 0 notes
 
-- This is a major release (1.0.0) with new features, breaking changes, and bug fixes.
+- This is a minor release (1.1.0).
+- This release addresses a new NOTE found in CRAN's daily checks.
   See `NEWS.md` for a detailed changelog.
 
 ## revdepcheck results
