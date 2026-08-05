@@ -1,7 +1,6 @@
 ---
 name: address-review
 description: Address code review comments and reply to them
-disable-model-invocation: true
 ---
 
 # Address Code Review Comments
