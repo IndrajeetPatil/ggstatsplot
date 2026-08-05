@@ -1,4 +1,4 @@
-# ggstatsplot 1.0.0.9000
+# ggstatsplot 1.1.0
 
 ## MINOR CHANGES
 
