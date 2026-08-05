@@ -52,7 +52,10 @@ if (requireNamespace("patrick", quietly = TRUE)) {
 
 test_that(".cat_counter preserves factor order and returns no empty groups", {
   df <- tibble::tibble(
-    y = factor(c("g1", "g1", "g1", "g2", "g2"), levels = c("g2", "g1", "unused")),
+    y = factor(
+      c("g1", "g1", "g1", "g2", "g2"),
+      levels = c("g2", "g1", "unused")
+    ),
     x = factor(c("a", "a", "b", "a", "b"), levels = c("a", "b", "unused"))
   )
 
@@ -62,7 +65,10 @@ test_that(".cat_counter preserves factor order and returns no empty groups", {
   expect_identical(as.character(result$y), c("g2", "g1", "g2", "g1"))
   expect_identical(as.character(result$x), c("b", "b", "a", "a"))
   expect_identical(result$counts, c(1L, 1L, 1L, 2L))
-  expect_identical(result$perc, c(1 / 2 * 100, 1 / 3 * 100, 1 / 2 * 100, 2 / 3 * 100))
+  expect_identical(
+    result$perc,
+    c(1 / 2 * 100, 1 / 3 * 100, 1 / 2 * 100, 2 / 3 * 100)
+  )
   expect_identical(levels(result$y), c("g2", "g1", "unused"))
   expect_identical(levels(result$x), c("a", "b", "unused"))
 })
