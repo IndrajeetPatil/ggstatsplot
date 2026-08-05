@@ -60,8 +60,10 @@ test_that(".cat_counter preserves factor order and returns no empty groups", {
   )
 
   result <- .cat_counter(df, x, y)
+  grouped_result <- .cat_counter(dplyr::group_by(df, x), x, y)
 
   expect_false(dplyr::is_grouped_df(result))
+  expect_identical(grouped_result, result)
   expect_identical(as.character(result$y), c("g2", "g1", "g2", "g1"))
   expect_identical(as.character(result$x), c("b", "b", "a", "a"))
   expect_identical(result$counts, c(1L, 1L, 1L, 2L))

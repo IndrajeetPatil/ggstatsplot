@@ -158,6 +158,7 @@ descriptive_data <- function(
 #' @noRd
 .cat_counter <- function(data, x, y = NULL, ...) {
   data |>
+    ungroup() |>
     count({{ y }}, {{ x }}, .drop = TRUE, name = "counts") |>
     mutate(perc = (counts / sum(counts)) * 100, .by = {{ y }}) |>
     arrange(desc({{ x }}))
