@@ -158,12 +158,9 @@ descriptive_data <- function(
 #' @noRd
 .cat_counter <- function(data, x, y = NULL, ...) {
   data |>
-    group_by({{ y }}, {{ x }}, .drop = TRUE) |>
-    tally(name = "counts") |>
-    mutate(perc = (counts / sum(counts)) * 100) |>
-    ungroup() |>
-    arrange(desc({{ x }})) |>
-    filter(counts != 0L)
+    count({{ y }}, {{ x }}, .drop = TRUE, name = "counts") |>
+    mutate(perc = (counts / sum(counts)) * 100, .by = {{ y }}) |>
+    arrange(desc({{ x }}))
 }
 
 #' @title A data frame with chi-squared test results

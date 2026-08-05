@@ -167,8 +167,9 @@ ggwithinstats <- function(
   if (is.null(sid_str)) {
     stats_data <- data
 
-    data <- mutate(data, .rowid = row_number(), .by = {{ x }})
-    data <- anti_join(x = data, y = filter(data, is.na({{ y }})), by = ".rowid")
+    data <- data |>
+      mutate(.rowid = row_number(), .by = {{ x }}) |>
+      filter_out(anyNA({{ y }}), .by = .rowid)
   } else {
     data <- filter(data, !is.na(.data[[sid_str]]))
 
