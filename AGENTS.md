@@ -76,6 +76,17 @@ dependency set.
 - Record user-facing compatibility changes in `NEWS.md`; omit routine
   dependency updates and internal lint or CI maintenance.
 
+### Creating a CRAN release
+
+To cut a new CRAN release with a minor or patch version update:
+1. Create a release branch (e.g., `release-x.y.z`).
+2. Update the version number in `DESCRIPTION`, `NEWS.md` (remove `.9000` suffix), and `codemeta.json`.
+3. If addressing a CRAN issue, update `cran-comments.md` to mention it.
+4. Commit, push the branch, and open a Pull Request.
+5. Ensure all GitHub Actions PR checks pass and there are no pending reviewer comments.
+6. Trigger the `submit-cran.yaml` workflow using GitHub CLI (e.g., `gh workflow run submit-cran.yaml --ref release-x.y.z`).
+7. The maintainer will receive an email from CRAN and manually approve the release.
+
 ## Testing
 
 - The package uses `testthat` edition 3 with parallel execution.
