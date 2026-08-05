@@ -48,6 +48,33 @@ if (requireNamespace("patrick", quietly = TRUE)) {
   )
 }
 
+# .cat_counter -----------------------------------------------------
+
+test_that(".cat_counter preserves factor order and returns no empty groups", {
+  df <- tibble::tibble(
+    y = factor(
+      c("g1", "g1", "g1", "g2", "g2"),
+      levels = c("g2", "g1", "unused")
+    ),
+    x = factor(c("a", "a", "b", "a", "b"), levels = c("a", "b", "unused"))
+  )
+
+  result <- .cat_counter(df, x, y)
+  grouped_result <- .cat_counter(dplyr::group_by(df, x), x, y)
+
+  expect_false(dplyr::is_grouped_df(result))
+  expect_identical(grouped_result, result)
+  expect_identical(as.character(result$y), c("g2", "g1", "g2", "g1"))
+  expect_identical(as.character(result$x), c("b", "b", "a", "a"))
+  expect_identical(result$counts, c(1L, 1L, 1L, 2L))
+  expect_identical(
+    result$perc,
+    c(1 / 2 * 100, 1 / 3 * 100, 1 / 2 * 100, 2 / 3 * 100)
+  )
+  expect_identical(levels(result$y), c("g2", "g1", "unused"))
+  expect_identical(levels(result$x), c("a", "b", "unused"))
+})
+
 # .validate_palette ------------------------------------
 
 test_that(".validate_palette warns and returns default for old-style palette", {

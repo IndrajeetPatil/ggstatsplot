@@ -49,14 +49,10 @@
 #' @export
 extract_stats <- function(p) {
   if (inherits(p, "patchwork")) {
-    purrr::map(.extract_plots(p), .extract_stats)
+    purrr::map(as.list(p), .extract_stats)
   } else {
     .extract_stats(p)
   }
-}
-
-.extract_plots <- function(p) {
-  purrr::map(seq_along(p), \(i) p[[i]])
 }
 
 .pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
