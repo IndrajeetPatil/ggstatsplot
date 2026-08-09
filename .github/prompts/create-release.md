@@ -21,24 +21,33 @@ the requirements below.
 
 1. Verify `gh` authentication, fetch and prune `origin`, and inspect the working
    tree. Preserve unrelated local changes. If necessary, use a clean worktree.
-2. Start a `release-x.y.z` branch from the latest `origin/main`, never from the
-   caller's possibly stale local branch.
-3. Determine the latest published stable version from the repository's releases
-   and cross-check it against `DESCRIPTION`. Compute the new version with
-   semantic versioning:
+2. Query current CRAN package metadata for the latest version actually
+   published on CRAN and use that version as the semantic-version base.
+   Cross-check it against `DESCRIPTION`, open release pull requests, and GitHub
+   releases and tags. A successful submission workflow can create a GitHub
+   Release before CRAN approval, so never use a GitHub Release as the base
+   unless that same version is already on CRAN.
+3. Compute the requested version from the CRAN-published base:
+
    - patch: `x.y.z` to `x.y.(z+1)`
    - minor: `x.y.z` to `x.(y+1).0`
    - major: `x.y.z` to `(x+1).0.0`
-4. Review commits and merged pull requests since the latest release, plus the
-   existing development section in `NEWS.md`. Do not invent changes.
-5. Synchronize the release version in `DESCRIPTION`, `codemeta.json`, and the
+
+4. If that target version already has a branch, pull request, tag, or GitHub
+   Release but is not on CRAN, treat it as an in-flight or rejected submission.
+   Resume and repair that release rather than incrementing past it or creating
+   a duplicate. Otherwise, start a `release-x.y.z` branch from the latest
+   `origin/main`, never from the caller's possibly stale local branch.
+5. Review commits and merged pull requests since the latest CRAN release, plus
+   the existing development section in `NEWS.md`. Do not invent changes.
+6. Synchronize the release version in `DESCRIPTION`, `codemeta.json`, and the
    first `NEWS.md` heading. Remove the development `.9000` suffix. Regenerate
    generated metadata through repository tooling when available rather than
    hand-editing unrelated fields.
-6. Edit `NEWS.md` into concise, user-facing release notes. Preserve its existing
+7. Edit `NEWS.md` into concise, user-facing release notes. Preserve its existing
    section style, and omit routine dependency, lint, formatting, CI, and
    generated-file maintenance.
-7. Update `cran-comments.md` with the correct release type and version. Mention
+8. Update `cran-comments.md` with the correct release type and version. Mention
    a CRAN issue only when the repository evidence supports it, and keep check
    and reverse-dependency results accurate.
 
