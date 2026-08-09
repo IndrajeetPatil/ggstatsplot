@@ -3,7 +3,8 @@
 0 errors | 0 warnings | 0 notes
 
 - This is a minor release (1.1.0).
-- This release addresses a new NOTE found in CRAN's daily checks.
+- This release fixes the CRAN daily-check NOTE about deprecated `.Label` use
+  in a test fixture by replacing it with the supported `levels` argument.
   See `NEWS.md` for a detailed changelog.
 
 ## revdepcheck results
