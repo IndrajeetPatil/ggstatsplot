@@ -4,12 +4,6 @@ skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
 skip_if_not_installed("rstantools")
 
-data_bugs_2 <- dplyr::filter(
-  bugs_long,
-  subject <= 30L,
-  condition %in% c("HDLF", "HDHF")
-)
-
 test_that("defaults plots", {
   expect_snapshot_error(grouped_ggbetweenstats(
     bugs_long,
@@ -107,8 +101,10 @@ test_that("grouped plots work", {
   ))
 
   set.seed(123)
+  snapshot_variant <- if (getRversion() >= "4.7.0") "r-4.7" else NULL
   expect_doppelganger(
     title = "grouped plots - default",
+    variant = snapshot_variant,
     fig = grouped_ggwithinstats(
       data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
       x = condition,

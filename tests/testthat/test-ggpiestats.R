@@ -1,17 +1,3 @@
-# data for paired tests
-set.seed(123)
-survey_data <- dplyr::tibble(
-  `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
-  `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
-  Counts = c(794L, 150L, 86L, 570L)
-)
-
-survey_data_NA <- dplyr::tibble(
-  `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
-  `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
-  Counts = c(794L, 150L, NA_integer_, 570L)
-)
-
 # checking default outputs -----------------------------------------
 
 test_that("checking default outputs", {
