@@ -69,8 +69,8 @@ git diff --check
 Clean build/check artifacts, inspect the final diff, and confirm that only
 intentional release files changed. Commit, push, and open a ready-for-review
 pull request against `main`. The title should identify the exact release
-version, and the body should summarize the release notes, version surfaces,
-CRAN comments, and validation performed.
+version and contain the exact text `CRAN Release`. The body should summarize the
+release notes, version surfaces, CRAN comments, and validation performed.
 
 Monitor the pull request until every required GitHub Actions check passes and
 there are no unresolved review threads. Address actionable review feedback,
@@ -79,16 +79,20 @@ user to drive routine follow-up.
 
 ## Submit to CRAN
 
-Keep the release pull request open and dispatch the submission workflow from
-the release branch:
+Do not dispatch the submission workflow while the release pull request is open
+or from the release branch. The workflow both submits the package to CRAN and
+creates the GitHub Release and tag, so wait until the pull request whose title
+contains `CRAN Release` has been merged. Fetch `main`, verify that it contains
+the release commit and version, and dispatch the workflow against `main`:
 
 ```bash
-gh workflow run submit-cran.yaml --ref release-x.y.z
+gh workflow run submit-cran.yaml --ref main
 ```
 
 Find the resulting workflow run, watch it to completion, and inspect logs if it
-fails. Fix problems on the release branch and retry only after the pull request
-checks are green again. Once the workflow succeeds, report the pull request,
-exact version, validation, workflow run, and that the maintainer must approve
-the email from CRAN. Do not claim that the CRAN release is complete before that
-manual approval and CRAN publication occur.
+fails. Fix problems through a new pull request against `main`, merge the fix,
+and retry from `main` only after its checks are green. Once the workflow
+succeeds, report the merged pull request, exact version, validation, workflow
+run, and that the maintainer must confirm the email from CRAN. A successful
+submission is not CRAN acceptance; do not claim that the CRAN release is
+complete before confirmation and CRAN publication occur.

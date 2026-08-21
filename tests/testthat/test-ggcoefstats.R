@@ -57,11 +57,6 @@ test_that("default plots are rendered correctly for each type of statistic", {
   )
 })
 
-df_meta <- tibble(
-  estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
-  std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
-)
-
 test_that("meta-analysis works", {
   skip_on_cran()
   skip_if_not_installed("metafor")

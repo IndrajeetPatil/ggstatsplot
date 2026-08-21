@@ -1,19 +1,3 @@
-morley_new <- dplyr::mutate(
-  morley,
-  Expt = dplyr::case_when(
-    Expt == 1L ~ "1st",
-    Expt == 2L ~ "2nd",
-    Expt == 3L ~ "3rd",
-    Expt == 4L ~ "4th",
-    Expt == 5L ~ "5th"
-  )
-) |>
-  tibble::as_tibble()
-
-morley_new[3L, 3L] <- NA_integer_
-morley_new[23L, 3L] <- NA_integer_
-morley_new[87L, 3L] <- NA_integer_
-
 # checking default outputs -----------------------------------------
 
 test_that("checking default outputs", {
