@@ -807,7 +807,7 @@ read the `NEWS` for that package:
 
   - For changes related to subtitle details, see changes made in new version of
     `statsExpressions 4.0.0`:
-    <https://CRAN.R-project.org/package=statsExpressions/news/news.html>
+    <https://cran.r-project.org/web/packages/statsExpressions/news/news.html>
 
   - `ggbetweenstats` and `ggwithinstats` no longer print dataframes containing
     results from pairwise comparisons tests because this is too cluttering for
