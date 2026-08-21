@@ -84,8 +84,18 @@ To cut a new CRAN release with a minor or patch version update:
 3. If addressing a CRAN issue, update `cran-comments.md` to mention it.
 4. Commit, push the branch, and open a Pull Request.
 5. Ensure all GitHub Actions PR checks pass and there are no pending reviewer comments.
-6. Trigger the `submit-cran.yaml` workflow using GitHub CLI (e.g., `gh workflow run submit-cran.yaml --ref release-x.y.z`).
-7. The maintainer will receive an email from CRAN and manually approve the release.
+6. Ensure the Pull Request title contains the exact text `CRAN Release`.
+7. Do not trigger `submit-cran.yaml` from an open Pull Request or a release
+   branch. The reusable workflow both submits the package to CRAN and immediately
+   creates a GitHub Release and tag; a successful submission does not mean CRAN
+   has accepted the package.
+8. Only after the `CRAN Release` Pull Request is merged, verify that `main`
+   contains the release commit and trigger the workflow against `main` (e.g.,
+   `gh workflow run submit-cran.yaml --ref main`). Do not create a release or tag
+   before this merge gate.
+9. The maintainer will receive an email from CRAN and manually confirm the
+   submission. Track CRAN acceptance separately and do not claim the package is
+   released on CRAN until it appears there.
 
 ## Testing
 
