@@ -21,6 +21,7 @@ README.html
 ^SUPPORT\.md$
 ^WIP/.
 ^\.Rproj\.user$
+^\.agents$
 ^\.circleci$
 ^\.coveralls\.yml$
 ^\.covrignore$
