@@ -79,27 +79,28 @@ user to drive routine follow-up.
 ## Submit to CRAN
 
 Keep the Pull Request whose title contains `CRAN Release` open. After all checks
-pass and all review threads are resolved, check out the release branch and
-submit it directly:
+pass and all review threads are resolved, dispatch the CRAN workflow from the
+release branch:
 
 ```bash
-Rscript -e 'assignInNamespace("yesno", function(...) FALSE, "devtools"); devtools::submit_cran()'
+gh workflow run submit-cran.yaml --ref release-x.y.z
 ```
 
-Do not dispatch `.github/workflows/submit-cran.yaml` before CRAN acceptance
-because that workflow also creates a GitHub Release and tag. Inspect the direct
-submission output if it fails. Fix problems on the same release branch and
+On a non-default branch, the reusable workflow submits to CRAN but skips the
+GitHub Release and tag. Find the resulting workflow run, watch it to completion,
+and inspect its logs if it fails. Fix problems on the same release branch and
 retry only after its checks are green.
 
-Once submission succeeds, report the exact version, remind the maintainer to
-confirm the CRAN email, and stop. Do not merge the Pull Request, create a tag,
-or create a GitHub Release. Successful submission and email confirmation are
-not CRAN acceptance.
+Once submission succeeds, report the exact version and workflow run, remind the
+maintainer to confirm the CRAN email, and stop. Do not merge the Pull Request,
+create a tag, or create a GitHub Release. Workflow success and email
+confirmation are not CRAN acceptance.
 
 Wait until the user explicitly states that CRAN accepted the package. Then
 verify that CRAN publishes the target version, squash-merge the `CRAN Release`
-Pull Request, and confirm that `main` contains the accepted version. Build the
-source tarball from that merged commit and create the GitHub Release and tag.
-Use the complete matching version section from `NEWS.md` verbatim as the
-release body; do not summarize it and never use `--generate-notes`. Attach the
-source tarball and verify the tag target, release body, and asset.
+Pull Request, and confirm that `main` contains the accepted version. Then rerun
+`submit-cran.yaml` from `main`. On the default branch, the reusable workflow
+skips CRAN submission and creates the GitHub Release and tag from the merged
+commit, using the complete matching version section from `NEWS.md` verbatim as
+the release body and attaching the source tarball. Verify the tag target,
+release body, and asset.
