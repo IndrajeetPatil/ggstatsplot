@@ -67,7 +67,7 @@ then publish the GitHub Release from `main` only after CRAN acceptance.
 2. Find and watch the resulting run. On a non-default branch, the reusable
    workflow must build and submit to CRAN while the GitHub Release job is
    skipped. Inspect the logs and verify that no tag or GitHub Release was
-   created.
+   created. Record the workflow run's head SHA as the exact submitted commit.
 3. If submission fails, fix it on the same release branch and retry only after
    the updated pull request checks are green.
 4. When submission succeeds, report the exact version and workflow run, remind
@@ -83,8 +83,10 @@ then publish the GitHub Release from `main` only after CRAN acceptance.
 2. Squash-merge the `CRAN Release` pull request and verify that `main` contains
    the accepted version.
 3. Dispatch `submit-cran.yaml` from `main` and watch it to completion. On the
-   default branch, the reusable workflow must skip CRAN submission and create
-   the tag and GitHub Release from the merged commit.
-4. Verify that the tag targets the merged commit, the source tarball is
-   attached, and the release body is the complete matching `NEWS.md` version
-   section verbatim. Never use generated release notes or summarize NEWS.
+   default branch, the reusable workflow must skip CRAN submission, resolve the
+   most recently merged matching `CRAN Release <version>` pull request, and
+   rebuild and publish from that pull request's original submitted head SHA.
+4. Verify that the tag targets the recorded submitted SHA, not a later `main`
+   tree; the source tarball is attached; and the release body is the complete
+   matching `NEWS.md` version section verbatim. Never use generated release
+   notes or summarize NEWS.
