@@ -144,9 +144,9 @@
 <li>Record user-facing compatibility changes in <code>NEWS.md</code>; omit routine dependency updates and internal lint or CI maintenance.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="creating-a-cran-release">Creating a CRAN release<a class="anchor" aria-label="anchor" href="#creating-a-cran-release"></a></h3>
-<p>To cut a new CRAN release with a minor or patch version update: 1. Create a release branch (e.g., <code>release-x.y.z</code>). 2. Update the version number in <code>DESCRIPTION</code>, <code>NEWS.md</code> (remove <code>.9000</code> suffix), and <code>codemeta.json</code>. 3. If addressing a CRAN issue, update <code>cran-comments.md</code> to mention it. 4. Commit, push the branch, and open a Pull Request. 5. Ensure all GitHub Actions PR checks pass and there are no pending reviewer comments. 6. Ensure the Pull Request title contains the exact text <code>CRAN Release</code>. 7. Do not trigger <code>submit-cran.yaml</code> from an open Pull Request or a release branch. The reusable workflow both submits the package to CRAN and immediately creates a GitHub Release and tag; a successful submission does not mean CRAN has accepted the package. 8. Only after the <code>CRAN Release</code> Pull Request is merged, verify that <code>main</code> contains the release commit and trigger the workflow against <code>main</code> (e.g., <code>gh workflow run submit-cran.yaml --ref main</code>). Do not create a release or tag before this merge gate. 9. The maintainer will receive an email from CRAN and manually confirm the submission. Track CRAN acceptance separately and do not claim the package is released on CRAN until it appears there.</p>
-</div>
+<h3 id="repository-skills">Repository skills<a class="anchor" aria-label="anchor" href="#repository-skills"></a></h3>
+<ul><li>Use <code>.agents/skills/create-release/SKILL.md</code> only when asked to prepare, submit, resume, or publish a CRAN release.</li>
+</ul></div>
 </div>
 <div class="section level2">
 <h2 id="testing">Testing<a class="anchor" aria-label="anchor" href="#testing"></a></h2>

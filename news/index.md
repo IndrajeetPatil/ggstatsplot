@@ -1036,7 +1036,7 @@ CRAN release: 2020-04-15
 
 - For changes related to subtitle details, see changes made in new
   version of `statsExpressions 4.0.0`:
-  <https://cran.r-project.org/web/packages/statsExpressions/news/news.html>
+  <https://www.indrapatil.com/statsExpressions/news/index.html>
 
 - `ggbetweenstats` and `ggwithinstats` no longer print dataframes
   containing results from pairwise comparisons tests because this is too
