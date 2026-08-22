@@ -45,17 +45,20 @@ then publish the GitHub Release from `main` only after CRAN acceptance.
    git diff --check
    ```
 
-7. Clean build artifacts and inspect the complete diff. Open or update a
+7. Clean build artifacts, inspect the complete diff, commit the validated
+   release state, and push the release branch. Only then open or update a
    ready-for-review pull request against `main`; its title must contain the
    exact text `CRAN Release` and its body must describe the final net diff and
    validation.
 8. Wait for every required check to pass. Address, reply to, and resolve every
-   actionable review thread, then re-fetch the live thread state.
+   actionable review thread. After each fix, rerun the affected validation,
+   commit and push it, and re-fetch the live thread and check state.
 
 ## Submit while the pull request stays open
 
-1. Keep the `CRAN Release` pull request open and dispatch the package workflow
-   from its release branch:
+1. Keep the `CRAN Release` pull request open. Verify that the worktree is clean
+   and the remote release-branch SHA matches the validated local `HEAD`, then
+   dispatch the package workflow from that branch:
 
    ```bash
    gh workflow run submit-cran.yaml --ref release-x.y.z
