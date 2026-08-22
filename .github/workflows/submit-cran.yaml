@@ -3,69 +3,8 @@ on:
 
 name: submit-cran
 
-permissions:
-  contents: read
-  pull-requests: read
-
 jobs:
   submit-cran:
-    name: Build and submit to CRAN
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - name: Require an open CRAN Release pull request
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          pull_requests=$(gh pr list \
-            --repo "$GITHUB_REPOSITORY" \
-            --state open \
-            --base main \
-            --head "$GITHUB_REF_NAME" \
-            --json number,title \
-            --limit 1)
-          if [ "$(jq length <<<"$pull_requests")" -ne 1 ]; then
-            echo "::error::Submission requires an open pull request from $GITHUB_REF_NAME to main."
-            exit 1
-          fi
-          title=$(jq -r '.[0].title' <<<"$pull_requests")
-          if [[ "$title" != *"CRAN Release"* ]]; then
-            echo "::error::The open pull request title must contain the exact text CRAN Release."
-            exit 1
-          fi
-
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - uses: r-lib/actions/setup-r@d3c5be51b12e724e68f33216ca3c148b66d5f0b6 # v2.12.1
-
-      - uses: r-lib/actions/setup-r-dependencies@d3c5be51b12e724e68f33216ca3c148b66d5f0b6 # v2.12.1
-        with:
-          extra-packages: |
-            any::devtools
-            any::pkgbuild
-
-      - name: Build source tarball
-        id: build
-        run: |
-          tarball <- pkgbuild::build(".", dest_path = ".", binary = FALSE)
-          out <- Sys.getenv("GITHUB_OUTPUT")
-          cat("tarball=", tarball, "\n", sep = "", file = out, append = TRUE)
-        shell: Rscript {0}
-
-      - name: Upload source tarball
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: source-tarball
-          path: ${{ steps.build.outputs.tarball }}
-          retention-days: 1
-
-      - name: Submit to CRAN
-        run: |
-          assignInNamespace("yesno", function(...) FALSE, "devtools")
-          devtools::submit_cran()
-        shell: Rscript {0}
+    uses: IndrajeetPatil/workflows/.github/workflows/submit-cran.yaml@main
+    permissions:
+      contents: write
