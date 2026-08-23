@@ -316,8 +316,13 @@
 
   # arrange the data frame so that annotations are properly aligned
   mpc_df <- arrange(mpc_df, group1, group2)
+  y_values <- pull(data, {{ y }})
+  n <- nrow(mpc_df)
   ggsignif.args <- utils::modifyList(
-    list(step_increase = 0.05),
+    list(
+      margin_top = 0.05 + (0.025 * max(0, y_values)) / diff(range(y_values)),
+      step_increase = if (n > 1L) n / (20 * (n - 1L)) else 0
+    ),
     ggsignif.args
   )
 
