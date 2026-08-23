@@ -318,6 +318,14 @@
   mpc_df <- arrange(mpc_df, group1, group2)
   y_values <- pull(data, {{ y }})
   n <- nrow(mpc_df)
+
+  # ggsignif positions the first bracket at max(y) + range(y) * margin_top.
+  # Expressing the legacy 2.5% of max(y) offset in range units preserves the
+  # old layout for positive outcomes; clamping at zero keeps brackets above
+  # all-negative outcomes.
+  # The legacy helper spread n brackets over n / 20 of the outcome range, so
+  # dividing that span among n - 1 gaps gives the equivalent step increase.
+  # User-supplied arguments override these compatibility defaults.
   ggsignif.args <- utils::modifyList(
     list(
       margin_top = 0.05 + (0.025 * max(0, y_values)) / diff(range(y_values)),

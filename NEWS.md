@@ -5,6 +5,9 @@
 - The minimum supported R version is now 4.5. The project supports R-devel,
   the current R release, and the previous R release.
 
+- Pairwise significance brackets are now positioned correctly above outcomes
+  whose values are all negative.
+
 # ggstatsplot 1.0.0
 
 ## NEW FEATURES

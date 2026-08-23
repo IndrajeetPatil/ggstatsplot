@@ -357,6 +357,7 @@ test_that("adding caption works", {
 })
 
 test_that("pairwise brackets stay above negative outcomes", {
+  set.seed(123)
   df <- tibble::tibble(
     group = rep(letters[1:3], each = 3L),
     value = -103:-95
