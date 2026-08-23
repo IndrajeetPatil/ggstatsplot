@@ -379,3 +379,34 @@ test_that("pairwise brackets stay above negative outcomes", {
   expect_gt(min(bracket_data$y), max(df$value))
   expect_length(unique(horizontal_brackets$y), 3L)
 })
+
+test_that("pairwise brackets have finite positions for constant outcomes", {
+  df <- tibble::tibble(
+    group = rep(c("a", "b"), each = 2L),
+    value = 10
+  )
+  mpc_df <- tibble::tibble(
+    group1 = "a",
+    group2 = "b",
+    p.value = 0.01,
+    expression = "italic(p)==0.01"
+  )
+  plot <- ggplot2::ggplot(df, ggplot2::aes(group, value)) +
+    ggplot2::geom_point()
+  bracket_data <- .ggsignif_adder(
+    plot,
+    df,
+    group,
+    value,
+    mpc_df,
+    pairwise.display = "all"
+  ) |>
+    ggplot2::ggplot_build() |>
+    purrr::pluck("data") |>
+    tail(1L) |>
+    purrr::pluck(1L)
+
+  expect_true(all(is.finite(bracket_data$y)))
+  expect_true(all(is.finite(bracket_data$yend)))
+  expect_gt(min(bracket_data$y), max(df$value))
+})

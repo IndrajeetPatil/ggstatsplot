@@ -317,6 +317,9 @@
   # arrange the data frame so that annotations are properly aligned
   mpc_df <- arrange(mpc_df, group1, group2)
   y_values <- pull(data, {{ y }})
+  y_limits <- range(y_values, na.rm = TRUE)
+  y_range <- diff(y_limits)
+  y_max <- y_limits[[2L]]
   n <- nrow(mpc_df)
 
   # ggsignif positions the first bracket at max(y) + range(y) * margin_top.
@@ -325,11 +328,22 @@
   # all-negative outcomes.
   # The legacy helper spread n brackets over n / 20 of the outcome range, so
   # dividing that span among n - 1 gaps gives the equivalent step increase.
+  # A zero range cannot scale either offset, so use a finite absolute fallback
+  # that matches the legacy offset for positive constants and moves others up.
   # User-supplied arguments override these compatibility defaults.
   ggsignif.args <- utils::modifyList(
     list(
-      margin_top = 0.05 + (0.025 * max(0, y_values)) / diff(range(y_values)),
-      step_increase = if (n > 1L) n / (20 * (n - 1L)) else 0
+      margin_top = if (y_range > 0) {
+        0.05 + (0.025 * max(0, y_max)) / y_range
+      } else {
+        0
+      },
+      step_increase = if (n > 1L) n / (20 * (n - 1L)) else 0,
+      y_position = if (y_range > 0) {
+        NULL
+      } else {
+        y_max + (0.025 * max(1, abs(y_max)))
+      }
     ),
     ggsignif.args
   )
