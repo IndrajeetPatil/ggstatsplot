@@ -2,6 +2,8 @@
 
 ## ggstatsplot 1.1.0
 
+CRAN release: 2026-08-22
+
 ### MINOR CHANGES
 
 - The minimum supported R version is now 4.5. The project supports
