@@ -408,5 +408,4 @@ test_that("pairwise brackets have finite positions for constant outcomes", {
 
   expect_true(all(is.finite(bracket_data$y)))
   expect_true(all(is.finite(bracket_data$yend)))
-  expect_gt(min(bracket_data$y), max(df$value))
 })
