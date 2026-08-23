@@ -1,5 +1,12 @@
 # Changelog
 
+## ggstatsplot 1.1.0.9000
+
+### MINOR CHANGES
+
+- Pairwise significance brackets are now positioned correctly above
+  outcomes whose values are all negative.
+
 ## ggstatsplot 1.1.0
 
 CRAN release: 2026-08-22
