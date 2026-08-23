@@ -72,8 +72,8 @@ for you to follow:
    can remove that liability.
 3. Implement the simplification with the smallest coherent change set that
    fully replaces the old approach.
-4. If adopting an API from a newer version of an existing dependency, update
-   the minimum version in the `DESCRIPTION` file and regenerate
+4. If adding a new dependency or adopting an API from a newer version of an
+   existing dependency, update the `DESCRIPTION` file and regenerate
    `codemeta.json`.
 5. Remove obsolete code, dead paths, compatibility layers, comments, or tests
    that only existed for the previous implementation, ensuring equivalent
