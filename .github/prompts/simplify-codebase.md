@@ -1,5 +1,5 @@
 ---
-agent: 'agent'
+name: 'simplify-codebase'
 description: 'Simplify the codebase safely by removing avoidable custom code and adopting proven dependency capabilities.'
 ---
 
@@ -72,10 +72,12 @@ for you to follow:
    can remove that liability.
 3. Implement the simplification with the smallest coherent change set that
    fully replaces the old approach.
-4. Remove obsolete code, dead paths, compatibility layers, comments, or tests
+4. If adopting an API from a newer version of an existing dependency, update
+   the minimum version in the `DESCRIPTION` file.
+5. Remove obsolete code, dead paths, compatibility layers, comments, or tests
    that only existed for the previous implementation, ensuring equivalent
    behaviour-focused coverage is retained or rewritten.
-5. Run the relevant validation until the refactoring is demonstrated to be
+6. Run the relevant validation until the refactoring is demonstrated to be
    regression-free.
 
 Use the smallest validation that proves the change, and escalate as needed.
@@ -88,6 +90,17 @@ Run any narrower targeted checks first when they are sufficient, but do not
 stop until you have strong evidence that the refactoring did not introduce
 defects.
 
+
+## Changelog policy
+
+Do **not** update `NEWS.md` for minor cleanups or routine simplifications.
+Only if the work amounts to a **significant refactoring** should it be
+recorded there, and then record **only** the significant refactoring itself
+— not incidental cleanup details, drive-by edits, or validation notes.
+However, if the refactoring requires bumping the minimum version of a
+dependency in `DESCRIPTION`, you must record that compatibility change in
+`NEWS.md` regardless of the refactoring's size.
+
 ## Pull request
 
 At the end, create a ready-for-review PR with the `gh` CLI
@@ -98,6 +111,8 @@ At the end, create a ready-for-review PR with the `gh` CLI
   adopting a reliable third-party dependency,
 - what code was deleted or collapsed,
 - how you ensured the refactoring stayed regression-free.
+- whether `NEWS.md` was updated, and if so, why the refactoring was
+  significant enough to warrant it.
 
 
 The PR should make the case that the repository is now easier to maintain
