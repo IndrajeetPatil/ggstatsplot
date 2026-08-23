@@ -2,11 +2,7 @@ utils::globalVariables(".pre")
 
 # nocov start
 .p_adjust_text <- function(method) {
-  if (grepl("^BH|^f", method)) {
-    "FDR"
-  } else {
-    paste0(toupper(substr(method, 1L, 1L)), substr(method, 2L, nchar(method)))
-  }
+  recode(insight::format_capitalize(method), BH = "FDR", Fdr = "FDR")
 }
 # nocov end
 
