@@ -299,6 +299,12 @@
     groups = purrr::pmap(.l = list(group1, group2), .f = c)
   )
 
+  # total number of group-pair comparisons, before any significance filtering;
+  # the legacy helper spaced brackets over this count regardless of how many
+  # were ultimately displayed, so bracket spacing stays stable across
+  # `pairwise.display` values
+  n_comps <- nrow(mpc_df)
+
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
     if (startsWith(pairwise.display, "s")) {
@@ -318,14 +324,15 @@
   mpc_df <- arrange(mpc_df, group1, group2)
   y_values <- pull(data, {{ y }})
   y_range <- diff(range(y_values, na.rm = TRUE))
-  n <- nrow(mpc_df)
 
   # ggsignif positions the first bracket at max(y) + range(y) * margin_top.
   # Expressing the legacy 2.5% of max(y) offset in range units preserves the
   # old layout for positive outcomes; clamping at zero keeps brackets above
   # all-negative outcomes.
-  # The legacy helper spread n brackets over n / 20 of the outcome range, so
-  # dividing that span among n - 1 gaps gives the equivalent step increase.
+  # The legacy helper spread all group-pair brackets over n_comps / 20 of the
+  # outcome range, so dividing that span among n_comps - 1 gaps gives the
+  # equivalent step increase; using the total comparison count keeps spacing
+  # consistent regardless of how many brackets `pairwise.display` retains.
   # For a zero range, retain ggsignif's finite default instead of dividing by
   # zero; no range-based offset can separate identical outcomes.
   # User-supplied arguments override these compatibility defaults.
@@ -336,7 +343,7 @@
       } else {
         0.05
       },
-      step_increase = if (n > 1L) n / (20 * (n - 1L)) else 0
+      step_increase = if (n_comps > 1L) n_comps / (20 * (n_comps - 1L)) else 0
     ),
     ggsignif.args
   )
