@@ -355,3 +355,26 @@ test_that("adding caption works", {
     )
   )
 })
+
+test_that("pairwise brackets stay above negative outcomes", {
+  df <- tibble::tibble(
+    group = rep(letters[1:3], each = 3L),
+    value = -103:-95
+  )
+
+  plot <- ggbetweenstats(
+    df,
+    group,
+    value,
+    results.subtitle = FALSE,
+    centrality.plotting = FALSE,
+    pairwise.display = "all"
+  )
+  bracket_data <- ggplot2::ggplot_build(plot)$data |>
+    tail(1L) |>
+    purrr::pluck(1L)
+  horizontal_brackets <- bracket_data[bracket_data$y == bracket_data$yend, ]
+
+  expect_gt(min(bracket_data$y), max(df$value))
+  expect_length(unique(horizontal_brackets$y), 3L)
+})

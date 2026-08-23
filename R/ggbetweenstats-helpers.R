@@ -316,6 +316,10 @@
 
   # arrange the data frame so that annotations are properly aligned
   mpc_df <- arrange(mpc_df, group1, group2)
+  ggsignif.args <- utils::modifyList(
+    list(step_increase = 0.05),
+    ggsignif.args
+  )
 
   # adding ggsignif comparisons to the plot
   plot +
@@ -323,32 +327,11 @@
       ggsignif::geom_signif,
       comparisons = mpc_df$groups,
       map_signif_level = TRUE,
-      y_position = .ggsignif_xy(pull(data, {{ x }}), pull(data, {{ y }})),
       annotations = as.character(mpc_df$expression),
       test = NULL,
       parse = TRUE,
       !!!ggsignif.args
     )
-}
-
-#' @name .ggsignif_xy
-#'
-#' @inheritParams ggbetweenstats
-#'
-#' @keywords internal
-#' @autoglobal
-#' @noRd
-.ggsignif_xy <- function(x, y) {
-  # number of comparisons and size of each step
-  n_comps <- length(utils::combn(x = unique(x), m = 2L, simplify = FALSE))
-  step_length <- (max(y, na.rm = TRUE) - min(y, na.rm = TRUE)) / 20
-
-  # start and end position on `y`-axis for the `ggsignif` lines
-  y_start <- max(y, na.rm = TRUE) * (1 + 0.025)
-  y_end <- y_start + (step_length * n_comps)
-
-  # creating a vector of positions for the `ggsignif` lines
-  seq(y_start, y_end, length.out = n_comps)
 }
 
 #' @name .pairwise_seclabel
