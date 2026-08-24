@@ -447,8 +447,8 @@
   ggplot.component = NULL,
   ...
 ) {
-  # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(palette, nlevels(x))
+  # Validate the requested number of discrete colors before plot rendering.
+  paletteer::paletteer_d(palette, nlevels(x))
 
   plot +
     labs(

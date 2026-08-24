@@ -161,6 +161,12 @@ test_that("edge cases", {
     title = "prop test fails with dropped levels",
     fig = ggbarstats(mtcars_small, am, cyl)
   )
+
+  too_many_levels <- tibble::tibble(x = factor(seq_len(25L)))
+  expect_error(
+    ggbarstats(too_many_levels, x, results.subtitle = FALSE),
+    regexp = "between 1 and 24"
+  )
 })
 
 # expression output --------------------------------------------------

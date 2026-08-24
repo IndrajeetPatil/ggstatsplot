@@ -149,8 +149,8 @@ ggbarstats <- function(
     onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
   }
 
-  # if no. of factor levels is greater than the default palette color count
-  .is_palette_sufficient(palette, nlevels(pull(data, {{ x }})))
+  # Validate the requested number of discrete colors before plot rendering.
+  paletteer::paletteer_d(palette, nlevels(pull(data, {{ x }})))
 
   plotBar <- ggplot(
     descriptive_df,
