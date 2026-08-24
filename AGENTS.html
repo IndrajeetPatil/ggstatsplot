@@ -155,6 +155,8 @@
 <code>make check</code> is the canonical full local validation command.</li>
 <li>Tests mirror the relevant source area, but helper and shared source files may be covered by broader test files rather than a one-to-one filename match.</li>
 <li>Plot output is covered by <code>vdiffr</code> snapshots using <code>expect_doppelganger()</code> after <code>vdiffr</code> is attached by the test helper.</li>
+<li>Treat broad snapshot diffs after dependency updates as potentially renderer-specific. Before accepting them, compare the old and new dependency builds under the same R and graphics stack and verify whether rendered text, statistics, or geometry actually changed.</li>
+<li>If both dependency builds reproduce the same SVG changes, restore the repository snapshots instead of committing local renderer churn. Confirm legitimate baseline updates with CI-native output across supported platforms.</li>
 <li>The top-level test runner executes package tests only with R 4.5 or newer on Linux or macOS because graphics and text rendering changed across R versions.</li>
 <li>Codecov requires 100% project and patch coverage.</li>
 </ul><p>When adding visual tests, use the repository’s existing style:</p>
