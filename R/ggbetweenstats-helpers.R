@@ -37,7 +37,7 @@
   paired,
   subject.id = NULL
 ) {
-  .f.args <- list(
+  .f.args <- purrr::compact(list(
     data = data,
     x = as_string(x),
     y = as_string(y),
@@ -45,15 +45,10 @@
     digits = digits,
     tr = tr,
     paired = paired,
-    bf.prior = bf.prior
-  )
-
-  if (!is.null(subject.id)) {
-    .f.args$subject.id <- subject.id
-  }
-  if (test == "t") {
-    .f.args$alternative <- alternative
-  }
+    bf.prior = bf.prior,
+    subject.id = subject.id,
+    alternative = if (test == "t") alternative
+  ))
 
   .subtitle_caption(.f_switch(test), .f.args, type, bf.message)
 }
@@ -296,7 +291,7 @@
   # creating a column for group combinations
   mpc_df <- mutate(
     mpc_df,
-    groups = purrr::pmap(.l = list(group1, group2), .f = c)
+    groups = purrr::map2(group1, group2, c)
   )
 
   # total number of group-pair comparisons, before any significance filtering;
