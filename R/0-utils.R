@@ -170,12 +170,10 @@ utils::globalVariables(".pre")
 
 
 #' @noRd
-.eval_f <- function(.f, ...) {
-  tryCatch(
-    suppressWarnings(suppressMessages(exec(.f, ...))),
-    error = function(e) NULL
-  )
-}
+.eval_f <- purrr::possibly(
+  function(.f, ...) suppressWarnings(suppressMessages(exec(.f, ...))),
+  otherwise = NULL
+)
 
 
 #' @noRd
