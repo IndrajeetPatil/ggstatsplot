@@ -197,18 +197,15 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
 #' @autoglobal
 #' @noRd
 .chisq_test_safe <- function(data, x, ratio) {
-  tryCatch(
-    suppressWarnings(contingency_table(data, x, ratio = ratio)),
-    error = function(e) {
-      # nocov start
-      tibble(
-        statistic = NA_real_,
-        p.value = NA_real_,
-        df = NA_real_,
-        method = "Chi-squared test for given probabilities"
-      )
-    } # nocov end
-  )
+  purrr::possibly(
+    function(...) suppressWarnings(contingency_table(...)),
+    otherwise = tibble(
+      statistic = NA_real_,
+      p.value = NA_real_,
+      df = NA_real_,
+      method = "Chi-squared test for given probabilities"
+    )
+  )(data, x, ratio = ratio)
 }
 
 
@@ -234,16 +231,16 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
     return(NULL)
   }
 
-  tryCatch(
-    suppressWarnings(pairwise_contingency_table(
-      data = data,
-      x = {{ x }},
-      y = {{ y }},
-      digits = digits,
-      conf.level = conf.level,
-      alternative = alternative,
-      p.adjust.method = p.adjust.method
-    )),
-    error = function(e) NULL
+  purrr::possibly(
+    function(...) suppressWarnings(pairwise_contingency_table(...)),
+    otherwise = NULL
+  )(
+    data = data,
+    x = {{ x }},
+    y = {{ y }},
+    digits = digits,
+    conf.level = conf.level,
+    alternative = alternative,
+    p.adjust.method = p.adjust.method
   )
 }
