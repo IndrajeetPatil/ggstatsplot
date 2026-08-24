@@ -47,11 +47,13 @@
 #'
 #' extract_stats(p2)
 #' @export
-extract_stats <- function(p) {
+extract_stats <- function(p) .map_plots(p, .extract_stats)
+
+.map_plots <- function(p, .f) {
   if (inherits(p, "patchwork")) {
-    purrr::map(as.list(p), .extract_stats)
+    purrr::map(as.list(p), .f)
   } else {
-    .extract_stats(p)
+    .f(p)
   }
 }
 
@@ -77,28 +79,15 @@ extract_stats <- function(p) {
 
 #' @rdname extract_stats
 #' @export
-extract_subtitle <- function(p) {
-  dat <- extract_stats(p)
-  .pluck_expression <- function(x) {
-    purrr::pluck(x, "subtitle_data", "expression", 1L)
-  }
-  if (inherits(dat, "ggstatsplot_stats")) {
-    .pluck_expression(dat)
-  } else {
-    purrr::map(dat, .pluck_expression)
-  }
-}
+extract_subtitle <- function(p) .extract_plot_expression(p, "subtitle_data")
 
 #' @rdname extract_stats
 #' @export
-extract_caption <- function(p) {
-  dat <- extract_stats(p)
-  .pluck_expression <- function(x) {
-    purrr::pluck(x, "caption_data", "expression", 1L)
-  }
-  if (inherits(dat, "ggstatsplot_stats")) {
-    .pluck_expression(dat)
-  } else {
-    purrr::map(dat, .pluck_expression)
-  }
+extract_caption <- function(p) .extract_plot_expression(p, "caption_data")
+
+.extract_plot_expression <- function(p, data) {
+  .map_plots(
+    p,
+    \(x) purrr::pluck(.extract_stats(x), data, "expression", 1L)
+  )
 }
