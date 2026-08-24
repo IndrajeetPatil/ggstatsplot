@@ -67,6 +67,8 @@ Suggests:
     WRS2
 VignetteBuilder:
     knitr
+Remotes:
+    IndrajeetPatil/statsExpressions
 Config/Needs/check: anthonynorth/roxyglobals
 Config/Needs/website: RfastOfficial/Rfast
 Config/roxygen2/version: 8.0.0
