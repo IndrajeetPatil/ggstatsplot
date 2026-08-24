@@ -531,7 +531,7 @@
       "@type": "SoftwareApplication",
       "identifier": "statsExpressions",
       "name": "statsExpressions",
-      "version": ">= 2.1.0",
+      "version": ">= 2.1.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
