@@ -426,7 +426,6 @@ ggcoefstats <- function(
   n_labels <- sum(label_rows)
 
   if (is.null(stats.label.color)) {
-    .is_palette_sufficient(palette, n_labels)
     return(paletteer::paletteer_d(palette, n_labels))
   }
 

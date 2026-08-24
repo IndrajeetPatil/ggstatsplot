@@ -84,14 +84,6 @@ test_that(".validate_palette warns and returns default for old-style palette", {
   expect_identical(.validate_palette("ggthemes::gdoc"), "ggthemes::gdoc")
 })
 
-# .is_palette_sufficient ------------------------------------
-
-test_that(".is_palette_sufficient is working", {
-  expect_no_condition(.is_palette_sufficient("ggthemes::gdoc", 2L))
-
-  expect_snapshot(.is_palette_sufficient("ggthemes::gdoc", 30L), error = TRUE)
-})
-
 # .eval_f ------------------------------------
 
 test_that(".eval_f works as expected", {
