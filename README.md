@@ -3,13 +3,9 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-| Status | Usage | Miscellaneous |
-|----|----|----|
-| [![R build status](https://github.com/IndrajeetPatil/ggstatsplot/workflows/R-CMD-check/badge.svg)](https://github.com/IndrajeetPatil/ggstatsplot) | [![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![codecov](https://codecov.io/gh/IndrajeetPatil/ggstatsplot/branch/main/graph/badge.svg?token=ddrxwt0bj8)](https://app.codecov.io/gh/IndrajeetPatil/ggstatsplot) |
-| [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html) | [![Daily downloads](https://cranlogs.r-pkg.org/badges/last-day/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot) | [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167) |
-
-> [!NOTE]
-> This package supports R-devel, the current R release, and the previous R release.
+[![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)
 
 ## Raison d’être <img src="man/figures/logo.png" alt="ggstatsplot package logo" align="right" width="360" />
 
@@ -29,6 +25,8 @@ phases into one in the form of graphics with statistical details, which
 makes data exploration simpler and faster.
 
 ## Installation
+
+Note: This package supports R-devel, the current R release, and the previous R release.
 
 | Type        | Command                                  |
 |:------------|:-----------------------------------------|
