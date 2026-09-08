@@ -122,7 +122,14 @@ install the current dependency set.
 
 When adding visual tests, use the repository’s existing style:
 
-`test_that``(``"descriptive name"``, ``{`` `` `[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`` `` ``expect_doppelganger``(`` `` title ``=`` ``"descriptive-name"``,`` `` fig ``=`` ``function_under_test``(``data ``=`` ``dataset``, x ``=`` ``var1``, y ``=`` ``var2``)`` `` ``)`` ``}``)`
+\
+`test_that``(``"descriptive name"``, ``{`\
+`  `[`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
+`  ``expect_doppelganger``(`\
+`    title ``=`` ``"descriptive-name"``,`\
+`    fig ``=`` ``function_under_test``(``data ``=`` ``dataset``, x ``=`` ``var1``, y ``=`` ``var2``)`\
+`  ``)`\
+`}``)`
 
 ## Code conventions
 

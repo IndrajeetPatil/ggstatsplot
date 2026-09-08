@@ -2,6 +2,8 @@
 
 ## ggstatsplot 1.1.1
 
+CRAN release: 2026-08-25
+
 ### MINOR CHANGES
 
 - Pairwise significance brackets are now positioned correctly above
