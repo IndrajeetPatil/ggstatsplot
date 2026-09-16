@@ -9,6 +9,3 @@ name: R-CMD-check
 jobs:
   R-CMD-check:
     uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@main
-    with:
-      extra-packages: |
-        RfastOfficial/Rfast

@@ -129,7 +129,8 @@ ggdotplotstats <- function(
       bf.prior = bf.prior
     )
 
-    stats <- .one_sample_subtitle_caption(
+    stats <- .subtitle_caption(
+      .f = one_sample_test,
       type = type,
       bf.message = bf.message,
       .f.args = .f.args
