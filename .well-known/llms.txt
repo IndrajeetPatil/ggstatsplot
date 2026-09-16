@@ -1,6 +1,0 @@
-# LLM Documentation Index for ggstatsplot
-# Machine-readable package documentation for AI assistants
-# See https://llmstxt.org/ for the specification
-
-/ggstatsplot/llms.txt: Concise package overview optimised for AI assistants
-/ggstatsplot/llms-full.txt: Complete package documentation for AI assistants
