@@ -9,4 +9,3 @@ jobs:
     uses: IndrajeetPatil/workflows/.github/workflows/R-CMD-check.yaml@main
     with:
       hard: true
-      extra-packages: any::vdiffr any::patrick
