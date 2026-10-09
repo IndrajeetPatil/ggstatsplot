@@ -232,7 +232,6 @@ ggcoefstats <- function(
     )
 
     # anova objects need further cleaning
-    # nolint next: line_length_linter.
     if (all(c("df", "df.error") %in% names(tidy_df))) {
       tidy_df <- mutate(
         tidy_df,
@@ -282,7 +281,6 @@ ggcoefstats <- function(
     as_tibble()
 
   if (all(c("AIC", "BIC") %in% names(glance_df))) {
-    # nolint next: line_length_linter.
     glance_df <- mutate(
       glance_df,
       expression = list(parse(
