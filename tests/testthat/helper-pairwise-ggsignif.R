@@ -11,7 +11,7 @@ expect_pairwise_displays <- function(title, plot_fn, ...) {
 
   for (display in names(display_labels)) {
     set.seed(123)
-    expect_doppelganger(
+    vdiffr::expect_doppelganger(
       title = paste(title, display_labels[[display]], sep = " - "),
       fig = plot_fn(
         ...,
