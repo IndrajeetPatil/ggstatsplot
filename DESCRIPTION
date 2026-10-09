@@ -15,7 +15,7 @@ Description: Extension of 'ggplot2', 'ggstatsplot' creates graphics with
     statistical approaches and tests: parametric, nonparametric, robust,
     and Bayesian versions of t-test/ANOVA, correlation analyses,
     contingency table analysis, meta-analysis, and regression analyses.
-    References: Patil (2021) <doi:10.21105/joss.03236>.
+    References: Patil (2021) <doi:10.21105/joss.03167>.
 License: MIT + file LICENSE
 URL: https://www.indrapatil.com/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
