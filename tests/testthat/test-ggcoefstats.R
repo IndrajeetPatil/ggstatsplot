@@ -87,7 +87,6 @@ test_that("meta-analysis works", {
 # plot modifications--------------------------------------------------
 
 test_that("plot modifications work as expected", {
-  set.seed(123)
   mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)
 
   set.seed(123)
@@ -103,7 +102,6 @@ test_that("plot modifications work as expected", {
     ))
   )
 
-  set.seed(123)
   mod2 <- stats::aov(
     data = ggplot2::msleep,
     formula = sleep_rem ~ vore * brainwt,
@@ -129,7 +127,6 @@ test_that("plot modifications work as expected", {
 # edge cases -------------------------------------
 
 test_that("works when CIs unavailable", {
-  set.seed(123)
   df_base <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
 
   set.seed(123)
@@ -224,9 +221,9 @@ test_that("tidy data without statistic inputs disables stats labels", {
   )
 
   expect_length(plot$layers, 2L)
-  expect_true(all(vapply(
+  expect_false(any(vapply(
     plot$layers,
-    function(x) !inherits(x$geom, "GeomLabelRepel"),
+    function(x) inherits(x$geom, "GeomLabelRepel"),
     logical(1L)
   )))
 })
@@ -292,13 +289,15 @@ test_that("stats label helpers cover filtering and color branches", {
     "firebrick"
   )
 
+  df_30_terms <- tibble::tibble(
+    term = letters[1:30],
+    expression = rep(list("alpha"), 30L)
+  )
+
   # 30 total terms but only 1 labeled — no error even with small palette
   expect_no_error(
     .prepare_stats_label_colors(
-      tibble::tibble(
-        term = letters[1:30],
-        expression = rep(list("alpha"), 30L)
-      ),
+      df_30_terms,
       label_data, # label_data has only term "a"
       NULL,
       "ggthemes::gdoc"
@@ -308,14 +307,8 @@ test_that("stats label helpers cover filtering and color branches", {
   # error only when labeled terms exceed palette size
   expect_error(
     .prepare_stats_label_colors(
-      tibble::tibble(
-        term = letters[1:30],
-        expression = rep(list("alpha"), 30L)
-      ),
-      tibble::tibble(
-        term = letters[1:30],
-        expression = rep(list("alpha"), 30L)
-      ),
+      df_30_terms,
+      df_30_terms,
       NULL,
       "ggthemes::gdoc" # 24 colors, not enough for 30 labeled terms
     )
