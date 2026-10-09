@@ -104,19 +104,17 @@ ggdotplotstats <- function(
 
   data <- .prep_data(data, {{ x }}, {{ y }})
 
-  data <-
-    suppressWarnings(centrality_description(
-      data,
-      {{ y }},
-      {{ x }},
-      type = type,
-      conf.level = conf.level,
-      digits = digits,
-      tr = tr,
-      bf.prior = bf.prior
-    ))
-
-  data <- data |>
+  # summarize `x` for each level of `y`, ordered by the summary value
+  data <- suppressWarnings(centrality_description(
+    data,
+    {{ y }},
+    {{ x }},
+    type = type,
+    conf.level = conf.level,
+    digits = digits,
+    tr = tr,
+    bf.prior = bf.prior
+  )) |>
     arrange({{ x }}) |>
     mutate(
       percent_rank = percent_rank({{ x }}),

@@ -178,9 +178,9 @@ gghistostats <- function(
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::gghistostats` to apply this function
+#' Helper function for `ggstatsplot::gghistostats()` to apply this function
 #' across multiple levels of a given factor and combining the resulting plots
-#' using `ggstatsplot::combine_plots`.
+#' using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats

@@ -139,9 +139,9 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-Helper function for \code{ggstatsplot::gghistostats} to apply this function
+Helper function for \code{ggstatsplot::gghistostats()} to apply this function
 across multiple levels of a given factor and combining the resulting plots
-using \code{ggstatsplot::combine_plots}.
+using \code{ggstatsplot::combine_plots()}.
 }
 \details{
 Missing values in \code{x} are removed before plotting and analysis.

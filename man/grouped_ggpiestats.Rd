@@ -39,7 +39,7 @@ only for non-Bayesian \code{type}s and unpaired designs (\code{paired = FALSE})
 (Default: \code{TRUE}).}
     \item{\code{digits.perc}}{Numeric that decides number of decimal places for
 percentage labels (Default: \code{0L}).}
-    \item{\code{label}}{Character decides what information needs to be displayed
+    \item{\code{label}}{Character that decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
@@ -128,9 +128,9 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-Helper function for \code{ggstatsplot::ggpiestats} to apply this
+Helper function for \code{ggstatsplot::ggpiestats()} to apply this
 function across multiple levels of a given factor and combining the
-resulting plots using \code{ggstatsplot::combine_plots}.
+resulting plots using \code{ggstatsplot::combine_plots()}.
 }
 \details{
 Rows with a missing value in \code{x}, \code{y}, or \code{counts} are removed

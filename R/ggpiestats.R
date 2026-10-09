@@ -28,7 +28,7 @@
 #'   (Default: `TRUE`).
 #' @param digits.perc Numeric that decides number of decimal places for
 #'   percentage labels (Default: `0L`).
-#' @param label Character decides what information needs to be displayed
+#' @param label Character that decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
@@ -154,7 +154,7 @@ ggpiestats <- function(
   }
   # nocov end
 
-  facet <- as.logical(y_levels > 1L)
+  facet <- y_levels > 1L
   if ((x_levels == 1L && facet) || type == "bayes") {
     proportion.test <- FALSE
   }
@@ -173,9 +173,6 @@ ggpiestats <- function(
       conf.level = conf.level,
       digits = digits,
       ratio = ratio,
-      sampling.plan = "indepMulti",
-      fixed.margin = "rows",
-      prior.concentration = 1,
       x_levels = x_levels,
       y_levels = y_levels,
       p.adjust.method = p.adjust.method
@@ -246,8 +243,7 @@ ggpiestats <- function(
 
   if (facet && proportion.test) {
     plotPie <- plotPie +
-      exec(
-        geom_text,
+      geom_text(
         data = onesample_df,
         mapping = aes(label = .label, x = 1.65, y = 0.5),
         position = position_fill(vjust = 1.0),
@@ -273,9 +269,9 @@ ggpiestats <- function(
 
 #' @title Grouped pie charts with statistical tests
 #' @name grouped_ggpiestats
-#' @description Helper function for `ggstatsplot::ggpiestats` to apply this
+#' @description Helper function for `ggstatsplot::ggpiestats()` to apply this
 #'   function across multiple levels of a given factor and combining the
-#'   resulting plots using `ggstatsplot::combine_plots`.
+#'   resulting plots using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams grouped_ggbetweenstats

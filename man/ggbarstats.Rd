@@ -71,7 +71,7 @@ repeated measures design study (Default: \code{FALSE}).}
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{label}{Character decides what information needs to be displayed
+\item{label}{Character that decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
