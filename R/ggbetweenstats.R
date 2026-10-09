@@ -276,8 +276,8 @@ ggbetweenstats <- function(
   .bw_decorate(
     plot = plot_comparison,
     data = data,
-    x = {{ x }},
-    y = {{ y }},
+    x = x,
+    y = y,
     type = type,
     test = test,
     centrality.plotting = centrality.plotting,
@@ -294,8 +294,8 @@ ggbetweenstats <- function(
       p.adjust.method = p.adjust.method
     ),
     ggsignif.args = ggsignif.args,
-    xlab = xlab %||% as_name(x),
-    ylab = ylab %||% as_name(y),
+    xlab = xlab,
+    ylab = ylab,
     title = title,
     subtitle = subtitle,
     caption = caption,

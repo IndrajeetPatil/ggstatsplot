@@ -66,6 +66,8 @@
 #'
 #' @param plot A `ggplot` object to decorate.
 #' @param data Data frame used for plotting.
+#' @param x,y Column name symbols for the grouping and response variables.
+#' @param xlab,ylab Axis labels; `NULL` falls back to the names of `x` and `y`.
 #' @param pairwise_args A named list of extra arguments forwarded to
 #'   [statsExpressions::pairwise_comparisons()], typically containing `data`, `paired`,
 #'   `p.adjust.method`, and optionally `subject.id`.
@@ -104,9 +106,6 @@
   centrality.path = FALSE,
   centrality.path.args = list()
 ) {
-  x <- ensym(x)
-  y <- ensym(y)
-
   # centrality tagging
   if (isTRUE(centrality.plotting)) {
     centrality_df <- suppressWarnings(centrality_description(
@@ -170,8 +169,8 @@
   .aesthetic_addon(
     plot = plot,
     x = pull(data, !!x),
-    xlab = xlab,
-    ylab = ylab,
+    xlab = xlab %||% as_name(x),
+    ylab = ylab %||% as_name(y),
     title = title,
     subtitle = subtitle,
     caption = caption,
@@ -200,18 +199,10 @@
   centrality_df,
   x,
   y,
-  centrality.path = FALSE,
-  centrality.path.args = list(
-    linewidth = 1.0,
-    color = "red",
-    alpha = 0.5
-  ),
-  centrality.point.args = list(size = 5.0, color = "darkred"),
-  centrality.label.args = list(
-    size = 3.0,
-    nudge_x = 0.4,
-    segment.linetype = 4.0
-  )
+  centrality.path,
+  centrality.path.args,
+  centrality.point.args,
+  centrality.label.args
 ) {
   # lines connecting mean values across groups
   if (isTRUE(centrality.path)) {
@@ -246,7 +237,6 @@
 #' @title Adding `geom_signif` to `ggplot`
 #' @name .ggsignif_adder
 #'
-#' @param ... Currently ignored.
 #' @param plot A `ggplot` object on which `geom_signif` needed to be added.
 #' @param mpc_df A data frame containing results from pairwise comparisons
 #'   (produced by [`pairwise_comparisons()`] function).
@@ -286,8 +276,7 @@
   mpc_df,
   pairwise.display = "significant",
   pairwise.alpha = 0.05,
-  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE),
-  ...
+  ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE)
 ) {
   # creating a column for group combinations
   mpc_df <- mutate(
@@ -430,22 +419,20 @@
 #'   many palette colors are needed.
 #' @param seclabel A label for secondary axis.
 #' @inheritParams ggbetweenstats
-#' @param ... Additional arguments.
 #'
 #' @noRd
 .aesthetic_addon <- function(
   plot,
   x,
-  xlab = NULL,
-  ylab = NULL,
-  title = NULL,
-  subtitle = NULL,
-  caption = NULL,
-  seclabel = NULL,
-  ggtheme = ggstatsplot::theme_ggstatsplot(),
-  palette = "ggthemes::gdoc",
-  ggplot.component = NULL,
-  ...
+  xlab,
+  ylab,
+  title,
+  subtitle,
+  caption,
+  seclabel,
+  ggtheme,
+  palette,
+  ggplot.component
 ) {
   # Validate the requested number of discrete colors before plot rendering.
   paletteer::paletteer_d(palette, nlevels(x))
