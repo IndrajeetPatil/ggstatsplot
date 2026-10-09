@@ -217,14 +217,6 @@ ggcoefstats <- function(
 ) {
   palette <- .validate_palette(palette)
 
-  # model check -------------------------
-
-  # if a data frame is entered then `statistic` is necessary to create labels
-  if (!insight::is_model(x)) {
-    tidy_df <- as_tibble(x)
-    if (is.null(statistic)) stats.labels <- FALSE
-  }
-
   # tidy data frame -------------------------
 
   if (insight::is_model(x)) {
@@ -247,13 +239,17 @@ ggcoefstats <- function(
         effectsize = paste0("partial ", effectsize.type, "-squared")
       )
     }
+  } else {
+    tidy_df <- as_tibble(x)
+    # if a data frame is entered then `statistic` is necessary to create labels
+    if (is.null(statistic)) stats.labels <- FALSE
   }
 
   tidy_df <- .preprocess_tidy_data(tidy_df, sort) |>
-    dplyr::filter(!is.na(estimate))
+    filter(!is.na(estimate))
 
   # if tidy data frame doesn't contain p-value or statistic column, no label
-  if (!(all(c("p.value", "statistic") %in% names(tidy_df)))) {
+  if (!all(c("p.value", "statistic") %in% names(tidy_df))) {
     stats.labels <- FALSE
   }
 
@@ -285,7 +281,7 @@ ggcoefstats <- function(
   glance_df <- performance::model_performance(x, verbose = FALSE) |>
     as_tibble()
 
-  if (!is.null(glance_df) && all(c("AIC", "BIC") %in% names(glance_df))) {
+  if (all(c("AIC", "BIC") %in% names(glance_df))) {
     # nolint next: line_length_linter.
     glance_df <- mutate(
       glance_df,
@@ -413,20 +409,16 @@ ggcoefstats <- function(
 
   # `ggplot2` draws discrete y-axis levels from bottom to top, so reverse the
   # factor levels to preserve the data order in the plotted top-to-bottom order.
-  data |> dplyr::mutate(term = forcats::fct_rev(forcats::fct_inorder(term)))
+  mutate(data, term = forcats::fct_rev(forcats::fct_inorder(term)))
 }
 
 #' @noRd
 .prepare_stats_label_data <- function(data, only.significant) {
-  label_data <- data
-
   if (only.significant && "p.value" %in% names(data)) {
-    label_data <- filter(label_data, p.value < 0.05)
+    data <- filter(data, p.value < 0.05)
   }
 
-  label_data <- filter(label_data, lengths(expression) > 0L)
-
-  label_data
+  filter(data, lengths(expression) > 0L)
 }
 
 #' @noRd
