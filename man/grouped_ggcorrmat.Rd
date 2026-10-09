@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggcorrmat.R
 \name{grouped_ggcorrmat}
 \alias{grouped_ggcorrmat}
-\title{Visualization of a correlalogram (or correlation matrix) for all
+\title{Visualization of a correlogram (or correlation matrix) for all
 levels of a grouping variable}
 \usage{
 grouped_ggcorrmat(
