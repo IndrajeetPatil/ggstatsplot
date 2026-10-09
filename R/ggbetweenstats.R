@@ -14,7 +14,7 @@
 #'
 #' @param xlab Label for `x` axis variable. If `NULL` (default),
 #'   variable name for `x` will be used.
-#' @param ylab Labels for `y` axis variable. If `NULL` (default),
+#' @param ylab Label for `y` axis variable. If `NULL` (default),
 #'   variable name for `y` will be used.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
@@ -47,7 +47,7 @@
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption. It will be replaced by the
 #'   Bayes Factor caption whenever that is displayed (see `bf.message`).
-#' @param centrality.plotting Logical that decides whether centrality tendency
+#' @param centrality.plotting Logical that decides whether central tendency
 #'   measure is to be displayed as a point with a label (Default: `TRUE`).
 #'   Function decides which central tendency measure to show depending on the
 #'   `type` argument.
@@ -96,7 +96,7 @@
 #'   [`ggplot2::theme_bw()`]), or themes from extension packages are allowed
 #'   (e.g., `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
 #'   etc.). But note that sometimes these themes will remove some of the details
-#'   that `{ggstatsplot}` plots typically contains. For example, if relevant,
+#'   that `{ggstatsplot}` plots typically contain. For example, if relevant,
 #'   [`ggbetweenstats()`] shows details about multiple comparison test as a
 #'   label on the secondary Y-axis. Some themes (e.g.
 #'   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis and

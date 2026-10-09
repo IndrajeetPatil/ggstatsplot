@@ -104,7 +104,7 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
 \code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
@@ -119,7 +119,7 @@ the plot will be returned.}
 argument in this list since it has already been specified using the
 dedicated argument.}
 
-\item{centrality.plotting}{Logical that decides whether centrality tendency
+\item{centrality.plotting}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.

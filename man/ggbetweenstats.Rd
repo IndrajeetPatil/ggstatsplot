@@ -110,7 +110,7 @@ the plot will be returned.}
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
 
-\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+\item{ylab}{Label for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
 
 \item{caption}{The text for the plot caption. It will be replaced by the
@@ -141,7 +141,7 @@ of an error, try reducing the value of \code{tr}, which is by default set to
     \code{"greater"} or \code{"less"}.  You can specify just the initial
     letter.}
 
-\item{centrality.plotting}{Logical that decides whether centrality tendency
+\item{centrality.plotting}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.
@@ -193,7 +193,7 @@ arguments to be passed to \code{\link[ggsignif:geom_signif]{ggsignif::geom_signi
 \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
 \code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
