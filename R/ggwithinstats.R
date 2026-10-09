@@ -175,18 +175,16 @@ ggwithinstats <- function(
       mutate(.rowid = row_number(), .by = {{ x }}) |>
       filter_out(anyNA({{ y }}), .by = .rowid)
   } else {
-    data <- filter(data, !is.na(.data[[sid_str]]))
+    stats_data <- data |>
+      filter(!is.na(.data[[sid_str]])) |>
+      mutate({{ x }} := droplevels({{ x }}))
 
-    stats_data <- data
-
-    data <- data |>
+    data <- stats_data |>
       mutate(.rowid = .data[[sid_str]]) |>
       filter(!is.na({{ y }}))
   }
 
   data <- mutate(data, {{ x }} := droplevels({{ x }}))
-
-  stats_data <- mutate(stats_data, {{ x }} := droplevels({{ x }}))
 
   # statistical analysis ------------------------------------------
 
